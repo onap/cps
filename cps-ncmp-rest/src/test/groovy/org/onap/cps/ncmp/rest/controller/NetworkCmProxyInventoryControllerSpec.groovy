@@ -251,7 +251,7 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
     }
 
     def failedResponse(cmHandle) {
-        return CmHandleRegistrationResponse.createFailureResponse(cmHandle, new RuntimeException("Failed"))
+        return CmHandleRegistrationResponse.createFailureResponse(cmHandle, new RuntimeException('Failed'))
     }
 
     def successResponse(cmHandle) {

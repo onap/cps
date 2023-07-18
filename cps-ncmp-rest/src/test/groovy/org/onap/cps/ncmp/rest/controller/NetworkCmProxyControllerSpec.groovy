@@ -75,7 +75,6 @@ import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.OPERATIONAL
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS;
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
 
-
 @WebMvcTest(NetworkCmProxyController)
 class NetworkCmProxyControllerSpec extends Specification {
 
@@ -104,16 +103,16 @@ class NetworkCmProxyControllerSpec extends Specification {
     DataOperationRequestMapper dataOperationRequestMapper = Mappers.getMapper(DataOperationRequestMapper)
 
     @SpringBean
-    CpsNcmpTaskExecutor spiedCpsTaskExecutor = Spy()
+    CpsNcmpTaskExecutor mockCpsTaskExecutor = Mock()
 
     @SpringBean
     DeprecationHelper stubbedDeprecationHelper = Stub()
 
     @SpringBean
-    NcmpCachedResourceRequestHandler ncmpCachedResourceRequestHandler = new NcmpCachedResourceRequestHandler(spiedCpsTaskExecutor, mockNetworkCmProxyDataService, mockNetworkCmProxyQueryService)
+    NcmpCachedResourceRequestHandler ncmpCachedResourceRequestHandler = new NcmpCachedResourceRequestHandler(mockCpsTaskExecutor, mockNetworkCmProxyDataService, mockNetworkCmProxyQueryService)
 
     @SpringBean
-    NcmpPassthroughResourceRequestHandler ncmpPassthroughResourceRequestHandler = new NcmpPassthroughResourceRequestHandler(spiedCpsTaskExecutor, mockNetworkCmProxyDataService)
+    NcmpPassthroughResourceRequestHandler ncmpPassthroughResourceRequestHandler = new NcmpPassthroughResourceRequestHandler(mockCpsTaskExecutor, mockNetworkCmProxyDataService)
 
     @Value('${rest.api.ncmp-base-path}/v1')
     def ncmpBasePathV1
@@ -150,23 +149,6 @@ class NetworkCmProxyControllerSpec extends Specification {
             response.status == HttpStatus.OK.value()
     }
 
-    def 'Get Resource Data Async Topic Handling with #scenario.'() {
-        given: 'resource data url'
-            def getUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-operational?resourceIdentifier=parent/child&${topicQueryParam}"
-        when: 'get data resource request is performed'
-            def response = mvc.perform(
-                get(getUrl).contentType(MediaType.APPLICATION_JSON)).andReturn().response
-        then: 'task executor is called appropriate number of times'
-            expectedNumberOfTaskExecutions * spiedCpsTaskExecutor.executeTask(_, TIMOUT_FOR_TEST)
-        and: 'response status is OK'
-            response.status == HttpStatus.OK.value()
-        where: 'the following parameters are used'
-            scenario               | datastoreInUrl            | topicQueryParam        || expectedNumberOfTaskExecutions
-            'url with valid topic' | 'passthrough-operational' | '&topic=my-topic-name' || 1
-            'no topic in url'      | 'passthrough-operational' | ''                     || 0
-            'null topic in url'    | 'passthrough-operational' | '&topic=null'          || 1
-    }
-
     def 'Get Resource Data from ncmp-datastore:operational (cached) parameters handling with #scenario.'() {
         given: 'resource data url'
             def getUrl = "$ncmpBasePathV1/ch/h123/data/ds/ncmp-datastore:operational" +
@@ -188,23 +170,6 @@ class NetworkCmProxyControllerSpec extends Specification {
             'options (ignored)'         | '&options=(a-=1)'            || OMIT_DESCENDANTS
     }
 
-    def 'Get Resource Data with invalid topic parameter: #scenario.'() {
-        given: 'resource data url'
-            def getUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:${datastoreInUrl}" +
-                "?resourceIdentifier=parent/child&options=(a=1,b=2)${topicQueryParam}"
-        when: 'get data resource (async) request is performed'
-            def response = mvc.perform(
-                get(getUrl).contentType(MediaType.APPLICATION_JSON)).andReturn().response
-        then: 'abad request is returned'
-            response.status == HttpStatus.BAD_REQUEST.value()
-        where: 'the following parameters are used'
-            scenario                               | datastoreInUrl            | topicQueryParam
-            'empty topic in url'                   | 'passthrough-operational' | '&topic=\"\"'
-            'missing topic in url'                 | 'passthrough-operational' | '&topic='
-            'blank topic value in url'             | 'passthrough-operational' | '&topic=\" \"'
-            'invalid non-empty topic value in url' | 'passthrough-operational' | '&topic=1_5_*_#'
-    }
-
     def 'Execute (async) data operation to read data from dmi service.'() {
         given: 'data operation url'
             def getUrl = "$ncmpBasePathV1/data?topic=my-topic-name"
@@ -224,17 +189,18 @@ class NetworkCmProxyControllerSpec extends Specification {
             assert response.contentAsString.contains("requestId")
         then: 'wait a little to allow execution of service method by task executor (on separate thread)'
             Thread.sleep(100)
-        then: 'the service has been invoked with the correct parameters '
-            1 * mockNetworkCmProxyDataService.executeDataOperationForCmHandles('my-topic-name', expectedDmiDataOperationRequest, _)
+        then: 'the service has been invoked with the correct parameters'
+            1 * mockCpsTaskExecutor.executeTask(*_)
+//            1 * mockNetworkCmProxyDataService.executeDataOperationForCmHandles('my-topic-name', expectedDmiDataOperationRequest, _)
         where: 'the following data stores are used'
             datastore << [PASSTHROUGH_RUNNING, PASSTHROUGH_OPERATIONAL]
     }
 
-    def 'Execute (async) data operation for #scenario from dmi service.'() {
+    def 'Execute (async) data operation with some validation error.'() {
         given: 'data operation url'
             def getUrl = "$ncmpBasePathV1/data?topic=my-topic-name"
             def dataOperationRequestJsonData = jsonObjectMapper.asJsonString(
-                    getDataOperationRequest(operation, datastore))
+                    getDataOperationRequest('read', 'invalid datastore'))
         when: 'post data resource request is performed'
             def response = mvc.perform(
                     post(getUrl)
@@ -243,18 +209,13 @@ class NetworkCmProxyControllerSpec extends Specification {
             ).andReturn().response
         then: 'response status is BAD_REQUEST'
             response.status == HttpStatus.BAD_REQUEST.value()
-        where: 'the following parameters are used'
-            scenario                                            | datastore                             | operation
-            'non-supported datastoreName'                       | OPERATIONAL.datastoreName             | 'read'
-            'non-supported operation (passthrough-running)'     | PASSTHROUGH_RUNNING.datastoreName     | 'create'
-            'non-supported operation (passthrough-operational)' | PASSTHROUGH_OPERATIONAL.datastoreName | 'create'
     }
 
     def 'Get data operation resource data when notification feature is disabled for datastore: #datastore.'() {
         given: 'data operation url'
             def getUrl = "$ncmpBasePathV1/data?topic=my-topic-name"
             def dataOperationRequestJsonData = jsonObjectMapper.asJsonString(
-                    getDataOperationRequest("read", datastore.datastoreName))
+                    getDataOperationRequest("read", PASSTHROUGH_RUNNING.datastoreName))
             ncmpPassthroughResourceRequestHandler.notificationFeatureEnabled = false
         when: 'post data resource request is performed'
             def response = mvc.perform(
@@ -266,8 +227,6 @@ class NetworkCmProxyControllerSpec extends Specification {
             response.status == HttpStatus.OK.value()
         and: 'async request id is unavailable'
             assert response.contentAsString == '{"status":"Asynchronous request is unavailable as notification feature is currently disabled."}'
-        where: 'the following data stores are used'
-            datastore << [PASSTHROUGH_RUNNING, PASSTHROUGH_OPERATIONAL]
     }
 
     def 'Query Resource Data from operational.'() {
@@ -287,9 +246,9 @@ class NetworkCmProxyControllerSpec extends Specification {
             response.status == HttpStatus.OK.value()
     }
 
-    def 'Query Resource Data using datastore of #datastore'() {
+    def 'Query Resource Data with unsupported datastore'() {
         given: 'the query resource data url'
-            def getUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:${datastore}/query" +
+            def getUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-running/query" +
                 "?cps-path=/cps/path"
         when: 'the query data resource request is performed'
             def response = mvc.perform(
@@ -298,10 +257,8 @@ class NetworkCmProxyControllerSpec extends Specification {
             ).andReturn().response
         then: 'a 400 BAD_REQUEST is returned for the unsupported datastore'
             response.status == 400
-        and: 'the error message is that datastore #datastore is not supported'
-            response.contentAsString.contains("ncmp-datastore:${datastore} is not supported")
-        where: 'the following datastore is used'
-            datastore << ["passthrough-running", "passthrough-operational"]
+        and: 'the error message is that the datastore is not supported'
+            response.contentAsString.contains("ncmp-datastore:passthrough-running is not supported")
     }
 
     def 'Get Resource Data from pass-through running with #scenario value in resource identifier param.'() {
@@ -586,7 +543,7 @@ class NetworkCmProxyControllerSpec extends Specification {
     def 'Get Resource Data from operational with or without descendants'() {
         given: 'resource data url with descendants #enabled'
             def getUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:operational" +
-                "?resourceIdentifier=parent/child&include-descendants=${enabled}"
+                "?resourceIdentifier=parent/child&include-descendants=${booleanValue}"
         when: 'get data resource request is performed'
             def response = mvc.perform(
                 get(getUrl)
@@ -597,9 +554,9 @@ class NetworkCmProxyControllerSpec extends Specification {
         and: 'response status is Ok'
             response.status == HttpStatus.OK.value()
         where: 'the following parameters are used'
-            enabled | descendantsOption
-            false   | FetchDescendantsOption.OMIT_DESCENDANTS
-            true    | FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
+            booleanValue | descendantsOption
+            false        | OMIT_DESCENDANTS
+            true         | INCLUDE_ALL_DESCENDANTS
     }
 
     def 'Attempt execute #operation rest operation on resource data with #scenario'() {

@@ -20,17 +20,29 @@
 
 package org.onap.cps.ncmp.rest.controller.handlers;
 
+import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.OPERATIONAL;
+import static org.onap.cps.ncmp.api.impl.operations.OperationType.READ;
+
+import java.util.Map;
+import java.util.UUID;
 import java.util.function.Supplier;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
+import org.onap.cps.ncmp.api.impl.exception.InvalidDatastoreException;
+import org.onap.cps.ncmp.api.impl.operations.DatastoreType;
+import org.onap.cps.ncmp.api.impl.operations.OperationType;
 import org.onap.cps.ncmp.api.models.DataOperationRequest;
+import org.onap.cps.ncmp.rest.exceptions.OperationNotSupportedException;
 import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor;
-import org.springframework.scheduling.annotation.Async;
+import org.onap.cps.ncmp.rest.util.TopicValidator;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 @Component
 public class NcmpPassthroughResourceRequestHandler extends NcmpDatastoreRequestHandler {
 
     private final NetworkCmProxyDataService networkCmProxyDataService;
+
+    private static final Object noReturn = null;
 
     /**
      * Constructor.
@@ -44,8 +56,62 @@ public class NcmpPassthroughResourceRequestHandler extends NcmpDatastoreRequestH
         this.networkCmProxyDataService = networkCmProxyDataService;
     }
 
+    /**
+     * Executes asynchronous request for group of cm handles to resource data.
+     *
+     * @param topicParamInQuery        the topic param in query
+     * @param dataOperationRequest     data operation request details for resource data
+     * @return the response entity
+     */
+    public ResponseEntity<Object> executeRequest(final String topicParamInQuery,
+                                                 final DataOperationRequest
+                                                     dataOperationRequest) {
+        validateDataOperationRequest(topicParamInQuery, dataOperationRequest);
+        if (!notificationFeatureEnabled) {
+            return ResponseEntity.ok(Map.of("status",
+                "Asynchronous request is unavailable as notification feature is currently disabled."));
+        }
+        return getRequestIdAndSendDataOperationRequestToDmiService(topicParamInQuery, dataOperationRequest);
+    }
+
+    private ResponseEntity<Object> getRequestIdAndSendDataOperationRequestToDmiService(final String topicParamInQuery,
+                                                                                       final DataOperationRequest
+                                                                                           dataOperationRequest) {
+        final String requestId = UUID.randomUUID().toString();
+        cpsNcmpTaskExecutor.executeTask(
+            getTaskSupplierForDataOperationRequest(topicParamInQuery, dataOperationRequest, requestId),
+            timeOutInMilliSeconds);
+        return ResponseEntity.ok(Map.of("requestId", requestId));
+    }
+
+    private void validateDataOperationRequest(final String topicParamInQuery,
+                                              final DataOperationRequest
+                                                  dataOperationRequest) {
+        TopicValidator.validateTopicName(topicParamInQuery);
+        dataOperationRequest.getDataOperationDefinitions().forEach(dataOperationDetail -> {
+            if (OperationType.fromOperationName(dataOperationDetail.getOperation()) != READ) {
+                throw new OperationNotSupportedException(
+                    dataOperationDetail.getOperation() + " operation not yet supported");
+            } else if (DatastoreType.fromDatastoreName(dataOperationDetail.getDatastore()) == OPERATIONAL) {
+                throw new InvalidDatastoreException(dataOperationDetail.getDatastore()
+                    + " datastore is not supported");
+            }
+        });
+    }
+
+    private Supplier<Object> getTaskSupplierForDataOperationRequest(final String topicParamInQuery,
+                                                                    final DataOperationRequest dataOperationRequest,
+                                                                    final String requestId) {
+        return () -> {
+            networkCmProxyDataService.executeDataOperationForCmHandles(topicParamInQuery,
+                dataOperationRequest,
+                requestId);
+            return noReturn;
+        };
+    }
+
     @Override
-    public Supplier<Object> getTaskSupplierForGetRequest(final String datastoreName,
+    Supplier<Object> getTaskSupplierForGetRequest(final String datastoreName,
                                                          final String cmHandleId,
                                                          final String resourceIdentifier,
                                                          final String optionsParamInQuery,
@@ -54,17 +120,7 @@ public class NcmpPassthroughResourceRequestHandler extends NcmpDatastoreRequestH
                                                          final boolean includeDescendants) {
 
         return () -> networkCmProxyDataService.getResourceDataForCmHandle(
-                datastoreName, cmHandleId, resourceIdentifier, optionsParamInQuery, topicParamInQuery, requestId);
+            datastoreName, cmHandleId, resourceIdentifier, optionsParamInQuery, topicParamInQuery, requestId);
     }
 
-    @Async
-    @Override
-    public void sendDataOperationRequestAsynchronously(final String topicParamInQuery,
-                                                       final DataOperationRequest
-                                                                   dataOperationRequest,
-                                                       final String requestId) {
-        networkCmProxyDataService.executeDataOperationForCmHandles(topicParamInQuery, dataOperationRequest,
-                requestId);
-
-    }
 }
