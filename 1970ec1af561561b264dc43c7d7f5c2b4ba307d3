@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8608d935_146769bb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-18T09:45:56Z",
+      "side": 1,
+      "message": "Do we need to populate cm handle properties for subsriptionDeleted event? If it is necessary, this block is ok. If the properties does not required for subscripitonDelted, we need to handle that as well as per operation.",
+      "range": {
+        "startLine": 140,
+        "startChar": 0,
+        "endLine": 146,
+        "endChar": 52
+      },
+      "revId": "1970ec1af561561b264dc43c7d7f5c2b4ba307d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9744d14_3c69388a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-18T09:45:56Z",
+      "side": 1,
+      "message": "If you forward a subscriptionDeleted event as same as subscriptionCreated logic here, it would forward the event with type subscriptionCreated in the header. You need to consider changing subscription type as well.",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 154,
+        "endChar": 109
+      },
+      "revId": "1970ec1af561561b264dc43c7d7f5c2b4ba307d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
