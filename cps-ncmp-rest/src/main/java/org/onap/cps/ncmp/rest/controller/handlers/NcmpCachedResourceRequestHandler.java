@@ -25,6 +25,7 @@ import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.api.NetworkCmProxyQueryService;
 import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor;
 import org.onap.cps.spi.FetchDescendantsOption;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -48,37 +49,53 @@ public class NcmpCachedResourceRequestHandler extends NcmpDatastoreRequestHandle
         this.networkCmProxyQueryService = networkCmProxyQueryService;
     }
 
-    @Override
-    public Supplier<Object> getTaskSupplierForGetRequest(final String datastoreName,
-                                                         final String cmHandleId,
-                                                         final String resourceIdentifier,
-                                                         final String optionsParamInQuery,
-                                                         final String topicParamInQuery,
-                                                         final String requestId,
-                                                         final boolean includeDescendants) {
+    /**
+     * Executes a synchronous query request for given cm handle.
+     * Note. Currently only ncmp-datastore:operational supports query operations.
+     *
+     * @param cmHandleId         the cm handle
+     * @param resourceIdentifier the resource identifier
+     * @param includeDescendants whether include descendants
+     * @return the response entity
+     */
+    public ResponseEntity<Object> executeRequest(final String cmHandleId,
+                                                 final String resourceIdentifier,
+                                                 final boolean includeDescendants) {
 
-        final FetchDescendantsOption fetchDescendantsOption =
-                TaskManagementDefaultHandler.getFetchDescendantsOption(includeDescendants);
+        final Supplier<Object> taskSupplier = getTaskSupplierForQueryRequest(cmHandleId, resourceIdentifier,
+            includeDescendants);
+        return executeTaskSync(taskSupplier);
+    }
+
+    @Override
+    protected Supplier<Object> getTaskSupplierForGetRequest(final String datastoreName,
+                                                  final String cmHandleId,
+                                                  final String resourceIdentifier,
+                                                  final String optionsParamInQuery,
+                                                  final String topicParamInQuery,
+                                                  final String requestId,
+                                                  final boolean includeDescendants) {
+
+        final FetchDescendantsOption fetchDescendantsOption = getFetchDescendantsOption(includeDescendants);
 
         return () -> networkCmProxyDataService.getResourceDataForCmHandle(datastoreName, cmHandleId, resourceIdentifier,
-                fetchDescendantsOption);
+            fetchDescendantsOption);
     }
 
-    /**
-     * Gets ncmp datastore query handler.
-     * Note. Currently only ncmp-datastore:operational supports query operations
-     * @return a ncmp datastore query handler.
-     */
-    @Override
-    public Supplier<Object> getTaskSupplierForQueryRequest(final String cmHandleId,
-                                                           final String resourceIdentifier,
-                                                           final boolean includeDescendants) {
+    private Supplier<Object> getTaskSupplierForQueryRequest(final String cmHandleId,
+                                                            final String resourceIdentifier,
+                                                            final boolean includeDescendants) {
 
-        final FetchDescendantsOption fetchDescendantsOption =
-                TaskManagementDefaultHandler.getFetchDescendantsOption(includeDescendants);
+        final FetchDescendantsOption fetchDescendantsOption = getFetchDescendantsOption(includeDescendants);
 
         return () -> networkCmProxyQueryService.queryResourceDataOperational(cmHandleId, resourceIdentifier,
-                fetchDescendantsOption);
+            fetchDescendantsOption);
     }
+
+    private static FetchDescendantsOption getFetchDescendantsOption(final boolean includeDescendants) {
+        return includeDescendants ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
+            : FetchDescendantsOption.OMIT_DESCENDANTS;
+    }
+
 
 }
