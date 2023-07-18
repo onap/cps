@@ -42,6 +42,7 @@ Bug Fixes
 
 Features
 --------
+    - `CPS-1767 <https://jira.onap.org/browse/CPS-1767>`_ Upgrade CPS to java 17
 
 Version: 3.3.3
 ==============
