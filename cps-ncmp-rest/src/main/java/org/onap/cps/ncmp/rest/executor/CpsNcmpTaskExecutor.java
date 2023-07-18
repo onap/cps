@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -35,12 +35,12 @@ public class CpsNcmpTaskExecutor {
      * Execute a task asynchronously.
      *
      * @param taskSupplier functional method is get() task need to executed asynchronously
-     * @param timeOutInMillis the time out value in milliseconds
+     * @param timeOutInMillis the time-out value in milliseconds
      */
-    public void executeTask(final Supplier<Object> taskSupplier, final int timeOutInMillis) {
+    public void executeTask(final Supplier<Object> taskSupplier, final long timeOutInMillis) {
         CompletableFuture.supplyAsync(taskSupplier::get)
             .orTimeout(timeOutInMillis, MILLISECONDS)
-            .whenCompleteAsync((responseAsJson, throwable) -> handleTaskCompletion(throwable));
+            .whenCompleteAsync((taskResult, throwable) -> handleTaskCompletion(throwable));
     }
 
     private void handleTaskCompletion(final Throwable throwable) {
