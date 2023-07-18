@@ -1,6 +1,24 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "83f95d59_80aa8185",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2023-07-18T10:09:24Z",
+      "side": 1,
+      "message": "stage-release",
+      "revId": "6b31279b2122ff9add6696b5eacfbeea8bb31cef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "14999586_b4f982d9",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/DmiServiceUrlBuilderSpec.groovy",
@@ -20,8 +38,7 @@
         "endChar": 14
       },
       "revId": "6b31279b2122ff9add6696b5eacfbeea8bb31cef",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
