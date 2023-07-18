@@ -159,6 +159,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "547c7b82_d6246f1c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-18T08:13:37Z",
+      "side": 1,
+      "message": "thanks!",
+      "parentUuid": "3ebd4b35_8016e331",
+      "range": {
+        "startLine": 137,
+        "startChar": 56,
+        "endLine": 137,
+        "endChar": 60
+      },
+      "revId": "09cc1b7dba6dd9d0d8e313f11b85344304440bb9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2b11a705_2bff6bd9",

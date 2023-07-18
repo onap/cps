@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf300514_f22d3927",
+        "filename": "docs/cps-path.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-18T08:13:37Z",
+      "side": 1,
+      "message": "don\u0027t fully understand this instruction. Will ask at standup",
+      "range": {
+        "startLine": 183,
+        "startChar": 0,
+        "endLine": 185,
+        "endChar": 42
+      },
+      "revId": "8cc3b2b30a34337a4376dcb3b844599288a429b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
