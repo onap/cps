@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "321a64f9_394ba9d0",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreRequestHandlerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-19T08:32:33Z",
+      "side": 1,
+      "message": "this should be dataOperationRequest but for some reason at runtime it complain that that variable is not defined in this context. I do not understand why. According to IntelliJ it is (I can use refactor and rename the variable in line 79, and this occurrence changes too)",
+      "range": {
+        "startLine": 90,
+        "startChar": 102,
+        "endLine": 90,
+        "endChar": 103
+      },
+      "revId": "3c70923a46f96f953ca6cb351128516373c06a57",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
