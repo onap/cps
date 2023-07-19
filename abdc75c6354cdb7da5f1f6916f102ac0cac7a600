@@ -33,6 +33,29 @@
       "message": "recheck",
       "revId": "abdc75c6354cdb7da5f1f6916f102ac0cac7a600",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3eeba9a1_3a8ff631",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-19T09:59:58Z",
+      "side": 1,
+      "message": "No checked exception thrown by this method, so no need catch it. It should already be handled in CpsPathUtil.getCpsPathBuilder(cpsPathSource) method.\n\nIf it could have been thrown checked or unchecked exception, it would not be logged only, since the rest of the code, will try to use normalizedXpaths. You could throw an unchecked exception with a message and stop code being executed in that case.",
+      "range": {
+        "startLine": 256,
+        "startChar": 0,
+        "endLine": 260,
+        "endChar": 13
+      },
+      "revId": "abdc75c6354cdb7da5f1f6916f102ac0cac7a600",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
