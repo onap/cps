@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d872956c_a1829e5d",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-07-19T10:34:17Z",
+      "side": 1,
+      "message": "5",
+      "range": {
+        "startLine": 32,
+        "startChar": 45,
+        "endLine": 32,
+        "endChar": 46
+      },
+      "revId": "a8168a5f18d2bee3af0d7fc4f7e4d793ca8c1100",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37407d66_0769f1e2",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-07-19T10:34:17Z",
+      "side": 1,
+      "message": "align the indendation.",
+      "range": {
+        "startLine": 62,
+        "startChar": 88,
+        "endLine": 62,
+        "endChar": 90
+      },
+      "revId": "a8168a5f18d2bee3af0d7fc4f7e4d793ca8c1100",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
