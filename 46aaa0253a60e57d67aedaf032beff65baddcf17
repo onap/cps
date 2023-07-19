@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "edb486e2_777ff1af",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-07-19T09:44:24Z",
+      "side": 1,
+      "message": "correct the build number",
+      "revId": "46aaa0253a60e57d67aedaf032beff65baddcf17",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b25d6b2f_6e4edf45",
+        "filename": "releases/3.3.4-container.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-07-19T09:44:24Z",
+      "side": 1,
+      "message": "it has to be 923",
+      "range": {
+        "startLine": 4,
+        "startChar": 39,
+        "endLine": 4,
+        "endChar": 42
+      },
+      "revId": "46aaa0253a60e57d67aedaf032beff65baddcf17",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
