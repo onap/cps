@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "61de9b00_e7a951a3",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/executor/CpsNcmpTaskExecutor.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-19T17:07:34Z",
+      "side": 1,
+      "message": "TimeOoutException did NOT have a message and was displaying null here\nusing toString() on the whole exception gives better information",
+      "range": {
+        "startLine": 50,
+        "startChar": 69,
+        "endLine": 50,
+        "endChar": 78
+      },
+      "revId": "77d6a3c93fca961d6596260f2c4f8499cb7f6602",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c60ab7ba_79f545ac",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreRequestHandlerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-19T17:07:34Z",
+      "side": 1,
+      "message": "I think this is enough (probably doesn\u0027t matter much)",
+      "range": {
+        "startLine": 47,
+        "startChar": 28,
+        "endLine": 48,
+        "endChar": 13
+      },
+      "revId": "77d6a3c93fca961d6596260f2c4f8499cb7f6602",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b0a355b_a7d44612",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreRequestHandlerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-19T17:07:34Z",
+      "side": 1,
+      "message": "PollingCondition seems needs for this test only, not sure why most other test work fine with a normal small delay....\nIf we DO get intermittent issues on other test we can apply it as needed now we knows how to use it....",
+      "range": {
+        "startLine": 93,
+        "startChar": 16,
+        "endLine": 93,
+        "endChar": 33
+      },
+      "revId": "77d6a3c93fca961d6596260f2c4f8499cb7f6602",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7823e5d2_fc9a48a8",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreRequestHandlerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-19T17:07:34Z",
+      "side": 1,
+      "message": "PollingCondition can not be combined with \u00271 * Mock.method\u0027 notation hence the us of manual flag",
+      "range": {
+        "startLine": 94,
+        "startChar": 16,
+        "endLine": 94,
+        "endChar": 50
+      },
+      "revId": "77d6a3c93fca961d6596260f2c4f8499cb7f6602",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
