@@ -22,7 +22,7 @@
     <parent>
         <groupId>org.onap.cps</groupId>
         <artifactId>dmi-plugin-demo-and-csit-stub</artifactId>
-        <version>3.3.4-SNAPSHOT</version>
+        <version>3.3.5-SNAPSHOT</version>
     </parent>
 
     <artifactId>dmi-plugin-demo-and-csit-stub-app</artifactId>
@@ -30,7 +30,7 @@
     <properties>
         <app>org.onap.cps.ncmp.dmi.rest.stub.DmiDemoApplication</app>
         <maven.build.timestamp.format>yyyyMMdd'T'HHmmss'Z'</maven.build.timestamp.format>
-        <base.image>${docker.pull.registry}/onap/integration-java11:8.0.0</base.image>
+        <base.image>${docker.pull.registry}/onap/integration-java17:12.0.0</base.image>
         <image.tag>${project.version}-${maven.build.timestamp}</image.tag>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
