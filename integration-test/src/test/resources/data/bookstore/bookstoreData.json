@@ -1,4 +1,12 @@
 {
+  "multiple-data-tree:invoice": [
+    {
+      "ProductID": "1",
+      "ProductName": "Apple",
+      "price": "100",
+      "stock": false
+    }
+  ],
   "bookstore": {
     "bookstore-name": "Easons",
     "premises": {
