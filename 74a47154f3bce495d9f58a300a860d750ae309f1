@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db627413_c4c26fb1",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2023-07-20T12:36:25Z",
+      "side": 1,
+      "message": "If a string wrapped in a single quote why does it makes sense to perform a String.replace on a sequence which is possibly not present in the string? (Especially if you remove the 1st and last characters?)\n\nFor example \" \u0027test\u0027 \" should become \"test\" here and replacing \u0027\u0027 with \u0027 would have no effect here.\n\nOr am I not seeing something?",
+      "revId": "74a47154f3bce495d9f58a300a860d750ae309f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
