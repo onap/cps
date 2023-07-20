@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3962faa7_b3f1ec0a",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/QueryRestController.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-07-20T07:57:36Z",
+      "side": 1,
+      "message": "For pagination we need to return total number of records to derive total number of pages. this header parameter is added in openapi.yaml",
+      "parentUuid": "5ad99629_ddf94095",
+      "range": {
+        "startLine": 100,
+        "startChar": 35,
+        "endLine": 100,
+        "endChar": 57
+      },
+      "revId": "7a99e5e61d09a28c4c1f355ec01e9471f4b16aa1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "589d29be_fea98f48",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
         "patchSetId": 24
@@ -89,6 +113,54 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1ae3142b_c2de0b9e",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 24
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-07-20T07:57:36Z",
+      "side": 1,
+      "message": "Addressed",
+      "parentUuid": "589d29be_fea98f48",
+      "range": {
+        "startLine": 143,
+        "startChar": 119,
+        "endLine": 143,
+        "endChar": 127
+      },
+      "revId": "7a99e5e61d09a28c4c1f355ec01e9471f4b16aa1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "975a31d3_5a9cef40",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 24
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-07-20T07:57:36Z",
+      "side": 1,
+      "message": "Addressed",
+      "parentUuid": "ef5559d5_d9e7a490",
+      "range": {
+        "startLine": 143,
+        "startChar": 107,
+        "endLine": 143,
+        "endChar": 117
+      },
+      "revId": "7a99e5e61d09a28c4c1f355ec01e9471f4b16aa1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ac8d4916_46341b56",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
         "patchSetId": 24
@@ -100,6 +172,30 @@
       "writtenOn": "2023-07-13T14:27:33Z",
       "side": 1,
       "message": "Test in Unit Test for \u0027paginationOPtion instead!",
+      "range": {
+        "startLine": 209,
+        "startChar": 1,
+        "endLine": 211,
+        "endChar": 62
+      },
+      "revId": "7a99e5e61d09a28c4c1f355ec01e9471f4b16aa1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03465d5b_6390a8f0",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/exceptions/CpsRestExceptionHandlerSpec.groovy",
+        "patchSetId": 24
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-07-20T07:57:36Z",
+      "side": 1,
+      "message": "As we discussed removed this test from here and added validation test in service layer",
+      "parentUuid": "ac8d4916_46341b56",
       "range": {
         "startLine": 209,
         "startChar": 1,
@@ -135,6 +231,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a8e9d671_e949829d",
+        "filename": "cps-ri/pom.xml",
+        "patchSetId": 24
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-07-20T07:57:36Z",
+      "side": 1,
+      "message": "Test added in integration test",
+      "parentUuid": "ae7d28e9_2ca85ba6",
+      "range": {
+        "startLine": 36,
+        "startChar": 26,
+        "endLine": 36,
+        "endChar": 30
+      },
+      "revId": "7a99e5e61d09a28c4c1f355ec01e9471f4b16aa1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5c39098c_3ea95a1f",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 24
@@ -146,6 +266,30 @@
       "writtenOn": "2023-07-13T14:27:33Z",
       "side": 1,
       "message": "this is not tru anymore correct ?!",
+      "range": {
+        "startLine": 312,
+        "startChar": 65,
+        "endLine": 312,
+        "endChar": 68
+      },
+      "revId": "7a99e5e61d09a28c4c1f355ec01e9471f4b16aa1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1917810f_85e0cab9",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-07-20T07:57:36Z",
+      "side": 1,
+      "message": "updated this statement",
+      "parentUuid": "5c39098c_3ea95a1f",
       "range": {
         "startLine": 312,
         "startChar": 65,
@@ -181,6 +325,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d03e16ef_ba896f18",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-07-20T07:57:36Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "4b77c337_209acd2f",
+      "range": {
+        "startLine": 324,
+        "startChar": 0,
+        "endLine": 330,
+        "endChar": 9
+      },
+      "revId": "7a99e5e61d09a28c4c1f355ec01e9471f4b16aa1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "21a25b52_c2c25d9a",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 24
@@ -192,6 +360,30 @@
       "writtenOn": "2023-07-13T14:27:33Z",
       "side": 1,
       "message": "a lot of this is almost duplicate of lien 300-307 ie. you can extract out and for the original logic on lines 30-307 you can call the extract method with an empty list (suggest to use a constant like ALL_ANCHORS \u003d Collections.emptyList()",
+      "range": {
+        "startLine": 331,
+        "startChar": 0,
+        "endLine": 348,
+        "endChar": 0
+      },
+      "revId": "7a99e5e61d09a28c4c1f355ec01e9471f4b16aa1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "036a9414_4b18d04d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-07-20T07:57:36Z",
+      "side": 1,
+      "message": "although few conditions look duplicate, but sub methods are different.",
+      "parentUuid": "21a25b52_c2c25d9a",
       "range": {
         "startLine": 331,
         "startChar": 0,
@@ -227,6 +419,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bf4e418b_e96274e3",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-07-20T07:57:36Z",
+      "side": 1,
+      "message": "Added this method in PaginationOption",
+      "parentUuid": "1294ad8d_e08293b5",
+      "range": {
+        "startLine": 355,
+        "startChar": 0,
+        "endLine": 359,
+        "endChar": 5
+      },
+      "revId": "7a99e5e61d09a28c4c1f355ec01e9471f4b16aa1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "24c22cb3_dd510a42",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 24
@@ -238,6 +454,30 @@
       "writtenOn": "2023-07-13T14:27:33Z",
       "side": 1,
       "message": "seems hacky, I\u0027d rather use null and a constant i.e PaginationOption NO_PAGINATION \u003d null",
+      "range": {
+        "startLine": 407,
+        "startChar": 16,
+        "endLine": 407,
+        "endChar": 44
+      },
+      "revId": "7a99e5e61d09a28c4c1f355ec01e9471f4b16aa1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20753b65_b32cb2cf",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-07-20T07:57:36Z",
+      "side": 1,
+      "message": "Addressed",
+      "parentUuid": "24c22cb3_dd510a42",
       "range": {
         "startLine": 407,
         "startChar": 16,
@@ -273,6 +513,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "39c02437_ae09dedd",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-07-20T07:57:36Z",
+      "side": 1,
+      "message": "Made changes",
+      "parentUuid": "ab3991d0_13351452",
+      "range": {
+        "startLine": 92,
+        "startChar": 57,
+        "endLine": 92,
+        "endChar": 98
+      },
+      "revId": "7a99e5e61d09a28c4c1f355ec01e9471f4b16aa1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f2a92b32_65761909",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
         "patchSetId": 24
@@ -290,6 +554,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "eccb43f2_68c3c581",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-07-20T07:57:36Z",
+      "side": 1,
+      "message": "Addressed",
+      "parentUuid": "f2a92b32_65761909",
+      "revId": "7a99e5e61d09a28c4c1f355ec01e9471f4b16aa1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "37b57e01_2ac8da65",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
         "patchSetId": 24
@@ -301,6 +583,30 @@
       "writtenOn": "2023-07-13T15:51:27Z",
       "side": 1,
       "message": "You can remove dataspace field since you know the anchors belong to the same dataspace. This can be then simplified to:\n\n    @Query(value \u003d \"SELECT * FROM fragment WHERE anchor_id IN (:anchorIds) AND xpath IN (:xpaths)\", \n            nativeQuery \u003d true)\n    List\u003cFragmentEntity\u003e findByAnchorIdsAndXpathIn(@Param(\"anchorIds\") Long[] anchorIds, \n                                                   @Param(\"xpaths\") String[] xpaths);",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 100
+      },
+      "revId": "7a99e5e61d09a28c4c1f355ec01e9471f4b16aa1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a9603af_f2d8004c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-07-20T07:57:36Z",
+      "side": 1,
+      "message": "Addressed",
+      "parentUuid": "37b57e01_2ac8da65",
       "range": {
         "startLine": 70,
         "startChar": 0,
@@ -336,6 +642,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6a26d6d0_023ec26f",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-07-20T07:57:36Z",
+      "side": 1,
+      "message": "Updated",
+      "parentUuid": "63ece105_4708dbe7",
+      "range": {
+        "startLine": 207,
+        "startChar": 34,
+        "endLine": 207,
+        "endChar": 51
+      },
+      "revId": "7a99e5e61d09a28c4c1f355ec01e9471f4b16aa1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cfdebcb1_286377db",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsQueryServiceImplSpec.groovy",
         "patchSetId": 24
@@ -359,6 +689,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1b08edfd_a8660049",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsQueryServiceImplSpec.groovy",
+        "patchSetId": 24
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-07-20T07:57:36Z",
+      "side": 1,
+      "message": "Ok, addressed.",
+      "parentUuid": "cfdebcb1_286377db",
+      "range": {
+        "startLine": 63,
+        "startChar": 7,
+        "endLine": 68,
+        "endChar": 127
+      },
+      "revId": "7a99e5e61d09a28c4c1f355ec01e9471f4b16aa1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4080781a_272507ea",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
         "patchSetId": 24
@@ -370,6 +724,30 @@
       "writtenOn": "2023-07-13T14:27:33Z",
       "side": 1,
       "message": "as in production code I think it shoudl work with null and you can use a \u0027cosntant\u0027 to convey meaning...",
+      "range": {
+        "startLine": 269,
+        "startChar": 125,
+        "endLine": 269,
+        "endChar": 152
+      },
+      "revId": "7a99e5e61d09a28c4c1f355ec01e9471f4b16aa1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5c10e32_b6cf1305",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 24
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-07-20T07:57:36Z",
+      "side": 1,
+      "message": "use null constant for this",
+      "parentUuid": "4080781a_272507ea",
       "range": {
         "startLine": 269,
         "startChar": 125,
@@ -410,6 +788,30 @@
       "writtenOn": "2023-07-13T14:27:33Z",
       "side": 1,
       "message": "God integration test! \nBut I not sure why there are so many tests here, can you explain (walktrhough needed)\nI would expect only 3 scnerios\n1) All \u0027pages\u0027\n2) the first page only\n3) 2 page start from  nonzero offset",
+      "range": {
+        "startLine": 388,
+        "startChar": 13,
+        "endLine": 401,
+        "endChar": 5
+      },
+      "revId": "7a99e5e61d09a28c4c1f355ec01e9471f4b16aa1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c78d91cd_d90e8101",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 24
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-07-20T07:57:36Z",
+      "side": 1,
+      "message": "cleaned unwanted tests.",
+      "parentUuid": "8d92edeb_a13aa38b",
       "range": {
         "startLine": 388,
         "startChar": 13,
