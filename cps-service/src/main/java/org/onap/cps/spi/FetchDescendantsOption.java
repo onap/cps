@@ -42,7 +42,7 @@ public class FetchDescendantsOption {
     }
 
     private static final Pattern FETCH_DESCENDANTS_OPTION_PATTERN =
-        Pattern.compile("^$|^all$|^none$|^[0-9]+$|^-1$");
+        Pattern.compile("^$|^all$|^none$|^direct$|^[0-9]+$|^-1$|^1$");
 
     private final int depth;
 
@@ -77,7 +77,9 @@ public class FetchDescendantsOption {
 
     /**
      * Get depth.
-     * @return depth: -1 for all descendants, 0 for no descendants, or positive value for fixed level of descendants
+     *
+     * @return depth: -1 for all descendants, 0 for no descendants, 1 for direct children or positive value for fixed
+     *     level of descendants
      */
     public int getDepth() {
         return depth;
@@ -96,6 +98,8 @@ public class FetchDescendantsOption {
             return FetchDescendantsOption.OMIT_DESCENDANTS;
         } else if ("-1".equals(fetchDescendantsOptionAsString) || "all".equals(fetchDescendantsOptionAsString)) {
             return FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
+        } else if ("1".equals(fetchDescendantsOptionAsString) || "direct".equals(fetchDescendantsOptionAsString)) {
+            return FetchDescendantsOption.DIRECT_CHILDREN_ONLY;
         } else {
             final Integer depth = Integer.valueOf(fetchDescendantsOptionAsString);
             return new FetchDescendantsOption(depth);
