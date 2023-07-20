@@ -85,6 +85,7 @@ class FetchDescendantsOptionSpec extends Specification {
             'all descendants using all'         | 'all'                          || -1
             'No descendants by default'         | ''                             || 0
             'No descendants using none'         | 'none'                         || 0
+            'direct child using direct'         | 'direct'                       || 1
             'til 10th descendants using number' | '10'                           || 10
     }
 
