@@ -1,0 +1,141 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "54a0875f_424f4d6d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-07-20T13:17:10Z",
+      "side": 1,
+      "message": "I have not focussed on the groovy test at the moment.\nBut I would like to know what u think abt my comments ? \nDoes it makes sense ? \n\nEspecially on the Status and Details pojo object ? \n\nOthers from the Team-2 can also look at this patch.",
+      "revId": "e605d73ddd8d89a6f42187bc19ca2cf9f94473bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4423a7ef_18c42ead",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventResponseConsumer.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-07-20T13:17:10Z",
+      "side": 1,
+      "message": "NB: do you think we can make this generic and others can also reuse it.\neg : \nWe name it CloudEventObjectMapper.\nwhich has a map method which takes in cloudEvent and target class type and it returns the converted object of that class type ? \n\nJust like we have methods in ObjectMapper.\nThen it would make sense to keep in the Utils package and can be used by other classes.\nWhat do you think ?",
+      "range": {
+        "startLine": 72,
+        "startChar": 16,
+        "endLine": 72,
+        "endChar": 93
+      },
+      "revId": "e605d73ddd8d89a6f42187bc19ca2cf9f94473bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e15ff7b6_89d2af44",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventResponseMapper.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-07-20T13:17:10Z",
+      "side": 1,
+      "message": "NB: as we were talking yesterday , do we need to store the datastore-xpath-filter in the subscriptionCreated use case ??\nIf yes then the YANG model change is also needed.\nIf team agrees that it is needed , then we will create as part of separate task.\nNot in this commit.",
+      "revId": "e605d73ddd8d89a6f42187bc19ca2cf9f94473bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c75b532f_93fd058b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventResponseOutcome.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-07-20T13:17:10Z",
+      "side": 1,
+      "message": "does it need to be a Map of status and details ??\nY not a Custom class containing these 2 attributes for now ?\nIf it is a class then we can extend it.\nWhat do you think ?",
+      "range": {
+        "startLine": 73,
+        "startChar": 26,
+        "endLine": 73,
+        "endChar": 45
+      },
+      "revId": "e605d73ddd8d89a6f42187bc19ca2cf9f94473bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b524363_6dbd3756",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/SubscriptionEventCloudMapper.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-07-20T13:17:10Z",
+      "side": 1,
+      "message": "can u paramterize the eventType here ??",
+      "revId": "e605d73ddd8d89a6f42187bc19ca2cf9f94473bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca4e8868_95e8ea46",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/SubscriptionOutcomeCloudMapper.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-07-20T13:17:10Z",
+      "side": 1,
+      "message": "add the parameter as eventType here.",
+      "revId": "e605d73ddd8d89a6f42187bc19ca2cf9f94473bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbe14d2c_b170133b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/yangmodels/YangModelSubscriptionEvent.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-07-20T13:17:10Z",
+      "side": 1,
+      "message": "again this message should come from a common place.\nTo be decided with the team and to be implemented separately.",
+      "range": {
+        "startLine": 95,
+        "startChar": 28,
+        "endLine": 95,
+        "endChar": 64
+      },
+      "revId": "e605d73ddd8d89a6f42187bc19ca2cf9f94473bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
