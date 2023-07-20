@@ -46,6 +46,10 @@ class CpsPathQuerySpec extends Specification {
             'spaces around ='      | '/parent/child[@common-leaf-name-int = 5]'                 || '/parent/child'                                 | 'common-leaf-name-int' | 5
             'key in top container' | '/parent[@common-leaf-name-int=5]'                         || '/parent'                                       | 'common-leaf-name-int' | 5
             'parent list'          | '/shops/shop[@id=1]/categories[@id=1]/book[@title="Dune"]' || "/shops/shop[@id='1']/categories[@id='1']/book" | 'title'                | 'Dune'
+            "' in double quote"    | '/parent[@common-leaf-name="leaf\'value"]'                 || '/parent'                                       | 'common-leaf-name'     | "leaf'value"
+            "' in single quote"    | "/parent[@common-leaf-name='leaf''value']"                 || '/parent'                                       | 'common-leaf-name'     | "leaf'value"
+            '" in double quote'    | '/parent[@common-leaf-name="leaf""value"]'                 || '/parent'                                       | 'common-leaf-name'     | 'leaf"value'
+            '" in single quote'    | '/parent[@common-leaf-name=\'leaf"value\']'                || '/parent'                                       | 'common-leaf-name'     | 'leaf"value'
     }
 
     def 'Parse cps path of type ends with a #scenario.'() {
@@ -80,8 +84,8 @@ class CpsPathQuerySpec extends Specification {
             'parent leaf of type Integer & child'                         | '/parent/child[@code=1]/child2'                                || "/parent/child[@code='1']/child2"
             'parent leaf with double quotes'                              | '/parent/child[@code="1"]/child2'                              || "/parent/child[@code='1']/child2"
             'parent leaf with double quotes inside single quotes'         | '/parent/child[@code=\'"1"\']/child2'                          || "/parent/child[@code='\"1\"']/child2"
-            'parent leaf with single quotes inside double quotes'         | '/parent/child[@code="\'1\'"]/child2'                          || "/parent/child[@code='\\\'1\\\'']/child2"
-            'leaf with single quotes inside double quotes'                | '/parent/child[@code="\'1\'"]'                                 || "/parent/child[@code='\\\'1\\\'']"
+            'parent leaf with single quotes inside double quotes'         | '/parent/child[@code="\'1\'"]/child2'                          || "/parent/child[@code='''1''']/child2"
+            'leaf with single quotes inside double quotes'                | '/parent/child[@code="\'1\'"]'                                 || "/parent/child[@code='''1''']"
             'leaf with more than one attribute'                           | '/parent/child[@key1=1 and @key2="abc"]'                       || "/parent/child[@key1='1' and @key2='abc']"
             'parent & child with more than one attribute'                 | '/parent/child[@key1=1 and @key2="abc"]/child2'                || "/parent/child[@key1='1' and @key2='abc']/child2"
             'leaf with more than one attribute has OR operator'           | '/parent/child[@key1=1 or @key2="abc"]'                        || "/parent/child[@key1='1' or @key2='abc']"

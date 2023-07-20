@@ -79,18 +79,13 @@ public class CpsPathBuilder extends CpsPathBaseListener {
 
     @Override
     public void exitLeafCondition(final LeafConditionContext ctx) {
-        Object comparisonValue;
+        final Object comparisonValue;
         if (ctx.IntegerLiteral() != null) {
             comparisonValue = Integer.valueOf(ctx.IntegerLiteral().getText());
         } else if (ctx.StringLiteral() != null) {
-            final boolean wasWrappedInDoubleQuote = ctx.StringLiteral().getText().startsWith("\"");
-            comparisonValue = stripFirstAndLastCharacter(ctx.StringLiteral().getText());
-            if (wasWrappedInDoubleQuote) {
-                comparisonValue = String.valueOf(comparisonValue).replace("'", "\\'");
-            }
+            comparisonValue = unwrapQuotedString(ctx.StringLiteral().getText());
         } else {
-            throw new PathParsingException(
-                    "Unsupported comparison value encountered in expression" + ctx.getText());
+            throw new PathParsingException("Unsupported comparison value encountered in expression" + ctx.getText());
         }
         leafContext(ctx.leafName(), comparisonValue);
     }
@@ -140,13 +135,13 @@ public class CpsPathBuilder extends CpsPathBaseListener {
     @Override
     public void exitTextFunctionCondition(final TextFunctionConditionContext ctx) {
         cpsPathQuery.setTextFunctionConditionLeafName(ctx.leafName().getText());
-        cpsPathQuery.setTextFunctionConditionValue(stripFirstAndLastCharacter(ctx.StringLiteral().getText()));
+        cpsPathQuery.setTextFunctionConditionValue(unwrapQuotedString(ctx.StringLiteral().getText()));
     }
 
     @Override
     public void exitContainsFunctionCondition(final CpsPathParser.ContainsFunctionConditionContext ctx) {
         cpsPathQuery.setContainsFunctionConditionLeafName(ctx.leafName().getText());
-        cpsPathQuery.setContainsFunctionConditionValue(stripFirstAndLastCharacter(ctx.StringLiteral().getText()));
+        cpsPathQuery.setContainsFunctionConditionValue(unwrapQuotedString(ctx.StringLiteral().getText()));
     }
 
     @Override
@@ -171,10 +166,6 @@ public class CpsPathBuilder extends CpsPathBaseListener {
         cpsPathQuery.setBooleanOperators(booleanOperators);
         cpsPathQuery.setComparativeOperators(comparativeOperators);
         return cpsPathQuery;
-    }
-
-    private static String stripFirstAndLastCharacter(final String wrappedString) {
-        return wrappedString.substring(1, wrappedString.length() - 1);
     }
 
     @Override
@@ -207,11 +198,25 @@ public class CpsPathBuilder extends CpsPathBaseListener {
                                     .append(name)
                                     .append(getLastElement(comparativeOperators))
                                     .append("'")
-                                    .append(value)
+                                    .append(value.toString().replace("'", "''"))
                                     .append("'");
     }
 
-    private String getLastElement(final List<String> listOfStrings) {
+    private static String getLastElement(final List<String> listOfStrings) {
         return listOfStrings.get(listOfStrings.size() - 1);
+    }
+
+    private static String unwrapQuotedString(final String wrappedString) {
+        final boolean wasWrappedInSingleQuote = wrappedString.startsWith("'");
+        final String value = stripFirstAndLastCharacter(wrappedString);
+        if (wasWrappedInSingleQuote) {
+            return value.replace("''", "'");
+        } else {
+            return value.replace("\"\"", "\"");
+        }
+    }
+
+    private static String stripFirstAndLastCharacter(final String wrappedString) {
+        return wrappedString.substring(1, wrappedString.length() - 1);
     }
 }

@@ -136,7 +136,7 @@ public class FragmentQueryBuilder {
                     final String leafValueAsText = leaf.getValue().toString();
                     sqlStringBuilder.append("attributes ->> '").append(leaf.getName()).append("'");
                     sqlStringBuilder.append(" = '");
-                    sqlStringBuilder.append(leafValueAsText);
+                    sqlStringBuilder.append(EscapeUtils.escapeForSqlStringLiteral(leafValueAsText));
                     sqlStringBuilder.append("'");
                 } else {
                     throw new CpsPathException(" can use only " + nextComparativeOperator + " with integer ");
