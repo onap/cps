@@ -175,6 +175,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e46f8f29_2f27569a",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DataMapUtilsSpec.groovy",
+        "patchSetId": 27
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-07-20T14:30:16Z",
+      "side": 1,
+      "message": "I had to refactor the test to get it passing with maven and pipeline. Not sure why it works in Intelli-j but not maven:\n\n    def \u0027Data node structure with anchor name conversion to map with root node identifier.\u0027() {\n        when: \u0027data node structure is converted to a map with root node identifier\u0027\n            def result \u003d DataMapUtils.toDataMapWithIdentifierAndAnchor([dataNodeWithAnchor], dataNodeWithAnchor.anchorName, dataNodeWithAnchor.moduleNamePrefix)\n        then: \u0027root node leaves are populated under its node identifier\u0027\n            def dataNodes \u003d result.dataNodes as List\n            assert dataNodes.size() \u003d\u003d 1\n            def parentNode \u003d dataNodes[0].parent\n            assert parentNode.parentLeaf \u003d\u003d \u0027parentLeafValue\u0027\n            assert parentNode.parentLeafList \u003d\u003d [\u0027parentLeafListEntry1\u0027,\u0027parentLeafListEntry2\u0027]\n        and: \u0027leaves for child element is populated under its node identifier\u0027\n            assert parentNode.\u0027child-object\u0027.childLeaf \u003d\u003d \u0027childLeafValue\u0027\n        and: \u0027leaves for grandchild element is populated under its node identifier\u0027\n            assert parentNode.\u0027child-object\u0027.\u0027grand-child-object\u0027.grandChildLeaf \u003d\u003d \u0027grandChildLeafValue\u0027\n        and: \u0027data node is associated with anchor name\u0027\n            assert result.anchorName \u003d\u003d \u0027anchor01\u0027\n    }",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 5
+      },
+      "revId": "d09801ba4f819b1891ee25c09cca5e2c0e40dcd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "929fa159_03daca64",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
         "patchSetId": 27
