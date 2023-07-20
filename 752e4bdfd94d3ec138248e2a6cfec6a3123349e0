@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62242750_a8a746f3",
+        "filename": "cps-ri/pom.xml",
+        "patchSetId": 19
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-20T14:13:57Z",
+      "side": 1,
+      "message": "OK as long as integration test are covering new code...",
+      "range": {
+        "startLine": 36,
+        "startChar": 26,
+        "endLine": 36,
+        "endChar": 30
+      },
+      "revId": "752e4bdfd94d3ec138248e2a6cfec6a3123349e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7eab4a5b_092ad780",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-20T14:13:57Z",
+      "side": 1,
+      "message": "NB: lowercase \u0027d\u0027",
+      "range": {
+        "startLine": 349,
+        "startChar": 33,
+        "endLine": 349,
+        "endChar": 34
+      },
+      "revId": "752e4bdfd94d3ec138248e2a6cfec6a3123349e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b54f7337_6bb82ebc",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-20T14:13:57Z",
+      "side": 1,
+      "message": "I would implement this in PaginationOPtion (assuming it is not generated) itslef or a small utils class (easier fro testing all combination too then)",
+      "range": {
+        "startLine": 356,
+        "startChar": 15,
+        "endLine": 358,
+        "endChar": 96
+      },
+      "revId": "752e4bdfd94d3ec138248e2a6cfec6a3123349e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ef3bf8d_e0c98024",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-20T14:13:57Z",
+      "side": 1,
+      "message": "suggestion: I would use the word \u0027count\u0027 instead\n\ncountAnchorsFor....",
+      "range": {
+        "startLine": 398,
+        "startChar": 19,
+        "endLine": 398,
+        "endChar": 28
+      },
+      "revId": "752e4bdfd94d3ec138248e2a6cfec6a3123349e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

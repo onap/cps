@@ -16,6 +16,184 @@
       "message": "recheck",
       "revId": "d09801ba4f819b1891ee25c09cca5e2c0e40dcd2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8588c39e_ac990b86",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-20T14:13:57Z",
+      "side": 1,
+      "message": "use \u003d\u003d and swap if else blocks",
+      "range": {
+        "startLine": 325,
+        "startChar": 29,
+        "endLine": 325,
+        "endChar": 32
+      },
+      "revId": "d09801ba4f819b1891ee25c09cca5e2c0e40dcd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b88eb9ac_0ca352e4",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/utils/CpsValidatorImpl.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-20T14:13:57Z",
+      "side": 1,
+      "message": "swap (always use constant first).also, could you use .equals() instead ?",
+      "range": {
+        "startLine": 61,
+        "startChar": 40,
+        "endLine": 61,
+        "endChar": 90
+      },
+      "revId": "d09801ba4f819b1891ee25c09cca5e2c0e40dcd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "929cc781_d6543c55",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/utils/CpsValidatorSpec.groovy",
+        "patchSetId": 27
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-20T14:13:57Z",
+      "side": 1,
+      "message": "no need to repeat these 3 words as is already in each scenario really...\nthis will do: \u0027Validate Pagination option with #scenario\u0027",
+      "range": {
+        "startLine": 68,
+        "startChar": 41,
+        "endLine": 68,
+        "endChar": 61
+      },
+      "revId": "d09801ba4f819b1891ee25c09cca5e2c0e40dcd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1986ff9_7dd0e429",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/PaginationOption.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-20T14:13:57Z",
+      "side": 1,
+      "message": "IF think all this logic around page size checks and validation is overcomplicated\n\nI would\n1) Define null as NO_PAGINATION\n2) use primitive int for both fields\n2) Hardcode controller to only create the option if both paremeters are NOT null\n(NO need for exception if both options are not set, you can add notes in teh OpenAPI desrption for these options)\n3) DO any validation in service layer (for negative numbers)",
+      "revId": "d09801ba4f819b1891ee25c09cca5e2c0e40dcd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "794378d7_926c0955",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/PaginationOption.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-20T14:13:57Z",
+      "side": 1,
+      "message": "why not use primitive int ?\nI think the only reason is the REST interface but conversion of Integer to int (and nullchecks) shoudl be handled in the controller",
+      "range": {
+        "startLine": 29,
+        "startChar": 12,
+        "endLine": 29,
+        "endChar": 20
+      },
+      "revId": "d09801ba4f819b1891ee25c09cca5e2c0e40dcd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9afaf30_39bd91b0",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/PaginationOption.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-20T14:13:57Z",
+      "side": 1,
+      "message": "as above",
+      "range": {
+        "startLine": 31,
+        "startChar": 12,
+        "endLine": 31,
+        "endChar": 20
+      },
+      "revId": "d09801ba4f819b1891ee25c09cca5e2c0e40dcd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4931b1cc_07ed766b",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/PaginationOption.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-20T14:13:57Z",
+      "side": 1,
+      "message": "why not use null for NO Pagination ?!",
+      "range": {
+        "startLine": 33,
+        "startChar": 56,
+        "endLine": 33,
+        "endChar": 86
+      },
+      "revId": "d09801ba4f819b1891ee25c09cca5e2c0e40dcd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "929fa159_03daca64",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 27
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-20T14:13:57Z",
+      "side": 1,
+      "message": "NB: Use static import so you don\u0027t have to preceed \u0027PagainationOption.\u0027",
+      "range": {
+        "startLine": 278,
+        "startChar": 136,
+        "endLine": 278,
+        "endChar": 153
+      },
+      "revId": "d09801ba4f819b1891ee25c09cca5e2c0e40dcd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
