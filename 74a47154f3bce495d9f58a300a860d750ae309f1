@@ -16,6 +16,24 @@
       "message": "If a string wrapped in a single quote why does it makes sense to perform a String.replace on a sequence which is possibly not present in the string? (Especially if you remove the 1st and last characters?)\n\nFor example \" \u0027test\u0027 \" should become \"test\" here and replacing \u0027\u0027 with \u0027 would have no effect here.\n\nOr am I not seeing something?",
       "revId": "74a47154f3bce495d9f58a300a860d750ae309f1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3882a0f_6921fb22",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-07-20T12:49:28Z",
+      "side": 1,
+      "message": "So you can use double-quotes inside quotes and reverse like this:\n\n    \"I\u0027m escaped\"  -\u003e I\u0027m escaped\n    \u0027I\"m escaped\u0027  -\u003e I\"m escaped\n\nBut if you want to use the SAME type of quotes, you double them:\n\n    \u0027I\u0027\u0027m escaped\u0027 -\u003e I\u0027m escaped\n    \"I\"\"m escaped\" -\u003e I\"m escaped\n\nThis is all in the context of CpsPaths, so it would be really something like this:\n    \n    //books[@title\u003d\u0027I\u0027\u0027m escaped\u0027]\n\nto get a book called \"I\u0027m escaped\".\n    \nThe reason we replace is so that the DataNode.dataLeaves will contain \"I\u0027m escaped\" not \"I\u0027\u0027m escaped\", otherwise it would look for wrong leaf value.\nI hope this makes sense.",
+      "parentUuid": "db627413_c4c26fb1",
+      "revId": "74a47154f3bce495d9f58a300a860d750ae309f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
