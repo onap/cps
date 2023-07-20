@@ -80,6 +80,30 @@
       },
       "revId": "abdc75c6354cdb7da5f1f6916f102ac0cac7a600",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98d47a1b_26e3eb56",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-20T09:28:50Z",
+      "side": 1,
+      "message": "That is fine. If a decision has already been taken by the team, I remove -1 from the commit. I will be looking into it a bit further, if I find something valuable to share, will do that. Thanks.",
+      "parentUuid": "055411ab_a630b750",
+      "range": {
+        "startLine": 256,
+        "startChar": 0,
+        "endLine": 260,
+        "endChar": 13
+      },
+      "revId": "abdc75c6354cdb7da5f1f6916f102ac0cac7a600",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
