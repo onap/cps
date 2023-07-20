@@ -23,7 +23,7 @@ package org.onap.cps.integration.performance.cps
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.integration.performance.base.CpsPerfTestBase
 
-import static org.onap.cps.spi.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
+import static org.onap.cps.spi.FetchDescendantsOption.DIRECT_CHILD_ONLY
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 
@@ -45,7 +45,7 @@ class GetPerfTest extends CpsPerfTestBase {
         where: 'the following parameters are used'
             scenario             | fetchDescendantsOption  | anchor       || durationLimit | expectedNumberOfDataNodes
             'no descendants'     | OMIT_DESCENDANTS        | 'openroadm1' || 50            | 1
-            'direct descendants' | DIRECT_CHILDREN_ONLY    | 'openroadm2' || 100           | 1 + 50
+            'direct descendants' | DIRECT_CHILD_ONLY       | 'openroadm2' || 100           | 1 + 50
             'all descendants'    | INCLUDE_ALL_DESCENDANTS | 'openroadm3' || 200           | 1 + 50 * 86
     }
 

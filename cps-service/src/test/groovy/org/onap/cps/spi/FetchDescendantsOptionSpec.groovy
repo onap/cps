@@ -80,12 +80,14 @@ class FetchDescendantsOptionSpec extends Specification {
         then: 'fetch descendant object created'
             assert fetchDescendantsOption.depth == expectedDepth
         where: 'following parameters are used'
-            scenario                            | fetchDescendantsOptionAsString || expectedDepth
-            'all descendants using number'      | '-1'                           || -1
-            'all descendants using all'         | 'all'                          || -1
-            'No descendants by default'         | ''                             || 0
-            'No descendants using none'         | 'none'                         || 0
-            'til 10th descendants using number' | '10'                           || 10
+            scenario                             | fetchDescendantsOptionAsString || expectedDepth
+            'all descendants using number'       | '-1'                           || -1
+            'all descendants using all'          | 'all'                          || -1
+            'No descendants by default'          | ''                             || 0
+            'No descendants using none'          | 'none'                         || 0
+            'direct child using number'          | '1'                            || 1
+            'direct child using direct'          | 'direct'                       || 1
+            'till 10th descendants using number' | '10'                           || 10
     }
 
     def 'String values.'() {
@@ -94,7 +96,7 @@ class FetchDescendantsOptionSpec extends Specification {
         where: 'the following option is used'
             fetchDescendantsOption                         || expectedStringValue
             FetchDescendantsOption.OMIT_DESCENDANTS        || 'OmitDescendants'
-            FetchDescendantsOption.DIRECT_CHILDREN_ONLY    || 'DirectChildrenOnly'
+            FetchDescendantsOption.DIRECT_CHILD_ONLY       || 'DirectChildOnly'
             FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS || 'IncludeAllDescendants'
             new FetchDescendantsOption(2)                  || 'Depth=2'
     }

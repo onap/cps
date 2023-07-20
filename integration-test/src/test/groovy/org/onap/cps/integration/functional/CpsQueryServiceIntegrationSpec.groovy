@@ -27,7 +27,7 @@ import org.onap.cps.integration.base.FunctionalSpecBase
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.exceptions.CpsPathException
 
-import static org.onap.cps.spi.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
+import static org.onap.cps.spi.FetchDescendantsOption.DIRECT_CHILD_ONLY
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 
@@ -248,7 +248,7 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
         where: 'the following data is used'
             scenario | fetchDescendantsOption  || expectedNumberOfNodes
             'no'     | OMIT_DESCENDANTS        || 1
-            'direct' | DIRECT_CHILDREN_ONLY    || 6
+            'direct' | DIRECT_CHILD_ONLY       || 6
             'all'    | INCLUDE_ALL_DESCENDANTS || 17
     }
 
@@ -298,7 +298,7 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
         where: 'the following data is used'
             scenario | fetchDescendantsOption  || expectedNumberOfNodesPerAnchor
             'no'     | OMIT_DESCENDANTS        || 1
-            'direct' | DIRECT_CHILDREN_ONLY    || 6
+            'direct' | DIRECT_CHILD_ONLY       || 6
             'all'    | INCLUDE_ALL_DESCENDANTS || 17
     }
 
@@ -312,7 +312,7 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
         where: 'the following data is used'
             scenario | fetchDescendantsOption  || expectedNumberOfNodesPerAnchor
             'no'     | OMIT_DESCENDANTS        || 1
-            'direct' | DIRECT_CHILDREN_ONLY    || 6
+            'direct' | DIRECT_CHILD_ONLY       || 6
             'all'    | INCLUDE_ALL_DESCENDANTS || 17
     }
 
