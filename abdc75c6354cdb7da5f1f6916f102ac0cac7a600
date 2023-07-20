@@ -56,6 +56,30 @@
       },
       "revId": "abdc75c6354cdb7da5f1f6916f102ac0cac7a600",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "055411ab_a630b750",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-07-20T06:25:19Z",
+      "side": 1,
+      "message": "CPS exceptions, here CpsPathException, are unchecked.\nBut it was decided a while ago that all plural methods in cps should not throw any exception for invalid/non-existing xpath and hence the logging. I don\u0027t remember the exact reason because this was a point discussed a few months back. I also confirmed the same with Daniel. Can be discussed further with team. Marking this as resolved for the time being 😊",
+      "parentUuid": "3eeba9a1_3a8ff631",
+      "range": {
+        "startLine": 256,
+        "startChar": 0,
+        "endLine": 260,
+        "endChar": 13
+      },
+      "revId": "abdc75c6354cdb7da5f1f6916f102ac0cac7a600",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
