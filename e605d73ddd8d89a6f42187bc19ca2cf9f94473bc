@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "94025dcf_8a581378",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarder.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-07-20T14:22:29Z",
+      "side": 1,
+      "message": "would use target instead of CM Handle and reference NCMP:\nTarget has not been registered with NCMP",
+      "range": {
+        "startLine": 192,
+        "startChar": 66,
+        "endLine": 192,
+        "endChar": 69
+      },
+      "revId": "e605d73ddd8d89a6f42187bc19ca2cf9f94473bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4423a7ef_18c42ead",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventResponseConsumer.java",
         "patchSetId": 7
@@ -36,6 +59,29 @@
         "startChar": 16,
         "endLine": 72,
         "endChar": 93
+      },
+      "revId": "e605d73ddd8d89a6f42187bc19ca2cf9f94473bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8912a748_a236448f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventResponseConsumer.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-07-20T14:22:29Z",
+      "side": 1,
+      "message": "Can this be simplified? Theres a positive relying on a negative relying on a positive and is a bit confusing",
+      "range": {
+        "startLine": 101,
+        "startChar": 15,
+        "endLine": 102,
+        "endChar": 115
       },
       "revId": "e605d73ddd8d89a6f42187bc19ca2cf9f94473bc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
@@ -60,6 +106,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b08ceb23_8cef6d8e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventResponseOutcome.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-07-20T14:22:29Z",
+      "side": 1,
+      "message": "I\u0027d put this on its own line",
+      "range": {
+        "startLine": 67,
+        "startChar": 37,
+        "endLine": 68,
+        "endChar": 84
+      },
+      "revId": "e605d73ddd8d89a6f42187bc19ca2cf9f94473bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c75b532f_93fd058b",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventResponseOutcome.java",
         "patchSetId": 7
@@ -76,6 +145,236 @@
         "startChar": 26,
         "endLine": 73,
         "endChar": 45
+      },
+      "revId": "e605d73ddd8d89a6f42187bc19ca2cf9f94473bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89dca10b_51d5f3c8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventResponseOutcome.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-07-20T14:22:29Z",
+      "side": 1,
+      "message": "dont need FromDatanode here",
+      "range": {
+        "startLine": 73,
+        "startChar": 80,
+        "endLine": 73,
+        "endChar": 92
+      },
+      "revId": "e605d73ddd8d89a6f42187bc19ca2cf9f94473bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "297e1abf_b1b5b5f5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventResponseOutcome.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-07-20T14:22:29Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 88,
+        "startChar": 84,
+        "endLine": 88,
+        "endChar": 96
+      },
+      "revId": "e605d73ddd8d89a6f42187bc19ca2cf9f94473bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d67ccfdf_1a0b9ec8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventResponseOutcome.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-07-20T14:22:29Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 108,
+        "startChar": 83,
+        "endLine": 108,
+        "endChar": 95
+      },
+      "revId": "e605d73ddd8d89a6f42187bc19ca2cf9f94473bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba863333_fe86024e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventResponseOutcome.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-07-20T14:22:29Z",
+      "side": 1,
+      "message": "Same again, try simplify positive based on negative based on positive",
+      "range": {
+        "startLine": 109,
+        "startChar": 15,
+        "endLine": 110,
+        "endChar": 115
+      },
+      "revId": "e605d73ddd8d89a6f42187bc19ca2cf9f94473bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f666724_a16407aa",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionOutcomeMapper.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-07-20T14:22:29Z",
+      "side": 1,
+      "message": "typo one word",
+      "range": {
+        "startLine": 54,
+        "startChar": 45,
+        "endLine": 54,
+        "endChar": 52
+      },
+      "revId": "e605d73ddd8d89a6f42187bc19ca2cf9f94473bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "421d207c_e9cac915",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionOutcomeMapper.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-07-20T14:22:29Z",
+      "side": 1,
+      "message": "I\u0027d extract out, too many method calls on one line",
+      "range": {
+        "startLine": 57,
+        "startChar": 61,
+        "endLine": 59,
+        "endChar": 61
+      },
+      "revId": "e605d73ddd8d89a6f42187bc19ca2cf9f94473bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ac2da59_b97a57a7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionOutcomeMapper.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-07-20T14:22:29Z",
+      "side": 1,
+      "message": "same here",
+      "range": {
+        "startLine": 61,
+        "startChar": 59,
+        "endLine": 63,
+        "endChar": 61
+      },
+      "revId": "e605d73ddd8d89a6f42187bc19ca2cf9f94473bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64a5a138_43fbffa6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/subscriptions/SubscriptionOutcomeType.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-07-20T14:22:29Z",
+      "side": 1,
+      "message": "These codes were examples so we need to discuss what they should actually be as a team...",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 37
+      },
+      "revId": "e605d73ddd8d89a6f42187bc19ca2cf9f94473bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "725eb969_fe913a02",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/subscriptions/SubscriptionPersistenceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-07-20T14:22:29Z",
+      "side": 1,
+      "message": "These variables dont need the From part, same for the rest\nCan be original and new instead",
+      "range": {
+        "startLine": 72,
+        "startChar": 80,
+        "endLine": 72,
+        "endChar": 93
+      },
+      "revId": "e605d73ddd8d89a6f42187bc19ca2cf9f94473bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28e1d75d_e4c2eefb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/subscriptions/SubscriptionPersistenceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-07-20T14:22:29Z",
+      "side": 1,
+      "message": "would name either cmHandle or target",
+      "range": {
+        "startLine": 92,
+        "startChar": 33,
+        "endLine": 92,
+        "endChar": 38
       },
       "revId": "e605d73ddd8d89a6f42187bc19ca2cf9f94473bc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
@@ -133,6 +432,138 @@
         "startChar": 28,
         "endLine": 95,
         "endChar": 64
+      },
+      "revId": "e605d73ddd8d89a6f42187bc19ca2cf9f94473bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7fdcc49_5971897b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarderSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-07-20T14:22:29Z",
+      "side": 1,
+      "message": "dont understand why these were changed apart from adding details, original test was to simulate a timeout because there are pending targets, this change has altered the scope of the test",
+      "range": {
+        "startLine": 81,
+        "startChar": 42,
+        "endLine": 83,
+        "endChar": 136
+      },
+      "revId": "e605d73ddd8d89a6f42187bc19ca2cf9f94473bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77d8d2fd_00454e93",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventResponseConsumerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-07-20T14:22:29Z",
+      "side": 1,
+      "message": "These don\u0027t need to be on the table if its going to be 0 everytime",
+      "range": {
+        "startLine": 110,
+        "startChar": 143,
+        "endLine": 110,
+        "endChar": 191
+      },
+      "revId": "e605d73ddd8d89a6f42187bc19ca2cf9f94473bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9118ce47_40d783f6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventResponseOutcomeSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-07-20T14:22:29Z",
+      "side": 1,
+      "message": "table needs to be aligned",
+      "revId": "e605d73ddd8d89a6f42187bc19ca2cf9f94473bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1038562f_c05ee5b3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventResponseOutcomeSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-07-20T14:22:29Z",
+      "side": 1,
+      "message": "rename to expectedOutcomeResponseDecision or similar",
+      "range": {
+        "startLine": 109,
+        "startChar": 183,
+        "endLine": 109,
+        "endChar": 197
+      },
+      "revId": "e605d73ddd8d89a6f42187bc19ca2cf9f94473bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "464fa293_3e64a846",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionOutcomeMapperSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-07-20T14:22:29Z",
+      "side": 1,
+      "message": "this can be condensed to \nobjectUnderTest.toSubscriptionEventOutcome(subscriptionResponseEvent)\nthen\u0027...\u0027\nthrown(DataValidationException)\n\nno need to test details... but if you want you can do\nDataValidationException exception \u003d thrown(DataValidationException)\nexception.details \u003d\u003d \"SubscriptionStatus list can not be null or empty\"",
+      "range": {
+        "startLine": 68,
+        "startChar": 12,
+        "endLine": 73,
+        "endChar": 13
+      },
+      "revId": "e605d73ddd8d89a6f42187bc19ca2cf9f94473bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4641bd4b_07ca80c6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/SubscriptionEventCloudMapperSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-07-20T14:22:29Z",
+      "side": 1,
+      "message": "Know you didn\u0027t write this but could you update to same exception catching format I left on other file thanks",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 113
       },
       "revId": "e605d73ddd8d89a6f42187bc19ca2cf9f94473bc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
