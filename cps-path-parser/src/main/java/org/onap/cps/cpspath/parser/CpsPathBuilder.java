@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Copyright (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2023 TechMahindra Ltd
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,9 +24,7 @@ package org.onap.cps.cpspath.parser;
 import static org.onap.cps.cpspath.parser.CpsPathPrefixType.DESCENDANT;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathBaseListener;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathParser;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathParser.AncestorAxisContext;
@@ -43,21 +41,21 @@ public class CpsPathBuilder extends CpsPathBaseListener {
 
     private static final String CLOSE_BRACKET = "]";
 
-    final CpsPathQuery cpsPathQuery = new CpsPathQuery();
+    private final CpsPathQuery cpsPathQuery = new CpsPathQuery();
 
-    final Map<String, Object> leavesData = new LinkedHashMap<>();
+    private final List<CpsPathQuery.DataLeaf> leavesData = new ArrayList<>();
 
-    final StringBuilder normalizedXpathBuilder = new StringBuilder();
+    private final StringBuilder normalizedXpathBuilder = new StringBuilder();
 
-    final StringBuilder normalizedAncestorPathBuilder = new StringBuilder();
+    private final StringBuilder normalizedAncestorPathBuilder = new StringBuilder();
 
-    boolean processingAncestorAxis = false;
+    private boolean processingAncestorAxis = false;
 
-    private List<String> containerNames = new ArrayList<>();
+    private final List<String> containerNames = new ArrayList<>();
 
-    final List<String> booleanOperators = new ArrayList<>();
+    private final List<String> booleanOperators = new ArrayList<>();
 
-    final List<String> comparativeOperators = new ArrayList<>();
+    private final List<String> comparativeOperators = new ArrayList<>();
 
     @Override
     public void exitInvalidPostFix(final CpsPathParser.InvalidPostFixContext ctx) {
@@ -99,16 +97,12 @@ public class CpsPathBuilder extends CpsPathBaseListener {
 
     @Override
     public void exitBooleanOperators(final CpsPathParser.BooleanOperatorsContext ctx) {
-        final CpsPathBooleanOperatorType cpsPathBooleanOperatorType = CpsPathBooleanOperatorType.fromString(
-                ctx.getText());
-        booleanOperators.add(cpsPathBooleanOperatorType.getValues());
+        booleanOperators.add(ctx.getText());
     }
 
     @Override
     public void exitComparativeOperators(final CpsPathParser.ComparativeOperatorsContext ctx) {
-        final CpsPathComparativeOperator cpsPathComparativeOperator = CpsPathComparativeOperator.fromString(
-                ctx.getText());
-        comparativeOperators.add(cpsPathComparativeOperator.getLabel());
+        comparativeOperators.add(ctx.getText());
     }
 
     @Override
@@ -122,6 +116,8 @@ public class CpsPathBuilder extends CpsPathBaseListener {
     public void enterMultipleLeafConditions(final MultipleLeafConditionsContext ctx)  {
         normalizedXpathBuilder.append(OPEN_BRACKET);
         leavesData.clear();
+        booleanOperators.clear();
+        comparativeOperators.clear();
     }
 
     @Override
@@ -193,7 +189,7 @@ public class CpsPathBuilder extends CpsPathBaseListener {
     }
 
     private void leafContext(final CpsPathParser.LeafNameContext ctx, final Object comparisonValue) {
-        leavesData.put(ctx.getText(), comparisonValue);
+        leavesData.add(new CpsPathQuery.DataLeaf(ctx.getText(), comparisonValue));
         appendCondition(normalizedXpathBuilder, ctx.getText(), comparisonValue);
         if (processingAncestorAxis) {
             appendCondition(normalizedAncestorPathBuilder, ctx.getText(), comparisonValue);

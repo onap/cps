@@ -54,52 +54,30 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
             'the AND is used where result does not exist' | '//books[@lang="English" and @price=1000]' || 0                  | []
     }
 
-    def 'Cps Path query using combinations of OR operator #scenario.'() {
+    def 'Cps Path query using comparative and boolean operators.'() {
+        given: 'a cps path query in the discount category'
+            def cpsPath = "/bookstore/categories[@code='5']/books" + leafCondition
         when: 'a query is executed to get response by the given cps path'
-            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, cpsPath, OMIT_DESCENDANTS)
-        then: 'the result contains expected number of nodes'
-            assert result.size() == expectedResultSize
-        and: 'the cps-path of queryDataNodes has the expectedLeaves'
-            assert result.leaves.sort() == expectedLeaves.sort()
+            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1,
+                    cpsPath, OMIT_DESCENDANTS)
+        then: 'the cps-path of queryDataNodes has the expectedLeaves'
+            def bookPrices = result.collect { it.getLeaves().get('price') }
+            assert bookPrices.sort() == expectedBookPrices.sort()
         where: 'the following data is used'
-            scenario                                | cpsPath                                                          || expectedResultSize | expectedLeaves
-            'the "OR" condition'                    | '//books[@lang="English" or @price=15]'                          || 6                  | [[lang: "English", price: 15, title: "Annihilation", authors: ["Jeff VanderMeer"], editions: [2014]],
-                                                                                                                                                [lang: "English", price: 15, title: "The Gruffalo", authors: ["Julia Donaldson"], editions: [1999]],
-                                                                                                                                                [lang: "English", price: 14, title: "The Light Fantastic", authors: ["Terry Pratchett"], editions: [1986]],
-                                                                                                                                                [lang: "English", price: 13, title: "Good Omens", authors: ["Terry Pratchett", "Neil Gaiman"], editions: [2006]],
-                                                                                                                                                [lang: "English", price: 12, title: "The Colour of Magic", authors: ["Terry Pratchett"], editions: [1983]],
-                                                                                                                                                [lang: "English", price: 10, title: "Matilda", authors: ["Roald Dahl"], editions: [1988, 2000]]]
-            'the "OR" condition with non-json data' | '//books[@title="xyz" or @price=15]'                             || 2                  | [[lang: "English", price: 15, title: "Annihilation", authors: ["Jeff VanderMeer"], editions: [2014]],
-                                                                                                                                                [lang: "English", price: 15, title: "The Gruffalo", authors: ["Julia Donaldson"], editions: [1999]]]
-            'combination of multiple AND'           | '//books[@lang="English" and @price=15 and @edition=1983]'       || 0                  | []
-            'combination of multiple OR'            | '//books[ @title="Matilda" or @price=15 or @edition=1983]'       || 3                  | [[lang: "English", price: 15, title: "Annihilation", authors: ["Jeff VanderMeer"], editions: [2014]],
-                                                                                                                                                [lang: "English", price: 10, title: "Matilda", authors: ["Roald Dahl"], editions: [1988, 2000]],
-                                                                                                                                                [lang: "English", price: 15, title: "The Gruffalo", authors: ["Julia Donaldson"], editions: [1999]]]
-            'combination of AND/OR'                 | '//books[@edition=1983 and @price=15 or @title="Good Omens"]'    || 1                  | [[lang: "English", price: 13, title: "Good Omens", authors: ["Terry Pratchett", "Neil Gaiman"], editions: [2006]]]
-            'combination of OR/AND'                 | '//books[@title="Annihilation" or @price=39 and @lang="arabic"]' || 1                  | [[lang: "English", price: 15, title: "Annihilation", authors: ["Jeff VanderMeer"], editions: [2014]]]
-    }
-
-    def 'cps-path query using combinations of Comparative Operators #scenario.'() {
-        when: 'a query is executed to get response by the given cpsPath'
-            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, cpsPath, OMIT_DESCENDANTS)
-        then: 'the result contains expected number of nodes'
-            assert result.size() == expectedResultSize
-        and: 'xpaths of the retrieved data nodes are as expected'
-            def bookTitles = result.collect { it.getLeaves().get('title') }
-            assert bookTitles.sort() == expectedBookTitles.sort()
-        where: 'the following data is used'
-            scenario                                         | cpsPath                                                            || expectedResultSize | expectedBookTitles
-            'the ">" condition'                              | '//books[@price>13 ]'                                              || 5                  | ['A Book with No Language', 'Annihilation', 'Debian GNU/Linux', 'The Gruffalo', 'The Light Fantastic']
-            'the "<" condition '                             | '//books[@price<15]'                                               || 5                  | ['Good Omens', 'Logarithm tables', 'Matilda', 'The Colour of Magic', 'The Light Fantastic']
-            'the "<=" condition'                             | '//books[@price<=15]'                                              || 7                  | ['Annihilation', 'Good Omens', 'Logarithm tables', 'Matilda', 'The Colour of Magic', 'The Gruffalo', 'The Light Fantastic']
-            'the ">=" condition'                             | '//books[@price>=20]'                                              || 2                  | ['A Book with No Language', 'Debian GNU/Linux']
-            'the "<" condition  where result does not exist' | '//books[@price<5]'                                                || 0                  | []
-            'the ">" condition  where result does not exist' | '//books[@price>1000]'                                             || 0                  | []
-            'the ">" condition with AND condition'           | '//books[@price>13 and @title="A Book with No Language"]'          || 1                  | ['A Book with No Language']
-            'the "<" condition with OR condition'            | '//books[@price<10 or @lang="German"]'                             || 1                  | ['Debian GNU/Linux']
-            'the "<=" condition with AND/OR condition'       | '//books[@price<=15 and @title="Annihilation" or @lang="Spanish"]' || 1                  | ['Annihilation']
-            'the ">=" condition with OR/AND condition'       | '//books[@price>=13 or @lang="Spanish" and @title="Good Omens"]'   || 6                  | ['A Book with No Language', 'Annihilation', 'Good Omens', 'Debian GNU/Linux', 'The Gruffalo', 'The Light Fantastic']
-            'Mix of integer and string condition '           | '//books[@lang="German" and @price>38]'                            || 1                  | ['Debian GNU/Linux']
+            leafCondition                                 || expectedBookPrices
+            '[@price = 5]'                                || [5]
+            '[@price < 5]'                                || [1, 2, 3, 4]
+            '[@price > 5]'                                || [6, 7, 8, 9, 10]
+            '[@price <= 5]'                               || [1, 2, 3, 4, 5]
+            '[@price >= 5]'                               || [5, 6, 7, 8, 9, 10]
+            '[@price > 10]'                               || []
+            '[@price = 3 or @price = 7]'                  || [3, 7]
+            '[@price = 3 and @price = 7]'                 || []
+            '[@price > 3 and @price <= 6]'                || [4, 5, 6]
+            '[@price < 3 or @price > 8]'                  || [1, 2, 9, 10]
+            '[@price = 1 or @price = 3 or @price = 5]'    || [1, 3, 5]
+            '[@price = 1 or @price >= 8 and @price < 10]' || [1, 8, 9]
+            '[@price >= 3 and @price <= 5 or @price > 9]' || [3, 4, 5, 10]
     }
 
     def 'Cps Path query for leaf value(s) with #scenario.'() {
@@ -113,9 +91,9 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
             scenario                               | cpsPath                                                    | fetchDescendantsOption         || expectedNumberOfParentNodes | expectedTotalNumberOfNodes
             'string and no descendants'            | '/bookstore/categories[@code="1"]/books[@title="Matilda"]' | OMIT_DESCENDANTS               || 1                           | 1
             'integer and descendants'              | '/bookstore/categories[@code="1"]/books[@price=15]'        | INCLUDE_ALL_DESCENDANTS        || 1                           | 1
-            'no condition and no descendants'      | '/bookstore/categories'                                    | OMIT_DESCENDANTS               || 4                           | 4
-            'no condition and level 1 descendants' | '/bookstore'                                               | new FetchDescendantsOption(1)  || 1                           | 6
-            'no condition and level 2 descendants' | '/bookstore'                                               | new FetchDescendantsOption(2)  || 1                           | 17
+            'no condition and no descendants'      | '/bookstore/categories'                                    | OMIT_DESCENDANTS               || 5                           | 5
+            'no condition and level 1 descendants' | '/bookstore'                                               | new FetchDescendantsOption(1)  || 1                           | 7
+            'no condition and level 2 descendants' | '/bookstore'                                               | new FetchDescendantsOption(2)  || 1                           | 28
     }
 
     def 'Query for attribute by cps path with cps paths that return no data because of #scenario.'() {
@@ -146,7 +124,7 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
         when: 'a query is executed to get all books'
             def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '//books', OMIT_DESCENDANTS)
         then: 'the expected number of books are returned'
-            assert result.size() == 9
+            assert result.size() == 19
     }
 
     def 'Cps Path query using descendant anywhere with #scenario.'() {
@@ -160,7 +138,7 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
             'string leaf condition'                  | '//books[@title="Matilda"]'                 || ["Matilda"]
             'text condition on leaf'                 | '//books/title[text()="Matilda"]'           || ["Matilda"]
             'text condition case mismatch'           | '//books/title[text()="matilda"]'           || []
-            'text condition on int leaf'             | '//books/price[text()="10"]'                || ["Matilda"]
+            'text condition on int leaf'             | '//books/price[text()="20"]'                || ["A Book with No Language", "Matilda"]
             'text condition on leaf-list'            | '//books/authors[text()="Terry Pratchett"]' || ["Good Omens", "The Colour of Magic", "The Light Fantastic"]
             'text condition partial match'           | '//books/authors[text()="Terry"]'           || []
             'text condition (existing) empty string' | '//books/lang[text()=""]'                   || ["A Book with No Language"]
@@ -182,7 +160,13 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
             'contains condition with leaf'           | '//books[contains(@title,"Mat")]' || ["Matilda"]
             'contains condition with case-sensitive' | '//books[contains(@title,"Ti")]'  || []
             'contains condition with Integer Value'  | '//books[contains(@price,"15")]'  || ["Annihilation", "The Gruffalo"]
-            'contains condition with No-value'       | '//books[contains(@title,"")]'    || ["A Book with No Language", "Annihilation", "Debian GNU/Linux", "Good Omens", "Logarithm tables", "Matilda", "The Colour of Magic", "The Gruffalo", "The Light Fantastic"]
+    }
+
+    def 'Query for attribute by cps path using contains condition with no value.'() {
+        when: 'a query is executed to get response by the given cps path'
+            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '//books[contains(@title,"")]', OMIT_DESCENDANTS)
+        then: 'all books are returned'
+            assert result.size() == 19
     }
 
     def 'Cps Path query using descendant anywhere with #scenario condition for a container element.'() {
@@ -194,7 +178,7 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
         where: 'the following data is used'
             scenario                                                   | cpsPath                                                                || expectedBookTitles
             'one leaf'                                                 | '//books[@price=14]'                                                   || ['The Light Fantastic']
-            'one leaf with ">" condition'                              | '//books[@price>14]'                                                   || ['A Book with No Language', 'Annihilation', 'Debian GNU/Linux', 'The Gruffalo']
+            'one leaf with ">" condition'                              | '//books[@price>14]'                                                   || ['A Book with No Language', 'Annihilation', 'Debian GNU/Linux', 'Matilda', 'The Gruffalo']
             'one text'                                                 | '//books/authors[text()="Terry Pratchett"]'                            || ['Good Omens', 'The Colour of Magic', 'The Light Fantastic']
             'more than one leaf'                                       | '//books[@price=12 and @lang="English"]'                               || ['The Colour of Magic']
             'more than one leaf has "OR" condition'                    | '//books[@lang="English" or @price=15]'                                || ['Annihilation', 'Good Omens', 'Matilda', 'The Colour of Magic', 'The Gruffalo', 'The Light Fantastic']
@@ -228,11 +212,11 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
             assert result.xpath.sort() == expectedXPaths.sort()
         where: 'the following data is used'
             scenario                                    | cpsPath                                               || expectedXPaths
-            'multiple list-ancestors'                   | '//books/ancestor::categories'                        || ["/bookstore/categories[@code='1']", "/bookstore/categories[@code='2']", "/bookstore/categories[@code='3']", "/bookstore/categories[@code='4']"]
+            'multiple list-ancestors'                   | '//books/ancestor::categories'                        || ["/bookstore/categories[@code='1']", "/bookstore/categories[@code='2']", "/bookstore/categories[@code='3']", "/bookstore/categories[@code='4']", "/bookstore/categories[@code='5']"]
             'one ancestor with list value'              | '//books/ancestor::categories[@code="1"]'             || ["/bookstore/categories[@code='1']"]
             'top ancestor'                              | '//books/ancestor::bookstore'                         || ["/bookstore"]
             'list with index value in the xpath prefix' | '//categories[@code="1"]/books/ancestor::bookstore'   || ["/bookstore"]
-            'ancestor with parent list'                 | '//books/ancestor::bookstore/categories'              || ["/bookstore/categories[@code='1']", "/bookstore/categories[@code='2']", "/bookstore/categories[@code='3']", "/bookstore/categories[@code='4']"]
+            'ancestor with parent list'                 | '//books/ancestor::bookstore/categories'              || ["/bookstore/categories[@code='1']", "/bookstore/categories[@code='2']", "/bookstore/categories[@code='3']", "/bookstore/categories[@code='4']", "/bookstore/categories[@code='5']"]
             'ancestor with parent'                      | '//books/ancestor::bookstore/categories[@code="2"]'   || ["/bookstore/categories[@code='2']"]
             'ancestor combined with text condition'     | '//books/title[text()="Matilda"]/ancestor::bookstore' || ["/bookstore"]
             'ancestor with parent that does not exist'  | '//books/ancestor::parentDoesNoExist/categories'      || []
@@ -248,8 +232,8 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
         where: 'the following data is used'
             scenario | fetchDescendantsOption  || expectedNumberOfNodes
             'no'     | OMIT_DESCENDANTS        || 1
-            'direct' | DIRECT_CHILDREN_ONLY    || 6
-            'all'    | INCLUDE_ALL_DESCENDANTS || 17
+            'direct' | DIRECT_CHILDREN_ONLY    || 7
+            'all'    | INCLUDE_ALL_DESCENDANTS || 28
     }
 
     def 'Cps Path query with #scenario throws a CPS Path Exception.'() {
@@ -277,13 +261,13 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
         where: 'the following data is used'
             scenario                                    | cpsPath                                               || expectedXpathsPerAnchor
             'container node'                            | '/bookstore'                                          || ["/bookstore"]
-            'list node'                                 | '/bookstore/categories'                               || ["/bookstore/categories[@code='1']", "/bookstore/categories[@code='2']", "/bookstore/categories[@code='3']", "/bookstore/categories[@code='4']"]
+            'list node'                                 | '/bookstore/categories'                               || ["/bookstore/categories[@code='1']", "/bookstore/categories[@code='2']", "/bookstore/categories[@code='3']", "/bookstore/categories[@code='4']", "/bookstore/categories[@code='5']"]
             'string leaf-condition'                     | '/bookstore[@bookstore-name="Easons"]'                || ["/bookstore"]
             'integer leaf-condition'                    | '/bookstore/categories[@code="1"]/books[@price=15]'   || ["/bookstore/categories[@code='1']/books[@title='The Gruffalo']"]
-            'multiple list-ancestors'                   | '//books/ancestor::categories'                        || ["/bookstore/categories[@code='1']", "/bookstore/categories[@code='2']", "/bookstore/categories[@code='3']", "/bookstore/categories[@code='4']"]
+            'multiple list-ancestors'                   | '//books/ancestor::categories'                        || ["/bookstore/categories[@code='1']", "/bookstore/categories[@code='2']", "/bookstore/categories[@code='3']", "/bookstore/categories[@code='4']", "/bookstore/categories[@code='5']"]
             'one ancestor with list value'              | '//books/ancestor::categories[@code="1"]'             || ["/bookstore/categories[@code='1']"]
             'list with index value in the xpath prefix' | '//categories[@code="1"]/books/ancestor::bookstore'   || ["/bookstore"]
-            'ancestor with parent list'                 | '//books/ancestor::bookstore/categories'              || ["/bookstore/categories[@code='1']", "/bookstore/categories[@code='2']", "/bookstore/categories[@code='3']", "/bookstore/categories[@code='4']"]
+            'ancestor with parent list'                 | '//books/ancestor::bookstore/categories'              || ["/bookstore/categories[@code='1']", "/bookstore/categories[@code='2']", "/bookstore/categories[@code='3']", "/bookstore/categories[@code='4']", "/bookstore/categories[@code='5']"]
             'ancestor with parent list element'         | '//books/ancestor::bookstore/categories[@code="2"]'   || ["/bookstore/categories[@code='2']"]
             'ancestor combined with text condition'     | '//books/title[text()="Matilda"]/ancestor::bookstore' || ["/bookstore"]
     }
@@ -298,8 +282,8 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
         where: 'the following data is used'
             scenario | fetchDescendantsOption  || expectedNumberOfNodesPerAnchor
             'no'     | OMIT_DESCENDANTS        || 1
-            'direct' | DIRECT_CHILDREN_ONLY    || 6
-            'all'    | INCLUDE_ALL_DESCENDANTS || 17
+            'direct' | DIRECT_CHILDREN_ONLY    || 7
+            'all'    | INCLUDE_ALL_DESCENDANTS || 28
     }
 
     def 'Cps Path query across anchors with ancestors and #scenario descendants.'() {
@@ -312,8 +296,8 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
         where: 'the following data is used'
             scenario | fetchDescendantsOption  || expectedNumberOfNodesPerAnchor
             'no'     | OMIT_DESCENDANTS        || 1
-            'direct' | DIRECT_CHILDREN_ONLY    || 6
-            'all'    | INCLUDE_ALL_DESCENDANTS || 17
+            'direct' | DIRECT_CHILDREN_ONLY    || 7
+            'all'    | INCLUDE_ALL_DESCENDANTS || 28
     }
 
     def 'Cps Path query across anchors with syntax error throws a CPS Path Exception.'() {
@@ -330,10 +314,10 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
             assert countDataNodesInTree(result) == expectedNumberOfDataNodes
         where:
             scenario                              | cpsPath                                 || expectedNumberOfDataNodes
-            'absolute path all list entries'      | '/bookstore/categories'                 || 13
+            'absolute path all list entries'      | '/bookstore/categories'                 || 24
             'absolute path 1 list entry by key'   | '/bookstore/categories[@code="3"]'      || 5
             'absolute path 1 list entry by name'  | '/bookstore/categories[@name="Comedy"]' || 5
-            'relative path all list entries'      | '//categories'                          || 13
+            'relative path all list entries'      | '//categories'                          || 24
             'relative path 1 list entry by key'   | '//categories[@code="3"]'               || 5
             'relative path 1 list entry by leaf'  | '//categories[@name="Comedy"]'          || 5
             'incomplete absolute path'            | '/categories'                           || 0

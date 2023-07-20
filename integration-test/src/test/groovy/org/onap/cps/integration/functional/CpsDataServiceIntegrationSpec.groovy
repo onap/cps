@@ -64,9 +64,9 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
         where: 'the following option is used'
             fetchDescendantsOption        || expectNumberOfDataNodes
             OMIT_DESCENDANTS              || 1
-            DIRECT_CHILDREN_ONLY          || 6
-            INCLUDE_ALL_DESCENDANTS       || 17
-            new FetchDescendantsOption(2) || 17
+            DIRECT_CHILDREN_ONLY          || 7
+            INCLUDE_ALL_DESCENDANTS       || 28
+            new FetchDescendantsOption(2) || 28
     }
 
     def 'Read bookstore top-level container(s) using "root" path variations.'() {
