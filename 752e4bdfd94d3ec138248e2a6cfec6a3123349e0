@@ -72,6 +72,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d4bf57c3_2a602216",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-07-21T12:19:54Z",
+      "side": 1,
+      "message": "Addressed",
+      "parentUuid": "b54f7337_6bb82ebc",
+      "range": {
+        "startLine": 356,
+        "startChar": 15,
+        "endLine": 358,
+        "endChar": 96
+      },
+      "revId": "752e4bdfd94d3ec138248e2a6cfec6a3123349e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6ef3bf8d_e0c98024",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 19
@@ -83,6 +107,30 @@
       "writtenOn": "2023-07-20T14:13:57Z",
       "side": 1,
       "message": "suggestion: I would use the word \u0027count\u0027 instead\n\ncountAnchorsFor....",
+      "range": {
+        "startLine": 398,
+        "startChar": 19,
+        "endLine": 398,
+        "endChar": 28
+      },
+      "revId": "752e4bdfd94d3ec138248e2a6cfec6a3123349e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "860b0335_21b7cee3",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-07-21T12:19:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ef3bf8d_e0c98024",
       "range": {
         "startLine": 398,
         "startChar": 19,

@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c6cb9118_242e43ab",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-07-21T12:19:54Z",
+      "side": 1,
+      "message": "Addressed",
+      "parentUuid": "8588c39e_ac990b86",
+      "range": {
+        "startLine": 325,
+        "startChar": 29,
+        "endLine": 325,
+        "endChar": 32
+      },
+      "revId": "d09801ba4f819b1891ee25c09cca5e2c0e40dcd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b88eb9ac_0ca352e4",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/utils/CpsValidatorImpl.java",
         "patchSetId": 27
@@ -54,6 +78,30 @@
       "writtenOn": "2023-07-20T14:13:57Z",
       "side": 1,
       "message": "swap (always use constant first).also, could you use .equals() instead ?",
+      "range": {
+        "startLine": 61,
+        "startChar": 40,
+        "endLine": 61,
+        "endChar": 90
+      },
+      "revId": "d09801ba4f819b1891ee25c09cca5e2c0e40dcd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "721e0c2d_f73303ac",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/utils/CpsValidatorImpl.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-07-21T12:19:54Z",
+      "side": 1,
+      "message": "Addressed,",
+      "parentUuid": "b88eb9ac_0ca352e4",
       "range": {
         "startLine": 61,
         "startChar": 40,
@@ -89,6 +137,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "21a0fd69_067e0ea3",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/utils/CpsValidatorSpec.groovy",
+        "patchSetId": 27
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-07-21T12:19:54Z",
+      "side": 1,
+      "message": "Addressed",
+      "parentUuid": "929cc781_d6543c55",
+      "range": {
+        "startLine": 68,
+        "startChar": 41,
+        "endLine": 68,
+        "endChar": 61
+      },
+      "revId": "d09801ba4f819b1891ee25c09cca5e2c0e40dcd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e1986ff9_7dd0e429",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/PaginationOption.java",
         "patchSetId": 27
@@ -106,6 +178,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "34b90b25_fc2199ca",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/PaginationOption.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-07-21T12:19:54Z",
+      "side": 1,
+      "message": "1. set NO_PAGINATION \u003d null\n2. changed Integer to int\n3. controller only create pagination if pageIndex and pageSize are provided \n4. No exception if both parameters are not set but if they are set wrong then exception is thrown in service layer",
+      "parentUuid": "e1986ff9_7dd0e429",
+      "revId": "d09801ba4f819b1891ee25c09cca5e2c0e40dcd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "794378d7_926c0955",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/PaginationOption.java",
         "patchSetId": 27
@@ -117,6 +207,30 @@
       "writtenOn": "2023-07-20T14:13:57Z",
       "side": 1,
       "message": "why not use primitive int ?\nI think the only reason is the REST interface but conversion of Integer to int (and nullchecks) shoudl be handled in the controller",
+      "range": {
+        "startLine": 29,
+        "startChar": 12,
+        "endLine": 29,
+        "endChar": 20
+      },
+      "revId": "d09801ba4f819b1891ee25c09cca5e2c0e40dcd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88352766_1348c019",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/PaginationOption.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-07-21T12:19:54Z",
+      "side": 1,
+      "message": "changed",
+      "parentUuid": "794378d7_926c0955",
       "range": {
         "startLine": 29,
         "startChar": 12,
@@ -152,6 +266,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4e1d39e7_3c586a43",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/PaginationOption.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-07-21T12:19:54Z",
+      "side": 1,
+      "message": "changed",
+      "parentUuid": "a9afaf30_39bd91b0",
+      "range": {
+        "startLine": 31,
+        "startChar": 12,
+        "endLine": 31,
+        "endChar": 20
+      },
+      "revId": "d09801ba4f819b1891ee25c09cca5e2c0e40dcd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4931b1cc_07ed766b",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/PaginationOption.java",
         "patchSetId": 27
@@ -163,6 +301,30 @@
       "writtenOn": "2023-07-20T14:13:57Z",
       "side": 1,
       "message": "why not use null for NO Pagination ?!",
+      "range": {
+        "startLine": 33,
+        "startChar": 56,
+        "endLine": 33,
+        "endChar": 86
+      },
+      "revId": "d09801ba4f819b1891ee25c09cca5e2c0e40dcd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0752ddd_ad6c94e4",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/PaginationOption.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-07-21T12:19:54Z",
+      "side": 1,
+      "message": "Addressed",
+      "parentUuid": "4931b1cc_07ed766b",
       "range": {
         "startLine": 33,
         "startChar": 56,
