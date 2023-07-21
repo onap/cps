@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "30a71901_7e488eaa",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventResponseOutcome.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-21T11:53:24Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "be325978_be64f3a6",
+      "range": {
+        "startLine": 121,
+        "startChar": 65,
+        "endLine": 121,
+        "endChar": 91
+      },
+      "revId": "8001f820d7768df5b8b722033b9623abd30d29c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a1139f04_58df62a2",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-07-20T13:17:10Z",
       "side": 1,
       "message": "In my opinion these codes should be coming from a common place.\nWe will have codes corresponding to the messages.\nHere both T1 and T2 need to agree.\nWe have a separate user story created to handle this.",
+      "range": {
+        "startLine": 29,
+        "startChar": 4,
+        "endLine": 33,
+        "endChar": 37
+      },
+      "revId": "8001f820d7768df5b8b722033b9623abd30d29c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74b9c8b5_b3d057ab",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/subscriptions/SubscriptionOutcomeType.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-21T11:53:24Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a1139f04_58df62a2",
       "range": {
         "startLine": 29,
         "startChar": 4,

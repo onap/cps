@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e624d04_39d45770",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-21T11:53:24Z",
+      "side": 1,
+      "message": "Please find my comments in line.",
+      "revId": "f4f6285ea8291f29d440d10a10a2a01ce76e6e38",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a88811d0_64e4d21b",
@@ -14,6 +31,30 @@
       "writtenOn": "2023-07-21T11:49:14Z",
       "side": 1,
       "message": "public \u003cT\u003e T toConcreteEvent(final CloudEvent cloudEvent, Class\u003cT\u003e targetClass) {\n        final PojoCloudEventData\u003cT\u003e deserializedCloudEvent \u003d\n                CloudEventUtils.mapData(cloudEvent, PojoCloudEventDataMapper.from(objectMapper, targetClass));\n        if (deserializedCloudEvent \u003d\u003d null) {\n            log.debug(\"No data found in the consumed event\");\n            return null;\n        } else {\n            return deserializedCloudEvent.getValue();\n        }\n    }\n    \n    I was suggesting something like this.",
+      "range": {
+        "startLine": 45,
+        "startChar": 4,
+        "endLine": 56,
+        "endChar": 5
+      },
+      "revId": "f4f6285ea8291f29d440d10a10a2a01ce76e6e38",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4aded1d9_ca71d3cb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/SubscriptionEventResponseCloudMapper.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-21T11:53:24Z",
+      "side": 1,
+      "message": "Lets make this change after getting this commit merged. Otherwise, it would be getting bigger 😊",
+      "parentUuid": "a88811d0_64e4d21b",
       "range": {
         "startLine": 45,
         "startChar": 4,
