@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4be48250_8118d8df",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-21T12:02:04Z",
+      "side": 1,
+      "message": "recheck",
+      "revId": "f4f6285ea8291f29d440d10a10a2a01ce76e6e38",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a88811d0_64e4d21b",
@@ -55,6 +72,30 @@
       "side": 1,
       "message": "Lets make this change after getting this commit merged. Otherwise, it would be getting bigger 😊",
       "parentUuid": "a88811d0_64e4d21b",
+      "range": {
+        "startLine": 45,
+        "startChar": 4,
+        "endLine": 56,
+        "endChar": 5
+      },
+      "revId": "f4f6285ea8291f29d440d10a10a2a01ce76e6e38",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "40a4a0e5_5325712d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/SubscriptionEventResponseCloudMapper.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-21T12:02:04Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4aded1d9_ca71d3cb",
       "range": {
         "startLine": 45,
         "startChar": 4,
