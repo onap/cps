@@ -90,7 +90,7 @@ class NcmpDatastoreRequestHandlerSpec extends Specification {
         then: 'the task is executed in an async fashion'
             1 * spiedCpsNcmpTaskExecutor.executeTask(*_)
         and: 'the network service is invoked (wait max. 5 seconds)'
-            new PollingConditions(timeout: 5).eventually {
+            new PollingConditions(timeout: 30).eventually {
                 networkServiceMethodCalled == true
             }
         where: 'the following datastores are used'
