@@ -1,0 +1,13 @@
+{
+    "request": {
+        "method": "POST",
+        "urlPattern": "/dmi/v1/ch/.*/moduleResources"
+    },
+    "response": {
+        "status": 200,
+        "bodyFileName": "moduleResourcesResponse.json",
+        "headers": {
+            "Content-Type": "application/json"
+        }
+    }
+}
