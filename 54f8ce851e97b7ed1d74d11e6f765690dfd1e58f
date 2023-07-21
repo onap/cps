@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22434c4c_b4a99ad6",
+        "filename": "releases/3.3.5-container.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-07-21T12:52:04Z",
+      "side": 1,
+      "message": "i see some extra characters in this.\ncan you check this once.",
+      "range": {
+        "startLine": 5,
+        "startChar": 4,
+        "endLine": 5,
+        "endChar": 6
+      },
+      "revId": "54f8ce851e97b7ed1d74d11e6f765690dfd1e58f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
