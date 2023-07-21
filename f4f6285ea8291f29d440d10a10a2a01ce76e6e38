@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a88811d0_64e4d21b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/SubscriptionEventResponseCloudMapper.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-07-21T11:49:14Z",
+      "side": 1,
+      "message": "public \u003cT\u003e T toConcreteEvent(final CloudEvent cloudEvent, Class\u003cT\u003e targetClass) {\n        final PojoCloudEventData\u003cT\u003e deserializedCloudEvent \u003d\n                CloudEventUtils.mapData(cloudEvent, PojoCloudEventDataMapper.from(objectMapper, targetClass));\n        if (deserializedCloudEvent \u003d\u003d null) {\n            log.debug(\"No data found in the consumed event\");\n            return null;\n        } else {\n            return deserializedCloudEvent.getValue();\n        }\n    }\n    \n    I was suggesting something like this.",
+      "range": {
+        "startLine": 45,
+        "startChar": 4,
+        "endLine": 56,
+        "endChar": 5
+      },
+      "revId": "f4f6285ea8291f29d440d10a10a2a01ce76e6e38",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
