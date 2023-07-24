@@ -28,6 +28,18 @@ import static org.onap.cps.cpspath.parser.CpsPathPrefixType.DESCENDANT
 
 class CpsPathQuerySpec extends Specification {
 
+    def 'Default values for the most basic cps query.'() {
+        when: 'the cps path is parsed'
+            def result = CpsPathQuery.createFrom('/parent')
+        then: 'the query has the correct default properties'
+            assert result.cpsPathPrefixType == ABSOLUTE
+            assert result.hasAncestorAxis() == false
+            assert result.hasLeafConditions() == false
+            assert result.hasTextFunctionCondition() == false
+            assert result.hasContainsFunctionCondition() == false
+            assert result.isPathToListElement() == false
+    }
+
     def 'Parse cps path with valid cps path and a filter with #scenario.'() {
         when: 'the given cps path is parsed'
             def result = CpsPathQuery.createFrom(cpsPath)
@@ -131,13 +143,13 @@ class CpsPathQuerySpec extends Specification {
         when: 'the given cps path is parsed'
             def result = CpsPathQuery.createFrom(cpsPath)
         then: 'the query has the right xpath type'
-            result.cpsPathPrefixType == DESCENDANT
+            assert result.cpsPathPrefixType == DESCENDANT
         and: 'leaf conditions are only present when expected'
-            result.hasLeafConditions() == expectLeafConditions
+            assert result.hasLeafConditions() == expectLeafConditions
         and: 'the right text function condition is set'
-            result.hasTextFunctionCondition()
-            result.textFunctionConditionLeafName == 'leaf-name'
-            result.textFunctionConditionValue == 'search'
+            assert result.hasTextFunctionCondition()
+            assert result.textFunctionConditionLeafName == 'leaf-name'
+            assert result.textFunctionConditionValue == 'search'
         and: 'the ancestor is only present when expected'
             assert result.hasAncestorAxis() == expectHasAncestorAxis
         where: 'the following data is used'
@@ -152,11 +164,11 @@ class CpsPathQuerySpec extends Specification {
         when: 'the given cps path is parsed'
             def result = CpsPathQuery.createFrom('//someContainer[contains(@lang,"en")]')
         then: 'the query has the right xpath type'
-            result.cpsPathPrefixType == DESCENDANT
+            assert result.cpsPathPrefixType == DESCENDANT
         and: 'the right contains function condition is set'
-            result.hasContainsFunctionCondition()
-            result.containsFunctionConditionLeafName == 'lang'
-            result.containsFunctionConditionValue == 'en'
+            assert result.hasContainsFunctionCondition()
+            assert result.containsFunctionConditionLeafName == 'lang'
+            assert result.containsFunctionConditionValue == 'en'
     }
 
     def 'Parse cps path with error: #scenario.'() {
@@ -188,7 +200,7 @@ class CpsPathQuerySpec extends Specification {
         and: 'the correct ancestor schema node identifier is set'
             result.ancestorSchemaNodeIdentifier == ancestorPath
         and: 'there are no leaves conditions'
-            result.hasLeafConditions() == false
+            assert result.hasLeafConditions() == false
         where:
             scenario                                    | ancestorPath
             'basic container'                           | 'someContainer'
@@ -202,14 +214,14 @@ class CpsPathQuerySpec extends Specification {
         when: 'the given cps path is parsed'
             def result = CpsPathQuery.createFrom(cpsPath + '/ancestor::someAncestor')
         then: 'the query has the right type'
-            result.cpsPathPrefixType == DESCENDANT
+            assert result.cpsPathPrefixType == DESCENDANT
         and: 'leaf conditions are only present when expected'
-            result.hasLeafConditions() == expectLeafConditions
+            assert result.hasLeafConditions() == expectLeafConditions
         and: 'the result has ancestor axis'
-            result.hasAncestorAxis()
+            assert result.hasAncestorAxis()
         and: 'the correct ancestor schema node identifier is set'
-            result.ancestorSchemaNodeIdentifier == 'someAncestor'
-            result.descendantName == expectedDescendantName
+            assert result.ancestorSchemaNodeIdentifier == 'someAncestor'
+            assert result.descendantName == expectedDescendantName
         where:
             scenario                     | cpsPath                               || expectedDescendantName   | expectLeafConditions
             'basic container'            | '//someContainer'                     || 'someContainer'          | false

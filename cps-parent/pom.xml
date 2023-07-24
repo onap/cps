@@ -38,7 +38,7 @@
     <properties>
         <app>org.onap.cps.Application</app>
         <java.version>17</java.version>
-        <minimum-coverage>0.97</minimum-coverage>
+        <minimum-coverage>1.00</minimum-coverage>
         <postgres.version>42.5.1</postgres.version>
 
         <jacoco.reportDirectory.aggregate>${project.reporting.outputDirectory}/jacoco-aggregate</jacoco.reportDirectory.aggregate>
@@ -359,11 +359,14 @@
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.10</version>
                 <configuration>
+                    <!--All exclusions below are referring to generated code-->
                     <excludes>
                         <exclude>org/onap/cps/event/model/*</exclude>
                         <exclude>org/onap/cps/rest/model/*</exclude>
                         <exclude>org/onap/cps/cpspath/parser/antlr4/*</exclude>
                         <exclude>org/onap/cps/ncmp/rest/model/*</exclude>
+                        <exclude>org/onap/cps/**/*MapperImpl.class</exclude>
+                        <exclude>org/onap/cps/ncmp/rest/stub/*</exclude>
                     </excludes>
                 </configuration>
                 <executions>
