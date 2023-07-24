@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "urn:cps:org.onap.cps.ncmp.events.async:data-operation-event-schema:1.0.0",
+  "$ref": "#/definitions/DataOperationEvent",
+  "definitions": {
+    "DataOperationEvent": {
+      "description": "The payload of data operation event.",
+      "type": "object",
+      "javaType" : "org.onap.cps.ncmp.events.async1_0_0.DataOperationEvent",
+      "properties": {
+        "data": {
+          "description": "The payload content of the requested data.",
+          "type": "object",
+          "properties": {
+            "responses": {
+              "description": "An array of batch responses which contains both success and failure",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "operationId": {
+                    "description": "Used to distinguish multiple operations using same handle ids",
+                    "type": "string"
+                  },
+                  "ids": {
+                    "description": "Id's of the cmhandles",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "statusCode": {
+                    "description": "which says success or failure (0-99) are for success and (100-199) are for failure",
+                    "type": "string"
+                  },
+                  "statusMessage": {
+                    "description": "Human readable message, Which says what the response has",
+                    "type": "string"
+                  },
+                  "result": {
+                    "description": "Contains the requested data response.",
+                    "type": "object",
+                    "existingJavaType": "java.lang.Object",
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "operationId",
+                  "ids",
+                  "statusCode",
+                  "statusMessage"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [
+            "responses"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "data"
+      ],
+      "additionalProperties": false
+    }
+  }
+}
