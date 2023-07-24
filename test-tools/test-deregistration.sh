@@ -77,8 +77,8 @@ remove_handles_and_record_time() {
 create_request_bodies() {
     local CREATE_SIZE=$1
     local REMOVE_SIZE=$2
-    echo -n '{"dmiPlugin": "http://ncmp-dmi-plugin-stub:8080","createdCmHandles":[' > $CREATE_REQUEST
-    echo -n '{"dmiPlugin": "http://ncmp-dmi-plugin-stub:8080","removedCmHandles":[' > $REMOVE_REQUEST
+    echo -n '{"dmiPlugin": "http://ncmp-dmi-plugin-demo-and-csit-stub:8092","createdCmHandles":[' > $CREATE_REQUEST
+    echo -n '{"dmiPlugin": "http://ncmp-dmi-plugin-demo-and-csit-stub:8092","removedCmHandles":[' > $REMOVE_REQUEST
     for i in $(seq 1 "$CREATE_SIZE"); do
         local CMHANDLE
         CMHANDLE=$(uuidgen | tr -d '-')
