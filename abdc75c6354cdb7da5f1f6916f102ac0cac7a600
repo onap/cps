@@ -35,6 +35,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1611444b_3f8f136a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-24T11:32:09Z",
+      "side": 1,
+      "message": "I have a NB question with regards to a native query. Otherwise, the commit is ok for me.",
+      "revId": "abdc75c6354cdb7da5f1f6916f102ac0cac7a600",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3eeba9a1_3a8ff631",
@@ -101,6 +118,29 @@
         "startChar": 0,
         "endLine": 260,
         "endChar": 13
+      },
+      "revId": "abdc75c6354cdb7da5f1f6916f102ac0cac7a600",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f2d962e_7024b050",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-24T11:32:09Z",
+      "side": 1,
+      "message": "NB: Does that DB call will return any object from database, I am not sure if my syntax is correct? Like this one: \n\nSELECT * FROM fragment WHERE anchor_id \u003d ? AND xpath \u003d ANY (\u0027{/bookstore/inventory/categories}\u0027)",
+      "range": {
+        "startLine": 264,
+        "startChar": 0,
+        "endLine": 265,
+        "endChar": 34
       },
       "revId": "abdc75c6354cdb7da5f1f6916f102ac0cac7a600",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
