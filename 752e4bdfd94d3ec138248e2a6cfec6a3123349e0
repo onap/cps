@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ef74525a_e41ed951",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-24T08:27:36Z",
+      "side": 1,
+      "message": "NB: missed comemnt form patchset #19",
+      "parentUuid": "7eab4a5b_092ad780",
+      "range": {
+        "startLine": 349,
+        "startChar": 33,
+        "endLine": 349,
+        "endChar": 34
+      },
+      "revId": "752e4bdfd94d3ec138248e2a6cfec6a3123349e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b54f7337_6bb82ebc",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 19

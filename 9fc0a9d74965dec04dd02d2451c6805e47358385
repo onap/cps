@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "41fb629f_54002fea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 30
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-24T08:27:36Z",
+      "side": 1,
+      "message": "SO initial feedback. I think its getting close :-)\n\nI will check out the code output locally now to look at the duplication issue I mentioned earlier and check test coverage details...",
+      "revId": "9fc0a9d74965dec04dd02d2451c6805e47358385",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4603b206_097f2084",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-24T08:27:36Z",
+      "side": 1,
+      "message": "I realize now there is always going to be an ! token, not much you can do about it... \n(for testing purpose note there are 3 paths that need to be covered here!)",
+      "range": {
+        "startLine": 325,
+        "startChar": 40,
+        "endLine": 325,
+        "endChar": 41
+      },
+      "revId": "9fc0a9d74965dec04dd02d2451c6805e47358385",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac23a1b8_a5e4730a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-24T08:27:36Z",
+      "side": 1,
+      "message": "can you use NO_PAGINATION here ?",
+      "range": {
+        "startLine": 325,
+        "startChar": 32,
+        "endLine": 325,
+        "endChar": 36
+      },
+      "revId": "9fc0a9d74965dec04dd02d2451c6805e47358385",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0fb7155_97f1e3f6",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsDataServiceIntegrationSpec.groovy",
+        "patchSetId": 30
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-24T08:27:36Z",
+      "side": 1,
+      "message": "update labels to be in lien with code updates",
+      "range": {
+        "startLine": 77,
+        "startChar": 36,
+        "endLine": 77,
+        "endChar": 43
+      },
+      "revId": "9fc0a9d74965dec04dd02d2451c6805e47358385",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7cbb4019_97483f0c",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsDataServiceIntegrationSpec.groovy",
+        "patchSetId": 30
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-24T08:27:36Z",
+      "side": 1,
+      "message": "update labels to be in lien with code updates",
+      "range": {
+        "startLine": 79,
+        "startChar": 14,
+        "endLine": 79,
+        "endChar": 74
+      },
+      "revId": "9fc0a9d74965dec04dd02d2451c6805e47358385",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
