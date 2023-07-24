@@ -144,6 +144,30 @@
       },
       "revId": "abdc75c6354cdb7da5f1f6916f102ac0cac7a600",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bca332f_b8e38aba",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-24T11:36:00Z",
+      "side": 1,
+      "message": "Assuming that I have anchor_id like 13 and and existing xpath like /bookstore/inventory/categories in my local Postgre DB.",
+      "parentUuid": "9f2d962e_7024b050",
+      "range": {
+        "startLine": 264,
+        "startChar": 0,
+        "endLine": 265,
+        "endChar": 34
+      },
+      "revId": "abdc75c6354cdb7da5f1f6916f102ac0cac7a600",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
