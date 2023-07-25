@@ -1,6 +1,6 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
-.. Copyright (C) 2022 Nordix Foundation
+.. Copyright (C) 2022-2023 Nordix Foundation
 
 .. DO NOT CHANGE THIS LABEL FOR RELEASE NOTES - EVEN THOUGH IT GIVES A WARNING
 .. _cpsEvents:
@@ -8,153 +8,16 @@
 CPS Events
 ##########
 
-CPS-NCMP
-********
+.. toctree::
+   :maxdepth: 1
 
-Async events are triggered when a valid topic has been detected in a passthrough operation.
+   cm-handle-lcm-events.rst
+   data-operation-events.rst
 
-:download:`NCMP request response event schema <schemas/ncmp-async-request-response-event-schema-v1.json>`
+.. note::
+    - We do not support async events **"CPS Async Events"** that are used to be triggered when a valid topic has been detected in a passthrough operation. Click link below for more information.
 
-Event header
-^^^^^^^^^^^^^
+    .. toctree::
+       :maxdepth: 1
 
-.. code-block:: json
-
-    {
-        "eventId"               : "001",
-        "eventCorrelationId"    : "cps-001",
-        "eventTime"             : "2022-09-28T12:24:21.003+0000",
-        "eventTarget"           : "test-topic",
-        "eventType"             : "org.onap.cps.ncmp.event.model.DmiAsyncRequestResponseEvent",
-        "eventSchema"           : "urn:cps:org.onap.cps.ncmp.event.model.DmiAsyncRequestResponseEvent:v1",
-        "forwarded-Event"       : { }
-    }
-
-Forwarded-Event Payload
-^^^^^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: json
-
-    "Forwarded-Event": {
-        "eventId"               : "002",
-        "eventCorrelationId"    : "cps-001",
-        "eventTime"             : "2022-09-28T12:24:18.340+0000",
-        "eventTarget"           : "test-topic",
-        "eventType"             : "org.onap.cps.ncmp.event.model.DmiAsyncRequestResponseEvent",
-        "eventSchema"           : "urn:cps:org.onap.cps.ncmp.event.model.DmiAsyncRequestResponseEvent:v1",
-        "eventSource"           : "org.onap.cps.ncmp.dmi",
-        "response-data-schema"  : "urn:cps:org.onap.cps.ncmp.event.model.DmiAsyncRequestResponseEvent:v1",
-        "response-status"       : "OK",
-        "response-code"         : "200",
-        "response-data"         : { }
-    }
-
-
-Lifecycle Management (LCM) Event
-================================
-
-
-Overview
---------
-LCM events for CM Handles are published when a CM Handle is created, deleted or another change in the cm handle state occurs.
-
-  **3 possible event types:**
-
-  * Create
-  * Update
-  * Delete
-
-LCM Event Schema
-----------------
-The current published LCM event is based on the following schema:
-
-:download:`Life cycle management event schema <schemas/lcm-event-schema-v1.json>`
-
-LCM Event structure
--------------------
-
-Events header
-^^^^^^^^^^^^^
-*Event header prototype for all event types*
-
-.. code-block::
-
-  {
-      "eventId"                : "00001",
-      "eventCorrelationId      : "cmhandle-001",
-      "eventTime"              : "2021-11-16T16:42:25-04:00",
-      "eventSource"            : "org.onap.ncmp",
-      "eventType"              : "org.onap.ncmp.cmhandle-lcm-event.create",
-      "eventSchema"            : "org.onap.ncmp:cmhandle-lcm-event",
-      "eventSchemaVersion"     : "1.0",
-      "event"                  : ...
-  }
-
-Events payload
-^^^^^^^^^^^^^^
-Event payload varies based on the type of event.
-
-**CREATE**
-
-Event payload for this event contains the properties of the new cm handle created.
-
-*Create event payload prototype*
-
-.. code-block:: json
-
-  "event": {
-         "cmHandleId" : "cmhandle-001",
-         "newValues" : {
-             "cmHandleState"  : "ADVISED",
-             "dataSyncEnabled" : "TRUE",
-             "cmhandleProperties" : [
-                          "prop1" : "val1",
-                          "prop2" : "val2"
-                ]
-            }
-       }
-   }
-
-
-**UPDATE**
-
-Event payload for this event contains the difference in state and properties of the cm handle.
-
-*Update event payload prototype*
-
-.. code-block:: json
-
-  "event": {
-         "cmHandleId" : "cmhandle-001",
-         "oldValues" : {
-                 "cmHandleState"  : "ADVISED",
-                 "dataSyncEnabled" : "FALSE",
-                 "cmhandleProperties" : [
-                          "prop1" : "val1",
-                          "prop2" : "val2",
-              }
-          "newValues" : {
-             "cmHandleState"  : "READY",
-             "dataSyncEnabled" : "TRUE",
-             "cmhandleProperties" : [
-                          "prop1" : "updatedval1",
-                          "prop2" : "updatedval2"
-                   ]
-            }
-       }
-   }
-
-
-**DELETE**
-
-Event payload for this event contains the identifier of the deleted cm handle.
-
-*Delete event payload prototype*
-
-.. code-block:: json
-
-  "event": {
-         "cmHandleId" : "cmhandle-001",
-   }
-
-
+       ncmp-async-events.rst

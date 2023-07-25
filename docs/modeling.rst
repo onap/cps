@@ -1,7 +1,7 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
 .. Copyright (C) 2021 Pantheon.tech
-.. Modifications Copyright (C) 2021-2022 Nordix Foundation
+.. Modifications Copyright (C) 2021-2023 Nordix Foundation
 .. _modeling:
 
 .. toctree::
@@ -121,13 +121,20 @@ Basic Concepts
     | Passthrough-running            | config-true                         | read-write              |
     +--------------------------------+-------------------------------------+-------------------------+
 
-Querying CM Handles
-
-- **CM Handle Searches Endpoints** are used to query CM Handles.
+Additional information on CPS-NCMP interfaces
+---------------------------------------------
 
 .. toctree::
    :maxdepth: 1
 
    ncmp-cmhandle-querying.rst
    ncmp-inventory-querying.rst
+   ncmp-data-operation.rst
+
+Scheduled Processes
+-------------------
+
+.. toctree::
+   :maxdepth: 1
+
    cps-scheduled-processes.rst
