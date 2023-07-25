@@ -131,3 +131,4 @@ Querying CM Handles
    ncmp-cmhandle-querying.rst
    ncmp-inventory-querying.rst
    cps-scheduled-processes.rst
+   ncmp-data-operation.rst
