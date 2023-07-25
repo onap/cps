@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ca26287_0d9096e1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventResponseOutcome.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-25T10:21:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "231c9054_51118a25",
+      "range": {
+        "startLine": 111,
+        "startChar": 8,
+        "endLine": 118,
+        "endChar": 102
+      },
+      "revId": "6ba711751063440be2a660406fbac3bd2e7aa962",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0880222a_a4503840",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-07-24T16:10:16Z",
       "side": 1,
       "message": "amm..this has to be the default message ??\nor we make the constructor paramterize to accept the details..\njust thinking..want to know your thinking around this.\nI am fine either ways.",
+      "range": {
+        "startLine": 95,
+        "startChar": 12,
+        "endLine": 95,
+        "endChar": 66
+      },
+      "revId": "6ba711751063440be2a660406fbac3bd2e7aa962",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76711f7d_72cce96e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/yangmodels/YangModelSubscriptionEvent.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-25T10:21:08Z",
+      "side": 1,
+      "message": "This is default message at the very beginning stage while subscription being forwarded, thus no need to have it in constructors, in my opinion.",
+      "parentUuid": "0880222a_a4503840",
       "range": {
         "startLine": 95,
         "startChar": 12,
@@ -72,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b12609f6_5fd0d9c9",
+        "filename": "cps-ncmp-service/src/main/resources/model/subscription.yang",
+        "patchSetId": 9
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-25T10:21:08Z",
+      "side": 1,
+      "message": "It is being handled within new SubscriptionModelLoader now done by Anjealla. Since we also changed subscription.yang, the details field is persisted into the db.",
+      "parentUuid": "00c805af_30ac141a",
+      "range": {
+        "startLine": 45,
+        "startChar": 20,
+        "endLine": 47,
+        "endChar": 21
+      },
+      "revId": "6ba711751063440be2a660406fbac3bd2e7aa962",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0d459b7d_7d5cadd5",
         "filename": "cps-ncmp-service/src/test/resources/avcSubscriptionOutcomeEvent.json",
         "patchSetId": 9
@@ -83,6 +155,30 @@
       "writtenOn": "2023-07-24T16:10:16Z",
       "side": 1,
       "message": "where does this status code coming ??",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 21
+      },
+      "revId": "6ba711751063440be2a660406fbac3bd2e7aa962",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "816c8aab_f4623542",
+        "filename": "cps-ncmp-service/src/test/resources/avcSubscriptionOutcomeEvent.json",
+        "patchSetId": 9
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-25T10:21:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d459b7d_7d5cadd5",
       "range": {
         "startLine": 3,
         "startChar": 18,
