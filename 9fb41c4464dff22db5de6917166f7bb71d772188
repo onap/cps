@@ -1,0 +1,377 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "808f8884_fd9a1492",
+        "filename": "docs/data-operation-events.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-25T14:05:00Z",
+      "side": 1,
+      "message": "New structure:\nCPS EVENTS (new page with just 2 links)\n - (link to) CM Handle LCM Events (extract/rename from orignal)\n - (link to) Data Operations Events  (this file)\n \n Note. Remove \u0027Async\u0027 Events\u0027 form to an separate (unused file)",
+      "revId": "9fb41c4464dff22db5de6917166f7bb71d772188",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09c0cccd_74ca1771",
+        "filename": "docs/data-operation-events.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-25T14:05:00Z",
+      "side": 1,
+      "message": "CPS-NCMP",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 4
+      },
+      "revId": "9fb41c4464dff22db5de6917166f7bb71d772188",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2102f319_61e8b178",
+        "filename": "docs/data-operation-events.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-25T14:05:00Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 23
+      },
+      "revId": "9fb41c4464dff22db5de6917166f7bb71d772188",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87cafb27_d3401531",
+        "filename": "docs/data-operation-events.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-25T14:05:00Z",
+      "side": 1,
+      "message": "These events are based on the Cloud Events Standard which is a specifcation....\n  (link to ttps://cloudevents.io/)",
+      "range": {
+        "startLine": 14,
+        "startChar": 150,
+        "endLine": 14,
+        "endChar": 158
+      },
+      "revId": "9fb41c4464dff22db5de6917166f7bb71d772188",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bcbead3_fb15f8e6",
+        "filename": "docs/data-operation-events.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-25T14:05:00Z",
+      "side": 1,
+      "message": "Data operation response events are using this schema:",
+      "revId": "9fb41c4464dff22db5de6917166f7bb71d772188",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8013ec9f_351f4ae1",
+        "filename": "docs/data-operation-events.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-25T14:05:00Z",
+      "side": 1,
+      "message": "no need now we have the link to cloud events standard",
+      "range": {
+        "startLine": 40,
+        "startChar": 6,
+        "endLine": 40,
+        "endChar": 20
+      },
+      "revId": "9fb41c4464dff22db5de6917166f7bb71d772188",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eed18892_539e7b26",
+        "filename": "docs/data-operation-events.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-25T14:05:00Z",
+      "side": 1,
+      "message": "no need now we have the link to cloud events standard",
+      "range": {
+        "startLine": 42,
+        "startChar": 6,
+        "endLine": 42,
+        "endChar": 13
+      },
+      "revId": "9fb41c4464dff22db5de6917166f7bb71d772188",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "541588bf_e2323e2d",
+        "filename": "docs/index.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-25T14:05:00Z",
+      "side": 1,
+      "message": "see prev comment on new structure",
+      "range": {
+        "startLine": 26,
+        "startChar": 3,
+        "endLine": 26,
+        "endChar": 28
+      },
+      "revId": "9fb41c4464dff22db5de6917166f7bb71d772188",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6b210bb_7ecfa854",
+        "filename": "docs/modeling.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-25T14:05:00Z",
+      "side": 1,
+      "message": "Additional information on CPS-NCMP interfaces\n(3 links: CM Handle queries, inventory queries (new) data operations)",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 124,
+        "endChar": 19
+      },
+      "revId": "9fb41c4464dff22db5de6917166f7bb71d772188",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e306cf3_561da164",
+        "filename": "docs/modeling.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-25T14:05:00Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 126,
+        "startChar": 1,
+        "endLine": 126,
+        "endChar": 64
+      },
+      "revId": "9fb41c4464dff22db5de6917166f7bb71d772188",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2adba99_4b53e054",
+        "filename": "docs/modeling.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-25T14:05:00Z",
+      "side": 1,
+      "message": "separate section: \u0027Scheduled Processes\u0027\n(just one link)",
+      "range": {
+        "startLine": 133,
+        "startChar": 3,
+        "endLine": 133,
+        "endChar": 30
+      },
+      "revId": "9fb41c4464dff22db5de6917166f7bb71d772188",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "344f4ff8_a2eaef55",
+        "filename": "docs/ncmp-data-operation.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-25T14:05:00Z",
+      "side": 1,
+      "message": "Rewove \u0027currently\u0027",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 11
+      },
+      "revId": "9fb41c4464dff22db5de6917166f7bb71d772188",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46cc825d_fff1589f",
+        "filename": "docs/ncmp-data-operation.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-25T14:05:00Z",
+      "side": 1,
+      "message": "status",
+      "range": {
+        "startLine": 42,
+        "startChar": 5,
+        "endLine": 42,
+        "endChar": 11
+      },
+      "revId": "9fb41c4464dff22db5de6917166f7bb71d772188",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fed35115_d5c509f6",
+        "filename": "docs/ncmp-data-operation.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-25T14:05:00Z",
+      "side": 1,
+      "message": "too long , RTD shoudl complain possible becasue line 42 is not a header-type...",
+      "range": {
+        "startLine": 43,
+        "startChar": 33,
+        "endLine": 43,
+        "endChar": 52
+      },
+      "revId": "9fb41c4464dff22db5de6917166f7bb71d772188",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50029b17_9cf48f7d",
+        "filename": "docs/ncmp-data-operation.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-25T14:05:00Z",
+      "side": 1,
+      "message": "move to new page from common status codes (See comment below)\nBELOW table\nInsert link to new page here",
+      "range": {
+        "startLine": 45,
+        "startChar": 1,
+        "endLine": 49,
+        "endChar": 70
+      },
+      "revId": "9fb41c4464dff22db5de6917166f7bb71d772188",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e49eba6_06e5d10c",
+        "filename": "docs/ncmp-data-operation.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-25T14:05:00Z",
+      "side": 1,
+      "message": "Add note: PLease refer to the API (link) for the latest schema.",
+      "revId": "9fb41c4464dff22db5de6917166f7bb71d772188",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b18d5b7_8bbe3cad",
+        "filename": "docs/ncmp-data-operation.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-25T14:05:00Z",
+      "side": 1,
+      "message": "create seprate page for \"CPS-NCMP Message Status Codes\u0027",
+      "range": {
+        "startLine": 142,
+        "startChar": 0,
+        "endLine": 157,
+        "endChar": 77
+      },
+      "revId": "9fb41c4464dff22db5de6917166f7bb71d772188",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
