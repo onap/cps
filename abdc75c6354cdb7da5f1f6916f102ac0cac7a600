@@ -52,6 +52,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8da22988_12b9336f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-07-25T08:47:38Z",
+      "side": 1,
+      "message": "Replied to comments. Can be reviewed further.",
+      "revId": "abdc75c6354cdb7da5f1f6916f102ac0cac7a600",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3eeba9a1_3a8ff631",
@@ -160,6 +177,30 @@
       "side": 1,
       "message": "Assuming that I have anchor_id like 13 and and existing xpath like /bookstore/inventory/categories in my local Postgre DB.",
       "parentUuid": "9f2d962e_7024b050",
+      "range": {
+        "startLine": 264,
+        "startChar": 0,
+        "endLine": 265,
+        "endChar": 34
+      },
+      "revId": "abdc75c6354cdb7da5f1f6916f102ac0cac7a600",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "843cb438_933257f2",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-07-25T08:47:38Z",
+      "side": 1,
+      "message": "if the xpath exists in the DB then yes it will return the attributes associated with it. Given the xpath represents an absolute path to a DataNode and not an xpath to a List of DataNodes, which are non-existant in the DB.",
+      "parentUuid": "6bca332f_b8e38aba",
       "range": {
         "startLine": 264,
         "startChar": 0,
