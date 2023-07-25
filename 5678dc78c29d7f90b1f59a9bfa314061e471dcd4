@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef280b2f_1ef15b5e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-07-25T15:54:08Z",
+      "side": 1,
+      "message": "looks good to me.\nThis patch has grown enough I guess.\n\n- Creating a generic concrete cloud event comment that I suggested can be done as part of separate story.\n- Any other NB comments we can handle as part of a different patch.",
+      "revId": "5678dc78c29d7f90b1f59a9bfa314061e471dcd4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
