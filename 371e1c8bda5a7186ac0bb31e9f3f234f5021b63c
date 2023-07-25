@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "da2163a0_53eae94d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-25T10:29:42Z",
+      "side": 1,
+      "message": "Unused variables",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 57
+      },
+      "revId": "371e1c8bda5a7186ac0bb31e9f3f234f5021b63c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "671d49d4_97e2c94a",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 31
@@ -19,6 +42,76 @@
         "startChar": 26,
         "endLine": 288,
         "endChar": 40
+      },
+      "revId": "371e1c8bda5a7186ac0bb31e9f3f234f5021b63c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6ffb902_b93eb0d8",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-25T10:29:42Z",
+      "side": 1,
+      "message": "I just tested this and it workd fine for me locally:\n  @Override\n    @Timed(value \u003d \"cps.data.persistence.service.datanode.query\",\n            description \u003d \"Time taken to query data nodes\")\n    public List\u003cDataNode\u003e queryDataNodes(final String dataspaceName, final String anchorName, final String cpsPath,\n                                         final FetchDescendantsOption fetchDescendantsOption) {\n        return queryDataNodesAcrossAnchors(dataspaceName, cpsPath, fetchDescendantsOption, NO_PAGINATION);\n    }\n\n    @Override\n    @Timed(value \u003d \"cps.data.persistence.service.datanode.query.anchors\",\n            description \u003d \"Time taken to query data nodes across all anchors or list of anchors\")\n    public List\u003cDataNode\u003e queryDataNodesAcrossAnchors(final String dataspaceName, final String cpsPath,\n                                                      final FetchDescendantsOption fetchDescendantsOption,\n                                                      final PaginationOption paginationOption) {\n        final DataspaceEntity dataspaceEntity \u003d dataspaceRepository.getByName(dataspaceName);",
+      "parentUuid": "671d49d4_97e2c94a",
+      "range": {
+        "startLine": 288,
+        "startChar": 26,
+        "endLine": 288,
+        "endChar": 40
+      },
+      "revId": "371e1c8bda5a7186ac0bb31e9f3f234f5021b63c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f39a65e5_b345f3d3",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-25T10:29:42Z",
+      "side": 1,
+      "message": "use static imports",
+      "range": {
+        "startLine": 325,
+        "startChar": 32,
+        "endLine": 325,
+        "endChar": 48
+      },
+      "revId": "371e1c8bda5a7186ac0bb31e9f3f234f5021b63c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6cd3598_2a87ecc5",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-25T10:29:42Z",
+      "side": 1,
+      "message": "use static import",
+      "range": {
+        "startLine": 402,
+        "startChar": 16,
+        "endLine": 402,
+        "endChar": 32
       },
       "revId": "371e1c8bda5a7186ac0bb31e9f3f234f5021b63c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
