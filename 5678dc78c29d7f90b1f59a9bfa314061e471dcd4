@@ -16,6 +16,24 @@
       "message": "looks good to me.\nThis patch has grown enough I guess.\n\n- Creating a generic concrete cloud event comment that I suggested can be done as part of separate story.\n- Any other NB comments we can handle as part of a different patch.",
       "revId": "5678dc78c29d7f90b1f59a9bfa314061e471dcd4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "94902c87_bab6fb78",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-25T16:02:25Z",
+      "side": 1,
+      "message": "Right, with the next upcoming task, will try to change mappers into a generic format. I will follow up NB comments on the next commit.",
+      "parentUuid": "ef280b2f_1ef15b5e",
+      "revId": "5678dc78c29d7f90b1f59a9bfa314061e471dcd4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
