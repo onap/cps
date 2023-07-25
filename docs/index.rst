@@ -23,6 +23,7 @@ CPS
    design.rst
    modeling.rst
    cps-events.rst
+   data-operation-events.rst
    deployment.rst
    release-notes.rst
 
