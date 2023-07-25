@@ -69,6 +69,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0c68320_47ca5ff9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-25T11:26:27Z",
+      "side": 1,
+      "message": "Thanks for getting back to my question.",
+      "revId": "abdc75c6354cdb7da5f1f6916f102ac0cac7a600",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3eeba9a1_3a8ff631",
@@ -201,6 +218,30 @@
       "side": 1,
       "message": "if the xpath exists in the DB then yes it will return the attributes associated with it. Given the xpath represents an absolute path to a DataNode and not an xpath to a List of DataNodes, which are non-existant in the DB.",
       "parentUuid": "6bca332f_b8e38aba",
+      "range": {
+        "startLine": 264,
+        "startChar": 0,
+        "endLine": 265,
+        "endChar": 34
+      },
+      "revId": "abdc75c6354cdb7da5f1f6916f102ac0cac7a600",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "399d791c_42a9110c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-25T11:26:27Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "843cb438_933257f2",
       "range": {
         "startLine": 264,
         "startChar": 0,
