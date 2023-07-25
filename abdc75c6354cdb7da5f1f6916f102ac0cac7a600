@@ -301,6 +301,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9740d5d1_c3cdf57d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-07-25T12:56:05Z",
+      "side": 1,
+      "message": "I agree with Daniel. \n@Arpit you can ignore my comment and extract the normalization code on lines 255-261.",
+      "parentUuid": "168f501d_e4a42090",
+      "range": {
+        "startLine": 264,
+        "startChar": 8,
+        "endLine": 279,
+        "endChar": 9
+      },
+      "revId": "abdc75c6354cdb7da5f1f6916f102ac0cac7a600",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1c3c8c9a_5983564e",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/GetPerfTest.groovy",
         "patchSetId": 12
