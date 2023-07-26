@@ -26,8 +26,10 @@ package org.onap.cps.api.impl
 import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.spi.CpsModulePersistenceService
+import org.onap.cps.spi.exceptions.DuplicatedYangResourceException
 import org.onap.cps.spi.exceptions.ModelValidationException
 import org.onap.cps.spi.exceptions.SchemaSetInUseException
+import org.onap.cps.spi.model.ModuleDefinition
 import org.onap.cps.spi.utils.CpsValidator
 import org.onap.cps.spi.model.Anchor
 import org.onap.cps.spi.model.ModuleReference
@@ -50,24 +52,22 @@ class CpsModuleServiceImplSpec extends Specification {
     def objectUnderTest = new CpsModuleServiceImpl(mockCpsModulePersistenceService, mockYangTextSchemaSourceSetCache, mockCpsAdminService, mockCpsValidator,timedYangTextSchemaSourceSetBuilder)
 
     def 'Create schema set.'() {
-        given: 'Valid yang resource as name-to-content map'
-            def yangResourcesNameToContentMap = TestUtils.getYangResourcesAsMap('bookstore.yang')
         when: 'Create schema set method is invoked'
-            objectUnderTest.createSchemaSet('someDataspace', 'someSchemaSet', yangResourcesNameToContentMap)
+            objectUnderTest.createSchemaSet('someDataspace', 'someSchemaSet', [:])
         then: 'Parameters are validated and processing is delegated to persistence service'
-            1 * mockCpsModulePersistenceService.storeSchemaSet('someDataspace', 'someSchemaSet', yangResourcesNameToContentMap)
+            1 * mockCpsModulePersistenceService.storeSchemaSet('someDataspace', 'someSchemaSet', [:])
         and: 'the CpsValidator is called on the dataspaceName and schemaSetName'
             1 * mockCpsValidator.validateNameCharacters('someDataspace', 'someSchemaSet')
     }
 
     def 'Create schema set from new modules and existing modules.'() {
         given: 'a list of existing modules module reference'
-            def moduleReferenceForExistingModule = new ModuleReference("test",  "2021-10-12","test.org")
+            def moduleReferenceForExistingModule = new ModuleReference('test',  '2021-10-12','test.org')
             def listOfExistingModulesModuleReference = [moduleReferenceForExistingModule]
         when: 'create schema set from modules method is invoked'
-            objectUnderTest.createSchemaSetFromModules("someDataspaceName", "someSchemaSetName", [newModule: "newContent"], listOfExistingModulesModuleReference)
+            objectUnderTest.createSchemaSetFromModules('someDataspaceName', 'someSchemaSetName', [newModule: 'newContent'], listOfExistingModulesModuleReference)
         then: 'processing is delegated to persistence service'
-            1 * mockCpsModulePersistenceService.storeSchemaSetFromModules("someDataspaceName", "someSchemaSetName", [newModule: "newContent"], listOfExistingModulesModuleReference)
+            1 * mockCpsModulePersistenceService.storeSchemaSetFromModules('someDataspaceName', 'someSchemaSetName', [newModule: 'newContent'], listOfExistingModulesModuleReference)
         and: 'the CpsValidator is called on the dataspaceName and schemaSetName'
             1 * mockCpsValidator.validateNameCharacters('someDataspaceName', 'someSchemaSetName')
     }
@@ -78,7 +78,21 @@ class CpsModuleServiceImplSpec extends Specification {
         when: 'Create schema set method is invoked'
             objectUnderTest.createSchemaSet('someDataspace', 'someSchemaSet', yangResourcesNameToContentMap)
         then: 'Model validation exception is thrown'
-            thrown(ModelValidationException.class)
+            thrown(ModelValidationException)
+    }
+
+    def 'Create schema set with duplicate yang resource exception in persistence layer.'() {
+        given: 'the persistence layer throws an duplicated yang resource exception'
+            def originalException = new DuplicatedYangResourceException('name', '123', null)
+            mockCpsModulePersistenceService.storeSchemaSet(*_) >> { throw originalException }
+        when: 'attempt to create schema set'
+            objectUnderTest.createSchemaSet('someDataspace', 'someSchemaSet', [:])
+        then: 'the same duplicated yang resource exception is thrown (up)'
+            def thrownUp = thrown(DuplicatedYangResourceException)
+            assert thrownUp == originalException
+        and: 'the exception message contains the relevant data'
+            assert thrownUp.message.contains('name')
+            assert thrownUp.message.contains('123')
     }
 
     def 'Get schema set by name and dataspace.'() {
@@ -212,20 +226,23 @@ class CpsModuleServiceImplSpec extends Specification {
             1 * mockCpsValidator.validateNameCharacters('someDataspaceName', 'someAnchorName')
     }
 
-    def 'Identifying new module references'(){
+    def 'Identifying new module references.'(){
         given: 'module references from cm handle'
             def moduleReferencesToCheck = [new ModuleReference('some-module', 'some-revision')]
         when: 'identifyNewModuleReferences is called'
             objectUnderTest.identifyNewModuleReferences(moduleReferencesToCheck)
         then: 'cps module persistence service is called with module references to check'
-            1 * mockCpsModulePersistenceService.identifyNewModuleReferences(moduleReferencesToCheck);
+            1 * mockCpsModulePersistenceService.identifyNewModuleReferences(moduleReferencesToCheck)
     }
 
     def 'Getting module definitions.'() {
+        given: 'the module persistence service returns a collection of module definitions'
+            def moduleDefinitionsFromPersistenceService = [ new ModuleDefinition('name', 'revision', 'content' ) ]
+            mockCpsModulePersistenceService.getYangResourceDefinitions('some-dataspace-name', 'some-anchor-name')  >> moduleDefinitionsFromPersistenceService
         when: 'get module definitions method is called with a valid dataspace and anchor name'
-            objectUnderTest.getModuleDefinitionsByAnchorName('some-dataspace-name', 'some-anchor-name')
-        then: 'CPS module persistence service is invoked the correct number of times'
-            1 * mockCpsModulePersistenceService.getYangResourceDefinitions('some-dataspace-name', 'some-anchor-name')
+            def result = objectUnderTest.getModuleDefinitionsByAnchorName('some-dataspace-name', 'some-anchor-name')
+        then: 'the result is the same collection returned by the persistence service'
+            assert result == moduleDefinitionsFromPersistenceService
         and: 'the CpsValidator is called on the dataspaceName and schemaSetName'
             1 * mockCpsValidator.validateNameCharacters('some-dataspace-name', 'some-anchor-name')
     }

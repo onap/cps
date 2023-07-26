@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (c) 2021-2022 Bell Canada.
- *  Modifications Copyright (c) 2022 Nordix Foundation
+ *  Modifications Copyright (c) 2022-2023 Nordix Foundation
  *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,6 +22,8 @@
 
 package org.onap.cps.notification
 
+import org.onap.cps.spi.model.DataNode
+
 import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
 import org.onap.cps.utils.DateTimeUtility
@@ -35,7 +37,7 @@ import org.onap.cps.spi.model.DataNodeBuilder
 import org.springframework.util.StringUtils
 import spock.lang.Specification
 
-class CpsDataUpdateEventFactorySpec extends Specification {
+class CpsDataUpdatedEventFactorySpec extends Specification {
 
     def mockCpsDataService = Mock(CpsDataService)
 
@@ -110,6 +112,22 @@ class CpsDataUpdateEventFactorySpec extends Specification {
                 assert operation == Content.Operation.DELETE
                 assert data == null
             }
+    }
+
+    def 'Create CPS Data Event with URI Syntax Exception'() {
+        given: 'an anchor'
+            def anchor = new Anchor('my-anchorname', 'my-dataspace', 'my-schemaset-name')
+        and: 'a mocked data Node (collection)'
+            def mockDataNode = Mock(DataNode)
+            mockCpsDataService.getDataNodes(*_) >> [ mockDataNode ]
+        and: 'a URI syntax exception is thrown somewhere (using datanode as cannot manipulate hardcoded URIs'
+            def originalException = new URISyntaxException('input', 'reason', 0)
+            mockDataNode.getXpath() >> { throw originalException }
+        when: 'attempt to create data updated event'
+            objectUnderTest.createCpsDataUpdatedEvent(anchor, OffsetDateTime.now(), Operation.UPDATE)
+        then: 'the same exception is thrown up'
+            def thrownUp = thrown(URISyntaxException)
+            assert thrownUp == originalException
     }
 
     def isExpectedDateTimeFormat(String observedTimestamp) {

@@ -42,14 +42,14 @@ import java.util.concurrent.TimeUnit
 @ContextConfiguration(classes = [NotificationProperties, NotificationService, NotificationErrorHandler, AsyncConfig])
 class NotificationServiceSpec extends Specification {
 
+    @SpringSpy
+    NotificationProperties spyNotificationProperties
     @SpringBean
     NotificationPublisher mockNotificationPublisher = Mock()
     @SpringBean
     CpsDataUpdatedEventFactory mockCpsDataUpdatedEventFactory = Mock()
     @SpringSpy
     NotificationErrorHandler spyNotificationErrorHandler
-    @SpringSpy
-    NotificationProperties spyNotificationProperties
     @SpringBean
     CpsAdminService mockCpsAdminService = Mock()
 
@@ -145,5 +145,14 @@ class NotificationServiceSpec extends Specification {
         and: 'error is handled and not thrown to caller'
             notThrown Exception
             1 * spyNotificationErrorHandler.onException(_, _, _, '/', Operation.CREATE)
+    }
+
+    def 'Disabled Notification services'() {
+        given: 'a notification service that is disabled'
+            spyNotificationProperties.enabled >> false
+            NotificationService notificationService = new NotificationService(spyNotificationProperties, mockNotificationPublisher, mockCpsDataUpdatedEventFactory, spyNotificationErrorHandler, mockCpsAdminService)
+            notificationService.init()
+        expect: 'it will not send notifications'
+            assert notificationService.shouldSendNotification('') == false
     }
 }

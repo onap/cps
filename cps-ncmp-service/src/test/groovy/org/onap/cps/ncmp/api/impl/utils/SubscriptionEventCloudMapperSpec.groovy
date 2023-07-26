@@ -24,7 +24,6 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import io.cloudevents.core.builder.CloudEventBuilder
 import org.onap.cps.ncmp.events.avcsubscription1_0_0.client_to_ncmp.SubscriptionEvent
 import org.onap.cps.ncmp.utils.TestUtils
-import org.onap.cps.spi.exceptions.CloudEventConstructionException
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest

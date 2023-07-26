@@ -20,21 +20,13 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.spi.exceptions;
+package org.onap.cps.ncmp.api.impl.utils;
+
+import org.onap.cps.spi.exceptions.CpsException;
 
 public class CloudEventConstructionException extends CpsException {
 
     private static final long serialVersionUID = 7747941311132087621L;
-
-    /**
-     * Constructor.
-     *
-     * @param message the error message
-     * @param details the error details
-     */
-    public CloudEventConstructionException(final String message, final String details) {
-        super(message, details);
-    }
 
     /**
      * Constructor.

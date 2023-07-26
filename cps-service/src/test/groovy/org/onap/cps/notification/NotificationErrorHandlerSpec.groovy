@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -44,15 +44,17 @@ class NotificationErrorHandlerSpec extends Specification{
         ((Logger) LoggerFactory.getLogger(NotificationErrorHandler.class)).detachAndStopAllAppenders();
     }
 
-    def 'Logging exception via notification error handler'() {
-        when: 'some exception occurs'
-            objectUnderTest.onException(new Exception('sample exception'), 'some context')
+    def 'Logging exception via notification error handler #scenario'() {
+        when: 'exception #scenario occurs'
+            objectUnderTest.onException(exception, 'some context')
         then: 'log output results contains the correct error details'
-            def logMessage = logWatcher.list.get(0).getFormattedMessage()
-            logMessage.contains(
-                    "Failed to process \n" +
-                    " Error cause: sample exception \n" +
-                    " Error context: [some context]")
+            def logMessage = logWatcher.list[0].getFormattedMessage()
+            assert logMessage.contains('Failed to process')
+            assert logMessage.contains("Error cause: ${exptectedCauseString}")
+            assert logMessage.contains("Error context: [some context]")
+        where:
+            scenario        | exception                                               || exptectedCauseString
+            'with cause'    | new Exception('message')                                || 'message'
+            'without cause' | new Exception('message', new RuntimeException('cause')) || 'java.lang.RuntimeException: cause'
     }
 }
-

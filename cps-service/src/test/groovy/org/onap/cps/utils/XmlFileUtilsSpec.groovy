@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Deutsche Telekom AG
+ *  Modifications Copyright (c) 2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -21,16 +22,18 @@ package org.onap.cps.utils
 
 import org.onap.cps.TestUtils
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
+import org.xml.sax.SAXParseException
 import spock.lang.Specification
 
 class XmlFileUtilsSpec extends Specification {
+
     def 'Parse a valid xml content #scenario'(){
         given: 'YANG model schema context'
             def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('bookstore.yang')
             def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
-        when: 'the XML data is parsed'
+        when: 'the xml data is parsed'
             def parsedXmlContent = XmlFileUtils.prepareXmlContent(xmlData, schemaContext)
-        then: 'the result XML is wrapped by root node defined in YANG schema'
+        then: 'the result xml is wrapped by root node defined in YANG schema'
             assert parsedXmlContent == expectedOutput
         where:
             scenario                        | xmlData                                                                   || expectedOutput
@@ -39,13 +42,22 @@ class XmlFileUtilsSpec extends Specification {
             'no xml header'                 | '<stores><class> </class></stores>'                                       || '<stores><class> </class></stores>'
     }
 
+    def 'Parse a invalid xml content'(){
+        given: 'YANG model schema context'
+            def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('bookstore.yang')
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
+        when: 'attempt to parse invalid xml'
+            XmlFileUtils.prepareXmlContent('invalid-xml', schemaContext)
+        then: 'a Sax Parser exception is thrown'
+            thrown(SAXParseException)
+    }
+
     def 'Parse a xml content with XPath container #scenario'() {
         given: 'YANG model schema context'
             def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('test-tree.yang')
             def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
         and: 'Parent schema node by xPath'
-            def parentSchemaNode = YangUtils.getDataSchemaNodeAndIdentifiersByXpath(xPath, schemaContext)
-                    .get("dataSchemaNode")
+            def parentSchemaNode = YangUtils.getDataSchemaNodeAndIdentifiersByXpath(xPath, schemaContext).get("dataSchemaNode")
         when: 'the XML data is parsed'
             def parsedXmlContent = XmlFileUtils.prepareXmlContent(xmlData, parentSchemaNode, xPath)
         then: 'the result XML is wrapped by xPath defined parent root node'
@@ -54,8 +66,6 @@ class XmlFileUtilsSpec extends Specification {
             scenario                 | xmlData                                                                                                                                                                                    | xPath                                 || expectedOutput
             'XML element test tree'  | '<?xml version="1.0" encoding="UTF-8"?><test-tree xmlns="org:onap:cps:test:test-tree"><branch><name>Left</name><nest><name>Small</name><birds>Sparrow</birds></nest></branch></test-tree>' | '/test-tree'                          || '<?xml version="1.0" encoding="UTF-8"?><test-tree xmlns="org:onap:cps:test:test-tree"><branch><name>Left</name><nest><name>Small</name><birds>Sparrow</birds></nest></branch></test-tree>'
             'without root data node' | '<?xml version="1.0" encoding="UTF-8"?><nest xmlns="org:onap:cps:test:test-tree"><name>Small</name><birds>Sparrow</birds></nest>'                                                          | '/test-tree/branch[@name=\'Branch\']' || '<?xml version="1.0" encoding="UTF-8"?><branch xmlns="org:onap:cps:test:test-tree"><name>Branch</name><nest><name>Small</name><birds>Sparrow</birds></nest></branch>'
-
-
     }
 
 }

@@ -23,12 +23,12 @@
 
 package org.onap.cps.yang
 
-
 import org.onap.cps.TestUtils
 import org.onap.cps.spi.exceptions.ModelValidationException
-import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import org.opendaylight.yangtools.yang.common.Revision
 import spock.lang.Specification
+
+import java.nio.charset.StandardCharsets
 
 class YangTextSchemaSourceSetBuilderSpec extends Specification {
 
@@ -61,5 +61,17 @@ class YangTextSchemaSourceSetBuilderSpec extends Specification {
             'invalid.yang'                | 'invalid content'      || ModelValidationException
             'invalid-empty.yang'          | 'no valid content'     || ModelValidationException
             'invalid-missing-import.yang' | 'no dependency module' || ModelValidationException
+    }
+
+    def 'Convert yang source to a YangTextSchemaSource.'() {
+        given: 'a yang source text'
+            def yangSourceText = TestUtils.getResourceFileContent('bookstore.yang')
+        when: 'convert it to a YangTextSchemaSource'
+            def result = YangTextSchemaSourceSetBuilder.toYangTextSchemaSource('some name', yangSourceText)
+        then: 'the converted object has correct properties'
+            assert result.toString() == '{identifier=RevisionSourceIdentifier [name=some name]}'
+            assert new String(result.openStream().readAllBytes(), StandardCharsets.UTF_8) ==  yangSourceText
+        and: 'it has no symbolic name'
+            assert result.getSymbolicName().isEmpty()
     }
 }

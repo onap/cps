@@ -35,10 +35,6 @@
 
   <artifactId>cps-service</artifactId>
 
-  <properties>
-    <minimum-coverage>0.95</minimum-coverage>
-  </properties>
-
   <dependencies>
     <dependency>
       <groupId>com.github.ben-manes.caffeine</groupId>

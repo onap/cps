@@ -18,23 +18,15 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.spi.exceptions;
+package org.onap.cps.config
 
-/**
- * Operation Not Yet Supported Exception.
- * Indicates the operation is not supported and has intention to be supported in the future.
- */
+import spock.lang.Specification
 
-public class OperationNotYetSupportedException extends CpsException {
+class CacheConfigSpec extends Specification {
 
-    private static final long serialVersionUID = 1517903069236383746L;
-
-    /**
-     * Constructor.
-     *
-     * @param details reason for the exception
-     */
-    public OperationNotYetSupportedException(final String details) {
-        super("Operation Not Yet Supported Exception", details);
+    def 'Create Cache Config. (easiest test ever)'() {
+        expect: 'can create a Cache Config'
+            new CacheConfig() != null
     }
+
 }

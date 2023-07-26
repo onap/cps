@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Pantheon.tech
- *  Modifications Copyright (C) 2021-2022 Nordix Foundation.
+ *  Modifications Copyright (C) 2021-2023 Nordix Foundation.
  *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,15 +22,19 @@
 package org.onap.cps.spi.model
 
 import org.onap.cps.TestUtils
+import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.utils.DataMapUtils
 import org.onap.cps.utils.YangUtils
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import org.opendaylight.yangtools.yang.data.api.schema.ContainerNode
+import org.opendaylight.yangtools.yang.data.api.schema.ForeignDataNode
 import spock.lang.Specification
 
 class DataNodeBuilderSpec extends Specification {
 
-    Map<String, Map<String, Serializable>> expectedLeavesByXpathMap = [
+    def objectUnderTest = new DataNodeBuilder()
+
+    def expectedLeavesByXpathMap = [
             '/test-tree'                                            : [],
             '/test-tree/branch[@name=\'Left\']'                     : [name: 'Left'],
             '/test-tree/branch[@name=\'Left\']/nest'                : [name: 'Small', birds: ['Sparrow', 'Robin', 'Finch']],
@@ -56,7 +60,7 @@ class DataNodeBuilderSpec extends Specification {
             def jsonData = TestUtils.getResourceFileContent('test-tree.json')
             def containerNode = YangUtils.parseJsonData(jsonData, schemaContext)
         when: 'the container node is converted to a data node'
-            def result = new DataNodeBuilder().withContainerNode(containerNode).build()
+            def result = objectUnderTest.withContainerNode(containerNode).build()
             def mappedResult = TestUtils.getFlattenMapByXpath(result)
         then: '6 DataNode objects with unique xpath were created in total'
             mappedResult.size() == 6
@@ -76,16 +80,12 @@ class DataNodeBuilderSpec extends Specification {
             def jsonData = '{ "branch": [{ "name": "Branch", "nest": { "name": "Nest", "birds": ["bird"] } }] }'
             def containerNode = YangUtils.parseJsonData(jsonData, schemaContext, "/test-tree")
         when: 'the container node is converted to a data node with parent node xpath defined'
-            def result = new DataNodeBuilder()
-                    .withContainerNode(containerNode)
-                    .withParentNodeXpath("/test-tree")
-                    .build()
+            def result = objectUnderTest.withContainerNode(containerNode).withParentNodeXpath('/test-tree').build()
             def mappedResult = TestUtils.getFlattenMapByXpath(result)
         then: '2 DataNode objects with unique xpath were created in total'
             mappedResult.size() == 2
         and: 'all expected xpaths were built'
-            mappedResult.keySet()
-                    .containsAll(['/test-tree/branch[@name=\'Branch\']', '/test-tree/branch[@name=\'Branch\']/nest'])
+            mappedResult.keySet().containsAll(['/test-tree/branch[@name=\'Branch\']', '/test-tree/branch[@name=\'Branch\']/nest'])
     }
 
     def 'Converting ContainerNode (tree) to a DataNode (tree) -- augmentation case.'() {
@@ -96,11 +96,10 @@ class DataNodeBuilderSpec extends Specification {
             def jsonData = TestUtils.getResourceFileContent('ietf/data/ietf-network-topology-sample-rfc8345.json')
             def containerNode = YangUtils.parseJsonData(jsonData, schemaContext)
         when: 'the container node is converted to a data node '
-            def result = new DataNodeBuilder().withContainerNode(containerNode).build()
+            def result = objectUnderTest.withContainerNode(containerNode).build()
             def mappedResult = TestUtils.getFlattenMapByXpath(result)
         then: 'all expected data nodes are populated'
             mappedResult.size() == 32
-            println(mappedResult.keySet().sort())
         and: 'xpaths for augmentation nodes (link and termination-point nodes) were built correctly'
             mappedResult.keySet().containsAll([
                     "/networks/network[@network-id='otn-hc']/link[@link-id='D1,1-2-1,D2,2-1-1']",
@@ -130,8 +129,7 @@ class DataNodeBuilderSpec extends Specification {
             def jsonData = '{"source": {"source-node": "D1", "source-tp": "1-2-1"}}'
             def containerNode = YangUtils.parseJsonData(jsonData, schemaContext, parentNodeXpath)
         when: 'the container node is converted to a data node with given parent node xpath'
-            def result = new DataNodeBuilder().withContainerNode(containerNode)
-                    .withParentNodeXpath(parentNodeXpath).build()
+            def result = objectUnderTest.withContainerNode(containerNode).withParentNodeXpath(parentNodeXpath).build()
         then: 'the resulting data node represents a child of augmentation node'
             assert result.xpath == "/networks/network[@network-id='otn-hc']/link[@link-id='D1,1-2-1,D2,2-1-1']/source"
             assert result.leaves['source-node'] == 'D1'
@@ -146,15 +144,13 @@ class DataNodeBuilderSpec extends Specification {
             def jsonData = TestUtils.getResourceFileContent('data-with-choice-node.json')
             def containerNode = YangUtils.parseJsonData(jsonData, schemaContext)
         when: 'the container node is converted to a data node'
-            def result = new DataNodeBuilder().withContainerNode(containerNode).build()
+            def result = objectUnderTest.withContainerNode(containerNode).build()
             def mappedResult = TestUtils.getFlattenMapByXpath(result)
         then: 'the resulting data node contains only one xpath with 3 leaves'
-            mappedResult.keySet().containsAll([
-                "/container-with-choice-leaves"
-            ])
-            assert result.leaves['leaf-1'] == "test"
-            assert result.leaves['choice-case1-leaf-a'] == "test"
-            assert result.leaves['choice-case1-leaf-b'] == "test"
+            mappedResult.keySet().containsAll([ '/container-with-choice-leaves' ])
+            assert result.leaves['leaf-1'] == 'test'
+            assert result.leaves['choice-case1-leaf-a'] == 'test'
+            assert result.leaves['choice-case1-leaf-b'] == 'test'
     }
 
     def 'Converting ContainerNode into DataNode collection: #scenario.'() {
@@ -162,12 +158,11 @@ class DataNodeBuilderSpec extends Specification {
             def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('test-tree.yang')
             def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent) getSchemaContext()
         and: 'parent node xpath referencing parent of list element'
-            def parentNodeXpath = "/test-tree"
+            def parentNodeXpath = '/test-tree'
         and: 'the json data fragment (list element) parsed into container node object'
             def containerNode = YangUtils.parseJsonData(jsonData, schemaContext, parentNodeXpath)
         when: 'the container node is converted to a data node collection'
-            def result = new DataNodeBuilder().withContainerNode(containerNode)
-                    .withParentNodeXpath(parentNodeXpath).buildCollection()
+            def result = objectUnderTest.withContainerNode(containerNode).withParentNodeXpath(parentNodeXpath).buildCollection()
             def resultXpaths = result.collect { it.getXpath() }
         then: 'the resulting collection contains data nodes for expected list elements'
             assert resultXpaths.size() == expectedSize
@@ -178,15 +173,43 @@ class DataNodeBuilderSpec extends Specification {
             'multiple entries' | '{"branch": [{"name": "One"}, {"name": "Two"}]}' | 2            | ['/test-tree/branch[@name=\'One\']', '/test-tree/branch[@name=\'Two\']']
     }
 
-    def 'Converting ContainerNode to a DataNode collection -- edge cases: #scenario.'() {
-        when: 'the container node is #node'
-            def result = new DataNodeBuilder().withContainerNode(containerNode).buildCollection()
-        then: 'the resulting collection contains data nodes for expected list elements'
-            assert result.isEmpty()
-        where: 'following parameters are used'
-            scenario                               | containerNode
-            'ContainerNode is null'                | null
-            'ContainerNode is an unsupported type' | Mock(ContainerNode)
+    def 'Converting ContainerNode to a Collection with #scenario.'() {
+        expect: 'converting null to a collection returns an empty collection'
+            assert objectUnderTest.withContainerNode(containerNode).buildCollection().isEmpty()
+        where: 'the following container node is used'
+            scenario              | containerNode
+            'null object'         | null
+            'object without body' | Mock(ContainerNode)
+    }
+
+    def 'Converting ContainerNode to a DataNode with unsupported Normalized Node.'() {
+        given: 'a container node of an unsupported type'
+            def mockContainerNode = Mock(ContainerNode)
+            mockContainerNode.body() >> [ Mock(ForeignDataNode) ]
+        when: 'attempt to convert it'
+            objectUnderTest.withContainerNode(mockContainerNode).build()
+        then: 'a data validation exception is thrown'
+            thrown(DataValidationException)
+    }
+
+    def 'Build datanode from attributes.'() {
+        when: 'data node is built'
+            def result = new DataNodeBuilder()
+                .withDataspace('my dataspace')
+                .withAnchor('my anchor')
+                .withModuleNamePrefix('my prefix')
+                .withXpath('some xpath')
+                .withLeaves([leaf1: 'value1'])
+                .withChildDataNodes([Mock(DataNode)])
+                .build()
+        then: 'the datanode has all the defined attributes'
+            assert result.dataspace == 'my dataspace'
+            assert result.anchorName == 'my anchor'
+            assert result.moduleNamePrefix == 'my prefix'
+            assert result.moduleNamePrefix == 'my prefix'
+            assert result.xpath == 'some xpath'
+            assert result.leaves == [leaf1: 'value1']
+            assert result.childDataNodes.size() == 1
     }
 
     def 'Use of adding the module name prefix attribute of data node.'() {

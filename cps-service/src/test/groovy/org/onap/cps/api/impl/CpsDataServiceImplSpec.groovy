@@ -29,7 +29,11 @@ import org.onap.cps.notification.NotificationService
 import org.onap.cps.notification.Operation
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.FetchDescendantsOption
+import org.onap.cps.spi.exceptions.ConcurrencyException
+import org.onap.cps.spi.exceptions.DataNodeNotFoundExceptionBatch
 import org.onap.cps.spi.exceptions.DataValidationException
+import org.onap.cps.spi.exceptions.SessionManagerException
+import org.onap.cps.spi.exceptions.SessionTimeoutException
 import org.onap.cps.spi.model.Anchor
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
@@ -333,6 +337,18 @@ class CpsDataServiceImplSpec extends Specification {
             'level 2 node'   | ['/test-tree' : '{"branch": [{"name":"Name"}]}', '/test-tree/branch[@name=\'Name\']':'{"nest":{"name":"nestName"}}'] || ["/test-tree/branch[@name='Name']", "/test-tree/branch[@name='Name']/nest"]
     }
 
+    def 'Replace data node with concurrency exception in persistence layer.'() {
+        given: 'the persistence layer throws an concurrency exception'
+            def originalException = new ConcurrencyException('message', 'details')
+            mockCpsDataPersistenceService.updateDataNodesAndDescendants(*_) >> { throw originalException }
+            setupSchemaSetMocks('test-tree.yang')
+        when: 'attempt to replace data node'
+            objectUnderTest.updateDataNodesAndDescendants(dataspaceName, anchorName, ['/' : '{"test-tree": {}}'] , observedTimestamp)
+        then: 'the same exception is thrown up'
+            def thrownUp = thrown(ConcurrencyException)
+            assert thrownUp == originalException
+    }
+
     def 'Replace list content data fragment under parent node.'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')
@@ -366,8 +382,6 @@ class CpsDataServiceImplSpec extends Specification {
     }
 
     def 'Delete list element under existing node.'() {
-        given: 'schema set for given anchor and dataspace references test-tree model'
-            setupSchemaSetMocks('test-tree.yang')
         when: 'delete list data method is invoked with list element json data'
             objectUnderTest.deleteListOrListElement(dataspaceName, anchorName, '/test-tree/branch', observedTimestamp)
         then: 'the persistence service method is invoked with correct parameters'
@@ -379,8 +393,6 @@ class CpsDataServiceImplSpec extends Specification {
     }
 
     def 'Delete multiple list elements under existing node.'() {
-        given: 'schema set for given anchor and dataspace references test-tree model'
-            setupSchemaSetMocks('test-tree.yang')
         when: 'delete multiple list data method is invoked with list element json data'
             objectUnderTest.deleteDataNodes(dataspaceName, anchorName, ['/test-tree/branch[@name="A"]', '/test-tree/branch[@name="B"]'], observedTimestamp)
         then: 'the persistence service method is invoked with correct parameters'
@@ -392,8 +404,6 @@ class CpsDataServiceImplSpec extends Specification {
     }
 
     def 'Delete data node under anchor and dataspace.'() {
-        given: 'schema set for given anchor and dataspace references test tree model'
-            setupSchemaSetMocks('test-tree.yang')
         when: 'delete data node method is invoked with correct parameters'
             objectUnderTest.deleteDataNode(dataspaceName, anchorName, '/data-node', observedTimestamp)
         then: 'the persistence service method is invoked with the correct parameters'
@@ -405,9 +415,7 @@ class CpsDataServiceImplSpec extends Specification {
     }
 
     def 'Delete all data nodes for a given anchor and dataspace.'() {
-        given: 'schema set for given anchor and dataspace references test tree model'
-            setupSchemaSetMocks('test-tree.yang')
-        when: 'delete data node method is invoked with correct parameters'
+        when: 'delete data nodes method is invoked with correct parameters'
             objectUnderTest.deleteDataNodes(dataspaceName, anchorName, observedTimestamp)
         then: 'data updated event is sent to notification service before the delete'
             1 * mockNotificationService.processDataUpdatedEvent(anchor, '/', Operation.DELETE, observedTimestamp)
@@ -415,6 +423,20 @@ class CpsDataServiceImplSpec extends Specification {
             1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
         and: 'the persistence service method is invoked with the correct parameters'
             1 * mockCpsDataPersistenceService.deleteDataNodes(dataspaceName, anchorName)
+    }
+
+    def 'Delete all data nodes for a given anchor and dataspace with batch exception in persistence layer.'() {
+        given: 'a batch exception in persistence layer'
+            def originalException = new DataNodeNotFoundExceptionBatch('ds1','a1',[])
+            mockCpsDataPersistenceService.deleteDataNodes(*_)  >> { throw originalException }
+        when: 'attempt to delete data nodes'
+            objectUnderTest.deleteDataNodes(dataspaceName, anchorName, observedTimestamp)
+        then: 'the original exception is thrown up'
+            def thrownUp = thrown(DataNodeNotFoundExceptionBatch)
+            assert thrownUp == originalException
+        and: 'the exception details contain the expected data'
+            assert thrownUp.details.contains('ds1')
+            assert thrownUp.details.contains('a1')
     }
 
     def 'Delete all data nodes for given dataspace and multiple anchors.'() {
@@ -433,22 +455,28 @@ class CpsDataServiceImplSpec extends Specification {
             1 * mockCpsDataPersistenceService.deleteDataNodes(dataspaceName, _ as Collection<String>)
     }
 
-    def setupSchemaSetMocks(String... yangResources) {
-        def mockYangTextSchemaSourceSet = Mock(YangTextSchemaSourceSet)
-        mockYangTextSchemaSourceSetCache.get(dataspaceName, schemaSetName) >> mockYangTextSchemaSourceSet
-        def yangResourceNameToContent = TestUtils.getYangResourcesAsMap(yangResources)
-        def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
-        mockYangTextSchemaSourceSet.getSchemaContext() >> schemaContext
-    }
-
-    def 'start session'() {
+    def 'Start session.'() {
         when: 'start session method is called'
             objectUnderTest.startSession()
         then: 'the persistence service method to start session is invoked'
             1 * mockCpsDataPersistenceService.startSession()
     }
 
-    def 'close session'(){
+    def 'Start session with Session Manager Exceptions.'() {
+        given: 'the persistence layer throws an Session Manager Exception'
+            mockCpsDataPersistenceService.startSession() >> { throw originalException }
+        when: 'attempt to start session'
+            objectUnderTest.startSession()
+        then: 'the original exception is thrown up'
+            def thrownUp = thrown(SessionManagerException)
+            assert thrownUp == originalException
+        where: 'variations of Session Manager Exception are used'
+            originalException << [ new SessionManagerException('message','details'),
+                                   new SessionManagerException('message','details', new Exception('cause')),
+                                   new SessionTimeoutException('message','details', new Exception('cause'))]
+    }
+
+    def 'Close session.'(){
         given: 'session Id from calling the start session method'
             def sessionId = objectUnderTest.startSession()
         when: 'close session method is called'
@@ -457,20 +485,26 @@ class CpsDataServiceImplSpec extends Specification {
             1 * mockCpsDataPersistenceService.closeSession(sessionId)
     }
 
-    def 'lock anchor with no timeout parameter'(){
+    def 'Lock anchor with no timeout parameter.'(){
         when: 'lock anchor method with no timeout parameter with details of anchor entity to lock'
             objectUnderTest.lockAnchor('some-sessionId', 'some-dataspaceName', 'some-anchorName')
         then: 'the persistence service method to lock anchor is invoked with default timeout'
-            1 * mockCpsDataPersistenceService.lockAnchor('some-sessionId', 'some-dataspaceName',
-                    'some-anchorName', 300L)
+            1 * mockCpsDataPersistenceService.lockAnchor('some-sessionId', 'some-dataspaceName', 'some-anchorName', 300L)
     }
 
-    def 'lock anchor with timeout parameter'(){
+    def 'Lock anchor with timeout parameter.'(){
         when: 'lock anchor method with timeout parameter is called with details of anchor entity to lock'
-            objectUnderTest.lockAnchor('some-sessionId', 'some-dataspaceName',
-                    'some-anchorName', 250L)
+            objectUnderTest.lockAnchor('some-sessionId', 'some-dataspaceName', 'some-anchorName', 250L)
         then: 'the persistence service method to lock anchor is invoked with the given timeout'
-            1 * mockCpsDataPersistenceService.lockAnchor('some-sessionId', 'some-dataspaceName',
-                    'some-anchorName', 250L)
+            1 * mockCpsDataPersistenceService.lockAnchor('some-sessionId', 'some-dataspaceName', 'some-anchorName', 250L)
     }
+
+    def setupSchemaSetMocks(String... yangResources) {
+        def mockYangTextSchemaSourceSet = Mock(YangTextSchemaSourceSet)
+        mockYangTextSchemaSourceSetCache.get(dataspaceName, schemaSetName) >> mockYangTextSchemaSourceSet
+        def yangResourceNameToContent = TestUtils.getYangResourcesAsMap(yangResources)
+        def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
+        mockYangTextSchemaSourceSet.getSchemaContext() >> schemaContext
+    }
+
 }

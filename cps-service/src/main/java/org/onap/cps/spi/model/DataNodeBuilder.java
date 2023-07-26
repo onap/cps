@@ -184,9 +184,8 @@ public class DataNodeBuilder {
 
     private DataNode buildFromContainerNode() {
         final Collection<DataNode> dataNodeCollection = buildCollectionFromContainerNode();
-        if (!dataNodeCollection.iterator().hasNext()) {
-            throw new DataValidationException(
-                "Unsupported xpath: ", "Unsupported xpath as it is referring to one element");
+        if (dataNodeCollection.isEmpty()) {
+            throw new DataValidationException("Unsupported Normalized Node", "No valid node found");
         }
         return dataNodeCollection.iterator().next();
     }
@@ -277,6 +276,5 @@ public class DataNodeBuilder {
             addDataNodeFromNormalizedNode(currentDataNode, normalizedNode);
         }
     }
-
 
 }
