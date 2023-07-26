@@ -22,10 +22,10 @@
 package org.onap.cps.ncmp.rest.controller;
 
 import io.micrometer.core.annotation.Timed;
+import jakarta.validation.Valid;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
-import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.api.models.CmHandleQueryServiceParameters;
