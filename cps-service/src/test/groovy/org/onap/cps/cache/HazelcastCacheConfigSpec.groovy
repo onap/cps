@@ -45,10 +45,17 @@ class HazelcastCacheConfigSpec extends Specification {
             } else {
                 assert result.config.queueConfigs.isEmpty()
             }
+        and: 'if applicable it has a set config with the expected name'
+            if (expectSetConfig) {
+                assert result.config.setConfigs.values()[0].name == 'my set config'
+            } else {
+                assert result.config.setConfigs.isEmpty()
+            }
         where: 'the following configs are used'
-            scenario       | config                                                    || expectMapConfig | expectQueueConfig
-            'Map Config'   | HazelcastCacheConfig.createMapConfig('my map config')     || true            | false
-            'Queue Config' | HazelcastCacheConfig.createQueueConfig('my queue config') || false           | true
+            scenario       | config                                                    || expectMapConfig | expectQueueConfig | expectSetConfig
+            'Map Config'   | HazelcastCacheConfig.createMapConfig('my map config')     || true            | false             | false
+            'Queue Config' | HazelcastCacheConfig.createQueueConfig('my queue config') || false           | true              | false
+            'Set Config'   | HazelcastCacheConfig.createSetConfig('my set config')     || false           | false             | true
     }
 
 }

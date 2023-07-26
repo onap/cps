@@ -109,6 +109,8 @@ app:
     dmi:
         cm-events:
             topic: ${DMI_CM_EVENTS_TOPIC:dmi-cm-events}
+        device-heartbeat:
+            topic: ${DMI_DEVICE_HEARTBEAT_TOPIC:dmi-device-heartbeat}
 
 
 notification:
