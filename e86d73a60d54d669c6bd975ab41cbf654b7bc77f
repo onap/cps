@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db2a255e_e6f08988",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-26T14:03:33Z",
+      "side": 1,
+      "message": "I left a few comments...",
+      "revId": "e86d73a60d54d669c6bd975ab41cbf654b7bc77f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ac8a1bd_fc432f57",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-26T14:03:33Z",
+      "side": 1,
+      "message": "NB: Maybe a better naming can be DIRECT_CHILD_ONLY",
+      "range": {
+        "startLine": 28,
+        "startChar": 54,
+        "endLine": 28,
+        "endChar": 74
+      },
+      "revId": "e86d73a60d54d669c6bd975ab41cbf654b7bc77f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3e26fd8_305e55fd",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-26T14:03:33Z",
+      "side": 1,
+      "message": "I think, it is also possible to enhance this test case by adding more scenarios to test \u0027direct\u0027 keyword at this point.",
+      "range": {
+        "startLine": 107,
+        "startChar": 54,
+        "endLine": 107,
+        "endChar": 57
+      },
+      "revId": "e86d73a60d54d669c6bd975ab41cbf654b7bc77f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42777a7a_88932869",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/FetchDescendantsOption.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-26T14:03:33Z",
+      "side": 1,
+      "message": "NB: child could be a better name?",
+      "range": {
+        "startLine": 81,
+        "startChar": 81,
+        "endLine": 81,
+        "endChar": 90
+      },
+      "revId": "e86d73a60d54d669c6bd975ab41cbf654b7bc77f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ceb1ee7_f0e33afa",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/spi/FetchDescendantsOptionSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-26T14:03:33Z",
+      "side": 1,
+      "message": "NB: Below this line you could have also test for numeric 1.\n\u0027direct child using 1\u0027              | \u00271\u0027                            || 1",
+      "range": {
+        "startLine": 88,
+        "startChar": 12,
+        "endLine": 88,
+        "endChar": 85
+      },
+      "revId": "e86d73a60d54d669c6bd975ab41cbf654b7bc77f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
