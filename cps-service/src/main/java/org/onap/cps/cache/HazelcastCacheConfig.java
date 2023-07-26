@@ -24,6 +24,7 @@ import com.hazelcast.config.Config;
 import com.hazelcast.config.MapConfig;
 import com.hazelcast.config.NamedConfig;
 import com.hazelcast.config.QueueConfig;
+import com.hazelcast.config.SetConfig;
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
 import lombok.extern.slf4j.Slf4j;
@@ -57,6 +58,10 @@ public class HazelcastCacheConfig {
         if (namedConfig instanceof QueueConfig) {
             config.addQueueConfig((QueueConfig) namedConfig);
         }
+        if (namedConfig instanceof SetConfig) {
+            config.addSetConfig((SetConfig) namedConfig);
+        }
+
         config.setClusterName(clusterName);
         updateDiscoveryMode(config);
         return config;
@@ -74,6 +79,13 @@ public class HazelcastCacheConfig {
         commonQueueConfig.setBackupCount(3);
         commonQueueConfig.setAsyncBackupCount(3);
         return commonQueueConfig;
+    }
+
+    protected static SetConfig createSetConfig(final String configName) {
+        final SetConfig commonSetConfig = new SetConfig(configName);
+        commonSetConfig.setBackupCount(1);
+        commonSetConfig.setAsyncBackupCount(1);
+        return commonSetConfig;
     }
 
     protected void updateDiscoveryMode(final Config config) {
