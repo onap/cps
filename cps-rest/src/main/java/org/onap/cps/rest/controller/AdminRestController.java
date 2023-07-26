@@ -27,11 +27,11 @@ import static org.onap.cps.rest.utils.MultipartFileUtil.extractYangResourcesMap;
 import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED;
 
 import io.micrometer.core.annotation.Timed;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsModuleService;
