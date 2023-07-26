@@ -49,6 +49,7 @@ class QueryPerfTest extends CpsPerfTestBase {
             'leaf condition'             | 'openroadm2' | '//openroadm-device[@ne-state="inservice"]'                         || 200           | 50 * 86
             'ancestors'                  | 'openroadm3' | '//openroadm-device/ancestor::openroadm-devices'                    || 120           | 50 * 86 + 1
             'leaf condition + ancestors' | 'openroadm4' | '//openroadm-device[@status="success"]/ancestor::openroadm-devices' || 120           | 50 * 86 + 1
+            'non-existing data'          | 'openroadm1' | '/path/to/non-existing/node[@id="1"]'                               || 10            | 0
     }
 
     def 'Query complete data trees across all anchors with #scenario.'() {
