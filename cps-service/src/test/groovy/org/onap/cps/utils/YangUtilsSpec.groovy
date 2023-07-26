@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2022 Nordix Foundation
+ *  Copyright (C) 2020-2023 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  Modifications Copyright (C) 2022 Deutsche Telekom AG
@@ -27,6 +27,7 @@ import org.onap.cps.TestUtils
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import org.opendaylight.yangtools.yang.common.QName
+import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier
 import org.opendaylight.yangtools.yang.data.api.schema.NormalizedNode
 import spock.lang.Specification
 
@@ -161,5 +162,13 @@ class YangUtilsSpec extends Specification {
             'container xpath'                              | '/test-tree'                                                        || ['test-tree']
             'xpath contains list attribute'                | '/test-tree/branch[@name=\'Branch\']'                               || ['test-tree','branch']
             'xpath contains list attributes with /'        | '/test-tree/branch[@name=\'/Branch\']/categories[@id=\'/broken\']'  || ['test-tree','branch','categories']
+    }
+
+    def 'Get key attribute statement without key attributes'() {
+        given: 'a path argument without key attributes'
+            def mockPathArgument = Mock(YangInstanceIdentifier.NodeIdentifierWithPredicates)
+            mockPathArgument.entrySet() >> [ ]
+        expect: 'the result is an empty string'
+            YangUtils.getKeyAttributesStatement(mockPathArgument) == ''
     }
 }

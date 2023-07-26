@@ -25,6 +25,7 @@ package org.onap.cps.api.impl
 
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.spi.CpsAdminPersistenceService
+import org.onap.cps.spi.exceptions.ModuleNamesNotFoundException
 import org.onap.cps.spi.model.Anchor
 import org.onap.cps.spi.model.Dataspace
 import org.onap.cps.spi.utils.CpsValidator
@@ -152,6 +153,21 @@ class CpsAdminServiceImplSpec extends Specification {
             result == ['some-anchor-identifier']
         and: 'the CpsValidator is called on the dataspaceName'
             1 * mockCpsValidator.validateNameCharacters('some-dataspace-name')
+    }
+
+    def 'Query all anchors with Module Names Not Found Exception in persistence layer.'() {
+        given: 'teh persistence layer throws a Module Names Not Found Exception'
+            def originalException = new ModuleNamesNotFoundException('exception-ds', [ 'm1', 'm2'])
+            mockCpsAdminPersistenceService.queryAnchors(*_) >> { throw originalException}
+        when: 'attempt query anchors'
+            objectUnderTest.queryAnchorNames('some-dataspace-name', [])
+        then: 'the same exception is thrown (up)'
+            def thrownUp = thrown(ModuleNamesNotFoundException)
+            assert thrownUp == originalException
+        and: 'the exception details contains the relevant data'
+            assert thrownUp.details.contains('exception-ds')
+            assert thrownUp.details.contains('m1')
+            assert thrownUp.details.contains('m2')
     }
 
     def 'Delete dataspace.'() {

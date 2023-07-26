@@ -39,7 +39,6 @@ import org.onap.cps.ncmp.events.avcsubscription1_0_0.dmi_to_ncmp.Data
 import org.onap.cps.ncmp.events.avcsubscription1_0_0.dmi_to_ncmp.SubscriptionEventResponse
 import org.onap.cps.ncmp.events.avcsubscription1_0_0.ncmp_to_dmi.CmHandle;
 import org.onap.cps.ncmp.utils.TestUtils
-import org.onap.cps.spi.exceptions.OperationNotYetSupportedException
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
@@ -116,8 +115,8 @@ class SubscriptionEventForwarderSpec extends MessagingBaseSpec {
             testEventSent.getData().getPredicates().setTargets(invalidTargets)
         when: 'the event is forwarded'
             objectUnderTest.forwardCreateSubscriptionEvent(testEventSent, 'some-event-type')
-        then: 'an operation not yet supported exception is thrown'
-            thrown(OperationNotYetSupportedException)
+        then: 'an operation not supported exception is thrown'
+            thrown(UnsupportedOperationException)
         where:
             scenario   | invalidTargets
             'null'     | null

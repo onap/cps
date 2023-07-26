@@ -21,6 +21,7 @@
 
 package org.onap.cps.spi
 
+import org.onap.cps.spi.exceptions.DataValidationException
 import spock.lang.Specification
 
 class FetchDescendantsOptionSpec extends Specification {
@@ -74,10 +75,10 @@ class FetchDescendantsOptionSpec extends Specification {
             thrown IllegalArgumentException
     }
 
-    def 'Create fetch descendant option with  descendant using #scenario.'() {
-        when: 'the next level of depth is not allowed'
-           def FetchDescendantsOption fetchDescendantsOption = FetchDescendantsOption.getFetchDescendantsOption(fetchDescendantsOptionAsString)
-        then: 'fetch descendant object created'
+    def 'Create fetch descendant option from string scenario: #scenario.'() {
+        when: 'create fetch descendant option from string'
+           def fetchDescendantsOption = FetchDescendantsOption.getFetchDescendantsOption(fetchDescendantsOptionAsString)
+        then: 'fetch descendant object created with correct depth'
             assert fetchDescendantsOption.depth == expectedDepth
         where: 'following parameters are used'
             scenario                            | fetchDescendantsOptionAsString || expectedDepth
@@ -85,10 +86,19 @@ class FetchDescendantsOptionSpec extends Specification {
             'all descendants using all'         | 'all'                          || -1
             'No descendants by default'         | ''                             || 0
             'No descendants using none'         | 'none'                         || 0
+            'No descendants using number'       | '0'                            || 0
             'til 10th descendants using number' | '10'                           || 10
     }
 
-    def 'String values.'() {
+    def 'Create fetch descendant option from string with invalid string.'() {
+        when: 'attempt to create fetch descendant option from invalid string'
+            FetchDescendantsOption.getFetchDescendantsOption('invalid-string')
+        then: 'a validation exception is thrown with the invalid string in the details'
+            def thrown = thrown(DataValidationException)
+            thrown.details.contains('invalid-string')
+    }
+
+    def 'Convert to string.'() {
         expect: 'each fetch descendant option has the correct String value'
             assert fetchDescendantsOption.toString() == expectedStringValue
         where: 'the following option is used'

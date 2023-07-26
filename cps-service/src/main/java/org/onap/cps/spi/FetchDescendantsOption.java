@@ -41,8 +41,7 @@ public class FetchDescendantsOption {
         this(depth, "Depth=" + depth);
     }
 
-    private static final Pattern FETCH_DESCENDANTS_OPTION_PATTERN =
-        Pattern.compile("^$|^all$|^none$|^[0-9]+$|^-1$");
+    private static final Pattern FETCH_DESCENDANTS_OPTION_PATTERN = Pattern.compile("^$|^all$|^none$|^[0-9]+$|^-1$");
 
     private final int depth;
 

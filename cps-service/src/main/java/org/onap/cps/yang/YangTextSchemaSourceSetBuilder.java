@@ -27,7 +27,6 @@ import com.google.common.base.MoreObjects;
 import com.google.common.collect.ImmutableMap;
 import io.micrometer.core.annotation.Timed;
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Collections;
@@ -37,7 +36,6 @@ import java.util.Optional;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import lombok.NoArgsConstructor;
-import org.onap.cps.spi.exceptions.CpsException;
 import org.onap.cps.spi.exceptions.ModelValidationException;
 import org.onap.cps.spi.model.ModuleReference;
 import org.opendaylight.yangtools.yang.common.Revision;
@@ -45,7 +43,6 @@ import org.opendaylight.yangtools.yang.model.api.Module;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
 import org.opendaylight.yangtools.yang.model.repo.api.RevisionSourceIdentifier;
 import org.opendaylight.yangtools.yang.model.repo.api.YangTextSchemaSource;
-import org.opendaylight.yangtools.yang.parser.api.YangSyntaxErrorException;
 import org.opendaylight.yangtools.yang.parser.rfc7950.reactor.RFC7950Reactors;
 import org.opendaylight.yangtools.yang.parser.rfc7950.repo.YangStatementStreamSource;
 import org.opendaylight.yangtools.yang.parser.spi.meta.ReactorException;
@@ -144,13 +141,9 @@ public final class YangTextSchemaSourceSetBuilder {
             final String resourceName = yangTextSchemaSource.getIdentifier().getName();
             try {
                 reactor.addSource(YangStatementStreamSource.create(yangTextSchemaSource));
-            } catch (final IOException e) {
-                throw new CpsException("Failed to read yang resource.",
-                    String.format("Exception occurred on reading resource %s.", resourceName), e);
-            } catch (final YangSyntaxErrorException e) {
-                throw new ModelValidationException("Yang resource is invalid.",
-                    String.format(
-                            "Yang syntax validation failed for resource %s:%n%s", resourceName, e.getMessage()), e);
+            } catch (final Exception e) {
+                throw new ModelValidationException("Yang resource processing exception.",
+                    String.format("Could not process resource %s:%n%s", resourceName, e.getMessage()), e);
             }
         }
         try {
@@ -159,8 +152,7 @@ public final class YangTextSchemaSourceSetBuilder {
             final List<String> resourceNames = yangResourceNameToContent.keySet().stream().collect(Collectors.toList());
             Collections.sort(resourceNames);
             throw new ModelValidationException("Invalid schema set.",
-                String.format("Effective schema context build failed for resources %s.", resourceNames.toString()),
-                e);
+                String.format("Effective schema context build failed for resources %s.", resourceNames), e);
         }
     }
 

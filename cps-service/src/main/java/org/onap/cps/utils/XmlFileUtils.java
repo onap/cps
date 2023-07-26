@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Deutsche Telekom AG
+ *  Modifications Copyright (C) 2023 Nordix Foundation.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -39,7 +40,6 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import org.onap.cps.spi.exceptions.DataValidationException;
 import org.opendaylight.yangtools.yang.model.api.DataSchemaNode;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
 import org.w3c.dom.Document;
@@ -102,10 +102,8 @@ public class XmlFileUtils {
                                                  final Map<String, String> rootNodeProperty)
         throws IOException, SAXException, ParserConfigurationException, TransformerException {
         final DocumentBuilder documentBuilder = getDocumentBuilderFactory().newDocumentBuilder();
-        final StringBuilder xmlStringBuilder = new StringBuilder();
-        xmlStringBuilder.append(xmlContent);
-        final Document document = documentBuilder.parse(
-                new ByteArrayInputStream(xmlStringBuilder.toString().getBytes(StandardCharsets.UTF_8)));
+        final Document document =
+            documentBuilder.parse(new ByteArrayInputStream(xmlContent.getBytes(StandardCharsets.UTF_8)));
         final Element root = document.getDocumentElement();
         if (!root.getTagName().equals(rootNodeTagName)
             && !root.getTagName().equals(YangUtils.DATA_ROOT_NODE_TAG_NAME)) {
@@ -143,22 +141,19 @@ public class XmlFileUtils {
     static Document addDataRootNode(final Element node,
                                     final String tagName,
                                     final String namespace,
-                                    final Map<String, String> rootNodeProperty) {
-        try {
-            final DocumentBuilder documentBuilder = getDocumentBuilderFactory().newDocumentBuilder();
-            final Document document = documentBuilder.newDocument();
-            final Element rootElement = document.createElementNS(namespace, tagName);
-            for (final Map.Entry<String, String> entry : rootNodeProperty.entrySet()) {
-                final Element propertyElement = document.createElement(entry.getKey());
-                propertyElement.setTextContent(entry.getValue());
-                rootElement.appendChild(propertyElement);
-            }
-            rootElement.appendChild(document.adoptNode(node));
-            document.appendChild(rootElement);
-            return document;
-        } catch (final ParserConfigurationException exception) {
-            throw new DataValidationException("Can't parse XML", "XML can't be parsed", exception);
+                                    final Map<String, String> rootNodeProperty)
+        throws ParserConfigurationException {
+        final DocumentBuilder documentBuilder = getDocumentBuilderFactory().newDocumentBuilder();
+        final Document document = documentBuilder.newDocument();
+        final Element rootElement = document.createElementNS(namespace, tagName);
+        for (final Map.Entry<String, String> entry : rootNodeProperty.entrySet()) {
+            final Element propertyElement = document.createElement(entry.getKey());
+            propertyElement.setTextContent(entry.getValue());
+            rootElement.appendChild(propertyElement);
         }
+        rootElement.appendChild(document.adoptNode(node));
+        document.appendChild(rootElement);
+        return document;
     }
 
     private static DocumentBuilderFactory getDocumentBuilderFactory() {

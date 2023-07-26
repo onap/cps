@@ -1,7 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  * Copyright (c) 2021-2022 Bell Canada.
- * Modifications Copyright (c) 2022 Nordix Foundation
+ * Modifications Copyright (c) 2022-2023 Nordix Foundation
  * Modifications Copyright (C) 2023 TechMahindra Ltd.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -28,6 +28,7 @@ import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
+import lombok.SneakyThrows;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.event.model.Content;
 import org.onap.cps.event.model.CpsDataUpdatedEvent;
@@ -44,21 +45,8 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor(onConstructor = @__(@Lazy))
 public class CpsDataUpdatedEventFactory {
 
-    private static final URI EVENT_SCHEMA;
-    private static final URI EVENT_SOURCE;
-    private static final String EVENT_TYPE = "org.onap.cps.data-updated-event";
     private static final DateTimeFormatter DATE_TIME_FORMATTER =
         DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
-
-    static {
-        try {
-            EVENT_SCHEMA = new URI("urn:cps:org.onap.cps:data-updated-event-schema:v1");
-            EVENT_SOURCE = new URI("urn:cps:org.onap.cps");
-        } catch (final URISyntaxException e) {
-            // As it is fixed string, I don't expect to see this error
-            throw new IllegalArgumentException(e);
-        }
-    }
 
     @Lazy
     private final CpsDataService cpsDataService;
@@ -82,14 +70,17 @@ public class CpsDataUpdatedEventFactory {
         return toCpsDataUpdatedEvent(anchor, dataNode, observedTimestamp, operation);
     }
 
-    private CpsDataUpdatedEvent toCpsDataUpdatedEvent(final Anchor anchor, final DataNode dataNode,
-        final OffsetDateTime observedTimestamp, final Operation operation) {
-        final var cpsDataUpdatedEvent = new CpsDataUpdatedEvent();
+    @SneakyThrows(URISyntaxException.class)
+    private CpsDataUpdatedEvent toCpsDataUpdatedEvent(final Anchor anchor,
+                                                      final DataNode dataNode,
+                                                      final OffsetDateTime observedTimestamp,
+                                                      final Operation operation) {
+        final CpsDataUpdatedEvent cpsDataUpdatedEvent = new CpsDataUpdatedEvent();
         cpsDataUpdatedEvent.withContent(createContent(anchor, dataNode, observedTimestamp, operation));
         cpsDataUpdatedEvent.withId(UUID.randomUUID().toString());
-        cpsDataUpdatedEvent.withSchema(EVENT_SCHEMA);
-        cpsDataUpdatedEvent.withSource(EVENT_SOURCE);
-        cpsDataUpdatedEvent.withType(EVENT_TYPE);
+        cpsDataUpdatedEvent.withSchema(new URI("urn:cps:org.onap.cps:data-updated-event-schema:v1"));
+        cpsDataUpdatedEvent.withSource(new URI("urn:cps:org.onap.cps"));
+        cpsDataUpdatedEvent.withType("org.onap.cps.data-updated-event");
         return cpsDataUpdatedEvent;
     }
 
