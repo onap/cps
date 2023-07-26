@@ -124,7 +124,15 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
         return findAllXpathByAnchorIdAndXpathIn(anchorEntity.getId(), xpaths.toArray(new String[0]));
     }
 
-    boolean existsByAnchorAndXpathStartsWith(AnchorEntity anchorEntity, String xpath);
+    @Query(value = "SELECT EXISTS(SELECT 1 FROM fragment WHERE anchor_id = :anchorId"
+            + " AND xpath LIKE :xpathPattern LIMIT 1)", nativeQuery = true)
+    boolean existsByAnchorIdAndParentXpathAndXpathLike(@Param("anchorId") long anchorId,
+                                                       @Param("xpathPattern") String xpathPattern);
+
+    default boolean existsByAnchorAndXpathStartsWith(final AnchorEntity anchorEntity, final String xpath) {
+        return existsByAnchorIdAndParentXpathAndXpathLike(anchorEntity.getId(),
+                EscapeUtils.escapeForSqlLike(xpath) + "%");
+    }
 
     @Query(value = "SELECT * FROM fragment WHERE anchor_id = :anchorId AND parent_id IS NULL", nativeQuery = true)
     List<FragmentEntity> findRootsByAnchorId(@Param("anchorId") long anchorId);
