@@ -20,13 +20,13 @@
 
 package org.onap.cps.spi.repository;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.StringJoiner;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.type.StandardBasicTypes;
 import org.onap.cps.spi.model.ModuleReference;
