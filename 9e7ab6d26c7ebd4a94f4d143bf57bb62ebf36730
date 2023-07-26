@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18d66e05_17aff50d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 32
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-26T08:25:10Z",
+      "side": 1,
+      "message": "Hi Rajesh, there are still quite a few unresolved comments (I know I made some additional comments after checking out the code) Also I see no new tests for the missed coverage on ne code...  If need We can have a session and I can help you with that...",
+      "revId": "9e7ab6d26c7ebd4a94f4d143bf57bb62ebf36730",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "766b8361_2657fef5",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 32
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-26T08:25:10Z",
+      "side": 1,
+      "message": "unused, see also comments on patch #31",
+      "range": {
+        "startLine": 82,
+        "startChar": 4,
+        "endLine": 83,
+        "endChar": 57
+      },
+      "revId": "9e7ab6d26c7ebd4a94f4d143bf57bb62ebf36730",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b4ab704_2748af20",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 32
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-26T08:25:10Z",
+      "side": 1,
+      "message": "see comment on path 31, this method can call the new method...",
+      "range": {
+        "startLine": 288,
+        "startChar": 26,
+        "endLine": 288,
+        "endChar": 40
+      },
+      "revId": "9e7ab6d26c7ebd4a94f4d143bf57bb62ebf36730",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
