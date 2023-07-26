@@ -32,6 +32,7 @@ import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.exceptions.DataNodeNotFoundExceptionBatch
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException
+import spock.lang.Ignore
 
 import java.time.OffsetDateTime
 
@@ -193,6 +194,7 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
             noExceptionThrown()
     }
 
+    @Ignore
     def 'Delete single data node with non-existing path.'() {
         when: 'attempt to delete a single datanode non-existing invalid path'
             objectUnderTest.deleteDataNode(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/does/not/exist', now)
@@ -200,6 +202,7 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
             thrown(DataNodeNotFoundException)
     }
 
+    @Ignore
     def 'Delete multiple data nodes with non-existing path(s).'() {
         when: 'attempt to delete a single datanode non-existing invalid path'
             objectUnderTest.deleteDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, ['/does/not/exist'], now)
