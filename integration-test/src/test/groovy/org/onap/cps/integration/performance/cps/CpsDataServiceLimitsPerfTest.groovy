@@ -27,7 +27,7 @@ import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 
-class CpsDataServiceLimits extends CpsPerfTestBase {
+class CpsDataServiceLimitsPerfTest extends CpsPerfTestBase {
 
     CpsDataService objectUnderTest
 

@@ -23,7 +23,7 @@ package org.onap.cps.integration.performance.cps
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.integration.performance.base.CpsPerfTestBase
 
-class CpsAdminServiceLimits extends CpsPerfTestBase {
+class CpsAdminServiceLimitsPerfTest extends CpsPerfTestBase {
 
     CpsAdminService objectUnderTest
 
