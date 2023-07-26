@@ -33,6 +33,10 @@
 
     <artifactId>cps-ncmp-rest</artifactId>
 
+    <properties>
+        <minimum-coverage>0.99</minimum-coverage>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -60,6 +64,10 @@
         <dependency>
             <groupId>io.swagger.core.v3</groupId>
             <artifactId>swagger-annotations</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger.core.v3</groupId>
+            <artifactId>swagger-models</artifactId>
         </dependency>
         <dependency>
             <groupId>org.mapstruct</groupId>
@@ -98,7 +106,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
             <exclusions>
                 <exclusion>
                     <groupId>org.junit.vintage</groupId>
@@ -109,6 +116,17 @@
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.openapitools</groupId>
+            <artifactId>jackson-databind-nullable</artifactId>
+            <version>0.2.4</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.10.0</version>
         </dependency>
     </dependencies>
 
@@ -137,6 +155,7 @@
                                 <sourceFolder>src/gen/java</sourceFolder>
                                 <dateLibrary>java11</dateLibrary>
                                 <interfaceOnly>true</interfaceOnly>
+                                <useSpringBoot3>true</useSpringBoot3>
                                 <useTags>true</useTags>
                                 <openApiNullable>false</openApiNullable>
                                 <skipDefaultInterface>true</skipDefaultInterface>
@@ -159,6 +178,7 @@
                                 <sourceFolder>src/gen/java</sourceFolder>
                                 <dateLibrary>java11</dateLibrary>
                                 <interfaceOnly>true</interfaceOnly>
+                                <useSpringBoot3>true</useSpringBoot3>
                                 <useTags>true</useTags>
                                 <openApiNullable>false</openApiNullable>
                                 <skipDefaultInterface>true</skipDefaultInterface>
@@ -173,9 +193,10 @@
                         <phase>compile</phase>
                         <configuration>
                             <inputSpec>${project.basedir}/docs/openapi/openapi-inventory.yml</inputSpec>
-                            <generatorName>openapi-yaml</generatorName>
+                            <generatorName>spring</generatorName>
                             <configOptions>
                                 <outputFile>openapi-inventory.yaml</outputFile>
+                                <useSpringBoot3>true</useSpringBoot3>
                             </configOptions>
                         </configuration>
                     </execution>
