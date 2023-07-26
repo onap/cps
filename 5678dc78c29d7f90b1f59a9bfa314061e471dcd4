@@ -51,6 +51,69 @@
       "message": "Looks good!",
       "revId": "5678dc78c29d7f90b1f59a9bfa314061e471dcd4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac3e9ec8_4a452b4f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-07-26T17:14:47Z",
+      "side": 1,
+      "message": "On file 16 will continue rest tomorrow",
+      "revId": "5678dc78c29d7f90b1f59a9bfa314061e471dcd4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78f7e0a5_66697b8e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarder.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-07-26T17:14:47Z",
+      "side": 1,
+      "message": "Think should be an enum with string value, can be done as part of delete",
+      "range": {
+        "startLine": 116,
+        "startChar": 21,
+        "endLine": 116,
+        "endChar": 46
+      },
+      "revId": "5678dc78c29d7f90b1f59a9bfa314061e471dcd4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b491171a_227b0e84",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/SubscriptionEventCloudMapper.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-07-26T17:14:47Z",
+      "side": 1,
+      "message": "Yeah think this can be an enum, can be for whoever implements the delete part of this",
+      "range": {
+        "startLine": 73,
+        "startChar": 41,
+        "endLine": 73,
+        "endChar": 47
+      },
+      "revId": "5678dc78c29d7f90b1f59a9bfa314061e471dcd4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
