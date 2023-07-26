@@ -46,13 +46,23 @@ class JsonObjectMapperSpec extends Specification {
             type << ['String', 'bytes']
     }
 
+    def 'Convert to bytes with processing exception.'() {
+        given: 'the object mapper throws an processing exception'
+            spiedObjectMapper.writeValueAsBytes(_) >> { throw new JsonProcessingException('message from cause')}
+        when: 'attempt to convert an object to bytes'
+            jsonObjectMapper.asJsonBytes('does not matter')
+        then: 'a data validation exception is thrown with the original exception message as details'
+            def thrown = thrown(DataValidationException)
+            assert thrown.details == 'message from cause'
+    }
+
     def 'Map a structured object to json String error.'() {
         given: 'some object'
             def object = new Object()
         and: 'the Object mapper throws an exception'
             spiedObjectMapper.writeValueAsString(object) >> { throw new JsonProcessingException('Sample problem'){} }
         when: 'attempting to convert the object to a string'
-            jsonObjectMapper.asJsonString(object);
+            jsonObjectMapper.asJsonString(object)
         then: 'a Data Validation Exception is thrown'
             def thrown = thrown(DataValidationException)
         and: 'the details containing the original error message'
@@ -63,21 +73,27 @@ class JsonObjectMapperSpec extends Specification {
         given: 'a map object model'
             def contentMap = new JsonSlurper().parseText(TestUtils.getResourceFileContent('bookstore.json'))
         when: 'converted into a Map'
-            def result = jsonObjectMapper.convertToValueType(contentMap, Map);
+            def result = jsonObjectMapper.convertToValueType(contentMap, Map)
         then: 'the result is a mapped into class of type Map'
             assert result instanceof Map
         and: 'the map contains the expected key'
             assert result.containsKey('test:bookstore')
             assert result.'test:bookstore'.categories[0].name == 'SciFi'
+    }
 
+    def 'Mapping a valid json string to class object of specific class type T.'() {
+        given: 'a json string representing a map'
+            def content = '{"key":"value"}'
+        expect: 'the string is converted correctly to a map'
+            jsonObjectMapper.convertJsonString(content, Map) == [ key: 'value' ]
     }
 
     def 'Mapping an unstructured json string to class object of specific class type T.'() {
         given: 'Unstructured json string'
-            def content = '{ "nest": { "birds": "bird"] } }'
+            def content = '{invalid json'
         when: 'mapping json string to given class type'
-            jsonObjectMapper.convertJsonString(content, Map);
-        then: 'an exception is thrown'
+            jsonObjectMapper.convertJsonString(content, Map)
+        then: 'a data validation exception is thrown'
             thrown(DataValidationException)
     }
 
@@ -87,7 +103,7 @@ class JsonObjectMapperSpec extends Specification {
         and: 'Object mapper throws an exception'
             spiedObjectMapper.convertValue(*_) >> { throw new IllegalArgumentException() }
         when: 'converted into specific class type'
-            jsonObjectMapper.convertToValueType(contentMap, Object);
+            jsonObjectMapper.convertToValueType(contentMap, Object)
         then: 'an exception is thrown'
             thrown(DataValidationException)
     }
@@ -96,9 +112,9 @@ class JsonObjectMapperSpec extends Specification {
         given: 'Unstructured object'
             def object = new Object()
         and: 'disable serialization failure on empty bean'
-            spiedObjectMapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
+            spiedObjectMapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS)
         when: 'the object is mapped to string'
-            jsonObjectMapper.asJsonString(object);
+            jsonObjectMapper.asJsonString(object)
         then: 'no exception is thrown'
             noExceptionThrown()
     }
@@ -107,16 +123,16 @@ class JsonObjectMapperSpec extends Specification {
         given: 'Unstructured object'
             def content = '{ "nest": { "birds": "bird" } }'
         when: 'the object is mapped to string'
-            def result = jsonObjectMapper.convertToJsonNode(content);
+            def result = jsonObjectMapper.convertToJsonNode(content)
         then: 'the result is a valid JsonNode'
-            result.fieldNames().next() == "nest"
+            result.fieldNames().next() == 'nest'
     }
 
     def 'Map a unstructured json String to JsonNode.'() {
         given: 'Unstructured object'
             def content = '{ "nest": { "birds": "bird" }] }'
         when: 'the object is mapped to string'
-            jsonObjectMapper.convertToJsonNode(content);
+            jsonObjectMapper.convertToJsonNode(content)
         then: 'a data validation exception is thrown'
             thrown(DataValidationException)
     }

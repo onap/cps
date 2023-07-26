@@ -18,23 +18,21 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.spi.exceptions;
+package org.onap.cps.spi.model
 
-/**
- * Operation Not Yet Supported Exception.
- * Indicates the operation is not supported and has intention to be supported in the future.
- */
+import com.fasterxml.jackson.databind.ObjectMapper
+import org.onap.cps.utils.JsonObjectMapper
+import spock.lang.Specification
 
-public class OperationNotYetSupportedException extends CpsException {
+class ConditionPropertiesSpec extends Specification {
 
-    private static final long serialVersionUID = 1517903069236383746L;
+    ObjectMapper objectMapper = new ObjectMapper()
 
-    /**
-     * Constructor.
-     *
-     * @param details reason for the exception
-     */
-    public OperationNotYetSupportedException(final String details) {
-        super("Operation Not Yet Supported Exception", details);
+    def 'Condition Properties JSON conversion.'() {
+        given: 'a condition properties'
+            def objectUnderTest = new ConditionProperties(conditionName: 'test', conditionParameters: [ [ key : 'value' ] ])
+        expect: 'the name is blank'
+            assert objectMapper.writeValueAsString(objectUnderTest) == '{"conditionName":"test","conditionParameters":[{"key":"value"}]}'
     }
+
 }

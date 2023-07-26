@@ -45,7 +45,6 @@ import org.onap.cps.ncmp.api.impl.yangmodels.YangModelSubscriptionEvent;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.events.avcsubscription1_0_0.client_to_ncmp.SubscriptionEvent;
 import org.onap.cps.ncmp.events.avcsubscription1_0_0.ncmp_to_dmi.CmHandle;
-import org.onap.cps.spi.exceptions.OperationNotYetSupportedException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -78,7 +77,7 @@ public class SubscriptionEventForwarder {
         final List<String> cmHandleTargets = subscriptionEvent.getData().getPredicates().getTargets();
         if (cmHandleTargets == null || cmHandleTargets.isEmpty()
                 || cmHandleTargets.stream().anyMatch(id -> (id).contains("*"))) {
-            throw new OperationNotYetSupportedException(
+            throw new UnsupportedOperationException(
                     "CMHandle targets are required. \"Wildcard\" operations are not yet supported");
         }
         final Collection<YangModelCmHandle> yangModelCmHandles =

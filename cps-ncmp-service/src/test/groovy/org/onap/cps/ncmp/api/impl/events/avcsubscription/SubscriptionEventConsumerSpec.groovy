@@ -29,7 +29,6 @@ import org.onap.cps.ncmp.api.impl.yangmodels.YangModelSubscriptionEvent
 import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
 import org.onap.cps.ncmp.events.avcsubscription1_0_0.client_to_ncmp.SubscriptionEvent;
 import org.onap.cps.ncmp.utils.TestUtils
-import org.onap.cps.spi.exceptions.OperationNotYetSupportedException
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -100,8 +99,8 @@ class SubscriptionEventConsumerSpec extends MessagingBaseSpec {
             def consumerRecord = new ConsumerRecord<String, SubscriptionEvent>('topic-name', 0, 0, 'event-key', testCloudEventSent)
         when: 'the valid event is consumed'
             objectUnderTest.consumeSubscriptionEvent(consumerRecord)
-        then: 'an operation not yet supported exception is thrown'
-            thrown(OperationNotYetSupportedException)
+        then: 'an operation not supported exception is thrown'
+            thrown(UnsupportedOperationException)
     }
 
 }

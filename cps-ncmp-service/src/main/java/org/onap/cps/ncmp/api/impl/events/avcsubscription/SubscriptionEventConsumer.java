@@ -28,7 +28,6 @@ import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionPersistence;
 import org.onap.cps.ncmp.api.impl.utils.SubscriptionEventCloudMapper;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelSubscriptionEvent;
 import org.onap.cps.ncmp.events.avcsubscription1_0_0.client_to_ncmp.SubscriptionEvent;
-import org.onap.cps.spi.exceptions.OperationNotYetSupportedException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
@@ -61,7 +60,7 @@ public class SubscriptionEventConsumer {
         final SubscriptionEvent subscriptionEvent = SubscriptionEventCloudMapper.toSubscriptionEvent(cloudEvent);
         final String eventDatastore = subscriptionEvent.getData().getPredicates().getDatastore();
         if (!(eventDatastore.equals("passthrough-running") || eventDatastore.equals("passthrough-operational"))) {
-            throw new OperationNotYetSupportedException(
+            throw new UnsupportedOperationException(
                 "passthrough datastores are currently only supported for event subscriptions");
         }
         if ("CM".equals(subscriptionEvent.getData().getDataType().getDataCategory())) {
