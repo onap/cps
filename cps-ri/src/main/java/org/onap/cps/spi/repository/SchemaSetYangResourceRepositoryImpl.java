@@ -20,10 +20,10 @@
 
 package org.onap.cps.spi.repository;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import java.sql.PreparedStatement;
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import org.hibernate.Session;
 import org.springframework.transaction.annotation.Transactional;
 
