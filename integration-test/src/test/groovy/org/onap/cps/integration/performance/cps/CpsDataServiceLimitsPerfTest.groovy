@@ -23,9 +23,9 @@ package org.onap.cps.integration.performance.cps
 import java.time.OffsetDateTime
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.integration.performance.base.CpsPerfTestBase
-import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 
-import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
+import static org.onap.cps.spi.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
+import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 
 class CpsDataServiceLimitsPerfTest extends CpsPerfTestBase {
 
@@ -33,31 +33,67 @@ class CpsDataServiceLimitsPerfTest extends CpsPerfTestBase {
 
     def setup() { objectUnderTest = cpsDataService }
 
-    def 'Multiple get limit exceeded: 32,764 (~ 2^15) xpaths.'() {
-        given: 'more than 32,764 xpaths'
-            def xpaths = (0..40_000).collect { "/size/of/this/path/does/not/matter/for/limit[@id='" + it + "']" }
-        when: 'single operation is executed to get all datanodes with given xpaths'
-            objectUnderTest.getDataNodesForMultipleXpaths(CPS_PERFORMANCE_TEST_DATASPACE, 'bookstore1', xpaths, INCLUDE_ALL_DESCENDANTS)
-        then: 'a database exception is not thrown'
-            noExceptionThrown()
+    def 'Create 40,000 books (note further tests depend on this running first).'() {
+        given: 'an anchor containing a bookstore with one category'
+            cpsAdminService.createAnchor(CPS_PERFORMANCE_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET, 'limitsAnchor')
+            def parentNodeData = '{"bookstore": { "categories": [{ "code": 1, "name": "Test", "books" : [] }] }}'
+            cpsDataService.saveData(CPS_PERFORMANCE_TEST_DATASPACE, 'limitsAnchor', parentNodeData, OffsetDateTime.now())
+        when: '40,000 books are added'
+            stopWatch.start()
+            for (int i = 1; i < 40_000; i+=100) {
+                def booksData = '{"books":[' + (i..<i+100).collect {'{ "title": "' + it + '" }' }.join(',') + ']}'
+                cpsDataService.saveData(CPS_PERFORMANCE_TEST_DATASPACE, 'limitsAnchor', '/bookstore/categories[@code=1]', booksData, OffsetDateTime.now())
+            }
+            stopWatch.stop()
+            def durationInMillis = stopWatch.getTotalTimeMillis()
+        then: 'the operation completes within 15 seconds'
+            recordAndAssertPerformance("Creating 40,000 books", 15_000, durationInMillis)
     }
 
-    def 'Delete multiple datanodes limit exceeded: 32,767 (~ 2^15) xpaths.'() {
-        given: 'more than 32,767 xpaths'
-            def xpaths = (0..40_000).collect { "/size/of/this/path/does/not/matter/for/limit[@id='" + it + "']" }
-        when: 'single operation is executed to delete all datanodes with given xpaths'
-            objectUnderTest.deleteDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, 'bookstore1', xpaths, OffsetDateTime.now())
-        then: 'a database exception is not thrown (but a CPS DataNodeNotFoundException is thrown)'
-            thrown(DataNodeNotFoundException.class)
+    def 'Get data nodes from multiple xpaths 32K (2^15) limit exceeded.'() {
+        given: '40,000 xpaths'
+            def xpaths = (1..40_000).collect { "/bookstore/categories[@code=1]/books[@title='${it}']".toString() }
+        when: 'a single operation is executed to get all datanodes with given xpaths'
+            def results = objectUnderTest.getDataNodesForMultipleXpaths(CPS_PERFORMANCE_TEST_DATASPACE, 'limitsAnchor', xpaths, OMIT_DESCENDANTS)
+        then: '40,000 data nodes are returned'
+            assert results.size() == 40_000
     }
 
-    def 'Delete datanodes from multiple anchors limit exceeded: 32,766 (~ 2^15) anchors.'() {
-        given: 'more than 32,766 anchor names'
-            def anchorNames = (0..40_000).collect { "size-of-this-name-does-not-matter-for-limit-" + it }
-        when: 'single operation is executed to delete all datanodes in given anchors'
+    def 'Delete multiple data nodes 32K (2^15) limit exceeded.'() {
+        given: 'existing data nodes'
+            def countOfDataNodesBeforeDelete = countDataNodes()
+        and: 'a list of 40,000 xpaths'
+            def xpaths = (1..40_000).collect { "/bookstore/categories[@code=1]/books[@title='${it}']".toString() }
+        when: 'a single operation is executed to delete all datanodes with given xpaths'
+            objectUnderTest.deleteDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, 'limitsAnchor', xpaths, OffsetDateTime.now())
+        then: '40,000 data nodes are deleted'
+            def countOfDataNodesAfterDelete = countDataNodes()
+            assert countOfDataNodesBeforeDelete - countOfDataNodesAfterDelete == 40_000
+    }
+
+    def 'Delete data nodes from multiple anchors 32K (2^15) limit exceeded.'() {
+        given: '40,000 anchor names'
+            def anchorNames = (1..40_000).collect { "size-of-this-name-does-not-matter-for-limit-" + it }
+        when: 'a single operation is executed to delete all datanodes in given anchors'
             objectUnderTest.deleteDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, anchorNames, OffsetDateTime.now())
         then: 'a database exception is not thrown'
             noExceptionThrown()
+    }
+
+    def 'Clean up test data.'() {
+        when:
+            stopWatch.start()
+            cpsDataService.deleteDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, 'limitsAnchor', OffsetDateTime.now())
+            cpsAdminService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, 'limitsAnchor')
+            stopWatch.stop()
+            def durationInMillis = stopWatch.getTotalTimeMillis()
+        then: 'test data is deleted in 10 seconds'
+            recordAndAssertPerformance("Deleting test data", 10_000, durationInMillis)
+    }
+
+    def countDataNodes() {
+        def results = objectUnderTest.getDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, 'limitsAnchor', '/bookstore/categories[@code=1]', DIRECT_CHILDREN_ONLY)
+        return results[0].childDataNodes.size()
     }
 
 }
