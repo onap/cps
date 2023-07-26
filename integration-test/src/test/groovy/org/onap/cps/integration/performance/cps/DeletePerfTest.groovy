@@ -20,6 +20,8 @@
 
 package org.onap.cps.integration.performance.cps
 
+import org.onap.cps.spi.exceptions.DataNodeNotFoundException
+
 import java.time.OffsetDateTime
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.integration.performance.base.CpsPerfTestBase
@@ -34,7 +36,7 @@ class DeletePerfTest extends CpsPerfTestBase {
         when: 'multiple anchors with a node with a large number of descendants is created'
             stopWatch.start()
             def data = generateOpenRoadData(50)
-            addAnchorsWithData(9, CPS_PERFORMANCE_TEST_DATASPACE, LARGE_SCHEMA_SET, 'delete', data)
+            addAnchorsWithData(10, CPS_PERFORMANCE_TEST_DATASPACE, LARGE_SCHEMA_SET, 'delete', data)
             stopWatch.stop()
             def setupDurationInMillis = stopWatch.getTotalTimeMillis()
         then: 'setup duration is under 40 seconds'
@@ -155,9 +157,23 @@ class DeletePerfTest extends CpsPerfTestBase {
             recordAndAssertPerformance('Delete data nodes for anchor', 300, deleteDurationInMillis)
     }
 
+    def 'Batch delete 100 non-existing nodes'() {
+        given: 'a list of xpaths to delete'
+            def xpathsToDelete = (1..100).collect { "/path/to/non-existing/node[@id='" + it + "']" }
+        when: 'child nodes are deleted'
+            stopWatch.start()
+            try {
+                objectUnderTest.deleteDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, 'delete10', xpathsToDelete, OffsetDateTime.now())
+            } catch (DataNodeNotFoundException ignored) {}
+            stopWatch.stop()
+            def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
+        then: 'delete duration is under 300 milliseconds'
+            recordAndAssertPerformance('Batch delete 100 non-existing', 300, deleteDurationInMillis)
+    }
+
     def 'Clean up test data'() {
         given: 'a list of anchors to delete'
-            def anchorNames = (1..9).collect {'delete' + it}
+            def anchorNames = (1..10).collect {'delete' + it}
         when: 'data nodes are deleted'
             stopWatch.start()
             cpsAdminService.deleteAnchors(CPS_PERFORMANCE_TEST_DATASPACE, anchorNames)
