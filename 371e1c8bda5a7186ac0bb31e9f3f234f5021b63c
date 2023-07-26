@@ -71,6 +71,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cddc6413_e8689037",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-26T09:40:46Z",
+      "side": 1,
+      "message": "apologies I was wrong I obviously didn\u0027t run all test although I thought I did :-( \nThe method I called is for ALL anchors and that wouldn\u0027t work...",
+      "parentUuid": "c6ffb902_b93eb0d8",
+      "range": {
+        "startLine": 288,
+        "startChar": 26,
+        "endLine": 288,
+        "endChar": 40
+      },
+      "revId": "371e1c8bda5a7186ac0bb31e9f3f234f5021b63c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f39a65e5_b345f3d3",
