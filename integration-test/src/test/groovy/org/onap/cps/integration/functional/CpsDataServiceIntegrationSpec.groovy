@@ -32,6 +32,7 @@ import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.exceptions.DataNodeNotFoundExceptionBatch
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException
+import spock.lang.Ignore
 
 import java.time.OffsetDateTime
 

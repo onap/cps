@@ -71,11 +71,12 @@
         <!-- Add Hibernate support for Postgres datatype JSONB and Postgres arrays -->
         <dependency>
             <groupId>io.hypersistence</groupId>
-            <artifactId>hypersistence-utils-hibernate-52</artifactId>
+            <artifactId>hypersistence-utils-hibernate-60</artifactId>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+            <version>1.18.24</version>
         </dependency>
         <dependency>
             <groupId>org.liquibase</groupId>
@@ -92,6 +93,7 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
+            <version>2.13.1</version>
         </dependency>
         <!-- T E S T   D E P E N D E N C I E S -->
         <dependency>
