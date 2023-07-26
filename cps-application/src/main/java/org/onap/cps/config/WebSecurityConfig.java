@@ -54,7 +54,7 @@ public class WebSecurityConfig {
      * @param password   password
      */
     public WebSecurityConfig(
-        @Autowired @Value("${security.permit-uri}") final String permitUris,
+        @Autowired @Value("${permit-uri}") final String permitUris,
         @Autowired @Value("${security.auth.username}") final String username,
         @Autowired @Value("${security.auth.password}") final String password
     ) {
@@ -80,8 +80,8 @@ public class WebSecurityConfig {
         http
                 .httpBasic()
                 .and()
-                .authorizeRequests()
-                .antMatchers(permitUris).permitAll()
+                .authorizeHttpRequests()
+                .requestMatchers(permitUris).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .csrf().disable();
