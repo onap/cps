@@ -323,6 +323,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d707a6d_aa7678d9",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-07-26T09:40:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9740d5d1_c3cdf57d",
+      "range": {
+        "startLine": 264,
+        "startChar": 8,
+        "endLine": 279,
+        "endChar": 9
+      },
+      "revId": "abdc75c6354cdb7da5f1f6916f102ac0cac7a600",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1c3c8c9a_5983564e",
@@ -360,6 +384,30 @@
       "side": 1,
       "message": "Agreed. I\u0027ve retested and the performance of this case is same as others (600 ms)",
       "parentUuid": "1c3c8c9a_5983564e",
+      "range": {
+        "startLine": 82,
+        "startChar": 95,
+        "endLine": 82,
+        "endChar": 109
+      },
+      "revId": "abdc75c6354cdb7da5f1f6916f102ac0cac7a600",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e523593b_6a661c29",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/GetPerfTest.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-07-26T09:40:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "05e408c9_1f8e7cbe",
       "range": {
         "startLine": 82,
         "startChar": 95,
