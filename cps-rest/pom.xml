@@ -122,6 +122,14 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <dependency>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.gsonfire</groupId>
+            <artifactId>gson-fire</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -148,6 +156,7 @@
                                 <sourceFolder>src/gen/java</sourceFolder>
                                 <dateLibrary>java11</dateLibrary>
                                 <interfaceOnly>true</interfaceOnly>
+                                <useSpringBoot3>true</useSpringBoot3>
                                 <useTags>true</useTags>
                                 <openApiNullable>false</openApiNullable>
                                 <skipDefaultInterface>true</skipDefaultInterface>
