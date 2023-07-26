@@ -25,13 +25,13 @@
 package org.onap.cps.rest.controller;
 
 import io.micrometer.core.annotation.Timed;
+import jakarta.validation.ValidationException;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import javax.validation.ValidationException;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.onap.cps.api.CpsDataService;
