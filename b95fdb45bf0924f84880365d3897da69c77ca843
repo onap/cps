@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "2194b907_72812885",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-07-27T11:47:33Z",
+      "side": 1,
+      "message": "done.",
+      "parentUuid": "5256ecbd_67302cbf",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 10
+      },
+      "revId": "b95fdb45bf0924f84880365d3897da69c77ca843",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "848760f4_3a961f06",
@@ -41,6 +65,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a9d9c35_41756e9a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-07-27T11:47:33Z",
+      "side": 1,
+      "message": "Updated.",
+      "parentUuid": "848760f4_3a961f06",
+      "revId": "b95fdb45bf0924f84880365d3897da69c77ca843",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "90305d4d_1a27a9e0",
@@ -54,6 +96,30 @@
       "writtenOn": "2023-07-27T10:35:12Z",
       "side": 1,
       "message": "dont use word like \u0027we\u0027  ....\nals we need to think about the title \u0027Async Events\u0027 would refer to all events!\nsuggestion: \n- Legacy async response on a client supplied topic for single cm handle data request are no longer supported. Click link below for the legacy specification.",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 193
+      },
+      "revId": "b95fdb45bf0924f84880365d3897da69c77ca843",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca338c0f_efe23669",
+        "filename": "docs/cps-events.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-07-27T11:47:33Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "90305d4d_1a27a9e0",
       "range": {
         "startLine": 18,
         "startChar": 0,
@@ -89,6 +155,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "90b84f18_7ec767f4",
+        "filename": "docs/cps-ncmp-message-status-codes.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-07-27T11:47:33Z",
+      "side": 1,
+      "message": "added Subscription codes",
+      "parentUuid": "d0c000a2_6ac57974",
+      "range": {
+        "startLine": 13,
+        "startChar": 6,
+        "endLine": 13,
+        "endChar": 18
+      },
+      "revId": "b95fdb45bf0924f84880365d3897da69c77ca843",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f6d991e4_b1b8b306",
         "filename": "docs/cps-ncmp-message-status-codes.rst",
         "patchSetId": 3
@@ -100,6 +190,30 @@
       "writtenOn": "2023-07-27T10:35:12Z",
       "side": 1,
       "message": "add that is is specific for \u0027data operation\u0027 feature maybe add Feature column",
+      "range": {
+        "startLine": 15,
+        "startChar": 24,
+        "endLine": 15,
+        "endChar": 55
+      },
+      "revId": "b95fdb45bf0924f84880365d3897da69c77ca843",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20b5db7e_dd8ae3df",
+        "filename": "docs/cps-ncmp-message-status-codes.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-07-27T11:47:33Z",
+      "side": 1,
+      "message": "added new column",
+      "parentUuid": "f6d991e4_b1b8b306",
       "range": {
         "startLine": 15,
         "startChar": 24,
@@ -135,6 +249,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "22eba9a5_72ddcfbd",
+        "filename": "docs/cps-ncmp-message-status-codes.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-07-27T11:47:33Z",
+      "side": 1,
+      "message": "modified",
+      "parentUuid": "6253fe39_4ef3fcaa",
+      "range": {
+        "startLine": 26,
+        "startChar": 3,
+        "endLine": 26,
+        "endChar": 7
+      },
+      "revId": "b95fdb45bf0924f84880365d3897da69c77ca843",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c8521f9b_1a5c9ce0",
         "filename": "docs/cps-ncmp-message-status-codes.rst",
         "patchSetId": 3
@@ -146,6 +284,30 @@
       "writtenOn": "2023-07-27T10:35:12Z",
       "side": 1,
       "message": "Removed this is for the REST API!",
+      "range": {
+        "startLine": 28,
+        "startChar": 6,
+        "endLine": 28,
+        "endChar": 9
+      },
+      "revId": "b95fdb45bf0924f84880365d3897da69c77ca843",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8bb52245_7bed03c6",
+        "filename": "docs/cps-ncmp-message-status-codes.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-07-27T11:47:33Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "c8521f9b_1a5c9ce0",
       "range": {
         "startLine": 28,
         "startChar": 6,
@@ -181,6 +343,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5c0844fd_056385dd",
+        "filename": "docs/cps-ncmp-message-status-codes.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-07-27T11:47:33Z",
+      "side": 1,
+      "message": "corrected",
+      "parentUuid": "764b2de8_059ece75",
+      "range": {
+        "startLine": 29,
+        "startChar": 47,
+        "endLine": 29,
+        "endChar": 50
+      },
+      "revId": "b95fdb45bf0924f84880365d3897da69c77ca843",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "793dfd20_b62216c2",
         "filename": "docs/data-operation-events.rst",
         "patchSetId": 3
@@ -192,6 +378,30 @@
       "writtenOn": "2023-07-27T10:35:12Z",
       "side": 1,
       "message": "for more details",
+      "range": {
+        "startLine": 13,
+        "startChar": 62,
+        "endLine": 13,
+        "endChar": 119
+      },
+      "revId": "b95fdb45bf0924f84880365d3897da69c77ca843",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82c94bdd_ef15b1af",
+        "filename": "docs/data-operation-events.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-07-27T11:47:33Z",
+      "side": 1,
+      "message": "modified",
+      "parentUuid": "793dfd20_b62216c2",
       "range": {
         "startLine": 13,
         "startChar": 62,
@@ -227,6 +437,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0452161c_327b0f92",
+        "filename": "docs/data-operation-events.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-07-27T11:47:33Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "c2d62eba_95cdfd1b",
+      "range": {
+        "startLine": 15,
+        "startChar": 31,
+        "endLine": 15,
+        "endChar": 60
+      },
+      "revId": "b95fdb45bf0924f84880365d3897da69c77ca843",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b72a46d0_3090f633",
         "filename": "docs/data-operation-events.rst",
         "patchSetId": 3
@@ -238,6 +472,30 @@
       "writtenOn": "2023-07-27T10:35:12Z",
       "side": 1,
       "message": "details\nor just headers",
+      "range": {
+        "startLine": 38,
+        "startChar": 27,
+        "endLine": 38,
+        "endChar": 37
+      },
+      "revId": "b95fdb45bf0924f84880365d3897da69c77ca843",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3577ed47_eb064dd3",
+        "filename": "docs/data-operation-events.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-07-27T11:47:33Z",
+      "side": 1,
+      "message": "corrected",
+      "parentUuid": "b72a46d0_3090f633",
       "range": {
         "startLine": 38,
         "startChar": 27,
@@ -273,6 +531,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ce302618_7e6854dc",
+        "filename": "docs/modeling.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-07-27T11:47:33Z",
+      "side": 1,
+      "message": "added",
+      "parentUuid": "cdc50c92_338b6cb1",
+      "range": {
+        "startLine": 134,
+        "startChar": 0,
+        "endLine": 134,
+        "endChar": 19
+      },
+      "revId": "b95fdb45bf0924f84880365d3897da69c77ca843",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "49b7e6d3_717f9ea2",
         "filename": "docs/ncmp-async-events.rst",
         "patchSetId": 3
@@ -284,6 +566,30 @@
       "writtenOn": "2023-07-27T10:35:12Z",
       "side": 1,
       "message": "too long ?",
+      "range": {
+        "startLine": 23,
+        "startChar": 12,
+        "endLine": 23,
+        "endChar": 13
+      },
+      "revId": "b95fdb45bf0924f84880365d3897da69c77ca843",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4ad1006_71b77577",
+        "filename": "docs/ncmp-async-events.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-07-27T11:47:33Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "49b7e6d3_717f9ea2",
       "range": {
         "startLine": 23,
         "startChar": 12,
@@ -319,6 +625,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "327f8c6f_a3b59f1b",
+        "filename": "docs/ncmp-data-operation.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-07-27T11:47:33Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "a66fac63_9265f838",
+      "range": {
+        "startLine": 30,
+        "startChar": 42,
+        "endLine": 30,
+        "endChar": 44
+      },
+      "revId": "b95fdb45bf0924f84880365d3897da69c77ca843",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8ccfdd44_d6946336",
         "filename": "docs/ncmp-data-operation.rst",
         "patchSetId": 3
@@ -330,6 +660,30 @@
       "writtenOn": "2023-07-27T10:45:20Z",
       "side": 1,
       "message": "no header just paragraph text.\n\nThe status codes used in the events resulting from these operations are defined here:",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 15
+      },
+      "revId": "b95fdb45bf0924f84880365d3897da69c77ca843",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07efa918_2eef8200",
+        "filename": "docs/ncmp-data-operation.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-07-27T11:47:33Z",
+      "side": 1,
+      "message": "modified",
+      "parentUuid": "8ccfdd44_d6946336",
       "range": {
         "startLine": 49,
         "startChar": 0,
@@ -363,6 +717,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c37a9b9_03381cef",
+        "filename": "docs/ncmp-data-operation.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-07-27T11:47:33Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "bea1f1c1_761390c7",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 36
+      },
+      "revId": "b95fdb45bf0924f84880365d3897da69c77ca843",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a724b371_0398f688",
@@ -376,6 +754,30 @@
       "writtenOn": "2023-07-27T10:35:12Z",
       "side": 1,
       "message": "Above examples are for illustration only please refer to the latest schema.",
+      "range": {
+        "startLine": 146,
+        "startChar": 7,
+        "endLine": 146,
+        "endChar": 37
+      },
+      "revId": "b95fdb45bf0924f84880365d3897da69c77ca843",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7fca7ac_ce91625f",
+        "filename": "docs/ncmp-data-operation.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-07-27T11:47:33Z",
+      "side": 1,
+      "message": "modified",
+      "parentUuid": "a724b371_0398f688",
       "range": {
         "startLine": 146,
         "startChar": 7,
