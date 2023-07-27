@@ -41,7 +41,7 @@ class SubscriptionEventCloudMapperSpec extends Specification {
 
     def 'Map the data of the cloud event to subscription event'() {
         given: 'a cloud event having a subscription event in the data part'
-            def jsonData = TestUtils.getResourceFileContent('avcSubscriptionCreationEvent.json')
+            def jsonData = TestUtils.getResourceFileContent('avcSubscriptionEvent.json')
             def testEventData = jsonObjectMapper.convertJsonString(jsonData, SubscriptionEvent.class)
             def testCloudEvent = CloudEventBuilder.v1()
                 .withData(objectMapper.writeValueAsBytes(testEventData))

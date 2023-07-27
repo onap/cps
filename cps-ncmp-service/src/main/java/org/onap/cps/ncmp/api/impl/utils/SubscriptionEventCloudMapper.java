@@ -22,10 +22,7 @@ package org.onap.cps.ncmp.api.impl.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.cloudevents.CloudEvent;
-import io.cloudevents.core.CloudEventUtils;
 import io.cloudevents.core.builder.CloudEventBuilder;
-import io.cloudevents.core.data.PojoCloudEventData;
-import io.cloudevents.jackson.PojoCloudEventDataMapper;
 import java.net.URI;
 import java.util.UUID;
 import lombok.AccessLevel;
@@ -49,16 +46,7 @@ public class SubscriptionEventCloudMapper {
      * @return SubscriptionEvent deserialized.
      */
     public static SubscriptionEvent toSubscriptionEvent(final CloudEvent cloudEvent) {
-        final PojoCloudEventData<SubscriptionEvent> deserializedCloudEvent = CloudEventUtils
-                .mapData(cloudEvent, PojoCloudEventDataMapper.from(objectMapper, SubscriptionEvent.class));
-        if (deserializedCloudEvent == null) {
-            log.debug("No data found in the consumed event");
-            return null;
-        } else {
-            final SubscriptionEvent subscriptionEvent = deserializedCloudEvent.getValue();
-            log.debug("Consuming event {}", subscriptionEvent);
-            return subscriptionEvent;
-        }
+        return EventResponseCloudMapper.toConcreteEvent(cloudEvent, SubscriptionEvent.class);
     }
 
     /**

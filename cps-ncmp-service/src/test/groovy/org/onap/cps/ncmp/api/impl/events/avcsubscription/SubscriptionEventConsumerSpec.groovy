@@ -53,7 +53,7 @@ class SubscriptionEventConsumerSpec extends MessagingBaseSpec {
 
     def 'Consume, persist and forward valid CM create message'() {
         given: 'an event with data category CM'
-            def jsonData = TestUtils.getResourceFileContent('avcSubscriptionCreationEvent.json')
+            def jsonData = TestUtils.getResourceFileContent('avcSubscriptionEvent.json')
             def testEventSent = jsonObjectMapper.convertJsonString(jsonData, SubscriptionEvent.class)
             testEventSent.getData().getDataType().setDataCategory(dataCategory)
             def testCloudEventSent = CloudEventBuilder.v1()
@@ -74,7 +74,7 @@ class SubscriptionEventConsumerSpec extends MessagingBaseSpec {
         and: 'the event is persisted'
             numberOfTimesToPersist * mockSubscriptionPersistence.saveSubscriptionEvent(yangModelSubscriptionEvent)
         and: 'the event is forwarded'
-            numberOfTimesToForward * mockSubscriptionEventForwarder.forwardCreateSubscriptionEvent(testEventSent, 'subscriptionCreated')
+            numberOfTimesToForward * mockSubscriptionEventForwarder.forwardSubscriptionEvent(testEventSent, dataType)
         where: 'given values are used'
             scenario                                            |  dataCategory  |   dataType                  |  isNotificationEnabled     |   isModelLoaderEnabled      ||     numberOfTimesToForward        ||      numberOfTimesToPersist
             'Both model loader and notification are enabled'    |       'CM'     |   'subscriptionCreated'     |     true                   |        true                 ||         1                         ||             1
@@ -82,12 +82,44 @@ class SubscriptionEventConsumerSpec extends MessagingBaseSpec {
             'Model loader enabled and notification  disabled'   |       'CM'     |   'subscriptionCreated'     |     false                  |        true                 ||         0                         ||             1
             'Model loader disabled and notification enabled'    |       'CM'     |   'subscriptionCreated'     |     true                   |        false                ||         1                         ||             0
             'Flags are enabled but data category is FM'         |       'FM'     |   'subscriptionCreated'     |     true                   |        true                 ||         0                         ||             0
-            'Flags are enabled but data type is UPDATE'         |       'CM'     |   'subscriptionUpdated'     |     true                   |        true                 ||         0                         ||             1
+            'Flags are enabled but data type is UPDATE'         |       'CM'     |   'subscriptionUpdated'     |     true                   |        true                 ||         0                         ||             0
+    }
+
+    def 'Consume, validate and forward valid CM delete message'() {
+        given: 'an event with data category CM'
+            def jsonData = TestUtils.getResourceFileContent('avcSubscriptionEvent.json')
+            def testEventSent = jsonObjectMapper.convertJsonString(jsonData, SubscriptionEvent.class)
+            testEventSent.getData().getDataType().setDataCategory(dataCategory)
+            def testCloudEventSent = CloudEventBuilder.v1()
+                .withData(objectMapper.writeValueAsBytes(testEventSent))
+                .withId('subscriptionDeleted')
+                .withType('subscriptionDeleted')
+                .withSource(URI.create('some-resource'))
+                .withExtension('correlationid', 'test-cmhandle1').build()
+            def consumerRecord = new ConsumerRecord<String, CloudEvent>('topic-name', 0, 0, 'event-key', testCloudEventSent)
+        and: 'notifications are enabled'
+            objectUnderTest.notificationFeatureEnabled = isNotificationEnabled
+        and: 'subscription model loader is enabled'
+            objectUnderTest.subscriptionModelLoaderEnabled = isModelLoaderEnabled
+        when: 'the valid event is consumed'
+            objectUnderTest.consumeSubscriptionEvent(consumerRecord)
+        then: 'the event is mapped to a yangModelSubscription'
+            1 * mockSubscriptionEventMapper.toYangModelSubscriptionEvent(testEventSent) >> yangModelSubscriptionEvent
+        and: 'checked for valid ongoing subscription'
+            1 * mockSubscriptionPersistence.isOngoingSubscription(yangModelSubscriptionEvent) >> true
+        and: 'the event is forwarded'
+            numberOfTimesToForward * mockSubscriptionEventForwarder.forwardSubscriptionEvent(testEventSent, 'subscriptionDeleted')
+        where: 'given values are used'
+            scenario                                            |  dataCategory   |  isNotificationEnabled     |   isModelLoaderEnabled      ||     numberOfTimesToForward
+            'Both model loader and notification are enabled'    |       'CM'      |     true                   |        true                 ||         1
+            'Both model loader and notification are disabled'   |       'CM'      |     false                  |        false                ||         0
+            'Model loader enabled and notification  disabled'   |       'CM'      |     false                  |        true                 ||         0
+            'Model loader disabled and notification enabled'    |       'CM'      |     true                   |        false                ||         1
     }
 
     def 'Consume event with wrong datastore causes an exception'() {
         given: 'an event'
-            def jsonData = TestUtils.getResourceFileContent('avcSubscriptionCreationEvent.json')
+            def jsonData = TestUtils.getResourceFileContent('avcSubscriptionEvent.json')
             def testEventSent = jsonObjectMapper.convertJsonString(jsonData, SubscriptionEvent.class)
         and: 'datastore is set to a passthrough-running datastore'
             testEventSent.getData().getPredicates().setDatastore('operational')

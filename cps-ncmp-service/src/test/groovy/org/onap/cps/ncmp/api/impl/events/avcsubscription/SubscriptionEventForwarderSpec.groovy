@@ -75,7 +75,7 @@ class SubscriptionEventForwarderSpec extends MessagingBaseSpec {
 
     def 'Forward valid CM create subscription and simulate timeout'() {
         given: 'an event'
-            def jsonData = TestUtils.getResourceFileContent('avcSubscriptionCreationEvent.json')
+            def jsonData = TestUtils.getResourceFileContent('avcSubscriptionEvent.json')
             def testEventSent = jsonObjectMapper.convertJsonString(jsonData, SubscriptionEvent.class)
         and: 'the InventoryPersistence returns private properties for the supplied CM Handles'
             1 * mockInventoryPersistence.getYangModelCmHandles(["CMHandle1", "CMHandle2", "CMHandle3"]) >> [
@@ -87,7 +87,7 @@ class SubscriptionEventForwarderSpec extends MessagingBaseSpec {
         and: 'a Blocking Variable is used for the Asynchronous call with a timeout of 5 seconds'
             def block = new BlockingVariable<Object>(5)
         when: 'the valid event is forwarded'
-            objectUnderTest.forwardCreateSubscriptionEvent(testEventSent, 'subscriptionCreated')
+            objectUnderTest.forwardSubscriptionEvent(testEventSent, 'subscriptionCreated')
         then: 'An asynchronous call is made to the blocking variable'
             block.get()
         then: 'the event is added to the forwarded subscription event cache'
@@ -110,12 +110,12 @@ class SubscriptionEventForwarderSpec extends MessagingBaseSpec {
 
     def 'Forward CM create subscription where target CM Handles are #scenario'() {
         given: 'an event'
-            def jsonData = TestUtils.getResourceFileContent('avcSubscriptionCreationEvent.json')
+            def jsonData = TestUtils.getResourceFileContent('avcSubscriptionEvent.json')
             def testEventSent = jsonObjectMapper.convertJsonString(jsonData, SubscriptionEvent.class)
         and: 'the target CMHandles are set to #scenario'
             testEventSent.getData().getPredicates().setTargets(invalidTargets)
         when: 'the event is forwarded'
-            objectUnderTest.forwardCreateSubscriptionEvent(testEventSent, 'some-event-type')
+            objectUnderTest.forwardSubscriptionEvent(testEventSent, 'some-event-type')
         then: 'an operation not yet supported exception is thrown'
             thrown(OperationNotYetSupportedException)
         where:
@@ -127,7 +127,7 @@ class SubscriptionEventForwarderSpec extends MessagingBaseSpec {
 
     def 'Forward valid CM create subscription where targets are not associated to any existing CMHandles'() {
         given: 'an event'
-            def jsonData = TestUtils.getResourceFileContent('avcSubscriptionCreationEvent.json')
+            def jsonData = TestUtils.getResourceFileContent('avcSubscriptionEvent.json')
             def testEventSent = jsonObjectMapper.convertJsonString(jsonData, SubscriptionEvent.class)
         and: 'a subscription event response'
             def emptySubscriptionEventResponse = new SubscriptionEventResponse().withData(new Data());
@@ -147,7 +147,7 @@ class SubscriptionEventForwarderSpec extends MessagingBaseSpec {
         and: 'a Blocking Variable is used for the Asynchronous call with a timeout of 5 seconds'
             def block = new BlockingVariable<Object>(5)
         when: 'the valid event is forwarded'
-            objectUnderTest.forwardCreateSubscriptionEvent(testEventSent, 'subscriptionCreatedStatus')
+            objectUnderTest.forwardSubscriptionEvent(testEventSent, 'subscriptionCreatedStatus')
         then: 'the event is not added to the forwarded subscription event cache'
             0 * mockForwardedSubscriptionEventCache.put("SCO-9989752cm-subscription-001", ["DMIName1", "DMIName2"] as Set)
         and: 'the event is not being forwarded with the CMHandle private properties and does not provides a valid listenable future'

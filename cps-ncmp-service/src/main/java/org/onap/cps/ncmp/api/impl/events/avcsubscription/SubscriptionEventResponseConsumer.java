@@ -33,7 +33,7 @@ import org.onap.cps.ncmp.api.impl.config.embeddedcache.ForwardedSubscriptionEven
 import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionPersistence;
 import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionStatus;
 import org.onap.cps.ncmp.api.impl.utils.DataNodeHelper;
-import org.onap.cps.ncmp.api.impl.utils.SubscriptionEventResponseCloudMapper;
+import org.onap.cps.ncmp.api.impl.utils.EventResponseCloudMapper;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelSubscriptionEvent;
 import org.onap.cps.ncmp.events.avcsubscription1_0_0.dmi_to_ncmp.SubscriptionEventResponse;
 import org.onap.cps.spi.model.DataNode;
@@ -69,7 +69,7 @@ public class SubscriptionEventResponseConsumer {
         final CloudEvent cloudEvent = subscriptionEventResponseConsumerRecord.value();
         final String eventType = subscriptionEventResponseConsumerRecord.value().getType();
         final SubscriptionEventResponse subscriptionEventResponse =
-                SubscriptionEventResponseCloudMapper.toSubscriptionEventResponse(cloudEvent);
+                EventResponseCloudMapper.toConcreteEvent(cloudEvent, SubscriptionEventResponse.class);
         final String clientId = subscriptionEventResponse.getData().getClientId();
         log.info("subscription event response of clientId: {} is received.", clientId);
         final String subscriptionName = subscriptionEventResponse.getData().getSubscriptionName();

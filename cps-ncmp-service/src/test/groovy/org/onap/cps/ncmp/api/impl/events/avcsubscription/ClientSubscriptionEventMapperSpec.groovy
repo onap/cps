@@ -39,7 +39,7 @@ class ClientSubscriptionEventMapperSpec extends Specification {
 
     def 'Map clients subscription event to ncmps subscription event'() {
         given: 'a Subscription Event'
-            def jsonData = TestUtils.getResourceFileContent('avcSubscriptionCreationEvent.json')
+            def jsonData = TestUtils.getResourceFileContent('avcSubscriptionEvent.json')
             def testEventToMap = jsonObjectMapper.convertJsonString(jsonData, SubscriptionEvent.class)
         when: 'the client event is mapped to a ncmp subscription event'
             def result = objectUnderTest.toNcmpSubscriptionEvent(testEventToMap)

@@ -28,30 +28,29 @@ import io.cloudevents.jackson.PojoCloudEventDataMapper;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.ncmp.events.avcsubscription1_0_0.dmi_to_ncmp.SubscriptionEventResponse;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Slf4j
-public class SubscriptionEventResponseCloudMapper {
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+public class EventResponseCloudMapper {
 
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
     /**
-     * Maps CloudEvent object to SubscriptionEventResponse.
+     * Generic method to convert any cloudevent to provided object.
      *
-     * @param cloudEvent object
-     * @return SubscriptionEventResponse deserialized
+     * @param cloudEvent  input cloud event
+     * @param targetClass target class
+     * @param <T>         target object type
+     * @return target object
      */
-    public static SubscriptionEventResponse toSubscriptionEventResponse(final CloudEvent cloudEvent) {
-        final PojoCloudEventData<SubscriptionEventResponse> deserializedCloudEvent = CloudEventUtils
-                .mapData(cloudEvent, PojoCloudEventDataMapper.from(objectMapper, SubscriptionEventResponse.class));
+    public static <T> T toConcreteEvent(final CloudEvent cloudEvent, final Class<T> targetClass) {
+        final PojoCloudEventData<T> deserializedCloudEvent =
+                CloudEventUtils.mapData(cloudEvent, PojoCloudEventDataMapper.from(objectMapper, targetClass));
         if (deserializedCloudEvent == null) {
-            log.debug("No data found in the consumed subscription response event");
+            log.debug("No data found in the consumed event");
             return null;
         } else {
-            final SubscriptionEventResponse subscriptionEventResponse = deserializedCloudEvent.getValue();
-            log.debug("Consuming subscription response event {}", subscriptionEventResponse);
-            return subscriptionEventResponse;
+            return deserializedCloudEvent.getValue();
         }
     }
 }
