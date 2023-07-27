@@ -28,6 +28,10 @@ class CpsPerfTestBase extends PerfTestBase {
 
     static def CPS_PERFORMANCE_TEST_DATASPACE = 'cpsPerformanceDataspace'
 
+    public static final int OPENROADM_ANCHORS = 5
+    public static final int OPENROADM_DEVICES_PER_ANCHOR = 50
+    public static final int OPENROADM_DATANODES_PER_DEVICE = 86
+
     def printTitle() {
         println('##        C P S   P E R F O R M A N C E   T E S T   R E S U L T S          ##')
     }
@@ -76,9 +80,9 @@ class CpsPerfTestBase extends PerfTestBase {
     }
 
     def addOpenRoadData() {
-        def data = generateOpenRoadData(50)
+        def data = generateOpenRoadData(OPENROADM_DEVICES_PER_ANCHOR)
         stopWatch.start()
-        addAnchorsWithData(5, CPS_PERFORMANCE_TEST_DATASPACE, LARGE_SCHEMA_SET, 'openroadm', data)
+        addAnchorsWithData(OPENROADM_ANCHORS, CPS_PERFORMANCE_TEST_DATASPACE, LARGE_SCHEMA_SET, 'openroadm', data)
         stopWatch.stop()
         def durationInMillis = stopWatch.getTotalTimeMillis()
         recordAndAssertPerformance('Creating openroadm anchors with large data tree', 20_000, durationInMillis)

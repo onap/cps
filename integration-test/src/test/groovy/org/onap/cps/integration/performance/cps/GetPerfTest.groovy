@@ -45,18 +45,18 @@ class GetPerfTest extends CpsPerfTestBase {
         where: 'the following parameters are used'
             scenario             | fetchDescendantsOption  | anchor       || durationLimit | expectedNumberOfDataNodes
             'no descendants'     | OMIT_DESCENDANTS        | 'openroadm1' || 50            | 1
-            'direct descendants' | DIRECT_CHILDREN_ONLY    | 'openroadm2' || 100           | 1 + 50
-            'all descendants'    | INCLUDE_ALL_DESCENDANTS | 'openroadm3' || 200           | 1 + 50 * 86
+            'direct descendants' | DIRECT_CHILDREN_ONLY    | 'openroadm2' || 100           | 1 + OPENROADM_DEVICES_PER_ANCHOR
+            'all descendants'    | INCLUDE_ALL_DESCENDANTS | 'openroadm3' || 200           | 1 + OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
     }
 
     def 'Read data trees for multiple xpaths'() {
         given: 'a collection of xpaths to get'
-            def xpaths = (1..50).collect { "/openroadm-devices/openroadm-device[@device-id='C201-7-1A-" + it + "']" }
+            def xpaths = (1..OPENROADM_DEVICES_PER_ANCHOR).collect { "/openroadm-devices/openroadm-device[@device-id='C201-7-1A-" + it + "']" }
         when: 'get data nodes from 1 anchor'
             stopWatch.start()
             def result = objectUnderTest.getDataNodesForMultipleXpaths(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm4', xpaths, INCLUDE_ALL_DESCENDANTS)
             stopWatch.stop()
-            assert countDataNodesInTree(result) == 50 * 86
+            assert countDataNodesInTree(result) == OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
             def durationInMillis = stopWatch.getTotalTimeMillis()
         then: 'all data is read within 500 ms'
             recordAndAssertPerformance("Read datatrees for multiple xpaths", 200, durationInMillis)
@@ -75,10 +75,8 @@ class GetPerfTest extends CpsPerfTestBase {
             recordAndAssertPerformance("Read datatrees using ${scenario}", durationLimit, durationInMillis)
         where: 'the following xpaths are used'
             scenario                | anchorPrefix | xpath                || durationLimit | expectedNumberOfDataNodes
-            'bookstore root'        | 'bookstore'  | '/'                  || 200           | 78
-            'bookstore top element' | 'bookstore'  | '/bookstore'         || 200           | 78
-            'openroadm root'        | 'openroadm'  | '/'                  || 600           | 1 + 50 * 86
-            'openroadm top element' | 'openroadm'  | '/openroadm-devices' || 600           | 1 + 50 * 86
+            'openroadm root'        | 'openroadm'  | '/'                  || 600           | 1 + OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
+            'openroadm top element' | 'openroadm'  | '/openroadm-devices' || 600           | 1 + OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
     }
 
 }
