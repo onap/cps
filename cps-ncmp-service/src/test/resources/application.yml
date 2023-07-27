@@ -30,7 +30,7 @@ app:
         async-m2m:
             topic: ncmp-async-m2m
         avc:
-            subscription-topic: cm-avc-subscription
+            subscription-topic: subscription
             cm-events-topic: cm-events
             subscription-forward-topic-prefix: ${NCMP_FORWARD_CM_AVC_SUBSCRIPTION:ncmp-dmi-cm-avc-subscription-}
 
