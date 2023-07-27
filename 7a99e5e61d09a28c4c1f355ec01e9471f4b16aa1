@@ -738,6 +738,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6139e08_b2d0bdef",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-07-27T11:10:57Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "eccb43f2_68c3c581",
+      "revId": "7a99e5e61d09a28c4c1f355ec01e9471f4b16aa1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "37b57e01_2ac8da65",
@@ -775,6 +793,30 @@
       "side": 1,
       "message": "Addressed",
       "parentUuid": "37b57e01_2ac8da65",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 100
+      },
+      "revId": "7a99e5e61d09a28c4c1f355ec01e9471f4b16aa1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24c7de46_8ad61e06",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-07-27T11:10:57Z",
+      "side": 1,
+      "message": "The parameter order should match the name, e.g.\n\n    findByAnchorIdsAndXpathIn(anchorIds, xpaths)",
+      "parentUuid": "6a9603af_f2d8004c",
       "range": {
         "startLine": 70,
         "startChar": 0,
