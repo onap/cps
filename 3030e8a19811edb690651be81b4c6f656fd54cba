@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8dbdf82c_b695a5ac",
+        "filename": "cps-ncmp-service/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-07-27T10:41:07Z",
+      "side": 1,
+      "message": "Seems to be failing build, having 98% coverage",
+      "range": {
+        "startLine": 37,
+        "startChar": 26,
+        "endLine": 37,
+        "endChar": 30
+      },
+      "revId": "3030e8a19811edb690651be81b4c6f656fd54cba",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "64b9d18e_afbbd381",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventConsumer.java",
         "patchSetId": 1
