@@ -273,6 +273,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ffbcd4c3_8d8e021f",
+        "filename": "docs/cps-ncmp-message-status-codes.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-07-27T11:50:33Z",
+      "side": 1,
+      "message": "Can\u0027t use \"notes\" as it throwing \"ERROR: Unknown directive type \"notes\" \"",
+      "parentUuid": "22eba9a5_72ddcfbd",
+      "range": {
+        "startLine": 26,
+        "startChar": 3,
+        "endLine": 26,
+        "endChar": 7
+      },
+      "revId": "b95fdb45bf0924f84880365d3897da69c77ca843",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c8521f9b_1a5c9ce0",
         "filename": "docs/cps-ncmp-message-status-codes.rst",
         "patchSetId": 3
