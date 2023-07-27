@@ -33,6 +33,23 @@
       "message": "I suggest to get that enum in another commit other than this 😊 to stop this commit groving more. What do you think?",
       "revId": "d789956fbf88f856472f975487c1975df91dbe3e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9491c348_a0f5ae68",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-27T10:24:07Z",
+      "side": 1,
+      "message": "You are faster than me Luke, while I was writing the last comment you submit this patchset 😊 so no need to answer that, since it is obvious now.",
+      "revId": "d789956fbf88f856472f975487c1975df91dbe3e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ],
   "submitRequirementResults": [
