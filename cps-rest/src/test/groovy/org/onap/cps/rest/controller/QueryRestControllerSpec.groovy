@@ -25,6 +25,7 @@ package org.onap.cps.rest.controller
 
 import org.onap.cps.utils.PrefixResolver
 
+import static org.onap.cps.spi.FetchDescendantsOption.DIRECT_CHILD_ONLY
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
@@ -97,17 +98,21 @@ class QueryRestControllerSpec extends Specification {
             def dataNode1 = new DataNodeBuilder().withXpath('/xpath')
                 .withLeaves([leaf: 'value', leafList: ['leaveListElement1', 'leaveListElement2']]).build()
             mockCpsQueryService.queryDataNodes(dataspaceName, anchorName, cpsPath, { descendantsOption -> {
-                    assert descendantsOption.depth == 2}}) >> [dataNode1, dataNode1]
+                assert descendantsOption.depth == expectedDepth}}) >> [dataNode1, dataNode1]
         when: 'query data nodes API is invoked'
             def response =
                 mvc.perform(
                         get(dataNodeEndpointV2)
                                 .param('cps-path', cpsPath)
-                                .param('descendants', '2'))
+                                .param('descendants', includeDescendantsOptionString))
                         .andReturn().response
         then: 'the response contains the the datanode in json format'
             assert response.status == HttpStatus.OK.value()
             assert response.getContentAsString().contains('{"xpath":{"leaf":"value","leafList":["leaveListElement1","leaveListElement2"]}}')
+        where: 'the following options for include descendants are provided in the request'
+            scenario          | includeDescendantsOptionString || expectedDepth
+            'direct children' | 'direct'                       || 1
+            'descendants'     | '2'                            || 2
     }
 
     def 'Query data node by cps path for the given dataspace across all anchors with #scenario.'() {
@@ -139,5 +144,6 @@ class QueryRestControllerSpec extends Specification {
             'no descendants by default' | ''                             || OMIT_DESCENDANTS
             'no descendant explicitly'  | 'none'                         || OMIT_DESCENDANTS
             'descendants'               | 'all'                          || INCLUDE_ALL_DESCENDANTS
+            'direct children'           | 'direct'                       || DIRECT_CHILD_ONLY
     }
 }

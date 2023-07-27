@@ -263,7 +263,7 @@ components:
     descendantsInQuery:
       name: descendants
       in: query
-      description: Number of descendants to query. Allowed values are 'none', 'all', -1 (for all), 0 (for none) and any positive number.
+      description: Number of descendants to query. Allowed values are 'none', 'all', 'direct', 1 (for direct), -1 (for all), 0 (for none) and any positive number.
       required: false
       schema:
         type: string

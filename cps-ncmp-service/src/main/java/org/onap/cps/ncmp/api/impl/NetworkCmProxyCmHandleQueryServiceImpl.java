@@ -27,7 +27,7 @@ import static org.onap.cps.ncmp.api.impl.utils.CmHandleQueryConditions.WITH_CPS_
 import static org.onap.cps.ncmp.api.impl.utils.RestQueryParametersValidator.validateCpsPathConditionProperties;
 import static org.onap.cps.ncmp.api.impl.utils.RestQueryParametersValidator.validateModuleNameConditionProperties;
 import static org.onap.cps.ncmp.api.impl.utils.YangDataConverter.convertYangModelCmHandleToNcmpServiceCmHandle;
-import static org.onap.cps.spi.FetchDescendantsOption.DIRECT_CHILDREN_ONLY;
+import static org.onap.cps.spi.FetchDescendantsOption.DIRECT_CHILD_ONLY;
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS;
 
 import java.util.ArrayList;
@@ -204,7 +204,7 @@ public class NetworkCmProxyCmHandleQueryServiceImpl implements NetworkCmProxyCmH
     }
 
     private Collection<String> getAllCmHandleIds() {
-        final DataNode dataNode = inventoryPersistence.getDataNode("/dmi-registry", DIRECT_CHILDREN_ONLY)
+        final DataNode dataNode = inventoryPersistence.getDataNode("/dmi-registry", DIRECT_CHILD_ONLY)
                 .iterator().next();
         return collectCmHandleIdsFromDataNodes(dataNode.getChildDataNodes());
     }
