@@ -16,6 +16,46 @@
       "message": "Made bookstore data more consistent.",
       "revId": "829915819fabd79cedf741513c4ff52473b2229e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78f1cee0_2587dc8f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-27T09:53:22Z",
+      "side": 1,
+      "message": "much better, just oen small comment on use of mandatory...",
+      "revId": "829915819fabd79cedf741513c4ff52473b2229e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e307e977_50172e8a",
+        "filename": "cps-service/src/test/resources/bookstore.yang",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-27T09:53:22Z",
+      "side": 1,
+      "message": "I wouldn\u0027t use mandatoty for easier testing...",
+      "range": {
+        "startLine": 22,
+        "startChar": 12,
+        "endLine": 22,
+        "endChar": 29
+      },
+      "revId": "829915819fabd79cedf741513c4ff52473b2229e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
