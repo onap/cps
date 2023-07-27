@@ -32,7 +32,6 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.events.avcsubscription1_0_0.client_to_ncmp.SubscriptionEvent;
-import org.onap.cps.spi.exceptions.CloudEventConstructionException;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Slf4j
