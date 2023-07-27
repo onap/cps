@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfabb955_95d7d76c",
+        "filename": "docs/cps-ncmp-message-status-codes.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-27T12:10:42Z",
+      "side": 1,
+      "message": "CM Data Notification Subscription",
+      "range": {
+        "startLine": 17,
+        "startChar": 79,
+        "endLine": 17,
+        "endChar": 95
+      },
+      "revId": "3bd3c04d66485518a3f1729dd7384c6b8083f3a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
