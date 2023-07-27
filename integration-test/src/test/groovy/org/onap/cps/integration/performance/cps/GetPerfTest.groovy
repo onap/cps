@@ -44,7 +44,7 @@ class GetPerfTest extends CpsPerfTestBase {
             recordAndAssertPerformance("Read datatrees with ${scenario}", durationLimit, durationInMillis)
         where: 'the following parameters are used'
             scenario             | fetchDescendantsOption  | anchor       || durationLimit | expectedNumberOfDataNodes
-            'no descendants'     | OMIT_DESCENDANTS        | 'openroadm1' || 50            | 1
+            'no descendants'     | OMIT_DESCENDANTS        | 'openroadm1' || 20            | 1
             'direct descendants' | DIRECT_CHILDREN_ONLY    | 'openroadm2' || 100           | 1 + 50
             'all descendants'    | INCLUDE_ALL_DESCENDANTS | 'openroadm3' || 200           | 1 + 50 * 86
     }
@@ -56,10 +56,25 @@ class GetPerfTest extends CpsPerfTestBase {
             stopWatch.start()
             def result = objectUnderTest.getDataNodesForMultipleXpaths(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm4', xpaths, INCLUDE_ALL_DESCENDANTS)
             stopWatch.stop()
-            assert countDataNodesInTree(result) == 50 * 86
             def durationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'all data is read within 500 ms'
+        then: 'requested nodes and their descendants are returned'
+            assert countDataNodesInTree(result) == 50 * 86
+        and: 'all data is read within 200 ms'
             recordAndAssertPerformance("Read datatrees for multiple xpaths", 200, durationInMillis)
+    }
+
+    def 'Read for multiple xpaths to non-existing datanodes'() {
+        given: 'a collection of xpaths to get'
+            def xpaths = (1..50).collect { "/path/to/non-existing/node[@id='" + it + "']" }
+        when: 'get data nodes from 1 anchor'
+            stopWatch.start()
+            def result = objectUnderTest.getDataNodesForMultipleXpaths(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm4', xpaths, INCLUDE_ALL_DESCENDANTS)
+            stopWatch.stop()
+            def durationInMillis = stopWatch.getTotalTimeMillis()
+        then: 'no data is returned'
+            assert result.isEmpty()
+        and: 'the operation completes within within 20 ms'
+            recordAndAssertPerformance("Read non-existing xpaths", 20, durationInMillis)
     }
 
     def 'Read complete data trees using #scenario.'() {
