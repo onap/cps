@@ -89,11 +89,12 @@ class GetPerfTest extends CpsPerfTestBase {
         then: 'all data is read within #durationLimit ms'
             recordAndAssertPerformance("Read datatrees using ${scenario}", durationLimit, durationInMillis)
         where: 'the following xpaths are used'
-            scenario                | anchorPrefix | xpath                || durationLimit | expectedNumberOfDataNodes
-            'bookstore root'        | 'bookstore'  | '/'                  || 200           | 78
-            'bookstore top element' | 'bookstore'  | '/bookstore'         || 200           | 78
-            'openroadm root'        | 'openroadm'  | '/'                  || 600           | 1 + 50 * 86
-            'openroadm top element' | 'openroadm'  | '/openroadm-devices' || 600           | 1 + 50 * 86
+            scenario                | anchorPrefix | xpath                                  || durationLimit | expectedNumberOfDataNodes
+            'bookstore root'        | 'bookstore'  | '/'                                    || 200           | 78
+            'bookstore top element' | 'bookstore'  | '/bookstore'                           || 200           | 78
+            'openroadm root'        | 'openroadm'  | '/'                                    || 600           | 1 + 50 * 86
+            'openroadm top element' | 'openroadm'  | '/openroadm-devices'                   || 600           | 1 + 50 * 86
+            'openroadm whole list'  | 'openroadm'  | '/openroadm-devices/openroadm-device'  || 600           | 50 * 86
     }
 
 }
