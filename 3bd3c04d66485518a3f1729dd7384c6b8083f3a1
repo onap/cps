@@ -70,6 +70,30 @@
       },
       "revId": "3bd3c04d66485518a3f1729dd7384c6b8083f3a1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b4b3a4e_79477974",
+        "filename": "docs/cps-ncmp-message-status-codes.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-07-27T12:34:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5341368f_fa927714",
+      "range": {
+        "startLine": 17,
+        "startChar": 79,
+        "endLine": 17,
+        "endChar": 95
+      },
+      "revId": "3bd3c04d66485518a3f1729dd7384c6b8083f3a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
