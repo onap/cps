@@ -22,6 +22,30 @@
       },
       "revId": "f1a506a235abe624704cfdd17aadbfe1760c4c04",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2fef92c0_8d735089",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/GetPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-07-27T08:53:06Z",
+      "side": 0,
+      "message": "Ack. Will do this in another patch today",
+      "parentUuid": "e169ee60_e41961f1",
+      "range": {
+        "startLine": 59,
+        "startChar": 56,
+        "endLine": 59,
+        "endChar": 58
+      },
+      "revId": "f1a506a235abe624704cfdd17aadbfe1760c4c04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

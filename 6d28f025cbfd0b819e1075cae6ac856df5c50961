@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "78b39c78_eb213972",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/GetPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-07-27T08:53:06Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "021ee8cb_1dfcb8c3",
+      "range": {
+        "startLine": 66,
+        "startChar": 34,
+        "endLine": 66,
+        "endChar": 37
+      },
+      "revId": "6d28f025cbfd0b819e1075cae6ac856df5c50961",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0f30d13c_e8f009ee",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-07-27T07:34:47Z",
       "side": 1,
       "message": "See previous comment",
+      "range": {
+        "startLine": 48,
+        "startChar": 150,
+        "endLine": 48,
+        "endChar": 153
+      },
+      "revId": "6d28f025cbfd0b819e1075cae6ac856df5c50961",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8731471a_aeaf66fa",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/QueryPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-07-27T08:53:06Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0f30d13c_e8f009ee",
       "range": {
         "startLine": 48,
         "startChar": 150,
