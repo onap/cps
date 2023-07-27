@@ -15,31 +15,24 @@ module stores {
         }
     }
 
-    list invoice {
-        key "ProductID";
-        leaf ProductID {
-            type uint64;
-            mandatory "true";
-            description
-            "Unique product ID. Example: 001";
-        }
-        leaf ProductName {
+    list bookstore-address {
+        key "bookstore-name";
+        leaf bookstore-name {
             type string;
             mandatory "true";
             description
-            "Name of the Product";
+            "Name of bookstore. Example: My Bookstore";
         }
-        leaf price {
-            type uint64;
+        leaf address {
+            type string;
             mandatory "true";
             description
-            "Price of book";
+            "Address of store";
         }
-        leaf stock {
-            type boolean;
-            default "false";
+        leaf postal-code {
+            type string;
             description
-            "Book in stock or not. Example value: true";
+            "Postal code of store";
         }
     }
 
