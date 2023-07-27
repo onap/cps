@@ -50,6 +50,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "eda7cb30_2b57e444",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-07-27T12:34:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2194b907_72812885",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 10
+      },
+      "revId": "b95fdb45bf0924f84880365d3897da69c77ca843",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "848760f4_3a961f06",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 3
@@ -877,6 +901,30 @@
       "side": 1,
       "message": "removed",
       "parentUuid": "a66fac63_9265f838",
+      "range": {
+        "startLine": 30,
+        "startChar": 42,
+        "endLine": 30,
+        "endChar": 44
+      },
+      "revId": "b95fdb45bf0924f84880365d3897da69c77ca843",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "40ce510c_1cf6d78f",
+        "filename": "docs/ncmp-data-operation.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-07-27T12:34:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "327f8c6f_a3b59f1b",
       "range": {
         "startLine": 30,
         "startChar": 42,
