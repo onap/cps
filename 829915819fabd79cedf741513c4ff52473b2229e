@@ -56,6 +56,30 @@
       },
       "revId": "829915819fabd79cedf741513c4ff52473b2229e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "01f553e9_5cf9232e",
+        "filename": "cps-service/src/test/resources/bookstore.yang",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-07-27T09:57:22Z",
+      "side": 1,
+      "message": "removed it 😊",
+      "parentUuid": "e307e977_50172e8a",
+      "range": {
+        "startLine": 22,
+        "startChar": 12,
+        "endLine": 22,
+        "endChar": 29
+      },
+      "revId": "829915819fabd79cedf741513c4ff52473b2229e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
