@@ -93,6 +93,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5647a6c_31819591",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarder.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-27T10:22:22Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "78f7e0a5_66697b8e",
+      "range": {
+        "startLine": 116,
+        "startChar": 21,
+        "endLine": 116,
+        "endChar": 46
+      },
+      "revId": "5678dc78c29d7f90b1f59a9bfa314061e471dcd4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b491171a_227b0e84",
@@ -106,6 +130,30 @@
       "writtenOn": "2023-07-26T17:14:47Z",
       "side": 1,
       "message": "Yeah think this can be an enum, can be for whoever implements the delete part of this",
+      "range": {
+        "startLine": 73,
+        "startChar": 41,
+        "endLine": 73,
+        "endChar": 47
+      },
+      "revId": "5678dc78c29d7f90b1f59a9bfa314061e471dcd4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3524168_ad6f8904",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/SubscriptionEventCloudMapper.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-27T10:22:22Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b491171a_227b0e84",
       "range": {
         "startLine": 73,
         "startChar": 41,
