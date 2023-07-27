@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "63acfbc7_fad7011c",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/CpsDataServiceLimitsPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-07-27T12:11:28Z",
+      "side": 1,
+      "message": "Writing in batches of 100 is much faster.",
+      "parentUuid": "28279b12_aad119f9",
+      "range": {
+        "startLine": 43,
+        "startChar": 47,
+        "endLine": 43,
+        "endChar": 53
+      },
+      "revId": "e0229e1148a07200ae9745cda444aa6b8812da18",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "065c3ba9_8edb34d9",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-07-27T11:33:28Z",
       "side": 1,
       "message": "consider using: TimeUnit.MINUTES.toMicros(4)",
+      "range": {
+        "startLine": 48,
+        "startChar": 64,
+        "endLine": 48,
+        "endChar": 74
+      },
+      "revId": "e0229e1148a07200ae9745cda444aa6b8812da18",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62b15039_6d0af76f",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/CpsDataServiceLimitsPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-07-27T12:11:28Z",
+      "side": 1,
+      "message": "No longer needed",
+      "parentUuid": "065c3ba9_8edb34d9",
       "range": {
         "startLine": 48,
         "startChar": 64,
