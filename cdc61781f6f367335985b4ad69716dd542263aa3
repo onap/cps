@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7dafd43e_26304a64",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/WritePerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-27T07:30:26Z",
+      "side": 1,
+      "message": "not sure if we really need these, if we don\u0027t want to make the performance test take too long! There wil be times we want to run it to verify something (experimenting) in CI and need to wait on it... \nthis table is goor for you report, but for automated test I would just leave 3 reasonable values like 100,200 and 400\nAlso it is very easy to add change value when testing/experimenting",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 33
+      },
+      "revId": "cdc61781f6f367335985b4ad69716dd542263aa3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d967a6d5_f2d26db0",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/WritePerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-27T07:30:26Z",
+      "side": 1,
+      "message": "liek aboe I think 50, 400 and 6400 will sufice here",
+      "range": {
+        "startLine": 72,
+        "startChar": 12,
+        "endLine": 72,
+        "endChar": 23
+      },
+      "revId": "cdc61781f6f367335985b4ad69716dd542263aa3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8588f34a_a7527d5a",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/WritePerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-27T07:30:26Z",
+      "side": 1,
+      "message": "definitly too long for automates test\n(if you want you can leave them here with commented out with a small descrption for the record and future experimenting",
+      "range": {
+        "startLine": 81,
+        "startChar": 2,
+        "endLine": 83,
+        "endChar": 33
+      },
+      "revId": "cdc61781f6f367335985b4ad69716dd542263aa3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
