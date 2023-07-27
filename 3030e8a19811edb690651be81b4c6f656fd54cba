@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6b9729c_a1ee7c8b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2023-07-27T10:33:17Z",
+      "side": 1,
+      "message": "Hi! Looks good for me so im happy to give it a +1, but you should rebase this patch first.",
+      "revId": "3030e8a19811edb690651be81b4c6f656fd54cba",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "64b9d18e_afbbd381",
