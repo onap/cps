@@ -112,6 +112,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6253fe39_4ef3fcaa",
+        "filename": "docs/cps-ncmp-message-status-codes.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-27T10:45:20Z",
+      "side": 1,
+      "message": "notes",
+      "range": {
+        "startLine": 26,
+        "startChar": 3,
+        "endLine": 26,
+        "endChar": 7
+      },
+      "revId": "b95fdb45bf0924f84880365d3897da69c77ca843",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c8521f9b_1a5c9ce0",
         "filename": "docs/cps-ncmp-message-status-codes.rst",
         "patchSetId": 3
@@ -266,6 +289,52 @@
         "startChar": 12,
         "endLine": 23,
         "endChar": 13
+      },
+      "revId": "b95fdb45bf0924f84880365d3897da69c77ca843",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a66fac63_9265f838",
+        "filename": "docs/ncmp-data-operation.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-27T10:45:20Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 30,
+        "startChar": 42,
+        "endLine": 30,
+        "endChar": 44
+      },
+      "revId": "b95fdb45bf0924f84880365d3897da69c77ca843",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ccfdd44_d6946336",
+        "filename": "docs/ncmp-data-operation.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-27T10:45:20Z",
+      "side": 1,
+      "message": "no header just paragraph text.\n\nThe status codes used in the events resulting from these operations are defined here:",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 15
       },
       "revId": "b95fdb45bf0924f84880365d3897da69c77ca843",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
