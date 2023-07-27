@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "248c64b8_833f42ed",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/WritePerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-07-27T09:01:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7dafd43e_26304a64",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 33
+      },
+      "revId": "cdc61781f6f367335985b4ad69716dd542263aa3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d967a6d5_f2d26db0",
@@ -47,6 +71,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "702d0006_885b8ca5",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/WritePerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-07-27T09:01:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d967a6d5_f2d26db0",
+      "range": {
+        "startLine": 72,
+        "startChar": 12,
+        "endLine": 72,
+        "endChar": 23
+      },
+      "revId": "cdc61781f6f367335985b4ad69716dd542263aa3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8588f34a_a7527d5a",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-07-27T07:30:26Z",
       "side": 1,
       "message": "definitly too long for automates test\n(if you want you can leave them here with commented out with a small descrption for the record and future experimenting",
+      "range": {
+        "startLine": 81,
+        "startChar": 2,
+        "endLine": 83,
+        "endChar": 33
+      },
+      "revId": "cdc61781f6f367335985b4ad69716dd542263aa3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e44be1f_a6b1d611",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/WritePerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-07-27T09:01:47Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8588f34a_a7527d5a",
       "range": {
         "startLine": 81,
         "startChar": 2,
