@@ -114,7 +114,7 @@ class CpsDataServiceImplSpec extends Specification {
         given: 'schema set for given anchor and dataspace references bookstore model'
             setupSchemaSetMocks('bookstore.yang')
         when: 'save data method is invoked with list element json data'
-            def jsonData = '{"multiple-data-tree:invoice": [{"ProductID": "2","ProductName": "Banana","price": "100","stock": True}]}'
+            def jsonData = '{"bookstore-address":[{"bookstore-name":"Easons","address":"Dublin,Ireland","postal-code":"D02HA21"}]}'
             objectUnderTest.saveListElements(dataspaceName, anchorName, '/', jsonData, observedTimestamp)
         then: 'the persistence service method is invoked with correct parameters'
             1 * mockCpsDataPersistenceService.storeDataNodes(dataspaceName, anchorName,
@@ -122,7 +122,7 @@ class CpsDataServiceImplSpec extends Specification {
                     {
                         assert dataNodeCollection.size() == 1
                         assert dataNodeCollection.collect { it.getXpath() }
-                            .containsAll(['/invoice[@ProductID=\'2\']'])
+                            .containsAll(['/bookstore-address[@bookstore-name=\'Easons\']'])
                     }
                 }
             )

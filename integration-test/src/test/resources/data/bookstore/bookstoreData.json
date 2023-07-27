@@ -1,10 +1,9 @@
 {
-  "multiple-data-tree:invoice": [
+  "bookstore-address": [
     {
-      "ProductID": "1",
-      "ProductName": "Apple",
-      "price": "100",
-      "stock": false
+      "bookstore-name": "Easons",
+      "address": "Dublin,Ireland",
+      "postal-code": "D02HA21"
     }
   ],
   "bookstore": {

@@ -183,15 +183,15 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Add and Delete top-level list (element) data nodes with root node.'() {
         given: 'a new (multiple-data-tree:invoice) datanodes'
-            def json = '{"multiple-data-tree:invoice": [{"ProductID": "2","ProductName": "Mango","price": "150","stock": true}]}'
+            def json = '{"bookstore-address":[{"bookstore-name":"Scholastic","address":"Bangalore,India","postal-code":"560043"}]}'
         when: 'the new list elements are saved'
             objectUnderTest.saveListElements(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1 , '/', json, now)
         then: 'they can be retrieved by their xpaths'
-            objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1 , '/invoice[@ProductID ="2"]', INCLUDE_ALL_DESCENDANTS)
+            objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1 , '/bookstore-address[@bookstore-name="Easons"]', INCLUDE_ALL_DESCENDANTS)
         and: 'there is one extra datanode'
             assert originalCountBookstoreTopLevelListNodes + 1 == countTopLevelListDataNodesInBookstore()
         when: 'the new elements are deleted'
-            objectUnderTest.deleteDataNode(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1 , '/invoice[@ProductID ="2"]', now)
+            objectUnderTest.deleteDataNode(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1 , '/bookstore-address[@bookstore-name="Easons"]', now)
         then: 'the original number of datanodes is restored'
             assert originalCountBookstoreTopLevelListNodes == countTopLevelListDataNodesInBookstore()
     }
