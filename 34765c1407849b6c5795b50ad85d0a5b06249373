@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c292af3_e5995815",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-27T09:49:29Z",
+      "side": 1,
+      "message": "I have left a few NB comments.",
+      "revId": "34765c1407849b6c5795b50ad85d0a5b06249373",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1016d7d_d0e5b7d7",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsDataServiceIntegrationSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-27T09:49:29Z",
+      "side": 1,
+      "message": "NB: contains",
+      "range": {
+        "startLine": 122,
+        "startChar": 28,
+        "endLine": 122,
+        "endChar": 38
+      },
+      "revId": "34765c1407849b6c5795b50ad85d0a5b06249373",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aefafa50_3df8a7d4",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsDataServiceIntegrationSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-27T09:49:29Z",
+      "side": 1,
+      "message": "NB: Instead this regexp pattern matcher; can it be tested by the below line?\nassert dataNode.xpath.contains(xpathForWholeList)",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 125,
+        "endChar": 59
+      },
+      "revId": "34765c1407849b6c5795b50ad85d0a5b06249373",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "642265b6_ef54a043",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsDataServiceIntegrationSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-07-27T09:49:29Z",
+      "side": 1,
+      "message": "NB: node using",
+      "range": {
+        "startLine": 143,
+        "startChar": 43,
+        "endLine": 143,
+        "endChar": 53
+      },
+      "revId": "34765c1407849b6c5795b50ad85d0a5b06249373",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
