@@ -1,6 +1,230 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a85ab1f_12a74097",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-07-28T11:29:15Z",
+      "side": 1,
+      "message": "Left some minoe comments",
+      "revId": "2e521ab2cef77d5e504f0c9a02b915cf1838493a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84ed05cc_a7f60775",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventConsumer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-07-28T11:29:15Z",
+      "side": 1,
+      "message": "Why name of data store is inconsistent ?\n----------------------------------------\n1. Why we are not using \"org.onap.cps.ncmp.api.impl.operations.DatastoreType#PASSTHROUGH_RUNNING\" or\norg.onap.cps.ncmp.api.impl.operations.DatastoreType#PASSTHROUGH_OPERATIONAL ?\n\n2. Why \"passthrough-running\" or \"passthrough-operational\" is hardcoded where into enum org.onap.cps.ncmp.api.impl.operations.DatastoreType has data store name \"ncmp-datastore:passthrough-running\" and \"ncmp-datastore:passthrough-operational\"?",
+      "range": {
+        "startLine": 63,
+        "startChar": 12,
+        "endLine": 63,
+        "endChar": 111
+      },
+      "revId": "2e521ab2cef77d5e504f0c9a02b915cf1838493a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1c28c0b_3e55a95d",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/CpsDataUpdatedEventFactory.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-07-28T11:29:15Z",
+      "side": 1,
+      "message": "@SneakyThrows fakes out the compiler. In other words, Lombok doesn\u0027t wrap or replace the thrown checked exception, but makes the compiler think that it is an unchecked exception.\n\nIn other words, this is a way to bypass exceptions at compile time. But in my opinion this should not be the correct way of handling exceptions, because the bypassed exception can show weird behaviour at runtime.",
+      "range": {
+        "startLine": 73,
+        "startChar": 4,
+        "endLine": 73,
+        "endChar": 43
+      },
+      "revId": "2e521ab2cef77d5e504f0c9a02b915cf1838493a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56038d1d_e30920ff",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNodeBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-07-28T11:29:15Z",
+      "side": 1,
+      "message": "normalized node",
+      "range": {
+        "startLine": 188,
+        "startChar": 59,
+        "endLine": 188,
+        "endChar": 73
+      },
+      "revId": "2e521ab2cef77d5e504f0c9a02b915cf1838493a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40ae7455_5e0a4ffd",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DataNodeBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-07-28T11:29:15Z",
+      "side": 1,
+      "message": "Valid node not found",
+      "range": {
+        "startLine": 188,
+        "startChar": 77,
+        "endLine": 188,
+        "endChar": 96
+      },
+      "revId": "2e521ab2cef77d5e504f0c9a02b915cf1838493a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "588e38f4_525569a8",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-07-28T11:29:15Z",
+      "side": 1,
+      "message": "exception",
+      "range": {
+        "startLine": 144,
+        "startChar": 37,
+        "endLine": 144,
+        "endChar": 38
+      },
+      "revId": "2e521ab2cef77d5e504f0c9a02b915cf1838493a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a6d6b05_fea948c8",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-07-28T11:29:15Z",
+      "side": 1,
+      "message": "exception",
+      "range": {
+        "startLine": 146,
+        "startChar": 103,
+        "endLine": 146,
+        "endChar": 104
+      },
+      "revId": "2e521ab2cef77d5e504f0c9a02b915cf1838493a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4af5b48e_2cd8c8a1",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-07-28T11:29:15Z",
+      "side": 1,
+      "message": "exception",
+      "range": {
+        "startLine": 146,
+        "startChar": 86,
+        "endLine": 146,
+        "endChar": 87
+      },
+      "revId": "2e521ab2cef77d5e504f0c9a02b915cf1838493a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9022a7d9_62d5ad6a",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-07-28T11:29:15Z",
+      "side": 1,
+      "message": "reactorException",
+      "range": {
+        "startLine": 151,
+        "startChar": 40,
+        "endLine": 151,
+        "endChar": 41
+      },
+      "revId": "2e521ab2cef77d5e504f0c9a02b915cf1838493a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3997ff2_7164f401",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-07-28T11:29:15Z",
+      "side": 1,
+      "message": "reactorException",
+      "range": {
+        "startLine": 155,
+        "startChar": 105,
+        "endLine": 155,
+        "endChar": 106
+      },
+      "revId": "2e521ab2cef77d5e504f0c9a02b915cf1838493a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1763431b_6aaeb18e",
