@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "090a8189_0b070940",
+        "filename": "pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-07-28T13:16:04Z",
+      "side": 1,
+      "message": "so when Bumping the version were u doing the changes manually ???\nwe have to use mvn versions:set -DnewVersion\u003d\u003csnapshot version\u003e",
+      "revId": "5e7159f59a28ef441c17219a40cccb5a450a40e3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
