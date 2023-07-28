@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "959b0691_e397ad8d",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/base/CpsPerfTestBase.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-07-28T19:59:25Z",
+      "side": 1,
+      "message": "Not private, thess are used in other test classes",
+      "parentUuid": "f19ee613_5480e386",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 4
+      },
+      "revId": "19779ac996e531a49d71676db778658a61cb2f6b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4da40874_13efa23f",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-07-28T10:24:43Z",
       "side": 1,
       "message": "NB : private",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 4
+      },
+      "revId": "19779ac996e531a49d71676db778658a61cb2f6b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86be962d_37fde0da",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/base/CpsPerfTestBase.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-07-28T19:59:25Z",
+      "side": 1,
+      "message": "Not private, these are used in other test classes",
+      "parentUuid": "4da40874_13efa23f",
       "range": {
         "startLine": 30,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6764733a_35915c11",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/base/CpsPerfTestBase.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-07-28T19:59:25Z",
+      "side": 1,
+      "message": "Not private, these are used in other test classes",
+      "parentUuid": "172eed8f_0c190923",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 4
+      },
+      "revId": "19779ac996e531a49d71676db778658a61cb2f6b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1f1d249a_dceeb31a",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-07-28T10:24:43Z",
       "side": 1,
       "message": "NB : private",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 4
+      },
+      "revId": "19779ac996e531a49d71676db778658a61cb2f6b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15076f2f_e0957abd",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/base/CpsPerfTestBase.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-07-28T19:59:25Z",
+      "side": 1,
+      "message": "Not private, these are used in other test classes",
+      "parentUuid": "1f1d249a_dceeb31a",
       "range": {
         "startLine": 32,
         "startChar": 0,
