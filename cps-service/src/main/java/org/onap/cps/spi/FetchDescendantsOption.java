@@ -30,8 +30,8 @@ import org.onap.cps.spi.exceptions.DataValidationException;
 @RequiredArgsConstructor
 public class FetchDescendantsOption {
 
-    public static final FetchDescendantsOption DIRECT_CHILDREN_ONLY
-        = new FetchDescendantsOption(1, "DirectChildrenOnly");
+    public static final FetchDescendantsOption DIRECT_CHILD_ONLY
+        = new FetchDescendantsOption(1, "DirectChildOnly");
     public static final FetchDescendantsOption OMIT_DESCENDANTS
         = new FetchDescendantsOption(0, "OmitDescendants");
     public static final FetchDescendantsOption INCLUDE_ALL_DESCENDANTS
@@ -42,7 +42,7 @@ public class FetchDescendantsOption {
     }
 
     private static final Pattern FETCH_DESCENDANTS_OPTION_PATTERN =
-        Pattern.compile("^$|^all$|^none$|^[0-9]+$|^-1$");
+        Pattern.compile("^$|^all$|^none$|^direct$|^[0-9]+$|^-1$|^1$");
 
     private final int depth;
 
@@ -96,6 +96,8 @@ public class FetchDescendantsOption {
             return FetchDescendantsOption.OMIT_DESCENDANTS;
         } else if ("-1".equals(fetchDescendantsOptionAsString) || "all".equals(fetchDescendantsOptionAsString)) {
             return FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
+        } else if ("1".equals(fetchDescendantsOptionAsString) || "direct".equals(fetchDescendantsOptionAsString)) {
+            return FetchDescendantsOption.DIRECT_CHILD_ONLY;
         } else {
             final Integer depth = Integer.valueOf(fetchDescendantsOptionAsString);
             return new FetchDescendantsOption(depth);

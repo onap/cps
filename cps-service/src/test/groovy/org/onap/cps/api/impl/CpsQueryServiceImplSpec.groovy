@@ -45,7 +45,7 @@ class CpsQueryServiceImplSpec extends Specification {
             1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
         where: 'all fetch descendants options are supported'
             fetchDescendantsOption << [FetchDescendantsOption.OMIT_DESCENDANTS, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS,
-                                       FetchDescendantsOption.DIRECT_CHILDREN_ONLY, new FetchDescendantsOption(10)]
+                                       FetchDescendantsOption.DIRECT_CHILD_ONLY, new FetchDescendantsOption(10)]
     }
 
     def 'Query data nodes across all anchors by cps path with #fetchDescendantsOption.'() {

@@ -1316,8 +1316,8 @@ paths:
           schema:
             default: /
             type: string
-        - description: "Number of descendants to query. Allowed values are 'none', 'all',\
-          \ -1 (for all), 0 (for none) and any positive number."
+        - description: "Number of descendants to query. Allowed values are 'none', 'all', 'direct',\
+          \ 1 (for direct), -1 (for all), 0 (for none) and any positive number."
           in: query
           name: descendants
           required: false
@@ -2261,8 +2261,8 @@ paths:
           schema:
             default: /
             type: string
-        - description: "Number of descendants to query. Allowed values are 'none', 'all',\
-          \ -1 (for all), 0 (for none) and any positive number."
+        - description: "Number of descendants to query. Allowed values are 'none', 'all', 'direct',\
+          \ 1 (for direct), -1 (for all), 0 (for none) and any positive number."
           in: query
           name: descendants
           required: false
@@ -2350,8 +2350,8 @@ paths:
           schema:
             default: /
             type: string
-        - description: "Number of descendants to query. Allowed values are 'none', 'all',\
-          \ -1 (for all), 0 (for none) and any positive number."
+        - description: "Number of descendants to query. Allowed values are 'none', 'all', 'direct',\
+          \ 1 (for direct), -1 (for all), 0 (for none) and any positive number."
           in: query
           name: descendants
           required: false
@@ -2532,8 +2532,8 @@ components:
         example: false
         type: boolean
     descendantsInQuery:
-      description: "Number of descendants to query. Allowed values are 'none', 'all',\
-        \ -1 (for all), 0 (for none) and any positive number."
+      description: "Number of descendants to query. Allowed values are 'none', 'all', 'direct',\
+          \ 1 (for direct), -1 (for all), 0 (for none) and any positive number."
       in: query
       name: descendants
       required: false
