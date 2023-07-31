@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "48622752_62079307",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2023-07-31T13:32:54Z",
+      "side": 1,
+      "message": "Just one small comment, otherwise looks good!",
+      "revId": "6b357aedb2777645c391fe59ece42d6b0aed4555",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8708c94d_876d81db",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/subscriptions/SubscriptionPersistence.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2023-07-31T13:32:54Z",
+      "side": 1,
+      "message": "Include @return in java doc",
+      "revId": "6b357aedb2777645c391fe59ece42d6b0aed4555",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
