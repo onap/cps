@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b74dcb3_f29d2130",
+        "filename": "cps-rest/docs/openapi/cpsQueryV2.yml",
+        "patchSetId": 29
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-07-31T11:54:07Z",
+      "side": 1,
+      "message": "add description of anchors \"Query data nodes across anchors\" as it shows the same with the other on the API",
+      "range": {
+        "startLine": 56,
+        "startChar": 13,
+        "endLine": 56,
+        "endChar": 29
+      },
+      "revId": "a507d9aa3e19d2a275bc945aeadc91efcf636034",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

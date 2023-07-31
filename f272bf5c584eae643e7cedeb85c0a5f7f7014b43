@@ -73,6 +73,29 @@
       },
       "revId": "f272bf5c584eae643e7cedeb85c0a5f7f7014b43",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9380fd9_97a02e70",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/spi/PaginationOptionSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-07-31T11:54:07Z",
+      "side": 1,
+      "message": "rephrase",
+      "range": {
+        "startLine": 31,
+        "startChar": 7,
+        "endLine": 31,
+        "endChar": 43
+      },
+      "revId": "f272bf5c584eae643e7cedeb85c0a5f7f7014b43",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
