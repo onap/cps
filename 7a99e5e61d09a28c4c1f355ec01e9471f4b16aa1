@@ -925,6 +925,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "33fffb3b_52725d34",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-07-31T13:47:40Z",
+      "side": 1,
+      "message": "Addressed",
+      "parentUuid": "24c7de46_8ad61e06",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 100
+      },
+      "revId": "7a99e5e61d09a28c4c1f355ec01e9471f4b16aa1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "63ece105_4708dbe7",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
         "patchSetId": 24

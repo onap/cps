@@ -77,6 +77,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "59bad893_5c3ed869",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-07-31T13:47:40Z",
+      "side": 1,
+      "message": "Added new dataNode under existing anchor (my_anchor_2) for a branch coverage. it tests get across all anchors where multiple data nodes are available under same anchor node. added \u0027and\u0027 label for the same",
+      "parentUuid": "be43d58f_a999ae05",
+      "range": {
+        "startLine": 122,
+        "startChar": 0,
+        "endLine": 124,
+        "endChar": 106
+      },
+      "revId": "f272bf5c584eae643e7cedeb85c0a5f7f7014b43",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e9380fd9_97a02e70",
         "filename": "cps-service/src/test/groovy/org/onap/cps/spi/PaginationOptionSpec.groovy",
         "patchSetId": 33

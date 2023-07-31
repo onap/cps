@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "35220bf7_671f9a2b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 31
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-07-31T13:47:40Z",
+      "side": 1,
+      "message": "Addressed review comments.",
+      "revId": "371e1c8bda5a7186ac0bb31e9f3f234f5021b63c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "da2163a0_53eae94d",
@@ -37,6 +54,30 @@
       "writtenOn": "2023-07-31T09:48:29Z",
       "side": 1,
       "message": "Done",
+      "parentUuid": "da2163a0_53eae94d",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 57
+      },
+      "revId": "371e1c8bda5a7186ac0bb31e9f3f234f5021b63c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f46025eb_2c4a23c2",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-07-31T13:47:40Z",
+      "side": 1,
+      "message": "Addressed",
       "parentUuid": "da2163a0_53eae94d",
       "range": {
         "startLine": 82,
@@ -121,6 +162,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "031a97ac_52e1585f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-07-31T13:47:40Z",
+      "side": 1,
+      "message": "queryDataNodes have anchorName parameter which we dont heve for queryDataNodesAcrossAnchors. also Pagination is only implemented for query across anchors API.",
+      "parentUuid": "c6ffb902_b93eb0d8",
+      "range": {
+        "startLine": 288,
+        "startChar": 26,
+        "endLine": 288,
+        "endChar": 40
+      },
+      "revId": "371e1c8bda5a7186ac0bb31e9f3f234f5021b63c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f39a65e5_b345f3d3",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 31
@@ -192,6 +257,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f86d0ed5_d4c32294",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-07-31T13:47:40Z",
+      "side": 1,
+      "message": "Addressed",
+      "parentUuid": "f39a65e5_b345f3d3",
+      "range": {
+        "startLine": 325,
+        "startChar": 32,
+        "endLine": 325,
+        "endChar": 48
+      },
+      "revId": "371e1c8bda5a7186ac0bb31e9f3f234f5021b63c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d6cd3598_2a87ecc5",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 31
@@ -226,6 +315,30 @@
       "writtenOn": "2023-07-31T09:48:29Z",
       "side": 1,
       "message": "Done",
+      "parentUuid": "d6cd3598_2a87ecc5",
+      "range": {
+        "startLine": 402,
+        "startChar": 16,
+        "endLine": 402,
+        "endChar": 32
+      },
+      "revId": "371e1c8bda5a7186ac0bb31e9f3f234f5021b63c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d5517f9_821ffc7d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-07-31T13:47:40Z",
+      "side": 1,
+      "message": "Addressed",
       "parentUuid": "d6cd3598_2a87ecc5",
       "range": {
         "startLine": 402,
