@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1cb62c26_cabddabd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-31T10:35:02Z",
+      "side": 1,
+      "message": "I woudl have given +2 and merged but it needs a manual rebase, as soon as taht is done and CI passes I can merge it",
+      "revId": "26e235395f275c034b07c59d970ea94ddb9c2835",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
