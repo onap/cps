@@ -16,6 +16,23 @@
       "message": "I woudl have given +2 and merged but it needs a manual rebase, as soon as taht is done and CI passes I can merge it",
       "revId": "26e235395f275c034b07c59d970ea94ddb9c2835",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b541911_8a8e73ff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-07-31T11:05:36Z",
+      "side": 1,
+      "message": "merge conflict but all looks good +1 after fixing:)",
+      "revId": "26e235395f275c034b07c59d970ea94ddb9c2835",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
