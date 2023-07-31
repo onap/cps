@@ -50,6 +50,29 @@
       "message": "I will check out locally now and look at test coverage...\nAnd help you with any coverage issue where needed",
       "revId": "f272bf5c584eae643e7cedeb85c0a5f7f7014b43",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be43d58f_a999ae05",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-31T10:47:55Z",
+      "side": 1,
+      "message": "I am not clear why more data has been added. ID this covers a new scenario it should be descried using an \u0027and: ...\u0027  label before the new node...",
+      "range": {
+        "startLine": 122,
+        "startChar": 0,
+        "endLine": 124,
+        "endChar": 106
+      },
+      "revId": "f272bf5c584eae643e7cedeb85c0a5f7f7014b43",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
