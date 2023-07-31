@@ -344,6 +344,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "07f9f120_12af0073",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-07-31T09:48:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0272d140_48b7d19e",
+      "range": {
+        "startLine": 348,
+        "startChar": 49,
+        "endLine": 348,
+        "endChar": 59
+      },
+      "revId": "8da3d7b0b8f2a50ae888996aeb1e46a012a727fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9fe31af8_beb7d377",
@@ -429,6 +453,30 @@
       "side": 1,
       "message": "Addressed",
       "parentUuid": "f2b06390_eb33c0e3",
+      "range": {
+        "startLine": 353,
+        "startChar": 203,
+        "endLine": 353,
+        "endChar": 226
+      },
+      "revId": "8da3d7b0b8f2a50ae888996aeb1e46a012a727fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0da688f0_5642cc15",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-07-31T09:48:29Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "db3c7353_b1fff6b2",
       "range": {
         "startLine": 353,
         "startChar": 203,
