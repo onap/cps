@@ -106,7 +106,7 @@ class FetchDescendantsOptionSpec extends Specification {
         where: 'the following option is used'
             fetchDescendantsOption                         || expectedStringValue
             FetchDescendantsOption.OMIT_DESCENDANTS        || 'OmitDescendants'
-            FetchDescendantsOption.DIRECT_CHILD_ONLY       || 'DirectChildOnly'
+            FetchDescendantsOption.DIRECT_CHILDREN_ONLY    || 'DirectChildrenOnly'
             FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS || 'IncludeAllDescendants'
             new FetchDescendantsOption(2)                  || 'Depth=2'
     }

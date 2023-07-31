@@ -1,7 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2023 Nordix Foundation
- *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -25,7 +24,7 @@ import java.time.OffsetDateTime
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.integration.performance.base.CpsPerfTestBase
 
-import static org.onap.cps.spi.FetchDescendantsOption.DIRECT_CHILD_ONLY
+import static org.onap.cps.spi.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 
 class CpsDataServiceLimitsPerfTest extends CpsPerfTestBase {
@@ -93,7 +92,7 @@ class CpsDataServiceLimitsPerfTest extends CpsPerfTestBase {
     }
 
     def countDataNodes() {
-        def results = objectUnderTest.getDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, 'limitsAnchor', '/bookstore/categories[@code=1]', DIRECT_CHILD_ONLY)
+        def results = objectUnderTest.getDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, 'limitsAnchor', '/bookstore/categories[@code=1]', DIRECT_CHILDREN_ONLY)
         return results[0].childDataNodes.size()
     }
 

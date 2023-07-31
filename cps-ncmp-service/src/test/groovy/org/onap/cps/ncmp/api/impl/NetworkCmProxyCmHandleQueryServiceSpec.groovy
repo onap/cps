@@ -1,7 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022-2023 Nordix Foundation
- *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -127,7 +126,7 @@ class NetworkCmProxyCmHandleQueryServiceSpec extends Specification {
         given: 'We use an empty query'
             def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
         and: 'the inventory persistence returns the dmi registry datanode with just ids'
-            mockInventoryPersistence.getDataNode("/dmi-registry", FetchDescendantsOption.DIRECT_CHILD_ONLY) >> [dmiRegistry]
+            mockInventoryPersistence.getDataNode("/dmi-registry", FetchDescendantsOption.DIRECT_CHILDREN_ONLY) >> [dmiRegistry]
         when: 'the query is executed for both cm handle ids'
             def result = objectUnderTest.queryCmHandleIds(cmHandleQueryParameters)
         then: 'the correct expected cm handles are returned'
