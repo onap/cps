@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a774cde2_55c9acd1",
+        "filename": "cps-ri/pom.xml",
+        "patchSetId": 19
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-07-31T09:55:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "62242750_a8a746f3",
+      "range": {
+        "startLine": 36,
+        "startChar": 26,
+        "endLine": 36,
+        "endChar": 30
+      },
+      "revId": "752e4bdfd94d3ec138248e2a6cfec6a3123349e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7eab4a5b_092ad780",
