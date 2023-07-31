@@ -25,7 +25,7 @@ package org.onap.cps.rest.controller
 
 import org.onap.cps.utils.PrefixResolver
 
-import static org.onap.cps.spi.FetchDescendantsOption.DIRECT_CHILD_ONLY
+import static org.onap.cps.spi.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
@@ -144,6 +144,6 @@ class QueryRestControllerSpec extends Specification {
             'no descendants by default' | ''                             || OMIT_DESCENDANTS
             'no descendant explicitly'  | 'none'                         || OMIT_DESCENDANTS
             'descendants'               | 'all'                          || INCLUDE_ALL_DESCENDANTS
-            'direct children'           | 'direct'                       || DIRECT_CHILD_ONLY
+            'direct children'           | 'direct'                       || DIRECT_CHILDREN_ONLY
     }
 }
