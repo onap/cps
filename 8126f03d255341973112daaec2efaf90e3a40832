@@ -16,6 +16,23 @@
       "message": "Fixed Merge conflict. Ready for Review",
       "revId": "8126f03d255341973112daaec2efaf90e3a40832",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c5fd1c5_464a752f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-31T08:07:23Z",
+      "side": 1,
+      "message": "please fix the inocrrect renaming of the ENUM!",
+      "revId": "8126f03d255341973112daaec2efaf90e3a40832",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ],
   "submitRequirementResults": [

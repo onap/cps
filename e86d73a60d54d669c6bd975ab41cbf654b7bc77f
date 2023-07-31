@@ -84,6 +84,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8f652ec8_f4502ff2",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-07-31T08:07:23Z",
+      "side": 1,
+      "message": "incorrect, it shoudl be PLURAL!",
+      "parentUuid": "3a299433_05789932",
+      "range": {
+        "startLine": 28,
+        "startChar": 54,
+        "endLine": 28,
+        "endChar": 74
+      },
+      "revId": "e86d73a60d54d669c6bd975ab41cbf654b7bc77f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e3e26fd8_305e55fd",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
         "patchSetId": 2
