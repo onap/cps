@@ -63,6 +63,30 @@
       },
       "revId": "61f5e14c5cdebe659dfae0c7143a07d6f81cb06c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a5ce3e8_594a6cca",
+        "filename": "cps-service/src/test/resources/bookstore.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-08-01T08:23:37Z",
+      "side": 1,
+      "message": "Thank you Toine and Priyank 😊",
+      "parentUuid": "0471605c_77bc6d90",
+      "range": {
+        "startLine": 6,
+        "startChar": 25,
+        "endLine": 6,
+        "endChar": 32
+      },
+      "revId": "61f5e14c5cdebe659dfae0c7143a07d6f81cb06c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
