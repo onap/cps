@@ -7,37 +7,22 @@
       {
         "id": "CMHandle1",
         "status": "REJECTED",
-        "details": "Faulty subscription format for target(s)"
+        "details": "Some error message from the DMI"
       },
       {
         "id": "CMHandle2",
         "status": "REJECTED",
-        "details": "Faulty subscription format for target(s)"
+        "details": "Some other error message from the DMI"
       },
       {
         "id": "CMHandle3",
-        "status": "REJECTED",
-        "details": "Faulty subscription format for target(s)"
+        "status": "PENDING",
+        "details": "No reply from DMI yet"
       },
       {
         "id": "CMHandle4",
-        "status": "REJECTED",
-        "details": "Target(s) do not exist"
-      },
-      {
-        "id": "CMHandle5",
         "status": "PENDING",
-        "details": "EMS or node connectivity issues, retrying"
-      },
-      {
-        "id": "CMHandle6",
-        "status": "PENDING",
-        "details": "EMS or node connectivity issues, retrying"
-      },
-      {
-        "id": "CMHandle7",
-        "status": "PENDING",
-        "details": "EMS or node connectivity issues, retrying"
+        "details": "No reply from DMI yet"
       }
     ]
   }

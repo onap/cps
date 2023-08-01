@@ -50,6 +50,7 @@ public class SubscriptionEventResponseConsumer {
     private final SubscriptionPersistence subscriptionPersistence;
     private final SubscriptionEventResponseMapper subscriptionEventResponseMapper;
     private final SubscriptionEventResponseOutcome subscriptionEventResponseOutcome;
+    private final SubscriptionEventResponseCloudMapper subscriptionEventResponseCloudMapper;
 
     @Value("${notification.enabled:true}")
     private boolean notificationFeatureEnabled;
@@ -69,7 +70,7 @@ public class SubscriptionEventResponseConsumer {
         final CloudEvent cloudEvent = subscriptionEventResponseConsumerRecord.value();
         final String eventType = subscriptionEventResponseConsumerRecord.value().getType();
         final SubscriptionEventResponse subscriptionEventResponse =
-                SubscriptionEventResponseCloudMapper.toSubscriptionEventResponse(cloudEvent);
+                subscriptionEventResponseCloudMapper.toSubscriptionEventResponse(cloudEvent);
         final String clientId = subscriptionEventResponse.getData().getClientId();
         log.info("subscription event response of clientId: {} is received.", clientId);
         final String subscriptionName = subscriptionEventResponse.getData().getSubscriptionName();
