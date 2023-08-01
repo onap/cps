@@ -61,7 +61,9 @@ public class DmiRestClient {
     }
 
     private HttpHeaders configureHttpHeaders(final HttpHeaders httpHeaders) {
-        httpHeaders.setBasicAuth(dmiProperties.getAuthUsername(), dmiProperties.getAuthPassword());
+        if (dmiProperties.isDmiBasicAuthEnabled()) {
+            httpHeaders.setBasicAuth(dmiProperties.getAuthUsername(), dmiProperties.getAuthPassword());
+        }
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         return httpHeaders;
     }
