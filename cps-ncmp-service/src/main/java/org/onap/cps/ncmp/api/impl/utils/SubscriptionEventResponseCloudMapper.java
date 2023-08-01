@@ -25,16 +25,15 @@ import io.cloudevents.CloudEvent;
 import io.cloudevents.core.CloudEventUtils;
 import io.cloudevents.core.data.PojoCloudEventData;
 import io.cloudevents.jackson.PojoCloudEventDataMapper;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.events.avcsubscription1_0_0.dmi_to_ncmp.SubscriptionEventResponse;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Slf4j
+@RequiredArgsConstructor
 public class SubscriptionEventResponseCloudMapper {
 
-    private static final ObjectMapper objectMapper = new ObjectMapper();
+    private final ObjectMapper objectMapper;
 
     /**
      * Maps CloudEvent object to SubscriptionEventResponse.
@@ -42,7 +41,7 @@ public class SubscriptionEventResponseCloudMapper {
      * @param cloudEvent object
      * @return SubscriptionEventResponse deserialized
      */
-    public static SubscriptionEventResponse toSubscriptionEventResponse(final CloudEvent cloudEvent) {
+    public SubscriptionEventResponse toSubscriptionEventResponse(final CloudEvent cloudEvent) {
         final PojoCloudEventData<SubscriptionEventResponse> deserializedCloudEvent = CloudEventUtils
                 .mapData(cloudEvent, PojoCloudEventDataMapper.from(objectMapper, SubscriptionEventResponse.class));
         if (deserializedCloudEvent == null) {
