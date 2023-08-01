@@ -35,6 +35,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e9d4b05_92a762ac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 34
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-01T07:27:29Z",
+      "side": 1,
+      "message": "looks like job failed because of intermittent error, I triggered a recheck",
+      "revId": "f84300d348ab44d43e592d5a1c7b509eaa8bf483",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d301e2c2_dfff9d9c",
