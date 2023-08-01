@@ -43,6 +43,7 @@ Bug Fixes
 Features
 --------
     - `CPS-1696 <https://jira.onap.org/browse/CPS-1696>`_ Get Data Node to return entire List data node.
+    - `CPS-1819 <https://jira.onap.org/browse/CPS-1819>`_ Ability to disable sending authorization header.
 
 
 Version: 3.3.5

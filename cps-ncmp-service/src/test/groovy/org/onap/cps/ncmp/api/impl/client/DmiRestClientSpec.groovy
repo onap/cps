@@ -27,6 +27,7 @@ import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.HttpEntity
+import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.test.context.ContextConfiguration
@@ -50,6 +51,13 @@ class DmiRestClientSpec extends Specification {
     def resourceUrl = 'some url'
 
     def mockResponseEntity = Mock(ResponseEntity)
+    def dmiProperties = new NcmpConfiguration.DmiProperties()
+
+    def setup() {
+        dmiProperties.authUsername = 'test user'
+        dmiProperties.authPassword = 'test pass'
+        dmiProperties.dmiBasePath = 'dmi'
+    }
 
     def 'DMI POST operation with JSON.'() {
         given: 'the rest template returns a valid response entity'
@@ -75,6 +83,18 @@ class DmiRestClientSpec extends Specification {
             assert thrown.details == 'server response'
         where: 'the following operation is executed'
             operation << [CREATE, READ, PATCH]
+    }
+
+    def 'Basic auth header #scenario'() {
+        when: 'Specific dmi properties are provided'
+            dmiProperties.dmiBasicAuthEnabled = authEnabled
+            objectUnderTest.dmiProperties = dmiProperties
+        then: 'http headers to conditionally have Authorization header'
+            assert (objectUnderTest.configureHttpHeaders(new HttpHeaders()).get('Authorization') != null) == isPresentInHttpHeader
+        where: ''
+            scenario        | authEnabled || isPresentInHttpHeader
+            'auth enabled'  | true        || true
+            'auth disabled' | false       || false
     }
 
 }
