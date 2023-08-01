@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ba6da4d_90e99574",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 35
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-01T16:57:57Z",
+      "side": 1,
+      "message": "few last comments",
+      "revId": "031f1051ea463ffa987da6705b60d56a17731b9c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e77bcf3b_257289ba",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-01T16:57:57Z",
+      "side": 1,
+      "message": "NO need as this method is only used WITH pagination\nusing this check leads to branch which cannot be reached!\n(I am suer I had this adressed in my patch)",
+      "range": {
+        "startLine": 99,
+        "startChar": 8,
+        "endLine": 99,
+        "endChar": 65
+      },
+      "revId": "031f1051ea463ffa987da6705b60d56a17731b9c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2ba5057_f8c7f097",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/utils/CpsValidatorSpec.groovy",
+        "patchSetId": 35
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-01T16:57:57Z",
+      "side": 1,
+      "message": "since PaginationOption has its own unit test for all combinations you only need ONE negative scenario here!\nNo need for \u0027where\u0027 at all",
+      "range": {
+        "startLine": 77,
+        "startChar": 1,
+        "endLine": 79,
+        "endChar": 56
+      },
+      "revId": "031f1051ea463ffa987da6705b60d56a17731b9c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a1cccf7_d22bda22",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 35
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-01T16:57:57Z",
+      "side": 1,
+      "message": "no identation.\n\nCan simply using single expect: statament\nexpect: \u0027/bookstore is present in two anchors\u0027\n   assert  objectUnderTest.countAnchorsForDataspaceAndCpsPath(FUNCTIONAL_TEST_DATASPACE_1, \u0027/bookstore\u0027) \u003d\u003d 2",
+      "range": {
+        "startLine": 409,
+        "startChar": 1,
+        "endLine": 412,
+        "endChar": 32
+      },
+      "revId": "031f1051ea463ffa987da6705b60d56a17731b9c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
