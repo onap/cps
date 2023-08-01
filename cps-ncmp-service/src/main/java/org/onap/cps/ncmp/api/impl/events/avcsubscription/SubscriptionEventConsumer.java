@@ -24,6 +24,7 @@ import io.cloudevents.CloudEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.onap.cps.ncmp.api.impl.operations.DatastoreType;
 import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionPersistence;
 import org.onap.cps.ncmp.api.impl.utils.SubscriptionEventCloudMapper;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelSubscriptionEvent;
@@ -41,6 +42,7 @@ public class SubscriptionEventConsumer {
     private final SubscriptionEventForwarder subscriptionEventForwarder;
     private final SubscriptionEventMapper subscriptionEventMapper;
     private final SubscriptionPersistence subscriptionPersistence;
+    private final SubscriptionEventCloudMapper subscriptionEventCloudMapper;
 
     @Value("${notification.enabled:true}")
     private boolean notificationFeatureEnabled;
@@ -58,11 +60,12 @@ public class SubscriptionEventConsumer {
     public void consumeSubscriptionEvent(final ConsumerRecord<String, CloudEvent> subscriptionEventConsumerRecord) {
         final CloudEvent cloudEvent = subscriptionEventConsumerRecord.value();
         final String eventType = subscriptionEventConsumerRecord.value().getType();
-        final SubscriptionEvent subscriptionEvent = SubscriptionEventCloudMapper.toSubscriptionEvent(cloudEvent);
+        final SubscriptionEvent subscriptionEvent = subscriptionEventCloudMapper.toSubscriptionEvent(cloudEvent);
         final String eventDatastore = subscriptionEvent.getData().getPredicates().getDatastore();
-        if (!(eventDatastore.equals("passthrough-running") || eventDatastore.equals("passthrough-operational"))) {
+        if (!eventDatastore.equals(DatastoreType.PASSTHROUGH_RUNNING.getDatastoreName())
+                || eventDatastore.equals(DatastoreType.OPERATIONAL.getDatastoreName())) {
             throw new UnsupportedOperationException(
-                "passthrough datastores are currently only supported for event subscriptions");
+                    "passthrough datastores are currently only supported for event subscriptions");
         }
         if ("CM".equals(subscriptionEvent.getData().getDataType().getDataCategory())) {
             if (subscriptionModelLoaderEnabled) {

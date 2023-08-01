@@ -61,6 +61,7 @@ public class SubscriptionEventForwarder {
     private final IMap<String, Set<String>> forwardedSubscriptionEventCache;
     private final SubscriptionEventResponseOutcome subscriptionEventResponseOutcome;
     private final SubscriptionEventMapper subscriptionEventMapper;
+    private final SubscriptionEventCloudMapper subscriptionEventCloudMapper;
     private final ClientSubscriptionEventMapper clientSubscriptionEventMapper;
     private final SubscriptionPersistence subscriptionPersistence;
     private final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
@@ -157,7 +158,7 @@ public class SubscriptionEventForwarder {
             final String dmiAvcSubscriptionTopic = dmiAvcSubscriptionTopicPrefix + dmiName;
 
             final CloudEvent ncmpSubscriptionCloudEvent =
-                    SubscriptionEventCloudMapper.toCloudEvent(ncmpSubscriptionEvent, eventKey, eventType);
+                    subscriptionEventCloudMapper.toCloudEvent(ncmpSubscriptionEvent, eventKey, eventType);
             eventsPublisher.publishCloudEvent(dmiAvcSubscriptionTopic, eventKey, ncmpSubscriptionCloudEvent);
         });
     }

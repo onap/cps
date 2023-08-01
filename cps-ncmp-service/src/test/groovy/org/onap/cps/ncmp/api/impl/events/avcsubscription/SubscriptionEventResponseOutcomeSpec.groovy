@@ -49,6 +49,8 @@ class SubscriptionEventResponseOutcomeSpec extends DataNodeBaseSpec {
     EventsPublisher<CloudEvent> mockSubscriptionEventOutcomePublisher = Mock(EventsPublisher<CloudEvent>)
     @SpringBean
     SubscriptionOutcomeMapper subscriptionOutcomeMapper = Mappers.getMapper(SubscriptionOutcomeMapper)
+    @SpringBean
+    SubscriptionOutcomeCloudMapper subscriptionOutcomeCloudMapper = new SubscriptionOutcomeCloudMapper(new ObjectMapper())
 
     @Autowired
     JsonObjectMapper jsonObjectMapper

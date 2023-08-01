@@ -54,7 +54,7 @@ class ClientSubscriptionEventMapperSpec extends Specification {
         and: 'predicate targets is null'
             assert result.getData().getPredicates().getTargets() == []
         and: 'datastore is passthrough-running'
-            assert result.getData().getPredicates().getDatastore() == 'passthrough-running'
+            assert result.getData().getPredicates().getDatastore() == 'ncmp-datastore:passthrough-running'
     }
 
 }

@@ -9,13 +9,13 @@
           "targets": ["CMHandle4"]
         },
         {
-          "details": "Faulty subscription format for target(s)",
+          "details": "Some error message from the DMI",
           "targets": ["CMHandle1", "CMHandle2", "CMHandle3"]
         }
       ],
       "pending": [
         {
-          "details": "EMS or node connectivity issues, retrying",
+          "details": "No DMI reply from DMI yet",
           "targets": ["CMHandle5", "CMHandle6", "CMHandle7"]
         }
       ]

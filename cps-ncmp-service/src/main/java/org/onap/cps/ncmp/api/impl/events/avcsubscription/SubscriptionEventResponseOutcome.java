@@ -48,6 +48,8 @@ public class SubscriptionEventResponseOutcome {
 
     private final SubscriptionOutcomeMapper subscriptionOutcomeMapper;
 
+    private final SubscriptionOutcomeCloudMapper subscriptionOutcomeCloudMapper;
+
     @Value("${app.ncmp.avc.subscription-outcome-topic:subscription-response}")
     private String subscriptionOutcomeEventTopic;
 
@@ -63,7 +65,7 @@ public class SubscriptionEventResponseOutcome {
         final String subscriptionName = subscriptionEventResponse.getData().getSubscriptionName();
         final String subscriptionEventId = subscriptionClientId + subscriptionName;
         final CloudEvent subscriptionOutcomeCloudEvent =
-                SubscriptionOutcomeCloudMapper.toCloudEvent(subscriptionEventOutcome,
+                subscriptionOutcomeCloudMapper.toCloudEvent(subscriptionEventOutcome,
                 subscriptionEventId, eventKey);
         outcomeEventsPublisher.publishCloudEvent(subscriptionOutcomeEventTopic,
                 subscriptionEventId, subscriptionOutcomeCloudEvent);
