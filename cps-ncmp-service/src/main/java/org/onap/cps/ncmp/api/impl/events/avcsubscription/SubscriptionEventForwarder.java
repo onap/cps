@@ -61,6 +61,7 @@ public class SubscriptionEventForwarder {
     private final IMap<String, Set<String>> forwardedSubscriptionEventCache;
     private final SubscriptionEventResponseOutcome subscriptionEventResponseOutcome;
     private final SubscriptionEventMapper subscriptionEventMapper;
+    private final SubscriptionEventCloudMapper subscriptionEventCloudMapper;
     private final ClientSubscriptionEventMapper clientSubscriptionEventMapper;
     private final SubscriptionPersistence subscriptionPersistence;
     private final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
@@ -132,12 +133,8 @@ public class SubscriptionEventForwarder {
         final ResponseTimeoutTask responseTimeoutTask =
             new ResponseTimeoutTask(forwardedSubscriptionEventCache, subscriptionEventResponseOutcome,
                     emptySubscriptionEventResponse);
-        try {
-            executorService.schedule(responseTimeoutTask, dmiResponseTimeoutInMs, TimeUnit.MILLISECONDS);
-        } catch (final RuntimeException ex) {
-            log.info("Caught exception in ScheduledExecutorService for ResponseTimeoutTask. StackTrace: {}",
-                    ex.toString());
-        }
+
+        executorService.schedule(responseTimeoutTask, dmiResponseTimeoutInMs, TimeUnit.MILLISECONDS);
     }
 
     private void forwardEventToDmis(final Map<String, Map<String, Map<String, String>>> dmiNameCmHandleMap,
@@ -157,7 +154,7 @@ public class SubscriptionEventForwarder {
             final String dmiAvcSubscriptionTopic = dmiAvcSubscriptionTopicPrefix + dmiName;
 
             final CloudEvent ncmpSubscriptionCloudEvent =
-                    SubscriptionEventCloudMapper.toCloudEvent(ncmpSubscriptionEvent, eventKey, eventType);
+                    subscriptionEventCloudMapper.toCloudEvent(ncmpSubscriptionEvent, eventKey, eventType);
             eventsPublisher.publishCloudEvent(dmiAvcSubscriptionTopic, eventKey, ncmpSubscriptionCloudEvent);
         });
     }

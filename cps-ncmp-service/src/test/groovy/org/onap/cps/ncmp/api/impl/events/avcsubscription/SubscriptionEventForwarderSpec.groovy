@@ -30,6 +30,7 @@ import org.mapstruct.factory.Mappers
 import org.onap.cps.ncmp.api.impl.events.EventsPublisher
 import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionPersistence
 import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionStatus
+import org.onap.cps.ncmp.api.impl.utils.SubscriptionEventCloudMapper
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelSubscriptionEvent.TargetCmHandle
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence
@@ -44,7 +45,6 @@ import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import spock.util.concurrent.BlockingVariable
-
 import java.util.concurrent.TimeUnit
 
 @SpringBootTest(classes = [ObjectMapper, JsonObjectMapper, SubscriptionEventForwarder])
@@ -60,6 +60,8 @@ class SubscriptionEventForwarderSpec extends MessagingBaseSpec {
     @SpringBean
     IMap<String, Set<String>> mockForwardedSubscriptionEventCache = Mock(IMap<String, Set<String>>)
     @SpringBean
+    SubscriptionEventCloudMapper subscriptionEventCloudMapper = new SubscriptionEventCloudMapper(new ObjectMapper())
+    @SpringBean
     SubscriptionEventResponseOutcome mockSubscriptionEventResponseOutcome = Mock(SubscriptionEventResponseOutcome)
     @SpringBean
     SubscriptionPersistence mockSubscriptionPersistence = Mock(SubscriptionPersistence)
@@ -69,8 +71,8 @@ class SubscriptionEventForwarderSpec extends MessagingBaseSpec {
     ClientSubscriptionEventMapper clientSubscriptionEventMapper = Mappers.getMapper(ClientSubscriptionEventMapper)
     @Autowired
     JsonObjectMapper jsonObjectMapper
-
-    def objectMapper = new ObjectMapper()
+    @Autowired
+    ObjectMapper objectMapper
 
     def 'Forward valid CM create subscription and simulate timeout'() {
         given: 'an event'
