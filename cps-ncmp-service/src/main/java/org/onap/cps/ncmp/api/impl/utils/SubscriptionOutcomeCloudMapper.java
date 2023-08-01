@@ -20,21 +20,23 @@
 
 package org.onap.cps.ncmp.api.impl.utils;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.cloudevents.CloudEvent;
 import io.cloudevents.core.builder.CloudEventBuilder;
 import java.net.URI;
 import java.util.UUID;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.events.avcsubscription1_0_0.ncmp_to_client.SubscriptionEventOutcome;
+import org.springframework.stereotype.Component;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Slf4j
+@Component
+@RequiredArgsConstructor
 public class SubscriptionOutcomeCloudMapper {
 
-    private static final ObjectMapper objectMapper = new ObjectMapper();
+    private final ObjectMapper objectMapper;
 
     private static String randomId = UUID.randomUUID().toString();
 
@@ -44,7 +46,7 @@ public class SubscriptionOutcomeCloudMapper {
      * @param subscriptionEventOutcome object
      * @return CloudEvent
      */
-    public static CloudEvent toCloudEvent(final SubscriptionEventOutcome subscriptionEventOutcome,
+    public CloudEvent toCloudEvent(final SubscriptionEventOutcome subscriptionEventOutcome,
                                           final String eventKey, final String eventType) {
         try {
             return CloudEventBuilder.v1()
@@ -54,9 +56,9 @@ public class SubscriptionOutcomeCloudMapper {
                     .withExtension("correlationid", eventKey)
                     .withDataSchema(URI.create("urn:cps:" + SubscriptionEventOutcome.class.getName() + ":1.0.0"))
                     .withData(objectMapper.writeValueAsBytes(subscriptionEventOutcome)).build();
-        } catch (final Exception ex) {
-            throw new CloudEventConstructionException("The Cloud Event could not be constructed", "Invalid object to "
-                    + "serialize or required headers is missing", ex);
+        } catch (final JsonProcessingException jsonProcessingException) {
+            log.error("The Cloud Event could not be constructed", jsonProcessingException);
         }
+        return null;
     }
 }
