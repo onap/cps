@@ -39,6 +39,7 @@ ncmp:
         auth:
             username: some-user
             password: some-password
+            enabled: true
         api:
             base-path: dmi
 

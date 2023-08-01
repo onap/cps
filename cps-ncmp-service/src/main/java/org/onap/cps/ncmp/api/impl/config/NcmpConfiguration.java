@@ -52,6 +52,8 @@ public class NcmpConfiguration {
         private String authPassword;
         @Value("${ncmp.dmi.api.base-path}")
         private String dmiBasePath;
+        @Value("${ncmp.dmi.auth.enabled}")
+        private boolean dmiBasicAuthEnabled;
     }
 
     /**
