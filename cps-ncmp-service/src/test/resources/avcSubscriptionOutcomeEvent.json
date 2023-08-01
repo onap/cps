@@ -5,18 +5,18 @@
     "additionalInfo": {
       "rejected": [
         {
-          "details": "Target(s) do not exist",
-          "targets": ["CMHandle4"]
+          "details": "Some other error message from the DMI",
+          "targets": ["CMHandle2"]
         },
         {
-          "details": "Faulty subscription format for target(s)",
-          "targets": ["CMHandle1", "CMHandle2", "CMHandle3"]
+          "details": "Some error message from the DMI",
+          "targets": ["CMHandle1"]
         }
       ],
       "pending": [
         {
-          "details": "EMS or node connectivity issues, retrying",
-          "targets": ["CMHandle5", "CMHandle6", "CMHandle7"]
+          "details": "No reply from DMI yet",
+          "targets": ["CMHandle3", "CMHandle4"]
         }
       ]
     }

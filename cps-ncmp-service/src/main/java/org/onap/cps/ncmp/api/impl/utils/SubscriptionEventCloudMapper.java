@@ -20,6 +20,7 @@
 
 package org.onap.cps.ncmp.api.impl.utils;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.cloudevents.CloudEvent;
 import io.cloudevents.core.CloudEventUtils;
@@ -28,16 +29,17 @@ import io.cloudevents.core.data.PojoCloudEventData;
 import io.cloudevents.jackson.PojoCloudEventDataMapper;
 import java.net.URI;
 import java.util.UUID;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.events.avcsubscription1_0_0.client_to_ncmp.SubscriptionEvent;
+import org.springframework.stereotype.Component;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Slf4j
+@Component
+@RequiredArgsConstructor
 public class SubscriptionEventCloudMapper {
 
-    private static final ObjectMapper objectMapper = new ObjectMapper();
+    private final ObjectMapper objectMapper;
 
     private static String randomId = UUID.randomUUID().toString();
 
@@ -47,7 +49,7 @@ public class SubscriptionEventCloudMapper {
      * @param cloudEvent object.
      * @return SubscriptionEvent deserialized.
      */
-    public static SubscriptionEvent toSubscriptionEvent(final CloudEvent cloudEvent) {
+    public SubscriptionEvent toSubscriptionEvent(final CloudEvent cloudEvent) {
         final PojoCloudEventData<SubscriptionEvent> deserializedCloudEvent = CloudEventUtils
                 .mapData(cloudEvent, PojoCloudEventDataMapper.from(objectMapper, SubscriptionEvent.class));
         if (deserializedCloudEvent == null) {
@@ -67,7 +69,7 @@ public class SubscriptionEventCloudMapper {
      * @param eventKey as String.
      * @return CloudEvent built.
      */
-    public static CloudEvent toCloudEvent(
+    public CloudEvent toCloudEvent(
             final org.onap.cps.ncmp.events.avcsubscription1_0_0.ncmp_to_dmi.SubscriptionEvent ncmpSubscriptionEvent,
             final String eventKey, final String eventType) {
         try {
@@ -80,9 +82,9 @@ public class SubscriptionEventCloudMapper {
                             + org.onap.cps.ncmp.events.avcsubscription1_0_0.ncmp_to_dmi
                                     .SubscriptionEvent.class.getName() + ":1.0.0"))
                     .withData(objectMapper.writeValueAsBytes(ncmpSubscriptionEvent)).build();
-        } catch (final Exception ex) {
-            throw new CloudEventConstructionException("The Cloud Event could not be constructed", "Invalid object to "
-                    + "serialize or required headers is missing", ex);
+        } catch (final JsonProcessingException jsonProcessingException) {
+            log.error("The Cloud Event could not be constructed", jsonProcessingException);
         }
+        return null;
     }
 }
