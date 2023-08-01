@@ -52,6 +52,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d0d2036_991440ca",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 34
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-08-01T14:29:39Z",
+      "side": 1,
+      "message": "Added missing test cases and addressed all review comments",
+      "revId": "f84300d348ab44d43e592d5a1c7b509eaa8bf483",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d301e2c2_dfff9d9c",
@@ -65,6 +82,30 @@
       "writtenOn": "2023-08-01T07:25:19Z",
       "side": 1,
       "message": "second data node for the same anchor",
+      "range": {
+        "startLine": 122,
+        "startChar": 14,
+        "endLine": 122,
+        "endChar": 45
+      },
+      "revId": "f84300d348ab44d43e592d5a1c7b509eaa8bf483",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8886715c_ba1ea456",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 34
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-08-01T14:29:39Z",
+      "side": 1,
+      "message": "Addressed",
+      "parentUuid": "d301e2c2_dfff9d9c",
       "range": {
         "startLine": 122,
         "startChar": 14,
