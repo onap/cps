@@ -181,7 +181,7 @@ components:
         type: string
         example: my-schema-set
     anchorNameInQuery:
-      name: anchor-name
+      name: anchor-name-in-query
       in: query
       description: anchor-name
       required: true
