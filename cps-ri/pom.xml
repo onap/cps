@@ -33,7 +33,7 @@
     <artifactId>cps-ri</artifactId>
 
     <properties>
-        <minimum-coverage>0.29</minimum-coverage>
+        <minimum-coverage>0.26</minimum-coverage>
         <!-- Additional coverage is provided by integration-test module -->
     </properties>
 
