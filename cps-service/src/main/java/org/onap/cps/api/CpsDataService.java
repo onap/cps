@@ -26,9 +26,11 @@ package org.onap.cps.api;
 
 import java.time.OffsetDateTime;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.spi.model.DeltaReport;
 import org.onap.cps.utils.ContentType;
 
 /*
@@ -298,4 +300,19 @@ public interface CpsDataService {
      * @param timeoutInMilliseconds lock attempt timeout in milliseconds
      */
     void lockAnchor(String sessionID, String dataspaceName, String anchorName, Long timeoutInMilliseconds);
+
+    /**
+     * Retrieves the delta between two anchors by xpath within a dataspace.
+     *
+     * @param dataspaceName          dataspace name
+     * @param sourceAnchorName       source anchor name
+     * @param targetAnchorName       target anchor name
+     * @param xpath                  xpath
+     * @param fetchDescendantsOption defines the scope of data to fetch: either single node or all the descendant
+     *                               nodes (recursively) as well
+     * @return                       list containing {@link DeltaReport} objects
+     */
+    List<DeltaReport> getDeltaByDataspaceAndAnchors(String dataspaceName, String sourceAnchorName,
+                                                    String targetAnchorName, String xpath,
+                                                    FetchDescendantsOption fetchDescendantsOption);
 }
