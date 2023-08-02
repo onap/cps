@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f53dbcc_1f2f64ab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 37
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-02T12:29:22Z",
+      "side": 1,
+      "message": "just convention for the header name....",
+      "revId": "68f27f6c8bb5f11f5c4fe50d452740378e0a2b9f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68bb8607_924b511d",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/QueryRestController.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-02T12:29:22Z",
+      "side": 1,
+      "message": "i think headers use lower case and dashes by convention ie. \"total-pages\"\nDuring your demo i noticed the headername is converted to lowercase anyway but you stil need the dash I think...",
+      "range": {
+        "startLine": 101,
+        "startChar": 43,
+        "endLine": 101,
+        "endChar": 53
+      },
+      "revId": "68f27f6c8bb5f11f5c4fe50d452740378e0a2b9f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53dddc16_6b07707f",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/QueryRestController.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-02T12:29:22Z",
+      "side": 1,
+      "message": "use Math.floorDiv instead, see https://www.javatpoint.com/java-math-floordiv-method",
+      "range": {
+        "startLine": 112,
+        "startChar": 18,
+        "endLine": 112,
+        "endChar": 90
+      },
+      "revId": "68f27f6c8bb5f11f5c4fe50d452740378e0a2b9f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fde0e4ec_883680d3",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 37
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-02T12:29:22Z",
+      "side": 1,
+      "message": "NB: indent",
+      "range": {
+        "startLine": 168,
+        "startChar": 8,
+        "endLine": 168,
+        "endChar": 22
+      },
+      "revId": "68f27f6c8bb5f11f5c4fe50d452740378e0a2b9f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
