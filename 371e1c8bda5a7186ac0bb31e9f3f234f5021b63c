@@ -89,6 +89,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff36ab6a_d5ebb037",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-02T08:10:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f46025eb_2c4a23c2",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 57
+      },
+      "revId": "371e1c8bda5a7186ac0bb31e9f3f234f5021b63c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "671d49d4_97e2c94a",
@@ -303,6 +327,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "df2a912a_032ed7c2",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-02T08:10:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f86d0ed5_d4c32294",
+      "range": {
+        "startLine": 325,
+        "startChar": 32,
+        "endLine": 325,
+        "endChar": 48
+      },
+      "revId": "371e1c8bda5a7186ac0bb31e9f3f234f5021b63c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d6cd3598_2a87ecc5",
@@ -364,6 +412,30 @@
       "side": 1,
       "message": "Addressed",
       "parentUuid": "d6cd3598_2a87ecc5",
+      "range": {
+        "startLine": 402,
+        "startChar": 16,
+        "endLine": 402,
+        "endChar": 32
+      },
+      "revId": "371e1c8bda5a7186ac0bb31e9f3f234f5021b63c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb5ba54e_ea9d3cd3",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-02T08:10:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d5517f9_821ffc7d",
       "range": {
         "startLine": 402,
         "startChar": 16,

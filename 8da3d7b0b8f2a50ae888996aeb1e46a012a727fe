@@ -170,6 +170,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5e5612fc_3f1df91d",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/QueryRestController.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-02T08:10:59Z",
+      "side": 1,
+      "message": "Rajesh explain this is a requirement from DT but he will ask them again and try to convince them suggest be names \n1) totalAnchors\nOR using calculation\n2) totalPages (1+INT(totalAnchots/PageSize)",
+      "parentUuid": "896c32e5_265539fd",
+      "range": {
+        "startLine": 100,
+        "startChar": 43,
+        "endLine": 100,
+        "endChar": 55
+      },
+      "revId": "8da3d7b0b8f2a50ae888996aeb1e46a012a727fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e8c65a87_ece9e002",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
         "patchSetId": 21
@@ -406,6 +430,30 @@
       "side": 1,
       "message": "Addressed",
       "parentUuid": "0272d140_48b7d19e",
+      "range": {
+        "startLine": 348,
+        "startChar": 49,
+        "endLine": 348,
+        "endChar": 59
+      },
+      "revId": "8da3d7b0b8f2a50ae888996aeb1e46a012a727fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac3cf7f6_ef3d3e6a",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-02T08:10:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "83a81beb_d33f5e2e",
       "range": {
         "startLine": 348,
         "startChar": 49,
