@@ -25,6 +25,7 @@ package org.onap.cps.api.impl
 
 import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAdminService
+import org.onap.cps.api.CpsDeltaService
 import org.onap.cps.notification.NotificationService
 import org.onap.cps.notification.Operation
 import org.onap.cps.spi.CpsDataPersistenceService
@@ -37,12 +38,13 @@ import org.onap.cps.spi.exceptions.SessionTimeoutException
 import org.onap.cps.spi.model.Anchor
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
+import org.onap.cps.spi.utils.CpsValidator
 import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.TimedYangParser
 import org.onap.cps.yang.YangTextSchemaSourceSet
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
+import spock.lang.Shared
 import spock.lang.Specification
-import org.onap.cps.spi.utils.CpsValidator
 
 import java.time.OffsetDateTime
 import java.util.stream.Collectors
@@ -54,18 +56,28 @@ class CpsDataServiceImplSpec extends Specification {
     def mockNotificationService = Mock(NotificationService)
     def mockCpsValidator = Mock(CpsValidator)
     def timedYangParser = new TimedYangParser()
+    def cpsDeltaService = Mock(CpsDeltaService);
 
     def objectUnderTest = new CpsDataServiceImpl(mockCpsDataPersistenceService, mockCpsAdminService,
-            mockYangTextSchemaSourceSetCache, mockNotificationService, mockCpsValidator, timedYangParser)
+            mockYangTextSchemaSourceSetCache, mockNotificationService, mockCpsValidator, timedYangParser, cpsDeltaService)
 
     def setup() {
+
         mockCpsAdminService.getAnchor(dataspaceName, anchorName) >> anchor
+        mockCpsAdminService.getAnchor(dataspaceName, ANCHOR_NAME_1) >> anchor1
+        mockCpsAdminService.getAnchor(dataspaceName, ANCHOR_NAME_2) >> anchor2
     }
 
+    @Shared
+    static def ANCHOR_NAME_1 = 'some-anchor-1'
+    @Shared
+    static def ANCHOR_NAME_2 = 'some-anchor-2'
     def dataspaceName = 'some-dataspace'
     def anchorName = 'some-anchor'
     def schemaSetName = 'some-schema-set'
     def anchor = Anchor.builder().name(anchorName).dataspaceName(dataspaceName).schemaSetName(schemaSetName).build()
+    def anchor1 = Anchor.builder().name(ANCHOR_NAME_1).dataspaceName(dataspaceName).schemaSetName(schemaSetName).build()
+    def anchor2 = Anchor.builder().name(ANCHOR_NAME_2).dataspaceName(dataspaceName).schemaSetName(schemaSetName).build()
     def observedTimestamp = OffsetDateTime.now()
 
     def 'Saving #scenario data.'() {
@@ -226,6 +238,25 @@ class CpsDataServiceImplSpec extends Specification {
             objectUnderTest.getDataNodesForMultipleXpaths(dataspaceName, anchorName, [xpath1, xpath2], fetchDescendantsOption) == dataNode
         where: 'all fetch options are supported'
             fetchDescendantsOption << [FetchDescendantsOption.OMIT_DESCENDANTS, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS]
+    }
+
+    def 'Get delta between 2 anchors with #scenario and #fetchDescendantsOption'() {
+        def xpath = '/xpath'
+        def dataNode1 = [new DataNodeBuilder().withXpath(xpath).build()]
+        def dataNode2 = [new DataNodeBuilder().withXpath(xpath).build()]
+        when: 'attempt to get delta'
+            objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, referenceAnchor, comparandAnchor, xpath, fetchDescendantsOption)
+        then: 'the dataspace and anchor names are validated'
+            2 * mockCpsValidator.validateNameCharacters(_)
+        and: 'data nodes are fetched using appropriate persistence layer method'
+            mockCpsDataPersistenceService.getDataNodesForMultipleXpaths(dataspaceName, referenceAnchor, [xpath], fetchDescendantsOption) >> dataNode1
+            mockCpsDataPersistenceService.getDataNodesForMultipleXpaths(dataspaceName, comparandAnchor, [xpath], fetchDescendantsOption) >> dataNode2
+        where: 'following data is used'
+            scenario                  | referenceAnchor | comparandAnchor | fetchDescendantsOption
+            'unique anchor names'     | ANCHOR_NAME_1   | ANCHOR_NAME_2   | FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
+            'unique anchor names'     | ANCHOR_NAME_1   | ANCHOR_NAME_2   | FetchDescendantsOption.OMIT_DESCENDANTS
+            'equivalent anchor names' | ANCHOR_NAME_1   | ANCHOR_NAME_1   | FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
+            'equivalent anchor names' | ANCHOR_NAME_1   | ANCHOR_NAME_1   | FetchDescendantsOption.OMIT_DESCENDANTS
     }
 
     def 'Update data node leaves: #scenario.'() {
