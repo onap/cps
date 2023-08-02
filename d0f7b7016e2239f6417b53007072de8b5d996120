@@ -1,0 +1,371 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ce2402f_e5921a3e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-02T09:51:28Z",
+      "side": 1,
+      "message": "Organis meeting to agree consistent event names and then apply EVERYWHERE",
+      "revId": "d0f7b7016e2239f6417b53007072de8b5d996120",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "391a5115_bfdf80c0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventConsumer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-02T09:51:28Z",
+      "side": 1,
+      "message": "use static import to make this shorter",
+      "range": {
+        "startLine": 65,
+        "startChar": 35,
+        "endLine": 65,
+        "endChar": 49
+      },
+      "revId": "d0f7b7016e2239f6417b53007072de8b5d996120",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48a9255c_5de1741c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventConsumer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-02T09:51:28Z",
+      "side": 1,
+      "message": "do we really support both datastores?! I think we need a chat with Pritank and Sourabh about this...",
+      "range": {
+        "startLine": 66,
+        "startChar": 55,
+        "endLine": 66,
+        "endChar": 66
+      },
+      "revId": "d0f7b7016e2239f6417b53007072de8b5d996120",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca76186e_2f2b10cf",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/SubscriptionEventCloudMapper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-02T09:51:28Z",
+      "side": 1,
+      "message": "add CmDataNotification prefix too all class and schema just being called \u0027subscription",
+      "range": {
+        "startLine": 33,
+        "startChar": 68,
+        "endLine": 33,
+        "endChar": 85
+      },
+      "revId": "d0f7b7016e2239f6417b53007072de8b5d996120",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc7a211e_d10a4ecc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/SubscriptionEventCloudMapper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-02T09:51:28Z",
+      "side": 1,
+      "message": "DataNotificationSubscriptionEventMapper",
+      "range": {
+        "startLine": 38,
+        "startChar": 13,
+        "endLine": 38,
+        "endChar": 42
+      },
+      "revId": "d0f7b7016e2239f6417b53007072de8b5d996120",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4bde3e1d_ab1b937d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/SubscriptionEventCloudMapper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-02T09:51:28Z",
+      "side": 1,
+      "message": "Use new event names once agreed",
+      "range": {
+        "startLine": 54,
+        "startChar": 29,
+        "endLine": 54,
+        "endChar": 48
+      },
+      "revId": "d0f7b7016e2239f6417b53007072de8b5d996120",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0253ed8a_744e656f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/SubscriptionEventCloudMapper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-02T09:51:28Z",
+      "side": 1,
+      "message": "Use new event names once agreed",
+      "range": {
+        "startLine": 74,
+        "startChar": 22,
+        "endLine": 74,
+        "endChar": 34
+      },
+      "revId": "d0f7b7016e2239f6417b53007072de8b5d996120",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54a3178b_457fcce0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/SubscriptionOutcomeCloudMapper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-02T09:51:28Z",
+      "side": 1,
+      "message": "CmDataNotificationSubscrptionOutcomeEventMapper",
+      "range": {
+        "startLine": 35,
+        "startChar": 13,
+        "endLine": 35,
+        "endChar": 44
+      },
+      "revId": "d0f7b7016e2239f6417b53007072de8b5d996120",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c417258f_9faf552a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/SubscriptionOutcomeCloudMapper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-02T09:51:28Z",
+      "side": 1,
+      "message": "use new event names once agreed",
+      "range": {
+        "startLine": 51,
+        "startChar": 22,
+        "endLine": 51,
+        "endChar": 34
+      },
+      "revId": "d0f7b7016e2239f6417b53007072de8b5d996120",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7b10ded_e4c4dcb7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventForwarderSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-02T09:51:28Z",
+      "side": 1,
+      "message": "remvoe all ; in Groovy!",
+      "range": {
+        "startLine": 75,
+        "startChar": 29,
+        "endLine": 75,
+        "endChar": 30
+      },
+      "revId": "d0f7b7016e2239f6417b53007072de8b5d996120",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95ee6f7a_83875523",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/SubscriptionEventCloudMapperSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-02T09:51:28Z",
+      "side": 1,
+      "message": "as discussed once we have good names thi will be easier\nbut needs updates!",
+      "range": {
+        "startLine": 102,
+        "startChar": 16,
+        "endLine": 102,
+        "endChar": 50
+      },
+      "revId": "d0f7b7016e2239f6417b53007072de8b5d996120",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a39bd80a_e614f574",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/SubscriptionOutcomeCloudMapperSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-02T09:51:28Z",
+      "side": 1,
+      "message": "Use new event names once agreed",
+      "revId": "d0f7b7016e2239f6417b53007072de8b5d996120",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c53f7470_7d4ed9a2",
+        "filename": "cps-ncmp-service/src/test/resources/avcSubscriptionEventResponse.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-02T09:51:28Z",
+      "side": 1,
+      "message": "Use new event names once agreed",
+      "revId": "d0f7b7016e2239f6417b53007072de8b5d996120",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90330fda_335474c6",
+        "filename": "cps-ncmp-service/src/test/resources/avcSubscriptionEventResponse.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-02T09:51:28Z",
+      "side": 1,
+      "message": "typically 2 examples are sufficient to proof demo/fucntionality\nanything more leads to ADDTIONAL maintenance",
+      "range": {
+        "startLine": 18,
+        "startChar": 23,
+        "endLine": 18,
+        "endChar": 24
+      },
+      "revId": "d0f7b7016e2239f6417b53007072de8b5d996120",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0483c2c7_1df703c0",
+        "filename": "cps-ncmp-service/src/test/resources/avcSubscriptionEventResponse.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-02T09:51:28Z",
+      "side": 1,
+      "message": "mislead error message\ninstead use \u0027some other...\u0027",
+      "range": {
+        "startLine": 25,
+        "startChar": 20,
+        "endLine": 25,
+        "endChar": 42
+      },
+      "revId": "d0f7b7016e2239f6417b53007072de8b5d996120",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b307aa3d_e4cf5137",
+        "filename": "cps-ncmp-service/src/test/resources/avcSubscriptionEventResponse.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-02T09:51:28Z",
+      "side": 1,
+      "message": "DMI can not use \u0027Pending\u0027",
+      "range": {
+        "startLine": 27,
+        "startChar": 6,
+        "endLine": 41,
+        "endChar": 7
+      },
+      "revId": "d0f7b7016e2239f6417b53007072de8b5d996120",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7136a08_e65ebd7a",
+        "filename": "cps-ncmp-service/src/test/resources/avcSubscriptionOutcomeEvent.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-02T09:51:28Z",
+      "side": 1,
+      "message": "change name once agreed",
+      "revId": "d0f7b7016e2239f6417b53007072de8b5d996120",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
