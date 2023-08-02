@@ -30,6 +30,7 @@ import org.onap.cps.api.CpsDataService
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
+import org.onap.cps.spi.model.DeltaReportCustomBuilder
 import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.DateTimeUtility
 import org.onap.cps.utils.JsonObjectMapper
@@ -331,7 +332,27 @@ class DataRestControllerSpec extends Specification {
         and: 'the response contains the root node identifier'
             assert response.contentAsString.contains('parent')
         and: 'the response contains child is true'
-            assert response.contentAsString.contains('"child"') == true
+            assert response.contentAsString.contains('"child"')
+    }
+
+    def 'Get delta between two anchors'() {
+        given: 'the service returns a list containing delta'
+            def deltaReport = new DeltaReportCustomBuilder().actionUpdate().withXpath('/bookstore').withSourceData('bookstore-name': 'Easons').withTargetData('bookstore-name': 'Easons').build()
+            def sourceAnchor = 'sourceAnchor'
+            def targetAnchor = 'targetAnchor'
+            def xpath = 'some xpath'
+            def endpoint = "$dataNodeBaseEndpointV2/anchors/$sourceAnchor/delta"
+            mockCpsDataService.getDeltaByDataspaceAndAnchors(dataspaceName, sourceAnchor, targetAnchor, xpath, OMIT_DESCENDANTS) >> [deltaReport]
+        when: 'get delta request is performed using REST API'
+            def response =
+                mvc.perform(get(endpoint)
+                    .param('target-anchor-name', targetAnchor)
+                    .param('xpath', xpath))
+                    .andReturn().response
+        then: 'expected response code is returned'
+            assert response.status == HttpStatus.OK.value()
+        and: 'the response contains expected value'
+            assert response.contentAsString.contains("[{\"action\":\"update\",\"xpath\":\"/bookstore\",\"sourceData\":{\"bookstore-name\":\"Easons\"},\"targetData\":{\"bookstore-name\":\"Easons\"}}]")
     }
 
     def 'Update data node leaves: #scenario.'() {
