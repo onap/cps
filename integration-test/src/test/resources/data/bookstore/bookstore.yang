@@ -40,7 +40,7 @@ module stores {
             type string;
         }
 
-        container webinfo {
+        container web-info {
             leaf domain-name {
                 type string;
             }
@@ -48,6 +48,17 @@ module stores {
                 type string;
             }
         }
+
+        container support-info {
+                    leaf support-office {
+                        type string;
+                    }
+                    container contact-emails {
+                        leaf email {
+                            type string;
+                        }
+                    }
+                }
 
         container container-without-leaves { }
 
