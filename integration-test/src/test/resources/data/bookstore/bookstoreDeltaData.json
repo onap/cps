@@ -1,0 +1,189 @@
+{
+  "bookstore-address": [
+    {
+      "bookstore-name": "My New Bookstore",
+      "address": "Unknown",
+      "postal-code": ""
+    }
+  ],
+  "bookstore": {
+    "bookstore-name": "My New Bookstore",
+    "premises": {
+      "addresses": [
+        {
+          "house-number": 2,
+          "street": "Main Street",
+          "town": "Maynooth",
+          "county": "Kildare"
+        },
+        {
+          "house-number": 24,
+          "street": "Grafton Street",
+          "town": "Dublin",
+          "county": "Dublin"
+        }
+      ]
+    },
+    "categories": [
+      {
+        "code": 1,
+        "name": "Children/Kids",
+        "books" : [
+          {
+            "title": "Matilda",
+            "lang": "English,German",
+            "authors": ["Roald Dahl"],
+            "editions": [1988, 2000],
+            "price": 30
+          },
+          {
+            "title": "The Gruffalo",
+            "lang": "French",
+            "authors": ["Julia Donaldson"],
+            "editions": [1999],
+            "price": 15
+          }
+        ]
+      },
+      {
+        "code": 2,
+        "name": "Thriller",
+        "books" : [
+          {
+            "title": "Annihilation",
+            "lang": "English",
+            "authors": ["Jeff VanderMeer"],
+            "editions": [2014],
+            "price": 15
+          },
+          {
+            "title": "Gone Girl",
+            "lang": "English",
+            "authors": ["Gillian Flynn"],
+            "editions": [2012],
+            "price": 14
+          }
+        ]
+      },
+      {
+        "code": 3,
+        "name": "Comedy/Laughter",
+        "books" : [
+          {
+            "title": "Good Omens",
+            "lang": "English",
+            "authors": ["Neil Gaiman", "Terry Pratchett"],
+            "editions": [2006],
+            "price": 20
+          },
+          {
+            "title": "The Colour of Magic",
+            "lang": "English",
+            "authors": ["Terry Pratchett"],
+            "editions": [1983,2023],
+            "price": 12
+          },
+          {
+            "title": "The Light Fantastic",
+            "lang": "English",
+            "authors": ["Terry Pratchett"],
+            "editions": [1986]
+          }
+        ]
+      },
+      {
+        "code": 4,
+        "name": "Computing",
+        "books" : [
+          {
+            "title": "Debian GNU/Linux",
+            "lang": "German",
+            "authors": ["Peter H. Ganten", "Wulf Alex"],
+            "editions": [2007, 2013, 2021],
+            "price": 20
+          },
+          {
+            "title": "Java For Dummies",
+            "lang": "English",
+            "authors": ["Barry A. Burd"],
+            "editions": [2015, 2022]
+          }
+        ]
+      },
+      {
+        "code": 5,
+        "name": "Discount books",
+        "books" : [
+          {
+            "title": "Book 1",
+            "lang": "blah",
+            "authors": [],
+            "editions": []
+          },
+          {
+            "title": "Book 2",
+            "lang": "blah",
+            "authors": [],
+            "editions": [],
+            "price": 2
+          },
+          {
+            "title": "Book 3",
+            "lang": "blah",
+            "authors": [],
+            "editions": [],
+            "price": 3
+          },
+          {
+            "title": "Book 4",
+            "lang": "blah",
+            "authors": [],
+            "editions": [],
+            "price": 4
+          },
+          {
+            "title": "Book 5",
+            "lang": "blah",
+            "authors": [],
+            "editions": [],
+            "price": 5
+          },
+          {
+            "title": "Book 6",
+            "lang": "blah",
+            "authors": [],
+            "editions": [],
+            "price": 6
+          },
+          {
+            "title": "Book 7",
+            "lang": "blah",
+            "authors": [],
+            "editions": [],
+            "price": 7
+          },
+          {
+            "title": "Book 8",
+            "lang": "blah",
+            "authors": [],
+            "editions": [],
+            "price": 8
+          },
+          {
+            "title": "Book 9",
+            "lang": "blah",
+            "authors": [],
+            "editions": [],
+            "price": 9
+          },
+          {
+            "title": "Book 10",
+            "lang": "blah",
+            "authors": [],
+            "editions": [],
+            "price": 10
+          }
+        ]
+      }    ]
+  }
+}

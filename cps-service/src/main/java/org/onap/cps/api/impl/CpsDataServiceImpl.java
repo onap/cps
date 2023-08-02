@@ -33,6 +33,7 @@ import java.io.Serializable;
 import java.time.OffsetDateTime;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -211,6 +212,24 @@ public class CpsDataServiceImpl implements CpsDataService {
     public void lockAnchor(final String sessionID, final String dataspaceName,
                            final String anchorName, final Long timeoutInMilliseconds) {
         cpsDataPersistenceService.lockAnchor(sessionID, dataspaceName, anchorName, timeoutInMilliseconds);
+    }
+
+    @Override
+    @Timed(value = "cps.data.service.get.delta",
+            description = "Time taken to delta between anchors")
+    public List<Map<String, Object>> getDeltaByDataspaceAndAnchors(final String dataspaceName, final String anchorName1,
+                                                      final String anchorName2, final String xpath,
+                                                      final FetchDescendantsOption fetchDescendantsOption) {
+        cpsValidator.validateNameCharacters(dataspaceName, anchorName1, anchorName2);
+        //TODO: (Arpit) returning empty list if both anchor names are same. Or should a more specific response be sent
+        if (anchorName1.equals(anchorName2)) {
+            cpsAdminService.getDataspace(dataspaceName);
+            return Collections.emptyList();
+        }
+        final String validatedAnchor1 = cpsAdminService.getAnchor(dataspaceName, anchorName1).getName();
+        final String validatedAnchor2 = cpsAdminService.getAnchor(dataspaceName, anchorName2).getName();
+        return cpsDataPersistenceService.getDeltaByDataspaceAndAnchors(dataspaceName, validatedAnchor1,
+                validatedAnchor2, xpath, fetchDescendantsOption);
     }
 
     @Override
