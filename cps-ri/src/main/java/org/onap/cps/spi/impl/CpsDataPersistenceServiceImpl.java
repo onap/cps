@@ -81,6 +81,9 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     private final SessionManager sessionManager;
 
     private static final String REG_EX_FOR_OPTIONAL_LIST_INDEX = "(\\[@.+?])?)";
+    private static final String ADD_ACTION = "add";
+    private static final String REMOVE_ACTION = "remove";
+    private static final String UPDATE_ACTION = "update";
 
     @Override
     public void addChildDataNodes(final String dataspaceName, final String anchorName,
@@ -418,6 +421,300 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         }
         final List<Long> anchorIdList = getAnchorIdsForPagination(dataspaceEntity, cpsPathQuery, NO_PAGINATION);
         return anchorIdList.size();
+    }
+
+    @Override
+    @Timed(value = "cps.data.persistence.service.get.delta",
+            description = "Time taken to get delta")
+    public List<Map<String, Object>> getDeltaByDataspaceAndAnchors(final String dataspaceName,
+                                                                   final String referenceAnchorName,
+                                                                   final String comparandAnchorName,
+                                                                   final String xpath,
+                                                                  final FetchDescendantsOption fetchDescendantsOption) {
+
+        final Collection<DataNode> referenceDataNodes = getDataNodesForMultipleXpaths(dataspaceName,
+                referenceAnchorName, Collections.singletonList(xpath), fetchDescendantsOption);
+        final Collection<DataNode> comparandDataNodes = getDataNodesForMultipleXpaths(dataspaceName,
+                comparandAnchorName, Collections.singletonList(xpath), fetchDescendantsOption);
+        if (referenceDataNodes.isEmpty() && comparandDataNodes.isEmpty()) {
+            throw new DataNodeNotFoundException(dataspaceName, referenceAnchorName + "," + comparandAnchorName, xpath);
+        }
+        return getDeltaBetweenDataNodes(referenceDataNodes, comparandDataNodes);
+    }
+
+    private List<Map<String, Object>> getDeltaBetweenDataNodes(final Collection<DataNode> referenceDataNodes,
+                                                               final Collection<DataNode> comparandDataNodes) {
+
+
+        final List<Map<String, Object>> deltaReport = new ArrayList<>();
+
+        final Map<String, DataNode> xpathToReferenceDataNodes = getXpathToDataNode(referenceDataNodes);
+        final Map<String, DataNode> xpathToComparandDataNodes = getXpathToDataNode(comparandDataNodes);
+
+        deltaReport.addAll(getRemovedAndUpdatedNodes(referenceDataNodes, xpathToComparandDataNodes));
+
+        deltaReport.addAll(getAddedNodes(xpathToReferenceDataNodes, xpathToComparandDataNodes));
+
+        return Collections.unmodifiableList(deltaReport);
+    }
+
+    private List<Map<String, Object>>  getRemovedAndUpdatedNodes(final Collection<DataNode> referenceDataNodes,
+                                                              final Map<String, DataNode> xpathToComparandDataNodes) {
+
+        final List<Map<String, Object>> removedAndUpdatedNodes = new ArrayList<>();
+        for (final DataNode referenceDataNode : referenceDataNodes) {
+            final String xpath = referenceDataNode.getXpath();
+            final DataNode comparandDataNode = xpathToComparandDataNodes.get(xpath);
+            if (comparandDataNode == null) {
+                final Map<String, Serializable> referenceDataNodeLeaves = referenceDataNode.getLeaves();
+                final Collection<DataNode> referenceDataNodesChildren = referenceDataNode.getChildDataNodes();
+                if (!referenceDataNodeLeaves.isEmpty() && !referenceDataNodesChildren.isEmpty()) {
+                    removedAndUpdatedNodes.add(getDeltaReportEntities(REMOVE_ACTION, xpath, referenceDataNodeLeaves,
+                            Collections.emptyMap()));
+                    removedAndUpdatedNodes.addAll(getDeltaBetweenDataNodes(referenceDataNodesChildren,
+                            Collections.emptyList()));
+                } else if (!referenceDataNodeLeaves.isEmpty()) {
+                    removedAndUpdatedNodes.add(getDeltaReportEntities(REMOVE_ACTION, xpath,
+                            referenceDataNodeLeaves, Collections.emptyMap()));
+                } else if (!referenceDataNode.getChildDataNodes().isEmpty()) {
+                    removedAndUpdatedNodes.addAll(getDeltaBetweenDataNodes(referenceDataNodesChildren,
+                            Collections.emptyList()));
+                } else {
+                    removedAndUpdatedNodes.add(getDeltaReportEntities(REMOVE_ACTION, xpath, Collections.emptyMap(),
+                            Collections.emptyMap()));
+                }
+            } else {
+                removedAndUpdatedNodes.addAll(getUpdatedNodes(xpath, referenceDataNode, comparandDataNode));
+            }
+        }
+        return removedAndUpdatedNodes;
+    }
+
+    private List<Map<String, Object>> getUpdatedNodes(final String xpath, final DataNode referenceDataNode,
+                                                      final DataNode comparandDataNode) {
+
+        final List<Map<String, Object>> updatedNodes = new ArrayList<>();
+
+        final Map<String, Serializable> referenceDataNodeLeaves = referenceDataNode.getLeaves();
+        final Collection<DataNode> referenceDataNodesChildren = referenceDataNode.getChildDataNodes();
+
+        final Map<String, Serializable> comparandDataNodeLeaves = comparandDataNode.getLeaves();
+        final Collection<DataNode> comparandDataNodesChildren = comparandDataNode.getChildDataNodes();
+
+        if (!referenceDataNodeLeaves.isEmpty() && !referenceDataNodesChildren.isEmpty()) {
+            if (!comparandDataNodeLeaves.isEmpty() && !comparandDataNodesChildren.isEmpty()) {
+                //reference and comparand nodes have leaves and child
+                log.info("1 compare leaves of ref and comp node {}", xpath);
+                final Map<Map<String, Serializable>, Map<String, Serializable>> sourceLeavesToUpdatedLeaves =
+                        getSourceLeavesAndUpdatedLeaves(referenceDataNodeLeaves, comparandDataNodeLeaves);
+                if (!sourceLeavesToUpdatedLeaves.isEmpty()) {
+                    for (Map.Entry<Map<String, Serializable>, Map<String, Serializable>> entry: sourceLeavesToUpdatedLeaves.entrySet()) {
+                        updatedNodes.add(getDeltaReportEntities(UPDATE_ACTION, xpath, entry.getKey(), entry.getValue()));
+                    }
+                }
+
+                log.info("2 compare child of ref and comp node {}", xpath);
+                updatedNodes.addAll(getDeltaBetweenDataNodes(referenceDataNodesChildren, comparandDataNodesChildren));
+            } else if (!comparandDataNodeLeaves.isEmpty()) {
+                //reference has leaves and child, comparand has only leaves
+                log.info("3 compare leaves of ref and comp node {}", xpath);
+                final Map<Map<String, Serializable>, Map<String, Serializable>> sourceLeavesToUpdatedLeaves =
+                        getSourceLeavesAndUpdatedLeaves(referenceDataNodeLeaves, comparandDataNodeLeaves);
+                if (!sourceLeavesToUpdatedLeaves.isEmpty()) {
+                    for (Map.Entry<Map<String, Serializable>, Map<String, Serializable>> entry: sourceLeavesToUpdatedLeaves.entrySet()) {
+                        updatedNodes.add(getDeltaReportEntities(UPDATE_ACTION, xpath, entry.getKey(), entry.getValue()));
+                    }
+                }
+
+                log.info("4 recursive call ref node child only {}", xpath);
+                updatedNodes.addAll(getDeltaBetweenDataNodes(referenceDataNodesChildren, Collections.emptyList()));
+            } else if (!comparandDataNodesChildren.isEmpty()) {
+                //reference has leaves and child, comparand has only child
+                log.info("5 print ref node leaves {}", xpath);
+                updatedNodes.add(getDeltaReportEntities(UPDATE_ACTION, xpath, referenceDataNodeLeaves, Collections.emptyMap()));
+
+                log.info("6 recursive call ref and comp node {}", xpath);
+                updatedNodes.addAll(getDeltaBetweenDataNodes(referenceDataNodesChildren, comparandDataNodesChildren));
+            } else {
+                //reference has leaves and child, comparand is empty
+                log.info("7 print ref node leaves {}", xpath);
+                updatedNodes.add(getDeltaReportEntities(UPDATE_ACTION, xpath, referenceDataNodeLeaves, Collections.emptyMap()));
+
+                log.info("8 recursive call ref node child only {}", xpath);
+                updatedNodes.addAll(getDeltaBetweenDataNodes(referenceDataNodesChildren, Collections.emptyList()));
+            }
+        } else if (!referenceDataNodeLeaves.isEmpty()) {
+            if (!comparandDataNodeLeaves.isEmpty() && !comparandDataNodesChildren.isEmpty()) {
+                //reference has leaves only, comparand has leaves and child
+                log.info("9 compare leaves of ref and comp node {}", xpath);
+                final Map<Map<String, Serializable>, Map<String, Serializable>> sourceLeavesToUpdatedLeaves =
+                        getSourceLeavesAndUpdatedLeaves(referenceDataNodeLeaves, comparandDataNodeLeaves);
+                if (!sourceLeavesToUpdatedLeaves.isEmpty()) {
+                    for (Map.Entry<Map<String, Serializable>, Map<String, Serializable>> entry: sourceLeavesToUpdatedLeaves.entrySet()) {
+                        updatedNodes.add(getDeltaReportEntities(UPDATE_ACTION, xpath, entry.getKey(), entry.getValue()));
+                    }
+                }
+
+                log.info("10 recursive call with only comparand child");
+                updatedNodes.addAll(getDeltaBetweenDataNodes(Collections.emptyList(), comparandDataNodesChildren));
+            } else if (!comparandDataNodeLeaves.isEmpty()) {
+                //reference and comparand have leaves only
+                log.info("11 compare leaves of ref and comp node {}", xpath);
+                final Map<Map<String, Serializable>, Map<String, Serializable>> sourceLeavesToUpdatedLeaves =
+                        getSourceLeavesAndUpdatedLeaves(referenceDataNodeLeaves, comparandDataNodeLeaves);
+                if (!sourceLeavesToUpdatedLeaves.isEmpty()) {
+                    for (Map.Entry<Map<String, Serializable>, Map<String, Serializable>> entry: sourceLeavesToUpdatedLeaves.entrySet()) {
+                        updatedNodes.add(getDeltaReportEntities(UPDATE_ACTION, xpath, entry.getKey(), entry.getValue()));
+                    }
+                }
+            } else if (!comparandDataNodesChildren.isEmpty()) {
+                //reference has leaves only, comparand has child only
+                log.info("12 print leaves of ref node {}", xpath);
+                updatedNodes.add(getDeltaReportEntities(UPDATE_ACTION, xpath, referenceDataNodeLeaves, Collections.emptyMap()));
+
+                log.info("13 recursic=ve call with comp node only {}", xpath);
+                updatedNodes.addAll(getDeltaBetweenDataNodes(Collections.emptyList(), comparandDataNodesChildren));
+            } else {
+                //reference has leaves only, comparand is empty
+                log.info("14 print leaves of ref node {}", xpath);
+                updatedNodes.add(getDeltaReportEntities(UPDATE_ACTION, xpath, referenceDataNodeLeaves, Collections.emptyMap()));
+            }
+        } else if (!referenceDataNodesChildren.isEmpty()) {
+            if (!comparandDataNodeLeaves.isEmpty() && !comparandDataNodesChildren.isEmpty()) {
+                //reference has child only, comparand has both
+                log.info("15 print leaves of comp node {}", xpath);
+                updatedNodes.add(getDeltaReportEntities(UPDATE_ACTION, xpath, Collections.emptyMap(), comparandDataNodeLeaves));
+
+                log.info("16 compare child nodes of ref and comp {}", xpath);
+                updatedNodes.addAll(getDeltaBetweenDataNodes(referenceDataNodesChildren, comparandDataNodesChildren));
+            } else if (!comparandDataNode.getLeaves().isEmpty()) {
+                //reference has child only and comparand have leaves only
+                log.info("17 print leaves of comp node {}", xpath);
+                updatedNodes.add(getDeltaReportEntities(UPDATE_ACTION, xpath, Collections.emptyMap(), comparandDataNodeLeaves));
+
+                log.info("18 compare child nodes of ref with empty {}", xpath);
+                updatedNodes.addAll(getDeltaBetweenDataNodes(referenceDataNodesChildren, Collections.emptyList()));
+            } else if (!comparandDataNodesChildren.isEmpty()) {
+                //reference and comparand have child only
+                log.info("19 compare child nodes of ref and comp {}", xpath);
+                updatedNodes.addAll(getDeltaBetweenDataNodes(referenceDataNodesChildren, comparandDataNodesChildren));
+            } else {
+                //reference has child only
+                log.info("20 compare child nodes of ref with empty {}", xpath);
+                updatedNodes.addAll(getDeltaBetweenDataNodes(referenceDataNodesChildren, Collections.emptyList()));
+            }
+        } else {
+            //reference node is empty,
+            if (!comparandDataNodeLeaves.isEmpty() && !comparandDataNodesChildren.isEmpty()) {
+                //comparand node has both leaves and child
+                log.info("21 print child of comp {}", xpath);
+                updatedNodes.add(getDeltaReportEntities(UPDATE_ACTION, xpath, Collections.emptyMap(), comparandDataNodeLeaves));
+
+                log.info("22 recursive call comp {}", xpath);
+                updatedNodes.addAll(getDeltaBetweenDataNodes(Collections.emptyList(), comparandDataNodesChildren));
+            } else if (!comparandDataNode.getLeaves().isEmpty()) {
+                log.info("23 print comp leaves only {}", xpath);
+                updatedNodes.add(getDeltaReportEntities(UPDATE_ACTION, xpath, Collections.emptyMap(), comparandDataNodeLeaves));
+            } else if (!comparandDataNode.getChildDataNodes().isEmpty()) {
+                log.info("24 recursive call comp {}", xpath);
+                updatedNodes.addAll(getDeltaBetweenDataNodes(Collections.emptyList(), comparandDataNodesChildren));
+            }
+            //no need to check condition when both are empty as no change in data
+        }
+        return updatedNodes;
+    }
+
+    private List<Map<String, Object>> getAddedNodes(final Map<String, DataNode> xpathToReferenceDataNodes,
+                                                    final Map<String, DataNode> xpathToComparandDataNodes) {
+
+        final List<Map<String, Object>> addedNodes = new ArrayList<>();
+        final Map<String, DataNode> xpathToAddedNodes = new LinkedHashMap<>(xpathToComparandDataNodes);
+        xpathToAddedNodes.keySet().removeAll(xpathToReferenceDataNodes.keySet());
+        for (final Map.Entry<String, DataNode> entry: xpathToAddedNodes.entrySet()) {
+            final String xpath = entry.getKey();
+            final DataNode dataNode = entry.getValue();
+            if (!dataNode.getLeaves().isEmpty() && !dataNode.getChildDataNodes().isEmpty()) {
+                addedNodes.add(getDeltaReportEntities(ADD_ACTION, xpath, Collections.emptyMap(), dataNode.getLeaves()));
+                addedNodes.addAll(getDeltaBetweenDataNodes(Collections.emptyList(), dataNode.getChildDataNodes()));
+            } else if (!dataNode.getLeaves().isEmpty()) {
+                addedNodes.add(getDeltaReportEntities(ADD_ACTION, xpath, Collections.emptyMap(), dataNode.getLeaves()));
+            } else if (!dataNode.getChildDataNodes().isEmpty()) {
+                addedNodes.addAll(getDeltaBetweenDataNodes(Collections.emptyList(), dataNode.getChildDataNodes()));
+            } else {
+                addedNodes.add(
+                        getDeltaReportEntities(ADD_ACTION, xpath, Collections.emptyMap(), Collections.emptyMap()));
+            }
+        }
+        return addedNodes;
+    }
+
+    private Map<String, Object> getDeltaReportEntities(final String action, final String xpath,
+                                                       final Map<String, Serializable> sourcePayload,
+                                                       final Map<String, Serializable> targetPayload) {
+        final Map<String, Object> actionEntity = new LinkedHashMap<>();
+        actionEntity.put("action", action);
+        actionEntity.put("xpath", xpath);
+        if (Objects.equals(action, ADD_ACTION)) {
+            actionEntity.put("target-payload", targetPayload);
+        } else if (Objects.equals(action, REMOVE_ACTION)){
+            actionEntity.put("source-payload", sourcePayload);
+        } else {
+            if (!sourcePayload.values().stream().allMatch(Objects::isNull)) {
+                actionEntity.put("source-payload", sourcePayload);
+            }
+            if (!targetPayload.values().stream().allMatch(Objects::isNull)) {
+                actionEntity.put("target-payload", targetPayload);
+            }
+        }
+        return actionEntity;
+    }
+
+    private Map<String, DataNode> getXpathToDataNode(final Collection<DataNode> dataNodes) {
+        final Map<String, DataNode> xpathToDataNode = new LinkedHashMap<>();
+        for (final DataNode dataNode : dataNodes) {
+            xpathToDataNode.put(dataNode.getXpath(), dataNode);
+        }
+        return xpathToDataNode;
+    }
+
+    private Map<Map<String, Serializable>, Map<String, Serializable>> getSourceLeavesAndUpdatedLeaves(
+                                        final Map<String, Serializable> leavesOfReferenceDataNode,
+                                        final Map<String, Serializable> leavesOfComparandDataNode) {
+
+        final Map<Map<String, Serializable>, Map<String, Serializable>> sourceToUpdatedLeaves = new LinkedHashMap<>();
+        final Map<String, Serializable> uniqueLeavesOfComparandDataNode = new LinkedHashMap<>(leavesOfComparandDataNode);
+        uniqueLeavesOfComparandDataNode.keySet().removeAll(leavesOfReferenceDataNode.keySet());
+        final Map<String, Serializable> sourceLeaves = new LinkedHashMap<>();
+        final Map<String, Serializable> updatedLeaves = new LinkedHashMap<>();
+
+        for (final Map.Entry<String, Serializable> entry: leavesOfReferenceDataNode.entrySet()) {
+            final String key = entry.getKey();
+            final Serializable referenceLeaf = entry.getValue();
+            final Serializable comparandLeaf = leavesOfComparandDataNode.get(key);
+            if ((referenceLeaf != null && comparandLeaf != null) && (!Objects.equals(referenceLeaf, comparandLeaf))) {
+                    sourceLeaves.put(key, referenceLeaf);
+                    updatedLeaves.put(key, comparandLeaf);
+            } else if (referenceLeaf != null && comparandLeaf == null) {
+                sourceLeaves.put(key, referenceLeaf);
+            }
+        }
+
+        for (final Map.Entry<String, Serializable> entry: uniqueLeavesOfComparandDataNode.entrySet()) {
+            final String key = entry.getKey();
+            final Serializable comparandLeaf = entry.getValue();
+            final Serializable referenceLeaf = leavesOfReferenceDataNode.get(key);
+            if ((referenceLeaf != null && comparandLeaf != null) && (!Objects.equals(comparandLeaf, referenceLeaf))) {
+                sourceLeaves.put(key, referenceLeaf);
+                updatedLeaves.put(key, comparandLeaf);
+            } else if (referenceLeaf == null && comparandLeaf != null) {
+                updatedLeaves.put(key, comparandLeaf);
+            }
+        }
+
+        if (!sourceLeaves.isEmpty() || !updatedLeaves.isEmpty()) {
+            sourceToUpdatedLeaves.put(sourceLeaves, updatedLeaves);
+        }
+        return sourceToUpdatedLeaves;
     }
 
     private static Set<String> processAncestorXpath(final Collection<FragmentEntity> fragmentEntities,
