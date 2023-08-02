@@ -408,6 +408,74 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
             restoreBookstoreDataAnchor(2)
     }
 
+    //TODO:
+    //null maps
+    def 'Get delta between 2 anchors for #scenario'() {
+        when: 'attempt to get delta report'
+            def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_ANCHOR_3, BOOKSTORE_ANCHOR_4, xpath, fetchDescendantOption)
+        then: 'delta report contains expected number of changes'
+            deltaReport.size() == 3
+        and: 'delta report contains expected change action'
+            assert deltaReport.get(index).get("action") == expectedActions
+        and: 'delta report contains expected xpath'
+            assert deltaReport.getAt(index).get("xpath") == expectedXpath
+        where:
+            scenario            | index | xpath | expectedActions | expectedXpath                                            | fetchDescendantOption
+            'a node is updated' |   0   | '/'   |    'update'     | "/bookstore"                                             | OMIT_DESCENDANTS
+            'a node is removed' |   1   | '/'   |    'remove'     | "/bookstore-address[@bookstore-name='Easons-1']"         | OMIT_DESCENDANTS
+            'a node is added'   |   2   | '/'   |     'add'       | "/bookstore-address[@bookstore-name='My New Bookstore']" | OMIT_DESCENDANTS
+    }
+
+    def 'Get delta between 2 anchors for nested changes'() {
+        def parentNodeXpathInDelta = "/bookstore"
+        def childNodeXpathsInDelta = ["/bookstore/categories[@code='2']/books[@title='Gone Girl']", "/bookstore/categories[@code='1']", "/bookstore/categories[@code='1']/books[@title='The Gruffalo']", "/bookstore/categories[@code='1']/books[@title='Matilda']", "/bookstore/categories[@code='5']", "/bookstore/categories[@code='3']", "/bookstore/categories[@code='3']/books[@title='The Colour of Magic']", "/bookstore/categories[@code='3']/books[@title='A Book with No Language']", "/bookstore/categories[@code='3']/books[@title='The Light Fantastic']", "/bookstore/categories[@code='3']/books[@title='Good Omens']", "/bookstore/categories[@code='4']/books[@title='Logarithm tables']", "/bookstore/categories[@code='4']/books[@title='Debian GNU/Linux']", "/bookstore/categories[@code='4']/books[@title='Java For Dummies']"]
+        when: 'attempt to get delta report'
+            def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_ANCHOR_3, BOOKSTORE_ANCHOR_4, '/bookstore', INCLUDE_ALL_DESCENDANTS)
+        then: 'delta report contains expected number of changes'
+            deltaReport.size() == 14
+        and: 'the delta report has xpath of parent node'
+            def xpaths = getXpathsFromDeltaReport(deltaReport)
+            assert xpaths.contains(parentNodeXpathInDelta)
+        and: 'the delta report also has xpaths of child data nodes'
+            assert xpaths.containsAll(childNodeXpathsInDelta)
+    }
+    //empty maps
+    def 'Delta returns empty List when #scenario'() {
+        when: 'attempt to get delta report'
+            def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, anchorName1, anchorName2, '/', INCLUDE_ALL_DESCENDANTS)
+        then:
+            assert deltaReport.isEmpty()
+        where:
+            scenario                              |    anchorName1     |     anchorName2
+        'anchors with identical data are queried' | BOOKSTORE_ANCHOR_3 | BOOKSTORE_ANCHOR_5
+        'same anchor name is passed as parameter' | BOOKSTORE_ANCHOR_3 | BOOKSTORE_ANCHOR_3
+    }
+
+    def 'Get delta between anchors error scenario: #scenario'() {
+        when: 'attempt to get delta between anchors'
+            objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, anchorName1, anchorName2, xpath, INCLUDE_ALL_DESCENDANTS)
+        then: 'expected exception is thrown'
+            thrown(expectedException)
+        where: 'following data was used'
+                    scenario                               | dataspaceName               | anchorName1           | anchorName2           | xpath                 | expectedException
+            'invalid dataspace name'                       | 'Invalid dataspace'         | 'not-relevant'        | 'not-relevant'        | '/not-relevant'       | DataValidationException
+            'invalid anchor 1 name'                        | FUNCTIONAL_TEST_DATASPACE_3 | 'invalid anchor'      | 'not-relevant'        | '/not-relevant'       | DataValidationException
+            'invalid anchor 2 name'                        | FUNCTIONAL_TEST_DATASPACE_3 | BOOKSTORE_ANCHOR_3    | 'invalid anchor'      | '/not-relevant'       | DataValidationException
+            'non-existing dataspace'                       | 'non-existing'              | 'not-relevant1'       | 'not-relevant2'       | '/not-relevant'       | DataspaceNotFoundException
+            'non-existing dataspace with same anchor name' | 'non-existing'              | 'not-relevant'        | 'not-relevant'        | '/not-relevant'       | DataspaceNotFoundException
+            'non-existing anchor 1'                        | FUNCTIONAL_TEST_DATASPACE_3 | 'non-existing-anchor' | 'not-relevant'        | '/not-relevant'       | AnchorNotFoundException
+            'non-existing anchor 2'                        | FUNCTIONAL_TEST_DATASPACE_3 | BOOKSTORE_ANCHOR_3    | 'non-existing-anchor' | '/'                   | AnchorNotFoundException
+            'non-exiting xpath'                            | FUNCTIONAL_TEST_DATASPACE_3 | BOOKSTORE_ANCHOR_3    | BOOKSTORE_ANCHOR_4    | '/non-existing-xpath' | DataValidationException
+    }
+
+    def getXpathsFromDeltaReport(List<Map<String, Object>> deltaReport) {
+        def xpaths = []
+        deltaReport.each {
+            delta -> xpaths.add(delta.get("xpath"))
+        }
+        return xpaths
+    }
+
     def countDataNodesInBookstore() {
         return countDataNodesInTree(objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore', INCLUDE_ALL_DESCENDANTS))
     }

@@ -239,4 +239,19 @@ public interface CpsDataPersistenceService {
      * @return total anchors for dataspace name and cps path
      */
     Integer countAnchorsForDataspaceAndCpsPath(String dataspaceName, String cpsPath);
+
+    /**
+     * Retrieves the delta between two anchors by xpath within a dataspace.
+     *
+     * @param dataspaceName             dataspace name
+     * @param anchorName1               first anchor name
+     * @param anchorName2               second anchor name
+     * @param xpath                     xpath
+     * @param fetchDescendantsOption    defines the scope of data to fetch: either single node or all the descendant
+     *                                  nodes (recursively) as well
+     * @return                          list containing delta objects
+     */
+    List<Map<String, Object>> getDeltaByDataspaceAndAnchors(String dataspaceName, String anchorName1,
+                                                            String anchorName2, String xpath,
+                                                            FetchDescendantsOption fetchDescendantsOption);
 }
