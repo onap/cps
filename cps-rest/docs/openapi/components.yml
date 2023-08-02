@@ -188,6 +188,14 @@ components:
       schema:
         type: string
         example: my-anchor
+    comparandAnchorName:
+      name: comparand-anchor-name
+      in: query
+      description: comparand-anchor-name
+      required: true
+      schema:
+        type: string
+        example: my-anchor
     xpathInQuery:
       name: xpath
       in: query
