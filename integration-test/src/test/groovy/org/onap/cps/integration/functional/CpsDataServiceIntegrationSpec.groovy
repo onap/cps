@@ -432,6 +432,164 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
             restoreBookstoreDataAnchor(2)
     }
 
+    def 'Get delta between 2 anchors for #scenario'() {
+        when: 'attempt to get delta report'
+            def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_ANCHOR_3, BOOKSTORE_ANCHOR_4, xpath, fetchDescendantOption)
+        then: 'delta report contains expected number of changes'
+            deltaReport.size() == 3
+        and: 'delta report contains expected change action'
+            assert deltaReport.get(index).get("action") == expectedActions
+        and: 'delta report contains expected xpath'
+            assert deltaReport.getAt(index).get("xpath") == expectedXpath
+        where:
+            scenario            | index | xpath | expectedActions | expectedXpath                                            | fetchDescendantOption
+            'a node is updated' |   0   | '/'   |    'update'     | "/bookstore"                                             | OMIT_DESCENDANTS
+            'a node is removed' |   1   | '/'   |    'remove'     | "/bookstore-address[@bookstore-name='Easons-1']"         | OMIT_DESCENDANTS
+            'a node is added'   |   2   | '/'   |     'add'       | "/bookstore-address[@bookstore-name='My New Bookstore']" | OMIT_DESCENDANTS
+    }
+
+    def 'Get delta between 2 anchors for nested changes'() {
+        def parentNodeXpath = "/bookstore"
+        def childNodeXpathsInDelta = ["/bookstore/categories[@code='2']/books[@title='Gone Girl']", "/bookstore/categories[@code='1']", "/bookstore/categories[@code='1']/books[@title='The Gruffalo']", "/bookstore/categories[@code='1']/books[@title='Matilda']", "/bookstore/categories[@code='3']", "/bookstore/categories[@code='3']/books[@title='The Colour of Magic']", "/bookstore/categories[@code='3']/books[@title='A Book with No Language']", "/bookstore/categories[@code='3']/books[@title='The Light Fantastic']", "/bookstore/categories[@code='3']/books[@title='Good Omens']", "/bookstore/categories[@code='4']/books[@title='Logarithm tables']", "/bookstore/categories[@code='4']/books[@title='Debian GNU/Linux']", "/bookstore/categories[@code='4']/books[@title='Java For Dummies']", "/bookstore/categories[@code='6']", "/bookstore/container-without-leaves", "/bookstore/supportinfo"]
+        when: 'attempt to get delta report'
+            def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_ANCHOR_3, BOOKSTORE_ANCHOR_4, parentNodeXpath, INCLUDE_ALL_DESCENDANTS)
+        then: 'delta report contains expected number of changes'
+            deltaReport.size() == 17
+        and: 'the delta report has xpath of parent node'
+            def xpaths = getDeltaReportEntities(deltaReport).get('xpaths')
+            assert xpaths.contains(parentNodeXpath)
+        and: 'the delta report also has xpaths of child data nodes'
+            xpaths.remove(parentNodeXpath)
+            assert xpaths.containsAll(childNodeXpathsInDelta)
+    }
+
+    def 'Get delta returns empty response when #scenario'() {
+        when: 'attempt to get delta report'
+            def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, anchorName1, anchorName2, '/', INCLUDE_ALL_DESCENDANTS)
+        then: 'delta report is empty'
+            assert deltaReport.isEmpty()
+        where: 'following data was used'
+            scenario                              |    anchorName1     |     anchorName2
+        'anchors with identical data are queried' | BOOKSTORE_ANCHOR_3 | BOOKSTORE_ANCHOR_5
+        'same anchor name is passed as parameter' | BOOKSTORE_ANCHOR_3 | BOOKSTORE_ANCHOR_3
+    }
+
+    def 'Get delta between anchors error scenario: #scenario'() {
+        when: 'attempt to get delta between anchors'
+            objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, anchorName1, anchorName2, xpath, INCLUDE_ALL_DESCENDANTS)
+        then: 'expected exception is thrown'
+            thrown(expectedException)
+        where: 'following data was used'
+                    scenario                               | dataspaceName               | anchorName1           | anchorName2           | xpath                 | expectedException
+            'invalid dataspace name'                       | 'Invalid dataspace'         | 'not-relevant'        | 'not-relevant'        | '/not-relevant'       | DataValidationException
+            'invalid anchor 1 name'                        | FUNCTIONAL_TEST_DATASPACE_3 | 'invalid anchor'      | 'not-relevant'        | '/not-relevant'       | DataValidationException
+            'invalid anchor 2 name'                        | FUNCTIONAL_TEST_DATASPACE_3 | BOOKSTORE_ANCHOR_3    | 'invalid anchor'      | '/not-relevant'       | DataValidationException
+            'non-existing dataspace'                       | 'non-existing'              | 'not-relevant1'       | 'not-relevant2'       | '/not-relevant'       | DataspaceNotFoundException
+            'non-existing dataspace with same anchor name' | 'non-existing'              | 'not-relevant'        | 'not-relevant'        | '/not-relevant'       | DataspaceNotFoundException
+            'non-existing anchor 1'                        | FUNCTIONAL_TEST_DATASPACE_3 | 'non-existing-anchor' | 'not-relevant'        | '/not-relevant'       | AnchorNotFoundException
+            'non-existing anchor 2'                        | FUNCTIONAL_TEST_DATASPACE_3 | BOOKSTORE_ANCHOR_3    | 'non-existing-anchor' | '/not-relevant'       | AnchorNotFoundException
+            'non-exiting xpath'                            | FUNCTIONAL_TEST_DATASPACE_3 | BOOKSTORE_ANCHOR_3    | BOOKSTORE_ANCHOR_4    | '/non-existing-xpath' | DataValidationException
+    }
+
+    def 'Get delta between anchors on addition/deletion of leaves of existing data node scenario: #scenario'() {
+        when: 'attempt to get delta between leaves of existing data nodes'
+            def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, anchor1, anchor2, xpath, OMIT_DESCENDANTS)
+        then: 'expected action is update'
+            assert deltaReport.get(0).get("action") == 'update'
+        and: 'the payload has expected values'
+            Map<String, Serializable> sourcePayload = deltaReport.get(0).get("source-payload") as Map<String, Serializable>
+            Map<String, Serializable> targetPayload = deltaReport.get(0).get("target-payload") as Map<String, Serializable>
+            assert sourcePayload.equals(expectedSourceValue)
+            assert targetPayload.equals(expectedTargetValue)
+        where: 'following data was used'
+            scenario                              | anchor1            | anchor2            | xpath                                                     | expectedSourceValue | expectedTargetValue
+            'leaf is removed from comparand data' | BOOKSTORE_ANCHOR_3 | BOOKSTORE_ANCHOR_4 | "/bookstore/categories[@code='5']/books[@title='Book 1']" | [price:1]           | null
+            'leaf is added to comparand data'     | BOOKSTORE_ANCHOR_4 | BOOKSTORE_ANCHOR_3 | "/bookstore/categories[@code='5']/books[@title='Book 1']" | null                | [price:1]
+    }
+
+    def 'Get delta between anchors for update scenario #scenario'() {
+        when: 'attempt to get delta between leaves of existing data nodes'
+            def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, anchor1, anchor2, xpath, fetchDescendantsOption)
+            def deltaReportEntities = getDeltaReportEntities(deltaReport)
+            def xpathsInDeltaReport = deltaReportEntities.get('xpaths')
+            def childNodeXpaths = xpathsInDeltaReport.clone() as List
+            childNodeXpaths.remove((Object) expectedParentNodeXpath)
+        then: 'expected action is update'
+            assert deltaReport.get(0).get("action") == 'update'
+            assert xpathsInDeltaReport.get(0) == expectedParentNodeXpath
+            assert childNodeXpaths.containsAll(expectedChildNodeXpaths)
+        and: 'the payload has expected values'
+            Map<String, Serializable> sourcePayload = deltaReport.get(0).get("source-payload") as Map<String, Serializable>
+            Map<String, Serializable> targetPayload = deltaReport.get(0).get("target-payload") as Map<String, Serializable>
+            assert sourcePayload.equals(expectedSourceValue)
+            assert targetPayload.equals(expectedTargetValue)
+        where: 'following data was used'
+            scenario                                                                          | index | xpath                            | anchor1              | anchor2              | expectedSourceValue                     | expectedTargetValue                     | expectedParentNodeXpath                                                          | fetchDescendantsOption  | expectedChildNodeXpaths
+            'reference and comparand nodes have leaves and child data nodes'                  | 4     | '/bookstore/categories[@code=1]' | BOOKSTORE_ANCHOR_3   | BOOKSTORE_ANCHOR_6   | ['name':'Children']                     | ['name':'Kids']                         | '/bookstore/categories[@code=\'1\']'                                             | INCLUDE_ALL_DESCENDANTS | ['/bookstore/categories[@code=\'1\']/books[@title=\'The Gruffalo\']', '/bookstore/categories[@code=\'1\']/books[@title=\'Matilda\']']
+            'reference node has leaves and child data nodes, comparand node has leaves'       | 2     | '/bookstore/categories[@code=2]' | BOOKSTORE_ANCHOR_3   | BOOKSTORE_ANCHOR_6   | ['name':'Thriller']                     | ['name':'Suspense']                     | '/bookstore/categories[@code=\'2\']'                                             | INCLUDE_ALL_DESCENDANTS | ['/bookstore/categories[@code=\'2\']/books[@title=\'Annihilation\']']
+            'reference node has leaves and child data nodes, comparand node has child nodes'  | 1     | '/bookstore'                     | BOOKSTORE_ANCHOR_3   | BOOKSTORE_ANCHOR_6   | ['bookstore-name':'Easons-1']           | null                                    | '/bookstore'                                                                     | DIRECT_CHILDREN_ONLY    | ['/bookstore/supportinfo', '/bookstore/categories[@code=\'2\']', '/bookstore/categories[@code=\'1\']', '/bookstore/categories[@code=\'4\']']
+            'reference node has leaves and child data nodes, comparand node is empty'         | 1     | '/bookstore'                     | BOOKSTORE_ANCHOR_4   | EMPTY_BOOKSTORE_DATA | ['bookstore-name':'My New Bookstore']   | null                                    | '/bookstore'                                                                     | DIRECT_CHILDREN_ONLY    | ['/bookstore/categories[@code=\'6\']', '/bookstore/categories[@code=\'1\']', '/bookstore/categories[@code=\'5\']', '/bookstore/categories[@code=\'2\']', '/bookstore/container-without-leaves', '/bookstore/categories[@code=\'4\']', '/bookstore/premises', '/bookstore/categories[@code=\'3\']', '/bookstore/supportinfo']
+            'reference node has leaves, comparand node has leaves and child nodes'            | 2     | '/bookstore/categories[@code=2]' | BOOKSTORE_ANCHOR_6   | BOOKSTORE_ANCHOR_3   | ['name':'Suspense']                     | ['name':'Thriller']                     | '/bookstore/categories[@code=\'2\']'                                             | DIRECT_CHILDREN_ONLY    | ['/bookstore/categories[@code=\'2\']/books[@title=\'Annihilation\']']
+            'reference node has leaves, comparand node has leaves'                            | 4     | '/bookstore/categories[@code=1]' | BOOKSTORE_ANCHOR_3   | BOOKSTORE_ANCHOR_6   | ['name':'Children']                     | ['name':'Kids']                         | '/bookstore/categories[@code=\'1\']'                                             | OMIT_DESCENDANTS        | []
+            'reference node has leaves, comparand node has child data nodes'                  | 1     | '/bookstore/supportinfo'         | BOOKSTORE_ANCHOR_4   | BOOKSTORE_ANCHOR_6   | ['support-office':'test-location']      | null                                    |  '/bookstore/supportinfo'                                                        | INCLUDE_ALL_DESCENDANTS | ['/bookstore/supportinfo/contact-emails']
+            'reference node has leaves, comparand node is empty'                              | 1     | '/bookstore'                     | BOOKSTORE_ANCHOR_3   | BOOKSTORE_ANCHOR_6   | ['bookstore-name':'Easons-1']           | null                                    | '/bookstore'                                                                     | OMIT_DESCENDANTS        | []
+            'reference node has child data nodes, comparand has leaves and child data nodes'  | 1     | '/bookstore'                     | BOOKSTORE_ANCHOR_6   | BOOKSTORE_ANCHOR_3   | null                                    | ['bookstore-name':'Easons-1']           | '/bookstore'                                                                     | DIRECT_CHILDREN_ONLY    | ['/bookstore/supportinfo', '/bookstore/categories[@code=\'2\']', '/bookstore/categories[@code=\'1\']', '/bookstore/categories[@code=\'4\']']
+            'reference node has child data nodes, comparand has leaves'                       | 1     | '/bookstore/supportinfo'         | BOOKSTORE_ANCHOR_6   | BOOKSTORE_ANCHOR_4   | null                                    | ['support-office':'test-location']      | '/bookstore/supportinfo'                                                         | INCLUDE_ALL_DESCENDANTS | ['/bookstore/supportinfo/contact-emails']
+            'reference node has child data nodes, comparand has child data nodes'             | 12    | '/bookstore/premises'            | BOOKSTORE_ANCHOR_3   | BOOKSTORE_ANCHOR_6   | ['town':'Maynooth', 'county':'Kildare'] | ['town':'Killarney', 'county':'Kerry']  | '/bookstore/premises/addresses[@house-number=\'2\' and @street=\'Main Street\']' | INCLUDE_ALL_DESCENDANTS | []
+            'reference node is empty, comparand has leaves and child data node'               | 1     | '/bookstore'                     | EMPTY_BOOKSTORE_DATA | BOOKSTORE_ANCHOR_4   | null                                    | ['bookstore-name':'My New Bookstore']   | '/bookstore'                                                                     | DIRECT_CHILDREN_ONLY    | ['/bookstore/categories[@code=\'6\']', '/bookstore/categories[@code=\'1\']', '/bookstore/categories[@code=\'5\']', '/bookstore/categories[@code=\'2\']', '/bookstore/container-without-leaves', '/bookstore/categories[@code=\'4\']', '/bookstore/premises', '/bookstore/categories[@code=\'3\']', '/bookstore/supportinfo']
+            'reference node is empty, comparand has leaves'                                   | 1     | '/bookstore'                     | BOOKSTORE_ANCHOR_6   | BOOKSTORE_ANCHOR_3   | null                                    | ['bookstore-name':'Easons-1']           | '/bookstore'                                                                     | OMIT_DESCENDANTS        | []
+     }
+
+    def 'Get delta between anchors for update operation edge case #scenario'() {
+        given: 'parent node xpath and expected child node xpaths of delta report'
+            def parentNodeXpath = '/bookstore'
+            def expectedChildNodeXpathsInDelta = ['/bookstore/premises', '/bookstore/categories[@code=\'3\']', '/bookstore/supportinfo', '/bookstore/categories[@code=\'2\']', '/bookstore/categories[@code=\'1\']', '/bookstore/categories[@code=\'5\']']
+        when: 'attempt to get delta between leaves of existing data nodes'
+            def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, referenceAnchor, comparandAnchor, parentNodeXpath, DIRECT_CHILDREN_ONLY)
+            def deltaReportEntities = getDeltaReportEntities(deltaReport)
+            def xpathsInDeltaReport = deltaReportEntities.get('xpaths')
+        then: 'expected child node xpaths are present in delta report'
+            assert !xpathsInDeltaReport.contains(parentNodeXpath)
+            assert xpathsInDeltaReport.containsAll(expectedChildNodeXpathsInDelta)
+        where: 'the following data is used'
+            scenario                                                  | referenceAnchor      | comparandAnchor
+            'reference node has child data nodes, comparand is empty' | BOOKSTORE_ANCHOR_6   | EMPTY_BOOKSTORE_DATA
+            'reference node is empty, comparand has child data node'  | EMPTY_BOOKSTORE_DATA | BOOKSTORE_ANCHOR_6
+    }
+
+    def 'Get delta for added nodes #scenario'() {
+        given: 'parent node xpath'
+            def parentNodeXpath = '/bookstore'
+        when: 'attempt to get delta between leaves of existing data nodes'
+            def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, EMPTY_BOOKSTORE_DATA, BOOKSTORE_ANCHOR_4, parentNodeXpath, INCLUDE_ALL_DESCENDANTS)
+        then: 'the expected action is present in delta report'
+            deltaReport.get(index).get("action") == 'add'
+        and: 'the delta report has expected number of changes'
+            deltaReport.size() == 30
+        and: 'the expected payload is present in delta report'
+            deltaReport.get(index).get("xpath") == expectedChildNodeXpath
+        where: 'following data was used'
+            scenario                                     | index | expectedChildNodeXpath
+            'node with only leaves'                      |   1   | "/bookstore/categories[@code='6']"
+            'node with leaves and child data node'       |   2   | "/bookstore/categories[@code='1']"
+            'node with no leaves and no child data node' |   19  | "/bookstore/container-without-leaves"
+            'node with only child data node'             |   24  | "/bookstore/premises/addresses[@house-number='2' and @street='Main Street']"
+    }
+
+    def getDeltaReportEntities(List<Map<String, Object>> deltaReport) {
+        def xpaths = []
+        def action = []
+        def sourcePayload = []
+        def targetPayload = []
+        deltaReport.each {
+            delta -> xpaths.add(delta.get("xpath"))
+                action.add(delta.get("action"))
+                sourcePayload.add(delta.get("source-payload"))
+                targetPayload.add(delta.get("target-payload"))
+        }
+        return ['xpaths':xpaths, 'action':action, 'sourcePayload':sourcePayload, 'targetPayload':targetPayload]
+    }
+
     def countDataNodesInBookstore() {
         return countDataNodesInTree(objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore', INCLUDE_ALL_DESCENDANTS))
     }

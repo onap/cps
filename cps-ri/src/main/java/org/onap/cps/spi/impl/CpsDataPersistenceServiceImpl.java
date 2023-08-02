@@ -59,6 +59,7 @@ import org.onap.cps.spi.exceptions.CpsAdminException;
 import org.onap.cps.spi.exceptions.CpsPathException;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundExceptionBatch;
+import org.onap.cps.spi.impl.utils.CpsDeltaService;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.DataNodeBuilder;
 import org.onap.cps.spi.repository.AnchorRepository;
@@ -418,6 +419,24 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         }
         final List<Long> anchorIdList = getAnchorIdsForPagination(dataspaceEntity, cpsPathQuery, NO_PAGINATION);
         return anchorIdList.size();
+    }
+
+    @Override
+    @Timed(value = "cps.data.persistence.service.get.delta",
+            description = "Time taken to get delta")
+    public List<Map<String, Object>> getDeltaByDataspaceAndAnchors(final String dataspaceName,
+                                                                   final String referenceAnchorName,
+                                                                   final String comparandAnchorName, final String xpath,
+                                                                  final FetchDescendantsOption fetchDescendantsOption) {
+
+        final Collection<DataNode> referenceDataNodes = getDataNodesForMultipleXpaths(dataspaceName,
+                referenceAnchorName, Collections.singletonList(xpath), fetchDescendantsOption);
+        final Collection<DataNode> comparandDataNodes = getDataNodesForMultipleXpaths(dataspaceName,
+                comparandAnchorName, Collections.singletonList(xpath), fetchDescendantsOption);
+        if (referenceDataNodes.isEmpty() && comparandDataNodes.isEmpty()) {
+            throw new DataNodeNotFoundException(dataspaceName, referenceAnchorName + "," + comparandAnchorName, xpath);
+        }
+        return CpsDeltaService.getDeltaBetweenDataNodes(referenceDataNodes, comparandDataNodes);
     }
 
     private static Set<String> processAncestorXpath(final Collection<FragmentEntity> fragmentEntities,
