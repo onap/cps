@@ -82,6 +82,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea6bcebd_c9ff7d59",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-02T07:49:19Z",
+      "side": 1,
+      "message": "I see now, it used for Counting all anchors...\nWhich in turn is only called to set the header with total number of anchors (TotalResults)... I still like to see what that is for exactly in your demo....\nSo you are right for now it is needed and I just ran all test and checked the coverage report, all branches sin this file are covered :-)",
+      "parentUuid": "bf9e921c_92029035",
+      "range": {
+        "startLine": 99,
+        "startChar": 8,
+        "endLine": 99,
+        "endChar": 65
+      },
+      "revId": "031f1051ea463ffa987da6705b60d56a17731b9c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d2ba5057_f8c7f097",
@@ -129,6 +153,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a55b41a_7709160a",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/utils/CpsValidatorSpec.groovy",
+        "patchSetId": 35
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-02T07:49:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "efa771bf_4ea3b9f8",
+      "range": {
+        "startLine": 77,
+        "startChar": 1,
+        "endLine": 79,
+        "endChar": 56
+      },
+      "revId": "031f1051ea463ffa987da6705b60d56a17731b9c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5a1cccf7_d22bda22",
@@ -166,6 +214,30 @@
       "side": 1,
       "message": "Addressed",
       "parentUuid": "5a1cccf7_d22bda22",
+      "range": {
+        "startLine": 409,
+        "startChar": 1,
+        "endLine": 412,
+        "endChar": 32
+      },
+      "revId": "031f1051ea463ffa987da6705b60d56a17731b9c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f21493d9_1cb6e4b5",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 35
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-02T07:49:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e6a057e3_75471815",
       "range": {
         "startLine": 409,
         "startChar": 1,
