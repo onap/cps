@@ -24,15 +24,12 @@
 
 package org.onap.cps.api.impl;
 
-import static org.onap.cps.notification.Operation.CREATE;
-import static org.onap.cps.notification.Operation.DELETE;
-import static org.onap.cps.notification.Operation.UPDATE;
-
 import io.micrometer.core.annotation.Timed;
 import java.io.Serializable;
 import java.time.OffsetDateTime;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -42,6 +39,7 @@ import org.onap.cps.api.CpsDataService;
 import org.onap.cps.cpspath.parser.CpsPathUtil;
 import org.onap.cps.notification.NotificationService;
 import org.onap.cps.notification.Operation;
+import static org.onap.cps.notification.Operation.*;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.exceptions.DataValidationException;
@@ -211,6 +209,17 @@ public class CpsDataServiceImpl implements CpsDataService {
     public void lockAnchor(final String sessionID, final String dataspaceName,
                            final String anchorName, final Long timeoutInMilliseconds) {
         cpsDataPersistenceService.lockAnchor(sessionID, dataspaceName, anchorName, timeoutInMilliseconds);
+    }
+
+    @Override
+    @Timed(value = "cps.data.service.get.delta",
+            description = "Time taken to delta between anchors")
+    public List<Map<String,Object>> getDeltaByDataspaceAndAnchors(final String dataspaceName, final String anchorName1,
+                                                      final String anchorName2, final String xpath,
+                                                      final FetchDescendantsOption fetchDescendantsOption) {
+        cpsValidator.validateNameCharacters(dataspaceName, anchorName1, anchorName2);
+        return cpsDataPersistenceService.getDeltaByDataspaceAndAnchors(dataspaceName, anchorName1, anchorName2, xpath,
+                fetchDescendantsOption);
     }
 
     @Override
