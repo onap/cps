@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce0bd707_71318f50",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-02T16:27:58Z",
+      "side": 1,
+      "message": "What I understood is this change will affect only \u0027/ncmpinventory\u0027 APIs, right?",
+      "revId": "551c0a283e1f9d0c519d4f71befff4c61a54ff4c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
