@@ -47,3 +47,36 @@ nodeByDataspaceAndAnchor:
       '500':
         $ref: 'components.yml#/components/responses/InternalServerError'
     x-codegen-request-body-name: xpath
+
+deltaByDataspaceAndAnchors:
+  get:
+    description: Get delta between two anchors within a given dataspace
+    tags:
+      - cps-data
+    summary: Get delta between anchors in the same dataspace
+    operationId: getDeltaByDataspaceAndAnchors
+    parameters:
+      - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
+      - $ref: 'components.yml#/components/parameters/anchorNameInPath'
+      - $ref: 'components.yml#/components/parameters/targetAnchorNameInQuery'
+      - $ref: 'components.yml#/components/parameters/xpathInQuery'
+      - $ref: 'components.yml#/components/parameters/descendantsInQuery'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: object
+            examples:
+              dataSample:
+                $ref: 'components.yml#/components/examples/deltaReportSample'
+      '400':
+        $ref: 'components.yml#/components/responses/BadRequest'
+      '401':
+        $ref: 'components.yml#/components/responses/Unauthorized'
+      '403':
+        $ref: 'components.yml#/components/responses/Forbidden'
+      '500':
+        $ref: 'components.yml#/components/responses/InternalServerError'
+    x-codegen-request-body-name: xpath

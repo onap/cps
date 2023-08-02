@@ -3,7 +3,7 @@
  * Copyright (C) 2021-2023 Nordix Foundation.
  * Modifications Copyright (C) 2021-2022 Bell Canada.
  * Modifications Copyright (C) 2021 Pantheon.tech
- * Modifications Copyright (C) 2022 TechMahindra Ltd.
+ * Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +25,7 @@ package org.onap.cps.api.impl
 
 import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAdminService
+import org.onap.cps.api.CpsDeltaService
 import org.onap.cps.notification.NotificationService
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.CpsModulePersistenceService
@@ -45,12 +46,13 @@ class E2ENetworkSliceSpec extends Specification {
     def mockCpsValidator = Mock(CpsValidator)
     def timedYangTextSchemaSourceSetBuilder = new TimedYangTextSchemaSourceSetBuilder()
     def timedYangParser = new TimedYangParser()
+    def mockCpsDeltaService = Mock(CpsDeltaService)
 
     def cpsModuleServiceImpl = new CpsModuleServiceImpl(mockModuleStoreService,
             mockYangTextSchemaSourceSetCache, mockCpsAdminService, mockCpsValidator,timedYangTextSchemaSourceSetBuilder)
 
     def cpsDataServiceImpl = new CpsDataServiceImpl(mockDataStoreService, mockCpsAdminService,
-            mockYangTextSchemaSourceSetCache, mockNotificationService, mockCpsValidator, timedYangParser)
+            mockYangTextSchemaSourceSetCache, mockNotificationService, mockCpsValidator, timedYangParser, mockCpsDeltaService)
 
     def dataspaceName = 'someDataspace'
     def anchorName = 'someAnchor'

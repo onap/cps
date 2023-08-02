@@ -25,6 +25,7 @@ package org.onap.cps.api.impl
 
 import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAdminService
+import org.onap.cps.api.CpsDeltaService
 import org.onap.cps.notification.NotificationService
 import org.onap.cps.notification.Operation
 import org.onap.cps.spi.CpsDataPersistenceService
@@ -37,12 +38,14 @@ import org.onap.cps.spi.exceptions.SessionTimeoutException
 import org.onap.cps.spi.model.Anchor
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
+import org.onap.cps.spi.model.DeltaReportBuilder
+import org.onap.cps.spi.utils.CpsValidator
 import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.TimedYangParser
 import org.onap.cps.yang.YangTextSchemaSourceSet
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
+import spock.lang.Shared
 import spock.lang.Specification
-import org.onap.cps.spi.utils.CpsValidator
 
 import java.time.OffsetDateTime
 import java.util.stream.Collectors
@@ -54,18 +57,28 @@ class CpsDataServiceImplSpec extends Specification {
     def mockNotificationService = Mock(NotificationService)
     def mockCpsValidator = Mock(CpsValidator)
     def timedYangParser = new TimedYangParser()
+    def mockCpsDeltaService = Mock(CpsDeltaService);
 
     def objectUnderTest = new CpsDataServiceImpl(mockCpsDataPersistenceService, mockCpsAdminService,
-            mockYangTextSchemaSourceSetCache, mockNotificationService, mockCpsValidator, timedYangParser)
+            mockYangTextSchemaSourceSetCache, mockNotificationService, mockCpsValidator, timedYangParser, mockCpsDeltaService)
 
     def setup() {
+
         mockCpsAdminService.getAnchor(dataspaceName, anchorName) >> anchor
+        mockCpsAdminService.getAnchor(dataspaceName, ANCHOR_NAME_1) >> anchor1
+        mockCpsAdminService.getAnchor(dataspaceName, ANCHOR_NAME_2) >> anchor2
     }
 
+    @Shared
+    static def ANCHOR_NAME_1 = 'some-anchor-1'
+    @Shared
+    static def ANCHOR_NAME_2 = 'some-anchor-2'
     def dataspaceName = 'some-dataspace'
     def anchorName = 'some-anchor'
     def schemaSetName = 'some-schema-set'
     def anchor = Anchor.builder().name(anchorName).dataspaceName(dataspaceName).schemaSetName(schemaSetName).build()
+    def anchor1 = Anchor.builder().name(ANCHOR_NAME_1).dataspaceName(dataspaceName).schemaSetName(schemaSetName).build()
+    def anchor2 = Anchor.builder().name(ANCHOR_NAME_2).dataspaceName(dataspaceName).schemaSetName(schemaSetName).build()
     def observedTimestamp = OffsetDateTime.now()
 
     def 'Saving #scenario data.'() {
@@ -226,6 +239,22 @@ class CpsDataServiceImplSpec extends Specification {
             objectUnderTest.getDataNodesForMultipleXpaths(dataspaceName, anchorName, [xpath1, xpath2], fetchDescendantsOption) == dataNode
         where: 'all fetch options are supported'
             fetchDescendantsOption << [FetchDescendantsOption.OMIT_DESCENDANTS, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS]
+    }
+
+    def 'Get delta between 2 anchors'() {
+        given: 'some xpath, source and target data nodes'
+            def xpath = '/xpath'
+            def sourceDataNodes = [new DataNodeBuilder().withXpath(xpath).build()]
+            def targetDataNodes = [new DataNodeBuilder().withXpath(xpath).build()]
+        when: 'attempt to get delta between 2 anchors'
+            objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, ANCHOR_NAME_1, ANCHOR_NAME_2, xpath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+        then: 'the dataspace and anchor names are validated'
+            2 * mockCpsValidator.validateNameCharacters(_)
+        and: 'data nodes are fetched using appropriate persistence layer method'
+            mockCpsDataPersistenceService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_1, [xpath], FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> sourceDataNodes
+            mockCpsDataPersistenceService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_2, [xpath], FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> targetDataNodes
+        and: 'appropriate delta service method is invoked once with correct source and target data nodes'
+            1 * mockCpsDeltaService.getDeltaReports(sourceDataNodes, targetDataNodes)
     }
 
     def 'Update data node leaves: #scenario.'() {
