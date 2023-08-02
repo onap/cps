@@ -49,6 +49,17 @@ module stores {
             }
         }
 
+        container support-info {
+                    leaf support-office {
+                        type string;
+                    }
+                    container contact-emails {
+                        leaf email {
+                            type string;
+                        }
+                    }
+                }
+
         container container-without-leaves { }
 
         container premises {
