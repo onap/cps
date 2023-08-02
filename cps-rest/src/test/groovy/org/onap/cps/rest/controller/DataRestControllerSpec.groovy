@@ -100,6 +100,9 @@ class DataRestControllerSpec extends Specification {
     static DataNode dataNodeWithChild = new DataNodeBuilder().withXpath('/parent')
         .withChildDataNodes([new DataNodeBuilder().withXpath("/parent/child").build()]).build()
 
+    @Shared
+    static List<Map> deltaReportWithChild = [["some-key": "some-value", "categories": [["books": [["authors": ["Unknown Author"]]]]]]]
+
     def setup() {
         dataNodeBaseEndpointV1 = "$basePath/v1/dataspaces/$dataspaceName"
         dataNodeBaseEndpointV2 = "$basePath/v2/dataspaces/$dataspaceName"
@@ -331,8 +334,31 @@ class DataRestControllerSpec extends Specification {
         and: 'the response contains the root node identifier'
             assert response.contentAsString.contains('parent')
         and: 'the response contains child is true'
-            assert response.contentAsString.contains('"child"') == true
+            assert response.contentAsString.contains('"child"')
     }
+
+    def 'Get delta between two anchors'() {
+        given: 'teh service returns a list of delta'
+            def anchorName1 = 'referenceAnchor'
+            def anchorName2 = 'comparandAnchor'
+            def xpath = 'some xpath'
+
+            def endpoint = "$dataNodeBaseEndpointV2/delta"
+            mockCpsDataService.getDeltaByDataspaceAndAnchors(dataspaceName, anchorName1, anchorName2, xpath, OMIT_DESCENDANTS) >> deltaReportWithChild
+        when:
+            def response =
+                mvc.perform(get(endpoint)
+                    .param('anchor-name', anchorName1)
+                    .param('anchor-name-2', anchorName2)
+                    .param('xpath', xpath))
+                    .andReturn().response
+        then:
+            assert response.status == HttpStatus.OK.value()
+        and:
+            assert response.contentAsString.contains("[{\"some-key\":\"some-value\",\"categories\":[{\"books\":[{\"authors\":[\"Unknown Author\"]}]}]}]")
+    }
+
+    //TODO: (Arpit) test Delta on different possibilities of fetchDescendants and anchorNames
 
     def 'Update data node leaves: #scenario.'() {
         given: 'endpoint to update a node '
