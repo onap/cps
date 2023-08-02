@@ -28,14 +28,7 @@ import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSet.Builder;
 import io.micrometer.core.annotation.Timed;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -51,12 +44,7 @@ import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.FragmentEntity;
-import org.onap.cps.spi.exceptions.AlreadyDefinedException;
-import org.onap.cps.spi.exceptions.ConcurrencyException;
-import org.onap.cps.spi.exceptions.CpsAdminException;
-import org.onap.cps.spi.exceptions.CpsPathException;
-import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
-import org.onap.cps.spi.exceptions.DataNodeNotFoundExceptionBatch;
+import org.onap.cps.spi.exceptions.*;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.DataNodeBuilder;
 import org.onap.cps.spi.repository.AnchorRepository;
@@ -374,6 +362,75 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     public void lockAnchor(final String sessionId, final String dataspaceName,
                            final String anchorName, final Long timeoutInMilliseconds) {
         sessionManager.lockAnchor(sessionId, dataspaceName, anchorName, timeoutInMilliseconds);
+    }
+
+    @Override
+    @Timed(value = "cps.data.persistence.service.get.delta",
+            description = "Time taken to get delta")
+    public List<Map<String,Object>> getDeltaByDataspaceAndAnchors(final String dataspaceName, final String anchorName1,
+                                                          final String anchorName2, final String xpath,
+                                                          final FetchDescendantsOption fetchDescendantsOption) {
+
+        final Collection<DataNode> dataNodesFromAnchor1 = getDataNodes(dataspaceName, anchorName1, xpath, fetchDescendantsOption);
+        final Collection<DataNode> dataNodesFromAnchor2 = getDataNodes(dataspaceName, anchorName2, xpath, fetchDescendantsOption);
+
+        return getDeltaBetweenDataNodes(dataNodesFromAnchor1, dataNodesFromAnchor2);
+    }
+
+    private List<Map<String, Object>> getDeltaBetweenDataNodes(final Collection<DataNode> dataNodes1,
+                                                               final Collection<DataNode> dataNodes2) {
+
+
+        final List<Map<String, Object>> deltaReport = new ArrayList<>();
+
+        final Map<String, DataNode> xpathToDataNodes2 = new HashMap<>();
+        for (final DataNode dataNode : dataNodes2) {
+            xpathToDataNodes2.put(dataNode.getXpath(), dataNode);
+        }
+
+        for (final DataNode dataNode : dataNodes1) {
+            final String xpath = dataNode.getXpath();
+            final DataNode dataNodeWithXpath = xpathToDataNodes2.get(xpath);
+            if (dataNodeWithXpath == null) {
+                final Map<String, Object> removeAction = new HashMap<>();
+                removeAction.put("action", "remove");
+                removeAction.put("xpath", xpath);
+                deltaReport.add(removeAction);
+            } else {
+                final Map<String, Object> updateAction = new HashMap<>();
+                if (!dataNodeWithXpath.getLeaves().isEmpty()) {
+                    final Map<String, Serializable> leavesInDataNode1 = dataNode.getLeaves();
+                    final Map<String, Serializable> leavesInDataNode2 = dataNodeWithXpath.getLeaves();
+                    final var leafNameToUpdatedLeaves = getUpdatedLeaves(leavesInDataNode1, leavesInDataNode2);
+                    if (!leafNameToUpdatedLeaves.isEmpty()) {
+                        updateAction.put("action", "update");
+                        updateAction.put("xapth", xpath);
+                        updateAction.put("paylaod", leafNameToUpdatedLeaves);
+                        deltaReport.add(updateAction);
+                    }
+                }
+                if (!dataNodeWithXpath.getChildDataNodes().isEmpty()) {
+                    final List<Map<String, Object>> deltaBetweenChildDataNodes =
+                            getDeltaBetweenDataNodes(dataNode.getChildDataNodes(),
+                                    dataNodeWithXpath.getChildDataNodes());
+                    deltaReport.addAll(deltaBetweenChildDataNodes);
+                }
+            }
+        }
+        return deltaReport;
+    }
+
+    private Map<String, Object> getUpdatedLeaves(final Map<String, Serializable> leavesInDataNode1,
+                                                 final Map<String, Serializable> leavesInDataNode2){
+
+        final Map<String,Object> updatedLeaves = new HashMap<>();
+
+        for (final Map.Entry<String, Serializable> entry: leavesInDataNode1.entrySet()) {
+            if (!leavesInDataNode1.get(entry.getKey()).equals(leavesInDataNode2.get(entry.getKey()))) {
+                updatedLeaves.put(entry.getKey(), leavesInDataNode2.get(entry.getKey()));
+            }
+        }
+        return updatedLeaves;
     }
 
     private static Set<String> processAncestorXpath(final Collection<FragmentEntity> fragmentEntities,
