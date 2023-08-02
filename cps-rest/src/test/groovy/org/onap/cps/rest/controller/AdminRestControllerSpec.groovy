@@ -308,7 +308,7 @@ class AdminRestControllerSpec extends Specification {
         given: 'request parameters'
             def requestParams = new LinkedMultiValueMap<>()
             requestParams.add('schema-set-name', schemaSetName)
-            requestParams.add('anchor-name', anchorName)
+            requestParams.add('anchor-name-in-query', anchorName)
         when: 'post is invoked'
             def response =
                     mvc.perform(
