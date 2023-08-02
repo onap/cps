@@ -32,6 +32,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.onap.cps.api.CpsDataService;
@@ -164,6 +165,23 @@ public class DataRestController implements CpsDataApi {
         cpsDataService
             .deleteListOrListElement(dataspaceName, anchorName, listElementXpath, toOffsetDateTime(observedTimestamp));
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @Override
+    @Timed(value = "cps.data.controller.get.delta",
+            description = "Time taken to get delta between anchors")
+    public ResponseEntity<Object> getDeltaByDataspaceAndAnchors(final String dataspaceName,
+                                                                final String referenceAnchorName,
+                                                                final String comparandAnchorName, final String xpath,
+                                                                final String descendants) {
+        final FetchDescendantsOption fetchDescendantsOption =
+                FetchDescendantsOption.getFetchDescendantsOption(descendants);
+
+        final List<Map<String, Object>> delta = new ArrayList<>();
+        Optional.ofNullable(cpsDataService.getDeltaByDataspaceAndAnchors(dataspaceName, referenceAnchorName,
+                        comparandAnchorName, xpath, fetchDescendantsOption))
+                .ifPresent(delta::addAll);
+        return new ResponseEntity<>(jsonObjectMapper.asJsonString(delta), HttpStatus.OK);
     }
 
     private static boolean isRootXpath(final String xpath) {
