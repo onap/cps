@@ -34,12 +34,14 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsDataService;
+import org.onap.cps.api.CpsDeltaService;
 import org.onap.cps.cpspath.parser.CpsPathUtil;
 import org.onap.cps.notification.NotificationService;
 import org.onap.cps.notification.Operation;
@@ -49,6 +51,7 @@ import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.DataNodeBuilder;
+import org.onap.cps.spi.model.DeltaReport;
 import org.onap.cps.spi.utils.CpsValidator;
 import org.onap.cps.utils.ContentType;
 import org.onap.cps.utils.TimedYangParser;
@@ -70,6 +73,7 @@ public class CpsDataServiceImpl implements CpsDataService {
     private final NotificationService notificationService;
     private final CpsValidator cpsValidator;
     private final TimedYangParser timedYangParser;
+    private final CpsDeltaService cpsDeltaService;
 
     @Override
     public void saveData(final String dataspaceName, final String anchorName, final String nodeData,
@@ -212,6 +216,22 @@ public class CpsDataServiceImpl implements CpsDataService {
     public void lockAnchor(final String sessionID, final String dataspaceName,
                            final String anchorName, final Long timeoutInMilliseconds) {
         cpsDataPersistenceService.lockAnchor(sessionID, dataspaceName, anchorName, timeoutInMilliseconds);
+    }
+
+    @Override
+    @Timed(value = "cps.data.service.get.delta",
+            description = "Time taken to get delta between anchors")
+    public List<DeltaReport> getDeltaByDataspaceAndAnchors(final String dataspaceName,
+                                                           final String sourceAnchorName,
+                                                           final String targetAnchorName, final String xpath,
+                                                           final FetchDescendantsOption fetchDescendantsOption) {
+
+        final Collection<DataNode> sourceDataNodes = getDataNodesForMultipleXpaths(dataspaceName,
+                sourceAnchorName, Collections.singletonList(xpath), fetchDescendantsOption);
+        final Collection<DataNode> targetDataNodes = getDataNodesForMultipleXpaths(dataspaceName,
+                targetAnchorName, Collections.singletonList(xpath), fetchDescendantsOption);
+
+        return cpsDeltaService.getDeltaReports(sourceDataNodes, targetDataNodes);
     }
 
     @Override
