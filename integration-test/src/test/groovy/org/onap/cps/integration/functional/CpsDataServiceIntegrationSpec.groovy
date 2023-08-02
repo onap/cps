@@ -32,6 +32,7 @@ import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.exceptions.DataNodeNotFoundExceptionBatch
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException
+import org.onap.cps.spi.model.DeltaReport
 
 import java.time.OffsetDateTime
 
@@ -430,6 +431,111 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
             assert result.leaves['price'] == [100]
         cleanup:
             restoreBookstoreDataAnchor(2)
+    }
+
+    def 'Get delta between 2 anchors for #scenario'() {
+        when: 'attempt to get delta report'
+            def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_ANCHOR_3, BOOKSTORE_ANCHOR_4, xpath, fetchDescendantOption)
+        then: 'delta report contains expected number of changes'
+            deltaReport.size() == 2
+        and: 'delta report contains expected change action'
+            assert deltaReport.get(index).getAction() == expectedActions
+        and: 'delta report contains expected xpath'
+            assert deltaReport.get(index).getXpath() == expectedXpath
+        where: 'following data was used'
+            scenario            | index | xpath || expectedActions || expectedXpath                                            | fetchDescendantOption
+            'a node is removed' |   0   | '/'   ||    'remove'     || "/bookstore-address[@bookstore-name='Easons-1']"         | OMIT_DESCENDANTS
+            'a node is added'   |   1   | '/'   ||     'add'       || "/bookstore-address[@bookstore-name='My New Bookstore']" | OMIT_DESCENDANTS
+    }
+
+    def 'Get delta between 2 anchors for nested changes'() {
+        def parentNodeXpath = "/bookstore"
+        when: 'attempt to get delta report'
+            def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_ANCHOR_3, BOOKSTORE_ANCHOR_4, parentNodeXpath, INCLUDE_ALL_DESCENDANTS)
+        then: 'delta report contains expected number of changes'
+            deltaReport.size() == 8
+        and: 'the delta report does not contain parent node xpath'
+            def xpaths = getDeltaReportEntities(deltaReport).get('xpaths')
+            assert !(xpaths.contains(parentNodeXpath))
+    }
+
+    def 'Get delta returns empty response when #scenario'() {
+        when: 'attempt to get delta report'
+            def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, sourceAnchor, targetAnchor, xpath, INCLUDE_ALL_DESCENDANTS)
+        then: 'delta report is empty'
+            assert deltaReport.isEmpty()
+        where: 'following data was used'
+            scenario                              | sourceAnchor       | targetAnchor       | xpath
+        'anchors with identical data are queried' | BOOKSTORE_ANCHOR_3 | BOOKSTORE_ANCHOR_5 | '/'
+        'same anchor name is passed as parameter' | BOOKSTORE_ANCHOR_3 | BOOKSTORE_ANCHOR_3 | '/'
+        'non existing xpath'                      | BOOKSTORE_ANCHOR_3 | BOOKSTORE_ANCHOR_4 | '/non-existing-xpath'
+    }
+
+    def 'Get delta between anchors error scenario: #scenario'() {
+        def xpath = '/not-relevant'
+        when: 'attempt to get delta between anchors'
+            objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, sourceAnchor, targetAnchor, xpath, INCLUDE_ALL_DESCENDANTS)
+        then: 'expected exception is thrown'
+            thrown(expectedException)
+        where: 'following data was used'
+                    scenario                               | dataspaceName               | sourceAnchor          | targetAnchor          || expectedException
+            'invalid dataspace name'                       | 'Invalid dataspace'         | 'not-relevant'        | 'not-relevant'        || DataValidationException
+            'invalid anchor 1 name'                        | FUNCTIONAL_TEST_DATASPACE_3 | 'invalid anchor'      | 'not-relevant'        || DataValidationException
+            'invalid anchor 2 name'                        | FUNCTIONAL_TEST_DATASPACE_3 | BOOKSTORE_ANCHOR_3    | 'invalid anchor'      || DataValidationException
+            'non-existing dataspace'                       | 'non-existing'              | 'not-relevant1'       | 'not-relevant2'       || DataspaceNotFoundException
+            'non-existing dataspace with same anchor name' | 'non-existing'              | 'not-relevant'        | 'not-relevant'        || DataspaceNotFoundException
+            'non-existing anchor 1'                        | FUNCTIONAL_TEST_DATASPACE_3 | 'non-existing-anchor' | 'not-relevant'        || AnchorNotFoundException
+            'non-existing anchor 2'                        | FUNCTIONAL_TEST_DATASPACE_3 | BOOKSTORE_ANCHOR_3    | 'non-existing-anchor' || AnchorNotFoundException
+    }
+
+    def 'Get delta between anchors for delete operation #scenario'() {
+        when: 'attempt to get delta between leaves of existing data nodes'
+            def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_ANCHOR_6, BOOKSTORE_ANCHOR_3, parentNodeXpath, INCLUDE_ALL_DESCENDANTS)
+        then: 'expected action is remove'
+            assert deltaReport.get(0).getAction() == 'remove'
+        where: 'following data was used'
+            scenario                                      | parentNodeXpath
+            'source data node has leaves and child nodes' | '/bookstore/categories[@code=\'6\']'
+            'source data node has only leaves'            | '/bookstore/categories[@code=\'5\']/books[@title=\'Book 11\']'
+            'source data node has child data node only'   | '/bookstore/supportinfo/contact-emails'
+            'source data node is empty'                   | '/bookstore/supportinfo'
+    }
+
+    def 'Get delta between anchors for added nodes #scenario'() {
+        when: 'attempt to get delta between leaves of existing data nodes'
+            def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, EMPTY_BOOKSTORE_DATA, BOOKSTORE_ANCHOR_4, "/bookstore", INCLUDE_ALL_DESCENDANTS)
+        then: 'the expected action is present in delta report'
+            print(getDeltaReportEntities(deltaReport).xpaths)
+            deltaReport.get(index).getAction() == 'add'
+        and: 'the expected payload is present in delta report'
+            deltaReport.get(index).getXpath() == expectedChildNodeXpath
+        where: 'following data was used'
+            scenario                                     | index || expectedChildNodeXpath
+            'node with only leaves'                      |   25  || "/bookstore/categories[@code='6']"
+            'node with leaves and child data node'       |   19  || "/bookstore/categories[@code='1']"
+            'node with no leaves and no child data node' |   26  || "/bookstore/container-without-leaves"
+            'node with only child data node'             |   24  || "/bookstore/premises/addresses[@house-number='2' and @street='Main Street']"
+    }
+
+    def 'Get delta between anchors edge case for add operation when source data nodes are empty'() {
+        when: 'attempt to get delta between leaves of existing data nodes'
+            def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_ANCHOR_3, BOOKSTORE_ANCHOR_4, "/bookstore/categories[@code='6']", INCLUDE_ALL_DESCENDANTS)
+        then: 'the expected action is present in delta report'
+            deltaReport.get(0).getAction() == 'add'
+    }
+
+    def getDeltaReportEntities(List<DeltaReport> deltaReport) {
+        def xpaths = []
+        def action = []
+        def sourcePayload = []
+        def targetPayload = []
+        deltaReport.each {
+            delta -> xpaths.add(delta.getXpath())
+                action.add(delta.getAction())
+                sourcePayload.add(delta.getSourceData())
+                targetPayload.add(delta.getTargetData())
+        }
+        return ['xpaths':xpaths, 'action':action, 'sourcePayload':sourcePayload, 'targetPayload':targetPayload]
     }
 
     def countDataNodesInBookstore() {
