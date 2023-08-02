@@ -194,6 +194,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ccfba85d_79bb4935",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/QueryRestController.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-02T08:15:38Z",
+      "side": 1,
+      "message": "correction on formula:\n1+DIV(totalAnchors/pageSize)",
+      "parentUuid": "5e5612fc_3f1df91d",
+      "range": {
+        "startLine": 100,
+        "startChar": 43,
+        "endLine": 100,
+        "endChar": 55
+      },
+      "revId": "8da3d7b0b8f2a50ae888996aeb1e46a012a727fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e8c65a87_ece9e002",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
         "patchSetId": 21
