@@ -112,6 +112,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6dbd43cf_5a09c05d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/SubscriptionEventCloudMapper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-08-02T11:16:18Z",
+      "side": 1,
+      "message": "use lombok way of constructor injection.\n1. Instance variables as final\n2. Use @RequiredArgsConstructor\n\nas followed all over in CPS.",
+      "range": {
+        "startLine": 44,
+        "startChar": 4,
+        "endLine": 46,
+        "endChar": 5
+      },
+      "revId": "d0f7b7016e2239f6417b53007072de8b5d996120",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4bde3e1d_ab1b937d",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/SubscriptionEventCloudMapper.java",
         "patchSetId": 1
@@ -174,6 +197,29 @@
         "startChar": 13,
         "endLine": 35,
         "endChar": 44
+      },
+      "revId": "d0f7b7016e2239f6417b53007072de8b5d996120",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c32f557_877b5e1c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/SubscriptionOutcomeCloudMapper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-08-02T11:16:18Z",
+      "side": 1,
+      "message": "use CPS way of constructor injection.\nsame comment as before.",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 43,
+        "endChar": 5
       },
       "revId": "d0f7b7016e2239f6417b53007072de8b5d996120",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
@@ -364,6 +410,29 @@
       "writtenOn": "2023-08-02T09:51:28Z",
       "side": 1,
       "message": "change name once agreed",
+      "revId": "d0f7b7016e2239f6417b53007072de8b5d996120",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b298496d_871e8a3c",
+        "filename": "cps-ncmp-service/src/test/resources/avcSubscriptionOutcomeEvent.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-08-02T11:16:18Z",
+      "side": 1,
+      "message": "this error message doesnt makes sense.\nCan u double check.\n\"No reply from DMI yet\" ??",
+      "range": {
+        "startLine": 18,
+        "startChar": 22,
+        "endLine": 18,
+        "endChar": 47
+      },
       "revId": "d0f7b7016e2239f6417b53007072de8b5d996120",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
