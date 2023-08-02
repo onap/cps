@@ -228,6 +228,21 @@ class CpsDataServiceImplSpec extends Specification {
             fetchDescendantsOption << [FetchDescendantsOption.OMIT_DESCENDANTS, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS]
     }
 
+    def 'Get delta between 2 anchors with #scenario and #fetchDescendantsOption'() {
+        def xpath = '/xpath'
+        given:
+            mockCpsDataPersistenceService.getDeltaByDataspaceAndAnchors(dataspaceName, anchorName1, anchorName2, xpath, fetchDescendantsOption) >> expectedDeltaReport
+        expect:
+            objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, anchorName1, anchorName2, xpath, fetchDescendantsOption) == expectedDeltaReport
+        where:
+            scenario                  | anchorName1     | anchorName2     | fetchDescendantsOption                          | expectedDeltaReport
+            'unique anchor names'     | 'anchor-name-1' | 'anchor-name-2' | FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS  | [["some-key": "some-value", "categories": [["books": [["authors": ["Unknown Author"]]]]]]]
+            'unique anchor names'     | 'anchor-name-1' | 'anchor-name-2' | FetchDescendantsOption.OMIT_DESCENDANTS         | [["some-key": "some-value", "categories": [["books": [["authors": ["Unknown Author"]]]]]]]
+            'equivalent anchor names' | 'anchor-name'   | 'anchor-name'   | FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS  | []
+            'equivalent anchor names' | 'anchor-name'   | 'anchor-name'   | FetchDescendantsOption.OMIT_DESCENDANTS         | []
+        //TODO: (Arpit) another test with and without root node xpath
+    }
+
     def 'Update data node leaves: #scenario.'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')
