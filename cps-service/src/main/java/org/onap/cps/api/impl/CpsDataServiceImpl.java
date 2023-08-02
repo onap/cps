@@ -24,6 +24,7 @@
 
 package org.onap.cps.api.impl;
 
+import com.hazelcast.org.json.JSONArray;
 import static org.onap.cps.notification.Operation.CREATE;
 import static org.onap.cps.notification.Operation.DELETE;
 import static org.onap.cps.notification.Operation.UPDATE;
@@ -211,6 +212,16 @@ public class CpsDataServiceImpl implements CpsDataService {
     public void lockAnchor(final String sessionID, final String dataspaceName,
                            final String anchorName, final Long timeoutInMilliseconds) {
         cpsDataPersistenceService.lockAnchor(sessionID, dataspaceName, anchorName, timeoutInMilliseconds);
+    }
+
+    @Override
+    public JSONArray getDeltaByDataspaceAndAnchors(final String dataspaceName, final String anchorName1,
+                                                   final String anchorName2, final String xpath,
+                                                   final FetchDescendantsOption fetchDescendantsOption) {
+        cpsValidator.validateNameCharacters(dataspaceName, anchorName1, anchorName2);
+        cpsDataPersistenceService.getDeltaByDataspaceAndAnchors(dataspaceName, anchorName1, anchorName2, xpath,
+                fetchDescendantsOption);
+        return null;
     }
 
     @Override

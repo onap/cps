@@ -28,14 +28,7 @@ import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSet.Builder;
 import io.micrometer.core.annotation.Timed;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -51,12 +44,7 @@ import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.FragmentEntity;
-import org.onap.cps.spi.exceptions.AlreadyDefinedException;
-import org.onap.cps.spi.exceptions.ConcurrencyException;
-import org.onap.cps.spi.exceptions.CpsAdminException;
-import org.onap.cps.spi.exceptions.CpsPathException;
-import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
-import org.onap.cps.spi.exceptions.DataNodeNotFoundExceptionBatch;
+import org.onap.cps.spi.exceptions.*;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.DataNodeBuilder;
 import org.onap.cps.spi.repository.AnchorRepository;
@@ -374,6 +362,21 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     public void lockAnchor(final String sessionId, final String dataspaceName,
                            final String anchorName, final Long timeoutInMilliseconds) {
         sessionManager.lockAnchor(sessionId, dataspaceName, anchorName, timeoutInMilliseconds);
+    }
+
+    @Override
+    public void getDeltaByDataspaceAndAnchors(final String dataspaceName, final String anchorName1,
+                                              final String anchorName2, final String xpath,
+                                              final FetchDescendantsOption fetchDescendantsOption) {
+        final Collection<DataNode> dataNodesFromAnchor1 = getDataNodes(dataspaceName, anchorName1, xpath, fetchDescendantsOption);
+        final Collection<DataNode> dataNodesFromAnchor2 = getDataNodes(dataspaceName, anchorName2, xpath, fetchDescendantsOption);
+
+        final Map<String, Map<String, Serializable>> xpathToDataNodesFromAnchor1 = dataNodesFromAnchor1.stream().collect(
+                Collectors.toMap(DataNode::getXpath, DataNode::getLeaves));
+        final Map<String, Map<String, Serializable>> xpathToDataNodesFromAnchor2 = dataNodesFromAnchor2.stream().collect(
+                Collectors.toMap(DataNode::getXpath, DataNode::getLeaves));
+
+
     }
 
     private static Set<String> processAncestorXpath(final Collection<FragmentEntity> fragmentEntities,

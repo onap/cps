@@ -230,4 +230,7 @@ public interface CpsDataPersistenceService {
      * @param timeoutInMilliseconds lock attempt timeout in milliseconds
      */
     void lockAnchor(String sessionID, String dataspaceName, String anchorName, Long timeoutInMilliseconds);
+
+    void getDeltaByDataspaceAndAnchors(String dataspaceName, String anchorName1, String anchorName2,
+                                       String xpath, FetchDescendantsOption fetchDescendantsOption);
 }

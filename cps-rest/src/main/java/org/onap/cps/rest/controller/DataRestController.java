@@ -166,6 +166,19 @@ public class DataRestController implements CpsDataApi {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @Override
+    public ResponseEntity<Object> getDeltaByDataspaceAndAnchors(final String dataspaceName, final String anchorName1,
+                                                                final String anchorName2, final String xpath,
+                                                                final String descendants) {
+        final FetchDescendantsOption fetchDescendantsOption =
+                FetchDescendantsOption.getFetchDescendantsOption(descendants);
+
+        //call delta
+        final var delta = cpsDataService.getDeltaByDataspaceAndAnchors(dataspaceName, anchorName1, anchorName2, xpath,
+                fetchDescendantsOption);
+        return null;
+    }
+
     private static boolean isRootXpath(final String xpath) {
         return ROOT_XPATH.equals(xpath);
     }

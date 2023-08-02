@@ -24,6 +24,7 @@
 
 package org.onap.cps.api;
 
+import com.hazelcast.org.json.JSONArray;
 import java.time.OffsetDateTime;
 import java.util.Collection;
 import java.util.Map;
@@ -298,4 +299,6 @@ public interface CpsDataService {
      * @param timeoutInMilliseconds lock attempt timeout in milliseconds
      */
     void lockAnchor(String sessionID, String dataspaceName, String anchorName, Long timeoutInMilliseconds);
+
+    JSONArray getDeltaByDataspaceAndAnchors(String dataspaceName, String anchorName1, String anchorName2, String xpath, FetchDescendantsOption fetchDescendantsOption);
 }
