@@ -138,6 +138,36 @@ components:
                   name: SciFi
                 - code: 02
                   name: kids
+    deltaReportSample:
+      value:
+        [
+          {
+            "action": "ADD",
+            "xpath": "/bookstore/categories/[@code=3]",
+            "target-data": {
+              "code": 3,
+              "name": "kidz"
+            }
+          },
+          {
+            "action": "DELETE",
+            "xpath": "/bookstore/categories/[@code=1]",
+            "source-data": {
+              "code": 1,
+              "name": "Fiction"
+            }
+          },
+          {
+            "action": "UPDATE",
+            "xpath": "/bookstore/categories/[@code=2]",
+            "source-data": {
+              "name": "Funny"
+            },
+            "target-data": {
+              "name": "Comic"
+            }
+          }
+        ]
 
   parameters:
     dataspaceNameInQuery:
@@ -184,6 +214,14 @@ components:
       name: anchor-name
       in: query
       description: anchor-name
+      required: true
+      schema:
+        type: string
+        example: my-anchor
+    comparandAnchorName:
+      name: comparand-anchor-name
+      in: query
+      description: comparand-anchor-name
       required: true
       schema:
         type: string
