@@ -331,7 +331,28 @@ class DataRestControllerSpec extends Specification {
         and: 'the response contains the root node identifier'
             assert response.contentAsString.contains('parent')
         and: 'the response contains child is true'
-            assert response.contentAsString.contains('"child"') == true
+            assert response.contentAsString.contains('"child"')
+    }
+
+    def 'Get delta between two anchors using #fetchDescendantsOption'() {
+        given: 'the service returns a list containing delta'
+            List<Map> deltaReport = [['xpath':"/bookstore",'payload':['bookstore-name':"Easons"],'action':"update"]]
+            def referenceAnchor = 'referenceAnchor'
+            def comparandAnchor = 'comparandAnchor'
+            def xpath = 'some xpath'
+
+            def endpoint = "$dataNodeBaseEndpointV2/anchors/$referenceAnchor/delta"
+            mockCpsDataService.getDeltaByDataspaceAndAnchors(dataspaceName, referenceAnchor, comparandAnchor, xpath, OMIT_DESCENDANTS) >> deltaReport
+        when: 'get delta request is performed using REST API'
+            def response =
+                mvc.perform(get(endpoint)
+                    .param('comparand-anchor-name', comparandAnchor)
+                    .param('xpath', xpath))
+                    .andReturn().response
+        then: 'expected response code is returned'
+            assert response.status == HttpStatus.OK.value()
+        and: 'the response contains expected value'
+            assert response.contentAsString.contains("[{\"xpath\":\"/bookstore\",\"payload\":{\"bookstore-name\":\"Easons\"},\"action\":\"update\"}]")
     }
 
     def 'Update data node leaves: #scenario.'() {
