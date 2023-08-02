@@ -38,6 +38,7 @@ import org.onap.cps.api.CpsDataService;
 import org.onap.cps.rest.api.CpsDataApi;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.spi.model.DeltaReport;
 import org.onap.cps.utils.ContentType;
 import org.onap.cps.utils.DataMapUtils;
 import org.onap.cps.utils.JsonObjectMapper;
@@ -164,6 +165,22 @@ public class DataRestController implements CpsDataApi {
         cpsDataService
             .deleteListOrListElement(dataspaceName, anchorName, listElementXpath, toOffsetDateTime(observedTimestamp));
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @Override
+    @Timed(value = "cps.data.controller.get.delta",
+            description = "Time taken to get delta between anchors")
+    public ResponseEntity<Object> getDeltaByDataspaceAndAnchors(final String dataspaceName,
+                                                                final String referenceAnchorName,
+                                                                final String comparandAnchorName, final String xpath,
+                                                                final String descendants) {
+        final FetchDescendantsOption fetchDescendantsOption =
+                FetchDescendantsOption.getFetchDescendantsOption(descendants);
+
+        final List<DeltaReport> deltaBetweenDataNodes =
+                cpsDataService.getDeltaByDataspaceAndAnchors(dataspaceName, referenceAnchorName,
+                comparandAnchorName, xpath, fetchDescendantsOption);
+        return new ResponseEntity<>(jsonObjectMapper.asJsonString(deltaBetweenDataNodes), HttpStatus.OK);
     }
 
     private static boolean isRootXpath(final String xpath) {
