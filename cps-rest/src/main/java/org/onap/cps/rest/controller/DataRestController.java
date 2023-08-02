@@ -166,6 +166,22 @@ public class DataRestController implements CpsDataApi {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @Override
+    @Timed(value = "cps.data.controller.get.delta",
+            description = "Time taken to get delta between anchors")
+    public ResponseEntity<Object> getDeltaByDataspaceAndAnchors(final String dataspaceName,
+                                                                final String referenceAnchorName,
+                                                                final String comparandAnchorName, final String xpath,
+                                                                final String descendants) {
+        final FetchDescendantsOption fetchDescendantsOption =
+                FetchDescendantsOption.getFetchDescendantsOption(descendants);
+
+        final List<Map<String, Object>> delta =
+                new ArrayList<>(cpsDataService.getDeltaByDataspaceAndAnchors(dataspaceName, referenceAnchorName,
+                comparandAnchorName, xpath, fetchDescendantsOption));
+        return new ResponseEntity<>(jsonObjectMapper.asJsonString(delta), HttpStatus.OK);
+    }
+
     private static boolean isRootXpath(final String xpath) {
         return ROOT_XPATH.equals(xpath);
     }
