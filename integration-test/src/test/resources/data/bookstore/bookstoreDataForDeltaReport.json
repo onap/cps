@@ -1,0 +1,192 @@
+{
+  "bookstore-address": [
+    {
+      "bookstore-name": "Crossword Bookstores",
+      "address": "Bangalore, India",
+      "postal-code": "560062"
+    }
+  ],
+  "bookstore": {
+    "bookstore-name": "Easons",
+    "premises": {
+      "addresses": [
+        {
+          "house-number": 2,
+          "street": "Main Street",
+          "town": "Killarney",
+          "county": "Kerry"
+        },
+        {
+          "house-number": 24,
+          "street": "Grafton Street",
+          "town": "Dublin",
+          "county": "Dublin"
+        }
+      ]
+    },
+    "support-info": {
+      "contact-emails": {
+      }
+    },
+    "container-without-leaves": { },
+    "categories": [
+      {
+        "code": 1,
+        "name": "Kids",
+        "books" : [
+          {
+            "title": "Matilda",
+            "lang": "English",
+            "authors": ["Roald Dahl"],
+            "editions": [1988, 2000, 2023],
+            "price": 200
+          },
+          {
+            "title": "The Gruffalo",
+            "lang": "English/German",
+            "authors": ["Julia Donaldson"],
+            "editions": [1999],
+            "price": 15
+          }
+        ]
+      },
+      {
+        "code": 2,
+        "name": "Suspense"
+      },
+      {
+        "code": 3,
+        "name": "Comedy",
+        "books" : [
+          {
+            "title": "Good Omens",
+            "lang": "English",
+            "authors": ["Neil Gaiman", "Terry Pratchett"],
+            "editions": [2006],
+            "price": 13
+          },
+          {
+            "title": "The Colour of Magic",
+            "lang": "English",
+            "authors": ["Terry Pratchett"],
+            "editions": [1983],
+            "price": 12
+          },
+          {
+            "title": "The Light Fantastic",
+            "lang": "English",
+            "authors": ["Terry Pratchett"],
+            "editions": [1986],
+            "price": 14
+          },
+          {
+            "title": "A Book with No Language",
+            "lang": "",
+            "authors": ["Joe Bloggs"],
+            "editions": [2023],
+            "price": 20
+          }
+        ]
+      },
+      {
+        "code": 5,
+        "name": "Discount books",
+        "books" : [
+          {
+            "title": "Book 1",
+            "lang": "blah",
+            "authors": [],
+            "editions": [],
+            "price": 1
+          },
+          {
+            "title": "Book 2",
+            "lang": "blah",
+            "authors": [],
+            "editions": [],
+            "price": 2
+          },
+          {
+            "title": "Book 3",
+            "lang": "blah",
+            "authors": [],
+            "editions": [],
+            "price": 3
+          },
+          {
+            "title": "Book 4",
+            "lang": "blah",
+            "authors": [],
+            "editions": [],
+            "price": 4
+          },
+          {
+            "title": "Book 5",
+            "lang": "blah",
+            "authors": [],
+            "editions": [],
+            "price": 5
+          },
+          {
+            "title": "Book 6",
+            "lang": "blah",
+            "authors": [],
+            "editions": [],
+            "price": 6
+          },
+          {
+            "title": "Book 7",
+            "lang": "blah",
+            "authors": [],
+            "editions": [],
+            "price": 7
+          },
+          {
+            "title": "Book 8",
+            "lang": "blahh",
+            "authors": [],
+            "editions": [],
+            "price": 8
+          },
+          {
+            "title": "Book 9",
+            "lang": "blah",
+            "authors": [],
+            "editions": [],
+            "price": 9
+          },
+          {
+            "title": "Book 10",
+            "lang": "blah",
+            "authors": [],
+            "editions": [],
+            "price": 10
+          },
+          {
+            "title": "Book 11",
+            "lang": "blah",
+            "authors": [],
+            "editions": [],
+            "price": 10
+          }
+        ]
+      },
+      {
+        "code": 6,
+        "name": "Random books",
+        "books": [
+          {
+            "title": "Book 1",
+            "lang": "blah",
+            "authors": [],
+            "editions": [],
+            "price": 1
+          }
+        ]
+      },
+      {
+        "code": 7
+      }
+    ]
+  }
+}
