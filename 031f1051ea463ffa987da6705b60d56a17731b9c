@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9fcf37c6_91f0e9c1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 35
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-08-02T06:05:26Z",
+      "side": 1,
+      "message": "Addressed review comments",
+      "revId": "031f1051ea463ffa987da6705b60d56a17731b9c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e77bcf3b_257289ba",
@@ -31,6 +48,30 @@
       "writtenOn": "2023-08-01T16:57:57Z",
       "side": 1,
       "message": "NO need as this method is only used WITH pagination\nusing this check leads to branch which cannot be reached!\n(I am suer I had this adressed in my patch)",
+      "range": {
+        "startLine": 99,
+        "startChar": 8,
+        "endLine": 99,
+        "endChar": 65
+      },
+      "revId": "031f1051ea463ffa987da6705b60d56a17731b9c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf9e921c_92029035",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-08-02T06:05:26Z",
+      "side": 1,
+      "message": "this method is also called by CpsDataPersistenceServiceImpl.getAnchorIdsForPagination using PaginationOption.NO_PAGINATION to get all anchor ids. so, this condition is needed here. test case is already added in IT.",
+      "parentUuid": "e77bcf3b_257289ba",
       "range": {
         "startLine": 99,
         "startChar": 8,
@@ -66,6 +107,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "efa771bf_4ea3b9f8",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/utils/CpsValidatorSpec.groovy",
+        "patchSetId": 35
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-08-02T06:05:26Z",
+      "side": 1,
+      "message": "Addressed",
+      "parentUuid": "d2ba5057_f8c7f097",
+      "range": {
+        "startLine": 77,
+        "startChar": 1,
+        "endLine": 79,
+        "endChar": 56
+      },
+      "revId": "031f1051ea463ffa987da6705b60d56a17731b9c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5a1cccf7_d22bda22",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
         "patchSetId": 35
@@ -77,6 +142,30 @@
       "writtenOn": "2023-08-01T16:57:57Z",
       "side": 1,
       "message": "no identation.\n\nCan simply using single expect: statament\nexpect: \u0027/bookstore is present in two anchors\u0027\n   assert  objectUnderTest.countAnchorsForDataspaceAndCpsPath(FUNCTIONAL_TEST_DATASPACE_1, \u0027/bookstore\u0027) \u003d\u003d 2",
+      "range": {
+        "startLine": 409,
+        "startChar": 1,
+        "endLine": 412,
+        "endChar": 32
+      },
+      "revId": "031f1051ea463ffa987da6705b60d56a17731b9c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6a057e3_75471815",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsQueryServiceIntegrationSpec.groovy",
+        "patchSetId": 35
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-08-02T06:05:26Z",
+      "side": 1,
+      "message": "Addressed",
+      "parentUuid": "5a1cccf7_d22bda22",
       "range": {
         "startLine": 409,
         "startChar": 1,
