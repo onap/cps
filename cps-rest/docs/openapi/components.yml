@@ -269,6 +269,22 @@ components:
         type: string
         default: none
         example: 3
+    pageIndexInQuery:
+      name: pageIndex
+      in: query
+      description: page index for pagination over anchors. It must be greater then zero if provided.
+      required: false
+      schema:
+        type: integer
+        example: 1
+    pageSizeInQuery:
+      name: pageSize
+      in: query
+      description: number of records (anchors) per page. It must be greater then zero if provided.
+      required: false
+      schema:
+        type: integer
+        example: 10
 
   responses:
     NotFound:

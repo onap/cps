@@ -53,12 +53,14 @@ nodesByDataspaceAndCpsPath:
     description: Query data nodes for the given dataspace across anchors using CPS path
     tags:
       - cps-query
-    summary: Query data nodes
+    summary: Query data nodes across anchors
     operationId: getNodesByDataspaceAndCpsPath
     parameters:
       - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
       - $ref: 'components.yml#/components/parameters/cpsPathInQuery'
       - $ref: 'components.yml#/components/parameters/descendantsInQuery'
+      - $ref: 'components.yml#/components/parameters/pageIndexInQuery'
+      - $ref: 'components.yml#/components/parameters/pageSizeInQuery'
     responses:
       '200':
         description: OK

@@ -23,6 +23,7 @@
 
 package org.onap.cps.rest.controller
 
+import org.onap.cps.spi.PaginationOption
 import org.onap.cps.utils.PrefixResolver
 
 import static org.onap.cps.spi.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
@@ -71,7 +72,7 @@ class QueryRestControllerSpec extends Specification {
 
     def 'Query data node by cps path for the given dataspace and anchor with #scenario.'() {
         given: 'service method returns a list containing a data node'
-             def dataNode1 = new DataNodeBuilder().withXpath('/xpath')
+            def dataNode1 = new DataNodeBuilder().withXpath('/xpath')
                     .withLeaves([leaf: 'value', leafList: ['leaveListElement1', 'leaveListElement2']]).build()
             mockCpsQueryService.queryDataNodes(dataspaceName, anchorName, cpsPath, expectedCpsDataServiceOption) >> [dataNode1, dataNode1]
         and: 'the query endpoint'
@@ -116,18 +117,24 @@ class QueryRestControllerSpec extends Specification {
     }
 
     def 'Query data node by cps path for the given dataspace across all anchors with #scenario.'() {
-        given: 'service method returns a list containing a data node'
+        given: 'service method returns a list containing a data node from different anchors'
             def dataNode1 = new DataNodeBuilder().withXpath('/xpath')
                 .withAnchor('my_anchor')
                 .withLeaves([leaf: 'value', leafList: ['leaveListElement1', 'leaveListElement2']]).build()
             def dataNode2 = new DataNodeBuilder().withXpath('/xpath')
                 .withAnchor('my_anchor_2')
                 .withLeaves([leaf: 'value', leafList: ['leaveListElement3', 'leaveListElement4']]).build()
+        and: 'second data node for the same anchor'
+            def dataNode3 = new DataNodeBuilder().withXpath('/xpath')
+                .withAnchor('my_anchor_2')
+                .withLeaves([leaf: 'value', leafList: ['leaveListElement5', 'leaveListElement6']]).build()
+        and: 'the query endpoint'
             def dataspaceName = 'my_dataspace'
             def cpsPath = 'some/cps/path'
-            mockCpsQueryService.queryDataNodesAcrossAnchors(dataspaceName, cpsPath, expectedCpsDataServiceOption) >> [dataNode1, dataNode2]
-        and: 'the query endpoint'
             def dataNodeEndpoint = "$basePath/v2/dataspaces/$dataspaceName/nodes/query"
+            mockCpsQueryService.queryDataNodesAcrossAnchors(dataspaceName, cpsPath,
+                expectedCpsDataServiceOption, PaginationOption.NO_PAGINATION) >> [dataNode1, dataNode2, dataNode3]
+            mockCpsQueryService.countAnchorsForDataspaceAndCpsPath(dataspaceName, cpsPath) >> 2
         when: 'query data nodes API is invoked'
             def response =
                 mvc.perform(
@@ -139,11 +146,47 @@ class QueryRestControllerSpec extends Specification {
             response.status == HttpStatus.OK.value()
             response.getContentAsString().contains('{"xpath":{"leaf":"value","leafList":["leaveListElement1","leaveListElement2"]}}')
             response.getContentAsString().contains('{"xpath":{"leaf":"value","leafList":["leaveListElement3","leaveListElement4"]}}')
+            response.getContentAsString().contains('{"xpath":{"leaf":"value","leafList":["leaveListElement5","leaveListElement6"]}}')
         where: 'the following options for include descendants are provided in the request'
             scenario                    | includeDescendantsOptionString || expectedCpsDataServiceOption
             'no descendants by default' | ''                             || OMIT_DESCENDANTS
             'no descendant explicitly'  | 'none'                         || OMIT_DESCENDANTS
             'descendants'               | 'all'                          || INCLUDE_ALL_DESCENDANTS
             'direct children'           | 'direct'                       || DIRECT_CHILDREN_ONLY
+    }
+
+    def 'Query data node by cps path for the given dataspace across all anchors with pagination #scenario.'() {
+        given: 'service method returns a list containing a data node from different anchors'
+        def dataNode1 = new DataNodeBuilder().withXpath('/xpath')
+                .withAnchor('my_anchor')
+                .withLeaves([leaf: 'value', leafList: ['leaveListElement1', 'leaveListElement2']]).build()
+        def dataNode2 = new DataNodeBuilder().withXpath('/xpath')
+                .withAnchor('my_anchor_2')
+                .withLeaves([leaf: 'value', leafList: ['leaveListElement3', 'leaveListElement4']]).build()
+        and: 'the query endpoint'
+            def dataspaceName = 'my_dataspace'
+            def cpsPath = 'some/cps/path'
+            def dataNodeEndpoint = "$basePath/v2/dataspaces/$dataspaceName/nodes/query"
+            mockCpsQueryService.queryDataNodesAcrossAnchors(dataspaceName, cpsPath,
+                INCLUDE_ALL_DESCENDANTS, new PaginationOption(pageIndex,pageSize)) >> [dataNode1, dataNode2]
+            mockCpsQueryService.countAnchorsForDataspaceAndCpsPath(dataspaceName, cpsPath) >> totalAnchors
+        when: 'query data nodes API is invoked'
+            def response =
+                mvc.perform(
+                        get(dataNodeEndpoint)
+                                .param('cps-path', cpsPath)
+                                .param('descendants', "all")
+                                .param('pageIndex', String.valueOf(pageIndex))
+                                .param('pageSize', String.valueOf(pageSize)))
+                        .andReturn().response
+        then: 'the response contains the the datanode in json format'
+            assert response.status == HttpStatus.OK.value()
+            assert Integer.valueOf(response.getHeaderValue("total-pages")) == expectedPageSize
+            assert response.getContentAsString().contains('{"xpath":{"leaf":"value","leafList":["leaveListElement1","leaveListElement2"]}}')
+            assert response.getContentAsString().contains('{"xpath":{"leaf":"value","leafList":["leaveListElement3","leaveListElement4"]}}')
+        where: 'the following options for include descendants are provided in the request'
+            scenario                     | pageIndex | pageSize | totalAnchors || expectedPageSize
+            '1st page with all anchors'  | 1         | 3        | 3            || 1
+            '1st page with less anchors' | 1         | 2        | 3            || 2
     }
 }
