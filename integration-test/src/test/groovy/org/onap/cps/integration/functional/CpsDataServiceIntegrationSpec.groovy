@@ -209,7 +209,7 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Add and Delete top-level list (element) data nodes with root node.'() {
         given: 'a new (multiple-data-tree:invoice) datanodes'
-            def json = '{"bookstore-address":[{"bookstore-name":"Scholastic","address":"Bangalore,India","postal-code":"560043"}]}'
+            def json = '{"bookstore-address":[{"bookstore-name":"Easons","address":"Bangalore,India","postal-code":"560043"}]}'
         when: 'the new list elements are saved'
             objectUnderTest.saveListElements(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1 , '/', json, now)
         then: 'they can be retrieved by their xpaths'
