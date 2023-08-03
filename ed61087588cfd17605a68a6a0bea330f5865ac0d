@@ -127,6 +127,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f179dcf_0a553772",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionOutcomeMapperSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-03T13:18:43Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "cf7cd861_a2c78d9a",
+      "range": {
+        "startLine": 51,
+        "startChar": 75,
+        "endLine": 51,
+        "endChar": 98
+      },
+      "revId": "ed61087588cfd17605a68a6a0bea330f5865ac0d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8dc64c19_0b59ec2b",
@@ -150,6 +174,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "23ebac93_7266709d",
+        "filename": "cps-ncmp-service/src/test/resources/avcSubscriptionEventResponse.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-03T13:18:43Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8dc64c19_0b59ec2b",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 42
+      },
+      "revId": "ed61087588cfd17605a68a6a0bea330f5865ac0d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b10093b0_7b86abf4",
@@ -163,6 +211,30 @@
       "writtenOn": "2023-08-03T08:54:20Z",
       "side": 1,
       "message": "this error message needs to be set by NCMP when it gets NO response from DMI. I think the code to do that is still missing",
+      "range": {
+        "startLine": 18,
+        "startChar": 21,
+        "endLine": 18,
+        "endChar": 43
+      },
+      "revId": "ed61087588cfd17605a68a6a0bea330f5865ac0d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7179db28_68afd301",
+        "filename": "cps-ncmp-service/src/test/resources/avcSubscriptionOutcomeEvent.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-03T13:18:43Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b10093b0_7b86abf4",
       "range": {
         "startLine": 18,
         "startChar": 21,
