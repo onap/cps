@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5d2da8f9_ed717d1f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/FreshnessAndStalenessCacheConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-04T16:08:13Z",
+      "side": 1,
+      "message": "If never used, I would remove the annotation.",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 6
+      },
+      "revId": "c8d44989ab6bd739596b890ad3e0a259750c5445",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "26e5b175_798ceea9",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/FreshnessAndStalenessCacheConfig.java",
         "patchSetId": 3
@@ -36,6 +59,63 @@
         "startChar": 13,
         "endLine": 32,
         "endChar": 34
+      },
+      "revId": "c8d44989ab6bd739596b890ad3e0a259750c5445",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a09dcab_f3821ebc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/FreshnessAndStalenessCacheConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-04T16:08:13Z",
+      "side": 1,
+      "message": "NB: Do we need a static TTL field variable here as of now?",
+      "revId": "c8d44989ab6bd739596b890ad3e0a259750c5445",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27e837a6_420aecff",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/FreshnessAndStalenessCacheConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-04T16:08:13Z",
+      "side": 1,
+      "message": "Is this one to be a SetConfig since createSetConfig returns a SetConfig?",
+      "revId": "c8d44989ab6bd739596b890ad3e0a259750c5445",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8206f150_869ecfe4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/DeviceHeartbeatListener.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-04T16:08:13Z",
+      "side": 1,
+      "message": "Maybe a better suffix like Consumer would comply with existing CPS consumer naming conventions.",
+      "range": {
+        "startLine": 39,
+        "startChar": 28,
+        "endLine": 39,
+        "endChar": 36
       },
       "revId": "c8d44989ab6bd739596b890ad3e0a259750c5445",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
@@ -82,6 +162,29 @@
         "startChar": 16,
         "endLine": 79,
         "endChar": 20
+      },
+      "revId": "c8d44989ab6bd739596b890ad3e0a259750c5445",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0194a04d_b29ed6b4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/DeviceTrustLevel.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-04T16:08:13Z",
+      "side": 1,
+      "message": "Two different constructor at a time might cause an issue.",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 18
       },
       "revId": "c8d44989ab6bd739596b890ad3e0a259750c5445",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
