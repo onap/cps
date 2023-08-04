@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a87eab3_646014bc",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/CpsDataServiceLimitsPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-08-04T16:08:43Z",
+      "side": 1,
+      "message": "can we use TimeUnit.SECONDS.toMillis(_)",
+      "range": {
+        "startLine": 50,
+        "startChar": 64,
+        "endLine": 50,
+        "endChar": 70
+      },
+      "revId": "be931fb0887f56925fe11b19b28fa01b0a15fbb7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04e895c9_d1941ea5",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/CpsDataServiceLimitsPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-08-04T16:08:43Z",
+      "side": 1,
+      "message": "TimeUnit.SECONDS.toMillis(_)",
+      "range": {
+        "startLine": 91,
+        "startChar": 61,
+        "endLine": 91,
+        "endChar": 65
+      },
+      "revId": "be931fb0887f56925fe11b19b28fa01b0a15fbb7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8e17b91_adbe8698",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/DeletePerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-08-04T16:08:43Z",
+      "side": 1,
+      "message": "TimeUnit.SECONDS.toMillis(_)",
+      "range": {
+        "startLine": 61,
+        "startChar": 64,
+        "endLine": 61,
+        "endChar": 68
+      },
+      "revId": "be931fb0887f56925fe11b19b28fa01b0a15fbb7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "791ff937_96ac76d9",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/DeletePerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-08-04T16:08:43Z",
+      "side": 1,
+      "message": "TimeUnit.SECONDS.toMillis(_)",
+      "range": {
+        "startLine": 91,
+        "startChar": 68,
+        "endLine": 91,
+        "endChar": 72
+      },
+      "revId": "be931fb0887f56925fe11b19b28fa01b0a15fbb7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02be6b8f_b40f198f",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/DeletePerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-08-04T16:08:43Z",
+      "side": 1,
+      "message": "pls modify all the places withTimeUnit.SECONDS.toMillis(_)",
+      "range": {
+        "startLine": 105,
+        "startChar": 74,
+        "endLine": 105,
+        "endChar": 77
+      },
+      "revId": "be931fb0887f56925fe11b19b28fa01b0a15fbb7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
