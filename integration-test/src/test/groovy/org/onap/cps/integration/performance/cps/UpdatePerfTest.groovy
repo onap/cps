@@ -40,52 +40,52 @@ class UpdatePerfTest extends CpsPerfTestBase {
             objectUnderTest.updateDataNodeAndDescendants(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm1', parentNodeXpath, jsonData, now)
             stopWatch.stop()
             def updateDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'update duration is under 1000 milliseconds'
+        then: 'update completes within expected time'
             recordAndAssertPerformance('Update 1 data node', 600, updateDurationInMillis)
     }
 
-    def 'Batch update 10 data nodes with descendants'() {
+    def 'Batch update 100 data nodes with descendants'() {
         given: 'a list of data nodes to update as JSON'
             def innerNodeJson = readResourceDataFile('openroadm/innerNode.json')
-            def nodesJsonData = (20..30).collectEntries {[
+            def nodesJsonData = (1..100).collectEntries {[
                 "/openroadm-devices/openroadm-device[@device-id='C201-7-1A-" + it + "']",
                 innerNodeJson.replace('NODE_ID_HERE', it.toString())
             ]}
         when: 'the fragment entities are updated by the data nodes'
             stopWatch.start()
-            objectUnderTest.updateDataNodesAndDescendants(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm2', nodesJsonData, now)
+            objectUnderTest.updateDataNodesAndDescendants(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm1', nodesJsonData, now)
             stopWatch.stop()
             def updateDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'update duration is under 5000 milliseconds'
-            recordAndAssertPerformance('Update 10 data nodes', 4000, updateDurationInMillis)
+        then: 'update completes within expected time'
+            recordAndAssertPerformance('Update 100 data nodes', 30_000, updateDurationInMillis)
     }
 
-    def 'Update leaves for 1 data node'() {
+    def 'Update leaves for 1 data node (twice)'() {
         given: 'Updated json for openroadm data'
             def jsonDataUpdated  = "{'openroadm-device':{'device-id':'C201-7-1A-10','status':'fail','ne-state':'jeopardy'}}"
             def jsonDataOriginal = "{'openroadm-device':{'device-id':'C201-7-1A-10','status':'success','ne-state':'inservice'}}"
         when: 'update is performed for leaves'
             stopWatch.start()
-            objectUnderTest.updateNodeLeaves(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm3', "/openroadm-devices", jsonDataUpdated, now)
-            objectUnderTest.updateNodeLeaves(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm3', "/openroadm-devices", jsonDataOriginal, now)
+            objectUnderTest.updateNodeLeaves(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm2', "/openroadm-devices", jsonDataUpdated, now)
+            objectUnderTest.updateNodeLeaves(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm2', "/openroadm-devices", jsonDataOriginal, now)
             stopWatch.stop()
             def updateDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'update duration is under 650 milliseconds'
-            recordAndAssertPerformance('Update leaves for 1 data node', 650, updateDurationInMillis)
+        then: 'update completes within expected time'
+            recordAndAssertPerformance('Update leaves for 1 data node', 500, updateDurationInMillis)
     }
 
-    def 'Batch update leaves for 50 data nodes'() {
+    def 'Batch update leaves for 100 data nodes (twice)'() {
         given: 'Updated json for openroadm data'
-            def jsonDataUpdated  = "{'openroadm-device':[" + (1..50).collect { "{'device-id':'C201-7-1A-" + it + "','status':'fail','ne-state':'jeopardy'}" }.join(",") + "]}"
-            def jsonDataOriginal = "{'openroadm-device':[" + (1..50).collect { "{'device-id':'C201-7-1A-" + it + "','status':'success','ne-state':'inservice'}" }.join(",") + "]}"
+            def jsonDataUpdated  = "{'openroadm-device':[" + (1..100).collect { "{'device-id':'C201-7-1A-" + it + "','status':'fail','ne-state':'jeopardy'}" }.join(",") + "]}"
+            def jsonDataOriginal = "{'openroadm-device':[" + (1..100).collect { "{'device-id':'C201-7-1A-" + it + "','status':'success','ne-state':'inservice'}" }.join(",") + "]}"
         when: 'update is performed for leaves'
             stopWatch.start()
-            objectUnderTest.updateNodeLeaves(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm4', "/openroadm-devices", jsonDataUpdated, now)
-            objectUnderTest.updateNodeLeaves(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm4', "/openroadm-devices", jsonDataOriginal, now)
+            objectUnderTest.updateNodeLeaves(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm2', "/openroadm-devices", jsonDataUpdated, now)
+            objectUnderTest.updateNodeLeaves(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm2', "/openroadm-devices", jsonDataOriginal, now)
             stopWatch.stop()
             def updateDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'update duration is under 700 milliseconds'
-            recordAndAssertPerformance('Batch update leaves for 50 data nodes', 700, updateDurationInMillis)
+        then: 'update completes within expected time'
+            recordAndAssertPerformance('Batch update leaves for 100 data nodes', 1000, updateDurationInMillis)
     }
 
 }

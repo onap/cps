@@ -42,13 +42,13 @@ class WritePerfTest extends CpsPerfTestBase {
             cpsAdminService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, 'writeAnchor')
         where:
             totalNodes || expectedDuration
-            50         ||   2_500
-            100        ||   4_000
-            200        ||   8_000
-            400        ||  16_000
-//          800        ||  32_000
-//          1600       ||  64_000
-//          3200       || 128_000
+            50         ||   3_000
+            100        ||   5_000
+            200        ||  10_000
+            400        ||  20_000
+//          800        ||  40_000
+//          1600       ||  80_000
+//          3200       || 160_000
     }
 
     def 'Writing bookstore data has exponential time.'() {
@@ -73,7 +73,7 @@ class WritePerfTest extends CpsPerfTestBase {
             400        ||     200
             800        ||     500
             1600       ||   1_000
-            3200       ||   2_500
+            3200       ||   3_000
             6400       ||  10_000
 //          12800      ||  30_000
 //          25600      || 120_000

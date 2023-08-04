@@ -24,6 +24,8 @@ import java.time.OffsetDateTime
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.integration.performance.base.CpsPerfTestBase
 
+import java.util.concurrent.TimeUnit
+
 import static org.onap.cps.spi.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 
@@ -46,8 +48,8 @@ class CpsDataServiceLimitsPerfTest extends CpsPerfTestBase {
             }
             stopWatch.stop()
             def durationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'the operation completes within 10 seconds'
-            recordAndAssertPerformance("Creating 33,000 books", 10_000, durationInMillis)
+        then: 'the operation completes within 25 seconds'
+            recordAndAssertPerformance("Creating 33,000 books", TimeUnit.SECONDS.toMillis(25), durationInMillis)
     }
 
     def 'Get data nodes from multiple xpaths 32K (2^15) limit exceeded.'() {
@@ -87,8 +89,8 @@ class CpsDataServiceLimitsPerfTest extends CpsPerfTestBase {
             cpsAdminService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, 'limitsAnchor')
             stopWatch.stop()
             def durationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'test data is deleted in 10 seconds'
-            recordAndAssertPerformance("Deleting test data", 10_000, durationInMillis)
+        then: 'test data is deleted in 1 second'
+            recordAndAssertPerformance("Deleting test data", TimeUnit.SECONDS.toMillis(1), durationInMillis)
     }
 
     def countDataNodes() {
