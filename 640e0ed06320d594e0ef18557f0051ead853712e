@@ -1,0 +1,124 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd8e7a44_8abdb9e9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-08-04T14:03:35Z",
+      "side": 1,
+      "message": "minor pointers ( which we will handle in the next patches ) and few questions.\nOtherwise i am fine with this.",
+      "revId": "640e0ed06320d594e0ef18557f0051ead853712e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d167ef59_b8f3e826",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/SubscriptionEventConsumer.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-08-04T14:03:35Z",
+      "side": 1,
+      "message": "open question , if we support both datastores or not ? \nBut for now I am fine to keep it like this.",
+      "range": {
+        "startLine": 67,
+        "startChar": 8,
+        "endLine": 68,
+        "endChar": 83
+      },
+      "revId": "640e0ed06320d594e0ef18557f0051ead853712e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b8b81b1_0f0c7a89",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/SubscriptionEventCloudMapper.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-08-04T14:03:35Z",
+      "side": 1,
+      "message": "these would be replaced by a generic code in the next commit.\nI will handle this.",
+      "range": {
+        "startLine": 53,
+        "startChar": 8,
+        "endLine": 63,
+        "endChar": 5
+      },
+      "revId": "640e0ed06320d594e0ef18557f0051ead853712e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b31202ec_8a2c23bf",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/SubscriptionEventResponseCloudMapperSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-08-04T14:03:35Z",
+      "side": 1,
+      "message": "We can later clean this up when we will have a generic mapper.\nFor now these are relevant.",
+      "revId": "640e0ed06320d594e0ef18557f0051ead853712e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e0a793b_eb78bb13",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/SubscriptionOutcomeCloudMapperSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-08-04T14:03:35Z",
+      "side": 1,
+      "message": "same comment as previous.",
+      "revId": "640e0ed06320d594e0ef18557f0051ead853712e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a62a8825_f0fb1c10",
+        "filename": "cps-ncmp-service/src/test/resources/avcSubscriptionEventResponse.json",
+        "patchSetId": 9
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-08-04T14:03:35Z",
+      "side": 1,
+      "message": "for now you are keeping this ??\nWe plan to do it with the next subtask right ???",
+      "range": {
+        "startLine": 19,
+        "startChar": 8,
+        "endLine": 19,
+        "endChar": 28
+      },
+      "revId": "640e0ed06320d594e0ef18557f0051ead853712e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
