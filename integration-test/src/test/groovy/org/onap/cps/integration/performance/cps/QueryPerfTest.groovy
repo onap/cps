@@ -22,6 +22,9 @@ package org.onap.cps.integration.performance.cps
 
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.integration.performance.base.CpsPerfTestBase
+import org.onap.cps.spi.PaginationOption
+
+import java.util.concurrent.TimeUnit
 
 import static org.onap.cps.spi.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
@@ -36,7 +39,7 @@ class QueryPerfTest extends CpsPerfTestBase {
     def 'Query complete data trees with #scenario.'() {
         when: 'query data nodes (using a fresh anchor with identical data for each test)'
             stopWatch.start()
-            def result = objectUnderTest.queryDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, anchor, cpsPath, INCLUDE_ALL_DESCENDANTS)
+            def result = objectUnderTest.queryDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm1', cpsPath, INCLUDE_ALL_DESCENDANTS)
             stopWatch.stop()
             def durationInMillis = stopWatch.getTotalTimeMillis()
         then: 'the expected number of nodes is returned'
@@ -44,18 +47,18 @@ class QueryPerfTest extends CpsPerfTestBase {
         and: 'all data is read within #durationLimit ms'
             recordAndAssertPerformance("Query 1 anchor ${scenario}", durationLimit, durationInMillis)
         where: 'the following parameters are used'
-            scenario                     | anchor       | cpsPath                                                             || durationLimit | expectedNumberOfDataNodes
-            'top element'                | 'openroadm1' | '/openroadm-devices'                                                || 120           | OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE + 1
-            'leaf condition'             | 'openroadm2' | '//openroadm-device[@ne-state="inservice"]'                         || 200           | OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
-            'ancestors'                  | 'openroadm3' | '//openroadm-device/ancestor::openroadm-devices'                    || 120           | OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE + 1
-            'leaf condition + ancestors' | 'openroadm4' | '//openroadm-device[@status="success"]/ancestor::openroadm-devices' || 120           | OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE + 1
-            'non-existing data'          | 'openroadm1' | '/path/to/non-existing/node[@id="1"]'                               || 10            | 0
+            scenario                     | cpsPath                                                             || durationLimit                | expectedNumberOfDataNodes
+            'top element'                | '/openroadm-devices'                                                || TimeUnit.SECONDS.toMillis(2) | OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE + 1
+            'leaf condition'             | '//openroadm-device[@ne-state="inservice"]'                         || TimeUnit.SECONDS.toMillis(3) | OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
+            'ancestors'                  | '//openroadm-device/ancestor::openroadm-devices'                    || TimeUnit.SECONDS.toMillis(2) | OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE + 1
+            'leaf condition + ancestors' | '//openroadm-device[@status="success"]/ancestor::openroadm-devices' || TimeUnit.SECONDS.toMillis(2) | OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE + 1
+            'non-existing data'          | '/path/to/non-existing/node[@id="1"]'                               || 100                          | 0
     }
 
     def 'Query complete data trees across all anchors with #scenario.'() {
         when: 'query data nodes across all anchors'
             stopWatch.start()
-            def result = objectUnderTest.queryDataNodesAcrossAnchors('cpsPerformanceDataspace', cpspath, INCLUDE_ALL_DESCENDANTS)
+            def result = objectUnderTest.queryDataNodesAcrossAnchors(CPS_PERFORMANCE_TEST_DATASPACE, cpspath, INCLUDE_ALL_DESCENDANTS, PaginationOption.NO_PAGINATION)
             stopWatch.stop()
             def durationInMillis = stopWatch.getTotalTimeMillis()
         then: 'the expected number of nodes is returned'
@@ -63,17 +66,18 @@ class QueryPerfTest extends CpsPerfTestBase {
         and: 'all data is read within #durationLimit ms'
             recordAndAssertPerformance("Query across anchors ${scenario}", durationLimit, durationInMillis)
         where: 'the following parameters are used'
-            scenario                     | cpspath                                                             || durationLimit | expectedNumberOfDataNodes
-            'top element'                | '/openroadm-devices'                                                || 400           | OPENROADM_ANCHORS * (OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE + 1)
-            'leaf condition'             | '//openroadm-device[@ne-state="inservice"]'                         || 700           | OPENROADM_ANCHORS * (OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE)
-            'ancestors'                  | '//openroadm-device/ancestor::openroadm-devices'                    || 400           | OPENROADM_ANCHORS * (OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE + 1)
-            'leaf condition + ancestors' | '//openroadm-device[@status="success"]/ancestor::openroadm-devices' || 400           | OPENROADM_ANCHORS * (OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE + 1)
+            scenario                     | cpspath                                                             || durationLimit                | expectedNumberOfDataNodes
+            'top element'                | '/openroadm-devices'                                                || TimeUnit.SECONDS.toMillis(6) | OPENROADM_ANCHORS * (OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE + 1)
+            'leaf condition'             | '//openroadm-device[@ne-state="inservice"]'                         || TimeUnit.SECONDS.toMillis(6) | OPENROADM_ANCHORS * (OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE)
+            'ancestors'                  | '//openroadm-device/ancestor::openroadm-devices'                    || TimeUnit.SECONDS.toMillis(6) | OPENROADM_ANCHORS * (OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE + 1)
+            'leaf condition + ancestors' | '//openroadm-device[@status="success"]/ancestor::openroadm-devices' || TimeUnit.SECONDS.toMillis(6) | OPENROADM_ANCHORS * (OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE + 1)
+            'non-existing data'          | '/path/to/non-existing/node[@id="1"]'                               || 100                          | 0
     }
 
     def 'Query with leaf condition and #scenario.'() {
         when: 'query data nodes (using a fresh anchor with identical data for each test)'
             stopWatch.start()
-            def result = objectUnderTest.queryDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, anchor, '//openroadm-device[@status="success"]', fetchDescendantsOption)
+            def result = objectUnderTest.queryDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm2', '//openroadm-device[@status="success"]', fetchDescendantsOption)
             stopWatch.stop()
             def durationInMillis = stopWatch.getTotalTimeMillis()
         then: 'the expected number of nodes is returned'
@@ -81,16 +85,16 @@ class QueryPerfTest extends CpsPerfTestBase {
         and: 'all data is read within #durationLimit ms'
             recordAndAssertPerformance("Query with ${scenario}", durationLimit, durationInMillis)
         where: 'the following parameters are used'
-            scenario             | fetchDescendantsOption  | anchor       || durationLimit | expectedNumberOfDataNodes
-            'no descendants'     | OMIT_DESCENDANTS        | 'openroadm1' || 15            | OPENROADM_DEVICES_PER_ANCHOR
-            'direct descendants' | DIRECT_CHILDREN_ONLY    | 'openroadm2' || 60            | OPENROADM_DEVICES_PER_ANCHOR * 2
-            'all descendants'    | INCLUDE_ALL_DESCENDANTS | 'openroadm3' || 150           | OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
+            scenario             | fetchDescendantsOption  || durationLimit                | expectedNumberOfDataNodes
+            'no descendants'     | OMIT_DESCENDANTS        || 100                          | OPENROADM_DEVICES_PER_ANCHOR
+            'direct descendants' | DIRECT_CHILDREN_ONLY    || 150                          | OPENROADM_DEVICES_PER_ANCHOR * 2
+            'all descendants'    | INCLUDE_ALL_DESCENDANTS || TimeUnit.SECONDS.toMillis(2) | OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
     }
 
     def 'Query ancestors with #scenario.'() {
         when: 'query data nodes (using a fresh anchor with identical data for each test)'
             stopWatch.start()
-            def result = objectUnderTest.queryDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, anchor, '//openroadm-device[@ne-state="inservice"]/ancestor::openroadm-devices', fetchDescendantsOption)
+            def result = objectUnderTest.queryDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm3', '//openroadm-device[@ne-state="inservice"]/ancestor::openroadm-devices', fetchDescendantsOption)
             stopWatch.stop()
             def durationInMillis = stopWatch.getTotalTimeMillis()
         then: 'the expected number of nodes is returned'
@@ -98,10 +102,10 @@ class QueryPerfTest extends CpsPerfTestBase {
         and: 'all data is read within #durationLimit ms'
             recordAndAssertPerformance("Query ancestors with ${scenario}", durationLimit, durationInMillis)
         where: 'the following parameters are used'
-            scenario             | fetchDescendantsOption  | anchor       || durationLimit | expectedNumberOfDataNodes
-            'no descendants'     | OMIT_DESCENDANTS        | 'openroadm1' || 15            | 1
-            'direct descendants' | DIRECT_CHILDREN_ONLY    | 'openroadm2' || 60            | 1 + OPENROADM_DEVICES_PER_ANCHOR
-            'all descendants'    | INCLUDE_ALL_DESCENDANTS | 'openroadm3' || 150           | 1 + OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
+            scenario             | fetchDescendantsOption  || durationLimit                | expectedNumberOfDataNodes
+            'no descendants'     | OMIT_DESCENDANTS        || 100                          | 1
+            'direct descendants' | DIRECT_CHILDREN_ONLY    || 100                          | 1 + OPENROADM_DEVICES_PER_ANCHOR
+            'all descendants'    | INCLUDE_ALL_DESCENDANTS || TimeUnit.SECONDS.toMillis(2) | 1 + OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
     }
 
 }

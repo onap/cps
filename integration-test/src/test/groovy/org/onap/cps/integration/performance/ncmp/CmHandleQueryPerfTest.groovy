@@ -44,7 +44,7 @@ class CmHandleQueryPerfTest extends NcmpRegistryPerfTestBase {
             stopWatch.stop()
             def durationInMillis = stopWatch.getTotalTimeMillis()
         then: 'the required operations are performed within 1200 ms'
-            recordAndAssertPerformance("CpsPath Registry attributes Query", 500, durationInMillis)
+            recordAndAssertPerformance("CpsPath Registry attributes Query", 250, durationInMillis)
         and: 'all but 1 (other node) are returned'
             result.size() == 999
         and: 'the tree contains all the expected descendants too'

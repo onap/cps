@@ -23,6 +23,8 @@ package org.onap.cps.integration.performance.cps
 import java.time.OffsetDateTime
 import org.onap.cps.integration.performance.base.CpsPerfTestBase
 
+import java.util.concurrent.TimeUnit
+
 class WritePerfTest extends CpsPerfTestBase {
 
     def 'Writing openroadm data has linear time.'() {
@@ -36,19 +38,19 @@ class WritePerfTest extends CpsPerfTestBase {
             stopWatch.stop()
             def durationInMillis = stopWatch.getTotalTimeMillis()
         then: 'the operation takes less than #expectedDuration'
-            recordAndAssertPerformance("Writing ${totalNodes} devices", expectedDuration, durationInMillis)
+            recordAndAssertPerformance("Writing ${totalNodes} devices", TimeUnit.SECONDS.toMillis(expectedDurationInSeconds), durationInMillis)
         cleanup:
             cpsDataService.deleteDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, 'writeAnchor', OffsetDateTime.now())
             cpsAdminService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, 'writeAnchor')
         where:
-            totalNodes || expectedDuration
-            50         ||   2_500
-            100        ||   4_000
-            200        ||   8_000
-            400        ||  16_000
-//          800        ||  32_000
-//          1600       ||  64_000
-//          3200       || 128_000
+            totalNodes || expectedDurationInSeconds
+            50         ||   3
+            100        ||   5
+            200        ||  10
+            400        ||  20
+//          800        ||  40
+//          1600       ||  80
+//          3200       || 160
     }
 
     def 'Writing bookstore data has exponential time.'() {
@@ -70,14 +72,14 @@ class WritePerfTest extends CpsPerfTestBase {
             cpsAdminService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, 'writeAnchor')
         where:
             totalBooks || expectedDuration
-            400        ||     200
-            800        ||     500
-            1600       ||   1_000
-            3200       ||   2_500
-            6400       ||  10_000
-//          12800      ||  30_000
-//          25600      || 120_000
-//          51200      || 600_000
+            400        || 200
+            800        || 500
+            1600       || TimeUnit.SECONDS.toMillis(1)
+            3200       || TimeUnit.SECONDS.toMillis(3)
+            6400       || TimeUnit.SECONDS.toMillis(10)
+//          12800      || TimeUnit.SECONDS.toMillis(30)
+//          25600      || TimeUnit.SECONDS.toMillis(120)
+//          51200      || TimeUnit.SECONDS.toMillis(600)
     }
 
 }

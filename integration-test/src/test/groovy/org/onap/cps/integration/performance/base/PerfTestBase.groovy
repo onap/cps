@@ -61,7 +61,7 @@ abstract class PerfTestBase extends CpsIntegrationSpecBase {
         if (shortTitle.length() > 40) {
             shortTitle = shortTitle.substring(0, 40)
         }
-        def record = String.format('%2d.%-40s limit%,7d took %,7d ms ', PERFORMANCE_RECORD.size() + 1, shortTitle, thresholdInMs, recordedTimeInMs)
+        def record = String.format('%2d.%-40s limit%,8d took %,8d ms ', PERFORMANCE_RECORD.size() + 1, shortTitle, thresholdInMs, recordedTimeInMs)
         record += pass ? 'PASS' : 'FAIL'
         PERFORMANCE_RECORD.add(record)
         assert recordedTimeInMs <= thresholdInMs
