@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2023 Nordix Foundation
+ *  Copyright (C) 2022-2024 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
  *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
@@ -25,8 +25,8 @@ package org.onap.cps.ncmp.api.impl.inventory;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAnchorService;
@@ -131,19 +131,14 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
 
     @Override
     public void saveCmHandle(final YangModelCmHandle yangModelCmHandle) {
-        final String cmHandleJsonData =
-                createCmHandleJsonData(jsonObjectMapper.asJsonString(yangModelCmHandle));
-        cpsDataService.saveListElements(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
-                cmHandleJsonData, NO_TIMESTAMP);
+        saveCmHandleBatch(Collections.singletonList(yangModelCmHandle));
     }
 
     @Override
     public void saveCmHandleBatch(final Collection<YangModelCmHandle> yangModelCmHandles) {
-        final List<String> cmHandlesJsonData = new ArrayList<>();
-        yangModelCmHandles.forEach(yangModelCmHandle -> cmHandlesJsonData.add(
-                createCmHandleJsonData(jsonObjectMapper.asJsonString(yangModelCmHandle))));
-        cpsDataService.saveListElementsBatch(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                NCMP_DMI_REGISTRY_PARENT, cmHandlesJsonData, NO_TIMESTAMP);
+        final String cmHandlesJsonData = "{\"cm-handles\":" + jsonObjectMapper.asJsonString(yangModelCmHandles) + "}";
+        cpsDataService.saveListElements(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
+                cmHandlesJsonData, NO_TIMESTAMP);
     }
 
     @Override
@@ -169,9 +164,5 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
 
     private static String createStateJsonData(final String state) {
         return "{\"state\":" + state + "}";
-    }
-
-    private static String createCmHandleJsonData(final String yangModelCmHandleAsJson) {
-        return "{\"cm-handles\":[" + yangModelCmHandleAsJson + "]}";
     }
 }

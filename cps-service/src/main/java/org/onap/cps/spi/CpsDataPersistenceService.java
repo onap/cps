@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2023 Nordix Foundation.
+ *  Copyright (C) 2020-2024 Nordix Foundation.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 Bell Canada
  *  Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
@@ -65,17 +65,6 @@ public interface CpsDataPersistenceService {
      */
     void addListElements(String dataspaceName, String anchorName, String parentNodeXpath,
         Collection<DataNode> listElementsCollection);
-
-    /**
-     * Add multiple lists of data nodes to a parent node at the same time.
-     *
-     * @param dataspaceName           dataspace name
-     * @param anchorName              anchor name
-     * @param parentNodeXpath         parent node xpath
-     * @param newLists collections of lists of data nodes representing list elements
-     */
-    void addMultipleLists(String dataspaceName, String anchorName, String parentNodeXpath,
-            Collection<Collection<DataNode>> newLists);
 
     /**
      * Retrieves multiple datanodes for a single XPath for given dataspace and anchor.

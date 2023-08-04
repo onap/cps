@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2023 Nordix Foundation
+ *  Copyright (C) 2021-2024 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
@@ -94,23 +94,6 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
                                 final Collection<DataNode> newListElements) {
         final AnchorEntity anchorEntity = getAnchorEntity(dataspaceName, anchorName);
         addChildrenDataNodes(anchorEntity, parentNodeXpath, newListElements);
-    }
-
-    @Override
-    public void addMultipleLists(final String dataspaceName, final String anchorName, final String parentNodeXpath,
-                                 final Collection<Collection<DataNode>> newLists) {
-        final AnchorEntity anchorEntity = getAnchorEntity(dataspaceName, anchorName);
-        final Collection<String> failedXpaths = new HashSet<>();
-        for (final Collection<DataNode> newList : newLists) {
-            try {
-                addChildrenDataNodes(anchorEntity, parentNodeXpath, newList);
-            } catch (final AlreadyDefinedException alreadyDefinedException) {
-                failedXpaths.addAll(alreadyDefinedException.getAlreadyDefinedObjectNames());
-            }
-        }
-        if (!failedXpaths.isEmpty()) {
-            throw AlreadyDefinedException.forDataNodes(failedXpaths, anchorEntity.getName());
-        }
     }
 
     private void addNewChildDataNode(final AnchorEntity anchorEntity, final String parentNodeXpath,
