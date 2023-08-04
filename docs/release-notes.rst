@@ -44,6 +44,7 @@ Bug Fixes
 Features
 --------
     - `CPS-2018 <https://jira.onap.org/browse/CPS-2018>`_ Improve performance of CPS update operations.
+    - `CPS-2019 <https://jira.onap.org/browse/CPS-2019>`_ Improve performance of saving CM handles.
 
 
 Version: 3.4.1
