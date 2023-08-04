@@ -44,6 +44,11 @@ Bug Fixes
 Features
 --------
     - `CPS-2018 <https://jira.onap.org/browse/CPS-2018>`_ Improve performance of CPS update operations.
+    - `CPS-2019 <https://jira.onap.org/browse/CPS-2019>`_ Improve performance of saving CM handles.
+
+Notes
+-----
+    - Java API method CpsDataService::saveListElementsBatch has been removed as part of CPS-2019.
 
 
 Version: 3.4.1

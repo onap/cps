@@ -106,32 +106,4 @@ class WritePerfTest extends CpsPerfTestBase {
             400        || 28               | 250
     }
 
-    def 'Writing openroadm list data using saveListElementsBatch.'() {
-        given: 'an anchor and empty container node for openroadm'
-            cpsAnchorService.createAnchor(CPS_PERFORMANCE_TEST_DATASPACE, LARGE_SCHEMA_SET, WRITE_TEST_ANCHOR)
-            cpsDataService.saveData(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR,
-                    '{ "openroadm-devices": { "openroadm-device": []}}', now)
-        and: 'a list of device nodes to add'
-            def innerNode = readResourceDataFile('openroadm/innerNode.json')
-            def multipleJsonData = (1..totalNodes).collect {
-                '{ "openroadm-device": [' + innerNode.replace('NODE_ID_HERE', it.toString()) + ']}' }
-        when: 'device nodes are added'
-            resourceMeter.start()
-            cpsDataService.saveListElementsBatch(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR, '/openroadm-devices', multipleJsonData, OffsetDateTime.now())
-            resourceMeter.stop()
-        then: 'the operation takes less than #expectedDuration and memory used is within limit'
-            recordAndAssertResourceUsage("Saving batch of ${totalNodes} lists",
-                    expectedDuration, resourceMeter.getTotalTimeInSeconds(),
-                    memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
-        cleanup:
-            cpsDataService.deleteDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR, OffsetDateTime.now())
-            cpsAnchorService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR)
-        where:
-            totalNodes || expectedDuration | memoryLimit
-            50         || 16               | 500
-            100        || 32               | 500
-            200        || 64               | 1000
-            400        || 128              | 1250
-    }
-
 }

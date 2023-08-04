@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2023 Nordix Foundation
+ *  Copyright (C) 2021-2024 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
  *  Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
@@ -158,24 +158,6 @@ class CpsDataServiceImplSpec extends Specification {
             )
         and: 'the CpsValidator is called on the dataspaceName and AnchorName'
             1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
-    }
-
-    def 'Saving collection of a batch with data fragment under existing node.'() {
-        given: 'schema set for given anchor and dataspace references test-tree model'
-            setupSchemaSetMocks('test-tree.yang')
-        when: 'save data method is invoked with list element json data'
-            def jsonData = '{"branch": [{"name": "A"}, {"name": "B"}]}'
-            objectUnderTest.saveListElementsBatch(dataspaceName, anchorName, '/test-tree', [jsonData], observedTimestamp)
-        then: 'the persistence service method is invoked with correct parameters'
-            1 * mockCpsDataPersistenceService.addMultipleLists(dataspaceName, anchorName, '/test-tree',_) >> {
-                args -> {
-                    def listElementsCollection = args[3] as Collection<Collection<DataNode>>
-                    assert listElementsCollection.size() == 1
-                    def listOfXpaths = listElementsCollection.stream().flatMap(x -> x.stream()).map(it-> it.xpath).collect(Collectors.toList())
-                    assert listOfXpaths.size() == 2
-                    assert listOfXpaths.containsAll(['/test-tree/branch[@name=\'B\']','/test-tree/branch[@name=\'A\']'])
-                }
-            }
     }
 
     def 'Saving empty list element data fragment.'() {
