@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2023 Nordix Foundation
+ *  Copyright (C) 2020-2024 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada
  *  Modifications Copyright (C) 2022 Deutsche Telekom AG
@@ -98,19 +98,6 @@ public interface CpsDataService {
      */
     void saveListElements(String dataspaceName, String anchorName, String parentNodeXpath, String jsonData,
         OffsetDateTime observedTimestamp);
-
-    /**
-     * Persists child data fragment representing one or more list elements under existing data node for the
-     * given anchor and dataspace.
-     *
-     * @param dataspaceName     dataspace name
-     * @param anchorName        anchor name
-     * @param parentNodeXpath   parent node xpath
-     * @param jsonDataList      collection of json data representing list element(s)
-     * @param observedTimestamp observedTimestamp
-     */
-    void saveListElementsBatch(String dataspaceName, String anchorName, String parentNodeXpath,
-            Collection<String> jsonDataList, OffsetDateTime observedTimestamp);
 
     /**
      * Retrieves all the datanodes by XPath for given dataspace and anchor.

@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2023 Nordix Foundation
+ *  Copyright (C) 2022-2024 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
  *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
@@ -227,12 +227,12 @@ class InventoryPersistenceImplSpec extends Specification {
         when: 'the cm handles are saved'
             objectUnderTest.saveCmHandleBatch([yangModelCmHandle1, yangModelCmHandle2])
         then: 'CPS Data Service persists both cm handles as a batch'
-            1 * mockCpsDataService.saveListElementsBatch(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+            1 * mockCpsDataService.saveListElements(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
                     NCMP_DMI_REGISTRY_PARENT, _,null) >> {
                 args -> {
-                    def jsonDataList = (args[3] as List)
-                    (jsonDataList[0] as String).contains('cmhandle1')
-                    (jsonDataList[0] as String).contains('cmhandle2')
+                    def jsonData = (args[3] as String)
+                    jsonData.contains('cmhandle1')
+                    jsonData.contains('cmhandle2')
                 }
             }
     }

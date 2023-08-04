@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023 Nordix Foundation
+ *  Copyright (C) 2023-2024 Nordix Foundation
  *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
@@ -274,39 +274,6 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
             objectUnderTest.deleteListOrListElement(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore/categories[@code="new1"]', now)
         then: 'the original number of data nodes is restored'
             assert originalCountBookstoreChildNodes == countDataNodesInBookstore()
-    }
-
-    def 'Add and Delete a batch of lists (element) data nodes.'() {
-        given: 'two new (categories) data nodes in two separate batches'
-            def json1 = '{"categories": [ {"code":"new1"} ] }'
-            def json2 = '{"categories": [ {"code":"new2"} ] } '
-        when: 'the batches of new list element(s) are saved'
-            objectUnderTest.saveListElementsBatch(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1 , '/bookstore', [json1, json2], now)
-        then: 'they can be retrieved by their xpaths'
-            assert objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore/categories[@code="new1"]', DIRECT_CHILDREN_ONLY).size() == 1
-            assert objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore/categories[@code="new2"]', DIRECT_CHILDREN_ONLY).size() == 1
-        and: 'there are now two extra data nodes'
-            assert originalCountBookstoreChildNodes + 2 == countDataNodesInBookstore()
-        when: 'the new elements are deleted'
-            objectUnderTest.deleteDataNode(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore/categories[@code="new1"]', now)
-            objectUnderTest.deleteDataNode(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore/categories[@code="new2"]', now)
-        then: 'the original number of data nodes is restored'
-            assert originalCountBookstoreChildNodes == countDataNodesInBookstore()
-    }
-
-    def 'Add and Delete a batch of lists (element) data nodes with partial success.'() {
-        given: 'two new (categories) data nodes in two separate batches'
-            def jsonNewElement = '{"categories": [ {"code":"new1"} ] }'
-            def jsonExistingElement = '{"categories": [ {"code":"1"} ] } '
-        when: 'the batches of new list element(s) are saved'
-            objectUnderTest.saveListElementsBatch(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1 , '/bookstore', [jsonNewElement, jsonExistingElement], now)
-        then: 'an already defined (batch) exception is thrown for the existing path'
-            def exceptionThrown = thrown(AlreadyDefinedException)
-            assert exceptionThrown.alreadyDefinedObjectNames ==  ['/bookstore/categories[@code=\'1\']' ] as Set
-        and: 'there is now one extra data node'
-            assert originalCountBookstoreChildNodes + 1 == countDataNodesInBookstore()
-        cleanup:
-            restoreBookstoreDataAnchor(1)
     }
 
     def 'Attempt to add empty lists.'() {
