@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2023 Nordix Foundation
+ *  Copyright (C) 2021-2024 Nordix Foundation
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
@@ -105,9 +105,9 @@ public class CpsDataServiceImpl implements CpsDataService {
 
     @Override
     @Timed(value = "cps.data.service.list.element.save",
-        description = "Time taken to save a list element")
-    public void saveListElements(final String dataspaceName, final String anchorName,
-        final String parentNodeXpath, final String jsonData, final OffsetDateTime observedTimestamp) {
+        description = "Time taken to save list elements")
+    public void saveListElements(final String dataspaceName, final String anchorName, final String parentNodeXpath,
+                                 final String jsonData, final OffsetDateTime observedTimestamp) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
         final Collection<DataNode> listElementDataNodeCollection =
@@ -118,19 +118,6 @@ public class CpsDataServiceImpl implements CpsDataService {
             cpsDataPersistenceService.addListElements(dataspaceName, anchorName, parentNodeXpath,
                                                       listElementDataNodeCollection);
         }
-    }
-
-    @Override
-    @Timed(value = "cps.data.service.list.element.batch.save",
-        description = "Time taken to save a batch of list elements")
-    public void saveListElementsBatch(final String dataspaceName, final String anchorName, final String parentNodeXpath,
-            final Collection<String> jsonDataList, final OffsetDateTime observedTimestamp) {
-        cpsValidator.validateNameCharacters(dataspaceName, anchorName);
-        final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
-        final Collection<Collection<DataNode>> listElementDataNodeCollections =
-                buildDataNodes(anchor, parentNodeXpath, jsonDataList, ContentType.JSON);
-        cpsDataPersistenceService.addMultipleLists(dataspaceName, anchorName, parentNodeXpath,
-                listElementDataNodeCollections);
     }
 
     @Override
@@ -345,14 +332,6 @@ public class CpsDataServiceImpl implements CpsDataService {
             throw new DataValidationException("No data nodes.", "No data nodes provided");
         }
         return dataNodes;
-    }
-
-    private Collection<Collection<DataNode>> buildDataNodes(final Anchor anchor, final String parentNodeXpath,
-                                                            final Collection<String> nodeDataList,
-                                                            final ContentType contentType) {
-        return nodeDataList.stream()
-            .map(nodeData -> buildDataNodes(anchor, parentNodeXpath, nodeData, contentType))
-            .collect(Collectors.toList());
     }
 
     private SchemaContext getSchemaContext(final Anchor anchor) {

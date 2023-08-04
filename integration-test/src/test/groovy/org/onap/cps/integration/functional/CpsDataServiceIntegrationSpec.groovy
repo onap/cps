@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023 Nordix Foundation
+ *  Copyright (C) 2023-2024 Nordix Foundation
  *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
@@ -276,12 +276,11 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
             assert originalCountBookstoreChildNodes == countDataNodesInBookstore()
     }
 
-    def 'Add and Delete a batch of lists (element) data nodes.'() {
-        given: 'two new (categories) data nodes in two separate batches'
-            def json1 = '{"categories": [ {"code":"new1"} ] }'
-            def json2 = '{"categories": [ {"code":"new2"} ] } '
+    def 'Add and Delete a batch of list element data nodes.'() {
+        given: 'two new (categories) data nodes in a single batch'
+            def json = '{"categories": [ {"code":"new1"}, {"code":"new2"} ] }'
         when: 'the batches of new list element(s) are saved'
-            objectUnderTest.saveListElementsBatch(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1 , '/bookstore', [json1, json2], now)
+            objectUnderTest.saveListElements(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1 , '/bookstore', json, now)
         then: 'they can be retrieved by their xpaths'
             assert objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore/categories[@code="new1"]', DIRECT_CHILDREN_ONLY).size() == 1
             assert objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore/categories[@code="new2"]', DIRECT_CHILDREN_ONLY).size() == 1
@@ -294,12 +293,11 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
             assert originalCountBookstoreChildNodes == countDataNodesInBookstore()
     }
 
-    def 'Add and Delete a batch of lists (element) data nodes with partial success.'() {
-        given: 'two new (categories) data nodes in two separate batches'
-            def jsonNewElement = '{"categories": [ {"code":"new1"} ] }'
-            def jsonExistingElement = '{"categories": [ {"code":"1"} ] } '
+    def 'Add and Delete a batch of list element data nodes with partial success.'() {
+        given: 'one existing and one new (categories) data nodes in a single batch'
+            def json = '{"categories": [ {"code":"new1"}, {"code":"1"} ] }'
         when: 'the batches of new list element(s) are saved'
-            objectUnderTest.saveListElementsBatch(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1 , '/bookstore', [jsonNewElement, jsonExistingElement], now)
+            objectUnderTest.saveListElements(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1 , '/bookstore', json, now)
         then: 'an already defined (batch) exception is thrown for the existing path'
             def exceptionThrown = thrown(AlreadyDefinedException)
             assert exceptionThrown.alreadyDefinedObjectNames ==  ['/bookstore/categories[@code=\'1\']' ] as Set
