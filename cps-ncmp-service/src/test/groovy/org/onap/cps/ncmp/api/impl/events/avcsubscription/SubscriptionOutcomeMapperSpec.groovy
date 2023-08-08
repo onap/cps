@@ -48,14 +48,14 @@ class SubscriptionOutcomeMapperSpec extends Specification {
             def result = objectUnderTest.toSubscriptionEventOutcome(subscriptionResponseEvent)
         then: 'the resulting subscription event outcome contains expected pending targets per details grouping'
             def pendingCmHandleTargetsPerDetails = result.getData().getAdditionalInfo().getPending()
-            assert pendingCmHandleTargetsPerDetails.get(0).getDetails() == 'EMS or node connectivity issues, retrying'
-            assert pendingCmHandleTargetsPerDetails.get(0).getTargets() == ['CMHandle5', 'CMHandle6','CMHandle7']
+            assert pendingCmHandleTargetsPerDetails.get(0).getDetails() == 'No reply from DMI yet'
+            assert pendingCmHandleTargetsPerDetails.get(0).getTargets() == ['CMHandle3', 'CMHandle4']
         and: 'the resulting subscription event outcome contains expected rejected targets per details grouping'
             def rejectedCmHandleTargetsPerDetails = result.getData().getAdditionalInfo().getRejected()
-            assert rejectedCmHandleTargetsPerDetails.get(0).getDetails() == 'Target(s) do not exist'
-            assert rejectedCmHandleTargetsPerDetails.get(0).getTargets() == ['CMHandle4']
-            assert rejectedCmHandleTargetsPerDetails.get(1).getDetails() == 'Faulty subscription format for target(s)'
-            assert rejectedCmHandleTargetsPerDetails.get(1).getTargets() == ['CMHandle1', 'CMHandle2','CMHandle3']
+            assert rejectedCmHandleTargetsPerDetails.get(0).getDetails() == 'Some other error message from the DMI'
+            assert rejectedCmHandleTargetsPerDetails.get(0).getTargets() == ['CMHandle2']
+            assert rejectedCmHandleTargetsPerDetails.get(1).getDetails() == 'Some error message from the DMI'
+            assert rejectedCmHandleTargetsPerDetails.get(1).getTargets() == ['CMHandle1']
     }
 
     def 'Map subscription event response with null of subscription status list to subscription event outcome causes an exception'() {

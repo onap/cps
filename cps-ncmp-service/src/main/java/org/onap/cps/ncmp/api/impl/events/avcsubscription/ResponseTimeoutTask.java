@@ -36,17 +36,10 @@ public class ResponseTimeoutTask implements Runnable {
 
     @Override
     public void run() {
-
-        try {
-            generateAndSendResponse();
-        } catch (final Exception exception) {
-            log.info("Caught exception in Runnable for ResponseTimeoutTask. StackTrace: {}",
-                    exception.toString());
-        }
-
+        generateTimeoutResponse();
     }
 
-    private void generateAndSendResponse() {
+    private void generateTimeoutResponse() {
         final String subscriptionClientId = subscriptionEventResponse.getData().getClientId();
         final String subscriptionName = subscriptionEventResponse.getData().getSubscriptionName();
         final String subscriptionEventId = subscriptionClientId + subscriptionName;

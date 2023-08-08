@@ -50,11 +50,11 @@ class SubscriptionEventResponseMapperSpec extends Specification {
         and: 'subscription name'
             assert result.subscriptionName == "cm-subscription-001"
         and: 'predicate targets cm handle size as expected'
-            assert result.predicates.targetCmHandles.size() == 7
+            assert result.predicates.targetCmHandles.size() == 4
         and: 'predicate targets cm handle ids as expected'
-            assert result.predicates.targetCmHandles.cmHandleId == ["CMHandle1", "CMHandle2", "CMHandle3", "CMHandle4", "CMHandle5", "CMHandle6", "CMHandle7"]
+            assert result.predicates.targetCmHandles.cmHandleId == ["CMHandle1", "CMHandle2", "CMHandle3", "CMHandle4"]
         and: 'the status for these targets is set to expected values'
-            assert result.predicates.targetCmHandles.status == [SubscriptionStatus.REJECTED, SubscriptionStatus.REJECTED, SubscriptionStatus.REJECTED, SubscriptionStatus.REJECTED, SubscriptionStatus.PENDING, SubscriptionStatus.PENDING, SubscriptionStatus.PENDING]
+            assert result.predicates.targetCmHandles.status == [SubscriptionStatus.REJECTED, SubscriptionStatus.REJECTED, SubscriptionStatus.PENDING, SubscriptionStatus.PENDING]
     }
 
 }
