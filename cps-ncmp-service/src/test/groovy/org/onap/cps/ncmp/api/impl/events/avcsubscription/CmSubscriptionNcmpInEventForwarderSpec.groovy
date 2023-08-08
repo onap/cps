@@ -30,15 +30,16 @@ import org.mapstruct.factory.Mappers
 import org.onap.cps.ncmp.api.impl.events.EventsPublisher
 import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionPersistence
 import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionStatus
-import org.onap.cps.ncmp.api.impl.utils.SubscriptionEventCloudMapper
+import org.onap.cps.ncmp.api.impl.utils.CmSubscriptionEventCloudMapper
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelSubscriptionEvent.TargetCmHandle
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence
 import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
-import org.onap.cps.ncmp.events.avcsubscription1_0_0.client_to_ncmp.SubscriptionEvent
+import org.onap.cps.ncmp.events.avcsubscription1_0_0.client_to_ncmp.CmSubscriptionNcmpInEvent
+import org.onap.cps.ncmp.events.avcsubscription1_0_0.dmi_to_ncmp.CmSubscriptionDmiOutEvent
 import org.onap.cps.ncmp.events.avcsubscription1_0_0.dmi_to_ncmp.Data
-import org.onap.cps.ncmp.events.avcsubscription1_0_0.dmi_to_ncmp.SubscriptionEventResponse
-import org.onap.cps.ncmp.events.avcsubscription1_0_0.ncmp_to_dmi.CmHandle;
+import org.onap.cps.ncmp.events.avcsubscription1_0_0.ncmp_to_dmi.CmHandle
+import org.onap.cps.ncmp.events.avcsubscription1_0_0.ncmp_to_dmi.CmSubscriptionDmiInEvent;
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
@@ -47,11 +48,11 @@ import org.springframework.boot.test.context.SpringBootTest
 import spock.util.concurrent.BlockingVariable
 import java.util.concurrent.TimeUnit
 
-@SpringBootTest(classes = [ObjectMapper, JsonObjectMapper, SubscriptionEventForwarder])
-class SubscriptionEventForwarderSpec extends MessagingBaseSpec {
+@SpringBootTest(classes = [ObjectMapper, JsonObjectMapper, CmSubscriptionNcmpInEventForwarder])
+class CmSubscriptionNcmpInEventForwarderSpec extends MessagingBaseSpec {
 
     @Autowired
-    SubscriptionEventForwarder objectUnderTest
+    CmSubscriptionNcmpInEventForwarder objectUnderTest
 
     @SpringBean
     InventoryPersistence mockInventoryPersistence = Mock(InventoryPersistence)
@@ -60,15 +61,15 @@ class SubscriptionEventForwarderSpec extends MessagingBaseSpec {
     @SpringBean
     IMap<String, Set<String>> mockForwardedSubscriptionEventCache = Mock(IMap<String, Set<String>>)
     @SpringBean
-    SubscriptionEventCloudMapper subscriptionEventCloudMapper = new SubscriptionEventCloudMapper(new ObjectMapper())
+    CmSubscriptionEventCloudMapper subscriptionEventCloudMapper = new CmSubscriptionEventCloudMapper(new ObjectMapper())
     @SpringBean
-    SubscriptionEventResponseOutcome mockSubscriptionEventResponseOutcome = Mock(SubscriptionEventResponseOutcome)
+    CmSubscriptionNcmpOutEventPublisher mockCmSubscriptionNcmpOutEventPublisher = Mock(CmSubscriptionNcmpOutEventPublisher)
     @SpringBean
     SubscriptionPersistence mockSubscriptionPersistence = Mock(SubscriptionPersistence)
     @SpringBean
-    SubscriptionEventMapper subscriptionEventMapper = Mappers.getMapper(SubscriptionEventMapper)
+    CmSubscriptionNcmpInEventMapper cmSubscriptionNcmpInEventMapper = Mappers.getMapper(CmSubscriptionNcmpInEventMapper)
     @SpringBean
-    ClientSubscriptionEventMapper clientSubscriptionEventMapper = Mappers.getMapper(ClientSubscriptionEventMapper)
+    CmSubscriptionNcmpInEventToCmSubscriptionDmiInEventMapper cmSubscriptionNcmpInEventToCmSubscriptionDmiInEventMapper = Mappers.getMapper(CmSubscriptionNcmpInEventToCmSubscriptionDmiInEventMapper)
     @Autowired
     JsonObjectMapper jsonObjectMapper
     @Autowired
@@ -76,8 +77,8 @@ class SubscriptionEventForwarderSpec extends MessagingBaseSpec {
 
     def 'Forward valid CM create subscription and simulate timeout'() {
         given: 'an event'
-            def jsonData = TestUtils.getResourceFileContent('avcSubscriptionCreationEvent.json')
-            def testEventSent = jsonObjectMapper.convertJsonString(jsonData, SubscriptionEvent.class)
+            def jsonData = TestUtils.getResourceFileContent('cmSubscriptionNcmpInEvent.json')
+            def testEventSent = jsonObjectMapper.convertJsonString(jsonData, CmSubscriptionNcmpInEvent.class)
         and: 'the InventoryPersistence returns private properties for the supplied CM Handles'
             1 * mockInventoryPersistence.getYangModelCmHandles(["CMHandle1", "CMHandle2", "CMHandle3"]) >> [
                 createYangModelCmHandleWithDmiProperty(1, 1,"shape","circle"),
@@ -104,15 +105,15 @@ class SubscriptionEventForwarderSpec extends MessagingBaseSpec {
             )
         and: 'a separate thread has been created where the map is polled'
             1 * mockForwardedSubscriptionEventCache.containsKey("SCO-9989752cm-subscription-001") >> true
-            1 * mockSubscriptionEventResponseOutcome.sendResponse(*_)
+            1 * mockCmSubscriptionNcmpOutEventPublisher.sendResponse(*_)
         and: 'the subscription id is removed from the event cache map returning the asynchronous blocking variable'
             1 * mockForwardedSubscriptionEventCache.remove("SCO-9989752cm-subscription-001") >> {block.set(_)}
     }
 
     def 'Forward CM create subscription where target CM Handles are #scenario'() {
         given: 'an event'
-            def jsonData = TestUtils.getResourceFileContent('avcSubscriptionCreationEvent.json')
-            def testEventSent = jsonObjectMapper.convertJsonString(jsonData, SubscriptionEvent.class)
+            def jsonData = TestUtils.getResourceFileContent('cmSubscriptionNcmpInEvent.json')
+            def testEventSent = jsonObjectMapper.convertJsonString(jsonData, CmSubscriptionNcmpInEvent.class)
         and: 'the target CMHandles are set to #scenario'
             testEventSent.getData().getPredicates().setTargets(invalidTargets)
         when: 'the event is forwarded'
@@ -128,10 +129,10 @@ class SubscriptionEventForwarderSpec extends MessagingBaseSpec {
 
     def 'Forward valid CM create subscription where targets are not associated to any existing CMHandles'() {
         given: 'an event'
-            def jsonData = TestUtils.getResourceFileContent('avcSubscriptionCreationEvent.json')
-            def testEventSent = jsonObjectMapper.convertJsonString(jsonData, SubscriptionEvent.class)
+            def jsonData = TestUtils.getResourceFileContent('cmSubscriptionNcmpInEvent.json')
+            def testEventSent = jsonObjectMapper.convertJsonString(jsonData, CmSubscriptionNcmpInEvent.class)
         and: 'a subscription event response'
-            def emptySubscriptionEventResponse = new SubscriptionEventResponse().withData(new Data());
+            def emptySubscriptionEventResponse = new CmSubscriptionDmiOutEvent().withData(new Data());
             emptySubscriptionEventResponse.getData().setSubscriptionName('cm-subscription-001');
             emptySubscriptionEventResponse.getData().setClientId('SCO-9989752');
         and: 'the cm handles will be rejected'
@@ -139,7 +140,7 @@ class SubscriptionEventForwarderSpec extends MessagingBaseSpec {
                                      new TargetCmHandle('CMHandle2',SubscriptionStatus.REJECTED, 'Cm handle does not exist'),
                                      new TargetCmHandle('CMHandle3',SubscriptionStatus.REJECTED, 'Cm handle does not exist')]
         and: 'a yang model subscription event will be saved into the db with rejected cm handles'
-            def yangModelSubscriptionEvent = subscriptionEventMapper.toYangModelSubscriptionEvent(testEventSent)
+            def yangModelSubscriptionEvent = cmSubscriptionNcmpInEventMapper.toYangModelSubscriptionEvent(testEventSent)
             yangModelSubscriptionEvent.getPredicates().setTargetCmHandles(rejectedCmHandles)
         and: 'the InventoryPersistence returns no private properties for the supplied CM Handles'
             1 * mockInventoryPersistence.getYangModelCmHandles(["CMHandle1", "CMHandle2", "CMHandle3"]) >> []
@@ -175,7 +176,7 @@ class SubscriptionEventForwarderSpec extends MessagingBaseSpec {
         and: 'the persistence service save target cm handles of the yang model subscription event as rejected '
             1 * mockSubscriptionPersistence.saveSubscriptionEvent(yangModelSubscriptionEvent)
         and: 'subscription outcome has been sent'
-            1 * mockSubscriptionEventResponseOutcome.sendResponse(emptySubscriptionEventResponse, 'subscriptionCreatedStatus')
+            1 * mockCmSubscriptionNcmpOutEventPublisher.sendResponse(emptySubscriptionEventResponse, 'subscriptionCreatedStatus')
     }
 
     static def createYangModelCmHandleWithDmiProperty(id, dmiId,propertyName, propertyValue) {
@@ -190,9 +191,9 @@ class SubscriptionEventForwarderSpec extends MessagingBaseSpec {
     }
 
     def toSubscriptionEvent(cloudEvent) {
-        final PojoCloudEventData<org.onap.cps.ncmp.events.avcsubscription1_0_0.ncmp_to_dmi.SubscriptionEvent> deserializedCloudEvent = CloudEventUtils
+        final PojoCloudEventData<CmSubscriptionDmiInEvent> deserializedCloudEvent = CloudEventUtils
             .mapData(cloudEvent, PojoCloudEventDataMapper.from(objectMapper,
-                org.onap.cps.ncmp.events.avcsubscription1_0_0.ncmp_to_dmi.SubscriptionEvent.class));
+                CmSubscriptionDmiInEvent.class));
         if (deserializedCloudEvent == null) {
             return null;
         } else {

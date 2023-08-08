@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
   "$id": "urn:cps:org.onap.cps.ncmp.events:dmi-subscription-response-event-schema:1.0.0",
-  "$ref": "#/definitions/SubscriptionEventResponse",
+  "$ref": "#/definitions/CmSubscriptionDmiOutEvent",
   "definitions": {
     "SubscriptionStatus": {
       "description": "The subscription status information",
@@ -28,10 +28,10 @@
       ],
       "additionalProperties": false
     },
-    "SubscriptionEventResponse" : {
+    "CmSubscriptionDmiOutEvent" : {
       "description": "The payload for subscription response event.",
       "type": "object",
-      "javaType": "org.onap.cps.ncmp.events.avcsubscription1_0_0.dmi_to_ncmp.SubscriptionEventResponse",
+      "javaType": "org.onap.cps.ncmp.events.avcsubscription1_0_0.dmi_to_ncmp.CmSubscriptionDmiOutEvent",
       "properties": {
         "data": {
           "type": "object",

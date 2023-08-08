@@ -31,13 +31,14 @@ import java.net.URI;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.ncmp.events.avcsubscription1_0_0.client_to_ncmp.SubscriptionEvent;
+import org.onap.cps.ncmp.events.avcsubscription1_0_0.client_to_ncmp.CmSubscriptionNcmpInEvent;
+import org.onap.cps.ncmp.events.avcsubscription1_0_0.ncmp_to_dmi.CmSubscriptionDmiInEvent;
 import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class SubscriptionEventCloudMapper {
+public class CmSubscriptionEventCloudMapper {
 
     private final ObjectMapper objectMapper;
 
@@ -49,39 +50,34 @@ public class SubscriptionEventCloudMapper {
      * @param cloudEvent object.
      * @return SubscriptionEvent deserialized.
      */
-    public SubscriptionEvent toSubscriptionEvent(final CloudEvent cloudEvent) {
-        final PojoCloudEventData<SubscriptionEvent> deserializedCloudEvent = CloudEventUtils
-                .mapData(cloudEvent, PojoCloudEventDataMapper.from(objectMapper, SubscriptionEvent.class));
+    public CmSubscriptionNcmpInEvent toSubscriptionEvent(final CloudEvent cloudEvent) {
+        final PojoCloudEventData<CmSubscriptionNcmpInEvent> deserializedCloudEvent = CloudEventUtils
+                .mapData(cloudEvent, PojoCloudEventDataMapper.from(objectMapper, CmSubscriptionNcmpInEvent.class));
         if (deserializedCloudEvent == null) {
             log.debug("No data found in the consumed event");
             return null;
         } else {
-            final SubscriptionEvent subscriptionEvent = deserializedCloudEvent.getValue();
-            log.debug("Consuming event {}", subscriptionEvent);
-            return subscriptionEvent;
+            final CmSubscriptionNcmpInEvent cmSubscriptionNcmpInEvent = deserializedCloudEvent.getValue();
+            log.debug("Consuming event {}", cmSubscriptionNcmpInEvent);
+            return cmSubscriptionNcmpInEvent;
         }
     }
 
     /**
      * Maps SubscriptionEvent to a CloudEvent.
      *
-     * @param ncmpSubscriptionEvent object.
+     * @param cmSubscriptionDmiInEvent object.
      * @param eventKey as String.
      * @return CloudEvent built.
      */
-    public CloudEvent toCloudEvent(
-            final org.onap.cps.ncmp.events.avcsubscription1_0_0.ncmp_to_dmi.SubscriptionEvent ncmpSubscriptionEvent,
-            final String eventKey, final String eventType) {
+    public CloudEvent toCloudEvent(final CmSubscriptionDmiInEvent cmSubscriptionDmiInEvent, final String eventKey,
+            final String eventType) {
         try {
-            return CloudEventBuilder.v1()
-                    .withId(randomId)
-                    .withSource(URI.create(ncmpSubscriptionEvent.getData().getSubscription().getClientID()))
-                    .withType(eventType)
-                    .withExtension("correlationid", eventKey)
-                    .withDataSchema(URI.create("urn:cps:"
-                            + org.onap.cps.ncmp.events.avcsubscription1_0_0.ncmp_to_dmi
-                                    .SubscriptionEvent.class.getName() + ":1.0.0"))
-                    .withData(objectMapper.writeValueAsBytes(ncmpSubscriptionEvent)).build();
+            return CloudEventBuilder.v1().withId(randomId)
+                    .withSource(URI.create(cmSubscriptionDmiInEvent.getData().getSubscription().getClientID()))
+                    .withType(eventType).withExtension("correlationid", eventKey)
+                    .withDataSchema(URI.create("urn:cps:" + CmSubscriptionDmiInEvent.class.getName() + ":1.0.0"))
+                    .withData(objectMapper.writeValueAsBytes(cmSubscriptionDmiInEvent)).build();
         } catch (final JsonProcessingException jsonProcessingException) {
             log.error("The Cloud Event could not be constructed", jsonProcessingException);
         }

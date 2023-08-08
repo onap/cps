@@ -1,11 +1,11 @@
 {
   "$id": "urn:cps:org.onap.cps.ncmp.events:avc-subscription-event:1.0.0",
-  "$ref": "#/definitions/SubscriptionEvent",
+  "$ref": "#/definitions/CmSubscriptionNcmpInEvent",
   "$schema": "https://json-schema.org/draft/2019-09/schema",
   "definitions": {
-    "SubscriptionEvent": {
+    "CmSubscriptionNcmpInEvent": {
       "description": "The payload for subscription event.",
-      "javaType": "org.onap.cps.ncmp.events.avcsubscription1_0_0.client_to_ncmp.SubscriptionEvent",
+      "javaType": "org.onap.cps.ncmp.events.avcsubscription1_0_0.client_to_ncmp.CmSubscriptionNcmpInEvent",
       "properties": {
         "data": {
           "properties": {

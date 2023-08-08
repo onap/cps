@@ -22,7 +22,7 @@ package org.onap.cps.ncmp.api.impl.events.avcsubscription
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.mapstruct.factory.Mappers
-import org.onap.cps.ncmp.events.avcsubscription1_0_0.dmi_to_ncmp.SubscriptionEventResponse
+import org.onap.cps.ncmp.events.avcsubscription1_0_0.dmi_to_ncmp.CmSubscriptionDmiOutEvent
 import org.onap.cps.ncmp.events.avcsubscription1_0_0.dmi_to_ncmp.SubscriptionStatus
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.spi.exceptions.DataValidationException
@@ -33,19 +33,19 @@ import spock.lang.Specification
 
 
 @SpringBootTest(classes = [JsonObjectMapper, ObjectMapper])
-class SubscriptionOutcomeMapperSpec extends Specification {
+class CmSubscriptionDmiOutEventToCmSubscriptionNcmpOutEventMapperSpec extends Specification {
 
-    SubscriptionOutcomeMapper objectUnderTest = Mappers.getMapper(SubscriptionOutcomeMapper)
+    CmSubscriptionDmiOutEventToCmSubscriptionNcmpOutEventMapper objectUnderTest = Mappers.getMapper(CmSubscriptionDmiOutEventToCmSubscriptionNcmpOutEventMapper)
 
     @Autowired
     JsonObjectMapper jsonObjectMapper
 
     def 'Map subscription event response to subscription event outcome'() {
         given: 'a Subscription Response Event'
-            def subscriptionResponseJsonData = TestUtils.getResourceFileContent('avcSubscriptionEventResponse.json')
-            def subscriptionResponseEvent = jsonObjectMapper.convertJsonString(subscriptionResponseJsonData, SubscriptionEventResponse.class)
+            def subscriptionResponseJsonData = TestUtils.getResourceFileContent('cmSubscriptionDmiOutEvent.json')
+            def subscriptionResponseEvent = jsonObjectMapper.convertJsonString(subscriptionResponseJsonData, CmSubscriptionDmiOutEvent.class)
         when: 'the subscription response event is mapped to a subscription event outcome'
-            def result = objectUnderTest.toSubscriptionEventOutcome(subscriptionResponseEvent)
+            def result = objectUnderTest.toCmSubscriptionNcmpOutEvent(subscriptionResponseEvent)
         then: 'the resulting subscription event outcome contains expected pending targets per details grouping'
             def pendingCmHandleTargetsPerDetails = result.getData().getAdditionalInfo().getPending()
             assert pendingCmHandleTargetsPerDetails.get(0).getDetails() == 'No reply from DMI yet'
@@ -60,12 +60,12 @@ class SubscriptionOutcomeMapperSpec extends Specification {
 
     def 'Map subscription event response with null of subscription status list to subscription event outcome causes an exception'() {
         given: 'a Subscription Response Event'
-            def subscriptionResponseJsonData = TestUtils.getResourceFileContent('avcSubscriptionEventResponse.json')
-            def subscriptionResponseEvent = jsonObjectMapper.convertJsonString(subscriptionResponseJsonData, SubscriptionEventResponse.class)
+            def subscriptionResponseJsonData = TestUtils.getResourceFileContent('cmSubscriptionDmiOutEvent.json')
+            def subscriptionResponseEvent = jsonObjectMapper.convertJsonString(subscriptionResponseJsonData, CmSubscriptionDmiOutEvent.class)
         and: 'set subscription status list to null'
             subscriptionResponseEvent.getData().setSubscriptionStatus(subscriptionStatusList)
         when: 'the subscription response event is mapped to a subscription event outcome'
-            objectUnderTest.toSubscriptionEventOutcome(subscriptionResponseEvent)
+            objectUnderTest.toCmSubscriptionNcmpOutEvent(subscriptionResponseEvent)
         then: 'a DataValidationException is thrown with an expected exception details'
             def exception = thrown(DataValidationException)
             exception.details == 'SubscriptionStatus list cannot be null or empty'
@@ -77,10 +77,10 @@ class SubscriptionOutcomeMapperSpec extends Specification {
 
     def 'Map subscription event response with subscription status list to subscription event outcome without any exception'() {
         given: 'a Subscription Response Event'
-            def subscriptionResponseJsonData = TestUtils.getResourceFileContent('avcSubscriptionEventResponse.json')
-            def subscriptionResponseEvent = jsonObjectMapper.convertJsonString(subscriptionResponseJsonData, SubscriptionEventResponse.class)
+            def subscriptionResponseJsonData = TestUtils.getResourceFileContent('cmSubscriptionDmiOutEvent.json')
+            def subscriptionResponseEvent = jsonObjectMapper.convertJsonString(subscriptionResponseJsonData, CmSubscriptionDmiOutEvent.class)
         when: 'the subscription response event is mapped to a subscription event outcome'
-            objectUnderTest.toSubscriptionEventOutcome(subscriptionResponseEvent)
+            objectUnderTest.toCmSubscriptionNcmpOutEvent(subscriptionResponseEvent)
         then: 'no exception thrown'
             noExceptionThrown()
     }

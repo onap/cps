@@ -23,7 +23,7 @@ package org.onap.cps.ncmp.api.impl.events.avcsubscription
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.mapstruct.factory.Mappers
 import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionStatus
-import org.onap.cps.ncmp.events.avcsubscription1_0_0.dmi_to_ncmp.SubscriptionEventResponse;
+import org.onap.cps.ncmp.events.avcsubscription1_0_0.dmi_to_ncmp.CmSubscriptionDmiOutEvent
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
@@ -32,17 +32,17 @@ import spock.lang.Specification
 
 
 @SpringBootTest(classes = [JsonObjectMapper, ObjectMapper])
-class SubscriptionEventResponseMapperSpec extends Specification {
+class CmSubscriptionDmiOutEventToYangModelSubscriptionEventMapperSpec extends Specification {
 
-    SubscriptionEventResponseMapper objectUnderTest = Mappers.getMapper(SubscriptionEventResponseMapper)
+    CmSubscriptionDmiOutEventToYangModelSubscriptionEventMapper objectUnderTest = Mappers.getMapper(CmSubscriptionDmiOutEventToYangModelSubscriptionEventMapper)
 
     @Autowired
     JsonObjectMapper jsonObjectMapper
 
     def 'Map subscription response event to yang model subscription event'() {
         given: 'a Subscription Response Event'
-            def jsonData = TestUtils.getResourceFileContent('avcSubscriptionEventResponse.json')
-            def testEventToMap = jsonObjectMapper.convertJsonString(jsonData, SubscriptionEventResponse.class)
+            def jsonData = TestUtils.getResourceFileContent('cmSubscriptionDmiOutEvent.json')
+            def testEventToMap = jsonObjectMapper.convertJsonString(jsonData, CmSubscriptionDmiOutEvent.class)
         when: 'the event is mapped to a yang model subscription'
             def result = objectUnderTest.toYangModelSubscriptionEvent(testEventToMap)
         then: 'the resulting yang model subscription event contains the correct clientId'

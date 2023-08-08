@@ -29,26 +29,26 @@ import org.onap.cps.ncmp.api.impl.events.EventsPublisher
 import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionPersistence
 import org.onap.cps.ncmp.api.impl.utils.DataNodeBaseSpec
 import org.onap.cps.ncmp.api.impl.utils.SubscriptionOutcomeCloudMapper
-import org.onap.cps.ncmp.events.avcsubscription1_0_0.dmi_to_ncmp.SubscriptionEventResponse
-import org.onap.cps.ncmp.events.avcsubscription1_0_0.ncmp_to_client.SubscriptionEventOutcome;
+import org.onap.cps.ncmp.events.avcsubscription1_0_0.dmi_to_ncmp.CmSubscriptionDmiOutEvent
+import org.onap.cps.ncmp.events.avcsubscription1_0_0.ncmp_to_client.CmSubscriptionNcmpOutEvent
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 
-@SpringBootTest(classes = [ObjectMapper, JsonObjectMapper, SubscriptionOutcomeMapper, SubscriptionEventResponseOutcome])
-class SubscriptionEventResponseOutcomeSpec extends DataNodeBaseSpec {
+@SpringBootTest(classes = [ObjectMapper, JsonObjectMapper, CmSubscriptionDmiOutEventToCmSubscriptionNcmpOutEventMapper, CmSubscriptionNcmpOutEventPublisher])
+class CmSubscriptionNcmpOutEventPublisherSpec extends DataNodeBaseSpec {
 
     @Autowired
-    SubscriptionEventResponseOutcome objectUnderTest
+    CmSubscriptionNcmpOutEventPublisher objectUnderTest
 
     @SpringBean
     SubscriptionPersistence mockSubscriptionPersistence = Mock(SubscriptionPersistence)
     @SpringBean
-    EventsPublisher<CloudEvent> mockSubscriptionEventOutcomePublisher = Mock(EventsPublisher<CloudEvent>)
+    EventsPublisher<CloudEvent> mockCmSubscriptionNcmpOutEventPublisher = Mock(EventsPublisher<CloudEvent>)
     @SpringBean
-    SubscriptionOutcomeMapper subscriptionOutcomeMapper = Mappers.getMapper(SubscriptionOutcomeMapper)
+    CmSubscriptionDmiOutEventToCmSubscriptionNcmpOutEventMapper cmSubscriptionDmiOutEventToCmSubscriptionNcmpOutEventMapper = Mappers.getMapper(CmSubscriptionDmiOutEventToCmSubscriptionNcmpOutEventMapper)
     @SpringBean
     SubscriptionOutcomeCloudMapper subscriptionOutcomeCloudMapper = new SubscriptionOutcomeCloudMapper(new ObjectMapper())
 
@@ -60,11 +60,11 @@ class SubscriptionEventResponseOutcomeSpec extends DataNodeBaseSpec {
 
     def 'Send response to the client apps successfully'() {
         given: 'a subscription response event'
-            def subscriptionResponseJsonData = TestUtils.getResourceFileContent('avcSubscriptionEventResponse.json')
-            def subscriptionResponseEvent = jsonObjectMapper.convertJsonString(subscriptionResponseJsonData, SubscriptionEventResponse.class)
+            def subscriptionResponseJsonData = TestUtils.getResourceFileContent('cmSubscriptionDmiOutEvent.json')
+            def subscriptionResponseEvent = jsonObjectMapper.convertJsonString(subscriptionResponseJsonData, CmSubscriptionDmiOutEvent.class)
         and: 'a subscription outcome event'
-            def subscriptionOutcomeJsonData = TestUtils.getResourceFileContent('avcSubscriptionOutcomeEvent2.json')
-            def subscriptionOutcomeEvent = jsonObjectMapper.convertJsonString(subscriptionOutcomeJsonData, SubscriptionEventOutcome.class)
+            def subscriptionOutcomeJsonData = TestUtils.getResourceFileContent('cmSubscriptionNcmpOutEvent2.json')
+            def subscriptionOutcomeEvent = jsonObjectMapper.convertJsonString(subscriptionOutcomeJsonData, CmSubscriptionNcmpOutEvent.class)
         and: 'a random id for the cloud event'
             SubscriptionOutcomeCloudMapper.randomId = 'some-id'
         and: 'a cloud event containing the outcome event'
@@ -72,7 +72,7 @@ class SubscriptionEventResponseOutcomeSpec extends DataNodeBaseSpec {
                 .withData(objectMapper.writeValueAsBytes(subscriptionOutcomeEvent))
                 .withId('some-id')
                 .withType('subscriptionCreatedStatus')
-                .withDataSchema(URI.create('urn:cps:' + 'org.onap.cps.ncmp.events.avcsubscription1_0_0.ncmp_to_client.SubscriptionEventOutcome' + ':1.0.0'))
+                .withDataSchema(URI.create('urn:cps:' + 'org.onap.cps.ncmp.events.avcsubscription1_0_0.ncmp_to_client.CmSubscriptionNcmpOutEvent' + ':1.0.0'))
                 .withExtension("correlationid", 'SCO-9989752cm-subscription-001')
                 .withSource(URI.create('NCMP')).build()
         and: 'the persistence service return a data node that includes pending cm handles that makes it partial success'
@@ -80,16 +80,16 @@ class SubscriptionEventResponseOutcomeSpec extends DataNodeBaseSpec {
         when: 'the response is being sent'
             objectUnderTest.sendResponse(subscriptionResponseEvent, 'subscriptionCreatedStatus')
         then: 'the publisher publish the cloud event with itself and expected parameters'
-            1 * mockSubscriptionEventOutcomePublisher.publishCloudEvent('subscription-response', 'SCO-9989752cm-subscription-001', testCloudEventSent)
+            1 * mockCmSubscriptionNcmpOutEventPublisher.publishCloudEvent('subscription-response', 'SCO-9989752cm-subscription-001', testCloudEventSent)
     }
 
     def 'Create subscription outcome message as expected'() {
         given: 'a subscription response event'
-            def subscriptionResponseJsonData = TestUtils.getResourceFileContent('avcSubscriptionEventResponse.json')
-            def subscriptionResponseEvent = jsonObjectMapper.convertJsonString(subscriptionResponseJsonData, SubscriptionEventResponse.class)
+            def subscriptionResponseJsonData = TestUtils.getResourceFileContent('cmSubscriptionDmiOutEvent.json')
+            def subscriptionResponseEvent = jsonObjectMapper.convertJsonString(subscriptionResponseJsonData, CmSubscriptionDmiOutEvent.class)
         and: 'a subscription outcome event'
-            def subscriptionOutcomeJsonData = TestUtils.getResourceFileContent('avcSubscriptionOutcomeEvent.json')
-            def subscriptionOutcomeEvent = jsonObjectMapper.convertJsonString(subscriptionOutcomeJsonData, SubscriptionEventOutcome.class)
+            def subscriptionOutcomeJsonData = TestUtils.getResourceFileContent('cmSubscriptionNcmpOutEvent.json')
+            def subscriptionOutcomeEvent = jsonObjectMapper.convertJsonString(subscriptionOutcomeJsonData, CmSubscriptionNcmpOutEvent.class)
         and: 'a status code and status message a per #scenarios'
             subscriptionOutcomeEvent.getData().setStatusCode(statusCode)
             subscriptionOutcomeEvent.getData().setStatusMessage(statusMessage)
