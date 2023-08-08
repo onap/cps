@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.events.avcsubscription;
+package org.onap.cps.ncmp.api.impl.events.cmsubscription;
 
 import io.cloudevents.CloudEvent;
 import java.util.List;
@@ -32,21 +32,22 @@ import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionPersistence;
 import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionStatus;
 import org.onap.cps.ncmp.api.impl.utils.DataNodeHelper;
 import org.onap.cps.ncmp.api.impl.utils.SubscriptionOutcomeCloudMapper;
-import org.onap.cps.ncmp.events.avcsubscription1_0_0.dmi_to_ncmp.SubscriptionEventResponse;
-import org.onap.cps.ncmp.events.avcsubscription1_0_0.ncmp_to_client.SubscriptionEventOutcome;
+import org.onap.cps.ncmp.events.cmsubscription1_0_0.dmi_to_ncmp.CmSubscriptionDmiOutEvent;
+import org.onap.cps.ncmp.events.cmsubscription1_0_0.ncmp_to_client.CmSubscriptionNcmpOutEvent;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j
 @RequiredArgsConstructor
-public class SubscriptionEventResponseOutcome {
+public class CmSubscriptionNcmpOutEventPublisher {
 
     private final SubscriptionPersistence subscriptionPersistence;
 
     private final EventsPublisher<CloudEvent> outcomeEventsPublisher;
 
-    private final SubscriptionOutcomeMapper subscriptionOutcomeMapper;
+    private final CmSubscriptionDmiOutEventToCmSubscriptionNcmpOutEventMapper
+            cmSubscriptionDmiOutEventToCmSubscriptionNcmpOutEventMapper;
 
     private final SubscriptionOutcomeCloudMapper subscriptionOutcomeCloudMapper;
 
@@ -56,43 +57,43 @@ public class SubscriptionEventResponseOutcome {
     /**
      * This is for construction of outcome message to be published for client apps.
      *
-     * @param subscriptionEventResponse event produced by Dmi Plugin
+     * @param cmSubscriptionDmiOutEvent event produced by Dmi Plugin
      */
-    public void sendResponse(final SubscriptionEventResponse subscriptionEventResponse, final String eventKey) {
-        final SubscriptionEventOutcome subscriptionEventOutcome =
-                formSubscriptionOutcomeMessage(subscriptionEventResponse);
-        final String subscriptionClientId = subscriptionEventResponse.getData().getClientId();
-        final String subscriptionName = subscriptionEventResponse.getData().getSubscriptionName();
+    public void sendResponse(final CmSubscriptionDmiOutEvent cmSubscriptionDmiOutEvent, final String eventKey) {
+        final CmSubscriptionNcmpOutEvent cmSubscriptionNcmpOutEvent =
+                formCmSubscriptionNcmpOutEvent(cmSubscriptionDmiOutEvent);
+        final String subscriptionClientId = cmSubscriptionDmiOutEvent.getData().getClientId();
+        final String subscriptionName = cmSubscriptionDmiOutEvent.getData().getSubscriptionName();
         final String subscriptionEventId = subscriptionClientId + subscriptionName;
         final CloudEvent subscriptionOutcomeCloudEvent =
-                subscriptionOutcomeCloudMapper.toCloudEvent(subscriptionEventOutcome,
+                subscriptionOutcomeCloudMapper.toCloudEvent(cmSubscriptionNcmpOutEvent,
                 subscriptionEventId, eventKey);
         outcomeEventsPublisher.publishCloudEvent(subscriptionOutcomeEventTopic,
                 subscriptionEventId, subscriptionOutcomeCloudEvent);
     }
 
-    private SubscriptionEventOutcome formSubscriptionOutcomeMessage(
-            final SubscriptionEventResponse subscriptionEventResponse) {
+    private CmSubscriptionNcmpOutEvent formCmSubscriptionNcmpOutEvent(
+            final CmSubscriptionDmiOutEvent cmSubscriptionDmiOutEvent) {
         final Map<String, Map<String, String>> cmHandleIdToStatusAndDetailsAsMap =
                 DataNodeHelper.cmHandleIdToStatusAndDetailsAsMapFromDataNode(
-                subscriptionPersistence.getCmHandlesForSubscriptionEvent(
-                        subscriptionEventResponse.getData().getClientId(),
-                        subscriptionEventResponse.getData().getSubscriptionName()));
-        final List<org.onap.cps.ncmp.events.avcsubscription1_0_0.dmi_to_ncmp.SubscriptionStatus>
-                subscriptionStatusList = mapCmHandleIdStatusDetailsMapToSubscriptionStatusList(
-                        cmHandleIdToStatusAndDetailsAsMap);
-        subscriptionEventResponse.getData().setSubscriptionStatus(subscriptionStatusList);
-        return fromSubscriptionEventResponse(subscriptionEventResponse,
+                        subscriptionPersistence.getCmHandlesForSubscriptionEvent(
+                                cmSubscriptionDmiOutEvent.getData().getClientId(),
+                                cmSubscriptionDmiOutEvent.getData().getSubscriptionName()));
+        final List<org.onap.cps.ncmp.events.cmsubscription1_0_0.dmi_to_ncmp.SubscriptionStatus>
+                subscriptionStatusList =
+                mapCmHandleIdStatusDetailsMapToSubscriptionStatusList(cmHandleIdToStatusAndDetailsAsMap);
+        cmSubscriptionDmiOutEvent.getData().setSubscriptionStatus(subscriptionStatusList);
+        return fromDmiOutEvent(cmSubscriptionDmiOutEvent,
                 decideOnNcmpEventResponseCodeForSubscription(cmHandleIdToStatusAndDetailsAsMap));
     }
 
-    private static List<org.onap.cps.ncmp.events.avcsubscription1_0_0.dmi_to_ncmp.SubscriptionStatus>
+    private static List<org.onap.cps.ncmp.events.cmsubscription1_0_0.dmi_to_ncmp.SubscriptionStatus>
         mapCmHandleIdStatusDetailsMapToSubscriptionStatusList(
             final Map<String, Map<String, String>> cmHandleIdToStatusAndDetailsAsMap) {
         return cmHandleIdToStatusAndDetailsAsMap.entrySet()
                 .stream().map(entryset -> {
-                    final org.onap.cps.ncmp.events.avcsubscription1_0_0.dmi_to_ncmp.SubscriptionStatus
-                            subscriptionStatus = new org.onap.cps.ncmp.events.avcsubscription1_0_0
+                    final org.onap.cps.ncmp.events.cmsubscription1_0_0.dmi_to_ncmp.SubscriptionStatus
+                            subscriptionStatus = new org.onap.cps.ncmp.events.cmsubscription1_0_0
                             .dmi_to_ncmp.SubscriptionStatus();
                     final String cmHandleId = entryset.getKey();
                     final Map<String, String> statusAndDetailsMap = entryset.getValue();
@@ -100,7 +101,7 @@ public class SubscriptionEventResponseOutcome {
                     final String details = statusAndDetailsMap.get("details");
                     subscriptionStatus.setId(cmHandleId);
                     subscriptionStatus.setStatus(
-                            org.onap.cps.ncmp.events.avcsubscription1_0_0.dmi_to_ncmp
+                            org.onap.cps.ncmp.events.cmsubscription1_0_0.dmi_to_ncmp
                                     .SubscriptionStatus.Status.fromValue(status));
                     subscriptionStatus.setDetails(details);
                     return subscriptionStatus;
@@ -137,15 +138,16 @@ public class SubscriptionEventResponseOutcome {
                 .allMatch(entryset -> entryset.containsValue(subscriptionStatus.toString()));
     }
 
-    private SubscriptionEventOutcome fromSubscriptionEventResponse(
-            final SubscriptionEventResponse subscriptionEventResponse,
+    private CmSubscriptionNcmpOutEvent fromDmiOutEvent(
+            final CmSubscriptionDmiOutEvent cmSubscriptionDmiOutEvent,
             final NcmpEventResponseCode ncmpEventResponseCode) {
 
-        final SubscriptionEventOutcome subscriptionEventOutcome =
-                subscriptionOutcomeMapper.toSubscriptionEventOutcome(subscriptionEventResponse);
-        subscriptionEventOutcome.getData().setStatusCode(Integer.parseInt(ncmpEventResponseCode.getStatusCode()));
-        subscriptionEventOutcome.getData().setStatusMessage(ncmpEventResponseCode.getStatusMessage());
+        final CmSubscriptionNcmpOutEvent cmSubscriptionNcmpOutEvent =
+                cmSubscriptionDmiOutEventToCmSubscriptionNcmpOutEventMapper.toCmSubscriptionNcmpOutEvent(
+                        cmSubscriptionDmiOutEvent);
+        cmSubscriptionNcmpOutEvent.getData().setStatusCode(Integer.parseInt(ncmpEventResponseCode.getStatusCode()));
+        cmSubscriptionNcmpOutEvent.getData().setStatusMessage(ncmpEventResponseCode.getStatusMessage());
 
-        return subscriptionEventOutcome;
+        return cmSubscriptionNcmpOutEvent;
     }
 }

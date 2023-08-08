@@ -22,7 +22,7 @@ package org.onap.cps.ncmp.api.impl.utils
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.cloudevents.core.builder.CloudEventBuilder
-import org.onap.cps.ncmp.events.avcsubscription1_0_0.dmi_to_ncmp.SubscriptionEventResponse
+import org.onap.cps.ncmp.events.cmsubscription1_0_0.dmi_to_ncmp.CmSubscriptionDmiOutEvent
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
@@ -44,8 +44,8 @@ class SubscriptionEventResponseCloudMapperSpec extends Specification {
 
     def 'Map the cloud event to subscription event response'() {
         given: 'a cloud event having a subscription event response in the data part'
-            def jsonData = TestUtils.getResourceFileContent('avcSubscriptionEventResponse.json')
-            def testEventData = jsonObjectMapper.convertJsonString(jsonData, SubscriptionEventResponse.class)
+            def jsonData = TestUtils.getResourceFileContent('cmSubscriptionDmiOutEvent.json')
+            def testEventData = jsonObjectMapper.convertJsonString(jsonData, CmSubscriptionDmiOutEvent.class)
             def testCloudEvent = CloudEventBuilder.v1()
                 .withData(objectMapper.writeValueAsBytes(testEventData))
                 .withId('some-event-id')
@@ -53,7 +53,7 @@ class SubscriptionEventResponseCloudMapperSpec extends Specification {
                 .withSource(URI.create('some-resource'))
                 .withExtension('correlationid', 'test-cmhandle1').build()
         when: 'the cloud event map to subscription event response'
-            def resultSubscriptionEvent = objectUnderTest.toSubscriptionEventResponse(testCloudEvent)
+            def resultSubscriptionEvent = objectUnderTest.toCmSubscriptionDmiOutEvent(testCloudEvent)
         then: 'the subscription event resulted having expected values'
             resultSubscriptionEvent.getData() == testEventData.getData()
     }
@@ -67,7 +67,7 @@ class SubscriptionEventResponseCloudMapperSpec extends Specification {
                 .withSource(URI.create('some-resource'))
                 .withExtension('correlationid', 'test-cmhandle1').build()
         when: 'the cloud event map to subscription event response'
-            def resultSubscriptionEvent = objectUnderTest.toSubscriptionEventResponse(testCloudEvent)
+            def resultSubscriptionEvent = objectUnderTest.toCmSubscriptionDmiOutEvent(testCloudEvent)
         then: 'the subscription event response resulted having a null value'
             resultSubscriptionEvent == null
     }

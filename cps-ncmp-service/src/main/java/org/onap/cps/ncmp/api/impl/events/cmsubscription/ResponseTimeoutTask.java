@@ -18,21 +18,21 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.events.avcsubscription;
+package org.onap.cps.ncmp.api.impl.events.cmsubscription;
 
 import com.hazelcast.map.IMap;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.ncmp.events.avcsubscription1_0_0.dmi_to_ncmp.SubscriptionEventResponse;
+import org.onap.cps.ncmp.events.cmsubscription1_0_0.dmi_to_ncmp.CmSubscriptionDmiOutEvent;
 
 @Slf4j
 @RequiredArgsConstructor
 public class ResponseTimeoutTask implements Runnable {
 
     private final IMap<String, Set<String>> forwardedSubscriptionEventCache;
-    private final SubscriptionEventResponseOutcome subscriptionEventResponseOutcome;
-    private final SubscriptionEventResponse subscriptionEventResponse;
+    private final CmSubscriptionNcmpOutEventPublisher cmSubscriptionNcmpOutEventPublisher;
+    private final CmSubscriptionDmiOutEvent cmSubscriptionDmiOutEvent;
 
     @Override
     public void run() {
@@ -40,11 +40,11 @@ public class ResponseTimeoutTask implements Runnable {
     }
 
     private void generateTimeoutResponse() {
-        final String subscriptionClientId = subscriptionEventResponse.getData().getClientId();
-        final String subscriptionName = subscriptionEventResponse.getData().getSubscriptionName();
+        final String subscriptionClientId = cmSubscriptionDmiOutEvent.getData().getClientId();
+        final String subscriptionName = cmSubscriptionDmiOutEvent.getData().getSubscriptionName();
         final String subscriptionEventId = subscriptionClientId + subscriptionName;
         if (forwardedSubscriptionEventCache.containsKey(subscriptionEventId)) {
-            subscriptionEventResponseOutcome.sendResponse(subscriptionEventResponse,
+            cmSubscriptionNcmpOutEventPublisher.sendResponse(cmSubscriptionDmiOutEvent,
                     "subscriptionCreatedStatus");
             forwardedSubscriptionEventCache.remove(subscriptionEventId);
         }

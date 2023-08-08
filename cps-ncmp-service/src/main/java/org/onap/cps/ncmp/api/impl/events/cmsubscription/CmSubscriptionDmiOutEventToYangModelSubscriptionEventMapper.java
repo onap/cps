@@ -18,7 +18,7 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.events.avcsubscription;
+package org.onap.cps.ncmp.api.impl.events.cmsubscription;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,18 +26,18 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelSubscriptionEvent;
-import org.onap.cps.ncmp.events.avcsubscription1_0_0.dmi_to_ncmp.SubscriptionEventResponse;
-import org.onap.cps.ncmp.events.avcsubscription1_0_0.dmi_to_ncmp.SubscriptionStatus;
+import org.onap.cps.ncmp.events.cmsubscription1_0_0.dmi_to_ncmp.CmSubscriptionDmiOutEvent;
+import org.onap.cps.ncmp.events.cmsubscription1_0_0.dmi_to_ncmp.SubscriptionStatus;
 
 @Mapper(componentModel = "spring")
-public interface SubscriptionEventResponseMapper {
+public interface CmSubscriptionDmiOutEventToYangModelSubscriptionEventMapper {
 
     @Mapping(source = "data.clientId", target = "clientId")
     @Mapping(source = "data.subscriptionName", target = "subscriptionName")
     @Mapping(source = "data.subscriptionStatus", target = "predicates.targetCmHandles",
             qualifiedByName = "mapSubscriptionStatusToCmHandleTargets")
     YangModelSubscriptionEvent toYangModelSubscriptionEvent(
-            SubscriptionEventResponse subscriptionEventResponse);
+            CmSubscriptionDmiOutEvent cmSubscriptionDmiOutEvent);
 
     /**
      * Maps SubscriptionStatus to list of TargetCmHandle.
