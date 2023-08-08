@@ -16,6 +16,23 @@
       "message": "recheck",
       "revId": "76c637c0405227848f1ed1660d3836e1e88d78eb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f952cfbe_d8f7970b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 34
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-08T10:55:33Z",
+      "side": 1,
+      "message": "There are two flows subject to test in CST: Cm Hanlde LCM (using legacy kafka template), Cm Data Notifications Subscription Create (now in Cloud Event format and using cloud event kafka template). Please mind these two aspects while reviewing this commit.\n\nI have to have made a small consumer modifications on cps-data-operations.robot by removing direct consumer port, and adjusting it in docker-compose.yml. There is no logic change in that flow.",
+      "revId": "76c637c0405227848f1ed1660d3836e1e88d78eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

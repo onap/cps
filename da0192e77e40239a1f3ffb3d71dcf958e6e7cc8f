@@ -1,6 +1,7 @@
 {
   "comments": [
     {
+      "unresolved": true,
       "key": {
         "uuid": "86ef244d_5688ed5e",
         "filename": "docker-compose/docker-compose.yml",
@@ -20,10 +21,10 @@
         "endChar": 56
       },
       "revId": "da0192e77e40239a1f3ffb3d71dcf958e6e7cc8f",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "19c7a1ba_d3ed94fc",
         "filename": "docker-compose/docker-compose.yml",
@@ -44,10 +45,10 @@
         "endChar": 56
       },
       "revId": "da0192e77e40239a1f3ffb3d71dcf958e6e7cc8f",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "92ab6ea6_36f01dad",
         "filename": "docker-compose/docker-compose.yml",
@@ -68,10 +69,10 @@
         "endChar": 56
       },
       "revId": "da0192e77e40239a1f3ffb3d71dcf958e6e7cc8f",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "9c9f7a51_4326a984",
         "filename": "docker-compose/docker-compose.yml",
@@ -92,8 +93,31 @@
         "endChar": 56
       },
       "revId": "da0192e77e40239a1f3ffb3d71dcf958e6e7cc8f",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f31a628e_b85c8113",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-08T10:55:33Z",
+      "side": 0,
+      "message": "Ack",
+      "parentUuid": "9c9f7a51_4326a984",
+      "range": {
+        "startLine": 78,
+        "startChar": 34,
+        "endLine": 78,
+        "endChar": 56
+      },
+      "revId": "da0192e77e40239a1f3ffb3d71dcf958e6e7cc8f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
