@@ -18,11 +18,11 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.events.avcsubscription
+package org.onap.cps.ncmp.api.impl.events.cmsubscription
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.mapstruct.factory.Mappers
-import org.onap.cps.ncmp.events.avcsubscription1_0_0.client_to_ncmp.SubscriptionEvent;
+import org.onap.cps.ncmp.events.cmsubscription1_0_0.client_to_ncmp.CmSubscriptionNcmpInEvent
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
@@ -30,19 +30,19 @@ import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification
 
 @SpringBootTest(classes = [JsonObjectMapper, ObjectMapper])
-class ClientSubscriptionEventMapperSpec extends Specification {
+class ClientCmSubscriptionNcmpInEventMapperSpec extends Specification {
 
-    ClientSubscriptionEventMapper objectUnderTest = Mappers.getMapper(ClientSubscriptionEventMapper)
+    CmSubscriptionNcmpInEventToCmSubscriptionDmiInEventMapper objectUnderTest = Mappers.getMapper(CmSubscriptionNcmpInEventToCmSubscriptionDmiInEventMapper)
 
     @Autowired
     JsonObjectMapper jsonObjectMapper
 
     def 'Map clients subscription event to ncmps subscription event'() {
         given: 'a Subscription Event'
-            def jsonData = TestUtils.getResourceFileContent('avcSubscriptionCreationEvent.json')
-            def testEventToMap = jsonObjectMapper.convertJsonString(jsonData, SubscriptionEvent.class)
+            def jsonData = TestUtils.getResourceFileContent('cmSubscriptionNcmpInEvent.json')
+            def testEventToMap = jsonObjectMapper.convertJsonString(jsonData, CmSubscriptionNcmpInEvent.class)
         when: 'the client event is mapped to a ncmp subscription event'
-            def result = objectUnderTest.toNcmpSubscriptionEvent(testEventToMap)
+            def result = objectUnderTest.toCmSubscriptionDmiInEvent(testEventToMap)
         then: 'the resulting ncmp subscription event contains the correct clientId'
             assert result.getData().getSubscription().getClientID() == "SCO-9989752"
         and: 'subscription name'
