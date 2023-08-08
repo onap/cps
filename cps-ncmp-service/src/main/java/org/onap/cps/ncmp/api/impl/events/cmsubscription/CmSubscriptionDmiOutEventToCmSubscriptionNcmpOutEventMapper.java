@@ -18,7 +18,7 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.events.avcsubscription;
+package org.onap.cps.ncmp.api.impl.events.cmsubscription;
 
 import java.util.List;
 import java.util.Map;
@@ -26,19 +26,19 @@ import java.util.stream.Collectors;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
-import org.onap.cps.ncmp.events.avcsubscription1_0_0.dmi_to_ncmp.SubscriptionEventResponse;
-import org.onap.cps.ncmp.events.avcsubscription1_0_0.dmi_to_ncmp.SubscriptionStatus;
-import org.onap.cps.ncmp.events.avcsubscription1_0_0.ncmp_to_client.AdditionalInfo;
-import org.onap.cps.ncmp.events.avcsubscription1_0_0.ncmp_to_client.AdditionalInfoDetail;
-import org.onap.cps.ncmp.events.avcsubscription1_0_0.ncmp_to_client.SubscriptionEventOutcome;
+import org.onap.cps.ncmp.events.cmsubscription1_0_0.dmi_to_ncmp.CmSubscriptionDmiOutEvent;
+import org.onap.cps.ncmp.events.cmsubscription1_0_0.dmi_to_ncmp.SubscriptionStatus;
+import org.onap.cps.ncmp.events.cmsubscription1_0_0.ncmp_to_client.AdditionalInfo;
+import org.onap.cps.ncmp.events.cmsubscription1_0_0.ncmp_to_client.AdditionalInfoDetail;
+import org.onap.cps.ncmp.events.cmsubscription1_0_0.ncmp_to_client.CmSubscriptionNcmpOutEvent;
 import org.onap.cps.spi.exceptions.DataValidationException;
 
 @Mapper(componentModel = "spring")
-public interface SubscriptionOutcomeMapper {
+public interface CmSubscriptionDmiOutEventToCmSubscriptionNcmpOutEventMapper {
 
     @Mapping(source = "data.subscriptionStatus", target = "data.additionalInfo",
             qualifiedByName = "mapListOfSubscriptionStatusToAdditionalInfo")
-    SubscriptionEventOutcome toSubscriptionEventOutcome(SubscriptionEventResponse subscriptionEventResponse);
+    CmSubscriptionNcmpOutEvent toCmSubscriptionNcmpOutEvent(CmSubscriptionDmiOutEvent cmSubscriptionDmiOutEvent);
 
     /**
      * Maps list of SubscriptionStatus to an AdditionalInfo.

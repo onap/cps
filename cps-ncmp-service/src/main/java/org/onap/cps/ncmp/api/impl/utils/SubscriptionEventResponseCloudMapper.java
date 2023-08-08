@@ -27,7 +27,7 @@ import io.cloudevents.core.data.PojoCloudEventData;
 import io.cloudevents.jackson.PojoCloudEventDataMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.ncmp.events.avcsubscription1_0_0.dmi_to_ncmp.SubscriptionEventResponse;
+import org.onap.cps.ncmp.events.cmsubscription1_0_0.dmi_to_ncmp.CmSubscriptionDmiOutEvent;
 import org.springframework.stereotype.Component;
 
 @Slf4j
@@ -38,21 +38,21 @@ public class SubscriptionEventResponseCloudMapper {
     private final ObjectMapper objectMapper;
 
     /**
-     * Maps CloudEvent object to SubscriptionEventResponse.
+     * Maps CloudEvent object to CmSubscriptionDmiOutEvent.
      *
      * @param cloudEvent object
-     * @return SubscriptionEventResponse deserialized
+     * @return CmSubscriptionDmiOutEvent deserialized
      */
-    public SubscriptionEventResponse toSubscriptionEventResponse(final CloudEvent cloudEvent) {
-        final PojoCloudEventData<SubscriptionEventResponse> deserializedCloudEvent = CloudEventUtils
-                .mapData(cloudEvent, PojoCloudEventDataMapper.from(objectMapper, SubscriptionEventResponse.class));
+    public CmSubscriptionDmiOutEvent toCmSubscriptionDmiOutEvent(final CloudEvent cloudEvent) {
+        final PojoCloudEventData<CmSubscriptionDmiOutEvent> deserializedCloudEvent = CloudEventUtils
+                .mapData(cloudEvent, PojoCloudEventDataMapper.from(objectMapper, CmSubscriptionDmiOutEvent.class));
         if (deserializedCloudEvent == null) {
             log.debug("No data found in the consumed subscription response event");
             return null;
         } else {
-            final SubscriptionEventResponse subscriptionEventResponse = deserializedCloudEvent.getValue();
-            log.debug("Consuming subscription response event {}", subscriptionEventResponse);
-            return subscriptionEventResponse;
+            final CmSubscriptionDmiOutEvent cmSubscriptionDmiOutEvent = deserializedCloudEvent.getValue();
+            log.debug("Consuming subscription response event {}", cmSubscriptionDmiOutEvent);
+            return cmSubscriptionDmiOutEvent;
         }
     }
 }
