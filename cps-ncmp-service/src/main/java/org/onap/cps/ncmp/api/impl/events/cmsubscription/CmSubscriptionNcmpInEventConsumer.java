@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.events.avcsubscription;
+package org.onap.cps.ncmp.api.impl.events.cmsubscription;
 
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_OPERATIONAL;
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING;
@@ -28,9 +28,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionPersistence;
-import org.onap.cps.ncmp.api.impl.utils.SubscriptionEventCloudMapper;
+import org.onap.cps.ncmp.api.impl.utils.CmSubscriptionEventCloudMapper;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelSubscriptionEvent;
-import org.onap.cps.ncmp.events.avcsubscription1_0_0.client_to_ncmp.SubscriptionEvent;
+import org.onap.cps.ncmp.events.cmsubscription1_0_0.client_to_ncmp.CmSubscriptionNcmpInEvent;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
@@ -39,12 +39,12 @@ import org.springframework.stereotype.Component;
 @Component
 @Slf4j
 @RequiredArgsConstructor
-public class SubscriptionEventConsumer {
+public class CmSubscriptionNcmpInEventConsumer {
 
-    private final SubscriptionEventForwarder subscriptionEventForwarder;
-    private final SubscriptionEventMapper subscriptionEventMapper;
+    private final CmSubscriptionNcmpInEventForwarder cmSubscriptionNcmpInEventForwarder;
+    private final CmSubscriptionNcmpInEventMapper cmSubscriptionNcmpInEventMapper;
     private final SubscriptionPersistence subscriptionPersistence;
-    private final SubscriptionEventCloudMapper subscriptionEventCloudMapper;
+    private final CmSubscriptionEventCloudMapper cmSubscriptionEventCloudMapper;
 
     @Value("${notification.enabled:true}")
     private boolean notificationFeatureEnabled;
@@ -62,23 +62,25 @@ public class SubscriptionEventConsumer {
     public void consumeSubscriptionEvent(final ConsumerRecord<String, CloudEvent> subscriptionEventConsumerRecord) {
         final CloudEvent cloudEvent = subscriptionEventConsumerRecord.value();
         final String eventType = subscriptionEventConsumerRecord.value().getType();
-        final SubscriptionEvent subscriptionEvent = subscriptionEventCloudMapper.toSubscriptionEvent(cloudEvent);
-        final String eventDatastore = subscriptionEvent.getData().getPredicates().getDatastore();
-        if (!eventDatastore.equals(PASSTHROUGH_RUNNING.getDatastoreName())
-                || eventDatastore.equals(PASSTHROUGH_OPERATIONAL.getDatastoreName())) {
+        final CmSubscriptionNcmpInEvent cmSubscriptionNcmpInEvent =
+                cmSubscriptionEventCloudMapper.toSubscriptionEvent(cloudEvent);
+        final String eventDatastore = cmSubscriptionNcmpInEvent.getData().getPredicates().getDatastore();
+        if (!eventDatastore.equals(PASSTHROUGH_RUNNING.getDatastoreName()) || eventDatastore.equals(
+                PASSTHROUGH_OPERATIONAL.getDatastoreName())) {
             throw new UnsupportedOperationException(
                     "passthrough datastores are currently only supported for event subscriptions");
         }
-        if ("CM".equals(subscriptionEvent.getData().getDataType().getDataCategory())) {
+        if ("CM".equals(cmSubscriptionNcmpInEvent.getData().getDataType().getDataCategory())) {
             if (subscriptionModelLoaderEnabled) {
-                persistSubscriptionEvent(subscriptionEvent);
+                persistSubscriptionEvent(cmSubscriptionNcmpInEvent);
             }
             if ("subscriptionCreated".equals(cloudEvent.getType())) {
                 log.info("Subscription for ClientID {} with name {} ...",
-                        subscriptionEvent.getData().getSubscription().getClientID(),
-                        subscriptionEvent.getData().getSubscription().getName());
+                        cmSubscriptionNcmpInEvent.getData().getSubscription().getClientID(),
+                        cmSubscriptionNcmpInEvent.getData().getSubscription().getName());
                 if (notificationFeatureEnabled) {
-                    subscriptionEventForwarder.forwardCreateSubscriptionEvent(subscriptionEvent, eventType);
+                    cmSubscriptionNcmpInEventForwarder.forwardCreateSubscriptionEvent(cmSubscriptionNcmpInEvent,
+                            eventType);
                 }
             }
         } else {
@@ -86,9 +88,9 @@ public class SubscriptionEventConsumer {
         }
     }
 
-    private void persistSubscriptionEvent(final SubscriptionEvent subscriptionEvent) {
+    private void persistSubscriptionEvent(final CmSubscriptionNcmpInEvent cmSubscriptionNcmpInEvent) {
         final YangModelSubscriptionEvent yangModelSubscriptionEvent =
-            subscriptionEventMapper.toYangModelSubscriptionEvent(subscriptionEvent);
+                cmSubscriptionNcmpInEventMapper.toYangModelSubscriptionEvent(cmSubscriptionNcmpInEvent);
         subscriptionPersistence.saveSubscriptionEvent(yangModelSubscriptionEvent);
     }
 

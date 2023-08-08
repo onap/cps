@@ -28,7 +28,7 @@ import java.net.URI;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.ncmp.events.avcsubscription1_0_0.ncmp_to_client.SubscriptionEventOutcome;
+import org.onap.cps.ncmp.events.cmsubscription1_0_0.ncmp_to_client.CmSubscriptionNcmpOutEvent;
 import org.springframework.stereotype.Component;
 
 @Slf4j
@@ -43,10 +43,10 @@ public class SubscriptionOutcomeCloudMapper {
     /**
      * Maps SubscriptionEventOutcome to a CloudEvent.
      *
-     * @param subscriptionEventOutcome object
+     * @param cmSubscriptionNcmpOutEvent object
      * @return CloudEvent
      */
-    public CloudEvent toCloudEvent(final SubscriptionEventOutcome subscriptionEventOutcome,
+    public CloudEvent toCloudEvent(final CmSubscriptionNcmpOutEvent cmSubscriptionNcmpOutEvent,
                                           final String eventKey, final String eventType) {
         try {
             return CloudEventBuilder.v1()
@@ -54,8 +54,8 @@ public class SubscriptionOutcomeCloudMapper {
                     .withSource(URI.create("NCMP"))
                     .withType(eventType)
                     .withExtension("correlationid", eventKey)
-                    .withDataSchema(URI.create("urn:cps:" + SubscriptionEventOutcome.class.getName() + ":1.0.0"))
-                    .withData(objectMapper.writeValueAsBytes(subscriptionEventOutcome)).build();
+                    .withDataSchema(URI.create("urn:cps:" + CmSubscriptionNcmpOutEvent.class.getName() + ":1.0.0"))
+                    .withData(objectMapper.writeValueAsBytes(cmSubscriptionNcmpOutEvent)).build();
         } catch (final JsonProcessingException jsonProcessingException) {
             log.error("The Cloud Event could not be constructed", jsonProcessingException);
         }

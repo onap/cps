@@ -1,11 +1,11 @@
 {
+  "$id": "urn:cps:org.onap.cps.ncmp.events:cm-subscription-ncmp-in-event:1.0.0",
+  "$ref": "#/definitions/CmSubscriptionNcmpInEvent",
   "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "urn:cps:org.onap.cps.ncmp.events:subscription-event-schema:1.0.0",
-  "$ref": "#/definitions/SubscriptionEvent",
   "definitions": {
-    "SubscriptionEvent": {
-      "description": "The payload for subscription event to be forwarded to dmi plugins.",
-      "javaType": "org.onap.cps.ncmp.events.avcsubscription1_0_0.ncmp_to_dmi.SubscriptionEvent",
+    "CmSubscriptionNcmpInEvent": {
+      "description": "The payload for subscription event.",
+      "javaType": "org.onap.cps.ncmp.events.cmsubscription1_0_0.client_to_ncmp.CmSubscriptionNcmpInEvent",
       "properties": {
         "data": {
           "properties": {
@@ -44,7 +44,7 @@
                   "description": "CM Handles to be targeted by the subscription",
                   "type": "array",
                   "items": {
-                    "$ref": "#/definitions/CmHandle"
+                    "type": "string"
                   }
                 },
                 "datastore-xpath-filter": {
@@ -70,11 +70,6 @@
                 "name": {
                   "description": "The name of the subscription",
                   "type": "string"
-                },
-                "isTagged": {
-                  "description": "optional parameter, default is no",
-                  "type": "boolean",
-                  "default": false
                 }
               },
               "required": [
@@ -99,23 +94,6 @@
       "required": [
         "data"
       ]
-    },
-    "CmHandle": {
-      "description": "The CM handle information",
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "additional-properties": {
-          "existingJavaType": "java.util.Map<String,String>"
-        }
-      },
-      "required": [
-        "id",
-        "additional-properties"
-      ],
-      "additionalProperties": false
     }
   }
 }

@@ -23,7 +23,8 @@ package org.onap.cps.ncmp.api.impl.utils
 import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.cloudevents.core.builder.CloudEventBuilder
-import org.onap.cps.ncmp.events.avcsubscription1_0_0.client_to_ncmp.SubscriptionEvent
+import org.onap.cps.ncmp.events.cmsubscription1_0_0.client_to_ncmp.CmSubscriptionNcmpInEvent
+import org.onap.cps.ncmp.events.cmsubscription1_0_0.ncmp_to_dmi.CmSubscriptionDmiInEvent
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
@@ -31,7 +32,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification
 
 @SpringBootTest(classes = [ObjectMapper, JsonObjectMapper])
-class SubscriptionEventCloudMapperSpec extends Specification {
+class CmSubscriptionEventCloudMapperSpec extends Specification {
 
     @Autowired
     JsonObjectMapper jsonObjectMapper
@@ -41,12 +42,12 @@ class SubscriptionEventCloudMapperSpec extends Specification {
 
     def spyObjectMapper = Spy(ObjectMapper)
 
-    def objectUnderTest = new SubscriptionEventCloudMapper(spyObjectMapper)
+    def objectUnderTest = new CmSubscriptionEventCloudMapper(spyObjectMapper)
 
     def 'Map the data of the cloud event to subscription event'() {
         given: 'a cloud event having a subscription event in the data part'
-            def jsonData = TestUtils.getResourceFileContent('avcSubscriptionCreationEvent.json')
-            def testEventData = jsonObjectMapper.convertJsonString(jsonData, SubscriptionEvent.class)
+            def jsonData = TestUtils.getResourceFileContent('cmSubscriptionNcmpInEvent.json')
+            def testEventData = jsonObjectMapper.convertJsonString(jsonData, CmSubscriptionNcmpInEvent.class)
             def testCloudEvent = CloudEventBuilder.v1()
                 .withData(objectMapper.writeValueAsBytes(testEventData))
                 .withId('some-event-id')
@@ -75,9 +76,9 @@ class SubscriptionEventCloudMapperSpec extends Specification {
 
     def 'Map the subscription event to data of the cloud event'() {
         given: 'a subscription event'
-            def jsonData = TestUtils.getResourceFileContent('avcSubscriptionCreationEventNcmpVersion.json')
+            def jsonData = TestUtils.getResourceFileContent('cmSubscriptionDmiInEvent.json')
             def testEventData = jsonObjectMapper.convertJsonString(jsonData,
-                                org.onap.cps.ncmp.events.avcsubscription1_0_0.ncmp_to_dmi.SubscriptionEvent.class)
+                CmSubscriptionDmiInEvent.class)
             def testCloudEvent = CloudEventBuilder.v1()
                 .withData(objectMapper.writeValueAsBytes(testEventData))
                 .withId('some-id')
@@ -85,14 +86,14 @@ class SubscriptionEventCloudMapperSpec extends Specification {
                 .withSource(URI.create('SCO-9989752'))
                 .withExtension('correlationid', 'test-cmhandle1').build()
         when: 'the subscription event map to data of cloud event'
-            SubscriptionEventCloudMapper.randomId = 'some-id'
+            CmSubscriptionEventCloudMapper.randomId = 'some-id'
             def resultCloudEvent = objectUnderTest.toCloudEvent(testEventData, 'some-event-key', 'subscriptionCreated')
         then: 'the subscription event resulted having expected values'
             resultCloudEvent.getData() == testCloudEvent.getData()
             resultCloudEvent.getId() == testCloudEvent.getId()
             resultCloudEvent.getType() == testCloudEvent.getType()
             resultCloudEvent.getSource() == URI.create('SCO-9989752')
-            resultCloudEvent.getDataSchema() == URI.create('urn:cps:org.onap.cps.ncmp.events.avcsubscription1_0_0.ncmp_to_dmi.SubscriptionEvent:1.0.0')
+            resultCloudEvent.getDataSchema() == URI.create('urn:cps:org.onap.cps.ncmp.events.cmsubscription1_0_0.ncmp_to_dmi.CmSubscriptionDmiInEvent:1.0.0')
     }
 
     def 'Map the subscription event to cloud event with JSON processing exception'() {
@@ -100,9 +101,9 @@ class SubscriptionEventCloudMapperSpec extends Specification {
             def jsonProcessingException = new JsonProcessingException('The Cloud Event could not be constructed')
             spyObjectMapper.writeValueAsBytes(_) >> { throw jsonProcessingException }
         and: 'a subscription event of ncmp version'
-            def jsonData = TestUtils.getResourceFileContent('avcSubscriptionCreationEventNcmpVersion.json')
+            def jsonData = TestUtils.getResourceFileContent('cmSubscriptionDmiInEvent.json')
             def testEventData = jsonObjectMapper.convertJsonString(jsonData,
-                org.onap.cps.ncmp.events.avcsubscription1_0_0.ncmp_to_dmi.SubscriptionEvent.class)
+                CmSubscriptionDmiInEvent.class)
         when: 'the subscription event map to cloud event'
             def expectedResult = objectUnderTest.toCloudEvent(testEventData, 'some-key', 'some-event-type')
         then: 'no exception is thrown since it has been handled already'
