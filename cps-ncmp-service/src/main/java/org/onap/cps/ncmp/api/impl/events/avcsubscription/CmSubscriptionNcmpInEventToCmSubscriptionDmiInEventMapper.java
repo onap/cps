@@ -22,13 +22,14 @@ package org.onap.cps.ncmp.api.impl.events.avcsubscription;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.onap.cps.ncmp.events.avcsubscription1_0_0.client_to_ncmp.SubscriptionEvent;
+import org.onap.cps.ncmp.events.avcsubscription1_0_0.client_to_ncmp.CmSubscriptionNcmpInEvent;
+import org.onap.cps.ncmp.events.avcsubscription1_0_0.ncmp_to_dmi.CmSubscriptionDmiInEvent;
 
 @Mapper(componentModel = "spring")
-public interface ClientSubscriptionEventMapper {
+public interface CmSubscriptionNcmpInEventToCmSubscriptionDmiInEventMapper {
 
     @Mapping(target = "data.predicates.targets", ignore = true)
-    org.onap.cps.ncmp.events.avcsubscription1_0_0.ncmp_to_dmi.SubscriptionEvent toNcmpSubscriptionEvent(
-            SubscriptionEvent subscriptionEvent);
+    CmSubscriptionDmiInEvent toCmSubscriptionDmiInEvent(
+            CmSubscriptionNcmpInEvent cmSubscriptionNcmpInEvent);
 
 }

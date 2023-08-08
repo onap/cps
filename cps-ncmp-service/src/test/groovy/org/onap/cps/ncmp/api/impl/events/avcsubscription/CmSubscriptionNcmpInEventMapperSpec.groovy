@@ -22,9 +22,8 @@ package org.onap.cps.ncmp.api.impl.events.avcsubscription
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.mapstruct.factory.Mappers
-import org.onap.cps.ncmp.api.impl.events.avcsubscription.SubscriptionEventMapper
 import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionStatus
-import org.onap.cps.ncmp.events.avcsubscription1_0_0.client_to_ncmp.SubscriptionEvent
+import org.onap.cps.ncmp.events.avcsubscription1_0_0.client_to_ncmp.CmSubscriptionNcmpInEvent
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
@@ -33,17 +32,17 @@ import spock.lang.Specification
 
 
 @SpringBootTest(classes = [JsonObjectMapper, ObjectMapper])
-class SubscriptionEventMapperSpec extends Specification {
+class CmSubscriptionNcmpInEventMapperSpec extends Specification {
 
-    SubscriptionEventMapper objectUnderTest = Mappers.getMapper(SubscriptionEventMapper)
+    CmSubscriptionNcmpInEventMapper objectUnderTest = Mappers.getMapper(CmSubscriptionNcmpInEventMapper)
 
     @Autowired
     JsonObjectMapper jsonObjectMapper
 
     def 'Map subscription event to yang model subscription event where #scenario'() {
         given: 'a Subscription Event'
-            def jsonData = TestUtils.getResourceFileContent('avcSubscriptionCreationEvent.json')
-            def testEventToMap = jsonObjectMapper.convertJsonString(jsonData, SubscriptionEvent.class)
+            def jsonData = TestUtils.getResourceFileContent('cmSubscriptionNcmpInEvent.json')
+            def testEventToMap = jsonObjectMapper.convertJsonString(jsonData, CmSubscriptionNcmpInEvent.class)
         when: 'the event is mapped to a yang model subscription'
             def result = objectUnderTest.toYangModelSubscriptionEvent(testEventToMap)
         then: 'the resulting yang model subscription event contains the correct clientId'
@@ -62,7 +61,7 @@ class SubscriptionEventMapperSpec extends Specification {
 
     def 'Map empty subscription event to yang model subscription event'() {
         given: 'a new Subscription Event with no data'
-            def testEventToMap = new SubscriptionEvent()
+            def testEventToMap = new CmSubscriptionNcmpInEvent()
         when: 'the event is mapped to a yang model subscription'
             def result = objectUnderTest.toYangModelSubscriptionEvent(testEventToMap)
         then: 'the resulting yang model subscription event contains null clientId'

@@ -28,7 +28,7 @@ import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionPersistenceImpl
 import org.onap.cps.ncmp.api.impl.utils.SubscriptionEventResponseCloudMapper
 import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
-import org.onap.cps.ncmp.events.avcsubscription1_0_0.dmi_to_ncmp.SubscriptionEventResponse
+import org.onap.cps.ncmp.events.avcsubscription1_0_0.dmi_to_ncmp.CmSubscriptionDmiOutEvent
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.spi.model.DataNodeBuilder
 import org.onap.cps.utils.JsonObjectMapper
@@ -36,7 +36,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest(classes = [ObjectMapper, JsonObjectMapper])
-class SubscriptionEventResponseConsumerSpec extends MessagingBaseSpec {
+class CmSubscriptionDmiOutEventConsumerSpec extends MessagingBaseSpec {
 
     @Autowired
     JsonObjectMapper jsonObjectMapper
@@ -46,11 +46,11 @@ class SubscriptionEventResponseConsumerSpec extends MessagingBaseSpec {
 
     IMap<String, Set<String>> mockForwardedSubscriptionEventCache = Mock(IMap<String, Set<String>>)
     def mockSubscriptionPersistence = Mock(SubscriptionPersistenceImpl)
-    def mockSubscriptionEventResponseMapper  = Mock(SubscriptionEventResponseMapper)
-    def mockSubscriptionEventResponseOutcome = Mock(SubscriptionEventResponseOutcome)
+    def mockSubscriptionEventResponseMapper  = Mock(CmSubscriptionDmiOutEventToYangModelSubscriptionEventMapper)
+    def mockSubscriptionEventResponseOutcome = Mock(CmSubscriptionNcmpOutEventPublisher)
     def mockSubscriptionEventResponseCloudMapper = new SubscriptionEventResponseCloudMapper(new ObjectMapper())
 
-    def objectUnderTest = new SubscriptionEventResponseConsumer(mockForwardedSubscriptionEventCache,
+    def objectUnderTest = new CmSubscriptionDmiOutEventConsumer(mockForwardedSubscriptionEventCache,
         mockSubscriptionPersistence, mockSubscriptionEventResponseMapper, mockSubscriptionEventResponseOutcome, mockSubscriptionEventResponseCloudMapper)
 
     def 'Consume Subscription Event Response where all DMIs have responded'() {
@@ -117,8 +117,8 @@ class SubscriptionEventResponseConsumerSpec extends MessagingBaseSpec {
     }
 
     def getSubscriptionResponseEvent() {
-        def subscriptionResponseJsonData = TestUtils.getResourceFileContent('avcSubscriptionEventResponse.json')
-        return jsonObjectMapper.convertJsonString(subscriptionResponseJsonData, SubscriptionEventResponse.class)
+        def subscriptionResponseJsonData = TestUtils.getResourceFileContent('cmSubscriptionDmiOutEvent.json')
+        return jsonObjectMapper.convertJsonString(subscriptionResponseJsonData, CmSubscriptionDmiOutEvent.class)
     }
 
     def getCloudEventHavingSubscriptionResponseEvent() {

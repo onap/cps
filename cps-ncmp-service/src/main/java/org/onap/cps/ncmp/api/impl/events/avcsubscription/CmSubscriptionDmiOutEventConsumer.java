@@ -35,7 +35,7 @@ import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionStatus;
 import org.onap.cps.ncmp.api.impl.utils.DataNodeHelper;
 import org.onap.cps.ncmp.api.impl.utils.SubscriptionEventResponseCloudMapper;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelSubscriptionEvent;
-import org.onap.cps.ncmp.events.avcsubscription1_0_0.dmi_to_ncmp.SubscriptionEventResponse;
+import org.onap.cps.ncmp.events.avcsubscription1_0_0.dmi_to_ncmp.CmSubscriptionDmiOutEvent;
 import org.onap.cps.spi.model.DataNode;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -44,12 +44,13 @@ import org.springframework.stereotype.Component;
 @Component
 @Slf4j
 @RequiredArgsConstructor
-public class SubscriptionEventResponseConsumer {
+public class CmSubscriptionDmiOutEventConsumer {
 
     private final IMap<String, Set<String>> forwardedSubscriptionEventCache;
     private final SubscriptionPersistence subscriptionPersistence;
-    private final SubscriptionEventResponseMapper subscriptionEventResponseMapper;
-    private final SubscriptionEventResponseOutcome subscriptionEventResponseOutcome;
+    private final CmSubscriptionDmiOutEventToYangModelSubscriptionEventMapper
+            cmSubscriptionDmiOutEventToYangModelSubscriptionEventMapper;
+    private final CmSubscriptionNcmpOutEventPublisher cmSubscriptionNcmpOutEventPublisher;
     private final SubscriptionEventResponseCloudMapper subscriptionEventResponseCloudMapper;
 
     @Value("${notification.enabled:true}")
@@ -61,35 +62,35 @@ public class SubscriptionEventResponseConsumer {
     /**
      * Consume subscription response event.
      *
-     * @param subscriptionEventResponseConsumerRecord the event to be consumed
+     * @param cmSubscriptionDmiOutConsumerRecord the event to be consumed
      */
     @KafkaListener(topics = "${app.ncmp.avc.subscription-response-topic}",
             containerFactory = "cloudEventConcurrentKafkaListenerContainerFactory")
     public void consumeSubscriptionEventResponse(
-            final ConsumerRecord<String, CloudEvent> subscriptionEventResponseConsumerRecord) {
-        final CloudEvent cloudEvent = subscriptionEventResponseConsumerRecord.value();
-        final String eventType = subscriptionEventResponseConsumerRecord.value().getType();
-        final SubscriptionEventResponse subscriptionEventResponse =
-                subscriptionEventResponseCloudMapper.toSubscriptionEventResponse(cloudEvent);
-        final String clientId = subscriptionEventResponse.getData().getClientId();
+            final ConsumerRecord<String, CloudEvent> cmSubscriptionDmiOutConsumerRecord) {
+        final CloudEvent cloudEvent = cmSubscriptionDmiOutConsumerRecord.value();
+        final String eventType = cmSubscriptionDmiOutConsumerRecord.value().getType();
+        final CmSubscriptionDmiOutEvent cmSubscriptionDmiOutEvent =
+                subscriptionEventResponseCloudMapper.toCmSubscriptionDmiOutEvent(cloudEvent);
+        final String clientId = cmSubscriptionDmiOutEvent.getData().getClientId();
         log.info("subscription event response of clientId: {} is received.", clientId);
-        final String subscriptionName = subscriptionEventResponse.getData().getSubscriptionName();
+        final String subscriptionName = cmSubscriptionDmiOutEvent.getData().getSubscriptionName();
         final String subscriptionEventId = clientId + subscriptionName;
         boolean createOutcomeResponse = false;
         if (forwardedSubscriptionEventCache.containsKey(subscriptionEventId)) {
             final Set<String> dmiNames = forwardedSubscriptionEventCache.get(subscriptionEventId);
-            dmiNames.remove(subscriptionEventResponse.getData().getDmiName());
+            dmiNames.remove(cmSubscriptionDmiOutEvent.getData().getDmiName());
             forwardedSubscriptionEventCache.put(subscriptionEventId, dmiNames,
                     ForwardedSubscriptionEventCacheConfig.SUBSCRIPTION_FORWARD_STARTED_TTL_SECS, TimeUnit.SECONDS);
             createOutcomeResponse = forwardedSubscriptionEventCache.get(subscriptionEventId).isEmpty();
         }
         if (subscriptionModelLoaderEnabled) {
-            updateSubscriptionEvent(subscriptionEventResponse);
+            updateSubscriptionEvent(cmSubscriptionDmiOutEvent);
         }
         if (createOutcomeResponse
                 && notificationFeatureEnabled
                 && hasNoPendingCmHandles(clientId, subscriptionName)) {
-            subscriptionEventResponseOutcome.sendResponse(subscriptionEventResponse, eventType);
+            cmSubscriptionNcmpOutEventPublisher.sendResponse(cmSubscriptionDmiOutEvent, eventType);
             forwardedSubscriptionEventCache.remove(subscriptionEventId);
         }
     }
@@ -108,10 +109,10 @@ public class SubscriptionEventResponseConsumer {
         return true;
     }
 
-    private void updateSubscriptionEvent(final SubscriptionEventResponse subscriptionEventResponse) {
+    private void updateSubscriptionEvent(final CmSubscriptionDmiOutEvent cmSubscriptionDmiOutEvent) {
         final YangModelSubscriptionEvent yangModelSubscriptionEvent =
-                subscriptionEventResponseMapper
-                        .toYangModelSubscriptionEvent(subscriptionEventResponse);
+                cmSubscriptionDmiOutEventToYangModelSubscriptionEventMapper
+                        .toYangModelSubscriptionEvent(cmSubscriptionDmiOutEvent);
         subscriptionPersistence.saveSubscriptionEvent(yangModelSubscriptionEvent);
     }
 }
