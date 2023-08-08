@@ -241,10 +241,12 @@ public class DmiDataOperations extends DmiOperations {
 
     private void sendDataOperationRequestToDmiService(final String dataOperationResourceUrl,
                                                       final List<DmiDataOperation> dmiDataOperationRequestBodies) {
-        final String dataOperationRequestBodiesAsJsonString =
-                jsonObjectMapper.asJsonString(dmiDataOperationRequestBodies);
+        final DmiDataOperationRequest dmiDataOperationRequest = DmiDataOperationRequest.builder()
+                .operations(dmiDataOperationRequestBodies).build();
+        final String dmiDataOperationRequestAsJsonString =
+                jsonObjectMapper.asJsonString(dmiDataOperationRequest);
         TaskExecutor.executeTask(() -> dmiRestClient.postOperationWithJsonData(dataOperationResourceUrl,
-                                dataOperationRequestBodiesAsJsonString, READ),
+                                dmiDataOperationRequestAsJsonString, READ),
                         DEFAULT_ASYNC_TASK_EXECUTOR_TIMEOUT_IN_MILLISECONDS)
                 .whenCompleteAsync((response, throwable) -> handleTaskCompletionException(throwable,
                         dataOperationResourceUrl, dmiDataOperationRequestBodies));
