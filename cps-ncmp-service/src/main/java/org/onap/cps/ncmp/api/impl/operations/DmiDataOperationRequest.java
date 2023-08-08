@@ -1,5 +1,5 @@
 /*
- * ============LICENSE_START=======================================================
+ *  ============LICENSE_START=======================================================
  *  Copyright (C) 2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,25 +15,21 @@
  *  limitations under the License.
  *
  *  SPDX-License-Identifier: Apache-2.0
- *  ============LICENSE_END=========================================================
+ * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.dmi.rest.stub.model.data.operational;
+package org.onap.cps.ncmp.api.impl.operations;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import java.util.ArrayList;
 import java.util.List;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Setter
 @Getter
-public class DataOperationRequest {
-    private String operation;
-    private String operationId;
-    private String datastore;
-    private String options;
-    private String resourceIdentifier;
-    private List<CmHandle> cmHandles = new ArrayList<>();
+@Builder
+public class DmiDataOperationRequest {
+
+    private List<DmiDataOperation> operations;
+
 }

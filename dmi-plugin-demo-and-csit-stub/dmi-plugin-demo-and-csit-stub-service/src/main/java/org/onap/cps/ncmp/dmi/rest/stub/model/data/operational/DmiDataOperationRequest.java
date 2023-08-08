@@ -20,8 +20,13 @@
 
 package org.onap.cps.ncmp.dmi.rest.stub.model.data.operational;
 
-import java.util.ArrayList;
+import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
 
-public class ResourceDataOperationRequests extends ArrayList<DataOperationRequest> {
-    private static final long serialVersionUID = 3553323170854399881L;
+@Setter
+@Getter
+public class DmiDataOperationRequest {
+
+    private List<DataOperationRequest> operations;
 }

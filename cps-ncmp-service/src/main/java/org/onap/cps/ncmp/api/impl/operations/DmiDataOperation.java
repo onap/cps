@@ -21,7 +21,6 @@
 package org.onap.cps.ncmp.api.impl.operations;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,8 +34,7 @@ import org.onap.cps.ncmp.api.models.DataOperationDefinition;
 @JsonPropertyOrder({"operation", "operationId", "datastore", "options", "resourceIdentifier", "cmHandles"})
 public class DmiDataOperation {
 
-    @JsonProperty("operation")
-    private OperationType operationType;
+    private OperationType operation;
     private String operationId;
     private String datastore;
     private String options;
@@ -54,7 +52,7 @@ public class DmiDataOperation {
             final DataOperationDefinition dataOperationDefinition) {
 
         return DmiDataOperation.builder()
-                .operationType(OperationType.fromOperationName(dataOperationDefinition.getOperation()))
+                .operation(OperationType.fromOperationName(dataOperationDefinition.getOperation()))
                 .operationId(dataOperationDefinition.getOperationId())
                 .datastore(DatastoreType.fromDatastoreName(dataOperationDefinition.getDatastore()).getDatastoreName())
                 .options(dataOperationDefinition.getOptions())
