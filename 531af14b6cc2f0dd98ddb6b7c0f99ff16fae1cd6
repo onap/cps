@@ -16,6 +16,92 @@
       "message": "looks fine to me.",
       "revId": "531af14b6cc2f0dd98ddb6b7c0f99ff16fae1cd6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77087da6_687903fa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-09T13:40:51Z",
+      "side": 1,
+      "message": "A few NB comments...",
+      "revId": "531af14b6cc2f0dd98ddb6b7c0f99ff16fae1cd6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d300682f_a78763eb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-09T13:40:51Z",
+      "side": 1,
+      "message": "NB: dmiDataOperationRequestAsJsonString",
+      "range": {
+        "startLine": 246,
+        "startChar": 21,
+        "endLine": 246,
+        "endChar": 60
+      },
+      "revId": "531af14b6cc2f0dd98ddb6b7c0f99ff16fae1cd6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e05ed277_4372b9ae",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-09T13:40:51Z",
+      "side": 1,
+      "message": "NB: Alignment may be better.",
+      "range": {
+        "startLine": 113,
+        "startChar": 38,
+        "endLine": 113,
+        "endChar": 63
+      },
+      "revId": "531af14b6cc2f0dd98ddb6b7c0f99ff16fae1cd6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2273fafb_edb56f4a",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-09T13:40:51Z",
+      "side": 1,
+      "message": "NB: This approach is not recommended to log a POJO other than having it annotated with ToString. Since, you have to have more branches on your coverage to test exception scenarios, if you could have implement. I mark it NB since it is for test purposes only in a test container.",
+      "range": {
+        "startLine": 123,
+        "startChar": 0,
+        "endLine": 128,
+        "endChar": 9
+      },
+      "revId": "531af14b6cc2f0dd98ddb6b7c0f99ff16fae1cd6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
