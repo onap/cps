@@ -16,6 +16,207 @@
       "message": "Functionally working fine, tested on local, will continue to check syntax...",
       "revId": "d96435b5d8ab3e6cdd16e4a0656b1d4a6af7a329",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "946c16ac_06cfc018",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-09T11:07:56Z",
+      "side": 1,
+      "message": "A few comments on naming. I will re-test the latest patch set on my local later on. Thanks..",
+      "revId": "d96435b5d8ab3e6cdd16e4a0656b1d4a6af7a329",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11024261_7fd27e79",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/CmSubscriptionNcmpInEventForwarder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-09T11:07:56Z",
+      "side": 1,
+      "message": "NB: dmiInEvent",
+      "range": {
+        "startLine": 124,
+        "startChar": 43,
+        "endLine": 124,
+        "endChar": 65
+      },
+      "revId": "d96435b5d8ab3e6cdd16e4a0656b1d4a6af7a329",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7e533a2_5db2cc03",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/CmSubscriptionNcmpInEventForwarder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-09T11:07:56Z",
+      "side": 1,
+      "message": "NB: dmiInCloudEvent",
+      "range": {
+        "startLine": 161,
+        "startChar": 29,
+        "endLine": 161,
+        "endChar": 56
+      },
+      "revId": "d96435b5d8ab3e6cdd16e4a0656b1d4a6af7a329",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8ee7df9_33d0be3b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avcsubscription/CmSubscriptionNcmpOutEventPublisher.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-09T11:07:56Z",
+      "side": 1,
+      "message": "It may be better if we have name this method like fromDmiOutEvent",
+      "range": {
+        "startLine": 141,
+        "startChar": 39,
+        "endLine": 141,
+        "endChar": 68
+      },
+      "revId": "d96435b5d8ab3e6cdd16e4a0656b1d4a6af7a329",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fb518e9_5183b997",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/CmSubscriptionEventCloudMapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-09T11:07:56Z",
+      "side": 1,
+      "message": "CmSubscriptionNcmpInEvent",
+      "range": {
+        "startLine": 48,
+        "startChar": 33,
+        "endLine": 48,
+        "endChar": 50
+      },
+      "revId": "d96435b5d8ab3e6cdd16e4a0656b1d4a6af7a329",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4190fde7_032e3a33",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/CmSubscriptionEventCloudMapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-09T11:07:56Z",
+      "side": 1,
+      "message": "It may be better if we have name this method like toNcmpInEvent",
+      "range": {
+        "startLine": 53,
+        "startChar": 37,
+        "endLine": 53,
+        "endChar": 56
+      },
+      "revId": "d96435b5d8ab3e6cdd16e4a0656b1d4a6af7a329",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "634a15d6_6a66a05f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/CmSubscriptionEventCloudMapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-09T11:07:56Z",
+      "side": 1,
+      "message": "It may be better if we have name this method like CmSubscriptionDmiInEvent",
+      "range": {
+        "startLine": 67,
+        "startChar": 12,
+        "endLine": 67,
+        "endChar": 30
+      },
+      "revId": "d96435b5d8ab3e6cdd16e4a0656b1d4a6af7a329",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8280e2f_f5dfc621",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/SubscriptionEventResponseCloudMapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-09T11:07:56Z",
+      "side": 1,
+      "message": "CmSubscriptionDmiOutEvent",
+      "range": {
+        "startLine": 41,
+        "startChar": 33,
+        "endLine": 41,
+        "endChar": 58
+      },
+      "revId": "d96435b5d8ab3e6cdd16e4a0656b1d4a6af7a329",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e58f8d19_ef81f7a8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/SubscriptionOutcomeCloudMapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-09T11:07:56Z",
+      "side": 1,
+      "message": "CmSubscriptionNcmpOutEvent",
+      "range": {
+        "startLine": 44,
+        "startChar": 12,
+        "endLine": 44,
+        "endChar": 37
+      },
+      "revId": "d96435b5d8ab3e6cdd16e4a0656b1d4a6af7a329",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de5e554f_4befa7c2",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/subscription/client-to-ncmp-cmsubscriptionncmpin-event-schema-1.0.0.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-09T11:07:56Z",
+      "side": 0,
+      "message": "Having named json schemas like this, contains two different indicators what does it responsible for: e.g. client-to-ncmp is a synonim for cmsubscriptionncmpin. I would named files like this cm-subscription-ncmp-in-event-schema-1.0.0.json as we agreed.",
+      "revId": "67b4b3964cb5077c334ea057e9138213e7ac989c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "422a2b75_fff24040",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/subscription/dmi-to-ncmp-cmsubscriptiondmiout-event-schema-1.0.0.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-09T11:07:56Z",
+      "side": 0,
+      "message": "Same as above this file named like cm-subscription-dmi-out-event-schema-1.0.0.json",
+      "revId": "67b4b3964cb5077c334ea057e9138213e7ac989c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07c2db04_0faac180",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/subscription/ncmp-to-client-cmsubscriptionncmpout-event-schema-1.0.0.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-09T11:07:56Z",
+      "side": 0,
+      "message": "Same as above, cm-subscription-ncmp-out-event-schema-1.0.0.json",
+      "revId": "67b4b3964cb5077c334ea057e9138213e7ac989c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c116765_d4ff99fd",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/subscription/ncmp-to-dmi-cmsubscriptiondmiin-event-schema-1.0.0.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-09T11:07:56Z",
+      "side": 0,
+      "message": "Same as above, cm-subscription-dmi-in-event-schema-1.0.0.json",
+      "revId": "67b4b3964cb5077c334ea057e9138213e7ac989c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
