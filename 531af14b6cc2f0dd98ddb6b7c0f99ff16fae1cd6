@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e72da90_b9e3422f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-08-09T14:28:58Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d300682f_a78763eb",
+      "range": {
+        "startLine": 246,
+        "startChar": 21,
+        "endLine": 246,
+        "endChar": 60
+      },
+      "revId": "531af14b6cc2f0dd98ddb6b7c0f99ff16fae1cd6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e05ed277_4372b9ae",
@@ -71,6 +95,30 @@
       "writtenOn": "2023-08-09T13:40:51Z",
       "side": 1,
       "message": "NB: Alignment may be better.",
+      "range": {
+        "startLine": 113,
+        "startChar": 38,
+        "endLine": 113,
+        "endChar": 63
+      },
+      "revId": "531af14b6cc2f0dd98ddb6b7c0f99ff16fae1cd6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "071cec90_8feb3cca",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-08-09T14:28:58Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e05ed277_4372b9ae",
       "range": {
         "startLine": 113,
         "startChar": 38,
