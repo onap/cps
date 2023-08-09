@@ -150,6 +150,30 @@
       },
       "revId": "531af14b6cc2f0dd98ddb6b7c0f99ff16fae1cd6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b7c0bd7_07908baf",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-08-09T14:30:14Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2273fafb_edb56f4a",
+      "range": {
+        "startLine": 123,
+        "startChar": 0,
+        "endLine": 128,
+        "endChar": 9
+      },
+      "revId": "531af14b6cc2f0dd98ddb6b7c0f99ff16fae1cd6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
