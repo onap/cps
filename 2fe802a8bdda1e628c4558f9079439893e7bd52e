@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "196354d9_d472bb4a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-09T14:54:51Z",
+      "side": 1,
+      "message": "The latest patch set has been tested on my local, working fine.",
+      "revId": "2fe802a8bdda1e628c4558f9079439893e7bd52e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
