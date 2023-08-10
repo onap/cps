@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d39206db_0773ca2c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/FreshnessAndStalenessCacheConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-08-10T11:25:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5d2da8f9_ed717d1f",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 6
+      },
+      "revId": "c8d44989ab6bd739596b890ad3e0a259750c5445",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "26e5b175_798ceea9",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-08-04T13:37:51Z",
       "side": 1,
       "message": "Would change to TrustLevelCacheConfig",
+      "range": {
+        "startLine": 32,
+        "startChar": 13,
+        "endLine": 32,
+        "endChar": 34
+      },
+      "revId": "c8d44989ab6bd739596b890ad3e0a259750c5445",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8a3207a_0cf89c66",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/FreshnessAndStalenessCacheConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-08-10T11:25:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "26e5b175_798ceea9",
       "range": {
         "startLine": 32,
         "startChar": 13,
@@ -83,6 +131,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "276cb769_11b916e0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/FreshnessAndStalenessCacheConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-08-10T11:25:20Z",
+      "side": 1,
+      "message": "No. Sets doesnt have that feature.",
+      "parentUuid": "1a09dcab_f3821ebc",
+      "revId": "c8d44989ab6bd739596b890ad3e0a259750c5445",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "27e837a6_420aecff",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/FreshnessAndStalenessCacheConfig.java",
         "patchSetId": 3
@@ -94,6 +160,24 @@
       "writtenOn": "2023-08-04T16:08:13Z",
       "side": 1,
       "message": "Is this one to be a SetConfig since createSetConfig returns a SetConfig?",
+      "revId": "c8d44989ab6bd739596b890ad3e0a259750c5445",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95f8d559_97f520f6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/FreshnessAndStalenessCacheConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-08-10T11:25:20Z",
+      "side": 1,
+      "message": "Ideally it is correct.\nBut for consistency I will change it to concrete one.\nNamedConfig is the parent one.",
+      "parentUuid": "27e837a6_420aecff",
       "revId": "c8d44989ab6bd739596b890ad3e0a259750c5445",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -121,6 +205,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d5de851_de693536",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/DeviceHeartbeatListener.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-08-10T11:25:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8206f150_869ecfe4",
+      "range": {
+        "startLine": 39,
+        "startChar": 28,
+        "endLine": 39,
+        "endChar": 36
+      },
+      "revId": "c8d44989ab6bd739596b890ad3e0a259750c5445",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "600cb49d_625ab20c",
@@ -134,6 +242,30 @@
       "writtenOn": "2023-08-04T13:37:51Z",
       "side": 1,
       "message": "Would change to debug if keeping, would be a lot of logs",
+      "range": {
+        "startLine": 59,
+        "startChar": 16,
+        "endLine": 59,
+        "endChar": 20
+      },
+      "revId": "c8d44989ab6bd739596b890ad3e0a259750c5445",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "010f380b_8f817d44",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/DeviceHeartbeatListener.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-08-10T11:25:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "600cb49d_625ab20c",
       "range": {
         "startLine": 59,
         "startChar": 16,
@@ -192,6 +324,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c28374e7_aeb1d10b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/DeviceTrustLevel.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-08-10T11:25:20Z",
+      "side": 1,
+      "message": "No.\nIt should not be an issue.",
+      "parentUuid": "0194a04d_b29ed6b4",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 18
+      },
+      "revId": "c8d44989ab6bd739596b890ad3e0a259750c5445",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b31c77e9_38ab9e5b",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/trustlevel/DeviceHeartbeatListenerSpec.groovy",
         "patchSetId": 3
@@ -203,6 +359,30 @@
       "writtenOn": "2023-08-04T13:37:51Z",
       "side": 1,
       "message": "missing desc, add if moving from poc",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 18
+      },
+      "revId": "c8d44989ab6bd739596b890ad3e0a259750c5445",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e16e4e26_9a464201",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/trustlevel/DeviceHeartbeatListenerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-08-10T11:25:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b31c77e9_38ab9e5b",
       "range": {
         "startLine": 37,
         "startChar": 0,
@@ -226,6 +406,30 @@
       "writtenOn": "2023-08-04T13:37:51Z",
       "side": 1,
       "message": "missing desc",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 17
+      },
+      "revId": "c8d44989ab6bd739596b890ad3e0a259750c5445",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b95e901_19bb826e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/trustlevel/DeviceHeartbeatListenerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-08-10T11:25:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "21755b75_60e6d75d",
       "range": {
         "startLine": 39,
         "startChar": 0,
