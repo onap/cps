@@ -15,8 +15,12 @@
       ],
       "pending": [
         {
-          "details": "No reply from DMI yet",
-          "targets": ["CMHandle3", "CMHandle4"]
+          "details": "Some other error happened",
+          "targets": ["CMHandle4", "CMHandle5"]
+        },
+        {
+          "details": "Some error causes pending",
+          "targets": ["CMHandle3"]
         }
       ]
     }
