@@ -22,13 +22,13 @@ package org.onap.cps.ncmp.api.impl.events.cmsubscription;
 
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_OPERATIONAL;
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING;
+import static org.onap.cps.ncmp.api.impl.utils.CloudEventMapperUtils.toTargetEvent;
 
 import io.cloudevents.CloudEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionPersistence;
-import org.onap.cps.ncmp.api.impl.utils.CmSubscriptionEventCloudMapper;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelSubscriptionEvent;
 import org.onap.cps.ncmp.events.cmsubscription1_0_0.client_to_ncmp.CmSubscriptionNcmpInEvent;
 import org.springframework.beans.factory.annotation.Value;
@@ -44,7 +44,6 @@ public class CmSubscriptionNcmpInEventConsumer {
     private final CmSubscriptionNcmpInEventForwarder cmSubscriptionNcmpInEventForwarder;
     private final CmSubscriptionNcmpInEventMapper cmSubscriptionNcmpInEventMapper;
     private final SubscriptionPersistence subscriptionPersistence;
-    private final CmSubscriptionEventCloudMapper cmSubscriptionEventCloudMapper;
 
     @Value("${notification.enabled:true}")
     private boolean notificationFeatureEnabled;
@@ -63,7 +62,7 @@ public class CmSubscriptionNcmpInEventConsumer {
         final CloudEvent cloudEvent = subscriptionEventConsumerRecord.value();
         final String eventType = subscriptionEventConsumerRecord.value().getType();
         final CmSubscriptionNcmpInEvent cmSubscriptionNcmpInEvent =
-                cmSubscriptionEventCloudMapper.toCmSubscriptionNcmpInEvent(cloudEvent);
+                toTargetEvent(cloudEvent, CmSubscriptionNcmpInEvent.class);
         final String eventDatastore = cmSubscriptionNcmpInEvent.getData().getPredicates().getDatastore();
         if (!eventDatastore.equals(PASSTHROUGH_RUNNING.getDatastoreName()) || eventDatastore.equals(
                 PASSTHROUGH_OPERATIONAL.getDatastoreName())) {

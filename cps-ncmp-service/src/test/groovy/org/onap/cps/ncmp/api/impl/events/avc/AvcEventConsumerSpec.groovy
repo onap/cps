@@ -22,9 +22,7 @@ package org.onap.cps.ncmp.api.impl.events.avc
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.cloudevents.CloudEvent
-import io.cloudevents.core.CloudEventUtils
 import io.cloudevents.core.builder.CloudEventBuilder
-import io.cloudevents.jackson.PojoCloudEventDataMapper
 import io.cloudevents.kafka.CloudEventDeserializer
 import io.cloudevents.kafka.impl.KafkaHeaders
 import org.apache.kafka.clients.consumer.ConsumerRecord
@@ -40,6 +38,8 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.annotation.DirtiesContext
 import org.testcontainers.spock.Testcontainers
 import java.time.Duration
+
+import static org.onap.cps.ncmp.api.impl.utils.CloudEventMapperUtils.toTargetEvent
 
 @SpringBootTest(classes = [EventsPublisher, AvcEventConsumer, ObjectMapper, JsonObjectMapper])
 @Testcontainers
@@ -82,7 +82,7 @@ class AvcEventConsumerSpec extends MessagingBaseSpec {
         and: 'record can be converted to AVC event'
             def record = records.iterator().next()
             def cloudEvent = record.value() as CloudEvent
-            def convertedAvcEvent = CloudEventUtils.mapData(cloudEvent, PojoCloudEventDataMapper.from(new ObjectMapper(), AvcEvent.class)).getValue()
+            def convertedAvcEvent = toTargetEvent(cloudEvent, AvcEvent.class)
         and: 'we have correct headers forwarded where correlation id matches'
             assert KafkaHeaders.getParsedKafkaHeader(record.headers(), 'ce_correlationid') == 'test-cmhandle1'
         and: 'event id differs(as per requirement) between consumed and forwarded'

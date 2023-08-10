@@ -25,7 +25,6 @@ import io.cloudevents.CloudEvent
 import io.cloudevents.core.builder.CloudEventBuilder
 import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionPersistence
-import org.onap.cps.ncmp.api.impl.utils.CmSubscriptionEventCloudMapper
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelSubscriptionEvent
 import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
 import org.onap.cps.ncmp.events.cmsubscription1_0_0.client_to_ncmp.CmSubscriptionNcmpInEvent
@@ -40,8 +39,7 @@ class CmSubscriptionNcmpInEventConsumerSpec extends MessagingBaseSpec {
     def mockCmSubscriptionNcmpInEventForwarder = Mock(CmSubscriptionNcmpInEventForwarder)
     def mockCmSubscriptionNcmpInEventMapper = Mock(CmSubscriptionNcmpInEventMapper)
     def mockSubscriptionPersistence = Mock(SubscriptionPersistence)
-    def cmSubscriptionEventCloudMapper = new CmSubscriptionEventCloudMapper(new ObjectMapper())
-    def objectUnderTest = new CmSubscriptionNcmpInEventConsumer(mockCmSubscriptionNcmpInEventForwarder, mockCmSubscriptionNcmpInEventMapper, mockSubscriptionPersistence, cmSubscriptionEventCloudMapper)
+    def objectUnderTest = new CmSubscriptionNcmpInEventConsumer(mockCmSubscriptionNcmpInEventForwarder, mockCmSubscriptionNcmpInEventMapper, mockSubscriptionPersistence)
 
     def yangModelSubscriptionEvent = new YangModelSubscriptionEvent()
 

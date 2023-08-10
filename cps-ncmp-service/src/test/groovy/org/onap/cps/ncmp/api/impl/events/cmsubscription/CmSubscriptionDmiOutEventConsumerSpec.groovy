@@ -26,7 +26,6 @@ import io.cloudevents.CloudEvent
 import io.cloudevents.core.builder.CloudEventBuilder
 import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionPersistenceImpl
-import org.onap.cps.ncmp.api.impl.utils.SubscriptionEventResponseCloudMapper
 import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
 import org.onap.cps.ncmp.events.cmsubscription1_0_0.dmi_to_ncmp.CmSubscriptionDmiOutEvent
 import org.onap.cps.ncmp.utils.TestUtils
@@ -48,10 +47,9 @@ class CmSubscriptionDmiOutEventConsumerSpec extends MessagingBaseSpec {
     def mockSubscriptionPersistence = Mock(SubscriptionPersistenceImpl)
     def mockSubscriptionEventResponseMapper  = Mock(CmSubscriptionDmiOutEventToYangModelSubscriptionEventMapper)
     def mockSubscriptionEventResponseOutcome = Mock(CmSubscriptionNcmpOutEventPublisher)
-    def mockSubscriptionEventResponseCloudMapper = new SubscriptionEventResponseCloudMapper(new ObjectMapper())
 
     def objectUnderTest = new CmSubscriptionDmiOutEventConsumer(mockForwardedSubscriptionEventCache,
-        mockSubscriptionPersistence, mockSubscriptionEventResponseMapper, mockSubscriptionEventResponseOutcome, mockSubscriptionEventResponseCloudMapper)
+        mockSubscriptionPersistence, mockSubscriptionEventResponseMapper, mockSubscriptionEventResponseOutcome)
 
     def 'Consume Subscription Event Response where all DMIs have responded'() {
         given: 'a consumer record including cloud event having subscription response'
