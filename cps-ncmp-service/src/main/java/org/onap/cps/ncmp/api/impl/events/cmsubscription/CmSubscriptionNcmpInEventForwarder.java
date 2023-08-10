@@ -43,9 +43,8 @@ import org.onap.cps.ncmp.api.impl.utils.DmiServiceNameOrganizer;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelSubscriptionEvent;
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
+import org.onap.cps.ncmp.api.models.CmSubscriptionEvent;
 import org.onap.cps.ncmp.events.cmsubscription1_0_0.client_to_ncmp.CmSubscriptionNcmpInEvent;
-import org.onap.cps.ncmp.events.cmsubscription1_0_0.dmi_to_ncmp.CmSubscriptionDmiOutEvent;
-import org.onap.cps.ncmp.events.cmsubscription1_0_0.dmi_to_ncmp.Data;
 import org.onap.cps.ncmp.events.cmsubscription1_0_0.ncmp_to_dmi.CmHandle;
 import org.onap.cps.ncmp.events.cmsubscription1_0_0.ncmp_to_dmi.CmSubscriptionDmiInEvent;
 import org.springframework.beans.factory.annotation.Value;
@@ -97,12 +96,11 @@ public class CmSubscriptionNcmpInEventForwarder {
     private void findDmisAndRespond(final CmSubscriptionNcmpInEvent cmSubscriptionNcmpInEvent, final String eventType,
             final List<String> cmHandleTargetsAsStrings,
             final Map<String, Map<String, Map<String, String>>> dmiPropertiesPerCmHandleIdPerServiceName) {
-        final CmSubscriptionDmiOutEvent emptyCmSubscriptionDmiOutEvent =
-                new CmSubscriptionDmiOutEvent().withData(new Data());
-        emptyCmSubscriptionDmiOutEvent.getData()
-                .setSubscriptionName(cmSubscriptionNcmpInEvent.getData().getSubscription().getName());
-        emptyCmSubscriptionDmiOutEvent.getData()
-                .setClientId(cmSubscriptionNcmpInEvent.getData().getSubscription().getClientID());
+
+        final CmSubscriptionEvent cmSubscriptionEvent = new CmSubscriptionEvent();
+        cmSubscriptionEvent.setSubscriptionName(cmSubscriptionNcmpInEvent.getData().getSubscription().getName());
+        cmSubscriptionEvent.setClientId(cmSubscriptionNcmpInEvent.getData().getSubscription().getClientID());
+
         final List<String> cmHandlesThatExistsInDb =
                 dmiPropertiesPerCmHandleIdPerServiceName.entrySet().stream().map(Map.Entry::getValue).map(Map::keySet)
                         .flatMap(Set::stream).collect(Collectors.toList());
@@ -117,10 +115,10 @@ public class CmSubscriptionNcmpInEventForwarder {
                     targetCmHandlesDoesNotExistInDb);
         }
         if (dmisToRespond.isEmpty()) {
-            cmSubscriptionNcmpOutEventPublisher.sendResponse(emptyCmSubscriptionDmiOutEvent,
+            cmSubscriptionNcmpOutEventPublisher.sendResponse(cmSubscriptionEvent,
                     "subscriptionCreatedStatus");
         } else {
-            startResponseTimeout(emptyCmSubscriptionDmiOutEvent, dmisToRespond);
+            startResponseTimeout(cmSubscriptionEvent, dmisToRespond);
             final CmSubscriptionDmiInEvent cmSubscriptionDmiInEvent =
                     cmSubscriptionNcmpInEventToCmSubscriptionDmiInEventMapper.toCmSubscriptionDmiInEvent(
                             cmSubscriptionNcmpInEvent);
@@ -128,17 +126,17 @@ public class CmSubscriptionNcmpInEventForwarder {
         }
     }
 
-    private void startResponseTimeout(final CmSubscriptionDmiOutEvent emptyCmSubscriptionDmiOutEvent,
+    private void startResponseTimeout(final CmSubscriptionEvent cmSubscriptionEvent,
                                       final Set<String> dmisToRespond) {
-        final String subscriptionClientId = emptyCmSubscriptionDmiOutEvent.getData().getClientId();
-        final String subscriptionName = emptyCmSubscriptionDmiOutEvent.getData().getSubscriptionName();
+        final String subscriptionClientId = cmSubscriptionEvent.getClientId();
+        final String subscriptionName = cmSubscriptionEvent.getSubscriptionName();
         final String subscriptionEventId = subscriptionClientId + subscriptionName;
 
         forwardedSubscriptionEventCache.put(subscriptionEventId, dmisToRespond,
                 ForwardedSubscriptionEventCacheConfig.SUBSCRIPTION_FORWARD_STARTED_TTL_SECS, TimeUnit.SECONDS);
         final ResponseTimeoutTask responseTimeoutTask =
             new ResponseTimeoutTask(forwardedSubscriptionEventCache, cmSubscriptionNcmpOutEventPublisher,
-                    emptyCmSubscriptionDmiOutEvent);
+                    cmSubscriptionEvent);
 
         executorService.schedule(responseTimeoutTask, dmiResponseTimeoutInMs, TimeUnit.MILLISECONDS);
     }

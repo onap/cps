@@ -13,16 +13,6 @@
         "id": "CMHandle2",
         "status": "REJECTED",
         "details": "Some other error message from the DMI"
-      },
-      {
-        "id": "CMHandle3",
-        "status": "PENDING",
-        "details": "No reply from DMI yet"
-      },
-      {
-        "id": "CMHandle4",
-        "status": "PENDING",
-        "details": "No reply from DMI yet"
       }
     ]
   }
