@@ -39,8 +39,8 @@ class CmSubscriptionDmiOutEventToYangModelSubscriptionEventMapperSpec extends Sp
     @Autowired
     JsonObjectMapper jsonObjectMapper
 
-    def 'Map subscription response event to yang model subscription event'() {
-        given: 'a Subscription Response Event'
+    def 'Map dmi out event to yang model subscription event'() {
+        given: 'a dmi out event'
             def jsonData = TestUtils.getResourceFileContent('cmSubscriptionDmiOutEvent.json')
             def testEventToMap = jsonObjectMapper.convertJsonString(jsonData, CmSubscriptionDmiOutEvent.class)
         when: 'the event is mapped to a yang model subscription'
@@ -50,11 +50,11 @@ class CmSubscriptionDmiOutEventToYangModelSubscriptionEventMapperSpec extends Sp
         and: 'subscription name'
             assert result.subscriptionName == "cm-subscription-001"
         and: 'predicate targets cm handle size as expected'
-            assert result.predicates.targetCmHandles.size() == 4
+            assert result.predicates.targetCmHandles.size() == 2
         and: 'predicate targets cm handle ids as expected'
-            assert result.predicates.targetCmHandles.cmHandleId == ["CMHandle1", "CMHandle2", "CMHandle3", "CMHandle4"]
+            assert result.predicates.targetCmHandles.cmHandleId == ["CMHandle1", "CMHandle2"]
         and: 'the status for these targets is set to expected values'
-            assert result.predicates.targetCmHandles.status == [SubscriptionStatus.REJECTED, SubscriptionStatus.REJECTED, SubscriptionStatus.PENDING, SubscriptionStatus.PENDING]
+            assert result.predicates.targetCmHandles.status == [SubscriptionStatus.REJECTED, SubscriptionStatus.REJECTED]
     }
 
 }

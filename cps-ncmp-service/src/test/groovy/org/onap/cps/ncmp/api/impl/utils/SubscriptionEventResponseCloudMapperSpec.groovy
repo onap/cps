@@ -42,8 +42,8 @@ class SubscriptionEventResponseCloudMapperSpec extends Specification {
 
     def objectUnderTest = new SubscriptionEventResponseCloudMapper(spyObjectMapper)
 
-    def 'Map the cloud event to subscription event response'() {
-        given: 'a cloud event having a subscription event response in the data part'
+    def 'Map the cloud event to dmi out event'() {
+        given: 'a cloud event having a dmi out event in the data part'
             def jsonData = TestUtils.getResourceFileContent('cmSubscriptionDmiOutEvent.json')
             def testEventData = jsonObjectMapper.convertJsonString(jsonData, CmSubscriptionDmiOutEvent.class)
             def testCloudEvent = CloudEventBuilder.v1()
@@ -52,23 +52,23 @@ class SubscriptionEventResponseCloudMapperSpec extends Specification {
                 .withType('subscriptionCreatedStatus')
                 .withSource(URI.create('some-resource'))
                 .withExtension('correlationid', 'test-cmhandle1').build()
-        when: 'the cloud event map to subscription event response'
-            def resultSubscriptionEvent = objectUnderTest.toCmSubscriptionDmiOutEvent(testCloudEvent)
-        then: 'the subscription event resulted having expected values'
-            resultSubscriptionEvent.getData() == testEventData.getData()
+        when: 'the cloud event map to dmi out event'
+            def expectedResult = objectUnderTest.toCmSubscriptionDmiOutEvent(testCloudEvent)
+        then: 'the dmi out event having expected data'
+            expectedResult.getData() == testEventData.getData()
     }
 
-    def 'Map null of the data of the cloud event to subscription event response'() {
-        given: 'a cloud event having a null subscription event response in the data part'
+    def 'Map a cloud event with null data to dmi out event'() {
+        given: 'a cloud event having a null dmi out event in the data part'
             def testCloudEvent = CloudEventBuilder.v1()
                 .withData(null)
                 .withId('some-event-id')
                 .withType('subscriptionCreatedStatus')
                 .withSource(URI.create('some-resource'))
                 .withExtension('correlationid', 'test-cmhandle1').build()
-        when: 'the cloud event map to subscription event response'
-            def resultSubscriptionEvent = objectUnderTest.toCmSubscriptionDmiOutEvent(testCloudEvent)
-        then: 'the subscription event response resulted having a null value'
-            resultSubscriptionEvent == null
+        when: 'the cloud event map to dmi out event'
+            def expectedResult = objectUnderTest.toCmSubscriptionDmiOutEvent(testCloudEvent)
+        then: 'the dmi out event will be null'
+            expectedResult == null
     }
 }
