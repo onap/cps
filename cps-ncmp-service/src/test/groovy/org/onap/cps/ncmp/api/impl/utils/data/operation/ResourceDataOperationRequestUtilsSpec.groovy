@@ -22,8 +22,6 @@ package org.onap.cps.ncmp.api.impl.utils.data.operation
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.cloudevents.CloudEvent
-import io.cloudevents.core.CloudEventUtils
-import io.cloudevents.jackson.PojoCloudEventDataMapper
 import io.cloudevents.kafka.CloudEventDeserializer
 import io.cloudevents.kafka.impl.KafkaHeaders
 import org.apache.kafka.clients.consumer.KafkaConsumer
@@ -41,6 +39,8 @@ import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.ContextConfiguration
 import java.time.Duration
+
+import static org.onap.cps.ncmp.api.impl.utils.CloudEventMapperUtils.toTargetEvent
 
 @ContextConfiguration(classes = [EventsPublisher, CpsApplicationContext, ObjectMapper])
 class ResourceDataOperationRequestUtilsSpec extends MessagingBaseSpec {
@@ -106,8 +106,8 @@ class ResourceDataOperationRequestUtilsSpec extends MessagingBaseSpec {
             assert KafkaHeaders.getParsedKafkaHeader(consumerRecordOutHeaders, 'ce_correlationid') == 'request-id'
             assert KafkaHeaders.getParsedKafkaHeader(consumerRecordOutHeaders, 'ce_destination') == clientTopic
         and: 'map consumer record to expected event type'
-            def dataOperationResponseEvent = CloudEventUtils.mapData(consumerRecordOut.value(),
-                    PojoCloudEventDataMapper.from(objectMapper, DataOperationEvent.class)).getValue()
+            def dataOperationResponseEvent =
+                toTargetEvent(consumerRecordOut.value(), DataOperationEvent.class)
         and: 'data operation response event response size is 3'
             dataOperationResponseEvent.data.responses.size() == 3
         and: 'verify published response data as json string'

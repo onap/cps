@@ -23,7 +23,6 @@ package org.onap.cps.ncmp.api.impl.utils
 import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.cloudevents.core.builder.CloudEventBuilder
-import org.onap.cps.ncmp.events.cmsubscription1_0_0.client_to_ncmp.CmSubscriptionNcmpInEvent
 import org.onap.cps.ncmp.events.cmsubscription1_0_0.ncmp_to_dmi.CmSubscriptionDmiInEvent
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.utils.JsonObjectMapper
@@ -43,36 +42,6 @@ class CmSubscriptionEventCloudMapperSpec extends Specification {
     def spyObjectMapper = Spy(ObjectMapper)
 
     def objectUnderTest = new CmSubscriptionEventCloudMapper(spyObjectMapper)
-
-    def 'Map the data of the cloud event to subscription event'() {
-        given: 'a cloud event having a subscription event in the data part'
-            def jsonData = TestUtils.getResourceFileContent('cmSubscriptionNcmpInEvent.json')
-            def testEventData = jsonObjectMapper.convertJsonString(jsonData, CmSubscriptionNcmpInEvent.class)
-            def testCloudEvent = CloudEventBuilder.v1()
-                .withData(objectMapper.writeValueAsBytes(testEventData))
-                .withId('some-event-id')
-                .withType('subscriptionCreated')
-                .withSource(URI.create('some-resource'))
-                .withExtension('correlationid', 'test-cmhandle1').build()
-        when: 'the cloud event map to subscription event'
-            def resultSubscriptionEvent = objectUnderTest.toCmSubscriptionNcmpInEvent(testCloudEvent)
-        then: 'the subscription event resulted having expected values'
-            resultSubscriptionEvent.getData() == testEventData.getData()
-    }
-
-    def 'Map the null of the data of the cloud event to subscription event'() {
-        given: 'a cloud event having a null subscription event in the data part'
-            def testCloudEvent = CloudEventBuilder.v1()
-                .withData(null)
-                .withId('some-event-id')
-                .withType('subscriptionCreated')
-                .withSource(URI.create('some-resource'))
-                .withExtension('correlationid', 'test-cmhandle1').build()
-        when: 'the cloud event map to subscription event'
-            def resultSubscriptionEvent = objectUnderTest.toCmSubscriptionNcmpInEvent(testCloudEvent)
-        then: 'the subscription event resulted having a null value'
-            resultSubscriptionEvent == null
-    }
 
     def 'Map the subscription event to data of the cloud event'() {
         given: 'a subscription event'

@@ -23,15 +23,11 @@ package org.onap.cps.ncmp.api.impl.utils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.cloudevents.CloudEvent;
-import io.cloudevents.core.CloudEventUtils;
 import io.cloudevents.core.builder.CloudEventBuilder;
-import io.cloudevents.core.data.PojoCloudEventData;
-import io.cloudevents.jackson.PojoCloudEventDataMapper;
 import java.net.URI;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.ncmp.events.cmsubscription1_0_0.client_to_ncmp.CmSubscriptionNcmpInEvent;
 import org.onap.cps.ncmp.events.cmsubscription1_0_0.ncmp_to_dmi.CmSubscriptionDmiInEvent;
 import org.springframework.stereotype.Component;
 
@@ -45,29 +41,10 @@ public class CmSubscriptionEventCloudMapper {
     private static String randomId = UUID.randomUUID().toString();
 
     /**
-     * Maps CloudEvent object to CmSubscriptionNcmpInEvent.
-     *
-     * @param cloudEvent object.
-     * @return CmSubscriptionNcmpInEvent deserialized.
-     */
-    public CmSubscriptionNcmpInEvent toCmSubscriptionNcmpInEvent(final CloudEvent cloudEvent) {
-        final PojoCloudEventData<CmSubscriptionNcmpInEvent> deserializedCloudEvent = CloudEventUtils
-                .mapData(cloudEvent, PojoCloudEventDataMapper.from(objectMapper, CmSubscriptionNcmpInEvent.class));
-        if (deserializedCloudEvent == null) {
-            log.debug("No data found in the consumed event");
-            return null;
-        } else {
-            final CmSubscriptionNcmpInEvent cmSubscriptionNcmpInEvent = deserializedCloudEvent.getValue();
-            log.debug("Consuming event {}", cmSubscriptionNcmpInEvent);
-            return cmSubscriptionNcmpInEvent;
-        }
-    }
-
-    /**
      * Maps CmSubscriptionDmiInEvent to a CloudEvent.
      *
      * @param cmSubscriptionDmiInEvent object.
-     * @param eventKey as String.
+     * @param eventKey                 as String.
      * @return CloudEvent built.
      */
     public CloudEvent toCloudEvent(final CmSubscriptionDmiInEvent cmSubscriptionDmiInEvent, final String eventKey,
