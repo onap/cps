@@ -20,6 +20,8 @@
 
 package org.onap.cps.ncmp.api.impl.events.cmsubscription;
 
+import static org.onap.cps.ncmp.api.impl.events.mapper.CloudEventMapper.toTargetEvent;
+
 import com.hazelcast.map.IMap;
 import io.cloudevents.CloudEvent;
 import java.util.Collection;
@@ -33,7 +35,6 @@ import org.onap.cps.ncmp.api.impl.config.embeddedcache.ForwardedSubscriptionEven
 import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionPersistence;
 import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionStatus;
 import org.onap.cps.ncmp.api.impl.utils.DataNodeHelper;
-import org.onap.cps.ncmp.api.impl.utils.SubscriptionEventResponseCloudMapper;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelSubscriptionEvent;
 import org.onap.cps.ncmp.events.cmsubscription1_0_0.dmi_to_ncmp.CmSubscriptionDmiOutEvent;
 import org.onap.cps.spi.model.DataNode;
@@ -51,7 +52,6 @@ public class CmSubscriptionDmiOutEventConsumer {
     private final CmSubscriptionDmiOutEventToYangModelSubscriptionEventMapper
             cmSubscriptionDmiOutEventToYangModelSubscriptionEventMapper;
     private final CmSubscriptionNcmpOutEventPublisher cmSubscriptionNcmpOutEventPublisher;
-    private final SubscriptionEventResponseCloudMapper subscriptionEventResponseCloudMapper;
 
     @Value("${notification.enabled:true}")
     private boolean notificationFeatureEnabled;
@@ -71,7 +71,7 @@ public class CmSubscriptionDmiOutEventConsumer {
         final CloudEvent cloudEvent = cmSubscriptionDmiOutConsumerRecord.value();
         final String eventType = cmSubscriptionDmiOutConsumerRecord.value().getType();
         final CmSubscriptionDmiOutEvent cmSubscriptionDmiOutEvent =
-                subscriptionEventResponseCloudMapper.toCmSubscriptionDmiOutEvent(cloudEvent);
+                toTargetEvent(cloudEvent, CmSubscriptionDmiOutEvent.class);
         final String clientId = cmSubscriptionDmiOutEvent.getData().getClientId();
         log.info("subscription event response of clientId: {} is received.", clientId);
         final String subscriptionName = cmSubscriptionDmiOutEvent.getData().getSubscriptionName();

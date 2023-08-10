@@ -25,9 +25,7 @@ import io.cloudevents.CloudEvent
 import io.cloudevents.kafka.CloudEventDeserializer
 import io.cloudevents.kafka.CloudEventSerializer
 import io.cloudevents.kafka.impl.KafkaHeaders
-import io.cloudevents.core.CloudEventUtils
 import io.cloudevents.core.builder.CloudEventBuilder
-import io.cloudevents.jackson.PojoCloudEventDataMapper
 import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.apache.kafka.clients.consumer.KafkaConsumer
 import org.apache.kafka.common.header.internals.RecordHeaders
@@ -44,7 +42,9 @@ import org.springframework.test.annotation.DirtiesContext
 import org.testcontainers.spock.Testcontainers
 import java.time.Duration
 
-@SpringBootTest(classes = [EventsPublisher, DataOperationEventConsumer, RecordFilterStrategies,JsonObjectMapper, ObjectMapper])
+import static org.onap.cps.ncmp.api.impl.events.mapper.CloudEventMapper.toTargetEvent
+
+@SpringBootTest(classes = [EventsPublisher, DataOperationEventConsumer, RecordFilterStrategies, JsonObjectMapper, ObjectMapper])
 @Testcontainers
 @DirtiesContext
 class DataOperationEventConsumerSpec extends MessagingBaseSpec {
@@ -60,9 +60,6 @@ class DataOperationEventConsumerSpec extends MessagingBaseSpec {
 
     @Autowired
     RecordFilterStrategy<String, CloudEvent> dataOperationRecordFilterStrategy
-
-    @Autowired
-    ObjectMapper objectMapper
 
     def cloudEventKafkaConsumer = new KafkaConsumer<>(eventConsumerConfigProperties('test', CloudEventDeserializer))
     def static clientTopic = 'client-topic'
@@ -85,8 +82,7 @@ class DataOperationEventConsumerSpec extends MessagingBaseSpec {
         and: 'verify that extension is included into header'
             assert KafkaHeaders.getParsedKafkaHeader(consumerRecordOutHeaders, 'ce_destination') == clientTopic
         and: 'map consumer record to expected event type'
-            def dataOperationResponseEvent = CloudEventUtils.mapData(consumerRecordOut.value(),
-                    PojoCloudEventDataMapper.from(objectMapper, DataOperationEvent.class)).getValue()
+            def dataOperationResponseEvent = toTargetEvent(consumerRecordOut.value(), DataOperationEvent.class)
         and: 'verify published response data properties'
             def response = dataOperationResponseEvent.data.responses[0]
             response.operationId == 'some-operation-id'

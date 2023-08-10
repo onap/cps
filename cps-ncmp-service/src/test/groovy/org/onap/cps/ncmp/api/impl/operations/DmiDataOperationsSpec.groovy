@@ -22,8 +22,6 @@
 package org.onap.cps.ncmp.api.impl.operations
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import io.cloudevents.core.CloudEventUtils
-import io.cloudevents.jackson.PojoCloudEventDataMapper
 import org.onap.cps.ncmp.api.NcmpEventResponseCode
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration
 import org.onap.cps.ncmp.api.impl.events.EventsPublisher
@@ -48,6 +46,7 @@ import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RU
 import static org.onap.cps.ncmp.api.impl.operations.OperationType.CREATE
 import static org.onap.cps.ncmp.api.impl.operations.OperationType.READ
 import static org.onap.cps.ncmp.api.impl.operations.OperationType.UPDATE
+import static org.onap.cps.ncmp.api.impl.events.mapper.CloudEventMapper.toTargetEvent
 
 @SpringBootTest
 @ContextConfiguration(classes = [EventsPublisher, CpsApplicationContext, NcmpConfiguration.DmiProperties, DmiDataOperations])
@@ -171,6 +170,6 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
     }
 
     def extractDataValue(actualDataOperationCloudEvent) {
-        return CloudEventUtils.mapData(actualDataOperationCloudEvent, PojoCloudEventDataMapper.from(new ObjectMapper(), DataOperationEvent.class)).getValue().data.responses[0]
+        return toTargetEvent(actualDataOperationCloudEvent, DataOperationEvent.class).data.responses[0]
     }
 }
