@@ -181,12 +181,72 @@ class QueryRestControllerSpec extends Specification {
                         .andReturn().response
         then: 'the response contains the the datanode in json format'
             assert response.status == HttpStatus.OK.value()
-            assert Integer.valueOf(response.getHeaderValue("total-pages")) == expectedPageSize
+            assert Integer.valueOf(response.getHeaderValue("total-pages")) == expectedTotalPageSize
             assert response.getContentAsString().contains('{"xpath":{"leaf":"value","leafList":["leaveListElement1","leaveListElement2"]}}')
             assert response.getContentAsString().contains('{"xpath":{"leaf":"value","leafList":["leaveListElement3","leaveListElement4"]}}')
         where: 'the following options for include descendants are provided in the request'
-            scenario                     | pageIndex | pageSize | totalAnchors || expectedPageSize
+            scenario                     | pageIndex | pageSize | totalAnchors || expectedTotalPageSize
             '1st page with all anchors'  | 1         | 3        | 3            || 1
             '1st page with less anchors' | 1         | 2        | 3            || 2
+    }
+
+    def 'Query data node across all anchors with pagination option without page index'() {
+        given: 'service method returns a list containing a data node from different anchors'
+        def dataNode1 = new DataNodeBuilder().withXpath('/xpath')
+                .withAnchor('my_anchor')
+                .withLeaves([leaf: 'value', leafList: ['leaveListElement1', 'leaveListElement2']]).build()
+        def dataNode2 = new DataNodeBuilder().withXpath('/xpath')
+                .withAnchor('my_anchor_2')
+                .withLeaves([leaf: 'value', leafList: ['leaveListElement3', 'leaveListElement4']]).build()
+        and: 'the query endpoint'
+            def dataspaceName = 'my_dataspace'
+            def cpsPath = 'some/cps/path'
+            def dataNodeEndpoint = "$basePath/v2/dataspaces/$dataspaceName/nodes/query"
+            mockCpsQueryService.queryDataNodesAcrossAnchors(dataspaceName, cpsPath,
+                INCLUDE_ALL_DESCENDANTS, PaginationOption.NO_PAGINATION) >> [dataNode1, dataNode2]
+            mockCpsQueryService.countAnchorsForDataspaceAndCpsPath(dataspaceName, cpsPath) >> 2
+        when: 'query data nodes API is invoked'
+            def response =
+                mvc.perform(
+                        get(dataNodeEndpoint)
+                                .param('cps-path', cpsPath)
+                                .param('descendants', "all")
+                                .param('pageSize', '1'))
+                        .andReturn().response
+        then: 'the response contains the the datanode in json format'
+            assert response.status == HttpStatus.OK.value()
+            assert Integer.valueOf(response.getHeaderValue("total-pages")) == 1
+            assert response.getContentAsString().contains('{"xpath":{"leaf":"value","leafList":["leaveListElement1","leaveListElement2"]}}')
+            assert response.getContentAsString().contains('{"xpath":{"leaf":"value","leafList":["leaveListElement3","leaveListElement4"]}}')
+    }
+
+    def 'Query data node across all anchors with pagination option without only page size'() {
+        given: 'service method returns a list containing a data node from different anchors'
+        def dataNode1 = new DataNodeBuilder().withXpath('/xpath')
+                .withAnchor('my_anchor')
+                .withLeaves([leaf: 'value', leafList: ['leaveListElement1', 'leaveListElement2']]).build()
+        def dataNode2 = new DataNodeBuilder().withXpath('/xpath')
+                .withAnchor('my_anchor_2')
+                .withLeaves([leaf: 'value', leafList: ['leaveListElement3', 'leaveListElement4']]).build()
+        and: 'the query endpoint'
+            def dataspaceName = 'my_dataspace'
+            def cpsPath = 'some/cps/path'
+            def dataNodeEndpoint = "$basePath/v2/dataspaces/$dataspaceName/nodes/query"
+            mockCpsQueryService.queryDataNodesAcrossAnchors(dataspaceName, cpsPath,
+                INCLUDE_ALL_DESCENDANTS, PaginationOption.NO_PAGINATION) >> [dataNode1, dataNode2]
+            mockCpsQueryService.countAnchorsForDataspaceAndCpsPath(dataspaceName, cpsPath) >> 2
+        when: 'query data nodes API is invoked'
+            def response =
+                mvc.perform(
+                        get(dataNodeEndpoint)
+                                .param('cps-path', cpsPath)
+                                .param('descendants', "all")
+                                .param('pageIndex', '1'))
+                        .andReturn().response
+        then: 'the response contains the the datanode in json format'
+            assert response.status == HttpStatus.OK.value()
+            assert Integer.valueOf(response.getHeaderValue("total-pages")) == 1
+            assert response.getContentAsString().contains('{"xpath":{"leaf":"value","leafList":["leaveListElement1","leaveListElement2"]}}')
+            assert response.getContentAsString().contains('{"xpath":{"leaf":"value","leafList":["leaveListElement3","leaveListElement4"]}}')
     }
 }
