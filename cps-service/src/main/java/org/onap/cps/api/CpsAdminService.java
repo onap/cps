@@ -135,4 +135,13 @@ public interface CpsAdminService {
      *         given module names
      */
     Collection<String> queryAnchorNames(String dataspaceName, Collection<String> moduleNames);
+
+    /**
+     * Update schema set of an anchor.
+     *
+     * @param dataspaceName dataspace name
+     * @param anchorName    anchor name
+     * @param schemaSetName schema set name
+     */
+    void updateAnchorSchemaSet(String dataspaceName, String anchorName, String schemaSetName);
 }

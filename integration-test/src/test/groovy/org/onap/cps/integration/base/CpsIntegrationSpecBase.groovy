@@ -108,7 +108,7 @@ class CpsIntegrationSpecBase extends Specification {
     def dataspaceExists(dataspaceName) {
         try {
             cpsAdminService.getDataspace(dataspaceName)
-        } catch (DataspaceNotFoundException e) {
+        } catch (DataspaceNotFoundException dataspaceNotFoundException) {
             return false
         }
         return true

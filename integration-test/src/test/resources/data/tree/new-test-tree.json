@@ -1,0 +1,12 @@
+{
+  "test-tree": {
+    "branch": [
+      {
+        "name": "left",
+        "nest": {
+          "name": "small"
+        }
+      }
+    ]
+  }
+}
