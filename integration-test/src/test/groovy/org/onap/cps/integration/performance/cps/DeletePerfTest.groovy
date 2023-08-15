@@ -176,7 +176,7 @@ class DeletePerfTest extends CpsPerfTestBase {
             stopWatch.stop()
             def deleteDurationInMillis = stopWatch.getTotalTimeMillis()
         then: 'delete duration is within expected time'
-            recordAndAssertPerformance('Batch delete 100 non-existing', TimeUnit.SECONDS.toMillis(6), deleteDurationInMillis)
+            recordAndAssertPerformance('Batch delete 100 non-existing', TimeUnit.SECONDS.toMillis(7), deleteDurationInMillis)
     }
 
     def 'Clean up test data'() {

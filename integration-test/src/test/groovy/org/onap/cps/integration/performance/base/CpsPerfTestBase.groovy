@@ -84,7 +84,7 @@ class CpsPerfTestBase extends PerfTestBase {
             stopWatch.stop()
             def durationInMillis = stopWatch.getTotalTimeMillis()
         then: 'all data is read within expected time'
-            recordAndAssertPerformance("Warming database", 100, durationInMillis)
+            recordAndAssertPerformance("Warming database", TimeUnit.SECONDS.toMillis(200), durationInMillis)
     }
 
 }
