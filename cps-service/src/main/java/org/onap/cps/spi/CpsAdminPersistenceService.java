@@ -133,4 +133,14 @@ public interface CpsAdminPersistenceService {
      * @param anchorNames   anchor names
      */
     void deleteAnchors(String dataspaceName, Collection<String> anchorNames);
+
+    /**
+     * Delete anchors by name in given dataspace.
+     *
+     * @param dataspaceName dataspace name
+     * @param anchorName    anchor name
+     * @param schemaSetName schema set name
+     * @return true if anchor is updated else false
+     */
+    boolean updateAnchorSchemaSet(String dataspaceName, String anchorName, String schemaSetName);
 }
