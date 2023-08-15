@@ -120,4 +120,11 @@ public class CpsAdminServiceImpl implements CpsAdminService {
         final Collection<Anchor> anchors = cpsAdminPersistenceService.queryAnchors(dataspaceName, moduleNames);
         return anchors.stream().map(Anchor::getName).collect(Collectors.toList());
     }
+
+    @Override
+    public boolean updateAnchorSchemaSet(final String dataspaceName,
+                                         final String anchorName,
+                                         final String schemaSetName) {
+        return cpsAdminPersistenceService.updateAnchorSchemaSet(dataspaceName, anchorName, schemaSetName);
+    }
 }

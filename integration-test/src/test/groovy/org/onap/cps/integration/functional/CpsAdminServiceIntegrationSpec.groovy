@@ -44,8 +44,8 @@ class CpsAdminServiceIntegrationSpec extends CpsIntegrationSpecBase {
             def thrown = null
             try {
                 objectUnderTest.getDataspace('newDataspace')
-            } catch(Exception e) {
-                thrown = e
+            } catch(Exception exception) {
+                thrown = exception
             }
            assert thrown instanceof DataspaceNotFoundException
     }
@@ -100,8 +100,8 @@ class CpsAdminServiceIntegrationSpec extends CpsIntegrationSpecBase {
             def thrown = null
             try {
                 objectUnderTest.getAnchor(GENERAL_TEST_DATASPACE, 'newAnchor')
-            } catch(Exception e) {
-                thrown = e
+            } catch(Exception exception) {
+                thrown = exception
             }
             assert thrown instanceof AnchorNotFoundException
     }
@@ -151,4 +151,14 @@ class CpsAdminServiceIntegrationSpec extends CpsIntegrationSpecBase {
            'just unknown module(s)' | GENERAL_TEST_DATASPACE
     }
 
+    def 'Update anchor schema set.'() {
+        when: 'a schema set with bookstore yang model is created'
+        def bookstoreYangModelAsString = readResourceDataFile('bookstore/bookstore.yang')
+        cpsModuleService.createSchemaSet(GENERAL_TEST_DATASPACE, 'updatedSchemaSet', [bookstore: bookstoreYangModelAsString])
+        then: 'an anchor with new schema set is created'
+        objectUnderTest.createAnchor(GENERAL_TEST_DATASPACE, 'updatedSchemaSet', 'anchor4')
+        and: 'anchor4 schema set is updated successfully'
+        var isAnchorUpdated= objectUnderTest.updateAnchorSchemaSet(GENERAL_TEST_DATASPACE, 'anchor4', 'updatedSchemaSet')
+        assert isAnchorUpdated
+    }
 }

@@ -171,6 +171,20 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
         anchorRepository.deleteAllByDataspaceAndNameIn(dataspaceEntity, anchorNames);
     }
 
+    @Transactional
+    @Override
+    public boolean updateAnchorSchemaSet(final String dataspaceName,
+                                         final String anchorName,
+                                         final String schemaSetName) {
+        final var dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final var anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
+        final var schemaSetEntity = schemaSetRepository
+                .getByDataspaceAndName(dataspaceEntity, schemaSetName);
+        final var numberOfAnchorUpdated = anchorRepository
+                .updateAnchorSchemaSetId(schemaSetEntity.getId(), anchorEntity.getId());
+        return numberOfAnchorUpdated > 0;
+    }
+
     private AnchorEntity getAnchorEntity(final String dataspaceName, final String anchorName) {
         final var dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         return anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
