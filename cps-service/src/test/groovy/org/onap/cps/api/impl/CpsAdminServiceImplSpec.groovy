@@ -178,4 +178,11 @@ class CpsAdminServiceImplSpec extends Specification {
         and: 'the CpsValidator is called on the dataspaceName'
             1 * mockCpsValidator.validateNameCharacters('someDataspace')
     }
+
+    def 'Update anchor schema set.'() {
+        when: 'update anchor is invoked'
+            objectUnderTest.updateAnchorSchemaSet('someDataspace', 'someAnchor', 'someSchemaSetName')
+        then: 'associated persistence service method is invoked with correct parameter'
+            1 * mockCpsAdminPersistenceService.updateAnchorSchemaSet('someDataspace', 'someAnchor', 'someSchemaSetName')
+    }
 }
