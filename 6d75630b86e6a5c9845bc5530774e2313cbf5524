@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "17492eab_0201ec2d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-08-16T15:16:32Z",
+      "side": 1,
+      "message": "overall looks good.\nminor comments.",
+      "revId": "6d75630b86e6a5c9845bc5530774e2313cbf5524",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6d18c12_418b8c32",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-08-16T15:16:32Z",
+      "side": 1,
+      "message": "NB: indendation",
+      "range": {
+        "startLine": 182,
+        "startChar": 3,
+        "endLine": 187,
+        "endChar": 5
+      },
+      "revId": "6d75630b86e6a5c9845bc5530774e2313cbf5524",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e353734_f4e817a3",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsAdminServiceIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-08-16T15:16:32Z",
+      "side": 1,
+      "message": "reading this twice ? \nalready read on 156 ?",
+      "range": {
+        "startLine": 161,
+        "startChar": 8,
+        "endLine": 161,
+        "endChar": 96
+      },
+      "revId": "6d75630b86e6a5c9845bc5530774e2313cbf5524",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6f52228_e15e0384",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsAdminServiceIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-08-16T15:16:32Z",
+      "side": 1,
+      "message": "reformat.",
+      "range": {
+        "startLine": 154,
+        "startChar": 3,
+        "endLine": 166,
+        "endChar": 5
+      },
+      "revId": "6d75630b86e6a5c9845bc5530774e2313cbf5524",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
