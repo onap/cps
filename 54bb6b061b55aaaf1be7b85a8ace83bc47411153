@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a49bb619_d41b8398",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-08-16T13:37:51Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "14513950_cd628a5e",
+      "range": {
+        "startLine": 179,
+        "startChar": 14,
+        "endLine": 179,
+        "endChar": 17
+      },
+      "revId": "54bb6b061b55aaaf1be7b85a8ace83bc47411153",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b7847c05_0a581d08",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-08-15T12:41:54Z",
       "side": 1,
       "message": "I\u0027m not sure of the utility of returning the boolean, since it can never be false:\n- If the Dataspace doesn\u0027t exist, we get DataspaceNotFoundException.\n- If the Anchor doesn\u0027t exist, we get AnchorNotFoundException.\n- If the SchemaSet doesn\u0027t exists, we get SchemaSetNotFoundException.\n- If some SQL error occurs in anchorRepository.updateAnchorSchemaSetId, we get a spring DataAccessException.\n- If we make it to line 185, numberOfAnchorUpdated will always be 1, since only one record can match the anchorId.",
+      "range": {
+        "startLine": 185,
+        "startChar": 8,
+        "endLine": 185,
+        "endChar": 41
+      },
+      "revId": "54bb6b061b55aaaf1be7b85a8ace83bc47411153",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4517cf9_d85b9819",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-08-16T13:37:51Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b7847c05_0a581d08",
       "range": {
         "startLine": 185,
         "startChar": 8,
@@ -70,6 +118,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "27ee6f85_e010878b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/AnchorRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-08-16T13:37:51Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "70aa02cb_6989dd00",
+      "range": {
+        "startLine": 103,
+        "startChar": 34,
+        "endLine": 103,
+        "endChar": 37
+      },
+      "revId": "54bb6b061b55aaaf1be7b85a8ace83bc47411153",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0a7bb489_2cc35883",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-08-15T12:41:54Z",
       "side": 1,
       "message": "We need a test that creates an anchor with one schema set and updates it to a different schema set.",
+      "range": {
+        "startLine": 158,
+        "startChar": 56,
+        "endLine": 162,
+        "endChar": 30
+      },
+      "revId": "54bb6b061b55aaaf1be7b85a8ace83bc47411153",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c922385_311b690b",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsAdminServiceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-08-16T13:37:51Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0a7bb489_2cc35883",
       "range": {
         "startLine": 158,
         "startChar": 56,
