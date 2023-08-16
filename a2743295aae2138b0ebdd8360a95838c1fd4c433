@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d961a9ef_9b5f02d8",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-08-16T13:26:21Z",
+      "side": 1,
+      "message": "Can we condense the two tests into one and using where\nscenario | operation\n\u0027with only page size\u0027 | \u0027pageSize\n\u0027with only page index\u0027 | \u0027pageIndex\u0027",
+      "range": {
+        "startLine": 192,
+        "startChar": 0,
+        "endLine": 221,
+        "endChar": 5
+      },
+      "revId": "a2743295aae2138b0ebdd8360a95838c1fd4c433",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
