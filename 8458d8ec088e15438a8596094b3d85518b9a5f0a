@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af3b339c_fd4fb275",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-08-16T12:57:05Z",
+      "side": 1,
+      "message": "looks good to me.\n2 fields are optional as per requirement. checked with sourabh.",
+      "revId": "8458d8ec088e15438a8596094b3d85518b9a5f0a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
