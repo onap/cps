@@ -29,6 +29,14 @@
                       "type": "string"
                     }
                   },
+                  "resourceIdentifier": {
+                    "description": "The format of resource identifier depend on the associated DMI Plugin implementation. For ONAP DMI Plugin it will be RESTConf paths but it can really be anything.",
+                    "type": "string"
+                  },
+                  "options": {
+                    "description": "It is mandatory to add as key(s)=value(s)'. The format of options parameter depend on the associated DMI Plugin implementation.",
+                    "type": "string"
+                  },
                   "statusCode": {
                     "description": "which says success or failure (0-99) are for success and (100-199) are for failure",
                     "type": "string"

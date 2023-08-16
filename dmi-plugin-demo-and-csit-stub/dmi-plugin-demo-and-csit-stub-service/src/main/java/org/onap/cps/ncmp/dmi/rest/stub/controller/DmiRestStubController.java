@@ -164,6 +164,8 @@ public class DmiRestStubController {
         response.setStatusCode(NcmpEventResponseCode.SUCCESS.getStatusCode());
         response.setStatusMessage(NcmpEventResponseCode.SUCCESS.getStatusMessage());
         response.setIds(dataOperationRequest.getCmHandles().stream().map(CmHandle::getId).collect(Collectors.toList()));
+        response.setResourceIdentifier(dataOperationRequest.getResourceIdentifier());
+        response.setOptions(dataOperationRequest.getOptions());
         final String ietfNetworkTopologySample = ResourceFileReaderUtil
                 .getResourceFileContent(applicationContext.getResource(
                         ResourceLoader.CLASSPATH_URL_PREFIX
