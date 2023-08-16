@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f61d2909_9a64b791",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-08-16T13:20:06Z",
+      "side": 1,
+      "message": "Will merge based on previous +1 once build complete",
+      "revId": "0373f194c665e21fcc73babdad3da66a691251a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
