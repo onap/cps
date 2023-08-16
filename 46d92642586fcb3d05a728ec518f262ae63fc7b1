@@ -92,6 +92,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8104d0e9_4ff791f0",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/entities/FragmentEntity.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-08-16T12:34:12Z",
+      "side": 1,
+      "message": "They don\u0027t actually have to match, and in fact the JDBC/Hibernate batching may not stay in sync with the ID allocation block size, but it doesn\u0027t matter.\nTo simplify things, I have changed so they are both 100.",
+      "parentUuid": "a014c5b0_7e2338e9",
+      "range": {
+        "startLine": 70,
+        "startChar": 110,
+        "endLine": 70,
+        "endChar": 112
+      },
+      "revId": "46d92642586fcb3d05a728ec518f262ae63fc7b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "447eee9a_01550636",
@@ -105,6 +129,30 @@
       "writtenOn": "2023-07-17T11:59:10Z",
       "side": 1,
       "message": "could this lead to an upgrade issue?! \nHaving 2 instances off cps one (db) being upgraded the otreh not yet....",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 89
+      },
+      "revId": "46d92642586fcb3d05a728ec518f262ae63fc7b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb33614d_525642ef",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/21-fragment-id-sequence-forward.sql",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-08-16T12:34:12Z",
+      "side": 1,
+      "message": "Yes, changing the ID generation would lead to write errors if the DB is upgraded without the Java changes. As such, the system needs to be restarted.",
+      "parentUuid": "447eee9a_01550636",
       "range": {
         "startLine": 18,
         "startChar": 0,
@@ -132,6 +180,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdb1bdba_9f5a915a",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-08-16T12:34:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "18c978f0_c29b5d06",
+      "revId": "46d92642586fcb3d05a728ec518f262ae63fc7b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7a65b5e5_77618d9d",
@@ -145,6 +211,30 @@
       "writtenOn": "2023-07-17T11:59:10Z",
       "side": 1,
       "message": "1) shoudl this refer to / be in the deployment.rst file instead?\n2) sine the liquibase steps are updated will thos steps work (as intended) when this is not configured?",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 35
+      },
+      "revId": "46d92642586fcb3d05a728ec518f262ae63fc7b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76200711_d52d041e",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-08-16T12:34:12Z",
+      "side": 1,
+      "message": "The application.yml gets deployed as part of cps-application (jar and docker images) so I have removed this from the doc.",
+      "parentUuid": "7a65b5e5_77618d9d",
       "range": {
         "startLine": 56,
         "startChar": 0,
