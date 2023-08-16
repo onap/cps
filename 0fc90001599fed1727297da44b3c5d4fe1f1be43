@@ -16,6 +16,23 @@
       "message": "recheck",
       "revId": "0fc90001599fed1727297da44b3c5d4fe1f1be43",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3469844_5f119e38",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-08-16T09:57:48Z",
+      "side": 1,
+      "message": "i see that you raised this patch for sonar issues so I will remove the fix from one of our patches.\nI incorporated the changes in one of the ongoing patches.",
+      "revId": "0fc90001599fed1727297da44b3c5d4fe1f1be43",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
