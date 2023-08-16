@@ -337,10 +337,7 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
                         .filter(entity -> StringUtils.equals(checksum, (entity.getChecksum())))
                         .findFirst()
                         .map(YangResourceEntity::getFileName);
-        if (optionalFileName.isPresent()) {
-            return optionalFileName.get();
-        }
-        return "no filename";
+        return optionalFileName.orElse("no filename");
     }
 
     private String getDuplicatedChecksumFromException(final ConstraintViolationException exception) {

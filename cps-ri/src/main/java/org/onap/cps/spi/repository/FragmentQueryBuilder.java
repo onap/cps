@@ -60,7 +60,7 @@ public class FragmentQueryBuilder {
      */
     public Query getQueryForAnchorAndCpsPath(final AnchorEntity anchorEntity, final CpsPathQuery cpsPathQuery) {
         return getQueryForDataspaceOrAnchorAndCpsPath(anchorEntity.getDataspace(),
-                anchorEntity, cpsPathQuery, Collections.EMPTY_LIST);
+                anchorEntity, cpsPathQuery, Collections.emptyList());
     }
 
     /**
