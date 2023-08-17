@@ -78,10 +78,10 @@ class DataRestControllerSpec extends Specification {
     def noTimestamp = null
 
     @Shared
-    def requestBodyJson = '{"some-key":"some-value","categories":[{"books":[{"authors":["Iain M. Banks"]}]}]}'
+    def requestBodyJson = '{"categories":[{"books":[{"authors":["Iain M. Banks"]}]}],"some-key":"some-value"}'
 
     @Shared
-    def expectedJsonData = '{"some-key":"some-value","categories":[{"books":[{"authors":["Iain M. Banks"]}]}]}'
+    def expectedJsonData = '{"categories":[{"books":[{"authors":["Iain M. Banks"]}]}],"some-key":"some-value"}'
 
     @Shared
     def requestBodyXml = '<?xml version=\'1.0\' encoding=\'UTF-8\'?>\n<bookstore xmlns="org:onap:ccsdk:sample">\n</bookstore>'
