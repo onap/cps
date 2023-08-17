@@ -1,7 +1,7 @@
 #  ============LICENSE_START=======================================================
 #  Copyright (C) 2021 Pantheon.tech
 #  Modifications Copyright (C) 2021-2022 Bell Canada
-#  Modifications Copyright (C) 2021-2023 Nordix Foundation
+#  Modifications Copyright (C) 2021-2024 Nordix Foundation
 #  ================================================================================
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -39,6 +39,9 @@ spring:
         properties:
             hibernate.enable_lazy_load_no_trans: true
             hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+            # Please ensure these values match those used in integration-test/src/test/resources/application.yml
+            hibernate.id.new_generator_mappings: true
+            hibernate.jdbc.batch_size: 100
 
     datasource:
         url: jdbc:postgresql://${DB_HOST}:${DB_PORT:5432}/cpsdb

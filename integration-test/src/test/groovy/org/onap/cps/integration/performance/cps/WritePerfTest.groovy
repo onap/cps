@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023 Nordix Foundation
+ *  Copyright (C) 2023-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -42,10 +42,10 @@ class WritePerfTest extends CpsPerfTestBase {
             cpsAnchorService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, 'writeAnchor')
         where:
             totalNodes || expectedDuration | memoryLimit
-            50         || 4                | 100
-            100        || 7                | 200
-            200        || 14               | 400
-            400        || 28               | 500
+            50         || 2                | 100
+            100        || 4                | 200
+            200        || 7                | 400
+            400        || 14               | 500
     }
 
     def 'Writing bookstore data has exponential time.'() {
@@ -67,8 +67,8 @@ class WritePerfTest extends CpsPerfTestBase {
             cpsAnchorService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, 'writeAnchor')
         where:
             totalBooks || expectedDuration | memoryLimit
-            800        || 1                | 50
-            1600       || 2                | 100
+            800        || 0.5              | 50
+            1600       || 1.5              | 100
             3200       || 6                | 150
             6400       || 18               | 200
     }
