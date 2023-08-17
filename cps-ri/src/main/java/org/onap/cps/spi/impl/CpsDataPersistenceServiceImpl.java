@@ -526,7 +526,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
     private void updateFragmentEntityAndDescendantsWithDataNode(final FragmentEntity existingFragmentEntity,
                                                                 final DataNode newDataNode) {
-        existingFragmentEntity.setAttributes(jsonObjectMapper.asJsonString(newDataNode.getLeaves()));
+        copyAttributesFromNewDataNode(existingFragmentEntity, newDataNode);
 
         final Map<String, FragmentEntity> existingChildrenByXpath = existingFragmentEntity.getChildFragments().stream()
                 .collect(Collectors.toMap(FragmentEntity::getXpath, childFragmentEntity -> childFragmentEntity));
@@ -668,7 +668,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             return convertToFragmentWithAllDescendants(parentEntity.getAnchor(), newListElement);
         }
         if (newListElement.getChildDataNodes().isEmpty()) {
-            copyAttributesFromNewListElement(existingListElementEntity, newListElement);
+            copyAttributesFromNewDataNode(existingListElementEntity, newListElement);
             existingListElementEntity.getChildFragments().clear();
         } else {
             updateFragmentEntityAndDescendantsWithDataNode(existingListElementEntity, newListElement);
@@ -681,12 +681,17 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         return !existingListElementsByXpath.containsKey(replacementDataNode.getXpath());
     }
 
-    private void copyAttributesFromNewListElement(final FragmentEntity existingListElementEntity,
-                                                  final DataNode newListElement) {
-        final FragmentEntity replacementFragmentEntity =
-                FragmentEntity.builder().attributes(jsonObjectMapper.asJsonString(
-                        newListElement.getLeaves())).build();
-        existingListElementEntity.setAttributes(replacementFragmentEntity.getAttributes());
+    private void copyAttributesFromNewDataNode(final FragmentEntity existingFragmentEntity,
+                                               final DataNode newDataNode) {
+        final String newAttributes = jsonObjectMapper.asJsonString(newDataNode.getLeaves());
+        final String oldAttributes = normalizeAttributesJson(existingFragmentEntity.getAttributes());
+        if (!oldAttributes.equals(newAttributes)) {
+            existingFragmentEntity.setAttributes(newAttributes);
+        }
+    }
+
+    private String normalizeAttributesJson(final String currentLeavesAsString) {
+        return jsonObjectMapper.asJsonString(jsonObjectMapper.convertJsonString(currentLeavesAsString, Map.class));
     }
 
     private static Map<String, FragmentEntity> extractListElementFragmentEntitiesByXPath(

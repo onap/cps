@@ -226,8 +226,8 @@ class CpsDataPersistenceServiceSpec extends Specification {
     def 'Replace data nodes and descendants'() {
         given: 'the fragment repository returns fragment entities related to the xpath inputs'
             mockFragmentRepository.findByAnchorAndXpathIn(_, ['/test/xpath1', '/test/xpath2'] as Set) >> [
-                new FragmentEntity(1, '/test/xpath1', null, null, anchorEntity, [] as Set),
-                new FragmentEntity(2, '/test/xpath2', null, null, anchorEntity, [] as Set)
+                new FragmentEntity(1, '/test/xpath1', null, '{}', anchorEntity, [] as Set),
+                new FragmentEntity(2, '/test/xpath2', null, '{}', anchorEntity, [] as Set)
             ]
         and: 'some data nodes with descendants'
             def dataNode1 = new DataNode(xpath: '/test/xpath1', leaves: ['id': 'testId1'], childDataNodes: [new DataNode(xpath: '/test/xpath1/child', leaves: ['id': 'childTestId1'])])
@@ -262,7 +262,7 @@ class CpsDataPersistenceServiceSpec extends Specification {
             def scenario = it.value
             def dataNode = new DataNodeBuilder().withXpath(xpath).build()
             dataNodes.add(dataNode)
-            def fragmentEntity = new FragmentEntity(id: fragmentId, anchor: anchorEntity, xpath: xpath, childFragments: [])
+            def fragmentEntity = new FragmentEntity(id: fragmentId, anchor: anchorEntity, xpath: xpath, childFragments: [], attributes: '{}')
             fragmentEntities.add(fragmentEntity)
             if ('EXCEPTION' == scenario) {
                 mockFragmentRepository.save(fragmentEntity) >> { throw new StaleStateException("concurrent updates") }
