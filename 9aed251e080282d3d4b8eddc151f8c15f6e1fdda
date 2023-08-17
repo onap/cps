@@ -109,6 +109,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b89920ed_f7315be2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/DeviceHeartbeatConsumer.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-08-17T13:10:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "53441dac_596566e9",
+      "range": {
+        "startLine": 55,
+        "startChar": 8,
+        "endLine": 60,
+        "endChar": 9
+      },
+      "revId": "9aed251e080282d3d4b8eddc151f8c15f6e1fdda",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fb4e81e4_e70bd53d",
@@ -128,6 +152,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0677fd5e_19e2d342",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/DeviceTrustLevel.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-08-17T13:10:57Z",
+      "side": 1,
+      "message": "Not just futureproofing but if we dont add it , wont the incoming event payload look weird ??\n\nif we dont add then the payload would be just the string with \u0027NONE\u0027 or \u0027COMPLETE\u0027 like below.\n{\n\"NONE\"\n}\n\nWith current change it would be like below.\n\n{\n\"trustLevel\" : \"NONE\"\n}",
+      "parentUuid": "fb4e81e4_e70bd53d",
+      "revId": "9aed251e080282d3d4b8eddc151f8c15f6e1fdda",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3203923e_90329696",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/trustlevel/DeviceHeartbeatConsumerSpec.groovy",
         "patchSetId": 7
@@ -139,6 +181,24 @@
       "writtenOn": "2023-08-16T16:02:08Z",
       "side": 1,
       "message": "License",
+      "revId": "9aed251e080282d3d4b8eddc151f8c15f6e1fdda",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "abafc854_2b7182d3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/trustlevel/DeviceHeartbeatConsumerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-08-17T13:10:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3203923e_90329696",
       "revId": "9aed251e080282d3d4b8eddc151f8c15f6e1fdda",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
