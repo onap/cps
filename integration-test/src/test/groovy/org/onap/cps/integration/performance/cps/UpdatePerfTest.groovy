@@ -24,68 +24,132 @@ import java.time.OffsetDateTime
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.integration.performance.base.CpsPerfTestBase
 
+import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
+
 class UpdatePerfTest extends CpsPerfTestBase {
+    static final def UPDATE_TEST_ANCHOR = 'updateTestAnchor'
+    static final def INNER_NODE_JSON = readResourceDataFile('openroadm/innerNode.json')
 
     CpsDataService objectUnderTest
     def now = OffsetDateTime.now()
 
     def setup() { objectUnderTest = cpsDataService }
 
-    def 'Update 1 data node with descendants'() {
-        given: 'a list of data nodes to update as JSON'
-            def parentNodeXpath = "/openroadm-devices/openroadm-device[@device-id='C201-7-1A-10']"
-            def jsonData = readResourceDataFile('openroadm/innerNode.json').replace('NODE_ID_HERE', '10')
-        when: 'the fragment entities are updated by the data nodes'
-            resourceMeter.start()
-            objectUnderTest.updateDataNodeAndDescendants(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm1', parentNodeXpath, jsonData, now)
-            resourceMeter.stop()
-            def updateDurationInSeconds = resourceMeter.getTotalTimeInSeconds()
-        then: 'update completes within expected time and memory used is within limit'
-            recordAndAssertResourceUsage('Update 1 data node', 0.6, updateDurationInSeconds, 100, resourceMeter.getTotalMemoryUsageInMB())
+    def 'Test setup for CPS Update API.'() {
+        given: 'an anchor and empty container node for OpenROADM devices'
+            cpsAnchorService.createAnchor(CPS_PERFORMANCE_TEST_DATASPACE, LARGE_SCHEMA_SET, UPDATE_TEST_ANCHOR)
+            cpsDataService.saveData(CPS_PERFORMANCE_TEST_DATASPACE, UPDATE_TEST_ANCHOR,
+                    '{ "openroadm-devices": { "openroadm-device": []}}', now)
+        expect: 'no device nodes exist yet'
+            assert 0 == countDataNodes('/openroadm-devices/openroadm-device')
     }
 
-    def 'Batch update 100 data nodes with descendants'() {
-        given: 'a list of data nodes to update as JSON'
-            def innerNodeJson = readResourceDataFile('openroadm/innerNode.json')
-            def nodesJsonData = (1..100).collectEntries {[
-                "/openroadm-devices/openroadm-device[@device-id='C201-7-1A-" + it + "']",
-                innerNodeJson.replace('NODE_ID_HERE', it.toString())
-            ]}
-        when: 'the fragment entities are updated by the data nodes'
-            resourceMeter.start()
-            objectUnderTest.updateDataNodesAndDescendants(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm1', nodesJsonData, now)
-            resourceMeter.stop()
-            def updateDurationInSeconds = resourceMeter.getTotalTimeInSeconds()
-        then: 'update completes within expected time and memory used is within limit'
-            recordAndAssertResourceUsage('Update 100 data nodes', 40, updateDurationInSeconds, 800, resourceMeter.getTotalMemoryUsageInMB())
+    def 'JVM warm up for update tests: #scenario.'() {
+        given: 'replacement JSON for node containing list of device nodes'
+            def jsonData = '{ "openroadm-devices": ' + generateJsonForOpenRoadmDevices(startId, totalNodes, changeLeaves) + '}'
+        when: 'the container node is updated'
+            objectUnderTest.updateDataNodeAndDescendants(CPS_PERFORMANCE_TEST_DATASPACE, UPDATE_TEST_ANCHOR, '/', jsonData, now)
+        then: 'there are the expected number of total nodes'
+            assert totalNodes == countDataNodes('/openroadm-devices/openroadm-device')
+        where:
+            scenario                           | totalNodes | startId | changeLeaves
+            'Replace 0 nodes with 100'         | 100        | 1       | false
+            'Replace 100 using same data'      | 100        | 1       | false
+            'Replace 100 with new leaf values' | 100        | 1       | true
+            'Replace 100 with 100 new nodes'   | 100        | 101     | false
+            'Replace 50 existing and 50 new'   | 100        | 151     | true
+            'Replace 100 nodes with 0'         | 0          | 1       | false
     }
 
-    def 'Update leaves for 1 data node (twice)'() {
-        given: 'Updated json for openroadm data'
-            def jsonDataUpdated  = "{'openroadm-device':{'device-id':'C201-7-1A-10','status':'fail','ne-state':'jeopardy'}}"
-            def jsonDataOriginal = "{'openroadm-device':{'device-id':'C201-7-1A-10','status':'success','ne-state':'inservice'}}"
+    def 'Replace single data node and descendants: #scenario.'() {
+        given: 'replacement JSON for node containing list of device nodes'
+            def jsonData = '{ "openroadm-devices": ' + generateJsonForOpenRoadmDevices(startId, totalNodes, changeLeaves) + '}'
+        when: 'the container node is updated'
+            resourceMeter.start()
+            objectUnderTest.updateDataNodeAndDescendants(CPS_PERFORMANCE_TEST_DATASPACE, UPDATE_TEST_ANCHOR, '/', jsonData, now)
+            resourceMeter.stop()
+        then: 'there are the expected number of total nodes'
+            assert totalNodes == countDataNodes('/openroadm-devices/openroadm-device')
+        and: 'data leaves have expected values'
+            assert totalNodes == countDataNodes(changeLeaves? '/openroadm-devices/openroadm-device[@status="fail"]'
+                                                            : '/openroadm-devices/openroadm-device[@status="success"]')
+        and: 'update completes within expected time and memory used is within limit'
+            recordAndAssertResourceUsage(scenario,
+                    timeLimit, resourceMeter.getTotalTimeInSeconds(),
+                    memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
+        where:
+            scenario                           | totalNodes | startId | changeLeaves || timeLimit | memoryLimit
+            'Replace 0 nodes with 100'         | 100        | 1       | false        ||         7 | 250
+            'Replace 100 using same data'      | 100        | 1       | false        ||         5 | 250
+            'Replace 100 with new leaf values' | 100        | 1       | true         ||         5 | 250
+            'Replace 100 with 100 new nodes'   | 100        | 101     | false        ||        12 | 300
+            'Replace 50 existing and 50 new'   | 100        | 151     | true         ||         8 | 250
+            'Replace 100 nodes with 0'         | 0          | 1       | false        ||         5 | 250
+    }
+
+    def 'Replace list content: #scenario.'() {
+        given: 'replacement JSON for list of device nodes'
+            def jsonListData = generateJsonForOpenRoadmDevices(startId, totalNodes, changeLeaves)
+        when: 'the container node is updated'
+            resourceMeter.start()
+            objectUnderTest.replaceListContent(CPS_PERFORMANCE_TEST_DATASPACE, UPDATE_TEST_ANCHOR, '/openroadm-devices', jsonListData, now)
+            resourceMeter.stop()
+        then: 'there are the expected number of total nodes'
+            assert totalNodes == countDataNodes('/openroadm-devices/openroadm-device')
+        and: 'data leaves have expected values'
+            assert totalNodes == countDataNodes(changeLeaves? '/openroadm-devices/openroadm-device[@status="fail"]'
+                                                            : '/openroadm-devices/openroadm-device[@status="success"]')
+        and: 'update completes within expected time and memory used is within limit'
+            recordAndAssertResourceUsage(scenario,
+                    timeLimit, resourceMeter.getTotalTimeInSeconds(),
+                    memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
+        where:
+            scenario                                   | totalNodes | startId | changeLeaves || timeLimit | memoryLimit
+            'Replace list of 0 with 100'               | 100        | 1       | false        ||         7 | 250
+            'Replace list of 100 using same data'      | 100        | 1       | false        ||         5 | 250
+            'Replace list of 100 with new leaf values' | 100        | 1       | true         ||         5 | 250
+            'Replace list with 100 new nodes'          | 100        | 101     | false        ||        12 | 300
+            'Replace list with 50 existing and 50 new' | 100        | 151     | true         ||         8 | 250
+            'Replace list of 100 nodes with 1'         | 1          | 1       | false        ||         5 | 250
+    }
+
+    def 'Update leaves for 100 data nodes.'() {
+        given: 'there are 200 existing data nodes'
+            def jsonListData = generateJsonForOpenRoadmDevices(1, 200, false)
+            objectUnderTest.replaceListContent(CPS_PERFORMANCE_TEST_DATASPACE, UPDATE_TEST_ANCHOR, '/openroadm-devices', jsonListData, now)
+        and: 'JSON for updated data leaves of 100 nodes'
+            def jsonDataUpdated  = "{'openroadm-device':[" + (1..100).collect {"{'device-id':'C201-7-1A-" + it + "','status':'fail','ne-state':'jeopardy'}" }.join(",") + "]}"
         when: 'update is performed for leaves'
             resourceMeter.start()
-            objectUnderTest.updateNodeLeaves(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm2', "/openroadm-devices", jsonDataUpdated, now)
-            objectUnderTest.updateNodeLeaves(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm2', "/openroadm-devices", jsonDataOriginal, now)
+            objectUnderTest.updateNodeLeaves(CPS_PERFORMANCE_TEST_DATASPACE, UPDATE_TEST_ANCHOR, "/openroadm-devices", jsonDataUpdated, now)
             resourceMeter.stop()
-            def updateDurationInSeconds = resourceMeter.getTotalTimeInSeconds()
-        then: 'update completes within expected time and memory used is within limit'
-            recordAndAssertResourceUsage('Update leaves for 1 data node', 0.7, updateDurationInSeconds, 200, resourceMeter.getTotalMemoryUsageInMB())
+        then: 'data leaves have expected values'
+            assert 100 == countDataNodes('/openroadm-devices/openroadm-device[@status="fail"]')
+        and: 'update completes within expected time and memory used is within limit'
+            recordAndAssertResourceUsage('Update leaves for 100 data nodes',
+                    0.5, resourceMeter.getTotalTimeInSeconds(),
+                    120, resourceMeter.getTotalMemoryUsageInMB())
     }
 
-    def 'Batch update leaves for 100 data nodes (twice)'() {
-        given: 'Updated json for openroadm data'
-            def jsonDataUpdated  = "{'openroadm-device':[" + (1..100).collect { "{'device-id':'C201-7-1A-" + it + "','status':'fail','ne-state':'jeopardy'}" }.join(",") + "]}"
-            def jsonDataOriginal = "{'openroadm-device':[" + (1..100).collect { "{'device-id':'C201-7-1A-" + it + "','status':'success','ne-state':'inservice'}" }.join(",") + "]}"
-        when: 'update is performed for leaves'
-            resourceMeter.start()
-            objectUnderTest.updateNodeLeaves(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm2', "/openroadm-devices", jsonDataUpdated, now)
-            objectUnderTest.updateNodeLeaves(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm2', "/openroadm-devices", jsonDataOriginal, now)
-            resourceMeter.stop()
-            def updateDurationInSeconds = resourceMeter.getTotalTimeInSeconds()
-        then: 'update completes within expected time and memory used is within limit'
-            recordAndAssertResourceUsage('Batch update leaves for 100 data nodes', 1, updateDurationInSeconds, 200, resourceMeter.getTotalMemoryUsageInMB())
+    def 'Clean up for CPS Update API.'() {
+        cleanup: 'test anchor and data nodes'
+            cpsAnchorService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, UPDATE_TEST_ANCHOR)
+    }
+
+    def generateJsonForOpenRoadmDevices(int startId, int totalNodes, boolean changeLeaves) {
+        return '{ "openroadm-device": [' + (0..<totalNodes).collect {makeInnerNodeJson(it + startId, changeLeaves) }.join(',') + ']}}'
+    }
+
+    def makeInnerNodeJson(int nodeId, boolean changeLeaf) {
+        def nodeJson = INNER_NODE_JSON.replace('NODE_ID_HERE', nodeId.toString())
+        if (changeLeaf) {
+            nodeJson = nodeJson.replace('"status": "success"', '"status": "fail"')
+        }
+        return nodeJson
+    }
+
+    def countDataNodes(String cpsPathQuery) {
+        return cpsQueryService.queryDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, UPDATE_TEST_ANCHOR, cpsPathQuery, OMIT_DESCENDANTS).size()
     }
 
 }
