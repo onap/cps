@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023 Nordix Foundation
+ *  Copyright (C) 2023-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -67,7 +67,7 @@ class CpsPerfTestBase extends PerfTestBase {
         addAnchorsWithData(OPENROADM_ANCHORS, CPS_PERFORMANCE_TEST_DATASPACE, LARGE_SCHEMA_SET, 'openroadm', data)
         resourceMeter.stop()
         def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
-        recordAndAssertResourceUsage('Creating openroadm anchors with large data tree', 200, durationInSeconds, 600, resourceMeter.getTotalMemoryUsageInMB())
+        recordAndAssertResourceUsage('Creating openroadm anchors with large data tree', 100, durationInSeconds, 600, resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def generateOpenRoadData(numberOfNodes) {
@@ -87,7 +87,7 @@ class CpsPerfTestBase extends PerfTestBase {
         then: 'memory used is within #peakMemoryUsage'
             assert resourceMeter.getTotalMemoryUsageInMB() <= 30
         and: 'all data is read within expected time'
-            recordAndAssertResourceUsage("Warming database", 200, durationInSeconds, 600, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage("Warming database", 100, durationInSeconds, 600, resourceMeter.getTotalMemoryUsageInMB())
     }
 
 }
