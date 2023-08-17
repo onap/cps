@@ -329,7 +329,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
         final List<Long> anchorIds;
         if (paginationOption == NO_PAGINATION) {
-            anchorIds = Collections.EMPTY_LIST;
+            anchorIds = Collections.emptyList();
         } else {
             anchorIds = getAnchorIdsForPagination(dataspaceEntity, cpsPathQuery, paginationOption);
             if (anchorIds.isEmpty()) {
