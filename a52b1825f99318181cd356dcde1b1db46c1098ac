@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "928062c6_f2a2d2de",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentPrefetchRepositoryImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-08-17T15:06:37Z",
+      "side": 0,
+      "message": "getLong returns a \u0027long\u0027 primitive, not a \u0027Long\u0027 object - with NULL being changed to 0. NULL means \u0027no parent\u0027, whereas 0 means a parent with ID \u003d 0, which causes problems during update.\nA fragment parentId is allowed to be null for top-level data nodes.",
+      "range": {
+        "startLine": 97,
+        "startChar": 39,
+        "endLine": 97,
+        "endChar": 68
+      },
+      "revId": "a52b1825f99318181cd356dcde1b1db46c1098ac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
