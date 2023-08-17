@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf683fa2_9c0ecded",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-08-17T11:08:39Z",
+      "side": 1,
+      "message": "merging two test cases are not possible.",
+      "revId": "a2743295aae2138b0ebdd8360a95838c1fd4c433",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d961a9ef_9b5f02d8",
@@ -14,6 +31,30 @@
       "writtenOn": "2023-08-16T13:26:21Z",
       "side": 1,
       "message": "Can we condense the two tests into one and using where\nscenario | operation\n\u0027with only page size\u0027 | \u0027pageSize\n\u0027with only page index\u0027 | \u0027pageIndex\u0027",
+      "range": {
+        "startLine": 192,
+        "startChar": 0,
+        "endLine": 221,
+        "endChar": 5
+      },
+      "revId": "a2743295aae2138b0ebdd8360a95838c1fd4c433",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b707bed3_30ec9285",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-08-17T11:08:39Z",
+      "side": 1,
+      "message": "actually, I tried to set pageIndx and pageSize null in request header but I got error. so we need to send requests without including pageIndex and pageSize headers one by one. so here we need to write two separate test cases. please suggest if it is possible to do with some other way.",
+      "parentUuid": "d961a9ef_9b5f02d8",
       "range": {
         "startLine": 192,
         "startChar": 0,
