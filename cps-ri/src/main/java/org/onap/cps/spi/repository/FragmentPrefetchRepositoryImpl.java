@@ -94,7 +94,7 @@ public class FragmentPrefetchRepositoryImpl implements FragmentPrefetchRepositor
             final FragmentEntity fragmentEntity = new FragmentEntity();
             fragmentEntity.setId(resultSet.getLong("id"));
             fragmentEntity.setXpath(resultSet.getString("xpath"));
-            fragmentEntity.setParentId(resultSet.getLong("parentId"));
+            fragmentEntity.setParentId(resultSet.getObject("parentId", Long.class));
             fragmentEntity.setAttributes(resultSet.getString("attributes"));
             fragmentEntity.setAnchor(anchorEntityPerId.get(resultSet.getLong("anchorId")));
             fragmentEntity.setChildFragments(new HashSet<>());

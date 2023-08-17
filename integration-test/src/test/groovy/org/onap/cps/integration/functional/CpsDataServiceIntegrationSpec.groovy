@@ -394,6 +394,17 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
             restoreBookstoreDataAnchor(1)
     }
 
+    def 'Update bookstore top-level container data node.'() {
+        when: 'the bookstore top-level container is updated'
+            def json = '{ "bookstore": { "bookstore-name": "new bookstore" }}'
+            objectUnderTest.updateDataNodeAndDescendants(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/', json, now)
+        then: 'bookstore name has been updated'
+            def result = objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore', DIRECT_CHILDREN_ONLY)
+            result.leaves.'bookstore-name'[0] == 'new bookstore'
+        cleanup:
+            restoreBookstoreDataAnchor(1)
+    }
+
     def 'Update multiple data node leaves.'() {
         given: 'Updated json for bookstore data'
             def jsonData =  "{'book-store:books':{'lang':'English/French','price':100,'title':'Matilda'}}"
