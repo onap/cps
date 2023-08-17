@@ -43,6 +43,7 @@ Bug Fixes
 
 Features
 --------
+    - `CPS-2018 <https://jira.onap.org/browse/CPS-2018>`_ Improve performance of CPS update operations (JSON optimization).
 
 
 Version: 3.4.1

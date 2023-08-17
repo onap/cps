@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Copyright (C) 2021-2024 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
  *  Modifications Copyright (C) 2022 Deutsche Telekom AG
@@ -78,10 +78,10 @@ class DataRestControllerSpec extends Specification {
     def noTimestamp = null
 
     @Shared
-    def requestBodyJson = '{"some-key":"some-value","categories":[{"books":[{"authors":["Iain M. Banks"]}]}]}'
+    def requestBodyJson = '{"categories":[{"books":[{"authors":["Iain M. Banks"]}]}],"some-key":"some-value"}'
 
     @Shared
-    def expectedJsonData = '{"some-key":"some-value","categories":[{"books":[{"authors":["Iain M. Banks"]}]}]}'
+    def expectedJsonData = '{"categories":[{"books":[{"authors":["Iain M. Banks"]}]}],"some-key":"some-value"}'
 
     @Shared
     def requestBodyXml = '<?xml version=\'1.0\' encoding=\'UTF-8\'?>\n<bookstore xmlns="org:onap:ccsdk:sample">\n</bookstore>'

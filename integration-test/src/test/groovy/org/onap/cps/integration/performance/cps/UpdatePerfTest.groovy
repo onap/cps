@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023 Nordix Foundation
+ *  Copyright (C) 2023-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -80,8 +80,8 @@ class UpdatePerfTest extends CpsPerfTestBase {
         where:
             scenario                           | totalNodes | startId | changeLeaves || timeLimit | memoryLimit
             'Replace 0 nodes with 100'         | 100        | 1       | false        ||         7 | 250
-            'Replace 100 using same data'      | 100        | 1       | false        ||         5 | 250
-            'Replace 100 with new leaf values' | 100        | 1       | true         ||         5 | 250
+            'Replace 100 using same data'      | 100        | 1       | false        ||         3 | 250
+            'Replace 100 with new leaf values' | 100        | 1       | true         ||         3 | 250
             'Replace 100 with 100 new nodes'   | 100        | 101     | false        ||        12 | 300
             'Replace 50 existing and 50 new'   | 100        | 151     | true         ||         8 | 250
             'Replace 100 nodes with 0'         | 0          | 1       | false        ||         5 | 250
@@ -106,8 +106,8 @@ class UpdatePerfTest extends CpsPerfTestBase {
         where:
             scenario                                   | totalNodes | startId | changeLeaves || timeLimit | memoryLimit
             'Replace list of 0 with 100'               | 100        | 1       | false        ||         7 | 250
-            'Replace list of 100 using same data'      | 100        | 1       | false        ||         5 | 250
-            'Replace list of 100 with new leaf values' | 100        | 1       | true         ||         5 | 250
+            'Replace list of 100 using same data'      | 100        | 1       | false        ||         3 | 250
+            'Replace list of 100 with new leaf values' | 100        | 1       | true         ||         3 | 250
             'Replace list with 100 new nodes'          | 100        | 101     | false        ||        12 | 300
             'Replace list with 50 existing and 50 new' | 100        | 151     | true         ||         8 | 250
             'Replace list of 100 nodes with 1'         | 1          | 1       | false        ||         5 | 250
