@@ -87,6 +87,30 @@
       },
       "revId": "a2743295aae2138b0ebdd8360a95838c1fd4c433",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f56f7120_38f753b3",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2023-08-17T13:10:12Z",
+      "side": 1,
+      "message": "Thanks for clarification. made the changes as suggested.",
+      "parentUuid": "513b9f18_75c3877f",
+      "range": {
+        "startLine": 192,
+        "startChar": 0,
+        "endLine": 221,
+        "endChar": 5
+      },
+      "revId": "a2743295aae2138b0ebdd8360a95838c1fd4c433",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
