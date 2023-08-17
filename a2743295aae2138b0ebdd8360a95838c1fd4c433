@@ -63,6 +63,30 @@
       },
       "revId": "a2743295aae2138b0ebdd8360a95838c1fd4c433",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "513b9f18_75c3877f",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-08-17T11:16:21Z",
+      "side": 1,
+      "message": "I think what Luke is suggesting that only a single parameter is set, like this:\n\n    def \u0027Query data node across all anchors with pagination option #scenario\u0027\n        given: ...\n        when: \u0027query data nodes API is invoked\u0027\n            def response \u003d\n                mvc.perform(\n                        get(dataNodeEndpoint)\n                                .param(\u0027cps-path\u0027, cpsPath)\n                                .param(\u0027descendants\u0027, \"all\")\n                                .param(parameterName, \u00271\u0027))\n                        .andReturn().response\n        then: ...\n        where:\n            scenario               | parameterName\n            \u0027with only page size\u0027  | \u0027pageSize\u0027\n            \u0027with only page index\u0027 | \u0027pageIndex\u0027",
+      "parentUuid": "b707bed3_30ec9285",
+      "range": {
+        "startLine": 192,
+        "startChar": 0,
+        "endLine": 221,
+        "endChar": 5
+      },
+      "revId": "a2743295aae2138b0ebdd8360a95838c1fd4c433",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
