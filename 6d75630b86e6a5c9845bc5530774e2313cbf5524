@@ -64,6 +64,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e37f94c5_2da8a9a9",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-08-17T15:26:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e6d18c12_418b8c32",
+      "range": {
+        "startLine": 182,
+        "startChar": 3,
+        "endLine": 187,
+        "endChar": 5
+      },
+      "revId": "6d75630b86e6a5c9845bc5530774e2313cbf5524",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7e353734_f4e817a3",
@@ -77,6 +101,30 @@
       "writtenOn": "2023-08-16T15:16:32Z",
       "side": 1,
       "message": "reading this twice ? \nalready read on 156 ?",
+      "range": {
+        "startLine": 161,
+        "startChar": 8,
+        "endLine": 161,
+        "endChar": 96
+      },
+      "revId": "6d75630b86e6a5c9845bc5530774e2313cbf5524",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05037ba7_62f044f0",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsAdminServiceIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-08-17T15:26:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7e353734_f4e817a3",
       "range": {
         "startLine": 161,
         "startChar": 8,
@@ -133,6 +181,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0315b29d_fa62abb5",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsAdminServiceIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-08-17T15:26:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "cd233ca6_86d09808",
+      "range": {
+        "startLine": 164,
+        "startChar": 8,
+        "endLine": 164,
+        "endChar": 11
+      },
+      "revId": "6d75630b86e6a5c9845bc5530774e2313cbf5524",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62f48835_28d6b144",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsAdminServiceIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-08-17T15:26:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b00d5a85_201e3903",
+      "range": {
+        "startLine": 164,
+        "startChar": 27,
+        "endLine": 164,
+        "endChar": 28
+      },
+      "revId": "6d75630b86e6a5c9845bc5530774e2313cbf5524",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a6f52228_e15e0384",
@@ -146,6 +242,30 @@
       "writtenOn": "2023-08-16T15:16:32Z",
       "side": 1,
       "message": "reformat.",
+      "range": {
+        "startLine": 154,
+        "startChar": 3,
+        "endLine": 166,
+        "endChar": 5
+      },
+      "revId": "6d75630b86e6a5c9845bc5530774e2313cbf5524",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7e7082d_af3ef7a4",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsAdminServiceIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-08-17T15:26:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a6f52228_e15e0384",
       "range": {
         "startLine": 154,
         "startChar": 3,
