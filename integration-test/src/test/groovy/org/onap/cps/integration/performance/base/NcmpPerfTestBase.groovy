@@ -66,7 +66,7 @@ class NcmpPerfTestBase extends PerfTestBase {
     }
 
     def createInitialData() {
-        cpsDataspaceService.createAnchor(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_SCHEMA_SET, REGISTRY_ANCHOR)
+        cpsAnchorService.createAnchor(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_SCHEMA_SET, REGISTRY_ANCHOR)
         def data = readResourceDataFile('ncmp-registry/1000-cmhandles.json')
         cpsDataService.saveData(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_ANCHOR, data, OffsetDateTime.now())
     }
@@ -82,7 +82,7 @@ class NcmpPerfTestBase extends PerfTestBase {
     }
 
     def addCmSubscriptionData() {
-        cpsDataspaceService.createAnchor(NCMP_PERFORMANCE_TEST_DATASPACE, CM_DATA_SUBSCRIPTIONS_SCHEMA_SET, CM_DATA_SUBSCRIPTIONS_ANCHOR)
+        cpsAnchorService.createAnchor(NCMP_PERFORMANCE_TEST_DATASPACE, CM_DATA_SUBSCRIPTIONS_SCHEMA_SET, CM_DATA_SUBSCRIPTIONS_ANCHOR)
         cpsDataService.saveData(NCMP_PERFORMANCE_TEST_DATASPACE, CM_DATA_SUBSCRIPTIONS_ANCHOR, datastore1cmHandlePlaceHolder, now)
         def subscribers = createLeafList('subscribers',numberOfCmDataSubscribers, subscriberIdPrefix)
         def filters = '"filters":' + createJsonArray('filter',numberOfFiltersPerCmHandle,'xpath',xpathPrefix,subscribers)
