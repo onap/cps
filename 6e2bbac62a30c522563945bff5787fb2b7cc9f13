@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "84729273_6769c081",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionEventToCmSubscriptionNcmpOutEventMapper.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-08-17T10:43:06Z",
+      "side": 1,
+      "message": "yeah. Halil created an internal event called \"CmSubscriptionEvent\" for handling that PENDING status in NCMP code.\nSo as per that this mapper is named correctly 😊 I mean it does what it is named for.",
+      "parentUuid": "700169a1_e538f148",
+      "range": {
+        "startLine": 38,
+        "startChar": 17,
+        "endLine": 38,
+        "endChar": 70
+      },
+      "revId": "6e2bbac62a30c522563945bff5787fb2b7cc9f13",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6db93a11_75911d73",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionNcmpOutEventPublisher.java",
         "patchSetId": 3
@@ -37,6 +61,30 @@
       "writtenOn": "2023-08-16T14:38:45Z",
       "side": 1,
       "message": "wrong capitalisation",
+      "range": {
+        "startLine": 83,
+        "startChar": 41,
+        "endLine": 83,
+        "endChar": 65
+      },
+      "revId": "6e2bbac62a30c522563945bff5787fb2b7cc9f13",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe75f7c0_9875f1c0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionNcmpOutEventPublisher.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-08-17T10:43:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6db93a11_75911d73",
       "range": {
         "startLine": 83,
         "startChar": 41,
