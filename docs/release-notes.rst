@@ -39,6 +39,7 @@ Release Data
 Bug Fixes
 ---------
 3.3.6
+    - `CPS-1841 <https://jira.onap.org/browse/CPS-1841>`_ Update of top-level data node fails with exception
 
 Features
 --------
