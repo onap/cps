@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec8052d9_eed80ad2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-08-18T12:19:37Z",
+      "side": 1,
+      "message": "Resolved comments. Moved test to line 105 alongside other tests for get nodes operation",
+      "revId": "ca3d3319f8e587ad6bc94c1affd3f393f20cbc7a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
