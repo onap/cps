@@ -17,11 +17,13 @@
       "operation": "read",
       "operationId": "running-12",
       "datastore": "ncmp-datastore:passthrough-running",
+      "options": "some option",
+      "resourceIdentifier": "some resource identifier",
       "targetIds": [
         "ch1-dmi1",
         "ch7-dmi2",
         "ch2-dmi1",
-        "non-ready-cm handle"
+        "non-ready-cm-handle"
       ]
     },
     {
@@ -29,6 +31,7 @@
       "operationId": "operational-15",
       "datastore": "ncmp-datastore:passthrough-operational",
       "options": "some option",
+      "resourceIdentifier": "some resource identifier",
       "targetIds": [
         "ch4-dmi2",
         "ch6-dmi1"

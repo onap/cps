@@ -68,8 +68,8 @@ public class ResourceDataOperationRequestUtils {
             final Collection<YangModelCmHandle> yangModelCmHandles) {
 
         final Map<String, List<DmiDataOperation>> dmiDataOperationsOutPerDmiServiceName = new HashMap<>();
-        final MultiValueMap<String, Map<NcmpEventResponseCode, List<String>>> cmHandleIdsPerResponseCodesPerOperationId
-                = new LinkedMultiValueMap<>();
+        final MultiValueMap<DmiDataOperation, Map<NcmpEventResponseCode,
+                List<String>>> cmHandleIdsPerResponseCodesPerOperationId = new LinkedMultiValueMap<>();
         final Set<String> nonReadyCmHandleIdsLookup = filterAndGetNonReadyCmHandleIds(yangModelCmHandles);
 
         final Map<String, Map<String, Map<String, String>>> dmiPropertiesPerCmHandleIdPerServiceName =
@@ -101,11 +101,11 @@ public class ResourceDataOperationRequestUtils {
                 }
             }
             populateCmHandleIdsPerOperationIdPerResponseCode(cmHandleIdsPerResponseCodesPerOperationId,
-                    dataOperationDefinitionIn.getOperationId(), NcmpEventResponseCode.CM_HANDLES_NOT_FOUND,
-                    nonExistingCmHandleIds);
+                    DmiDataOperation.buildDmiDataOperationRequestBodyWithoutCmHandles(dataOperationDefinitionIn),
+                    NcmpEventResponseCode.CM_HANDLES_NOT_FOUND, nonExistingCmHandleIds);
             populateCmHandleIdsPerOperationIdPerResponseCode(cmHandleIdsPerResponseCodesPerOperationId,
-                    dataOperationDefinitionIn.getOperationId(), NcmpEventResponseCode.CM_HANDLES_NOT_READY,
-                    nonReadyCmHandleIds);
+                    DmiDataOperation.buildDmiDataOperationRequestBodyWithoutCmHandles(dataOperationDefinitionIn),
+                    NcmpEventResponseCode.CM_HANDLES_NOT_READY, nonReadyCmHandleIds);
         }
         if (!cmHandleIdsPerResponseCodesPerOperationId.isEmpty()) {
             publishErrorMessageToClientTopic(topicParamInQuery, requestId, cmHandleIdsPerResponseCodesPerOperationId);
@@ -123,7 +123,7 @@ public class ResourceDataOperationRequestUtils {
     @Async
     public static void publishErrorMessageToClientTopic(final String clientTopic,
                                                          final String requestId,
-                                                         final MultiValueMap<String,
+                                                         final MultiValueMap<DmiDataOperation,
                                                                  Map<NcmpEventResponseCode, List<String>>>
                                                                     cmHandleIdsPerResponseCodesPerOperationId) {
         final CloudEvent dataOperationCloudEvent = DataOperationEventCreator.createDataOperationEvent(clientTopic,
@@ -174,14 +174,14 @@ public class ResourceDataOperationRequestUtils {
                         != CmHandleState.READY).map(YangModelCmHandle::getId).collect(Collectors.toSet());
     }
 
-    private static void populateCmHandleIdsPerOperationIdPerResponseCode(final MultiValueMap<String,
+    private static void populateCmHandleIdsPerOperationIdPerResponseCode(final MultiValueMap<DmiDataOperation,
             Map<NcmpEventResponseCode, List<String>>> cmHandleIdsPerResponseCodesPerOperationId,
-                                                                        final String operationId,
+                                                                        final DmiDataOperation dmiDataOperation,
                                                                         final NcmpEventResponseCode
                                                                                 ncmpEventResponseCode,
                                                                         final List<String> cmHandleIds) {
         if (!cmHandleIds.isEmpty()) {
-            cmHandleIdsPerResponseCodesPerOperationId.add(operationId, Map.of(ncmpEventResponseCode, cmHandleIds));
+            cmHandleIdsPerResponseCodesPerOperationId.add(dmiDataOperation, Map.of(ncmpEventResponseCode, cmHandleIds));
         }
     }
 }

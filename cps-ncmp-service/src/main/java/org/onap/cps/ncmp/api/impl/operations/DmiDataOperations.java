@@ -261,17 +261,17 @@ public class DmiDataOperations extends DmiOperations {
             final String topicName = dataOperationResourceUrlParameters.get("topic").get(0);
             final String requestId = dataOperationResourceUrlParameters.get("requestId").get(0);
 
-            final MultiValueMap<String, Map<NcmpEventResponseCode, List<String>>>
+            final MultiValueMap<DmiDataOperation, Map<NcmpEventResponseCode, List<String>>>
                     cmHandleIdsPerResponseCodesPerOperationId = new LinkedMultiValueMap<>();
 
             dmiDataOperationRequestBodies.forEach(dmiDataOperationRequestBody -> {
                 final List<String> cmHandleIds = dmiDataOperationRequestBody.getCmHandles().stream()
                         .map(CmHandle::getId).collect(Collectors.toList());
                 if (throwable.getCause() instanceof HttpClientRequestException) {
-                    cmHandleIdsPerResponseCodesPerOperationId.add(dmiDataOperationRequestBody.getOperationId(),
+                    cmHandleIdsPerResponseCodesPerOperationId.add(dmiDataOperationRequestBody,
                             Map.of(NcmpEventResponseCode.UNABLE_TO_READ_RESOURCE_DATA, cmHandleIds));
                 } else {
-                    cmHandleIdsPerResponseCodesPerOperationId.add(dmiDataOperationRequestBody.getOperationId(),
+                    cmHandleIdsPerResponseCodesPerOperationId.add(dmiDataOperationRequestBody,
                             Map.of(NcmpEventResponseCode.DMI_SERVICE_NOT_RESPONDING, cmHandleIds));
                 }
             });

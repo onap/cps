@@ -30,6 +30,7 @@ import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.NcmpEventResponseCode;
 import org.onap.cps.ncmp.api.impl.events.NcmpCloudEventBuilder;
+import org.onap.cps.ncmp.api.impl.operations.DmiDataOperation;
 import org.onap.cps.ncmp.events.async1_0_0.Data;
 import org.onap.cps.ncmp.events.async1_0_0.DataOperationEvent;
 import org.onap.cps.ncmp.events.async1_0_0.Response;
@@ -49,7 +50,7 @@ public class DataOperationEventCreator {
      */
     public static CloudEvent createDataOperationEvent(final String clientTopic,
                                                       final String requestId,
-                                                      final MultiValueMap<String,
+                                                      final MultiValueMap<DmiDataOperation,
                                                               Map<NcmpEventResponseCode, List<String>>>
                                                               cmHandleIdsPerResponseCodesPerOperationId) {
         final DataOperationEvent dataOperationEvent = new DataOperationEvent();
@@ -60,33 +61,31 @@ public class DataOperationEventCreator {
                 .event(dataOperationEvent).extensions(extensions).setCloudEvent().build();
     }
 
-    private static Data createPayloadFromDataOperationResponses(final MultiValueMap<String, Map<NcmpEventResponseCode,
-            List<String>>> cmHandleIdsPerOperationIdPerResponseCode) {
+    private static Data createPayloadFromDataOperationResponses(final MultiValueMap<DmiDataOperation,
+            Map<NcmpEventResponseCode, List<String>>> cmHandleIdsPerOperationIdPerResponseCode) {
         final Data data = new Data();
         final List<org.onap.cps.ncmp.events.async1_0_0.Response> responses = new ArrayList<>();
-        cmHandleIdsPerOperationIdPerResponseCode.entrySet().forEach(cmHandleIdsPerOperationIdPerResponseCodeEntries ->
-                cmHandleIdsPerOperationIdPerResponseCodeEntries.getValue().forEach(cmHandleIdsPerResponseCodeEntries ->
-                        responses.addAll(createResponseFromDataOperationResponses(
-                                cmHandleIdsPerOperationIdPerResponseCodeEntries.getKey(),
-                                cmHandleIdsPerResponseCodeEntries)
-                        )));
+        cmHandleIdsPerOperationIdPerResponseCode
+                .forEach((key, value) -> value.forEach(cmHandleIdsPerResponseCodeEntries ->
+                responses.addAll(createResponseFromDataOperationResponses(key, cmHandleIdsPerResponseCodeEntries))));
         data.setResponses(responses);
         return data;
     }
 
     private static List<Response> createResponseFromDataOperationResponses(
-            final String operationId,
+            final DmiDataOperation dmiDataOperation,
             final Map<NcmpEventResponseCode, List<String>> cmHandleIdsPerResponseCodeEntries) {
         final List<org.onap.cps.ncmp.events.async1_0_0.Response> responses = new ArrayList<>();
-        cmHandleIdsPerResponseCodeEntries.entrySet()
-                .forEach(cmHandleIdsPerResponseCodeEntry -> {
-                    final Response response = new Response();
-                    response.setOperationId(operationId);
-                    response.setStatusCode(cmHandleIdsPerResponseCodeEntry.getKey().getStatusCode());
-                    response.setStatusMessage(cmHandleIdsPerResponseCodeEntry.getKey().getStatusMessage());
-                    response.setIds(cmHandleIdsPerResponseCodeEntry.getValue());
-                    responses.add(response);
-                });
+        cmHandleIdsPerResponseCodeEntries.forEach((key, value) -> {
+            final Response response = new Response();
+            response.setOperationId(dmiDataOperation.getOperationId());
+            response.setStatusCode(key.getStatusCode());
+            response.setStatusMessage(key.getStatusMessage());
+            response.setIds(value);
+            response.setResourceIdentifier(dmiDataOperation.getResourceIdentifier());
+            response.setOptions(dmiDataOperation.getOptions());
+            responses.add(response);
+        });
         return responses;
     }
 

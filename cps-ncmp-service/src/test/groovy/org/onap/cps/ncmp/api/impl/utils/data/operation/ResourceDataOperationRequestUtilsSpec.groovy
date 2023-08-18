@@ -112,7 +112,7 @@ class ResourceDataOperationRequestUtilsSpec extends MessagingBaseSpec {
             dataOperationResponseEvent.data.responses.size() == 3
         and: 'verify published response data as json string'
             jsonObjectMapper.asJsonString(dataOperationResponseEvent.data.responses)
-                    == '[{"operationId":"operational-14","ids":["unknown-cm-handle"],"statusCode":"100","statusMessage":"cm handle id(s) not found"},{"operationId":"operational-14","ids":["non-ready-cm handle"],"statusCode":"101","statusMessage":"cm handle(s) not ready"},{"operationId":"running-12","ids":["non-ready-cm handle"],"statusCode":"101","statusMessage":"cm handle(s) not ready"}]'
+                    == '[{"operationId":"operational-14","ids":["unknown-cm-handle"],"resourceIdentifier":"some resource identifier","options":"some option","statusCode":"100","statusMessage":"cm handle id(s) not found"},{"operationId":"operational-14","ids":["non-ready-cm handle"],"resourceIdentifier":"some resource identifier","options":"some option","statusCode":"101","statusMessage":"cm handle(s) not ready"},{"operationId":"running-12","ids":["non-ready-cm-handle"],"resourceIdentifier":"some resource identifier","options":"some option","statusCode":"100","statusMessage":"cm handle id(s) not found"}]'
     }
 
     static def getYangModelCmHandles() {
@@ -126,7 +126,7 @@ class ResourceDataOperationRequestUtilsSpec extends MessagingBaseSpec {
                 new YangModelCmHandle(id: 'ch3-dmi2', dmiServiceName: 'dmi2', dmiProperties: dmiProperties, compositeState: readyState),
                 new YangModelCmHandle(id: 'ch4-dmi2', dmiServiceName: 'dmi2', dmiProperties: dmiProperties, compositeState: readyState),
                 new YangModelCmHandle(id: 'ch7-dmi2', dmiServiceName: 'dmi2', dmiProperties: dmiProperties, compositeState: readyState),
-                new YangModelCmHandle(id: 'non-ready-cm handle', dmiServiceName: 'dmi2', dmiProperties: dmiProperties, compositeState: advisedState)
+                new YangModelCmHandle(id: 'non-ready-cm-handle', dmiServiceName: 'dmi2', dmiProperties: dmiProperties, compositeState: advisedState)
         ]
     }
 }
