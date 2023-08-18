@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "010f581d_767e9a9b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-08-18T10:38:02Z",
+      "side": 1,
+      "message": "Agree",
+      "parentUuid": "26b9def4_3332357e",
+      "range": {
+        "startLine": 265,
+        "startChar": 20,
+        "endLine": 265,
+        "endChar": 61
+      },
+      "revId": "39fa9a78b8855ea7ed7563a18b14f392f25d3e1e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4471451c_03190cfd",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/data/operation/DataOperationEventCreator.java",
         "patchSetId": 1
@@ -100,6 +124,30 @@
       "writtenOn": "2023-08-18T10:11:31Z",
       "side": 1,
       "message": "NB: name them appropriately",
+      "range": {
+        "startLine": 69,
+        "startChar": 26,
+        "endLine": 69,
+        "endChar": 36
+      },
+      "revId": "39fa9a78b8855ea7ed7563a18b14f392f25d3e1e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b0268e2_9a73a276",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/data/operation/DataOperationEventCreator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-08-18T10:38:02Z",
+      "side": 1,
+      "message": "Agree",
+      "parentUuid": "8540ee6d_76e83f94",
       "range": {
         "startLine": 69,
         "startChar": 26,
@@ -215,6 +263,30 @@
       "writtenOn": "2023-08-18T10:11:31Z",
       "side": 1,
       "message": "NB: maybe read this from a file ?",
+      "range": {
+        "startLine": 115,
+        "startChar": 24,
+        "endLine": 115,
+        "endChar": 610
+      },
+      "revId": "39fa9a78b8855ea7ed7563a18b14f392f25d3e1e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62ed4775_19eee55e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/data/operation/ResourceDataOperationRequestUtilsSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-08-18T10:38:02Z",
+      "side": 1,
+      "message": "Agree or validate individual variables rather than a string comparison",
+      "parentUuid": "e442d46b_245c8f25",
       "range": {
         "startLine": 115,
         "startChar": 24,
