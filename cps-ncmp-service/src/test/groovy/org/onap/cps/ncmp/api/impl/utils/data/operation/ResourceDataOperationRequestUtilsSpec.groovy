@@ -110,9 +110,9 @@ class ResourceDataOperationRequestUtilsSpec extends MessagingBaseSpec {
                 toTargetEvent(consumerRecordOut.value(), DataOperationEvent.class)
         and: 'data operation response event response size is 3'
             dataOperationResponseEvent.data.responses.size() == 3
-        and: 'verify published response data as json string'
-            jsonObjectMapper.asJsonString(dataOperationResponseEvent.data.responses)
-                    == '[{"operationId":"operational-14","ids":["unknown-cm-handle"],"statusCode":"100","statusMessage":"cm handle id(s) not found"},{"operationId":"operational-14","ids":["non-ready-cm handle"],"statusCode":"101","statusMessage":"cm handle(s) not ready"},{"operationId":"running-12","ids":["non-ready-cm handle"],"statusCode":"101","statusMessage":"cm handle(s) not ready"}]'
+        and: 'verify published data operation response as json string'
+        def dataOperationResponseEventJson = TestUtils.getResourceFileContent('dataOperationResponseEvent.json')
+            jsonObjectMapper.asJsonString(dataOperationResponseEvent.data.responses) == dataOperationResponseEventJson
     }
 
     static def getYangModelCmHandles() {
@@ -126,7 +126,7 @@ class ResourceDataOperationRequestUtilsSpec extends MessagingBaseSpec {
                 new YangModelCmHandle(id: 'ch3-dmi2', dmiServiceName: 'dmi2', dmiProperties: dmiProperties, compositeState: readyState),
                 new YangModelCmHandle(id: 'ch4-dmi2', dmiServiceName: 'dmi2', dmiProperties: dmiProperties, compositeState: readyState),
                 new YangModelCmHandle(id: 'ch7-dmi2', dmiServiceName: 'dmi2', dmiProperties: dmiProperties, compositeState: readyState),
-                new YangModelCmHandle(id: 'non-ready-cm handle', dmiServiceName: 'dmi2', dmiProperties: dmiProperties, compositeState: advisedState)
+                new YangModelCmHandle(id: 'non-ready-cm-handle', dmiServiceName: 'dmi2', dmiProperties: dmiProperties, compositeState: advisedState)
         ]
     }
 }

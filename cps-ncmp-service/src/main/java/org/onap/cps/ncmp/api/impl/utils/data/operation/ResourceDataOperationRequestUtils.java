@@ -68,8 +68,8 @@ public class ResourceDataOperationRequestUtils {
             final Collection<YangModelCmHandle> yangModelCmHandles) {
 
         final Map<String, List<DmiDataOperation>> dmiDataOperationsOutPerDmiServiceName = new HashMap<>();
-        final MultiValueMap<String, Map<NcmpEventResponseCode, List<String>>> cmHandleIdsPerResponseCodesPerOperationId
-                = new LinkedMultiValueMap<>();
+        final MultiValueMap<DmiDataOperation, Map<NcmpEventResponseCode,
+                List<String>>> cmHandleIdsPerResponseCodesPerOperation = new LinkedMultiValueMap<>();
         final Set<String> nonReadyCmHandleIdsLookup = filterAndGetNonReadyCmHandleIds(yangModelCmHandles);
 
         final Map<String, Map<String, Map<String, String>>> dmiPropertiesPerCmHandleIdPerServiceName =
@@ -100,15 +100,15 @@ public class ResourceDataOperationRequestUtils {
                     }
                 }
             }
-            populateCmHandleIdsPerOperationIdPerResponseCode(cmHandleIdsPerResponseCodesPerOperationId,
-                    dataOperationDefinitionIn.getOperationId(), NcmpEventResponseCode.CM_HANDLES_NOT_FOUND,
-                    nonExistingCmHandleIds);
-            populateCmHandleIdsPerOperationIdPerResponseCode(cmHandleIdsPerResponseCodesPerOperationId,
-                    dataOperationDefinitionIn.getOperationId(), NcmpEventResponseCode.CM_HANDLES_NOT_READY,
-                    nonReadyCmHandleIds);
+            populateCmHandleIdsPerOperationIdPerResponseCode(cmHandleIdsPerResponseCodesPerOperation,
+                    DmiDataOperation.buildDmiDataOperationRequestBodyWithoutCmHandles(dataOperationDefinitionIn),
+                    NcmpEventResponseCode.CM_HANDLES_NOT_FOUND, nonExistingCmHandleIds);
+            populateCmHandleIdsPerOperationIdPerResponseCode(cmHandleIdsPerResponseCodesPerOperation,
+                    DmiDataOperation.buildDmiDataOperationRequestBodyWithoutCmHandles(dataOperationDefinitionIn),
+                    NcmpEventResponseCode.CM_HANDLES_NOT_READY, nonReadyCmHandleIds);
         }
-        if (!cmHandleIdsPerResponseCodesPerOperationId.isEmpty()) {
-            publishErrorMessageToClientTopic(topicParamInQuery, requestId, cmHandleIdsPerResponseCodesPerOperationId);
+        if (!cmHandleIdsPerResponseCodesPerOperation.isEmpty()) {
+            publishErrorMessageToClientTopic(topicParamInQuery, requestId, cmHandleIdsPerResponseCodesPerOperation);
         }
         return dmiDataOperationsOutPerDmiServiceName;
     }
@@ -118,16 +118,16 @@ public class ResourceDataOperationRequestUtils {
      *
      * @param clientTopic                              client given topic
      * @param requestId                                unique identifier per request
-     * @param cmHandleIdsPerResponseCodesPerOperationId list of cm handle ids per operation id with response code
+     * @param cmHandleIdsPerResponseCodesPerOperation list of cm handle ids per operation with response code
      */
     @Async
     public static void publishErrorMessageToClientTopic(final String clientTopic,
                                                          final String requestId,
-                                                         final MultiValueMap<String,
+                                                         final MultiValueMap<DmiDataOperation,
                                                                  Map<NcmpEventResponseCode, List<String>>>
-                                                                    cmHandleIdsPerResponseCodesPerOperationId) {
+                                                                    cmHandleIdsPerResponseCodesPerOperation) {
         final CloudEvent dataOperationCloudEvent = DataOperationEventCreator.createDataOperationEvent(clientTopic,
-                requestId, cmHandleIdsPerResponseCodesPerOperationId);
+                requestId, cmHandleIdsPerResponseCodesPerOperation);
         final EventsPublisher<CloudEvent> eventsPublisher = CpsApplicationContext.getCpsBean(EventsPublisher.class);
         eventsPublisher.publishCloudEvent(clientTopic, requestId, dataOperationCloudEvent);
     }
@@ -174,14 +174,14 @@ public class ResourceDataOperationRequestUtils {
                         != CmHandleState.READY).map(YangModelCmHandle::getId).collect(Collectors.toSet());
     }
 
-    private static void populateCmHandleIdsPerOperationIdPerResponseCode(final MultiValueMap<String,
-            Map<NcmpEventResponseCode, List<String>>> cmHandleIdsPerResponseCodesPerOperationId,
-                                                                        final String operationId,
+    private static void populateCmHandleIdsPerOperationIdPerResponseCode(final MultiValueMap<DmiDataOperation,
+            Map<NcmpEventResponseCode, List<String>>> cmHandleIdsPerResponseCodesPerOperation,
+                                                                        final DmiDataOperation dmiDataOperation,
                                                                         final NcmpEventResponseCode
                                                                                 ncmpEventResponseCode,
                                                                         final List<String> cmHandleIds) {
         if (!cmHandleIds.isEmpty()) {
-            cmHandleIdsPerResponseCodesPerOperationId.add(operationId, Map.of(ncmpEventResponseCode, cmHandleIds));
+            cmHandleIdsPerResponseCodesPerOperation.add(dmiDataOperation, Map.of(ncmpEventResponseCode, cmHandleIds));
         }
     }
 }
