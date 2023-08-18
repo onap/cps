@@ -408,6 +408,20 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
             restoreBookstoreDataAnchor(2)
     }
 
+    def 'Get node error scenario #scenario'() {
+        when: 'attempt to retrieve data nodes'
+            objectUnderTest.getDataNodes(dataspaceName, anchorName, xpath, OMIT_DESCENDANTS)
+        then: 'expected exception is thrown'
+            thrown(expectedException)
+        where: 'following data is used'
+                scenario             | dataspaceName                | anchorName        | xpath           || expectedException
+            'non existant dataspace' | 'non-existant'               | 'not-relevant'    | '/not-relevant' || DataspaceNotFoundException
+            'non existant anchor'    | FUNCTIONAL_TEST_DATASPACE_1  | 'non-existant'    | '/not-relevant' || AnchorNotFoundException
+            'non-existant xpath'     | FUNCTIONAL_TEST_DATASPACE_1  | BOOKSTORE_ANCHOR_1| '/non-existing' || DataNodeNotFoundException
+            'invalid-dataspace'      | 'Invalid dataspace'          | 'not-relevant'    | '/not-relevant' || DataValidationException
+            'invalid-dataspace'      | FUNCTIONAL_TEST_DATASPACE_1  | 'Invalid Anchor'  | '/not-relevant' || DataValidationException
+    }
+
     def countDataNodesInBookstore() {
         return countDataNodesInTree(objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore', INCLUDE_ALL_DESCENDANTS))
     }
