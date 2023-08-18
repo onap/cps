@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f59797a_c90edb43",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-08-18T10:24:35Z",
+      "side": 1,
+      "message": "Just the boolean comment for me",
+      "revId": "dab5cbd58f2d33503d69d7c8b4c61ca9d6a78eeb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b855df33_d774d2ae",
@@ -14,6 +31,30 @@
       "writtenOn": "2023-08-17T15:44:50Z",
       "side": 1,
       "message": "I think this should be void, as this method can only return true or throw an exception. Is there any case this can return false?",
+      "range": {
+        "startLine": 176,
+        "startChar": 11,
+        "endLine": 176,
+        "endChar": 18
+      },
+      "revId": "dab5cbd58f2d33503d69d7c8b4c61ca9d6a78eeb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b8930c9_50012910",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-08-18T10:24:35Z",
+      "side": 1,
+      "message": "Agree",
+      "parentUuid": "b855df33_d774d2ae",
       "range": {
         "startLine": 176,
         "startChar": 11,
