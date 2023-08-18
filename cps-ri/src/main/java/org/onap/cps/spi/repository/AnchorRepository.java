@@ -99,4 +99,8 @@ public interface AnchorRepository extends JpaRepository<AnchorEntity, Long> {
         deleteAllByDataspaceIdAndNameIn(dataspaceEntity.getId(), anchorNames.toArray(new String[0]));
     }
 
+    @Modifying
+    @Query(value = "UPDATE anchor SET schema_set_id =:schemaSetId WHERE id = :anchorId ", nativeQuery = true)
+    void updateAnchorSchemaSetId(@Param("schemaSetId") int schemaSetId, @Param("anchorId") long anchorId);
+
 }

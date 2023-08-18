@@ -22,10 +22,12 @@ package org.onap.cps.integration.functional
 
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
+import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.exceptions.AlreadyDefinedException
 import org.onap.cps.spi.exceptions.AnchorNotFoundException
 import org.onap.cps.spi.exceptions.DataspaceInUseException
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException
+import java.time.OffsetDateTime
 
 class CpsAdminServiceIntegrationSpec extends CpsIntegrationSpecBase {
 
@@ -44,8 +46,8 @@ class CpsAdminServiceIntegrationSpec extends CpsIntegrationSpecBase {
             def thrown = null
             try {
                 objectUnderTest.getDataspace('newDataspace')
-            } catch(Exception e) {
-                thrown = e
+            } catch(Exception exception) {
+                thrown = exception
             }
            assert thrown instanceof DataspaceNotFoundException
     }
@@ -100,8 +102,8 @@ class CpsAdminServiceIntegrationSpec extends CpsIntegrationSpecBase {
             def thrown = null
             try {
                 objectUnderTest.getAnchor(GENERAL_TEST_DATASPACE, 'newAnchor')
-            } catch(Exception e) {
-                thrown = e
+            } catch(Exception exception) {
+                thrown = exception
             }
             assert thrown instanceof AnchorNotFoundException
     }
@@ -151,4 +153,28 @@ class CpsAdminServiceIntegrationSpec extends CpsIntegrationSpecBase {
            'just unknown module(s)' | GENERAL_TEST_DATASPACE
     }
 
+    def 'Update anchor schema set.'() {
+        when: 'a new schema set with tree yang model is created'
+            def newTreeYangModelAsString = readResourceDataFile('tree/new-test-tree.yang')
+            cpsModuleService.createSchemaSet(GENERAL_TEST_DATASPACE, 'newTreeSchemaSet', [tree: newTreeYangModelAsString])
+        then: 'an anchor with new schema set is created'
+            objectUnderTest.createAnchor(GENERAL_TEST_DATASPACE, 'newTreeSchemaSet', 'anchor4')
+        and: 'the new tree datanode is saved'
+            def treeJsonData = readResourceDataFile('tree/new-test-tree.json')
+            cpsDataService.saveData(GENERAL_TEST_DATASPACE, 'anchor4', treeJsonData, OffsetDateTime.now())
+        and: 'saved tree data node can be retrieved by its normalized xpath'
+            def branchName = cpsDataService.getDataNodes(GENERAL_TEST_DATASPACE, 'anchor4', "/test-tree/branch", FetchDescendantsOption.DIRECT_CHILDREN_ONLY)[0].leaves['name']
+            assert branchName == 'left'
+        and: 'a another schema set with updated tree yang model is created'
+            def updatedTreeYangModelAsString = readResourceDataFile('tree/updated-test-tree.yang')
+            cpsModuleService.createSchemaSet(GENERAL_TEST_DATASPACE, 'anotherTreeSchemaSet', [tree: updatedTreeYangModelAsString])
+        and: 'anchor4 schema set is updated with another schema set successfully'
+            objectUnderTest.updateAnchorSchemaSet(GENERAL_TEST_DATASPACE, 'anchor4', 'anotherTreeSchemaSet')
+        when: 'updated tree data node with new leaves'
+            def updatedTreeJsonData = readResourceDataFile('tree/updated-test-tree.json')
+            cpsDataService.updateNodeLeaves(GENERAL_TEST_DATASPACE, "anchor4", "/test-tree/branch[@name='left']", updatedTreeJsonData, OffsetDateTime.now())
+        then: 'updated tree data node can be retrieved by its normalized xpath'
+            def birdsName = cpsDataService.getDataNodes(GENERAL_TEST_DATASPACE, 'anchor4',"/test-tree/branch[@name='left']/nest", FetchDescendantsOption.DIRECT_CHILDREN_ONLY)[0].leaves['birds']
+            assert birdsName as String == '[Raven, Night Owl, Crow]'
+    }
 }
