@@ -20,6 +20,75 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "26b9def4_3332357e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-08-18T10:14:59Z",
+      "side": 1,
+      "message": "Rename to cmHandleIdsPerResponseCodesPerOperation",
+      "range": {
+        "startLine": 265,
+        "startChar": 20,
+        "endLine": 265,
+        "endChar": 61
+      },
+      "revId": "39fa9a78b8855ea7ed7563a18b14f392f25d3e1e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4471451c_03190cfd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/data/operation/DataOperationEventCreator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-08-18T10:14:59Z",
+      "side": 1,
+      "message": "Rename for consistency with other files: cmHandleIdsPerResponseCodesPerOperation",
+      "range": {
+        "startLine": 55,
+        "startChar": 62,
+        "endLine": 55,
+        "endChar": 103
+      },
+      "revId": "39fa9a78b8855ea7ed7563a18b14f392f25d3e1e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57582388_a8dfcd67",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/data/operation/DataOperationEventCreator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-08-18T10:14:59Z",
+      "side": 1,
+      "message": "cmHandleIdsPerResponseCodesPerOperation",
+      "range": {
+        "startLine": 65,
+        "startChar": 54,
+        "endLine": 65,
+        "endChar": 94
+      },
+      "revId": "39fa9a78b8855ea7ed7563a18b14f392f25d3e1e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8540ee6d_76e83f94",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/data/operation/DataOperationEventCreator.java",
         "patchSetId": 1
@@ -59,6 +128,75 @@
         "startChar": 51,
         "endLine": 79,
         "endChar": 61
+      },
+      "revId": "39fa9a78b8855ea7ed7563a18b14f392f25d3e1e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4553935d_d8c68653",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/data/operation/ResourceDataOperationRequestUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-08-18T10:14:59Z",
+      "side": 1,
+      "message": "Rename to cmHandleIdsPerResponseCodesPerOperation",
+      "range": {
+        "startLine": 72,
+        "startChar": 31,
+        "endLine": 72,
+        "endChar": 72
+      },
+      "revId": "39fa9a78b8855ea7ed7563a18b14f392f25d3e1e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7652d8a_07357889",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/data/operation/ResourceDataOperationRequestUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-08-18T10:14:59Z",
+      "side": 1,
+      "message": "cmHandleIdsPerResponseCodesPerOperation",
+      "range": {
+        "startLine": 128,
+        "startChar": 68,
+        "endLine": 128,
+        "endChar": 109
+      },
+      "revId": "39fa9a78b8855ea7ed7563a18b14f392f25d3e1e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3640c05_a4ca0d8b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/data/operation/ResourceDataOperationRequestUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-08-18T10:14:59Z",
+      "side": 1,
+      "message": "cmHandleIdsPerResponseCodesPerOperation",
+      "range": {
+        "startLine": 178,
+        "startChar": 54,
+        "endLine": 178,
+        "endChar": 95
       },
       "revId": "39fa9a78b8855ea7ed7563a18b14f392f25d3e1e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
