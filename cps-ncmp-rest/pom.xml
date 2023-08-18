@@ -34,7 +34,7 @@
     <artifactId>cps-ncmp-rest</artifactId>
 
     <properties>
-        <minimum-coverage>0.99</minimum-coverage>
+        <minimum-coverage>1.00</minimum-coverage>
     </properties>
 
     <dependencies>
