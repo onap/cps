@@ -16,6 +16,46 @@
       "message": "recheck",
       "revId": "50a9e8cd25421e3b63c91f8862e94ab1073901d4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16feed8e_6e3646ce",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-08-18T10:42:06Z",
+      "side": 1,
+      "message": "I think test is good if it is not covered elsewhere",
+      "revId": "50a9e8cd25421e3b63c91f8862e94ab1073901d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c02c7969_b5ab0fa2",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsDataServiceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-08-18T10:42:06Z",
+      "side": 1,
+      "message": "align",
+      "range": {
+        "startLine": 417,
+        "startChar": 12,
+        "endLine": 417,
+        "endChar": 16
+      },
+      "revId": "50a9e8cd25421e3b63c91f8862e94ab1073901d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
