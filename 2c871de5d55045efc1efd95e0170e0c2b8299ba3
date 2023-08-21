@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6478bcaf_550b0ed5",
+        "filename": "cps-ncmp-rest/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-21T16:49:26Z",
+      "side": 1,
+      "message": "not needed, inherited from parent",
+      "revId": "2c871de5d55045efc1efd95e0170e0c2b8299ba3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
