@@ -16,6 +16,24 @@
       "message": "Hi Jessica, myself and Priyank discussed this but we are both not sure what we are approving :-) Maybe you can call a meeting with us to give us some more background. I can +2 and merge when you confirm this file should not affect any of our current Jenkins jobs...",
       "revId": "6e6324e65b7e9cc59df5cabef11a7b62f0250864",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c85ccd4_c125f7bf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 481
+      },
+      "writtenOn": "2023-08-21T16:20:54Z",
+      "side": 1,
+      "message": "Thanks for your comment Toine. \nThis workflow runs in GitHub Actions and does not interfere with any Jenkins jobs and does not vote on changes when the job passes or fails. It just comments. \n\nThis job will eventually replace rtdv3-verify in Jenkins but for now I just need to test it on real code. \n\nThe workflow gets triggered along with Jenkins but does not block changes.",
+      "parentUuid": "5fca9199_8b71b2f5",
+      "revId": "6e6324e65b7e9cc59df5cabef11a7b62f0250864",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
