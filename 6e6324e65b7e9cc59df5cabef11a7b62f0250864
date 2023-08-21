@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5fca9199_8b71b2f5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-21T09:45:51Z",
+      "side": 1,
+      "message": "Hi Jessica, myself and Priyank discussed this but we are both not sure what we are approving :-) Maybe you can call a meeting with us to give us some more background. I can +2 and merge when you confirm this file should not affect any of our current Jenkins jobs...",
+      "revId": "6e6324e65b7e9cc59df5cabef11a7b62f0250864",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
