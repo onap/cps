@@ -34,6 +34,16 @@ public interface SubscriptionPersistence {
     void saveSubscriptionEvent(YangModelSubscriptionEvent yangModelSubscriptionEvent);
 
     /**
+     * Check if there is an ongoing Active Subscription.
+     *
+     * @param yangModelSubscriptionEvent subscription Event as Yang Model.
+     * @return true if ongoing subscription otherwise false.
+     */
+    boolean isOngoingSubscription(YangModelSubscriptionEvent yangModelSubscriptionEvent);
+
+    /**
+
+    /**
      * Get data nodes.
      *
      * @return the DataNode as collection.

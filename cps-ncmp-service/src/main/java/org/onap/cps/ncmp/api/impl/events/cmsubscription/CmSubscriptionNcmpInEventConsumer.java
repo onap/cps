@@ -20,6 +20,8 @@
 
 package org.onap.cps.ncmp.api.impl.events.cmsubscription;
 
+import static org.onap.cps.ncmp.api.impl.events.cmsubscription.CmSubscriptionType.SUBSCRIPTION_CREATED;
+import static org.onap.cps.ncmp.api.impl.events.cmsubscription.CmSubscriptionType.SUBSCRIPTION_DELETED;
 import static org.onap.cps.ncmp.api.impl.events.mapper.CloudEventMapper.toTargetEvent;
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_OPERATIONAL;
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING;
@@ -70,17 +72,10 @@ public class CmSubscriptionNcmpInEventConsumer {
                     "passthrough datastores are currently only supported for event subscriptions");
         }
         if ("CM".equals(cmSubscriptionNcmpInEvent.getData().getDataType().getDataCategory())) {
-            if (subscriptionModelLoaderEnabled) {
-                persistSubscriptionEvent(cmSubscriptionNcmpInEvent);
-            }
-            if ("subscriptionCreated".equals(cloudEvent.getType())) {
-                log.info("Subscription for ClientID {} with name {} ...",
-                        cmSubscriptionNcmpInEvent.getData().getSubscription().getClientID(),
-                        cmSubscriptionNcmpInEvent.getData().getSubscription().getName());
-                if (notificationFeatureEnabled) {
-                    cmSubscriptionNcmpInEventForwarder.forwardCreateSubscriptionEvent(cmSubscriptionNcmpInEvent,
-                            eventType);
-                }
+            if (SUBSCRIPTION_CREATED.getSubscriptionType().equals(eventType)) {
+                handleCmSubscriptionCreateEvent(cmSubscriptionNcmpInEvent);
+            } else if (SUBSCRIPTION_DELETED.getSubscriptionType().equals(eventType)) {
+                handleCmSubscriptionDeleteEvent(cmSubscriptionNcmpInEvent);
             }
         } else {
             log.trace("Non-CM subscription event ignored");
@@ -91,6 +86,36 @@ public class CmSubscriptionNcmpInEventConsumer {
         final YangModelSubscriptionEvent yangModelSubscriptionEvent =
                 cmSubscriptionNcmpInEventMapper.toYangModelSubscriptionEvent(cmSubscriptionNcmpInEvent);
         subscriptionPersistence.saveSubscriptionEvent(yangModelSubscriptionEvent);
+    }
+
+    private void handleCmSubscriptionCreateEvent(final CmSubscriptionNcmpInEvent cmSubscriptionNcmpInEvent) {
+        if (subscriptionModelLoaderEnabled) {
+            persistSubscriptionEvent(cmSubscriptionNcmpInEvent);
+        }
+
+        log.info("Subscription Create for ClientID {} with name {} ...",
+                cmSubscriptionNcmpInEvent.getData().getSubscription().getClientID(),
+                cmSubscriptionNcmpInEvent.getData().getSubscription().getName());
+        if (notificationFeatureEnabled) {
+            cmSubscriptionNcmpInEventForwarder.forwardCmSubscriptionNcmpInEvent(cmSubscriptionNcmpInEvent,
+                    SUBSCRIPTION_CREATED.getSubscriptionType());
+        }
+    }
+
+    private void handleCmSubscriptionDeleteEvent(final CmSubscriptionNcmpInEvent cmSubscriptionNcmpInEvent) {
+
+        final boolean isOngoingSubscription = subscriptionPersistence.isOngoingSubscription(
+                cmSubscriptionNcmpInEventMapper.toYangModelSubscriptionEvent(cmSubscriptionNcmpInEvent));
+
+        if (notificationFeatureEnabled && isOngoingSubscription) {
+
+            log.info("Subscription Delete for ClientID {} with name {} ...",
+                    cmSubscriptionNcmpInEvent.getData().getSubscription().getClientID(),
+                    cmSubscriptionNcmpInEvent.getData().getSubscription().getName());
+            cmSubscriptionNcmpInEventForwarder.forwardCmSubscriptionNcmpInEvent(cmSubscriptionNcmpInEvent,
+                    SUBSCRIPTION_DELETED.getSubscriptionType());
+        }
+
     }
 
 }

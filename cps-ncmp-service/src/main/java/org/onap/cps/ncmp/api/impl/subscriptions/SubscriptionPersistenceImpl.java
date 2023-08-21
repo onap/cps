@@ -66,6 +66,13 @@ public class SubscriptionPersistenceImpl implements SubscriptionPersistence {
         }
     }
 
+    @Override
+    public boolean isOngoingSubscription(final YangModelSubscriptionEvent yangModelSubscriptionEvent) {
+        final String clientId = yangModelSubscriptionEvent.getClientId();
+        final String subscriptionName = yangModelSubscriptionEvent.getSubscriptionName();
+        return !getCmHandlesForSubscriptionEvent(clientId, subscriptionName).isEmpty();
+    }
+
     private void findDeltaCmHandlesAddOrUpdateInDatabase(final YangModelSubscriptionEvent yangModelSubscriptionEvent,
                                                          final String clientId, final String subscriptionName,
                                                          final Collection<DataNode> dataNodes) {

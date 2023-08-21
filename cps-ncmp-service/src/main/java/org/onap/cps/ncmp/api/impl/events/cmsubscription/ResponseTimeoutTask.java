@@ -20,6 +20,8 @@
 
 package org.onap.cps.ncmp.api.impl.events.cmsubscription;
 
+import static org.onap.cps.ncmp.api.impl.events.cmsubscription.CmSubscriptionType.CM_SUBSCRIPTION_TYPE_TO_STATUS;
+
 import com.hazelcast.map.IMap;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
@@ -33,6 +35,7 @@ public class ResponseTimeoutTask implements Runnable {
     private final IMap<String, Set<String>> forwardedSubscriptionEventCache;
     private final CmSubscriptionNcmpOutEventPublisher cmSubscriptionNcmpOutEventPublisher;
     private final CmSubscriptionEvent cmSubscriptionEvent;
+    private final String cmSubscriptionEventType;
 
     @Override
     public void run() {
@@ -45,7 +48,7 @@ public class ResponseTimeoutTask implements Runnable {
         final String subscriptionEventId = subscriptionClientId + subscriptionName;
         if (forwardedSubscriptionEventCache.containsKey(subscriptionEventId)) {
             cmSubscriptionNcmpOutEventPublisher.sendResponse(cmSubscriptionEvent,
-                    "subscriptionCreatedStatus");
+                    CM_SUBSCRIPTION_TYPE_TO_STATUS.get(cmSubscriptionEventType));
             forwardedSubscriptionEventCache.remove(subscriptionEventId);
         }
     }

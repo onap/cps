@@ -32,10 +32,7 @@ import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelSubscriptionEvent.TargetCmHandle
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence
 import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
-import org.onap.cps.ncmp.api.models.CmSubscriptionEvent
 import org.onap.cps.ncmp.events.cmsubscription1_0_0.client_to_ncmp.CmSubscriptionNcmpInEvent
-import org.onap.cps.ncmp.events.cmsubscription1_0_0.dmi_to_ncmp.CmSubscriptionDmiOutEvent
-import org.onap.cps.ncmp.events.cmsubscription1_0_0.dmi_to_ncmp.Data
 import org.onap.cps.ncmp.events.cmsubscription1_0_0.ncmp_to_dmi.CmHandle
 import org.onap.cps.ncmp.events.cmsubscription1_0_0.ncmp_to_dmi.CmSubscriptionDmiInEvent
 import org.onap.cps.ncmp.utils.TestUtils
@@ -89,7 +86,7 @@ class CmSubscriptionNcmpInEventForwarderSpec extends MessagingBaseSpec {
         and: 'a Blocking Variable is used for the Asynchronous call with a timeout of 5 seconds'
             def block = new BlockingVariable<Object>(5)
         when: 'the valid event is forwarded'
-            objectUnderTest.forwardCreateSubscriptionEvent(ncmpInEventJson, 'subscriptionCreated')
+            objectUnderTest.forwardCmSubscriptionNcmpInEvent(ncmpInEventJson, 'subscriptionCreated')
         then: 'An asynchronous call is made to the blocking variable'
             block.get()
         then: 'the event is added to the forwarded subscription event cache'
@@ -124,7 +121,7 @@ class CmSubscriptionNcmpInEventForwarderSpec extends MessagingBaseSpec {
         and: 'the target CMHandles are set to #scenario'
             ncmpInEventJson.getData().getPredicates().setTargets(invalidTargets)
         when: 'the event is forwarded'
-            objectUnderTest.forwardCreateSubscriptionEvent(ncmpInEventJson, 'some-event-type')
+            objectUnderTest.forwardCmSubscriptionNcmpInEvent(ncmpInEventJson, 'some-event-type')
         then: 'an operation not supported exception is thrown'
             thrown(UnsupportedOperationException)
         where:
@@ -152,7 +149,7 @@ class CmSubscriptionNcmpInEventForwarderSpec extends MessagingBaseSpec {
         and: 'a Blocking Variable is used for the Asynchronous call with a timeout of 5 seconds'
             def block = new BlockingVariable<Object>(5)
         when: 'the valid event is forwarded'
-            objectUnderTest.forwardCreateSubscriptionEvent(ncmpInEventJson, 'subscriptionCreatedStatus')
+            objectUnderTest.forwardCmSubscriptionNcmpInEvent(ncmpInEventJson, 'subscriptionCreated')
         then: 'the event is not added to the forwarded subscription event cache'
             0 * mockForwardedSubscriptionEventCache.put("SCO-9989752cm-subscription-001", ["DMIName1", "DMIName2"] as Set)
         and: 'the event is not being forwarded with the CMHandle private properties and does not provides a valid listenable future'

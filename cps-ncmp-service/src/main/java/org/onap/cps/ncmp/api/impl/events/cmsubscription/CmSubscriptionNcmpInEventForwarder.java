@@ -20,6 +20,8 @@
 
 package org.onap.cps.ncmp.api.impl.events.cmsubscription;
 
+import static org.onap.cps.ncmp.api.impl.events.cmsubscription.CmSubscriptionType.CM_SUBSCRIPTION_TYPE_TO_STATUS;
+
 import com.hazelcast.map.IMap;
 import io.cloudevents.CloudEvent;
 import java.util.ArrayList;
@@ -77,7 +79,7 @@ public class CmSubscriptionNcmpInEventForwarder {
      *
      * @param cmSubscriptionNcmpInEvent the event to be forwarded
      */
-    public void forwardCreateSubscriptionEvent(final CmSubscriptionNcmpInEvent cmSubscriptionNcmpInEvent,
+    public void forwardCmSubscriptionNcmpInEvent(final CmSubscriptionNcmpInEvent cmSubscriptionNcmpInEvent,
             final String eventType) {
         final List<String> cmHandleTargets = cmSubscriptionNcmpInEvent.getData().getPredicates().getTargets();
         if (cmHandleTargets == null || cmHandleTargets.isEmpty() || cmHandleTargets.stream()
@@ -116,9 +118,9 @@ public class CmSubscriptionNcmpInEventForwarder {
         }
         if (dmisToRespond.isEmpty()) {
             cmSubscriptionNcmpOutEventPublisher.sendResponse(cmSubscriptionEvent,
-                    "subscriptionCreatedStatus");
+                    CM_SUBSCRIPTION_TYPE_TO_STATUS.get(eventType));
         } else {
-            startResponseTimeout(cmSubscriptionEvent, dmisToRespond);
+            startResponseTimeout(cmSubscriptionEvent, dmisToRespond, eventType);
             final CmSubscriptionDmiInEvent cmSubscriptionDmiInEvent =
                     cmSubscriptionNcmpInEventToCmSubscriptionDmiInEventMapper.toCmSubscriptionDmiInEvent(
                             cmSubscriptionNcmpInEvent);
@@ -126,8 +128,8 @@ public class CmSubscriptionNcmpInEventForwarder {
         }
     }
 
-    private void startResponseTimeout(final CmSubscriptionEvent cmSubscriptionEvent,
-                                      final Set<String> dmisToRespond) {
+    private void startResponseTimeout(final CmSubscriptionEvent cmSubscriptionEvent, final Set<String> dmisToRespond,
+            final String eventType) {
         final String subscriptionClientId = cmSubscriptionEvent.getClientId();
         final String subscriptionName = cmSubscriptionEvent.getSubscriptionName();
         final String subscriptionEventId = subscriptionClientId + subscriptionName;
@@ -135,8 +137,8 @@ public class CmSubscriptionNcmpInEventForwarder {
         forwardedSubscriptionEventCache.put(subscriptionEventId, dmisToRespond,
                 ForwardedSubscriptionEventCacheConfig.SUBSCRIPTION_FORWARD_STARTED_TTL_SECS, TimeUnit.SECONDS);
         final ResponseTimeoutTask responseTimeoutTask =
-            new ResponseTimeoutTask(forwardedSubscriptionEventCache, cmSubscriptionNcmpOutEventPublisher,
-                    cmSubscriptionEvent);
+                new ResponseTimeoutTask(forwardedSubscriptionEventCache, cmSubscriptionNcmpOutEventPublisher,
+                        cmSubscriptionEvent, eventType);
 
         executorService.schedule(responseTimeoutTask, dmiResponseTimeoutInMs, TimeUnit.MILLISECONDS);
     }
@@ -144,8 +146,8 @@ public class CmSubscriptionNcmpInEventForwarder {
     private void forwardEventToDmis(final Map<String, Map<String, Map<String, String>>> dmiNameCmHandleMap,
             final CmSubscriptionDmiInEvent cmSubscriptionDmiInEvent, final String eventType) {
         dmiNameCmHandleMap.forEach((dmiName, cmHandlePropertiesMap) -> {
-            final List<CmHandle> cmHandleTargets = cmHandlePropertiesMap.entrySet().stream().map(
-                    cmHandleAndProperties -> {
+            final List<CmHandle> cmHandleTargets =
+                    cmHandlePropertiesMap.entrySet().stream().map(cmHandleAndProperties -> {
                         final CmHandle cmHandle = new CmHandle();
                         cmHandle.setId(cmHandleAndProperties.getKey());
                         cmHandle.setAdditionalProperties(cmHandleAndProperties.getValue());
@@ -181,9 +183,8 @@ public class CmSubscriptionNcmpInEventForwarder {
             final List<String> targetCmHandlesDoesNotExistInDb,
             final YangModelSubscriptionEvent yangModelSubscriptionEvent) {
         return yangModelSubscriptionEvent.getPredicates().getTargetCmHandles().stream()
-                    .filter(targetCmHandle -> targetCmHandlesDoesNotExistInDb.contains(targetCmHandle.getCmHandleId()))
-                    .map(target -> new YangModelSubscriptionEvent.TargetCmHandle(target.getCmHandleId(),
-                                    SubscriptionStatus.REJECTED, "Targets not found"))
-                .collect(Collectors.toList());
+                .filter(targetCmHandle -> targetCmHandlesDoesNotExistInDb.contains(targetCmHandle.getCmHandleId()))
+                .map(target -> new YangModelSubscriptionEvent.TargetCmHandle(target.getCmHandleId(),
+                        SubscriptionStatus.REJECTED, "Targets not found")).collect(Collectors.toList());
     }
 }
