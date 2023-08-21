@@ -26,43 +26,43 @@ import java.util.stream.Collectors;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
-import org.onap.cps.ncmp.events.cmsubscription1_0_0.dmi_to_ncmp.CmSubscriptionDmiOutEvent;
-import org.onap.cps.ncmp.events.cmsubscription1_0_0.dmi_to_ncmp.SubscriptionStatus;
+import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionStatus;
+import org.onap.cps.ncmp.api.models.CmSubscriptionEvent;
+import org.onap.cps.ncmp.api.models.CmSubscriptionStatus;
 import org.onap.cps.ncmp.events.cmsubscription1_0_0.ncmp_to_client.AdditionalInfo;
 import org.onap.cps.ncmp.events.cmsubscription1_0_0.ncmp_to_client.AdditionalInfoDetail;
 import org.onap.cps.ncmp.events.cmsubscription1_0_0.ncmp_to_client.CmSubscriptionNcmpOutEvent;
 import org.onap.cps.spi.exceptions.DataValidationException;
 
 @Mapper(componentModel = "spring")
-public interface CmSubscriptionDmiOutEventToCmSubscriptionNcmpOutEventMapper {
+public interface CmSubscriptionEventToCmSubscriptionNcmpOutEventMapper {
 
-    @Mapping(source = "data.subscriptionStatus", target = "data.additionalInfo",
-            qualifiedByName = "mapListOfSubscriptionStatusToAdditionalInfo")
-    CmSubscriptionNcmpOutEvent toCmSubscriptionNcmpOutEvent(CmSubscriptionDmiOutEvent cmSubscriptionDmiOutEvent);
+    @Mapping(source = "cmSubscriptionStatus", target = "data.additionalInfo",
+            qualifiedByName = "mapCmSubscriptionStatusToAdditionalInfo")
+    CmSubscriptionNcmpOutEvent toCmSubscriptionNcmpOutEvent(CmSubscriptionEvent cmSubscriptionEvent);
 
     /**
      * Maps list of SubscriptionStatus to an AdditionalInfo.
      *
-     * @param subscriptionStatusList containing details
+     * @param cmSubscriptionStatusList containing details
      * @return an AdditionalInfo
      */
-    @Named("mapListOfSubscriptionStatusToAdditionalInfo")
-    default AdditionalInfo mapListOfSubscriptionStatusToAdditionalInfo(
-            final List<SubscriptionStatus> subscriptionStatusList) {
-        if (subscriptionStatusList == null || subscriptionStatusList.isEmpty()) {
-            throw new DataValidationException("Invalid subscriptionStatusList",
-                    "SubscriptionStatus list cannot be null or empty");
+    @Named("mapCmSubscriptionStatusToAdditionalInfo")
+    default AdditionalInfo mapCmSubscriptionStatusToAdditionalInfo(
+            final List<CmSubscriptionStatus> cmSubscriptionStatusList) {
+        if (cmSubscriptionStatusList == null || cmSubscriptionStatusList.isEmpty()) {
+            throw new DataValidationException("Invalid cmSubscriptionStatusList",
+                    "CmSubscriptionStatus list cannot be null or empty");
         }
 
-        final Map<String, List<SubscriptionStatus>> rejectedSubscriptionsPerDetails = getSubscriptionsPerDetails(
-                subscriptionStatusList, SubscriptionStatus.Status.REJECTED);
+        final Map<String, List<CmSubscriptionStatus>> rejectedSubscriptionsPerDetails =
+                getSubscriptionsPerDetails(cmSubscriptionStatusList, SubscriptionStatus.REJECTED);
         final Map<String, List<String>> rejectedCmHandlesPerDetails =
                 getCmHandlesPerDetails(rejectedSubscriptionsPerDetails);
         final List<AdditionalInfoDetail> rejectedCmHandles = getAdditionalInfoDetailList(rejectedCmHandlesPerDetails);
 
-
-        final Map<String, List<SubscriptionStatus>> pendingSubscriptionsPerDetails = getSubscriptionsPerDetails(
-                subscriptionStatusList, SubscriptionStatus.Status.PENDING);
+        final Map<String, List<CmSubscriptionStatus>> pendingSubscriptionsPerDetails =
+                getSubscriptionsPerDetails(cmSubscriptionStatusList, SubscriptionStatus.PENDING);
         final Map<String, List<String>> pendingCmHandlesPerDetails =
                 getCmHandlesPerDetails(pendingSubscriptionsPerDetails);
         final List<AdditionalInfoDetail> pendingCmHandles = getAdditionalInfoDetailList(pendingCmHandlesPerDetails);
@@ -74,20 +74,20 @@ public interface CmSubscriptionDmiOutEventToCmSubscriptionNcmpOutEventMapper {
         return additionalInfo;
     }
 
-    private static Map<String, List<SubscriptionStatus>> getSubscriptionsPerDetails(
-            final List<SubscriptionStatus> subscriptionStatusList, final SubscriptionStatus.Status status) {
-        return subscriptionStatusList.stream()
+    private static Map<String, List<CmSubscriptionStatus>> getSubscriptionsPerDetails(
+            final List<CmSubscriptionStatus> cmSubscriptionStatusList, final SubscriptionStatus status) {
+        return cmSubscriptionStatusList.stream()
                 .filter(subscriptionStatus -> subscriptionStatus.getStatus() == status)
-                .collect(Collectors.groupingBy(SubscriptionStatus::getDetails));
+                .collect(Collectors.groupingBy(CmSubscriptionStatus::getDetails));
     }
 
     private static Map<String, List<String>> getCmHandlesPerDetails(
-            final Map<String, List<SubscriptionStatus>> subscriptionsPerDetails) {
-        return subscriptionsPerDetails.entrySet().stream()
+            final Map<String, List<CmSubscriptionStatus>> cmSubscriptionsPerDetails) {
+        return cmSubscriptionsPerDetails.entrySet().stream()
                 .collect(Collectors.toMap(
                         Map.Entry::getKey,
                         entry -> entry.getValue().stream()
-                                .map(SubscriptionStatus::getId)
+                                .map(CmSubscriptionStatus::getId)
                                 .collect(Collectors.toList())
                 ));
     }
