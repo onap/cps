@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccde6fb8_ea1c8172",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 481
+      },
+      "writtenOn": "2023-08-21T20:24:04Z",
+      "side": 1,
+      "message": "@Toine, I have a small fix to add to my workflow, could you please review and merge?\n\nIf you are curious, this is how I found it\nhttps://github.com/onap/cps/actions/runs/5929115407/workflow",
+      "revId": "9e3eb67afb53396c82f491e6695eff717ffeb696",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
