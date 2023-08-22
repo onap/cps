@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "def99fcc_fe04cc0a",
+        "filename": "csit/plans/cps/setup.sh",
+        "patchSetId": 41
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-22T11:28:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "94a9c8bb_5c12d8c3",
+      "range": {
+        "startLine": 132,
+        "startChar": 321,
+        "endLine": 132,
+        "endChar": 346
+      },
+      "revId": "1340c579a5f7dec89b786059d404a1a0a06d742e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "39d05d60_81a5a5ab",
@@ -71,6 +95,30 @@
       "writtenOn": "2023-08-22T09:22:55Z",
       "side": 1,
       "message": "NB: Verify Kafka flow for Cm Subscription Creation LCM",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 56
+      },
+      "revId": "1340c579a5f7dec89b786059d404a1a0a06d742e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea1427f4_1251f118",
+        "filename": "csit/tests/cps-subscriptions/cps-subscription-notification.robot",
+        "patchSetId": 41
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-22T11:28:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "39d05d60_81a5a5ab",
       "range": {
         "startLine": 43,
         "startChar": 0,
