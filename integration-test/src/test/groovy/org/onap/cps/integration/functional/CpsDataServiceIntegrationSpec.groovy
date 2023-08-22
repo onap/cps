@@ -102,6 +102,20 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
             cpsPath << [ 'invalid path', '/non-existing-path' ]
     }
 
+    def 'Get data nodes error scenario #scenario'() {
+        when: 'attempt to retrieve data nodes'
+            objectUnderTest.getDataNodes(dataspaceName, anchorName, xpath, OMIT_DESCENDANTS)
+        then: 'expected exception is thrown'
+            thrown(expectedException)
+        where: 'following data is used'
+            scenario                 | dataspaceName                | anchorName        | xpath           || expectedException
+            'non existent dataspace' | 'non-existent'               | 'not-relevant'    | '/not-relevant' || DataspaceNotFoundException
+            'non existent anchor'    | FUNCTIONAL_TEST_DATASPACE_1  | 'non-existent'    | '/not-relevant' || AnchorNotFoundException
+            'non-existent xpath'     | FUNCTIONAL_TEST_DATASPACE_1  | BOOKSTORE_ANCHOR_1| '/non-existing' || DataNodeNotFoundException
+            'invalid-dataspace'      | 'Invalid dataspace'          | 'not-relevant'    | '/not-relevant' || DataValidationException
+            'invalid-dataspace'      | FUNCTIONAL_TEST_DATASPACE_1  | 'Invalid Anchor'  | '/not-relevant' || DataValidationException
+    }
+
     def 'Delete root data node.'() {
         when: 'the "root" is deleted'
             objectUnderTest.deleteDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, [ '/' ], now)
