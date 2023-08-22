@@ -68,7 +68,7 @@ class SerializationIntegrationSpec extends ConsumerBaseSpec {
         and: 'wait a little for async processing of message'
             TimeUnit.MILLISECONDS.sleep(300)
         then: 'the event has been forwarded'
-            1 * mockEventsPublisher.publishCloudEvent('some client topic', 'my-event-id', _) >> { args -> { capturedForwardedEvent = args[2] } }
+            1 * mockEventsPublisher.publishCloudEvent('some client topic', 'some-correlation-id', _) >> { args -> { capturedForwardedEvent = args[2] } }
         and: 'the forwarded event is identical to the event that was sent'
             assert capturedForwardedEvent == cloudEvent
     }
@@ -94,6 +94,7 @@ class SerializationIntegrationSpec extends ConsumerBaseSpec {
             .withType('DataOperationEvent')
             .withSource(URI.create('some-source'))
             .withExtension('destination','some client topic')
+            .withExtension('correlationid','some-correlation-id')
             .withData(objectMapper.writeValueAsBytes(dataOperationEvent))
             .build()
     }
