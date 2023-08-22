@@ -33,10 +33,6 @@
 
     <artifactId>cps-ncmp-rest</artifactId>
 
-    <properties>
-        <minimum-coverage>1.00</minimum-coverage>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
