@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8c173e7_0f2ed5a3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-24T15:42:01Z",
+      "side": 1,
+      "message": "I have left just a question.",
+      "revId": "76bb56c5e41bf9f8da13a1b04b94542c224a07bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "af6d69e2_c4a0732e",
@@ -152,6 +169,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1da35b24_ba96f2ea",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/AbstractModelLoader.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-24T15:42:01Z",
+      "side": 1,
+      "message": "NB: I wonder what is the best logging level to log an exception, debug or error?",
+      "range": {
+        "startLine": 102,
+        "startChar": 16,
+        "endLine": 102,
+        "endChar": 21
+      },
+      "revId": "76bb56c5e41bf9f8da13a1b04b94542c224a07bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "90f82326_7c9faad9",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/AbstractModelLoader.java",
         "patchSetId": 1
@@ -209,6 +249,23 @@
       "writtenOn": "2023-08-24T12:42:25Z",
       "side": 1,
       "message": "@ConditionalOnProperty(name \u003d \"ncmp.model-loader.subscription\", havingValue \u003d \"true\", matchIfMissing \u003d true)\n\nRef : our existing example org.onap.cps.ncmp.api.impl.async.AsyncRestRequestResponseEventConsumer",
+      "revId": "76bb56c5e41bf9f8da13a1b04b94542c224a07bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13b340db_4aa30e2c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/SubscriptionModelLoader.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-24T15:42:01Z",
+      "side": 1,
+      "message": "There is a space left here.",
       "revId": "76bb56c5e41bf9f8da13a1b04b94542c224a07bd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
