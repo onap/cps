@@ -157,6 +157,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d711c689_df718e4b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/AbstractModelLoader.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-24T16:28:26Z",
+      "side": 1,
+      "message": "wont do, see dicsussion below",
+      "parentUuid": "e78665a7_7994afdc",
+      "range": {
+        "startLine": 47,
+        "startChar": 4,
+        "endLine": 50,
+        "endChar": 0
+      },
+      "revId": "76bb56c5e41bf9f8da13a1b04b94542c224a07bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dfc7906d_bc44598a",
@@ -570,6 +594,30 @@
       "side": 1,
       "message": "Sourabh had a comemnt on this too, I see if I can get ot working, might need some help",
       "parentUuid": "ad86860a_62ab2bd5",
+      "range": {
+        "startLine": 41,
+        "startChar": 3,
+        "endLine": 45,
+        "endChar": 5
+      },
+      "revId": "76bb56c5e41bf9f8da13a1b04b94542c224a07bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e18a113f_8123e2b7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/SubscriptionModelLoader.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-24T16:28:26Z",
+      "side": 1,
+      "message": "after chat with Priyank I understand that my current code is OK, it is also proven to work (CSIT depend on this)",
+      "parentUuid": "3830e527_9c2294d7",
       "range": {
         "startLine": 41,
         "startChar": 3,
