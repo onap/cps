@@ -60,6 +60,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e78665a7_7994afdc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/AbstractModelLoader.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-08-24T13:07:26Z",
+      "side": 1,
+      "message": "Make use of \"CpsApplicationContext \" get any cps bean whenever we need it :\n\nCpsApplicationContext.getCpsBean(CpsAdminService .class);\n\nIf we use code above below code can be removed from multiple places :\n\n1. line number 47-49 can be removed.\n2. line no 43 RequiredArgsConstructor can be removed\n3. line no 45 @NoArgsConstructor(force \u003d true) can be removed \n4. By removing all there it would not force any concrete class to define a contructor having all these params, like into SubscriptionModelLoader from line no. 41-45\n\npublic SubscriptionModelLoader(final CpsAdminService cpsAdminService,\n                                   final CpsModuleService cpsModuleService,\n                                   final CpsDataService cpsDataService) {\n        super(cpsAdminService, cpsModuleService, cpsDataService);\n    }",
+      "range": {
+        "startLine": 47,
+        "startChar": 4,
+        "endLine": 50,
+        "endChar": 0
+      },
+      "revId": "76bb56c5e41bf9f8da13a1b04b94542c224a07bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dfc7906d_bc44598a",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/AbstractModelLoader.java",
         "patchSetId": 1
@@ -186,6 +209,29 @@
       "writtenOn": "2023-08-24T12:42:25Z",
       "side": 1,
       "message": "@ConditionalOnProperty(name \u003d \"ncmp.model-loader.subscription\", havingValue \u003d \"true\", matchIfMissing \u003d true)\n\nRef : our existing example org.onap.cps.ncmp.api.impl.async.AsyncRestRequestResponseEventConsumer",
+      "revId": "76bb56c5e41bf9f8da13a1b04b94542c224a07bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76392048_95710114",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/SubscriptionModelLoader.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-08-24T13:07:26Z",
+      "side": 1,
+      "message": "Can be removed if we use CpsApplicationContext into abstract  class AbstractModelLoader to get cps bean as suggested\n\nCpsApplicationContext.getCpsBean(CpsAdminService .class);",
+      "range": {
+        "startLine": 41,
+        "startChar": 3,
+        "endLine": 45,
+        "endChar": 5
+      },
       "revId": "76bb56c5e41bf9f8da13a1b04b94542c224a07bd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
