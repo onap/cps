@@ -16,6 +16,24 @@
       "message": "Hi Arpit, I increase the code coverage in RI in the base yesterday but I think you have to decrease it again (by 1%) becasue of your changes in the RI module",
       "revId": "9924f127dd7a427e8f601eeb18cdbc0defbaba23",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87f3301d_adb12c53",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-08-24T08:39:17Z",
+      "side": 1,
+      "message": "yes I have to reduce it. Thanks for the heads up",
+      "parentUuid": "3016fb06_aeeaa9ad",
+      "revId": "9924f127dd7a427e8f601eeb18cdbc0defbaba23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
