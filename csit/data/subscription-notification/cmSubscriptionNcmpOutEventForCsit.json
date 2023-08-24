@@ -1,0 +1,10 @@
+{
+  "data":{
+    "statusCode":1,
+    "statusMessage":"successfully applied subscription",
+    "additionalInfo":{
+      "rejected":[],
+      "pending":[]
+    }
+  }
+}
