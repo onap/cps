@@ -1,0 +1,11 @@
+Code-Review+1: Priyank Maheshwari <priyank.maheshwari@est.tech>
+Code-Review+1: Sean Beirne <sean.beirne@est.tech>
+Code-Review+2: Luke Gleeson <luke.gleeson@est.tech>
+Code-Review+1: Lee Anjella Macabuhay <lee.anjella.macabuhay@est.tech>
+Verified+1: ONAP Jobbuilder <onap-jobbuilder@jenkins.onap.org>
+Verified+1: ONAP Required GHA <releng+onap.required.gha@linuxfoundation.org>
+Submitted-by: Luke Gleeson <luke.gleeson@est.tech>
+Submitted-at: Thu, 24 Aug 2023 08:44:42 +0000
+Reviewed-on: https://gerrit.onap.org/r/c/cps/+/134087
+Project: cps
+Branch: refs/heads/master
