@@ -75,6 +75,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c7f77a8_0dec6676",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/AbstractModelLoader.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-24T16:04:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af6d69e2_c4a0732e",
+      "range": {
+        "startLine": 42,
+        "startChar": 1,
+        "endLine": 42,
+        "endChar": 10
+      },
+      "revId": "76bb56c5e41bf9f8da13a1b04b94542c224a07bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "139cd13a_cc092fc9",
@@ -117,6 +141,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0dd63407_1203eef5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/AbstractModelLoader.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-24T16:04:21Z",
+      "side": 1,
+      "message": "I created an instance instead of injection, I dont want to use injection as that affect the superclass cosntructor and test too..",
+      "parentUuid": "139cd13a_cc092fc9",
+      "revId": "76bb56c5e41bf9f8da13a1b04b94542c224a07bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dfc7906d_bc44598a",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/AbstractModelLoader.java",
         "patchSetId": 1
@@ -128,6 +170,30 @@
       "writtenOn": "2023-08-24T12:42:25Z",
       "side": 1,
       "message": "We can give meaningful name like exitCode \u003d 1",
+      "range": {
+        "startLine": 63,
+        "startChar": 88,
+        "endLine": 63,
+        "endChar": 89
+      },
+      "revId": "76bb56c5e41bf9f8da13a1b04b94542c224a07bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3caf7876_96f59092",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/AbstractModelLoader.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-24T16:04:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dfc7906d_bc44598a",
       "range": {
         "startLine": 63,
         "startChar": 88,
@@ -161,6 +227,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c8c81d4_8bdb8123",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/AbstractModelLoader.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-24T16:04:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "05f0d040_d38d5f48",
+      "range": {
+        "startLine": 88,
+        "startChar": 47,
+        "endLine": 88,
+        "endChar": 56
+      },
+      "revId": "76bb56c5e41bf9f8da13a1b04b94542c224a07bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3804ee0e_a63bf10b",
@@ -174,6 +264,30 @@
       "writtenOn": "2023-08-24T12:42:25Z",
       "side": 1,
       "message": "alreadyDefinedException",
+      "range": {
+        "startLine": 99,
+        "startChar": 47,
+        "endLine": 99,
+        "endChar": 56
+      },
+      "revId": "76bb56c5e41bf9f8da13a1b04b94542c224a07bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a24f406_236a792f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/AbstractModelLoader.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-24T16:04:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3804ee0e_a63bf10b",
       "range": {
         "startLine": 99,
         "startChar": 47,
@@ -207,6 +321,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ebec9269_35502ce7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/AbstractModelLoader.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-24T16:04:21Z",
+      "side": 1,
+      "message": "agreed, there are 4 critical errors which lead to the applicaton exiting so it definitly should be error level!",
+      "parentUuid": "1da35b24_ba96f2ea",
+      "range": {
+        "startLine": 102,
+        "startChar": 16,
+        "endLine": 102,
+        "endChar": 21
+      },
+      "revId": "76bb56c5e41bf9f8da13a1b04b94542c224a07bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "90f82326_7c9faad9",
@@ -230,6 +368,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ce1443d_907a8fbd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/AbstractModelLoader.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-24T16:04:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "90f82326_7c9faad9",
+      "range": {
+        "startLine": 110,
+        "startChar": 8,
+        "endLine": 110,
+        "endChar": 64
+      },
+      "revId": "76bb56c5e41bf9f8da13a1b04b94542c224a07bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "40055c09_632a4d95",
@@ -243,6 +405,30 @@
       "writtenOn": "2023-08-24T12:42:25Z",
       "side": 1,
       "message": "@Service",
+      "range": {
+        "startLine": 31,
+        "startChar": 1,
+        "endLine": 31,
+        "endChar": 10
+      },
+      "revId": "76bb56c5e41bf9f8da13a1b04b94542c224a07bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8878d6a_3d72728e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/SubscriptionModelLoader.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-24T16:04:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "40055c09_632a4d95",
       "range": {
         "startLine": 31,
         "startChar": 1,
@@ -283,6 +469,42 @@
       "writtenOn": "2023-08-24T15:42:01Z",
       "side": 1,
       "message": "There is a space left here.",
+      "revId": "76bb56c5e41bf9f8da13a1b04b94542c224a07bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69e0ae14_261727f8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/SubscriptionModelLoader.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-24T16:04:21Z",
+      "side": 1,
+      "message": "maybe in the future, we also do somethign on  the else I think its OK for now...",
+      "parentUuid": "b24bc3f6_940e6bb8",
+      "revId": "76bb56c5e41bf9f8da13a1b04b94542c224a07bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62832dff_5670182b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/SubscriptionModelLoader.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-24T16:04:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13b340db_4aa30e2c",
       "revId": "76bb56c5e41bf9f8da13a1b04b94542c224a07bd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -357,6 +579,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a44b0efb_53741f58",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/SubscriptionModelLoader.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-24T16:04:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e914ed7a_87918a6a",
+      "range": {
+        "startLine": 47,
+        "startChar": 4,
+        "endLine": 52,
+        "endChar": 0
+      },
+      "revId": "76bb56c5e41bf9f8da13a1b04b94542c224a07bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "020cbbd4_cca52ce5",
@@ -382,6 +628,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8893313a_2c4ea282",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/SubscriptionModelLoader.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-24T16:04:21Z",
+      "side": 1,
+      "message": "as before; I think we\u0027ll leave it as is...",
+      "parentUuid": "020cbbd4_cca52ce5",
+      "range": {
+        "startLine": 58,
+        "startChar": 8,
+        "endLine": 58,
+        "endChar": 45
+      },
+      "revId": "76bb56c5e41bf9f8da13a1b04b94542c224a07bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "72490d3e_777976fa",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/SubscriptionModelLoader.java",
         "patchSetId": 1
@@ -393,6 +663,30 @@
       "writtenOn": "2023-08-24T12:42:25Z",
       "side": 1,
       "message": "If this log is not important we can remove it by using ConditionalOnProperty at line number : 32",
+      "range": {
+        "startLine": 61,
+        "startChar": 9,
+        "endLine": 63,
+        "endChar": 9
+      },
+      "revId": "76bb56c5e41bf9f8da13a1b04b94542c224a07bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "10575af7_81b10791",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/SubscriptionModelLoader.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-24T16:04:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "72490d3e_777976fa",
       "range": {
         "startLine": 61,
         "startChar": 9,
