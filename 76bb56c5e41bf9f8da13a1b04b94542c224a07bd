@@ -1,0 +1,245 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ef4242a_2f089786",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-08-24T12:42:25Z",
+      "side": 1,
+      "message": "I left some minor comments.",
+      "revId": "76bb56c5e41bf9f8da13a1b04b94542c224a07bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af6d69e2_c4a0732e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/AbstractModelLoader.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-08-24T12:42:25Z",
+      "side": 1,
+      "message": "@Service",
+      "range": {
+        "startLine": 42,
+        "startChar": 1,
+        "endLine": 42,
+        "endChar": 10
+      },
+      "revId": "76bb56c5e41bf9f8da13a1b04b94542c224a07bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfc7906d_bc44598a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/AbstractModelLoader.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-08-24T12:42:25Z",
+      "side": 1,
+      "message": "We can give meaningful name like exitCode \u003d 1",
+      "range": {
+        "startLine": 63,
+        "startChar": 88,
+        "endLine": 63,
+        "endChar": 89
+      },
+      "revId": "76bb56c5e41bf9f8da13a1b04b94542c224a07bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05f0d040_d38d5f48",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/AbstractModelLoader.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-08-24T12:42:25Z",
+      "side": 1,
+      "message": "alreadyDefinedException",
+      "range": {
+        "startLine": 88,
+        "startChar": 47,
+        "endLine": 88,
+        "endChar": 56
+      },
+      "revId": "76bb56c5e41bf9f8da13a1b04b94542c224a07bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3804ee0e_a63bf10b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/AbstractModelLoader.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-08-24T12:42:25Z",
+      "side": 1,
+      "message": "alreadyDefinedException",
+      "range": {
+        "startLine": 99,
+        "startChar": 47,
+        "endLine": 99,
+        "endChar": 56
+      },
+      "revId": "76bb56c5e41bf9f8da13a1b04b94542c224a07bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90f82326_7c9faad9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/AbstractModelLoader.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-08-24T12:42:25Z",
+      "side": 1,
+      "message": "final String nodeData \u003d jsonObjectMapper.asJsonString(Map.of(dataNodeName, Map.of()));\n\nabove code produces nodedata\u003d {\"NCMP-Admin\":{}} where dataNodeName \u003d NCMP-Admin",
+      "range": {
+        "startLine": 110,
+        "startChar": 8,
+        "endLine": 110,
+        "endChar": 64
+      },
+      "revId": "76bb56c5e41bf9f8da13a1b04b94542c224a07bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40055c09_632a4d95",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/SubscriptionModelLoader.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-08-24T12:42:25Z",
+      "side": 1,
+      "message": "@Service",
+      "range": {
+        "startLine": 31,
+        "startChar": 1,
+        "endLine": 31,
+        "endChar": 10
+      },
+      "revId": "76bb56c5e41bf9f8da13a1b04b94542c224a07bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b24bc3f6_940e6bb8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/SubscriptionModelLoader.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-08-24T12:42:25Z",
+      "side": 1,
+      "message": "@ConditionalOnProperty(name \u003d \"ncmp.model-loader.subscription\", havingValue \u003d \"true\", matchIfMissing \u003d true)\n\nRef : our existing example org.onap.cps.ncmp.api.impl.async.AsyncRestRequestResponseEventConsumer",
+      "revId": "76bb56c5e41bf9f8da13a1b04b94542c224a07bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e914ed7a_87918a6a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/SubscriptionModelLoader.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-08-24T12:42:25Z",
+      "side": 1,
+      "message": "Can be reused from AbstractModelLoader",
+      "range": {
+        "startLine": 47,
+        "startChar": 4,
+        "endLine": 52,
+        "endChar": 0
+      },
+      "revId": "76bb56c5e41bf9f8da13a1b04b94542c224a07bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "020cbbd4_cca52ce5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/SubscriptionModelLoader.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-08-24T12:42:25Z",
+      "side": 1,
+      "message": "Can be removed if we use ConditionalOnProperty at line number : 32",
+      "range": {
+        "startLine": 58,
+        "startChar": 8,
+        "endLine": 58,
+        "endChar": 45
+      },
+      "revId": "76bb56c5e41bf9f8da13a1b04b94542c224a07bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72490d3e_777976fa",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/SubscriptionModelLoader.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-08-24T12:42:25Z",
+      "side": 1,
+      "message": "If this log is not important we can remove it by using ConditionalOnProperty at line number : 32",
+      "range": {
+        "startLine": 61,
+        "startChar": 9,
+        "endLine": 63,
+        "endChar": 9
+      },
+      "revId": "76bb56c5e41bf9f8da13a1b04b94542c224a07bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
