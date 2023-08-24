@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e557a88a_1853cbbc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-24T14:52:14Z",
+      "side": 1,
+      "message": "Since no-more dmi-plugin send a PENDING state, so there is no need to have that PENDING check in DmiOutEventConsumer.",
+      "revId": "88abb73bfe3e421c1a7fd09fcb259008f19a32cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
