@@ -35,6 +35,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ba3959d_a22e9a3b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-08-24T16:00:20Z",
+      "side": 1,
+      "message": "apart from the usage of ApplicationContext , I more or less agree with sourabhs comments.\nWill do one more round of review once I run it in my local.",
+      "revId": "76bb56c5e41bf9f8da13a1b04b94542c224a07bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "af6d69e2_c4a0732e",
@@ -283,6 +300,30 @@
       "writtenOn": "2023-08-24T13:07:26Z",
       "side": 1,
       "message": "Can be removed if we use CpsApplicationContext into abstract  class AbstractModelLoader to get cps bean as suggested\n\nCpsApplicationContext.getCpsBean(CpsAdminService .class);",
+      "range": {
+        "startLine": 41,
+        "startChar": 3,
+        "endLine": 45,
+        "endChar": 5
+      },
+      "revId": "76bb56c5e41bf9f8da13a1b04b94542c224a07bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad86860a_62ab2bd5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/SubscriptionModelLoader.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-08-24T16:00:20Z",
+      "side": 1,
+      "message": "Why not do it the Spring way only. Using Constructor injection.\nI would just use the CpsApplicationContext at places where the class is not managed by Spring and we still want some instance to be used thr.\n\nOn the contrary if we use the constructor injection way ( in the spring managed class ) , its upto Spring to manage the lifecycle.\n\nAlso traditional way to test it.",
+      "parentUuid": "76392048_95710114",
       "range": {
         "startLine": 41,
         "startChar": 3,
