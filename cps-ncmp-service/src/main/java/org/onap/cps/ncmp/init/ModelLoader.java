@@ -20,7 +20,6 @@
 
 package org.onap.cps.ncmp.init;
 
-import java.util.Map;
 import lombok.NonNull;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
@@ -30,23 +29,6 @@ public interface ModelLoader extends ApplicationListener<ApplicationReadyEvent> 
     @Override
     void onApplicationEvent(@NonNull ApplicationReadyEvent applicationReadyEvent);
 
-    /**
-     * Create schema set.
-     *
-     * @param dataspaceName dataspace name
-     * @param schemaSetName schemaset name
-     * @param yangResourceContentMap yang resource content map
-     * @return true if schema set is created
-     */
-    boolean createSchemaSet(String dataspaceName, String schemaSetName, Map<String, String> yangResourceContentMap);
+    void onboardOrUpgradeModel();
 
-    /**
-     * Create anchor.
-     *
-     * @param dataspaceName dataspace name
-     * @param schemaSetName schemaset name
-     * @param anchorName anchor name
-     * @return true if anchor is created
-     */
-    boolean createAnchor(String dataspaceName, String schemaSetName, String anchorName);
 }
