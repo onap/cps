@@ -24,8 +24,6 @@ import static org.onap.cps.ncmp.api.impl.events.mapper.CloudEventMapper.toTarget
 
 import com.hazelcast.map.IMap;
 import io.cloudevents.CloudEvent;
-import java.util.Collection;
-import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import lombok.RequiredArgsConstructor;
@@ -33,12 +31,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.onap.cps.ncmp.api.impl.config.embeddedcache.ForwardedSubscriptionEventCacheConfig;
 import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionPersistence;
-import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionStatus;
-import org.onap.cps.ncmp.api.impl.utils.DataNodeHelper;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelSubscriptionEvent;
 import org.onap.cps.ncmp.api.models.CmSubscriptionEvent;
 import org.onap.cps.ncmp.events.cmsubscription1_0_0.dmi_to_ncmp.CmSubscriptionDmiOutEvent;
-import org.onap.cps.spi.model.DataNode;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
@@ -77,7 +72,7 @@ public class CmSubscriptionDmiOutEventConsumer {
         log.info("subscription event response of clientId: {} is received.", clientId);
         final String subscriptionName = cmSubscriptionDmiOutEvent.getData().getSubscriptionName();
         final String subscriptionEventId = clientId + subscriptionName;
-        boolean createOutcomeResponse = false;
+        boolean createOutcomeResponse = true;
         if (forwardedSubscriptionEventCache.containsKey(subscriptionEventId)) {
             final Set<String> dmiNames = forwardedSubscriptionEventCache.get(subscriptionEventId);
             dmiNames.remove(cmSubscriptionDmiOutEvent.getData().getDmiName());
@@ -89,8 +84,7 @@ public class CmSubscriptionDmiOutEventConsumer {
             updateSubscriptionEvent(cmSubscriptionDmiOutEvent);
         }
         if (createOutcomeResponse
-                && notificationFeatureEnabled
-                && hasNoPendingCmHandles(clientId, subscriptionName)) {
+                && notificationFeatureEnabled) {
 
             final CmSubscriptionEvent cmSubscriptionEvent = new CmSubscriptionEvent();
             cmSubscriptionEvent.setClientId(cmSubscriptionDmiOutEvent.getData().getClientId());
@@ -99,20 +93,6 @@ public class CmSubscriptionDmiOutEventConsumer {
             cmSubscriptionNcmpOutEventPublisher.sendResponse(cmSubscriptionEvent, eventType);
             forwardedSubscriptionEventCache.remove(subscriptionEventId);
         }
-    }
-
-    private boolean hasNoPendingCmHandles(final String clientId, final String subscriptionName) {
-        final Collection<DataNode> dataNodeSubscription = subscriptionPersistence.getCmHandlesForSubscriptionEvent(
-                clientId, subscriptionName);
-        final Map<String, Map<String, String>> cmHandleIdToStatusAndDetailsAsMapOriginal =
-                DataNodeHelper.cmHandleIdToStatusAndDetailsAsMapFromDataNode(dataNodeSubscription);
-        for (final Map<String, String> statusAndDetailsMap : cmHandleIdToStatusAndDetailsAsMapOriginal.values()) {
-            final String status = statusAndDetailsMap.get("status");
-            if (SubscriptionStatus.PENDING.toString().equals(status)) {
-                return false;
-            }
-        }
-        return true;
     }
 
     private void updateSubscriptionEvent(final CmSubscriptionDmiOutEvent cmSubscriptionDmiOutEvent) {
