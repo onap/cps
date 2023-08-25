@@ -67,6 +67,23 @@
       "message": "debugging and issue with rtd in GHA:\nconfigparser.NoSectionError: No section: \u0027rtd\u0027",
       "revId": "fe9100206c88c9c8a710aecaa427d170039e6b5b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2573d75_4734e400",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 481
+      },
+      "writtenOn": "2023-08-25T22:28:39Z",
+      "side": 1,
+      "message": "recheck",
+      "revId": "fe9100206c88c9c8a710aecaa427d170039e6b5b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
