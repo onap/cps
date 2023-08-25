@@ -20,6 +20,7 @@
 
 package org.onap.cps.integration.performance.base
 
+import org.onap.cps.integration.ResourceMeter
 import org.onap.cps.rest.utils.MultipartFileUtil
 import org.onap.cps.spi.FetchDescendantsOption
 import org.springframework.web.multipart.MultipartFile
@@ -32,6 +33,8 @@ class CpsPerfTestBase extends PerfTestBase {
     static final def OPENROADM_ANCHORS = 3
     static final def OPENROADM_DEVICES_PER_ANCHOR = 1000
     static final def OPENROADM_DATANODES_PER_DEVICE = 86
+
+    ResourceMeter resourceMeter = new ResourceMeter()
 
     def printTitle() {
         println('##        C P S   P E R F O R M A N C E   T E S T   R E S U L T S          ##')
@@ -62,11 +65,11 @@ class CpsPerfTestBase extends PerfTestBase {
 
     def addOpenRoadData() {
         def data = generateOpenRoadData(OPENROADM_DEVICES_PER_ANCHOR)
-        stopWatch.start()
+        resourceMeter.start()
         addAnchorsWithData(OPENROADM_ANCHORS, CPS_PERFORMANCE_TEST_DATASPACE, LARGE_SCHEMA_SET, 'openroadm', data)
-        stopWatch.stop()
-        def durationInMillis = stopWatch.getTotalTimeMillis()
-        recordAndAssertPerformance('Creating openroadm anchors with large data tree', TimeUnit.SECONDS.toMillis(200), durationInMillis)
+        resourceMeter.stop()
+        def durationInMillis = resourceMeter.getTotalTimeMillis()
+        recordAndAssertPerformance('Creating openroadm anchors with large data tree', TimeUnit.SECONDS.toMillis(200), durationInMillis, resourceMeter.getTotalMemoryUsedMB())
     }
 
     def generateOpenRoadData(numberOfNodes) {
@@ -78,13 +81,15 @@ class CpsPerfTestBase extends PerfTestBase {
 
     def 'Warm the database'() {
         when: 'dummy get data nodes runs so that populating the DB does not get included in other test timings'
-            stopWatch.start()
+            resourceMeter.start()
             def result = cpsDataService.getDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm1', '/', FetchDescendantsOption.OMIT_DESCENDANTS)
             assert countDataNodesInTree(result) == 1
-            stopWatch.stop()
-            def durationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'all data is read within expected time'
-            recordAndAssertPerformance("Warming database", TimeUnit.SECONDS.toMillis(200), durationInMillis)
+            resourceMeter.stop()
+            def durationInMillis = resourceMeter.getTotalTimeMillis()
+        then: 'memory used is within #peakMemoryUsage'
+            assert resourceMeter.getTotalMemoryUsedMB() <= 30
+        and: 'all data is read within expected time'
+            recordAndAssertPerformance("Warming database", TimeUnit.SECONDS.toMillis(200), durationInMillis, resourceMeter.getTotalMemoryUsedMB())
     }
 
 }
