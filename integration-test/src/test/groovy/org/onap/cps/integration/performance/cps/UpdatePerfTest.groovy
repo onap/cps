@@ -20,6 +20,7 @@
 
 package org.onap.cps.integration.performance.cps
 
+import org.onap.cps.integration.TimeAndMemoryStopwatch
 import java.time.OffsetDateTime
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.integration.performance.base.CpsPerfTestBase
@@ -29,6 +30,7 @@ import java.util.concurrent.TimeUnit
 class UpdatePerfTest extends CpsPerfTestBase {
 
     CpsDataService objectUnderTest
+    TimeAndMemoryStopwatch timeAndMemoryStopwatch = new TimeAndMemoryStopwatch()
     def now = OffsetDateTime.now()
 
     def setup() { objectUnderTest = cpsDataService }
@@ -38,11 +40,14 @@ class UpdatePerfTest extends CpsPerfTestBase {
             def parentNodeXpath = "/openroadm-devices/openroadm-device[@device-id='C201-7-1A-10']"
             def jsonData = readResourceDataFile('openroadm/innerNode.json').replace('NODE_ID_HERE', '10')
         when: 'the fragment entities are updated by the data nodes'
-            stopWatch.start()
+            timeAndMemoryStopwatch.start()
             objectUnderTest.updateDataNodeAndDescendants(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm1', parentNodeXpath, jsonData, now)
-            stopWatch.stop()
-            def updateDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'update completes within expected time'
+            timeAndMemoryStopwatch.stop()
+            def updateDurationInMillis = timeAndMemoryStopwatch.getTotalTimeMillis()
+        then: 'memory used is within #peakMemoryUsage'
+            assert timeAndMemoryStopwatch.getTotalMemoryUsedMB() <= 200
+            println("Memory used: " + timeAndMemoryStopwatch.getTotalMemoryUsedMB())
+        and: 'update completes within expected time'
             recordAndAssertPerformance('Update 1 data node', 600, updateDurationInMillis)
     }
 
@@ -54,11 +59,14 @@ class UpdatePerfTest extends CpsPerfTestBase {
                 innerNodeJson.replace('NODE_ID_HERE', it.toString())
             ]}
         when: 'the fragment entities are updated by the data nodes'
-            stopWatch.start()
+            timeAndMemoryStopwatch.start()
             objectUnderTest.updateDataNodesAndDescendants(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm1', nodesJsonData, now)
-            stopWatch.stop()
-            def updateDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'update completes within expected time'
+            timeAndMemoryStopwatch.stop()
+            def updateDurationInMillis = timeAndMemoryStopwatch.getTotalTimeMillis()
+        then: 'memory used is within #peakMemoryUsage'
+            assert timeAndMemoryStopwatch.getTotalMemoryUsedMB() <= 800
+            println("Memory used: " + timeAndMemoryStopwatch.getTotalMemoryUsedMB())
+        and: 'update completes within expected time'
             recordAndAssertPerformance('Update 100 data nodes', TimeUnit.SECONDS.toMillis(30), updateDurationInMillis)
     }
 
@@ -67,12 +75,15 @@ class UpdatePerfTest extends CpsPerfTestBase {
             def jsonDataUpdated  = "{'openroadm-device':{'device-id':'C201-7-1A-10','status':'fail','ne-state':'jeopardy'}}"
             def jsonDataOriginal = "{'openroadm-device':{'device-id':'C201-7-1A-10','status':'success','ne-state':'inservice'}}"
         when: 'update is performed for leaves'
-            stopWatch.start()
+            timeAndMemoryStopwatch.start()
             objectUnderTest.updateNodeLeaves(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm2', "/openroadm-devices", jsonDataUpdated, now)
             objectUnderTest.updateNodeLeaves(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm2', "/openroadm-devices", jsonDataOriginal, now)
-            stopWatch.stop()
-            def updateDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'update completes within expected time'
+            timeAndMemoryStopwatch.stop()
+            def updateDurationInMillis = timeAndMemoryStopwatch.getTotalTimeMillis()
+        then: 'memory used is within #peakMemoryUsage'
+            assert timeAndMemoryStopwatch.getTotalMemoryUsedMB() <= 300
+            println("Memory used: " + timeAndMemoryStopwatch.getTotalMemoryUsedMB())
+        and: 'update completes within expected time'
             recordAndAssertPerformance('Update leaves for 1 data node', 500, updateDurationInMillis)
     }
 
@@ -81,12 +92,15 @@ class UpdatePerfTest extends CpsPerfTestBase {
             def jsonDataUpdated  = "{'openroadm-device':[" + (1..100).collect { "{'device-id':'C201-7-1A-" + it + "','status':'fail','ne-state':'jeopardy'}" }.join(",") + "]}"
             def jsonDataOriginal = "{'openroadm-device':[" + (1..100).collect { "{'device-id':'C201-7-1A-" + it + "','status':'success','ne-state':'inservice'}" }.join(",") + "]}"
         when: 'update is performed for leaves'
-            stopWatch.start()
+            timeAndMemoryStopwatch.start()
             objectUnderTest.updateNodeLeaves(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm2', "/openroadm-devices", jsonDataUpdated, now)
             objectUnderTest.updateNodeLeaves(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm2', "/openroadm-devices", jsonDataOriginal, now)
-            stopWatch.stop()
-            def updateDurationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'update completes within expected time'
+            timeAndMemoryStopwatch.stop()
+            def updateDurationInMillis = timeAndMemoryStopwatch.getTotalTimeMillis()
+        then: 'memory used is within #peakMemoryUsage'
+            assert timeAndMemoryStopwatch.getTotalMemoryUsedMB() <= 300
+            println("Memory used: " + timeAndMemoryStopwatch.getTotalMemoryUsedMB())
+        and: 'update completes within expected time'
             recordAndAssertPerformance('Batch update leaves for 100 data nodes', TimeUnit.SECONDS.toMillis(1), updateDurationInMillis)
     }
 
