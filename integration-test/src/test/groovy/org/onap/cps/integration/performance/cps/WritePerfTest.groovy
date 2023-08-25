@@ -33,12 +33,15 @@ class WritePerfTest extends CpsPerfTestBase {
         and: 'a list of device nodes to add'
             def jsonData = generateOpenRoadData(totalNodes)
         when: 'device nodes are added'
-            stopWatch.start()
+            resourceMeter.start()
             cpsDataService.saveData(CPS_PERFORMANCE_TEST_DATASPACE, 'writeAnchor', jsonData, OffsetDateTime.now())
-            stopWatch.stop()
+            resourceMeter.stop()
             def durationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'the operation takes less than #expectedDuration'
-            recordAndAssertPerformance("Writing ${totalNodes} devices", TimeUnit.SECONDS.toMillis(expectedDurationInSeconds), durationInMillis)
+        then: 'memory used is within #peakMemoryUsage'
+            def memoryUsed = resourceMeter.getTotalMemoryUsedMB()
+            assert memoryUsed <= 200
+        and: 'the operation takes less than #expectedDuration'
+            recordAndAssertPerformance("Writing ${totalNodes} devices", TimeUnit.SECONDS.toMillis(expectedDurationInSeconds), durationInMillis, memoryUsed)
         cleanup:
             cpsDataService.deleteDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, 'writeAnchor', OffsetDateTime.now())
             cpsAdminService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, 'writeAnchor')
@@ -65,8 +68,11 @@ class WritePerfTest extends CpsPerfTestBase {
             cpsDataService.saveData(CPS_PERFORMANCE_TEST_DATASPACE, 'writeAnchor', '/bookstore/categories[@code=1]', booksData, OffsetDateTime.now())
             stopWatch.stop()
             def durationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'the operation takes less than #expectedDuration'
-            recordAndAssertPerformance("Writing ${totalBooks} books", expectedDuration, durationInMillis)
+        then: 'memory used is within #peakMemoryUsage'
+            def memoryUsed = resourceMeter.getTotalMemoryUsedMB()
+            assert memoryUsed <= 200
+        and: 'the operation takes less than #expectedDuration'
+            recordAndAssertPerformance("Writing ${totalBooks} books", expectedDuration, durationInMillis, memoryUsed)
         cleanup:
             cpsDataService.deleteDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, 'writeAnchor', OffsetDateTime.now())
             cpsAdminService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, 'writeAnchor')
