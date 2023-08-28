@@ -27,6 +27,7 @@ import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.ncmp.api.impl.exception.NcmpStartUpException
+import org.onap.cps.spi.CascadeDeleteAllowed
 import org.onap.cps.spi.exceptions.AlreadyDefinedException
 import org.springframework.boot.SpringApplication
 import org.slf4j.LoggerFactory
@@ -114,10 +115,32 @@ class AbstractModelLoaderSpec extends Specification {
             assert thrown.details.contains('unable to read file')
     }
 
+    def 'Delete unused schema sets.'() {
+        when: 'several unused schemas are deleted '
+            objectUnderTest.deleteUnusedSchemaSets('some dataspace','schema set 1', 'schema set 2')
+        then: 'a request to delete each (without cascade) is delegated to the module service'
+            1 * mockCpsModuleService.deleteSchemaSet('some dataspace', 'schema set 1', CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED)
+            1 * mockCpsModuleService.deleteSchemaSet('some dataspace', 'schema set 2', CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED)
+
+    }
+
+    def 'Delete unused schema sets with exception.'() {
+        given: 'deleting the first schemaset causes an exception'
+            mockCpsModuleService.deleteSchemaSet(_, 'schema set 1', _) >> { throw new RuntimeException('test message')}
+        when: 'several unused schemas are deleted '
+            objectUnderTest.deleteUnusedSchemaSets('some dataspace','schema set 1', 'schema set 2')
+        then: 'the exception message is logged'
+            def logs = loggingListAppender.list.toString()
+            assert logs.contains('Deleting schema set failed')
+            assert logs.contains('test message')
+        and: 'the second schema set is still deleted'
+            1 * mockCpsModuleService.deleteSchemaSet('some dataspace', 'schema set 2', CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED)
+    }
+
     def 'Create anchor.'() {
         when: 'creating an anchor'
             objectUnderTest.createAnchor('some dataspace','some schema set','new name')
-        then: 'thr operation is delegated to the admin service'
+        then: 'the operation is delegated to the admin service'
             1 * mockCpsAdminService.createAnchor('some dataspace','some schema set', 'new name')
     }
 
@@ -171,6 +194,24 @@ class AbstractModelLoaderSpec extends Specification {
         then: 'a startup exception with correct message and details is thrown'
             def thrown = thrown(NcmpStartUpException)
             assert thrown.message.contains('Creating data node failed')
+            assert thrown.details.contains('test message')
+    }
+
+    def 'Update anchor schema set.'() {
+        when: 'a schema set for an anchor is updated'
+            objectUnderTest.updateAnchorSchemaSet('some dataspace', 'anchor', 'new schema set')
+        then: 'the request is delegated to the admin service'
+            1 * mockCpsAdminService.updateAnchorSchemaSet('some dataspace', 'anchor', 'new schema set')
+    }
+
+    def 'Update anchor schema set with exception.'() {
+        given: 'the admin service throws an exception'
+            mockCpsAdminService.updateAnchorSchemaSet(*_) >> { throw new RuntimeException('test message') }
+        when: 'a schema set for an anchor is updated'
+            objectUnderTest.updateAnchorSchemaSet('some dataspace', 'anchor', 'new schema set')
+        then: 'a startup exception with correct message and details is thrown'
+            def thrown = thrown(NcmpStartUpException)
+            assert thrown.message.contains('Updating schema set failed')
             assert thrown.details.contains('test message')
     }
 

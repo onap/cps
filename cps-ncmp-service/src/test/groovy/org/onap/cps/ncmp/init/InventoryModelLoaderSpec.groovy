@@ -32,12 +32,12 @@ import org.springframework.boot.context.event.ApplicationReadyEvent
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import spock.lang.Specification
 
-class SubscriptionModelLoaderSpec extends Specification {
+class InventoryModelLoaderSpec extends Specification {
 
     def mockCpsAdminService = Mock(CpsAdminService)
     def mockCpsModuleService = Mock(CpsModuleService)
     def mockCpsDataService = Mock(CpsDataService)
-    def objectUnderTest = new SubscriptionModelLoader(mockCpsAdminService, mockCpsModuleService, mockCpsDataService)
+    def objectUnderTest = new InventoryModelLoader(mockCpsAdminService, mockCpsModuleService, mockCpsDataService)
 
     def applicationContext = new AnnotationConfigApplicationContext()
 
@@ -46,7 +46,7 @@ class SubscriptionModelLoaderSpec extends Specification {
     def loggingListAppender
 
     void setup() {
-        expectedYangResourceToContentMap = objectUnderTest.createYangResourceToContentMap('subscription.yang')
+        expectedYangResourceToContentMap = objectUnderTest.createYangResourceToContentMap('dmi-registry@2023-08-23.yang')
         logger.setLevel(Level.DEBUG)
         loggingListAppender = new ListAppender()
         logger.addAppender(loggingListAppender)
@@ -60,30 +60,16 @@ class SubscriptionModelLoaderSpec extends Specification {
     }
 
     def 'Onboard subscription model via application ready event.'() {
-        given:'model loader is enabled'
-            objectUnderTest.subscriptionModelLoaderEnabled = true
-        and: 'dataspace is ready for use'
+        given: 'dataspace is ready for use'
             mockCpsAdminService.getDataspace('NCMP-Admin') >> new Dataspace('')
         when: 'the application is ready'
             objectUnderTest.onApplicationEvent(Mock(ApplicationReadyEvent))
-        then: 'the module service to create schema set is called once'
-            1 * mockCpsModuleService.createSchemaSet('NCMP-Admin', 'subscriptions', expectedYangResourceToContentMap)
-        and: 'the admin service to create an anchor set is called once'
-            1 * mockCpsAdminService.createAnchor('NCMP-Admin', 'subscriptions', 'AVC-Subscriptions')
-        and: 'the data service to create a top level datanode is called once'
-            1 * mockCpsDataService.saveData('NCMP-Admin', 'AVC-Subscriptions', '{"subscription-registry":{}}', _)
-    }
-
-    def 'Subscription model loader disabled.' () {
-        given: 'model loader is disabled'
-            objectUnderTest.subscriptionModelLoaderEnabled = false
-        when: 'application is ready'
-            objectUnderTest.onApplicationEvent(Mock(ApplicationReadyEvent))
-        then: 'no interaction with admin service'
-            0 * mockCpsAdminService.getDataspace(_)
-        then: 'a message is logged that the function is disabled'
-            def logs = loggingListAppender.list.toString()
-            assert logs.contains('Subscription Model Loader is disabled')
+        then: 'the module service is used to create the new schema set from the correct resource'
+            1 * mockCpsModuleService.createSchemaSet('NCMP-Admin', 'dmi-registry-2023-08-23', expectedYangResourceToContentMap)
+        and: 'the admin service is used to update the anchor'
+            1 * mockCpsAdminService.updateAnchorSchemaSet('NCMP-Admin', 'ncmp-dmi-registry', 'dmi-registry-2023-08-23')
+        and: 'No schema sets are being removed by the module service (yet)'
+            0 * mockCpsModuleService.deleteSchemaSet('NCMP-Admin', _, _)
     }
 
 }

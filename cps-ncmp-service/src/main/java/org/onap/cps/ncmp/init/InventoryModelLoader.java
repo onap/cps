@@ -24,43 +24,39 @@ import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsModuleService;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
-public class SubscriptionModelLoader extends AbstractModelLoader {
+public class InventoryModelLoader extends AbstractModelLoader {
 
-    private static final String MODEL_FILENAME = "subscription.yang";
+    private static final String NEW_MODEL_FILE_NAME = "dmi-registry@2023-08-23.yang";
+    private static final String NEW_SCHEMA_SET_NAME = "dmi-registry-2023-08-23";
     private static final String DATASPACE_NAME = "NCMP-Admin";
-    private static final String ANCHOR_NAME = "AVC-Subscriptions";
-    private static final String SCHEMASET_NAME = "subscriptions";
-    private static final String REGISTRY_DATANODE_NAME = "subscription-registry";
+    private static final String ANCHOR_NAME = "ncmp-dmi-registry";
 
-    public SubscriptionModelLoader(final CpsAdminService cpsAdminService,
-                                   final CpsModuleService cpsModuleService,
-                                   final CpsDataService cpsDataService) {
+    public InventoryModelLoader(final CpsAdminService cpsAdminService,
+                                final CpsModuleService cpsModuleService,
+                                final CpsDataService cpsDataService) {
         super(cpsAdminService, cpsModuleService, cpsDataService);
     }
 
-    @Value("${ncmp.model-loader.subscription:true}")
-    private boolean subscriptionModelLoaderEnabled;
-
     @Override
     public void onboardOrUpgradeModel() {
-        if (subscriptionModelLoaderEnabled) {
-            waitUntilDataspaceIsAvailable(DATASPACE_NAME);
-            onboardSubscriptionModel();
-            log.info("Subscription Model onboarded successfully");
-        } else {
-            log.info("Subscription Model Loader is disabled");
-        }
+        waitUntilDataspaceIsAvailable(DATASPACE_NAME);
+        updateInventoryModel();
+        log.info("Inventory Model updated successfully");
     }
 
-    private void onboardSubscriptionModel() {
-        createSchemaSet(DATASPACE_NAME, SCHEMASET_NAME, MODEL_FILENAME);
-        createAnchor(DATASPACE_NAME, SCHEMASET_NAME, ANCHOR_NAME);
-        createTopLevelDataNode(DATASPACE_NAME, ANCHOR_NAME, REGISTRY_DATANODE_NAME);
+    private void updateInventoryModel() {
+        createSchemaSet(DATASPACE_NAME, NEW_SCHEMA_SET_NAME, NEW_MODEL_FILE_NAME);
+        updateAnchorSchemaSet(DATASPACE_NAME, ANCHOR_NAME, NEW_SCHEMA_SET_NAME);
+        deleteOldButNotThePreviousSchemaSets();
+    }
+
+    private void deleteOldButNotThePreviousSchemaSets() {
+        //No schema sets passed in yet, but wil be required for future updates
+        deleteUnusedSchemaSets(DATASPACE_NAME);
     }
 
 }
