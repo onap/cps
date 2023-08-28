@@ -21,8 +21,11 @@
 package org.onap.cps.ncmp.api.impl.config.embeddedcache;
 
 import com.hazelcast.collection.ISet;
+import com.hazelcast.config.MapConfig;
 import com.hazelcast.config.SetConfig;
+import com.hazelcast.map.IMap;
 import org.onap.cps.cache.HazelcastCacheConfig;
+import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -42,5 +45,18 @@ public class TrustLevelCacheConfig extends HazelcastCacheConfig {
                 "untrustworthyCmHandlesSet");
     }
 
+    private static final MapConfig trustLevelPerDmiPluginCacheConfig =
+            createMapConfig("trustLevelPerDmiPluginCacheConfig");
+
+    /**
+     * Distributed instance of trust level cache that contains dmi-plugin name by trust level.
+     *
+     * @return configured map of dmi-plugin name as keys to trust-level for values.
+     */
+    @Bean
+    public IMap<String, TrustLevel> trustLevelPerDmiPlugin() {
+        return createHazelcastInstance("hazelcastInstanceTrustLevelPerDmiPluginMap",
+                trustLevelPerDmiPluginCacheConfig).getMap("trustLevelPerDmiPlugin");
+    }
 
 }
