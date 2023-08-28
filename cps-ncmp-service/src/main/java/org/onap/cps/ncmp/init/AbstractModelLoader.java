@@ -32,6 +32,7 @@ import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.ncmp.api.impl.exception.NcmpStartUpException;
+import org.onap.cps.spi.CascadeDeleteAllowed;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
@@ -92,8 +93,19 @@ abstract class AbstractModelLoader implements ModelLoader {
         } catch (final AlreadyDefinedException alreadyDefinedException) {
             log.warn("Creating new schema set failed as schema set already exists");
         } catch (final Exception exception) {
-            log.error("Creating schema set for subscription model failed: {} ", exception.getMessage());
+            log.error("Creating schema set failed: {} ", exception.getMessage());
             throw new NcmpStartUpException("Creating schema set failed", exception.getMessage());
+        }
+    }
+
+    void deleteUnusedSchemaSets(final String dataspaceName, final String... schemaSetNames) {
+        for (final String schemaSetName : schemaSetNames) {
+            try {
+                cpsModuleService.deleteSchemaSet(
+                    dataspaceName, schemaSetName, CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED);
+            } catch (final Exception exception) {
+                log.warn("Deleting schema set failed: {} ", exception.getMessage());
+            }
         }
     }
 
@@ -103,22 +115,29 @@ abstract class AbstractModelLoader implements ModelLoader {
         } catch (final AlreadyDefinedException alreadyDefinedException) {
             log.warn("Creating new anchor failed as anchor already exists");
         } catch (final Exception exception) {
-            log.error("Creating anchor for subscription model failed: {} ", exception.getMessage());
+            log.error("Creating anchor failed: {} ", exception.getMessage());
             throw new NcmpStartUpException("Creating anchor failed", exception.getMessage());
         }
     }
 
-    void createTopLevelDataNode(final String dataspaceName,
-                                        final String anchorName,
-                                        final String dataNodeName) {
+    void createTopLevelDataNode(final String dataspaceName, final String anchorName, final String dataNodeName) {
         final String nodeData = jsonObjectMapper.asJsonString(Map.of(dataNodeName, Map.of()));
         try {
             cpsDataService.saveData(dataspaceName, anchorName, nodeData, OffsetDateTime.now());
         } catch (final AlreadyDefinedException exception) {
             log.warn("Creating new data node '{}' failed as data node already exists", dataNodeName);
         } catch (final Exception exception) {
-            log.error("Creating data node for subscription model failed: {}", exception.getMessage());
+            log.error("Creating data node failed: {}", exception.getMessage());
             throw new NcmpStartUpException("Creating data node failed", exception.getMessage());
+        }
+    }
+
+    void updateAnchorSchemaSet(final String dataspaceName, final String anchorName, final String schemaSetName) {
+        try {
+            cpsAdminService.updateAnchorSchemaSet(dataspaceName, anchorName, schemaSetName);
+        } catch (final Exception exception) {
+            log.error("Updating schema set failed: {}", exception.getMessage());
+            throw new NcmpStartUpException("Updating schema set failed", exception.getMessage());
         }
     }
 
