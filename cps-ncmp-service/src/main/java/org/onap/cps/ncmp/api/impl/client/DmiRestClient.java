@@ -21,10 +21,13 @@
 
 package org.onap.cps.ncmp.api.impl.client;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration.DmiProperties;
 import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException;
 import org.onap.cps.ncmp.api.impl.operations.OperationType;
+import org.onap.cps.ncmp.api.impl.trustlevel.dmiavailability.DmiPluginStatus;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -35,6 +38,7 @@ import org.springframework.web.client.RestTemplate;
 
 @Component
 @AllArgsConstructor
+@Slf4j
 public class DmiRestClient {
 
     private RestTemplate restTemplate;
@@ -58,6 +62,29 @@ public class DmiRestClient {
             throw new HttpClientRequestException(exceptionMessage, httpStatusCodeException.getResponseBodyAsString(),
                     httpStatusCodeException.getRawStatusCode());
         }
+    }
+
+    /**
+     * Sends GET operation to DMI plugin's health check URL.
+     *
+     * @param       dmiPluginUrl the base URL of the dmi-plugin
+     * @return      DmiPluginStatus as UP or DOWN
+     */
+    public DmiPluginStatus getDmiPluginStatus(final String dmiPluginUrl) {
+        try {
+            final var httpEntity = new HttpEntity<>(configureHttpHeaders(new HttpHeaders()));
+            final JsonNode resp = restTemplate.getForObject(dmiPluginUrl + "/manage/health",
+                    JsonNode.class, httpEntity);
+            if (resp != null) {
+                if (resp.get("status").asText().equalsIgnoreCase("UP")) {
+                    return DmiPluginStatus.UP;
+                }
+            }
+        } catch (final Exception exception) {
+            log.error("Could not send request for health check since {}", exception.getMessage());
+            return DmiPluginStatus.DOWN;
+        }
+        return DmiPluginStatus.DOWN;
     }
 
     private HttpHeaders configureHttpHeaders(final HttpHeaders httpHeaders) {
