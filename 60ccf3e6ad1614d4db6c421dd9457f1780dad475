@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3949f832_801f813d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-08-29T12:39:00Z",
+      "side": 1,
+      "message": "missing changes in cpsAdmin.yml - please check",
+      "revId": "60ccf3e6ad1614d4db6c421dd9457f1780dad475",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
