@@ -1,6 +1,52 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "87d6b661_e0b1dc2c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/AbstractModelLoader.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-08-29T11:31:34Z",
+      "side": 1,
+      "message": "not error level?",
+      "range": {
+        "startLine": 106,
+        "startChar": 15,
+        "endLine": 106,
+        "endChar": 24
+      },
+      "revId": "c1183d7d14f1257b5dfa3dc67fa2f0814d1f4598",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "042e1bfa_69cce002",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-08-29T11:31:34Z",
+      "side": 1,
+      "message": "this was the valid one?",
+      "range": {
+        "startLine": 33,
+        "startChar": 66,
+        "endLine": 33,
+        "endChar": 68
+      },
+      "revId": "c1183d7d14f1257b5dfa3dc67fa2f0814d1f4598",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "40c069cc_139e7cd7",
