@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "40c069cc_139e7cd7",
+        "filename": "cps-ncmp-service/src/main/resources/models/dmi-registry@2023-08-23.yang",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-29T10:41:09Z",
+      "side": 1,
+      "message": "new",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 3
+      },
+      "revId": "c1183d7d14f1257b5dfa3dc67fa2f0814d1f4598",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f711376e_cc1b1457",
+        "filename": "cps-ncmp-service/src/main/resources/models/dmi-registry@2023-08-23.yang",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-29T10:41:09Z",
+      "side": 1,
+      "message": "new, everything else is identical to prev. version",
+      "range": {
+        "startLine": 83,
+        "startChar": 0,
+        "endLine": 85,
+        "endChar": 7
+      },
+      "revId": "c1183d7d14f1257b5dfa3dc67fa2f0814d1f4598",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
