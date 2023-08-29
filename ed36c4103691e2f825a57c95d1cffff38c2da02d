@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d9ad43d_938a67a8",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-08-29T11:18:34Z",
+      "side": 1,
+      "message": "is this the format now as per rfc standard?",
+      "range": {
+        "startLine": 339,
+        "startChar": 36,
+        "endLine": 340,
+        "endChar": 26
+      },
+      "revId": "ed36c4103691e2f825a57c95d1cffff38c2da02d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec4c38c1_3f5757ba",
+        "filename": "cps-ri/pom.xml",
+        "patchSetId": 16
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-08-29T11:18:34Z",
+      "side": 1,
+      "message": "Add for TechMahindra Ltd",
+      "revId": "ed36c4103691e2f825a57c95d1cffff38c2da02d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "562ffab7_d37bc5e3",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-08-29T11:18:34Z",
+      "side": 1,
+      "message": "not used?",
+      "range": {
+        "startLine": 85,
+        "startChar": 2,
+        "endLine": 87,
+        "endChar": 57
+      },
+      "revId": "ed36c4103691e2f825a57c95d1cffff38c2da02d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6a2df29_9ad8c687",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-08-29T11:18:34Z",
+      "side": 1,
+      "message": "needs more code? or remove this comment?",
+      "range": {
+        "startLine": 226,
+        "startChar": 8,
+        "endLine": 226,
+        "endChar": 118
+      },
+      "revId": "ed36c4103691e2f825a57c95d1cffff38c2da02d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5de6d0b_9d981c7e",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-08-29T11:18:34Z",
+      "side": 1,
+      "message": "for anchors you can name them - reference anchor and comparand anchor --\u003e can be used aswell for the rest of the code istead of anchor 1 and 2:)",
+      "range": {
+        "startLine": 247,
+        "startChar": 40,
+        "endLine": 248,
+        "endChar": 58
+      },
+      "revId": "ed36c4103691e2f825a57c95d1cffff38c2da02d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
