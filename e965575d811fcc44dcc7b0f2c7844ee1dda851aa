@@ -16,6 +16,24 @@
       "message": "There is no reason to have \u0027Call\u0027 in the name here. It\u0027s a \u0027Gerrit Merge\u0027 pure and simple. It calls out to other workflows, but there isn\u0027t a reason to name it with that.",
       "revId": "e965575d811fcc44dcc7b0f2c7844ee1dda851aa",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad1ba52a_9cf3c568",
+        "filename": ".github/workflows/gerrit-merge.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 481
+      },
+      "writtenOn": "2023-08-30T20:16:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "11bf4cef_8db75af0",
+      "revId": "e965575d811fcc44dcc7b0f2c7844ee1dda851aa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
