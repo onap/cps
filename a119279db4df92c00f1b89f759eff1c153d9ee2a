@@ -63,6 +63,30 @@
       },
       "revId": "a119279db4df92c00f1b89f759eff1c153d9ee2a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ce5ea44_af53c0c5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/DmiPluginTrustLevelCacheConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-30T12:18:21Z",
+      "side": 1,
+      "message": "After the call, as you mentioned I maintained only TrustLevel in the cache and removed the health check url.",
+      "parentUuid": "ecaa5c6d_baaf4da2",
+      "range": {
+        "startLine": 43,
+        "startChar": 24,
+        "endLine": 43,
+        "endChar": 43
+      },
+      "revId": "a119279db4df92c00f1b89f759eff1c153d9ee2a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
