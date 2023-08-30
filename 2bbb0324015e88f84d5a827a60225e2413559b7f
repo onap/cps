@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c82fd40d_e543bda9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/TrustLevelDmiPluginCacheConfigSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-30T15:42:24Z",
+      "side": 1,
+      "message": "Thanks for the heads up! Next time will be more careful.",
+      "parentUuid": "547a78d4_f0a01a11",
+      "range": {
+        "startLine": 51,
+        "startChar": 59,
+        "endLine": 51,
+        "endChar": 63
+      },
+      "revId": "2bbb0324015e88f84d5a827a60225e2413559b7f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "27def417_2af84e6b",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-08-30T15:15:50Z",
       "side": 1,
       "message": "I think this can be simplified and is easier to read like so\n\n\nthen: \u0027the value for dmi1 can be retrieved\u0027\n  assert trustLevelPerDmiPlugin.get(\u0027dmi1\u0027) \u003d\u003d TrustLevel.COMPLETE\nand: \u0027the value for dmi2 can be retrieved\u0027\n  assert trustLevelPerDmiPlugin.get(\u0027dmi2\u0027) \u003d\u003d TrustLevel.NONE\n  \n  \nor even \nthen: \u0027the value for each dmi can be retrieved\u0027\n  assert trustLevelPerDmiPlugin.get(\u0027dmi1\u0027) \u003d\u003d TrustLevel.COMPLETE\n  assert trustLevelPerDmiPlugin.get(\u0027dmi2\u0027) \u003d\u003d TrustLevel.NONE",
+      "range": {
+        "startLine": 51,
+        "startChar": 12,
+        "endLine": 55,
+        "endChar": 55
+      },
+      "revId": "2bbb0324015e88f84d5a827a60225e2413559b7f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5505e29_269d14ca",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/TrustLevelDmiPluginCacheConfigSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-30T15:42:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "27def417_2af84e6b",
       "range": {
         "startLine": 51,
         "startChar": 12,
