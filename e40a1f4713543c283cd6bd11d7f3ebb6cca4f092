@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e90a4f01_f743d435",
+        "filename": ".github/workflows/gerrit-merge.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2023-08-30T19:33:51Z",
+      "side": 1,
+      "message": "I would just call this \u0027Gerrit Merge\u0027 as it will likely be more than just RTDv3 in the future",
+      "revId": "e40a1f4713543c283cd6bd11d7f3ebb6cca4f092",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7366be60_856446e2",
+        "filename": ".github/workflows/gerrit-merge.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2023-08-30T19:33:51Z",
+      "side": 1,
+      "message": "add a blank line above this for readability",
+      "revId": "e40a1f4713543c283cd6bd11d7f3ebb6cca4f092",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94654d38_a8065192",
+        "filename": ".github/workflows/gerrit-merge.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2023-08-30T19:33:51Z",
+      "side": 1,
+      "message": "add a blank line above this for readability",
+      "revId": "e40a1f4713543c283cd6bd11d7f3ebb6cca4f092",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
