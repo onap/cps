@@ -16,6 +16,29 @@
       "message": "recheck",
       "revId": "a119279db4df92c00f1b89f759eff1c153d9ee2a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86b26e27_5ad39be3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/DmiPluginTrustLevelCacheConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-08-30T09:06:24Z",
+      "side": 1,
+      "message": "you wanted to store the \nhealthcheckurl and the trustLevel here.. right ??\nso why not create a Class having these info?",
+      "range": {
+        "startLine": 43,
+        "startChar": 24,
+        "endLine": 43,
+        "endChar": 43
+      },
+      "revId": "a119279db4df92c00f1b89f759eff1c153d9ee2a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
