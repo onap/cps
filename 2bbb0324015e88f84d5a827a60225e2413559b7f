@@ -16,6 +16,52 @@
       "message": "I\u0027ve also made renaming objects and methods as suggested by Toine on the #135851 on Gerrit.",
       "revId": "2bbb0324015e88f84d5a827a60225e2413559b7f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "547a78d4_f0a01a11",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/TrustLevelDmiPluginCacheConfigSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-30T15:15:50Z",
+      "side": 1,
+      "message": "Only use words like \u0027some\u0027 and \u0027other\u0027 when the value is not being used/referenced anywhere else in this case you want to check each son instead simply use \u0027dmi1\u0027 and \u0027dmi2\u0027",
+      "range": {
+        "startLine": 51,
+        "startChar": 59,
+        "endLine": 51,
+        "endChar": 63
+      },
+      "revId": "2bbb0324015e88f84d5a827a60225e2413559b7f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27def417_2af84e6b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/TrustLevelDmiPluginCacheConfigSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-08-30T15:15:50Z",
+      "side": 1,
+      "message": "I think this can be simplified and is easier to read like so\n\n\nthen: \u0027the value for dmi1 can be retrieved\u0027\n  assert trustLevelPerDmiPlugin.get(\u0027dmi1\u0027) \u003d\u003d TrustLevel.COMPLETE\nand: \u0027the value for dmi2 can be retrieved\u0027\n  assert trustLevelPerDmiPlugin.get(\u0027dmi2\u0027) \u003d\u003d TrustLevel.NONE\n  \n  \nor even \nthen: \u0027the value for each dmi can be retrieved\u0027\n  assert trustLevelPerDmiPlugin.get(\u0027dmi1\u0027) \u003d\u003d TrustLevel.COMPLETE\n  assert trustLevelPerDmiPlugin.get(\u0027dmi2\u0027) \u003d\u003d TrustLevel.NONE",
+      "range": {
+        "startLine": 51,
+        "startChar": 12,
+        "endLine": 55,
+        "endChar": 55
+      },
+      "revId": "2bbb0324015e88f84d5a827a60225e2413559b7f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
