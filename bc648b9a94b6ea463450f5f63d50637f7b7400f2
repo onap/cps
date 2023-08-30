@@ -18,6 +18,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d63c92c_bdb4decc",
+        "filename": ".github/workflows/gerrit-merge.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 481
+      },
+      "writtenOn": "2023-08-30T19:19:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d4fabc6_432e397a",
+      "revId": "bc648b9a94b6ea463450f5f63d50637f7b7400f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ea915160_34dcd149",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-08-30T19:15:54Z",
       "side": 1,
       "message": "You need a \"notify\" job that notifies that the job is starting. The call-gerrit-rtdv3-merge will need it. You then need a report-status job that needs both of the other jobs to notify the final outcome of the whole workflow.\n\nLook at the gerrit-ci-management-merge workflow from the reusable workflows for an example.",
+      "revId": "bc648b9a94b6ea463450f5f63d50637f7b7400f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f281b08e_4bf3c2ac",
+        "filename": ".github/workflows/gerrit-merge.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 481
+      },
+      "writtenOn": "2023-08-30T19:19:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea915160_34dcd149",
       "revId": "bc648b9a94b6ea463450f5f63d50637f7b7400f2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
