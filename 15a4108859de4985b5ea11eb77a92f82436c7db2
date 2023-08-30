@@ -35,6 +35,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "95d65a8e_da55cc38",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-30T11:38:49Z",
+      "side": 1,
+      "message": "You are right. If there were not thousands of DMI plugins, there would be no need to have a multi-threaded (currently 3), parallel, DMI plugin availability check approach. \n\nI can revert the current solution to a Spring\u0027s @Scheduled(fixedDelayString\u003d30000) annotation-based solution.",
+      "parentUuid": "ac95f3e5_474c0a0a",
+      "revId": "15a4108859de4985b5ea11eb77a92f82436c7db2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "69387277_e52005e5",
@@ -48,6 +66,30 @@
       "writtenOn": "2023-08-30T07:37:39Z",
       "side": 1,
       "message": "legacy, remove any usage of \u0027var\u0027 when modifying this class",
+      "range": {
+        "startLine": 57,
+        "startChar": 14,
+        "endLine": 57,
+        "endChar": 18
+      },
+      "revId": "15a4108859de4985b5ea11eb77a92f82436c7db2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8418804e_fcdcb3e0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/client/DmiRestClient.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-30T11:38:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "69387277_e52005e5",
       "range": {
         "startLine": 57,
         "startChar": 14,
@@ -81,6 +123,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "589997d9_b50aec95",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/client/DmiRestClient.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-30T11:38:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c252cbe0_0fff9168",
+      "range": {
+        "startLine": 73,
+        "startChar": 59,
+        "endLine": 73,
+        "endChar": 71
+      },
+      "revId": "15a4108859de4985b5ea11eb77a92f82436c7db2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7c47457e_07d5a683",
@@ -94,6 +160,30 @@
       "writtenOn": "2023-08-30T07:37:39Z",
       "side": 1,
       "message": "we agreed long time back never to use \u0027var\u0027",
+      "range": {
+        "startLine": 75,
+        "startChar": 18,
+        "endLine": 75,
+        "endChar": 22
+      },
+      "revId": "15a4108859de4985b5ea11eb77a92f82436c7db2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cde019d6_6f16ee3f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/client/DmiRestClient.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-30T11:38:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c47457e_07d5a683",
       "range": {
         "startLine": 75,
         "startChar": 18,
@@ -127,6 +217,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4bab9752_bdf90189",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/client/DmiRestClient.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-30T11:38:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c7170428_8c22fb01",
+      "range": {
+        "startLine": 76,
+        "startChar": 27,
+        "endLine": 76,
+        "endChar": 32
+      },
+      "revId": "15a4108859de4985b5ea11eb77a92f82436c7db2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ac79c987_eac6b360",
@@ -150,6 +264,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "443e12ca_436b9d44",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/client/DmiRestClient.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-30T11:38:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ac79c987_eac6b360",
+      "range": {
+        "startLine": 79,
+        "startChar": 48,
+        "endLine": 79,
+        "endChar": 64
+      },
+      "revId": "15a4108859de4985b5ea11eb77a92f82436c7db2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "60901f15_cd5961e5",
@@ -163,6 +301,30 @@
       "writtenOn": "2023-08-30T07:37:39Z",
       "side": 1,
       "message": "its is not critical so I would log it as a warning",
+      "range": {
+        "startLine": 84,
+        "startChar": 16,
+        "endLine": 84,
+        "endChar": 21
+      },
+      "revId": "15a4108859de4985b5ea11eb77a92f82436c7db2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "51f5210d_5b79e66d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/client/DmiRestClient.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-30T11:38:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "60901f15_cd5961e5",
       "range": {
         "startLine": 84,
         "startChar": 16,
@@ -221,6 +383,54 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9865f0ae_e70ba1a2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/dmiavailability/DmiAvailabilityControlService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-30T11:38:49Z",
+      "side": 1,
+      "message": "will do change this in my previous commit.",
+      "parentUuid": "4ac4b807_e555c650",
+      "range": {
+        "startLine": 43,
+        "startChar": 43,
+        "endLine": 43,
+        "endChar": 49
+      },
+      "revId": "15a4108859de4985b5ea11eb77a92f82436c7db2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cbe9345_afdbedb6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/dmiavailability/DmiAvailabilityControlService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-30T11:38:49Z",
+      "side": 1,
+      "message": "will do change this in my previous commit.",
+      "parentUuid": "a9d99f70_7355e579",
+      "range": {
+        "startLine": 43,
+        "startChar": 52,
+        "endLine": 43,
+        "endChar": 76
+      },
+      "revId": "15a4108859de4985b5ea11eb77a92f82436c7db2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "01b00523_a13e304a",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/dmiavailability/DmiAvailabilityControlService.java",
         "patchSetId": 1
@@ -232,6 +442,30 @@
       "writtenOn": "2023-08-30T07:37:39Z",
       "side": 1,
       "message": "not sure about this use of the word \u0027control\u0027 I think it is incorrect. Need to read the remainder of the code but I think \u0027WatchDog\u0027 might  be more appropriate (adn used befoer)",
+      "range": {
+        "startLine": 49,
+        "startChar": 54,
+        "endLine": 49,
+        "endChar": 61
+      },
+      "revId": "15a4108859de4985b5ea11eb77a92f82436c7db2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "327959b4_854ee451",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/dmiavailability/DmiAvailabilityControlService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-30T11:38:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "01b00523_a13e304a",
       "range": {
         "startLine": 49,
         "startChar": 54,
@@ -265,6 +499,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c770db9_30698c60",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/dmiavailability/DmiAvailabilityControlService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-30T11:38:49Z",
+      "side": 1,
+      "message": "You are right, both method parameters are redundant since they are defined as beans and can be injected from DMiPluginWatchDog itself.",
+      "parentUuid": "f722d10b_c9fe797b",
+      "range": {
+        "startLine": 64,
+        "startChar": 47,
+        "endLine": 64,
+        "endChar": 71
+      },
+      "revId": "15a4108859de4985b5ea11eb77a92f82436c7db2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d931421e_51e55bde",
@@ -278,6 +536,30 @@
       "writtenOn": "2023-08-30T07:37:39Z",
       "side": 1,
       "message": "DmiPluginHealthChecker or DMiPluginWatchDog\n(we are NOT controlling anything only checking!)",
+      "range": {
+        "startLine": 31,
+        "startChar": 13,
+        "endLine": 31,
+        "endChar": 40
+      },
+      "revId": "15a4108859de4985b5ea11eb77a92f82436c7db2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5006152_c60ebe12",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/dmiavailability/DmiAvailabilityControlTask.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-30T11:38:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d931421e_51e55bde",
       "range": {
         "startLine": 31,
         "startChar": 13,
@@ -313,6 +595,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "26099e13_ddc96a9c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/dmiavailability/DmiAvailabilityControlTask.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-30T11:38:49Z",
+      "side": 1,
+      "message": "will change this in my previous commit, and then I will update this commit as well.",
+      "parentUuid": "34b2d0d9_c0b44566",
+      "range": {
+        "startLine": 33,
+        "startChar": 52,
+        "endLine": 33,
+        "endChar": 76
+      },
+      "revId": "15a4108859de4985b5ea11eb77a92f82436c7db2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6bc39e3b_325463d1",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/dmiavailability/DmiAvailabilityControlTask.java",
         "patchSetId": 1
@@ -324,6 +630,30 @@
       "writtenOn": "2023-08-30T07:37:39Z",
       "side": 1,
       "message": "why is the healtheck URL stored in a properties map can it not simply be generated based on the name?",
+      "range": {
+        "startLine": 44,
+        "startChar": 79,
+        "endLine": 44,
+        "endChar": 95
+      },
+      "revId": "15a4108859de4985b5ea11eb77a92f82436c7db2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f868165_ad4f457a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/dmiavailability/DmiAvailabilityControlTask.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-08-30T11:38:49Z",
+      "side": 1,
+      "message": "As per a discussion with Priyank a moment ago, I\u0027ll be using Dmi plugin\u0027s service name as a base Dmi plugin URL.",
+      "parentUuid": "6bc39e3b_325463d1",
       "range": {
         "startLine": 44,
         "startChar": 79,
