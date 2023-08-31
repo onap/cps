@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7100477a_da66ede3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/TrustLevelCacheConfig.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-08-31T14:24:12Z",
+      "side": 1,
+      "message": "NB: I would have moved this set of code to relevant place.",
+      "range": {
+        "startLine": 48,
+        "startChar": 4,
+        "endLine": 49,
+        "endChar": 65
+      },
+      "revId": "12ed2412adfb9ca6f0302b425dacf7fc8e4860c0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
