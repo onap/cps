@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "72a23d2b_2fd273d7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-08-31T16:03:28Z",
+      "side": 1,
+      "message": "merging on the condition that my non-blocking comment will be incorporated in the next dependent patch.",
+      "revId": "12ed2412adfb9ca6f0302b425dacf7fc8e4860c0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7100477a_da66ede3",
