@@ -197,8 +197,8 @@ Any spring supported property can be configured by providing in ``config.additio
 | logging.level                         | Logging level set in cps-core                                                                           | info                          |
 |                                       |                                                                                                         |                               |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.useStrimziKafka                | If targeting a custom kafka cluster, ie useStrimziKafka: false, the config.eventPublisher.spring.kafka  | true                          |
-|                                       | values below must be set.                                                                               |                               |
+| config.useStrimziKafka                | If targeting a custom kafka cluster, i.e. useStrimziKafka: false, the                                   | true                          |
+|                                       | config.eventPublisher.spring.kafka values below must be set.                                            |                               |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
 | config.eventPublisher.                | Kafka hostname and port                                                                                 | ``<kafka-bootstrap>:9092``    |
 | spring.kafka.bootstrap-servers        |                                                                                                         |                               |

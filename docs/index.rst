@@ -25,6 +25,7 @@ CPS
    cps-events.rst
    deployment.rst
    release-notes.rst
+   cps-stubs.rst
 
 DMI-Plugin
 ==========

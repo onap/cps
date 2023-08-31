@@ -454,7 +454,7 @@ Bug Fixes
    - `CPS-1289 <https://jira.onap.org/browse/CPS-1289>`_  Getting wrong error code for create node api
    - `CPS-1326 <https://jira.onap.org/browse/CPS-1326>`_  Creation of DataNodeBuilder with module name prefix is very slow
    - `CPS-1344 <https://jira.onap.org/browse/CPS-1344>`_  Top level container (prefix) is not always the first module
-   - `CPS-1350 <https://jira.onap.org/browse/CPS-1350>`_  Add Basic Auth to CPS/NCMP OpenAPI Definitions.
+   - `CPS-1350 <https://jira.onap.org/browse/CPS-1350>`_  Add Basic Authentication to CPS/NCMP OpenAPI Definitions.
    - `CPS-1352 <https://jira.onap.org/browse/CPS-1352>`_  Handle YangChoiceNode in right format.
    - `CPS-1409 <https://jira.onap.org/browse/CPS-1409>`_  Fix Delete uses case with '/' in path.
    - `CPS-1433 <https://jira.onap.org/browse/CPS-1433>`_  Fix to allow posting data with '/' key fields.
@@ -640,7 +640,7 @@ Bug Fixes
    - `CPS-957 <https://jira.onap.org/browse/CPS-957>`_  NCMP: fix getResourceDataForPassthroughOperational endpoint
    - `CPS-1020 <https://jira.onap.org/browse/CPS-1020>`_  DuplicatedYangResourceException error at parallel cmHandle registration
    - `CPS-1056 <https://jira.onap.org/browse/CPS-1056>`_  Wrong error response format in case of Dmi plugin error
-   - `CPS-1067 <https://jira.onap.org/browse/CPS-1067>`_  NCMP returns 500 error on searches endpoint when No DMi Handles registered
+   - `CPS-1067 <https://jira.onap.org/browse/CPS-1067>`_  NCMP returns 500 error on searches endpoint when No DMI Handles registered
    - `CPS-1085 <https://jira.onap.org/browse/CPS-1085>`_  Performance degradation on ncmp/v1/ch/searches endpoint
    - `CPS-1088 <https://jira.onap.org/browse/CPS-1088>`_  Kafka consumer can not be turned off
    - `CPS-1097 <https://jira.onap.org/browse/CPS-1097>`_  Unable to change state from LOCKED to ADVISED
@@ -752,7 +752,7 @@ Bug Fixes
    - `CPS-886 <https://jira.onap.org/browse/CPS-886>`_ Fragment handling decreasing performance for large number of cmHandles
    - `CPS-887 <https://jira.onap.org/browse/CPS-887>`_ Increase performance of cmHandle registration for large number of schema sets in DB
    - `CPS-892 <https://jira.onap.org/browse/CPS-892>`_ Fixed the response code during CM-Handle Registration from 201 CREATED to 204 NO_CONTENT
-   - `CPS-893 <https://jira.onap.org/browse/CPS-893>`_ NCMP Java API depends on NCM-Rest-API (cyclic) through json properties on Java API
+   - `CPS-893 <https://jira.onap.org/browse/CPS-893>`_ NCMP Java API depends on NCMP-Rest-API (cyclic) through json properties on Java API
 
 Known Limitations, Issues and Workarounds
 -----------------------------------------
@@ -1207,7 +1207,7 @@ Security Notes
 
 *Known Security Issues*
 
-    * Weak Crytography using md5
+    * Weak Cryptography using md5
     * Risk seen in Zip file expansion
 
 *Known Vulnerabilities in Used Modules*
