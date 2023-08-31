@@ -42,6 +42,9 @@ ncmp:
             enabled: true
         api:
             base-path: dmi
+    timers:
+        trust-level:
+            dmi-availability-watchdog-ms: 30000
 
     modules-sync-watchdog:
         async-executor:
