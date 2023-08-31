@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1e87a7f_f2c02754",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-08-31T15:53:11Z",
+      "side": 1,
+      "message": "Left some minor comments.",
+      "revId": "75ec00a9c03207691e1c001ebdc62dc77e68686c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "404a8ae7_88ad29b4",
@@ -43,6 +60,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7849a0fe_f38a9186",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 12
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-08-31T15:53:11Z",
+      "side": 1,
+      "message": "Is there any specific reason to remove it from security?",
+      "revId": "75ec00a9c03207691e1c001ebdc62dc77e68686c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0b3e9185_092831cd",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/EventsPublisher.java",
         "patchSetId": 12
@@ -54,6 +88,29 @@
       "writtenOn": "2023-08-31T15:34:46Z",
       "side": 1,
       "message": "maybe extract the common logic to a private method like before and can call the private method to handle the callback.",
+      "revId": "75ec00a9c03207691e1c001ebdc62dc77e68686c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b91aeb76_0633cbe0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/EventsPublisher.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-08-31T15:53:11Z",
+      "side": 1,
+      "message": "Use common method all other places as previous",
+      "range": {
+        "startLine": 65,
+        "startChar": 20,
+        "endLine": 73,
+        "endChar": 11
+      },
       "revId": "75ec00a9c03207691e1c001ebdc62dc77e68686c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
