@@ -32,24 +32,25 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class TrustLevelCacheConfig extends HazelcastCacheConfig {
 
-    private static final SetConfig untrustworthyCmHandlesSetConfig = createSetConfig("untrustworthyCmHandlesSetConfig");
-
-    /**
-     * Untrustworthy cmhandle set instance.
-     *
-     * @return instance of distributed set of untrustworthy cmhandles.
-     */
-    @Bean
-    public ISet<String> untrustworthyCmHandlesSet() {
-        return createHazelcastInstance("untrustworthyCmHandlesSet", untrustworthyCmHandlesSetConfig).getSet(
-                "untrustworthyCmHandlesSet");
-    }
+    private static final SetConfig untrustworthyCmHandlesSetConfig =
+            createSetConfig("untrustworthyCmHandlesSetConfig");
 
     private static final MapConfig trustLevelPerDmiPluginCacheConfig =
             createMapConfig("trustLevelPerDmiPluginCacheConfig");
 
     /**
-     * Distributed instance of trust level cache that contains dmi-plugin name by trust level.
+     * Distributed collection of untrustworthy cm handles.
+     *
+     * @return instance of distributed set of untrustworthy cm handles.
+     */
+    @Bean
+    public ISet<String> untrustworthyCmHandlesSet() {
+        return createHazelcastInstance("untrustworthyCmHandlesSet",
+                untrustworthyCmHandlesSetConfig).getSet("untrustworthyCmHandlesSet");
+    }
+
+    /**
+     * Distributed instance of trust level cache containing the trust level per dmi plugin service(name).
      *
      * @return configured map of dmi-plugin name as keys to trust-level for values.
      */

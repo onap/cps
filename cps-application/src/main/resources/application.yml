@@ -191,6 +191,8 @@ ncmp:
             dmi-response-timeout-ms: 30000
         model-loader:
             retry-time-ms: 1000
+        trust-level:
+            dmi-availability-watchdog-ms: 30000
 
     modules-sync-watchdog:
         async-executor:
