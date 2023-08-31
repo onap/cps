@@ -62,6 +62,30 @@
       },
       "revId": "34d49887a8be1d22399f56be7b349987e062e831",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6bf0d4f0_6a2f3e85",
+        "filename": "integration-test/src/test/resources/hibernate.cfg.xml",
+        "patchSetId": 11
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2023-08-31T14:45:28Z",
+      "side": 1,
+      "message": "Agreed",
+      "parentUuid": "e3d6ecd0_ad159b9c",
+      "range": {
+        "startLine": 12,
+        "startChar": 65,
+        "endLine": 12,
+        "endChar": 83
+      },
+      "revId": "34d49887a8be1d22399f56be7b349987e062e831",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
