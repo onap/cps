@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c837da88_b2180670",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 10
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2023-08-31T11:45:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "19d1f819_c9d6c711",
+      "range": {
+        "startLine": 75,
+        "startChar": 12,
+        "endLine": 75,
+        "endChar": 36
+      },
+      "revId": "e63c6a26e4d62cdc164edbd704716eab01c3c319",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dc9c67a1_695cec91",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-08-31T07:31:13Z",
       "side": 1,
       "message": "please define all versions in version management pom",
+      "range": {
+        "startLine": 121,
+        "startChar": 12,
+        "endLine": 121,
+        "endChar": 37
+      },
+      "revId": "e63c6a26e4d62cdc164edbd704716eab01c3c319",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "54b0a1a9_6b83e4d6",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 10
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2023-08-31T11:45:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dc9c67a1_695cec91",
       "range": {
         "startLine": 121,
         "startChar": 12,
@@ -89,6 +137,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0c160be5_d105a8fc",
+        "filename": "cps-application/src/main/java/org/onap/cps/config/WebSecurityConfig.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2023-08-31T11:45:33Z",
+      "side": 1,
+      "message": "The new version of springframework doesn\u0027t allow it.\norg.springframework.web.util.pattern.PatternParseException: Char \u0027.\u0027 is not allowed in a captured variable name",
+      "parentUuid": "7de02e63_567c6748",
+      "range": {
+        "startLine": 57,
+        "startChar": 29,
+        "endLine": 57,
+        "endChar": 39
+      },
+      "revId": "e63c6a26e4d62cdc164edbd704716eab01c3c319",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "09f03e98_916603f3",
         "filename": "cps-application/src/main/resources/application.yml",
         "patchSetId": 10
@@ -100,6 +172,30 @@
       "writtenOn": "2023-08-31T07:31:13Z",
       "side": 1,
       "message": "why was this moved, is that really needed?",
+      "range": {
+        "startLine": 143,
+        "startChar": 0,
+        "endLine": 143,
+        "endChar": 10
+      },
+      "revId": "e63c6a26e4d62cdc164edbd704716eab01c3c319",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23959421_93c47e4c",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 10
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2023-08-31T11:45:33Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "09f03e98_916603f3",
       "range": {
         "startLine": 143,
         "startChar": 0,
@@ -133,6 +229,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "13b34981_9cc307ae",
+        "filename": "cps-events/pom.xml",
+        "patchSetId": 10
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2023-08-31T11:45:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a5e79681_39b32db8",
+      "range": {
+        "startLine": 39,
+        "startChar": 12,
+        "endLine": 39,
+        "endChar": 37
+      },
+      "revId": "e63c6a26e4d62cdc164edbd704716eab01c3c319",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "99bb7fc7_69adb093",
@@ -146,6 +266,30 @@
       "writtenOn": "2023-08-31T07:31:13Z",
       "side": 1,
       "message": "please define all versions in version management pom",
+      "range": {
+        "startLine": 37,
+        "startChar": 12,
+        "endLine": 38,
+        "endChar": 21
+      },
+      "revId": "e63c6a26e4d62cdc164edbd704716eab01c3c319",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d79d533e_79d7952a",
+        "filename": "cps-ncmp-events/pom.xml",
+        "patchSetId": 10
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2023-08-31T11:45:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "99bb7fc7_69adb093",
       "range": {
         "startLine": 37,
         "startChar": 12,
@@ -179,6 +323,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "45511c0b_27103d4d",
+        "filename": "cps-ncmp-rest/pom.xml",
+        "patchSetId": 10
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2023-08-31T11:45:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "740e34fd_462928f4",
+      "range": {
+        "startLine": 63,
+        "startChar": 12,
+        "endLine": 63,
+        "endChar": 36
+      },
+      "revId": "e63c6a26e4d62cdc164edbd704716eab01c3c319",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a4398202_3eb58300",
@@ -192,6 +360,30 @@
       "writtenOn": "2023-08-31T07:31:13Z",
       "side": 1,
       "message": "please define all versions in version management pom",
+      "range": {
+        "startLine": 69,
+        "startChar": 12,
+        "endLine": 69,
+        "endChar": 37
+      },
+      "revId": "e63c6a26e4d62cdc164edbd704716eab01c3c319",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "38623aa0_7629954e",
+        "filename": "cps-ncmp-rest/pom.xml",
+        "patchSetId": 10
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2023-08-31T11:45:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a4398202_3eb58300",
       "range": {
         "startLine": 69,
         "startChar": 12,
@@ -225,6 +417,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9dbdfe74_14156908",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/EventsPublisher.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2023-08-31T11:45:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a3525a53_7e83e603",
+      "range": {
+        "startLine": 65,
+        "startChar": 41,
+        "endLine": 65,
+        "endChar": 45
+      },
+      "revId": "e63c6a26e4d62cdc164edbd704716eab01c3c319",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8003ee63_ca406cb5",
@@ -238,6 +454,30 @@
       "writtenOn": "2023-08-31T07:31:13Z",
       "side": 1,
       "message": "handle \u003d\u003d null first ie swap if else\n(convention when using ! in if and the else is also implemented to always swap)",
+      "range": {
+        "startLine": 66,
+        "startChar": 19,
+        "endLine": 66,
+        "endChar": 21
+      },
+      "revId": "e63c6a26e4d62cdc164edbd704716eab01c3c319",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dcdfc69e_644f02a2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/EventsPublisher.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2023-08-31T11:45:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8003ee63_ca406cb5",
       "range": {
         "startLine": 66,
         "startChar": 19,
@@ -271,6 +511,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "19996265_c54acd05",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/EventsPublisher.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2023-08-31T11:45:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b212f94e_af91706b",
+      "range": {
+        "startLine": 87,
+        "startChar": 43,
+        "endLine": 87,
+        "endChar": 44
+      },
+      "revId": "e63c6a26e4d62cdc164edbd704716eab01c3c319",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "48bb7343_21b829fd",
@@ -284,6 +548,30 @@
       "writtenOn": "2023-08-31T07:31:13Z",
       "side": 1,
       "message": "as above",
+      "range": {
+        "startLine": 88,
+        "startChar": 19,
+        "endLine": 88,
+        "endChar": 22
+      },
+      "revId": "e63c6a26e4d62cdc164edbd704716eab01c3c319",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "64a26301_060dee19",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/EventsPublisher.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2023-08-31T11:45:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "48bb7343_21b829fd",
       "range": {
         "startLine": 88,
         "startChar": 19,
@@ -317,6 +605,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f25ffb64_ab86491b",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 10
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2023-08-31T11:45:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "acd3df1b_ad3b9695",
+      "range": {
+        "startLine": 41,
+        "startChar": 8,
+        "endLine": 41,
+        "endChar": 49
+      },
+      "revId": "e63c6a26e4d62cdc164edbd704716eab01c3c319",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "61029ecd_382a0c9e",
@@ -330,6 +642,30 @@
       "writtenOn": "2023-08-31T07:31:13Z",
       "side": 1,
       "message": "set all versions in dependencies pom",
+      "range": {
+        "startLine": 57,
+        "startChar": 12,
+        "endLine": 58,
+        "endChar": 21
+      },
+      "revId": "e63c6a26e4d62cdc164edbd704716eab01c3c319",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2bf15e86_fdb61a6a",
+        "filename": "cps-path-parser/pom.xml",
+        "patchSetId": 10
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2023-08-31T11:45:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61029ecd_382a0c9e",
       "range": {
         "startLine": 57,
         "startChar": 12,
@@ -363,6 +699,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "54c038b4_f9e4421b",
+        "filename": "cps-rest/pom.xml",
+        "patchSetId": 10
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2023-08-31T11:45:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "396c7edf_df59a360",
+      "range": {
+        "startLine": 128,
+        "startChar": 0,
+        "endLine": 133,
+        "endChar": 36
+      },
+      "revId": "e63c6a26e4d62cdc164edbd704716eab01c3c319",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "87360f6c_4fb940db",
@@ -376,6 +736,30 @@
       "writtenOn": "2023-08-31T07:31:13Z",
       "side": 1,
       "message": "set all versions in dependencies pom",
+      "range": {
+        "startLine": 187,
+        "startChar": 16,
+        "endLine": 187,
+        "endChar": 40
+      },
+      "revId": "e63c6a26e4d62cdc164edbd704716eab01c3c319",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "afdbad42_8d818273",
+        "filename": "cps-rest/pom.xml",
+        "patchSetId": 10
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2023-08-31T11:45:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87360f6c_4fb940db",
       "range": {
         "startLine": 187,
         "startChar": 16,
@@ -409,6 +793,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "faed84a6_97cb2556",
+        "filename": "cps-ri/pom.xml",
+        "patchSetId": 10
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2023-08-31T11:45:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1e942cf6_252baee4",
+      "range": {
+        "startLine": 79,
+        "startChar": 12,
+        "endLine": 79,
+        "endChar": 38
+      },
+      "revId": "e63c6a26e4d62cdc164edbd704716eab01c3c319",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0ab0269e_5abdf0a7",
@@ -422,6 +830,30 @@
       "writtenOn": "2023-08-31T07:31:13Z",
       "side": 1,
       "message": "set all versions in dependencies pom",
+      "range": {
+        "startLine": 96,
+        "startChar": 13,
+        "endLine": 96,
+        "endChar": 37
+      },
+      "revId": "e63c6a26e4d62cdc164edbd704716eab01c3c319",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "08a55d1a_c7081542",
+        "filename": "cps-ri/pom.xml",
+        "patchSetId": 10
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2023-08-31T11:45:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ab0269e_5abdf0a7",
       "range": {
         "startLine": 96,
         "startChar": 13,
@@ -457,6 +889,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "29d7c4d5_f8363361",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentRepository.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2023-08-31T11:45:33Z",
+      "side": 1,
+      "message": "There was a problem with an autogenerated query and Daniel provided this to fix the issue.",
+      "parentUuid": "000da635_ffe69dbe",
+      "range": {
+        "startLine": 127,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 5
+      },
+      "revId": "e63c6a26e4d62cdc164edbd704716eab01c3c319",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b25e6491_18302d26",
         "filename": "cps-ri/src/main/resources/hibernate.cfg.xml",
         "patchSetId": 10
@@ -468,6 +924,30 @@
       "writtenOn": "2023-08-31T07:31:13Z",
       "side": 1,
       "message": "can you check this with Daniel, are you sure this needs to be removed?!",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 102
+      },
+      "revId": "e63c6a26e4d62cdc164edbd704716eab01c3c319",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ceccfd0_6674124b",
+        "filename": "cps-ri/src/main/resources/hibernate.cfg.xml",
+        "patchSetId": 10
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2023-08-31T11:45:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b25e6491_18302d26",
       "range": {
         "startLine": 12,
         "startChar": 0,
@@ -501,6 +981,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cfba4ca4_928979b6",
+        "filename": "cps-service/pom.xml",
+        "patchSetId": 10
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2023-08-31T11:45:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d8db3e6d_8e8cda97",
+      "range": {
+        "startLine": 101,
+        "startChar": 6,
+        "endLine": 101,
+        "endChar": 32
+      },
+      "revId": "e63c6a26e4d62cdc164edbd704716eab01c3c319",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "54009581_ac8ecb12",
@@ -524,6 +1028,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e07844c7_6da07a0c",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsDataServiceIntegrationSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2023-08-31T11:45:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "54009581_ac8ecb12",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 24
+      },
+      "revId": "e63c6a26e4d62cdc164edbd704716eab01c3c319",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f6e57e7d_95639835",
@@ -537,6 +1065,30 @@
       "writtenOn": "2023-08-31T07:31:13Z",
       "side": 1,
       "message": "different then the prod code config; you had it comment out there?",
+      "range": {
+        "startLine": 12,
+        "startChar": 8,
+        "endLine": 12,
+        "endChar": 92
+      },
+      "revId": "e63c6a26e4d62cdc164edbd704716eab01c3c319",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ebee3bf_a745afda",
+        "filename": "integration-test/src/test/resources/hibernate.cfg.xml",
+        "patchSetId": 10
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2023-08-31T11:45:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f6e57e7d_95639835",
       "range": {
         "startLine": 12,
         "startChar": 8,
