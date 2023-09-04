@@ -127,6 +127,9 @@ components:
           $ref: '#/components/schemas/RestCmHandleProperties'
         publicCmHandleProperties:
           $ref: '#/components/schemas/RestCmHandleProperties'
+        moduleSetTag:
+          type: string
+          example: "my-module-set-tag"
     RestCmHandleProperties:
       type: object
       additionalProperties:
