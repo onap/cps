@@ -183,6 +183,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffd22b4d_d658448a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/TrustLevelCacheConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-04T15:16:59Z",
+      "side": 1,
+      "message": "You\u0027re right. I\u0027ve not been using this bean(untrustworthyCmHandlesSet) in my commit. The reason why it does appear is trustLevelPerDmiPlugin bean is also placed under TrustLevelCacheConfig class.",
+      "parentUuid": "ac2d5cf3_eca391c4",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 0
+      },
+      "revId": "422007f25bc39a326c8390dcad252e369a2293ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a949410b_7acbe50e",
