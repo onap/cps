@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "17eba3fc_13685a92",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/client/DmiRestClient.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-04T10:57:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ef11345_446dd12c",
+      "range": {
+        "startLine": 85,
+        "startChar": 13,
+        "endLine": 85,
+        "endChar": 40
+      },
+      "revId": "422007f25bc39a326c8390dcad252e369a2293ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8b84c6bb_c3e60730",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-09-04T10:26:28Z",
       "side": 1,
       "message": "Distributed collection of untrustworthy cm handles",
+      "range": {
+        "startLine": 42,
+        "startChar": 7,
+        "endLine": 42,
+        "endChar": 44
+      },
+      "revId": "422007f25bc39a326c8390dcad252e369a2293ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b7d84c6_a95ee23b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/TrustLevelCacheConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-04T10:57:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b84c6bb_c3e60730",
       "range": {
         "startLine": 42,
         "startChar": 7,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "edce24a7_898ae53c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/TrustLevelCacheConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-04T10:57:47Z",
+      "side": 1,
+      "message": "This bean is responsible to keep records of cm handles which are untrustworthy.\n\nAlso, it\u0027s being populated by device heartbeat asynchronously.",
+      "parentUuid": "8374d19c_dead7620",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 0
+      },
+      "revId": "422007f25bc39a326c8390dcad252e369a2293ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a949410b_7acbe50e",
@@ -100,6 +172,30 @@
       "writtenOn": "2023-09-04T10:26:28Z",
       "side": 1,
       "message": "containing the trustlevel per dmi plugin service(name)",
+      "range": {
+        "startLine": 53,
+        "startChar": 49,
+        "endLine": 53,
+        "endChar": 94
+      },
+      "revId": "422007f25bc39a326c8390dcad252e369a2293ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f758e37_7ab823df",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/TrustLevelCacheConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-04T10:57:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a949410b_7acbe50e",
       "range": {
         "startLine": 53,
         "startChar": 49,
