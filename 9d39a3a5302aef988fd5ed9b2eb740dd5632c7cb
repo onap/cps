@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "26e04eaa_245725c0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-04T10:07:05Z",
+      "side": 1,
+      "message": "There is a common issue while measuring the time elapsed for the test cases which I tried to highlight on some places.",
+      "revId": "9d39a3a5302aef988fd5ed9b2eb740dd5632c7cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5baf5b4_c728ccb8",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/base/CpsPerfTestBase.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-04T10:07:05Z",
+      "side": 1,
+      "message": "This is not the stopWatch you started to measure elapsedTime. It might always zero.",
+      "range": {
+        "startLine": 88,
+        "startChar": 12,
+        "endLine": 88,
+        "endChar": 65
+      },
+      "revId": "9d39a3a5302aef988fd5ed9b2eb740dd5632c7cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85a498ee_86e1d33f",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/DeletePerfTest.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-04T10:07:05Z",
+      "side": 1,
+      "message": "This is not the stopWatch object you have started, will always zero.",
+      "range": {
+        "startLine": 64,
+        "startChar": 12,
+        "endLine": 64,
+        "endChar": 71
+      },
+      "revId": "9d39a3a5302aef988fd5ed9b2eb740dd5632c7cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d9048eb_30c3c4a1",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/DeletePerfTest.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-04T10:07:05Z",
+      "side": 1,
+      "message": "Same as above",
+      "range": {
+        "startLine": 81,
+        "startChar": 12,
+        "endLine": 81,
+        "endChar": 71
+      },
+      "revId": "9d39a3a5302aef988fd5ed9b2eb740dd5632c7cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "219f9502_e4551449",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/CmHandleQueryPerfTest.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-04T10:07:05Z",
+      "side": 1,
+      "message": "This value is always zero. Since there is another stopWatch object created in PerfTestBase.groovy and that object didn\u0027t started so it does not measure any time. You can use either one as a single stopWatch object not both.",
+      "range": {
+        "startLine": 47,
+        "startChar": 12,
+        "endLine": 47,
+        "endChar": 65
+      },
+      "revId": "9d39a3a5302aef988fd5ed9b2eb740dd5632c7cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d1f3dec_d949bd2d",
+        "filename": "integration-test/src/test/java/org/onap/cps/integration/TimeAndMemoryStopwatch.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-04T10:07:05Z",
+      "side": 1,
+      "message": "Its better to have a different name other than the Object\u0027s name. E.g. memoryTimer maybe...",
+      "range": {
+        "startLine": 29,
+        "startChar": 28,
+        "endLine": 29,
+        "endChar": 37
+      },
+      "revId": "9d39a3a5302aef988fd5ed9b2eb740dd5632c7cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6dfd4c0_859f6614",
+        "filename": "integration-test/src/test/java/org/onap/cps/integration/TimeAndMemoryStopwatch.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-04T10:07:05Z",
+      "side": 1,
+      "message": "If you use the same instance of your stopWatch in the same test groovy class for more than one method, will this return cummulative time elapsed or will it reset the time elapsed after you made it stop?",
+      "range": {
+        "startLine": 54,
+        "startChar": 1,
+        "endLine": 56,
+        "endChar": 5
+      },
+      "revId": "9d39a3a5302aef988fd5ed9b2eb740dd5632c7cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
