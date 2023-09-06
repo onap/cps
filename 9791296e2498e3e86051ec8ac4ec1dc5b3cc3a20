@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "32d7c25f_de124d97",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-06T13:36:45Z",
+      "side": 1,
+      "message": "As far as I\u0027ve seen, the latest stage of your commit could not publish the cloud events into one of the Kafka topic by raising javax.management.InstanceAlreadyExistsException for the bean of KafkaTemplate which is for CloudEvent.\n\nYou can have a look at cps-and-ncmp docker logs from this link:\n\nhttps://jenkins.onap.org/job/cps-review-verification-maven-master/5029/consoleText\n\n\nThe beginning of the log:\n\n{\"logTimeStamp\":\"2023-09-04T15:25:47.501Z\",\"logLevel\":\"WARN\",\"principalId\":\"cpsuser\",\"serviceName\":\"cps-application\",\"message\":\"Error registering AppInfo mbean\",\"processId\":\"1\",\"threadName\":\"org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1\",\"class\":\"o.a.kafka.common.utils.AppInfoParser\",\"exception\":\"\\njavax.management.InstanceAlreadyExistsException:",
+      "revId": "9791296e2498e3e86051ec8ac4ec1dc5b3cc3a20",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
