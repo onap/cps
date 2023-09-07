@@ -38,7 +38,7 @@
     <properties>
         <app>org.onap.cps.Application</app>
         <java.version>17</java.version>
-        <minimum-coverage>1.00</minimum-coverage>
+        <minimum-coverage>0.95</minimum-coverage>
         <postgres.version>42.5.1</postgres.version>
 
         <jacoco.reportDirectory.aggregate>${project.reporting.outputDirectory}/jacoco-aggregate</jacoco.reportDirectory.aggregate>

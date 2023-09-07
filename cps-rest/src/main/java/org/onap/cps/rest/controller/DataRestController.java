@@ -24,12 +24,15 @@
 
 package org.onap.cps.rest.controller;
 
+import static org.onap.cps.rest.utils.MultipartFileUtil.extractYangResourcesMap;
+
 import io.micrometer.core.annotation.Timed;
 import jakarta.validation.ValidationException;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
@@ -48,7 +51,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("${rest.api.cps-base-path}")
@@ -165,6 +170,26 @@ public class DataRestController implements CpsDataApi {
         cpsDataService
             .deleteListOrListElement(dataspaceName, anchorName, listElementXpath, toOffsetDateTime(observedTimestamp));
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @Override
+    public ResponseEntity<Object> getDeltaByDataspaceAnchorAndPayload(final String dataspaceName,
+                                                                      final String sourceAnchorName,
+                                                                      final String jsonPayload,
+                                                                      final String xpath,
+                                                                      @RequestParam(name = "file", required = false)
+                                                                          final MultipartFile multipartFile) {
+        final FetchDescendantsOption fetchDescendantsOption = FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
+
+        final Collection<DeltaReport> deltaReport = new ArrayList<>();
+        if (multipartFile != null) {
+            deltaReport.addAll(cpsDataService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, sourceAnchorName,
+                    xpath, extractYangResourcesMap(multipartFile), jsonPayload, fetchDescendantsOption));
+        } else {
+            deltaReport.addAll(cpsDataService.getDeltaByDataspaceAnchorAndPayload(dataspaceName,
+                    sourceAnchorName, xpath, Collections.emptyMap(), jsonPayload, fetchDescendantsOption));
+        }
+        return new ResponseEntity<>(jsonObjectMapper.asJsonString(deltaReport), HttpStatus.OK);
     }
 
     @Override

@@ -23,6 +23,7 @@
 
 package org.onap.cps.api.impl
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDeltaService
@@ -31,6 +32,8 @@ import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.CpsModulePersistenceService
 import org.onap.cps.spi.model.Anchor
 import org.onap.cps.spi.utils.CpsValidator
+import org.onap.cps.utils.JsonObjectMapper
+import org.onap.cps.utils.PrefixResolver
 import org.onap.cps.utils.TimedYangParser
 import org.onap.cps.utils.YangUtils
 import org.onap.cps.yang.TimedYangTextSchemaSourceSetBuilder
@@ -46,12 +49,16 @@ class E2ENetworkSliceSpec extends Specification {
     def timedYangTextSchemaSourceSetBuilder = new TimedYangTextSchemaSourceSetBuilder()
     def timedYangParser = new TimedYangParser()
     def mockCpsDeltaService = Mock(CpsDeltaService)
+    def mockTimedYangTextSchemaSourceSetBuilder = Mock(TimedYangTextSchemaSourceSetBuilder)
+    def mockJsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
+    def mockPrefixResolver = Mock(PrefixResolver)
 
     def cpsModuleServiceImpl = new CpsModuleServiceImpl(mockModuleStoreService,
             mockYangTextSchemaSourceSetCache, mockCpsAnchorService, mockCpsValidator,timedYangTextSchemaSourceSetBuilder)
 
     def cpsDataServiceImpl = new CpsDataServiceImpl(mockDataStoreService, mockCpsAnchorService,
-            mockYangTextSchemaSourceSetCache, mockCpsValidator, timedYangParser, mockCpsDeltaService)
+            mockYangTextSchemaSourceSetCache, mockCpsValidator, timedYangParser, mockCpsDeltaService,
+            mockTimedYangTextSchemaSourceSetBuilder, mockJsonObjectMapper, mockPrefixResolver)
 
     def dataspaceName = 'someDataspace'
     def anchorName = 'someAnchor'
