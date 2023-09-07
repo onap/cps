@@ -36,7 +36,10 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
+
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAdminService;
@@ -239,6 +242,28 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     @Override
+    public List<DeltaReport> getDeltaByDataspaceAnchorAndPayload(final String dataspaceName,
+                                                                 final String anchorName, final String xpath,
+                                                                 final Optional<String> comparandDataspaceName,
+                                                                 final Optional<String> comparandSchemaName,
+                                                                 final String jsonData,
+                                                                 final FetchDescendantsOption fetchDescendantsOption) {
+
+        cpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        Collection<DataNode> referenceDataNodes = getDataNodesForMultipleXpaths(dataspaceName, anchorName,
+                Collections.singletonList(xpath), fetchDescendantsOption);
+        if (comparandDataspaceName.isPresent() && comparandSchemaName.isPresent()) {
+            final Collection<DataNode> dataNodesInPayload =
+                    buildDataNodes(comparandDataspaceName.get(), comparandSchemaName.get(), xpath, jsonData,
+                            ContentType.JSON);
+            return cpsDeltaService.getDeltaBetweenDataNodes(referenceDataNodes, dataNodesInPayload);
+        }
+        final Anchor anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
+        final Collection<DataNode> dataNodesInPayload = buildDataNodes(anchor, xpath, jsonData, ContentType.JSON);
+        return cpsDeltaService.getDeltaBetweenDataNodes(referenceDataNodes, dataNodesInPayload);
+    }
+
+    @Override
     @Timed(value = "cps.data.service.datanode.descendants.update",
         description = "Time taken to update a data node and descendants")
     public void updateDataNodeAndDescendants(final String dataspaceName, final String anchorName,
@@ -346,6 +371,35 @@ public class CpsDataServiceImpl implements CpsDataService {
         processDataUpdatedEventAsync(anchor, listNodeXpath, DELETE, observedTimestamp);
     }
 
+    private Collection<DataNode> buildDataNodes(final String dataspaceName, final String schemaName,
+                                                final String parentNodeXpath, final String nodeData,
+                                                final ContentType contentType) {
+
+        final SchemaContext schemaContext = getSchemaContext(dataspaceName, schemaName);
+
+        if (ROOT_NODE_XPATH.equals(parentNodeXpath)) {
+            final ContainerNode containerNode = timedYangParser.parseData(contentType, nodeData, schemaContext);
+            final Collection<DataNode> dataNodes = new DataNodeBuilder()
+                    .withContainerNode(containerNode)
+                    .buildCollection();
+            if (dataNodes.isEmpty()) {
+                throw new DataValidationException("No data nodes.", "No data nodes provided");
+            }
+            return dataNodes;
+        }
+        final String normalizedParentNodeXpath = CpsPathUtil.getNormalizedXpath(parentNodeXpath);
+        final ContainerNode containerNode =
+                timedYangParser.parseData(ContentType.JSON, nodeData, schemaContext, normalizedParentNodeXpath);
+        final Collection<DataNode> dataNodes = new DataNodeBuilder()
+                .withParentNodeXpath(normalizedParentNodeXpath)
+                .withContainerNode(containerNode)
+                .buildCollection();
+        if (dataNodes.isEmpty()) {
+            throw new DataValidationException("No data nodes.", "No data nodes provided");
+        }
+        return dataNodes;
+    }
+
     private Collection<DataNode> buildDataNodes(final Anchor anchor, final Map<String, String> nodesJsonData) {
         final Collection<DataNode> dataNodes = new ArrayList<>();
         for (final Map.Entry<String, String> nodeJsonData : nodesJsonData.entrySet()) {
@@ -402,6 +456,11 @@ public class CpsDataServiceImpl implements CpsDataService {
     private SchemaContext getSchemaContext(final Anchor anchor) {
         return yangTextSchemaSourceSetCache
             .get(anchor.getDataspaceName(), anchor.getSchemaSetName()).getSchemaContext();
+    }
+
+    private SchemaContext getSchemaContext(final String comparandDataspaceName, final String comparandSchemaName) {
+        return  yangTextSchemaSourceSetCache
+                .get(comparandDataspaceName, comparandSchemaName).getSchemaContext();
     }
 
     private static boolean isRootNodeXpath(final String xpath) {

@@ -165,6 +165,14 @@ components:
       schema:
         type: string
         example: my-dataspace
+    comparandDataspaceNameInQuery:
+      name: comparand-dataspace-name
+      in: query
+      description: optional dataspace-name for Delta
+      required: false
+      schema:
+        type: string
+        example: my-dataspace
     dataspaceNameInPath:
       name: dataspace-name
       in: path
@@ -186,6 +194,14 @@ components:
       in: query
       description: schema-set-name
       required: true
+      schema:
+        type: string
+        example: my-schema-set
+    comparandSchemaSetNameInQuery:
+      name: comparand-schema-set-name
+      in: query
+      description: optional schema-set-name for Delta
+      required: false
       schema:
         type: string
         example: my-schema-set

@@ -28,6 +28,8 @@ import java.time.OffsetDateTime;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.DeltaReport;
@@ -315,4 +317,23 @@ public interface CpsDataService {
     List<DeltaReport> getDeltaByDataspaceAndAnchors(String dataspaceName, String referenceAnchorName,
                                                     String comparandAnchorName, String xpath,
                                                     FetchDescendantsOption fetchDescendantsOption);
+
+    /**
+     * Retrieves the delta between an anchor and JSON payload by xpath, using comparand dataspace name and schema name.
+     *
+     * @param dataspaceName             reference dataspace name
+     * @param anchorName                reference anchor name
+     * @param xpath                     xpath
+     * @param comparandDataspaceName    comparand dataspace name
+     * @param comparandSchemaName       comparand schema name
+     * @param jsonData                  JSON payload
+     * @param fetchDescendantsOption    defines the scope of data to fetch: defaulted to INCLUDE_ALL_DESCENDANTS
+     * @return                          list containing {@link DeltaReport} objects
+     */
+    List<DeltaReport> getDeltaByDataspaceAnchorAndPayload(String dataspaceName, String anchorName,
+                                                                        String xpath,
+                                                                        Optional<String> comparandDataspaceName,
+                                                                        Optional<String> comparandSchemaName,
+                                                                        String jsonData,
+                                                                        FetchDescendantsOption fetchDescendantsOption);
 }
