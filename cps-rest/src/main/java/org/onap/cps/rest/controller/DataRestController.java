@@ -25,13 +25,6 @@
 package org.onap.cps.rest.controller;
 
 import io.micrometer.core.annotation.Timed;
-import java.time.OffsetDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import javax.validation.ValidationException;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.onap.cps.api.CpsDataService;
@@ -48,6 +41,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.ValidationException;
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 @RestController
 @RequestMapping("${rest.api.cps-base-path}")
@@ -164,6 +162,21 @@ public class DataRestController implements CpsDataApi {
         cpsDataService
             .deleteListOrListElement(dataspaceName, anchorName, listElementXpath, toOffsetDateTime(observedTimestamp));
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @Override
+    public ResponseEntity<Object> getDeltaByDataspaceAnchorAndPayload(final String dataspaceName,
+                                                                      final String anchorName, final Object jsonData,
+                                                                      final String comparandDataspaceName,
+                                                                      final String comparandSchemaName,
+                                                                      final String xpath) {
+        final FetchDescendantsOption fetchDescendantsOption =
+                FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
+        final Collection<Map<String, Object>> deltaReport = new ArrayList<>();
+        Optional.ofNullable(cpsDataService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath,
+                Optional.of(comparandDataspaceName), Optional.of(comparandSchemaName),
+                jsonObjectMapper.asJsonString(jsonData), fetchDescendantsOption)).ifPresent(deltaReport::addAll);
+        return new ResponseEntity<>(jsonObjectMapper.asJsonString(deltaReport), HttpStatus.OK);
     }
 
     private static boolean isRootXpath(final String xpath) {

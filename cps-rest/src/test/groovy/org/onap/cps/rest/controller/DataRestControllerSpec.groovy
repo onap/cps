@@ -334,6 +334,33 @@ class DataRestControllerSpec extends Specification {
             assert response.contentAsString.contains('"child"') == true
     }
 
+    def 'Get delta between anchor and JSON payload using #fetchDescendantsOption'() {
+        given: 'the service returns a list containing delta'
+            List<Map> deltaReport = [['xpath':"/bookstore",'payload':['bookstore-name':"Easons"],'action':"update"]]
+            def anchorName = 'referenceAnchor'
+            String comparandDataspace = 'comparandDataspaceName'
+            String schemaName = 'schemaName'
+            def xpath = 'some xpath'
+            def endpoint = "$dataNodeBaseEndpointV2/anchors/$anchorName/delta"
+        mockCpsDataService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath, Optional.of(comparandDataspace), Optional.of(schemaName),  expectedJsonData, INCLUDE_ALL_DESCENDANTS) >> deltaReport
+        when: 'get delta request is performed using REST API'
+            def response =
+                    mvc.perform(get(endpoint)
+                            .param('comparand-dataspace-name', comparandDataspace)
+                            .param('comparand-schema-set-name', schemaName)
+                            .param('xpath', xpath)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(requestBodyJson))
+                            .andReturn().response
+        then: 'the expected service layer method is invoked'
+            print(response.contentAsString)
+            //1 * mockCpsDataService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath, Optional.of(comparandDataspace), Optional.of(schemaName),  expectedJsonData, INCLUDE_ALL_DESCENDANTS) >> deltaReport
+        and: 'expected response code is returned'
+            assert response.status == HttpStatus.OK.value()
+        and: 'the response contains expected value'
+            assert response.contentAsString.contains("[{\"xpath\":\"/bookstore\",\"payload\":{\"bookstore-name\":\"Easons\"},\"action\":\"update\"}]")
+    }
+
     def 'Update data node leaves: #scenario.'() {
         given: 'endpoint to update a node '
             def endpoint = "$dataNodeBaseEndpointV1/anchors/$anchorName/nodes"

@@ -23,8 +23,6 @@
 
 package org.onap.cps.spi.impl;
 
-import static org.onap.cps.spi.PaginationOption.NO_PAGINATION;
-
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSet.Builder;
 import io.micrometer.core.annotation.Timed;
@@ -36,6 +34,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -50,6 +49,7 @@ import org.onap.cps.cpspath.parser.PathParsingException;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.PaginationOption;
+import static org.onap.cps.spi.PaginationOption.NO_PAGINATION;
 import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.FragmentEntity;
@@ -81,6 +81,9 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     private final SessionManager sessionManager;
 
     private static final String REG_EX_FOR_OPTIONAL_LIST_INDEX = "(\\[@.+?])?)";
+    private static final String ADD_ACTION = "add";
+    private static final String REMOVE_ACTION = "remove";
+    private static final String UPDATE_ACTION = "update";
 
     @Override
     public void addChildDataNodes(final String dataspaceName, final String anchorName,
@@ -418,6 +421,117 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         }
         final List<Long> anchorIdList = getAnchorIdsForPagination(dataspaceEntity, cpsPathQuery, NO_PAGINATION);
         return anchorIdList.size();
+    }
+
+    @Override
+    public Collection<Map<String, Object>> getDeltaByDataspaceAnchorAndPayload(final String dataspaceName,
+                       final String anchorName, final String xpath, final Collection<DataNode> dataNodesInPayload,
+                       final FetchDescendantsOption fetchDescendantsOption) {
+        final Collection<DataNode> referenceDataNodes = getDataNodesForMultipleXpaths(dataspaceName, anchorName,
+                Collections.singletonList(xpath), fetchDescendantsOption);
+        return getDeltaBetweenDataNodes(referenceDataNodes, dataNodesInPayload);
+    }
+
+    private List<Map<String, Object>> getDeltaBetweenDataNodes(final Collection<DataNode> referenceDataNodes,
+                                                               final Collection<DataNode> comparandDataNodes) {
+        final List<Map<String, Object>> deltaReport = new ArrayList<>();
+        final Map<String, DataNode> xpathToReferenceDataNodes = getXpathToDataNode(referenceDataNodes);
+        final Map<String, DataNode> xpathToComparandDataNodes = getXpathToDataNode(comparandDataNodes);
+        deltaReport.addAll(getRemovedAndUpdatedNodes(referenceDataNodes, xpathToComparandDataNodes));
+        deltaReport.addAll(getAddedNodes(xpathToReferenceDataNodes, xpathToComparandDataNodes));
+        return Collections.unmodifiableList(deltaReport);
+    }
+    private List<Map<String, Object>>  getRemovedAndUpdatedNodes(final Collection<DataNode> referenceDataNodes,
+                                                                 final Map<String, DataNode> xpathToComparandDataNodes) {
+        final List<Map<String, Object>> removedAndUpdatedNodes = new ArrayList<>();
+        for (final DataNode referenceDataNode : referenceDataNodes) {
+            final String xpath = referenceDataNode.getXpath();
+            final DataNode comparandDataNode = xpathToComparandDataNodes.get(xpath);
+            if (comparandDataNode == null) {
+                removedAndUpdatedNodes.add(getDeltaReportEntities(REMOVE_ACTION, xpath, null));
+            } else {
+                removedAndUpdatedNodes.addAll(getUpdatedNodes(xpath, referenceDataNode, comparandDataNode));
+            }
+        }
+        return removedAndUpdatedNodes;
+    }
+    private List<Map<String, Object>> getUpdatedNodes(final String xpath, final DataNode referenceDataNode,
+                                                      final DataNode comparandDataNode) {
+        final List<Map<String, Object>> updatedNodes = new ArrayList<>();
+        if (!referenceDataNode.getLeaves().isEmpty() && !comparandDataNode.getLeaves().isEmpty()) {
+            final Map<String, Serializable> leafNameToUpdatedLeaves =
+                    getUpdatedLeaves(referenceDataNode.getLeaves(), comparandDataNode.getLeaves());
+            if (!leafNameToUpdatedLeaves.isEmpty()) {
+                updatedNodes
+                        .add(getDeltaReportEntities(UPDATE_ACTION, xpath, leafNameToUpdatedLeaves));
+            }
+        }
+        if (referenceDataNode.getLeaves().isEmpty() && !comparandDataNode.getLeaves().isEmpty()) {
+            updatedNodes
+                    .add(getDeltaReportEntities(UPDATE_ACTION, xpath, comparandDataNode.getLeaves()));
+        }
+        if (!referenceDataNode.getLeaves().isEmpty() && comparandDataNode.getLeaves().isEmpty()) {
+            updatedNodes.add(getDeltaReportEntities(UPDATE_ACTION, xpath, comparandDataNode.getLeaves()));
+        }
+        if (!(referenceDataNode.getChildDataNodes().isEmpty()
+                && comparandDataNode.getChildDataNodes().isEmpty())) {
+            updatedNodes.addAll(getDeltaBetweenDataNodes(referenceDataNode.getChildDataNodes(),
+                    comparandDataNode.getChildDataNodes()));
+        }
+        return updatedNodes;
+    }
+    private List<Map<String, Object>> getAddedNodes(final Map<String, DataNode> xpathToReferenceDataNodes,
+                                                    final Map<String, DataNode> xpathToComparandDataNodes) {
+        final List<Map<String, Object>> addedNodes = new ArrayList<>();
+        final Map<String, DataNode> xpathToAddedNodes = new HashMap<>(xpathToComparandDataNodes);
+        xpathToAddedNodes.keySet().removeAll(xpathToReferenceDataNodes.keySet());
+        for (final Map.Entry<String, DataNode> entry: xpathToAddedNodes.entrySet()) {
+            final String xpath = entry.getKey();
+            final DataNode dataNode = entry.getValue();
+            if (!dataNode.getLeaves().isEmpty() && !dataNode.getChildDataNodes().isEmpty()) {
+                addedNodes.add(getDeltaReportEntities(ADD_ACTION, xpath, dataNode.getLeaves()));
+                addedNodes.addAll(getDeltaBetweenDataNodes(Collections.emptyList(), dataNode.getChildDataNodes()));
+            } else if (!dataNode.getLeaves().isEmpty()) {
+                addedNodes.add(getDeltaReportEntities(ADD_ACTION, xpath, dataNode.getLeaves()));
+            } else if (!dataNode.getChildDataNodes().isEmpty()) {
+                addedNodes.addAll(getDeltaBetweenDataNodes(Collections.emptyList(), dataNode.getChildDataNodes()));
+            } else {
+                addedNodes.add(getDeltaReportEntities(ADD_ACTION, xpath, null));
+            }
+        }
+        return addedNodes;
+    }
+    private Map<String, Object> getDeltaReportEntities(final String action, final String xpath,
+                                                       final Map<String, Serializable> payload) {
+        final Map<String, Object> actionEntity = new HashMap<>();
+        actionEntity.put("action", action);
+        actionEntity.put("xpath", xpath);
+        if (!Objects.equals(action, REMOVE_ACTION)) {
+            actionEntity.put("payload", payload);
+        }
+        return actionEntity;
+    }
+    private Map<String, DataNode> getXpathToDataNode(final Collection<DataNode> dataNodes) {
+        final Map<String, DataNode> xpathToDataNode = new HashMap<>();
+        for (final DataNode dataNode : dataNodes) {
+            xpathToDataNode.put(dataNode.getXpath(), dataNode);
+        }
+        return xpathToDataNode;
+    }
+    private Map<String, Serializable> getUpdatedLeaves(final Map<String, Serializable> leavesOfReferenceDataNode,
+                                                       final Map<String, Serializable> leavesOfComparandDataNode) {
+        final Map<String, Serializable> updatedLeaves = new HashMap<>();
+        for (final Map.Entry<String, Serializable> entry: leavesOfReferenceDataNode.entrySet()) {
+            if (!leavesOfReferenceDataNode.get(entry.getKey()).equals(leavesOfComparandDataNode.get(entry.getKey()))) {
+                updatedLeaves.put(entry.getKey(), leavesOfComparandDataNode.get(entry.getKey()));
+            }
+        }
+        for (final Map.Entry<String, Serializable> entry: leavesOfComparandDataNode.entrySet()) {
+            if (leavesOfReferenceDataNode.get(entry.getKey()) == null) {
+                updatedLeaves.put(entry.getKey(), leavesOfComparandDataNode.get(entry.getKey()));
+            }
+        }
+        return updatedLeaves;
     }
 
     private static Set<String> processAncestorXpath(final Collection<FragmentEntity> fragmentEntities,
