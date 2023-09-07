@@ -222,6 +222,20 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     @Override
+    public List<DeltaReport> getDeltaByDataspaceAnchorAndPayload(final String dataspaceName,
+                                                                 final String sourceAnchorName, final String xpath,
+                                                                 final String jsonPayload,
+                                                                 final FetchDescendantsOption fetchDescendantsOption) {
+
+        final Collection<DataNode> sourceDataNodes = getDataNodesForMultipleXpaths(dataspaceName, sourceAnchorName,
+                Collections.singletonList(xpath), fetchDescendantsOption);
+        final Anchor sourceAnchor = cpsAnchorService.getAnchor(dataspaceName, sourceAnchorName);
+        final Collection<DataNode> dataNodesFromJson = buildDataNodes(sourceAnchor, xpath,
+                jsonPayload, ContentType.JSON);
+        return cpsDeltaService.getDeltaReports(sourceDataNodes, dataNodesFromJson);
+    }
+
+    @Override
     @Timed(value = "cps.data.service.datanode.descendants.update",
         description = "Time taken to update a data node and descendants")
     public void updateDataNodeAndDescendants(final String dataspaceName, final String anchorName,
