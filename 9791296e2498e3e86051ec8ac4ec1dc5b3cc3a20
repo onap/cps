@@ -34,6 +34,24 @@
       "parentUuid": "32d7c25f_de124d97",
       "revId": "9791296e2498e3e86051ec8ac4ec1dc5b3cc3a20",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f03df68_eb09d8cb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2023-09-07T09:07:13Z",
+      "side": 1,
+      "message": "This seems common across the board. It\u0027s not the issue here.The Kafka flow can\u0027t be verified for some reason here.",
+      "parentUuid": "a31facd2_f27c065a",
+      "revId": "9791296e2498e3e86051ec8ac4ec1dc5b3cc3a20",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
