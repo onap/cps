@@ -298,4 +298,8 @@ public interface CpsDataService {
      * @param timeoutInMilliseconds lock attempt timeout in milliseconds
      */
     void lockAnchor(String sessionID, String dataspaceName, String anchorName, Long timeoutInMilliseconds);
+
+    Collection<Map<String, Object>> getDeltaByDataspaceAnchorAndPayload(String dataspaceName, String anchorName,
+                                                                        String xpath, String jsonData,
+                                                                        FetchDescendantsOption fetchDescendantsOption);
 }
