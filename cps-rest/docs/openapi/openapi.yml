@@ -2,7 +2,7 @@
 #  Copyright (C) 2021-2023 Nordix Foundation
 #  Modifications Copyright (C) 2021 Pantheon.tech
 #  Modifications Copyright (C) 2021 Bell Canada.
-#  Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
+#  Modifications Copyright (C) 2022-2024 TechMahindra Ltd.
 #  ================================================================================
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -106,6 +106,9 @@ paths:
 
   /v2/dataspaces/{dataspace-name}/anchors/{anchor-name}/delta:
     $ref: 'cpsDataV2.yml#/deltaByDataspaceAndAnchors'
+
+  /v2/dataspaces/{dataspace-name}/anchors/{anchor-name}/deltaByPayload:
+    $ref: 'cpsDataV2.yml#/deltaByDataspaceAnchorAndPayload'
 
   /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/nodes/query:
     $ref: 'cpsQueryV1Deprecated.yml#/nodesByDataspaceAndAnchorAndCpsPath'

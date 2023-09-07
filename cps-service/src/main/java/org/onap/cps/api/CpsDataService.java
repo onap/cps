@@ -4,7 +4,7 @@
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada
  *  Modifications Copyright (C) 2022 Deutsche Telekom AG
- *  Modifications Copyright (C) 2023 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2023-2024 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -302,4 +302,20 @@ public interface CpsDataService {
     List<DeltaReport> getDeltaByDataspaceAndAnchors(String dataspaceName, String sourceAnchorName,
                                                     String targetAnchorName, String xpath,
                                                     FetchDescendantsOption fetchDescendantsOption);
+
+    /**
+     * Retrieves the delta between an anchor and JSON payload by xpath, using dataspace name and anchor name.
+     *
+     * @param dataspaceName                     source dataspace name
+     * @param sourceAnchorName                  source anchor name
+     * @param xpath                             xpath
+     * @param yangResourcesNameToContentMap     YANG resources (files) map where key is a name and value is content
+     * @param jsonPayload                       JSON payload
+     * @param fetchDescendantsOption            defines the scope of data to fetch: defaulted to INCLUDE_ALL_DESCENDANTS
+     * @return                                  list containing {@link DeltaReport} objects
+     */
+    List<DeltaReport> getDeltaByDataspaceAnchorAndPayload(String dataspaceName, String sourceAnchorName, String xpath,
+                                                          Map<String, String> yangResourcesNameToContentMap,
+                                                          String jsonPayload,
+                                                          FetchDescendantsOption fetchDescendantsOption);
 }

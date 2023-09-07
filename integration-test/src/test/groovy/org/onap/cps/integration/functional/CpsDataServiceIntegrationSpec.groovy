@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2023-2024 Nordix Foundation
- *  Modifications Copyright (C) 2023 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2023-2024 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -455,7 +455,7 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
             restoreBookstoreDataAnchor(2)
     }
 
-    def 'Get delta between 2 anchors for when #scenario'() {
+    def 'Get delta between 2 anchors'() {
         when: 'attempt to get delta report between anchors'
             def result = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_ANCHOR_3, BOOKSTORE_ANCHOR_5, '/', OMIT_DESCENDANTS)
         then: 'delta report contains expected number of changes'
@@ -582,6 +582,46 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
         and: 'the delta report also has expected source and target data of child nodes'
             assert deltaReportEntities.get('sourcePayload').containsAll(expectedSourceDataInChildNode)
             assert deltaReportEntities.get('targetPayload').containsAll(expectedTargetDataInChildNode)
+    }
+
+    def 'Get delta between anchor and JSON payload'() {
+        when: 'attempt to get delta report between anchors'
+            def jsonPayload = "{\"book-store:bookstore\":{\"bookstore-name\":\"Crossword Bookstores\"},\"book-store:bookstore-address\":{\"address\":\"Bangalore, India\",\"postal-code\":\"560062\",\"bookstore-name\":\"Crossword Bookstores\"}}"
+            def result = objectUnderTest.getDeltaByDataspaceAnchorAndPayload(FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_ANCHOR_3, '/', [:], jsonPayload, OMIT_DESCENDANTS)
+        then: 'delta report contains expected number of changes'
+            result.size() == 3
+        and: 'delta report contains UPDATE action with expected xpath'
+            assert result[0].getAction() == 'update'
+            assert result[0].getXpath() == '/bookstore'
+        and: 'delta report contains REMOVE action with expected xpath'
+            assert result[1].getAction() == 'remove'
+            assert result[1].getXpath() == "/bookstore-address[@bookstore-name='Easons-1']"
+        and: 'delta report contains ADD action with expected xpath'
+            assert result[2].getAction() == 'add'
+            assert result[2].getXpath() == "/bookstore-address[@bookstore-name='Crossword Bookstores']"
+    }
+
+    def 'Get delta between anchor and payload returns empty response when JSON payload is identical to anchor data'() {
+        when: 'attempt to get delta report between anchors'
+            def jsonPayload = readResourceDataFile('bookstore/bookstoreData.json').replace('Easons', 'Easons-1')
+            def result = objectUnderTest.getDeltaByDataspaceAnchorAndPayload(FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_ANCHOR_3, '/', [:], jsonPayload, INCLUDE_ALL_DESCENDANTS)
+        then: 'delta report is empty'
+            assert result.isEmpty()
+    }
+
+    def 'Get delta between anchor and payload error scenario: #scenario'() {
+        when: 'attempt to get delta between anchor and json payload'
+            objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, sourceAnchor, xpath, [:], jsonPayload, INCLUDE_ALL_DESCENDANTS)
+        then: 'expected exception is thrown'
+            thrown(expectedException)
+        where: 'following data was used'
+                scenario                               | dataspaceName               | sourceAnchor          | xpath        | jsonPayload   || expectedException
+        'invalid dataspace name'                       | 'Invalid dataspace'         | 'not-relevant'        | '/'          | '{some-json}' || DataValidationException
+        'invalid anchor name'                          | FUNCTIONAL_TEST_DATASPACE_3 | 'invalid anchor'      | '/'          | '{some-json}' || DataValidationException
+        'non-existing dataspace'                       | 'non-existing'              | 'not-relevant'        | '/'          | '{some-json}' || DataspaceNotFoundException
+        'non-existing anchor'                          | FUNCTIONAL_TEST_DATASPACE_3 | 'non-existing-anchor' | '/'          | '{some-json}' || AnchorNotFoundException
+        'empty json payload with root node xpath'      | FUNCTIONAL_TEST_DATASPACE_3 | BOOKSTORE_ANCHOR_3    | '/'          | ''            || DataValidationException
+        'empty json payload with non-root node xpath'  | FUNCTIONAL_TEST_DATASPACE_3 | BOOKSTORE_ANCHOR_3    | '/bookstore' | ''            || DataValidationException
     }
 
     def getDeltaReportEntities(List<DeltaReport> deltaReport) {
