@@ -263,6 +263,40 @@ class CpsDataServiceImplSpec extends Specification {
             'equivalent anchor names' | ANCHOR_NAME_1   | ANCHOR_NAME_1   | FetchDescendantsOption.OMIT_DESCENDANTS
     }
 
+    def 'Get delta between anchor and payload with #scenario'() {
+        given: 'comparand dataspace and schema set'
+            //def referenceDataNodes = [new DataNodeBuilder().withXpath(xpath).build()]
+        when: 'attempt to get delta'
+            objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath, jsonData, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+        then: 'the dataspace and anchor names are validated'
+            2 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
+            1 * objectUnderTest.getDataFromJson(jsonData)
+            //mockCpsDataPersistenceService.getDataNodesForMultipleXpaths(dataspaceName, anchorName, [xpath], FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> referenceDataNodes
+        where:
+            scenario                                                 | xpath        | jsonData                                                                                                              | expectedNodeXpath
+            'root node xpath with comparand dataspace and anchor'    | '/'          | '{"bookstore":{"bookstore-name":"Easons","categories":[{"code":"01/1","name":"SciFi"},{"name":"kids","code":"02"}]}}' | '/bookstore'
+            'non-root xpath with comparand dataspace and anchor'     | '/bookstore' | '{"bookstore-name":"Easons","categories":[{"code":"01/1","name":"SciFi"},{"name":"kids","code":"02"}]}'               | '/bookstore/categories[@code=\'02\']'
+            'root node xpath without comparand dataspace and anchor' | '/'          | '{"bookstore":{"bookstore-name":"Easons","categories":[{"code":"01/1","name":"SciFi"},{"name":"kids","code":"02"}]}}' | '/bookstore'
+            'non-root xpath without comparand dataspace and anchor'  | '/bookstore' | '{"bookstore-name":"Easons","categories":[{"code":"01/1","name":"SciFi"},{"name":"kids","code":"02"}]}'               | '/bookstore/categories[@code=\'02\']'
+    }
+
+    def 'Delta between anchor and payload error scenario #scenario'() {
+        given: 'schema set for given anchor and dataspace references bookstore model'
+            def comparandDataspaceName = Optional.of("comparand-dataspaceName")
+            def comparandSchemaName = Optional.of("comparand-schemaName")
+            setupSchemaSetMocksForDelta(comparandDataspaceName, comparandSchemaName, 'bookstore.yang')
+        when: 'attempt to get delta between anchor and payload'
+            objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath, comparandDataspaceName, comparandSchemaName, jsonData, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+        then: 'expected exception is thrown'
+            thrown(DataValidationException)
+        where: 'following parameters were used'
+            scenario                                 | xpath        | jsonData
+            'root node xpath with invalid json data' | '/'          | '{"some-key": "some-value"}'
+            'non-root xpath with invalid json data'  | '/bookstore' | '{"some-key": "some-value"}'
+            'root node xpath with empty json data'   | '/'          | '{}'
+            'non-root xpath with empty json data'    | '/bookstore' | '{}'
+    }
+
     def 'Update data node leaves: #scenario.'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')
@@ -540,6 +574,14 @@ class CpsDataServiceImplSpec extends Specification {
     def setupSchemaSetMocks(String... yangResources) {
         def mockYangTextSchemaSourceSet = Mock(YangTextSchemaSourceSet)
         mockYangTextSchemaSourceSetCache.get(dataspaceName, schemaSetName) >> mockYangTextSchemaSourceSet
+        def yangResourceNameToContent = TestUtils.getYangResourcesAsMap(yangResources)
+        def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
+        mockYangTextSchemaSourceSet.getSchemaContext() >> schemaContext
+    }
+
+    def setupSchemaSetMocksForDelta(Optional<String> comparandDataspaceName, Optional<String> comparandSchemaName, String... yangResources) {
+        def mockYangTextSchemaSourceSet = Mock(YangTextSchemaSourceSet)
+        mockYangTextSchemaSourceSetCache.get(comparandDataspaceName.get(), comparandSchemaName.get()) >> mockYangTextSchemaSourceSet
         def yangResourceNameToContent = TestUtils.getYangResourcesAsMap(yangResources)
         def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
         mockYangTextSchemaSourceSet.getSchemaContext() >> schemaContext

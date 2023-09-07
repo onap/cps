@@ -355,6 +355,27 @@ class DataRestControllerSpec extends Specification {
             assert response.contentAsString.contains("[{\"xpath\":\"/bookstore\",\"payload\":{\"bookstore-name\":\"Easons\"},\"action\":\"update\"}]")
     }
 
+    def 'Get delta between anchor and JSON payload using #fetchDescendantsOption'() {
+        given: 'the service returns a list containing delta'
+            List<Map> deltaReport = [['xpath':"/bookstore",'payload':['bookstore-name':"Easons"],'action':"update"]]
+            def anchorName = 'referenceAnchor'
+            def xpath = 'some xpath'
+            def endpoint = "$dataNodeBaseEndpointV2/anchors/$anchorName/deltaByPayload"
+
+            mockCpsDataService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath,  expectedJsonData, INCLUDE_ALL_DESCENDANTS) >> deltaReport
+        when: 'get delta request is performed using REST API'
+            def response =
+                    mvc.perform(post(endpoint)
+                            .param('xpath', xpath)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(requestBodyJson))
+                            .andReturn().response
+        then: 'expected response code is returned'
+            assert response.status == HttpStatus.OK.value()
+        and: 'the response contains expected value'
+            assert response.contentAsString.contains("[{\"xpath\":\"/bookstore\",\"payload\":{\"bookstore-name\":\"Easons\"},\"action\":\"update\"}]")
+    }
+
     def 'Update data node leaves: #scenario.'() {
         given: 'endpoint to update a node '
             def endpoint = "$dataNodeBaseEndpointV1/anchors/$anchorName/nodes"

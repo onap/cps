@@ -28,6 +28,7 @@ import static org.onap.cps.notification.Operation.CREATE;
 import static org.onap.cps.notification.Operation.DELETE;
 import static org.onap.cps.notification.Operation.UPDATE;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import io.micrometer.core.annotation.Timed;
 import java.io.Serializable;
 import java.time.OffsetDateTime;
@@ -37,6 +38,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAdminService;
@@ -55,6 +57,7 @@ import org.onap.cps.spi.model.DataNodeBuilder;
 import org.onap.cps.spi.model.DeltaReport;
 import org.onap.cps.spi.utils.CpsValidator;
 import org.onap.cps.utils.ContentType;
+import org.onap.cps.utils.JsonObjectMapper;
 import org.onap.cps.utils.TimedYangParser;
 import org.opendaylight.yangtools.yang.data.api.schema.ContainerNode;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
@@ -75,6 +78,7 @@ public class CpsDataServiceImpl implements CpsDataService {
     private final CpsValidator cpsValidator;
     private final TimedYangParser timedYangParser;
     private final CpsDeltaService cpsDeltaService;
+    private final JsonObjectMapper jsonObjectMapper;
 
     @Override
     public void saveData(final String dataspaceName, final String anchorName, final String nodeData,
@@ -239,6 +243,28 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     @Override
+    public List<DeltaReport> getDeltaByDataspaceAnchorAndPayload(final String dataspaceName,
+                                                                 final String sourceAnchorName, final String xpath,
+                                                                 final String jsonPayload,
+                                                                 final FetchDescendantsOption fetchDescendantsOption) {
+
+        final DataNode dataNodesFromJson = getDataFromJson( jsonPayload);
+
+        Collection<DataNode> referenceDataNodes = getDataNodesForMultipleXpaths(dataspaceName, sourceAnchorName,
+                Collections.singletonList(xpath), fetchDescendantsOption);
+
+        return cpsDeltaService.getDeltaBetweenDataNodes(referenceDataNodes, Collections.singletonList(dataNodesFromJson));
+    }
+
+    public DataNode getDataFromJson( String jsonNodes) {
+
+        final DataNode jsonAttributes = jsonObjectMapper.convertJsonString(jsonNodes, DataNode.class);
+
+
+        return jsonAttributes;
+    }
+
+    @Override
     @Timed(value = "cps.data.service.datanode.descendants.update",
         description = "Time taken to update a data node and descendants")
     public void updateDataNodeAndDescendants(final String dataspaceName, final String anchorName,
@@ -346,6 +372,35 @@ public class CpsDataServiceImpl implements CpsDataService {
         processDataUpdatedEventAsync(anchor, listNodeXpath, DELETE, observedTimestamp);
     }
 
+    private Collection<DataNode> buildDataNodes(final String dataspaceName, final String schemaName,
+                                                final String parentNodeXpath, final String nodeData,
+                                                final ContentType contentType) {
+
+        final SchemaContext schemaContext = getSchemaContext(dataspaceName, schemaName);
+
+        if (ROOT_NODE_XPATH.equals(parentNodeXpath)) {
+            final ContainerNode containerNode = timedYangParser.parseData(contentType, nodeData, schemaContext);
+            final Collection<DataNode> dataNodes = new DataNodeBuilder()
+                    .withContainerNode(containerNode)
+                    .buildCollection();
+            if (dataNodes.isEmpty()) {
+                throw new DataValidationException("No data nodes.", "No data nodes provided");
+            }
+            return dataNodes;
+        }
+        final String normalizedParentNodeXpath = CpsPathUtil.getNormalizedXpath(parentNodeXpath);
+        final ContainerNode containerNode =
+                timedYangParser.parseData(ContentType.JSON, nodeData, schemaContext, normalizedParentNodeXpath);
+        final Collection<DataNode> dataNodes = new DataNodeBuilder()
+                .withParentNodeXpath(normalizedParentNodeXpath)
+                .withContainerNode(containerNode)
+                .buildCollection();
+        if (dataNodes.isEmpty()) {
+            throw new DataValidationException("No data nodes.", "No data nodes provided");
+        }
+        return dataNodes;
+    }
+
     private Collection<DataNode> buildDataNodes(final Anchor anchor, final Map<String, String> nodesJsonData) {
         final Collection<DataNode> dataNodes = new ArrayList<>();
         for (final Map.Entry<String, String> nodeJsonData : nodesJsonData.entrySet()) {
@@ -402,6 +457,11 @@ public class CpsDataServiceImpl implements CpsDataService {
     private SchemaContext getSchemaContext(final Anchor anchor) {
         return yangTextSchemaSourceSetCache
             .get(anchor.getDataspaceName(), anchor.getSchemaSetName()).getSchemaContext();
+    }
+
+    private SchemaContext getSchemaContext(final String comparandDataspaceName, final String comparandSchemaName) {
+        return  yangTextSchemaSourceSetCache
+                .get(comparandDataspaceName, comparandSchemaName).getSchemaContext();
     }
 
     private static boolean isRootNodeXpath(final String xpath) {

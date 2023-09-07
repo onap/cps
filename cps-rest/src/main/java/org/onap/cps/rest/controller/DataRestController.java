@@ -32,6 +32,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.onap.cps.api.CpsDataService;
@@ -181,6 +183,19 @@ public class DataRestController implements CpsDataApi {
                 cpsDataService.getDeltaByDataspaceAndAnchors(dataspaceName, referenceAnchorName,
                 comparandAnchorName, xpath, fetchDescendantsOption);
         return new ResponseEntity<>(jsonObjectMapper.asJsonString(deltaBetweenDataNodes), HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<Object> getDeltaByDataspaceAnchorAndPayload(final String dataspaceName,
+                                                                      final String sourceAnchorName,
+                                                                      final Object jsonPayload,
+                                                                      final String xpath) {
+        final FetchDescendantsOption fetchDescendantsOption = FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
+
+        final Collection<DeltaReport> deltaReport = cpsDataService.getDeltaByDataspaceAnchorAndPayload(dataspaceName,
+                sourceAnchorName, xpath, jsonObjectMapper.asJsonString(jsonPayload), fetchDescendantsOption);
+
+        return new ResponseEntity<>(jsonObjectMapper.asJsonString(deltaReport), HttpStatus.OK);
     }
 
     private static boolean isRootXpath(final String xpath) {
