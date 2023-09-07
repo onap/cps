@@ -49,6 +49,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import static org.onap.cps.rest.utils.MultipartFileUtil.extractYangResourcesMap;
 
 @RestController
 @RequestMapping("${rest.api.cps-base-path}")
@@ -165,6 +168,21 @@ public class DataRestController implements CpsDataApi {
         cpsDataService
             .deleteListOrListElement(dataspaceName, anchorName, listElementXpath, toOffsetDateTime(observedTimestamp));
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @Override
+    public ResponseEntity<Object> getDeltaByDataspaceAnchorAndPayload(final String dataspaceName,
+                                                                      final String sourceAnchorName,
+                                                                      final String xpath,
+                                                                      final MultipartFile multipartFile,
+                                                                      final String jsonPayload) {
+        final FetchDescendantsOption fetchDescendantsOption = FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
+
+        final Collection<DeltaReport> deltaReport = cpsDataService.getDeltaByDataspaceAnchorAndPayload(dataspaceName,
+                sourceAnchorName, xpath, extractYangResourcesMap(multipartFile),
+                jsonObjectMapper.asJsonString(jsonPayload), fetchDescendantsOption);
+
+        return new ResponseEntity<>(jsonObjectMapper.asJsonString(deltaReport), HttpStatus.OK);
     }
 
     @Override
