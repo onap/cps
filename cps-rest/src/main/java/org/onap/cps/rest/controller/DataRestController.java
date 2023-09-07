@@ -184,6 +184,19 @@ public class DataRestController implements CpsDataApi {
         return new ResponseEntity<>(jsonObjectMapper.asJsonString(deltaBetweenAnchors), HttpStatus.OK);
     }
 
+    @Override
+    public ResponseEntity<Object> getDeltaByDataspaceAnchorAndPayload(final String dataspaceName,
+                                                                      final String sourceAnchorName,
+                                                                      final Object jsonPayload,
+                                                                      final String xpath) {
+        final FetchDescendantsOption fetchDescendantsOption = FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
+
+        final Collection<DeltaReport> deltaReport = cpsDataService.getDeltaByDataspaceAnchorAndPayload(dataspaceName,
+                sourceAnchorName, xpath, jsonObjectMapper.asJsonString(jsonPayload), fetchDescendantsOption);
+
+        return new ResponseEntity<>(jsonObjectMapper.asJsonString(deltaReport), HttpStatus.OK);
+    }
+
     private static boolean isRootXpath(final String xpath) {
         return ROOT_XPATH.equals(xpath);
     }
