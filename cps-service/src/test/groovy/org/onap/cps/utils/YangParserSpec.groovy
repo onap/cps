@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2024 Nordix Foundation
+ *  Modifications Copyright (C) 2024 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,9 +21,12 @@
 
 package org.onap.cps.utils
 
+import org.onap.cps.TestUtils
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.model.Anchor
+import org.onap.cps.yang.TimedYangTextSchemaSourceSetBuilder
 import org.onap.cps.yang.YangTextSchemaSourceSet
+import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import org.opendaylight.yangtools.yang.data.api.schema.ContainerNode
 import org.opendaylight.yangtools.yang.model.api.SchemaContext
 import spock.lang.Specification
@@ -32,10 +36,12 @@ class YangParserSpec extends Specification {
 
     def mockYangParserHelper = Mock(YangParserHelper)
     def mockYangTextSchemaSourceSetCache = Mock(YangTextSchemaSourceSetCache)
+    def mockTimedYangTextSchemaSourceSetBuilder = Mock(TimedYangTextSchemaSourceSetBuilder)
 
-    def objectUnderTest = new YangParser(mockYangParserHelper, mockYangTextSchemaSourceSetCache)
+    def objectUnderTest = new YangParser(mockYangParserHelper, mockYangTextSchemaSourceSetCache, mockTimedYangTextSchemaSourceSetBuilder)
 
     def anchor = new Anchor(dataspaceName: 'my dataspace', schemaSetName: 'my schema')
+    def yangResourcesNameToContentMap = TestUtils.getYangResourcesAsMap('bookstore.yang')
     def mockYangTextSchemaSourceSet = Mock(YangTextSchemaSourceSet)
     def mockSchemaContext = Mock(SchemaContext)
     def containerNodeFromYangUtils = Mock(ContainerNode)
@@ -80,6 +86,17 @@ class YangParserSpec extends Specification {
             thrown(DataValidationException)
         and: 'the cache is cleared for the correct dataspace and schema (but that did not help)'
             1 * mockYangTextSchemaSourceSetCache.removeFromCache('my dataspace', 'my schema')
+    }
+
+    def 'Parsing data with yang resource to context map.'() {
+        given: 'the yang parser (utility) always returns a container node'
+            mockYangParserHelper.parseData(ContentType.JSON, 'some json', mockSchemaContext, noParent) >> containerNodeFromYangUtils
+        when: 'parsing some json data'
+            def result = objectUnderTest.parseData(ContentType.JSON, 'some json', yangResourcesNameToContentMap, noParent)
+        then: 'the schema source set for the correct dataspace and schema set is retrieved form the cache'
+            1 * mockTimedYangTextSchemaSourceSetBuilder.getYangTextSchemaSourceSet(yangResourcesNameToContentMap) >> mockYangTextSchemaSourceSet
+        and: 'the result is the same container node as return from yang utils'
+            assert result == containerNodeFromYangUtils
     }
 
 }
