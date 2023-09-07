@@ -41,7 +41,9 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
+import org.springframework.mock.web.MockMultipartFile
 import org.springframework.test.web.servlet.MockMvc
+import org.springframework.web.multipart.MultipartFile
 import spock.lang.Shared
 import spock.lang.Specification
 
@@ -49,6 +51,7 @@ import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put
@@ -100,6 +103,10 @@ class DataRestControllerSpec extends Specification {
     @Shared
     static DataNode dataNodeWithChild = new DataNodeBuilder().withXpath('/parent')
         .withChildDataNodes([new DataNodeBuilder().withXpath("/parent/child").build()]).build()
+
+    @Shared
+    static MultipartFile multipartYangFile = new MockMultipartFile("file", 'filename.yang', "text/plain", 'content'.getBytes())
+
 
     def setup() {
         dataNodeBaseEndpointV1 = "$basePath/v1/dataspaces/$dataspaceName"
@@ -337,9 +344,9 @@ class DataRestControllerSpec extends Specification {
 
     def 'Get delta between two anchors'() {
         given: 'the service returns a list containing delta reports'
-            def deltaReports = new DeltaReportBuilder().actionAdd().withXpath('/bookstore').withSourceData('bookstore-name': 'Easons').withTargetData('bookstore-name': 'Easons').build()
+            def deltaReports = new DeltaReportBuilder().actionUpdate().withXpath('some xpath').withSourceData('some key': 'some value').withTargetData('some key': 'some value').build()
             def xpath = 'some xpath'
-            def endpoint = "$dataNodeBaseEndpointV2/anchors/sourceAnchor/delta"
+            def endpoint = "$dataNodeBaseEndpointV2/anchors/sourceAnchor/deltaAnchors"
             mockCpsDataService.getDeltaByDataspaceAndAnchors(dataspaceName, 'sourceAnchor', 'targetAnchor', xpath, OMIT_DESCENDANTS) >> [deltaReports]
         when: 'get delta request is performed using REST API'
             def response =
@@ -350,7 +357,48 @@ class DataRestControllerSpec extends Specification {
         then: 'expected response code is returned'
             assert response.status == HttpStatus.OK.value()
         and: 'the response contains expected value'
-            assert response.contentAsString.contains("[{\"action\":\"add\",\"xpath\":\"/bookstore\",\"sourceData\":{\"bookstore-name\":\"Easons\"},\"targetData\":{\"bookstore-name\":\"Easons\"}}]")
+            assert response.contentAsString.contains("[{\"action\":\"update\",\"xpath\":\"some xpath\",\"sourceData\":{\"some key\":\"some value\"},\"targetData\":{\"some key\":\"some value\"}}]")
+    }
+
+    def 'Get delta between anchor and JSON payload with multipart file'() {
+        given: 'sample delta report, xpath, yang model file and json payload'
+            def deltaReports = new DeltaReportBuilder().actionAdd().withXpath('some xpath').build()
+            def xpath = 'some xpath'
+            def endpoint = "$dataNodeBaseEndpointV2/anchors/$anchorName/deltaPayload"
+        and: 'the service layer returns a list containing delta reports'
+            mockCpsDataService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath, ['filename.yang':'content'], expectedJsonData, INCLUDE_ALL_DESCENDANTS) >> [deltaReports]
+        when: 'get delta request is performed using REST API'
+            def response =
+                    mvc.perform(multipart(endpoint)
+                            .file(multipartYangFile)
+                            .param("json", requestBodyJson)
+                            .param('xpath', xpath)
+                            .contentType(MediaType.MULTIPART_FORM_DATA))
+                            .andReturn().response
+        then: 'expected response code is returned'
+            assert response.status == HttpStatus.OK.value()
+        and: 'the response contains expected value'
+            assert response.contentAsString.contains("[{\"action\":\"add\",\"xpath\":\"some xpath\"}]")
+    }
+
+    def 'Get delta between anchor and JSON payload without multipart file'() {
+        given: 'sample delta report, xpath, and json payload'
+            def deltaReports = new DeltaReportBuilder().actionRemove().withXpath('some xpath').build()
+            def xpath = 'some xpath'
+            def endpoint = "$dataNodeBaseEndpointV2/anchors/$anchorName/deltaPayload"
+        and: 'the service layer returns a list containing delta reports'
+            mockCpsDataService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath, [:], expectedJsonData, INCLUDE_ALL_DESCENDANTS) >> [deltaReports]
+        when: 'get delta request is performed using REST API'
+            def response =
+                    mvc.perform(multipart(endpoint)
+                            .param("json", requestBodyJson)
+                            .param('xpath', xpath)
+                            .contentType(MediaType.MULTIPART_FORM_DATA))
+                            .andReturn().response
+        then: 'expected response code is returned'
+            assert response.status == HttpStatus.OK.value()
+        and: 'the response contains expected value'
+            assert response.contentAsString.contains("[{\"action\":\"remove\",\"xpath\":\"some xpath\"}]")
     }
 
     def 'Update data node leaves: #scenario.'() {
@@ -507,4 +555,5 @@ class DataRestControllerSpec extends Specification {
             'without observed timestamp'        | null                              || 1                | HttpStatus.NO_CONTENT
             'with invalid observed timestamp'   | 'invalid'                         || 0                | HttpStatus.BAD_REQUEST
     }
+
 }
