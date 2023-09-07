@@ -32,6 +32,8 @@ import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.repository.DataspaceRepository
 import org.onap.cps.spi.impl.utils.CpsValidatorImpl
 import org.onap.cps.spi.utils.SessionManager
+import org.onap.cps.utils.PrefixResolver
+import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.boot.autoconfigure.domain.EntityScan
@@ -79,6 +81,9 @@ class CpsIntegrationSpecBase extends Specification {
     @Autowired
     @Lazy
     SessionManager sessionManager
+
+    @SpringBean
+    PrefixResolver prefixResolver = Mock()
 
     def static GENERAL_TEST_DATASPACE = 'generalTestDataspace'
     def static BOOKSTORE_SCHEMA_SET = 'bookstoreSchemaSet'

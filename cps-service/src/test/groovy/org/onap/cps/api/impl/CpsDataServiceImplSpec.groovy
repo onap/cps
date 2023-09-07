@@ -23,6 +23,7 @@
 
 package org.onap.cps.api.impl
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDeltaService
@@ -38,7 +39,10 @@ import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
 import org.onap.cps.spi.utils.CpsValidator
 import org.onap.cps.utils.ContentType
+import org.onap.cps.utils.JsonObjectMapper
+import org.onap.cps.utils.PrefixResolver
 import org.onap.cps.utils.TimedYangParser
+import org.onap.cps.yang.TimedYangTextSchemaSourceSetBuilder
 import org.onap.cps.yang.YangTextSchemaSourceSet
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import spock.lang.Shared
@@ -53,9 +57,13 @@ class CpsDataServiceImplSpec extends Specification {
     def mockCpsValidator = Mock(CpsValidator)
     def timedYangParser = new TimedYangParser()
     def mockCpsDeltaService = Mock(CpsDeltaService);
+    def mockTimedYangTextSchemaSourceSetBuilder = Mock(TimedYangTextSchemaSourceSetBuilder)
+    def mockJsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
+    def mockPrefixResolver = Mock(PrefixResolver)
 
     def objectUnderTest = new CpsDataServiceImpl(mockCpsDataPersistenceService, mockCpsAnchorService,
-            mockYangTextSchemaSourceSetCache, mockCpsValidator, timedYangParser, mockCpsDeltaService)
+            mockYangTextSchemaSourceSetCache, mockCpsValidator, timedYangParser, mockCpsDeltaService,
+            mockTimedYangTextSchemaSourceSetBuilder, mockJsonObjectMapper, mockPrefixResolver)
 
     def setup() {
         mockCpsAnchorService.getAnchor(dataspaceName, anchorName) >> anchor
@@ -227,6 +235,40 @@ class CpsDataServiceImplSpec extends Specification {
             mockCpsDataPersistenceService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_2, [xpath], FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> targetDataNodes
         and: 'appropriate delta service method is invoked once with correct source and target data nodes'
             1 * mockCpsDeltaService.getDeltaReports(sourceDataNodes, targetDataNodes)
+    }
+
+    def 'Get delta between anchor and payload with #scenario'() {
+        given: 'schema set for a given dataspace and anchor and source data nodes from an already existing anchor'
+            def yangResourcesNameToContentMap = ['bookstore.yang':'module stores {\n yang-version 1.1;\n namespace \"org:onap:ccsdk:sample\";\n prefix book-store;\n revision \"2020-09-15\" {\n description\n \"Sample Model\";\n }\n typedef year {\n type uint16 {\n range \"1000..9999\";\n }\n }\n list bookstore-address {\n key \"bookstore-name\";\n leaf bookstore-name {\n type string;\n description\n \"Name of bookstore. Example: My Bookstore\";\n }\n leaf address {\n type string;\n description\n \"Address of store\";\n }\n leaf postal-code {\n type string;\n description\n \"Postal code of store\";\n }\n }\n container bookstore {\n leaf bookstore-name {\n type string;\n }\n list categories {\n key \"code\";\n leaf code {\n type string;\n }\n leaf name {\n type string;\n }\n list books {\n key title;\n leaf title {\n type string;\n }\n leaf lang {\n type string;\n }\n leaf-list authors {\n type string;\n }\n leaf pub_year {\n type year;\n }\n leaf price {\n type uint64;\n }\n }\n }\n }\n }']
+            setupSchemaSetMocks('bookstore.yang')
+            setupSchemaSetMocksForDelta(yangResourcesNameToContentMap)
+            def sourceDataNodes = [new DataNodeBuilder().withXpath(expectedNodeXpath).build()]
+            //def targetDataNodes = [new DataNodeBuilder().withXpath(expectedNodeXpath).build()]
+        when: 'attempt to get delta between an anchor and a payload'
+            objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath, [:], jsonData, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+        then: 'source data nodes are fetched using appropriate persistence layer method'
+            mockCpsDataPersistenceService.getDataNodesForMultipleXpaths(dataspaceName, anchorName, [xpath], FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> sourceDataNodes
+        if (!yangResourcesNameToContentMap.isEmpty()) {
+            1 * mockCpsDeltaService.getDeltaReports(sourceDataNodes, { targetDataNodes -> targetDataNodes.xpath[0] == expectedNodeXpath})
+        }
+        and: 'appropriate delta service method is invoked once with correct source and target data nodes'
+        where: 'following data was used'
+            scenario             | xpath        | jsonData                                                                                                              | expectedNodeXpath
+            'root node xpath'    | '/'          | '{"bookstore":{"bookstore-name":"Easons","categories":[{"code":"01/1","name":"SciFi"},{"name":"kids","code":"02"}]}}' | '/bookstore'
+//            'non-root xpath'     | '/bookstore' | '{"bookstore-name":"Easons","categories":[{"code":"01/1","name":"SciFi"},{"name":"kids","code":"02"}]}'               | '/bookstore'
+    }
+
+    def 'Delta between anchor and payload error scenario #scenario'() {
+        given: 'schema set for given anchor and dataspace references bookstore model'
+            setupSchemaSetMocks('bookstore.yang')
+        when: 'attempt to get delta between anchor and payload'
+            objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, '/', [:], jsonData, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+        then: 'expected exception is thrown'
+            thrown(DataValidationException)
+        where: 'following parameters were used'
+            scenario            | jsonData
+            'invalid json data' | '{"some-key": "some-value"'
+            'empty json data'   | '{}'
     }
 
     def 'Update data node leaves: #scenario.'() {
@@ -484,6 +526,14 @@ class CpsDataServiceImplSpec extends Specification {
         mockYangTextSchemaSourceSetCache.get(dataspaceName, schemaSetName) >> mockYangTextSchemaSourceSet
         def yangResourceNameToContent = TestUtils.getYangResourcesAsMap(yangResources)
         def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
+        mockYangTextSchemaSourceSet.getSchemaContext() >> schemaContext
+    }
+
+    def setupSchemaSetMocksForDelta(Map<String, String> yangResourcesNameToContentMap) {
+        def mockYangTextSchemaSourceSet = Mock(YangTextSchemaSourceSet)
+//        mockYangTextSchemaSourceSetCache.get(comparandDataspaceName.get(), comparandSchemaName.get()) >> mockYangTextSchemaSourceSet
+//        def yangResourceNameToContent = TestUtils.getYangResourcesAsMap(yangResources)
+        def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap).getSchemaContext()
         mockYangTextSchemaSourceSet.getSchemaContext() >> schemaContext
     }
 
