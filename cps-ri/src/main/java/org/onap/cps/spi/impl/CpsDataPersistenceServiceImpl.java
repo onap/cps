@@ -23,6 +23,7 @@
 
 package org.onap.cps.spi.impl;
 
+import lombok.Data;
 import static org.onap.cps.spi.PaginationOption.NO_PAGINATION;
 
 import com.google.common.collect.ImmutableSet;
@@ -418,6 +419,17 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         }
         final List<Long> anchorIdList = getAnchorIdsForPagination(dataspaceEntity, cpsPathQuery, NO_PAGINATION);
         return anchorIdList.size();
+    }
+
+    @Override
+    public Collection<Map<String, Object>> getDeltaByDataspaceAnchorAndPayload(final String dataspaceName,
+                       final String anchorName, final String xpath, final Collection<DataNode> dataNodesInPayload,
+                       final FetchDescendantsOption fetchDescendantsOption) {
+        final Collection<DataNode> referenceDataNodes = getDataNodesForMultipleXpaths(dataspaceName, anchorName,
+                Collections.singletonList(xpath), fetchDescendantsOption);
+        final Collection<Map<String, Object>> deltaReport =
+                getDeltaBetweenDataNodes(referenceDataNodes, dataNodesInPayload);
+        return deltaReport;
     }
 
     private static Set<String> processAncestorXpath(final Collection<FragmentEntity> fragmentEntities,

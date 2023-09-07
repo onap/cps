@@ -24,10 +24,6 @@
 
 package org.onap.cps.api.impl;
 
-import static org.onap.cps.notification.Operation.CREATE;
-import static org.onap.cps.notification.Operation.DELETE;
-import static org.onap.cps.notification.Operation.UPDATE;
-
 import io.micrometer.core.annotation.Timed;
 import java.io.Serializable;
 import java.time.OffsetDateTime;
@@ -42,6 +38,9 @@ import org.onap.cps.api.CpsDataService;
 import org.onap.cps.cpspath.parser.CpsPathUtil;
 import org.onap.cps.notification.NotificationService;
 import org.onap.cps.notification.Operation;
+import static org.onap.cps.notification.Operation.CREATE;
+import static org.onap.cps.notification.Operation.DELETE;
+import static org.onap.cps.notification.Operation.UPDATE;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.exceptions.DataValidationException;
@@ -211,6 +210,17 @@ public class CpsDataServiceImpl implements CpsDataService {
     public void lockAnchor(final String sessionID, final String dataspaceName,
                            final String anchorName, final Long timeoutInMilliseconds) {
         cpsDataPersistenceService.lockAnchor(sessionID, dataspaceName, anchorName, timeoutInMilliseconds);
+    }
+
+    @Override
+    public Collection<Map<String, Object>> getDeltaByDataspaceAnchorAndPayload(final String dataspaceName,
+                                                 final String anchorName, final String xpath, final String jsonData,
+                                                 final FetchDescendantsOption fetchDescendantsOption) {
+        cpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        final Anchor anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
+        final Collection<DataNode> dataNodesInPayload = buildDataNodes(anchor, xpath, jsonData, ContentType.JSON);
+        return cpsDataPersistenceService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath,
+                dataNodesInPayload, fetchDescendantsOption);
     }
 
     @Override
