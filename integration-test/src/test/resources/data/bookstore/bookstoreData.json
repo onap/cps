@@ -4,6 +4,11 @@
       "bookstore-name": "Easons",
       "address": "Dublin,Ireland",
       "postal-code": "D02HA21"
+    },
+    {
+      "bookstore-name": "Test",
+      "address": "India",
+      "postal-code": "560056"
     }
   ],
   "bookstore": {

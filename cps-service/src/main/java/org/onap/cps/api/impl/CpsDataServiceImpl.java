@@ -27,11 +27,7 @@ package org.onap.cps.api.impl;
 import io.micrometer.core.annotation.Timed;
 import java.io.Serializable;
 import java.time.OffsetDateTime;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -48,7 +44,11 @@ import org.onap.cps.spi.model.DataNodeBuilder;
 import org.onap.cps.spi.model.DeltaReport;
 import org.onap.cps.spi.utils.CpsValidator;
 import org.onap.cps.utils.ContentType;
+import org.onap.cps.utils.DataMapUtils;
+import org.onap.cps.utils.JsonObjectMapper;
+import org.onap.cps.utils.PrefixResolver;
 import org.onap.cps.utils.TimedYangParser;
+import org.onap.cps.yang.TimedYangTextSchemaSourceSetBuilder;
 import org.opendaylight.yangtools.yang.data.api.schema.ContainerNode;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
 import org.springframework.stereotype.Service;
@@ -67,6 +67,9 @@ public class CpsDataServiceImpl implements CpsDataService {
     private final CpsValidator cpsValidator;
     private final TimedYangParser timedYangParser;
     private final CpsDeltaService cpsDeltaService;
+    private final TimedYangTextSchemaSourceSetBuilder timedYangTextSchemaSourceSetBuilder;
+    private final JsonObjectMapper jsonObjectMapper;
+    private final PrefixResolver prefixResolver;
 
     @Override
     public void saveData(final String dataspaceName, final String anchorName, final String nodeData,
@@ -222,6 +225,57 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     @Override
+    public List<DeltaReport> getDeltaByDataspaceAnchorAndPayload(final String dataspaceName,
+                                                                final String sourceAnchorName, final String xpath,
+                                                                final Map<String, String> yangResourcesNameToContentMap,
+                                                                final String jsonPayload,
+                                                                final FetchDescendantsOption fetchDescendantsOption) {
+
+        final Anchor sourceAnchor = cpsAnchorService.getAnchor(dataspaceName, sourceAnchorName);
+
+        final Collection<DataNode> dataNodes = getDataNodesForMultipleXpaths(dataspaceName, sourceAnchorName,
+                Collections.singletonList(xpath), fetchDescendantsOption);
+
+        final Collection<DataNode> sourceDataNodesRebuilt = rebuildDataNodes(sourceAnchor, xpath, dataNodes);
+        System.out.println(sourceDataNodesRebuilt);
+
+        final Collection<DataNode> targetDataNodes = new ArrayList<>();
+        if (!yangResourcesNameToContentMap.isEmpty()) {
+            targetDataNodes.addAll(buildDataNodes(yangResourcesNameToContentMap, xpath, jsonPayload, ContentType.JSON));
+        }
+        targetDataNodes.addAll(buildDataNodes(sourceAnchor, xpath, jsonPayload, ContentType.JSON));
+
+        return cpsDeltaService.getDeltaReports(dataNodes, targetDataNodes);
+    }
+
+    private Collection<DataNode> rebuildDataNodes(Anchor sourceAnchor, String xpath, Collection<DataNode> dataNodes) {
+
+        final List<Map<String, Object>> dataMaps = new ArrayList<>(dataNodes.size());
+        for (final DataNode dataNode: dataNodes) {
+            final String prefix = prefixResolver.getPrefix(sourceAnchor.getDataspaceName(), sourceAnchor.getName(), dataNode.getXpath());
+            final Map<String, Object> dataMap = DataMapUtils.toDataMapWithIdentifier(dataNode, prefix);
+            dataMaps.add(dataMap);
+        }
+        final Map<String, Object> mergedMap = new HashMap<>();
+        for (Map<String, Object> map : dataMaps) {
+            mergedMap.putAll(map);
+        }
+
+
+        final String sourceDataAsJsonObjectString = jsonObjectMapper.asJsonString(mergedMap);
+        System.out.println("***************************");
+        System.out.println("***************************");
+        System.out.println("***************************");
+        System.out.println(sourceDataAsJsonObjectString);
+        System.out.println("***************************");
+        System.out.println("***************************");
+        System.out.println("***************************");
+        final Collection<DataNode> sourceDataNodes =
+                buildDataNodes(sourceAnchor, xpath, sourceDataAsJsonObjectString, ContentType.JSON);
+        return sourceDataNodes;
+    }
+
+    @Override
     @Timed(value = "cps.data.service.datanode.descendants.update",
         description = "Time taken to update a data node and descendants")
     public void updateDataNodeAndDescendants(final String dataspaceName, final String anchorName,
@@ -347,6 +401,35 @@ public class CpsDataServiceImpl implements CpsDataService {
         return dataNodes;
     }
 
+    private Collection<DataNode> buildDataNodes(final Map<String, String> yangResourcesNameToContentMap,
+                                                final String parentNodeXpath, final String nodeData,
+                                                final ContentType contentType) {
+
+        final SchemaContext schemaContext = getSchemaContext(yangResourcesNameToContentMap);
+
+        if (ROOT_NODE_XPATH.equals(parentNodeXpath)) {
+            final ContainerNode containerNode = timedYangParser.parseData(contentType, nodeData, schemaContext);
+            final Collection<DataNode> dataNodes = new DataNodeBuilder()
+                    .withContainerNode(containerNode)
+                    .buildCollection();
+            if (dataNodes.isEmpty()) {
+                throw new DataValidationException("No data nodes.", "No data nodes provided");
+            }
+            return dataNodes;
+        }
+        final String normalizedParentNodeXpath = CpsPathUtil.getNormalizedXpath(parentNodeXpath);
+        final ContainerNode containerNode =
+                timedYangParser.parseData(contentType, nodeData, schemaContext, normalizedParentNodeXpath);
+        final Collection<DataNode> dataNodes = new DataNodeBuilder()
+                .withParentNodeXpath(normalizedParentNodeXpath)
+                .withContainerNode(containerNode)
+                .buildCollection();
+        if (dataNodes.isEmpty()) {
+            throw new DataValidationException("No data nodes.", "No data nodes provided");
+        }
+        return dataNodes;
+    }
+
     private Collection<Collection<DataNode>> buildDataNodes(final Anchor anchor, final String parentNodeXpath,
                                                             final Collection<String> nodeDataList,
                                                             final ContentType contentType) {
@@ -358,6 +441,11 @@ public class CpsDataServiceImpl implements CpsDataService {
     private SchemaContext getSchemaContext(final Anchor anchor) {
         return yangTextSchemaSourceSetCache
             .get(anchor.getDataspaceName(), anchor.getSchemaSetName()).getSchemaContext();
+    }
+
+    private SchemaContext getSchemaContext(final Map<String, String> yangResourcesNameToContentMap) {
+        return timedYangTextSchemaSourceSetBuilder.getYangTextSchemaSourceSet(yangResourcesNameToContentMap)
+                .getSchemaContext();
     }
 
     private static boolean isRootNodeXpath(final String xpath) {
