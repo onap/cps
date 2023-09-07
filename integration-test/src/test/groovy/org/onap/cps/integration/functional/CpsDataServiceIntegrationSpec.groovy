@@ -499,6 +499,22 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
             'non-existing anchor 2'                        | FUNCTIONAL_TEST_DATASPACE_3 | BOOKSTORE_ANCHOR_3    | 'non-existing-anchor' || AnchorNotFoundException
     }
 
+    def 'Get delta between anchor and payload error scenario: #scenario'() {
+        when: 'attempt to get delta between anchor and json payload'
+            objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, sourceAnchor, xpath, [:], jsonPayload, INCLUDE_ALL_DESCENDANTS)
+        then: 'expected exception is thrown'
+            thrown(expectedException)
+        where: 'following data was used'
+                scenario                               | dataspaceName               | sourceAnchor          | xpath        | jsonPayload                                                                                                           || expectedException
+        'invalid dataspace name'                       | 'Invalid dataspace'         | 'not-relevant'        | '/'          | '{"bookstore":{"bookstore-name":"Easons","categories":[{"code":"01/1","name":"SciFi"},{"name":"kids","code":"02"}]}}' || DataValidationException
+        'invalid anchor 1 name'                        | FUNCTIONAL_TEST_DATASPACE_3 | 'invalid anchor'      | '/'          | '{"bookstore":{"bookstore-name":"Easons","categories":[{"code":"01/1","name":"SciFi"},{"name":"kids","code":"02"}]}}' || DataValidationException
+        'non-existing dataspace'                       | 'non-existing'              | 'not-relevant1'       | '/'          | '{"bookstore":{"bookstore-name":"Easons","categories":[{"code":"01/1","name":"SciFi"},{"name":"kids","code":"02"}]}}' || DataspaceNotFoundException
+        'non-existing dataspace with same anchor name' | 'non-existing'              | 'not-relevant'        | '/'          | '{"bookstore":{"bookstore-name":"Easons","categories":[{"code":"01/1","name":"SciFi"},{"name":"kids","code":"02"}]}}' || DataspaceNotFoundException
+        'non-existing anchor 1'                        | FUNCTIONAL_TEST_DATASPACE_3 | 'non-existing-anchor' | '/'          | '{"bookstore":{"bookstore-name":"Easons","categories":[{"code":"01/1","name":"SciFi"},{"name":"kids","code":"02"}]}}' || AnchorNotFoundException
+        'empty json payload with root node xpath'      | FUNCTIONAL_TEST_DATASPACE_3 | BOOKSTORE_ANCHOR_3    | '/'          | ''                                                                                                                    || DataValidationException
+        'empty json payload with non-root node xpath'  | FUNCTIONAL_TEST_DATASPACE_3 | BOOKSTORE_ANCHOR_3    | '/bookstore' | ''                                                                                                                    || DataValidationException
+    }
+
     def 'Get delta between anchors for remove action, where source data node #scenario'() {
         when: 'attempt to get delta between leaves of data nodes present in 2 anchors'
             def result = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_ANCHOR_5, BOOKSTORE_ANCHOR_3, parentNodeXpath, INCLUDE_ALL_DESCENDANTS)

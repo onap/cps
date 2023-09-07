@@ -302,4 +302,20 @@ public interface CpsDataService {
     List<DeltaReport> getDeltaByDataspaceAndAnchors(String dataspaceName, String sourceAnchorName,
                                                     String targetAnchorName, String xpath,
                                                     FetchDescendantsOption fetchDescendantsOption);
+
+    /**
+     * Retrieves the delta between an anchor and JSON payload by xpath, using dataspace name and anchor name.
+     *
+     * @param dataspaceName                     source dataspace name
+     * @param sourceAnchorName                  source anchor name
+     * @param xpath                             xpath
+     * @param yangResourcesNameToContentMap     YANG resources (files) map where key is a name and value is content
+     * @param jsonPayload                       JSON payload
+     * @param fetchDescendantsOption            defines the scope of data to fetch: defaulted to INCLUDE_ALL_DESCENDANTS
+     * @return                                  list containing {@link DeltaReport} objects
+     */
+    List<DeltaReport> getDeltaByDataspaceAnchorAndPayload(String dataspaceName, String sourceAnchorName, String xpath,
+                                                          Map<String, String> yangResourcesNameToContentMap,
+                                                          String jsonPayload,
+                                                          FetchDescendantsOption fetchDescendantsOption);
 }

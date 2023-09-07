@@ -76,3 +76,48 @@ deltaByDataspaceAndAnchors:
       '500':
         $ref: 'components.yml#/components/responses/InternalServerError'
     x-codegen-request-body-name: xpath
+
+deltaByDataspaceAnchorAndPayload:
+  post:
+    description: Get delta between an anchor in a dataspace and JSON payload
+    tags:
+      - cps-data
+    summary: Get delta between an anchor and JSON payload
+    operationId: getDeltaByDataspaceAnchorAndPayload
+    parameters:
+      - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
+      - $ref: 'components.yml#/components/parameters/anchorNameInPath'
+      - $ref: 'components.yml#/components/parameters/xpathInQuery'
+    requestBody:
+      content:
+        multipart/form-data:
+          schema:
+            type: object
+            properties:
+              file:
+                type: string
+                format: binary
+              json:
+                type: string
+                format: json
+                example: "{'test:bookstore':{'bookstore-name':'Chapters','categories':[{'code':1,'name':'SciFi'},{'code':2,'name':'kids'}]}}"
+            required:
+              - json
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: object
+            examples:
+              dataSample:
+                $ref: 'components.yml#/components/examples/deltaReportSample'
+      '400':
+        $ref: 'components.yml#/components/responses/BadRequest'
+      '401':
+        $ref: 'components.yml#/components/responses/Unauthorized'
+      '403':
+        $ref: 'components.yml#/components/responses/Forbidden'
+      '500':
+        $ref: 'components.yml#/components/responses/InternalServerError'
