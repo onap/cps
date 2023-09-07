@@ -42,6 +42,8 @@ Bug Fixes
 
 Features
 --------
+3.4.9
+    - `CPS-1836 <https://jira.onap.org/browse/CPS-1836>`_ Delta between anchor and JSON payload.
 
 Version: 3.4.8
 ==============
