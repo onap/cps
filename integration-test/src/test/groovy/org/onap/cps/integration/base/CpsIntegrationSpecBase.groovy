@@ -40,6 +40,8 @@ import org.onap.cps.spi.exceptions.DataspaceNotFoundException
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.repository.DataspaceRepository
 import org.onap.cps.spi.utils.SessionManager
+import org.onap.cps.utils.PrefixResolver
+import org.spockframework.spring.SpringBean
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
@@ -99,6 +101,9 @@ abstract class CpsIntegrationSpecBase extends Specification {
 
     @Autowired
     SessionManager sessionManager
+
+    @SpringBean
+    PrefixResolver prefixResolver = Mock()
 
     @Autowired
     NetworkCmProxyCmHandleQueryService networkCmProxyCmHandleQueryService
