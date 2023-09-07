@@ -20,6 +20,7 @@
 
 package org.onap.cps.spi.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import java.io.Serializable;
 import java.util.Map;
 import lombok.AccessLevel;
@@ -28,6 +29,7 @@ import lombok.Setter;
 
 @Setter(AccessLevel.PROTECTED)
 @Getter
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class DeltaReport {
 
     public static final String ADD_ACTION = "add";
