@@ -21,20 +21,25 @@
 package org.onap.cps.utils;
 
 import io.micrometer.core.annotation.Timed;
+import java.util.Map;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.impl.YangTextSchemaSourceSetCache;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.model.Anchor;
+import org.onap.cps.yang.TimedYangTextSchemaSourceSetBuilder;
 import org.opendaylight.yangtools.yang.data.api.schema.ContainerNode;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class YangParser {
 
     private final YangParserHelper yangParserHelper;
     private final YangTextSchemaSourceSetCache yangTextSchemaSourceSetCache;
+    private final TimedYangTextSchemaSourceSetBuilder timedYangTextSchemaSourceSetBuilder;
 
     /**
      * Parses data into (normalized) ContainerNode according to schema context for the given anchor.
@@ -58,9 +63,31 @@ public class YangParser {
         return yangParserHelper.parseData(contentType, nodeData, schemaContext, parentNodeXpath);
     }
 
+    /**
+     * Parses data into (normalized) ContainerNode according to schema context for the given anchor.
+     *
+     * @param nodeData                         data string
+     * @param yangResourcesNameToContentMap    yang resource to content map
+     * @return the NormalizedNode object
+     */
+    @Timed(value = "cps.utils.yangparser.nodedata.with.parent.parse",
+            description = "Time taken to parse node data with a parent")
+    public ContainerNode parseData(final ContentType contentType,
+                                   final String nodeData,
+                                   final Map<String, String> yangResourcesNameToContentMap,
+                                   final String parentNodeXpath) {
+        final SchemaContext schemaContext = getSchemaContext(yangResourcesNameToContentMap);
+        return yangParserHelper.parseData(contentType, nodeData, schemaContext, parentNodeXpath);
+    }
+
     private SchemaContext getSchemaContext(final Anchor anchor) {
         return yangTextSchemaSourceSetCache.get(anchor.getDataspaceName(),
             anchor.getSchemaSetName()).getSchemaContext();
+    }
+
+    private SchemaContext getSchemaContext(final Map<String, String> yangResourcesNameToContentMap) {
+        return timedYangTextSchemaSourceSetBuilder.getYangTextSchemaSourceSet(yangResourcesNameToContentMap)
+                .getSchemaContext();
     }
 
     private void invalidateCache(final Anchor anchor) {

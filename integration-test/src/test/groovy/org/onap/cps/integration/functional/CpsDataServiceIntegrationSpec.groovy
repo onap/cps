@@ -499,6 +499,23 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
             'non-existing anchor 2'                        | FUNCTIONAL_TEST_DATASPACE_3 | BOOKSTORE_ANCHOR_3    | 'non-existing-anchor' || AnchorNotFoundException
     }
 
+    def 'Get delta between anchor and payload error scenario: #scenario'() {
+        when: 'attempt to get delta between anchors'
+        def yangResourcesNameToContentMap = ['bookstore.yang':'module stores {\n yang-version 1.1;\n namespace \"org:onap:ccsdk:sample\";\n prefix book-store;\n revision \"2020-09-15\" {\n description\n \"Sample Model\";\n }\n typedef year {\n type uint16 {\n range \"1000..9999\";\n }\n }\n list bookstore-address {\n key \"bookstore-name\";\n leaf bookstore-name {\n type string;\n description\n \"Name of bookstore. Example: My Bookstore\";\n }\n leaf address {\n type string;\n description\n \"Address of store\";\n }\n leaf postal-code {\n type string;\n description\n \"Postal code of store\";\n }\n }\n container bookstore {\n leaf bookstore-name {\n type string;\n }\n list categories {\n key \"code\";\n leaf code {\n type string;\n }\n leaf name {\n type string;\n }\n list books {\n key title;\n leaf title {\n type string;\n }\n leaf lang {\n type string;\n }\n leaf-list authors {\n type string;\n }\n leaf pub_year {\n type year;\n }\n leaf price {\n type uint64;\n }\n }\n }\n }\n }']
+        objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, sourceAnchor, xpath, yangResourcesNameToContentMap, jsonPayload, INCLUDE_ALL_DESCENDANTS)
+        then: 'expected exception is thrown'
+        thrown(expectedException)
+        where: 'following data was used'
+                scenario                               | dataspaceName               | sourceAnchor          | xpath        | jsonPayload                                                                                                           || expectedException
+        'invalid dataspace name'                       | 'Invalid dataspace'         | 'not-relevant'        | '/'          | '{"bookstore":{"bookstore-name":"Easons","categories":[{"code":"01/1","name":"SciFi"},{"name":"kids","code":"02"}]}}' || DataValidationException
+        'invalid anchor 1 name'                        | FUNCTIONAL_TEST_DATASPACE_3 | 'invalid anchor'      | '/'          | '{"bookstore":{"bookstore-name":"Easons","categories":[{"code":"01/1","name":"SciFi"},{"name":"kids","code":"02"}]}}' || DataValidationException
+        'non-existing dataspace'                       | 'non-existing'              | 'not-relevant1'       | '/'          | '{"bookstore":{"bookstore-name":"Easons","categories":[{"code":"01/1","name":"SciFi"},{"name":"kids","code":"02"}]}}' || DataspaceNotFoundException
+        'non-existing dataspace with same anchor name' | 'non-existing'              | 'not-relevant'        | '/'          | '{"bookstore":{"bookstore-name":"Easons","categories":[{"code":"01/1","name":"SciFi"},{"name":"kids","code":"02"}]}}' || DataspaceNotFoundException
+        'non-existing anchor 1'                        | FUNCTIONAL_TEST_DATASPACE_3 | 'non-existing-anchor' | '/'          | '{"bookstore":{"bookstore-name":"Easons","categories":[{"code":"01/1","name":"SciFi"},{"name":"kids","code":"02"}]}}' || AnchorNotFoundException
+        'empty json payload with root node xpath'      | FUNCTIONAL_TEST_DATASPACE_3 | BOOKSTORE_ANCHOR_3    | '/'          | ''                                                                                                                    || DataValidationException
+        'empty json payload with non-root node xpath'  | FUNCTIONAL_TEST_DATASPACE_3 | BOOKSTORE_ANCHOR_3    | '/bookstore' | ''                                                                                                                    || DataValidationException
+    }
+
     def 'Get delta between anchors for remove action, where source data node #scenario'() {
         when: 'attempt to get delta between leaves of data nodes present in 2 anchors'
             def result = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_ANCHOR_5, BOOKSTORE_ANCHOR_3, parentNodeXpath, INCLUDE_ALL_DESCENDANTS)
