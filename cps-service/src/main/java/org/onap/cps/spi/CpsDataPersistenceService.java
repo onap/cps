@@ -239,4 +239,9 @@ public interface CpsDataPersistenceService {
      * @return total anchors for dataspace name and cps path
      */
     Integer countAnchorsForDataspaceAndCpsPath(String dataspaceName, String cpsPath);
+
+    Collection<Map<String, Object>> getDeltaByDataspaceAnchorAndPayload(String dataspaceName, String anchorName,
+                                                                        String xpath,
+                                                                        Collection<DataNode> dataNodesInPayload,
+                                                                        FetchDescendantsOption fetchDescendantsOption);
 }

@@ -24,17 +24,7 @@
 
 package org.onap.cps.api.impl;
 
-import static org.onap.cps.notification.Operation.CREATE;
-import static org.onap.cps.notification.Operation.DELETE;
-import static org.onap.cps.notification.Operation.UPDATE;
-
 import io.micrometer.core.annotation.Timed;
-import java.io.Serializable;
-import java.time.OffsetDateTime;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Map;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAdminService;
@@ -54,6 +44,13 @@ import org.onap.cps.utils.TimedYangParser;
 import org.opendaylight.yangtools.yang.data.api.schema.ContainerNode;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
 import org.springframework.stereotype.Service;
+
+import java.io.Serializable;
+import java.time.OffsetDateTime;
+import java.util.*;
+import java.util.stream.Collectors;
+
+import static org.onap.cps.notification.Operation.*;
 
 @Service
 @Slf4j
@@ -214,6 +211,27 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     @Override
+    public Collection<Map<String, Object>> getDeltaByDataspaceAnchorAndPayload(final String dataspaceName,
+                                                 final String anchorName, final String xpath,
+                                                 final Optional<String> comparandDataspaceName,
+                                                 final Optional<String> comparandSchemaName, final String jsonData,
+                                                 final FetchDescendantsOption fetchDescendantsOption) {
+        cpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        if (comparandDataspaceName.isPresent() && comparandSchemaName.isPresent()) {
+
+            final Collection<DataNode> dataNodesInPayload =
+                    buildDataNodes(comparandDataspaceName.get(), comparandSchemaName.get(), xpath, jsonData, ContentType.JSON);
+
+            return cpsDataPersistenceService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath,
+                    dataNodesInPayload, fetchDescendantsOption);
+        }
+        final Anchor anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
+        final Collection<DataNode> dataNodesInPayload = buildDataNodes(anchor, xpath, jsonData, ContentType.JSON);
+        return cpsDataPersistenceService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath,
+                dataNodesInPayload, fetchDescendantsOption);
+    }
+
+    @Override
     @Timed(value = "cps.data.service.datanode.descendants.update",
         description = "Time taken to update a data node and descendants")
     public void updateDataNodeAndDescendants(final String dataspaceName, final String anchorName,
@@ -321,6 +339,35 @@ public class CpsDataServiceImpl implements CpsDataService {
         processDataUpdatedEventAsync(anchor, listNodeXpath, DELETE, observedTimestamp);
     }
 
+    private Collection<DataNode> buildDataNodes(final String dataspaceName, final String schemaName,
+                                                final String parentNodeXpath, final String nodeData,
+                                                final ContentType contentType) {
+
+        final SchemaContext schemaContext = getSchemaContext(dataspaceName, schemaName);
+
+        if (ROOT_NODE_XPATH.equals(parentNodeXpath)) {
+            final ContainerNode containerNode = timedYangParser.parseData(contentType, nodeData, schemaContext);
+            final Collection<DataNode> dataNodes = new DataNodeBuilder()
+                    .withContainerNode(containerNode)
+                    .buildCollection();
+            if (dataNodes.isEmpty()) {
+                throw new DataValidationException("No data nodes.", "No data nodes provided");
+            }
+            return dataNodes;
+        }
+        final String normalizedParentNodeXpath = CpsPathUtil.getNormalizedXpath(parentNodeXpath);
+        final ContainerNode containerNode =
+                timedYangParser.parseData(contentType, nodeData, schemaContext, normalizedParentNodeXpath);
+        final Collection<DataNode> dataNodes = new DataNodeBuilder()
+                .withParentNodeXpath(normalizedParentNodeXpath)
+                .withContainerNode(containerNode)
+                .buildCollection();
+        if (dataNodes.isEmpty()) {
+            throw new DataValidationException("No data nodes.", "No data nodes provided");
+        }
+        return dataNodes;
+    }
+
     private DataNode buildDataNode(final Anchor anchor, final String parentNodeXpath, final String nodeData,
                                    final ContentType contentType) {
         final SchemaContext schemaContext = getSchemaContext(anchor);
@@ -393,6 +440,11 @@ public class CpsDataServiceImpl implements CpsDataService {
     private SchemaContext getSchemaContext(final Anchor anchor) {
         return yangTextSchemaSourceSetCache
             .get(anchor.getDataspaceName(), anchor.getSchemaSetName()).getSchemaContext();
+    }
+
+    private SchemaContext getSchemaContext(final String comparandDataspaceName, final String comparandSchemaName) {
+        return  yangTextSchemaSourceSetCache
+                .get(comparandDataspaceName, comparandSchemaName).getSchemaContext();
     }
 
     private static boolean isRootNodeXpath(final String xpath) {

@@ -228,6 +228,47 @@ class CpsDataServiceImplSpec extends Specification {
             fetchDescendantsOption << [FetchDescendantsOption.OMIT_DESCENDANTS, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS]
     }
 
+    def 'Get delta between anchor and payload with #scenario'() {
+        given: 'comparand dataspace and schema set'
+            Optional<String> comparandDataspace = Optional.ofNullable(comparandDataspaceName)
+            Optional<String> comparandSchema = Optional.ofNullable(comparandSchemaName)
+        when: 'attempt to get delta'
+            objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath, comparandDataspace, comparandSchema, jsonData, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+        then: 'the dataspace and anchor names are validated'
+            1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
+        and: 'if comparand dataspace and schema are present then the persistence service method is invoked with correct parameters else the same persistence service method is invoked with alternate parameters'
+            if (comparandDataspace.isPresent() && comparandSchema.isPresent()) {
+                setupSchemaSetMocksForDelta(comparandDataspace, comparandSchema, 'bookstore.yang')
+                1 * mockCpsDataPersistenceService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath, {dataNode -> dataNode.xpath[0] == expectedNodeXpath}, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+            } else {
+                setupSchemaSetMocks('bookstore.yang')
+                1 * mockCpsDataPersistenceService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath, {dataNode -> dataNode.xpath[0] == expectedNodeXpath}, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+            }
+        where:
+            scenario                                                 | xpath        | comparandDataspaceName                 | comparandSchemaName                 | jsonData                                                                                                              | expectedNodeXpath
+            'root node xpath with comparand dataspace and anchor'    | '/'          | "comparand-dataspaceName" | "comparand-schemaName" | '{"bookstore":{"bookstore-name":"Easons","categories":[{"code":"01/1","name":"SciFi"},{"name":"kids","code":"02"}]}}' | '/bookstore'
+            'non-root xpath with comparand dataspace and anchor'     | '/bookstore' | "comparand-dataspaceName" | "comparand-schemaName" | '{"bookstore-name":"Easons","categories":[{"code":"01/1","name":"SciFi"},{"name":"kids","code":"02"}]}'               | '/bookstore/categories[@code=\'02\']'
+            'root node xpath without comparand dataspace and anchor' | '/'          | null              | null           | '{"bookstore":{"bookstore-name":"Easons","categories":[{"code":"01/1","name":"SciFi"},{"name":"kids","code":"02"}]}}' | '/bookstore'
+            'non-root xpath without comparand dataspace and anchor'  | '/bookstore' | null              | null           | '{"bookstore-name":"Easons","categories":[{"code":"01/1","name":"SciFi"},{"name":"kids","code":"02"}]}'               | '/bookstore/categories[@code=\'02\']'
+    }
+
+    def 'Delta between anchor and payload error scenario #scenario'() {
+        given: 'schema set for given anchor and dataspace references bookstore model'
+            def comparandDataspaceName = Optional.of("comparand-dataspaceName")
+            def comparandSchemaName = Optional.of("comparand-schemaName")
+            setupSchemaSetMocksForDelta(comparandDataspaceName, comparandSchemaName, 'bookstore.yang')
+        when: 'attempt to get delta between anchor and payload'
+            objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath, comparandDataspaceName, comparandSchemaName, jsonData, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+        then: 'expected exception is thrown'
+            thrown(DataValidationException)
+        where: 'following parameters were used'
+            scenario                                 | xpath        | jsonData
+            'root node xpath with invalid json data' | '/'          | '{"some-key": "some-value"}'
+            'non-root xpath with invalid json data'  | '/bookstore' | '{"some-key": "some-value"}'
+            'root node xpath with empty json data'   | '/'          | '{}'
+            'non-root xpath with empty json data'    | '/bookstore' | '{}'
+    }
+
     def 'Update data node leaves: #scenario.'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')
@@ -502,6 +543,14 @@ class CpsDataServiceImplSpec extends Specification {
     def setupSchemaSetMocks(String... yangResources) {
         def mockYangTextSchemaSourceSet = Mock(YangTextSchemaSourceSet)
         mockYangTextSchemaSourceSetCache.get(dataspaceName, schemaSetName) >> mockYangTextSchemaSourceSet
+        def yangResourceNameToContent = TestUtils.getYangResourcesAsMap(yangResources)
+        def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
+        mockYangTextSchemaSourceSet.getSchemaContext() >> schemaContext
+    }
+
+    def setupSchemaSetMocksForDelta(Optional<String> comparandDataspaceName, Optional<String> comparandSchemaName, String... yangResources) {
+        def mockYangTextSchemaSourceSet = Mock(YangTextSchemaSourceSet)
+        mockYangTextSchemaSourceSetCache.get(comparandDataspaceName.get(), comparandSchemaName.get()) >> mockYangTextSchemaSourceSet
         def yangResourceNameToContent = TestUtils.getYangResourcesAsMap(yangResources)
         def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
         mockYangTextSchemaSourceSet.getSchemaContext() >> schemaContext
