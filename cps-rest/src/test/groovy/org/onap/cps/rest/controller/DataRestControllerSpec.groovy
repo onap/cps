@@ -4,7 +4,7 @@
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
  *  Modifications Copyright (C) 2022 Deutsche Telekom AG
- *  Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2022-2024 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -41,6 +41,7 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
+import org.springframework.mock.web.MockMultipartFile
 import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Shared
 import spock.lang.Specification
@@ -49,6 +50,7 @@ import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put
@@ -353,6 +355,53 @@ class DataRestControllerSpec extends Specification {
             assert response.contentAsString.contains("[{\"action\":\"add\",\"xpath\":\"/bookstore\",\"sourceData\":{\"bookstore-name\":\"Easons\"},\"targetData\":{\"bookstore-name\":\"Easons\"}}]")
     }
 
+    def 'Get delta between anchor and JSON payload with multipart file'() {
+        given: 'sample delta report, source anchor, xpath, yang file and json payload'
+            def deltaReports = new DeltaReportBuilder().actionAdd().withXpath('/bookstore').withSourceData('bookstore-name': 'Easons').withTargetData('bookstore-name': 'New Bookstore').build()
+            def anchorName = 'referenceAnchor'
+            def xpath = 'some xpath'
+            def multipartYangFile = createMultipartFile("filename.yang", "content")
+            def requestBodyJson = '{"some-key":"some-value","categories":[{"books":[{"authors":["Iain M. Banks"]}]}]}'
+            def endpoint = "$dataNodeBaseEndpointV2/anchors/$anchorName/deltaByPayload"
+        and: 'the service returns a list containing delta reports'
+            if(multipartYangFile != null)
+                mockCpsDataService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath, ['filename.yang':'content'], expectedJsonData, INCLUDE_ALL_DESCENDANTS) >> [deltaReports]
+        when: 'get delta request is performed using REST API'
+            def response =
+                    mvc.perform(multipart(endpoint)
+                            .file(multipartYangFile)
+                            .param("json", requestBodyJson)
+                            .param('xpath', xpath)
+                            .contentType(MediaType.MULTIPART_FORM_DATA))
+                            .andReturn().response
+        then: 'expected response code is returned'
+            assert response.status == HttpStatus.OK.value()
+        and: 'the response contains expected value'
+            assert response.contentAsString.contains("[{\"action\":\"add\",\"xpath\":\"/bookstore\",\"sourceData\":{\"bookstore-name\":\"Easons\"},\"targetData\":{\"bookstore-name\":\"New Bookstore\"}}]")
+    }
+
+    def 'Get delta between anchor and JSON payload without multipart file'() {
+        given: 'sample delta report, source anchor, xpath, and json payload'
+            def deltaReports = new DeltaReportBuilder().actionAdd().withXpath('/bookstore').withSourceData('bookstore-name': 'Easons').withTargetData('bookstore-name': 'New Bookstore').build()
+            def anchorName = 'referenceAnchor'
+            def xpath = 'some xpath'
+            def requestBodyJson = '{"some-key":"some-value","categories":[{"books":[{"authors":["Iain M. Banks"]}]}]}'
+            def endpoint = "$dataNodeBaseEndpointV2/anchors/$anchorName/deltaByPayload"
+        and: 'the service returns a list containing delta reports'
+            mockCpsDataService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath, [:], expectedJsonData, INCLUDE_ALL_DESCENDANTS) >> [deltaReports]
+        when: 'get delta request is performed using REST API'
+            def response =
+                    mvc.perform(multipart(endpoint)
+                            .param("json", requestBodyJson)
+                            .param('xpath', xpath)
+                            .contentType(MediaType.MULTIPART_FORM_DATA))
+                            .andReturn().response
+        then: 'expected response code is returned'
+            assert response.status == HttpStatus.OK.value()
+        and: 'the response contains expected value'
+            assert response.contentAsString.contains("[{\"action\":\"add\",\"xpath\":\"/bookstore\",\"sourceData\":{\"bookstore-name\":\"Easons\"},\"targetData\":{\"bookstore-name\":\"New Bookstore\"}}]")
+    }
+
     def 'Update data node leaves: #scenario.'() {
         given: 'endpoint to update a node '
             def endpoint = "$dataNodeBaseEndpointV1/anchors/$anchorName/nodes"
@@ -503,5 +552,9 @@ class DataRestControllerSpec extends Specification {
             'with observed timestamp'           | '2021-03-03T23:59:59.999-0400'    || 1                | HttpStatus.NO_CONTENT
             'without observed timestamp'        | null                              || 1                | HttpStatus.NO_CONTENT
             'with invalid observed timestamp'   | 'invalid'                         || 0                | HttpStatus.BAD_REQUEST
+    }
+
+    def createMultipartFile(filename, content) {
+        return new MockMultipartFile("file", filename, "text/plain", content.getBytes())
     }
 }
