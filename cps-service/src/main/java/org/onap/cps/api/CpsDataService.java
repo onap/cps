@@ -27,6 +27,7 @@ package org.onap.cps.api;
 import java.time.OffsetDateTime;
 import java.util.Collection;
 import java.util.Map;
+import java.util.Optional;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.utils.ContentType;
@@ -298,4 +299,11 @@ public interface CpsDataService {
      * @param timeoutInMilliseconds lock attempt timeout in milliseconds
      */
     void lockAnchor(String sessionID, String dataspaceName, String anchorName, Long timeoutInMilliseconds);
+
+    Collection<Map<String, Object>> getDeltaByDataspaceAnchorAndPayload(String dataspaceName, String anchorName,
+                                                                        String xpath,
+                                                                        Optional<String> comparandDataspaceName,
+                                                                        Optional<String> comparandSchemaName,
+                                                                        String jsonData,
+                                                                        FetchDescendantsOption fetchDescendantsOption);
 }
