@@ -172,6 +172,14 @@ components:
       schema:
         type: string
         example: my-schema-set
+    optionalSchemaSetNameInQuery:
+      name: optional-schema-set-name
+      in: query
+      description: schema-set-name
+      required: false
+      schema:
+        type: string
+        example: my-schema-set
     schemaSetNameInPath:
       name: schema-set-name
       in: path
