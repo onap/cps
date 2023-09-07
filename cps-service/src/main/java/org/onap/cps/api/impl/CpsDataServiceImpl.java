@@ -30,6 +30,7 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -50,6 +51,9 @@ import org.onap.cps.spi.model.DataNodeBuilder;
 import org.onap.cps.spi.model.DeltaReport;
 import org.onap.cps.spi.utils.CpsValidator;
 import org.onap.cps.utils.ContentType;
+import org.onap.cps.utils.DataMapUtils;
+import org.onap.cps.utils.JsonObjectMapper;
+import org.onap.cps.utils.PrefixResolver;
 import org.onap.cps.utils.YangParser;
 import org.opendaylight.yangtools.yang.data.api.schema.ContainerNode;
 import org.springframework.stereotype.Service;
@@ -69,6 +73,8 @@ public class CpsDataServiceImpl implements CpsDataService {
     private final CpsValidator cpsValidator;
     private final YangParser yangParser;
     private final CpsDeltaService cpsDeltaService;
+    private final JsonObjectMapper jsonObjectMapper;
+    private final PrefixResolver prefixResolver;
 
     @Override
     public void saveData(final String dataspaceName, final String anchorName, final String nodeData,
@@ -83,7 +89,8 @@ public class CpsDataServiceImpl implements CpsDataService {
                          final OffsetDateTime observedTimestamp, final ContentType contentType) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
-        final Collection<DataNode> dataNodes = buildDataNodes(anchor, ROOT_NODE_XPATH, nodeData, contentType);
+        final Collection<DataNode> dataNodes =
+                buildDataNodesWithParentNodeXpath(anchor, ROOT_NODE_XPATH, nodeData, contentType);
         cpsDataPersistenceService.storeDataNodes(dataspaceName, anchorName, dataNodes);
         sendDataUpdatedEvent(anchor, ROOT_NODE_XPATH, Operation.CREATE, observedTimestamp);
     }
@@ -102,7 +109,8 @@ public class CpsDataServiceImpl implements CpsDataService {
                          final ContentType contentType) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
-        final Collection<DataNode> dataNodes = buildDataNodes(anchor, parentNodeXpath, nodeData, contentType);
+        final Collection<DataNode> dataNodes =
+                buildDataNodesWithParentNodeXpath(anchor, parentNodeXpath, nodeData, contentType);
         cpsDataPersistenceService.addChildDataNodes(dataspaceName, anchorName, parentNodeXpath, dataNodes);
         sendDataUpdatedEvent(anchor, parentNodeXpath, Operation.CREATE, observedTimestamp);
     }
@@ -115,7 +123,7 @@ public class CpsDataServiceImpl implements CpsDataService {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
         final Collection<DataNode> listElementDataNodeCollection =
-            buildDataNodes(anchor, parentNodeXpath, jsonData, ContentType.JSON);
+            buildDataNodesWithParentNodeXpath(anchor, parentNodeXpath, jsonData, ContentType.JSON);
         if (isRootNodeXpath(parentNodeXpath)) {
             cpsDataPersistenceService.storeDataNodes(dataspaceName, anchorName, listElementDataNodeCollection);
         } else {
@@ -153,8 +161,8 @@ public class CpsDataServiceImpl implements CpsDataService {
         final String jsonData, final OffsetDateTime observedTimestamp) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
-        final Collection<DataNode> dataNodesInPatch = buildDataNodes(anchor, parentNodeXpath, jsonData,
-                ContentType.JSON);
+        final Collection<DataNode> dataNodesInPatch =
+                buildDataNodesWithParentNodeXpath(anchor, parentNodeXpath, jsonData, ContentType.JSON);
         final Map<String, Map<String, Serializable>> xpathToUpdatedLeaves = dataNodesInPatch.stream()
                 .collect(Collectors.toMap(DataNode::getXpath, DataNode::getLeaves));
         cpsDataPersistenceService.batchUpdateDataLeaves(dataspaceName, anchorName, xpathToUpdatedLeaves);
@@ -171,7 +179,7 @@ public class CpsDataServiceImpl implements CpsDataService {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
         final Collection<DataNode> dataNodeUpdates =
-            buildDataNodes(anchor, parentNodeXpath, dataNodeUpdatesAsJson, ContentType.JSON);
+            buildDataNodesWithParentNodeXpath(anchor, parentNodeXpath, dataNodeUpdatesAsJson, ContentType.JSON);
         for (final DataNode dataNodeUpdate : dataNodeUpdates) {
             processDataNodeUpdate(anchor, dataNodeUpdate);
         }
@@ -215,6 +223,29 @@ public class CpsDataServiceImpl implements CpsDataService {
         return cpsDeltaService.getDeltaReports(sourceDataNodes, targetDataNodes);
     }
 
+    @Timed(value = "cps.data.service.get.deltaBetweenAnchorAndPayload",
+            description = "Time taken to get delta between anchor and a payload")
+    @Override
+    public List<DeltaReport> getDeltaByDataspaceAnchorAndPayload(final String dataspaceName,
+                                                                final String sourceAnchorName, final String xpath,
+                                                                final Map<String, String> yangResourcesNameToContentMap,
+                                                                final String targetData,
+                                                                final FetchDescendantsOption fetchDescendantsOption) {
+
+        final Anchor sourceAnchor = cpsAnchorService.getAnchor(dataspaceName, sourceAnchorName);
+
+        final Collection<DataNode> sourceDataNodes = getDataNodes(dataspaceName,
+                sourceAnchorName, xpath, fetchDescendantsOption);
+
+        final Collection<DataNode> sourceDataNodesRebuilt =
+                new ArrayList<>(rebuildSourceDataNodes(xpath, sourceAnchor, sourceDataNodes));
+
+        final Collection<DataNode> targetDataNodes =
+                new ArrayList<>(buildTargetDataNodes(sourceAnchor, xpath, yangResourcesNameToContentMap, targetData));
+
+        return cpsDeltaService.getDeltaReports(sourceDataNodesRebuilt, targetDataNodes);
+    }
+
     @Override
     @Timed(value = "cps.data.service.datanode.descendants.update",
         description = "Time taken to update a data node and descendants")
@@ -223,7 +254,8 @@ public class CpsDataServiceImpl implements CpsDataService {
                                              final OffsetDateTime observedTimestamp) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
-        final Collection<DataNode> dataNodes = buildDataNodes(anchor, parentNodeXpath, jsonData, ContentType.JSON);
+        final Collection<DataNode> dataNodes =
+                buildDataNodesWithParentNodeXpath(anchor, parentNodeXpath, jsonData, ContentType.JSON);
         cpsDataPersistenceService.updateDataNodesAndDescendants(dataspaceName, anchorName, dataNodes);
         sendDataUpdatedEvent(anchor, parentNodeXpath, Operation.UPDATE, observedTimestamp);
     }
@@ -236,7 +268,7 @@ public class CpsDataServiceImpl implements CpsDataService {
                                               final OffsetDateTime observedTimestamp) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
-        final Collection<DataNode> dataNodes = buildDataNodes(anchor, nodesJsonData);
+        final Collection<DataNode> dataNodes = buildDataNodesWithParentNodeXpath(anchor, nodesJsonData);
         cpsDataPersistenceService.updateDataNodesAndDescendants(dataspaceName, anchorName, dataNodes);
         nodesJsonData.keySet().forEach(nodeXpath ->
                 sendDataUpdatedEvent(anchor, nodeXpath, Operation.UPDATE, observedTimestamp));
@@ -250,7 +282,7 @@ public class CpsDataServiceImpl implements CpsDataService {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
         final Collection<DataNode> newListElements =
-            buildDataNodes(anchor, parentNodeXpath, jsonData, ContentType.JSON);
+            buildDataNodesWithParentNodeXpath(anchor, parentNodeXpath, jsonData, ContentType.JSON);
         replaceListContent(dataspaceName, anchorName, parentNodeXpath, newListElements, observedTimestamp);
     }
 
@@ -324,16 +356,68 @@ public class CpsDataServiceImpl implements CpsDataService {
         sendDataUpdatedEvent(anchor, listNodeXpath, Operation.DELETE, observedTimestamp);
     }
 
-    private Collection<DataNode> buildDataNodes(final Anchor anchor, final Map<String, String> nodesJsonData) {
+
+    private Collection<DataNode> rebuildSourceDataNodes(final String xpath, final Anchor sourceAnchor,
+                                                        final Collection<DataNode> sourceDataNodes) {
+
+        final Collection<DataNode> sourceDataNodesRebuilt = new ArrayList<>();
+        if (sourceDataNodes != null) {
+            final String sourceDataNodesAsJson = getDataNodesAsJson(sourceAnchor, sourceDataNodes);
+            sourceDataNodesRebuilt.addAll(
+                    buildDataNodesWithAnchorAndXpath(sourceAnchor, xpath, sourceDataNodesAsJson, ContentType.JSON));
+        }
+        return sourceDataNodesRebuilt;
+    }
+
+    private Collection<DataNode> buildTargetDataNodes(final Anchor sourceAnchor, final String xpath,
+                                                      final Map<String, String> yangResourcesNameToContentMap,
+                                                      final String targetData) {
+        if (yangResourcesNameToContentMap.isEmpty()) {
+            return buildDataNodesWithAnchorAndXpath(sourceAnchor, xpath, targetData, ContentType.JSON);
+        } else {
+            return buildDataNodesWithYangResourceAndXpath(yangResourcesNameToContentMap, xpath,
+                    targetData, ContentType.JSON);
+        }
+    }
+
+    private String getDataNodesAsJson(final Anchor anchor, final Collection<DataNode> dataNodes) {
+
+        final List<Map<String, Object>> prefixToDataNodes = prefixResolver(anchor, dataNodes);
+        final Map<String, Object> targetDataAsJsonObject = getNodeDataAsJsonString(prefixToDataNodes);
+        return jsonObjectMapper.asJsonString(targetDataAsJsonObject);
+    }
+
+    private Map<String, Object> getNodeDataAsJsonString(final List<Map<String, Object>> prefixToDataNodes) {
+        final Map<String, Object>  nodeDataAsJson = new HashMap<>();
+        for (final Map<String, Object> prefixToDataNode : prefixToDataNodes) {
+            nodeDataAsJson.putAll(prefixToDataNode);
+        }
+        return nodeDataAsJson;
+    }
+
+    private List<Map<String, Object>> prefixResolver(final Anchor anchor, final Collection<DataNode> dataNodes) {
+        final List<Map<String, Object>> prefixToDataNodes = new ArrayList<>(dataNodes.size());
+        for (final DataNode dataNode: dataNodes) {
+            final String prefix = prefixResolver
+                    .getPrefix(anchor.getDataspaceName(), anchor.getName(), dataNode.getXpath());
+            final Map<String, Object> prefixToDataNode = DataMapUtils.toDataMapWithIdentifier(dataNode, prefix);
+            prefixToDataNodes.add(prefixToDataNode);
+        }
+        return prefixToDataNodes;
+    }
+
+    private Collection<DataNode> buildDataNodesWithParentNodeXpath(final Anchor anchor,
+                                                                   final Map<String, String> nodesJsonData) {
         final Collection<DataNode> dataNodes = new ArrayList<>();
         for (final Map.Entry<String, String> nodeJsonData : nodesJsonData.entrySet()) {
-            dataNodes.addAll(buildDataNodes(anchor, nodeJsonData.getKey(), nodeJsonData.getValue(), ContentType.JSON));
+            dataNodes.addAll(buildDataNodesWithParentNodeXpath(anchor, nodeJsonData.getKey(),
+                    nodeJsonData.getValue(), ContentType.JSON));
         }
         return dataNodes;
     }
 
-    private Collection<DataNode> buildDataNodes(final Anchor anchor, final String parentNodeXpath,
-                                                final String nodeData, final ContentType contentType) {
+    private Collection<DataNode> buildDataNodesWithParentNodeXpath(final Anchor anchor, final String parentNodeXpath,
+                                                                 final String nodeData, final ContentType contentType) {
 
         if (ROOT_NODE_XPATH.equals(parentNodeXpath)) {
             final ContainerNode containerNode = yangParser.parseData(contentType, nodeData, anchor, "");
@@ -358,6 +442,63 @@ public class CpsDataServiceImpl implements CpsDataService {
         return dataNodes;
     }
 
+    private Collection<DataNode> buildDataNodesWithParentNodeXpath(
+                                          final Map<String, String> yangResourcesNameToContentMap, final String xpath,
+                                          final String nodeData, final ContentType contentType) {
+
+        if (isRootNodeXpath(xpath)) {
+            final ContainerNode containerNode = yangParser.parseData(contentType, nodeData,
+                    yangResourcesNameToContentMap, "");
+            final Collection<DataNode> dataNodes = new DataNodeBuilder()
+                    .withContainerNode(containerNode)
+                    .buildCollection();
+            if (dataNodes.isEmpty()) {
+                throw new DataValidationException("No data nodes.",
+                        "Data nodes were not found under the xpath " + xpath);
+            }
+            return dataNodes;
+        }
+        final String normalizedParentNodeXpath = CpsPathUtil.getNormalizedXpath(xpath);
+        final ContainerNode containerNode =
+                yangParser.parseData(contentType, nodeData, yangResourcesNameToContentMap, normalizedParentNodeXpath);
+        final Collection<DataNode> dataNodes = new DataNodeBuilder()
+                .withParentNodeXpath(normalizedParentNodeXpath)
+                .withContainerNode(containerNode)
+                .buildCollection();
+        if (dataNodes.isEmpty()) {
+            throw new DataValidationException("No data nodes.", "Data nodes were not found under the xpath " + xpath);
+        }
+        return dataNodes;
+    }
+
+    private Collection<DataNode> buildDataNodesWithAnchorAndXpath(final Anchor anchor, final String xpath,
+                                                                  final String nodeData,
+                                                                  final ContentType contentType) {
+
+        if (!isRootNodeXpath(xpath)) {
+            final String parentNodeXpath = CpsPathUtil.getNormalizedParentXpath(xpath);
+            if (parentNodeXpath.isEmpty()) {
+                return buildDataNodesWithParentNodeXpath(anchor, ROOT_NODE_XPATH, nodeData, contentType);
+            }
+            return buildDataNodesWithParentNodeXpath(anchor, parentNodeXpath, nodeData, contentType);
+        }
+        return buildDataNodesWithParentNodeXpath(anchor, xpath, nodeData, contentType);
+    }
+
+    private Collection<DataNode> buildDataNodesWithYangResourceAndXpath(
+                                            final Map<String, String> yangResourcesNameToContentMap, final String xpath,
+                                            final String nodeData, final ContentType contentType) {
+        if (!isRootNodeXpath(xpath)) {
+            final String parentNodeXpath = CpsPathUtil.getNormalizedParentXpath(xpath);
+            if (parentNodeXpath.isEmpty()) {
+                return buildDataNodesWithParentNodeXpath(yangResourcesNameToContentMap, ROOT_NODE_XPATH,
+                        nodeData, contentType);
+            }
+            return buildDataNodesWithParentNodeXpath(yangResourcesNameToContentMap, parentNodeXpath,
+                    nodeData, contentType);
+        }
+        return buildDataNodesWithParentNodeXpath(yangResourcesNameToContentMap, xpath, nodeData, contentType);
+    }
 
     private static boolean isRootNodeXpath(final String xpath) {
         return ROOT_NODE_XPATH.equals(xpath);
