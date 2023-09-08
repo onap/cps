@@ -103,15 +103,17 @@ class SyncUtilsSpec extends Specification{
     def 'Retry Locked Cm-Handle where the last update time is #scenario'() {
         when: 'retry locked cm handle is invoked'
             def result = objectUnderTest.isReadyForRetry(new CompositeStateBuilder()
-                .withLockReason(LockReasonCategory.LOCKED_MODULE_SYNC_FAILED, details)
+                .withLockReason(lockReasonCategory, details)
                 .withLastUpdatedTime(lastUpdateTime).build())
         then: 'result returns #expectedResult'
             result == expectedResult
         where:
-            scenario                     | lastUpdateTime                     | details                 || expectedResult
-            'the first attempt'          | '1900-01-01T00:00:00.000+0100'     | 'First Attempt'         || true
-            'greater than one minute'    | '1900-01-01T00:00:00.000+0100'     | 'Attempt #1 failed:'    || true
-            'less than eight minutes'    | formattedDateAndTime               | 'Attempt #3 failed:'    || false
+            scenario                     | lockReasonCategory                           | lastUpdateTime                     | details                  || expectedResult
+            'the first attempt'          | LockReasonCategory.LOCKED_MODULE_SYNC_FAILED | '1900-01-01T00:00:00.000+0100'     | 'First Attempt'          || true
+            'greater than one minute'    | LockReasonCategory.LOCKED_MODULE_SYNC_FAILED | '1900-01-01T00:00:00.000+0100'     | 'Attempt #1 failed:'     || true
+            'less than eight minutes'    | LockReasonCategory.LOCKED_MODULE_SYNC_FAILED | formattedDateAndTime               | 'Attempt #3 failed:'     || false
+            'the first attempt'          | LockReasonCategory.MODULE_UPGRADE            | formattedDateAndTime               | 'Module upgrade:'        || false
+            'the first attempt'          | LockReasonCategory.MODULE_UPGRADE_FAILED     | formattedDateAndTime               | 'Module upgrade failed:' || false
     }
 
 
