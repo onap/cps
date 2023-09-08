@@ -45,6 +45,14 @@ public interface CmHandleQueries {
     Collection<String> queryCmHandlePublicProperties(Map<String, String> publicPropertyQueryPairs);
 
     /**
+     * Query CmHandles based on Trust Level.
+     *
+     * @param trustLevelPropertyQueryPairs trust level properties for query
+     * @return CmHandles which have desired trust level
+     */
+    Collection<String> queryCmHandlesByTrustLevel(Map<String, String> trustLevelPropertyQueryPairs);
+
+    /**
      * Method which returns cm handles by the cm handles state.
      *
      * @param cmHandleState cm handle state

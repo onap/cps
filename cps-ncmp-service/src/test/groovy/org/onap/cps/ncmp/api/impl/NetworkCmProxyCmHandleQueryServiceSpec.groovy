@@ -23,7 +23,6 @@ package org.onap.cps.ncmp.api.impl
 import org.onap.cps.cpspath.parser.PathParsingException
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.inventory.CmHandleQueries
-import org.onap.cps.ncmp.api.inventory.CmHandleQueriesImpl
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence
 import org.onap.cps.ncmp.api.models.CmHandleQueryServiceParameters
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
@@ -37,7 +36,7 @@ import spock.lang.Specification
 class NetworkCmProxyCmHandleQueryServiceSpec extends Specification {
 
     def cmHandleQueries = Mock(CmHandleQueries)
-    def partiallyMockedCmHandleQueries = Spy(CmHandleQueriesImpl)
+    def partiallyMockedCmHandleQueries = Spy(CmHandleQueries)
     def mockInventoryPersistence = Mock(InventoryPersistence)
 
     def dmiRegistry = new DataNode(xpath: '/dmi-registry', childDataNodes: createDataNodeList(['PNFDemo1', 'PNFDemo2', 'PNFDemo3', 'PNFDemo4']))
@@ -102,6 +101,37 @@ class NetworkCmProxyCmHandleQueryServiceSpec extends Specification {
             scenario                  | cmHandleIdsFromService
             'One anchor returned'     | ['some-cmhandle-id']
             'No anchors are returned' | []
+    }
+
+    def 'Verify trust level query parameters for #scenario'() {
+        when: 'the trust level query parameters are verified'
+            def result = objectUnderTest.isTrustLevelQueryParametersValid(trustLevelPropertyQueryPairs)
+        then: 'the expected result value is returned successfully'
+            result == expectedResult
+        where: 'the following values are used'
+            scenario                                                    | trustLevelPropertyQueryPairs                                          || expectedResult
+            'the query property pair contains more than one parameter'  | ['trustLevel' : 'COMPLETE', 'some-other-key' : 'some-value'] as Map   || false
+            'the query property pair contains trust level complete'     | ['trustLevel' : 'COMPLETE'] as Map                                    || true
+            'the query property pair contains trust level none'         | ['trustLevel' : 'NONE'] as Map                                        || true
+            'the query property pair contains some trust level value'   | ['trustLevel' : 'some-value'] as Map                                  || false
+    }
+
+    def 'Query cm handles with some trust level query parameters'() {
+        given: 'a trust level condition property as #trustLevelQueryPairs'
+            def trustLevelQueryParameters = new CmHandleQueryServiceParameters()
+            def trustLevelConditionProperties = createConditionProperties('cmHandleWithTrustLevel', [trustLevelQueryPairs])
+            trustLevelQueryParameters.setCmHandleQueryParameters([trustLevelConditionProperties])
+        when: 'the query is being executed'
+            def result = objectUnderTest.queryCmHandleIds(trustLevelQueryParameters)
+        then: 'the query for cm handles is called'
+            numberOfTimes * cmHandleQueries.queryCmHandlesByTrustLevel(trustLevelQueryPairs) >> { ['CMHandle1','CMHandle2','CMHandle3','CMHandle4'] as Set }
+        and: 'the expected cm handles are returned successfully'
+            assert result == expectedResult
+        where: 'the following values are used'
+            scenario                                         |  trustLevelQueryPairs                      | numberOfTimes  ||  expectedResult
+            'No query to execute since query pairs empty'    |  [] as Map                                 |  0             ||  null
+            'No query to execute since not valid query pair' |  ['trustLevel': 'some-trust-level'] as Map |  0             ||  null
+            'With valid query pairs returns some cm handle'  |  ['trustLevel': 'COMPLETE'] as Map         |  1             ||  ['CMHandle1','CMHandle2','CMHandle3','CMHandle4'] as Set
     }
 
     def 'Query cm handle details with module names when #scenario from query.'() {
