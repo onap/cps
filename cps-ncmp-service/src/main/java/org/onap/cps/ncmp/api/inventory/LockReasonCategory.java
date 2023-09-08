@@ -21,5 +21,5 @@
 package org.onap.cps.ncmp.api.inventory;
 
 public enum LockReasonCategory {
-    LOCKED_MODULE_SYNC_FAILED
+    LOCKED_MODULE_SYNC_FAILED, MODULE_UPGRADE, MODULE_UPGRADE_FAILED
 }
