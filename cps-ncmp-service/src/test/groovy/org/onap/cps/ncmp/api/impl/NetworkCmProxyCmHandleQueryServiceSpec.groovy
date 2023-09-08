@@ -23,7 +23,6 @@ package org.onap.cps.ncmp.api.impl
 import org.onap.cps.cpspath.parser.PathParsingException
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.inventory.CmHandleQueries
-import org.onap.cps.ncmp.api.inventory.CmHandleQueriesImpl
 import org.onap.cps.ncmp.api.inventory.InventoryPersistence
 import org.onap.cps.ncmp.api.models.CmHandleQueryServiceParameters
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
@@ -37,7 +36,7 @@ import spock.lang.Specification
 class NetworkCmProxyCmHandleQueryServiceSpec extends Specification {
 
     def cmHandleQueries = Mock(CmHandleQueries)
-    def partiallyMockedCmHandleQueries = Spy(CmHandleQueriesImpl)
+    def partiallyMockedCmHandleQueries = Spy(CmHandleQueries)
     def mockInventoryPersistence = Mock(InventoryPersistence)
 
     def dmiRegistry = new DataNode(xpath: '/dmi-registry', childDataNodes: createDataNodeList(['PNFDemo1', 'PNFDemo2', 'PNFDemo3', 'PNFDemo4']))
@@ -102,6 +101,19 @@ class NetworkCmProxyCmHandleQueryServiceSpec extends Specification {
             scenario                  | cmHandleIdsFromService
             'One anchor returned'     | ['some-cmhandle-id']
             'No anchors are returned' | []
+    }
+
+    def 'Query cm handles with some trust level query parameters'() {
+        given: 'a trust level condition property'
+            def trustLevelQueryParameters = new CmHandleQueryServiceParameters()
+            def trustLevelConditionProperties = createConditionProperties('cmHandleWithTrustLevel', [['trustLevel': 'COMPLETE'] as Map])
+            trustLevelQueryParameters.setCmHandleQueryParameters([trustLevelConditionProperties])
+        when: 'the query is being executed'
+            def result = objectUnderTest.queryCmHandleIds(trustLevelQueryParameters)
+        then: 'the query for cm handles is called'
+            1 * cmHandleQueries.queryCmHandlesByTrustLevel(['trustLevel': 'COMPLETE'] as Map) >> { ['some cm handle'] as Set }
+        and: 'the expected cm handles are returned successfully'
+            assert result == ['some cm handle'] as Set
     }
 
     def 'Query cm handle details with module names when #scenario from query.'() {
