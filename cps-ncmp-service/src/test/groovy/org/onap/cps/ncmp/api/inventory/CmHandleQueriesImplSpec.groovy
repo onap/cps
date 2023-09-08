@@ -21,18 +21,20 @@
 
 package org.onap.cps.ncmp.api.inventory
 
+import com.hazelcast.collection.ISet
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.model.DataNode
 import spock.lang.Shared
 import spock.lang.Specification
-
+import java.util.stream.Stream
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 
 class CmHandleQueriesImplSpec extends Specification {
     def cpsDataPersistenceService = Mock(CpsDataPersistenceService)
+    def mockUntrustworthyCmHandlesSet = Mock(ISet<String>)
 
-    def objectUnderTest = new CmHandleQueriesImpl(cpsDataPersistenceService)
+    def objectUnderTest = new CmHandleQueriesImpl(cpsDataPersistenceService, mockUntrustworthyCmHandlesSet)
 
     @Shared
     def static sampleDataNodes = [new DataNode()]
@@ -59,6 +61,15 @@ class CmHandleQueriesImplSpec extends Specification {
             'public property does not match' | ['wont_match' : 'wont_match']                                                                 || []
             '2 properties, only one match'   | ['Contact' : 'newemailforstore@bookstore.com', 'Contact2': 'newemailforstore2@bookstore.com'] || ['PNFDemo4']
             '2 properties, no matches'       | ['Contact' : 'newemailforstore@bookstore.com', 'Contact2': '']                                || []
+    }
+
+    def 'Query untrustworthy cm handles.'() {
+        given: 'the distributed cache have some untrustworthy cm handles'
+            mockUntrustworthyCmHandlesSet.stream() >> { Stream.of('CMHandle1','CMHandle2','CMHandle3','CMHandle4') }
+        when: 'the query is being executed'
+            def result = objectUnderTest.queryUntrustworthyCmHandles()
+        then: 'the expected untrustworthy cm handles are returned successfully'
+            result == ['CMHandle1','CMHandle2','CMHandle3','CMHandle4'] as List
     }
 
     def 'Query CmHandles using empty public properties query pair.'() {
