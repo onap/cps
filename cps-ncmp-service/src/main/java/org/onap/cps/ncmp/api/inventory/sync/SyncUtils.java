@@ -147,7 +147,9 @@ public class SyncUtils {
                 OffsetDateTime.parse(compositeState.getLastUpdateTime(),
                         DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ"));
         final Matcher matcher = retryAttemptPattern.matcher(compositeState.getLockReason().getDetails());
-        if (matcher.find()) {
+        final boolean isReasonCategoryModuleSyncFailed = LockReasonCategory.LOCKED_MODULE_SYNC_FAILED
+                == compositeState.getLockReason().getLockReasonCategory();
+        if (matcher.find() && isReasonCategoryModuleSyncFailed) {
             timeInMinutesUntilNextAttempt = (int) Math.pow(2, Integer.parseInt(matcher.group(1)));
         } else {
             log.debug("First Attempt: no current attempts found.");
