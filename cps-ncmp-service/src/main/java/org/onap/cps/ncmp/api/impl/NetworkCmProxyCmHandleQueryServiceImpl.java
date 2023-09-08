@@ -23,6 +23,7 @@ package org.onap.cps.ncmp.api.impl;
 import static org.onap.cps.ncmp.api.impl.utils.CmHandleQueryConditions.HAS_ALL_MODULES;
 import static org.onap.cps.ncmp.api.impl.utils.CmHandleQueryConditions.HAS_ALL_PROPERTIES;
 import static org.onap.cps.ncmp.api.impl.utils.CmHandleQueryConditions.WITH_CPS_PATH;
+import static org.onap.cps.ncmp.api.impl.utils.CmHandleQueryConditions.WITH_TRUST_LEVEL;
 import static org.onap.cps.ncmp.api.impl.utils.RestQueryParametersValidator.validateCpsPathConditionProperties;
 import static org.onap.cps.ncmp.api.impl.utils.RestQueryParametersValidator.validateModuleNameConditionProperties;
 import static org.onap.cps.ncmp.api.impl.utils.YangDataConverter.convertYangModelCmHandleToNcmpServiceCmHandle;
@@ -69,7 +70,8 @@ public class NetworkCmProxyCmHandleQueryServiceImpl implements NetworkCmProxyCmH
         return executeQueries(cmHandleQueryServiceParameters,
             this::executeCpsPathQuery,
             this::queryCmHandlesByPublicProperties,
-            this::executeModuleNameQuery);
+            this::executeModuleNameQuery,
+            this::queryCmHandlesByTrustLevel);
     }
 
     @Override
@@ -131,6 +133,31 @@ public class NetworkCmProxyCmHandleQueryServiceImpl implements NetworkCmProxyCmH
         return publicPropertyQueryPairs.isEmpty()
                 ? NO_QUERY_TO_EXECUTE
                 : cmHandleQueries.queryCmHandlePublicProperties(publicPropertyQueryPairs);
+    }
+
+    private Collection<String> queryCmHandlesByTrustLevel(final CmHandleQueryServiceParameters
+                                                                   cmHandleQueryServiceParameters) {
+
+        final Map<String, String> trustLevelPropertyQueryPairs =
+                getPropertyPairs(cmHandleQueryServiceParameters.getCmHandleQueryParameters(),
+                        WITH_TRUST_LEVEL.getConditionName());
+
+        return (trustLevelPropertyQueryPairs.isEmpty()
+                    || !isTrustLevelQueryParametersValid(trustLevelPropertyQueryPairs))
+                ? NO_QUERY_TO_EXECUTE
+                : cmHandleQueries.queryCmHandlesByTrustLevel(trustLevelPropertyQueryPairs);
+    }
+
+    private boolean isTrustLevelQueryParametersValid(final Map<String, String> trustLevelPropertyQueryPairs) {
+        if (trustLevelPropertyQueryPairs.size() != 1) {
+            return false;
+        }
+        for (final String value : trustLevelPropertyQueryPairs.values()) {
+            if (value.equals("COMPLETE") || value.equals("NONE")) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private Collection<String> executeModuleNameQuery(

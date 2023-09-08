@@ -24,13 +24,21 @@ package org.onap.cps.ncmp.api.inventory;
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS;
 
+import com.google.common.collect.Sets;
+import com.hazelcast.collection.ISet;
+import com.hazelcast.map.IMap;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
+import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel;
+import org.onap.cps.ncmp.api.impl.utils.DmiServiceNameOrganizer;
+import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
+import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.inventory.enums.PropertyType;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
@@ -44,9 +52,12 @@ public class CmHandleQueriesImpl implements CmHandleQueries {
     private static final String NCMP_DATASPACE_NAME = "NCMP-Admin";
     private static final String NCMP_DMI_REGISTRY_ANCHOR = "ncmp-dmi-registry";
     private static final String DESCENDANT_PATH = "//";
+    private static final String ANCESTOR_CM_HANDLES = "/ancestor::cm-handles";
 
     private final CpsDataPersistenceService cpsDataPersistenceService;
-    private static final String ANCESTOR_CM_HANDLES = "/ancestor::cm-handles";
+    private final InventoryPersistence inventoryPersistence;
+    private final ISet<String> untrustworthyCmHandlesSet;
+    private final IMap<String, TrustLevel> trustLevelPerDmiPlugin;
 
     @Override
     public Collection<String> queryCmHandleAdditionalProperties(final Map<String, String> privatePropertyQueryPairs) {
@@ -56,6 +67,11 @@ public class CmHandleQueriesImpl implements CmHandleQueries {
     @Override
     public Collection<String> queryCmHandlePublicProperties(final Map<String, String> publicPropertyQueryPairs) {
         return queryCmHandleAnyProperties(publicPropertyQueryPairs, PropertyType.PUBLIC);
+    }
+
+    @Override
+    public Collection<String> queryCmHandlesByTrustLevel(final Map<String, String> trustLevelPropertyQueryPairs) {
+        return getCmHandlesByTrustLevel(trustLevelPropertyQueryPairs);
     }
 
     @Override
@@ -127,6 +143,37 @@ public class CmHandleQueriesImpl implements CmHandleQueries {
         return cmHandleIds;
     }
 
+    private Collection<String> getCmHandlesByTrustLevel(final Map<String, String> trustLevelPropertyQueryPairs) {
+        final String targetTrustLevel = trustLevelPropertyQueryPairs.get("trustLevel");
+
+        if (targetTrustLevel.equals("NONE")) {
+            if (!untrustworthyCmHandlesSet.isEmpty()) {
+                return untrustworthyCmHandlesSet.stream().collect(Collectors.toSet());
+            }
+        } else if (targetTrustLevel.equals("COMPLETE")) {
+            final Collection<String> trustedCmHandles = Sets.newHashSet();
+            final Map<String, Map<String, Map<String, String>>> dmiPropertiesPerCmHandleIdPerServiceName
+                    = getDmiPropertiesPerCmHandleIdPerServiceName();
+            final Collection<String> allExistingDmis = new HashSet<>(dmiPropertiesPerCmHandleIdPerServiceName.keySet());
+
+            allExistingDmis.forEach(dmi -> {
+                final TrustLevel trustLevel = trustLevelPerDmiPlugin.get(dmi);
+                if (trustLevel != null && trustLevel.equals(TrustLevel.COMPLETE)) {
+                    final Set<String> cmHandleIds =
+                            dmiPropertiesPerCmHandleIdPerServiceName.get(dmi).entrySet().stream()
+                                    .map(Map.Entry::getKey).collect(Collectors.toSet());
+                    trustedCmHandles.addAll(cmHandleIds);
+                }
+            });
+            return trustedCmHandles;
+        }
+        return Collections.emptySet();
+    }
+
+    private Map<String, Map<String, Map<String, String>>> getDmiPropertiesPerCmHandleIdPerServiceName() {
+        return DmiServiceNameOrganizer.getDmiPropertiesPerCmHandleIdPerServiceName(getAllYangModelCmHandles());
+    }
+
     private List<DataNode> getCmHandlesByDmiPluginIdentifierAndDmiProperty(final String dmiPluginIdentifier,
                                                              final String dmiProperty) {
         return cpsDataPersistenceService.queryDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
@@ -138,6 +185,15 @@ public class CmHandleQueriesImpl implements CmHandleQueries {
         final String xpath = "/dmi-registry/cm-handles[@id='" + cmHandleId + "']/state";
         return cpsDataPersistenceService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
                 xpath, OMIT_DESCENDANTS).iterator().next();
+    }
+
+    private Collection<YangModelCmHandle> getAllYangModelCmHandles() {
+        final DataNode dataNode = inventoryPersistence.getDataNode("/dmi-registry").iterator().next();
+        return dataNode.getChildDataNodes().stream().map(this::createYangModelCmHandle).collect(Collectors.toSet());
+    }
+
+    private YangModelCmHandle createYangModelCmHandle(final DataNode dataNode) {
+        return YangDataConverter.convertCmHandleToYangModel(dataNode, dataNode.getLeaves().get("id").toString());
     }
 }
 

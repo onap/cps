@@ -21,18 +21,24 @@
 
 package org.onap.cps.ncmp.api.inventory
 
+import com.hazelcast.map.IMap
+import com.hazelcast.collection.ISet
+import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.model.DataNode
 import spock.lang.Shared
 import spock.lang.Specification
-
+import java.util.stream.Stream
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 
 class CmHandleQueriesImplSpec extends Specification {
     def cpsDataPersistenceService = Mock(CpsDataPersistenceService)
+    def mockInventoryPersistence = Mock(InventoryPersistence)
+    def mockUntrustworthyCmHandlesSet = Mock(ISet<String>)
+    def mockTrustLevelPerDmiPlugin = Mock(IMap<String, TrustLevel>)
 
-    def objectUnderTest = new CmHandleQueriesImpl(cpsDataPersistenceService)
+    def objectUnderTest = new CmHandleQueriesImpl(cpsDataPersistenceService, mockInventoryPersistence, mockUntrustworthyCmHandlesSet, mockTrustLevelPerDmiPlugin)
 
     @Shared
     def static sampleDataNodes = [new DataNode()]
@@ -44,6 +50,10 @@ class CmHandleQueriesImplSpec extends Specification {
     def static pnfDemo3 = createDataNode('PNFDemo3')
     def static pnfDemo4 = createDataNode('PNFDemo4')
     def static pnfDemo5 = createDataNode('PNFDemo5')
+
+    def dmi1 = createDataNodeWithDmiServiceName('PNFDemo1', 'dmi1')
+    def dmi2 = createDataNodeWithDmiServiceName('PNFDemo2', 'dmi2')
+    def dmiRegistry = new DataNode(xpath: '/dmi-registry', childDataNodes: [dmi1, dmi2])
 
     def 'Query CmHandles with public properties query pair.'() {
         given: 'the DataNodes queried for a given cpsPath are returned from the persistence service.'
@@ -59,6 +69,52 @@ class CmHandleQueriesImplSpec extends Specification {
             'public property does not match' | ['wont_match' : 'wont_match']                                                                 || []
             '2 properties, only one match'   | ['Contact' : 'newemailforstore@bookstore.com', 'Contact2': 'newemailforstore2@bookstore.com'] || ['PNFDemo4']
             '2 properties, no matches'       | ['Contact' : 'newemailforstore@bookstore.com', 'Contact2': '']                                || []
+    }
+
+    def 'Query cm handles with trust level none.'() {
+        given: 'the distributed cache have some untrustworthy cm handles as per #untrustworthyCmHandles'
+            mockUntrustworthyCmHandlesSet.stream() >> { untrustworthyCmHandles }
+        and: 'the distributed cache is empty as per #isUntrustworthySetEmpty'
+            mockUntrustworthyCmHandlesSet.isEmpty() >> { isUntrustworthySetEmpty }
+        and: 'the query property is trust level none'
+            def trustLevelPropertyQueryPairs = ['trustLevel' : 'NONE'] as Map
+        when: 'the query is being executed'
+            def result = objectUnderTest.queryCmHandlesByTrustLevel(trustLevelPropertyQueryPairs)
+        then: 'the expected untrustworthy cm handles are returned successfully'
+            result == expectedResult
+        where: 'the following values are used'
+            scenario                                        |  isUntrustworthySetEmpty  |   untrustworthyCmHandles                                        ||  expectedResult
+            'Untrustworthy cm handle set is not empty'      |  false                    |   Stream.of('CMHandle1','CMHandle2','CMHandle3','CMHandle4')    ||  ['CMHandle1','CMHandle2','CMHandle3','CMHandle4'] as Set
+            'Untrustworthy cm handle has is empty'          |  true                     |   Stream.of()                                                   ||  [] as Set
+    }
+
+    def 'Query cm handles with trust level complete'() {
+        given: 'the distributed cache returns #dmi1TrustLevel and #dmi2TrustLevel for dmi1 and dmi2'
+            mockTrustLevelPerDmiPlugin.get('dmi1') >> { dmi1TrustLevel }
+            mockTrustLevelPerDmiPlugin.get('dmi2') >> { dmi2TrustLevel }
+        and: 'inventory persistence returns dmi-registry'
+            mockInventoryPersistence.getDataNode('/dmi-registry') >> [dmiRegistry]
+        and: 'the query property is trust level complete'
+            def trustLevelPropertyQueryPairs = ['trustLevel' : 'COMPLETE'] as Map
+        when: 'the query is being executed'
+            def result = objectUnderTest.queryCmHandlesByTrustLevel(trustLevelPropertyQueryPairs)
+        then: 'the expected cm handles are returned successfully'
+            result == expectedResult
+        where: 'the following values are used'
+            scenario                                            | dmi1TrustLevel         |  dmi2TrustLevel                 || expectedResult
+            'the both dmis have trust level complete'           | TrustLevel.COMPLETE    |  TrustLevel.COMPLETE            || ['PNFDemo2', 'PNFDemo1'] as Set
+            'the both dmis have trust level none'               | TrustLevel.NONE        |  TrustLevel.NONE                || [] as Set
+            'the dmi1 trust level complete and dmi2 none'       | TrustLevel.COMPLETE    |  TrustLevel.NONE                || ['PNFDemo1'] as Set
+            'the dmi1 trust level none and dmi2 complete'       | TrustLevel.NONE        |  TrustLevel.COMPLETE            || ['PNFDemo2'] as Set
+    }
+
+    def 'Query cm handles with trust level some other values.'() {
+        given: 'the query property is trust level some other value'
+            def trustLevelPropertyQueryPairs = ['trustLevel' : 'other-trust-level'] as Map
+        when: 'the query is being executed'
+            def result = objectUnderTest.queryCmHandlesByTrustLevel(trustLevelPropertyQueryPairs)
+        then: 'the result will be an empty set'
+            result == [] as Set
     }
 
     def 'Query CmHandles using empty public properties query pair.'() {
@@ -176,4 +232,9 @@ class CmHandleQueriesImplSpec extends Specification {
     def static createDataNode(dataNodeId) {
         return new DataNode(xpath: '/dmi-registry/cm-handles[@id=\'' + dataNodeId + '\']', leaves: ['id':dataNodeId])
     }
+
+    def static createDataNodeWithDmiServiceName(dataNodeIds, dmiServiceName) {
+        return new DataNode(xpath: '/dmi-registry/cm-handles[@id=\'' + dataNodeIds + '\']', leaves: ['id':dataNodeIds, 'dmi-service-name':dmiServiceName])
+    }
+
 }
