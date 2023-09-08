@@ -24,6 +24,7 @@ package org.onap.cps.ncmp.api.inventory;
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS;
 
+import com.hazelcast.collection.ISet;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -47,6 +48,7 @@ public class CmHandleQueriesImpl implements CmHandleQueries {
 
     private final CpsDataPersistenceService cpsDataPersistenceService;
     private static final String ANCESTOR_CM_HANDLES = "/ancestor::cm-handles";
+    private final ISet<String> untrustworthyCmHandlesSet;
 
     @Override
     public Collection<String> queryCmHandleAdditionalProperties(final Map<String, String> privatePropertyQueryPairs) {
@@ -56,6 +58,11 @@ public class CmHandleQueriesImpl implements CmHandleQueries {
     @Override
     public Collection<String> queryCmHandlePublicProperties(final Map<String, String> publicPropertyQueryPairs) {
         return queryCmHandleAnyProperties(publicPropertyQueryPairs, PropertyType.PUBLIC);
+    }
+
+    @Override
+    public Collection<String> queryUntrustworthyCmHandles() {
+        return untrustworthyCmHandlesSet.stream().collect(Collectors.toList());
     }
 
     @Override

@@ -45,6 +45,13 @@ public interface CmHandleQueries {
     Collection<String> queryCmHandlePublicProperties(Map<String, String> publicPropertyQueryPairs);
 
     /**
+     * Query untrustworthy CmHandles.
+     *
+     * @return CmHandles which are untrustworthy
+     */
+    Collection<String> queryUntrustworthyCmHandles();
+
+    /**
      * Method which returns cm handles by the cm handles state.
      *
      * @param cmHandleState cm handle state
