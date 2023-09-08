@@ -69,7 +69,8 @@ public class NetworkCmProxyCmHandleQueryServiceImpl implements NetworkCmProxyCmH
         return executeQueries(cmHandleQueryServiceParameters,
             this::executeCpsPathQuery,
             this::queryCmHandlesByPublicProperties,
-            this::executeModuleNameQuery);
+            this::executeModuleNameQuery,
+            this::queryUntrustworthyCmHandles);
     }
 
     @Override
@@ -131,6 +132,13 @@ public class NetworkCmProxyCmHandleQueryServiceImpl implements NetworkCmProxyCmH
         return publicPropertyQueryPairs.isEmpty()
                 ? NO_QUERY_TO_EXECUTE
                 : cmHandleQueries.queryCmHandlePublicProperties(publicPropertyQueryPairs);
+    }
+
+    private Collection<String> queryUntrustworthyCmHandles(final CmHandleQueryServiceParameters
+                                                                   cmHandleQueryServiceParameters) {
+        return cmHandleQueries.queryUntrustworthyCmHandles().isEmpty()
+                ? NO_QUERY_TO_EXECUTE
+                : cmHandleQueries.queryUntrustworthyCmHandles();
     }
 
     private Collection<String> executeModuleNameQuery(
