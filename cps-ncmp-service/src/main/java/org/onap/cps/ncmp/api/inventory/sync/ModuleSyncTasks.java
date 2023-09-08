@@ -73,7 +73,7 @@ public class ModuleSyncTasks {
                 } catch (final Exception e) {
                     log.warn("Processing of {} module sync failed due to reason {}.", cmHandleId, e.getMessage());
                     syncUtils.updateLockReasonDetailsAndAttempts(compositeState,
-                            LockReasonCategory.LOCKED_MODULE_SYNC_FAILED, e.getMessage());
+                            LockReasonCategory.MODULE_SYNC_FAILED, e.getMessage());
                     setCmHandleStateLocked(yangModelCmHandle, compositeState.getLockReason());
                     cmHandelStatePerCmHandle.put(yangModelCmHandle, CmHandleState.LOCKED);
                 }
@@ -96,7 +96,7 @@ public class ModuleSyncTasks {
         final Map<YangModelCmHandle, CmHandleState> cmHandleStatePerCmHandle = new HashMap<>(failedCmHandles.size());
         for (final YangModelCmHandle failedCmHandle : failedCmHandles) {
             final CompositeState compositeState = failedCmHandle.getCompositeState();
-            final boolean isReadyForRetry = syncUtils.isReadyForRetry(compositeState);
+            final boolean isReadyForRetry = syncUtils.needsModuleSyncRetry(compositeState);
             log.info("Retry for cmHandleId : {} is {}", failedCmHandle.getId(), isReadyForRetry);
             if (isReadyForRetry) {
                 final String resetCmHandleId = failedCmHandle.getId();

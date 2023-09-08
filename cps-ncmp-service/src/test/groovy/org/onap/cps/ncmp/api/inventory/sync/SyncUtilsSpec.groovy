@@ -21,7 +21,16 @@
 
 package org.onap.cps.ncmp.api.inventory.sync
 
+import ch.qos.logback.classic.Level
+import ch.qos.logback.classic.Logger
+import ch.qos.logback.core.read.ListAppender
+import org.slf4j.LoggerFactory
+import org.springframework.context.annotation.AnnotationConfigApplicationContext
+
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_OPERATIONAL
+import static org.onap.cps.ncmp.api.inventory.LockReasonCategory.MODULE_SYNC_FAILED
+import static org.onap.cps.ncmp.api.inventory.LockReasonCategory.MODULE_UPGRADE
+import static org.onap.cps.ncmp.api.inventory.LockReasonCategory.MODULE_UPGRADE_FAILED
 
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -31,13 +40,11 @@ import org.onap.cps.ncmp.api.inventory.CmHandleState
 import org.onap.cps.ncmp.api.inventory.CompositeState
 import org.onap.cps.ncmp.api.inventory.CompositeStateBuilder
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
-import org.onap.cps.ncmp.api.inventory.LockReasonCategory
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import spock.lang.Shared
 import spock.lang.Specification
 import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
@@ -53,12 +60,31 @@ class SyncUtilsSpec extends Specification{
 
     def objectUnderTest = new SyncUtils(mockCmHandleQueries, mockDmiDataOperations, jsonObjectMapper)
 
-    @Shared
-    def formattedDateAndTime = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ").format(OffsetDateTime.now())
+    def static neverUpdatedBefore = '1900-01-01T00:00:00.000+0100'
 
-    @Shared
-    def dataNode = new DataNode(leaves: ['id': 'cm-handle-123'])
+    def static now = OffsetDateTime.now()
 
+    def static nowAsString = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ").format(now)
+
+    def static dataNode = new DataNode(leaves: ['id': 'cm-handle-123'])
+
+    def applicationContext = new AnnotationConfigApplicationContext()
+
+    def logger = (Logger) LoggerFactory.getLogger(SyncUtils)
+    def loggingListAppender
+
+    void setup() {
+        logger.setLevel(Level.DEBUG)
+        loggingListAppender = new ListAppender()
+        logger.addAppender(loggingListAppender)
+        loggingListAppender.start()
+        applicationContext.refresh()
+    }
+
+    void cleanup() {
+        ((Logger) LoggerFactory.getLogger(SyncUtils.class)).detachAndStopAllAppenders()
+        applicationContext.close()
+    }
 
     def 'Get an advised Cm-Handle where ADVISED cm handle #scenario'() {
         given: 'the inventory persistence service returns a collection of data nodes'
@@ -77,9 +103,9 @@ class SyncUtilsSpec extends Specification{
         given: 'A locked state'
             def compositeState = new CompositeState(lockReason: lockReason)
         when: 'update cm handle details and attempts is called'
-            objectUnderTest.updateLockReasonDetailsAndAttempts(compositeState, LockReasonCategory.LOCKED_MODULE_SYNC_FAILED, 'new error message')
+            objectUnderTest.updateLockReasonDetailsAndAttempts(compositeState, MODULE_SYNC_FAILED, 'new error message')
         then: 'the composite state lock reason and details are updated'
-            assert compositeState.lockReason.lockReasonCategory == LockReasonCategory.LOCKED_MODULE_SYNC_FAILED
+            assert compositeState.lockReason.lockReasonCategory == MODULE_SYNC_FAILED
             assert compositeState.lockReason.details == expectedDetails
         where:
             scenario         | lockReason                                                                                   || expectedDetails
@@ -87,10 +113,10 @@ class SyncUtilsSpec extends Specification{
             'exists'         | CompositeState.LockReason.builder().details("Attempt #2 failed: some error message").build() || 'Attempt #3 failed: new error message'
     }
 
-    def 'Get all locked Cm-Handle where Lock Reason is LOCKED_MODULE_SYNC_FAILED cm handle #scenario'() {
+    def 'Get all locked Cm-Handle where Lock Reason is MODULE_SYNC_FAILED cm handle #scenario'() {
         given: 'the cps (persistence service) returns a collection of data nodes'
             mockCmHandleQueries.queryCmHandleDataNodesByCpsPath(
-                '//lock-reason[@reason="LOCKED_MODULE_SYNC_FAILED"]',
+                '//lock-reason[@reason="MODULE_SYNC_FAILED"]',
                 FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> [dataNode]
         when: 'get locked Misbehaving cm handle is called'
             def result = objectUnderTest.getModuleSyncFailedCmHandles()
@@ -101,19 +127,41 @@ class SyncUtilsSpec extends Specification{
     }
 
     def 'Retry Locked Cm-Handle where the last update time is #scenario'() {
-        when: 'retry locked cm handle is invoked'
-            def result = objectUnderTest.isReadyForRetry(new CompositeStateBuilder()
-                .withLockReason(LockReasonCategory.LOCKED_MODULE_SYNC_FAILED, details)
-                .withLastUpdatedTime(lastUpdateTime).build())
-        then: 'result returns #expectedResult'
-            result == expectedResult
-        where:
-            scenario                     | lastUpdateTime                     | details                 || expectedResult
-            'the first attempt'          | '1900-01-01T00:00:00.000+0100'     | 'First Attempt'         || true
-            'greater than one minute'    | '1900-01-01T00:00:00.000+0100'     | 'Attempt #1 failed:'    || true
-            'less than eight minutes'    | formattedDateAndTime               | 'Attempt #3 failed:'    || false
+        given: 'Last update was #lastUpdateMinutesAgo minutes ago (-1 means never)'
+            def lastUpdatedTime = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ").format(now.minusMinutes(lastUpdateMinutesAgo))
+            if (lastUpdateMinutesAgo < 0 ) {
+                lastUpdatedTime = neverUpdatedBefore
+            }
+        when: 'checking to see if cm handle is ready for retry'
+         def result = objectUnderTest.needsModuleSyncRetry(new CompositeStateBuilder()
+                .withLockReason(MODULE_SYNC_FAILED, lockDetails)
+                .withLastUpdatedTime(lastUpdatedTime).build())
+        then: 'retry is only attempted when expected'
+            assert result == retryExpected
+        and: 'logs contain related information'
+            def logs = loggingListAppender.list.toString()
+            assert logs.contains(logReason)
+        where: 'the following parameters are used'
+            scenario                                    | lastUpdateMinutesAgo | lockDetails          | logReason                               || retryExpected
+            'never attempted before'                    | -1                   | 'fist attempt:'      | 'First Attempt:'                        || true
+            '1st attempt, last attempt > 2 minute ago'  | 3                    | 'Attempt #1 failed:' | 'Retry due now'                         || true
+            '2nd attempt, last attempt < 4 minutes ago' | 1                    | 'Attempt #2 failed:' | 'Time until next attempt is 3 minutes:' || false
+            '2nd attempt, last attempt > 4 minutes ago' | 5                    | 'Attempt #2 failed:' | 'Retry due now'                         || true
     }
 
+    def 'Retry Locked Cm-Handle with other lock reasons (category) #lockReasonCategory'() {
+        when: 'checking to see if cm handle is ready for retry'
+            def result = objectUnderTest.needsModuleSyncRetry(new CompositeStateBuilder()
+                .withLockReason(lockReasonCategory, 'some details')
+                .withLastUpdatedTime(nowAsString).build())
+        then: 'retry attempt is never triggered'
+            assert result == false
+        and: 'logs contain related information'
+            def logs = loggingListAppender.list.toString()
+            assert logs.contains('Locked for other reason')
+        where: 'the following lock reasons occurred'
+            lockReasonCategory  << [MODULE_UPGRADE, MODULE_UPGRADE_FAILED]
+    }
 
     def 'Get a Cm-Handle where #scenario'() {
         given: 'the inventory persistence service returns a collection of data nodes'

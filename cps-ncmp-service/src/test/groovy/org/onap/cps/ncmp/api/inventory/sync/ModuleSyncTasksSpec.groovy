@@ -87,7 +87,7 @@ class ModuleSyncTasksSpec extends Specification {
         when: 'module sync is executed'
             objectUnderTest.performModuleSync([cmHandle], batchCount)
         then: 'update lock reason, details and attempts is invoked'
-            1 * mockSyncUtils.updateLockReasonDetailsAndAttempts(cmHandleState, LockReasonCategory.LOCKED_MODULE_SYNC_FAILED, 'some exception')
+            1 * mockSyncUtils.updateLockReasonDetailsAndAttempts(cmHandleState, LockReasonCategory.MODULE_SYNC_FAILED, 'some exception')
         and: 'the state handler is called to update the state to LOCKED'
             1 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(_) >> { args ->
                 assertBatch(args, ['cm-handle'], CmHandleState.LOCKED)
@@ -99,7 +99,7 @@ class ModuleSyncTasksSpec extends Specification {
     def 'Reset failed CM Handles #scenario.'() {
         given: 'cm handles in an locked state'
             def lockedState = new CompositeStateBuilder().withCmHandleState(CmHandleState.LOCKED)
-                    .withLockReason(LockReasonCategory.LOCKED_MODULE_SYNC_FAILED, '').withLastUpdatedTimeNow().build()
+                    .withLockReason(LockReasonCategory.MODULE_SYNC_FAILED, '').withLastUpdatedTimeNow().build()
             def yangModelCmHandle1 = new YangModelCmHandle(id: 'cm-handle-1', compositeState: lockedState)
             def yangModelCmHandle2 = new YangModelCmHandle(id: 'cm-handle-2', compositeState: lockedState)
             def expectedCmHandleStatePerCmHandle = [(yangModelCmHandle1): CmHandleState.ADVISED]
@@ -109,7 +109,7 @@ class ModuleSyncTasksSpec extends Specification {
             moduleSyncStartedOnCmHandles.put('cm-handle-1', 'started')
             moduleSyncStartedOnCmHandles.put('cm-handle-2', 'started')
         and: 'sync utils retry locked cm handle returns #isReadyForRetry'
-            mockSyncUtils.isReadyForRetry(lockedState) >>> isReadyForRetry
+            mockSyncUtils.needsModuleSyncRetry(lockedState) >>> isReadyForRetry
         when: 'resetting failed cm handles'
             objectUnderTest.resetFailedCmHandles([yangModelCmHandle1, yangModelCmHandle2])
         then: 'updated to state "ADVISED" from "READY" is called as often as there are cm handles ready for retry'
