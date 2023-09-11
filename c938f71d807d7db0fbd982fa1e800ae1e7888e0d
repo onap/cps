@@ -46,6 +46,30 @@
       },
       "revId": "c938f71d807d7db0fbd982fa1e800ae1e7888e0d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c76c6314_671336f1",
+        "filename": "csit/tests/cps-subscriptions/cps-subscription-notification.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-11T11:49:51Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "cc1f7069_529a126f",
+      "range": {
+        "startLine": 72,
+        "startChar": 130,
+        "endLine": 76,
+        "endChar": 111
+      },
+      "revId": "c938f71d807d7db0fbd982fa1e800ae1e7888e0d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
