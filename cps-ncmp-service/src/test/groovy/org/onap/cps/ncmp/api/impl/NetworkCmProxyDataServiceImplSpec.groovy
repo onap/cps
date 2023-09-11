@@ -26,6 +26,7 @@ package org.onap.cps.ncmp.api.impl
 import com.hazelcast.map.IMap
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandleQueryService
 import org.onap.cps.ncmp.api.impl.events.lcm.LcmEventsCmHandleStateHandler
+import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.inventory.CmHandleQueries
 import org.onap.cps.ncmp.api.inventory.CmHandleState
@@ -72,6 +73,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def mockCpsCmHandlerQueryService = Mock(NetworkCmProxyCmHandleQueryService)
     def mockLcmEventsCmHandleStateHandler = Mock(LcmEventsCmHandleStateHandler)
     def stubModuleSyncStartedOnCmHandles = Stub(IMap<String, Object>)
+    def StubTrustLevelPerDmiPlugin = Stub(IMap<String, TrustLevel>)
 
     def NO_TOPIC = null
     def NO_REQUEST_ID = null
@@ -89,7 +91,8 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             mockCpsCmHandlerQueryService,
             mockLcmEventsCmHandleStateHandler,
             mockCpsDataService,
-            stubModuleSyncStartedOnCmHandles)
+            stubModuleSyncStartedOnCmHandles,
+            StubTrustLevelPerDmiPlugin)
 
     def cmHandleXPath = "/dmi-registry/cm-handles[@id='testCmHandle']"
 

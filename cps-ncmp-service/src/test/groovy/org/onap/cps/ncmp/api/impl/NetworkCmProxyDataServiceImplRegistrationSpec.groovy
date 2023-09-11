@@ -29,6 +29,7 @@ import org.onap.cps.ncmp.api.NetworkCmProxyCmHandleQueryService
 import org.onap.cps.ncmp.api.impl.events.lcm.LcmEventsCmHandleStateHandler
 import org.onap.cps.ncmp.api.impl.exception.DmiRequestException
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations
+import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.inventory.CmHandleQueries
 import org.onap.cps.ncmp.api.inventory.CmHandleState
@@ -65,6 +66,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def mockLcmEventsCmHandleStateHandler = Mock(LcmEventsCmHandleStateHandler)
     def mockCpsDataService = Mock(CpsDataService)
     def mockModuleSyncStartedOnCmHandles = Mock(IMap<String, Object>)
+    def mockTrustLevelPerDmiPlugin = Mock(IMap<String, TrustLevel>)
     def objectUnderTest = getObjectUnderTest()
 
     def 'DMI Registration: Create, Update & Delete operations are processed in the right order'() {
@@ -85,6 +87,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             1 * objectUnderTest.parseAndCreateCmHandlesInDmiRegistrationAndSyncModules(*_)
         then: 'cm-handles are updated'
             1 * mockNetworkCmProxyDataServicePropertyHandler.updateCmHandleProperties(*_)
+            1 * mockTrustLevelPerDmiPlugin.put("my-server", TrustLevel.COMPLETE)
     }
 
     def 'DMI Registration: Response from all operations types are in response'() {
@@ -376,7 +379,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         return Spy(new NetworkCmProxyDataServiceImpl(spiedJsonObjectMapper, mockDmiDataOperations,
                 mockNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence, mockCmhandleQueries,
                 stubbedNetworkCmProxyCmHandlerQueryService, mockLcmEventsCmHandleStateHandler, mockCpsDataService,
-                mockModuleSyncStartedOnCmHandles))
+                mockModuleSyncStartedOnCmHandles, mockTrustLevelPerDmiPlugin))
     }
 
     def addPersistedYangModelCmHandles(ids) {

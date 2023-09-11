@@ -46,6 +46,7 @@ import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.api.impl.events.lcm.LcmEventsCmHandleStateHandler;
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations;
 import org.onap.cps.ncmp.api.impl.operations.OperationType;
+import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel;
 import org.onap.cps.ncmp.api.impl.utils.CmHandleQueryConditions;
 import org.onap.cps.ncmp.api.impl.utils.InventoryQueryConditions;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
@@ -90,6 +91,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private final LcmEventsCmHandleStateHandler lcmEventsCmHandleStateHandler;
     private final CpsDataService cpsDataService;
     private final IMap<String, Object> moduleSyncStartedOnCmHandles;
+    private final IMap<String, TrustLevel> trustLevelPerDmiPlugin;
 
     @Override
     public DmiPluginRegistrationResponse updateDmiRegistrationAndSyncModule(
@@ -111,6 +113,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                     networkCmProxyDataServicePropertyHandler
                             .updateCmHandleProperties(dmiPluginRegistration.getUpdatedCmHandles()));
         }
+        trustLevelPerDmiPlugin.put(dmiPluginRegistration.getDmiPlugin(), TrustLevel.COMPLETE);
         return dmiPluginRegistrationResponse;
     }
 
