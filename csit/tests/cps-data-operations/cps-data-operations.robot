@@ -58,17 +58,20 @@ Consume cloud event from client topic
     ${messages}=         Poll                group_id=${group_id}     only_value=false
     ${event}                        Set Variable                      ${messages}[0]
     ${headers}                      Set Variable                      ${event.headers()}
-    ${specVersionHeaderValue}       Set Variable                      ${headers[1][1]}
-    ${sourceHeaderValue}            Set Variable                      ${headers[3][1]}
-    ${typeHeaderValue}              Set Variable                      ${headers[4][1]}
-    ${correlationIdHeaderValue}     Set Variable                      ${headers[8][1]}
-    Should Be Equal As Strings      ${specVersionHeaderValue}         1.0
-    Should Be Equal As Strings      ${sourceHeaderValue}              DMI
-    Should Be Equal As Strings      ${correlationIdHeaderValue}       ${expectedRequestId}
-    Should Be Equal As Strings      ${typeHeaderValue}                org.onap.cps.ncmp.events.async1_0_0.DataOperationEvent
+    FOR   ${header_key_value_pair}   IN  @{headers}
+        Compare Header Values       ${header_key_value_pair[0]}   ${header_key_value_pair[1]}      "ce_specversion"      "1.0"
+        Compare Header Values       ${header_key_value_pair[0]}   ${header_key_value_pair[1]}      "ce_source"           "DMI"
+        Compare Header Values       ${header_key_value_pair[0]}   ${header_key_value_pair[1]}      "ce_type"             "org.onap.cps.ncmp.events.async1_0_0.DataOperationEvent"
+        Compare Header Values       ${header_key_value_pair[0]}   ${header_key_value_pair[1]}      "ce_correlationid"    "${expectedRequestId}"
+    END
     [Teardown]                      Basic Teardown                    ${group_id}
 
 *** Keywords ***
+Compare Header Values
+    [Arguments]                    ${header_key}        ${header_value}     ${header_to_check}       ${expected_header_value}
+    IF   "${header_key}" == ${header_to_check}
+        Should Be Equal As Strings              "${header_value}"    ${expected_header_value}
+    END
 
 Basic Teardown
     [Arguments]     ${group_id}

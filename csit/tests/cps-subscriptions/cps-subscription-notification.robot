@@ -69,16 +69,20 @@ All Messages Are Produced and Consumed
     ${result}=                      Poll                        group_id=${GROUP_ID}      only_value=False
     ${headers}                      Set Variable                      ${result[0].headers()}
     ${value}                        Set Variable                      ${result[0].value()}
-    ${valueAsDict}=                 Evaluate                          json.loads("""${value}""")                              json
-    ${specVersionHeaderValue}       Set Variable                      ${headers[1][1]}
-    ${sourceHeaderValue}            Set Variable                      ${headers[3][1]}
-    ${typeHeaderValue}              Set Variable                      ${headers[4][1]}
-    ${correlationIdHeaderValue}     Set Variable                      ${headers[6][1]}
+    ${valueAsDict}=                 Evaluate                          json.loads("""${value}""")                        json
+    FOR   ${header_key_value_pair}   IN  @{headers}
+        Compare Header Values       ${header_key_value_pair[0]}   ${header_key_value_pair[1]}     "ce_specversion"      "1.0"
+        Compare Header Values       ${header_key_value_pair[0]}   ${header_key_value_pair[1]}     "ce_source"           "NCMP"
+        Compare Header Values       ${header_key_value_pair[0]}   ${header_key_value_pair[1]}     "ce_type"             "subscriptionCreatedStatus"
+        Compare Header Values       ${header_key_value_pair[0]}   ${header_key_value_pair[1]}     "ce_correlationid"    "SCO-9989752cm-subscription-001"
+    END
     Dictionaries Should Be Equal    ${valueAsDict}                    ${ncmpOutEventJsonGlobal}
-    Should Be Equal As Strings      ${specVersionHeaderValue}         1.0
-    Should Be Equal As Strings      ${sourceHeaderValue}              NCMP
-    Should Be Equal As Strings      ${typeHeaderValue}                subscriptionCreatedStatus
-    Should Be Equal As Strings      ${correlationIdHeaderValue}       SCO-9989752cm-subscription-001
+
+Compare Header Values
+    [Arguments]                    ${header_key}        ${header_value}      ${header_to_check}       ${expected_header_value}
+    IF   "${header_key}" == ${header_to_check}
+        Should Be Equal As Strings              "${header_value}"    ${expected_header_value}
+    END
 
 Basic Teardown
     [Arguments]                     ${group_id}
