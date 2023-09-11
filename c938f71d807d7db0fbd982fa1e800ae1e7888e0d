@@ -22,6 +22,30 @@
       },
       "revId": "c938f71d807d7db0fbd982fa1e800ae1e7888e0d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc1f7069_529a126f",
+        "filename": "csit/tests/cps-subscriptions/cps-subscription-notification.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-11T11:49:38Z",
+      "side": 1,
+      "message": "Really sorry for inconvenience I should\u0027ve been aware of indexes could have changed by time...",
+      "parentUuid": "346bebc7_6d23edf2",
+      "range": {
+        "startLine": 72,
+        "startChar": 130,
+        "endLine": 76,
+        "endChar": 111
+      },
+      "revId": "c938f71d807d7db0fbd982fa1e800ae1e7888e0d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
