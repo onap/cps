@@ -16,6 +16,167 @@
       "message": "recheck",
       "revId": "8f29dd49b024ffe7b0fa2fac077ed3fd820f6512",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c53f942_b0bffd6b",
+        "filename": "csit/tests/cps-data-operations/cps-data-operations.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-11T15:32:11Z",
+      "side": 1,
+      "message": "\u0027root\u0027 language is a bit hard to read but the loop seems a bit strange. After reading it 3 times I think I now understand what it does, and possibly there is no easier way in Robot as you dont have a proper map-function...\n\nsome better naming might help tough: \u0027item\u0027 -\u003e \u0027header_key_value_pair\u0027\n\nand see suggestions below",
+      "range": {
+        "startLine": 61,
+        "startChar": 3,
+        "endLine": 61,
+        "endChar": 34
+      },
+      "revId": "8f29dd49b024ffe7b0fa2fac077ed3fd820f6512",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49c7038b_0c3e8d66",
+        "filename": "csit/tests/cps-data-operations/cps-data-operations.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-11T15:32:11Z",
+      "side": 1,
+      "message": "based on the naming suggestions below you could pass in 2 separate parameters here and then change the method \u0027signature\u0027 to expect to well named variables\n\ne.g\nCompare Header Values   ${header_key_value_pair[0]} ${header_key_value_pair[1]} \u0027ce_specversion\"      \"1.0\"\n\n\nCompare Header Values\n    [Arguments]  ${header_key} ${header_value}  ${expected_header_value}",
+      "range": {
+        "startLine": 62,
+        "startChar": 36,
+        "endLine": 62,
+        "endChar": 43
+      },
+      "revId": "8f29dd49b024ffe7b0fa2fac077ed3fd820f6512",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "233085d3_64d5f740",
+        "filename": "csit/tests/cps-data-operations/cps-data-operations.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-11T15:32:11Z",
+      "side": 1,
+      "message": "header_to_check",
+      "range": {
+        "startLine": 71,
+        "startChar": 55,
+        "endLine": 71,
+        "endChar": 66
+      },
+      "revId": "8f29dd49b024ffe7b0fa2fac077ed3fd820f6512",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58c58e94_7fa59d79",
+        "filename": "csit/tests/cps-data-operations/cps-data-operations.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-11T15:32:11Z",
+      "side": 1,
+      "message": "expected_header_value",
+      "range": {
+        "startLine": 71,
+        "startChar": 76,
+        "endLine": 71,
+        "endChar": 88
+      },
+      "revId": "8f29dd49b024ffe7b0fa2fac077ed3fd820f6512",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6eef0d9_67733999",
+        "filename": "csit/tests/cps-data-operations/cps-data-operations.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-11T15:32:11Z",
+      "side": 1,
+      "message": "headerKeyValuePair",
+      "range": {
+        "startLine": 71,
+        "startChar": 37,
+        "endLine": 71,
+        "endChar": 46
+      },
+      "revId": "8f29dd49b024ffe7b0fa2fac077ed3fd820f6512",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "277580dc_0cf56712",
+        "filename": "csit/tests/cps-data-operations/cps-data-operations.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-11T15:32:11Z",
+      "side": 1,
+      "message": "you could re-assign this to make it more readable, not sure about exact syntax but something like\n\nheader_name \u003d headerKeyValuePair[0]",
+      "range": {
+        "startLine": 72,
+        "startChar": 12,
+        "endLine": 72,
+        "endChar": 24
+      },
+      "revId": "8f29dd49b024ffe7b0fa2fac077ed3fd820f6512",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c38fe174_bae6a16b",
+        "filename": "csit/tests/cps-data-operations/cps-data-operations.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-11T15:32:11Z",
+      "side": 1,
+      "message": "you could re-assign this to make it more readable, not sure about exact syntax but something like\n\nheader_value \u003d headerKeyValuePair[1]",
+      "range": {
+        "startLine": 73,
+        "startChar": 51,
+        "endLine": 73,
+        "endChar": 63
+      },
+      "revId": "8f29dd49b024ffe7b0fa2fac077ed3fd820f6512",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
