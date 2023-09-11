@@ -70,15 +70,19 @@ All Messages Are Produced and Consumed
     ${headers}                      Set Variable                      ${result[0].headers()}
     ${value}                        Set Variable                      ${result[0].value()}
     ${valueAsDict}=                 Evaluate                          json.loads("""${value}""")                              json
-    ${specVersionHeaderValue}       Set Variable                      ${headers[1][1]}
-    ${sourceHeaderValue}            Set Variable                      ${headers[3][1]}
-    ${typeHeaderValue}              Set Variable                      ${headers[4][1]}
-    ${correlationIdHeaderValue}     Set Variable                      ${headers[6][1]}
+    FOR   ${item}   IN  @{headers}
+        Compare Header Values       ${item}      "ce_specversion"      "1.0"
+        Compare Header Values       ${item}      "ce_source"           "NCMP"
+        Compare Header Values       ${item}      "ce_type"             "subscriptionCreatedStatus"
+        Compare Header Values       ${item}      "ce_correlationid"    "SCO-9989752cm-subscription-001"
+    END
     Dictionaries Should Be Equal    ${valueAsDict}                    ${ncmpOutEventJsonGlobal}
-    Should Be Equal As Strings      ${specVersionHeaderValue}         1.0
-    Should Be Equal As Strings      ${sourceHeaderValue}              NCMP
-    Should Be Equal As Strings      ${typeHeaderValue}                subscriptionCreatedStatus
-    Should Be Equal As Strings      ${correlationIdHeaderValue}       SCO-9989752cm-subscription-001
+
+Compare Header Values
+    [Arguments]                    ${arrayItem}      ${header_name}       ${header_value}
+    IF   "${arrayItem[0]}" == ${header_name}
+        Should Be Equal As Strings              "${arrayItem[1]}"    ${header_value}
+    END
 
 Basic Teardown
     [Arguments]                     ${group_id}

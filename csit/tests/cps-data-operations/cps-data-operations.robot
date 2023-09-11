@@ -58,17 +58,20 @@ Consume cloud event from client topic
     ${messages}=         Poll                group_id=${group_id}     only_value=false
     ${event}                        Set Variable                      ${messages}[0]
     ${headers}                      Set Variable                      ${event.headers()}
-    ${specVersionHeaderValue}       Set Variable                      ${headers[1][1]}
-    ${sourceHeaderValue}            Set Variable                      ${headers[3][1]}
-    ${typeHeaderValue}              Set Variable                      ${headers[4][1]}
-    ${correlationIdHeaderValue}     Set Variable                      ${headers[8][1]}
-    Should Be Equal As Strings      ${specVersionHeaderValue}         1.0
-    Should Be Equal As Strings      ${sourceHeaderValue}              DMI
-    Should Be Equal As Strings      ${correlationIdHeaderValue}       ${expectedRequestId}
-    Should Be Equal As Strings      ${typeHeaderValue}                org.onap.cps.ncmp.events.async1_0_0.DataOperationEvent
+    FOR   ${item}   IN  @{headers}
+        Compare Header Values       ${item}      "ce_specversion"      "1.0"
+        Compare Header Values       ${item}      "ce_source"           "DMI"
+        Compare Header Values       ${item}      "ce_type"             "org.onap.cps.ncmp.events.async1_0_0.DataOperationEvent"
+        Compare Header Values       ${item}      "ce_correlationid"    "${expectedRequestId}"
+    END
     [Teardown]                      Basic Teardown                    ${group_id}
 
 *** Keywords ***
+Compare Header Values
+    [Arguments]                    ${arrayItem}      ${header_name}       ${header_value}
+    IF   "${arrayItem[0]}" == ${header_name}
+        Should Be Equal As Strings              "${arrayItem[1]}"    ${header_value}
+    END
 
 Basic Teardown
     [Arguments]     ${group_id}
