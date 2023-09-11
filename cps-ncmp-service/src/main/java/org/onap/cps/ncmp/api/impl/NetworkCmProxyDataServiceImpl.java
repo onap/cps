@@ -27,6 +27,7 @@ package org.onap.cps.ncmp.api.impl;
 import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME;
 import static org.onap.cps.ncmp.api.impl.utils.RestQueryParametersValidator.validateCmHandleQueryParameters;
 
+import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import com.hazelcast.map.IMap;
 import java.time.OffsetDateTime;
@@ -46,6 +47,7 @@ import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.api.impl.events.lcm.LcmEventsCmHandleStateHandler;
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations;
 import org.onap.cps.ncmp.api.impl.operations.OperationType;
+import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel;
 import org.onap.cps.ncmp.api.impl.utils.CmHandleQueryConditions;
 import org.onap.cps.ncmp.api.impl.utils.InventoryQueryConditions;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
@@ -90,6 +92,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private final LcmEventsCmHandleStateHandler lcmEventsCmHandleStateHandler;
     private final CpsDataService cpsDataService;
     private final IMap<String, Object> moduleSyncStartedOnCmHandles;
+    private final IMap<String, TrustLevel> trustLevelPerDmiPlugin;
 
     @Override
     public DmiPluginRegistrationResponse updateDmiRegistrationAndSyncModule(
@@ -111,6 +114,13 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                     networkCmProxyDataServicePropertyHandler
                             .updateCmHandleProperties(dmiPluginRegistration.getUpdatedCmHandles()));
         }
+
+        if (isNullEmptyOrBlank(dmiPluginRegistration.getDmiDataPlugin())) {
+            trustLevelPerDmiPlugin.put(dmiPluginRegistration.getDmiPlugin(), TrustLevel.COMPLETE);
+        } else {
+            trustLevelPerDmiPlugin.put(dmiPluginRegistration.getDmiDataPlugin(), TrustLevel.COMPLETE);
+        }
+
         return dmiPluginRegistrationResponse;
     }
 
@@ -409,6 +419,10 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         } catch (final Exception exception) {
             return CmHandleRegistrationResponse.createFailureResponses(cmHandleIds, exception);
         }
+    }
+
+    private static boolean isNullEmptyOrBlank(final String serviceName) {
+        return Strings.isNullOrEmpty(serviceName) || serviceName.isBlank();
     }
 
 }
