@@ -29,6 +29,7 @@ import org.onap.cps.ncmp.api.NetworkCmProxyCmHandleQueryService
 import org.onap.cps.ncmp.api.impl.events.lcm.LcmEventsCmHandleStateHandler
 import org.onap.cps.ncmp.api.impl.exception.DmiRequestException
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations
+import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.inventory.CmHandleQueries
 import org.onap.cps.ncmp.api.inventory.CmHandleState
@@ -65,6 +66,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def mockLcmEventsCmHandleStateHandler = Mock(LcmEventsCmHandleStateHandler)
     def mockCpsDataService = Mock(CpsDataService)
     def mockModuleSyncStartedOnCmHandles = Mock(IMap<String, Object>)
+    def mockTrustLevelPerDmiPlugin = Mock(IMap<String, TrustLevel>)
     def objectUnderTest = getObjectUnderTest()
 
     def 'DMI Registration: Create, Update & Delete operations are processed in the right order'() {
@@ -119,11 +121,13 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'create cm handles registration and sync modules is called with the correct plugin information'
             1 * objectUnderTest.parseAndCreateCmHandlesInDmiRegistrationAndSyncModules(dmiPluginRegistration)
+        and: 'dmi is added to the trustLevel map'
+            1 * mockTrustLevelPerDmiPlugin.put(dmiPluginRegisteredName, TrustLevel.COMPLETE)
         where:
-            scenario                          | dmiPlugin  | dmiModelPlugin | dmiDataPlugin
-            'combined DMI plugin'             | 'service1' | ''             | ''
-            'data & model DMI plugins'        | ''         | 'service1'     | 'service2'
-            'data & model using same service' | ''         | 'service1'     | 'service1'
+            scenario                          | dmiPlugin  | dmiModelPlugin | dmiDataPlugin | dmiPluginRegisteredName
+            'combined DMI plugin'             | 'service1' | ''             | ''            | 'service1'
+            'data & model DMI plugins'        | ''         | 'service1'     | 'service2'    | 'service2'
+            'data & model using same service' | ''         | 'service1'     | 'service1'    | 'service1'
     }
 
     def 'Create CM-handle Validation: Invalid DMI plugin service name with #scenario'() {
@@ -376,7 +380,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         return Spy(new NetworkCmProxyDataServiceImpl(spiedJsonObjectMapper, mockDmiDataOperations,
                 mockNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence, mockCmhandleQueries,
                 stubbedNetworkCmProxyCmHandlerQueryService, mockLcmEventsCmHandleStateHandler, mockCpsDataService,
-                mockModuleSyncStartedOnCmHandles))
+                mockModuleSyncStartedOnCmHandles, mockTrustLevelPerDmiPlugin))
     }
 
     def addPersistedYangModelCmHandles(ids) {

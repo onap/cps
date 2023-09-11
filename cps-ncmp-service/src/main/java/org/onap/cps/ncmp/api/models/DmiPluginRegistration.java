@@ -80,7 +80,7 @@ public class DmiPluginRegistration {
         }
     }
 
-    private static boolean isNullEmptyOrBlank(final String serviceName) {
+    public static boolean isNullEmptyOrBlank(final String serviceName) {
         return Strings.isNullOrEmpty(serviceName) || serviceName.isBlank();
     }
 
