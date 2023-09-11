@@ -70,10 +70,10 @@ All Messages Are Produced and Consumed
     ${headers}                      Set Variable                      ${result[0].headers()}
     ${value}                        Set Variable                      ${result[0].value()}
     ${valueAsDict}=                 Evaluate                          json.loads("""${value}""")                              json
-    ${specVersionHeaderValue}       Set Variable                      ${headers[1][1]}
-    ${sourceHeaderValue}            Set Variable                      ${headers[3][1]}
-    ${typeHeaderValue}              Set Variable                      ${headers[4][1]}
-    ${correlationIdHeaderValue}     Set Variable                      ${headers[6][1]}
+    ${specVersionHeaderValue}       Set Variable                      ${headers.lastHeader('ce_specversion')}
+    ${sourceHeaderValue}            Set Variable                      ${headers.lastHeader('ce_source')}
+    ${typeHeaderValue}              Set Variable                      ${headers.lastHeader('ce_type')}
+    ${correlationIdHeaderValue}     Set Variable                      ${headers.lastHeader('ce_correlationid')}
     Dictionaries Should Be Equal    ${valueAsDict}                    ${ncmpOutEventJsonGlobal}
     Should Be Equal As Strings      ${specVersionHeaderValue}         1.0
     Should Be Equal As Strings      ${sourceHeaderValue}              NCMP
