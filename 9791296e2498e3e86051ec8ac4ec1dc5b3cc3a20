@@ -70,6 +70,24 @@
       "parentUuid": "5f03df68_eb09d8cb",
       "revId": "9791296e2498e3e86051ec8ac4ec1dc5b3cc3a20",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "855618f0_cc3fb1ee",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-11T15:32:15Z",
+      "side": 1,
+      "message": "In order to sort this out, there is a commit rose up. Once that get merged, you may rebase this patchset. Sorry for inconvenience.\n\n135926: Verify kafka headers by header name | https://gerrit.onap.org/r/c/cps/+/135926",
+      "parentUuid": "536b510a_3f96a04f",
+      "revId": "9791296e2498e3e86051ec8ac4ec1dc5b3cc3a20",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
