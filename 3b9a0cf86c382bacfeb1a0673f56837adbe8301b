@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9513c66c_c205fcf4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-12T08:27:57Z",
+      "side": 1,
+      "message": "NB: Please use more specific commit message in future\n(we have many events and commit messages will be seen in git view with context)\n\nsuggestion: Introduction of delt-feature event",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 0
+      },
+      "revId": "3b9a0cf86c382bacfeb1a0673f56837adbe8301b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4fa77ae_ac528b1c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-12T08:27:57Z",
+      "side": 1,
+      "message": "I see it is WiP but we really need to address the performance issue before we can go forward with this!\n\nPossibly need a more details analysis PoC how to achieve the delate with minimum overhead/impacts...",
+      "revId": "3b9a0cf86c382bacfeb1a0673f56837adbe8301b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36440e87_a962a105",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-12T08:27:57Z",
+      "side": 1,
+      "message": "I think \u0027process\u0027 is the incorrect term heer (I know you copied it from legacy method but that is simply badly named too!)\n\n\u0027process\u0027 is more appropriate for an incommign event.\nI think i this case you should use the verb \u0027send\u0027 you can change all related method names including the legacy in above.\n\nAlso the \u0027async\u0027 but is superfluous, events are always async and it is not as if the send is doin in a separate thread\n\nsuggested methodNames:\n\nsendDataUpdateEvent\nsendDeltaEvent",
+      "range": {
+        "startLine": 177,
+        "startChar": 8,
+        "endLine": 177,
+        "endChar": 15
+      },
+      "revId": "3b9a0cf86c382bacfeb1a0673f56837adbe8301b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f97d6c7_8a806fc3",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/CpsDataUpdatedEventFactory.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-12T08:27:57Z",
+      "side": 1,
+      "message": "I don\u0027t understand the logic here\nData is null for update operations, why?!",
+      "range": {
+        "startLine": 100,
+        "startChar": 34,
+        "endLine": 100,
+        "endChar": 72
+      },
+      "revId": "3b9a0cf86c382bacfeb1a0673f56837adbe8301b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd573eac_4504a173",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/CpsDataUpdatedEventFactory.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-12T08:27:57Z",
+      "side": 1,
+      "message": "this going to be very big and very expensive, performance consideration!\nWE had to disable to cps-temporal\u0027 event exactly for this reason!",
+      "range": {
+        "startLine": 103,
+        "startChar": 72,
+        "endLine": 103,
+        "endChar": 118
+      },
+      "revId": "3b9a0cf86c382bacfeb1a0673f56837adbe8301b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f60d81dd_76bb293a",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/NotificationService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-12T08:27:57Z",
+      "side": 1,
+      "message": "this is using a config parameter specifically design for cps-temporal function! You should NOT use the same for this feature (maybe similar but not exact same)",
+      "range": {
+        "startLine": 115,
+        "startChar": 16,
+        "endLine": 115,
+        "endChar": 65
+      },
+      "revId": "3b9a0cf86c382bacfeb1a0673f56837adbe8301b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
