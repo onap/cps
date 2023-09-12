@@ -122,6 +122,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "91319666_a39a5803",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/client/DmiRestClient.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-12T12:51:58Z",
+      "side": 1,
+      "message": "For sure, we\u0027ll be updating our RTD documentation describing the features in detail including that one.",
+      "parentUuid": "de6a9699_cf696c2a",
+      "range": {
+        "startLine": 76,
+        "startChar": 77,
+        "endLine": 76,
+        "endChar": 112
+      },
+      "revId": "c4485f7218fb9b2b4b7c113294ae2902979f5b5e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4c7ce501_8ef21e48",
