@@ -56,6 +56,52 @@
       },
       "revId": "c4485f7218fb9b2b4b7c113294ae2902979f5b5e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f38fd34_cc288d26",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/client/DmiRestClient.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-09-12T09:30:54Z",
+      "side": 1,
+      "message": "I don\u0027t think this can be hardcoded, has to be able to be different for each dmi plugin as otherwise we are only supporting springboot dmi plugins",
+      "range": {
+        "startLine": 76,
+        "startChar": 77,
+        "endLine": 76,
+        "endChar": 112
+      },
+      "revId": "c4485f7218fb9b2b4b7c113294ae2902979f5b5e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c7ce501_8ef21e48",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/dmiavailability/DMiPluginWatchDog.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-09-12T09:30:54Z",
+      "side": 1,
+      "message": "should be lowercase m",
+      "range": {
+        "startLine": 34,
+        "startChar": 14,
+        "endLine": 34,
+        "endChar": 15
+      },
+      "revId": "c4485f7218fb9b2b4b7c113294ae2902979f5b5e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
