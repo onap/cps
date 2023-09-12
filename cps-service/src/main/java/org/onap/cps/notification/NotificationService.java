@@ -32,7 +32,6 @@ import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.spi.model.Anchor;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -46,7 +45,6 @@ public class NotificationService {
     private final NotificationPublisher notificationPublisher;
     private final CpsDataUpdatedEventFactory cpsDataUpdatedEventFactory;
     private final NotificationErrorHandler notificationErrorHandler;
-    private final CpsAdminService cpsAdminService;
     private List<Pattern> dataspacePatterns;
 
     @PostConstruct
@@ -95,6 +93,40 @@ public class NotificationService {
              */
             notificationErrorHandler.onException("Failed to process cps-data-updated-event.",
                     exception, anchor, xpath, operation);
+        }
+        return CompletableFuture.completedFuture(null);
+    }
+
+    /**
+     * Process Delta Updated Event and publishes the notification.
+     *
+     * @param anchor            anchor
+     * @param xpath             xpath of changed data node
+     * @param operation         operation
+     * @param observedTimestamp observedTimestamp
+     * @return future
+     */
+    @Async("notificationExecutor")
+    public Future<Void> processDeltaUpdatedEvent(final Anchor anchor, final String xpath, final Operation operation,
+                                                 final OffsetDateTime observedTimestamp) {
+
+        log.debug("process delta updated event for anchor '{}'", anchor);
+        try {
+            if (shouldSendNotification(anchor.getDataspaceName())) {
+                final var cpsDeltaUpdatedEvent =
+                        cpsDataUpdatedEventFactory.createDeltaCpsDataUpdatedEvent(anchor,
+                                                                                  observedTimestamp,
+                                                                                  getRootNodeOperation(xpath,
+                                                                                                       operation));
+                log.debug("delta updated event to be published {}", cpsDeltaUpdatedEvent);
+                notificationPublisher.sendNotification(cpsDeltaUpdatedEvent);
+            }
+        } catch (final Exception exception) {
+            /* All the exceptions are handled to not to propagate it to caller.
+               CPS operation should not fail if sending event fails for any reason.
+             */
+            notificationErrorHandler.onException("Failed to process cps-delta-updated-event.",
+                                                 exception, anchor, xpath, operation);
         }
         return CompletableFuture.completedFuture(null);
     }

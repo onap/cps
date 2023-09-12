@@ -54,6 +54,7 @@ public class CpsDataUpdatedEventFactory {
     @Lazy
     private final PrefixResolver prefixResolver;
 
+
     /**
      * Generates CPS Data Updated event. If observedTimestamp is not provided, then current timestamp is used.
      *
@@ -82,6 +83,40 @@ public class CpsDataUpdatedEventFactory {
         cpsDataUpdatedEvent.withSource(new URI("urn:cps:org.onap.cps"));
         cpsDataUpdatedEvent.withType("org.onap.cps.data-updated-event");
         return cpsDataUpdatedEvent;
+    }
+
+    /**
+     * Generates CPS Delta Updated event. If observedTimestamp is not provided, then current timestamp is used.
+     *
+     * @param anchor            anchor
+     * @param observedTimestamp observedTimestamp
+     * @param operation         operation
+     * @return CpsDeltaUpdatedEvent
+     */
+
+    public CpsDataUpdatedEvent createDeltaCpsDataUpdatedEvent(final Anchor anchor,
+                                                              final OffsetDateTime observedTimestamp,
+                                                              final Operation operation) {
+        final DataNode dataNode = (operation == Operation.UPDATE) ? null :
+                (DataNode) cpsDataService.getDeltaByDataspaceAndAnchors(anchor.getDataspaceName(), anchor.getName(),
+                                                                        anchor.getName(), "/",
+                                                                        FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+                                         .stream().iterator().next();
+        return toCpsDeltaUpdatedEvent(anchor, dataNode, observedTimestamp, operation);
+    }
+
+    @SneakyThrows(URISyntaxException.class)
+    private CpsDataUpdatedEvent toCpsDeltaUpdatedEvent(final Anchor anchor,
+                                                       final DataNode dataNode,
+                                                       final OffsetDateTime observedTimestamp,
+                                                       final Operation operation) {
+        final CpsDataUpdatedEvent cpsDeltaUpdatedEvent = new CpsDataUpdatedEvent();
+        cpsDeltaUpdatedEvent.withContent(createContent(anchor, dataNode, observedTimestamp, operation));
+        cpsDeltaUpdatedEvent.withId(UUID.randomUUID().toString());
+        cpsDeltaUpdatedEvent.withSchema(new URI("urn:cps:org.onap.cps:data-updated-event-schema:v2"));
+        cpsDeltaUpdatedEvent.withSource(new URI("urn:cps:org.onap.cps"));
+        cpsDeltaUpdatedEvent.withType("org.onap.cps.delta-updated-event");
+        return cpsDeltaUpdatedEvent;
     }
 
     private Data createData(final DataNode dataNode, final String prefix) {
