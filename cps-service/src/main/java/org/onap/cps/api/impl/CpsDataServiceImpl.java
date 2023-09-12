@@ -174,6 +174,7 @@ public class CpsDataServiceImpl implements CpsDataService {
                 .collect(Collectors.toMap(DataNode::getXpath, DataNode::getLeaves));
         cpsDataPersistenceService.batchUpdateDataLeaves(dataspaceName, anchorName, xpathToUpdatedLeaves);
         processDataUpdatedEventAsync(anchor, parentNodeXpath, UPDATE, observedTimestamp);
+        sendDeltaEvent(anchor, parentNodeXpath, observedTimestamp);
     }
 
     @Override
@@ -403,6 +404,16 @@ public class CpsDataServiceImpl implements CpsDataService {
                                               final Operation operation, final OffsetDateTime observedTimestamp) {
         try {
             notificationService.processDataUpdatedEvent(anchor, xpath, operation, observedTimestamp);
+        } catch (final Exception exception) {
+            //If async message can't be queued for notification service, the initial request should not fail.
+            log.error("Failed to send message to notification service", exception);
+        }
+    }
+
+    private void sendDeltaEvent(final Anchor anchor, final String xpath,
+                                               final OffsetDateTime observedTimestamp) {
+        try {
+            notificationService.deltaUpdatedEvent(anchor, xpath, Operation.UPDATE, observedTimestamp);
         } catch (final Exception exception) {
             //If async message can't be queued for notification service, the initial request should not fail.
             log.error("Failed to send message to notification service", exception);
