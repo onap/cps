@@ -44,6 +44,9 @@ class SynchronizationCacheConfigSpec extends Specification {
     @Autowired
     private IMap<String, Boolean> dataSyncSemaphores
 
+    @Autowired
+    private IMap<String, Set<String>> moduleSetTagCache
+
     def 'Embedded (hazelcast) Caches for Module and Data Sync.'() {
         expect: 'system is able to create an instance of the Module Sync Work Queue'
             assert null != moduleSyncWorkQueue
@@ -51,10 +54,12 @@ class SynchronizationCacheConfigSpec extends Specification {
             assert null != moduleSyncStartedOnCmHandles
         and: 'system is able to create an instance of a map to hold data sync semaphores'
             assert null != dataSyncSemaphores
-        and: 'there are at least 3 instances'
-            assert Hazelcast.allHazelcastInstances.size() > 2
+        and: 'system is able to create an instance of a map to hold module set tags'
+            assert null != moduleSetTagCache
+        and: 'there are at least 4 instances'
+            assert Hazelcast.allHazelcastInstances.size() > 3
         and: 'they have the correct names (in any order)'
-            assert Hazelcast.allHazelcastInstances.name.containsAll('moduleSyncWorkQueue', 'moduleSyncStartedOnCmHandles', 'dataSyncSemaphores' )
+            assert Hazelcast.allHazelcastInstances.name.containsAll('moduleSyncWorkQueue', 'moduleSyncStartedOnCmHandles', 'dataSyncSemaphores', 'moduleSetTags')
     }
 
     def 'Verify configs for Distributed objects'(){
@@ -67,6 +72,9 @@ class SynchronizationCacheConfigSpec extends Specification {
         and: 'the Data Sync Semaphores Map config'
             def dataSyncSemaphoresConfig =  Hazelcast.getHazelcastInstanceByName('dataSyncSemaphores').config
             def dataSyncSemaphoresMapConfig =  dataSyncSemaphoresConfig.mapConfigs.get('dataSyncSemaphoresConfig')
+        and: 'the Data Sync Semaphores Map config'
+            def moduleSetTagCacheConfig =  Hazelcast.getHazelcastInstanceByName('moduleSetTags').config
+            def moduleSetTagMapConfig =  moduleSetTagCacheConfig.mapConfigs.get('moduleSetTagCacheMapConfig')
         expect: 'system created instance with correct config of Module Sync Work Queue'
             assert moduleSyncDefaultWorkQueueConfig.backupCount == 3
             assert moduleSyncDefaultWorkQueueConfig.asyncBackupCount == 3
@@ -76,11 +84,15 @@ class SynchronizationCacheConfigSpec extends Specification {
         and: 'Data Sync Semaphore Map has the correct settings'
             assert dataSyncSemaphoresMapConfig.backupCount == 3
             assert dataSyncSemaphoresMapConfig.asyncBackupCount == 3
+        and: 'ModuleSetTag Map has the correct settings'
+            assert moduleSetTagMapConfig.backupCount == 3
+            assert moduleSetTagMapConfig.asyncBackupCount == 3
         and: 'all instances are part of same cluster'
             def testClusterName = 'cps-and-ncmp-test-caches'
             assert moduleSyncWorkQueueConfig.clusterName == testClusterName
             assert moduleSyncStartedOnCmHandlesConfig.clusterName == testClusterName
             assert dataSyncSemaphoresConfig.clusterName == testClusterName
+            assert moduleSetTagCacheConfig.clusterName == testClusterName
     }
 
     def 'Verify deployment network configs for Distributed objects'() {
@@ -90,6 +102,8 @@ class SynchronizationCacheConfigSpec extends Specification {
             def moduleSyncStartedOnCmHandlesNetworkConfig = Hazelcast.getHazelcastInstanceByName('moduleSyncStartedOnCmHandles').config.networkConfig
         and: 'the Data Sync Semaphores Map config'
             def dataSyncSemaphoresNetworkConfig = Hazelcast.getHazelcastInstanceByName('dataSyncSemaphores').config.networkConfig
+        and: 'the Module Set Tag Map config'
+            def moduleSetTagNetworkConfig = Hazelcast.getHazelcastInstanceByName('moduleSetTags').config.networkConfig
         expect: 'system created instance with correct config of Module Sync Work Queue'
             assert queueNetworkConfig.join.autoDetectionConfig.enabled
             assert !queueNetworkConfig.join.kubernetesConfig.enabled
@@ -99,6 +113,9 @@ class SynchronizationCacheConfigSpec extends Specification {
         and: 'Data Sync Semaphore Map has the correct settings'
             assert dataSyncSemaphoresNetworkConfig.join.autoDetectionConfig.enabled
             assert !dataSyncSemaphoresNetworkConfig.join.kubernetesConfig.enabled
+        and: 'Module Set Tag Map has the correct settings'
+            assert moduleSetTagNetworkConfig.join.autoDetectionConfig.enabled
+            assert !moduleSetTagNetworkConfig.join.kubernetesConfig.enabled
 
     }
 
@@ -133,6 +150,15 @@ class SynchronizationCacheConfigSpec extends Specification {
             assert dataSyncSemaphores.get('testKeyDataSync') != null
         and: 'the entry expires in less then 2 seconds'
             waitMax2SecondsForKeyExpiration(dataSyncSemaphores, 'testKeyDataSync')
+    }
+
+    def 'Time to Live Verify for Module Set Tag'() {
+        when: 'the key is inserted with a TTL of 1 second'
+            moduleSetTagCache.put('testKeyModuleSetTag', ['module-set-tag'] as Set, 1, TimeUnit.SECONDS)
+        then: 'the entry is present in the map'
+            assert moduleSetTagCache.get('testKeyModuleSetTag') != null
+        and: 'the entry expires in less then 2 seconds'
+            waitMax2SecondsForKeyExpiration(moduleSetTagCache, 'testKeyModuleSetTag')
     }
 
     def waitMax2SecondsForKeyExpiration(map, key) {
