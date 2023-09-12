@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9eec0af6_5f5e6c78",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/LockReasonCategory.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2023-09-12T11:46:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7aacdb50_df61c9ab",
+      "range": {
+        "startLine": 24,
+        "startChar": 31,
+        "endLine": 24,
+        "endChar": 54
+      },
+      "revId": "09ad6daa22ec88840d31034f76c3c0ac9fd2d276",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0cd3c52b_78c4411c",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-09-12T10:53:49Z",
       "side": 1,
       "message": "Reverse it to check lock reason at 1st place :\n\nisReasonCategoryModuleSyncFailed \u0026\u0026 matcher.find()",
+      "range": {
+        "startLine": 152,
+        "startChar": 12,
+        "endLine": 152,
+        "endChar": 62
+      },
+      "revId": "09ad6daa22ec88840d31034f76c3c0ac9fd2d276",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6bf626a_0df4b3fc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2023-09-12T11:46:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0cd3c52b_78c4411c",
       "range": {
         "startLine": 152,
         "startChar": 12,
