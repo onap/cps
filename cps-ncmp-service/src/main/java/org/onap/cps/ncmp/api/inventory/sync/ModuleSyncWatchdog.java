@@ -88,7 +88,7 @@ public class ModuleSyncWatchdog {
     @Scheduled(fixedDelayString = "${ncmp.timers.locked-modules-sync.sleep-time-ms:300000}")
     public void resetPreviouslyFailedCmHandles() {
         log.info("Processing module sync retry-watchdog waking up.");
-        final List<YangModelCmHandle> failedCmHandles = syncUtils.getModuleSyncFailedCmHandles();
+        final List<YangModelCmHandle> failedCmHandles = syncUtils.getLockedCmHandlesByReason();
         log.info("Retrying {} cmHandles", failedCmHandles.size());
         moduleSyncTasks.resetFailedCmHandles(failedCmHandles);
     }

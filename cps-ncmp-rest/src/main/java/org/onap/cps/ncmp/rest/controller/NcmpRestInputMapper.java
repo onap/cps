@@ -48,6 +48,9 @@ public interface NcmpRestInputMapper {
     @Mapping(source = "removedCmHandles", target = "removedCmHandles",
         nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS,
         nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.SET_TO_DEFAULT)
+    @Mapping(source = "upgradedCmHandles", target = "upgradedCmHandles",
+            nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS,
+            nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.SET_TO_DEFAULT)
     DmiPluginRegistration toDmiPluginRegistration(final RestDmiPluginRegistration restDmiPluginRegistration);
 
     @Mapping(source = "cmHandle", target = "cmHandleId")

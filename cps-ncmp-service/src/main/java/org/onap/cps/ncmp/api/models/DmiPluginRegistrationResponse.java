@@ -31,4 +31,5 @@ public class DmiPluginRegistrationResponse {
     private List<CmHandleRegistrationResponse> createdCmHandles = Collections.emptyList();
     private List<CmHandleRegistrationResponse> updatedCmHandles = Collections.emptyList();
     private List<CmHandleRegistrationResponse> removedCmHandles = Collections.emptyList();
+    private List<CmHandleRegistrationResponse> upgradedCmHandles = Collections.emptyList();
 }

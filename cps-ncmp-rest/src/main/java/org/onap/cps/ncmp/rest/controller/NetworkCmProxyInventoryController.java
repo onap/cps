@@ -110,7 +110,8 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
             getFailedResponses(dmiPluginRegistrationResponse.getUpdatedCmHandles()));
         dmiPluginRegistrationErrorResponse.setFailedRemovedCmHandles(
             getFailedResponses(dmiPluginRegistrationResponse.getRemovedCmHandles()));
-
+        dmiPluginRegistrationErrorResponse.setFailedUpgradeCmHandles(
+                getFailedResponses(dmiPluginRegistrationResponse.getUpgradedCmHandles()));
         return dmiPluginRegistrationErrorResponse;
     }
 

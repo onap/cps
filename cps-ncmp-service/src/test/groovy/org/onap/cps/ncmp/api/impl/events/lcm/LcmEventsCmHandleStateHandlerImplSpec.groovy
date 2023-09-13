@@ -31,7 +31,7 @@ import static org.onap.cps.ncmp.api.inventory.CmHandleState.DELETED
 import static org.onap.cps.ncmp.api.inventory.CmHandleState.DELETING
 import static org.onap.cps.ncmp.api.inventory.CmHandleState.LOCKED
 import static org.onap.cps.ncmp.api.inventory.CmHandleState.READY
-import static org.onap.cps.ncmp.api.inventory.LockReasonCategory.LOCKED_MODULE_SYNC_FAILED
+import static org.onap.cps.ncmp.api.inventory.LockReasonCategory.MODULE_SYNC_FAILED
 
 class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
 
@@ -80,7 +80,7 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
     def 'Update and Publish Events on State Change from LOCKED to ADVISED'() {
         given: 'Cm Handle represented as YangModelCmHandle in LOCKED state'
             compositeState = new CompositeState(cmHandleState: LOCKED,
-                lockReason: CompositeState.LockReason.builder().lockReasonCategory(LOCKED_MODULE_SYNC_FAILED).details('some lock details').build())
+                lockReason: CompositeState.LockReason.builder().lockReasonCategory(MODULE_SYNC_FAILED).details('some lock details').build())
             yangModelCmHandle = new YangModelCmHandle(id: cmHandleId, dmiProperties: [], publicProperties: [], compositeState: compositeState)
         when: 'update state is invoked'
             objectUnderTest.updateCmHandleState(yangModelCmHandle, ADVISED)

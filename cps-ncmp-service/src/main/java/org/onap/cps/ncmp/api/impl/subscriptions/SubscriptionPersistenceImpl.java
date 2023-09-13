@@ -20,7 +20,8 @@
 
 package org.onap.cps.ncmp.api.impl.subscriptions;
 
-import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NO_TIMESTAMP;
+import static org.onap.cps.constants.DmiRegistryConstants.NCMP_DATASPACE_NAME;
+import static org.onap.cps.constants.DmiRegistryConstants.NO_TIMESTAMP;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -44,7 +45,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class SubscriptionPersistenceImpl implements SubscriptionPersistence {
 
-    private static final String SUBSCRIPTION_DATASPACE_NAME = "NCMP-Admin";
+    private static final String SUBSCRIPTION_DATASPACE_NAME = NCMP_DATASPACE_NAME;
     private static final String SUBSCRIPTION_ANCHOR_NAME = "AVC-Subscriptions";
     private static final String SUBSCRIPTION_REGISTRY_PARENT = "/subscription-registry";
     private final JsonObjectMapper jsonObjectMapper;

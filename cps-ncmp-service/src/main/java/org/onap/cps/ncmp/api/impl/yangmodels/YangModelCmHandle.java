@@ -64,6 +64,9 @@ public class YangModelCmHandle {
     @JsonProperty("dmi-model-service-name")
     private String dmiModelServiceName;
 
+    @JsonProperty("module-set-tag")
+    private String moduleSetTag;
+
     @JsonProperty("additional-properties")
     private List<Property> dmiProperties;
 
@@ -102,12 +105,14 @@ public class YangModelCmHandle {
     public static YangModelCmHandle toYangModelCmHandle(final String dmiServiceName,
                                                         final String dmiDataServiceName,
                                                         final String dmiModelServiceName,
-                                                        final NcmpServiceCmHandle ncmpServiceCmHandle) {
+                                                        final NcmpServiceCmHandle ncmpServiceCmHandle,
+                                                        final String moduleSetTag) {
         final YangModelCmHandle yangModelCmHandle = new YangModelCmHandle();
         yangModelCmHandle.setId(ncmpServiceCmHandle.getCmHandleId());
         yangModelCmHandle.setDmiServiceName(dmiServiceName);
         yangModelCmHandle.setDmiDataServiceName(dmiDataServiceName);
         yangModelCmHandle.setDmiModelServiceName(dmiModelServiceName);
+        yangModelCmHandle.setModuleSetTag(moduleSetTag);
         yangModelCmHandle.setDmiProperties(asYangModelCmHandleProperties(ncmpServiceCmHandle.getDmiProperties()));
         yangModelCmHandle.setPublicProperties(asYangModelCmHandleProperties(
                 ncmpServiceCmHandle.getPublicProperties()));

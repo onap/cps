@@ -53,6 +53,15 @@ public interface CmHandleQueries {
     List<DataNode> queryCmHandlesByState(CmHandleState cmHandleState);
 
     /**
+     * Method to return data nodes with ancestor representing the cm handles.
+     *
+     * @param cpsPath cps path for which the cmHandle is requested
+     * @return a list of data nodes representing the cm handles.
+     */
+    List<DataNode> queryCmHandleDataNodesWithAncestorByCpsPath(String cpsPath,
+                                                               FetchDescendantsOption fetchDescendantsOption);
+
+    /**
      * Method to return data nodes representing the cm handles.
      *
      * @param cpsPath cps path for which the cmHandle is requested

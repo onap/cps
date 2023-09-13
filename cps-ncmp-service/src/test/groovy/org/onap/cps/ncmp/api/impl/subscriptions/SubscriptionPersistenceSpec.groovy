@@ -27,7 +27,7 @@ import org.onap.cps.spi.model.DataNodeBuilder
 import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Specification
 
-import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NO_TIMESTAMP
+import static org.onap.cps.constants.DmiRegistryConstants.NO_TIMESTAMP
 
 class SubscriptionPersistenceSpec extends Specification {
 

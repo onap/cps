@@ -20,6 +20,8 @@
 
 package org.onap.cps.ncmp.init;
 
+import static org.onap.cps.constants.DmiRegistryConstants.NCMP_DATASPACE_NAME;
+
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsDataService;
@@ -32,7 +34,6 @@ import org.springframework.stereotype.Service;
 public class SubscriptionModelLoader extends AbstractModelLoader {
 
     private static final String MODEL_FILENAME = "subscription.yang";
-    private static final String DATASPACE_NAME = "NCMP-Admin";
     private static final String ANCHOR_NAME = "AVC-Subscriptions";
     private static final String SCHEMASET_NAME = "subscriptions";
     private static final String REGISTRY_DATANODE_NAME = "subscription-registry";
@@ -49,7 +50,7 @@ public class SubscriptionModelLoader extends AbstractModelLoader {
     @Override
     public void onboardOrUpgradeModel() {
         if (subscriptionModelLoaderEnabled) {
-            waitUntilDataspaceIsAvailable(DATASPACE_NAME);
+            waitUntilDataspaceIsAvailable(NCMP_DATASPACE_NAME);
             onboardSubscriptionModel();
             log.info("Subscription Model onboarded successfully");
         } else {
@@ -58,9 +59,9 @@ public class SubscriptionModelLoader extends AbstractModelLoader {
     }
 
     private void onboardSubscriptionModel() {
-        createSchemaSet(DATASPACE_NAME, SCHEMASET_NAME, MODEL_FILENAME);
-        createAnchor(DATASPACE_NAME, SCHEMASET_NAME, ANCHOR_NAME);
-        createTopLevelDataNode(DATASPACE_NAME, ANCHOR_NAME, REGISTRY_DATANODE_NAME);
+        createSchemaSet(NCMP_DATASPACE_NAME, SCHEMASET_NAME, MODEL_FILENAME);
+        createAnchor(NCMP_DATASPACE_NAME, SCHEMASET_NAME, ANCHOR_NAME);
+        createTopLevelDataNode(NCMP_DATASPACE_NAME, ANCHOR_NAME, REGISTRY_DATANODE_NAME);
     }
 
 }

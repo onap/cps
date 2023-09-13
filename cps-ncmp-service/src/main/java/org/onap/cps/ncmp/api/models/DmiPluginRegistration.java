@@ -50,6 +50,8 @@ public class DmiPluginRegistration {
 
     private List<String> removedCmHandles = Collections.emptyList();
 
+    private UpgradedCmHandles upgradedCmHandles;
+
     /**
      * Validates plugin service names.
      * @throws NcmpException if validation fails.

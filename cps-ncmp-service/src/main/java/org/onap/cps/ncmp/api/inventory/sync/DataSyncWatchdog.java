@@ -20,6 +20,8 @@
 
 package org.onap.cps.ncmp.api.inventory.sync;
 
+import static org.onap.cps.constants.DmiRegistryConstants.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME;
+
 import com.hazelcast.map.IMap;
 import java.time.OffsetDateTime;
 import java.util.concurrent.TimeUnit;
@@ -66,7 +68,7 @@ public class DataSyncWatchdog {
                 if (resourceData == null) {
                     log.debug("Error retrieving resource data for Cm-Handle: {}", cmHandleId);
                 } else {
-                    cpsDataService.saveData("NFP-Operational", cmHandleId,
+                    cpsDataService.saveData(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId,
                             resourceData, OffsetDateTime.now());
                     setSyncStateToSynchronized().accept(compositeState);
                     inventoryPersistence.saveCmHandleState(cmHandleId, compositeState);

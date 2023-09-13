@@ -1,7 +1,7 @@
 {
   "cm-handle-state" : "ADVISED",
   "lock-reason" : {
-    "reason" : "LOCKED_MODULE_SYNC_FAILED",
+    "reason" : "MODULE_SYNC_FAILED",
     "details" : "lock details"
   },
   "last-update-time" : "2022-12-31T20:30:40.000+0000",

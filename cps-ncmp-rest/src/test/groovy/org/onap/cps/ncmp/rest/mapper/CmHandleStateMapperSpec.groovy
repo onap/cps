@@ -44,7 +44,7 @@ class CmHandleStateMapperSpec extends Specification {
             def compositeState = new CompositeStateBuilder()
                 .withCmHandleState(CmHandleState.ADVISED)
                 .withLastUpdatedTime(formattedDateAndTime.toString())
-                .withLockReason(LockReasonCategory.LOCKED_MODULE_SYNC_FAILED, 'locked details')
+                .withLockReason(LockReasonCategory.MODULE_SYNC_FAILED, 'locked details')
                 .withOperationalDataStores(DataStoreSyncState.SYNCHRONIZED, formattedDateAndTime).build()
         compositeState.setDataSyncEnabled(false)
         when: 'mapper is called'
@@ -76,9 +76,9 @@ class CmHandleStateMapperSpec extends Specification {
         then: 'the composite state contains the expected lock Reason and details'
             result.getLockReason().getReason() == expectedExternalLockReason
         where:
-            scenario                    | lockReason                                   || expectedExternalLockReason
-            'LOCKED_MODULE_SYNC_FAILED' | LockReasonCategory.LOCKED_MODULE_SYNC_FAILED || 'LOCKED_MISBEHAVING'
-            'null value'                | null                                         || null
+        scenario             | lockReason                            || expectedExternalLockReason
+        'MODULE_SYNC_FAILED' | LockReasonCategory.MODULE_SYNC_FAILED || 'LOCKED_MISBEHAVING'
+        'null value'         | null                                  || null
     }
 
 }
