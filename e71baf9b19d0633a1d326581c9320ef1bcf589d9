@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bcb6b1c1_ca3647d3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-13T08:51:21Z",
+      "side": 1,
+      "message": "After the discussion going on Teams being concluded, you can set the key as dmiDataPlugin if it doesnot null or empty. Otherwise, the key can be set as dmiPlugin.",
+      "parentUuid": "c578fdfc_6b474c00",
+      "range": {
+        "startLine": 116,
+        "startChar": 35,
+        "endLine": 116,
+        "endChar": 71
+      },
+      "revId": "e71baf9b19d0633a1d326581c9320ef1bcf589d9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3ba38d7b_fd345b95",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
         "patchSetId": 1
