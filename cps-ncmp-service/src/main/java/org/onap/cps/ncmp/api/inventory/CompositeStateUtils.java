@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2022 Nordix Foundation
+ * Copyright (C) 2022-2023 Nordix Foundation
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -100,7 +100,9 @@ public class CompositeStateUtils {
             compositeState.setLastUpdateTimeNow();
             final String oldLockReasonDetails = compositeState.getLockReason().getDetails();
             final CompositeState.LockReason lockReason =
-                    CompositeState.LockReason.builder().details(oldLockReasonDetails).build();
+                    CompositeState.LockReason.builder()
+                            .lockReasonCategory(compositeState.getLockReason().getLockReasonCategory())
+                            .details(oldLockReasonDetails).build();
             compositeState.setLockReason(lockReason);
         };
     }

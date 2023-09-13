@@ -21,6 +21,8 @@
 
 package org.onap.cps.ncmp.api.inventory;
 
+import static org.onap.cps.constants.DmiRegistryConstants.NCMP_DATASPACE_NAME;
+import static org.onap.cps.constants.DmiRegistryConstants.NCMP_DMI_REGISTRY_ANCHOR;
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS;
 
@@ -41,8 +43,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class CmHandleQueriesImpl implements CmHandleQueries {
 
-    private static final String NCMP_DATASPACE_NAME = "NCMP-Admin";
-    private static final String NCMP_DMI_REGISTRY_ANCHOR = "ncmp-dmi-registry";
     private static final String DESCENDANT_PATH = "//";
 
     private final CpsDataPersistenceService cpsDataPersistenceService;
@@ -60,15 +60,21 @@ public class CmHandleQueriesImpl implements CmHandleQueries {
 
     @Override
     public List<DataNode> queryCmHandlesByState(final CmHandleState cmHandleState) {
-        return queryCmHandleDataNodesByCpsPath("//state[@cm-handle-state=\"" + cmHandleState + "\"]",
+        return queryCmHandleDataNodesWithAncestorByCpsPath("//state[@cm-handle-state=\"" + cmHandleState + "\"]",
             INCLUDE_ALL_DESCENDANTS);
     }
 
     @Override
+    public List<DataNode> queryCmHandleDataNodesWithAncestorByCpsPath(final String cpsPath,
+                                                                  final FetchDescendantsOption fetchDescendantsOption) {
+        return queryCmHandleDataNodesByCpsPath(cpsPath + ANCESTOR_CM_HANDLES, fetchDescendantsOption);
+    }
+
+    @Override
     public List<DataNode> queryCmHandleDataNodesByCpsPath(final String cpsPath,
-            final FetchDescendantsOption fetchDescendantsOption) {
+                                                          final FetchDescendantsOption fetchDescendantsOption) {
         return cpsDataPersistenceService.queryDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-            cpsPath + ANCESTOR_CM_HANDLES, fetchDescendantsOption);
+                cpsPath, fetchDescendantsOption);
     }
 
     @Override
@@ -80,7 +86,7 @@ public class CmHandleQueriesImpl implements CmHandleQueries {
 
     @Override
     public List<DataNode> queryCmHandlesByOperationalSyncState(final DataStoreSyncState dataStoreSyncState) {
-        return queryCmHandleDataNodesByCpsPath("//state/datastores" + "/operational[@sync-state=\""
+        return queryCmHandleDataNodesWithAncestorByCpsPath("//state/datastores" + "/operational[@sync-state=\""
                 + dataStoreSyncState + "\"]", FetchDescendantsOption.OMIT_DESCENDANTS);
     }
 
@@ -113,7 +119,8 @@ public class CmHandleQueriesImpl implements CmHandleQueries {
                 + publicPropertyQueryPair.getKey()
                 + "\" and @value=\"" + publicPropertyQueryPair.getValue() + "\"]";
 
-            final Collection<DataNode> dataNodes = queryCmHandleDataNodesByCpsPath(cpsPath, OMIT_DESCENDANTS);
+            final Collection<DataNode> dataNodes = queryCmHandleDataNodesWithAncestorByCpsPath(cpsPath,
+                    OMIT_DESCENDANTS);
             if (cmHandleIds == null) {
                 cmHandleIds = collectCmHandleIdsFromDataNodes(dataNodes);
             } else {

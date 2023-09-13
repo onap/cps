@@ -25,7 +25,6 @@ import io.micrometer.core.annotation.Timed;
 import jakarta.validation.Valid;
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.api.models.CmHandleQueryServiceParameters;
@@ -110,7 +109,8 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
             getFailedResponses(dmiPluginRegistrationResponse.getUpdatedCmHandles()));
         dmiPluginRegistrationErrorResponse.setFailedRemovedCmHandles(
             getFailedResponses(dmiPluginRegistrationResponse.getRemovedCmHandles()));
-
+        dmiPluginRegistrationErrorResponse.setFailedUpgradeCmHandles(
+                getFailedResponses(dmiPluginRegistrationResponse.getUpgradedCmHandles()));
         return dmiPluginRegistrationErrorResponse;
     }
 
@@ -118,8 +118,7 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
         final List<CmHandleRegistrationResponse> cmHandleRegistrationResponseList) {
         return cmHandleRegistrationResponseList.stream()
             .filter(cmHandleRegistrationResponse -> cmHandleRegistrationResponse.getStatus() == Status.FAILURE)
-            .map(this::toCmHandleRegistrationErrorResponse)
-            .collect(Collectors.toList());
+            .map(this::toCmHandleRegistrationErrorResponse).toList();
     }
 
     private CmHandlerRegistrationErrorResponse toCmHandleRegistrationErrorResponse(

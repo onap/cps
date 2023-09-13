@@ -46,7 +46,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.exception.ConstraintViolationException;
-import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.onap.cps.spi.CpsModulePersistenceService;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.SchemaSetEntity;
@@ -89,8 +88,6 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
 
     private final DataspaceRepository dataspaceRepository;
 
-    private final CpsAdminPersistenceService cpsAdminPersistenceService;
-
     private final ModuleReferenceRepository moduleReferenceRepository;
 
     @Override
@@ -107,7 +104,7 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
         final Set<YangResourceModuleReference> yangResourceModuleReferenceList =
             yangResourceRepository.findAllModuleReferencesByDataspace(dataspaceName);
         return yangResourceModuleReferenceList.stream().map(CpsModulePersistenceServiceImpl::toModuleReference)
-            .collect(Collectors.toList());
+            .toList();
     }
 
     @Override
@@ -117,7 +114,7 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
                 yangResourceRepository
                         .findAllModuleReferencesByDataspaceAndAnchor(dataspaceName, anchorName);
         return yangResourceModuleReferenceList.stream().map(CpsModulePersistenceServiceImpl::toModuleReference)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
@@ -127,7 +124,7 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
                 yangResourceRepository
                         .findAllModuleDefinitionsByDataspaceAndAnchor(dataspaceName, anchorName);
         return yangResourceEntities.stream().map(CpsModulePersistenceServiceImpl::toModuleDefinition)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
@@ -146,8 +143,8 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
         schemaSetEntity.setYangResources(yangResourceEntities);
         try {
             schemaSetRepository.save(schemaSetEntity);
-        } catch (final DataIntegrityViolationException e) {
-            throw AlreadyDefinedException.forSchemaSet(schemaSetName, dataspaceName, e);
+        } catch (final DataIntegrityViolationException dataIntegrityViolationException) {
+            throw AlreadyDefinedException.forSchemaSet(schemaSetName, dataspaceName, dataIntegrityViolationException);
         }
     }
 
@@ -156,7 +153,7 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final List<SchemaSetEntity> schemaSetEntities = schemaSetRepository.findByDataspace(dataspaceEntity);
         return schemaSetEntities.stream()
-                .map(CpsModulePersistenceServiceImpl::toSchemaSet).collect(Collectors.toList());
+                .map(CpsModulePersistenceServiceImpl::toSchemaSet).toList();
     }
 
     @Override
@@ -316,19 +313,15 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
         DuplicatedYangResourceException duplicatedYangResourceException = null;
 
         final Throwable cause = originalException.getCause();
-        if (cause instanceof ConstraintViolationException) {
-            final ConstraintViolationException constraintException = (ConstraintViolationException) cause;
-            if (YANG_RESOURCE_CHECKSUM_CONSTRAINT_NAME.equals(constraintException.getConstraintName())) {
-                // Db constraint related to yang resource checksum uniqueness is not respected
-                final String checksumInError = getDuplicatedChecksumFromException(constraintException);
-                final String nameInError = getNameForChecksum(checksumInError, yangResourceEntities);
-                duplicatedYangResourceException =
-                        new DuplicatedYangResourceException(nameInError, checksumInError, constraintException);
-            }
+        if (cause instanceof ConstraintViolationException constraintViolationException
+                && YANG_RESOURCE_CHECKSUM_CONSTRAINT_NAME.equals(constraintViolationException.getConstraintName())) {
+            // Db constraint related to yang resource checksum uniqueness is not respected
+            final String checksumInError = getDuplicatedChecksumFromException(constraintViolationException);
+            final String nameInError = getNameForChecksum(checksumInError, yangResourceEntities);
+            duplicatedYangResourceException =
+                    new DuplicatedYangResourceException(nameInError, checksumInError, constraintViolationException);
         }
-
         return Optional.ofNullable(duplicatedYangResourceException);
-
     }
 
     private String getNameForChecksum(final String checksum,

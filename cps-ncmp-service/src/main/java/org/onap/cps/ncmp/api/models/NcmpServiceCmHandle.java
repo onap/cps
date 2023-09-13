@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Copyright (C) 2021-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -52,6 +52,9 @@ public class NcmpServiceCmHandle {
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     private CompositeState compositeState;
 
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
+    private String moduleSetTag;
+
     /**
      * NcmpServiceCmHandle copy constructor.
      *
@@ -63,5 +66,6 @@ public class NcmpServiceCmHandle {
         this.publicProperties = new LinkedHashMap<>(ncmpServiceCmHandle.getPublicProperties());
         this.compositeState = ncmpServiceCmHandle.getCompositeState() != null ? new CompositeState(
                 ncmpServiceCmHandle.getCompositeState()) : null;
+        this.moduleSetTag = ncmpServiceCmHandle.getModuleSetTag();
     }
 }

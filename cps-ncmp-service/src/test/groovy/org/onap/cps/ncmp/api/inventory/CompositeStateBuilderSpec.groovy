@@ -1,7 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  * Copyright (C) 2022 Bell Canada
- * Modifications Copyright (C) 2022 Nordix Foundation.
+ * Modifications Copyright (C) 2022-2023 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,7 +23,6 @@ package org.onap.cps.ncmp.api.inventory
 
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
-import org.onap.cps.ncmp.api.inventory.CompositeStateBuilder
 import spock.lang.Specification
 
 import java.time.OffsetDateTime
@@ -38,7 +37,7 @@ class CompositeStateBuilderSpec extends Specification {
     def static cmHandleId = 'myHandle1'
     def static cmHandleXpath = "/dmi-registry/cm-handles[@id='${cmHandleId}/state']"
     def static stateDataNodes = [new DataNodeBuilder().withXpath("/dmi-registry/cm-handles[@id='${cmHandleId}']/state/lock-reason")
-                                         .withLeaves(['reason': 'LOCKED_MODULE_SYNC_FAILED', 'details': 'lock details']).build(),
+                                         .withLeaves(['reason': 'MODULE_SYNC_FAILED', 'details': 'lock details']).build(),
                                  new DataNodeBuilder().withXpath("/dmi-registry/cm-handles[@id='${cmHandleId}']/state/datastores")
                                             .withChildDataNodes(Arrays.asList(new DataNodeBuilder()
                                                     .withXpath("/dmi-registry/cm-handles[@id='${cmHandleId}']/state/datastores/operational")
@@ -48,7 +47,7 @@ class CompositeStateBuilderSpec extends Specification {
     def "Composite State Specification"() {
         when: 'using composite state builder '
             def compositeState = new CompositeStateBuilder().withCmHandleState(CmHandleState.ADVISED)
-                    .withLockReason(LockReasonCategory.LOCKED_MODULE_SYNC_FAILED,"").withOperationalDataStores(DataStoreSyncState.UNSYNCHRONIZED,
+                    .withLockReason(LockReasonCategory.MODULE_SYNC_FAILED,"").withOperationalDataStores(DataStoreSyncState.UNSYNCHRONIZED,
                     formattedDateAndTime.toString()).withLastUpdatedTime(formattedDateAndTime).build()
         then: 'it matches expected cm handle state and data store sync state'
             assert compositeState.cmHandleState == CmHandleState.ADVISED
@@ -69,7 +68,7 @@ class CompositeStateBuilderSpec extends Specification {
             def finalCompositeStateBuilder = new CompositeStateBuilder()
                 .withCmHandleState(CmHandleState.ADVISED)
                 .withLastUpdatedTime(formattedDateAndTime.toString())
-                .withLockReason(LockReasonCategory.LOCKED_MODULE_SYNC_FAILED, 'locked details')
+                .withLockReason(LockReasonCategory.MODULE_SYNC_FAILED, 'locked details')
                 .withOperationalDataStores(DataStoreSyncState.SYNCHRONIZED, formattedDateAndTime)
         when: 'build is called'
             def result = finalCompositeStateBuilder.build()
@@ -78,7 +77,7 @@ class CompositeStateBuilderSpec extends Specification {
         and: 'built result should have correct values'
             assert !result.getDataSyncEnabled()
             assert result.getLastUpdateTime() == formattedDateAndTime
-            assert result.getLockReason().getLockReasonCategory() == LockReasonCategory.LOCKED_MODULE_SYNC_FAILED
+            assert result.getLockReason().getLockReasonCategory() == LockReasonCategory.MODULE_SYNC_FAILED
             assert result.getLockReason().getDetails() == 'locked details'
             assert result.getCmHandleState() == CmHandleState.ADVISED
             assert result.getDataStores().getOperationalDataStore().getDataStoreSyncState() == DataStoreSyncState.SYNCHRONIZED

@@ -35,7 +35,6 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations;
@@ -102,13 +101,14 @@ public class SyncUtils {
     }
 
     /**
-     * Query data nodes for cm handles with an "LOCKED" cm handle state with reason LOCKED_MODULE_SYNC_FAILED".
+     * Query data nodes for cm handles with an "LOCKED" cm handle state with reason.
      *
      * @return a random LOCKED yang model cm handle, return null if not found
      */
-    public List<YangModelCmHandle> getModuleSyncFailedCmHandles() {
-        final List<DataNode> lockedCmHandlesAsDataNodeList = cmHandleQueries.queryCmHandleDataNodesByCpsPath(
-                "//lock-reason[@reason=\"LOCKED_MODULE_SYNC_FAILED\"]",
+    public List<YangModelCmHandle> getLockedCmHandlesByReason() {
+        final List<DataNode> lockedCmHandlesAsDataNodeList
+                = cmHandleQueries.queryCmHandleDataNodesWithAncestorByCpsPath(
+                "//lock-reason[@reason=\"MODULE_SYNC_FAILED\" or @reason=\"MODULE_UPGRADE\"]",
                 FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
         return convertCmHandlesDataNodesToYangModelCmHandles(lockedCmHandlesAsDataNodeList);
     }
@@ -189,6 +189,6 @@ public class SyncUtils {
             final List<DataNode> cmHandlesAsDataNodeList) {
         return cmHandlesAsDataNodeList.stream()
                 .map(cmHandle -> YangDataConverter.convertCmHandleToYangModel(cmHandle,
-                        cmHandle.getLeaves().get("id").toString())).collect(Collectors.toList());
+                        cmHandle.getLeaves().get("id").toString())).toList();
     }
 }

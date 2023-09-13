@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -18,10 +18,19 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.inventory;
+package org.onap.cps.ncmp.api.models;
 
-public enum LockReasonCategory {
-    MODULE_SYNC_FAILED,
-    MODULE_UPGRADE,
-    MODULE_UPGRADE_FAILED
+import com.fasterxml.jackson.annotation.JsonInclude;
+import java.util.Collections;
+import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
+public class UpgradedCmHandles {
+    private List<String> cmHandle = Collections.emptyList();
+    private String moduleSetTag;
 }
+

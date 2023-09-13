@@ -94,7 +94,7 @@ class CpsModuleServiceIntegrationSpec extends FunctionalSpecBase {
             moduleReferences.addAll(existingModuleReferences)
         when: 'the new schema set is created'
             def schemaSetName = "NewSchemaWith${numberOfNewModules}Modules"
-            objectUnderTest.createSchemaSetFromModules(FUNCTIONAL_TEST_DATASPACE_1, schemaSetName, newYangResourcesNameToContentMap, moduleReferences)
+            objectUnderTest.createOrUpgradeSchemaSetFromModules(FUNCTIONAL_TEST_DATASPACE_1, schemaSetName, newYangResourcesNameToContentMap, moduleReferences)
         and: 'associated with a new anchor'
             cpsAdminService.createAnchor(FUNCTIONAL_TEST_DATASPACE_1, schemaSetName, 'newAnchor')
         then: 'the new anchor has the correct number of modules'

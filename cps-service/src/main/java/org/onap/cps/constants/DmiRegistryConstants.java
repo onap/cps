@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2022 Nordix Foundation
+ * Copyright (C) 2022-2023 Nordix Foundation
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.constants;
+package org.onap.cps.constants;
 
 import java.time.OffsetDateTime;
 import lombok.AccessLevel;
@@ -30,7 +30,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class DmiRegistryConstants {
 
+    public static final String NCMP_DATASPACE_NAME = "NCMP-Admin";
+    public static final String NCMP_DMI_REGISTRY_ANCHOR = "ncmp-dmi-registry";
     public static final String NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME = "NFP-Operational";
-
+    public static final String NCMP_DMI_REGISTRY_PARENT = "/dmi-registry";
     public static final OffsetDateTime NO_TIMESTAMP = null;
 }

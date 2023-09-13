@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2022 Nordix Foundation
+ * Copyright (C) 2022-20223 Nordix Foundation
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -75,8 +75,10 @@ public interface CmHandleStateMapper {
     @Named("toExternalLockReason")
     static LockReason toExternalLockReason(CompositeState.LockReason internalLockReason) {
         final LockReason externalLockReason = new LockReason();
-        if (internalLockReason.getLockReasonCategory() != null) {
+        if (internalLockReason.getLockReasonCategory() == null) {
             externalLockReason.setReason("LOCKED_MISBEHAVING");
+        } else {
+            externalLockReason.setReason(internalLockReason.getLockReasonCategory().name());
         }
         externalLockReason.setDetails(internalLockReason.getDetails());
         return externalLockReason;

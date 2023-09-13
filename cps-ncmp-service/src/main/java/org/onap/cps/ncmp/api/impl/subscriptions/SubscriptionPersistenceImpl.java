@@ -20,7 +20,8 @@
 
 package org.onap.cps.ncmp.api.impl.subscriptions;
 
-import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NO_TIMESTAMP;
+import static org.onap.cps.constants.DmiRegistryConstants.NCMP_DATASPACE_NAME;
+import static org.onap.cps.constants.DmiRegistryConstants.NO_TIMESTAMP;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -28,7 +29,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsDataService;
@@ -44,7 +44,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class SubscriptionPersistenceImpl implements SubscriptionPersistence {
 
-    private static final String SUBSCRIPTION_DATASPACE_NAME = "NCMP-Admin";
     private static final String SUBSCRIPTION_ANCHOR_NAME = "AVC-Subscriptions";
     private static final String SUBSCRIPTION_REGISTRY_PARENT = "/subscription-registry";
     private final JsonObjectMapper jsonObjectMapper;
@@ -55,7 +54,7 @@ public class SubscriptionPersistenceImpl implements SubscriptionPersistence {
         final String clientId = yangModelSubscriptionEvent.getClientId();
         final String subscriptionName = yangModelSubscriptionEvent.getSubscriptionName();
 
-        final Collection<DataNode> dataNodes = cpsDataService.getDataNodes(SUBSCRIPTION_DATASPACE_NAME,
+        final Collection<DataNode> dataNodes = cpsDataService.getDataNodes(NCMP_DATASPACE_NAME,
                 SUBSCRIPTION_ANCHOR_NAME, SUBSCRIPTION_REGISTRY_PARENT, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
 
         if (isSubscriptionRegistryEmptyOrNonExist(dataNodes, clientId, subscriptionName)) {
@@ -130,12 +129,12 @@ public class SubscriptionPersistenceImpl implements SubscriptionPersistence {
                                                           final boolean isAddListElementOperation) {
         if (isAddListElementOperation) {
             log.info("targetCmHandleAsJson to be added into DB {}", targetCmHandleAsJson);
-            cpsDataService.saveListElements(SUBSCRIPTION_DATASPACE_NAME,
+            cpsDataService.saveListElements(NCMP_DATASPACE_NAME,
                     SUBSCRIPTION_ANCHOR_NAME, createCmHandleXpathPredicates(clientId, subscriptionName),
                     targetCmHandleAsJson, NO_TIMESTAMP);
         } else {
             log.info("targetCmHandleAsJson to be updated into DB {}", targetCmHandleAsJson);
-            cpsDataService.updateNodeLeaves(SUBSCRIPTION_DATASPACE_NAME,
+            cpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME,
                     SUBSCRIPTION_ANCHOR_NAME, createCmHandleXpathPredicates(clientId, subscriptionName),
                     targetCmHandleAsJson, NO_TIMESTAMP);
         }
@@ -143,20 +142,20 @@ public class SubscriptionPersistenceImpl implements SubscriptionPersistence {
 
     private void saveSubscriptionEventYangModel(final String subscriptionEventJsonData) {
         log.info("SubscriptionEventJsonData to be saved into DB {}", subscriptionEventJsonData);
-        cpsDataService.saveListElements(SUBSCRIPTION_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME,
+        cpsDataService.saveListElements(NCMP_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME,
                 SUBSCRIPTION_REGISTRY_PARENT, subscriptionEventJsonData, NO_TIMESTAMP);
     }
 
     @Override
     public Collection<DataNode> getDataNodesForSubscriptionEvent() {
-        return cpsDataService.getDataNodes(SUBSCRIPTION_DATASPACE_NAME,
+        return cpsDataService.getDataNodes(NCMP_DATASPACE_NAME,
                 SUBSCRIPTION_ANCHOR_NAME, SUBSCRIPTION_REGISTRY_PARENT,
                 FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
     }
 
     @Override
     public Collection<DataNode> getCmHandlesForSubscriptionEvent(final String clientId, final String subscriptionName) {
-        return cpsDataService.getDataNodesForMultipleXpaths(SUBSCRIPTION_DATASPACE_NAME,
+        return cpsDataService.getDataNodesForMultipleXpaths(NCMP_DATASPACE_NAME,
                 SUBSCRIPTION_ANCHOR_NAME, Arrays.asList(createCmHandleXpath(clientId, subscriptionName)),
                 FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
     }
@@ -170,7 +169,7 @@ public class SubscriptionPersistenceImpl implements SubscriptionPersistence {
             final String details = statusAndDetailsMap.get("details");
             return new YangModelSubscriptionEvent.TargetCmHandle(cmHandleId,
                     SubscriptionStatus.fromString(status), details);
-        }).collect(Collectors.toList());
+        }).toList();
     }
 
     private static String createSubscriptionEventJsonData(final String yangModelSubscriptionAsJson) {
