@@ -310,3 +310,31 @@ CPS-Core Docker Installation
 
 CPS-Core can also be installed in a docker environment. Latest `docker-compose <https://github.com/onap/cps/blob/master/docker-compose/docker-compose.yml>`_ is included in the repo to start all the relevant services.
 The latest instructions are covered in the `README <https://github.com/onap/cps/blob/master/docker-compose/README.md>`_.
+
+CPS-Core and NCMP Distributed Datastructures
+============================================
+
+CPS-Core and NCMP both internally uses embedded distributed datastructure to replicate the state across various instances for low latency.
+These instances require some additional ports to be available. The default range starts from 5701 and based on the number of instances configured they are incremented sequentially.
+
+Below are the list of distributed datastructures that we have.
+
++--------------+---------------------------------+----------------------------------------------------------+
+| Component    | Datastructure name              |                 Use                                      |
++==============+=================================+==========================================================+
+| cps-core     | anchorDataCache                 | Used to resolve prefix for the container name.           |
++--------------+---------------------------------+----------------------------------------------------------+
+| cps-ncmp     | moduleSyncStartedOnCmHandles    | Watchdog process to register cmHandles.                  |
++--------------+---------------------------------+----------------------------------------------------------+
+| cps-ncmp     | dataSyncSemaphores              | Watchdog process to sync data from the nodes.            |
++--------------+---------------------------------+----------------------------------------------------------+
+| cps-ncmp     | moduleSyncWorkQueue             | Queue used internally for workers to pick the task.      |
++--------------+---------------------------------+----------------------------------------------------------+
+| cps-ncmp     | forwardedSubscriptionEventCache | Keeps track of the LCM Subscription Events.              |
++--------------+---------------------------------+----------------------------------------------------------+
+| cps-ncmp     | untrustworthyCmHandlesSet       | Stores untrustworthy cmHandles whose TrustLevel is NONE. |
++--------------+---------------------------------+----------------------------------------------------------+
+| cps-ncmp     | trustLevelPerDmiPlugin          | Stores the TrustLevel for the dmi-plugins.               |
++--------------+---------------------------------+----------------------------------------------------------+
+
+Total number of caches : 7
