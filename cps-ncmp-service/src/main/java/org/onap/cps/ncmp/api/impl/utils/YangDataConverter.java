@@ -30,6 +30,7 @@ import java.util.regex.Pattern;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.inventory.CompositeState;
 import org.onap.cps.ncmp.api.inventory.CompositeStateBuilder;
@@ -86,7 +87,8 @@ public class YangDataConverter {
                 (String) cmHandleDataNode.getLeaves().get("dmi-service-name"),
                 (String) cmHandleDataNode.getLeaves().get("dmi-data-service-name"),
                 (String) cmHandleDataNode.getLeaves().get("dmi-model-service-name"),
-                ncmpServiceCmHandle
+                ncmpServiceCmHandle,
+                (String) cmHandleDataNode.getLeaves().get("module-set-tag")
         );
     }
 
@@ -105,10 +107,9 @@ public class YangDataConverter {
         return yangModelCmHandles;
     }
 
-    private static String extractCmHandleIdFromXpath(final String xpath) {
+    public static String extractCmHandleIdFromXpath(final String xpath) {
         final Matcher matcher = cmHandleIdInXpathPattern.matcher(xpath);
-        matcher.find();
-        return matcher.group(1);
+        return matcher.find() ? matcher.group(1) : StringUtils.EMPTY;
     }
 
 

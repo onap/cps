@@ -22,8 +22,11 @@
 
 package org.onap.cps.ncmp.api.inventory;
 
-import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME;
-import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NO_TIMESTAMP;
+import static org.onap.cps.constants.DmiRegistryConstants.NCMP_DATASPACE_NAME;
+import static org.onap.cps.constants.DmiRegistryConstants.NCMP_DMI_REGISTRY_ANCHOR;
+import static org.onap.cps.constants.DmiRegistryConstants.NCMP_DMI_REGISTRY_PARENT;
+import static org.onap.cps.constants.DmiRegistryConstants.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME;
+import static org.onap.cps.constants.DmiRegistryConstants.NO_TIMESTAMP;
 import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED;
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
 
@@ -55,12 +58,6 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 @Component
 public class InventoryPersistenceImpl implements InventoryPersistence {
-
-    private static final String NCMP_DATASPACE_NAME = "NCMP-Admin";
-
-    private static final String NCMP_DMI_REGISTRY_ANCHOR = "ncmp-dmi-registry";
-
-    private static final String NCMP_DMI_REGISTRY_PARENT = "/dmi-registry";
 
     private final JsonObjectMapper jsonObjectMapper;
 
@@ -237,7 +234,7 @@ public class InventoryPersistenceImpl implements InventoryPersistence {
     }
 
     private static String createCmHandleXPath(final String cmHandleId) {
-        return "/dmi-registry/cm-handles[@id='" + cmHandleId + "']";
+        return NCMP_DMI_REGISTRY_PARENT + "/cm-handles[@id='" + cmHandleId + "']";
     }
 
     private static String createStateJsonData(final String state) {

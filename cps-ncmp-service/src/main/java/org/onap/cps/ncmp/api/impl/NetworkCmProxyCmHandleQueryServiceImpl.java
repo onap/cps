@@ -20,6 +20,7 @@
 
 package org.onap.cps.ncmp.api.impl;
 
+import static org.onap.cps.constants.DmiRegistryConstants.NCMP_DMI_REGISTRY_PARENT;
 import static org.onap.cps.ncmp.api.impl.utils.CmHandleQueryConditions.HAS_ALL_MODULES;
 import static org.onap.cps.ncmp.api.impl.utils.CmHandleQueryConditions.HAS_ALL_PROPERTIES;
 import static org.onap.cps.ncmp.api.impl.utils.CmHandleQueryConditions.WITH_CPS_PATH;
@@ -156,7 +157,8 @@ public class NetworkCmProxyCmHandleQueryServiceImpl implements NetworkCmProxyCmH
         }
         try {
             cpsPathQueryResult = collectCmHandleIdsFromDataNodes(
-                cmHandleQueries.queryCmHandleDataNodesByCpsPath(cpsPathCondition.get("cpsPath"), OMIT_DESCENDANTS));
+                cmHandleQueries.queryCmHandleDataNodesWithAncestorByCpsPath(
+                        cpsPathCondition.get("cpsPath"), OMIT_DESCENDANTS));
         } catch (final PathParsingException pathParsingException) {
             throw new DataValidationException(pathParsingException.getMessage(), pathParsingException.getDetails(),
                     pathParsingException);
@@ -198,12 +200,12 @@ public class NetworkCmProxyCmHandleQueryServiceImpl implements NetworkCmProxyCmH
     }
 
     private Collection<NcmpServiceCmHandle> getAllCmHandles() {
-        final DataNode dataNode = inventoryPersistence.getDataNode("/dmi-registry").iterator().next();
+        final DataNode dataNode = inventoryPersistence.getDataNode(NCMP_DMI_REGISTRY_PARENT).iterator().next();
         return dataNode.getChildDataNodes().stream().map(this::createNcmpServiceCmHandle).collect(Collectors.toSet());
     }
 
     private Collection<String> getAllCmHandleIds() {
-        final DataNode dataNode = inventoryPersistence.getDataNode("/dmi-registry", DIRECT_CHILDREN_ONLY)
+        final DataNode dataNode = inventoryPersistence.getDataNode(NCMP_DMI_REGISTRY_PARENT, DIRECT_CHILDREN_ONLY)
                 .iterator().next();
         return collectCmHandleIdsFromDataNodes(dataNode.getChildDataNodes());
     }

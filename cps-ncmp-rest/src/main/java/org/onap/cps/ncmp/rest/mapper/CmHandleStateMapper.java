@@ -75,8 +75,10 @@ public interface CmHandleStateMapper {
     @Named("toExternalLockReason")
     static LockReason toExternalLockReason(CompositeState.LockReason internalLockReason) {
         final LockReason externalLockReason = new LockReason();
-        if (internalLockReason.getLockReasonCategory() != null) {
+        if (internalLockReason.getLockReasonCategory() == null) {
             externalLockReason.setReason("LOCKED_MISBEHAVING");
+        } else {
+            externalLockReason.setReason(internalLockReason.getLockReasonCategory().name());
         }
         externalLockReason.setDetails(internalLockReason.getDetails());
         return externalLockReason;

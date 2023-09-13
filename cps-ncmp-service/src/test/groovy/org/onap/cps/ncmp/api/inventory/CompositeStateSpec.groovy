@@ -40,7 +40,7 @@ class CompositeStateSpec extends Specification {
     def "Composite State Specification"() {
         given: "a Composite State"
             def compositeState = new CompositeState(cmHandleState: CmHandleState.ADVISED,
-                lockReason: CompositeState.LockReason.builder().lockReasonCategory(LockReasonCategory.LOCKED_MODULE_SYNC_FAILED).details("lock details").build(),
+                lockReason: CompositeState.LockReason.builder().lockReasonCategory(LockReasonCategory.MODULE_SYNC_FAILED).details("lock details").build(),
                 lastUpdateTime: formattedDateAndTime.toString(),
                 dataSyncEnabled: false,
                 dataStores: dataStores())
