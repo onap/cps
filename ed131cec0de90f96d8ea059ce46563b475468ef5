@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "616b718e_dec01907",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-09-14T15:18:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a4c0dc97_1f7a9529",
+      "range": {
+        "startLine": 323,
+        "startChar": 51,
+        "endLine": 323,
+        "endChar": 69
+      },
+      "revId": "ed131cec0de90f96d8ea059ce46563b475468ef5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fd805390_1cbd4ec1",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-09-14T15:12:44Z",
       "side": 1,
       "message": "add a one more line:\n\n\"Total number of caches: 7\"",
+      "range": {
+        "startLine": 338,
+        "startChar": 125,
+        "endLine": 338,
+        "endChar": 130
+      },
+      "revId": "ed131cec0de90f96d8ea059ce46563b475468ef5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6266d3b4_f752d3da",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-09-14T15:18:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd805390_1cbd4ec1",
       "range": {
         "startLine": 338,
         "startChar": 125,
