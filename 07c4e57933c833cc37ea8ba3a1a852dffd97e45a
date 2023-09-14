@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c800b5a_ade53377",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-09-14T14:17:56Z",
+      "side": 1,
+      "message": "Just a minor fix",
+      "revId": "07c4e57933c833cc37ea8ba3a1a852dffd97e45a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c69f4db_7e22dde4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-09-14T14:17:56Z",
+      "side": 1,
+      "message": "NB Just double check if there isn\u0027t a built in function for this, Toine said there is but I am unsure",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 122,
+        "endChar": 9
+      },
+      "revId": "07c4e57933c833cc37ea8ba3a1a852dffd97e45a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f6746cb_e1e6b012",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 7830
+      },
+      "writtenOn": "2023-09-14T14:17:56Z",
+      "side": 1,
+      "message": "Put an and block above this line for and is added to trust level cache",
+      "range": {
+        "startLine": 123,
+        "startChar": 109,
+        "endLine": 124,
+        "endChar": 92
+      },
+      "revId": "07c4e57933c833cc37ea8ba3a1a852dffd97e45a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
