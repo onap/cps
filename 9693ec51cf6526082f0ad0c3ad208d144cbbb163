@@ -39,6 +39,30 @@
       },
       "revId": "9693ec51cf6526082f0ad0c3ad208d144cbbb163",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7ff87fa_ad368924",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 16
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2023-09-14T15:03:30Z",
+      "side": 1,
+      "message": "Any duplicates will be done in a new commit after this is merged",
+      "parentUuid": "96b093cd_05bbe086",
+      "range": {
+        "startLine": 288,
+        "startChar": 0,
+        "endLine": 297,
+        "endChar": 52
+      },
+      "revId": "9693ec51cf6526082f0ad0c3ad208d144cbbb163",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
