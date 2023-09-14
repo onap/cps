@@ -118,6 +118,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9f0456ae_6827c7c0",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 12
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2023-09-14T12:49:43Z",
+      "side": 1,
+      "message": "Throws an error with springframework 6.0\norg.springframework.web.util.pattern.PatternParseException: Char \u0027.\u0027 is not allowed in a captured variable name",
+      "parentUuid": "d608880e_8e589c61",
+      "range": {
+        "startLine": 143,
+        "startChar": 0,
+        "endLine": 143,
+        "endChar": 10
+      },
+      "revId": "75ec00a9c03207691e1c001ebdc62dc77e68686c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0b3e9185_092831cd",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/EventsPublisher.java",
         "patchSetId": 12
