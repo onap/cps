@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79da7dbe_0938bc54",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-14T10:30:59Z",
+      "side": 1,
+      "message": "not suer if the duplication is blocking. If it builds I am happy if you organise them properly in a separate commit...",
+      "revId": "9693ec51cf6526082f0ad0c3ad208d144cbbb163",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96b093cd_05bbe086",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 16
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-14T10:30:59Z",
+      "side": 1,
+      "message": "These are duplicated, see line 135!\nMaybe other are too!\nPity mvn doesn\u0027t warn about this!\n\nTip: we have previously attempted to sort dependencies alphabetically based on group id to prevent duplication, you dont have to do it now but maybe we can try again in future... (Also we tend to separate production form test dependncies) you will see that in some of the production module POMs",
+      "range": {
+        "startLine": 288,
+        "startChar": 0,
+        "endLine": 297,
+        "endChar": 52
+      },
+      "revId": "9693ec51cf6526082f0ad0c3ad208d144cbbb163",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
