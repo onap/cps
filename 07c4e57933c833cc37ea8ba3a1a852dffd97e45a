@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "648e139e_c397d4ef",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-14T15:30:51Z",
+      "side": 1,
+      "message": "I think it is resolved somewhere else then I thought,\nsee org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle#resolveDmiServiceName\n\nyou probably cant/do not want/do not need to re-use that class here...\n\nPossible the best place to resolve it is a method in DmiPLuginRegsitration itself\ndo NOT use the default lombok getters but code them manually and use the validator in that class  upon construction. BUT I dont think it is worth the effort now....",
+      "parentUuid": "1c69f4db_7e22dde4",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 122,
+        "endChar": 9
+      },
+      "revId": "07c4e57933c833cc37ea8ba3a1a852dffd97e45a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4f6746cb_e1e6b012",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
         "patchSetId": 2
