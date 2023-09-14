@@ -113,6 +113,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b0612a1_b94e2c68",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 13
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2023-09-14T10:07:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78d8239a_769d47aa",
+      "range": {
+        "startLine": 43,
+        "startChar": 8,
+        "endLine": 43,
+        "endChar": 64
+      },
+      "revId": "9791296e2498e3e86051ec8ac4ec1dc5b3cc3a20",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "164d8d25_ba6fcfd3",
@@ -126,6 +150,30 @@
       "writtenOn": "2023-09-13T15:24:19Z",
       "side": 1,
       "message": "as before, once it works please control all dependencies in the  dependencies module pom file",
+      "range": {
+        "startLine": 125,
+        "startChar": 1,
+        "endLine": 131,
+        "endChar": 21
+      },
+      "revId": "9791296e2498e3e86051ec8ac4ec1dc5b3cc3a20",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f25a3d7_f1acf53d",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 13
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2023-09-14T10:07:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "164d8d25_ba6fcfd3",
       "range": {
         "startLine": 125,
         "startChar": 1,
