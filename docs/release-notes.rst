@@ -39,6 +39,7 @@ Release Data
 Bug Fixes
 ---------
 3.3.7
+    - `CPS-1866 <https://jira.onap.org/browse/CPS-1866>`_ Fix ClassDefNotFoundError in opendaylight Yang parser
 
 Features
 --------
