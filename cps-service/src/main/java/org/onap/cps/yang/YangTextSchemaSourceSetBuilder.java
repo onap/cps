@@ -43,10 +43,11 @@ import org.opendaylight.yangtools.yang.model.api.Module;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
 import org.opendaylight.yangtools.yang.model.repo.api.RevisionSourceIdentifier;
 import org.opendaylight.yangtools.yang.model.repo.api.YangTextSchemaSource;
-import org.opendaylight.yangtools.yang.parser.rfc7950.reactor.RFC7950Reactors;
-import org.opendaylight.yangtools.yang.parser.rfc7950.repo.YangStatementStreamSource;
-import org.opendaylight.yangtools.yang.parser.spi.meta.ReactorException;
-import org.opendaylight.yangtools.yang.parser.stmt.reactor.CrossSourceStatementReactor;
+import org.opendaylight.yangtools.yang.parser.api.YangParser;
+import org.opendaylight.yangtools.yang.parser.api.YangParserException;
+import org.opendaylight.yangtools.yang.parser.api.YangParserFactory;
+import org.opendaylight.yangtools.yang.parser.impl.DefaultYangParserFactory;
+import org.opendaylight.yangtools.yang.xpath.impl.di.DefaultXPathParserFactory;
 
 @NoArgsConstructor
 public final class YangTextSchemaSourceSetBuilder {
@@ -55,6 +56,9 @@ public final class YangTextSchemaSourceSetBuilder {
         Pattern.compile("([\\w-]+)@(\\d{4}-\\d{2}-\\d{2})(?:\\.yang)?", Pattern.CASE_INSENSITIVE);
 
     private final ImmutableMap.Builder<String, String> yangModelMap = new ImmutableMap.Builder<>();
+
+    private static final YangParserFactory YANG_PARSER_FACTORY =
+            new DefaultYangParserFactory(new DefaultXPathParserFactory());
 
     /**
      * Add Yang resource context.
@@ -136,11 +140,11 @@ public final class YangTextSchemaSourceSetBuilder {
      * @return the schema context
      */
     private static SchemaContext generateSchemaContext(final Map<String, String> yangResourceNameToContent) {
-        final CrossSourceStatementReactor.BuildAction reactor = RFC7950Reactors.defaultReactor().newBuild();
+        final YangParser yangParser = YANG_PARSER_FACTORY.createParser();
         for (final YangTextSchemaSource yangTextSchemaSource : forResources(yangResourceNameToContent)) {
             final String resourceName = yangTextSchemaSource.getIdentifier().getName();
             try {
-                reactor.addSource(YangStatementStreamSource.create(yangTextSchemaSource));
+                yangParser.addSource(yangTextSchemaSource);
             } catch (final Exception exception) {
                 throw new ModelValidationException("Yang resource processing exception.",
                     String.format("Could not process resource %s:%n%s", resourceName, exception.getMessage()),
@@ -148,13 +152,13 @@ public final class YangTextSchemaSourceSetBuilder {
             }
         }
         try {
-            return reactor.buildEffective();
-        } catch (final ReactorException reactorException) {
+            return yangParser.buildEffectiveModel();
+        } catch (final YangParserException yangParserException) {
             final List<String> resourceNames = yangResourceNameToContent.keySet().stream().collect(Collectors.toList());
             Collections.sort(resourceNames);
             throw new ModelValidationException("Invalid schema set.",
                 String.format("Effective schema context build failed for resources %s.", resourceNames),
-                reactorException);
+                yangParserException);
         }
     }
 
