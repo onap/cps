@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bab99210_d7b14ca3",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 16
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-15T13:10:10Z",
+      "side": 1,
+      "message": "NB: If it is not used in any place, no need to keep this property in place.",
+      "range": {
+        "startLine": 43,
+        "startChar": 8,
+        "endLine": 43,
+        "endChar": 64
+      },
+      "revId": "9693ec51cf6526082f0ad0c3ad208d144cbbb163",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "96b093cd_05bbe086",
         "filename": "cps-dependencies/pom.xml",
         "patchSetId": 16
@@ -60,6 +83,29 @@
         "startChar": 0,
         "endLine": 297,
         "endChar": 52
+      },
+      "revId": "9693ec51cf6526082f0ad0c3ad208d144cbbb163",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "451fec8a_35c97918",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 16
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-15T13:10:10Z",
+      "side": 1,
+      "message": "NB: If it is not used in any place, no need to keep this property in place.",
+      "range": {
+        "startLine": 49,
+        "startChar": 8,
+        "endLine": 49,
+        "endChar": 59
       },
       "revId": "9693ec51cf6526082f0ad0c3ad208d144cbbb163",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
