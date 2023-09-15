@@ -16,6 +16,92 @@
       "message": "recheck",
       "revId": "b45c80995966be243a79bedefa25f6c05f64a2d6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "657d4dd4_f32887fd",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-15T12:50:24Z",
+      "side": 1,
+      "message": "NB: Data structures",
+      "revId": "b45c80995966be243a79bedefa25f6c05f64a2d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d96359c2_c6d66e21",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-15T12:50:24Z",
+      "side": 1,
+      "message": "NB: data structures",
+      "range": {
+        "startLine": 317,
+        "startChar": 60,
+        "endLine": 317,
+        "endChar": 73
+      },
+      "revId": "b45c80995966be243a79bedefa25f6c05f64a2d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5a771ec_359c4577",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-15T12:50:24Z",
+      "side": 1,
+      "message": "NB: data structures",
+      "range": {
+        "startLine": 320,
+        "startChar": 34,
+        "endLine": 320,
+        "endChar": 49
+      },
+      "revId": "b45c80995966be243a79bedefa25f6c05f64a2d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1dedccc_df69e568",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-15T12:50:24Z",
+      "side": 1,
+      "message": "NB: Data structure",
+      "range": {
+        "startLine": 323,
+        "startChar": 17,
+        "endLine": 323,
+        "endChar": 31
+      },
+      "revId": "b45c80995966be243a79bedefa25f6c05f64a2d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
