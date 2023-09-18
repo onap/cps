@@ -214,6 +214,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ce9e9ba0_48fef70e",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 12
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-09-18T12:32:13Z",
+      "side": 1,
+      "message": "Alright. I can deal with this later.\nSo as per current situation we have to later do OOM related changes as well.\n\nSo instead of moving the permit-uri to the parent can we atleast agree to put it under security tag and name it \"permitUri\" instead.\n\nsecurity:\n  permitUri: *********\n  \n\nThis will atleast keep all relevant params together.\n\n-----------------------------------\n\nI can possibly think of below actions : \n\n1. OOM charts\n2. Docs for ONAP ( nt sure if we expose this param in documentation )\n3. yes , and we need to inform ericsson of the same if they are overriding something at their end.",
+      "parentUuid": "e6e6f544_2e55159d",
+      "revId": "75ec00a9c03207691e1c001ebdc62dc77e68686c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0b3e9185_092831cd",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/EventsPublisher.java",
         "patchSetId": 12
