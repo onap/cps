@@ -34,12 +34,12 @@
     <description>This artifact contains dependencyManagement declarations of upstream versions.</description>
 
     <properties>
-        <groovy.version>3.0.9</groovy.version>
+        <groovy.version>3.0.18</groovy.version>
         <nexusproxy>https://nexus.onap.org</nexusproxy>
         <releaseNexusPath>/content/repositories/releases/</releaseNexusPath>
         <snapshotNexusPath>/content/repositories/snapshots/</snapshotNexusPath>
         <sonar.skip>true</sonar.skip>
-        <testcontainers.version>1.17.3</testcontainers.version>
+        <testcontainers.version>1.18.3</testcontainers.version>
         <mapstruct.version>1.4.2.Final</mapstruct.version>
     </properties>
 
@@ -78,14 +78,14 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>2.7.6</version>
+                <version>3.0.0</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>2021.0.3</version>
+                <version>2022.0.3</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -113,8 +113,8 @@
             </dependency>
             <dependency>
                 <groupId>io.hypersistence</groupId>
-                <artifactId>hypersistence-utils-hibernate-52</artifactId>
-                <version>3.3.2</version>
+                <artifactId>hypersistence-utils-hibernate-60</artifactId>
+                <version>3.5.0</version>
             </dependency>
             <dependency>
                 <groupId>org.antlr</groupId>
@@ -134,12 +134,12 @@
             <dependency>
                 <groupId>org.spockframework</groupId>
                 <artifactId>spock-core</artifactId>
-                <version>2.0-M5-groovy-3.0</version>
+                <version>2.4-M1-groovy-3.0</version>
             </dependency>
             <dependency>
                 <groupId>org.spockframework</groupId>
                 <artifactId>spock-spring</artifactId>
-                <version>2.0-M5-groovy-3.0</version>
+                <version>2.4-M1-groovy-3.0</version>
             </dependency>
             <dependency>
                 <groupId>cglib</groupId>
@@ -166,7 +166,7 @@
             <dependency>
                 <groupId>org.testcontainers</groupId>
                 <artifactId>testcontainers-bom</artifactId>
-                <version>1.17.3</version>
+                <version>1.18.3</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -209,7 +209,7 @@
             <dependency>
                 <groupId>com.hazelcast</groupId>
                 <artifactId>hazelcast-spring</artifactId>
-                <version>4.2.5</version>
+                <version>5.3.1</version>
             </dependency>
             <dependency>
                 <groupId>com.google.guava</groupId>
@@ -217,14 +217,84 @@
                 <version>31.1-jre</version>
             </dependency>
             <dependency>
-                <groupId>javax.validation</groupId>
-                <artifactId>validation-api</artifactId>
-                <version>2.0.1.Final</version>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-properties-migrator</artifactId>
+                <scope>runtime</scope>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.validation</groupId>
+                <artifactId>jakarta.validation-api</artifactId>
+                <version>3.0.2</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>3.3.1</version>
+            </dependency>
+            <dependency>
+                <groupId>io.micrometer</groupId>
+                <artifactId>micrometer-tracing-bridge-brave</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.dataformat</groupId>
+                <artifactId>jackson-dataformat-xml</artifactId>
+                <version>2.13.1</version>
+            </dependency>
+            <dependency>
+                <groupId>io.swagger.core.v3</groupId>
+                <artifactId>swagger-models</artifactId>
+                <version>2.2.15</version>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.18.24</version>
+            </dependency>
+            <dependency>
+                <groupId>io.gsonfire</groupId>
+                <artifactId>gson-fire</artifactId>
+                <version>1.8.5</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>2.14.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-server</artifactId>
+                <version>11.0.14</version>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.servlet</groupId>
+                <artifactId>jakarta.servlet-api</artifactId>
+                <version>6.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.openapitools</groupId>
+                <artifactId>jackson-databind-nullable</artifactId>
+                <version>0.2.4</version>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-api</artifactId>
+                <version>5.10.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-test</artifactId>
+                <version>6.0.11</version>
+            </dependency>
+            <dependency>
+                <groupId>org.spockframework</groupId>
+                <artifactId>spock-core</artifactId>
+                <version>2.4-M1-groovy-3.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.spockframework</groupId>
+                <artifactId>spock-spring</artifactId>
+                <version>2.4-M1-groovy-3.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
