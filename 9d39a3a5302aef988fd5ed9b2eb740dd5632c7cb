@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c27b2b78_c2f99ef1",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/base/CpsPerfTestBase.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-09-18T08:15:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "43bf9b53_7a56bfaa",
+      "range": {
+        "startLine": 23,
+        "startChar": 32,
+        "endLine": 23,
+        "endChar": 54
+      },
+      "revId": "9d39a3a5302aef988fd5ed9b2eb740dd5632c7cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b5baf5b4_c728ccb8",
@@ -95,6 +119,30 @@
       "side": 1,
       "message": "agreed",
       "parentUuid": "b5baf5b4_c728ccb8",
+      "range": {
+        "startLine": 88,
+        "startChar": 12,
+        "endLine": 88,
+        "endChar": 65
+      },
+      "revId": "9d39a3a5302aef988fd5ed9b2eb740dd5632c7cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0ccf2b9_1e31715c",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/base/CpsPerfTestBase.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-09-18T08:15:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a268f33e_43af5f8e",
       "range": {
         "startLine": 88,
         "startChar": 12,
@@ -174,6 +222,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0c68b84_7c847ac3",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/DeletePerfTest.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-09-18T08:15:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "85a498ee_86e1d33f",
+      "range": {
+        "startLine": 64,
+        "startChar": 12,
+        "endLine": 64,
+        "endChar": 71
+      },
+      "revId": "9d39a3a5302aef988fd5ed9b2eb740dd5632c7cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0d9048eb_30c3c4a1",
@@ -187,6 +259,30 @@
       "writtenOn": "2023-09-04T10:07:05Z",
       "side": 1,
       "message": "Same as above",
+      "range": {
+        "startLine": 81,
+        "startChar": 12,
+        "endLine": 81,
+        "endChar": 71
+      },
+      "revId": "9d39a3a5302aef988fd5ed9b2eb740dd5632c7cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1636c33_4dfb48f0",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/DeletePerfTest.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-09-18T08:15:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d9048eb_30c3c4a1",
       "range": {
         "startLine": 81,
         "startChar": 12,
@@ -266,6 +362,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "89ee6389_2d68ed88",
+        "filename": "integration-test/src/test/java/org/onap/cps/integration/TimeAndMemoryStopwatch.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-09-18T08:15:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a4a177c7_a605da8e",
+      "range": {
+        "startLine": 28,
+        "startChar": 13,
+        "endLine": 28,
+        "endChar": 36
+      },
+      "revId": "9d39a3a5302aef988fd5ed9b2eb740dd5632c7cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7d1f3dec_d949bd2d",
@@ -279,6 +399,30 @@
       "writtenOn": "2023-09-04T10:07:05Z",
       "side": 1,
       "message": "Its better to have a different name other than the Object\u0027s name. E.g. memoryTimer maybe...",
+      "range": {
+        "startLine": 29,
+        "startChar": 28,
+        "endLine": 29,
+        "endChar": 37
+      },
+      "revId": "9d39a3a5302aef988fd5ed9b2eb740dd5632c7cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "19750571_e2455bf8",
+        "filename": "integration-test/src/test/java/org/onap/cps/integration/TimeAndMemoryStopwatch.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-09-18T08:15:33Z",
+      "side": 1,
+      "message": "will keep it same as the class name",
+      "parentUuid": "7d1f3dec_d949bd2d",
       "range": {
         "startLine": 29,
         "startChar": 28,
