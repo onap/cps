@@ -196,6 +196,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e6e6f544_2e55159d",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 12
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-18T12:19:29Z",
+      "side": 1,
+      "message": "Hi Priyank, can we agree to move on, this is a big commit! we already agreed on a few other minor issues they can be addressed later. Once this is merged you can try yourself what are the possibilities is and suggested an improvment later!\n\n(I do wonde do we need a documentation update referring to this?, do we need to inform Ericsson build team)",
+      "parentUuid": "0364d02a_e06398cd",
+      "revId": "75ec00a9c03207691e1c001ebdc62dc77e68686c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0b3e9185_092831cd",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/EventsPublisher.java",
         "patchSetId": 12
