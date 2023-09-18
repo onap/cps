@@ -250,6 +250,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e3f56010_4d4119a3",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 12
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-09-18T12:46:16Z",
+      "side": 1,
+      "message": "thats really strange..\nhttps://github.com/spring-projects/spring-framework/commit/7b697266beeebe14e3b2b34a88053b4f6efbf9e3?diff\u003dunified\n\nthis fix should taken care about this.\nLets deal with this separately.",
+      "parentUuid": "a166f1d5_6f73c289",
+      "revId": "75ec00a9c03207691e1c001ebdc62dc77e68686c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0b3e9185_092831cd",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/EventsPublisher.java",
         "patchSetId": 12
