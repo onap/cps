@@ -47,6 +47,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "995fbe3e_a58d0c44",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/LockReasonCategory.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-19T08:23:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ece776e_809f76ef",
+      "range": {
+        "startLine": 24,
+        "startChar": 31,
+        "endLine": 24,
+        "endChar": 38
+      },
+      "revId": "2df13646375ff16237a9ba5db951c97eae187905",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3094612a_bb5c9954",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/LockReasonCategory.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-19T08:23:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7fede2f9_e00a62cd",
+      "range": {
+        "startLine": 24,
+        "startChar": 54,
+        "endLine": 24,
+        "endChar": 61
+      },
+      "revId": "2df13646375ff16237a9ba5db951c97eae187905",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "73e0c025_66ae84a0",
@@ -70,6 +118,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c446b8f_25ca4041",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-19T08:23:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73e0c025_66ae84a0",
+      "range": {
+        "startLine": 150,
+        "startChar": 22,
+        "endLine": 150,
+        "endChar": 55
+      },
+      "revId": "2df13646375ff16237a9ba5db951c97eae187905",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0778937b_b17651c2",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-09-13T12:48:31Z",
       "side": 1,
       "message": "failedDuringModuleSync",
+      "range": {
+        "startLine": 152,
+        "startChar": 12,
+        "endLine": 152,
+        "endChar": 45
+      },
+      "revId": "2df13646375ff16237a9ba5db951c97eae187905",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8437aa2a_6f6537c0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-19T08:23:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0778937b_b17651c2",
       "range": {
         "startLine": 152,
         "startChar": 12,

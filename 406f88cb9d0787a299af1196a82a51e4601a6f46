@@ -47,6 +47,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7d15c0e_f93fd8f6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/SyncUtilsSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-19T08:23:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "36224004_720cf6ad",
+      "range": {
+        "startLine": 112,
+        "startChar": 43,
+        "endLine": 112,
+        "endChar": 62
+      },
+      "revId": "406f88cb9d0787a299af1196a82a51e4601a6f46",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "68394e33_e73fef40",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/SyncUtilsSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-19T08:23:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c6f4fca2_73be8ebe",
+      "range": {
+        "startLine": 112,
+        "startChar": 90,
+        "endLine": 112,
+        "endChar": 120
+      },
+      "revId": "406f88cb9d0787a299af1196a82a51e4601a6f46",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cc2a82c4_771db539",
@@ -70,6 +118,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d65243f6_d704c3be",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/SyncUtilsSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-19T08:23:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc2a82c4_771db539",
+      "range": {
+        "startLine": 114,
+        "startChar": 90,
+        "endLine": 114,
+        "endChar": 125
+      },
+      "revId": "406f88cb9d0787a299af1196a82a51e4601a6f46",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6b70a3d1_8c3404d9",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-09-18T07:53:30Z",
       "side": 1,
       "message": "this is the main issue and typical mistake: modifying existing test by adding columns/row and mixing tests :-( \nLook at the \u0027scenario\u0027s they don\u0027t make sense anymore now and need updating but it is better to split the test into 2 test and each test focus on a separate part of the behavior to keep it simple..",
+      "range": {
+        "startLine": 115,
+        "startChar": 43,
+        "endLine": 116,
+        "endChar": 85
+      },
+      "revId": "406f88cb9d0787a299af1196a82a51e4601a6f46",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81eb8fd8_5c5c1480",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/SyncUtilsSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-19T08:23:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6b70a3d1_8c3404d9",
       "range": {
         "startLine": 115,
         "startChar": 43,
