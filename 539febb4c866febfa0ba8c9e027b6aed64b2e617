@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "53ff2f28_eb621f75",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-19T13:34:46Z",
+      "side": 1,
+      "message": "I\u0027ve left a NB review.",
+      "revId": "539febb4c866febfa0ba8c9e027b6aed64b2e617",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dbe6d10c_0f354e54",
@@ -36,6 +53,52 @@
         "startChar": 85,
         "endLine": 59,
         "endChar": 96
+      },
+      "revId": "539febb4c866febfa0ba8c9e027b6aed64b2e617",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3521cb3f_b5be8286",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/GetPerfTest.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-19T13:34:46Z",
+      "side": 1,
+      "message": "This field is not necessary since there is another instance defined in CpsPerfTestBase having the same name. This review could apply for other tests like Query and Updates...",
+      "range": {
+        "startLine": 36,
+        "startChar": 3,
+        "endLine": 36,
+        "endChar": 53
+      },
+      "revId": "539febb4c866febfa0ba8c9e027b6aed64b2e617",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72521ace_c6dd8438",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/QueryPerfTest.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-19T13:34:46Z",
+      "side": 1,
+      "message": "This field is not necessary since there is another instance defined in CpsPerfTestBase having the same name. This review could apply for other tests like Query and Delete...",
+      "range": {
+        "startLine": 37,
+        "startChar": 4,
+        "endLine": 37,
+        "endChar": 53
       },
       "revId": "539febb4c866febfa0ba8c9e027b6aed64b2e617",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
