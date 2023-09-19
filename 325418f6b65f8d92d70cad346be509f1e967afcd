@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74fa24a2_7a1c9210",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-19T16:11:21Z",
+      "side": 1,
+      "message": "well done and it seems to work!",
+      "revId": "325418f6b65f8d92d70cad346be509f1e967afcd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9af3e016_a166a7a8",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/YangTextSchemaSourceSetCache.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-19T16:11:21Z",
+      "side": 1,
+      "message": "can you also add specific log for cache-misses?",
+      "range": {
+        "startLine": 64,
+        "startChar": 35,
+        "endLine": 64,
+        "endChar": 38
+      },
+      "revId": "325418f6b65f8d92d70cad346be509f1e967afcd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "926c6b4b_add42dc5",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-19T16:11:21Z",
+      "side": 1,
+      "message": "I suppose you need to remove some of the logging in this class before we deliver it ?",
+      "range": {
+        "startLine": 82,
+        "startChar": 7,
+        "endLine": 82,
+        "endChar": 60
+      },
+      "revId": "325418f6b65f8d92d70cad346be509f1e967afcd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7d33548_e20fae56",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-19T16:11:21Z",
+      "side": 1,
+      "message": "could we store this as a static and have only one instance ort is it cheap and better to have multiple istances?",
+      "range": {
+        "startLine": 149,
+        "startChar": 8,
+        "endLine": 149,
+        "endChar": 73
+      },
+      "revId": "325418f6b65f8d92d70cad346be509f1e967afcd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ef8ddad_2694d375",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-19T16:11:21Z",
+      "side": 1,
+      "message": "seems easier to use :-)",
+      "range": {
+        "startLine": 153,
+        "startChar": 16,
+        "endLine": 153,
+        "endChar": 59
+      },
+      "revId": "325418f6b65f8d92d70cad346be509f1e967afcd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
