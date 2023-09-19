@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdbd0fa8_668e1e9d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandleQueryServiceSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2023-09-19T10:08:11Z",
+      "side": 1,
+      "message": "NB: Would change to timesCalled or timesToCall for readability",
+      "range": {
+        "startLine": 127,
+        "startChar": 12,
+        "endLine": 127,
+        "endChar": 25
+      },
+      "revId": "2e35ab10c7a0aad80deb8ff3988e391dfead583b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
