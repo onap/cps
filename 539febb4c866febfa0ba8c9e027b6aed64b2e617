@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7939eee_2ad76aa5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-09-19T11:56:33Z",
+      "side": 1,
+      "message": "Still a few places using old signature of recordAndAssertPerformance",
+      "revId": "539febb4c866febfa0ba8c9e027b6aed64b2e617",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbe6d10c_0f354e54",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/base/PerfTestBase.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-09-19T11:56:33Z",
+      "side": 1,
+      "message": "There are still a few places still using the old signature, e.g. in WritePerfTest and CpsDataLimitsPerfTest:\n\n    \norg.codehaus.groovy.runtime.metaclass.MissingMethodExceptionNoStack: No signature of method: org.onap.cps.integration.performance.cps.WritePerfTest.recordAndAssertPerformance() is applicable for argument types: (org.codehaus.groovy.runtime.GStringImpl, Long, Long) values: [Writing 50 devices, 3000, 1302]\n\nPossible solutions: recordAndAssertPerformance(java.lang.String, java.lang.Object, java.lang.Object, java.lang.Object)",
+      "range": {
+        "startLine": 59,
+        "startChar": 85,
+        "endLine": 59,
+        "endChar": 96
+      },
+      "revId": "539febb4c866febfa0ba8c9e027b6aed64b2e617",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
