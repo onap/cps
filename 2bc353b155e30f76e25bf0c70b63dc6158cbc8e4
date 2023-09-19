@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad199c35_f081d25e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-19T15:51:44Z",
+      "side": 1,
+      "message": "approved with just just some questions",
+      "revId": "2bc353b155e30f76e25bf0c70b63dc6158cbc8e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "282992d9_02b91ac3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-19T15:51:44Z",
+      "side": 1,
+      "message": "since it is not used(yet) do you not get warnings about that?",
+      "range": {
+        "startLine": 52,
+        "startChar": 4,
+        "endLine": 52,
+        "endChar": 62
+      },
+      "revId": "2bc353b155e30f76e25bf0c70b63dc6158cbc8e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95af9e93_4e254b92",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationCacheConfigSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-19T15:51:44Z",
+      "side": 1,
+      "message": "I thought the (new) documentation says there should be 7 caches?!\n(or is that between CPS and NCMP?!)",
+      "range": {
+        "startLine": 59,
+        "startChar": 6,
+        "endLine": 60,
+        "endChar": 61
+      },
+      "revId": "2bc353b155e30f76e25bf0c70b63dc6158cbc8e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "054a079c_281e5667",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-19T15:51:44Z",
+      "side": 1,
+      "message": "just wondering, 8 here but only 4 in the test, why is that exactly?",
+      "range": {
+        "startLine": 342,
+        "startChar": 25,
+        "endLine": 342,
+        "endChar": 26
+      },
+      "revId": "2bc353b155e30f76e25bf0c70b63dc6158cbc8e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
