@@ -67,6 +67,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ea0ebd65_755351fc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2023-09-19T16:10:30Z",
+      "side": 1,
+      "message": "i will double check tho",
+      "parentUuid": "d350cd56_fc73cd15",
+      "range": {
+        "startLine": 52,
+        "startChar": 4,
+        "endLine": 52,
+        "endChar": 62
+      },
+      "revId": "2bc353b155e30f76e25bf0c70b63dc6158cbc8e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "95af9e93_4e254b92",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationCacheConfigSpec.groovy",
         "patchSetId": 3
@@ -102,6 +126,30 @@
       "side": 1,
       "message": "this only refers to the SyncCache class. The other caches are tested in different Spec files, I think.\nSo 4 is the current number in this context",
       "parentUuid": "95af9e93_4e254b92",
+      "range": {
+        "startLine": 59,
+        "startChar": 6,
+        "endLine": 60,
+        "endChar": 61
+      },
+      "revId": "2bc353b155e30f76e25bf0c70b63dc6158cbc8e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e44a441_ccda0389",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationCacheConfigSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2023-09-19T16:10:30Z",
+      "side": 1,
+      "message": "take a look at AnchorDataCacheConfigSpec for example",
+      "parentUuid": "991161f1_f2226598",
       "range": {
         "startLine": 59,
         "startChar": 6,
