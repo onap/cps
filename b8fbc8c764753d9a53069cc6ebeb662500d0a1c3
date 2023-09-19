@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f01cd03_362661ba",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/CpsDataServiceLimitsPerfTest.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-19T16:18:28Z",
+      "side": 1,
+      "message": "I think this is outdated object still in use instead resourceMeter.",
+      "range": {
+        "startLine": 50,
+        "startChar": 12,
+        "endLine": 50,
+        "endChar": 65
+      },
+      "revId": "b8fbc8c764753d9a53069cc6ebeb662500d0a1c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8fa8a82_efbe6269",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/CpsDataServiceLimitsPerfTest.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-19T16:18:28Z",
+      "side": 1,
+      "message": "I think this is outdated object still in use instead resourceMeter.",
+      "range": {
+        "startLine": 94,
+        "startChar": 12,
+        "endLine": 94,
+        "endChar": 65
+      },
+      "revId": "b8fbc8c764753d9a53069cc6ebeb662500d0a1c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24325e0c_af557ace",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/WritePerfTest.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-19T16:18:28Z",
+      "side": 1,
+      "message": "I think this is outdated object still in use instead resourceMeter. In order not to cause confusion you may delete stopWatch object created in PerfTestBase.groovy line 31.",
+      "range": {
+        "startLine": 39,
+        "startChar": 12,
+        "endLine": 39,
+        "endChar": 65
+      },
+      "revId": "b8fbc8c764753d9a53069cc6ebeb662500d0a1c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5813d32_7d127995",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/WritePerfTest.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-19T16:18:28Z",
+      "side": 1,
+      "message": "Do you want to replace this with resourceMeter ?",
+      "range": {
+        "startLine": 67,
+        "startChar": 12,
+        "endLine": 67,
+        "endChar": 29
+      },
+      "revId": "b8fbc8c764753d9a53069cc6ebeb662500d0a1c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3097ad1a_2ce33d82",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/WritePerfTest.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-19T16:18:28Z",
+      "side": 1,
+      "message": "Same as above.",
+      "range": {
+        "startLine": 69,
+        "startChar": 12,
+        "endLine": 69,
+        "endChar": 27
+      },
+      "revId": "b8fbc8c764753d9a53069cc6ebeb662500d0a1c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
