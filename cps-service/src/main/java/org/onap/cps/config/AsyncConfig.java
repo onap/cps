@@ -21,8 +21,8 @@
 
 package org.onap.cps.config;
 
-import jakarta.validation.constraints.Min;
 import java.util.concurrent.ThreadPoolExecutor;
+import javax.validation.constraints.Min;
 import lombok.Setter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;

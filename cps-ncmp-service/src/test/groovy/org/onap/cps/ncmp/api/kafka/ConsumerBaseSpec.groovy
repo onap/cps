@@ -25,7 +25,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.kafka.config.KafkaListenerEndpointRegistry
 import org.springframework.kafka.test.utils.ContainerTestUtils
 
-@SpringBootTest(classes = KafkaListenerEndpointRegistry.class)
+@SpringBootTest
 class ConsumerBaseSpec extends MessagingBaseSpec {
 
     @Autowired

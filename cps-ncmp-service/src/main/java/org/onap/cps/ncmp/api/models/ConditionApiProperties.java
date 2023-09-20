@@ -22,10 +22,10 @@ package org.onap.cps.ncmp.api.models;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.validation.Valid;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import javax.validation.Valid;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;

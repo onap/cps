@@ -20,8 +20,6 @@
 
 package org.onap.cps.spi.repository;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
@@ -29,6 +27,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.spi.utils.EscapeUtils;
