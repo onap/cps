@@ -22,12 +22,12 @@ package org.onap.cps.ncmp.api.inventory.sync.executor;
 
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
-import jakarta.annotation.PostConstruct;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeoutException;
 import java.util.function.Supplier;
+import javax.annotation.PostConstruct;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;

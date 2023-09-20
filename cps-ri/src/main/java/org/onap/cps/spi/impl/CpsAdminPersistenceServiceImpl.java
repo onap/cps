@@ -23,11 +23,11 @@
 
 package org.onap.cps.spi.impl;
 
-import jakarta.transaction.Transactional;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.spi.CpsAdminPersistenceService;

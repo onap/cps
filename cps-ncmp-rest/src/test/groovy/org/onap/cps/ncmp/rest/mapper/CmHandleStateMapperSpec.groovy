@@ -26,7 +26,6 @@ import org.onap.cps.ncmp.api.inventory.CompositeStateBuilder
 import org.onap.cps.ncmp.api.inventory.LockReasonCategory
 import org.onap.cps.ncmp.rest.model.CmHandleCompositeState
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
-import spock.lang.Ignore
 import spock.lang.Specification
 
 import java.time.OffsetDateTime
@@ -60,7 +59,6 @@ class CmHandleStateMapperSpec extends Specification {
             assert result.dataSyncState.operational.getSyncState() != null
     }
 
-    @Ignore
     def 'Handling null state.'() {
         expect: 'converting null returns null'
             objectUnderTest.toDataStores(null) == null

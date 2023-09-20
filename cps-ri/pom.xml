@@ -71,7 +71,7 @@
         <!-- Add Hibernate support for Postgres datatype JSONB and Postgres arrays -->
         <dependency>
             <groupId>io.hypersistence</groupId>
-            <artifactId>hypersistence-utils-hibernate-60</artifactId>
+            <artifactId>hypersistence-utils-hibernate-52</artifactId>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>

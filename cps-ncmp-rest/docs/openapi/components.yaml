@@ -223,12 +223,12 @@ components:
         state:
           $ref: '#/components/schemas/CmHandleCompositeState'
     CmHandlePublicProperties:
-      type: object
+      type: array
       items:
-          type: object
-          additionalProperties:
-            type: string
-            example: 'Book Type'
+        type: object
+        additionalProperties:
+          type: string
+          example: Book Type
     CmHandleCompositeState:
       type: object
       properties:

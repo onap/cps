@@ -22,8 +22,8 @@
 
 package org.onap.cps.rest.exceptions;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.validation.ValidationException;
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.ValidationException;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

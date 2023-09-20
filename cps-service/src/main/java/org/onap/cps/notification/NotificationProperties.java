@@ -19,9 +19,9 @@
 
 package org.onap.cps.notification;
 
-import jakarta.validation.constraints.NotNull;
 import java.util.Collections;
 import java.util.Map;
+import javax.validation.constraints.NotNull;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;

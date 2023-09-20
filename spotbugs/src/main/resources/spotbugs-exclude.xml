@@ -49,7 +49,6 @@
 
       <!-- https://github.com/spotbugs/spotbugs/issues/756. spotbugs does not grok Java 11's try-with-resources -->
       <Bug pattern="RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE"/>
-      <Bug pattern="UPM_UNCALLED_PRIVATE_METHOD"/>
       <Bug pattern="EI_EXPOSE_REP"/>
       <Bug pattern="EI_EXPOSE_REP2"/>
     </Or>
