@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a381e45_34b1b0b0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandleQueryServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-20T16:58:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7d4e8181_f317e2cf",
+      "range": {
+        "startLine": 145,
+        "startChar": 16,
+        "endLine": 148,
+        "endChar": 91
+      },
+      "revId": "0eb3f8402bbf6e9b4b2b35dbfbbec8c0e24ad094",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "44a09ae4_61f70e7e",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-09-20T14:37:41Z",
       "side": 1,
       "message": "I think this validation is OTT and need updating (and tests) everytime this options evolves.\nIts just a query! Just document it (is taht included in this patch?)",
+      "range": {
+        "startLine": 151,
+        "startChar": 0,
+        "endLine": 161,
+        "endChar": 5
+      },
+      "revId": "0eb3f8402bbf6e9b4b2b35dbfbbec8c0e24ad094",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a9ff044_91e6ced4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandleQueryServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-20T16:58:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44a09ae4_61f70e7e",
       "range": {
         "startLine": 151,
         "startChar": 0,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6db1245_b8cf4be1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/client/DmiRestClient.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-20T16:58:04Z",
+      "side": 1,
+      "message": "Yes, it can. Since the method \u0027getForObject\u0027 has been marked with @Nullable.\nIt has already been covered on line 122 in DmiRestClientSpec.groovy.",
+      "parentUuid": "d7530516_067fb7ae",
+      "range": {
+        "startLine": 78,
+        "startChar": 16,
+        "endLine": 78,
+        "endChar": 45
+      },
+      "revId": "0eb3f8402bbf6e9b4b2b35dbfbbec8c0e24ad094",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "53c5acf2_a0d4e916",
@@ -100,6 +172,30 @@
       "writtenOn": "2023-09-20T14:37:41Z",
       "side": 1,
       "message": "we shouldn\u0027t care about the the key name ie when can except any key name all e care aebout is the first value of the first key",
+      "range": {
+        "startLine": 147,
+        "startChar": 74,
+        "endLine": 147,
+        "endChar": 84
+      },
+      "revId": "0eb3f8402bbf6e9b4b2b35dbfbbec8c0e24ad094",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8367b82_f8961501",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CmHandleQueriesImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-20T16:58:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "53c5acf2_a0d4e916",
       "range": {
         "startLine": 147,
         "startChar": 74,
@@ -133,6 +229,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3d42454_26c1b846",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CmHandleQueriesImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-20T16:58:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb2d3b9b_0a54a1cf",
+      "range": {
+        "startLine": 149,
+        "startChar": 36,
+        "endLine": 149,
+        "endChar": 42
+      },
+      "revId": "0eb3f8402bbf6e9b4b2b35dbfbbec8c0e24ad094",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d0345ed1_53849b7d",
@@ -146,6 +266,30 @@
       "writtenOn": "2023-09-20T14:37:41Z",
       "side": 1,
       "message": "no nee for empty check before iteration code",
+      "range": {
+        "startLine": 150,
+        "startChar": 16,
+        "endLine": 150,
+        "endChar": 52
+      },
+      "revId": "0eb3f8402bbf6e9b4b2b35dbfbbec8c0e24ad094",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1a18d53_73a51266",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CmHandleQueriesImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-20T16:58:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d0345ed1_53849b7d",
       "range": {
         "startLine": 150,
         "startChar": 16,
@@ -179,6 +323,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ad96870_606f024d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CmHandleQueriesImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-20T16:58:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b5fcbbfc_bbfb2b86",
+      "range": {
+        "startLine": 161,
+        "startChar": 20,
+        "endLine": 161,
+        "endChar": 38
+      },
+      "revId": "0eb3f8402bbf6e9b4b2b35dbfbbec8c0e24ad094",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fdeb0406_5616c6d7",
@@ -192,6 +360,30 @@
       "writtenOn": "2023-09-20T14:37:41Z",
       "side": 1,
       "message": "unreadable and possibly overcomplicated why not use key keyset from the map in a loop",
+      "range": {
+        "startLine": 163,
+        "startChar": 28,
+        "endLine": 164,
+        "endChar": 88
+      },
+      "revId": "0eb3f8402bbf6e9b4b2b35dbfbbec8c0e24ad094",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57d22fcf_3186bf55",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CmHandleQueriesImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-20T16:58:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fdeb0406_5616c6d7",
       "range": {
         "startLine": 163,
         "startChar": 28,
@@ -225,6 +417,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3994ac9b_3edbdd6e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandleQueryServiceSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-20T16:58:04Z",
+      "side": 1,
+      "message": "Yes, it is redundant anymore since I\u0027ve removed the corresponding method.",
+      "parentUuid": "c8181bef_55daae91",
+      "range": {
+        "startLine": 113,
+        "startChar": 12,
+        "endLine": 113,
+        "endChar": 44
+      },
+      "revId": "0eb3f8402bbf6e9b4b2b35dbfbbec8c0e24ad094",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4df24477_4e7a03c0",
@@ -238,6 +454,30 @@
       "writtenOn": "2023-09-20T14:37:41Z",
       "side": 1,
       "message": "this is the only scenario you need to test, the expected result can be anything no need for 4 cm handles just [\u0027some cm handle\u0027] will do!",
+      "range": {
+        "startLine": 134,
+        "startChar": 12,
+        "endLine": 134,
+        "endChar": 183
+      },
+      "revId": "0eb3f8402bbf6e9b4b2b35dbfbbec8c0e24ad094",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5faf998_54146c02",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandleQueryServiceSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-20T16:58:04Z",
+      "side": 1,
+      "message": "The redundant scenarios have been removed.",
+      "parentUuid": "4df24477_4e7a03c0",
       "range": {
         "startLine": 134,
         "startChar": 12,
@@ -271,6 +511,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "edba701f_2e21bd38",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/CmHandleQueriesImplSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-20T16:58:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4ab13d6_645f6c53",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 5
+      },
+      "revId": "0eb3f8402bbf6e9b4b2b35dbfbbec8c0e24ad094",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "093353a7_402b6b6b",
@@ -294,6 +558,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "269c81bf_8b03949d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/CmHandleQueriesImplSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-20T16:58:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "093353a7_402b6b6b",
+      "range": {
+        "startLine": 93,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 72
+      },
+      "revId": "0eb3f8402bbf6e9b4b2b35dbfbbec8c0e24ad094",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3848be6d_5499b49e",
@@ -307,6 +595,30 @@
       "writtenOn": "2023-09-20T14:37:41Z",
       "side": 1,
       "message": "no need to test different combinations of data in Map, just need a mix of each (maybe an edgecase when map is empty!",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 108
+      },
+      "revId": "0eb3f8402bbf6e9b4b2b35dbfbbec8c0e24ad094",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b7d2744_d19beac2",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/CmHandleQueriesImplSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-20T16:58:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3848be6d_5499b49e",
       "range": {
         "startLine": 105,
         "startChar": 0,
