@@ -265,22 +265,26 @@ components:
             key: my-property
           cmHandleProperties:
             key: my-property
+          moduleSetTag: my-module-set-tag
         - cmHandle: my-cm-handle
           publicCmHandleProperties:
             key: my-property
           cmHandleProperties:
             key: my-property
+          moduleSetTag: my-module-set-tag
         createdCmHandles:
         - cmHandle: my-cm-handle
           publicCmHandleProperties:
             key: my-property
           cmHandleProperties:
             key: my-property
+          moduleSetTag: my-module-set-tag
         - cmHandle: my-cm-handle
           publicCmHandleProperties:
             key: my-property
           cmHandleProperties:
             key: my-property
+          moduleSetTag: my-module-set-tag
         dmiPlugin: my-dmi-plugin
         dmiModelPlugin: my-dmi-model-plugin
         dmiDataPlugin: my-dmi-data-plugin
@@ -325,6 +329,7 @@ components:
           key: my-property
         cmHandleProperties:
           key: my-property
+        moduleSetTag: my-module-set-tag
       properties:
         cmHandle:
           example: my-cm-handle
@@ -339,6 +344,9 @@ components:
             example: my-property
             type: string
           type: object
+        moduleSetTag:
+          example: my-module-set-tag
+          type: string
       required:
       - cmHandle
       type: object
