@@ -135,6 +135,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e8c75268_035503e6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-20T16:22:09Z",
+      "side": 1,
+      "message": "this is the lockreason, correct?\nMake it human readable by prefix it with \"Upgrading to: \"\nYou can declare this string as a public constant so you can remove it again in the watchdog when you need to extract the module tag",
+      "range": {
+        "startLine": 370,
+        "startChar": 32,
+        "endLine": 370,
+        "endChar": 44
+      },
+      "revId": "9ff84ffd7159cd36629bcdd6e9897e415c956e87",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "42cc958b_f43921b3",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 3
