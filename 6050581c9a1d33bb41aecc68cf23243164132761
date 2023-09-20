@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0e2385ce_664bf466",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-09-20T15:13:50Z",
+      "side": 1,
+      "message": "NB: maybe extract to a method. can be named appropriately. maybe even setTrustLevelPerDmiPlugin if it sounds alright.",
+      "range": {
+        "startLine": 117,
+        "startChar": 8,
+        "endLine": 121,
+        "endChar": 9
+      },
+      "revId": "6050581c9a1d33bb41aecc68cf23243164132761",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "110cdacc_26ea6076",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/DmiPluginRegistration.java",
         "patchSetId": 3
