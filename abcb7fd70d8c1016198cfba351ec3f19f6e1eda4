@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b92f1b1_75536b67",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/CpsDataUpdatedEventFactory.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-09-20T10:19:39Z",
+      "side": 1,
+      "message": "Since you are going to work with CloudEvents you wont be needing a different pojo class to be created.\n\nSee the CloudEventBuilder in the cps-ncmp repo to spot examples around it.\nOr we can discuss more around it.\n\nAlso you might have to follow some RFC standard..right ??",
+      "range": {
+        "startLine": 113,
+        "startChar": 8,
+        "endLine": 119,
+        "endChar": 36
+      },
+      "revId": "abcb7fd70d8c1016198cfba351ec3f19f6e1eda4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
