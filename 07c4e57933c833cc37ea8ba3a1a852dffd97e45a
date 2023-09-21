@@ -65,6 +65,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "827319f1_4ff44514",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2023-09-21T11:42:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "648e139e_c397d4ef",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 122,
+        "endChar": 9
+      },
+      "revId": "07c4e57933c833cc37ea8ba3a1a852dffd97e45a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4f6746cb_e1e6b012",
@@ -78,6 +102,30 @@
       "writtenOn": "2023-09-14T14:17:56Z",
       "side": 1,
       "message": "Put an and block above this line for and is added to trust level cache",
+      "range": {
+        "startLine": 123,
+        "startChar": 109,
+        "endLine": 124,
+        "endChar": 92
+      },
+      "revId": "07c4e57933c833cc37ea8ba3a1a852dffd97e45a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "50daea80_22291a4f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2023-09-21T11:42:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4f6746cb_e1e6b012",
       "range": {
         "startLine": 123,
         "startChar": 109,
