@@ -18,32 +18,29 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.trustlevel;
+package org.onap.cps.ncmp.api.impl.trustlevel
 
-import lombok.Getter;
+import com.hazelcast.map.IMap
+import spock.lang.Specification
 
-@Getter
-public enum TrustLevel {
-    NONE(0), COMPLETE(99);
+class TrustLevelComparatorSpec extends Specification {
 
-    private final Integer value;
+    def targetTrustLevel = TrustLevel.COMPLETE
 
-    TrustLevel(final Integer value) {
-        this.value = value;
+    def mockTrustLevelPerCmHandle = Mock(IMap<String, TrustLevel>)
+
+    def objectUnderTest = new TrustLevelComparator(targetTrustLevel, mockTrustLevelPerCmHandle)
+
+    def 'Obtain cm handle ids by a given trust level value'() {
+        given: 'The hazelcast cache return a cm handle with trust level complete'
+            def entry = Map.entry('cmhandle1', TrustLevel.COMPLETE)
+            def entry2= Map.entry('cmhandle2', TrustLevel.NONE)
+            mockTrustLevelPerCmHandle.entrySet() >> [entry, entry2]
+        when: 'cm handles are retrieved'
+            def result = objectUnderTest.getAllCmHandles()
+        then: 'the result is equal to expected result'
+            result == ['cmhandle1'] as Set
     }
 
-    /**
-     * Finds the value of the given enum.
-     *
-     * @param trustLevelValue value of the enum
-     * @return TrustLevel
-     */
-    public static TrustLevel fromString(final String trustLevelValue) {
-        for (final TrustLevel currentValue : TrustLevel.values()) {
-            if (currentValue.name().equals(trustLevelValue)) {
-                return currentValue;
-            }
-        }
-        return null;
-    }
+
 }
