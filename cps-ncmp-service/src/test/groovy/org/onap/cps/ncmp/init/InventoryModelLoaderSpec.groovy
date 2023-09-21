@@ -20,6 +20,9 @@
 
 package org.onap.cps.ncmp.init
 
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
+
 import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
 import ch.qos.logback.core.read.ListAppender
@@ -61,15 +64,15 @@ class InventoryModelLoaderSpec extends Specification {
 
     def 'Onboard subscription model via application ready event.'() {
         given: 'dataspace is ready for use'
-            mockCpsAdminService.getDataspace('NCMP-Admin') >> new Dataspace('')
+            mockCpsAdminService.getDataspace(NCMP_DATASPACE_NAME) >> new Dataspace('')
         when: 'the application is ready'
             objectUnderTest.onApplicationEvent(Mock(ApplicationReadyEvent))
         then: 'the module service is used to create the new schema set from the correct resource'
-            1 * mockCpsModuleService.createSchemaSet('NCMP-Admin', 'dmi-registry-2023-08-23', expectedYangResourceToContentMap)
+            1 * mockCpsModuleService.createSchemaSet(NCMP_DATASPACE_NAME, 'dmi-registry-2023-08-23', expectedYangResourceToContentMap)
         and: 'the admin service is used to update the anchor'
-            1 * mockCpsAdminService.updateAnchorSchemaSet('NCMP-Admin', 'ncmp-dmi-registry', 'dmi-registry-2023-08-23')
+            1 * mockCpsAdminService.updateAnchorSchemaSet(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, 'dmi-registry-2023-08-23')
         and: 'No schema sets are being removed by the module service (yet)'
-            0 * mockCpsModuleService.deleteSchemaSet('NCMP-Admin', _, _)
+            0 * mockCpsModuleService.deleteSchemaSet(NCMP_DATASPACE_NAME, _, _)
     }
 
 }

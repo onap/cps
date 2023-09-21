@@ -20,6 +20,9 @@
 
 package org.onap.cps.ncmp.init;
 
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME;
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR;
+
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsDataService;
@@ -32,8 +35,6 @@ public class InventoryModelLoader extends AbstractModelLoader {
 
     private static final String NEW_MODEL_FILE_NAME = "dmi-registry@2023-08-23.yang";
     private static final String NEW_SCHEMA_SET_NAME = "dmi-registry-2023-08-23";
-    private static final String DATASPACE_NAME = "NCMP-Admin";
-    private static final String ANCHOR_NAME = "ncmp-dmi-registry";
 
     public InventoryModelLoader(final CpsAdminService cpsAdminService,
                                 final CpsModuleService cpsModuleService,
@@ -43,20 +44,20 @@ public class InventoryModelLoader extends AbstractModelLoader {
 
     @Override
     public void onboardOrUpgradeModel() {
-        waitUntilDataspaceIsAvailable(DATASPACE_NAME);
+        waitUntilDataspaceIsAvailable(NCMP_DATASPACE_NAME);
         updateInventoryModel();
         log.info("Inventory Model updated successfully");
     }
 
     private void updateInventoryModel() {
-        createSchemaSet(DATASPACE_NAME, NEW_SCHEMA_SET_NAME, NEW_MODEL_FILE_NAME);
-        updateAnchorSchemaSet(DATASPACE_NAME, ANCHOR_NAME, NEW_SCHEMA_SET_NAME);
+        createSchemaSet(NCMP_DATASPACE_NAME, NEW_SCHEMA_SET_NAME, NEW_MODEL_FILE_NAME);
+        updateAnchorSchemaSet(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NEW_SCHEMA_SET_NAME);
         deleteOldButNotThePreviousSchemaSets();
     }
 
     private void deleteOldButNotThePreviousSchemaSets() {
         //No schema sets passed in yet, but wil be required for future updates
-        deleteUnusedSchemaSets(DATASPACE_NAME);
+        deleteUnusedSchemaSets(NCMP_DATASPACE_NAME);
     }
 
 }

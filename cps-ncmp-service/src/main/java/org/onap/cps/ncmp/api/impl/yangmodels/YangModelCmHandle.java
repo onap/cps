@@ -34,8 +34,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.onap.cps.ncmp.api.impl.inventory.CompositeState;
 import org.onap.cps.ncmp.api.impl.operations.RequiredDmiService;
-import org.onap.cps.ncmp.api.inventory.CompositeState;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 
 /**

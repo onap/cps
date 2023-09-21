@@ -1,6 +1,6 @@
 /*
- *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ * ============LICENSE_START=======================================================
+ *  Copyright (C) 2022-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -18,8 +18,8 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.inventory;
+package org.onap.cps.ncmp.api.impl.inventory;
 
-public enum LockReasonCategory {
-    MODULE_SYNC_FAILED, MODULE_UPGRADE, MODULE_UPGRADE_FAILED
+public enum CmHandleState {
+    ADVISED, READY, LOCKED, DELETING, DELETED
 }

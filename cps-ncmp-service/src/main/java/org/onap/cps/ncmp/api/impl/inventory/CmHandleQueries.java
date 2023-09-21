@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.inventory;
+package org.onap.cps.ncmp.api.impl.inventory;
 
 import java.util.Collection;
 import java.util.List;
