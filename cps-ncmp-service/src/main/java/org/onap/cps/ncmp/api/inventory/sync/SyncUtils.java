@@ -102,13 +102,13 @@ public class SyncUtils {
     }
 
     /**
-     * Query data nodes for cm handles with an "LOCKED" cm handle state with reason LOCKED_MODULE_SYNC_FAILED".
+     * Query data nodes for cm handles with an "LOCKED" cm handle state with reason MODULE_SYNC_FAILED".
      *
      * @return a random LOCKED yang model cm handle, return null if not found
      */
     public List<YangModelCmHandle> getModuleSyncFailedCmHandles() {
         final List<DataNode> lockedCmHandlesAsDataNodeList = cmHandleQueries.queryCmHandleDataNodesByCpsPath(
-                "//lock-reason[@reason=\"LOCKED_MODULE_SYNC_FAILED\"]",
+                "//lock-reason[@reason=\"MODULE_SYNC_FAILED\"]",
                 FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
         return convertCmHandlesDataNodesToYangModelCmHandles(lockedCmHandlesAsDataNodeList);
     }
@@ -136,28 +136,37 @@ public class SyncUtils {
 
 
     /**
-     * Check if the retry mechanism should attempt to unlock the cm handle based on the last update time.
+     * Check if a module sync retry is needed.
      *
      * @param compositeState the composite state currently in the locked state
      * @return if the retry mechanism should be attempted
      */
-    public boolean isReadyForRetry(final CompositeState compositeState) {
-        int timeInMinutesUntilNextAttempt = 1;
+    public boolean needsModuleSyncRetry(final CompositeState compositeState) {
         final OffsetDateTime time =
                 OffsetDateTime.parse(compositeState.getLastUpdateTime(),
                         DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ"));
         final Matcher matcher = retryAttemptPattern.matcher(compositeState.getLockReason().getDetails());
+        final boolean failedDuringModuleSync = LockReasonCategory.MODULE_SYNC_FAILED
+                == compositeState.getLockReason().getLockReasonCategory();
+        if (!failedDuringModuleSync) {
+            log.info("Locked for other reason");
+            return false;
+        }
+        final int timeInMinutesUntilNextAttempt;
         if (matcher.find()) {
             timeInMinutesUntilNextAttempt = (int) Math.pow(2, Integer.parseInt(matcher.group(1)));
         } else {
-            log.debug("First Attempt: no current attempts found.");
+            timeInMinutesUntilNextAttempt = 1;
+            log.info("First Attempt: no current attempts found.");
         }
         final int timeSinceLastAttempt = (int) Duration.between(time, OffsetDateTime.now()).toMinutes();
         if (timeInMinutesUntilNextAttempt >= timeSinceLastAttempt) {
             log.info("Time until next attempt is {} minutes: ",
-                    timeInMinutesUntilNextAttempt - timeSinceLastAttempt);
+                timeInMinutesUntilNextAttempt - timeSinceLastAttempt);
+            return false;
         }
-        return timeSinceLastAttempt > timeInMinutesUntilNextAttempt;
+        log.info("Retry due now");
+        return true;
     }
 
     /**
