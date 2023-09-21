@@ -44,7 +44,7 @@ class NcmpDatastoreRequestHandlerSpec extends Specification {
             objectUnderTest.executeRequest('ds', 'ch1', 'resource1', 'options', topic, false)
         and: 'wait a little for async execution (only if expected)'
             if (expectedCalls > 0) {
-                Thread.sleep(100)
+                Thread.sleep(500)
             }
         then: 'the task is executed in an async fashion or not'
             expectedCalls * spiedCpsNcmpTaskExecutor.executeTask(*_)
