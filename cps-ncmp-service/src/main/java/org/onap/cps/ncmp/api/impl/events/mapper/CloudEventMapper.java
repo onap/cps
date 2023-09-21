@@ -25,7 +25,6 @@ import io.cloudevents.CloudEvent;
 import io.cloudevents.core.CloudEventUtils;
 import io.cloudevents.core.data.PojoCloudEventData;
 import io.cloudevents.jackson.PojoCloudEventDataMapper;
-import io.cloudevents.rw.CloudEventRWException;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -51,9 +50,9 @@ public class CloudEventMapper {
             mappedCloudEvent =
                     CloudEventUtils.mapData(cloudEvent, PojoCloudEventDataMapper.from(objectMapper, targetEventClass));
 
-        } catch (final CloudEventRWException cloudEventRwException) {
+        } catch (final RuntimeException runtimeException) {
             log.error("Unable to map cloud event to target event class type : {} with cause : {}", targetEventClass,
-                    cloudEventRwException.getMessage());
+                    runtimeException.getMessage());
         }
 
         return mappedCloudEvent == null ? null : mappedCloudEvent.getValue();

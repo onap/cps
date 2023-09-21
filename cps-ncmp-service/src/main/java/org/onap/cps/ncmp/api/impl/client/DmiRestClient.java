@@ -75,10 +75,8 @@ public class DmiRestClient {
             final HttpEntity<Object> httpHeaders = new HttpEntity<>(configureHttpHeaders(new HttpHeaders()));
             final JsonNode dmiPluginHealthStatus = restTemplate.getForObject(dmiPluginBaseUrl + "/manage/health",
                     JsonNode.class, httpHeaders);
-            if (dmiPluginHealthStatus != null) {
-                if (dmiPluginHealthStatus.get("status").asText().equals("UP")) {
-                    return DmiPluginStatus.UP;
-                }
+            if (dmiPluginHealthStatus != null && dmiPluginHealthStatus.get("status").asText().equals("UP")) {
+                return DmiPluginStatus.UP;
             }
         } catch (final Exception exception) {
             log.warn("Could not send request for health check since {}", exception.getMessage());

@@ -18,20 +18,22 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.trustlevel;
+package org.onap.cps.ncmp.api.impl.trustlevel
 
-import java.io.Serializable;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import spock.lang.Specification
 
-@AllArgsConstructor
-@Data
-@NoArgsConstructor
-class DeviceTrustLevel implements Serializable {
+class TrustLevelSpec extends Specification {
 
-    private static final long serialVersionUID = -1705715024067165212L;
-
-    private TrustLevel trustLevel;
+    def 'Obtain TrustLevel enum by a string value'() {
+        when: 'TrustLevel is obtained by per #stringValue'
+            def result = TrustLevel.fromString(stringValue)
+        then: 'the result is equal to expected result'
+            result == expectedResult
+        where: 'below scenarios are applicable'
+            scenario                         |   stringValue     ||  expectedResult
+            'the string value is NONE'       |   'NONE'          ||  TrustLevel.NONE
+            'the string value is COMPLETE'   |   'COMPLETE'      ||  TrustLevel.COMPLETE
+            'the string value is some value' |   'some-value'    ||  null
+    }
 
 }
