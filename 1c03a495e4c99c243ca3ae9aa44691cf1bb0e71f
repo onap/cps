@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77f8a668_ef12b91d",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/mapper/CmHandleStateMapper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-21T16:03:14Z",
+      "side": 1,
+      "message": "with a big automatic refactor like this I wouldnt have bothrered about the copyright in class where nothing else changed, but fair play!",
+      "range": {
+        "startLine": 3,
+        "startChar": 22,
+        "endLine": 3,
+        "endChar": 26
+      },
+      "revId": "1c03a495e4c99c243ca3ae9aa44691cf1bb0e71f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "10aec9b9_c03f7c5c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/ncmppersistence/NcmpPersistence.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-21T16:03:14Z",
+      "side": 1,
+      "message": "NB: just 2023 really, but dont worry if teher is nothing else",
+      "range": {
+        "startLine": 3,
+        "startChar": 17,
+        "endLine": 3,
+        "endChar": 22
+      },
+      "revId": "1c03a495e4c99c243ca3ae9aa44691cf1bb0e71f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31e86b58_4e3e2cb0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/ncmppersistence/NcmpPersistence.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-21T16:03:14Z",
+      "side": 1,
+      "message": "private final (if needed)",
+      "range": {
+        "startLine": 37,
+        "startChar": 4,
+        "endLine": 37,
+        "endChar": 11
+      },
+      "revId": "1c03a495e4c99c243ca3ae9aa44691cf1bb0e71f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49b29744_dc1539e4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/ncmppersistence/NcmpPersistence.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-21T16:03:14Z",
+      "side": 1,
+      "message": "what is this about? Really needed ?",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 5
+      },
+      "revId": "1c03a495e4c99c243ca3ae9aa44691cf1bb0e71f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a58f778_10abed04",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/ncmppersistence/NcmpPersistence.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-21T16:03:14Z",
+      "side": 1,
+      "message": "as discussed, no need for deault instead create a impl for common interface and make subclasses extend that",
+      "range": {
+        "startLine": 58,
+        "startChar": 4,
+        "endLine": 58,
+        "endChar": 12
+      },
+      "revId": "1c03a495e4c99c243ca3ae9aa44691cf1bb0e71f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4480a9b6_d5858067",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/ncmppersistence/NcmpPersistence.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-21T16:03:14Z",
+      "side": 1,
+      "message": "why all these defaults?!",
+      "range": {
+        "startLine": 63,
+        "startChar": 1,
+        "endLine": 70,
+        "endChar": 0
+      },
+      "revId": "1c03a495e4c99c243ca3ae9aa44691cf1bb0e71f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb97d3b6_c254e601",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/CmHandleQueriesImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-21T16:03:14Z",
+      "side": 1,
+      "message": "for testware hardcoding of values is OK some would even argue it is betters, but I wont make you undo all that, just keep in mind in future test both are OK...",
+      "range": {
+        "startLine": 97,
+        "startChar": 53,
+        "endLine": 97,
+        "endChar": 98
+      },
+      "revId": "1c03a495e4c99c243ca3ae9aa44691cf1bb0e71f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
