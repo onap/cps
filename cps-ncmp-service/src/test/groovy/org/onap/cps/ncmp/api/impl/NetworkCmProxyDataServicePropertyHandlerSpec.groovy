@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2022 Nordix Foundation
+ * Copyright (C) 2022-2023 Nordix Foundation
  * Modifications Copyright (C) 2022 Bell Canada
  * Modifications Copyright (C) 2023 TechMahindra Ltd.
  * ================================================================================
@@ -22,14 +22,15 @@
 
 package org.onap.cps.ncmp.api.impl
 
-import org.onap.cps.ncmp.api.inventory.InventoryPersistence
-import org.onap.cps.spi.exceptions.DataValidationException
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
 
+import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence
+import org.onap.cps.spi.exceptions.DataValidationException
 import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError.CM_HANDLE_DOES_NOT_EXIST
 import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError.CM_HANDLE_INVALID_ID
 import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError.UNKNOWN_ERROR
 import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.Status
-
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.model.DataNode
@@ -135,7 +136,7 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
             }
         where:
             scenario                   | cmHandleId               | exception                                                                                           || expectedError            | expectedErrorText
-            'Cm Handle does not exist' | 'cmHandleId'             | new DataNodeNotFoundException('NCMP-Admin', 'ncmp-dmi-registry')                                    || CM_HANDLE_DOES_NOT_EXIST | 'cm-handle does not exist'
+            'Cm Handle does not exist' | 'cmHandleId'             | new DataNodeNotFoundException(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR)                                    || CM_HANDLE_DOES_NOT_EXIST | 'cm-handle does not exist'
             'Unknown'                  | 'cmHandleId'             | new RuntimeException('Failed')                                                                      || UNKNOWN_ERROR            | 'Failed'
             'Invalid cm handle id'     | 'cmHandleId with spaces' | new DataValidationException('Name Validation Error.', cmHandleId + 'contains an invalid character') || CM_HANDLE_INVALID_ID     | 'cm-handle has an invalid character(s) in id'
     }
@@ -147,7 +148,7 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
                                          new NcmpServiceCmHandle(cmHandleId: cmHandleId, publicProperties: ['publicProp1': "value"], dmiProperties: [:])]
         and: 'data node can be found for 1st and 3rd cm-handle but not for 2nd cm-handle'
             mockInventoryPersistence.getCmHandleDataNode(*_) >> cmHandleDataNodeAsCollection >> {
-                throw new DataNodeNotFoundException('NCMP-Admin', 'ncmp-dmi-registry') } >> cmHandleDataNodeAsCollection
+                throw new DataNodeNotFoundException(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR) } >> cmHandleDataNodeAsCollection
         when: 'update data node leaves is called using correct parameters'
             def cmHandleResponseList = objectUnderTest.updateCmHandleProperties(cmHandleUpdateRequest)
         then: 'response has 3 values'

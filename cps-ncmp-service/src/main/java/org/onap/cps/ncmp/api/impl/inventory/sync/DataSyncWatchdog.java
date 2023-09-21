@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -18,7 +18,9 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.inventory.sync;
+package org.onap.cps.ncmp.api.impl.inventory.sync;
+
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME;
 
 import com.hazelcast.map.IMap;
 import java.time.OffsetDateTime;
@@ -28,9 +30,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.ncmp.api.impl.config.embeddedcache.SynchronizationCacheConfig;
-import org.onap.cps.ncmp.api.inventory.CompositeState;
-import org.onap.cps.ncmp.api.inventory.DataStoreSyncState;
-import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
+import org.onap.cps.ncmp.api.impl.inventory.CompositeState;
+import org.onap.cps.ncmp.api.impl.inventory.DataStoreSyncState;
+import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -66,7 +68,7 @@ public class DataSyncWatchdog {
                 if (resourceData == null) {
                     log.debug("Error retrieving resource data for Cm-Handle: {}", cmHandleId);
                 } else {
-                    cpsDataService.saveData("NFP-Operational", cmHandleId,
+                    cpsDataService.saveData(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId,
                             resourceData, OffsetDateTime.now());
                     setSyncStateToSynchronized().accept(compositeState);
                     inventoryPersistence.saveCmHandleState(cmHandleId, compositeState);

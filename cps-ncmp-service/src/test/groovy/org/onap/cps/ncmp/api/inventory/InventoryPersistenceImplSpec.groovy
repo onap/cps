@@ -22,14 +22,23 @@
 
 package org.onap.cps.ncmp.api.inventory
 
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NO_TIMESTAMP
+import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
+
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
+import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
+import org.onap.cps.ncmp.api.impl.inventory.CompositeState
+import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistenceImpl
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.spi.CascadeDeleteAllowed
 import org.onap.cps.spi.FetchDescendantsOption
-import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.ModuleDefinition
 import org.onap.cps.spi.model.ModuleReference
@@ -40,9 +49,6 @@ import spock.lang.Specification
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
-
-import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NO_TIMESTAMP
-import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 
 class InventoryPersistenceImplSpec extends Specification {
 
@@ -85,7 +91,7 @@ class InventoryPersistenceImplSpec extends Specification {
     def "Retrieve CmHandle using datanode with #scenario."() {
         given: 'the cps data service returns a data node from the DMI registry'
             def dataNode = new DataNode(childDataNodes:childDataNodes, leaves: leaves)
-            mockCpsDataService.getDataNodes('NCMP-Admin', 'ncmp-dmi-registry', xpath, INCLUDE_ALL_DESCENDANTS) >> [dataNode]
+            mockCpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, xpath, INCLUDE_ALL_DESCENDANTS) >> [dataNode]
         when: 'retrieving the yang modelled cm handle'
             def result = objectUnderTest.getYangModelCmHandle(cmHandleId)
         then: 'the result has the correct id and service names'
@@ -112,7 +118,7 @@ class InventoryPersistenceImplSpec extends Specification {
     def "Handling missing service names as null."() {
         given: 'the cps data service returns a data node from the DMI registry with empty child and leaf attributes'
             def dataNode = new DataNode(childDataNodes:[], leaves: [:])
-            mockCpsDataService.getDataNodes('NCMP-Admin', 'ncmp-dmi-registry', xpath, INCLUDE_ALL_DESCENDANTS) >> [dataNode]
+            mockCpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, xpath, INCLUDE_ALL_DESCENDANTS) >> [dataNode]
         when: 'retrieving the yang modelled cm handle'
             def result = objectUnderTest.getYangModelCmHandle(cmHandleId)
         then: 'the service names are returned as null'
@@ -126,7 +132,7 @@ class InventoryPersistenceImplSpec extends Specification {
     def "Retrieve multiple YangModelCmHandles"() {
         given: 'the cps data service returns 2 data nodes from the DMI registry'
             def dataNodes = [new DataNode(xpath: xpath), new DataNode(xpath: xpath2)]
-            mockCpsDataService.getDataNodesForMultipleXpaths('NCMP-Admin', 'ncmp-dmi-registry', [xpath, xpath2] , INCLUDE_ALL_DESCENDANTS) >> dataNodes
+            mockCpsDataService.getDataNodesForMultipleXpaths(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, [xpath, xpath2] , INCLUDE_ALL_DESCENDANTS) >> dataNodes
         when: 'retrieving the yang modelled cm handle'
             def results = objectUnderTest.getYangModelCmHandles([cmHandleId, cmHandleId2])
         then: 'verify both have returned and cmhandleIds are correct'
@@ -139,7 +145,7 @@ class InventoryPersistenceImplSpec extends Specification {
             def cmHandleId = 'Some-Cm-Handle'
             def dataNode = new DataNode(leaves: ['cm-handle-state': 'ADVISED'])
         and: 'cps data service returns a valid data node'
-            mockCpsDataService.getDataNodes('NCMP-Admin', 'ncmp-dmi-registry',
+            mockCpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
                     '/dmi-registry/cm-handles[@id=\'Some-Cm-Handle\']/state', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> [dataNode]
         when: 'get cm handle state is invoked'
             def result = objectUnderTest.getCmHandleState(cmHandleId)
@@ -156,7 +162,7 @@ class InventoryPersistenceImplSpec extends Specification {
         when: 'update cm handle state is invoked with the #scenario state'
             objectUnderTest.saveCmHandleState(cmHandleId, compositeState)
         then: 'update node leaves is invoked with the correct params'
-            1 * mockCpsDataService.updateDataNodeAndDescendants('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry/cm-handles[@id=\'Some-Cm-Handle\']', expectedJsonData, _ as OffsetDateTime)
+            1 * mockCpsDataService.updateDataNodeAndDescendants(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry/cm-handles[@id=\'Some-Cm-Handle\']', expectedJsonData, _ as OffsetDateTime)
         where: 'the following states are used'
             scenario    | cmHandleState          || expectedJsonData
             'READY'     | CmHandleState.READY    || '{"state":{"cm-handle-state":"READY","last-update-time":"2022-12-31T20:30:40.000+0000"}}'
@@ -172,7 +178,7 @@ class InventoryPersistenceImplSpec extends Specification {
             def cmHandleStateMap = ['Some-Cm-Handle1' : compositeState1, 'Some-Cm-Handle2' : compositeState2]
             objectUnderTest.saveCmHandleStateBatch(cmHandleStateMap)
         then: 'update node leaves is invoked with the correct params'
-            1 * mockCpsDataService.updateDataNodesAndDescendants('NCMP-Admin', 'ncmp-dmi-registry', cmHandlesJsonDataMap, _ as OffsetDateTime)
+            1 * mockCpsDataService.updateDataNodesAndDescendants(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cmHandlesJsonDataMap, _ as OffsetDateTime)
         where: 'the following states are used'
             scenario    | cmHandleState          || cmHandlesJsonDataMap
             'READY'     | CmHandleState.READY    || ['/dmi-registry/cm-handles[@id=\'Some-Cm-Handle1\']':'{"state":{"cm-handle-state":"READY","last-update-time":"2022-12-31T20:30:40.000+0000"}}', '/dmi-registry/cm-handles[@id=\'Some-Cm-Handle2\']':'{"state":{"cm-handle-state":"READY","last-update-time":"2022-12-31T20:30:40.000+0000"}}']
@@ -183,7 +189,7 @@ class InventoryPersistenceImplSpec extends Specification {
     def 'Get module definitions'() {
         given: 'cps module service returns a collection of module definitions'
             def moduleDefinitions = [new ModuleDefinition('moduleName','revision','content')]
-            mockCpsModuleService.getModuleDefinitionsByAnchorName('NFP-Operational','some-cmHandle-Id') >> moduleDefinitions
+            mockCpsModuleService.getModuleDefinitionsByAnchorName(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME,'some-cmHandle-Id') >> moduleDefinitions
         when: 'get module definitions by cmHandle is invoked'
             def result = objectUnderTest.getModuleDefinitionsByCmHandleId('some-cmHandle-Id')
         then: 'the returned result are the same module definitions as returned from the module service'
@@ -193,7 +199,7 @@ class InventoryPersistenceImplSpec extends Specification {
     def 'Get module references'() {
         given: 'cps module service returns a collection of module references'
             def moduleReferences = [new ModuleReference('moduleName','revision','namespace')]
-            mockCpsModuleService.getYangResourcesModuleReferences('NFP-Operational','some-cmHandle-Id') >> moduleReferences
+            mockCpsModuleService.getYangResourcesModuleReferences(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME,'some-cmHandle-Id') >> moduleReferences
         when: 'get yang resources module references by cmHandle is invoked'
             def result = objectUnderTest.getYangResourcesModuleReferences('some-cmHandle-Id')
         then: 'the returned result is a collection of module definitions'
@@ -208,7 +214,8 @@ class InventoryPersistenceImplSpec extends Specification {
         when: 'the method to save cmhandle is called'
             objectUnderTest.saveCmHandle(yangModelCmHandle)
         then: 'the data service method to save list elements is called once'
-            1 * mockCpsDataService.saveListElements('NCMP-Admin','ncmp-dmi-registry','/dmi-registry',_,null) >> {
+            1 * mockCpsDataService.saveListElements(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
+                    _,null) >> {
                 args -> {
                     assert args[3].startsWith('{"cm-handles":[{"id":"cmhandle","additional-properties":[],"public-properties":[]}]}')
                 }
@@ -222,7 +229,8 @@ class InventoryPersistenceImplSpec extends Specification {
         when: 'the cm handles are saved'
             objectUnderTest.saveCmHandleBatch([yangModelCmHandle1, yangModelCmHandle2])
         then: 'CPS Data Service persists both cm handles as a batch'
-            1 * mockCpsDataService.saveListElementsBatch('NCMP-Admin','ncmp-dmi-registry','/dmi-registry',_,null) >> {
+            1 * mockCpsDataService.saveListElementsBatch(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+                    NCMP_DMI_REGISTRY_PARENT, _,null) >> {
                 args -> {
                     def jsonDataList = (args[3] as List)
                     (jsonDataList[0] as String).contains('cmhandle1')
@@ -235,14 +243,14 @@ class InventoryPersistenceImplSpec extends Specification {
         when: 'the method to delete list or list elements is called'
             objectUnderTest.deleteListOrListElement('sample xPath')
         then: 'the data service method to save list elements is called once'
-            1 * mockCpsDataService.deleteListOrListElement('NCMP-Admin','ncmp-dmi-registry','sample xPath',null)
+            1 * mockCpsDataService.deleteListOrListElement(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,'sample xPath',null)
     }
 
     def 'Delete schema set with a valid schema set name'() {
         when: 'the method to delete schema set is called with valid schema set name'
             objectUnderTest.deleteSchemaSetWithCascade('validSchemaSetName')
         then: 'the module service to delete schemaSet is invoked once'
-            1 * mockCpsModuleService.deleteSchemaSet('NFP-Operational', 'validSchemaSetName', CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED)
+            1 * mockCpsModuleService.deleteSchemaSet(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'validSchemaSetName', CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED)
         and: 'the schema set name is validated'
             1 * mockCpsValidator.validateNameCharacters('validSchemaSetName')
     }
@@ -251,7 +259,7 @@ class InventoryPersistenceImplSpec extends Specification {
         when: 'the method to delete schema sets is called with valid schema set names'
             objectUnderTest.deleteSchemaSetsWithCascade(['validSchemaSetName1', 'validSchemaSetName2'])
         then: 'the module service to delete schema sets is invoked once'
-            1 * mockCpsModuleService.deleteSchemaSetsWithCascade('NFP-Operational', ['validSchemaSetName1', 'validSchemaSetName2'])
+            1 * mockCpsModuleService.deleteSchemaSetsWithCascade(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, ['validSchemaSetName1', 'validSchemaSetName2'])
         and: 'the schema set names are validated'
             1 * mockCpsValidator.validateNameCharacters(['validSchemaSetName1', 'validSchemaSetName2'])
     }
@@ -260,7 +268,7 @@ class InventoryPersistenceImplSpec extends Specification {
         when: 'the method to get data nodes is called'
             objectUnderTest.getDataNode('sample xPath')
         then: 'the data persistence service method to get data node is invoked once'
-            1 * mockCpsDataService.getDataNodes('NCMP-Admin','ncmp-dmi-registry','sample xPath', INCLUDE_ALL_DESCENDANTS)
+            1 * mockCpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,'sample xPath', INCLUDE_ALL_DESCENDANTS)
     }
 
     def 'Get cmHandle data node'() {
@@ -269,38 +277,35 @@ class InventoryPersistenceImplSpec extends Specification {
         when: 'the method to get data nodes is called'
             objectUnderTest.getCmHandleDataNode('sample cmHandleId')
         then: 'the data persistence service method to get cmHandle data node is invoked once with expected xPath'
-            1 * mockCpsDataService.getDataNodes('NCMP-Admin','ncmp-dmi-registry',expectedXPath, INCLUDE_ALL_DESCENDANTS)
+            1 * mockCpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, expectedXPath, INCLUDE_ALL_DESCENDANTS)
     }
 
     def 'Get CM handles that has given module names'() {
         when: 'the method to get cm handles is called'
             objectUnderTest.getCmHandleIdsWithGivenModules(['sample-module-name'])
         then: 'the admin persistence service method to query anchors is invoked once with the same parameter'
-            1 * mockCpsAdminService.queryAnchorNames('NFP-Operational',['sample-module-name'])
+            1 * mockCpsAdminService.queryAnchorNames(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, ['sample-module-name'])
     }
 
     def 'Replace list content'() {
         when: 'replace list content method is called with xpath and data nodes collection'
             objectUnderTest.replaceListContent('sample xpath', [new DataNode()])
         then: 'the cps data service method to replace list content is invoked once with same parameters'
-            1 * mockCpsDataService.replaceListContent('NCMP-Admin', 'ncmp-dmi-registry',
-                    'sample xpath', [new DataNode()], NO_TIMESTAMP);
+            1 * mockCpsDataService.replaceListContent(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,'sample xpath', [new DataNode()], NO_TIMESTAMP);
     }
 
     def 'Delete data node via xPath'() {
         when: 'Delete data node method is called with xpath as parameter'
             objectUnderTest.deleteDataNode('sample dataNode xpath')
         then: 'the cps data service method to delete data node is invoked once with the same xPath'
-            1 * mockCpsDataService.deleteDataNode('NCMP-Admin', 'ncmp-dmi-registry',
-                    'sample dataNode xpath', NO_TIMESTAMP);
+            1 * mockCpsDataService.deleteDataNode(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, 'sample dataNode xpath', NO_TIMESTAMP);
     }
 
     def 'Delete multiple data nodes via xPath'() {
         when: 'Delete data nodes method is called with multiple xpaths as parameters'
             objectUnderTest.deleteDataNodes(['xpath1', 'xpath2'])
         then: 'the cps data service method to delete data nodes is invoked once with the same xPaths'
-            1 * mockCpsDataService.deleteDataNodes('NCMP-Admin', 'ncmp-dmi-registry',
-                    ['xpath1', 'xpath2'], NO_TIMESTAMP);
+            1 * mockCpsDataService.deleteDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, ['xpath1', 'xpath2'], NO_TIMESTAMP);
     }
 
 }

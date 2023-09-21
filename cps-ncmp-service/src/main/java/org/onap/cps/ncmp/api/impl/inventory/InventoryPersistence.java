@@ -19,17 +19,17 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.inventory;
+package org.onap.cps.ncmp.api.impl.inventory;
 
 import java.util.Collection;
 import java.util.Map;
+import org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
-import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.ModuleDefinition;
 import org.onap.cps.spi.model.ModuleReference;
 
-public interface InventoryPersistence {
+public interface InventoryPersistence extends NcmpPersistence {
 
     /**
      * Get the Cm Handle Composite State from the data node.
@@ -101,61 +101,6 @@ public interface InventoryPersistence {
     void saveCmHandleBatch(Collection<YangModelCmHandle> yangModelCmHandles);
 
     /**
-     * Method to delete a list or a list element.
-     *
-     * @param listElementXpath list element xPath
-     */
-    void deleteListOrListElement(String listElementXpath);
-
-    /**
-     * Method to delete a schema set.
-     *
-     * @param schemaSetName schema set name
-     */
-    void deleteSchemaSetWithCascade(String schemaSetName);
-
-    /**
-     * Method to delete multiple schema sets.
-     *
-     * @param schemaSetNames schema set names
-     */
-    void deleteSchemaSetsWithCascade(Collection<String> schemaSetNames);
-
-    /**
-     * Get data node via xpath.
-     *
-     * @param xpath xpath
-     * @return data node
-     */
-    Collection<DataNode> getDataNode(String xpath);
-
-    /**
-     * Get data node via xpath.
-     *
-     * @param xpath xpath
-     * @param fetchDescendantsOption fetch descendants option
-     * @return data node
-     */
-    Collection<DataNode> getDataNode(String xpath, FetchDescendantsOption fetchDescendantsOption);
-
-    /**
-     * Get collection of data nodes via xpaths.
-     *
-     * @param xpaths collection of xpaths
-     * @return collection of data nodes
-     */
-    Collection<DataNode> getDataNodes(Collection<String> xpaths);
-
-    /**
-     * Get collection of data nodes via xpaths.
-     *
-     * @param xpaths collection of xpaths
-     * @param fetchDescendantsOption fetch descendants option
-     * @return collection of data nodes
-     */
-    Collection<DataNode> getDataNodes(Collection<String> xpaths, FetchDescendantsOption fetchDescendantsOption);
-
-    /**
      * Get data node of given cm handle.
      *
      * @param cmHandleId cmHandle ID
@@ -178,26 +123,4 @@ public interface InventoryPersistence {
      * @return Collection of CM handle Ids
      */
     Collection<String> getCmHandleIdsWithGivenModules(Collection<String> moduleNamesForQuery);
-
-    /**
-     * Replaces list content by removing all existing elements and inserting the given new elements as data nodes.
-     *
-     * @param parentNodeXpath parent node xpath
-     * @param dataNodes       datanodes representing the updated data
-     */
-    void replaceListContent(String parentNodeXpath, Collection<DataNode> dataNodes);
-
-    /**
-     * Deletes data node.
-     *
-     * @param dataNodeXpath data node xpath
-     */
-    void deleteDataNode(String dataNodeXpath);
-
-    /**
-     * Deletes multiple data nodes.
-     *
-     * @param dataNodeXpaths data node xpaths
-     */
-    void deleteDataNodes(Collection<String> dataNodeXpaths);
 }

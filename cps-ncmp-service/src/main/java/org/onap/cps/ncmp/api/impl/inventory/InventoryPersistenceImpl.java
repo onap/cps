@@ -20,10 +20,8 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.inventory;
+package org.onap.cps.ncmp.api.impl.inventory;
 
-import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME;
-import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NO_TIMESTAMP;
 import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED;
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
 
@@ -56,27 +54,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class InventoryPersistenceImpl implements InventoryPersistence {
 
-    private static final String NCMP_DATASPACE_NAME = "NCMP-Admin";
-
-    private static final String NCMP_DMI_REGISTRY_ANCHOR = "ncmp-dmi-registry";
-
-    private static final String NCMP_DMI_REGISTRY_PARENT = "/dmi-registry";
-
     private final JsonObjectMapper jsonObjectMapper;
-
     private final CpsDataService cpsDataService;
-
     private final CpsModuleService cpsModuleService;
-
     private final CpsAdminService cpsAdminService;
-
     private final CpsValidator cpsValidator;
 
     @Override
     public CompositeState getCmHandleState(final String cmHandleId) {
         final DataNode stateAsDataNode = cpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                createCmHandleXPath(cmHandleId) + "/state",
-                FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS).iterator().next();
+                        createCmHandleXPath(cmHandleId) + "/state", FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+                .iterator().next();
         cpsValidator.validateNameCharacters(cmHandleId);
         return new CompositeStateBuilder().fromDataNode(stateAsDataNode).build();
     }
@@ -85,16 +73,14 @@ public class InventoryPersistenceImpl implements InventoryPersistence {
     public void saveCmHandleState(final String cmHandleId, final CompositeState compositeState) {
         final String cmHandleJsonData = createStateJsonData(jsonObjectMapper.asJsonString(compositeState));
         cpsDataService.updateDataNodeAndDescendants(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                createCmHandleXPath(cmHandleId),
-                cmHandleJsonData, OffsetDateTime.now());
+                createCmHandleXPath(cmHandleId), cmHandleJsonData, OffsetDateTime.now());
     }
 
     @Override
     public void saveCmHandleStateBatch(final Map<String, CompositeState> cmHandleStatePerCmHandleId) {
         final Map<String, String> cmHandlesJsonDataMap = new HashMap<>();
         cmHandleStatePerCmHandleId.forEach((cmHandleId, compositeState) -> cmHandlesJsonDataMap.put(
-                createCmHandleXPath(cmHandleId),
-                createStateJsonData(jsonObjectMapper.asJsonString(compositeState))));
+                createCmHandleXPath(cmHandleId), createStateJsonData(jsonObjectMapper.asJsonString(compositeState))));
         cpsDataService.updateDataNodesAndDescendants(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
                 cmHandlesJsonDataMap, OffsetDateTime.now());
     }
@@ -145,14 +131,14 @@ public class InventoryPersistenceImpl implements InventoryPersistence {
         final List<String> cmHandlesJsonData = new ArrayList<>();
         yangModelCmHandles.forEach(yangModelCmHandle -> cmHandlesJsonData.add(
                 createCmHandleJsonData(jsonObjectMapper.asJsonString(yangModelCmHandle))));
-        cpsDataService.saveListElementsBatch(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                NCMP_DMI_REGISTRY_PARENT, cmHandlesJsonData, NO_TIMESTAMP);
+        cpsDataService.saveListElementsBatch(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
+                cmHandlesJsonData, NO_TIMESTAMP);
     }
 
     @Override
     public void deleteListOrListElement(final String listElementXpath) {
-        cpsDataService.deleteListOrListElement(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                listElementXpath, NO_TIMESTAMP);
+        cpsDataService.deleteListOrListElement(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, listElementXpath,
+                NO_TIMESTAMP);
     }
 
     @Override
@@ -187,8 +173,8 @@ public class InventoryPersistenceImpl implements InventoryPersistence {
     @Timed(value = "cps.ncmp.inventory.persistence.datanode.get",
             description = "Time taken to get a data node (from ncmp dmi registry)")
     public Collection<DataNode> getDataNode(final String xpath, final FetchDescendantsOption fetchDescendantsOption) {
-        return cpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                xpath, fetchDescendantsOption);
+        return cpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, xpath,
+                fetchDescendantsOption);
     }
 
     @Override
@@ -199,8 +185,8 @@ public class InventoryPersistenceImpl implements InventoryPersistence {
     @Override
     public Collection<DataNode> getDataNodes(final Collection<String> xpaths,
                                              final FetchDescendantsOption fetchDescendantsOption) {
-        return cpsDataService.getDataNodesForMultipleXpaths(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                xpaths, fetchDescendantsOption);
+        return cpsDataService.getDataNodesForMultipleXpaths(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, xpaths,
+                fetchDescendantsOption);
     }
 
     @Override
@@ -222,8 +208,8 @@ public class InventoryPersistenceImpl implements InventoryPersistence {
 
     @Override
     public void replaceListContent(final String parentNodeXpath, final Collection<DataNode> dataNodes) {
-        cpsDataService.replaceListContent(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                parentNodeXpath, dataNodes, NO_TIMESTAMP);
+        cpsDataService.replaceListContent(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, parentNodeXpath, dataNodes,
+                NO_TIMESTAMP);
     }
 
     @Override
@@ -237,7 +223,7 @@ public class InventoryPersistenceImpl implements InventoryPersistence {
     }
 
     private static String createCmHandleXPath(final String cmHandleId) {
-        return "/dmi-registry/cm-handles[@id='" + cmHandleId + "']";
+        return NCMP_DMI_REGISTRY_PARENT + "/cm-handles[@id='" + cmHandleId + "']";
     }
 
     private static String createStateJsonData(final String state) {

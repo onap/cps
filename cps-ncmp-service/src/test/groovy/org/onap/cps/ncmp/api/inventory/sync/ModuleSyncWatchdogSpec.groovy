@@ -22,8 +22,11 @@
 package org.onap.cps.ncmp.api.inventory.sync
 
 import com.hazelcast.map.IMap
+import org.onap.cps.ncmp.api.impl.inventory.sync.ModuleSyncTasks
+import org.onap.cps.ncmp.api.impl.inventory.sync.ModuleSyncWatchdog
+import org.onap.cps.ncmp.api.impl.inventory.sync.SyncUtils
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
-import org.onap.cps.ncmp.api.inventory.sync.executor.AsyncTaskExecutor
+import org.onap.cps.ncmp.api.impl.inventory.sync.executor.AsyncTaskExecutor
 import java.util.concurrent.ArrayBlockingQueue
 import org.onap.cps.spi.model.DataNode
 import spock.lang.Specification

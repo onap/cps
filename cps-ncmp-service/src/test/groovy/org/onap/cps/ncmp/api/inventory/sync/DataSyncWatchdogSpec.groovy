@@ -20,13 +20,17 @@
 
 package org.onap.cps.ncmp.api.inventory.sync
 
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
+
 import com.hazelcast.map.IMap
 import org.onap.cps.api.CpsDataService
+import org.onap.cps.ncmp.api.impl.inventory.sync.DataSyncWatchdog
+import org.onap.cps.ncmp.api.impl.inventory.sync.SyncUtils
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
-import org.onap.cps.ncmp.api.inventory.CmHandleState
-import org.onap.cps.ncmp.api.inventory.CompositeState
-import org.onap.cps.ncmp.api.inventory.InventoryPersistence
-import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
+import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
+import org.onap.cps.ncmp.api.impl.inventory.CompositeState
+import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence
+import org.onap.cps.ncmp.api.impl.inventory.DataStoreSyncState
 import spock.lang.Specification
 
 class DataSyncWatchdogSpec extends Specification {
@@ -61,7 +65,7 @@ class DataSyncWatchdogSpec extends Specification {
         and: 'the sync util returns first resource data'
             1 * mockSyncUtils.getResourceData('cm-handle-1') >> resourceData
         and: 'the cm-handle data is saved'
-            1 * mockCpsDataService.saveData('NFP-Operational', 'cm-handle-1', jsonString, _)
+            1 * mockCpsDataService.saveData(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'cm-handle-1', jsonString, _)
         and: 'the first cm handle operational sync state is updated'
             1 * mockInventoryPersistence.saveCmHandleState('cm-handle-1', compositeState)
         then: 'the inventory persistence cm handle returns a composite state for the second cm handle'
@@ -69,7 +73,7 @@ class DataSyncWatchdogSpec extends Specification {
         and: 'the sync util returns first resource data'
             1 * mockSyncUtils.getResourceData('cm-handle-2') >> resourceData
         and: 'the cm-handle data is saved'
-            1 * mockCpsDataService.saveData('NFP-Operational', 'cm-handle-2', jsonString, _)
+            1 * mockCpsDataService.saveData(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'cm-handle-2', jsonString, _)
         and: 'the second cm handle operational sync state is updated from "UNSYNCHRONIZED" to "SYNCHRONIZED"'
             1 * mockInventoryPersistence.saveCmHandleState('cm-handle-2', compositeState)
     }
