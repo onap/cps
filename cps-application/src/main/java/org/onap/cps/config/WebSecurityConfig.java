@@ -39,9 +39,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
-
     private static final String USER_ROLE = "USER";
-
     private final String username;
     private final String password;
     private final String[] permitUris;
@@ -54,9 +52,9 @@ public class WebSecurityConfig {
      * @param password   password
      */
     public WebSecurityConfig(
-        @Autowired @Value("${security.permit-uri}") final String permitUris,
-        @Autowired @Value("${security.auth.username}") final String username,
-        @Autowired @Value("${security.auth.password}") final String password
+            @Autowired @Value("${permit-uri}") final String permitUris,
+            @Autowired @Value("${security.auth.username}") final String username,
+            @Autowired @Value("${security.auth.password}") final String password
     ) {
         super();
         this.permitUris = permitUris.isEmpty() ? new String[] {"/v3/api-docs"} : permitUris.split("\\s{0,9},\\s{0,9}");
@@ -80,12 +78,11 @@ public class WebSecurityConfig {
         http
                 .httpBasic()
                 .and()
-                .authorizeRequests()
-                .antMatchers(permitUris).permitAll()
+                .authorizeHttpRequests()
+                .requestMatchers(permitUris).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .csrf().disable();
-
         return http.build();
     }
 
