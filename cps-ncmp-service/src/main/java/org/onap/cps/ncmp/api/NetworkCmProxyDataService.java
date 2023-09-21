@@ -25,8 +25,8 @@ package org.onap.cps.ncmp.api;
 
 import java.util.Collection;
 import java.util.Map;
+import org.onap.cps.ncmp.api.impl.inventory.CompositeState;
 import org.onap.cps.ncmp.api.impl.operations.OperationType;
-import org.onap.cps.ncmp.api.inventory.CompositeState;
 import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters;
 import org.onap.cps.ncmp.api.models.CmHandleQueryServiceParameters;
 import org.onap.cps.ncmp.api.models.DataOperationRequest;

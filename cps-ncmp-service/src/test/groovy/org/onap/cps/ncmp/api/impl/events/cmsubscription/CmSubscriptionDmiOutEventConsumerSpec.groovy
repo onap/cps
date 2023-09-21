@@ -20,6 +20,8 @@
 
 package org.onap.cps.ncmp.api.impl.events.cmsubscription
 
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
+
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.hazelcast.map.IMap
 import io.cloudevents.CloudEvent
@@ -131,7 +133,7 @@ class CmSubscriptionDmiOutEventConsumerSpec extends MessagingBaseSpec {
 
     def getDataNode() {
         def leaves = [status:'ACCEPTED', cmHandleId:'cmhandle1'] as Map
-        return new DataNodeBuilder().withDataspace('NCMP-Admin')
+        return new DataNodeBuilder().withDataspace(NCMP_DATASPACE_NAME)
             .withAnchor('AVC-Subscriptions').withXpath('/subscription-registry/subscription')
             .withLeaves(leaves).build()
     }

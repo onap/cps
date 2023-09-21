@@ -21,8 +21,8 @@
 package org.onap.cps.ncmp.api.impl.events.lcm;
 
 import java.util.Map;
+import org.onap.cps.ncmp.api.impl.inventory.CmHandleState;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
-import org.onap.cps.ncmp.api.inventory.CmHandleState;
 
 /**
  * The implementation of it should handle the persisting of composite state and delegate the request to publish the

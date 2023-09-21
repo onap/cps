@@ -23,15 +23,32 @@
 
 package org.onap.cps.ncmp.rest.controller
 
+import static org.onap.cps.ncmp.api.impl.inventory.CompositeState.DataStores
+import static org.onap.cps.ncmp.api.impl.inventory.CompositeState.Operational
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
+import static org.onap.cps.ncmp.api.impl.operations.OperationType.CREATE
+import static org.onap.cps.ncmp.api.impl.operations.OperationType.UPDATE
+import static org.onap.cps.ncmp.api.impl.operations.OperationType.PATCH
+import static org.onap.cps.ncmp.api.impl.operations.OperationType.DELETE
+import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_OPERATIONAL
+import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING
+import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.OPERATIONAL
+import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
+import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
+
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.mapstruct.factory.Mappers
 import org.onap.cps.TestUtils
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService
 import org.onap.cps.ncmp.api.NetworkCmProxyQueryService
-import org.onap.cps.ncmp.api.inventory.CmHandleState
-import org.onap.cps.ncmp.api.inventory.CompositeState
-import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
-import org.onap.cps.ncmp.api.inventory.LockReasonCategory
+import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
+import org.onap.cps.ncmp.api.impl.inventory.CompositeState
+import org.onap.cps.ncmp.api.impl.inventory.DataStoreSyncState
+import org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory
 import org.onap.cps.ncmp.rest.model.DataOperationRequest
 import org.onap.cps.ncmp.rest.model.DataOperationDefinition
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
@@ -57,23 +74,6 @@ import spock.lang.Specification
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
-
-import static org.onap.cps.ncmp.api.inventory.CompositeState.DataStores
-import static org.onap.cps.ncmp.api.inventory.CompositeState.Operational
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
-import static org.onap.cps.ncmp.api.impl.operations.OperationType.CREATE
-import static org.onap.cps.ncmp.api.impl.operations.OperationType.UPDATE
-import static org.onap.cps.ncmp.api.impl.operations.OperationType.PATCH
-import static org.onap.cps.ncmp.api.impl.operations.OperationType.DELETE
-import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_OPERATIONAL
-import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING
-import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.OPERATIONAL
-import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS;
-import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
 
 @WebMvcTest(NetworkCmProxyController)
 class NetworkCmProxyControllerSpec extends Specification {

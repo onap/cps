@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,8 +20,11 @@
 
 package org.onap.cps.ncmp.api.inventory.sync
 
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
+
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsModuleService
+import org.onap.cps.ncmp.api.impl.inventory.sync.ModuleSyncService
 import org.onap.cps.ncmp.api.impl.operations.DmiModelOperations
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
@@ -38,7 +41,7 @@ class ModuleSyncServiceSpec extends Specification {
 
     def objectUnderTest = new ModuleSyncService(mockDmiModelOperations, mockCpsModuleService, mockCpsAdminService)
 
-    def expectedDataspaceName = 'NFP-Operational'
+    def expectedDataspaceName = NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
 
     def 'Sync model for a (new) cm handle with #scenario'() {
         given: 'a cm handle'
@@ -57,9 +60,9 @@ class ModuleSyncServiceSpec extends Specification {
             mockCpsModuleService.identifyNewModuleReferences(moduleReferences) >> toModuleReference(identifiedNewModuleReferences)
             objectUnderTest.syncAndCreateSchemaSetAndAnchor(yangModelCmHandle)
         then: 'create schema set from module is invoked with correct parameters'
-            1 * mockCpsModuleService.createSchemaSetFromModules('NFP-Operational', 'cmHandleId-1', newModuleNameContentToMap, moduleReferences)
+            1 * mockCpsModuleService.createSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'cmHandleId-1', newModuleNameContentToMap, moduleReferences)
         and: 'anchor is created with the correct parameters'
-            1 * mockCpsAdminService.createAnchor('NFP-Operational', 'cmHandleId-1', 'cmHandleId-1')
+            1 * mockCpsAdminService.createAnchor(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'cmHandleId-1', 'cmHandleId-1')
         where: 'the following parameters are used'
             scenario             | existingModuleResourcesInCps           | identifiedNewModuleReferences | newModuleNameContentToMap
             'one new module'     | [['module2' : '2'], ['module3' : '3']] | [['module1' : '1']]           | [module1: 'some yang source']

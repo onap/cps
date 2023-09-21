@@ -20,6 +20,7 @@
 
 package org.onap.cps.ncmp.api.impl;
 
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT;
 import static org.onap.cps.ncmp.api.impl.utils.CmHandleQueryConditions.HAS_ALL_MODULES;
 import static org.onap.cps.ncmp.api.impl.utils.CmHandleQueryConditions.HAS_ALL_PROPERTIES;
 import static org.onap.cps.ncmp.api.impl.utils.CmHandleQueryConditions.WITH_CPS_PATH;
@@ -41,12 +42,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.cpspath.parser.PathParsingException;
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandleQueryService;
+import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueries;
+import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence;
+import org.onap.cps.ncmp.api.impl.inventory.enums.PropertyType;
 import org.onap.cps.ncmp.api.impl.utils.InventoryQueryConditions;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
-import org.onap.cps.ncmp.api.inventory.CmHandleQueries;
-import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
-import org.onap.cps.ncmp.api.inventory.enums.PropertyType;
 import org.onap.cps.ncmp.api.models.CmHandleQueryServiceParameters;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.spi.exceptions.DataValidationException;
@@ -198,12 +199,12 @@ public class NetworkCmProxyCmHandleQueryServiceImpl implements NetworkCmProxyCmH
     }
 
     private Collection<NcmpServiceCmHandle> getAllCmHandles() {
-        final DataNode dataNode = inventoryPersistence.getDataNode("/dmi-registry").iterator().next();
+        final DataNode dataNode = inventoryPersistence.getDataNode(NCMP_DMI_REGISTRY_PARENT).iterator().next();
         return dataNode.getChildDataNodes().stream().map(this::createNcmpServiceCmHandle).collect(Collectors.toSet());
     }
 
     private Collection<String> getAllCmHandleIds() {
-        final DataNode dataNode = inventoryPersistence.getDataNode("/dmi-registry", DIRECT_CHILDREN_ONLY)
+        final DataNode dataNode = inventoryPersistence.getDataNode(NCMP_DMI_REGISTRY_PARENT, DIRECT_CHILDREN_ONLY)
                 .iterator().next();
         return collectCmHandleIdsFromDataNodes(dataNode.getChildDataNodes());
     }

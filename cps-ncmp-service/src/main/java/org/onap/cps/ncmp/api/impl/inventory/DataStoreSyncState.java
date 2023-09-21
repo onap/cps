@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -18,17 +18,8 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.inventory.enums;
+package org.onap.cps.ncmp.api.impl.inventory;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
-@Getter
-@AllArgsConstructor
-public enum PropertyType {
-    ADDITIONAL("additional-properties"),
-    PUBLIC("public-properties"),
-    DMI_PLUGIN("dmiPluginName");
-
-    private final String yangContainerName;
+public enum DataStoreSyncState {
+    SYNCHRONIZED, UNSYNCHRONIZED, NONE_REQUESTED
 }

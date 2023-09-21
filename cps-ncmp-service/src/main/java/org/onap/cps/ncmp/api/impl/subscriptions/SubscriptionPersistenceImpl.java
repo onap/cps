@@ -20,47 +20,48 @@
 
 package org.onap.cps.ncmp.api.impl.subscriptions;
 
-import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NO_TIMESTAMP;
-
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsDataService;
+import org.onap.cps.api.CpsModuleService;
+import org.onap.cps.ncmp.api.impl.inventory.NcmpPersistenceImpl;
 import org.onap.cps.ncmp.api.impl.utils.DataNodeHelper;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelSubscriptionEvent;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.spi.utils.CpsValidator;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.stereotype.Component;
 
 @Slf4j
-@RequiredArgsConstructor
 @Component
-public class SubscriptionPersistenceImpl implements SubscriptionPersistence {
+public class SubscriptionPersistenceImpl extends NcmpPersistenceImpl implements SubscriptionPersistence {
 
-    private static final String SUBSCRIPTION_DATASPACE_NAME = "NCMP-Admin";
     private static final String SUBSCRIPTION_ANCHOR_NAME = "AVC-Subscriptions";
     private static final String SUBSCRIPTION_REGISTRY_PARENT = "/subscription-registry";
-    private final JsonObjectMapper jsonObjectMapper;
-    private final CpsDataService cpsDataService;
+
+    public SubscriptionPersistenceImpl(final JsonObjectMapper jsonObjectMapper, final CpsDataService cpsDataService,
+                                       final CpsModuleService cpsModuleService, final CpsValidator cpsValidator) {
+        super(jsonObjectMapper, cpsDataService, cpsModuleService, cpsValidator);
+    }
+
 
     @Override
     public void saveSubscriptionEvent(final YangModelSubscriptionEvent yangModelSubscriptionEvent) {
         final String clientId = yangModelSubscriptionEvent.getClientId();
         final String subscriptionName = yangModelSubscriptionEvent.getSubscriptionName();
 
-        final Collection<DataNode> dataNodes = cpsDataService.getDataNodes(SUBSCRIPTION_DATASPACE_NAME,
+        final Collection<DataNode> dataNodes = getCpsDataService().getDataNodes(NCMP_DATASPACE_NAME,
                 SUBSCRIPTION_ANCHOR_NAME, SUBSCRIPTION_REGISTRY_PARENT, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
 
         if (isSubscriptionRegistryEmptyOrNonExist(dataNodes, clientId, subscriptionName)) {
             saveSubscriptionEventYangModel(createSubscriptionEventJsonData(
-                    jsonObjectMapper.asJsonString(yangModelSubscriptionEvent)));
+                    getJsonObjectMapper().asJsonString(yangModelSubscriptionEvent)));
         } else {
             findDeltaCmHandlesAddOrUpdateInDatabase(yangModelSubscriptionEvent, clientId, subscriptionName, dataNodes);
         }
@@ -74,8 +75,7 @@ public class SubscriptionPersistenceImpl implements SubscriptionPersistence {
         final Map<String, Map<String, String>> cmHandleIdToStatusAndDetailsAsMapOriginal =
                 DataNodeHelper.cmHandleIdToStatusAndDetailsAsMapFromDataNode(dataNodes);
 
-        final Map<String, Map<String, String>> newTargetCmHandles =
-                mapDifference(cmHandleIdToStatusAndDetailsAsMapNew,
+        final Map<String, Map<String, String>> newTargetCmHandles = mapDifference(cmHandleIdToStatusAndDetailsAsMapNew,
                         cmHandleIdToStatusAndDetailsAsMapOriginal);
         traverseCmHandleList(newTargetCmHandles, clientId, subscriptionName, true);
 
@@ -88,7 +88,7 @@ public class SubscriptionPersistenceImpl implements SubscriptionPersistence {
             final YangModelSubscriptionEvent yangModelSubscriptionEvent) {
         return yangModelSubscriptionEvent.getPredicates().getTargetCmHandles()
                 .stream().collect(
-                        HashMap<String, Map<String, String>>::new,
+                        HashMap::new,
                         (result, cmHandle) -> {
                             final String cmHandleId = cmHandle.getCmHandleId();
                             final SubscriptionStatus status = cmHandle.getStatus();
@@ -111,7 +111,7 @@ public class SubscriptionPersistenceImpl implements SubscriptionPersistence {
         final List<YangModelSubscriptionEvent.TargetCmHandle> cmHandleList = targetCmHandlesAsList(cmHandleMap);
         for (final YangModelSubscriptionEvent.TargetCmHandle targetCmHandle : cmHandleList) {
             final String targetCmHandleAsJson =
-                    createTargetCmHandleJsonData(jsonObjectMapper.asJsonString(targetCmHandle));
+                    createTargetCmHandleJsonData(getJsonObjectMapper().asJsonString(targetCmHandle));
             addOrReplaceCmHandlePredicateListElement(targetCmHandleAsJson, clientId, subscriptionName,
                     isAddListElementOperation);
         }
@@ -130,34 +130,31 @@ public class SubscriptionPersistenceImpl implements SubscriptionPersistence {
                                                           final boolean isAddListElementOperation) {
         if (isAddListElementOperation) {
             log.info("targetCmHandleAsJson to be added into DB {}", targetCmHandleAsJson);
-            cpsDataService.saveListElements(SUBSCRIPTION_DATASPACE_NAME,
-                    SUBSCRIPTION_ANCHOR_NAME, createCmHandleXpathPredicates(clientId, subscriptionName),
-                    targetCmHandleAsJson, NO_TIMESTAMP);
+            getCpsDataService().saveListElements(NCMP_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME,
+                    createCmHandleXpathPredicates(clientId, subscriptionName), targetCmHandleAsJson, NO_TIMESTAMP);
         } else {
             log.info("targetCmHandleAsJson to be updated into DB {}", targetCmHandleAsJson);
-            cpsDataService.updateNodeLeaves(SUBSCRIPTION_DATASPACE_NAME,
-                    SUBSCRIPTION_ANCHOR_NAME, createCmHandleXpathPredicates(clientId, subscriptionName),
-                    targetCmHandleAsJson, NO_TIMESTAMP);
+            getCpsDataService().updateNodeLeaves(NCMP_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME,
+                    createCmHandleXpathPredicates(clientId, subscriptionName), targetCmHandleAsJson, NO_TIMESTAMP);
         }
     }
 
     private void saveSubscriptionEventYangModel(final String subscriptionEventJsonData) {
         log.info("SubscriptionEventJsonData to be saved into DB {}", subscriptionEventJsonData);
-        cpsDataService.saveListElements(SUBSCRIPTION_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME,
+        getCpsDataService().saveListElements(NCMP_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME,
                 SUBSCRIPTION_REGISTRY_PARENT, subscriptionEventJsonData, NO_TIMESTAMP);
     }
 
     @Override
     public Collection<DataNode> getDataNodesForSubscriptionEvent() {
-        return cpsDataService.getDataNodes(SUBSCRIPTION_DATASPACE_NAME,
-                SUBSCRIPTION_ANCHOR_NAME, SUBSCRIPTION_REGISTRY_PARENT,
-                FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
+        return getCpsDataService().getDataNodes(NCMP_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME,
+                SUBSCRIPTION_REGISTRY_PARENT, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
     }
 
     @Override
     public Collection<DataNode> getCmHandlesForSubscriptionEvent(final String clientId, final String subscriptionName) {
-        return cpsDataService.getDataNodesForMultipleXpaths(SUBSCRIPTION_DATASPACE_NAME,
-                SUBSCRIPTION_ANCHOR_NAME, Arrays.asList(createCmHandleXpath(clientId, subscriptionName)),
+        return getCpsDataService().getDataNodesForMultipleXpaths(NCMP_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME,
+                List.of(createCmHandleXpath(clientId, subscriptionName)),
                 FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
     }
 
@@ -168,8 +165,8 @@ public class SubscriptionPersistenceImpl implements SubscriptionPersistence {
             final Map<String, String> statusAndDetailsMap = entry.getValue();
             final String status = statusAndDetailsMap.get("status");
             final String details = statusAndDetailsMap.get("details");
-            return new YangModelSubscriptionEvent.TargetCmHandle(cmHandleId,
-                    SubscriptionStatus.fromString(status), details);
+            return new YangModelSubscriptionEvent.TargetCmHandle(cmHandleId, SubscriptionStatus.fromString(status),
+                    details);
         }).collect(Collectors.toList());
     }
 

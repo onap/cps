@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2022 Nordix Foundation
+ * Copyright (C) 2022-2023 Nordix Foundation
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import org.mapstruct.NullValueCheckStrategy;
 import org.mapstruct.NullValuePropertyMappingStrategy;
-import org.onap.cps.ncmp.api.inventory.CompositeState;
+import org.onap.cps.ncmp.api.impl.inventory.CompositeState;
 import org.onap.cps.ncmp.rest.model.CmHandleCompositeState;
 import org.onap.cps.ncmp.rest.model.DataStores;
 import org.onap.cps.ncmp.rest.model.LockReason;

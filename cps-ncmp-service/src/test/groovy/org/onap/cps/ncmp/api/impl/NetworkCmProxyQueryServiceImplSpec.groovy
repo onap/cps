@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,6 +20,9 @@
 
 package org.onap.cps.ncmp.api.impl
 
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
+
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.model.DataNode
@@ -35,10 +38,10 @@ class NetworkCmProxyQueryServiceImplSpec extends Specification {
         given: 'a list of datanodes'
             def dataNodes = [new DataNode(xpath: '/cps/path'), new DataNode(xpath: '/cps/path/child')]
         and: 'the list of datanodes is returned for query data node'
-            1 * mockCpsQueryService.queryDataNodes('NFP-Operational', 'ncmp-dmi-registry',
+            1 * mockCpsQueryService.queryDataNodes(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
                 '//cps/path', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNodes
         when: 'query resource data operational for cm-handle is called'
-            def response = objectUnderTest.queryResourceDataOperational('ncmp-dmi-registry',
+            def response = objectUnderTest.queryResourceDataOperational(NCMP_DMI_REGISTRY_ANCHOR,
                 '//cps/path', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
         then: 'the expected datanodes are returned from the DMI'
             response == dataNodes

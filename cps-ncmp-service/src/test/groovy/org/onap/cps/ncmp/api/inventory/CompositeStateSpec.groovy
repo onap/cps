@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2022 Nordix Foundation
+ * Copyright (C) 2022-2023 Nordix Foundation
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,13 +21,17 @@
 package org.onap.cps.ncmp.api.inventory
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
+import org.onap.cps.ncmp.api.impl.inventory.CompositeState
+import org.onap.cps.ncmp.api.impl.inventory.DataStoreSyncState
+import org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory
 import spock.lang.Specification
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 
-import static org.onap.cps.ncmp.api.inventory.CompositeState.DataStores
-import static org.onap.cps.ncmp.api.inventory.CompositeState.Operational
+import static org.onap.cps.ncmp.api.impl.inventory.CompositeState.DataStores
+import static org.onap.cps.ncmp.api.impl.inventory.CompositeState.Operational
 import static org.onap.cps.ncmp.utils.TestUtils.getResourceFileContent
 import static org.springframework.util.StringUtils.trimAllWhitespace
 
