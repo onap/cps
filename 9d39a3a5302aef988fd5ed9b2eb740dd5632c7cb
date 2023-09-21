@@ -364,6 +364,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "54e77503_696fb0aa",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/GetPerfTest.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-09-21T09:40:36Z",
+      "side": 1,
+      "message": "I think it\u0027s especially important to test read operations, since that\u0027s where we encountered OutOfMemoryErrors before.\n\nAnd memory use seems consistent from local testing. We\u0027ll know better once it runs a few times on the pipeline.",
+      "parentUuid": "92a8f0aa_49cdd33f",
+      "range": {
+        "startLine": 53,
+        "startChar": 93,
+        "endLine": 53,
+        "endChar": 105
+      },
+      "revId": "9d39a3a5302aef988fd5ed9b2eb740dd5632c7cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "219f9502_e4551449",
