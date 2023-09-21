@@ -20,6 +20,8 @@
 
 package org.onap.cps.ncmp.init
 
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
+
 import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
 import ch.qos.logback.core.read.ListAppender
@@ -63,15 +65,15 @@ class SubscriptionModelLoaderSpec extends Specification {
         given:'model loader is enabled'
             objectUnderTest.subscriptionModelLoaderEnabled = true
         and: 'dataspace is ready for use'
-            mockCpsAdminService.getDataspace('NCMP-Admin') >> new Dataspace('')
+            mockCpsAdminService.getDataspace(NCMP_DATASPACE_NAME) >> new Dataspace('')
         when: 'the application is ready'
             objectUnderTest.onApplicationEvent(Mock(ApplicationReadyEvent))
         then: 'the module service to create schema set is called once'
-            1 * mockCpsModuleService.createSchemaSet('NCMP-Admin', 'subscriptions', expectedYangResourceToContentMap)
+            1 * mockCpsModuleService.createSchemaSet(NCMP_DATASPACE_NAME, 'subscriptions', expectedYangResourceToContentMap)
         and: 'the admin service to create an anchor set is called once'
-            1 * mockCpsAdminService.createAnchor('NCMP-Admin', 'subscriptions', 'AVC-Subscriptions')
+            1 * mockCpsAdminService.createAnchor(NCMP_DATASPACE_NAME, 'subscriptions', 'AVC-Subscriptions')
         and: 'the data service to create a top level datanode is called once'
-            1 * mockCpsDataService.saveData('NCMP-Admin', 'AVC-Subscriptions', '{"subscription-registry":{}}', _)
+            1 * mockCpsDataService.saveData(NCMP_DATASPACE_NAME, 'AVC-Subscriptions', '{"subscription-registry":{}}', _)
     }
 
     def 'Subscription model loader disabled.' () {

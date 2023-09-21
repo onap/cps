@@ -20,12 +20,13 @@
 
 package org.onap.cps.ncmp.rest.mapper
 
+import static org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory.MODULE_SYNC_FAILED
+
 import org.mapstruct.factory.Mappers
-import org.onap.cps.ncmp.api.inventory.CmHandleState
-import org.onap.cps.ncmp.api.inventory.CompositeStateBuilder
-import org.onap.cps.ncmp.api.inventory.LockReasonCategory
+import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
+import org.onap.cps.ncmp.api.impl.inventory.CompositeStateBuilder
 import org.onap.cps.ncmp.rest.model.CmHandleCompositeState
-import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
+import org.onap.cps.ncmp.api.impl.inventory.DataStoreSyncState
 import spock.lang.Ignore
 import spock.lang.Specification
 
@@ -44,7 +45,7 @@ class CmHandleStateMapperSpec extends Specification {
             def compositeState = new CompositeStateBuilder()
                 .withCmHandleState(CmHandleState.ADVISED)
                 .withLastUpdatedTime(formattedDateAndTime.toString())
-                .withLockReason(LockReasonCategory.MODULE_SYNC_FAILED, 'locked details')
+                .withLockReason(MODULE_SYNC_FAILED, 'locked details')
                 .withOperationalDataStores(DataStoreSyncState.SYNCHRONIZED, formattedDateAndTime).build()
         compositeState.setDataSyncEnabled(false)
         when: 'mapper is called'
@@ -76,9 +77,9 @@ class CmHandleStateMapperSpec extends Specification {
         then: 'the composite state contains the expected lock Reason and details'
             result.getLockReason().getReason() == expectedExternalLockReason
         where:
-            scenario                    | lockReason                            || expectedExternalLockReason
-            'MODULE_SYNC_FAILED'        | LockReasonCategory.MODULE_SYNC_FAILED || 'LOCKED_MISBEHAVING'
-            'null value'                | null                                  || null
+        scenario             | lockReason         || expectedExternalLockReason
+        'MODULE_SYNC_FAILED' | MODULE_SYNC_FAILED || 'LOCKED_MISBEHAVING'
+        'null value'         | null               || null
     }
 
 }

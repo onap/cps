@@ -20,11 +20,13 @@
 
 package org.onap.cps.ncmp.api.impl
 
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT
+
 import org.onap.cps.cpspath.parser.PathParsingException
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
-import org.onap.cps.ncmp.api.inventory.CmHandleQueries
-import org.onap.cps.ncmp.api.inventory.CmHandleQueriesImpl
-import org.onap.cps.ncmp.api.inventory.InventoryPersistence
+import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueries
+import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueriesImpl
+import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence
 import org.onap.cps.ncmp.api.models.CmHandleQueryServiceParameters
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.spi.FetchDescendantsOption
@@ -40,7 +42,7 @@ class NetworkCmProxyCmHandleQueryServiceSpec extends Specification {
     def partiallyMockedCmHandleQueries = Spy(CmHandleQueriesImpl)
     def mockInventoryPersistence = Mock(InventoryPersistence)
 
-    def dmiRegistry = new DataNode(xpath: '/dmi-registry', childDataNodes: createDataNodeList(['PNFDemo1', 'PNFDemo2', 'PNFDemo3', 'PNFDemo4']))
+    def dmiRegistry = new DataNode(xpath: NCMP_DMI_REGISTRY_PARENT, childDataNodes: createDataNodeList(['PNFDemo1', 'PNFDemo2', 'PNFDemo3', 'PNFDemo4']))
 
     def objectUnderTest = new NetworkCmProxyCmHandleQueryServiceImpl(cmHandleQueries, mockInventoryPersistence)
     def objectUnderTestWithPartiallyMockedQueries = new NetworkCmProxyCmHandleQueryServiceImpl(partiallyMockedCmHandleQueries, mockInventoryPersistence)
@@ -126,7 +128,7 @@ class NetworkCmProxyCmHandleQueryServiceSpec extends Specification {
         given: 'We use an empty query'
             def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
         and: 'the inventory persistence returns the dmi registry datanode with just ids'
-            mockInventoryPersistence.getDataNode("/dmi-registry", FetchDescendantsOption.DIRECT_CHILDREN_ONLY) >> [dmiRegistry]
+            mockInventoryPersistence.getDataNode(NCMP_DMI_REGISTRY_PARENT, FetchDescendantsOption.DIRECT_CHILDREN_ONLY) >> [dmiRegistry]
         when: 'the query is executed for both cm handle ids'
             def result = objectUnderTest.queryCmHandleIds(cmHandleQueryParameters)
         then: 'the correct expected cm handles are returned'
@@ -137,7 +139,7 @@ class NetworkCmProxyCmHandleQueryServiceSpec extends Specification {
         given: 'We use an empty query'
             def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
         and: 'the inventory persistence returns the dmi registry datanode with just ids'
-            mockInventoryPersistence.getDataNode("/dmi-registry") >> [dmiRegistry]
+            mockInventoryPersistence.getDataNode(NCMP_DMI_REGISTRY_PARENT) >> [dmiRegistry]
         when: 'the query is executed for both cm handle details'
             def result = objectUnderTest.queryCmHandles(cmHandleQueryParameters)
         then: 'the correct cm handles are returned'

@@ -20,6 +20,8 @@
 
 package org.onap.cps.ncmp.api.impl.utils
 
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
+
 import org.onap.cps.spi.model.DataNodeBuilder
 import spock.lang.Specification
 
@@ -38,13 +40,13 @@ class DataNodeBaseSpec extends Specification {
     def dataNode4 = createDataNodeWithLeavesAndChildDataNodes(leaves4, [dataNode1, dataNode2, dataNode3])
 
     static def createDataNodeWithLeaves(leaves) {
-        return new DataNodeBuilder().withDataspace('NCMP-Admin')
+        return new DataNodeBuilder().withDataspace(NCMP_DATASPACE_NAME)
             .withAnchor('AVC-Subscriptions').withXpath('/subscription-registry/subscription')
             .withLeaves(leaves).build()
     }
 
     static def createDataNodeWithLeavesAndChildDataNodes(leaves, dataNodes) {
-        return new DataNodeBuilder().withDataspace('NCMP-Admin')
+        return new DataNodeBuilder().withDataspace(NCMP_DATASPACE_NAME)
             .withAnchor('AVC-Subscriptions').withXpath('/subscription-registry/subscription')
             .withLeaves(leaves).withChildDataNodes(dataNodes)
             .build()
