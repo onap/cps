@@ -46,7 +46,7 @@ public class DMiPluginWatchDog {
      */
     @Scheduled(fixedDelayString = "${ncmp.timers.trust-evel.dmi-availability-watchdog-ms:30000}")
     public void watchDmiPluginAliveness() {
-        trustLevelPerDmiPlugin.keySet().forEach((dmiPluginName) -> {
+        trustLevelPerDmiPlugin.keySet().forEach(dmiPluginName -> {
             final DmiPluginStatus dmiPluginStatus = dmiRestClient.getDmiPluginStatus(dmiPluginName);
             log.debug("Trust level for dmi-plugin: {} is {}", dmiPluginName, dmiPluginStatus.toString());
             if (DmiPluginStatus.UP.equals(dmiPluginStatus)) {

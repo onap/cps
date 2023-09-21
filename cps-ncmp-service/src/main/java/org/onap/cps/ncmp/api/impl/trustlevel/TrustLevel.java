@@ -22,4 +22,19 @@ package org.onap.cps.ncmp.api.impl.trustlevel;
 
 public enum TrustLevel {
     NONE, COMPLETE;
+
+    /**
+     * Finds the value of the given enum.
+     *
+     * @param trustLevelValue value of the enum
+     * @return TrustLevel
+     */
+    public static TrustLevel fromString(final String trustLevelValue) {
+        for (final TrustLevel currentValue : TrustLevel.values()) {
+            if (currentValue.name().equals(trustLevelValue)) {
+                return currentValue;
+            }
+        }
+        return null;
+    }
 }
