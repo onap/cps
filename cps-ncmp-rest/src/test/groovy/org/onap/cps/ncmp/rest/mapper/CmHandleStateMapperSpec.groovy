@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2022 Nordix Foundation
+ * Copyright (C) 2022-2023 Nordix Foundation
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,13 +21,12 @@
 package org.onap.cps.ncmp.rest.mapper
 
 import org.mapstruct.factory.Mappers
-import org.onap.cps.ncmp.api.inventory.CmHandleState
-import org.onap.cps.ncmp.api.inventory.CompositeStateBuilder
-import org.onap.cps.ncmp.api.inventory.LockReasonCategory
+import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
+import org.onap.cps.ncmp.api.impl.inventory.CompositeStateBuilder
+import org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory
 import org.onap.cps.ncmp.rest.model.CmHandleCompositeState
-import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
+import org.onap.cps.ncmp.api.impl.inventory.DataStoreSyncState
 import spock.lang.Specification
-
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter

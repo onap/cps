@@ -23,7 +23,7 @@ package org.onap.cps.ncmp.api.impl.events.lcm;
 import static org.onap.cps.ncmp.api.impl.events.lcm.LcmEventType.CREATE;
 import static org.onap.cps.ncmp.api.impl.events.lcm.LcmEventType.DELETE;
 import static org.onap.cps.ncmp.api.impl.events.lcm.LcmEventType.UPDATE;
-import static org.onap.cps.ncmp.api.inventory.CmHandleState.DELETED;
+import static org.onap.cps.ncmp.api.impl.inventory.CmHandleState.DELETED;
 
 import com.google.common.collect.MapDifference;
 import com.google.common.collect.Maps;

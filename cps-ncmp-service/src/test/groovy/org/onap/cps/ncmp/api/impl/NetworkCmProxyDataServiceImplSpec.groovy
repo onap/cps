@@ -23,16 +23,25 @@
 
 package org.onap.cps.ncmp.api.impl
 
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
+import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.OPERATIONAL
+import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_OPERATIONAL
+import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING
+import static org.onap.cps.ncmp.api.impl.operations.OperationType.CREATE
+import static org.onap.cps.ncmp.api.impl.operations.OperationType.UPDATE
+
 import com.hazelcast.map.IMap
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandleQueryService
 import org.onap.cps.ncmp.api.impl.events.lcm.LcmEventsCmHandleStateHandler
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
-import org.onap.cps.ncmp.api.inventory.CmHandleQueries
-import org.onap.cps.ncmp.api.inventory.CmHandleState
-import org.onap.cps.ncmp.api.inventory.CompositeState
-import org.onap.cps.ncmp.api.inventory.InventoryPersistence
-import org.onap.cps.ncmp.api.inventory.LockReasonCategory
-import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
+import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueries
+import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
+import org.onap.cps.ncmp.api.impl.inventory.CompositeState
+import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence
+import org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory
+import org.onap.cps.ncmp.api.impl.inventory.DataStoreSyncState
 import org.onap.cps.ncmp.api.models.DataOperationDefinition
 import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters
 import org.onap.cps.ncmp.api.models.CmHandleQueryServiceParameters
@@ -53,12 +62,6 @@ import org.onap.cps.spi.model.DataNode
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import spock.lang.Specification
-
-import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.OPERATIONAL
-import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_OPERATIONAL
-import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING
-import static org.onap.cps.ncmp.api.impl.operations.OperationType.CREATE
-import static org.onap.cps.ncmp.api.impl.operations.OperationType.UPDATE
 
 class NetworkCmProxyDataServiceImplSpec extends Specification {
 
@@ -237,8 +240,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
 
     def 'Update resource data for pass-through running from dmi using POST #scenario DMI properties.'() {
         given: 'cpsDataService returns valid datanode'
-            mockCpsDataService.getDataNodes('NCMP-Admin', 'ncmp-dmi-registry',
-                cmHandleXPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
+            mockCpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cmHandleXPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
         when: 'get resource data is called'
             objectUnderTest.writeResourceDataPassThroughRunningForCmHandle('testCmHandle',
                 'testResourceId', UPDATE,
@@ -325,7 +327,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         and: 'the data store sync state is set to #expectedDataStoreSyncState'
             compositeState.dataStores.operationalDataStore.dataStoreSyncState == expectedDataStoreSyncState
         and: 'the cps data service to delete data nodes is invoked the expected number of times'
-            deleteDataNodeExpectedNumberOfInvocation * mockCpsDataService.deleteDataNode('NFP-Operational', 'some-cm-handle-id', '/netconf-state', _)
+            deleteDataNodeExpectedNumberOfInvocation * mockCpsDataService.deleteDataNode(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'some-cm-handle-id', '/netconf-state', _)
         and: 'the inventory persistence service to update node leaves is called with the correct values'
             saveCmHandleStateExpectedNumberOfInvocations * mockInventoryPersistence.saveCmHandleState('some-cm-handle-id', compositeState)
         where: 'the following data sync enabled flag is used'
@@ -368,8 +370,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     }
 
     def mockDataNode() {
-        mockCpsDataService.getDataNodes('NCMP-Admin', 'ncmp-dmi-registry',
-                cmHandleXPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
+        mockCpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cmHandleXPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
     }
 
     def getDataOperationRequest(datastore) {

@@ -19,8 +19,11 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.inventory;
+package org.onap.cps.ncmp.api.impl.inventory;
 
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME;
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR;
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT;
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS;
 
@@ -31,7 +34,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
-import org.onap.cps.ncmp.api.inventory.enums.PropertyType;
+import org.onap.cps.ncmp.api.impl.inventory.enums.PropertyType;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
@@ -41,8 +44,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class CmHandleQueriesImpl implements CmHandleQueries {
 
-    private static final String NCMP_DATASPACE_NAME = "NCMP-Admin";
-    private static final String NCMP_DMI_REGISTRY_ANCHOR = "ncmp-dmi-registry";
     private static final String DESCENDANT_PATH = "//";
 
     private final CpsDataPersistenceService cpsDataPersistenceService;
@@ -128,14 +129,14 @@ public class CmHandleQueriesImpl implements CmHandleQueries {
     }
 
     private List<DataNode> getCmHandlesByDmiPluginIdentifierAndDmiProperty(final String dmiPluginIdentifier,
-                                                             final String dmiProperty) {
+                                                                           final String dmiProperty) {
         return cpsDataPersistenceService.queryDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                "/dmi-registry/cm-handles[@" + dmiProperty + "='" + dmiPluginIdentifier + "']",
+                NCMP_DMI_REGISTRY_PARENT + "/cm-handles[@" + dmiProperty + "='" + dmiPluginIdentifier + "']",
                 OMIT_DESCENDANTS);
     }
 
     private DataNode getCmHandleState(final String cmHandleId) {
-        final String xpath = "/dmi-registry/cm-handles[@id='" + cmHandleId + "']/state";
+        final String xpath = NCMP_DMI_REGISTRY_PARENT + "/cm-handles[@id='" + cmHandleId + "']/state";
         return cpsDataPersistenceService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
                 xpath, OMIT_DESCENDANTS).iterator().next();
     }

@@ -20,13 +20,15 @@
 
 package org.onap.cps.ncmp.api.impl.utils
 
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
+
 import org.onap.cps.spi.model.DataNodeBuilder
 
 class DataNodeHelperSpec extends DataNodeBaseSpec {
 
     def 'Get data node leaves as expected from a nested data node.'() {
         given: 'a nested data node'
-            def dataNode = new DataNodeBuilder().withDataspace('NCMP-Admin')
+            def dataNode = new DataNodeBuilder().withDataspace(NCMP_DATASPACE_NAME)
                 .withAnchor('AVC-Subscriptions').withXpath('/subscription-registry/subscription')
                 .withLeaves([clientID:'SCO-9989752', isTagged:false, subscriptionName:'cm-subscription-001'])
                 .withChildDataNodes([dataNode4]).build()
@@ -44,7 +46,7 @@ class DataNodeHelperSpec extends DataNodeBaseSpec {
 
     def 'Get cm handle id to status as expected from a nested data node.'() {
         given: 'a nested data node'
-            def dataNode = new DataNodeBuilder().withDataspace('NCMP-Admin')
+            def dataNode = new DataNodeBuilder().withDataspace(NCMP_DATASPACE_NAME)
                 .withAnchor('AVC-Subscriptions').withXpath('/subscription-registry/subscription')
                 .withLeaves([clientID:'SCO-9989752', isTagged:false, subscriptionName:'cm-subscription-001'])
                 .withChildDataNodes([dataNode4]).build()
@@ -65,7 +67,7 @@ class DataNodeHelperSpec extends DataNodeBaseSpec {
 
     def 'Get cm handle id to status map as expected from a nested data node.'() {
         given: 'a nested data node'
-            def dataNode = new DataNodeBuilder().withDataspace('NCMP-Admin')
+            def dataNode = new DataNodeBuilder().withDataspace(NCMP_DATASPACE_NAME)
                 .withAnchor('AVC-Subscriptions').withXpath('/subscription-registry/subscription')
                 .withLeaves([clientID:'SCO-9989752', isTagged:false, subscriptionName:'cm-subscription-001'])
                 .withChildDataNodes([dataNode4]).build()

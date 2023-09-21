@@ -20,6 +20,8 @@
 
 package org.onap.cps.ncmp.api.impl.events.cmsubscription
 
+import static org.onap.cps.ncmp.api.impl.events.mapper.CloudEventMapper.toTargetEvent
+
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.hazelcast.map.IMap
 import io.cloudevents.CloudEvent
@@ -30,12 +32,9 @@ import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionStatus
 import org.onap.cps.ncmp.api.impl.utils.CmSubscriptionEventCloudMapper
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelSubscriptionEvent.TargetCmHandle
-import org.onap.cps.ncmp.api.inventory.InventoryPersistence
+import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence
 import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
-import org.onap.cps.ncmp.api.models.CmSubscriptionEvent
 import org.onap.cps.ncmp.events.cmsubscription1_0_0.client_to_ncmp.CmSubscriptionNcmpInEvent
-import org.onap.cps.ncmp.events.cmsubscription1_0_0.dmi_to_ncmp.CmSubscriptionDmiOutEvent
-import org.onap.cps.ncmp.events.cmsubscription1_0_0.dmi_to_ncmp.Data
 import org.onap.cps.ncmp.events.cmsubscription1_0_0.ncmp_to_dmi.CmHandle
 import org.onap.cps.ncmp.events.cmsubscription1_0_0.ncmp_to_dmi.CmSubscriptionDmiInEvent
 import org.onap.cps.ncmp.utils.TestUtils
@@ -45,8 +44,6 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import spock.util.concurrent.BlockingVariable
 import java.util.concurrent.TimeUnit
-
-import static org.onap.cps.ncmp.api.impl.events.mapper.CloudEventMapper.toTargetEvent
 
 @SpringBootTest(classes = [ObjectMapper, JsonObjectMapper, CmSubscriptionNcmpInEventForwarder])
 class CmSubscriptionNcmpInEventForwarderSpec extends MessagingBaseSpec {

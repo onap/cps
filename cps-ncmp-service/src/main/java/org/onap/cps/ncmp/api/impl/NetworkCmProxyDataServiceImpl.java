@@ -24,7 +24,8 @@
 
 package org.onap.cps.ncmp.api.impl;
 
-import static org.onap.cps.ncmp.api.impl.constants.DmiRegistryConstants.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME;
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT;
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME;
 import static org.onap.cps.ncmp.api.impl.utils.RestQueryParametersValidator.validateCmHandleQueryParameters;
 
 import com.google.common.collect.Lists;
@@ -44,18 +45,18 @@ import org.onap.cps.api.CpsDataService;
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandleQueryService;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.api.impl.events.lcm.LcmEventsCmHandleStateHandler;
+import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueries;
+import org.onap.cps.ncmp.api.impl.inventory.CmHandleState;
+import org.onap.cps.ncmp.api.impl.inventory.CompositeState;
+import org.onap.cps.ncmp.api.impl.inventory.CompositeStateUtils;
+import org.onap.cps.ncmp.api.impl.inventory.DataStoreSyncState;
+import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations;
 import org.onap.cps.ncmp.api.impl.operations.OperationType;
 import org.onap.cps.ncmp.api.impl.utils.CmHandleQueryConditions;
 import org.onap.cps.ncmp.api.impl.utils.InventoryQueryConditions;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
-import org.onap.cps.ncmp.api.inventory.CmHandleQueries;
-import org.onap.cps.ncmp.api.inventory.CmHandleState;
-import org.onap.cps.ncmp.api.inventory.CompositeState;
-import org.onap.cps.ncmp.api.inventory.CompositeStateUtils;
-import org.onap.cps.ncmp.api.inventory.DataStoreSyncState;
-import org.onap.cps.ncmp.api.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters;
 import org.onap.cps.ncmp.api.models.CmHandleQueryServiceParameters;
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse;
@@ -372,7 +373,8 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     private void deleteCmHandleFromDbAndModuleSyncMap(final String cmHandleId) {
         inventoryPersistence.deleteSchemaSetWithCascade(cmHandleId);
-        inventoryPersistence.deleteDataNode("/dmi-registry/cm-handles[@id='" + cmHandleId + "']");
+        inventoryPersistence.deleteDataNode(NCMP_DMI_REGISTRY_PARENT + "/cm-handles[@id='" + cmHandleId
+                + "']");
         removeDeletedCmHandleFromModuleSyncMap(cmHandleId);
     }
 
@@ -384,8 +386,8 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     private Collection<String> mapCmHandleIdsToXpaths(final Collection<String> cmHandles) {
         return cmHandles.stream()
-            .map(cmHandleId -> "/dmi-registry/cm-handles[@id='" + cmHandleId + "']")
-            .collect(Collectors.toSet());
+                .map(cmHandleId -> NCMP_DMI_REGISTRY_PARENT + "/cm-handles[@id='" + cmHandleId + "']")
+                .collect(Collectors.toSet());
     }
 
     // CPS-1239 Robustness cleaning of in progress cache

@@ -19,7 +19,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.inventory.sync;
+package org.onap.cps.ncmp.api.impl.inventory.sync;
 
 import com.hazelcast.map.IMap;
 import java.util.Collection;
@@ -32,8 +32,8 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.config.embeddedcache.SynchronizationCacheConfig;
+import org.onap.cps.ncmp.api.impl.inventory.sync.executor.AsyncTaskExecutor;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
-import org.onap.cps.ncmp.api.inventory.sync.executor.AsyncTaskExecutor;
 import org.onap.cps.spi.model.DataNode;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;

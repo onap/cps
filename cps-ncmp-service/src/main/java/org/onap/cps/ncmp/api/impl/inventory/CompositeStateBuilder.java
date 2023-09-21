@@ -1,7 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  * Copyright (C) 2022 Bell Canada
- * Modifications Copyright (C) 2022 Nordix Foundation.
+ * Modifications Copyright (C) 2022-2023 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,11 +19,11 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.inventory;
+package org.onap.cps.ncmp.api.impl.inventory;
 
-import org.onap.cps.ncmp.api.inventory.CompositeState.DataStores;
-import org.onap.cps.ncmp.api.inventory.CompositeState.LockReason;
-import org.onap.cps.ncmp.api.inventory.CompositeState.Operational;
+import org.onap.cps.ncmp.api.impl.inventory.CompositeState.DataStores;
+import org.onap.cps.ncmp.api.impl.inventory.CompositeState.LockReason;
+import org.onap.cps.ncmp.api.impl.inventory.CompositeState.Operational;
 import org.onap.cps.spi.model.DataNode;
 
 public class CompositeStateBuilder {
