@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "21dc4c0f_1e99b56c",
+        "filename": "cps-service/src/main/java/org/onap/cps/notification/CpsDataUpdatedEventFactory.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-09-21T09:22:12Z",
+      "side": 1,
+      "message": "also this would fetch everything..i.e on every change whole Anchor is fetched and not just the changed part.. wont scale much.",
+      "range": {
+        "startLine": 102,
+        "startChar": 90,
+        "endLine": 102,
+        "endChar": 93
+      },
+      "revId": "abcb7fd70d8c1016198cfba351ec3f19f6e1eda4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2b92f1b1_75536b67",
         "filename": "cps-service/src/main/java/org/onap/cps/notification/CpsDataUpdatedEventFactory.java",
         "patchSetId": 2
