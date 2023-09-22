@@ -1,0 +1,233 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbd4413e_72d1d8c3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-22T13:28:28Z",
+      "side": 1,
+      "message": "There could be one more optimization to this commit. You could assert memory usage in PerfTestBase.groovy within recordAndAssertPerformance method by having one more parameter like memoryThreshold. Then you can compare memoryUse with memoryThreshold in the same place other than every method.",
+      "revId": "97287cd81a418554db98eb6d2778dec4812f7dd8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b942992_bf26329c",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/base/PerfTestBase.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-22T13:28:28Z",
+      "side": 1,
+      "message": "In this method, you could evaluate memory conditions as well. E.g. you can have one more method parameter like thresholdMemoryInMb then you can do memory comparison in this method. By this way, both time and memory could have done in the same place.",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 52
+      },
+      "revId": "97287cd81a418554db98eb6d2778dec4812f7dd8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20570a14_7f33ef8a",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/DeletePerfTest.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-22T13:28:28Z",
+      "side": 1,
+      "message": "This memory threshold memory could be passed into recordAndAssertPerformance method. Then you could assert memory usage in the same place with time performance.",
+      "range": {
+        "startLine": 66,
+        "startChar": 11,
+        "endLine": 66,
+        "endChar": 35
+      },
+      "revId": "97287cd81a418554db98eb6d2778dec4812f7dd8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b42ab3b_caef3592",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/DeletePerfTest.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-22T13:28:28Z",
+      "side": 1,
+      "message": "This memory threshold memory could be passed into recordAndAssertPerformance method. Then you could assert memory usage in the same place with time performance.",
+      "range": {
+        "startLine": 119,
+        "startChar": 12,
+        "endLine": 119,
+        "endChar": 34
+      },
+      "revId": "97287cd81a418554db98eb6d2778dec4812f7dd8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83b8e22c_03dc681e",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/GetPerfTest.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-22T13:28:28Z",
+      "side": 1,
+      "message": "Unused import",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 45
+      },
+      "revId": "97287cd81a418554db98eb6d2778dec4812f7dd8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fd2c0b1_402ef524",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/GetPerfTest.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-22T13:28:28Z",
+      "side": 1,
+      "message": "Redundant spaces",
+      "revId": "97287cd81a418554db98eb6d2778dec4812f7dd8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00be66fa_bce72acb",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/QueryPerfTest.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-22T13:28:28Z",
+      "side": 1,
+      "message": "Redundant import",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 45
+      },
+      "revId": "97287cd81a418554db98eb6d2778dec4812f7dd8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71863ba3_26a8b2fc",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/QueryPerfTest.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-22T13:28:28Z",
+      "side": 1,
+      "message": "Extra space between imports",
+      "revId": "97287cd81a418554db98eb6d2778dec4812f7dd8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47704b1e_1629407f",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/UpdatePerfTest.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-22T13:28:28Z",
+      "side": 1,
+      "message": "Redundant import",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 45
+      },
+      "revId": "97287cd81a418554db98eb6d2778dec4812f7dd8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb4a16e9_ab1e06ab",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/UpdatePerfTest.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-22T13:28:28Z",
+      "side": 1,
+      "message": "Extra space",
+      "revId": "97287cd81a418554db98eb6d2778dec4812f7dd8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "147ca577_60c1b883",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/WritePerfTest.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-22T13:28:28Z",
+      "side": 1,
+      "message": "This memory threshold memory could be passed into recordAndAssertPerformance method. Then you could assert memory usage in the same place with time performance.",
+      "range": {
+        "startLine": 42,
+        "startChar": 11,
+        "endLine": 42,
+        "endChar": 36
+      },
+      "revId": "97287cd81a418554db98eb6d2778dec4812f7dd8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
