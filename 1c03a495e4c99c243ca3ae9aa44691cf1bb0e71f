@@ -94,6 +94,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ed6b29a_741196dc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/ncmppersistence/NcmpPersistence.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-09-22T14:17:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c6a8bc7_209f265a",
+      "range": {
+        "startLine": 37,
+        "startChar": 4,
+        "endLine": 37,
+        "endChar": 11
+      },
+      "revId": "1c03a495e4c99c243ca3ae9aa44691cf1bb0e71f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "49b29744_dc1539e4",
@@ -131,6 +155,30 @@
       "side": 1,
       "message": "Not needed",
       "parentUuid": "49b29744_dc1539e4",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 5
+      },
+      "revId": "1c03a495e4c99c243ca3ae9aa44691cf1bb0e71f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f1dde79_420b636e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/ncmppersistence/NcmpPersistence.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-09-22T14:17:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ff413e8_dccacf33",
       "range": {
         "startLine": 41,
         "startChar": 0,
