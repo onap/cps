@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c5d7875_edd1c923",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/DeviceHeartbeatConsumer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-22T14:45:14Z",
+      "side": 1,
+      "message": "I think this is necessary. Since toTargetEvent could have return null just in case exception during CloudEvent to POJO conversion. That is why I have intervere that control.",
+      "parentUuid": "c804adb1_ce0172d5",
+      "range": {
+        "startLine": 57,
+        "startChar": 7,
+        "endLine": 57,
+        "endChar": 39
+      },
+      "revId": "0ce84464004f17ec7af9a28716215576d47b2b2b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b5ac8602_8f536c00",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-09-22T14:26:34Z",
       "side": 1,
       "message": "should this be debug level ? i think info",
+      "range": {
+        "startLine": 60,
+        "startChar": 12,
+        "endLine": 60,
+        "endChar": 24
+      },
+      "revId": "0ce84464004f17ec7af9a28716215576d47b2b2b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5517b036_8a0f7acd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/DeviceHeartbeatConsumer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-22T14:45:14Z",
+      "side": 1,
+      "message": "If I could have given info log level, then it will create a log unnecessarly for every message being consumed.",
+      "parentUuid": "b5ac8602_8f536c00",
       "range": {
         "startLine": 60,
         "startChar": 12,
@@ -70,6 +118,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a01bc58d_00580349",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevel.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-22T14:45:14Z",
+      "side": 1,
+      "message": "Brackets already removed in the second patch set.",
+      "parentUuid": "1ad7052e_59c8734c",
+      "range": {
+        "startLine": 24,
+        "startChar": 3,
+        "endLine": 24,
+        "endChar": 23
+      },
+      "revId": "0ce84464004f17ec7af9a28716215576d47b2b2b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6e1eed90_8d0686d2",
@@ -93,6 +165,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "814d8e4a_89746a74",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevel.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-22T14:45:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e1eed90_8d0686d2",
+      "range": {
+        "startLine": 30,
+        "startChar": 15,
+        "endLine": 30,
+        "endChar": 25
+      },
+      "revId": "0ce84464004f17ec7af9a28716215576d47b2b2b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "477b947d_7808c6b8",
@@ -106,6 +202,30 @@
       "writtenOn": "2023-09-22T14:26:34Z",
       "side": 1,
       "message": "??",
+      "range": {
+        "startLine": 54,
+        "startChar": 13,
+        "endLine": 54,
+        "endChar": 54
+      },
+      "revId": "0ce84464004f17ec7af9a28716215576d47b2b2b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8fb86ee_90d1788e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/TrustLevelCacheConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-22T14:45:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "477b947d_7808c6b8",
       "range": {
         "startLine": 54,
         "startChar": 13,

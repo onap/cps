@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63ed7d4a_49c5eadb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-22T14:45:14Z",
+      "side": 1,
+      "message": "Thanks for your review. Please find the new patch set 3.",
+      "revId": "ac3a5933d9bec86ce3e46c033d4879463a9b6752",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
