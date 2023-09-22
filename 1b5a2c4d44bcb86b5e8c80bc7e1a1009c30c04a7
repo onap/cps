@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a675067_fc86f6a5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/subscriptions/SubscriptionPersistenceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2023-09-22T13:13:32Z",
+      "side": 1,
+      "message": "I think the class name should reflect the NCMP persistence functionalities as well",
+      "revId": "1b5a2c4d44bcb86b5e8c80bc7e1a1009c30c04a7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
