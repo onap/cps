@@ -222,6 +222,8 @@ components:
           $ref: '#/components/schemas/CmHandlePublicProperties'
         state:
           $ref: '#/components/schemas/CmHandleCompositeState'
+        trustLevel:
+          $ref: '#/components/schemas/CmHandleTrustLevel'
     CmHandlePublicProperties:
       type: array
       items:
@@ -245,6 +247,9 @@ components:
           example: false
         dataSyncState:
           $ref: '#/components/schemas/dataStores'
+    CmHandleTrustLevel:
+      type: string
+      example: COMPLETE
 
     lock-reason:
       type: object

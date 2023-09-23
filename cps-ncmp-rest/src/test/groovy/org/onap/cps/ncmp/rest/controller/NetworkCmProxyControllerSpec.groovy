@@ -335,9 +335,11 @@ class NetworkCmProxyControllerSpec extends Specification {
             def cmHandle1 = new NcmpServiceCmHandle()
             cmHandle1.cmHandleId = 'some-cmhandle-id1'
             cmHandle1.publicProperties = [color: 'yellow']
+            cmHandle1.trustLevel = 'COMPLETE'
             def cmHandle2 = new NcmpServiceCmHandle()
             cmHandle2.cmHandleId = 'some-cmhandle-id2'
             cmHandle2.publicProperties = [color: 'green']
+            cmHandle2.trustLevel = 'COMPLETE'
             mockNetworkCmProxyDataService.executeCmHandleSearch(_) >> [cmHandle1, cmHandle2]
         when: 'the searches api is invoked'
             def response = mvc.perform(post(searchesEndpoint)
@@ -346,7 +348,7 @@ class NetworkCmProxyControllerSpec extends Specification {
         then: 'response status returns OK'
             response.status == HttpStatus.OK.value()
         and: 'the expected response content is returned'
-            response.contentAsString == '[{"cmHandle":"some-cmhandle-id1","publicCmHandleProperties":[{"color":"yellow"}],"state":null},{"cmHandle":"some-cmhandle-id2","publicCmHandleProperties":[{"color":"green"}],"state":null}]'
+            response.contentAsString == '[{"cmHandle":"some-cmhandle-id1","publicCmHandleProperties":[{"color":"yellow"}],"state":null,"trustLevel":"COMPLETE"},{"cmHandle":"some-cmhandle-id2","publicCmHandleProperties":[{"color":"green"}],"state":null,"trustLevel":"COMPLETE"}]'
     }
 
     def 'Get complete Cm Handle details by Cm Handle id.'() {
@@ -357,7 +359,8 @@ class NetworkCmProxyControllerSpec extends Specification {
             def dmiProperties = [prop: 'some DMI property']
             def publicProperties = ["public prop": 'some public property']
             def compositeState = compositeStateTestObject()
-            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, dmiProperties: dmiProperties, publicProperties: publicProperties, compositeState: compositeState)
+            def trustLevel = 'NONE'
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, dmiProperties: dmiProperties, publicProperties: publicProperties, compositeState: compositeState, trustLevel: trustLevel)
         and: 'the service method is invoked with the cm handle id'
             1 * mockNetworkCmProxyDataService.getNcmpServiceCmHandle('some-cm-handle') >> ncmpServiceCmHandle
         when: 'the cm handle details api is invoked'
@@ -415,9 +418,11 @@ class NetworkCmProxyControllerSpec extends Specification {
             def cmHandel1 = new NcmpServiceCmHandle()
             cmHandel1.cmHandleId = 'some-cmhandle-id1'
             cmHandel1.publicProperties = [color: 'yellow']
+            cmHandel1.trustLevel = 'COMPLETE'
             def cmHandel2 = new NcmpServiceCmHandle()
             cmHandel2.cmHandleId = 'some-cmhandle-id2'
             cmHandel2.publicProperties = [color: 'green']
+            cmHandel2.trustLevel = 'NONE'
             mockNetworkCmProxyDataService.executeCmHandleSearch(_) >> [cmHandel1, cmHandel2]
         when: 'the searches api is invoked'
             def response = mvc.perform(
@@ -425,7 +430,7 @@ class NetworkCmProxyControllerSpec extends Specification {
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(jsonString)).andReturn().response
         then: 'an empty cm handle identifier is returned'
-            response.contentAsString == '[{"cmHandle":"some-cmhandle-id1","publicCmHandleProperties":[{"color":"yellow"}],"state":null},{"cmHandle":"some-cmhandle-id2","publicCmHandleProperties":[{"color":"green"}],"state":null}]'
+            response.contentAsString == '[{"cmHandle":"some-cmhandle-id1","publicCmHandleProperties":[{"color":"yellow"}],"state":null,"trustLevel":"COMPLETE"},{"cmHandle":"some-cmhandle-id2","publicCmHandleProperties":[{"color":"green"}],"state":null,"trustLevel":"NONE"}]'
     }
 
     def 'Query for cm handles matching query parameters'() {

@@ -366,6 +366,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         restOutputCmHandle.setPublicCmHandleProperties(cmHandlePublicProperties);
         restOutputCmHandle.setState(cmHandleStateMapper.toCmHandleCompositeStateExternalLockReason(
                 ncmpServiceCmHandle.getCompositeState()));
+        restOutputCmHandle.setTrustLevel(ncmpServiceCmHandle.getTrustLevel().toString());
         return restOutputCmHandle;
     }
 
