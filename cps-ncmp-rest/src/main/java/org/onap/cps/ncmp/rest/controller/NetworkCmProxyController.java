@@ -32,6 +32,7 @@ import static org.onap.cps.ncmp.api.impl.operations.OperationType.UPDATE;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -39,6 +40,7 @@ import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.api.impl.exception.InvalidDatastoreException;
 import org.onap.cps.ncmp.api.impl.inventory.CompositeState;
 import org.onap.cps.ncmp.api.impl.operations.DatastoreType;
+import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel;
 import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.rest.api.NetworkCmProxyApi;
@@ -77,6 +79,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     private final NcmpCachedResourceRequestHandler ncmpCachedResourceRequestHandler;
     private final NcmpPassthroughResourceRequestHandler ncmpPassthroughResourceRequestHandler;
     private final DataOperationRequestMapper dataOperationRequestMapper;
+    private final Map<String, TrustLevel> trustLevelPerCmHandle;
 
     /**
      * Get resource data from datastore.
@@ -361,11 +364,17 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     private RestOutputCmHandle toRestOutputCmHandle(final NcmpServiceCmHandle ncmpServiceCmHandle) {
         final RestOutputCmHandle restOutputCmHandle = new RestOutputCmHandle();
         final CmHandlePublicProperties cmHandlePublicProperties = new CmHandlePublicProperties();
+        final TrustLevel cmHandleCurrentTrustLevel = trustLevelPerCmHandle.get(ncmpServiceCmHandle.getCmHandleId());
         restOutputCmHandle.setCmHandle(ncmpServiceCmHandle.getCmHandleId());
         cmHandlePublicProperties.add(ncmpServiceCmHandle.getPublicProperties());
         restOutputCmHandle.setPublicCmHandleProperties(cmHandlePublicProperties);
         restOutputCmHandle.setState(cmHandleStateMapper.toCmHandleCompositeStateExternalLockReason(
                 ncmpServiceCmHandle.getCompositeState()));
+        if (cmHandleCurrentTrustLevel == null) {
+            restOutputCmHandle.setTrustLevel("COMPLETE");
+        } else {
+            restOutputCmHandle.setTrustLevel(cmHandleCurrentTrustLevel.toString());
+        }
         return restOutputCmHandle;
     }
 
