@@ -242,6 +242,8 @@ components:
           $ref: '#/components/schemas/CmHandlePublicProperties'
         state:
           $ref: '#/components/schemas/CmHandleCompositeState'
+        trustLevel:
+          $ref: '#/components/schemas/CmHandleTrustLevel'
     CmHandlePublicProperties:
       type: object
       items:
@@ -265,6 +267,10 @@ components:
           example: false
         dataSyncState:
           $ref: '#/components/schemas/dataStores'
+    CmHandleTrustLevel:
+      type: string
+      description: Current trust level of the relevant CM handle ID. This trust level is based on the current state of the DMI plugin.
+      example: COMPLETE
 
     lock-reason:
       type: object
