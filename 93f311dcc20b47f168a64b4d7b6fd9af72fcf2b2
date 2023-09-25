@@ -16,6 +16,23 @@
       "message": "recheck",
       "revId": "93f311dcc20b47f168a64b4d7b6fd9af72fcf2b2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdc022ca_618c6741",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-09-25T09:06:21Z",
+      "side": 1,
+      "message": "looks fine to me.\nAlso if u can analyze the list of REST endpoints that would get impacted coz of this change then we can look at them.",
+      "revId": "93f311dcc20b47f168a64b4d7b6fd9af72fcf2b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
