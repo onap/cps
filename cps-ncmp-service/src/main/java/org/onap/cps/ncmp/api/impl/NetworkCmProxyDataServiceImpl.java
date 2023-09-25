@@ -46,6 +46,7 @@ import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.api.impl.events.lcm.LcmEventsCmHandleStateHandler;
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations;
 import org.onap.cps.ncmp.api.impl.operations.OperationType;
+import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel;
 import org.onap.cps.ncmp.api.impl.utils.CmHandleQueryConditions;
 import org.onap.cps.ncmp.api.impl.utils.InventoryQueryConditions;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
@@ -90,6 +91,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private final LcmEventsCmHandleStateHandler lcmEventsCmHandleStateHandler;
     private final CpsDataService cpsDataService;
     private final IMap<String, Object> moduleSyncStartedOnCmHandles;
+    private final IMap<String, TrustLevel> trustLevelPerDmiPlugin;
 
     @Override
     public DmiPluginRegistrationResponse updateDmiRegistrationAndSyncModule(
@@ -111,6 +113,9 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                     networkCmProxyDataServicePropertyHandler
                             .updateCmHandleProperties(dmiPluginRegistration.getUpdatedCmHandles()));
         }
+
+        setTrustLevelPerDmiPlugin(dmiPluginRegistration);
+
         return dmiPluginRegistrationResponse;
     }
 
@@ -408,6 +413,14 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                     RegistrationError.CM_HANDLE_ALREADY_EXIST);
         } catch (final Exception exception) {
             return CmHandleRegistrationResponse.createFailureResponses(cmHandleIds, exception);
+        }
+    }
+
+    private void setTrustLevelPerDmiPlugin(final DmiPluginRegistration dmiPluginRegistration) {
+        if (DmiPluginRegistration.isNullEmptyOrBlank(dmiPluginRegistration.getDmiDataPlugin())) {
+            trustLevelPerDmiPlugin.put(dmiPluginRegistration.getDmiPlugin(), TrustLevel.COMPLETE);
+        } else {
+            trustLevelPerDmiPlugin.put(dmiPluginRegistration.getDmiDataPlugin(), TrustLevel.COMPLETE);
         }
     }
 
