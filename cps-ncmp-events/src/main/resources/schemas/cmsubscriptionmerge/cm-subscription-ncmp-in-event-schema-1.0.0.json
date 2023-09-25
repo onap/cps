@@ -1,0 +1,64 @@
+{
+  "$id": "urn:cps:org.onap.cps.ncmp.events:cm-subscription-merge-ncmp-in-event:1.0.0",
+  "$ref": "#/definitions/CmSubscriptionMergeNcmpInEvent",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "definitions": {
+    "CmSubscriptionMergeNcmpInEvent": {
+      "description": "The payload for subscription event.",
+      "javaType": "org.onap.cps.ncmp.events.cmsubscription_merge1_0_0.client_to_ncmp.CmSubscriptionMergeNcmpInEvent",
+      "properties": {
+        "data": {
+          "properties": {
+            "subscriptionId": {
+              "description": "The subscription details.",
+              "type": "string",
+              "additionalProperties": false
+            },
+            "predicates": {
+              "description": "Additional values to be added into the subscription",
+              "properties": {
+                "targets": {
+                  "description": "CM Handles to be targeted by the subscription",
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "datastore": {
+                  "description": "datastore which is to be used by the subscription",
+                  "type": "string",
+                  "enum": ["ncmp-datastore:passthrough-operational", "ncmp-datastore:passthrough-running"]
+                },
+                "datastore-xpath-filter": {
+                  "description": "filter to be applied to the CM Handles through this event",
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "targets",
+                "datastore",
+                "datastore-xpath-filter"
+              ],
+              "type": "object",
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "subscriptionId",
+            "predicates"
+          ],
+          "type": "object",
+          "additionalProperties": false
+        }
+      },
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "data"
+      ]
+    }
+  }
+}
