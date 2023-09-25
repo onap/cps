@@ -1,0 +1,49 @@
+module cm-data-subscriptions {
+    yang-version 1.1;
+    namespace "org:onap:cps:ncmp";
+
+    prefix cmds;
+
+    revision "2023-09-21" {
+        description
+        "First release, Proof of Concept & Performance";
+    }
+
+    container datastores {
+
+        list datastore {
+            key "name";
+
+            leaf name {
+                type string;
+            }
+
+            container cm-handles {
+
+                list cm-handle {
+                    key "id";
+
+                    leaf id {
+                        type string;
+                    }
+
+                    container filters {
+
+                        list filter {
+                            key "xpath";
+
+                            leaf xpath {
+                                type string;
+                            }
+
+                            leaf-list subscribers {
+                                type string;
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

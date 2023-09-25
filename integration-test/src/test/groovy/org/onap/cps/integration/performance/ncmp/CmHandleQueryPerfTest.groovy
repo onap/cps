@@ -22,11 +22,11 @@ package org.onap.cps.integration.performance.ncmp
 
 import java.util.stream.Collectors
 import org.onap.cps.api.CpsQueryService
-import org.onap.cps.integration.performance.base.NcmpRegistryPerfTestBase
+import org.onap.cps.integration.performance.base.NcmpPerfTestBase
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 
-class CmHandleQueryPerfTest extends NcmpRegistryPerfTestBase {
+class CmHandleQueryPerfTest extends NcmpPerfTestBase {
 
     CpsQueryService objectUnderTest
 

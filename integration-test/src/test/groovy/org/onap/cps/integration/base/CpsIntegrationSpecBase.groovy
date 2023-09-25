@@ -79,6 +79,7 @@ class CpsIntegrationSpecBase extends Specification {
     def static BOOKSTORE_SCHEMA_SET = 'bookstoreSchemaSet'
 
     def static initialized = false
+    def now = OffsetDateTime.now()
 
     def setup() {
         if (!initialized) {
@@ -120,4 +121,31 @@ class CpsIntegrationSpecBase extends Specification {
             cpsDataService.saveData(dataspaceName, anchorNamePrefix + it, data.replace("Easons", "Easons-"+it.toString()), OffsetDateTime.now())
         }
     }
+
+    def createJsonArray(name, numberOfElements, keyName, keyValuePrefix, dataPerKey) {
+        def json = '{"' + name + '":['
+        (1..numberOfElements).each {
+            json += '{"' + keyName + '":"' + keyValuePrefix + '-' + it + '"'
+            if (!dataPerKey.isEmpty()) {
+                json += ',' + dataPerKey
+            }
+            json += '}'
+            if (it < numberOfElements) {
+                json += ','
+            }
+        }
+        json += ']}'
+    }
+
+    def createLeafList(name, numberOfElements, valuePrefix) {
+        def json = '"' + name + '":['
+        (1..numberOfElements).each {
+            json += '"' + valuePrefix + '-' + it + '"'
+            if (it < numberOfElements) {
+                json += ','
+            }
+        }
+        json += ']'
+    }
+
 }

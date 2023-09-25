@@ -44,7 +44,6 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
     CpsDataService objectUnderTest
     def originalCountBookstoreChildNodes
     def originalCountBookstoreTopLevelListNodes
-    def now = OffsetDateTime.now()
 
     def setup() {
         objectUnderTest = cpsDataService
