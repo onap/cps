@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "urn:cps:org.onap.cps.ncmp.events:cm-subscription-merge-ncmp-out-event-schema:1.0.0",
+  "$ref": "#/definitions/CmSubscriptionMergeNcmpOutEvent",
+  "definitions": {
+    "CmSubscriptionMergeNcmpOutEvent": {
+      "description": "The payload for avc subscription event outcome message.",
+      "type": "object",
+      "javaType": "org.onap.cps.ncmp.events.cmsubscription_merge1_0_0.ncmp_to_client.CmSubscriptionNcmpOutEvent",
+      "additionalProperties": false,
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/data"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
+    "data": {
+      "type": "object",
+      "description": "The actual data containing information about the pending and rejected targets",
+      "additionalProperties": false,
+      "properties": {
+        "cmhandles": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "description": "Details for the target cmhandles",
+            "additionalProperties": false,
+            "properties": {
+              "cmhandleId": {
+                "type": "string"
+              },
+              "private-properties": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "predicates": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "description": "Details for the target cmhandles",
+            "additionalProperties": false,
+            "properties": {
+              "targets": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "datastore": {
+                "type": "string"
+              },
+              "datastore-xpath-filter": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "cmhandles",
+        "predicates"
+      ]
+    }
+  }
+}
