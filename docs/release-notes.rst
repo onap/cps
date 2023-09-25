@@ -70,6 +70,11 @@ Bug Fixes
 
 Features
 --------
+- `CPS-1789 <https://jira.onap.org/browse/CPS-1789>`_ CPS Upgrade to Springboot 3.0.
+
+Note
+----
+Migrating to Spring Boot 3.0 requires the product be built with Java 17 and at least MVN version 3.8.7.
 
 Version: 3.3.6
 ==============
