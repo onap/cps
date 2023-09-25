@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47d2dcb4_8183cfbb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/NcmpPersistenceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-25T07:37:35Z",
+      "side": 1,
+      "message": "NB: if subclass needs these I would just remove the \u0027private\u0027 instead of adding a getter",
+      "range": {
+        "startLine": 47,
+        "startChar": 4,
+        "endLine": 47,
+        "endChar": 12
+      },
+      "revId": "c60c254dd92d307aeaa3fea111cceff329165a98",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
