@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1b02f257_cb7ac4ca",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-09-25T08:37:46Z",
+      "side": 1,
+      "message": "moduleSetTag should be optional",
+      "parentUuid": "852ee389_e90b1c9b",
+      "range": {
+        "startLine": 148,
+        "startChar": 10,
+        "endLine": 148,
+        "endChar": 22
+      },
+      "revId": "9ff84ffd7159cd36629bcdd6e9897e415c956e87",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0f250f71_ae4dbaad",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/mapper/CmHandleStateMapperSpec.groovy",
         "patchSetId": 3
@@ -54,6 +78,30 @@
       "writtenOn": "2023-09-20T16:15:50Z",
       "side": 1,
       "message": "NB: Fix indentation\n(use static import to shorten) the lockReason column",
+      "range": {
+        "startLine": 79,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 76
+      },
+      "revId": "9ff84ffd7159cd36629bcdd6e9897e415c956e87",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12ba45b2_280c4b50",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/mapper/CmHandleStateMapperSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-09-25T08:37:46Z",
+      "side": 1,
+      "message": "Fixed",
+      "parentUuid": "0f250f71_ae4dbaad",
       "range": {
         "startLine": 79,
         "startChar": 0,
@@ -133,6 +181,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eeed1cb8_7ea470cd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-09-25T08:37:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7294d25d_0f087628",
+      "range": {
+        "startLine": 362,
+        "startChar": 90,
+        "endLine": 362,
+        "endChar": 98
+      },
+      "revId": "9ff84ffd7159cd36629bcdd6e9897e415c956e87",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c93f320b_85def415",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-09-25T08:37:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "855633da_44793a4b",
+      "range": {
+        "startLine": 362,
+        "startChar": 33,
+        "endLine": 362,
+        "endChar": 36
+      },
+      "revId": "9ff84ffd7159cd36629bcdd6e9897e415c956e87",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e8c75268_035503e6",
@@ -179,6 +275,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "878cf14a_02d9f10c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 461,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-09-25T08:37:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "42cc958b_f43921b3",
+      "range": {
+        "startLine": 460,
+        "startChar": 0,
+        "endLine": 461,
+        "endChar": 56
+      },
+      "revId": "9ff84ffd7159cd36629bcdd6e9897e415c956e87",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "20efd467_134a127b",
@@ -192,6 +312,30 @@
       "writtenOn": "2023-09-20T16:15:50Z",
       "side": 1,
       "message": "NB: \u0027locked (for upgrade) state\u0027",
+      "range": {
+        "startLine": 462,
+        "startChar": 46,
+        "endLine": 462,
+        "endChar": 70
+      },
+      "revId": "9ff84ffd7159cd36629bcdd6e9897e415c956e87",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82311d47_d07994cc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 462,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-09-25T08:37:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "20efd467_134a127b",
       "range": {
         "startLine": 462,
         "startChar": 46,
@@ -261,6 +405,30 @@
       "writtenOn": "2023-09-20T16:15:50Z",
       "side": 1,
       "message": "I dont think we can ever get here you now create an uncoverable code path. I think teh original code was better!",
+      "range": {
+        "startLine": 112,
+        "startChar": 51,
+        "endLine": 112,
+        "endChar": 69
+      },
+      "revId": "9ff84ffd7159cd36629bcdd6e9897e415c956e87",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae964f5e_e008ce8a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/YangDataConverter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-09-25T08:37:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "35ff9880_da951528",
       "range": {
         "startLine": 112,
         "startChar": 51,
@@ -399,6 +567,30 @@
       "writtenOn": "2023-09-20T16:15:50Z",
       "side": 1,
       "message": "type: SetTag",
+      "range": {
+        "startLine": 138,
+        "startChar": 62,
+        "endLine": 138,
+        "endChar": 67
+      },
+      "revId": "9ff84ffd7159cd36629bcdd6e9897e415c956e87",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7373c141_310c54ee",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-09-25T08:37:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d58f6ada_92a82092",
       "range": {
         "startLine": 138,
         "startChar": 62,
