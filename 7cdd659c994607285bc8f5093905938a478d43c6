@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fee89fdb_3f76cfac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-09-25T16:09:40Z",
+      "side": 1,
+      "message": "Since its a POC , I can merge this as is.\nCan fix the TODOs and comments in the subsequent patches.",
+      "revId": "7cdd659c994607285bc8f5093905938a478d43c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40d0e1d9_d7e21859",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/CmDataSubscriptionsPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-09-25T16:09:40Z",
+      "side": 1,
+      "message": "NB: can use \"totalNumberOfEntries\"",
+      "range": {
+        "startLine": 52,
+        "startChar": 30,
+        "endLine": 52,
+        "endChar": 97
+      },
+      "revId": "7cdd659c994607285bc8f5093905938a478d43c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
