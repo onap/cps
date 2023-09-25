@@ -64,8 +64,8 @@ public class EventsPublisher<T> {
                 cloudEventKafkaTemplate.send(topicName, eventKey, event);
         eventFuture.whenComplete((result, e) -> {
             if (e == null) {
-                log.debug("Successfully published event to topic : {} , Event : {}",
-                        result.getRecordMetadata().topic(), result.getProducerRecord().value());
+                log.debug("Successfully published event to topic : {} , Event : {}", result.getRecordMetadata().topic(),
+                        result.getProducerRecord().value());
 
             } else {
                 log.error("Unable to publish event to topic : {} due to {}", topicName, e.getMessage());
@@ -85,14 +85,7 @@ public class EventsPublisher<T> {
     public void publishEvent(final String topicName, final String eventKey, final T event) {
         final CompletableFuture<SendResult<String, T>> eventFuture =
                 legacyKafkaEventTemplate.send(topicName, eventKey, event);
-        eventFuture.whenComplete((result, e) -> {
-            if (e == null) {
-                log.debug("Successfully published event to topic : {} , Event : {}",
-                        result.getRecordMetadata().topic(), result.getProducerRecord().value());
-            } else {
-                log.error("Unable to publish event to topic : {} due to {}", topicName, e.getMessage());
-            }
-        });
+        handleLegacyEventCallback(topicName, eventFuture);
     }
 
     /**
@@ -107,16 +100,8 @@ public class EventsPublisher<T> {
 
         final ProducerRecord<String, T> producerRecord =
                 new ProducerRecord<>(topicName, null, eventKey, event, eventHeaders);
-        final CompletableFuture<SendResult<String, T>> eventFuture =
-                legacyKafkaEventTemplate.send(producerRecord);
-        eventFuture.whenComplete((result, ex) -> {
-            if (ex != null) {
-                log.error("Unable to publish event to topic : {} due to {}", topicName, ex.getMessage());
-            } else {
-                log.debug("Successfully published event to topic : {} , Event : {}",
-                        result.getRecordMetadata().topic(), result.getProducerRecord().value());
-            }
-        });
+        final CompletableFuture<SendResult<String, T>> eventFuture = legacyKafkaEventTemplate.send(producerRecord);
+        handleLegacyEventCallback(topicName, eventFuture);
     }
 
     /**
@@ -131,6 +116,18 @@ public class EventsPublisher<T> {
             final T event) {
 
         publishEvent(topicName, eventKey, convertToKafkaHeaders(eventHeaders), event);
+    }
+
+    private void handleLegacyEventCallback(final String topicName,
+            final CompletableFuture<SendResult<String, T>> eventFuture) {
+        eventFuture.whenComplete((result, ex) -> {
+            if (ex != null) {
+                log.error("Unable to publish event to topic : {} due to {}", topicName, ex.getMessage());
+            } else {
+                log.debug("Successfully published event to topic : {} , Event : {}", result.getRecordMetadata().topic(),
+                        result.getProducerRecord().value());
+            }
+        });
     }
 
     private Headers convertToKafkaHeaders(final Map<String, Object> eventMessageHeaders) {
