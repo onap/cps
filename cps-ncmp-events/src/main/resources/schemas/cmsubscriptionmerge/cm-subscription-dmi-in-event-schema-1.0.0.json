@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "urn:cps:org.onap.cps.ncmp.events:cm-subscription-merge-dmi-in-event-schema:1.0.0",
+  "$ref": "#/definitions/CmSubscriptionMergeDmiInEvent",
+  "definitions": {
+    "CmSubscriptionMergeDmiInEvent": {
+      "description": "The payload for cm subscription merge event incoming message from NCMP.",
+      "type": "object",
+      "javaType": "org.onap.cps.ncmp.events.cmsubscription_merge1_0_0.ncmp_to_dmi.CmSubscriptionMergeDmiInEvent",
+      "additionalProperties": false,
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/data"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
+    "data": {
+      "type": "object",
+      "description": "The actual data containing information about the targets and subscription",
+      "additionalProperties": false,
+      "properties": {
+        "cmhandles": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "description": "Details for the target cmhandles",
+            "additionalProperties": false,
+            "properties": {
+              "cmhandleId": {
+                "type": "string"
+              },
+              "private-properties": {
+                "type": "object",
+                "existingJavaType": "java.util.Map<String,String>",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "predicates": {
+          "type": "array",
+          "description": "Additional values to be added into the subscription",
+          "items": {
+            "type": "object",
+            "properties": {
+              "targetFilter": {
+                "description": "CM Handles to be targeted by the subscription",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "scopeFilter": {
+                "type": "object",
+                "properties": {
+                  "datastore": {
+                    "description": "datastore which is to be used by the subscription",
+                    "type": "string",
+                    "enum": ["ncmp-datastore:passthrough-operational", "ncmp-datastore:passthrough-running"]
+                  },
+                  "xpath-filter": {
+                    "description": "filter to be applied to the CM Handles through this event",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "xpath-filter"
+                ]
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "targetFilter"
+            ]
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "cmhandles",
+        "predicates"
+      ]
+    }
+  }
+}
