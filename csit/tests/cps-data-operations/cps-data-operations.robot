@@ -60,9 +60,9 @@ Consume cloud event from client topic
     ${headers}                      Set Variable                      ${event.headers()}
     FOR   ${header_key_value_pair}   IN  @{headers}
         Compare Header Values       ${header_key_value_pair[0]}   ${header_key_value_pair[1]}      "ce_specversion"      "1.0"
-        Compare Header Values       ${header_key_value_pair[0]}   ${header_key_value_pair[1]}      "ce_source"           "DMI"
         Compare Header Values       ${header_key_value_pair[0]}   ${header_key_value_pair[1]}      "ce_type"             "org.onap.cps.ncmp.events.async1_0_0.DataOperationEvent"
         Compare Header Values       ${header_key_value_pair[0]}   ${header_key_value_pair[1]}      "ce_correlationid"    "${expectedRequestId}"
+                Compare Header Values       ${header_key_value_pair[0]}   ${header_key_value_pair[1]}      "ce_source"           "DMI"
     END
     [Teardown]                      Basic Teardown                    ${group_id}
 
