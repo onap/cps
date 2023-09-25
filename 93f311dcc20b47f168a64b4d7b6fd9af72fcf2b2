@@ -33,6 +33,24 @@
       "message": "looks fine to me.\nAlso if u can analyze the list of REST endpoints that would get impacted coz of this change then we can look at them.",
       "revId": "93f311dcc20b47f168a64b4d7b6fd9af72fcf2b2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d82a1554_47f66144",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-09-25T10:49:37Z",
+      "side": 1,
+      "message": "GET /v1/ch/{cm-handle} ---\u003e Retrieve Cm Handle details\nPOST /v1/ch/searches ---\u003e Execute cm handle search using the available conditions",
+      "parentUuid": "fdc022ca_618c6741",
+      "revId": "93f311dcc20b47f168a64b4d7b6fd9af72fcf2b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
