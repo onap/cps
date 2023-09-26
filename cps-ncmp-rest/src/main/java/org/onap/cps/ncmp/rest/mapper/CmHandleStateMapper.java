@@ -20,6 +20,8 @@
 
 package org.onap.cps.ncmp.rest.mapper;
 
+import static org.onap.cps.ncmp.api.inventory.LockReasonCategory.LOCKED_MISBEHAVING;
+
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
@@ -75,8 +77,10 @@ public interface CmHandleStateMapper {
     @Named("toExternalLockReason")
     static LockReason toExternalLockReason(CompositeState.LockReason internalLockReason) {
         final LockReason externalLockReason = new LockReason();
-        if (internalLockReason.getLockReasonCategory() != null) {
-            externalLockReason.setReason("LOCKED_MISBEHAVING");
+        if (internalLockReason.getLockReasonCategory() == null) {
+            externalLockReason.setReason(LOCKED_MISBEHAVING.name());
+        } else {
+            externalLockReason.setReason(internalLockReason.getLockReasonCategory().name());
         }
         externalLockReason.setDetails(internalLockReason.getDetails());
         return externalLockReason;

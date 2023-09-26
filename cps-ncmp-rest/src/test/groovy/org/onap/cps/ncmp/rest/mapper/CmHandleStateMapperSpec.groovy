@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2022 Nordix Foundation
+ * Copyright (C) 2022-2023 Nordix Foundation
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -55,7 +55,7 @@ class CmHandleStateMapperSpec extends Specification {
         and: 'mapped result should have correct values'
             assert !result.dataSyncEnabled
             assert result.lastUpdateTime == formattedDateAndTime
-            assert result.lockReason.reason == 'LOCKED_MISBEHAVING'
+            assert result.lockReason.reason == MODULE_SYNC_FAILED.name()
             assert result.lockReason.details == 'locked details'
             assert result.cmHandleState == 'ADVISED'
             assert result.dataSyncState.operational.getSyncState() != null
@@ -69,13 +69,13 @@ class CmHandleStateMapperSpec extends Specification {
 
     def 'Internal to External Lock Reason Mapping of #scenario'() {
         given: 'a LOCKED composite state with locked reason of #scenario'
-            def compositeState = new CompositeStateBuilder()
+        def compositeState = new CompositeStateBuilder()
                 .withCmHandleState(CmHandleState.LOCKED)
                 .withLockReason(lockReason, '').build()
         when: 'the composite state is mapped to a CMHandle composite state'
-            def result = objectUnderTest.toCmHandleCompositeStateExternalLockReason(compositeState)
+        def result = objectUnderTest.toCmHandleCompositeStateExternalLockReason(compositeState)
         then: 'the composite state contains the expected lock Reason and details'
-            result.getLockReason().getReason() == expectedExternalLockReason
+        result.getLockReason().getReason() == (expectedExternalLockReason as String)
         where:
         scenario             | lockReason         || expectedExternalLockReason
         'MODULE_SYNC_FAILED' | MODULE_SYNC_FAILED || 'LOCKED_MISBEHAVING'

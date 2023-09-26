@@ -261,7 +261,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             dmiPluginRegistration.createdCmHandles = [ncmpServiceCmHandle]
             mockDmiPluginRegistration.getCreatedCmHandles() >> [ncmpServiceCmHandle]
         when: 'parse and create cm handle in dmi registration then sync module'
-            objectUnderTest.parseAndCreateCmHandlesInDmiRegistrationAndSyncModules(mockDmiPluginRegistration)
+            objectUnderTest.parseAndProcessCreatedCmHandlesInRegistration(mockDmiPluginRegistration)
         then: 'system persists the cm handle state'
             1 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(_) >> {
                 args -> {

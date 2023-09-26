@@ -100,13 +100,14 @@ public class SyncUtils {
     }
 
     /**
-     * Query data nodes for cm handles with an "LOCKED" cm handle state with reason MODULE_SYNC_FAILED".
+     * Query data nodes for cm handles with an "LOCKED" cm handle state with reason.
      *
      * @return a random LOCKED yang model cm handle, return null if not found
      */
-    public List<YangModelCmHandle> getModuleSyncFailedCmHandles() {
-        final List<DataNode> lockedCmHandlesAsDataNodeList = cmHandleQueries.queryCmHandleDataNodesByCpsPath(
-                "//lock-reason[@reason=\"MODULE_SYNC_FAILED\"]",
+    public List<YangModelCmHandle> getLockedCmHandlesByReason() {
+        final List<DataNode> lockedCmHandlesAsDataNodeList
+                = cmHandleQueries.queryCmHandleAncestorsByCpsPath(
+                "//lock-reason[@reason=\"MODULE_SYNC_FAILED\" or @reason=\"MODULE_UPGRADE\"]",
                 FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
         return convertCmHandlesDataNodesToYangModelCmHandles(lockedCmHandlesAsDataNodeList);
     }
@@ -140,9 +141,8 @@ public class SyncUtils {
      * @return if the retry mechanism should be attempted
      */
     public boolean needsModuleSyncRetry(final CompositeState compositeState) {
-        final OffsetDateTime time =
-                OffsetDateTime.parse(compositeState.getLastUpdateTime(),
-                        DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ"));
+        final OffsetDateTime time = OffsetDateTime.parse(compositeState.getLastUpdateTime(),
+                DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ"));
         final Matcher matcher = retryAttemptPattern.matcher(compositeState.getLockReason().getDetails());
         final boolean failedDuringModuleSync = LockReasonCategory.MODULE_SYNC_FAILED
                 == compositeState.getLockReason().getLockReasonCategory();
@@ -159,8 +159,7 @@ public class SyncUtils {
         }
         final int timeSinceLastAttempt = (int) Duration.between(time, OffsetDateTime.now()).toMinutes();
         if (timeInMinutesUntilNextAttempt >= timeSinceLastAttempt) {
-            log.info("Time until next attempt is {} minutes: ",
-                timeInMinutesUntilNextAttempt - timeSinceLastAttempt);
+            log.info("Time until next attempt is {} minutes: ", timeInMinutesUntilNextAttempt - timeSinceLastAttempt);
             return false;
         }
         log.info("Retry due now");

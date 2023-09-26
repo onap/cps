@@ -32,7 +32,7 @@ import spock.lang.Specification
 class DmiServiceUrlBuilderSpec extends Specification {
 
     static YangModelCmHandle yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle('dmiServiceName',
-        'dmiDataServiceName', 'dmiModuleServiceName', new NcmpServiceCmHandle(cmHandleId: 'some-cm-handle-id'))
+        'dmiDataServiceName', 'dmiModuleServiceName', new NcmpServiceCmHandle(cmHandleId: 'some-cm-handle-id'),'')
 
     NcmpConfiguration.DmiProperties dmiProperties = new NcmpConfiguration.DmiProperties()
 

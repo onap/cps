@@ -47,7 +47,7 @@ class YangModelCmHandleSpec extends Specification {
                 .withOperationalDataStores(DataStoreSyncState.SYNCHRONIZED, 'some-sync-time').build()
             ncmpServiceCmHandle.setCompositeState(compositeState)
         when: 'it is converted to a yang model cm handle'
-            def objectUnderTest = YangModelCmHandle.toYangModelCmHandle('', '', '', ncmpServiceCmHandle)
+            def objectUnderTest = YangModelCmHandle.toYangModelCmHandle('', '', '', ncmpServiceCmHandle,'')
         then: 'the result has the right size'
             assert objectUnderTest.dmiProperties.size() == 1
         and: 'the DMI property in the result has the correct name and value'
@@ -63,7 +63,8 @@ class YangModelCmHandleSpec extends Specification {
 
     def 'Resolve DMI service name: #scenario and #requiredService service require.'() {
         given: 'a yang model cm handle'
-            def objectUnderTest = YangModelCmHandle.toYangModelCmHandle(dmiServiceName, dmiDataServiceName, dmiModelServiceName, new NcmpServiceCmHandle(cmHandleId: 'cm-handle-id-1'))
+            def objectUnderTest = YangModelCmHandle.toYangModelCmHandle(dmiServiceName, dmiDataServiceName,
+                    dmiModelServiceName, new NcmpServiceCmHandle(cmHandleId: 'cm-handle-id-1'),'')
         expect:
             assert objectUnderTest.resolveDmiServiceName(requiredService) == expectedService
         where:
