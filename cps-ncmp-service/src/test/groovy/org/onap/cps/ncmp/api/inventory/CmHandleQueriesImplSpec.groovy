@@ -153,7 +153,7 @@ class CmHandleQueriesImplSpec extends Specification {
                 cpsPath + '/ancestor::cm-handles', INCLUDE_ALL_DESCENDANTS)
                 >> Arrays.asList(cmHandleDataNode)
         when: 'get cm handles by cps path is invoked'
-            def result = objectUnderTest.queryCmHandleDataNodesByCpsPath(cpsPath, INCLUDE_ALL_DESCENDANTS)
+            def result = objectUnderTest.queryCmHandleAncestorsByCpsPath(cpsPath, INCLUDE_ALL_DESCENDANTS)
         then: 'the returned result is a list of data nodes returned by cps data service'
             assert result.contains(cmHandleDataNode)
     }

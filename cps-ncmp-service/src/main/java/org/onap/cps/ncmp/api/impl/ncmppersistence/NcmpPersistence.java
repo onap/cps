@@ -33,7 +33,7 @@ public interface NcmpPersistence {
     String NCMP_DATASPACE_NAME = "NCMP-Admin";
     String NCMP_DMI_REGISTRY_ANCHOR = "ncmp-dmi-registry";
     String NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME = "NFP-Operational";
-    String NCMP_DMI_REGISTRY_PARENT = "/dmi-registry";
+    String NCMP_DMI_REGISTRY_PARENT = "/dmi-registry/cm-handles";
     OffsetDateTime NO_TIMESTAMP = null;
 
     /**

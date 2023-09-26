@@ -46,7 +46,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.exception.ConstraintViolationException;
-import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.onap.cps.spi.CpsModulePersistenceService;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.SchemaSetEntity;
@@ -88,8 +87,6 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
     private final SchemaSetRepository schemaSetRepository;
 
     private final DataspaceRepository dataspaceRepository;
-
-    private final CpsAdminPersistenceService cpsAdminPersistenceService;
 
     private final ModuleReferenceRepository moduleReferenceRepository;
 

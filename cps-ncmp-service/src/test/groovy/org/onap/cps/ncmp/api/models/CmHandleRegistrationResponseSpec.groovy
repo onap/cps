@@ -87,8 +87,4 @@ class CmHandleRegistrationResponseSpec extends Specification {
         then: 'the response has only one entry'
             assert cmHandleRegistrationResponses.size() == 1
     }
-
-
-
-
 }

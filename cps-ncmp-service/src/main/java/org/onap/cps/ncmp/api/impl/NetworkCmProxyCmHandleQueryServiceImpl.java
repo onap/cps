@@ -157,7 +157,8 @@ public class NetworkCmProxyCmHandleQueryServiceImpl implements NetworkCmProxyCmH
         }
         try {
             cpsPathQueryResult = collectCmHandleIdsFromDataNodes(
-                cmHandleQueries.queryCmHandleDataNodesByCpsPath(cpsPathCondition.get("cpsPath"), OMIT_DESCENDANTS));
+                cmHandleQueries.queryCmHandleAncestorsByCpsPath(
+                        cpsPathCondition.get("cpsPath"), OMIT_DESCENDANTS));
         } catch (final PathParsingException pathParsingException) {
             throw new DataValidationException(pathParsingException.getMessage(), pathParsingException.getDetails(),
                     pathParsingException);
