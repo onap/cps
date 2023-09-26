@@ -55,6 +55,49 @@ class CmDataSubscriptionsPerfTest extends NcmpPerfTestBase {
             recordAndAssertPerformance("Query all subscribers", 1_000, durationInMillis)
     }
 
+    def 'Worst case subscription update (200x10 matching entries).'() {
+        given: 'all filters are queried'
+            def cpsPath = '//filter'
+            def result = objectUnderTest.queryDataNodes(NCMP_PERFORMANCE_TEST_DATASPACE, CM_DATA_SUBSCRIPTIONS_ANCHOR, cpsPath, INCLUDE_ALL_DESCENDANTS)
+        and: 'there are the expected number of subscribers per subscription'
+            assert result.collect {it.leaves.subscribers.size()}.sum() == totalNumberOfEntries * numberOfCmDataSubscribers
+        and: 'find all entries for an existing subscriptions'
+            def matches = querySubscriptionsByIteration(result, 1)
+        when: 'update all subscriptions found'
+            stopWatch.start()
+            HashMap<String, List<String>> filterEntriesPerPath = [:]
+            matches.each { dataNode, subscribersAsArray ->
+                def updatedSubscribers = createLeafList('subscribers', 1 + numberOfCmDataSubscribers, subscriberIdPrefix)
+                def filterEntry = '{"xpath":"' + dataNode.leaves.xpath + '", ' + updatedSubscribers + ' }'
+                def parentPath = dataNode.xpath.toString().substring(0, dataNode.xpath.toString().indexOf('/filter[@xpath='))
+                filterEntriesPerPath.putIfAbsent(parentPath, new ArrayList<String>())
+                filterEntriesPerPath.get(parentPath).add(filterEntry)
+            }
+            HashMap<String, String> jsonPerPath = [:]
+            filterEntriesPerPath.each { parentPath, filterEntries ->
+                jsonPerPath.put(parentPath, '{"filter": [' + filterEntries.join(',') + ']}')
+            }
+
+            // NOTE Below fails as updateDataNodesAndDescendants can't handle JSON lists!
+            // cpsDataService.updateDataNodesAndDescendants(NCMP_PERFORMANCE_TEST_DATASPACE, CM_DATA_SUBSCRIPTIONS_ANCHOR, jsonPerPath, now)
+
+            // So update for each CM-handle instead:
+            jsonPerPath.each { parentPath, json ->
+                // Around 8.5 seconds for long strings, 4.8 with short strings
+                // cpsDataService.updateDataNodeAndDescendants(NCMP_PERFORMANCE_TEST_DATASPACE, CM_DATA_SUBSCRIPTIONS_ANCHOR, parentPath, json, now)
+                // Around 6.5 seconds for long strings, 3.3 seconds with short strings
+                cpsDataService.updateNodeLeaves(NCMP_PERFORMANCE_TEST_DATASPACE, CM_DATA_SUBSCRIPTIONS_ANCHOR, parentPath, json, now)
+            }
+
+            stopWatch.stop()
+            def durationInMillis = stopWatch.getTotalTimeMillis()
+        then: 'a subscriber has been added to each filter entry'
+            def resultAfter = objectUnderTest.queryDataNodes(NCMP_PERFORMANCE_TEST_DATASPACE, CM_DATA_SUBSCRIPTIONS_ANCHOR, cpsPath, INCLUDE_ALL_DESCENDANTS)
+            assert resultAfter.collect {it.leaves.subscribers.size()}.sum() == totalNumberOfEntries * (1 + numberOfCmDataSubscribers)
+        and: 'update matching subscription within 8 seconds'
+            recordAndAssertPerformance("Update matching subscription", 8_000, durationInMillis)
+    }
+
     def 'Worst case new subscription (200x10 new entries).'() {
         given: 'a new subscription with non-matching data'
             def subscribers = createLeafList('subscribers',1, subscriberIdPrefix)
@@ -69,33 +112,6 @@ class CmDataSubscriptionsPerfTest extends NcmpPerfTestBase {
             recordAndAssertPerformance("Insert new subscription", 1_000, durationInMillis)
     }
 
-    def 'Worst case subscription update (200x10 matching entries).'() {
-        given: 'all filters are queried'
-            def cpsPath = '//filter'
-            def result = objectUnderTest.queryDataNodes(NCMP_PERFORMANCE_TEST_DATASPACE, CM_DATA_SUBSCRIPTIONS_ANCHOR, cpsPath, INCLUDE_ALL_DESCENDANTS)
-        and: 'find all entries for an existing subscriptions'
-            def matches = querySubscriptionsByIteration(result, 1)
-        when: 'Update all subscriptions found'
-            stopWatch.start()
-            /* the production code version of this should manipulate the original subscribersAsArray of course
-               but for the (performance) poc creating another array with one extra element suffices
-             */
-            def jsonPerPath = [:]
-            matches.each { xpath, subscribersAsArray ->
-                def updatedSubscribers = createLeafList('subscribers', 1 + numberOfCmDataSubscribers, subscriberIdPrefix)
-                def filterEntry = '{"filter": {"xpath":"' + xpath + '", ' + updatedSubscribers + ' } }'
-                def parentPath = xpath.toString().substring(0, xpath.toString().indexOf('/filter[@xpath='))
-                jsonPerPath.put(parentPath, filterEntry)
-            }
-            cpsDataService.updateDataNodesAndDescendants(NCMP_PERFORMANCE_TEST_DATASPACE, CM_DATA_SUBSCRIPTIONS_ANCHOR, jsonPerPath, now)
-            stopWatch.stop()
-            def durationInMillis = stopWatch.getTotalTimeMillis()
-        then: 'Update matching subscription within 8 seconds'
-            //TODO Toine check with Daniel if this can be optimized quickly without really changing production code
-            // ie is there a better way of doing these 2,000 updates
-            recordAndAssertPerformance("Update matching subscription", 8_000, durationInMillis)
-    }
-
     def querySubscriptionsByIteration(Collection<DataNode> allSubscriptionsAsDataNodes, targetSubscriptionSequenceNumber) {
         def matches = [:]
         allSubscriptionsAsDataNodes.each {
@@ -104,7 +120,7 @@ class CmDataSubscriptionsPerfTest extends NcmpPerfTestBase {
             def targetSubscriptionId = subscriberIdPrefix + '-' + ( targetSubscriptionSequenceNumber > 0 ? targetSubscriptionSequenceNumber
                                                                                                      : 1 + random.nextInt(numberOfCmDataSubscribers) )
             if (subscribersAsSet.contains(targetSubscriptionId)) {
-                matches.put(it.xpath, subscribersAsArray)
+                matches.put(it, subscribersAsArray)
             }
         }
         return matches
