@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "852f0ebd_cb94be56",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-09-26T10:35:09Z",
+      "side": 1,
+      "message": "https://gerrit.onap.org/r/c/cps/+/136029 changes in new commit",
+      "revId": "9f14937e0614d6808d34a9386d36011a8da3828f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8fe1980d_20f3323c",
@@ -31,6 +48,30 @@
       "writtenOn": "2023-09-25T10:45:59Z",
       "side": 1,
       "message": "memoryUsageInMb",
+      "range": {
+        "startLine": 57,
+        "startChar": 100,
+        "endLine": 57,
+        "endChar": 109
+      },
+      "revId": "9f14937e0614d6808d34a9386d36011a8da3828f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7620331_95373a9e",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/base/PerfTestBase.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-09-26T10:35:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8fe1980d_20f3323c",
       "range": {
         "startLine": 57,
         "startChar": 100,
@@ -64,6 +105,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ad1af53_0121670c",
+        "filename": "integration-test/src/test/java/org/onap/cps/integration/ResourceMeter.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-09-26T10:35:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db490871_489b6e63",
+      "range": {
+        "startLine": 62,
+        "startChar": 26,
+        "endLine": 62,
+        "endChar": 38
+      },
+      "revId": "9f14937e0614d6808d34a9386d36011a8da3828f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "087fc63f_eaaec30e",
@@ -77,6 +142,30 @@
       "writtenOn": "2023-09-25T10:45:59Z",
       "side": 1,
       "message": "..Usage",
+      "range": {
+        "startLine": 66,
+        "startChar": 24,
+        "endLine": 66,
+        "endChar": 43
+      },
+      "revId": "9f14937e0614d6808d34a9386d36011a8da3828f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd3c2345_420f02d5",
+        "filename": "integration-test/src/test/java/org/onap/cps/integration/ResourceMeter.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-09-26T10:35:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "087fc63f_eaaec30e",
       "range": {
         "startLine": 66,
         "startChar": 24,
