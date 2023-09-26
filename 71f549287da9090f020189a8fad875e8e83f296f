@@ -16,6 +16,52 @@
       "message": "recheck",
       "revId": "71f549287da9090f020189a8fad875e8e83f296f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4428be46_dded8642",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/EventsPublisher.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-26T10:16:07Z",
+      "side": 1,
+      "message": "NB: by convention use just \u0027e\u0027 or fully \u0027exception\u0027 for this not something in between :-)",
+      "range": {
+        "startLine": 123,
+        "startChar": 43,
+        "endLine": 123,
+        "endChar": 44
+      },
+      "revId": "71f549287da9090f020189a8fad875e8e83f296f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1fceab81_82d219b5",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/AnchorRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-26T10:16:07Z",
+      "side": 1,
+      "message": "never seen this before but I like it that we can format the SQL properly using this!",
+      "range": {
+        "startLine": 73,
+        "startChar": 19,
+        "endLine": 73,
+        "endChar": 22
+      },
+      "revId": "71f549287da9090f020189a8fad875e8e83f296f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
