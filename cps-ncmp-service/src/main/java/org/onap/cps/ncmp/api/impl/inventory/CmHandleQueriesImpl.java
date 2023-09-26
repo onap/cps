@@ -35,6 +35,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.api.impl.inventory.enums.PropertyType;
+import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel;
+import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevelFilter;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
@@ -45,9 +47,9 @@ import org.springframework.stereotype.Component;
 public class CmHandleQueriesImpl implements CmHandleQueries {
 
     private static final String DESCENDANT_PATH = "//";
-
-    private final CpsDataPersistenceService cpsDataPersistenceService;
     private static final String ANCESTOR_CM_HANDLES = "/ancestor::cm-handles";
+    private final CpsDataPersistenceService cpsDataPersistenceService;
+    private final Map<String, TrustLevel> trustLevelPerCmHandle;
 
     @Override
     public Collection<String> queryCmHandleAdditionalProperties(final Map<String, String> privatePropertyQueryPairs) {
@@ -57,6 +59,15 @@ public class CmHandleQueriesImpl implements CmHandleQueries {
     @Override
     public Collection<String> queryCmHandlePublicProperties(final Map<String, String> publicPropertyQueryPairs) {
         return queryCmHandleAnyProperties(publicPropertyQueryPairs, PropertyType.PUBLIC);
+    }
+
+    @Override
+    public Collection<String> queryCmHandlesByTrustLevel(final Map<String, String> trustLevelPropertyQueryPairs) {
+        final String trustLevelProperty = trustLevelPropertyQueryPairs.values().iterator().next();
+        final TrustLevel targetTrustLevel = TrustLevel.valueOf(trustLevelProperty);
+
+        final TrustLevelFilter trustLevelFilter = new TrustLevelFilter(targetTrustLevel, trustLevelPerCmHandle);
+        return trustLevelFilter.getAllCmHandleIdsByTargetTrustLevel();
     }
 
     @Override

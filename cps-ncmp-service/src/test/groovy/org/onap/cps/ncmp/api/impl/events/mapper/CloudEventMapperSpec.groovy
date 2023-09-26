@@ -36,15 +36,21 @@ class CloudEventMapperSpec extends Specification {
 
     def 'Cloud event to Target event type when it is #scenario'() {
         expect: 'Events mapped correctly'
-            assert mappedCloudEvent == (CloudEventMapper.toTargetEvent(testCloudEvent(), targetClass) != null)
+            assert mappedCloudEvent ==
+                (CloudEventMapper.toTargetEvent(testCloudEvent(new CmSubscriptionNcmpInEvent()), targetClass) != null)
         where: 'below are the scenarios'
             scenario                | targetClass                     || mappedCloudEvent
             'valid concrete type'   | CmSubscriptionNcmpInEvent.class || true
             'invalid concrete type' | ArrayList.class                 || false
     }
 
-    def testCloudEvent() {
-        return CloudEventBuilder.v1().withData(jsonObjectMapper.asJsonBytes(new CmSubscriptionNcmpInEvent()))
+    def 'Cloud event without payload to Target event type'() {
+        expect: 'a null value in return'
+            assert null == CloudEventMapper.toTargetEvent(testCloudEvent(null), CmSubscriptionNcmpInEvent.class)
+    }
+
+    def testCloudEvent(payload) {
+        return CloudEventBuilder.v1().withData(jsonObjectMapper.asJsonBytes(payload))
             .withId("cmhandle1")
             .withSource(URI.create('test-source'))
             .withDataSchema(URI.create('test'))

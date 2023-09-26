@@ -20,10 +20,8 @@
 
 package org.onap.cps.ncmp.api.impl.config.embeddedcache;
 
-import com.hazelcast.collection.ISet;
 import com.hazelcast.config.MapConfig;
-import com.hazelcast.config.SetConfig;
-import com.hazelcast.map.IMap;
+import java.util.Map;
 import org.onap.cps.cache.HazelcastCacheConfig;
 import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel;
 import org.springframework.context.annotation.Bean;
@@ -32,21 +30,21 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class TrustLevelCacheConfig extends HazelcastCacheConfig {
 
-    private static final SetConfig untrustworthyCmHandlesSetConfig =
-            createSetConfig("untrustworthyCmHandlesSetConfig");
+    private static final MapConfig trustLevelPerCmHandleCacheConfig =
+            createMapConfig("trustLevelPerCmHandleCacheConfig");
 
     private static final MapConfig trustLevelPerDmiPluginCacheConfig =
             createMapConfig("trustLevelPerDmiPluginCacheConfig");
 
     /**
-     * Distributed collection of untrustworthy cm handles.
+     * Distributed instance of trust level cache containing the trust level per cm handle.
      *
-     * @return instance of distributed set of untrustworthy cm handles.
+     * @return configured map of cm handle name as keys to trust-level for values.
      */
     @Bean
-    public ISet<String> untrustworthyCmHandlesSet() {
-        return createHazelcastInstance("untrustworthyCmHandlesSet",
-                untrustworthyCmHandlesSetConfig).getSet("untrustworthyCmHandlesSet");
+    public Map<String, TrustLevel> trustLevelPerCmHandle() {
+        return createHazelcastInstance("hazelcastInstanceTrustLevelPerCmHandleMap",
+                trustLevelPerCmHandleCacheConfig).getMap("trustLevelPerCmHandle");
     }
 
     /**
@@ -55,7 +53,7 @@ public class TrustLevelCacheConfig extends HazelcastCacheConfig {
      * @return configured map of dmi-plugin name as keys to trust-level for values.
      */
     @Bean
-    public IMap<String, TrustLevel> trustLevelPerDmiPlugin() {
+    public Map<String, TrustLevel> trustLevelPerDmiPlugin() {
         return createHazelcastInstance("hazelcastInstanceTrustLevelPerDmiPluginMap",
                 trustLevelPerDmiPluginCacheConfig).getMap("trustLevelPerDmiPlugin");
     }
