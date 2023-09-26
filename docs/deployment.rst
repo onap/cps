@@ -336,5 +336,7 @@ Below are the list of distributed datastructures that we have.
 +--------------+---------------------------------+----------------------------------------------------------+
 | cps-ncmp     | trustLevelPerDmiPlugin          | Stores the TrustLevel for the dmi-plugins.               |
 +--------------+---------------------------------+----------------------------------------------------------+
+| cps-ncmp     | moduleSetTagCacheMapConfig      | Stores the Module Set Tags for cmHandles.                |
++--------------+---------------------------------+----------------------------------------------------------+
 
-Total number of caches : 7
+Total number of caches : 8
