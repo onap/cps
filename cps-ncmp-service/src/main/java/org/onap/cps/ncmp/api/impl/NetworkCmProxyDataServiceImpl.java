@@ -25,14 +25,17 @@
 package org.onap.cps.ncmp.api.impl;
 
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLES_NOT_FOUND;
+import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLES_NOT_READY;
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLE_ALREADY_EXIST;
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLE_INVALID_ID;
+import static org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory.MODULE_UPGRADE;
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT;
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME;
 import static org.onap.cps.ncmp.api.impl.utils.RestQueryParametersValidator.validateCmHandleQueryParameters;
 
 import com.google.common.collect.Lists;
 import com.hazelcast.map.IMap;
+import java.text.MessageFormat;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -51,6 +54,7 @@ import org.onap.cps.ncmp.api.impl.events.lcm.LcmEventsCmHandleStateHandler;
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueries;
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleState;
 import org.onap.cps.ncmp.api.impl.inventory.CompositeState;
+import org.onap.cps.ncmp.api.impl.inventory.CompositeStateBuilder;
 import org.onap.cps.ncmp.api.impl.inventory.CompositeStateUtils;
 import org.onap.cps.ncmp.api.impl.inventory.DataStoreSyncState;
 import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence;
@@ -68,6 +72,7 @@ import org.onap.cps.ncmp.api.models.DataOperationRequest;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
+import org.onap.cps.ncmp.api.models.UpgradedCmHandles;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.exceptions.CpsException;
@@ -104,17 +109,22 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
         if (!dmiPluginRegistration.getRemovedCmHandles().isEmpty()) {
             dmiPluginRegistrationResponse.setRemovedCmHandles(
-                    parseAndRemoveCmHandlesInDmiRegistration(dmiPluginRegistration.getRemovedCmHandles()));
+                    parseAndProcessDeletedCmHandlesInRegistration(dmiPluginRegistration.getRemovedCmHandles()));
         }
 
         if (!dmiPluginRegistration.getCreatedCmHandles().isEmpty()) {
             dmiPluginRegistrationResponse.setCreatedCmHandles(
-                    parseAndCreateCmHandlesInDmiRegistrationAndSyncModules(dmiPluginRegistration));
+                    parseAndProcessCreatedCmHandlesInRegistration(dmiPluginRegistration));
         }
         if (!dmiPluginRegistration.getUpdatedCmHandles().isEmpty()) {
             dmiPluginRegistrationResponse.setUpdatedCmHandles(
                     networkCmProxyDataServicePropertyHandler
                             .updateCmHandleProperties(dmiPluginRegistration.getUpdatedCmHandles()));
+        }
+        if (dmiPluginRegistration.getUpgradedCmHandles() != null
+                && !dmiPluginRegistration.getUpgradedCmHandles().getCmHandles().isEmpty()) {
+            dmiPluginRegistrationResponse.setUpgradedCmHandles(
+                    parseAndProcessUpgradedCmHandlesInRegistration(dmiPluginRegistration));
         }
 
         setTrustLevelPerDmiPlugin(dmiPluginRegistration);
@@ -212,8 +222,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
      */
     @Override
     public void setDataSyncEnabled(final String cmHandleId, final boolean dataSyncEnabled) {
-        final CompositeState compositeState = inventoryPersistence
-                .getCmHandleState(cmHandleId);
+        final CompositeState compositeState = inventoryPersistence.getCmHandleState(cmHandleId);
         if (compositeState.getDataSyncEnabled().equals(dataSyncEnabled)) {
             log.info("Data-Sync Enabled flag is already: {} ", dataSyncEnabled);
         } else if (compositeState.getCmHandleState() != CmHandleState.READY) {
@@ -276,8 +285,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
      */
     @Override
     public Map<String, String> getCmHandlePublicProperties(final String cmHandleId) {
-        final YangModelCmHandle yangModelCmHandle =
-                inventoryPersistence.getYangModelCmHandle(cmHandleId);
+        final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(cmHandleId);
         final List<YangModelCmHandle.Property> yangModelPublicProperties = yangModelCmHandle.getPublicProperties();
         final Map<String, String> cmHandlePublicProperties = new HashMap<>();
         YangDataConverter.asPropertiesMap(yangModelPublicProperties, cmHandlePublicProperties);
@@ -301,7 +309,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
      * @param dmiPluginRegistration dmi plugin registration information.
      * @return cm-handle registration response for create cm-handle requests.
      */
-    public List<CmHandleRegistrationResponse> parseAndCreateCmHandlesInDmiRegistrationAndSyncModules(
+    public List<CmHandleRegistrationResponse> parseAndProcessCreatedCmHandlesInRegistration(
             final DmiPluginRegistration dmiPluginRegistration) {
         final Map<YangModelCmHandle, CmHandleState> cmHandleStatePerCmHandle = new HashMap<>();
         dmiPluginRegistration.getCreatedCmHandles()
@@ -310,18 +318,19 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                             dmiPluginRegistration.getDmiPlugin(),
                             dmiPluginRegistration.getDmiDataPlugin(),
                             dmiPluginRegistration.getDmiModelPlugin(),
-                            cmHandle);
+                            cmHandle,
+                            cmHandle.getModuleSetTag());
                     cmHandleStatePerCmHandle.put(yangModelCmHandle, CmHandleState.ADVISED);
                 });
         return registerNewCmHandles(cmHandleStatePerCmHandle);
     }
 
-    protected List<CmHandleRegistrationResponse> parseAndRemoveCmHandlesInDmiRegistration(
+    protected List<CmHandleRegistrationResponse> parseAndProcessDeletedCmHandlesInRegistration(
             final List<String> tobeRemovedCmHandles) {
         final List<CmHandleRegistrationResponse> cmHandleRegistrationResponses =
                 new ArrayList<>(tobeRemovedCmHandles.size());
         final Collection<YangModelCmHandle> yangModelCmHandles =
-            inventoryPersistence.getYangModelCmHandles(tobeRemovedCmHandles);
+                inventoryPersistence.getYangModelCmHandles(tobeRemovedCmHandles);
 
         updateCmHandleStateBatch(yangModelCmHandles, CmHandleState.DELETING);
 
@@ -348,6 +357,42 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         yangModelCmHandles.removeIf(yangModelCmHandle -> notDeletedCmHandles.contains(yangModelCmHandle.getId()));
         updateCmHandleStateBatch(yangModelCmHandles, CmHandleState.DELETED);
 
+        return cmHandleRegistrationResponses;
+    }
+
+    protected List<CmHandleRegistrationResponse> parseAndProcessUpgradedCmHandlesInRegistration(
+            final DmiPluginRegistration dmiPluginRegistration) {
+
+        final UpgradedCmHandles upgradedCmHandles = dmiPluginRegistration.getUpgradedCmHandles();
+        final String moduleSetTag = dmiPluginRegistration.getUpgradedCmHandles().getModuleSetTag();
+        final Map<YangModelCmHandle, CmHandleState> cmHandleStatePerCmHandle =
+                new HashMap<>(upgradedCmHandles.getCmHandles().size());
+        final Collection<String> notReadyCmHandles = new ArrayList<>(upgradedCmHandles.getCmHandles().size());
+        final NcmpServiceCmHandle ncmpServiceCmHandle = new NcmpServiceCmHandle();
+        final String formattedModuleSetTag = MessageFormat.format("new moduleSetTag: {0}", moduleSetTag);
+
+        upgradedCmHandles.getCmHandles().forEach(cmHandleId -> {
+            if (cmHandleQueries.cmHandleHasState(cmHandleId, CmHandleState.READY)) {
+                ncmpServiceCmHandle.setCmHandleId(cmHandleId);
+                ncmpServiceCmHandle.setCompositeState(new CompositeStateBuilder()
+                        .withCmHandleState(CmHandleState.READY)
+                        .withLockReason(MODULE_UPGRADE, formattedModuleSetTag).build());
+                final YangModelCmHandle yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle(
+                        dmiPluginRegistration.getDmiPlugin(),
+                        dmiPluginRegistration.getDmiDataPlugin(),
+                        dmiPluginRegistration.getDmiModelPlugin(),
+                        ncmpServiceCmHandle,
+                        moduleSetTag);
+                cmHandleStatePerCmHandle.put(yangModelCmHandle, CmHandleState.LOCKED);
+            } else {
+                notReadyCmHandles.add(cmHandleId);
+            }
+        });
+
+        final List<CmHandleRegistrationResponse> cmHandleRegistrationResponses
+                = upgradeCmHandles(cmHandleStatePerCmHandle);
+        cmHandleRegistrationResponses.addAll(CmHandleRegistrationResponse.createFailureResponses(notReadyCmHandles,
+                CM_HANDLES_NOT_READY));
         return cmHandleRegistrationResponses;
     }
 
@@ -404,8 +449,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
     private List<CmHandleRegistrationResponse> registerNewCmHandles(final Map<YangModelCmHandle, CmHandleState>
                                                                             cmHandleStatePerCmHandle) {
-        final List<String> cmHandleIds = cmHandleStatePerCmHandle.keySet().stream().map(YangModelCmHandle::getId)
-                .toList();
+        final List<String> cmHandleIds = getCmHandleIds(cmHandleStatePerCmHandle);
         try {
             lcmEventsCmHandleStateHandler.updateCmHandleStateBatch(cmHandleStatePerCmHandle);
             return CmHandleRegistrationResponse.createSuccessResponses(cmHandleIds);
@@ -416,6 +460,22 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         } catch (final Exception exception) {
             return CmHandleRegistrationResponse.createFailureResponses(cmHandleIds, exception);
         }
+    }
+
+    private List<CmHandleRegistrationResponse> upgradeCmHandles(final Map<YangModelCmHandle, CmHandleState>
+                                                                        cmHandleStatePerCmHandle) {
+        final List<String> cmHandleIds = getCmHandleIds(cmHandleStatePerCmHandle);
+        log.info("Moving cm handles : {} into locked (for upgrade) state.", cmHandleIds);
+        try {
+            lcmEventsCmHandleStateHandler.updateCmHandleStateBatch(cmHandleStatePerCmHandle);
+            return CmHandleRegistrationResponse.createSuccessResponses(cmHandleIds);
+        } catch (final Exception exception) {
+            return CmHandleRegistrationResponse.createFailureResponses(cmHandleIds, exception);
+        }
+    }
+
+    private static List<String> getCmHandleIds(final Map<YangModelCmHandle, CmHandleState> cmHandleStatePerCmHandle) {
+        return cmHandleStatePerCmHandle.keySet().stream().map(YangModelCmHandle::getId).toList();
     }
 
     private void setTrustLevelPerDmiPlugin(final DmiPluginRegistration dmiPluginRegistration) {

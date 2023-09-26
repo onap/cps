@@ -53,7 +53,7 @@ class NetworkCmProxyCmHandleQueryServiceSpec extends Specification {
             def conditionProperties = createConditionProperties('cmHandleWithCpsPath', [['cpsPath' : '/some/cps/path']])
             cmHandleQueryParameters.setCmHandleQueryParameters([conditionProperties])
         and: 'the query get the cm handle datanodes excluding all descendants returns a datanode'
-            cmHandleQueries.queryCmHandleDataNodesByCpsPath('/some/cps/path', FetchDescendantsOption.OMIT_DESCENDANTS) >> [new DataNode(leaves: ['id':'some-cmhandle-id'])]
+            cmHandleQueries.queryCmHandleAncestorsByCpsPath('/some/cps/path', FetchDescendantsOption.OMIT_DESCENDANTS) >> [new DataNode(leaves: ['id':'some-cmhandle-id'])]
         when: 'the query is executed for cm handle ids'
             def result = objectUnderTest.queryCmHandleIds(cmHandleQueryParameters)
         then: 'the correct expected cm handles ids are returned'
@@ -66,7 +66,7 @@ class NetworkCmProxyCmHandleQueryServiceSpec extends Specification {
             def conditionProperties = createConditionProperties('cmHandleWithCpsPath', [['cpsPath' : '/some/cps/path']])
             cmHandleQueryParameters.setCmHandleQueryParameters([conditionProperties])
         and: 'cmHandleQueries throws a path parsing exception'
-            cmHandleQueries.queryCmHandleDataNodesByCpsPath('/some/cps/path', FetchDescendantsOption.OMIT_DESCENDANTS) >> { throw thrownException }
+            cmHandleQueries.queryCmHandleAncestorsByCpsPath('/some/cps/path', FetchDescendantsOption.OMIT_DESCENDANTS) >> { throw thrownException }
         when: 'the query is executed for cm handle ids'
             objectUnderTest.queryCmHandleIds(cmHandleQueryParameters)
         then: 'a data validation exception is thrown'

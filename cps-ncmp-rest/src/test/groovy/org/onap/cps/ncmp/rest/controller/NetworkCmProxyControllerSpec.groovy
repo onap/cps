@@ -615,8 +615,7 @@ class NetworkCmProxyControllerSpec extends Specification {
         def expectedContent = [
             '"state":',
             '"cmHandleState":"ADVISED"',
-            '"reason":"LOCKED_MISBEHAVING"',
-            '"details":"lock details"',
+            '"lockReason":{"reason":"MODULE_SYNC_FAILED","details":"lock details"}',
             '"lastUpdateTime":"2022-12-31T20:30:40.000+0000"',
             '"dataSyncEnabled":false',
             '"dataSyncState":',

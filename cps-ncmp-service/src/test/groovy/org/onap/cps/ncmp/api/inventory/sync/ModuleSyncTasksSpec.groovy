@@ -69,8 +69,8 @@ class ModuleSyncTasksSpec extends Specification {
             1 * mockModuleSyncService.deleteSchemaSetIfExists('cm-handle-1')
             1 * mockModuleSyncService.deleteSchemaSetIfExists('cm-handle-2')
         and: 'module sync service is invoked for each cm handle'
-            1 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_) >> { args -> assertYamgModelCmHandleArgument(args, 'cm-handle-1') }
-            1 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_) >> { args -> assertYamgModelCmHandleArgument(args, 'cm-handle-2') }
+            1 * mockModuleSyncService.syncAndCreateOrUpgradeSchemaSetAndAnchor(_) >> { args -> assertYamgModelCmHandleArgument(args, 'cm-handle-1') }
+            1 * mockModuleSyncService.syncAndCreateOrUpgradeSchemaSetAndAnchor(_) >> { args -> assertYamgModelCmHandleArgument(args, 'cm-handle-2') }
         and: 'the state handler is called for the both cm handles'
             1 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(_) >> { args ->
                 assertBatch(args, ['cm-handle-1', 'cm-handle-2'], CmHandleState.READY)
@@ -86,7 +86,7 @@ class ModuleSyncTasksSpec extends Specification {
             def cmHandleState = new CompositeState(cmHandleState: CmHandleState.ADVISED)
             1 * mockInventoryPersistence.getCmHandleState('cm-handle') >> cmHandleState
         and: 'module sync service attempts to sync the cm handle and throws an exception'
-            1 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(*_) >> { throw new Exception('some exception') }
+            1 * mockModuleSyncService.syncAndCreateOrUpgradeSchemaSetAndAnchor(*_) >> { throw new Exception('some exception') }
         when: 'module sync is executed'
             objectUnderTest.performModuleSync([cmHandle], batchCount)
         then: 'update lock reason, details and attempts is invoked'
@@ -112,7 +112,7 @@ class ModuleSyncTasksSpec extends Specification {
             moduleSyncStartedOnCmHandles.put('cm-handle-1', 'started')
             moduleSyncStartedOnCmHandles.put('cm-handle-2', 'started')
         and: 'sync utils retry locked cm handle returns #isReadyForRetry'
-            mockSyncUtils.needsModuleSyncRetry(lockedState) >>> isReadyForRetry
+            mockSyncUtils.needsModuleSyncRetryOrUpgrade(lockedState) >>> isReadyForRetry
         when: 'resetting failed cm handles'
             objectUnderTest.resetFailedCmHandles([yangModelCmHandle1, yangModelCmHandle2])
         then: 'updated to state "ADVISED" from "READY" is called as often as there are cm handles ready for retry'
@@ -135,7 +135,7 @@ class ModuleSyncTasksSpec extends Specification {
         when: 'module sync poll is executed'
             objectUnderTest.performModuleSync([cmHandle1], batchCount)
         then: 'module sync service is invoked for cm handle'
-            1 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_) >> { args -> assertYamgModelCmHandleArgument(args, 'cm-handle-1') }
+            1 * mockModuleSyncService.syncAndCreateOrUpgradeSchemaSetAndAnchor(_) >> { args -> assertYamgModelCmHandleArgument(args, 'cm-handle-1') }
         and: 'the entry for other cm handle is still in the progress map'
             assert moduleSyncStartedOnCmHandles.get('other-cm-handle') != null
     }
