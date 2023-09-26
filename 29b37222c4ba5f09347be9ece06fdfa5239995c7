@@ -37,6 +37,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d705eeba_30a62928",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-26T16:28:00Z",
+      "side": 1,
+      "message": "I think the details should contain something like\n\u0027new moduleSetTag: \u003cmoduleSetTag\u003e\u0027 (you need to populate this in eth relevant code)\nreasons\n-make the detaisl human readable\n-allow for other details in future",
+      "range": {
+        "startLine": 78,
+        "startChar": 48,
+        "endLine": 78,
+        "endChar": 61
+      },
+      "revId": "29b37222c4ba5f09347be9ece06fdfa5239995c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "143c354c_60263c61",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncService.java",
         "patchSetId": 2
@@ -50,6 +73,29 @@
       "message": "extract out method for readability: upgradeUsingModuleSetTag",
       "range": {
         "startLine": 82,
+        "startChar": 12,
+        "endLine": 89,
+        "endChar": 71
+      },
+      "revId": "29b37222c4ba5f09347be9ece06fdfa5239995c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c12d3fb6_2a1c759b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-26T16:28:00Z",
+      "side": 1,
+      "message": "as discussed in grooming session this line needs to be outside if-then-else ie needs to happen in both code-paths!",
+      "range": {
+        "startLine": 89,
         "startChar": 12,
         "endLine": 89,
         "endChar": 71
