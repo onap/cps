@@ -34,6 +34,9 @@ class TrustLevelCacheConfigSpec extends Specification {
     @Autowired
     private IMap<String, TrustLevel> trustLevelPerDmiPlugin
 
+    @Autowired
+    private IMap<String, TrustLevel> trustLevelPerCmHandle
+
     def 'Hazelcast cache for trust level per dmi plugin'() {
         expect: 'system is able to create an instance of the trust level per dmi plugin cache'
             assert null != trustLevelPerDmiPlugin
@@ -43,13 +46,13 @@ class TrustLevelCacheConfigSpec extends Specification {
             assert Hazelcast.allHazelcastInstances.name.contains('hazelcastInstanceTrustLevelPerDmiPluginMap')
     }
 
-    def 'Verify Trust Level Per Dmi Plugin Cache for basic hazelcast map operations'() {
-        when: 'the key inserted into Trust Level Per Dmi Plugin Cache'
-            trustLevelPerDmiPlugin.put('dmi1', TrustLevel.COMPLETE)
-            trustLevelPerDmiPlugin.put('dmi2', TrustLevel.NONE)
-        then: 'the value for each dmi can be retrieved'
-            assert trustLevelPerDmiPlugin.get('dmi1') == TrustLevel.COMPLETE
-            assert trustLevelPerDmiPlugin.get('dmi2') == TrustLevel.NONE
+    def 'Hazelcast cache for trust level per cm handle'() {
+        expect: 'system is able to create an instance of the trust level per cm handle cache'
+            assert null != trustLevelPerCmHandle
+        and: 'there is at least 1 instance'
+            assert Hazelcast.allHazelcastInstances.size() > 0
+        and: 'Hazelcast cache instance for trust level is present'
+            assert Hazelcast.allHazelcastInstances.name.contains('hazelcastInstanceTrustLevelPerCmHandleMap')
     }
 
     def 'Verify configs for Distributed Caches'(){
@@ -62,12 +65,30 @@ class TrustLevelCacheConfigSpec extends Specification {
             assert trustLevelDmiPerPluginCacheMapConfig.asyncBackupCount == 3
     }
 
+    def 'Verify configs for Cm Handle Distributed Caches'(){
+        given: 'the Trust Level Per Cm Handle Cache config'
+            def trustLevelPerCmHandlePluginCacheConfig =  Hazelcast.getHazelcastInstanceByName('hazelcastInstanceTrustLevelPerCmHandleMap').config
+            def trustLevelPerCmHandleCacheMapConfig =  trustLevelPerCmHandlePluginCacheConfig.mapConfigs.get('trustLevelPerCmHandleCacheConfig')
+        expect: 'system created instance with correct config'
+            assert trustLevelPerCmHandlePluginCacheConfig.clusterName == 'cps-and-ncmp-test-caches'
+            assert trustLevelPerCmHandleCacheMapConfig.backupCount == 3
+            assert trustLevelPerCmHandleCacheMapConfig.asyncBackupCount == 3
+    }
+
     def 'Verify deployment network configs for Distributed Caches'() {
         given: 'the Trust Level Per Dmi Plugin Cache config'
             def trustLevelDmiPerPluginCacheConfig = Hazelcast.getHazelcastInstanceByName('hazelcastInstanceTrustLevelPerDmiPluginMap').config.networkConfig
         expect: 'system created instance with correct config'
             assert trustLevelDmiPerPluginCacheConfig.join.autoDetectionConfig.enabled
             assert !trustLevelDmiPerPluginCacheConfig.join.kubernetesConfig.enabled
+    }
+
+    def 'Verify deployment network configs for Cm Handle Distributed Caches'() {
+        given: 'the Trust Level Per Cm Handle Cache config'
+            def trustLevelPerCmHandlePluginCacheConfig = Hazelcast.getHazelcastInstanceByName('hazelcastInstanceTrustLevelPerCmHandleMap').config.networkConfig
+        expect: 'system created instance with correct config'
+            assert trustLevelPerCmHandlePluginCacheConfig.join.autoDetectionConfig.enabled
+            assert !trustLevelPerCmHandlePluginCacheConfig.join.kubernetesConfig.enabled
     }
 
     def 'Verify network config'() {

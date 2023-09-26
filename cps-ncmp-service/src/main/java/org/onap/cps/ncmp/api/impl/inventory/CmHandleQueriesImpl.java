@@ -27,6 +27,7 @@ import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DM
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS;
 
+import com.hazelcast.map.IMap;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -35,6 +36,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.api.impl.inventory.enums.PropertyType;
+import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel;
+import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevelFilter;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
@@ -48,6 +51,7 @@ public class CmHandleQueriesImpl implements CmHandleQueries {
 
     private final CpsDataPersistenceService cpsDataPersistenceService;
     private static final String ANCESTOR_CM_HANDLES = "/ancestor::cm-handles";
+    private final IMap<String, TrustLevel> trustLevelPerCmHandle;
 
     @Override
     public Collection<String> queryCmHandleAdditionalProperties(final Map<String, String> privatePropertyQueryPairs) {
@@ -57,6 +61,13 @@ public class CmHandleQueriesImpl implements CmHandleQueries {
     @Override
     public Collection<String> queryCmHandlePublicProperties(final Map<String, String> publicPropertyQueryPairs) {
         return queryCmHandleAnyProperties(publicPropertyQueryPairs, PropertyType.PUBLIC);
+    }
+
+    @Override
+    public Collection<String> queryCmHandlesByTrustLevel(final Map<String, String> trustLevelPropertyQueryPairs) {
+        final String trustLevelProperty = trustLevelPropertyQueryPairs.values().iterator().next();
+        final TrustLevel targetTrustLevel = TrustLevel.valueOf(trustLevelProperty);
+        return getCmHandlesByTrustLevel(targetTrustLevel);
     }
 
     @Override
@@ -126,6 +137,12 @@ public class CmHandleQueriesImpl implements CmHandleQueries {
             }
         }
         return cmHandleIds;
+    }
+
+    private Collection<String> getCmHandlesByTrustLevel(final TrustLevel targetTrustLevel) {
+        final TrustLevelFilter trustLevelComparator =
+                new TrustLevelFilter(targetTrustLevel, trustLevelPerCmHandle);
+        return trustLevelComparator.getAllCmHandleIdsByTargetTrustLevel();
     }
 
     private List<DataNode> getCmHandlesByDmiPluginIdentifierAndDmiProperty(final String dmiPluginIdentifier,
