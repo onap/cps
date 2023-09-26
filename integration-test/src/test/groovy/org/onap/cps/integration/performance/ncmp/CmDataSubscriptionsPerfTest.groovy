@@ -26,7 +26,7 @@ import org.onap.cps.spi.model.DataNode
 
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 
-class CmDataSubscribersPerfTest extends NcmpPerfTestBase {
+class CmDataSubscriptionsPerfTest extends NcmpPerfTestBase {
 
     def datastore1cmHandlePlaceHolder = '{"datastores":{"datastore":[{"name":"ds-1","cm-handles":{"cm-handle":[]}}]}}'
     def xPathForDataStore1CmHandles = '/datastores/datastore[@name="ds-1"]/cm-handles'
