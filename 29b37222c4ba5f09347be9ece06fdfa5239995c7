@@ -1,0 +1,205 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df8b7f03_6e471e15",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-26T13:58:43Z",
+      "side": 1,
+      "message": "Git about halfway, but having meetign now. Some comments to start on anyway",
+      "revId": "29b37222c4ba5f09347be9ece06fdfa5239995c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "143c354c_60263c61",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-26T13:58:43Z",
+      "side": 1,
+      "message": "extract out method for readability: upgradeUsingModuleSetTag",
+      "range": {
+        "startLine": 82,
+        "startChar": 12,
+        "endLine": 89,
+        "endChar": 71
+      },
+      "revId": "29b37222c4ba5f09347be9ece06fdfa5239995c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba938b28_7858a649",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-26T13:58:43Z",
+      "side": 1,
+      "message": "suggestion: \u0027set\u0027 is probably better",
+      "range": {
+        "startLine": 147,
+        "startChar": 17,
+        "endLine": 147,
+        "endChar": 23
+      },
+      "revId": "29b37222c4ba5f09347be9ece06fdfa5239995c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02d81de5_446f84b0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-26T13:58:43Z",
+      "side": 1,
+      "message": "I don\u0027t think you need an outer map instead the cm-hanldeid shoudl become part of the cpsPath in below persist method...\n(the udpateLeaves method merges existing leaves already!)",
+      "range": {
+        "startLine": 150,
+        "startChar": 8,
+        "endLine": 150,
+        "endChar": 63
+      },
+      "revId": "29b37222c4ba5f09347be9ece06fdfa5239995c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46c6028d_96db16b4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-26T13:58:43Z",
+      "side": 1,
+      "message": "is this the easiest way, how do store set cm-handle state, is it using similar method converting maps of maps to json?!",
+      "range": {
+        "startLine": 148,
+        "startChar": 1,
+        "endLine": 152,
+        "endChar": 68
+      },
+      "revId": "29b37222c4ba5f09347be9ece06fdfa5239995c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7349162_5eac36c3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-26T13:58:43Z",
+      "side": 1,
+      "message": "you need to had the target cm handle to this path, see previous comment",
+      "range": {
+        "startLine": 153,
+        "startChar": 87,
+        "endLine": 153,
+        "endChar": 111
+      },
+      "revId": "29b37222c4ba5f09347be9ece06fdfa5239995c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90ee144c_25464764",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncTasks.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-26T13:58:43Z",
+      "side": 1,
+      "message": "NB: for future reference, \u0027e\u0027 is fine (but NOT \u0027ex\u0027)",
+      "range": {
+        "startLine": 75,
+        "startChar": 41,
+        "endLine": 75,
+        "endChar": 50
+      },
+      "revId": "29b37222c4ba5f09347be9ece06fdfa5239995c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "201c4822_a45553e5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/SyncUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-26T13:58:43Z",
+      "side": 1,
+      "message": "\u0027Reason\u0027 is NOT a paarmeter of this method. \nIf this methos is hardcode to only retreives those with a certain reason that reason should be conveyed in the method name.\nsuggestion: getCmHandlesThatFailedModelSyncOrUpgrade  (more \u0027what\u0027 isntead of \u0027how\u0027)",
+      "range": {
+        "startLine": 107,
+        "startChar": 53,
+        "endLine": 107,
+        "endChar": 61
+      },
+      "revId": "29b37222c4ba5f09347be9ece06fdfa5239995c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d076c16_0d248da4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/CmHandleRegistrationResponse.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-09-26T13:58:43Z",
+      "side": 1,
+      "message": "need to chat about this!",
+      "range": {
+        "startLine": 133,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 0
+      },
+      "revId": "29b37222c4ba5f09347be9ece06fdfa5239995c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
