@@ -69,7 +69,7 @@ class CpsModulePersistenceServiceSpec extends Specification {
 
     def setup() {
         objectUnderTest = new CpsModulePersistenceServiceImpl(yangResourceRepositoryMock, schemaSetRepositoryMock,
-            dataspaceRepositoryMock, cpsAdminPersistenceServiceMock, moduleReferenceRepositoryMock)
+            dataspaceRepositoryMock, moduleReferenceRepositoryMock)
     }
 
     def 'Store schema set error scenario: #scenario.'() {

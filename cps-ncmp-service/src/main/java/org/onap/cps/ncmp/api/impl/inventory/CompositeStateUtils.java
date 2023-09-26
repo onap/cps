@@ -100,7 +100,9 @@ public class CompositeStateUtils {
             compositeState.setLastUpdateTimeNow();
             final String oldLockReasonDetails = compositeState.getLockReason().getDetails();
             final CompositeState.LockReason lockReason =
-                    CompositeState.LockReason.builder().details(oldLockReasonDetails).build();
+                    CompositeState.LockReason.builder()
+                            .lockReasonCategory(compositeState.getLockReason().getLockReasonCategory())
+                            .details(oldLockReasonDetails).build();
             compositeState.setLockReason(lockReason);
         };
     }

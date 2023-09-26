@@ -46,7 +46,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.exception.ConstraintViolationException;
-import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.onap.cps.spi.CpsModulePersistenceService;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.SchemaSetEntity;
@@ -88,8 +87,6 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
     private final SchemaSetRepository schemaSetRepository;
 
     private final DataspaceRepository dataspaceRepository;
-
-    private final CpsAdminPersistenceService cpsAdminPersistenceService;
 
     private final ModuleReferenceRepository moduleReferenceRepository;
 
@@ -316,15 +313,13 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
         DuplicatedYangResourceException duplicatedYangResourceException = null;
 
         final Throwable cause = originalException.getCause();
-        if (cause instanceof ConstraintViolationException) {
-            final ConstraintViolationException constraintException = (ConstraintViolationException) cause;
-            if (YANG_RESOURCE_CHECKSUM_CONSTRAINT_NAME.equals(constraintException.getConstraintName())) {
-                // Db constraint related to yang resource checksum uniqueness is not respected
-                final String checksumInError = getDuplicatedChecksumFromException(constraintException);
-                final String nameInError = getNameForChecksum(checksumInError, yangResourceEntities);
-                duplicatedYangResourceException =
-                        new DuplicatedYangResourceException(nameInError, checksumInError, constraintException);
-            }
+        if (cause instanceof ConstraintViolationException constraintViolationException
+                && YANG_RESOURCE_CHECKSUM_CONSTRAINT_NAME.equals(constraintViolationException.getConstraintName())) {
+            // Db constraint related to yang resource checksum uniqueness is not respected
+            final String checksumInError = getDuplicatedChecksumFromException(constraintViolationException);
+            final String nameInError = getNameForChecksum(checksumInError, yangResourceEntities);
+            duplicatedYangResourceException =
+                    new DuplicatedYangResourceException(nameInError, checksumInError, constraintViolationException);
         }
 
         return Optional.ofNullable(duplicatedYangResourceException);

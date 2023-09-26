@@ -80,11 +80,11 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         when: 'registration is processed'
             objectUnderTest.updateDmiRegistrationAndSyncModule(dmiRegistration)
         then: 'cm-handles are removed first'
-            1 * objectUnderTest.parseAndRemoveCmHandlesInDmiRegistration(*_)
+            1 * objectUnderTest.parseAndProcessDeletedCmHandlesInRegistration(*_)
         and: 'de-registered cm handle entry is removed from in progress map'
             1 * mockModuleSyncStartedOnCmHandles.remove('cmhandle-2')
         then: 'cm-handles are created'
-            1 * objectUnderTest.parseAndCreateCmHandlesInDmiRegistrationAndSyncModules(*_)
+            1 * objectUnderTest.parseAndProcessCreatedCmHandlesInRegistration(*_)
         then: 'cm-handles are updated'
             1 * mockNetworkCmProxyDataServicePropertyHandler.updateCmHandleProperties(*_)
     }
@@ -100,10 +100,10 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             mockNetworkCmProxyDataServicePropertyHandler.updateCmHandleProperties(*_) >> updateResponses
         and: 'create cm-handles can be processed successfully'
             def createdResponses = [CmHandleRegistrationResponse.createSuccessResponse('cmhandle-1')]
-            objectUnderTest.parseAndCreateCmHandlesInDmiRegistrationAndSyncModules(*_) >> createdResponses
+            objectUnderTest.parseAndProcessCreatedCmHandlesInRegistration(*_) >> createdResponses
         and: 'delete cm-handles can be processed successfully'
             def removeResponses = [CmHandleRegistrationResponse.createSuccessResponse('cmhandle-3')]
-            objectUnderTest.parseAndRemoveCmHandlesInDmiRegistration(*_) >> removeResponses
+            objectUnderTest.parseAndProcessDeletedCmHandlesInRegistration(*_) >> removeResponses
         when: 'registration is processed'
             def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiRegistration)
         then: 'response has values from all operations'
@@ -120,7 +120,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         when: 'update registration and sync module is called with correct DMI plugin information'
             objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'create cm handles registration and sync modules is called with the correct plugin information'
-            1 * objectUnderTest.parseAndCreateCmHandlesInDmiRegistrationAndSyncModules(dmiPluginRegistration)
+            1 * objectUnderTest.parseAndProcessCreatedCmHandlesInRegistration(dmiPluginRegistration)
         and: 'dmi is added to the trustLevel map'
             1 * mockTrustLevelPerDmiPlugin.put(dmiPluginRegisteredName, TrustLevel.COMPLETE)
         where:
@@ -141,7 +141,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             def exceptionThrown = thrown(DmiRequestException.class)
             assert exceptionThrown.getMessage().contains(expectedMessageDetails)
         and: 'registration is not called'
-            0 * objectUnderTest.parseAndCreateCmHandlesInDmiRegistrationAndSyncModules(dmiPluginRegistration)
+            0 * objectUnderTest.parseAndProcessCreatedCmHandlesInRegistration(dmiPluginRegistration)
         where:
             scenario                         | dmiPlugin  | dmiModelPlugin | dmiDataPlugin || expectedMessageDetails
             'empty DMI plugins'              | ''         | ''             | ''            || 'No DMI plugin service names'
