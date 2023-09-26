@@ -20,7 +20,6 @@
 
 package org.onap.cps.ncmp.api.impl.trustlevel.dmiavailability
 
-import com.hazelcast.map.IMap
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient
 import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel
 import spock.lang.Specification
@@ -28,7 +27,7 @@ import spock.lang.Specification
 class DMiPluginWatchDogSpec extends Specification {
 
 
-    def mockTrustLevelPerDmiPlugin = Mock(IMap<String, TrustLevel>)
+    def mockTrustLevelPerDmiPlugin = Mock(Map<String, TrustLevel>)
     def mockDmiRestClient = Mock(DmiRestClient)
     def objectUnderTest = new DMiPluginWatchDog(mockTrustLevelPerDmiPlugin, mockDmiRestClient)
 

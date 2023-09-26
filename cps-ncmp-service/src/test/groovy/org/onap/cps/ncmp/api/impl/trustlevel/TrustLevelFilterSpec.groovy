@@ -18,20 +18,24 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.trustlevel;
+package org.onap.cps.ncmp.api.impl.trustlevel
 
-import java.io.Serializable;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
-@Data
-@NoArgsConstructor
-class DeviceTrustLevel implements Serializable {
+import spock.lang.Specification
 
-    private static final long serialVersionUID = -1705715024067165212L;
+class TrustLevelFilterSpec extends Specification {
 
-    private TrustLevel trustLevel;
+    def targetTrustLevel = TrustLevel.COMPLETE
 
+    def trustLevelPerCmHandle = [ 'my completed cm handle': TrustLevel.COMPLETE, 'my untrusted cm handle': TrustLevel.NONE ]
+
+    def objectUnderTest = new TrustLevelFilter(targetTrustLevel, trustLevelPerCmHandle)
+
+    def 'Obtain cm handle ids by a given trust level value'() {
+        when: 'cm handles are retrieved'
+            def result = objectUnderTest.getAllCmHandleIdsByTargetTrustLevel()
+        then: 'the result only contains the completed cm handle'
+            assert result.size() == 1
+            assert result[0] == 'my completed cm handle'
+    }
 }

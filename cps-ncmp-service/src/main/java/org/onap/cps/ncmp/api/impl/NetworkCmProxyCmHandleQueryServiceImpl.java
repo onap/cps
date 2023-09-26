@@ -24,6 +24,7 @@ import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DM
 import static org.onap.cps.ncmp.api.impl.utils.CmHandleQueryConditions.HAS_ALL_MODULES;
 import static org.onap.cps.ncmp.api.impl.utils.CmHandleQueryConditions.HAS_ALL_PROPERTIES;
 import static org.onap.cps.ncmp.api.impl.utils.CmHandleQueryConditions.WITH_CPS_PATH;
+import static org.onap.cps.ncmp.api.impl.utils.CmHandleQueryConditions.WITH_TRUST_LEVEL;
 import static org.onap.cps.ncmp.api.impl.utils.RestQueryParametersValidator.validateCpsPathConditionProperties;
 import static org.onap.cps.ncmp.api.impl.utils.RestQueryParametersValidator.validateModuleNameConditionProperties;
 import static org.onap.cps.ncmp.api.impl.utils.YangDataConverter.convertYangModelCmHandleToNcmpServiceCmHandle;
@@ -70,7 +71,8 @@ public class NetworkCmProxyCmHandleQueryServiceImpl implements NetworkCmProxyCmH
         return executeQueries(cmHandleQueryServiceParameters,
             this::executeCpsPathQuery,
             this::queryCmHandlesByPublicProperties,
-            this::executeModuleNameQuery);
+            this::executeModuleNameQuery,
+                this::queryCmHandlesByTrustLevel);
     }
 
     @Override
@@ -117,9 +119,10 @@ public class NetworkCmProxyCmHandleQueryServiceImpl implements NetworkCmProxyCmH
                 getPropertyPairs(cmHandleQueryServiceParameters.getCmHandleQueryParameters(),
                         InventoryQueryConditions.HAS_ALL_ADDITIONAL_PROPERTIES.getName());
 
-        return privatePropertyQueryPairs.isEmpty()
-                ? NO_QUERY_TO_EXECUTE
-                : cmHandleQueries.queryCmHandleAdditionalProperties(privatePropertyQueryPairs);
+        if (privatePropertyQueryPairs.isEmpty()) {
+            return NO_QUERY_TO_EXECUTE;
+        }
+        return cmHandleQueries.queryCmHandleAdditionalProperties(privatePropertyQueryPairs);
     }
 
     private Collection<String> queryCmHandlesByPublicProperties(
@@ -129,9 +132,23 @@ public class NetworkCmProxyCmHandleQueryServiceImpl implements NetworkCmProxyCmH
                 getPropertyPairs(cmHandleQueryServiceParameters.getCmHandleQueryParameters(),
                         HAS_ALL_PROPERTIES.getConditionName());
 
-        return publicPropertyQueryPairs.isEmpty()
-                ? NO_QUERY_TO_EXECUTE
-                : cmHandleQueries.queryCmHandlePublicProperties(publicPropertyQueryPairs);
+        if (publicPropertyQueryPairs.isEmpty()) {
+            return NO_QUERY_TO_EXECUTE;
+        }
+        return cmHandleQueries.queryCmHandlePublicProperties(publicPropertyQueryPairs);
+    }
+
+    private Collection<String> queryCmHandlesByTrustLevel(final CmHandleQueryServiceParameters
+                                                                  cmHandleQueryServiceParameters) {
+
+        final Map<String, String> trustLevelPropertyQueryPairs =
+                getPropertyPairs(cmHandleQueryServiceParameters.getCmHandleQueryParameters(),
+                        WITH_TRUST_LEVEL.getConditionName());
+
+        if (trustLevelPropertyQueryPairs.isEmpty()) {
+            return NO_QUERY_TO_EXECUTE;
+        }
+        return cmHandleQueries.queryCmHandlesByTrustLevel(trustLevelPropertyQueryPairs);
     }
 
     private Collection<String> executeModuleNameQuery(
