@@ -52,7 +52,7 @@ class CmDataSubscriptionsPerfTest extends NcmpPerfTestBase {
             matches.size() == numberOfFiltersPerCmHandle * numberOfCmHandlesPerCmDataSubscription
         and: 'query all subscribers within 1 second'
             def durationInMillis = stopWatch.getTotalTimeMillis()
-            recordAndAssertPerformance("Query all subscribers", 1_000, durationInMillis)
+            recordAndAssertResourceUsage("Query all subscribers", 1_000, durationInMillis)
     }
 
     def 'Worst case new subscription (200x10 new entries).'() {
@@ -66,7 +66,7 @@ class CmDataSubscriptionsPerfTest extends NcmpPerfTestBase {
             stopWatch.stop()
             def durationInMillis = stopWatch.getTotalTimeMillis()
         then: 'insert new subscription with 1 second'
-            recordAndAssertPerformance("Insert new subscription", 1_000, durationInMillis)
+            recordAndAssertResourceUsage("Insert new subscription", 1_000, durationInMillis)
     }
 
     def 'Worst case subscription update (200x10 matching entries).'() {
@@ -93,7 +93,7 @@ class CmDataSubscriptionsPerfTest extends NcmpPerfTestBase {
         then: 'Update matching subscription within 8 seconds'
             //TODO Toine check with Daniel if this can be optimized quickly without really changing production code
             // ie is there a better way of doing these 2,000 updates
-            recordAndAssertPerformance("Update matching subscription", 8_000, durationInMillis)
+            recordAndAssertResourceUsage("Update matching subscription", 8_000, durationInMillis)
     }
 
     def querySubscriptionsByIteration(Collection<DataNode> allSubscriptionsAsDataNodes, targetSubscriptionSequenceNumber) {
