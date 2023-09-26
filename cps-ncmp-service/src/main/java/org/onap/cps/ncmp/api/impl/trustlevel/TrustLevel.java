@@ -20,6 +20,16 @@
 
 package org.onap.cps.ncmp.api.impl.trustlevel;
 
+import lombok.Getter;
+
+@Getter
 public enum TrustLevel {
-    NONE, COMPLETE;
+    NONE(0), COMPLETE(99);
+
+    private final int value;
+
+    TrustLevel(final int value) {
+        this.value = value;
+    }
+
 }
