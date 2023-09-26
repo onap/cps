@@ -26,12 +26,11 @@ import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNKNOWN_ERROR;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import lombok.Builder;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.NcmpResponseStatus;
+import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
 
 @Data
 @Builder
@@ -42,8 +41,6 @@ public class CmHandleRegistrationResponse {
     private final Status status;
     private NcmpResponseStatus ncmpResponseStatus;
     private String errorText;
-
-    private static final Pattern cmHandleIdInXpathPattern = Pattern.compile("\\[@id='(.*?)']");
 
     /**
      * Creates a failure response based on exception.
@@ -88,11 +85,11 @@ public class CmHandleRegistrationResponse {
             final NcmpResponseStatus ncmpResponseStatus) {
         final List<CmHandleRegistrationResponse> cmHandleRegistrationResponses = new ArrayList<>(failedXpaths.size());
         for (final String xpath : failedXpaths) {
-            final Matcher matcher = cmHandleIdInXpathPattern.matcher(xpath);
-            if (matcher.find()) {
+            try {
+                final String cmHandleId = YangDataConverter.extractCmHandleIdFromXpath(xpath);
                 cmHandleRegistrationResponses.add(
-                    CmHandleRegistrationResponse.createFailureResponse(matcher.group(1), ncmpResponseStatus));
-            } else {
+                        CmHandleRegistrationResponse.createFailureResponse(cmHandleId, ncmpResponseStatus));
+            } catch (IllegalArgumentException | IllegalStateException e) {
                 log.warn("Unexpected xpath {}", xpath);
             }
         }

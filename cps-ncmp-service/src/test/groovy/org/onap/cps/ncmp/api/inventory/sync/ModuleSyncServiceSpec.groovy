@@ -20,17 +20,24 @@
 
 package org.onap.cps.ncmp.api.inventory.sync
 
+import org.onap.cps.spi.FetchDescendantsOption
+
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
+import static org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory.MODULE_UPGRADE
 
 import org.onap.cps.api.CpsAdminService
+import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.ncmp.api.impl.inventory.sync.ModuleSyncService
 import org.onap.cps.ncmp.api.impl.operations.DmiModelOperations
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
+import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueries
+import org.onap.cps.ncmp.api.impl.inventory.CompositeStateBuilder
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.spi.CascadeDeleteAllowed
 import org.onap.cps.spi.exceptions.SchemaSetNotFoundException
 import org.onap.cps.spi.model.ModuleReference
+import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Specification
 
 class ModuleSyncServiceSpec extends Specification {
@@ -38,17 +45,23 @@ class ModuleSyncServiceSpec extends Specification {
     def mockCpsModuleService = Mock(CpsModuleService)
     def mockDmiModelOperations = Mock(DmiModelOperations)
     def mockCpsAdminService = Mock(CpsAdminService)
+    def mockCmHandleQueries = Mock(CmHandleQueries)
+    def mockCpsDataService = Mock(CpsDataService)
+    def mockJsonObjectMapper = Mock(JsonObjectMapper)
 
-    def objectUnderTest = new ModuleSyncService(mockDmiModelOperations, mockCpsModuleService, mockCpsAdminService)
+    def objectUnderTest = new ModuleSyncService(mockDmiModelOperations, mockCpsModuleService, mockCpsAdminService,
+            mockCmHandleQueries, mockCpsDataService, mockJsonObjectMapper)
 
     def expectedDataspaceName = NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
 
     def 'Sync model for a (new) cm handle with #scenario'() {
-        given: 'a cm handle'
+        given: 'a cm handle having lock reason : MODULE_UPGRADE'
             def ncmpServiceCmHandle = new NcmpServiceCmHandle()
+            ncmpServiceCmHandle.setCompositeState(new CompositeStateBuilder()
+                .withLockReason(MODULE_UPGRADE, 'new moduleSetTag: someModuleSetTag').build())
             def dmiServiceName = 'some service name'
             ncmpServiceCmHandle.cmHandleId = 'cmHandleId-1'
-            def yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle(dmiServiceName, '', '', ncmpServiceCmHandle)
+            def yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle(dmiServiceName, '', '', ncmpServiceCmHandle,'someModuleSetTag')
         and: 'DMI operations returns some module references'
             def moduleReferences =  [ new ModuleReference('module1','1'), new ModuleReference('module2','2') ]
             mockDmiModelOperations.getModuleReferences(yangModelCmHandle) >> moduleReferences
@@ -56,11 +69,14 @@ class ModuleSyncServiceSpec extends Specification {
             mockCpsModuleService.getYangResourceModuleReferences(expectedDataspaceName) >> toModuleReference(existingModuleResourcesInCps)
         and: 'DMI-Plugin returns resource(s) for "new" module(s)'
             mockDmiModelOperations.getNewYangResourcesFromDmi(yangModelCmHandle, [new ModuleReference('module1', '1')]) >> newModuleNameContentToMap
+        and: 'empty data node list is returned by cps path a query'
+        mockCmHandleQueries.queryNcmpRegistryByCpsPath("//cm-handles[@module-set-tag='someModuleSetTag']",
+                FetchDescendantsOption.OMIT_DESCENDANTS) >> Collections.emptyList()
         when: 'module sync is triggered'
             mockCpsModuleService.identifyNewModuleReferences(moduleReferences) >> toModuleReference(identifiedNewModuleReferences)
-            objectUnderTest.syncAndCreateSchemaSetAndAnchor(yangModelCmHandle)
+            objectUnderTest.syncAndCreateOrUpgradeSchemaSetAndAnchor(yangModelCmHandle)
         then: 'create schema set from module is invoked with correct parameters'
-            1 * mockCpsModuleService.createSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'cmHandleId-1', newModuleNameContentToMap, moduleReferences)
+            1 * mockCpsModuleService.createOrUpgradeSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'cmHandleId-1', newModuleNameContentToMap, moduleReferences)
         and: 'anchor is created with the correct parameters'
             1 * mockCpsAdminService.createAnchor(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'cmHandleId-1', 'cmHandleId-1')
         where: 'the following parameters are used'
