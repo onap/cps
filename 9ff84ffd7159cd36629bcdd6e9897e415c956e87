@@ -137,6 +137,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a1d8079d_7a77f87c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-09-26T08:41:10Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "c21335ec_2b82a6c2",
+      "range": {
+        "startLine": 355,
+        "startChar": 49,
+        "endLine": 355,
+        "endChar": 91
+      },
+      "revId": "9ff84ffd7159cd36629bcdd6e9897e415c956e87",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7294d25d_0f087628",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 3
@@ -462,6 +486,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b78da003_45c88b97",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CmHandleQueries.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-09-26T08:41:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4173629b_46b5964e",
+      "range": {
+        "startLine": 61,
+        "startChar": 41,
+        "endLine": 61,
+        "endChar": 52
+      },
+      "revId": "9ff84ffd7159cd36629bcdd6e9897e415c956e87",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2c4d6294_866dbcd1",
@@ -475,6 +523,30 @@
       "writtenOn": "2023-09-20T16:15:50Z",
       "side": 1,
       "message": "rename to queryNcmpRegistryByCpsPath",
+      "range": {
+        "startLine": 70,
+        "startChar": 19,
+        "endLine": 70,
+        "endChar": 50
+      },
+      "revId": "9ff84ffd7159cd36629bcdd6e9897e415c956e87",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fec32e07_f47cb15a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/CmHandleQueries.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-09-26T08:41:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2c4d6294_866dbcd1",
       "range": {
         "startLine": 70,
         "startChar": 19,
@@ -531,6 +603,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "23238ec4_8f92f6a2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-09-26T08:41:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "53beaa58_6711bfe3",
+      "range": {
+        "startLine": 77,
+        "startChar": 32,
+        "endLine": 77,
+        "endChar": 56
+      },
+      "revId": "9ff84ffd7159cd36629bcdd6e9897e415c956e87",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ff7eb0c4_9732d17c",
@@ -544,6 +640,30 @@
       "writtenOn": "2023-09-20T16:15:50Z",
       "side": 1,
       "message": "the whole method should be inside a a check that we are dealing with an upgrade!\n(unless that is checked before you call it, then you don\u0027t need any such checks here!(\nhig level:\nget state\nif (state \u003d locked and reason \u003d upgrade) {\n   find existing node with same tag\n   if found {\n      upgrade using existing node\n   } else {\n     upgrade the \u0027old\u0027 way   \n   }\nupdate the tag (on the upgraded node)",
+      "range": {
+        "startLine": 93,
+        "startChar": 8,
+        "endLine": 93,
+        "endChar": 53
+      },
+      "revId": "9ff84ffd7159cd36629bcdd6e9897e415c956e87",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fed1e95d_88dbd134",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-09-26T08:41:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ff7eb0c4_9732d17c",
       "range": {
         "startLine": 93,
         "startChar": 8,
@@ -624,6 +744,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "33af7829_a19743aa",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-09-26T08:41:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e9a1978e_3a3c5b7d",
+      "range": {
+        "startLine": 149,
+        "startChar": 7,
+        "endLine": 150,
+        "endChar": 106
+      },
+      "revId": "9ff84ffd7159cd36629bcdd6e9897e415c956e87",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "646ce943_cf5142bb",
@@ -637,6 +781,30 @@
       "writtenOn": "2023-09-20T16:15:50Z",
       "side": 1,
       "message": "its too late now but I think Levente should have renamed the OLD enum values in separate commit too, you will have conflict going forward as both of you have tried to do the same thin in out patches but probably not always exactly the same:-(",
+      "range": {
+        "startLine": 111,
+        "startChar": 75,
+        "endLine": 111,
+        "endChar": 89
+      },
+      "revId": "9ff84ffd7159cd36629bcdd6e9897e415c956e87",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "475d23c2_971e82d5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/sync/SyncUtils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-09-26T08:41:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "646ce943_cf5142bb",
       "range": {
         "startLine": 111,
         "startChar": 75,
