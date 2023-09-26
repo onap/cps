@@ -20,6 +20,30 @@
 
 package org.onap.cps.ncmp.api.impl.trustlevel;
 
+import lombok.Getter;
+
+@Getter
 public enum TrustLevel {
-    NONE, COMPLETE;
+    NONE(0), COMPLETE(99);
+
+    private final Integer value;
+
+    TrustLevel(final Integer value) {
+        this.value = value;
+    }
+
+    /**
+     * Finds the value of the given enum.
+     *
+     * @param trustLevelValue value of the enum
+     * @return TrustLevel
+     */
+    public static TrustLevel fromString(final String trustLevelValue) {
+        for (final TrustLevel currentValue : TrustLevel.values()) {
+            if (currentValue.name().equals(trustLevelValue)) {
+                return currentValue;
+            }
+        }
+        return null;
+    }
 }

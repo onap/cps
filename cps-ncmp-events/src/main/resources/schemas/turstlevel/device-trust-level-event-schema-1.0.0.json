@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "urn:cps:org.onap.cps.ncmp.events:device-trust-level-event-schema:1.0.0",
+  "$ref": "#/definitions/DeviceTrustLevel",
+  "definitions": {
+    "DeviceTrustLevel" : {
+      "description": "The payload for device trust level event.",
+      "type": "object",
+      "javaType": "org.onap.cps.ncmp.events.trustlevel.DeviceTrustLevel",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "trustLevel": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "trustLevel"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "data"
+      ]
+    }
+  }
+}

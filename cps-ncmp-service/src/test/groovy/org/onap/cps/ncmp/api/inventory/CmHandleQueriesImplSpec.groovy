@@ -21,12 +21,15 @@
 
 package org.onap.cps.ncmp.api.inventory
 
+import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel
+
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 
+import com.hazelcast.map.IMap
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueriesImpl
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
 import org.onap.cps.ncmp.api.impl.inventory.DataStoreSyncState
@@ -37,8 +40,9 @@ import spock.lang.Specification
 
 class CmHandleQueriesImplSpec extends Specification {
     def cpsDataPersistenceService = Mock(CpsDataPersistenceService)
+    def mockTrustLevelPerCmHandle = Mock(IMap<String, TrustLevel>)
 
-    def objectUnderTest = new CmHandleQueriesImpl(cpsDataPersistenceService)
+    def objectUnderTest = new CmHandleQueriesImpl(cpsDataPersistenceService, mockTrustLevelPerCmHandle)
 
     @Shared
     def static sampleDataNodes = [new DataNode()]
@@ -65,6 +69,23 @@ class CmHandleQueriesImplSpec extends Specification {
             'public property does not match' | ['wont_match' : 'wont_match']                                                                 || []
             '2 properties, only one match'   | ['Contact' : 'newemailforstore@bookstore.com', 'Contact2': 'newemailforstore2@bookstore.com'] || ['PNFDemo4']
             '2 properties, no matches'       | ['Contact' : 'newemailforstore@bookstore.com', 'Contact2': '']                                || []
+    }
+
+    def 'Query cm handles with trust level #trustLevel'() {
+        given: 'The hazelcast cache return a cm handle with some trust levels'
+            def entry = Map.entry('cmhandle1', TrustLevel.COMPLETE)
+            def entry2= Map.entry('cmhandle2', TrustLevel.NONE)
+            mockTrustLevelPerCmHandle.entrySet() >> [entry, entry2]
+        and: 'the query property is trust level #trustLevel'
+            def trustLevelPropertyQueryPairs = ['trustLevel' : trustLevel.toString()] as Map
+        when: 'the query is being executed'
+            def result = objectUnderTest.queryCmHandlesByTrustLevel(trustLevelPropertyQueryPairs)
+        then: 'the expected cm handles are returned successfully'
+            result == expectedResult
+        where: 'the following values are used'
+            scenario                                   |   trustLevel                 || expectedResult
+            'some-dmi have trust level complete'       |   TrustLevel.COMPLETE        || ['cmhandle1'] as Set
+            'some-dmi have trust level none'           |   TrustLevel.NONE            || ['cmhandle2'] as Set
     }
 
     def 'Query CmHandles using empty public properties query pair.'() {
