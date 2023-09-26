@@ -115,11 +115,11 @@ class SyncUtilsSpec extends Specification{
 
     def 'Get all locked Cm-Handle where Lock Reason is MODULE_SYNC_FAILED cm handle #scenario'() {
         given: 'the cps (persistence service) returns a collection of data nodes'
-            mockCmHandleQueries.queryCmHandleDataNodesByCpsPath(
-                '//lock-reason[@reason="MODULE_SYNC_FAILED"]',
+            mockCmHandleQueries.queryCmHandleAncestorsByCpsPath(
+                    '//lock-reason[@reason="MODULE_SYNC_FAILED" or @reason="MODULE_UPGRADE"]',
                 FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> [dataNode]
         when: 'get locked Misbehaving cm handle is called'
-            def result = objectUnderTest.getModuleSyncFailedCmHandles()
+            def result = objectUnderTest.getCmHandlesThatFailedModelSyncOrUpgrade()
         then: 'the returned cm handle collection is the correct size'
             result.size() == 1
         and: 'the correct cm handle is returned'
@@ -133,7 +133,7 @@ class SyncUtilsSpec extends Specification{
                 lastUpdatedTime = neverUpdatedBefore
             }
         when: 'checking to see if cm handle is ready for retry'
-         def result = objectUnderTest.needsModuleSyncRetry(new CompositeStateBuilder()
+         def result = objectUnderTest.needsModuleSyncRetryOrUpgrade(new CompositeStateBuilder()
                 .withLockReason(MODULE_SYNC_FAILED, lockDetails)
                 .withLastUpdatedTime(lastUpdatedTime).build())
         then: 'retry is only attempted when expected'
@@ -151,16 +151,18 @@ class SyncUtilsSpec extends Specification{
 
     def 'Retry Locked Cm-Handle with other lock reasons (category) #lockReasonCategory'() {
         when: 'checking to see if cm handle is ready for retry'
-            def result = objectUnderTest.needsModuleSyncRetry(new CompositeStateBuilder()
+        def result = objectUnderTest.needsModuleSyncRetryOrUpgrade(new CompositeStateBuilder()
                 .withLockReason(lockReasonCategory, 'some details')
                 .withLastUpdatedTime(nowAsString).build())
-        then: 'retry attempt is never triggered'
-            assert result == false
+        then: 'verify retry attempts'
+        assert result == retryAttempt
         and: 'logs contain related information'
-            def logs = loggingListAppender.list.toString()
-            assert logs.contains('Locked for other reason')
+        def logs = loggingListAppender.list.toString()
+        assert logs.contains(logReason)
         where: 'the following lock reasons occurred'
-            lockReasonCategory  << [MODULE_UPGRADE, MODULE_UPGRADE_FAILED]
+        scenario             | lockReasonCategory || logReason                    | retryAttempt
+        'module upgrade'     | MODULE_UPGRADE     || 'Locked for module upgrade.' | true
+        'module sync failed' | MODULE_SYNC_FAILED || 'First Attempt:'             | false
     }
 
     def 'Get a Cm-Handle where #scenario'() {

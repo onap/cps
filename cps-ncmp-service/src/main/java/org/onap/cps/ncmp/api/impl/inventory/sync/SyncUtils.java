@@ -35,7 +35,6 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueries;
@@ -100,13 +99,14 @@ public class SyncUtils {
     }
 
     /**
-     * Query data nodes for cm handles with an "LOCKED" cm handle state with reason MODULE_SYNC_FAILED".
+     * Query data nodes for cm handles with an "LOCKED" cm handle state with reason.
      *
      * @return a random LOCKED yang model cm handle, return null if not found
      */
-    public List<YangModelCmHandle> getModuleSyncFailedCmHandles() {
-        final List<DataNode> lockedCmHandlesAsDataNodeList = cmHandleQueries.queryCmHandleDataNodesByCpsPath(
-                "//lock-reason[@reason=\"MODULE_SYNC_FAILED\"]",
+    public List<YangModelCmHandle> getCmHandlesThatFailedModelSyncOrUpgrade() {
+        final List<DataNode> lockedCmHandlesAsDataNodeList
+                = cmHandleQueries.queryCmHandleAncestorsByCpsPath(
+                "//lock-reason[@reason=\"MODULE_SYNC_FAILED\" or @reason=\"MODULE_UPGRADE\"]",
                 FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
         return convertCmHandlesDataNodesToYangModelCmHandles(lockedCmHandlesAsDataNodeList);
     }
@@ -139,32 +139,39 @@ public class SyncUtils {
      * @param compositeState the composite state currently in the locked state
      * @return if the retry mechanism should be attempted
      */
-    public boolean needsModuleSyncRetry(final CompositeState compositeState) {
-        final OffsetDateTime time =
-                OffsetDateTime.parse(compositeState.getLastUpdateTime(),
-                        DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ"));
-        final Matcher matcher = retryAttemptPattern.matcher(compositeState.getLockReason().getDetails());
+    public boolean needsModuleSyncRetryOrUpgrade(final CompositeState compositeState) {
+        final OffsetDateTime time = OffsetDateTime.parse(compositeState.getLastUpdateTime(),
+                DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ"));
+        final CompositeState.LockReason lockReason = compositeState.getLockReason();
+
         final boolean failedDuringModuleSync = LockReasonCategory.MODULE_SYNC_FAILED
-                == compositeState.getLockReason().getLockReasonCategory();
-        if (!failedDuringModuleSync) {
-            log.info("Locked for other reason");
-            return false;
+                == lockReason.getLockReasonCategory();
+        final boolean moduleUpgrade = LockReasonCategory.MODULE_UPGRADE
+                == lockReason.getLockReasonCategory();
+
+        if (failedDuringModuleSync) {
+            final int timeInMinutesUntilNextAttempt;
+            final Matcher matcher = retryAttemptPattern.matcher(lockReason.getDetails());
+            if (matcher.find()) {
+                timeInMinutesUntilNextAttempt = (int) Math.pow(2, Integer.parseInt(matcher.group(1)));
+            } else {
+                timeInMinutesUntilNextAttempt = 1;
+                log.info("First Attempt: no current attempts found.");
+            }
+            final int timeSinceLastAttempt = (int) Duration.between(time, OffsetDateTime.now()).toMinutes();
+            if (timeInMinutesUntilNextAttempt >= timeSinceLastAttempt) {
+                log.info("Time until next attempt is {} minutes: ",
+                        timeInMinutesUntilNextAttempt - timeSinceLastAttempt);
+                return false;
+            }
+            log.info("Retry due now");
+            return true;
+        } else if (moduleUpgrade) {
+            log.info("Locked for module upgrade.");
+            return true;
         }
-        final int timeInMinutesUntilNextAttempt;
-        if (matcher.find()) {
-            timeInMinutesUntilNextAttempt = (int) Math.pow(2, Integer.parseInt(matcher.group(1)));
-        } else {
-            timeInMinutesUntilNextAttempt = 1;
-            log.info("First Attempt: no current attempts found.");
-        }
-        final int timeSinceLastAttempt = (int) Duration.between(time, OffsetDateTime.now()).toMinutes();
-        if (timeInMinutesUntilNextAttempt >= timeSinceLastAttempt) {
-            log.info("Time until next attempt is {} minutes: ",
-                timeInMinutesUntilNextAttempt - timeSinceLastAttempt);
-            return false;
-        }
-        log.info("Retry due now");
-        return true;
+        log.info("Locked for other reason");
+        return false;
     }
 
     /**
@@ -196,6 +203,6 @@ public class SyncUtils {
             final List<DataNode> cmHandlesAsDataNodeList) {
         return cmHandlesAsDataNodeList.stream()
                 .map(cmHandle -> YangDataConverter.convertCmHandleToYangModel(cmHandle,
-                        cmHandle.getLeaves().get("id").toString())).collect(Collectors.toList());
+                        cmHandle.getLeaves().get("id").toString())).toList();
     }
 }

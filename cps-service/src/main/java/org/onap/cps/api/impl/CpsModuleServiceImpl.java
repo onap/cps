@@ -66,7 +66,7 @@ public class CpsModuleServiceImpl implements CpsModuleService {
     }
 
     @Override
-    public void createSchemaSetFromModules(final String dataspaceName, final String schemaSetName,
+    public void createOrUpgradeSchemaSetFromModules(final String dataspaceName, final String schemaSetName,
         final Map<String, String> newModuleNameToContentMap,
         final Collection<ModuleReference> allModuleReferences) {
         cpsValidator.validateNameCharacters(dataspaceName, schemaSetName);

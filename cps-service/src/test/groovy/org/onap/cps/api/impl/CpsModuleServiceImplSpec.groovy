@@ -65,7 +65,7 @@ class CpsModuleServiceImplSpec extends Specification {
             def moduleReferenceForExistingModule = new ModuleReference('test',  '2021-10-12','test.org')
             def listOfExistingModulesModuleReference = [moduleReferenceForExistingModule]
         when: 'create schema set from modules method is invoked'
-            objectUnderTest.createSchemaSetFromModules('someDataspaceName', 'someSchemaSetName', [newModule: 'newContent'], listOfExistingModulesModuleReference)
+            objectUnderTest.createOrUpgradeSchemaSetFromModules('someDataspaceName', 'someSchemaSetName', [newModule: 'newContent'], listOfExistingModulesModuleReference)
         then: 'processing is delegated to persistence service'
             1 * mockCpsModulePersistenceService.storeSchemaSetFromModules('someDataspaceName', 'someSchemaSetName', [newModule: 'newContent'], listOfExistingModulesModuleReference)
         and: 'the CpsValidator is called on the dataspaceName and schemaSetName'

@@ -86,7 +86,8 @@ public class YangDataConverter {
                 (String) cmHandleDataNode.getLeaves().get("dmi-service-name"),
                 (String) cmHandleDataNode.getLeaves().get("dmi-data-service-name"),
                 (String) cmHandleDataNode.getLeaves().get("dmi-model-service-name"),
-                ncmpServiceCmHandle
+                ncmpServiceCmHandle,
+                (String) cmHandleDataNode.getLeaves().get("module-set-tag")
         );
     }
 
@@ -105,7 +106,12 @@ public class YangDataConverter {
         return yangModelCmHandles;
     }
 
-    private static String extractCmHandleIdFromXpath(final String xpath) {
+    /**
+     * This method extract cm handle id from xpath of data node.
+     * @param xpath for data node of the cm handle
+     * @return cm handle Id
+     */
+    public static String extractCmHandleIdFromXpath(final String xpath) {
         final Matcher matcher = cmHandleIdInXpathPattern.matcher(xpath);
         matcher.find();
         return matcher.group(1);

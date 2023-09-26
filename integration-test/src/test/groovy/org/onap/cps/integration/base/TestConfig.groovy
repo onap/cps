@@ -90,7 +90,7 @@ class TestConfig extends Specification{
 
     @Bean
     CpsModulePersistenceService cpsModulePersistenceService() {
-        return (CpsModulePersistenceService) new CpsModulePersistenceServiceImpl(yangResourceRepository, schemaSetRepository, dataspaceRepository, cpsAdminPersistenceService(), moduleReferenceRepository)
+        return (CpsModulePersistenceService) new CpsModulePersistenceServiceImpl(yangResourceRepository, schemaSetRepository, dataspaceRepository, moduleReferenceRepository)
     }
 
     @Bean

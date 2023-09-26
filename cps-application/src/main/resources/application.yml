@@ -164,7 +164,7 @@ management:
                 enabled: true
 
 logging:
-    format: json
+    format: text
     level:
         org:
             springframework: INFO
@@ -183,7 +183,7 @@ ncmp:
         advised-modules-sync:
             sleep-time-ms: 5000
         locked-modules-sync:
-            sleep-time-ms: 300000
+            sleep-time-ms: 3000
         cm-handle-data-sync:
             sleep-time-ms: 30000
         subscription-forwarding:
@@ -198,7 +198,7 @@ ncmp:
             parallelism-level: 10
 
     model-loader:
-        subscription: true
+        subscription: false
         maximum-attempt-count: 20
 
 # Custom Hazelcast Config.

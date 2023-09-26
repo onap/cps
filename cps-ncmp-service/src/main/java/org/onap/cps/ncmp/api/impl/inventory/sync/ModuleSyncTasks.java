@@ -60,7 +60,8 @@ public class ModuleSyncTasks {
     public CompletableFuture<Void> performModuleSync(final Collection<DataNode> cmHandlesAsDataNodes,
                                                      final AtomicInteger batchCounter) {
         try {
-            final Map<YangModelCmHandle, CmHandleState> cmHandelStatePerCmHandle = new HashMap<>();
+            final Map<YangModelCmHandle, CmHandleState> cmHandelStatePerCmHandle
+                    = new HashMap<>(cmHandlesAsDataNodes.size());
             for (final DataNode cmHandleAsDataNode : cmHandlesAsDataNodes) {
                 final String cmHandleId = String.valueOf(cmHandleAsDataNode.getLeaves().get("id"));
                 final YangModelCmHandle yangModelCmHandle =
@@ -68,16 +69,18 @@ public class ModuleSyncTasks {
                 final CompositeState compositeState = inventoryPersistence.getCmHandleState(cmHandleId);
                 try {
                     moduleSyncService.deleteSchemaSetIfExists(cmHandleId);
-                    moduleSyncService.syncAndCreateSchemaSetAndAnchor(yangModelCmHandle);
+                    moduleSyncService.syncAndCreateOrUpgradeSchemaSetAndAnchor(yangModelCmHandle);
+                    yangModelCmHandle.getCompositeState().setLockReason(null);
                     cmHandelStatePerCmHandle.put(yangModelCmHandle, CmHandleState.READY);
                 } catch (final Exception e) {
-                    log.warn("Processing of {} module sync failed due to reason {}.", cmHandleId, e.getMessage());
+                    log.warn("Processing of {} module sync failed due to reason {}.",
+                            cmHandleId, e.getMessage());
                     syncUtils.updateLockReasonDetailsAndAttempts(compositeState,
                             LockReasonCategory.MODULE_SYNC_FAILED, e.getMessage());
                     setCmHandleStateLocked(yangModelCmHandle, compositeState.getLockReason());
                     cmHandelStatePerCmHandle.put(yangModelCmHandle, CmHandleState.LOCKED);
                 }
-                log.info("{} is now in {} state", cmHandleId, compositeState.getCmHandleState().name());
+                log.info("{} is now in {} state", cmHandleId, cmHandelStatePerCmHandle.get(yangModelCmHandle).name());
             }
             lcmEventsCmHandleStateHandler.updateCmHandleStateBatch(cmHandelStatePerCmHandle);
         } finally {
@@ -96,7 +99,7 @@ public class ModuleSyncTasks {
         final Map<YangModelCmHandle, CmHandleState> cmHandleStatePerCmHandle = new HashMap<>(failedCmHandles.size());
         for (final YangModelCmHandle failedCmHandle : failedCmHandles) {
             final CompositeState compositeState = failedCmHandle.getCompositeState();
-            final boolean isReadyForRetry = syncUtils.needsModuleSyncRetry(compositeState);
+            final boolean isReadyForRetry = syncUtils.needsModuleSyncRetryOrUpgrade(compositeState);
             log.info("Retry for cmHandleId : {} is {}", failedCmHandle.getId(), isReadyForRetry);
             if (isReadyForRetry) {
                 final String resetCmHandleId = failedCmHandle.getId();

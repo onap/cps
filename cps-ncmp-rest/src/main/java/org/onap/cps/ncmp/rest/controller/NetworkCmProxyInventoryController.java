@@ -110,16 +110,16 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
             getFailedResponses(dmiPluginRegistrationResponse.getUpdatedCmHandles()));
         dmiPluginRegistrationErrorResponse.setFailedRemovedCmHandles(
             getFailedResponses(dmiPluginRegistrationResponse.getRemovedCmHandles()));
-
+        dmiPluginRegistrationErrorResponse.setFailedUpgradeCmHandles(
+                getFailedResponses(dmiPluginRegistrationResponse.getUpgradedCmHandles()));
         return dmiPluginRegistrationErrorResponse;
     }
 
     private List<CmHandlerRegistrationErrorResponse> getFailedResponses(
-        final List<CmHandleRegistrationResponse> cmHandleRegistrationResponseList) {
+            final List<CmHandleRegistrationResponse> cmHandleRegistrationResponseList) {
         return cmHandleRegistrationResponseList.stream()
-            .filter(cmHandleRegistrationResponse -> cmHandleRegistrationResponse.getStatus() == Status.FAILURE)
-            .map(this::toCmHandleRegistrationErrorResponse)
-            .collect(Collectors.toList());
+                .filter(cmHandleRegistrationResponse -> cmHandleRegistrationResponse.getStatus() == Status.FAILURE)
+                .map(this::toCmHandleRegistrationErrorResponse).collect(Collectors.toList());
     }
 
     private CmHandlerRegistrationErrorResponse toCmHandleRegistrationErrorResponse(
