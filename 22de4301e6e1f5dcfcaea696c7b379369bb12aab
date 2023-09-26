@@ -52,6 +52,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a7b7f6e_7483edbf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-26T10:47:38Z",
+      "side": 1,
+      "message": "Hi Anjella, I\u0027ve sorted out your review however I got lost them while rebasing it with master.\n\nThus, I\u0027ve publish the answer here but will raise a fresh commit due to rebasing issue happening in Nordix.",
+      "revId": "22de4301e6e1f5dcfcaea696c7b379369bb12aab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6633ee90_782ce6a4",
@@ -65,6 +82,30 @@
       "writtenOn": "2023-09-25T12:57:52Z",
       "side": 1,
       "message": "expand title to imply its for given trust level",
+      "range": {
+        "startLine": 48,
+        "startChar": 30,
+        "endLine": 48,
+        "endChar": 45
+      },
+      "revId": "22de4301e6e1f5dcfcaea696c7b379369bb12aab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3232189d_991a88e9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelComparator.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-26T10:47:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6633ee90_782ce6a4",
       "range": {
         "startLine": 48,
         "startChar": 30,
@@ -98,6 +139,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f011ae22_d8507c96",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/TrustLevelCacheConfigSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-26T10:47:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "03a0ad8e_873921dd",
+      "range": {
+        "startLine": 54,
+        "startChar": 13,
+        "endLine": 54,
+        "endChar": 54
+      },
+      "revId": "22de4301e6e1f5dcfcaea696c7b379369bb12aab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5bb3f2f7_04e4c125",
@@ -111,6 +176,30 @@
       "writtenOn": "2023-09-25T12:57:52Z",
       "side": 1,
       "message": "cmhandle",
+      "range": {
+        "startLine": 71,
+        "startChar": 33,
+        "endLine": 71,
+        "endChar": 44
+      },
+      "revId": "22de4301e6e1f5dcfcaea696c7b379369bb12aab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f54147e8_1ed508e8",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/TrustLevelCacheConfigSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-26T10:47:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5bb3f2f7_04e4c125",
       "range": {
         "startLine": 71,
         "startChar": 33,
@@ -144,6 +233,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "06915b05_d575381f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/trustlevel/DeviceHeartbeatConsumerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-26T10:47:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "03929b1a_6afa2d5a",
+      "range": {
+        "startLine": 57,
+        "startChar": 15,
+        "endLine": 57,
+        "endChar": 19
+      },
+      "revId": "22de4301e6e1f5dcfcaea696c7b379369bb12aab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "10078515_d03dd855",
@@ -157,6 +270,30 @@
       "writtenOn": "2023-09-25T12:57:52Z",
       "side": 1,
       "message": "can you change these to actual num value, might be better ? 0-99?",
+      "range": {
+        "startLine": 34,
+        "startChar": 69,
+        "endLine": 34,
+        "endChar": 84
+      },
+      "revId": "22de4301e6e1f5dcfcaea696c7b379369bb12aab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5fc288aa_a5a5dc9d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-26T10:47:38Z",
+      "side": 1,
+      "message": "Well, I kept expectedResult as is and added another column expectedResultEnumValue for that aim.",
+      "parentUuid": "10078515_d03dd855",
       "range": {
         "startLine": 34,
         "startChar": 69,
@@ -190,6 +327,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5606d684_209ccf8a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/CmHandleQueriesImplSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-26T10:47:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "72e8febc_fa8b661e",
+      "range": {
+        "startLine": 66,
+        "startChar": 42,
+        "endLine": 66,
+        "endChar": 51
+      },
+      "revId": "22de4301e6e1f5dcfcaea696c7b379369bb12aab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dcb6cf2d_29692a80",
@@ -203,6 +364,30 @@
       "writtenOn": "2023-09-25T12:57:52Z",
       "side": 1,
       "message": "#trustLevel?",
+      "range": {
+        "startLine": 71,
+        "startChar": 48,
+        "endLine": 71,
+        "endChar": 56
+      },
+      "revId": "22de4301e6e1f5dcfcaea696c7b379369bb12aab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8f5f59f_35e27a22",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/CmHandleQueriesImplSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-26T10:47:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dcb6cf2d_29692a80",
       "range": {
         "startLine": 71,
         "startChar": 48,
