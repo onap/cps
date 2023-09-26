@@ -62,6 +62,11 @@ committers:
       company: 'Ericsson Software Technology'
       id: 'mpriyank'
       timezone: 'Europe/Dublin'
+    - name: 'Lee Anjella Macabuhay'
+      email: 'lee.anjella.macabuhay@est.tech'
+      company: 'Ericsson Software Technology'
+      id: 'emaclee'
+      timezone: 'Europe/Dublin'
 repositories:
     - cps
 tsc:
