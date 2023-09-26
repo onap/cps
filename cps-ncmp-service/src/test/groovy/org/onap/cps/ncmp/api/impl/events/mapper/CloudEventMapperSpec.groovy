@@ -34,17 +34,30 @@ class CloudEventMapperSpec extends Specification {
     @Autowired
     JsonObjectMapper jsonObjectMapper
 
-    def 'Cloud event to Target event type when it is #scenario'() {
-        expect: 'Events mapped correctly'
-            assert mappedCloudEvent == (CloudEventMapper.toTargetEvent(testCloudEvent(), targetClass) != null)
-        where: 'below are the scenarios'
-            scenario                | targetClass                     || mappedCloudEvent
-            'valid concrete type'   | CmSubscriptionNcmpInEvent.class || true
-            'invalid concrete type' | ArrayList.class                 || false
+    def 'Cloud event to target event type'() {
+        given: 'a cloud event with valid payload'
+            def cloudEvent = testCloudEvent(new CmSubscriptionNcmpInEvent())
+        when: 'the cloud event mapped to target event'
+            def result = CloudEventMapper.toTargetEvent((cloudEvent), CmSubscriptionNcmpInEvent.class)
+        then: 'the cloud event is mapped'
+            assert result instanceof CmSubscriptionNcmpInEvent
     }
 
-    def testCloudEvent() {
-        return CloudEventBuilder.v1().withData(jsonObjectMapper.asJsonBytes(new CmSubscriptionNcmpInEvent()))
+    def 'Cloud event to target event type when it is #scenario'() {
+        given: 'a cloud event with invalid payload'
+            def cloudEvent = testCloudEvent(payload)
+        when: 'the cloud event mapped to target event'
+            def result = CloudEventMapper.toTargetEvent(cloudEvent, CmSubscriptionNcmpInEvent.class)
+        then: 'events could not be mapped'
+            assert result == expectedResult
+        where: 'below are the scenarios'
+            scenario               | payload         || expectedResult
+            'invalid payload type' | ArrayList.class || null
+            'without payload'      | null            || null
+    }
+
+    def testCloudEvent(payload) {
+        return CloudEventBuilder.v1().withData(jsonObjectMapper.asJsonBytes(payload))
             .withId("cmhandle1")
             .withSource(URI.create('test-source'))
             .withDataSchema(URI.create('test'))

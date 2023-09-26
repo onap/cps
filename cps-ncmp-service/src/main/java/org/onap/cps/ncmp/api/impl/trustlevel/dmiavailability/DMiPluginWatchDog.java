@@ -20,7 +20,7 @@
 
 package org.onap.cps.ncmp.api.impl.trustlevel.dmiavailability;
 
-import com.hazelcast.map.IMap;
+import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
@@ -33,7 +33,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class DMiPluginWatchDog {
 
-    private final IMap<String, TrustLevel> trustLevelPerDmiPlugin;
+    private final Map<String, TrustLevel> trustLevelPerDmiPlugin;
 
     private final DmiRestClient dmiRestClient;
 
