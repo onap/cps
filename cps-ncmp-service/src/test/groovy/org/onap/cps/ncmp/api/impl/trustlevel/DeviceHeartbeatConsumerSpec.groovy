@@ -21,81 +21,75 @@
 package org.onap.cps.ncmp.api.impl.trustlevel
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.hazelcast.collection.ISet
+import com.hazelcast.map.IMap
 import io.cloudevents.CloudEvent
 import io.cloudevents.core.builder.CloudEventBuilder
 import org.apache.kafka.clients.consumer.ConsumerRecord
+import org.onap.cps.ncmp.events.trustlevel.DeviceTrustLevel
 import org.onap.cps.utils.JsonObjectMapper
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification
 
 @SpringBootTest(classes = [ObjectMapper, JsonObjectMapper])
 class DeviceHeartbeatConsumerSpec extends Specification {
 
-    def mockUntrustworthyCmHandlesSet = Mock(ISet<String>)
+    def mockTrustLevelPerCmHandle = Mock(IMap<String, TrustLevel>)
+
+    def objectUnderTest = new DeviceHeartbeatConsumer(mockTrustLevelPerCmHandle)
     def objectMapper = new ObjectMapper()
 
-    def objectUnderTest = new DeviceHeartbeatConsumer(mockUntrustworthyCmHandlesSet)
+    @Autowired
+    JsonObjectMapper jsonObjectMapper
 
-    def 'Operations to be done in an empty untrustworthy set for #scenario'() {
-        given: 'an event with trustlevel as #trustLevel'
-            def incomingEvent = testCloudEvent(trustLevel)
-        and: 'transformed as a kafka record'
-            def consumerRecord = new ConsumerRecord<String, CloudEvent>('test-device-heartbeat', 0, 0, 'cmhandle1', incomingEvent)
+    def static trustLevelString = '{"data":{"trustLevel": "COMPLETE"}}'
+
+    def 'Consume a trust level event sent by dmi plugin and populate the map'() {
+        given: 'an event from dmi with trust level complete'
+            def payload = jsonObjectMapper.convertJsonString(trustLevelString, DeviceTrustLevel.class)
+            def eventFromDmi = createTrustLevelEvent(payload)
+        and: 'transformed to a consumer record'
+            def consumerRecord = new ConsumerRecord<String, CloudEvent>('test-device-heartbeat', 0, 0, 'sample-message-key', eventFromDmi)
             consumerRecord.headers().add('ce_id', objectMapper.writeValueAsBytes('cmhandle1'))
         when: 'the event is consumed'
             objectUnderTest.heartbeatListener(consumerRecord)
-        then: 'untrustworthy cmhandles are stored'
-            untrustworthyCmHandlesSetInvocationForAdd * mockUntrustworthyCmHandlesSet.add(_)
-        and: 'trustworthy cmHandles will be removed from untrustworthy set'
-            untrustworthyCmHandlesSetInvocationForContains * mockUntrustworthyCmHandlesSet.contains(_)
-
-        where: 'below scenarios are applicable'
-            scenario         | trustLevel          || untrustworthyCmHandlesSetInvocationForAdd | untrustworthyCmHandlesSetInvocationForContains
-            'None trust'     | TrustLevel.NONE     || 1                                         | 0
-            'Complete trust' | TrustLevel.COMPLETE || 0                                         | 1
+        then: 'cm handles are stored with correct trust level'
+            1 * mockTrustLevelPerCmHandle.put('"cmhandle1"', TrustLevel.COMPLETE)
     }
 
-    def 'Invalid trust'() {
-        when: 'we provide an invalid trust in the event'
-            def consumerRecord = new ConsumerRecord<String, CloudEvent>('test-device-heartbeat', 0, 0, 'cmhandle1', testCloudEvent(null))
-            consumerRecord.headers().add('ce_id', objectMapper.writeValueAsBytes('cmhandle1'))
+    def 'Consume a trust level event having invalid cloud event headers and the map is not populated'() {
+        given: 'an event from dmi with trust level complete'
+            def payload = jsonObjectMapper.convertJsonString(trustLevelString, DeviceTrustLevel.class)
+            def eventFromDmi = createTrustLevelEvent(payload)
+        and: 'transformed to a consumer record with invalid kafka headers'
+            def consumerRecord = new ConsumerRecord<String, CloudEvent>('test-device-heartbeat', 0, 0, 'sample-message-key', eventFromDmi)
+            consumerRecord.headers().add('some_header_value', objectMapper.writeValueAsBytes('cmhandle1'))
+        when: 'the event is consumed'
             objectUnderTest.heartbeatListener(consumerRecord)
-        then: 'no interaction with the untrustworthy cmhandles set'
-            0 * mockUntrustworthyCmHandlesSet.add(_)
-            0 * mockUntrustworthyCmHandlesSet.contains(_)
-            0 * mockUntrustworthyCmHandlesSet.remove(_)
+        then: 'no cm handle has been stored in the map'
+            0 * mockTrustLevelPerCmHandle.put('"some_header_value"', TrustLevel.COMPLETE)
         and: 'control flow returns without any exception'
             noExceptionThrown()
-
     }
 
-    def 'Remove trustworthy cmhandles from untrustworthy cmhandles set'() {
-        given: 'an event with COMPLETE trustlevel'
-            def incomingEvent = testCloudEvent(TrustLevel.COMPLETE)
-        and: 'transformed as a kafka record'
-            def consumerRecord = new ConsumerRecord<String, CloudEvent>('test-device-heartbeat', 0, 0, 'cmhandle1', incomingEvent)
-            consumerRecord.headers().add('ce_id', objectMapper.writeValueAsBytes('cmhandle1'))
-        and: 'untrustworthy cmhandles set contains cmhandle1'
-            1 * mockUntrustworthyCmHandlesSet.contains(_) >> true
+    def 'Consume a trust level event having no payload and the map is not populated'() {
+        given: 'a consumer record with invalid DeviceTrustLevel'
+            def consumerRecord = new ConsumerRecord<String, CloudEvent>('test-device-heartbeat', 0, 0, 'cmhandle1', createTrustLevelEvent(null))
+            consumerRecord.headers().add('some_other_header_value', objectMapper.writeValueAsBytes('cmhandle1'))
         when: 'the event is consumed'
             objectUnderTest.heartbeatListener(consumerRecord)
-        then: 'cmhandle removed from untrustworthy cmhandles set'
-            1 * mockUntrustworthyCmHandlesSet.remove(_) >> {
-                args ->
-                    {
-                        args[0].equals('cmhandle1')
-                    }
-            }
-
+        then: 'no cm handle has been stored in the map'
+            0 * mockTrustLevelPerCmHandle.put('"some_other_header_value"', TrustLevel.COMPLETE)
+        and: 'control flow returns without any exception'
+            noExceptionThrown()
     }
 
-    def testCloudEvent(trustLevel) {
-        return CloudEventBuilder.v1().withData(objectMapper.writeValueAsBytes(new DeviceTrustLevel(trustLevel)))
+    def createTrustLevelEvent(eventPayload) {
+        return CloudEventBuilder.v1().withData(objectMapper.writeValueAsBytes(eventPayload))
             .withId("cmhandle1")
             .withSource(URI.create('DMI'))
             .withDataSchema(URI.create('test'))
-            .withType('org.onap.cm.events.trustlevel-notification')
+            .withType('org.onap.cps.ncmp.events.trustlevel.DeviceTrustLevel')
             .build()
     }
 
