@@ -36,6 +36,8 @@ class NcmpPerfTestBase extends PerfTestBase {
     def numberOfFiltersPerCmHandle = 10
     def numberOfCmHandlesPerCmDataSubscription = 200
 
+    ResourceMeter resourceMeter = new ResourceMeter()
+
 // SHORT versions for easier debugging
 //    def subscriberIdPrefix = 'sub'
 //    def xpathPrefix = 'f'
