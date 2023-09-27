@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d5b7091_9c70786c",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/CmDataSubscriptionsPerfTest.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-09-27T12:44:31Z",
+      "side": 1,
+      "message": "These new tests in this class need to be updated to add memory usage",
+      "range": {
+        "startLine": 55,
+        "startChar": 12,
+        "endLine": 55,
+        "endChar": 40
+      },
+      "revId": "4ecf823c53156846079092f34429e07088a8a880",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
