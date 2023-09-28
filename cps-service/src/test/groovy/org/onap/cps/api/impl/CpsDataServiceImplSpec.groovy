@@ -307,15 +307,16 @@ class CpsDataServiceImplSpec extends Specification {
             objectUnderTest.updateDataNodeAndDescendants(dataspaceName, anchorName, parentNodeXpath, jsonData, observedTimestamp)
         then: 'the persistence service method is invoked with correct parameters'
             1 * mockCpsDataPersistenceService.updateDataNodesAndDescendants(dataspaceName, anchorName,
-                { dataNode -> dataNode.xpath[0] == expectedNodeXpath })
+                    { dataNode -> dataNode.xpath == expectedNodeXpath})
         and: 'data updated event is sent to notification service'
             1 * mockNotificationService.processDataUpdatedEvent(anchor, parentNodeXpath, Operation.UPDATE, observedTimestamp)
         and: 'the CpsValidator is called on the dataspaceName and AnchorName'
             1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
         where: 'following parameters were used'
-            scenario         | parentNodeXpath | jsonData                        || expectedNodeXpath
-            'top level node' | '/'             | '{"test-tree": {"branch": []}}' || '/test-tree'
-            'level 2 node'   | '/test-tree'    | '{"branch": [{"name":"Name"}]}' || '/test-tree/branch[@name=\'Name\']'
+            scenario         | parentNodeXpath | jsonData                                           || expectedNodeXpath
+            'top level node' | '/'             | '{"test-tree": {"branch": []}}'                    || ['/test-tree']
+            'level 2 node'   | '/test-tree'    | '{"branch": [{"name":"Name"}]}'                    || ['/test-tree/branch[@name=\'Name\']']
+            'json list'      | '/test-tree'    | '{"branch": [{"name":"Name1"}, {"name":"Name2"}]}' || ["/test-tree/branch[@name='Name1']", "/test-tree/branch[@name='Name2']"]
     }
 
     def 'Replace data node using multiple data nodes: #scenario.'() {
@@ -327,14 +328,16 @@ class CpsDataServiceImplSpec extends Specification {
             1 * mockCpsDataPersistenceService.updateDataNodesAndDescendants(dataspaceName, anchorName,
                 { dataNode -> dataNode.xpath == expectedNodeXpath})
         and: 'data updated event is sent to notification service'
-            1 * mockNotificationService.processDataUpdatedEvent(anchor, nodesJsonData.keySet()[0], Operation.UPDATE, observedTimestamp)
-            1 * mockNotificationService.processDataUpdatedEvent(anchor, nodesJsonData.keySet()[1], Operation.UPDATE, observedTimestamp)
+            nodesJsonData.keySet().each {
+                1 * mockNotificationService.processDataUpdatedEvent(anchor, it, Operation.UPDATE, observedTimestamp)
+            }
         and: 'the CpsValidator is called on the dataspaceName and AnchorName'
             1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
         where: 'following parameters were used'
             scenario         | nodesJsonData                                                                                                        || expectedNodeXpath
             'top level node' | ['/' : '{"test-tree": {"branch": []}}', '/test-tree' : '{"branch": [{"name":"Name"}]}']                              || ["/test-tree", "/test-tree/branch[@name='Name']"]
             'level 2 node'   | ['/test-tree' : '{"branch": [{"name":"Name"}]}', '/test-tree/branch[@name=\'Name\']':'{"nest":{"name":"nestName"}}'] || ["/test-tree/branch[@name='Name']", "/test-tree/branch[@name='Name']/nest"]
+            'json list'      | ['/test-tree' : '{"branch": [{"name":"Name1"}, {"name":"Name2"}]}']                                                  || ["/test-tree/branch[@name='Name1']", "/test-tree/branch[@name='Name2']"]
     }
 
     def 'Replace data node with concurrency exception in persistence layer.'() {
