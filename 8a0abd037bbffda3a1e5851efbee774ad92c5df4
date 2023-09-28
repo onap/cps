@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "599ce97f_9cd57fad",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-28T16:11:33Z",
+      "side": 1,
+      "message": "Thank Toine for the review session. Please find the new patch set.",
+      "revId": "8a0abd037bbffda3a1e5851efbee774ad92c5df4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
