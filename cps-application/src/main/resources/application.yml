@@ -37,9 +37,8 @@ spring:
         ddl-auto: create
         open-in-view: false
         properties:
-            hibernate:
-                enable_lazy_load_no_trans: true
-                dialect: org.hibernate.dialect.PostgreSQLDialect
+            hibernate.enable_lazy_load_no_trans: true
+            hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
 
     datasource:
         url: jdbc:postgresql://${DB_HOST}:${DB_PORT:5432}/cpsdb
