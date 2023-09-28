@@ -60,6 +60,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c1f08e0c_6e842251",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-09-28T11:59:00Z",
+      "side": 1,
+      "message": "Modified",
+      "parentUuid": "d705eeba_30a62928",
+      "range": {
+        "startLine": 78,
+        "startChar": 48,
+        "endLine": 78,
+        "endChar": 61
+      },
+      "revId": "29b37222c4ba5f09347be9ece06fdfa5239995c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "143c354c_60263c61",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncService.java",
         "patchSetId": 2
@@ -106,6 +130,54 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6fab5ad7_b6daeba5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-09-28T11:59:00Z",
+      "side": 1,
+      "message": "extracted",
+      "parentUuid": "143c354c_60263c61",
+      "range": {
+        "startLine": 82,
+        "startChar": 12,
+        "endLine": 89,
+        "endChar": 71
+      },
+      "revId": "29b37222c4ba5f09347be9ece06fdfa5239995c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfabe302_b6d520ca",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-09-28T11:59:00Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "c12d3fb6_2a1c759b",
+      "range": {
+        "startLine": 89,
+        "startChar": 12,
+        "endLine": 89,
+        "endChar": 71
+      },
+      "revId": "29b37222c4ba5f09347be9ece06fdfa5239995c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ba938b28_7858a649",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncService.java",
         "patchSetId": 2
@@ -117,6 +189,30 @@
       "writtenOn": "2023-09-26T13:58:43Z",
       "side": 1,
       "message": "suggestion: \u0027set\u0027 is probably better",
+      "range": {
+        "startLine": 147,
+        "startChar": 17,
+        "endLine": 147,
+        "endChar": 23
+      },
+      "revId": "29b37222c4ba5f09347be9ece06fdfa5239995c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db3894ad_a2acd6cd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-09-28T11:59:00Z",
+      "side": 1,
+      "message": "done.",
+      "parentUuid": "ba938b28_7858a649",
       "range": {
         "startLine": 147,
         "startChar": 17,
@@ -221,6 +317,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f88714c3_c07e045f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncTasks.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-09-28T11:59:00Z",
+      "side": 1,
+      "message": "reverted.",
+      "parentUuid": "90ee144c_25464764",
+      "range": {
+        "startLine": 75,
+        "startChar": 41,
+        "endLine": 75,
+        "endChar": 50
+      },
+      "revId": "29b37222c4ba5f09347be9ece06fdfa5239995c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "201c4822_a45553e5",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/SyncUtils.java",
         "patchSetId": 2
@@ -232,6 +352,30 @@
       "writtenOn": "2023-09-26T13:58:43Z",
       "side": 1,
       "message": "\u0027Reason\u0027 is NOT a paarmeter of this method. \nIf this methos is hardcode to only retreives those with a certain reason that reason should be conveyed in the method name.\nsuggestion: getCmHandlesThatFailedModelSyncOrUpgrade  (more \u0027what\u0027 isntead of \u0027how\u0027)",
+      "range": {
+        "startLine": 107,
+        "startChar": 53,
+        "endLine": 107,
+        "endChar": 61
+      },
+      "revId": "29b37222c4ba5f09347be9ece06fdfa5239995c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93763282_603a767a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/SyncUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-09-28T11:59:00Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "201c4822_a45553e5",
       "range": {
         "startLine": 107,
         "startChar": 53,
@@ -278,6 +422,30 @@
       "writtenOn": "2023-09-26T16:01:47Z",
       "side": 1,
       "message": "I assume this is needed now, maybe reflect it in the label on line #56",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 60
+      },
+      "revId": "29b37222c4ba5f09347be9ece06fdfa5239995c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "637d2bdf_9e5932b8",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncServiceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-09-28T11:59:00Z",
+      "side": 1,
+      "message": "modified lin#56",
+      "parentUuid": "73551d6a_873e83e9",
       "range": {
         "startLine": 58,
         "startChar": 0,
