@@ -42,6 +42,7 @@ Bug Fixes
 
 Features
 --------
+    - `CPS-1888 <https://jira.onap.org/browse/CPS-1888>`_ Uplift Spring Boot to 3.1.2.
 
 Version: 3.3.7
 ==============
@@ -70,7 +71,7 @@ Bug Fixes
 
 Features
 --------
-- `CPS-1789 <https://jira.onap.org/browse/CPS-1789>`_ CPS Upgrade to Springboot 3.0.
+    - `CPS-1789 <https://jira.onap.org/browse/CPS-1789>`_ CPS Upgrade to Springboot 3.0.
 
 Note
 ----
