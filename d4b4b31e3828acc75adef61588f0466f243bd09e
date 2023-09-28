@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "51e5290b_776d76a3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-09-28T09:45:51Z",
+      "side": 1,
+      "message": "Refer to this.\nhttps://wiki.onap.org/pages/viewpage.action?pageId\u003d190218335\nI guess the generated schemas are not compliant with our requirement.",
+      "revId": "d4b4b31e3828acc75adef61588f0466f243bd09e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
