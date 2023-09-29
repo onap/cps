@@ -52,6 +52,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7a8cb65_078abacb",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/turstlevel/device-trust-level-event-schema-1.0.0.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-29T15:30:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "77a379f9_15eb0568",
+      "revId": "8a0abd037bbffda3a1e5851efbee774ad92c5df4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "37a12766_cd8c46d5",
@@ -65,6 +83,30 @@
       "writtenOn": "2023-09-29T13:54:38Z",
       "side": 1,
       "message": "why do we need to change this ??",
+      "range": {
+        "startLine": 53,
+        "startChar": 23,
+        "endLine": 53,
+        "endChar": 56
+      },
+      "revId": "8a0abd037bbffda3a1e5851efbee774ad92c5df4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "237332a3_31ddd3b9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/mapper/CloudEventMapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-29T15:30:38Z",
+      "side": 1,
+      "message": "The reason why I changed is that one of the unit tests got fail, if I use CloudEventREException here.\n\nThat test is the one starting on line 75 in DeviceHeartbeatConsumerSpec.groovy (Consume a trust level event having no payload and the map is not populated)",
+      "parentUuid": "37a12766_cd8c46d5",
       "range": {
         "startLine": 53,
         "startChar": 23,
@@ -98,6 +140,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a25b47f8_eb71d760",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelFilter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-29T15:30:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b7a69919_05dfd172",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 19
+      },
+      "revId": "8a0abd037bbffda3a1e5851efbee774ad92c5df4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "82107d63_b061bcd2",
@@ -121,6 +187,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0b742dc_ea8d34c8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelFilter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-29T15:30:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "82107d63_b061bcd2",
+      "range": {
+        "startLine": 49,
+        "startChar": 53,
+        "endLine": 49,
+        "endChar": 70
+      },
+      "revId": "8a0abd037bbffda3a1e5851efbee774ad92c5df4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "65aaa8d5_fde4f810",
@@ -134,6 +224,30 @@
       "writtenOn": "2023-09-29T13:54:38Z",
       "side": 1,
       "message": "NB: maybe we can club the above test with this one.\nif possible we can create a table and test it for caches have similar configs.\neg : maps have similar infrastructure configs.. hope this makes sense 😊\nif not we can talk.",
+      "range": {
+        "startLine": 68,
+        "startChar": 4,
+        "endLine": 76,
+        "endChar": 5
+      },
+      "revId": "8a0abd037bbffda3a1e5851efbee774ad92c5df4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e202ee6_88150afa",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/TrustLevelCacheConfigSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-29T15:30:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "65aaa8d5_fde4f810",
       "range": {
         "startLine": 68,
         "startChar": 4,
