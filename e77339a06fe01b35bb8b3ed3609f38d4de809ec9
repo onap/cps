@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35e3e7cc_242438f6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-29T10:08:17Z",
+      "side": 1,
+      "message": "A few comment...",
+      "revId": "e77339a06fe01b35bb8b3ed3609f38d4de809ec9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32bcb829_3f5b8937",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/cmsubscriptionmerge/cm-subscription-ncmp-in-event-schema-1.0.0.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-29T10:08:17Z",
+      "side": 1,
+      "message": "According to the DME to NCMP Subscription Request schema; the predicates is an array object. However it is given as object only.",
+      "range": {
+        "startLine": 17,
+        "startChar": 13,
+        "endLine": 17,
+        "endChar": 23
+      },
+      "revId": "e77339a06fe01b35bb8b3ed3609f38d4de809ec9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67be2214_628f18a9",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/cmsubscriptionmerge/cm-subscription-ncmp-out-event-schema-1.0.0.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-29T10:08:17Z",
+      "side": 1,
+      "message": "As far as I understand, this schema is for NCMP to DMI-Plugin Subscription Request. Thus, the object name is not convenient as per our naming standards. Maybe a better naming can be like CmSubscriptionMergeDmiInEvent. Please consider to change the file name accordingly.",
+      "range": {
+        "startLine": 4,
+        "startChar": 25,
+        "endLine": 4,
+        "endChar": 56
+      },
+      "revId": "e77339a06fe01b35bb8b3ed3609f38d4de809ec9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c7353df_b0be9679",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/cmsubscriptionmerge/cm-subscription-ncmp-out-event-schema-1.0.0.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-29T10:08:17Z",
+      "side": 1,
+      "message": "I think, the package for this pojos can be ncmp_to_dmi.",
+      "range": {
+        "startLine": 9,
+        "startChar": 70,
+        "endLine": 9,
+        "endChar": 84
+      },
+      "revId": "e77339a06fe01b35bb8b3ed3609f38d4de809ec9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "128864e0_d8530235",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/cmsubscriptionmerge/cm-subscription-ncmp-out-event-schema-1.0.0.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-29T10:08:17Z",
+      "side": 1,
+      "message": "cmHandleId",
+      "range": {
+        "startLine": 32,
+        "startChar": 15,
+        "endLine": 32,
+        "endChar": 25
+      },
+      "revId": "e77339a06fe01b35bb8b3ed3609f38d4de809ec9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
