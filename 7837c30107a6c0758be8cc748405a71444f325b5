@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "778fa11a_f76e3f8d",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/base/NcmpPerfTestBase.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-09-29T10:45:18Z",
+      "side": 1,
+      "message": "I think your build get fail because of an missing import for ResourceMeter: \n\nimport org.onap.cps.integration.ResourceMeter\n\nYou may add this import and see what if that passes...",
+      "range": {
+        "startLine": 39,
+        "startChar": 4,
+        "endLine": 39,
+        "endChar": 53
+      },
+      "revId": "7837c30107a6c0758be8cc748405a71444f325b5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
