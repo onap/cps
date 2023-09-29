@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2130c3e_1858e08a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-09-29T14:01:13Z",
+      "side": 1,
+      "message": "3.3.9-SNAPSHOT in all the pom files.",
+      "revId": "e0b6a556429c2636485444d53f1cdea57039c2a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
