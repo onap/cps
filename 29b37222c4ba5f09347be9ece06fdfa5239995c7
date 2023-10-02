@@ -176,6 +176,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a836d86_4b9f6f32",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-10-02T09:48:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6fab5ad7_b6daeba5",
+      "range": {
+        "startLine": 82,
+        "startChar": 12,
+        "endLine": 89,
+        "endChar": 71
+      },
+      "revId": "29b37222c4ba5f09347be9ece06fdfa5239995c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ba938b28_7858a649",
