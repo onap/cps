@@ -20,10 +20,11 @@
 
 package org.onap.cps.ncmp.api.models
 
-import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError
+import static org.onap.cps.ncmp.api.NcmpResponseCode.CM_HANDLE_ALREADY_EXIST
+import static org.onap.cps.ncmp.api.NcmpResponseCode.CM_HANDLE_INVALID_ID
+import static org.onap.cps.ncmp.api.NcmpResponseCode.UNKNOWN_ERROR
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.Status
 import spock.lang.Specification
-
 import java.util.stream.Collectors
 
 class CmHandleRegistrationResponseSpec extends Specification {
@@ -37,7 +38,7 @@ class CmHandleRegistrationResponseSpec extends Specification {
                 assert it.status == Status.SUCCESS
             }
         and: 'error details are null'
-            cmHandleRegistrationResponse.registrationError == null
+            cmHandleRegistrationResponse.ncmpResponseCode == null
             cmHandleRegistrationResponse.errorText == null
     }
 
@@ -47,7 +48,7 @@ class CmHandleRegistrationResponseSpec extends Specification {
                 CmHandleRegistrationResponse.createFailureResponse('cmHandle', new Exception('unexpected error'))
         then: 'the response is created with expected value'
             with(cmHandleRegistrationResponse) {
-                assert it.registrationError == RegistrationError.UNKNOWN_ERROR
+                assert it.ncmpResponseCode == UNKNOWN_ERROR
                 assert it.cmHandle == 'cmHandle'
                 assert errorText == 'unexpected error'
             }
@@ -59,21 +60,21 @@ class CmHandleRegistrationResponseSpec extends Specification {
                 CmHandleRegistrationResponse.createFailureResponse(cmHandleId, registrationError)
         then: 'the response is created with expected value'
             with(cmHandleRegistrationResponse) {
-                assert it.registrationError == registrationError
+                assert it.ncmpResponseCode == ncmpResponseCode
                 assert it.cmHandle == cmHandleId
                 assert it.status == Status.FAILURE
-                assert errorText == registrationError.errorText
+                assert errorText == ncmpResponseCode.statusMessage
             }
         where:
             scenario                   | cmHandleId  | registrationError
-            'cm-handle already exists' | 'cmHandle'  | RegistrationError.CM_HANDLE_ALREADY_EXIST
-            'cm-handle id is invalid'  | 'cm handle' | RegistrationError.CM_HANDLE_INVALID_ID
+            'cm-handle already exists' | 'cmHandle'  | CM_HANDLE_ALREADY_EXIST
+            'cm-handle id is invalid'  | 'cm handle' | CM_HANDLE_INVALID_ID
     }
 
     def 'Failed cm-handle Registration with multiple responses.'() {
         when: 'cm-handle failure response is created for 2 xpaths'
             def cmHandleRegistrationResponses =
-                CmHandleRegistrationResponse.createFailureResponses(["somePathWithId[@id='123']","somePathWithId[@id='456']"], RegistrationError.CM_HANDLE_ALREADY_EXIST)
+                CmHandleRegistrationResponse.createFailureResponses(["somePathWithId[@id='123']","somePathWithId[@id='456']"], CM_HANDLE_ALREADY_EXIST)
         then: 'the response has the correct cm handle ids'
             assert cmHandleRegistrationResponses.size() == 2
             assert cmHandleRegistrationResponses.stream().map(it -> it.cmHandle).collect(Collectors.toList())
@@ -83,7 +84,7 @@ class CmHandleRegistrationResponseSpec extends Specification {
     def 'Failed cm-handle Registration with multiple responses with an unexpected xpath.'() {
         when: 'cm-handle failure response is created for one valid and one unexpected xpath'
             def cmHandleRegistrationResponses =
-                CmHandleRegistrationResponse.createFailureResponses(["somePathWithId[@id='123']","valid/xpath/without-id[@key='123']"], RegistrationError.CM_HANDLE_ALREADY_EXIST)
+                CmHandleRegistrationResponse.createFailureResponses(["somePathWithId[@id='123']","valid/xpath/without-id[@key='123']"], CM_HANDLE_ALREADY_EXIST)
         then: 'the response has only one entry'
             assert cmHandleRegistrationResponses.size() == 1
     }

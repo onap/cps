@@ -45,10 +45,10 @@ import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Shared
 import spock.lang.Specification
 
-import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError.CM_HANDLE_DOES_NOT_EXIST
-import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError.CM_HANDLE_ALREADY_EXIST
-import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError.CM_HANDLE_INVALID_ID
-import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError.UNKNOWN_ERROR
+import static org.onap.cps.ncmp.api.NcmpResponseCode.CM_HANDLES_NOT_FOUND
+import static org.onap.cps.ncmp.api.NcmpResponseCode.CM_HANDLE_ALREADY_EXIST
+import static org.onap.cps.ncmp.api.NcmpResponseCode.CM_HANDLE_INVALID_ID
+import static org.onap.cps.ncmp.api.NcmpResponseCode.UNKNOWN_ERROR
 import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.Status
 
 class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
@@ -236,7 +236,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         and: 'cm-handle updates can be processed successfully'
             def updateOperationResponse = [CmHandleRegistrationResponse.createSuccessResponse('cm-handle-1'),
                                            CmHandleRegistrationResponse.createFailureResponse('cm-handle-2', new Exception("Failed")),
-                                           CmHandleRegistrationResponse.createFailureResponse('cm-handle-3', CM_HANDLE_DOES_NOT_EXIST),
+                                           CmHandleRegistrationResponse.createFailureResponse('cm-handle-3', CM_HANDLES_NOT_FOUND),
                                            CmHandleRegistrationResponse.createFailureResponse('cm handle 4', CM_HANDLE_INVALID_ID)]
             mockNetworkCmProxyDataServicePropertyHandler.updateCmHandleProperties(_) >> updateOperationResponse
         when: 'registration is updated'
@@ -371,7 +371,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             0 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(_, CmHandleState.DELETED)
         where:
             scenario                     | cmHandleId             | deleteListElementException                ||  expectedError           | expectedErrorText
-            'cm-handle does not exist'   | 'cmhandle'             | new DataNodeNotFoundException('', '', '') || CM_HANDLE_DOES_NOT_EXIST | 'cm-handle does not exist'
+            'cm-handle does not exist'   | 'cmhandle'             | new DataNodeNotFoundException('', '', '') || CM_HANDLES_NOT_FOUND | 'cm-handle does not exist'
             'cm-handle has invalid name' | 'cm handle with space' | new DataValidationException('', '')       || CM_HANDLE_INVALID_ID     | 'cm-handle has an invalid character(s) in id'
             'an unexpected exception'    | 'cmhandle'             | new RuntimeException('Failed')            || UNKNOWN_ERROR            | 'Failed'
     }

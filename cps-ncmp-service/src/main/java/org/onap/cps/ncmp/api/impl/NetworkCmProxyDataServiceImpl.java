@@ -24,9 +24,12 @@
 
 package org.onap.cps.ncmp.api.impl;
 
+import static org.onap.cps.ncmp.api.NcmpResponseCode.CM_HANDLE_ALREADY_EXIST;
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT;
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME;
 import static org.onap.cps.ncmp.api.impl.utils.RestQueryParametersValidator.validateCmHandleQueryParameters;
+import static org.onap.cps.ncmp.api.NcmpResponseCode.CM_HANDLES_NOT_FOUND;
+import static org.onap.cps.ncmp.api.NcmpResponseCode.CM_HANDLE_INVALID_ID;
 
 import com.google.common.collect.Lists;
 import com.hazelcast.map.IMap;
@@ -61,7 +64,6 @@ import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters;
 import org.onap.cps.ncmp.api.models.CmHandleQueryServiceParameters;
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse;
-import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError;
 import org.onap.cps.ncmp.api.models.DataOperationRequest;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse;
@@ -356,13 +358,11 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         } catch (final DataNodeNotFoundException dataNodeNotFoundException) {
             log.error("Unable to find dataNode for cmHandleId : {} , caused by : {}",
                 cmHandleId, dataNodeNotFoundException.getMessage());
-            return CmHandleRegistrationResponse.createFailureResponse(cmHandleId,
-                RegistrationError.CM_HANDLE_DOES_NOT_EXIST);
+            return CmHandleRegistrationResponse.createFailureResponse(cmHandleId, CM_HANDLES_NOT_FOUND);
         } catch (final DataValidationException dataValidationException) {
             log.error("Unable to de-register cm-handle id: {}, caused by: {}",
                 cmHandleId, dataValidationException.getMessage());
-            return CmHandleRegistrationResponse.createFailureResponse(cmHandleId,
-                RegistrationError.CM_HANDLE_INVALID_ID);
+            return CmHandleRegistrationResponse.createFailureResponse(cmHandleId, CM_HANDLE_INVALID_ID);
         } catch (final Exception exception) {
             log.error("Unable to de-register cm-handle id : {} , caused by : {}", cmHandleId, exception.getMessage());
             return CmHandleRegistrationResponse.createFailureResponse(cmHandleId, exception);
@@ -411,8 +411,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             return CmHandleRegistrationResponse.createSuccessResponses(cmHandleIds);
         } catch (final AlreadyDefinedException alreadyDefinedException) {
             return CmHandleRegistrationResponse.createFailureResponses(
-                    alreadyDefinedException.getAlreadyDefinedObjectNames(),
-                    RegistrationError.CM_HANDLE_ALREADY_EXIST);
+                    alreadyDefinedException.getAlreadyDefinedObjectNames(), CM_HANDLE_ALREADY_EXIST);
         } catch (final Exception exception) {
             return CmHandleRegistrationResponse.createFailureResponses(cmHandleIds, exception);
         }

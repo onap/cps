@@ -24,6 +24,8 @@ package org.onap.cps.ncmp.api.impl;
 
 import static org.onap.cps.ncmp.api.impl.NetworkCmProxyDataServicePropertyHandler.PropertyType.DMI_PROPERTY;
 import static org.onap.cps.ncmp.api.impl.NetworkCmProxyDataServicePropertyHandler.PropertyType.PUBLIC_PROPERTY;
+import static org.onap.cps.ncmp.api.NcmpResponseCode.CM_HANDLES_NOT_FOUND;
+import static org.onap.cps.ncmp.api.NcmpResponseCode.CM_HANDLE_INVALID_ID;
 
 import com.google.common.collect.ImmutableMap;
 import java.util.ArrayList;
@@ -38,7 +40,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse;
-import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataValidationException;
@@ -75,13 +76,12 @@ public class NetworkCmProxyDataServicePropertyHandler {
                 log.error("Unable to find dataNode for cmHandleId : {} , caused by : {}",
                     cmHandleId, e.getMessage());
                 cmHandleRegistrationResponses.add(CmHandleRegistrationResponse
-                    .createFailureResponse(cmHandleId, RegistrationError.CM_HANDLE_DOES_NOT_EXIST));
+                    .createFailureResponse(cmHandleId, CM_HANDLES_NOT_FOUND));
             } catch (final DataValidationException e) {
                 log.error("Unable to update cm handle : {}, caused by : {}",
                     cmHandleId, e.getMessage());
                 cmHandleRegistrationResponses.add(
-                    CmHandleRegistrationResponse.createFailureResponse(cmHandleId,
-                        RegistrationError.CM_HANDLE_INVALID_ID));
+                    CmHandleRegistrationResponse.createFailureResponse(cmHandleId, CM_HANDLE_INVALID_ID));
             } catch (final Exception exception) {
                 log.error("Unable to update cmHandle : {} , caused by : {}",
                     cmHandleId, exception.getMessage());

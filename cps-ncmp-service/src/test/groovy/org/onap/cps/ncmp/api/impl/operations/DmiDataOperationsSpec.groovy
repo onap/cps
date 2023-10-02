@@ -22,7 +22,7 @@
 package org.onap.cps.ncmp.api.impl.operations
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import org.onap.cps.ncmp.api.NcmpEventResponseCode
+import org.onap.cps.ncmp.api.NcmpResponseCode
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration
 import org.onap.cps.ncmp.api.impl.events.EventsPublisher
 import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException
@@ -132,8 +132,8 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             assert eventDataValue.statusMessage == responseCode.statusMessage
         where: 'the following exceptions are occurred'
             scenario                        | exception                                                                                                || responseCode
-            'http client request exception' | new HttpClientRequestException('error-message', 'error-details', HttpStatus.SERVICE_UNAVAILABLE.value()) || NcmpEventResponseCode.UNABLE_TO_READ_RESOURCE_DATA
-            'timeout exception'             | new TimeoutException()                                                                                   || NcmpEventResponseCode.DMI_SERVICE_NOT_RESPONDING
+            'http client request exception' | new HttpClientRequestException('error-message', 'error-details', HttpStatus.SERVICE_UNAVAILABLE.value()) || NcmpResponseCode.UNABLE_TO_READ_RESOURCE_DATA
+            'timeout exception'             | new TimeoutException()                                                                                   || NcmpResponseCode.DMI_SERVICE_NOT_RESPONDING
     }
 
     def 'call get all resource data.'() {

@@ -27,9 +27,9 @@ import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DM
 
 import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence
 import org.onap.cps.spi.exceptions.DataValidationException
-import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError.CM_HANDLE_DOES_NOT_EXIST
-import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError.CM_HANDLE_INVALID_ID
-import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError.UNKNOWN_ERROR
+import static org.onap.cps.ncmp.api.NcmpResponseCode.CM_HANDLES_NOT_FOUND
+import static org.onap.cps.ncmp.api.NcmpResponseCode.CM_HANDLE_INVALID_ID
+import static org.onap.cps.ncmp.api.NcmpResponseCode.UNKNOWN_ERROR
 import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.Status
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
@@ -131,14 +131,14 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
             with(response.get(0)) {
                 assert it.status == Status.FAILURE
                 assert it.cmHandle == cmHandleId
-                assert it.registrationError == expectedError
+                assert it.ncmpResponseCode == expectedError
                 assert it.errorText == expectedErrorText
             }
         where:
-            scenario                   | cmHandleId               | exception                                                                                           || expectedError            | expectedErrorText
-            'Cm Handle does not exist' | 'cmHandleId'             | new DataNodeNotFoundException(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR)                                    || CM_HANDLE_DOES_NOT_EXIST | 'cm-handle does not exist'
-            'Unknown'                  | 'cmHandleId'             | new RuntimeException('Failed')                                                                      || UNKNOWN_ERROR            | 'Failed'
-            'Invalid cm handle id'     | 'cmHandleId with spaces' | new DataValidationException('Name Validation Error.', cmHandleId + 'contains an invalid character') || CM_HANDLE_INVALID_ID     | 'cm-handle has an invalid character(s) in id'
+        scenario                   | cmHandleId               | exception                                                                                           || expectedError        | expectedErrorText
+        'Cm Handle does not exist' | 'cmHandleId'             | new DataNodeNotFoundException(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR)                        || CM_HANDLES_NOT_FOUND | 'cm-handle does not exist'
+        'Unknown'                  | 'cmHandleId'             | new RuntimeException('Failed')                                                                      || UNKNOWN_ERROR        | 'Failed'
+        'Invalid cm handle id'     | 'cmHandleId with spaces' | new DataValidationException('Name Validation Error.', cmHandleId + 'contains an invalid character') || CM_HANDLE_INVALID_ID | 'cm-handle has an invalid character(s) in id'
     }
 
     def 'Multiple update operations in a single request'() {
@@ -166,7 +166,7 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
             with(cmHandleResponseList.get(1)) {
                 assert it.status == Status.FAILURE
                 assert it.cmHandle == cmHandleId
-                assert it.registrationError == CM_HANDLE_DOES_NOT_EXIST
+                assert it.ncmpResponseCode == CM_HANDLES_NOT_FOUND
                 assert it.errorText == "cm-handle does not exist"
             }
         then: 'the replace list method is called twice'

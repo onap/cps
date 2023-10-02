@@ -33,7 +33,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import org.onap.cps.ncmp.api.NcmpEventResponseCode;
+import org.onap.cps.ncmp.api.NcmpResponseCode;
 import org.onap.cps.ncmp.api.impl.utils.EventDateTimeFormatter;
 import org.onap.cps.ncmp.dmi.rest.stub.model.data.operational.CmHandle;
 import org.onap.cps.ncmp.dmi.rest.stub.model.data.operational.DataOperationRequest;
@@ -161,8 +161,8 @@ public class DmiRestStubController {
     private DataOperationEvent getDataOperationEvent(final DataOperationRequest dataOperationRequest) {
         final Response response = new Response();
         response.setOperationId(dataOperationRequest.getOperationId());
-        response.setStatusCode(NcmpEventResponseCode.SUCCESS.getStatusCode());
-        response.setStatusMessage(NcmpEventResponseCode.SUCCESS.getStatusMessage());
+        response.setStatusCode(NcmpResponseCode.SUCCESS.getStatusCode());
+        response.setStatusMessage(NcmpResponseCode.SUCCESS.getStatusMessage());
         response.setIds(dataOperationRequest.getCmHandles().stream().map(CmHandle::getId).collect(Collectors.toList()));
         response.setResourceIdentifier(dataOperationRequest.getResourceIdentifier());
         response.setOptions(dataOperationRequest.getOptions());

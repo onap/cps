@@ -32,7 +32,7 @@ import java.util.stream.Collectors;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.ncmp.api.NcmpEventResponseCode;
+import org.onap.cps.ncmp.api.NcmpResponseCode;
 import org.onap.cps.ncmp.api.impl.events.EventsPublisher;
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleState;
 import org.onap.cps.ncmp.api.impl.operations.CmHandle;
@@ -68,7 +68,7 @@ public class ResourceDataOperationRequestUtils {
             final Collection<YangModelCmHandle> yangModelCmHandles) {
 
         final Map<String, List<DmiDataOperation>> dmiDataOperationsOutPerDmiServiceName = new HashMap<>();
-        final MultiValueMap<DmiDataOperation, Map<NcmpEventResponseCode,
+        final MultiValueMap<DmiDataOperation, Map<NcmpResponseCode,
                 List<String>>> cmHandleIdsPerResponseCodesPerOperation = new LinkedMultiValueMap<>();
         final Set<String> nonReadyCmHandleIdsLookup = filterAndGetNonReadyCmHandleIds(yangModelCmHandles);
 
@@ -102,10 +102,10 @@ public class ResourceDataOperationRequestUtils {
             }
             populateCmHandleIdsPerOperationIdPerResponseCode(cmHandleIdsPerResponseCodesPerOperation,
                     DmiDataOperation.buildDmiDataOperationRequestBodyWithoutCmHandles(dataOperationDefinitionIn),
-                    NcmpEventResponseCode.CM_HANDLES_NOT_FOUND, nonExistingCmHandleIds);
+                    NcmpResponseCode.CM_HANDLES_NOT_FOUND, nonExistingCmHandleIds);
             populateCmHandleIdsPerOperationIdPerResponseCode(cmHandleIdsPerResponseCodesPerOperation,
                     DmiDataOperation.buildDmiDataOperationRequestBodyWithoutCmHandles(dataOperationDefinitionIn),
-                    NcmpEventResponseCode.CM_HANDLES_NOT_READY, nonReadyCmHandleIds);
+                    NcmpResponseCode.CM_HANDLES_NOT_READY, nonReadyCmHandleIds);
         }
         if (!cmHandleIdsPerResponseCodesPerOperation.isEmpty()) {
             publishErrorMessageToClientTopic(topicParamInQuery, requestId, cmHandleIdsPerResponseCodesPerOperation);
@@ -124,7 +124,7 @@ public class ResourceDataOperationRequestUtils {
     public static void publishErrorMessageToClientTopic(final String clientTopic,
                                                          final String requestId,
                                                          final MultiValueMap<DmiDataOperation,
-                                                                 Map<NcmpEventResponseCode, List<String>>>
+                                                                 Map<NcmpResponseCode, List<String>>>
                                                                     cmHandleIdsPerResponseCodesPerOperation) {
         final CloudEvent dataOperationCloudEvent = DataOperationEventCreator.createDataOperationEvent(clientTopic,
                 requestId, cmHandleIdsPerResponseCodesPerOperation);
@@ -175,13 +175,13 @@ public class ResourceDataOperationRequestUtils {
     }
 
     private static void populateCmHandleIdsPerOperationIdPerResponseCode(final MultiValueMap<DmiDataOperation,
-            Map<NcmpEventResponseCode, List<String>>> cmHandleIdsPerResponseCodesPerOperation,
+            Map<NcmpResponseCode, List<String>>> cmHandleIdsPerResponseCodesPerOperation,
                                                                         final DmiDataOperation dmiDataOperation,
-                                                                        final NcmpEventResponseCode
-                                                                                ncmpEventResponseCode,
+                                                                        final NcmpResponseCode
+                                                                                 ncmpResponseCode,
                                                                         final List<String> cmHandleIds) {
         if (!cmHandleIds.isEmpty()) {
-            cmHandleIdsPerResponseCodesPerOperation.add(dmiDataOperation, Map.of(ncmpEventResponseCode, cmHandleIds));
+            cmHandleIdsPerResponseCodesPerOperation.add(dmiDataOperation, Map.of(ncmpResponseCode, cmHandleIds));
         }
     }
 }
