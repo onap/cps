@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4c67e12_005839ec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 28
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-10-02T12:27:52Z",
+      "side": 1,
+      "message": "Intial review comments. More comments to follow.\nBut if u agree to my comments u can start working on this.",
+      "revId": "de8d15605c90d7410984f3f9887d2894acfa7d61",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcba6a22_e84edbac",
+        "filename": "cps-rest/docs/openapi/cpsDataV2.yml",
+        "patchSetId": 28
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-10-02T12:27:52Z",
+      "side": 1,
+      "message": "I think the example needs to be revised.",
+      "range": {
+        "startLine": 73,
+        "startChar": 23,
+        "endLine": 73,
+        "endChar": 69
+      },
+      "revId": "de8d15605c90d7410984f3f9887d2894acfa7d61",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4080e9f1_06626efd",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 28
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-10-02T12:27:52Z",
+      "side": 1,
+      "message": "This class is not properly indended.\nWhen I try to run the build in my local machine , we have 20 checkstyle violations.\nPlease reformat it.",
+      "revId": "de8d15605c90d7410984f3f9887d2894acfa7d61",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ebda287_00ada4d2",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 28
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-10-02T12:27:52Z",
+      "side": 1,
+      "message": "I think all the code that you introduced is specific to delta feature.\nY not create a separate service class for the delta feature and move the relevant code thr or atleast a helper class that hosts the code for this feature.\n\nIf we put all the code here it will increase the complexity of this class as well.\n\nAlso I see more number of conditions in the code. would result in higher cognitive complexity as well.",
+      "revId": "de8d15605c90d7410984f3f9887d2894acfa7d61",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
