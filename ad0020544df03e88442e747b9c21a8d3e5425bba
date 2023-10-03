@@ -16,6 +16,52 @@
       "message": "recheck",
       "revId": "ad0020544df03e88442e747b9c21a8d3e5425bba",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c84499c3_1b36411d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/CmHandleQueriesImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-10-03T11:26:10Z",
+      "side": 1,
+      "message": "NB: move this below line#52 , just for the instance variables to be together.",
+      "range": {
+        "startLine": 54,
+        "startChar": 4,
+        "endLine": 54,
+        "endChar": 65
+      },
+      "revId": "ad0020544df03e88442e747b9c21a8d3e5425bba",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6022bd2_72aed736",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelFilter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-10-03T11:26:10Z",
+      "side": 1,
+      "message": "NB: any other relevant name ?\nwhat is respComp ?",
+      "range": {
+        "startLine": 51,
+        "startChar": 22,
+        "endLine": 51,
+        "endChar": 30
+      },
+      "revId": "ad0020544df03e88442e747b9c21a8d3e5425bba",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
