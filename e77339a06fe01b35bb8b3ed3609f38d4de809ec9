@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "99799803_667a9335",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/cmsubscriptionmerge/cm-subscription-ncmp-in-event-schema-1.0.0.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2023-10-03T08:45:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "32bcb829_3f5b8937",
+      "range": {
+        "startLine": 17,
+        "startChar": 13,
+        "endLine": 17,
+        "endChar": 23
+      },
+      "revId": "e77339a06fe01b35bb8b3ed3609f38d4de809ec9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "67be2214_628f18a9",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-09-29T10:08:17Z",
       "side": 1,
       "message": "As far as I understand, this schema is for NCMP to DMI-Plugin Subscription Request. Thus, the object name is not convenient as per our naming standards. Maybe a better naming can be like CmSubscriptionMergeDmiInEvent. Please consider to change the file name accordingly.",
+      "range": {
+        "startLine": 4,
+        "startChar": 25,
+        "endLine": 4,
+        "endChar": 56
+      },
+      "revId": "e77339a06fe01b35bb8b3ed3609f38d4de809ec9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffad6708_8a77b79d",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/cmsubscriptionmerge/cm-subscription-ncmp-out-event-schema-1.0.0.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2023-10-03T08:45:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "67be2214_628f18a9",
       "range": {
         "startLine": 4,
         "startChar": 25,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "96e88458_87db62ec",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/cmsubscriptionmerge/cm-subscription-ncmp-out-event-schema-1.0.0.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2023-10-03T08:45:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5c7353df_b0be9679",
+      "range": {
+        "startLine": 9,
+        "startChar": 70,
+        "endLine": 9,
+        "endChar": 84
+      },
+      "revId": "e77339a06fe01b35bb8b3ed3609f38d4de809ec9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "128864e0_d8530235",
@@ -100,6 +172,30 @@
       "writtenOn": "2023-09-29T10:08:17Z",
       "side": 1,
       "message": "cmHandleId",
+      "range": {
+        "startLine": 32,
+        "startChar": 15,
+        "endLine": 32,
+        "endChar": 25
+      },
+      "revId": "e77339a06fe01b35bb8b3ed3609f38d4de809ec9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a24d0c8_3a7a389f",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/cmsubscriptionmerge/cm-subscription-ncmp-out-event-schema-1.0.0.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2023-10-03T08:45:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "128864e0_d8530235",
       "range": {
         "startLine": 32,
         "startChar": 15,
