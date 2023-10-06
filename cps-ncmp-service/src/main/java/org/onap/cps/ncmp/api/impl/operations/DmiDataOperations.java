@@ -21,6 +21,8 @@
 
 package org.onap.cps.ncmp.api.impl.operations;
 
+import static org.onap.cps.ncmp.api.NcmpResponseCode.DMI_SERVICE_NOT_RESPONDING;
+import static org.onap.cps.ncmp.api.NcmpResponseCode.UNABLE_TO_READ_RESOURCE_DATA;
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING;
 import static org.onap.cps.ncmp.api.impl.operations.OperationType.READ;
 
@@ -30,7 +32,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.ncmp.api.NcmpEventResponseCode;
+import org.onap.cps.ncmp.api.NcmpResponseCode;
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
 import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException;
@@ -230,9 +232,7 @@ public class DmiDataOperations extends DmiOperations {
                                                                  final Map<String, List<DmiDataOperation>>
                                                                 groupsOutPerDmiServiceName) {
 
-        groupsOutPerDmiServiceName.entrySet().forEach(groupsOutPerDmiServiceNameEntry -> {
-            final String dmiServiceName = groupsOutPerDmiServiceNameEntry.getKey();
-            final List<DmiDataOperation> dmiDataOperationRequestBodies = groupsOutPerDmiServiceNameEntry.getValue();
+        groupsOutPerDmiServiceName.forEach((dmiServiceName, dmiDataOperationRequestBodies) -> {
             final String dmiDataOperationResourceUrl =
                     getDmiServiceDataOperationRequestUrl(dmiServiceName, topicParamInQuery, requestId);
             sendDataOperationRequestToDmiService(dmiDataOperationResourceUrl, dmiDataOperationRequestBodies);
@@ -261,18 +261,18 @@ public class DmiDataOperations extends DmiOperations {
             final String topicName = dataOperationResourceUrlParameters.get("topic").get(0);
             final String requestId = dataOperationResourceUrlParameters.get("requestId").get(0);
 
-            final MultiValueMap<DmiDataOperation, Map<NcmpEventResponseCode, List<String>>>
+            final MultiValueMap<DmiDataOperation, Map<NcmpResponseCode, List<String>>>
                     cmHandleIdsPerResponseCodesPerOperation = new LinkedMultiValueMap<>();
 
             dmiDataOperationRequestBodies.forEach(dmiDataOperationRequestBody -> {
                 final List<String> cmHandleIds = dmiDataOperationRequestBody.getCmHandles().stream()
-                        .map(CmHandle::getId).collect(Collectors.toList());
+                        .map(CmHandle::getId).toList();
                 if (throwable.getCause() instanceof HttpClientRequestException) {
                     cmHandleIdsPerResponseCodesPerOperation.add(dmiDataOperationRequestBody,
-                            Map.of(NcmpEventResponseCode.UNABLE_TO_READ_RESOURCE_DATA, cmHandleIds));
+                            Map.of(UNABLE_TO_READ_RESOURCE_DATA, cmHandleIds));
                 } else {
                     cmHandleIdsPerResponseCodesPerOperation.add(dmiDataOperationRequestBody,
-                            Map.of(NcmpEventResponseCode.DMI_SERVICE_NOT_RESPONDING, cmHandleIds));
+                            Map.of(DMI_SERVICE_NOT_RESPONDING, cmHandleIds));
                 }
             });
             ResourceDataOperationRequestUtils.publishErrorMessageToClientTopic(topicName, requestId,

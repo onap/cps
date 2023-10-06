@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Bell Canada
+ *  Modifications Copyright (C) 2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,10 +21,12 @@
 
 package org.onap.cps.ncmp.api.models
 
-import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError
+import static org.onap.cps.ncmp.api.NcmpResponseCode.CM_HANDLE_ALREADY_EXIST
+import static org.onap.cps.ncmp.api.NcmpResponseCode.CM_HANDLE_INVALID_ID
+import static org.onap.cps.ncmp.api.NcmpResponseCode.UNKNOWN_ERROR
+
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.Status
 import spock.lang.Specification
-
 import java.util.stream.Collectors
 
 class CmHandleRegistrationResponseSpec extends Specification {
@@ -37,7 +40,7 @@ class CmHandleRegistrationResponseSpec extends Specification {
                 assert it.status == Status.SUCCESS
             }
         and: 'error details are null'
-            cmHandleRegistrationResponse.registrationError == null
+            cmHandleRegistrationResponse.ncmpResponseCode == null
             cmHandleRegistrationResponse.errorText == null
     }
 
@@ -47,33 +50,29 @@ class CmHandleRegistrationResponseSpec extends Specification {
                 CmHandleRegistrationResponse.createFailureResponse('cmHandle', new Exception('unexpected error'))
         then: 'the response is created with expected value'
             with(cmHandleRegistrationResponse) {
-                assert it.registrationError == RegistrationError.UNKNOWN_ERROR
+                assert it.ncmpResponseCode == UNKNOWN_ERROR
                 assert it.cmHandle == 'cmHandle'
                 assert errorText == 'unexpected error'
             }
     }
 
-    def 'Failed cm-handle Registration Response: for #scenario'() {
-        when: 'cm-handle failure response is created for #scenario'
-            def cmHandleRegistrationResponse =
-                CmHandleRegistrationResponse.createFailureResponse(cmHandleId, registrationError)
+    def 'Failed cm-handle Registration Response'() {
+        when: 'cm-handle failure response is created'
+        def cmHandleRegistrationResponse =
+                CmHandleRegistrationResponse.createFailureResponse('cmHandle', CM_HANDLE_ALREADY_EXIST)
         then: 'the response is created with expected value'
-            with(cmHandleRegistrationResponse) {
-                assert it.registrationError == registrationError
-                assert it.cmHandle == cmHandleId
-                assert it.status == Status.FAILURE
-                assert errorText == registrationError.errorText
-            }
-        where:
-            scenario                   | cmHandleId  | registrationError
-            'cm-handle already exists' | 'cmHandle'  | RegistrationError.CM_HANDLE_ALREADY_EXIST
-            'cm-handle id is invalid'  | 'cm handle' | RegistrationError.CM_HANDLE_INVALID_ID
+        with(cmHandleRegistrationResponse) {
+            assert it.ncmpResponseCode == CM_HANDLE_ALREADY_EXIST
+            assert it.cmHandle == 'cmHandle'
+            assert it.status == Status.FAILURE
+            assert errorText == CM_HANDLE_ALREADY_EXIST.statusMessage
+        }
     }
 
     def 'Failed cm-handle Registration with multiple responses.'() {
         when: 'cm-handle failure response is created for 2 xpaths'
             def cmHandleRegistrationResponses =
-                CmHandleRegistrationResponse.createFailureResponses(["somePathWithId[@id='123']","somePathWithId[@id='456']"], RegistrationError.CM_HANDLE_ALREADY_EXIST)
+                CmHandleRegistrationResponse.createFailureResponses(["somePathWithId[@id='123']","somePathWithId[@id='456']"], CM_HANDLE_ALREADY_EXIST)
         then: 'the response has the correct cm handle ids'
             assert cmHandleRegistrationResponses.size() == 2
             assert cmHandleRegistrationResponses.stream().map(it -> it.cmHandle).collect(Collectors.toList())
@@ -83,12 +82,9 @@ class CmHandleRegistrationResponseSpec extends Specification {
     def 'Failed cm-handle Registration with multiple responses with an unexpected xpath.'() {
         when: 'cm-handle failure response is created for one valid and one unexpected xpath'
             def cmHandleRegistrationResponses =
-                CmHandleRegistrationResponse.createFailureResponses(["somePathWithId[@id='123']","valid/xpath/without-id[@key='123']"], RegistrationError.CM_HANDLE_ALREADY_EXIST)
+                CmHandleRegistrationResponse.createFailureResponses(["somePathWithId[@id='123']","valid/xpath/without-id[@key='123']"], CM_HANDLE_ALREADY_EXIST)
         then: 'the response has only one entry'
             assert cmHandleRegistrationResponses.size() == 1
     }
-
-
-
 
 }
