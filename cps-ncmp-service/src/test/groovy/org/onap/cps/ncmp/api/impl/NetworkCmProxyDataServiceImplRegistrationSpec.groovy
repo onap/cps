@@ -21,6 +21,12 @@
 
 package org.onap.cps.ncmp.api.impl
 
+import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLES_NOT_FOUND
+import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLE_ALREADY_EXIST
+import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLE_INVALID_ID
+import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNKNOWN_ERROR
+import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.Status
+
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.hazelcast.map.IMap
 import org.onap.cps.api.CpsDataService
@@ -44,12 +50,6 @@ import org.onap.cps.spi.exceptions.SchemaSetNotFoundException
 import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Shared
 import spock.lang.Specification
-
-import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError.CM_HANDLE_DOES_NOT_EXIST
-import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError.CM_HANDLE_ALREADY_EXIST
-import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError.CM_HANDLE_INVALID_ID
-import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.RegistrationError.UNKNOWN_ERROR
-import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.Status
 
 class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
 
@@ -203,7 +203,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             response.createdCmHandles.each {
                 assert it.cmHandle == 'cmhandle2'
                 assert it.status == Status.FAILURE
-                assert it.registrationError == CM_HANDLE_ALREADY_EXIST
+                assert it.ncmpResponseStatus == CM_HANDLE_ALREADY_EXIST
                 assert it.errorText == 'cm-handle already exists'
             }
     }
@@ -221,7 +221,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             with(response.createdCmHandles[0]) {
                 assert it.status == Status.FAILURE
                 assert it.cmHandle ==  'cmhandle'
-                assert it.registrationError == expectedError
+                assert it.ncmpResponseStatus == expectedError
                 assert it.errorText == expectedErrorText
             }
         where:
@@ -236,7 +236,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         and: 'cm-handle updates can be processed successfully'
             def updateOperationResponse = [CmHandleRegistrationResponse.createSuccessResponse('cm-handle-1'),
                                            CmHandleRegistrationResponse.createFailureResponse('cm-handle-2', new Exception("Failed")),
-                                           CmHandleRegistrationResponse.createFailureResponse('cm-handle-3', CM_HANDLE_DOES_NOT_EXIST),
+                                           CmHandleRegistrationResponse.createFailureResponse('cm-handle-3', CM_HANDLES_NOT_FOUND),
                                            CmHandleRegistrationResponse.createFailureResponse('cm handle 4', CM_HANDLE_INVALID_ID)]
             mockNetworkCmProxyDataServicePropertyHandler.updateCmHandleProperties(_) >> updateOperationResponse
         when: 'registration is updated'
@@ -310,7 +310,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         and: '2nd cm-handle deletion fails'
             with(response.removedCmHandles[1]) {
                 assert it.status == Status.FAILURE
-                assert it.registrationError == UNKNOWN_ERROR
+                assert it.ncmpResponseStatus == UNKNOWN_ERROR
                 assert it.errorText == 'Failed'
                 assert it.cmHandle == 'cmhandle2'
             }
@@ -344,7 +344,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
                 assert it.status == Status.FAILURE
                 assert it.cmHandle == 'cmhandle'
                 assert it.errorText == 'Failed'
-                assert it.registrationError == UNKNOWN_ERROR
+                assert it.ncmpResponseStatus == UNKNOWN_ERROR
             }
     }
 
@@ -364,16 +364,16 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             with(response.removedCmHandles[0]) {
                 assert it.status == Status.FAILURE
                 assert it.cmHandle == 'cmhandle'
-                assert it.registrationError == expectedError
+                assert it.ncmpResponseStatus == expectedError
                 assert it.errorText == expectedErrorText
             }
         and: 'the cm handle state is not updated to "DELETED"'
             0 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(_, CmHandleState.DELETED)
         where:
-            scenario                     | cmHandleId             | deleteListElementException                ||  expectedError           | expectedErrorText
-            'cm-handle does not exist'   | 'cmhandle'             | new DataNodeNotFoundException('', '', '') || CM_HANDLE_DOES_NOT_EXIST | 'cm-handle does not exist'
-            'cm-handle has invalid name' | 'cm handle with space' | new DataValidationException('', '')       || CM_HANDLE_INVALID_ID     | 'cm-handle has an invalid character(s) in id'
-            'an unexpected exception'    | 'cmhandle'             | new RuntimeException('Failed')            || UNKNOWN_ERROR            | 'Failed'
+        scenario                     | cmHandleId             | deleteListElementException                || expectedError        | expectedErrorText
+        'cm-handle does not exist'   | 'cmhandle'             | new DataNodeNotFoundException('', '', '') || CM_HANDLES_NOT_FOUND | 'cm handle id(s) not found'
+        'cm-handle has invalid name' | 'cm handle with space' | new DataValidationException('', '')       || CM_HANDLE_INVALID_ID | 'cm-handle has an invalid character(s) in id'
+        'an unexpected exception'    | 'cmhandle'             | new RuntimeException('Failed')            || UNKNOWN_ERROR        | 'Failed'
     }
 
     def getObjectUnderTest() {
