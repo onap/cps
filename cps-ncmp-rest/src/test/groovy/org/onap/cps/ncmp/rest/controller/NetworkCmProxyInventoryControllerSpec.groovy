@@ -220,13 +220,13 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
             responseBody.getFailedRemovedCmHandles() == expectedFailedRemovedCmHandle
         where:
             scenario               | createCmHandleResponse         | updateCmHandleResponse         | removeCmHandleResponse         || expectedFailedCreatedCmHandle       | expectedFailedUpdateCmHandle        | expectedFailedRemovedCmHandle
-            'only create failed'   | failedResponse('cm-handle-1')  | successResponse('cm-handle-2') | successResponse('cm-handle-3') || [failedRestResponse('cm-handle-1')] | []                                  | []
-            'only update failed'   | successResponse('cm-handle-1') | failedResponse('cm-handle-2')  | successResponse('cm-handle-3') || []                                  | [failedRestResponse('cm-handle-2')] | []
-            'only delete failed'   | successResponse('cm-handle-1') | successResponse('cm-handle-2') | failedResponse('cm-handle-3')  || []                                  | []                                  | [failedRestResponse('cm-handle-3')]
-            'all three failed'     | failedResponse('cm-handle-1')  | failedResponse('cm-handle-2')  | failedResponse('cm-handle-3')  || [failedRestResponse('cm-handle-1')] | [failedRestResponse('cm-handle-2')] | [failedRestResponse('cm-handle-3')]
-            'create update failed' | failedResponse('cm-handle-1')  | failedResponse('cm-handle-2')  | successResponse('cm-handle-3') || [failedRestResponse('cm-handle-1')] | [failedRestResponse('cm-handle-2')] | []
-            'create delete failed' | failedResponse('cm-handle-1')  | successResponse('cm-handle-2') | failedResponse('cm-handle-3')  || [failedRestResponse('cm-handle-1')] | []                                  | [failedRestResponse('cm-handle-3')]
-            'update delete failed' | successResponse('cm-handle-1') | failedResponse('cm-handle-2')  | failedResponse('cm-handle-3')  || []                                  | [failedRestResponse('cm-handle-2')] | [failedRestResponse('cm-handle-3')]
+            'only create failed'   | failedResponse('cm-handle-1')  | successResponse('cm-handle-2') | successResponse('cm-handle-3') || [expectedFailedRestResponse('cm-handle-1')] | []                                          | []
+            'only update failed'   | successResponse('cm-handle-1') | failedResponse('cm-handle-2')  | successResponse('cm-handle-3') || []                                          | [expectedFailedRestResponse('cm-handle-2')] | []
+            'only delete failed'   | successResponse('cm-handle-1') | successResponse('cm-handle-2') | failedResponse('cm-handle-3')  || []                                          | []                                          | [expectedFailedRestResponse('cm-handle-3')]
+            'all three failed'     | failedResponse('cm-handle-1')  | failedResponse('cm-handle-2')  | failedResponse('cm-handle-3')  || [expectedFailedRestResponse('cm-handle-1')] | [expectedFailedRestResponse('cm-handle-2')] | [expectedFailedRestResponse('cm-handle-3')]
+            'create update failed' | failedResponse('cm-handle-1')  | failedResponse('cm-handle-2')  | successResponse('cm-handle-3') || [expectedFailedRestResponse('cm-handle-1')] | [expectedFailedRestResponse('cm-handle-2')] | []
+            'create delete failed' | failedResponse('cm-handle-1')  | successResponse('cm-handle-2') | failedResponse('cm-handle-3')  || [expectedFailedRestResponse('cm-handle-1')] | []                                          | [expectedFailedRestResponse('cm-handle-3')]
+            'update delete failed' | successResponse('cm-handle-1') | failedResponse('cm-handle-2')  | failedResponse('cm-handle-3')  || []                                          | [expectedFailedRestResponse('cm-handle-2')] | [expectedFailedRestResponse('cm-handle-3')]
     }
 
     def 'Get all cm handle IDs by DMI plugin identifier.'() {
@@ -246,8 +246,8 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
             assert response.contentAsString.contains('cm-handle-id-2')
     }
 
-    def failedRestResponse(cmHandle) {
-        return new CmHandlerRegistrationErrorResponse('cmHandle': cmHandle, 'errorCode': '00', 'errorText': 'Failed')
+    def expectedFailedRestResponse(cmHandle) {
+        return new CmHandlerRegistrationErrorResponse('cmHandle': cmHandle, 'errorCode': '108', 'errorText': 'Failed')
     }
 
     def failedResponse(cmHandle) {

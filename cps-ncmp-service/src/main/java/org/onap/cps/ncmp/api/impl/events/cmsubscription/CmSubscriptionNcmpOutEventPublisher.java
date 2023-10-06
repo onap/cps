@@ -20,13 +20,20 @@
 
 package org.onap.cps.ncmp.api.impl.events.cmsubscription;
 
+import static org.onap.cps.ncmp.api.NcmpResponseCode.PARTIALLY_APPLIED_SUBSCRIPTION;
+import static org.onap.cps.ncmp.api.NcmpResponseCode.SUBSCRIPTION_NOT_APPLICABLE;
+import static org.onap.cps.ncmp.api.NcmpResponseCode.SUBSCRIPTION_PENDING;
+import static org.onap.cps.ncmp.api.NcmpResponseCode.SUCCESSFULLY_APPLIED_SUBSCRIPTION;
+import static org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionStatus.ACCEPTED;
+import static org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionStatus.PENDING;
+import static org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionStatus.REJECTED;
+
 import io.cloudevents.CloudEvent;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.ncmp.api.NcmpEventResponseCode;
+import org.onap.cps.ncmp.api.NcmpResponseCode;
 import org.onap.cps.ncmp.api.impl.events.EventsPublisher;
 import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionPersistence;
 import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionStatus;
@@ -100,48 +107,38 @@ public class CmSubscriptionNcmpOutEventPublisher {
                     cmSubscriptionStatus.setStatus(SubscriptionStatus.fromString(status));
                     cmSubscriptionStatus.setDetails(details);
                     return cmSubscriptionStatus;
-                }).collect(Collectors.toList());
+                }).toList();
     }
 
-    private NcmpEventResponseCode decideOnNcmpEventResponseCodeForSubscription(
+    private NcmpResponseCode decideOnNcmpEventResponseCodeForSubscription(
             final Map<String, Map<String, String>> cmHandleIdToStatusAndDetailsAsMap) {
 
-        final boolean isAllTargetsPending = isAllTargetCmHandleStatusMatch(cmHandleIdToStatusAndDetailsAsMap,
-                SubscriptionStatus.PENDING);
-
-        final boolean isAllTargetsRejected = isAllTargetCmHandleStatusMatch(cmHandleIdToStatusAndDetailsAsMap,
-                SubscriptionStatus.REJECTED);
-
-        final boolean isAllTargetsAccepted = isAllTargetCmHandleStatusMatch(cmHandleIdToStatusAndDetailsAsMap,
-                SubscriptionStatus.ACCEPTED);
-
-        if (isAllTargetsAccepted) {
-            return NcmpEventResponseCode.SUCCESSFULLY_APPLIED_SUBSCRIPTION;
-        } else if (isAllTargetsRejected) {
-            return NcmpEventResponseCode.SUBSCRIPTION_NOT_APPLICABLE;
-        } else if (isAllTargetsPending) {
-            return NcmpEventResponseCode.SUBSCRIPTION_PENDING;
+        if (allTargetsHaveStatus(cmHandleIdToStatusAndDetailsAsMap, ACCEPTED)) {
+            return SUCCESSFULLY_APPLIED_SUBSCRIPTION;
+        } else if (allTargetsHaveStatus(cmHandleIdToStatusAndDetailsAsMap, REJECTED)) {
+            return SUBSCRIPTION_NOT_APPLICABLE;
+        } else if (allTargetsHaveStatus(cmHandleIdToStatusAndDetailsAsMap, PENDING)) {
+            return SUBSCRIPTION_PENDING;
         } else {
-            return NcmpEventResponseCode.PARTIALLY_APPLIED_SUBSCRIPTION;
+            return PARTIALLY_APPLIED_SUBSCRIPTION;
         }
     }
 
-    private boolean isAllTargetCmHandleStatusMatch(
-            final Map<String, Map<String, String>> cmHandleIdToStatusAndDetailsAsMap,
-            final SubscriptionStatus subscriptionStatus) {
+    private boolean allTargetsHaveStatus(final Map<String, Map<String, String>> cmHandleIdToStatusAndDetailsAsMap,
+                                         final SubscriptionStatus subscriptionStatus) {
         return cmHandleIdToStatusAndDetailsAsMap.values().stream()
                 .allMatch(entryset -> entryset.containsValue(subscriptionStatus.toString()));
     }
 
     private CmSubscriptionNcmpOutEvent fromCmSubscriptionEvent(
             final CmSubscriptionEvent cmSubscriptionEvent,
-            final NcmpEventResponseCode ncmpEventResponseCode) {
+            final NcmpResponseCode ncmpResponseCode) {
 
         final CmSubscriptionNcmpOutEvent cmSubscriptionNcmpOutEvent =
                 cmSubscriptionEventToCmSubscriptionNcmpOutEventMapper.toCmSubscriptionNcmpOutEvent(
                         cmSubscriptionEvent);
-        cmSubscriptionNcmpOutEvent.getData().setStatusCode(Integer.parseInt(ncmpEventResponseCode.getStatusCode()));
-        cmSubscriptionNcmpOutEvent.getData().setStatusMessage(ncmpEventResponseCode.getStatusMessage());
+        cmSubscriptionNcmpOutEvent.getData().setStatusCode(Integer.parseInt(ncmpResponseCode.getStatusCode()));
+        cmSubscriptionNcmpOutEvent.getData().setStatusMessage(ncmpResponseCode.getStatusMessage());
 
         return cmSubscriptionNcmpOutEvent;
     }

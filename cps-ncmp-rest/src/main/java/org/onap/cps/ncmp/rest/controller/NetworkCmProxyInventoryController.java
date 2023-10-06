@@ -126,7 +126,7 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
         final CmHandleRegistrationResponse registrationResponse) {
         return new CmHandlerRegistrationErrorResponse()
             .cmHandle(registrationResponse.getCmHandle())
-            .errorCode(registrationResponse.getRegistrationError().errorCode)
+            .errorCode(registrationResponse.getNcmpResponseCode().getStatusCode())
             .errorText(registrationResponse.getErrorText());
     }
 
