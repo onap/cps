@@ -20,6 +20,8 @@
 
 package org.onap.cps.ncmp.dmi.rest.stub.controller;
 
+import static org.onap.cps.ncmp.api.NcmpResponseCode.SUCCESS;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.cloudevents.CloudEvent;
@@ -28,12 +30,10 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import org.onap.cps.ncmp.api.NcmpEventResponseCode;
 import org.onap.cps.ncmp.api.impl.utils.EventDateTimeFormatter;
 import org.onap.cps.ncmp.dmi.rest.stub.model.data.operational.CmHandle;
 import org.onap.cps.ncmp.dmi.rest.stub.model.data.operational.DataOperationRequest;
@@ -161,9 +161,9 @@ public class DmiRestStubController {
     private DataOperationEvent getDataOperationEvent(final DataOperationRequest dataOperationRequest) {
         final Response response = new Response();
         response.setOperationId(dataOperationRequest.getOperationId());
-        response.setStatusCode(NcmpEventResponseCode.SUCCESS.getStatusCode());
-        response.setStatusMessage(NcmpEventResponseCode.SUCCESS.getStatusMessage());
-        response.setIds(dataOperationRequest.getCmHandles().stream().map(CmHandle::getId).collect(Collectors.toList()));
+        response.setStatusCode(SUCCESS.getStatusCode());
+        response.setStatusMessage(SUCCESS.getStatusMessage());
+        response.setIds(dataOperationRequest.getCmHandles().stream().map(CmHandle::getId).toList());
         response.setResourceIdentifier(dataOperationRequest.getResourceIdentifier());
         response.setOptions(dataOperationRequest.getOptions());
         final String ietfNetworkTopologySample = ResourceFileReaderUtil
@@ -176,7 +176,7 @@ public class DmiRestStubController {
         } catch (final ParseException parseException) {
             log.error("Unable to parse event result as json object. cause : {}", parseException.getMessage());
         }
-        final List<Response> responseList = new ArrayList<>();
+        final List<Response> responseList = new ArrayList<>(1);
         responseList.add(response);
         final Data data = new Data();
         data.setResponses(responseList);

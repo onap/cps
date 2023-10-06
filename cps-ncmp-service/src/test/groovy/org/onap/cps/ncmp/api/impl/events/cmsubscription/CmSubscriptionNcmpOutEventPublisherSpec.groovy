@@ -20,11 +20,15 @@
 
 package org.onap.cps.ncmp.api.impl.events.cmsubscription
 
+import static org.onap.cps.ncmp.api.NcmpResponseCode.SUCCESSFULLY_APPLIED_SUBSCRIPTION
+import static org.onap.cps.ncmp.api.NcmpResponseCode.SUBSCRIPTION_PENDING
+import static org.onap.cps.ncmp.api.NcmpResponseCode.SUBSCRIPTION_NOT_APPLICABLE
+import static org.onap.cps.ncmp.api.NcmpResponseCode.PARTIALLY_APPLIED_SUBSCRIPTION
+
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.cloudevents.CloudEvent
 import io.cloudevents.core.builder.CloudEventBuilder
 import org.mapstruct.factory.Mappers
-import org.onap.cps.ncmp.api.NcmpEventResponseCode
 import org.onap.cps.ncmp.api.impl.events.EventsPublisher
 import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionPersistence
 import org.onap.cps.ncmp.api.impl.utils.DataNodeBaseSpec
@@ -98,9 +102,9 @@ class CmSubscriptionNcmpOutEventPublisherSpec extends DataNodeBaseSpec {
         then: 'the result will be equal to ncmp out event'
             expectedResult == ncmpOutEvent
         where: 'the following values are used'
-            scenario             | ncmpEventResponseCode                                        || statusMessage                          ||  statusCode
-            'is full outcome'    | NcmpEventResponseCode.SUCCESSFULLY_APPLIED_SUBSCRIPTION      || 'successfully applied subscription'    ||  1
-            'is partial outcome' | NcmpEventResponseCode.PARTIALLY_APPLIED_SUBSCRIPTION         || 'partially applied subscription'       ||  104
+        scenario             | ncmpEventResponseCode             || statusMessage                       || statusCode
+        'is full outcome'    | SUCCESSFULLY_APPLIED_SUBSCRIPTION || 'successfully applied subscription' || 1
+        'is partial outcome' | PARTIALLY_APPLIED_SUBSCRIPTION    || 'partially applied subscription'    || 104
     }
 
     def 'Check cm handle id to status map to see if it is a full outcome response'() {
@@ -109,16 +113,16 @@ class CmSubscriptionNcmpOutEventPublisherSpec extends DataNodeBaseSpec {
         then: 'the result will be as expected'
             response == expectedOutcomeResponseDecision
         where: 'the following values are used'
-            scenario                                          | cmHandleIdToStatusAndDetailsAsMap                                                                                                                                                   || expectedOutcomeResponseDecision
-            'The map contains PENDING status'                 | [CMHandle1: [details:'Subscription forwarded to dmi plugin',status:'PENDING'] as Map] as Map                                                                                        || NcmpEventResponseCode.SUBSCRIPTION_PENDING
-            'The map contains ACCEPTED status'                | [CMHandle1: [details:'',status:'ACCEPTED'] as Map] as Map                                                                                                                           || NcmpEventResponseCode.SUCCESSFULLY_APPLIED_SUBSCRIPTION
-            'The map contains REJECTED status'                | [CMHandle1: [details:'Cm handle does not exist',status:'REJECTED'] as Map] as Map                                                                                                   || NcmpEventResponseCode.SUBSCRIPTION_NOT_APPLICABLE
-            'The map contains PENDING and PENDING statuses'   | [CMHandle1: [details:'Some details',status:'PENDING'] as Map, CMHandle2: [details:'Some details',status:'PENDING'] as Map as Map] as Map                                            || NcmpEventResponseCode.SUBSCRIPTION_PENDING
-            'The map contains ACCEPTED and ACCEPTED statuses' | [CMHandle1: [details:'',status:'ACCEPTED'] as Map, CMHandle2: [details:'',status:'ACCEPTED'] as Map as Map] as Map                                                                  || NcmpEventResponseCode.SUCCESSFULLY_APPLIED_SUBSCRIPTION
-            'The map contains REJECTED and REJECTED statuses' | [CMHandle1: [details:'Reject details',status:'REJECTED'] as Map, CMHandle2: [details:'Reject details',status:'REJECTED'] as Map as Map] as Map                                      || NcmpEventResponseCode.SUBSCRIPTION_NOT_APPLICABLE
-            'The map contains PENDING and ACCEPTED statuses'  | [CMHandle1: [details:'Some details',status:'PENDING'] as Map, CMHandle2: [details:'',status:'ACCEPTED'] as Map as Map] as Map                                                       || NcmpEventResponseCode.PARTIALLY_APPLIED_SUBSCRIPTION
-            'The map contains REJECTED and ACCEPTED statuses' | [CMHandle1: [details:'Cm handle does not exist',status:'REJECTED'] as Map, CMHandle2: [details:'',status:'ACCEPTED'] as Map as Map] as Map                                          || NcmpEventResponseCode.PARTIALLY_APPLIED_SUBSCRIPTION
-            'The map contains PENDING and REJECTED statuses'  | [CMHandle1: [details:'Subscription forwarded to dmi plugin',status:'PENDING'] as Map, CMHandle2: [details:'Cm handle does not exist',status:'REJECTED'] as Map as Map] as Map       || NcmpEventResponseCode.PARTIALLY_APPLIED_SUBSCRIPTION
+        scenario                                          | cmHandleIdToStatusAndDetailsAsMap                                                                                                                                                   || expectedOutcomeResponseDecision
+        'The map contains PENDING status'                 | [CMHandle1: [details: 'Subscription forwarded to dmi plugin', status: 'PENDING'] as Map] as Map                                                                                     || SUBSCRIPTION_PENDING
+        'The map contains ACCEPTED status'                | [CMHandle1: [details: '', status: 'ACCEPTED'] as Map] as Map                                                                                                                        || SUCCESSFULLY_APPLIED_SUBSCRIPTION
+        'The map contains REJECTED status'                | [CMHandle1: [details: 'Cm handle does not exist', status: 'REJECTED'] as Map] as Map                                                                                                || SUBSCRIPTION_NOT_APPLICABLE
+        'The map contains PENDING and PENDING statuses'   | [CMHandle1: [details: 'Some details', status: 'PENDING'] as Map, CMHandle2: [details: 'Some details', status: 'PENDING'] as Map as Map] as Map                                      || SUBSCRIPTION_PENDING
+        'The map contains ACCEPTED and ACCEPTED statuses' | [CMHandle1: [details: '', status: 'ACCEPTED'] as Map, CMHandle2: [details: '', status: 'ACCEPTED'] as Map as Map] as Map                                                            || SUCCESSFULLY_APPLIED_SUBSCRIPTION
+        'The map contains REJECTED and REJECTED statuses' | [CMHandle1: [details: 'Reject details', status: 'REJECTED'] as Map, CMHandle2: [details: 'Reject details', status: 'REJECTED'] as Map as Map] as Map                                || SUBSCRIPTION_NOT_APPLICABLE
+        'The map contains PENDING and ACCEPTED statuses'  | [CMHandle1: [details: 'Some details', status: 'PENDING'] as Map, CMHandle2: [details: '', status: 'ACCEPTED'] as Map as Map] as Map                                                 || PARTIALLY_APPLIED_SUBSCRIPTION
+        'The map contains REJECTED and ACCEPTED statuses' | [CMHandle1: [details: 'Cm handle does not exist', status: 'REJECTED'] as Map, CMHandle2: [details: '', status: 'ACCEPTED'] as Map as Map] as Map                                    || PARTIALLY_APPLIED_SUBSCRIPTION
+        'The map contains PENDING and REJECTED statuses'  | [CMHandle1: [details: 'Subscription forwarded to dmi plugin', status: 'PENDING'] as Map, CMHandle2: [details: 'Cm handle does not exist', status: 'REJECTED'] as Map as Map] as Map || PARTIALLY_APPLIED_SUBSCRIPTION
     }
 
 }

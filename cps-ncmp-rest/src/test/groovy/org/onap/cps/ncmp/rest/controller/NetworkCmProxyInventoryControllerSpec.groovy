@@ -247,7 +247,7 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
     }
 
     def failedRestResponse(cmHandle) {
-        return new CmHandlerRegistrationErrorResponse('cmHandle': cmHandle, 'errorCode': '00', 'errorText': 'Failed')
+        return new CmHandlerRegistrationErrorResponse('cmHandle': cmHandle, 'errorCode': '108', 'errorText': 'Failed')
     }
 
     def failedResponse(cmHandle) {
