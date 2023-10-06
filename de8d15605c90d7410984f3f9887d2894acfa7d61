@@ -58,6 +58,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "18cde019_c6ebb526",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 28
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-10-06T12:24:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4080e9f1_06626efd",
+      "revId": "de8d15605c90d7410984f3f9887d2894acfa7d61",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2ebda287_00ada4d2",
@@ -71,6 +89,24 @@
       "writtenOn": "2023-10-02T12:27:52Z",
       "side": 1,
       "message": "I think all the code that you introduced is specific to delta feature.\nY not create a separate service class for the delta feature and move the relevant code thr or atleast a helper class that hosts the code for this feature.\n\nIf we put all the code here it will increase the complexity of this class as well.\n\nAlso I see more number of conditions in the code. would result in higher cognitive complexity as well.",
+      "revId": "de8d15605c90d7410984f3f9887d2894acfa7d61",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a662a5a4_f79fa788",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 28
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-10-06T12:24:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ebda287_00ada4d2",
       "revId": "de8d15605c90d7410984f3f9887d2894acfa7d61",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
