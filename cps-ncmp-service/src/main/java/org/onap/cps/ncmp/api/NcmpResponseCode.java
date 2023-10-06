@@ -23,7 +23,7 @@ package org.onap.cps.ncmp.api;
 import lombok.Getter;
 
 @Getter
-public enum NcmpEventResponseCode {
+public enum NcmpResponseCode {
 
     SUCCESS("0", "Successfully applied changes"),
     SUCCESSFULLY_APPLIED_SUBSCRIPTION("1", "successfully applied subscription"),
@@ -33,12 +33,15 @@ public enum NcmpEventResponseCode {
     UNABLE_TO_READ_RESOURCE_DATA("103", "dmi plugin service is not able to read resource data"),
     PARTIALLY_APPLIED_SUBSCRIPTION("104", "partially applied subscription"),
     SUBSCRIPTION_NOT_APPLICABLE("105", "subscription not applicable for all cm handles"),
-    SUBSCRIPTION_PENDING("106", "subscription pending for all cm handles");
+    SUBSCRIPTION_PENDING("106", "subscription pending for all cm handles"),
+    UNKNOWN_ERROR("108", "Unknown error"),
+    CM_HANDLE_ALREADY_EXIST("109", "cm-handle already exists"),
+    CM_HANDLE_INVALID_ID("110", "cm-handle has an invalid character(s) in id");
 
     private final String statusCode;
     private final String statusMessage;
 
-    NcmpEventResponseCode(final String statusCode, final String statusMessage) {
+    NcmpResponseCode(final String statusCode, final String statusMessage) {
         this.statusCode = statusCode;
         this.statusMessage = statusMessage;
     }
