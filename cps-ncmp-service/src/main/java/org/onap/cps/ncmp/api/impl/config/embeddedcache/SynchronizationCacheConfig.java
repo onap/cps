@@ -23,7 +23,6 @@ package org.onap.cps.ncmp.api.impl.config.embeddedcache;
 import com.hazelcast.config.MapConfig;
 import com.hazelcast.config.QueueConfig;
 import com.hazelcast.map.IMap;
-import java.util.Set;
 import java.util.concurrent.BlockingQueue;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.cache.HazelcastCacheConfig;
@@ -44,8 +43,6 @@ public class SynchronizationCacheConfig extends HazelcastCacheConfig {
     private static final QueueConfig commonQueueConfig = createQueueConfig("defaultQueueConfig");
     private static final MapConfig moduleSyncStartedConfig = createMapConfig("moduleSyncStartedConfig");
     private static final MapConfig dataSyncSemaphoresConfig = createMapConfig("dataSyncSemaphoresConfig");
-
-    private static final MapConfig moduleSetTagCacheMapConfig = createMapConfig("moduleSetTagCacheMapConfig");
 
     /**
      * Module Sync Distributed Queue Instance.
@@ -76,16 +73,5 @@ public class SynchronizationCacheConfig extends HazelcastCacheConfig {
     @Bean
     public IMap<String, Boolean> dataSyncSemaphores() {
         return createHazelcastInstance("dataSyncSemaphores", dataSyncSemaphoresConfig).getMap("dataSyncSemaphores");
-    }
-
-    /**
-     * IMap instance for cached ModulesSetTags.
-     *
-     * @return configured map of ModuleSetTags
-     */
-    @Bean
-    public IMap<String, Set<String>> moduleSetTagCache() {
-        return createHazelcastInstance("moduleSetTags", moduleSetTagCacheMapConfig)
-                .getMap("moduleSetTagCache");
     }
 }
