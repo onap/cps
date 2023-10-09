@@ -20,7 +20,9 @@
 
 package org.onap.cps.ncmp.api.inventory.sync
 
+import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
 import org.onap.cps.spi.FetchDescendantsOption
+import org.onap.cps.spi.model.DataNodeBuilder
 
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
 import static org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory.MODULE_UPGRADE
@@ -48,11 +50,13 @@ class ModuleSyncServiceSpec extends Specification {
     def mockCmHandleQueries = Mock(CmHandleQueries)
     def mockCpsDataService = Mock(CpsDataService)
     def mockJsonObjectMapper = Mock(JsonObjectMapper)
+    def mockModuleSetTagCache = Mock(Map<String, Collection<ModuleReference>>)
 
     def objectUnderTest = new ModuleSyncService(mockDmiModelOperations, mockCpsModuleService, mockCpsAdminService,
-            mockCmHandleQueries, mockCpsDataService, mockJsonObjectMapper)
+            mockCmHandleQueries, mockCpsDataService, mockJsonObjectMapper, mockModuleSetTagCache)
 
     def expectedDataspaceName = NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
+    def static cmHandleWithModuleSetTag = new DataNodeBuilder().withXpath("//cm-handles[@module-set-tag='someModuleSetTag'][@id='someId']").build()
 
     def 'Sync model for a (new) cm handle with #scenario'() {
         given: 'a cm handle having lock reason : MODULE_UPGRADE'
@@ -62,6 +66,7 @@ class ModuleSyncServiceSpec extends Specification {
             def dmiServiceName = 'some service name'
             ncmpServiceCmHandle.cmHandleId = 'cmHandleId-1'
             def yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle(dmiServiceName, '', '', ncmpServiceCmHandle,'someModuleSetTag')
+            mockModuleSetTagCache.get('someModuleSetTag') >> moduleSetTagCacheValue
         and: 'DMI operations returns some module references'
             def moduleReferences =  [ new ModuleReference('module1','1'), new ModuleReference('module2','2') ]
             mockDmiModelOperations.getModuleReferences(yangModelCmHandle) >> moduleReferences
@@ -69,21 +74,22 @@ class ModuleSyncServiceSpec extends Specification {
             mockCpsModuleService.getYangResourceModuleReferences(expectedDataspaceName) >> toModuleReference(existingModuleResourcesInCps)
         and: 'DMI-Plugin returns resource(s) for "new" module(s)'
             mockDmiModelOperations.getNewYangResourcesFromDmi(yangModelCmHandle, [new ModuleReference('module1', '1')]) >> newModuleNameContentToMap
-        and: 'empty data node list is returned by cps path a query'
-        mockCmHandleQueries.queryNcmpRegistryByCpsPath("//cm-handles[@module-set-tag='someModuleSetTag']",
-                FetchDescendantsOption.OMIT_DESCENDANTS) >> Collections.emptyList()
+        and: 'data node list is returned by cps path a query'
+            mockCmHandleQueries.queryNcmpRegistryByCpsPath("//cm-handles[@module-set-tag='someModuleSetTag']",
+                FetchDescendantsOption.OMIT_DESCENDANTS) >> dataNodeList
+            mockCmHandleQueries.cmHandleHasState('someId', CmHandleState.READY) >> true
         when: 'module sync is triggered'
             mockCpsModuleService.identifyNewModuleReferences(moduleReferences) >> toModuleReference(identifiedNewModuleReferences)
             objectUnderTest.syncAndCreateOrUpgradeSchemaSetAndAnchor(yangModelCmHandle)
         then: 'create schema set from module is invoked with correct parameters'
-            1 * mockCpsModuleService.createOrUpgradeSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'cmHandleId-1', newModuleNameContentToMap, moduleReferences)
+            cpsModuleServiceInvocation * mockCpsModuleService.createOrUpgradeSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'cmHandleId-1', newModuleNameContentToMap, moduleReferences)
         and: 'anchor is created with the correct parameters'
-            1 * mockCpsAdminService.createAnchor(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'cmHandleId-1', 'cmHandleId-1')
+            cpsAdminServiceInvocations * mockCpsAdminService.createAnchor(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'cmHandleId-1', 'cmHandleId-1')
         where: 'the following parameters are used'
-            scenario             | existingModuleResourcesInCps           | identifiedNewModuleReferences | newModuleNameContentToMap
-            'one new module'     | [['module2' : '2'], ['module3' : '3']] | [['module1' : '1']]           | [module1: 'some yang source']
-            'no add. properties' | [['module2' : '2'], ['module3' : '3']] | [['module1' : '1']]           | [module1: 'some yang source']
-            'no new module'      | [['module1' : '1'], ['module2' : '2']] | []                            | [:]
+            scenario             | existingModuleResourcesInCps           | identifiedNewModuleReferences | newModuleNameContentToMap     | cpsModuleServiceInvocation | cpsAdminServiceInvocations | moduleSetTagCacheValue | dataNodeList
+            'one new module'     | [['module2' : '2'], ['module3' : '3']] | [['module1' : '1']]           | [module1: 'some yang source'] | 1                          | 1                          | null                   | []
+            'no add. properties' | [['module2' : '2'], ['module3' : '3']] | [['module1' : '1']]           | [module1: 'some yang source'] | 0                          | 0                          | null                   | [cmHandleWithModuleSetTag]
+            'no new module'      | [['module1' : '1'], ['module2' : '2']] | []                            | [:]                           | 0                          | 0                          | [new ModuleReference()]| []
     }
 
     def 'Delete Schema Set for CmHandle' () {

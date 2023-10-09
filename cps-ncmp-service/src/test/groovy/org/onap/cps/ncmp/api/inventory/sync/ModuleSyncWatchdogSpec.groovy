@@ -45,9 +45,7 @@ class ModuleSyncWatchdogSpec extends Specification {
 
     def spiedAsyncTaskExecutor = Spy(AsyncTaskExecutor)
 
-    def moduleSetTagCache = Mock(IMap<String, Set<String>>)
-
-    def objectUnderTest = new ModuleSyncWatchdog(mockSyncUtils, moduleSyncWorkQueue , mockModuleSyncStartedOnCmHandles, mockModuleSyncTasks, spiedAsyncTaskExecutor, moduleSetTagCache)
+    def objectUnderTest = new ModuleSyncWatchdog(mockSyncUtils, moduleSyncWorkQueue , mockModuleSyncStartedOnCmHandles, mockModuleSyncTasks, spiedAsyncTaskExecutor)
 
     void setup() {
         spiedAsyncTaskExecutor.setupThreadPool()
