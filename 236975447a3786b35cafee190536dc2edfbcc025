@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "926c46d6_1e155c3a",
+        "filename": "docs/cps-ncmp-message-status-codes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-09T13:44:05Z",
+      "side": 1,
+      "message": "Feature(s)",
+      "range": {
+        "startLine": 13,
+        "startChar": 79,
+        "endLine": 13,
+        "endChar": 88
+      },
+      "revId": "236975447a3786b35cafee190536dc2edfbcc025",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38d6d455_ee6f4c89",
+        "filename": "docs/cps-ncmp-message-status-codes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-09T13:44:05Z",
+      "side": 1,
+      "message": "Data Operation, Inventory",
+      "range": {
+        "startLine": 21,
+        "startChar": 79,
+        "endLine": 21,
+        "endChar": 94
+      },
+      "revId": "236975447a3786b35cafee190536dc2edfbcc025",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b090f845_516783a4",
         "filename": "docs/cps-ncmp-message-status-codes.rst",
         "patchSetId": 2
