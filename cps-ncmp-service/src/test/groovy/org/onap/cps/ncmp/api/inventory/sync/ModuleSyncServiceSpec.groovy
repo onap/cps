@@ -48,9 +48,10 @@ class ModuleSyncServiceSpec extends Specification {
     def mockCmHandleQueries = Mock(CmHandleQueries)
     def mockCpsDataService = Mock(CpsDataService)
     def mockJsonObjectMapper = Mock(JsonObjectMapper)
+    def moduleSetTagCache = Mock(Map<String, Collection<ModuleReference>>)
 
     def objectUnderTest = new ModuleSyncService(mockDmiModelOperations, mockCpsModuleService, mockCpsAdminService,
-            mockCmHandleQueries, mockCpsDataService, mockJsonObjectMapper)
+            mockCmHandleQueries, mockCpsDataService, mockJsonObjectMapper, moduleSetTagCache)
 
     def expectedDataspaceName = NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
 

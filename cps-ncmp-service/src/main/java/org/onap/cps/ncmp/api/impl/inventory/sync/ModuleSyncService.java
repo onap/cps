@@ -65,6 +65,7 @@ public class ModuleSyncService {
     private final CmHandleQueries cmHandleQueries;
     private final CpsDataService cpsDataService;
     private final JsonObjectMapper jsonObjectMapper;
+    private final Map<String, Collection<ModuleReference>> moduleSetTagCache;
 
     /**
      * This method registers a cm handle and initiates modules sync.
@@ -74,24 +75,28 @@ public class ModuleSyncService {
     public void syncAndCreateOrUpgradeSchemaSetAndAnchor(final YangModelCmHandle upgradedCmHandle) {
 
         final String moduleSetTag = extractModuleSetTag(upgradedCmHandle.getCompositeState());
-        final Optional<DataNode> existingCmHandleWithSameModuleSetTag
-                = getFirstReadyDataNodeWithModuleSetTag(moduleSetTag);
 
-        if (existingCmHandleWithSameModuleSetTag.isPresent()) {
-            upgradeUsingModuleSetTag(upgradedCmHandle, moduleSetTag);
+        final Collection<ModuleReference> moduleReferencesFromCache = moduleSetTagCache.get(moduleSetTag);
+        if (moduleReferencesFromCache == null) {
+            final Optional<DataNode> existingCmHandleWithSameModuleSetTag
+                    = getFirstReadyDataNodeWithModuleSetTag(moduleSetTag);
+
+            if (existingCmHandleWithSameModuleSetTag.isPresent()) {
+                createOrUpgradeUsingModuleSetTag(upgradedCmHandle, moduleSetTag);
+            } else {
+                syncAndCreateSchemaSetAndAnchor(upgradedCmHandle, moduleSetTag);
+            }
         } else {
-            syncAndCreateSchemaSetAndAnchor(upgradedCmHandle);
+            createOrUpgradeUsingCachedModuleReferences(upgradedCmHandle, moduleReferencesFromCache);
         }
         setCmHandleModuleSetTag(upgradedCmHandle, moduleSetTag);
     }
 
-    private void syncAndCreateSchemaSetAndAnchor(final YangModelCmHandle yangModelCmHandle) {
+    private void syncAndCreateSchemaSetAndAnchor(final YangModelCmHandle yangModelCmHandle, final String moduleSetTag) {
         final Collection<ModuleReference> allModuleReferencesFromCmHandle =
                 dmiModelOperations.getModuleReferences(yangModelCmHandle);
-
         final Collection<ModuleReference> identifiedNewModuleReferencesFromCmHandle = cpsModuleService
                 .identifyNewModuleReferences(allModuleReferencesFromCmHandle);
-
         final Map<String, String> newModuleNameToContentMap;
         if (identifiedNewModuleReferencesFromCmHandle.isEmpty()) {
             newModuleNameToContentMap = Collections.emptyMap();
@@ -100,6 +105,7 @@ public class ModuleSyncService {
                     identifiedNewModuleReferencesFromCmHandle);
         }
         createSchemaSetAndAnchor(yangModelCmHandle, newModuleNameToContentMap, allModuleReferencesFromCmHandle);
+        moduleSetTagCache.put(moduleSetTag, allModuleReferencesFromCmHandle);
     }
 
     private void createSchemaSetAndAnchor(final YangModelCmHandle yangModelCmHandle,
@@ -147,7 +153,7 @@ public class ModuleSyncService {
                 jsonObjectMapper.asJsonString(dmiRegistryProperties), OffsetDateTime.now());
     }
 
-    private void upgradeUsingModuleSetTag(final YangModelCmHandle upgradedCmHandle, final String moduleSetTag) {
+    private void createOrUpgradeUsingModuleSetTag(final YangModelCmHandle upgradedCmHandle, final String moduleSetTag) {
         log.info("Found cm handle having module set tag: {}", moduleSetTag);
         final Collection<ModuleReference> moduleReferencesFromExistingCmHandle =
                 cpsModuleService.getYangResourcesModuleReferences(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR);
@@ -155,6 +161,15 @@ public class ModuleSyncService {
         final Map<String, String> noNewModules = Collections.emptyMap();
         cpsModuleService.createOrUpgradeSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME,
                 upgradedSchemaSetAndAnchorName, noNewModules, moduleReferencesFromExistingCmHandle);
+        moduleSetTagCache.put(moduleSetTag, moduleReferencesFromExistingCmHandle);
+    }
+
+    private void createOrUpgradeUsingCachedModuleReferences(final YangModelCmHandle upgradedCmHandle,
+                                                            final Collection<ModuleReference> moduleReferences) {
+        final String upgradedSchemaSetAndAnchorName = upgradedCmHandle.getId();
+        final Map<String, String> noNewModules = Collections.emptyMap();
+        cpsModuleService.createOrUpgradeSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME,
+                upgradedSchemaSetAndAnchorName, noNewModules, moduleReferences);
     }
 
     private static String extractModuleSetTag(final CompositeState compositeState) {
