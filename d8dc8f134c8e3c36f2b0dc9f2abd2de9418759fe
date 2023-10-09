@@ -33,6 +33,24 @@
       "message": "as discussed in the last meeting , u will now be using that dmiPlugin status map to keep track of the availability in the watchdog.",
       "revId": "d8dc8f134c8e3c36f2b0dc9f2abd2de9418759fe",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3b07d32_32d7b423",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-10-09T08:57:30Z",
+      "side": 1,
+      "message": "Agree with you, as discussed in the grooming meeting.",
+      "parentUuid": "2f567def_74bb0c8e",
+      "revId": "d8dc8f134c8e3c36f2b0dc9f2abd2de9418759fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
