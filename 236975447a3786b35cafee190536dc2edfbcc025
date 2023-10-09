@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b090f845_516783a4",
+        "filename": "docs/cps-ncmp-message-status-codes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-09T13:09:10Z",
+      "side": 1,
+      "message": "this is not a feature :-)\nsuggesrion: (Initial) Inventory",
+      "range": {
+        "startLine": 35,
+        "startChar": 78,
+        "endLine": 35,
+        "endChar": 98
+      },
+      "revId": "236975447a3786b35cafee190536dc2edfbcc025",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ebadaaf_0b45f38e",
+        "filename": "docs/design.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-09T13:09:10Z",
+      "side": 1,
+      "message": "I now realize these codes are use by both offered and consumed APIs\nso let\u0027s create a new section ate the bottom of this page\n\nCommon NCMP Response Codes\n\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\nNCMP uses common responses codes in REST responses and events. Also the DMI plugin interface uses these codes which are defined here:",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 84
+      },
+      "revId": "236975447a3786b35cafee190536dc2edfbcc025",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
