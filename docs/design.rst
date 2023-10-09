@@ -66,6 +66,13 @@ CPS Core uses API's from the following ONAP components
   and allow the DMI registry API's have access to the corresponding NCMP API's within CPS Core.
   More information on the DMI-Plugins offered APIs can be found on the :ref:`DMI-Plugin's Design Page <onap-cps-ncmp-dmi-plugin:design>`.
 
+The status codes used in the events resulting from these operations are defined here:
+
+.. toctree::
+   :maxdepth: 1
+
+   cps-ncmp-message-status-codes.rst
+
 CPS Path
 ========
 
