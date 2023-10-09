@@ -83,3 +83,13 @@ NCMP Inventory CM Handle Querying
 
 The CM Handle searches ncmp inventory endpoints can be used to query for CM Handles or CM Handle IDs.
 This endpoint is described in detail in :doc:`ncmp-inventory-querying`.
+
+Common NCMP Response Codes
+==========================
+
+NCMP uses common responses codes in REST responses and events. Also the DMI plugin interface uses these codes which are defined here:
+
+.. toctree::
+   :maxdepth: 1
+
+   cps-ncmp-message-status-codes.rst
