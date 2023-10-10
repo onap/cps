@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd0302dd_6253bbd8",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/CmDataSubscriptionsPerfTest.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-10-10T14:15:47Z",
+      "side": 1,
+      "message": "This test causes an error and should be removed (looks like it got carried over during a rebase - but the test was removed in https://gerrit.onap.org/r/c/cps/+/136042).",
+      "range": {
+        "startLine": 115,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 5
+      },
+      "revId": "f5a072d465a3a50c709951687ab830fb46540f41",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
