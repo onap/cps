@@ -48,6 +48,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea74231b_cf29feb2",
+        "filename": "docs/cps-ncmp-message-status-codes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-10-10T08:35:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78769f2d_637ddd95",
+      "range": {
+        "startLine": 13,
+        "startChar": 79,
+        "endLine": 13,
+        "endChar": 88
+      },
+      "revId": "236975447a3786b35cafee190536dc2edfbcc025",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "38d6d455_ee6f4c89",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "Modified",
       "parentUuid": "38d6d455_ee6f4c89",
+      "range": {
+        "startLine": 21,
+        "startChar": 79,
+        "endLine": 21,
+        "endChar": 94
+      },
+      "revId": "236975447a3786b35cafee190536dc2edfbcc025",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "01a1b1a8_e2b7489a",
+        "filename": "docs/cps-ncmp-message-status-codes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-10-10T08:35:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d5cf281e_5ab47b9c",
       "range": {
         "startLine": 21,
         "startChar": 79,
@@ -142,6 +190,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9aa9081d_44d63025",
+        "filename": "docs/cps-ncmp-message-status-codes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-10-10T08:35:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc2615e5_583adb2c",
+      "range": {
+        "startLine": 35,
+        "startChar": 78,
+        "endLine": 35,
+        "endChar": 98
+      },
+      "revId": "236975447a3786b35cafee190536dc2edfbcc025",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1ebadaaf_0b45f38e",
@@ -179,6 +251,30 @@
       "side": 1,
       "message": "Added at bottom of this page.",
       "parentUuid": "1ebadaaf_0b45f38e",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 84
+      },
+      "revId": "236975447a3786b35cafee190536dc2edfbcc025",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b609d63b_4a15a668",
+        "filename": "docs/design.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-10-10T08:35:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cdbc3d43_c0efe6ce",
       "range": {
         "startLine": 69,
         "startChar": 0,
