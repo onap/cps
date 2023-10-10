@@ -16,6 +16,23 @@
       "message": "Thank Toine for your valuable review session today with me. Please find the new patch set.",
       "revId": "6e42d5a18ab3e2edba8a5ed0ac3c88a67b26588b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "221b023b_cfeac34d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-10-10T16:40:05Z",
+      "side": 1,
+      "message": "recheck",
+      "revId": "6e42d5a18ab3e2edba8a5ed0ac3c88a67b26588b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
