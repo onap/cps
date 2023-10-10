@@ -16,6 +16,161 @@
       "message": "recheck",
       "revId": "e605eb3c72cea7bf933fc854f25e4a5beb9baf7b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e45b3cb_cba1e56f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-10T16:21:16Z",
+      "side": 1,
+      "message": "I buil the HTML and it look perfect.\nJust a few small suggestions, then main point is whether we should add a (junit) example somehow...",
+      "revId": "e605eb3c72cea7bf933fc854f25e4a5beb9baf7b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2dc0062d_ad05e801",
+        "filename": "cps-ncmp-rest-stub/cps-ncmp-rest-stub-app/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-10T16:21:16Z",
+      "side": 1,
+      "message": "I tested downloaded from the repo and suer enough it failed to run the jar because of these missing deps I assume...\nI then did a mvn clen install using this commit and all worked as per your instructions :-D",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 56
+      },
+      "revId": "e605eb3c72cea7bf933fc854f25e4a5beb9baf7b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92d982bc_5e9e536a",
+        "filename": "docs/cps-stubs.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-10T16:21:16Z",
+      "side": 1,
+      "message": "suggestion: insert \u0027(using mvn clean install)\u0027",
+      "range": {
+        "startLine": 53,
+        "startChar": 117,
+        "endLine": 53,
+        "endChar": 118
+      },
+      "revId": "e605eb3c72cea7bf933fc854f25e4a5beb9baf7b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61a5a7f0_0e8167ae",
+        "filename": "docs/cps-stubs.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-10T16:21:16Z",
+      "side": 1,
+      "message": "do we need a section before this showing a very simple unit test using the stub?\nI actually thought you already added this somewhere (in our repo) but now I cannot find it. I might be mistaken... \nNit sure what is best: just a simpel example in dox or a real working example in our code base and refer to it form here....",
+      "range": {
+        "startLine": 89,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 3
+      },
+      "revId": "e605eb3c72cea7bf933fc854f25e4a5beb9baf7b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b66bb088_4c70facc",
+        "filename": "docs/cps-stubs.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-10T16:21:16Z",
+      "side": 1,
+      "message": "I presume this can be any resource path e.g. /my_custom_stubs/  ?\nShould we explain that more clearly?",
+      "range": {
+        "startLine": 100,
+        "startChar": 16,
+        "endLine": 100,
+        "endChar": 25
+      },
+      "revId": "e605eb3c72cea7bf933fc854f25e4a5beb9baf7b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "293b06e8_903b53b2",
+        "filename": "docs/cps-stubs.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-10T16:21:16Z",
+      "side": 1,
+      "message": "based on previous comment you can now remove this",
+      "range": {
+        "startLine": 104,
+        "startChar": 240,
+        "endLine": 104,
+        "endChar": 253
+      },
+      "revId": "e605eb3c72cea7bf933fc854f25e4a5beb9baf7b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbabc0f7_fd7b93d5",
+        "filename": "docs/cps-stubs.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-10T16:21:16Z",
+      "side": 1,
+      "message": "replace \u0027this\u0027 with \u0027examples included in CPS source repository.\u0027",
+      "range": {
+        "startLine": 104,
+        "startChar": 120,
+        "endLine": 104,
+        "endChar": 124
+      },
+      "revId": "e605eb3c72cea7bf933fc854f25e4a5beb9baf7b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
