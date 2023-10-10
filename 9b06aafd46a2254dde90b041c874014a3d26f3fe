@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e0f1cfad_cd5df36c",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-10T15:08:28Z",
+      "side": 1,
+      "message": "just try what Waqas suggest...",
+      "parentUuid": "b4a953e3_623b9df4",
+      "range": {
+        "startLine": 147,
+        "startChar": 16,
+        "endLine": 149,
+        "endChar": 40
+      },
+      "revId": "9b06aafd46a2254dde90b041c874014a3d26f3fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cb1f3e84_e62bd337",
         "filename": "cps-dependencies/pom.xml",
         "patchSetId": 1
@@ -66,6 +90,76 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "560e0a22_76bfc2f1",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-10T15:08:28Z",
+      "side": 1,
+      "message": "I presume all springboot dependencies are now on 3.1.4 as requested by Ericsson?\nAnd as Waqas susggested if these are include already no need to define them again",
+      "parentUuid": "cb1f3e84_e62bd337",
+      "range": {
+        "startLine": 223,
+        "startChar": 11,
+        "endLine": 232,
+        "endChar": 25
+      },
+      "revId": "9b06aafd46a2254dde90b041c874014a3d26f3fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be9b7f5c_2c166334",
+        "filename": "cps-ncmp-rest/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-10T15:08:28Z",
+      "side": 1,
+      "message": "why did you add these?\nwere they remvevod form a parent pom/bom ?",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 19
+      },
+      "revId": "9b06aafd46a2254dde90b041c874014a3d26f3fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1a4debf_ca241ed2",
+        "filename": "cps-rest/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-10T15:08:28Z",
+      "side": 1,
+      "message": "j comes after i :-)",
+      "range": {
+        "startLine": 71,
+        "startChar": 21,
+        "endLine": 71,
+        "endChar": 22
+      },
+      "revId": "9b06aafd46a2254dde90b041c874014a3d26f3fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c6c02131_9c14dcf4",
         "filename": "cps-service/pom.xml",
         "patchSetId": 1
@@ -82,6 +176,53 @@
         "startChar": 1,
         "endLine": 47,
         "endChar": 17
+      },
+      "revId": "9b06aafd46a2254dde90b041c874014a3d26f3fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8899e1c4_94fd693f",
+        "filename": "cps-service/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-10T15:08:28Z",
+      "side": 1,
+      "message": "agreed",
+      "parentUuid": "c6c02131_9c14dcf4",
+      "range": {
+        "startLine": 43,
+        "startChar": 1,
+        "endLine": 47,
+        "endChar": 17
+      },
+      "revId": "9b06aafd46a2254dde90b041c874014a3d26f3fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4ff0859_67f96578",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-app/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-10T15:08:28Z",
+      "side": 1,
+      "message": "ultimately these poms are extending ../cps-parent/pom.xml correct? so can we not use the versions defined in dep. mgmtm module?!",
+      "range": {
+        "startLine": 109,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 36
       },
       "revId": "9b06aafd46a2254dde90b041c874014a3d26f3fe",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
