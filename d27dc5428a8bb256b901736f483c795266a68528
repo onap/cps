@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35272f43_4a9d3fb3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-10-10T16:55:40Z",
+      "side": 1,
+      "message": "This is very hand if the team want to attach debugger to ncmp while they are running docker-compose can be reviewed.",
+      "revId": "d27dc5428a8bb256b901736f483c795266a68528",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
