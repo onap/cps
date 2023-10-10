@@ -1,0 +1,11 @@
+Code-Review+1: Levente Csanyi <levente.csanyi@est.tech>
+Code-Review+1: Gerard Nugent <gerard.nugent@est.tech>
+Code-Review+1: Toine Siebelink <toine.siebelink@est.tech>
+Code-Review+2: Sourabh Sourabh <sourabh.sourabh@est.tech>
+Verified+1: ONAP Required GHA <releng+onap.required.gha@linuxfoundation.org>
+Verified+1: ONAP Jobbuilder <onap-jobbuilder@jenkins.onap.org>
+Submitted-by: Toine Siebelink <toine.siebelink@est.tech>
+Submitted-at: Tue, 10 Oct 2023 15:09:03 +0000
+Reviewed-on: https://gerrit.onap.org/r/c/cps/+/136054
+Project: cps
+Branch: refs/heads/master
