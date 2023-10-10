@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b4a953e3_623b9df4",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 3237
+      },
+      "writtenOn": "2023-10-10T11:22:49Z",
+      "side": 1,
+      "message": "again this is transitive dependency of spring-boot-starter-jetty why add it here??  see https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-jetty/3.1.2",
+      "range": {
+        "startLine": 147,
+        "startChar": 16,
+        "endLine": 149,
+        "endChar": 40
+      },
+      "revId": "9b06aafd46a2254dde90b041c874014a3d26f3fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cb1f3e84_e62bd337",
         "filename": "cps-dependencies/pom.xml",
         "patchSetId": 1
