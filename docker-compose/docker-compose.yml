@@ -38,6 +38,7 @@ services:
     ports:
       - ${CPS_CORE_PORT:-8883}:8080
       - ${CPS_CORE_MANAGEMENT_PORT:-8887}:8081
+      - ${CPS_CORE_DEBUG_PORT:-5005}:5005
     environment:
       CPS_USERNAME: ${CPS_CORE_USERNAME:-cpsuser}
       CPS_PASSWORD: ${CPS_CORE_PASSWORD:-cpsr0cks!}
@@ -52,6 +53,7 @@ services:
       NOTIFICATION_DATASPACE_FILTER_PATTERNS: '.*'
       NCMP_TIMERS_ADVISED-MODULES-SYNC_SLEEP-TIME-MS: ${ADVISED_MODULES_SYNC_SLEEP_TIME_MS:-30000}
       NCMP_TIMERS_CM-HANDLE-DATA-SYNC_SLEEP-TIME-MS: ${CMHANDLE_DATA_SYNC_SLEEP_TIME_MS:-30000}
+      JAVA_TOOL_OPTIONS: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
     restart: unless-stopped
     depends_on:
       - dbpostgresql
