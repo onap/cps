@@ -283,6 +283,30 @@
       },
       "revId": "236975447a3786b35cafee190536dc2edfbcc025",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79cda220_7ed92c31",
+        "filename": "docs/design.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-10T08:52:02Z",
+      "side": 1,
+      "message": "test\n\u003d\u003d\u003d\u003d\ntest1\n-----\nRTD Header\n##########",
+      "parentUuid": "1ebadaaf_0b45f38e",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 84
+      },
+      "revId": "236975447a3786b35cafee190536dc2edfbcc025",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
