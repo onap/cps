@@ -33,6 +33,138 @@
       "message": "recheck",
       "revId": "6e42d5a18ab3e2edba8a5ed0ac3c88a67b26588b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac8c54a4_4946e8a0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-10T16:53:16Z",
+      "side": 1,
+      "message": "much better!\nsome small refactoring left",
+      "revId": "6e42d5a18ab3e2edba8a5ed0ac3c88a67b26588b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc4bf8c3_29fc95c7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/TrustLevelCacheConfigSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-10T16:53:16Z",
+      "side": 1,
+      "message": "NB: \u0027retrieving the...\u0027",
+      "range": {
+        "startLine": 58,
+        "startChar": 15,
+        "endLine": 58,
+        "endChar": 18
+      },
+      "revId": "6e42d5a18ab3e2edba8a5ed0ac3c88a67b26588b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3acf2716_1607c8df",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/TrustLevelCacheConfigSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-10T16:53:16Z",
+      "side": 1,
+      "message": "NB: \u0027retrieving the...\u0027",
+      "range": {
+        "startLine": 62,
+        "startChar": 14,
+        "endLine": 62,
+        "endChar": 18
+      },
+      "revId": "6e42d5a18ab3e2edba8a5ed0ac3c88a67b26588b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42a39db0_5aed50f4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/mapper/CloudEventMapperSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-10T16:53:16Z",
+      "side": 1,
+      "message": "use given block see also comment below",
+      "range": {
+        "startLine": 40,
+        "startChar": 63,
+        "endLine": 40,
+        "endChar": 95
+      },
+      "revId": "6e42d5a18ab3e2edba8a5ed0ac3c88a67b26588b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b435dfb_fb98304b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/mapper/CloudEventMapperSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-10T16:53:16Z",
+      "side": 1,
+      "message": "move this to new negatives test below (as other scenrio)\nthe no scenario needed heer and boolean that you cannt give name",
+      "range": {
+        "startLine": 44,
+        "startChar": 11,
+        "endLine": 44,
+        "endChar": 78
+      },
+      "revId": "6e42d5a18ab3e2edba8a5ed0ac3c88a67b26588b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18bc0747_4440d51d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/mapper/CloudEventMapperSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-10T16:53:16Z",
+      "side": 1,
+      "message": "NB: I probably would have extracted this in a given block:\n\ngiven: \u0027a cloud event with invalid payload\u0027 \n   def cloudEvent \u003d testCloudEvent(null)\n....",
+      "range": {
+        "startLine": 49,
+        "startChar": 58,
+        "endLine": 49,
+        "endChar": 78
+      },
+      "revId": "6e42d5a18ab3e2edba8a5ed0ac3c88a67b26588b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
