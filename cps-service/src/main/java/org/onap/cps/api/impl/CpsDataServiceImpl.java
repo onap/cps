@@ -31,6 +31,7 @@ import static org.onap.cps.notification.Operation.UPDATE;
 import io.micrometer.core.annotation.Timed;
 import java.io.Serializable;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
@@ -321,28 +322,12 @@ public class CpsDataServiceImpl implements CpsDataService {
         processDataUpdatedEventAsync(anchor, listNodeXpath, DELETE, observedTimestamp);
     }
 
-    private DataNode buildDataNode(final Anchor anchor, final String parentNodeXpath, final String nodeData,
-                                   final ContentType contentType) {
-        final SchemaContext schemaContext = getSchemaContext(anchor);
-
-        if (ROOT_NODE_XPATH.equals(parentNodeXpath)) {
-            final ContainerNode containerNode = timedYangParser.parseData(contentType, nodeData, schemaContext);
-            return new DataNodeBuilder().withContainerNode(containerNode).build();
-        }
-
-        final ContainerNode containerNode =
-            timedYangParser.parseData(contentType, nodeData, schemaContext, parentNodeXpath);
-
-        return new DataNodeBuilder()
-                .withParentNodeXpath(parentNodeXpath)
-                .withContainerNode(containerNode)
-                .build();
-    }
-
     private Collection<DataNode> buildDataNodes(final Anchor anchor, final Map<String, String> nodesJsonData) {
-        return nodesJsonData.entrySet().stream().map(nodeJsonData ->
-            buildDataNode(anchor, nodeJsonData.getKey(),
-                nodeJsonData.getValue(), ContentType.JSON)).collect(Collectors.toList());
+        final Collection<DataNode> dataNodes = new ArrayList<>();
+        for (final Map.Entry<String, String> nodeJsonData : nodesJsonData.entrySet()) {
+            dataNodes.addAll(buildDataNodes(anchor, nodeJsonData.getKey(), nodeJsonData.getValue(), ContentType.JSON));
+        }
+        return dataNodes;
     }
 
     private Collection<DataNode> buildDataNodes(final Anchor anchor, final String parentNodeXpath,
