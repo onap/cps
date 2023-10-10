@@ -307,6 +307,30 @@
       },
       "revId": "236975447a3786b35cafee190536dc2edfbcc025",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f3491de_fde03f44",
+        "filename": "docs/design.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-10-10T10:12:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "79cda220_7ed92c31",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 84
+      },
+      "revId": "236975447a3786b35cafee190536dc2edfbcc025",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
