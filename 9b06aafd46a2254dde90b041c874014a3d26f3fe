@@ -16,6 +16,29 @@
       "message": "recheck",
       "revId": "9b06aafd46a2254dde90b041c874014a3d26f3fe",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb1f3e84_e62bd337",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 3237
+      },
+      "writtenOn": "2023-10-10T11:18:36Z",
+      "side": 1,
+      "message": "I might be wrong here, The jetty-server and jetty-http are transitive dependencies of spring-boot-starter-jetty Yes?, so my suggestion would be to either upgrade the spring-boot-dependencies version to 3.1.4, which will have the version of Jetty you require in the POM here, or just upgrade spring-boot-starter-jetty to 3.1.4 if possible.\n\nsee https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-dependencies/3.1.2 for dependency structure",
+      "range": {
+        "startLine": 223,
+        "startChar": 11,
+        "endLine": 232,
+        "endChar": 25
+      },
+      "revId": "9b06aafd46a2254dde90b041c874014a3d26f3fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
