@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "49c66fad_6759246f",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/cmsubscriptionmerge/cm-subscription-dmi-in-event-schema-1.0.0.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2023-10-10T11:59:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9cd7e1bd_dd44b7c1",
+      "range": {
+        "startLine": 7,
+        "startChar": 22,
+        "endLine": 7,
+        "endChar": 76
+      },
+      "revId": "c330269068abee6abef92a1d89c8bf7723261c70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f09218c7_85597298",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-10-09T13:55:23Z",
       "side": 1,
       "message": "The POJO named Predicate includes an additionalProperties private field. In order not to have it, you may have \"additionalProperties\": false, after the highlighted line.",
+      "range": {
+        "startLine": 48,
+        "startChar": 12,
+        "endLine": 48,
+        "endChar": 29
+      },
+      "revId": "c330269068abee6abef92a1d89c8bf7723261c70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ccdd35f_8a381add",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/cmsubscriptionmerge/cm-subscription-dmi-in-event-schema-1.0.0.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2023-10-10T11:59:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f09218c7_85597298",
       "range": {
         "startLine": 48,
         "startChar": 12,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ebde089_82bf9be0",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/cmsubscriptionmerge/cm-subscription-ncmp-in-event-schema-1.0.0.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2023-10-10T11:59:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db6b1048_8eea5f73",
+      "range": {
+        "startLine": 7,
+        "startChar": 38,
+        "endLine": 7,
+        "endChar": 56
+      },
+      "revId": "c330269068abee6abef92a1d89c8bf7723261c70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3fe83181_e5f84639",
@@ -110,6 +182,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fed2d7a_4aec9ba0",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/cmsubscriptionmerge/cm-subscription-ncmp-in-event-schema-1.0.0.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2023-10-10T11:59:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3fe83181_e5f84639",
+      "range": {
+        "startLine": 15,
+        "startChar": 14,
+        "endLine": 15,
+        "endChar": 43
+      },
+      "revId": "c330269068abee6abef92a1d89c8bf7723261c70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cde7b5ea_732e3feb",
@@ -123,6 +219,30 @@
       "writtenOn": "2023-10-09T13:55:23Z",
       "side": 1,
       "message": "The POJO named Predicate includes an additionalProperties private field. In order not to have it, you may have \"additionalProperties\": false, after the highlighted line.",
+      "range": {
+        "startLine": 21,
+        "startChar": 16,
+        "endLine": 21,
+        "endChar": 33
+      },
+      "revId": "c330269068abee6abef92a1d89c8bf7723261c70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b9e89e0_2090ee89",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/cmsubscriptionmerge/cm-subscription-ncmp-in-event-schema-1.0.0.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2023-10-10T11:59:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cde7b5ea_732e3feb",
       "range": {
         "startLine": 21,
         "startChar": 16,
