@@ -62,6 +62,29 @@
       },
       "revId": "9b06aafd46a2254dde90b041c874014a3d26f3fe",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6c02131_9c14dcf4",
+        "filename": "cps-service/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 3237
+      },
+      "writtenOn": "2023-10-10T11:49:42Z",
+      "side": 1,
+      "message": "remove the version and add this to dependencyManagement of cps-dependencies",
+      "range": {
+        "startLine": 43,
+        "startChar": 1,
+        "endLine": 47,
+        "endChar": 17
+      },
+      "revId": "9b06aafd46a2254dde90b041c874014a3d26f3fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
