@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa97cb1f_81fbce77",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-11T09:52:46Z",
+      "side": 1,
+      "message": "OK, I can see the verify fails just on SQ Coverage...\nIf you get +1s from 2 otehr I can override teh verify flag and merge it",
+      "revId": "55164b23839f187ae089fd08c34487dcfd165188",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85c71fcb_193f2797",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/models/CmHandleRegistrationResponseSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-11T09:52:46Z",
+      "side": 1,
+      "message": "NB: I prefer string literals in testware. Maybe just .contains() for the significant keyword(s)",
+      "range": {
+        "startLine": 64,
+        "startChar": 44,
+        "endLine": 64,
+        "endChar": 67
+      },
+      "revId": "55164b23839f187ae089fd08c34487dcfd165188",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4da85472_624d048d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/models/CmHandleRegistrationResponseSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-11T09:52:46Z",
+      "side": 1,
+      "message": "NB: I prefer string literals in testware. Maybe just .contains() for the significant keyword(s)",
+      "range": {
+        "startLine": 67,
+        "startChar": 32,
+        "endLine": 67,
+        "endChar": 63
+      },
+      "revId": "55164b23839f187ae089fd08c34487dcfd165188",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
