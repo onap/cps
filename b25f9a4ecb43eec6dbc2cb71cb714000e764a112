@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4b05d5b_33f80134",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-10-11T11:07:28Z",
+      "side": 1,
+      "message": "I\u0027ve asked a question, and NB comment, so other than that its good for me.",
+      "revId": "b25f9a4ecb43eec6dbc2cb71cb714000e764a112",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c16fbaba_442d19a0",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/cmsubscriptionmerge/cm-subscription-dmi-in-event-schema-1.0.0.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-10-11T11:07:28Z",
+      "side": 1,
+      "message": "NB: NCMP",
+      "range": {
+        "startLine": 7,
+        "startChar": 88,
+        "endLine": 7,
+        "endChar": 91
+      },
+      "revId": "b25f9a4ecb43eec6dbc2cb71cb714000e764a112",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9620db73_2a3308cb",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/cmsubscriptionmerge/cm-subscription-dmi-in-event-schema-1.0.0.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-10-11T11:07:28Z",
+      "side": 1,
+      "message": "CmSubscriptionMergeDmiInEvent",
+      "range": {
+        "startLine": 9,
+        "startChar": 82,
+        "endLine": 9,
+        "endChar": 106
+      },
+      "revId": "b25f9a4ecb43eec6dbc2cb71cb714000e764a112",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d81790b_be1e0839",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/cmsubscriptionmerge/cm-subscription-dmi-in-event-schema-1.0.0.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-10-11T11:07:28Z",
+      "side": 1,
+      "message": "I think, the private-properties can be an existingJavaType other than string array.\n\n@Priyank to confirm: is it \"existingJavaType\": \"java.util.Map\u003cString,String\u003e\" or string array?",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 17
+      },
+      "revId": "b25f9a4ecb43eec6dbc2cb71cb714000e764a112",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
