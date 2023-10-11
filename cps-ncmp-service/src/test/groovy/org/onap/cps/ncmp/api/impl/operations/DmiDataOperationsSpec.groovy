@@ -21,8 +21,16 @@
 
 package org.onap.cps.ncmp.api.impl.operations
 
+import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_OPERATIONAL
+import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING
+import static org.onap.cps.ncmp.api.impl.operations.OperationType.CREATE
+import static org.onap.cps.ncmp.api.impl.operations.OperationType.READ
+import static org.onap.cps.ncmp.api.impl.operations.OperationType.UPDATE
+import static org.onap.cps.ncmp.api.impl.events.mapper.CloudEventMapper.toTargetEvent
+import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNABLE_TO_READ_RESOURCE_DATA
+import static org.onap.cps.ncmp.api.NcmpResponseStatus.DMI_SERVICE_NOT_RESPONDING
+
 import com.fasterxml.jackson.databind.ObjectMapper
-import org.onap.cps.ncmp.api.NcmpEventResponseCode
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration
 import org.onap.cps.ncmp.api.impl.events.EventsPublisher
 import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException
@@ -40,13 +48,6 @@ import org.springframework.test.context.ContextConfiguration
 import org.springframework.http.HttpStatus
 import spock.lang.Shared
 import java.util.concurrent.TimeoutException
-
-import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_OPERATIONAL
-import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING
-import static org.onap.cps.ncmp.api.impl.operations.OperationType.CREATE
-import static org.onap.cps.ncmp.api.impl.operations.OperationType.READ
-import static org.onap.cps.ncmp.api.impl.operations.OperationType.UPDATE
-import static org.onap.cps.ncmp.api.impl.events.mapper.CloudEventMapper.toTargetEvent
 
 @SpringBootTest
 @ContextConfiguration(classes = [EventsPublisher, CpsApplicationContext, NcmpConfiguration.DmiProperties, DmiDataOperations])
@@ -128,12 +129,12 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             def eventDataValue = extractDataValue(actualDataOperationCloudEvent)
             assert eventDataValue.operationId == dmiDataOperation.operationId
             assert eventDataValue.ids == dmiDataOperation.cmHandles.id
-            assert eventDataValue.statusCode == responseCode.statusCode
-            assert eventDataValue.statusMessage == responseCode.statusMessage
+            assert eventDataValue.statusCode == responseCode.code
+            assert eventDataValue.statusMessage == responseCode.message
         where: 'the following exceptions are occurred'
             scenario                        | exception                                                                                                || responseCode
-            'http client request exception' | new HttpClientRequestException('error-message', 'error-details', HttpStatus.SERVICE_UNAVAILABLE.value()) || NcmpEventResponseCode.UNABLE_TO_READ_RESOURCE_DATA
-            'timeout exception'             | new TimeoutException()                                                                                   || NcmpEventResponseCode.DMI_SERVICE_NOT_RESPONDING
+            'http client request exception' | new HttpClientRequestException('error-message', 'error-details', HttpStatus.SERVICE_UNAVAILABLE.value()) || UNABLE_TO_READ_RESOURCE_DATA
+            'timeout exception'             | new TimeoutException()                                                                                   || DMI_SERVICE_NOT_RESPONDING
     }
 
     def 'call get all resource data.'() {

@@ -28,7 +28,7 @@ import java.util.Map;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.ncmp.api.NcmpEventResponseCode;
+import org.onap.cps.ncmp.api.NcmpResponseStatus;
 import org.onap.cps.ncmp.api.impl.events.NcmpCloudEventBuilder;
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperation;
 import org.onap.cps.ncmp.events.async1_0_0.Data;
@@ -51,7 +51,7 @@ public class DataOperationEventCreator {
     public static CloudEvent createDataOperationEvent(final String clientTopic,
                                                       final String requestId,
                                                       final MultiValueMap<DmiDataOperation,
-                                                              Map<NcmpEventResponseCode, List<String>>>
+                                                              Map<NcmpResponseStatus, List<String>>>
                                                               cmHandleIdsPerResponseCodesPerOperation) {
         final DataOperationEvent dataOperationEvent = new DataOperationEvent();
         final Data data = createPayloadFromDataOperationResponses(cmHandleIdsPerResponseCodesPerOperation);
@@ -62,7 +62,7 @@ public class DataOperationEventCreator {
     }
 
     private static Data createPayloadFromDataOperationResponses(final MultiValueMap<DmiDataOperation,
-            Map<NcmpEventResponseCode, List<String>>> cmHandleIdsPerResponseCodesPerOperation) {
+            Map<NcmpResponseStatus, List<String>>> cmHandleIdsPerResponseCodesPerOperation) {
         final Data data = new Data();
         final List<org.onap.cps.ncmp.events.async1_0_0.Response> responses = new ArrayList<>();
         cmHandleIdsPerResponseCodesPerOperation.forEach((dmiDataOperation, cmHandleIdsPerResponseCodes) ->
@@ -75,13 +75,13 @@ public class DataOperationEventCreator {
 
     private static List<Response> createResponseFromDataOperationResponses(
             final DmiDataOperation dmiDataOperation,
-            final Map<NcmpEventResponseCode, List<String>> cmHandleIdsPerResponseCodeEntries) {
+            final Map<NcmpResponseStatus, List<String>> cmHandleIdsPerResponseCodeEntries) {
         final List<org.onap.cps.ncmp.events.async1_0_0.Response> responses = new ArrayList<>();
         cmHandleIdsPerResponseCodeEntries.forEach((ncmpEventResponseCode, cmHandleIds) -> {
             final Response response = new Response();
             response.setOperationId(dmiDataOperation.getOperationId());
-            response.setStatusCode(ncmpEventResponseCode.getStatusCode());
-            response.setStatusMessage(ncmpEventResponseCode.getStatusMessage());
+            response.setStatusCode(ncmpEventResponseCode.getCode());
+            response.setStatusMessage(ncmpEventResponseCode.getMessage());
             response.setIds(cmHandleIds);
             response.setResourceIdentifier(dmiDataOperation.getResourceIdentifier());
             response.setOptions(dmiDataOperation.getOptions());

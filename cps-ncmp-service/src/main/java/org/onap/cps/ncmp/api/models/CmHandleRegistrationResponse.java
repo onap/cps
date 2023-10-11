@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Bell Canada
- *  Modifications Copyright (C) 2022 Nordix Foundation
+ *  Modifications Copyright (C) 2022-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -21,16 +21,17 @@
 
 package org.onap.cps.ncmp.api.models;
 
+import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNKNOWN_ERROR;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 import lombok.Builder;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.ncmp.api.NcmpResponseStatus;
 
 @Data
 @Builder
@@ -39,7 +40,7 @@ public class CmHandleRegistrationResponse {
 
     private final String cmHandle;
     private final Status status;
-    private RegistrationError registrationError;
+    private NcmpResponseStatus ncmpResponseStatus;
     private String errorText;
 
     private static final Pattern cmHandleIdInXpathPattern = Pattern.compile("\\[@id='(.*?)']");
@@ -56,7 +57,7 @@ public class CmHandleRegistrationResponse {
         return CmHandleRegistrationResponse.builder()
             .cmHandle(cmHandleId)
             .status(Status.FAILURE)
-            .registrationError(RegistrationError.UNKNOWN_ERROR)
+            .ncmpResponseStatus(UNKNOWN_ERROR)
             .errorText(exception.getMessage()).build();
     }
 
@@ -64,15 +65,15 @@ public class CmHandleRegistrationResponse {
      * Creates a failure response based on registration error.
      *
      * @param cmHandleId          cmHandleId
-     * @param registrationError registrationError
+     * @param ncmpResponseStatus registration error code and status
      * @return CmHandleRegistrationResponse
      */
     public static CmHandleRegistrationResponse createFailureResponse(final String cmHandleId,
-        final RegistrationError registrationError) {
+        final NcmpResponseStatus ncmpResponseStatus) {
         return CmHandleRegistrationResponse.builder().cmHandle(cmHandleId)
             .status(Status.FAILURE)
-            .registrationError(registrationError)
-            .errorText(registrationError.errorText)
+            .ncmpResponseStatus(ncmpResponseStatus)
+            .errorText(ncmpResponseStatus.getMessage())
             .build();
     }
 
@@ -80,17 +81,17 @@ public class CmHandleRegistrationResponse {
      * Creates a failure response based on registration error.
      *
      * @param failedXpaths       list of failed Xpaths
-     * @param registrationError enum describing the type of registration error
+     * @param ncmpResponseStatus enum describing the type of registration error
      * @return CmHandleRegistrationResponse
      */
     public static List<CmHandleRegistrationResponse> createFailureResponses(final Collection<String> failedXpaths,
-            final RegistrationError registrationError) {
+            final NcmpResponseStatus ncmpResponseStatus) {
         final List<CmHandleRegistrationResponse> cmHandleRegistrationResponses = new ArrayList<>(failedXpaths.size());
         for (final String xpath : failedXpaths) {
             final Matcher matcher = cmHandleIdInXpathPattern.matcher(xpath);
             if (matcher.find()) {
                 cmHandleRegistrationResponses.add(
-                    CmHandleRegistrationResponse.createFailureResponse(matcher.group(1), registrationError));
+                    CmHandleRegistrationResponse.createFailureResponse(matcher.group(1), ncmpResponseStatus));
             } else {
                 log.warn("Unexpected xpath {}", xpath);
             }
@@ -109,7 +110,7 @@ public class CmHandleRegistrationResponse {
             final Exception exception) {
         return cmHandleIds.stream()
                 .map(cmHandleId -> CmHandleRegistrationResponse.createFailureResponse(cmHandleId, exception))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public static CmHandleRegistrationResponse createSuccessResponse(final String cmHandle) {
@@ -118,23 +119,10 @@ public class CmHandleRegistrationResponse {
     }
 
     public static List<CmHandleRegistrationResponse> createSuccessResponses(final List<String> cmHandleIds) {
-        return cmHandleIds.stream().map(CmHandleRegistrationResponse::createSuccessResponse)
-                .collect(Collectors.toList());
+        return cmHandleIds.stream().map(CmHandleRegistrationResponse::createSuccessResponse).toList();
     }
 
     public enum Status {
         SUCCESS, FAILURE;
-    }
-
-    @RequiredArgsConstructor
-    public enum RegistrationError {
-        UNKNOWN_ERROR("00", "Unknown error"),
-        CM_HANDLE_ALREADY_EXIST("01", "cm-handle already exists"),
-        CM_HANDLE_DOES_NOT_EXIST("02", "cm-handle does not exist"),
-        CM_HANDLE_INVALID_ID("03", "cm-handle has an invalid character(s) in id");
-
-        public final String errorCode;
-        public final String errorText;
-
     }
 }
