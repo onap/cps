@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "abb65300_93c4104b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/models/CmHandleRegistrationResponseSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-10-11T10:29:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "85c71fcb_193f2797",
+      "range": {
+        "startLine": 64,
+        "startChar": 44,
+        "endLine": 64,
+        "endChar": 67
+      },
+      "revId": "55164b23839f187ae089fd08c34487dcfd165188",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4da85472_624d048d",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-10-11T09:52:46Z",
       "side": 1,
       "message": "NB: I prefer string literals in testware. Maybe just .contains() for the significant keyword(s)",
+      "range": {
+        "startLine": 67,
+        "startChar": 32,
+        "endLine": 67,
+        "endChar": 63
+      },
+      "revId": "55164b23839f187ae089fd08c34487dcfd165188",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf8862cc_f9b7c1be",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/models/CmHandleRegistrationResponseSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-10-11T10:29:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4da85472_624d048d",
       "range": {
         "startLine": 67,
         "startChar": 32,
