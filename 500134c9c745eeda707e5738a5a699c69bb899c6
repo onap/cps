@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b85d978_33f516aa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-11T09:43:34Z",
+      "side": 1,
+      "message": "Can you check with Daniel as list-updated should now work, which should affect the test. I think Daniel has worked on the same but not sure what the latest is. Maybe we need a quick meet (the 3 of us)",
+      "revId": "500134c9c745eeda707e5738a5a699c69bb899c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "905eae7b_945861a6",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/CmDataSubscriptionsPerfTest.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-11T09:43:34Z",
+      "side": 1,
+      "message": "this should be fixed now. Check with Daniel",
+      "range": {
+        "startLine": 81,
+        "startChar": 12,
+        "endLine": 81,
+        "endChar": 89
+      },
+      "revId": "500134c9c745eeda707e5738a5a699c69bb899c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
