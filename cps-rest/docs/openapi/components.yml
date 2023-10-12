@@ -1,6 +1,6 @@
 # ============LICENSE_START=======================================================
 # Copyright (c) 2021-2022 Bell Canada.
-# Modifications Copyright (C) 2021-2022 Nordix Foundation
+# Modifications Copyright (C) 2021-2023 Nordix Foundation
 # Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
 # Modifications Copyright (C) 2022 Deutsche Telekom AG
 # ================================================================================
@@ -64,7 +64,6 @@ components:
           type: string
           description: multipartFile
           format: binary
-          example:  'https://github.com/onap/cps/blob/master/cps-service/src/test/resources/bookstore.yang'
 
     ModuleReferences:
       type: object
