@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "944c150e_b84bebd4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-10-12T14:42:37Z",
+      "side": 1,
+      "message": "Giving conditional +1 based on the below.\n1. Discussion regarding changing from IMap to Map interface ( at the very beginning when we introduced hazelcast , we were doing it like this and were having issues in replication and TTL expiration)\n2. trustLevelPerDmiPlugin should not store the trustLevel. It should keep track of the health of the DMI plugin. So the storage would be the status of dmi-plugin i.e UP or DOWN.\n\nAbove to be handled as part of separate patches once the discussion is done.",
+      "revId": "7aae9b8af2c82336882d0ae864b970b1885a63a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6bd3d313_3a13c4de",
