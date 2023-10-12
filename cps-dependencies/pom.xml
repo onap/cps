@@ -74,6 +74,11 @@
             <!-- S P R I N G   D E P E N D E N C I E S -->
             <dependency>
                 <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+                <version>2.0.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springdoc</groupId>
                 <artifactId>springdoc-openapi-ui</artifactId>
                 <version>1.6.6</version>
             </dependency>
@@ -101,6 +106,7 @@
                 <artifactId>springfox-boot-starter</artifactId>
                 <version>3.1.2</version>
             </dependency>
+
             <!-- A L P H A B E T I C A L   D E P E N D E N C I E S -->
             <dependency>
                 <groupId>cglib</groupId>

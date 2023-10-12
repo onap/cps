@@ -192,10 +192,9 @@
                         <phase>compile</phase>
                         <configuration>
                             <inputSpec>${project.basedir}/docs/openapi/openapi-inventory.yml</inputSpec>
-                            <generatorName>spring</generatorName>
+                            <generatorName>openapi-yaml</generatorName>
                             <configOptions>
                                 <outputFile>openapi-inventory.yaml</outputFile>
-                                <useSpringBoot3>true</useSpringBoot3>
                             </configOptions>
                         </configuration>
                     </execution>
