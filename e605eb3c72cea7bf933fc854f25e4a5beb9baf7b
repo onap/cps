@@ -37,6 +37,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "c80c4e78_d3d28cac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3237
+      },
+      "writtenOn": "2023-10-12T13:07:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6e45b3cb_cba1e56f",
+      "revId": "e605eb3c72cea7bf933fc854f25e4a5beb9baf7b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "2dc0062d_ad05e801",
         "filename": "cps-ncmp-rest-stub/cps-ncmp-rest-stub-app/pom.xml",
         "patchSetId": 1
@@ -48,6 +66,30 @@
       "writtenOn": "2023-10-10T16:21:16Z",
       "side": 1,
       "message": "I tested downloaded from the repo and suer enough it failed to run the jar because of these missing deps I assume...\nI then did a mvn clen install using this commit and all worked as per your instructions :-D",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 56
+      },
+      "revId": "e605eb3c72cea7bf933fc854f25e4a5beb9baf7b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a63e90c0_ca715c0f",
+        "filename": "cps-ncmp-rest-stub/cps-ncmp-rest-stub-app/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 3237
+      },
+      "writtenOn": "2023-10-12T13:07:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2dc0062d_ad05e801",
       "range": {
         "startLine": 55,
         "startChar": 0,
@@ -81,6 +123,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "395c997f_33527f7d",
+        "filename": "docs/cps-stubs.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 3237
+      },
+      "writtenOn": "2023-10-12T13:07:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "92d982bc_5e9e536a",
+      "range": {
+        "startLine": 53,
+        "startChar": 117,
+        "endLine": 53,
+        "endChar": 118
+      },
+      "revId": "e605eb3c72cea7bf933fc854f25e4a5beb9baf7b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "61a5a7f0_0e8167ae",
@@ -104,6 +170,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa223230_1078ef91",
+        "filename": "docs/cps-stubs.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 3237
+      },
+      "writtenOn": "2023-10-12T13:07:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "61a5a7f0_0e8167ae",
+      "range": {
+        "startLine": 89,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 3
+      },
+      "revId": "e605eb3c72cea7bf933fc854f25e4a5beb9baf7b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b66bb088_4c70facc",
@@ -117,6 +207,30 @@
       "writtenOn": "2023-10-10T16:21:16Z",
       "side": 1,
       "message": "I presume this can be any resource path e.g. /my_custom_stubs/  ?\nShould we explain that more clearly?",
+      "range": {
+        "startLine": 100,
+        "startChar": 16,
+        "endLine": 100,
+        "endChar": 25
+      },
+      "revId": "e605eb3c72cea7bf933fc854f25e4a5beb9baf7b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c74617de_6c191b87",
+        "filename": "docs/cps-stubs.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 3237
+      },
+      "writtenOn": "2023-10-12T13:07:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b66bb088_4c70facc",
       "range": {
         "startLine": 100,
         "startChar": 16,
@@ -168,6 +282,54 @@
         "startChar": 120,
         "endLine": 104,
         "endChar": 124
+      },
+      "revId": "e605eb3c72cea7bf933fc854f25e4a5beb9baf7b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "665b453b_e8a01621",
+        "filename": "docs/cps-stubs.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 3237
+      },
+      "writtenOn": "2023-10-12T13:07:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "dbabc0f7_fd7b93d5",
+      "range": {
+        "startLine": 104,
+        "startChar": 120,
+        "endLine": 104,
+        "endChar": 124
+      },
+      "revId": "e605eb3c72cea7bf933fc854f25e4a5beb9baf7b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "22dbab8a_9999acff",
+        "filename": "docs/cps-stubs.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 3237
+      },
+      "writtenOn": "2023-10-12T13:07:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "293b06e8_903b53b2",
+      "range": {
+        "startLine": 104,
+        "startChar": 240,
+        "endLine": 104,
+        "endChar": 253
       },
       "revId": "e605eb3c72cea7bf933fc854f25e4a5beb9baf7b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
