@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bfc64e8b_9b004fde",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 38
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-10-12T15:10:52Z",
+      "side": 1,
+      "message": "some high level comments for now.\nI will continue to review it.\nlet me know your thoughts abt the comments that I already have.",
+      "revId": "ed3dfcbd3873b69c0421a8fb128031f8d53664bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a610edba_82b42299",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 38
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-10-12T15:10:52Z",
+      "side": 1,
+      "message": "NB: y creating a new instance out of it ? any specific reason ?",
+      "range": {
+        "startLine": 180,
+        "startChar": 16,
+        "endLine": 180,
+        "endChar": 31
+      },
+      "revId": "ed3dfcbd3873b69c0421a8fb128031f8d53664bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57bd2003_01c22c96",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 38
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-10-12T15:10:52Z",
+      "side": 1,
+      "message": "just thinking , since you are not interacting to the DB directly then y this code is in the cps-ri module ??\nWhat do u think of the idea to move it in the cps-service layer.\nYou can always leverage the other APIs to call the methods useful to you.",
+      "revId": "ed3dfcbd3873b69c0421a8fb128031f8d53664bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c64d469_0fdbff71",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/utils/CpsDeltaService.java",
+        "patchSetId": 38
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-10-12T15:10:52Z",
+      "side": 1,
+      "message": "this can go to the service layer itself in my opinion.",
+      "revId": "ed3dfcbd3873b69c0421a8fb128031f8d53664bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
