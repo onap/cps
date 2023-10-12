@@ -64,7 +64,6 @@ components:
           type: string
           description: multipartFile
           format: binary
-          example:  'https://github.com/onap/cps/blob/master/cps-service/src/test/resources/bookstore.yang'
 
     ModuleReferences:
       type: object
