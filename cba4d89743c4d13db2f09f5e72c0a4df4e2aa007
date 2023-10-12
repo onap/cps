@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca3988ff_18a4aaa1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/mapper/CloudEventMapperSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-10-12T09:04:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e03ecbf_af339ec5",
+      "range": {
+        "startLine": 51,
+        "startChar": 41,
+        "endLine": 51,
+        "endChar": 42
+      },
+      "revId": "cba4d89743c4d13db2f09f5e72c0a4df4e2aa007",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0124d700_48b63955",
@@ -81,6 +105,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "09e96d13_a11cb16e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/mapper/CloudEventMapperSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-10-12T09:04:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0124d700_48b63955",
+      "range": {
+        "startLine": 52,
+        "startChar": 29,
+        "endLine": 52,
+        "endChar": 43
+      },
+      "revId": "cba4d89743c4d13db2f09f5e72c0a4df4e2aa007",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "33883c48_7abcbd02",
@@ -94,6 +142,30 @@
       "writtenOn": "2023-10-11T17:36:48Z",
       "side": 1,
       "message": "always the same -\u003e no need for column",
+      "range": {
+        "startLine": 54,
+        "startChar": 56,
+        "endLine": 54,
+        "endChar": 70
+      },
+      "revId": "cba4d89743c4d13db2f09f5e72c0a4df4e2aa007",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad531a70_33e2c6c9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/mapper/CloudEventMapperSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-10-12T09:04:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "33883c48_7abcbd02",
       "range": {
         "startLine": 54,
         "startChar": 56,
