@@ -80,6 +80,30 @@
       },
       "revId": "500134c9c745eeda707e5738a5a699c69bb899c6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb463c85_d35f77e5",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/CmDataSubscriptionsPerfTest.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-10-12T18:47:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b01b88a9_b9bb9463",
+      "range": {
+        "startLine": 81,
+        "startChar": 12,
+        "endLine": 81,
+        "endChar": 89
+      },
+      "revId": "500134c9c745eeda707e5738a5a699c69bb899c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

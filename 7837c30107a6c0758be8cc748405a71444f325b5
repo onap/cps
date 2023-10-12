@@ -22,6 +22,30 @@
       },
       "revId": "7837c30107a6c0758be8cc748405a71444f325b5",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e3a8879_99f45ebf",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/base/NcmpPerfTestBase.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-10-12T18:47:49Z",
+      "side": 1,
+      "message": "import exists on line 24",
+      "parentUuid": "778fa11a_f76e3f8d",
+      "range": {
+        "startLine": 39,
+        "startChar": 4,
+        "endLine": 39,
+        "endChar": 53
+      },
+      "revId": "7837c30107a6c0758be8cc748405a71444f325b5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
