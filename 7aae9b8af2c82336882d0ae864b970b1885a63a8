@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "adb596cc_6714c2b0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-10-12T15:20:59Z",
+      "side": 1,
+      "message": "Agree with you Priyank on conditions. After those being discussed can be handled in a new commit.",
+      "revId": "7aae9b8af2c82336882d0ae864b970b1885a63a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6bd3d313_3a13c4de",
