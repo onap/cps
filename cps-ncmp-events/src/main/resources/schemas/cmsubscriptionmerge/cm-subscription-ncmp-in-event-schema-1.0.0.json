@@ -1,11 +1,11 @@
 {
-  "$id": "urn:cps:org.onap.cps.ncmp.events:cm-subscription-merge-ncmp-in-event:1.0.0",
-  "$ref": "#/definitions/CmSubscriptionMergeNcmpInEvent",
+  "$id": "urn:cps:org.onap.cps.ncmp.events:cm-subscription-ncmp-in-event:1.0.0",
+  "$ref": "#/definitions/CmSubscriptionNcmpInEvent",
   "$schema": "https://json-schema.org/draft/2019-09/schema",
   "definitions": {
-    "CmSubscriptionMergeNcmpInEvent": {
+    "CmSubscriptionNcmpInEvent": {
       "description": "The payload for subscription merge event.",
-      "javaType": "org.onap.cps.ncmp.events.cmsubscription_merge1_0_0.client_to_ncmp.CmSubscriptionMergeNcmpInEvent",
+      "javaType": "org.onap.cps.ncmp.events.cmsubscription_merge1_0_0.client_to_ncmp.CmSubscriptionNcmpInEvent",
       "properties": {
         "data": {
           "properties": {
