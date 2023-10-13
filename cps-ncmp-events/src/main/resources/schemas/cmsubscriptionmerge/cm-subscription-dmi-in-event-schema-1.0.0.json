@@ -1,12 +1,12 @@
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "urn:cps:org.onap.cps.ncmp.events:cm-subscription-merge-dmi-in-event-schema:1.0.0",
-  "$ref": "#/definitions/CmSubscriptionMergeDmiInEvent",
+  "$id": "urn:cps:org.onap.cps.ncmp.events:cm-subscription-dmi-in-event-schema:1.0.0",
+  "$ref": "#/definitions/CmSubscriptionDmiInEvent",
   "definitions": {
-    "CmSubscriptionMergeDmiInEvent": {
+    "CmSubscriptionDmiInEvent": {
       "description": "The payload for cm subscription merge event incoming message from NCMP.",
       "type": "object",
-      "javaType": "org.onap.cps.ncmp.events.cmsubscription_merge1_0_0.ncmp_to_dmi.CmSubscriptionMergeDmiInEvent",
+      "javaType": "org.onap.cps.ncmp.events.cmsubscription_merge1_0_0.ncmp_to_dmi.CmSubscriptionDmiInEvent",
       "additionalProperties": false,
       "properties": {
         "data": {
@@ -19,7 +19,7 @@
     },
     "data": {
       "type": "object",
-      "description": "The actual data containing information about the targets and subscription",
+      "description": "Information about the targets and subscription",
       "additionalProperties": false,
       "properties": {
         "cmhandles": {
@@ -59,12 +59,12 @@
                 "type": "object",
                 "properties": {
                   "datastore": {
-                    "description": "datastore which is to be used by the subscription",
+                    "description": "Datastore which is to be used by the subscription",
                     "type": "string",
                     "enum": ["ncmp-datastore:passthrough-operational", "ncmp-datastore:passthrough-running"]
                   },
                   "xpath-filter": {
-                    "description": "filter to be applied to the CM Handles through this event",
+                    "description": "Filter to be applied to the CM Handles through this event",
                     "type": "array",
                     "items": {
                       "type": "string"
