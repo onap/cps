@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "urn:cps:org.onap.cps.ncmp.events:cm-subscription-merge-ncmp-out-event-schema:1.0.0",
+  "$ref": "#/definitions/CmSubscriptionMergeNcmpOutEvent",
+  "definitions": {
+    "CmSubscriptionMergeNcmpOutEvent": {
+      "type": "object",
+      "description": "The payload applied cm subscription merge event coming out from NCMP.",
+      "javaType": "org.onap.cps.ncmp.events.cmsubscription_merge1_0_0.ncmp_to_client.CmSubscriptionMergeNcmpOutEvent",
+      "additionalProperties": false,
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/Data"
+        }
+      },
+      "required": [
+        "data"
+      ],
+      "title": "CmSubscriptionMergeNcmpOutEvent"
+    },
+    "Data": {
+      "type": "object",
+      "description": "The actual data containing information about the targets and subscription",
+      "additionalProperties": false,
+      "properties": {
+        "subscriptionId": {
+          "type": "string",
+          "description": "The unique subscription id"
+        },
+        "accepted-targets": {
+          "type": "array",
+          "description": "List of accepted targets",
+          "items": {
+            "type": "string"
+          }
+        },
+        "rejected-targets": {
+          "type": "array",
+          "description": "List of rejected targets",
+          "items": {
+            "type": "string"
+          }
+        },
+        "pending-targets": {
+          "type": "array",
+          "description": "List of pending targets",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "accepted-targets",
+        "pending-targets",
+        "rejected-targets",
+        "subscriptionId"
+      ],
+      "title": "Data"
+    }
+  }
+
+
+}

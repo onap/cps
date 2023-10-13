@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "urn:cps:org.onap.cps.ncmp.events:cm-subscription-merge-dmi-out-event-schema:1.0.0",
+  "$ref": "#/definitions/CmSubscriptionMergeDmiOutEvent",
+  "definitions": {
+    "CmSubscriptionMergeDmiOutEvent": {
+      "description": "The payload for cm subscription merge event coming out from DMI Plugin.",
+      "type": "object",
+      "additionalProperties": false,
+      "javaType": "org.onap.cps.ncmp.events.cmsubscription_merge1_0_0.dmi_to_ncmp.CmSubscriptionMergeDmiOutEvent",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/Data"
+        }
+      },
+      "required": [
+        "data"
+      ],
+      "title": "CmSubscriptionMergeDmiOutEvent"
+    },
+    "Data": {
+      "type": "object",
+      "description": "The actual data containing information about the targets and subscription",
+      "additionalProperties": false,
+      "properties": {
+        "statusCode": {
+          "type": "string",
+          "format": "integer",
+          "description": "The common status as defined in CPS"
+        },
+        "statusMessage": {
+          "type": "string",
+          "description": "The common status message as defined in CPS"
+        }
+      },
+      "required": [
+        "statusCode",
+        "statusMessage"
+      ],
+      "title": "Data"
+    }
+  }
+}
