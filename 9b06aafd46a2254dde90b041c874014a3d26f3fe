@@ -22,6 +22,30 @@
       },
       "revId": "9b06aafd46a2254dde90b041c874014a3d26f3fe",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6008a738_04c1771a",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2023-10-13T09:58:58Z",
+      "side": 0,
+      "message": "Example file is throwing errors in 3.1.2. This is temporary to get the UI up and running beofre finding a proper solution.",
+      "parentUuid": "fb197e6a_02389c7c",
+      "range": {
+        "startLine": 67,
+        "startChar": 20,
+        "endLine": 67,
+        "endChar": 107
+      },
+      "revId": "9b06aafd46a2254dde90b041c874014a3d26f3fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
