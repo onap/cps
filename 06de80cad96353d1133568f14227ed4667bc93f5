@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65369742_45977d8e",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-10-13T09:38:10Z",
+      "side": 1,
+      "message": "We should move it into \u003cdependencyManagement\u003e of \"cps-dependencies/pom.xml\"",
+      "range": {
+        "startLine": 71,
+        "startChar": 12,
+        "endLine": 71,
+        "endChar": 36
+      },
+      "revId": "06de80cad96353d1133568f14227ed4667bc93f5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
