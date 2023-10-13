@@ -16,6 +16,23 @@
       "message": "I\u0027ve locally tested this patch set e.g. cps-core and cps-ncmp by running sample requests. The UI has been working fine on my local. No more I\u0027ve seen the Whitelabel Error Page.",
       "revId": "8f5816abf6c4f3910995efad1e48be45e06371f0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dedbe7f5_8629001b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-10-13T10:59:35Z",
+      "side": 1,
+      "message": "recheck",
+      "revId": "8f5816abf6c4f3910995efad1e48be45e06371f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
