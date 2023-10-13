@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "548bfcfc_61879ddb",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 38
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-10-13T10:49:22Z",
+      "side": 1,
+      "message": "it was an oversight on my side. Earlier the logic was different so had to create an instance, but forgot to remove it later on. Made the changes accordingly.",
+      "parentUuid": "a610edba_82b42299",
+      "range": {
+        "startLine": 180,
+        "startChar": 16,
+        "endLine": 180,
+        "endChar": 31
+      },
+      "revId": "ed3dfcbd3873b69c0421a8fb128031f8d53664bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "57bd2003_01c22c96",
@@ -54,6 +78,24 @@
       "writtenOn": "2023-10-12T15:10:52Z",
       "side": 1,
       "message": "just thinking , since you are not interacting to the DB directly then y this code is in the cps-ri module ??\nWhat do u think of the idea to move it in the cps-service layer.\nYou can always leverage the other APIs to call the methods useful to you.",
+      "revId": "ed3dfcbd3873b69c0421a8fb128031f8d53664bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "114ef4eb_c4151107",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 38
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-10-13T10:49:22Z",
+      "side": 1,
+      "message": "yes it can be placed in service layer. But can we also take inputs from others as well. Just so that if someone disagrees we can discuss their point of view and take action accordingly. I faced the same dilemma while working on update nodes API and had to move the code multiple times between the two layers 😄",
+      "parentUuid": "57bd2003_01c22c96",
       "revId": "ed3dfcbd3873b69c0421a8fb128031f8d53664bc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },

@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6811d384_1275b347",
+        "filename": "cps-rest/docs/openapi/cpsDataV2.yml",
+        "patchSetId": 28
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-10-13T10:49:22Z",
+      "side": 1,
+      "message": "I have made this change, but could not cross verify it yet due to problem in accessing SwaggerUI. Will verify once Swagger UI is up again",
+      "parentUuid": "dcba6a22_e84edbac",
+      "range": {
+        "startLine": 73,
+        "startChar": 23,
+        "endLine": 73,
+        "endChar": 69
+      },
+      "revId": "de8d15605c90d7410984f3f9887d2894acfa7d61",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4080e9f1_06626efd",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
         "patchSetId": 28
