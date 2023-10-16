@@ -102,6 +102,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c999dd99_223d0b5b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 38
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-16T14:02:17Z",
+      "side": 1,
+      "message": "the ri-module is an important architecture decision and been desigend to de-couple CPS from DB-specific implementation details.\nIt as amin, data and module service.\n\nI think the delta feature does NOT belong in any of these and agree with Priyank it should be at the service level. \nI would recommended a dedicated new Service: CpsDeltaService (in org.onap.cps.api) for clear separation.",
+      "parentUuid": "114ef4eb_c4151107",
+      "revId": "ed3dfcbd3873b69c0421a8fb128031f8d53664bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9c64d469_0fdbff71",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/utils/CpsDeltaService.java",
         "patchSetId": 38
