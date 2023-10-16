@@ -162,6 +162,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cb492ef6_53e57a91",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 3237
+      },
+      "writtenOn": "2023-10-16T13:13:51Z",
+      "side": 1,
+      "message": "I would suggest to put a note on these dependencies that once springboot is upgraded to 3.1.4 these can be removed",
+      "parentUuid": "23e4cc7d_69973970",
+      "range": {
+        "startLine": 223,
+        "startChar": 11,
+        "endLine": 232,
+        "endChar": 25
+      },
+      "revId": "9b06aafd46a2254dde90b041c874014a3d26f3fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "be9b7f5c_2c166334",
         "filename": "cps-ncmp-rest/pom.xml",
         "patchSetId": 1
