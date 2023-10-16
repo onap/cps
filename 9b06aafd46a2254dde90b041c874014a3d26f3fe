@@ -65,6 +65,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "39ae7288_af0047c9",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2023-10-16T09:41:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e0f1cfad_cd5df36c",
+      "range": {
+        "startLine": 147,
+        "startChar": 16,
+        "endLine": 149,
+        "endChar": 40
+      },
+      "revId": "9b06aafd46a2254dde90b041c874014a3d26f3fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cb1f3e84_e62bd337",
@@ -114,6 +138,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "23e4cc7d_69973970",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2023-10-16T09:41:59Z",
+      "side": 1,
+      "message": "The decision was made to move springboot to 3.1.2 to be in line with the Ericsson version.",
+      "parentUuid": "560e0a22_76bfc2f1",
+      "range": {
+        "startLine": 223,
+        "startChar": 11,
+        "endLine": 232,
+        "endChar": 25
+      },
+      "revId": "9b06aafd46a2254dde90b041c874014a3d26f3fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "be9b7f5c_2c166334",
         "filename": "cps-ncmp-rest/pom.xml",
         "patchSetId": 1
@@ -137,6 +185,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f71ddd4a_dfd8d85d",
+        "filename": "cps-ncmp-rest/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2023-10-16T09:41:59Z",
+      "side": 1,
+      "message": "I didn\u0027t add them, I reordered them.",
+      "parentUuid": "be9b7f5c_2c166334",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 19
+      },
+      "revId": "9b06aafd46a2254dde90b041c874014a3d26f3fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f1a4debf_ca241ed2",
         "filename": "cps-rest/pom.xml",
         "patchSetId": 1
@@ -148,6 +220,30 @@
       "writtenOn": "2023-10-10T15:08:28Z",
       "side": 1,
       "message": "j comes after i :-)",
+      "range": {
+        "startLine": 71,
+        "startChar": 21,
+        "endLine": 71,
+        "endChar": 22
+      },
+      "revId": "9b06aafd46a2254dde90b041c874014a3d26f3fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ddca250e_3ac05b59",
+        "filename": "cps-rest/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2023-10-16T09:41:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f1a4debf_ca241ed2",
       "range": {
         "startLine": 71,
         "startChar": 21,
@@ -205,6 +301,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4dfa13e_8fe9ea68",
+        "filename": "cps-service/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2023-10-16T09:41:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8899e1c4_94fd693f",
+      "range": {
+        "startLine": 43,
+        "startChar": 1,
+        "endLine": 47,
+        "endChar": 17
+      },
+      "revId": "9b06aafd46a2254dde90b041c874014a3d26f3fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a4ff0859_67f96578",
@@ -218,6 +338,30 @@
       "writtenOn": "2023-10-10T15:08:28Z",
       "side": 1,
       "message": "ultimately these poms are extending ../cps-parent/pom.xml correct? so can we not use the versions defined in dep. mgmtm module?!",
+      "range": {
+        "startLine": 109,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 36
+      },
+      "revId": "9b06aafd46a2254dde90b041c874014a3d26f3fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68e60001_1bc56c90",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-app/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2023-10-16T09:41:59Z",
+      "side": 1,
+      "message": "Yes for Jakarta but no for jetty. Jetty would need spring boot 3.1.4 but we agreed on 3.1.2 to aline with Ericsson",
+      "parentUuid": "a4ff0859_67f96578",
       "range": {
         "startLine": 109,
         "startChar": 0,
