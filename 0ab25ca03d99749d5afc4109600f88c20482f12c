@@ -1,0 +1,118 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "83d43787_5be21bf8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 40
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-10-16T12:32:37Z",
+      "side": 1,
+      "message": "I think we need to simplify this util class a bit.\n- I am reviewing incrementally and not reviewing it all in one go coz many things tends to be changing and it wont make sense to revisit the changes again and again when we know that they might change.",
+      "revId": "0ab25ca03d99749d5afc4109600f88c20482f12c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32ecc21e_52eeed43",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/utils/CpsDeltaService.java",
+        "patchSetId": 40
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-10-16T12:32:37Z",
+      "side": 1,
+      "message": "this class is looking way too complex.\nWe need to simplify this.\nMaybe we need to have a session around this so that we can understand each other well.",
+      "revId": "0ab25ca03d99749d5afc4109600f88c20482f12c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "591dd153_d61a8fdd",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/utils/CpsDeltaService.java",
+        "patchSetId": 40
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-10-16T12:32:37Z",
+      "side": 1,
+      "message": "can we have 3 different calls in here.\ngetRemovedNodes\ngetUpdatedNodes\ngetAddedNodes\n\nif possible we can have the arguments of the same type so that we can reuse the common code.",
+      "revId": "0ab25ca03d99749d5afc4109600f88c20482f12c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c82a37b_bf68a9a7",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/utils/CpsDeltaService.java",
+        "patchSetId": 40
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-10-16T12:32:37Z",
+      "side": 1,
+      "message": "these if-else conditions are common for all 3 methods I guess..\ngetUpdatedNodes  ,getRemovedNodes and getAddedNodes.\nwe can think of removing some duplicate code.",
+      "revId": "0ab25ca03d99749d5afc4109600f88c20482f12c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecb3b496_97f07dde",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/utils/CpsDeltaService.java",
+        "patchSetId": 40
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-10-16T12:32:37Z",
+      "side": 1,
+      "message": "this is all related to delete action.\nY not move to a method called getDeletedNodes - just like you have for getAddedNodes and getUpdatedNodes.\nWill look better.",
+      "range": {
+        "startLine": 76,
+        "startChar": 16,
+        "endLine": 92,
+        "endChar": 17
+      },
+      "revId": "0ab25ca03d99749d5afc4109600f88c20482f12c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f316698b_2e0a454d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/utils/CpsDeltaService.java",
+        "patchSetId": 40
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-10-16T12:32:37Z",
+      "side": 1,
+      "message": "NB : we can also use the schemas been defined here ( if the schema here is finalized ). Basically it will create a POJO class which can act as a container of the data.",
+      "range": {
+        "startLine": 150,
+        "startChar": 8,
+        "endLine": 165,
+        "endChar": 28
+      },
+      "revId": "0ab25ca03d99749d5afc4109600f88c20482f12c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
