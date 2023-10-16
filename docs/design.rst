@@ -1,6 +1,6 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
-.. Copyright (C) 2021-2022 Nordix Foundation
+.. Copyright (C) 2021-2023 Nordix Foundation
 
 .. DO NOT CHANGE THIS LABEL FOR RELEASE NOTES - EVEN THOUGH IT GIVES A WARNING
 .. _design:
@@ -93,3 +93,24 @@ NCMP uses common responses codes in REST responses and events. Also the DMI plug
    :maxdepth: 1
 
    cps-ncmp-message-status-codes.rst
+
+Contract Testing (stubs)
+========================
+
+The CPS team is committed to supporting consumers of our APIs through contract testing.
+Obviously we test our own contracts on a continuous basis as part of the build and delivery process.
+CPS uses a contract-first approach. That means we write our OpenAPi contracts first and then generate the interface code from that.
+This means our interface implementation simply cannot deviate from the OpenApi contracts we deliver.
+
+Another advantage is that we can also generate 'stubs'. Stubs are a basic implementation of the same interface for testing purposes.
+These stubs can be used by clients for unit testing but also for more higher level integration-like testing where the real service is replaced by a stub.
+This can be useful for faster feedback loops where deployment of a full stack is difficult and not strictly needed for the purpose of the tests.
+
+Stubs for contract testing typically always return the same response which is sufficient for the strict definition of a contract test.
+However it is often useful to allow more variation in the responses so different clients or the same client can test different scenarios without having to mock the service.
+CPS has implemented what we call 'extended stubs' that allow clients to provide alternate responses.implementation
+
+The available stubs and how to use them are described in :doc:'cps-stubs'.
+
+
+

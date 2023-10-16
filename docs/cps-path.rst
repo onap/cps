@@ -247,7 +247,7 @@ leaf-conditions
   - Using comparative operators with string values will lead to an error at runtime. This error can't be validated earlier as the datatype is unknown until the execution phase.
   - The key should be supplied with correct data type for it to be queried from DB. In the last example above the attribute code is of type
     Integer so the cps query will not work if the value is passed as string.
-    eg: ``//categories[@code="1"]`` or ``//categories[@code='1']`` will not work because the key attribute code is treated a string.
+    e.g.: ``//categories[@code="1"]`` or ``//categories[@code='1']`` will not work because the key attribute code is treated a string.
 
 **Notes**
   - For performance reasons it does not make sense to query using key leaf as attribute. If the key value is known it is better to execute a get request with the complete xpath.
@@ -260,7 +260,7 @@ The text()-condition  can be added to any CPS path query.
 **Syntax**: ``<cps-path> ( '/' <leaf-name> '[text()=' <string-value> ']' )?``
   - ``cps-path``: Any CPS path query.
   - ``leaf-name``: The name of the leaf or leaf-list which value needs to be compared.
-  - ``string-value``: The required value of the leaf or leaf-list element as a string wrapped in quotation marks (U+0022) or apostrophes (U+0027). This wil still match integer values.
+  - ``string-value``: The required value of the leaf or leaf-list element as a string wrapped in quotation marks (U+0022) or apostrophes (U+0027). This will still match integer values.
 
 **Examples**
   - ``//book/label[text()="classic"]``

@@ -27,10 +27,10 @@ tmp/
 .checkstyle
 
 /.tox
-/_build/*
 /__pycache__/*
 
 /docs/docs/
 /docs/.vscode/
+/docs/_build/*
 
 /test-tools/metrics-reports/
