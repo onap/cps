@@ -121,6 +121,30 @@
       },
       "revId": "500134c9c745eeda707e5738a5a699c69bb899c6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8853540b_a41727db",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/CmDataSubscriptionsPerfTest.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-10-16T10:14:21Z",
+      "side": 1,
+      "message": "Hi Toine, as this is out of scope, can you remove -1?\nI will take a look at this under CPS-1881",
+      "parentUuid": "cb463c85_d35f77e5",
+      "range": {
+        "startLine": 81,
+        "startChar": 12,
+        "endLine": 81,
+        "endChar": 89
+      },
+      "revId": "500134c9c745eeda707e5738a5a699c69bb899c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
