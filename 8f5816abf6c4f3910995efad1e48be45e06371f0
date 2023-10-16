@@ -33,6 +33,23 @@
       "message": "recheck",
       "revId": "8f5816abf6c4f3910995efad1e48be45e06371f0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "44640bc4_f3ed70c8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-16T16:19:47Z",
+      "side": 1,
+      "message": "Just realizing, do you need to copy \u0026 paste the generated yaml to the doc folder too?!",
+      "revId": "8f5816abf6c4f3910995efad1e48be45e06371f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
