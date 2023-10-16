@@ -35,6 +35,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a79b080b_3025e4c7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-16T07:40:36Z",
+      "side": 1,
+      "message": "Blocking until we have  had a chat with Priyank about using Map v. IMap",
+      "revId": "7aae9b8af2c82336882d0ae864b970b1885a63a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6bd3d313_3a13c4de",
@@ -94,6 +111,30 @@
       "writtenOn": "2023-10-12T12:47:28Z",
       "side": 1,
       "message": "same as before.",
+      "range": {
+        "startLine": 56,
+        "startChar": 11,
+        "endLine": 56,
+        "endChar": 14
+      },
+      "revId": "7aae9b8af2c82336882d0ae864b970b1885a63a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab194ad2_436a80f8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/TrustLevelCacheConfig.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-16T07:40:36Z",
+      "side": 1,
+      "message": "Hi Priyank, can we discuss this. we changed it to Map delibertaly so it could be tested more easily. It jsut using higher level interface if no IMap specific methods er needed. WE have doen the same for the Hazelcat Queue is well before!\nNot suer what teh old issue was bug I think we might have been wrong thinking it was cause by using Map instead oif IMap... \nHalil has also doen end-2-end testing while debugging on his laptop and it all worked OPK...",
+      "parentUuid": "e29f015c_87783d88",
       "range": {
         "startLine": 56,
         "startChar": 11,
