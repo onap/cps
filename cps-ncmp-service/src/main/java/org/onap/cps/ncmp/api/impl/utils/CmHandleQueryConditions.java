@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -29,7 +29,8 @@ import lombok.Getter;
 public enum CmHandleQueryConditions {
     HAS_ALL_PROPERTIES("hasAllProperties"),
     HAS_ALL_MODULES("hasAllModules"),
-    WITH_CPS_PATH("cmHandleWithCpsPath");
+    WITH_CPS_PATH("cmHandleWithCpsPath"),
+    WITH_TRUST_LEVEL("cmHandleWithTrustLevel");
 
     public static final Collection<String> ALL_CONDITION_NAMES = Arrays.stream(CmHandleQueryConditions.values())
         .map(CmHandleQueryConditions::getConditionName).collect(Collectors.toList());
