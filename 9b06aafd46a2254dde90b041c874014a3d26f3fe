@@ -231,6 +231,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ace7f427_c5151794",
+        "filename": "cps-ncmp-rest/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-16T16:09:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f71ddd4a_dfd8d85d",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 19
+      },
+      "revId": "9b06aafd46a2254dde90b041c874014a3d26f3fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f1a4debf_ca241ed2",
@@ -268,6 +292,30 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "f1a4debf_ca241ed2",
+      "range": {
+        "startLine": 71,
+        "startChar": 21,
+        "endLine": 71,
+        "endChar": 22
+      },
+      "revId": "9b06aafd46a2254dde90b041c874014a3d26f3fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a967b37_0c3a4875",
+        "filename": "cps-rest/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-16T16:09:10Z",
+      "side": 1,
+      "message": "don\u0027t think you did, but not a blocking issue",
+      "parentUuid": "ddca250e_3ac05b59",
       "range": {
         "startLine": 71,
         "startChar": 21,
@@ -386,6 +434,30 @@
       "side": 1,
       "message": "Yes for Jakarta but no for jetty. Jetty would need spring boot 3.1.4 but we agreed on 3.1.2 to aline with Ericsson",
       "parentUuid": "a4ff0859_67f96578",
+      "range": {
+        "startLine": 109,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 36
+      },
+      "revId": "9b06aafd46a2254dde90b041c874014a3d26f3fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43e9b62d_775876e3",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-app/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-16T16:09:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "68e60001_1bc56c90",
       "range": {
         "startLine": 109,
         "startChar": 0,
