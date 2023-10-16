@@ -143,6 +143,30 @@
       },
       "revId": "7aae9b8af2c82336882d0ae864b970b1885a63a8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a51a1c2_7772bdbf",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/TrustLevelCacheConfig.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-10-16T09:00:32Z",
+      "side": 1,
+      "message": "Hi Toine , I know technically it totally makes sense to replace IMap with Map ( map being the parent interface of IMap )\nBut when we first introduced hazelcast in CPS and we did used Map instead of IMap I saw when running multiple instances , the data was not replicated and the TTL feature was not working.\n\nIt could be coz of something different back then as we were doing it for the first time.\nBut this is just my thinking that I had before.\n\nI would test it locally on my own and Open for discussion obviously.",
+      "parentUuid": "ab194ad2_436a80f8",
+      "range": {
+        "startLine": 56,
+        "startChar": 11,
+        "endLine": 56,
+        "endChar": 14
+      },
+      "revId": "7aae9b8af2c82336882d0ae864b970b1885a63a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
