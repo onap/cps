@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "46b18435_95816bef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-10-16T16:44:36Z",
+      "side": 1,
+      "message": "I have some minor notes... Otherwise good to me.",
+      "revId": "79c011f64ddd6098119fdde1bbde0cfddb1ffaff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed3753ed_c9fb525b",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/cmsubscriptionmerge/cm-subscription-merge-dmi-out-event-schema-1.0.0.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-10-16T16:44:36Z",
+      "side": 1,
+      "message": "NB: subscription status either it has been accepted or rejected.",
+      "range": {
+        "startLine": 23,
+        "startChar": 83,
+        "endLine": 23,
+        "endChar": 95
+      },
+      "revId": "79c011f64ddd6098119fdde1bbde0cfddb1ffaff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6c2953a_9693094b",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/cmsubscriptionmerge/cm-subscription-merge-dmi-out-event-schema-1.0.0.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-10-16T16:44:36Z",
+      "side": 1,
+      "message": "NB: You may have this also enum since there are two different value \"accepted\" and \"rejected\" like \"enum\": [\"accepted\", \"rejected\"]",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 9
+      },
+      "revId": "79c011f64ddd6098119fdde1bbde0cfddb1ffaff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20586cb8_4bd656b1",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/cmsubscriptionmerge/cm-subscription-merge-ncmp-out-event-schema-1.0.0.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-10-16T16:44:36Z",
+      "side": 1,
+      "message": "Are these meant to be optional as per wiki page?",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 27
+      },
+      "revId": "79c011f64ddd6098119fdde1bbde0cfddb1ffaff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
