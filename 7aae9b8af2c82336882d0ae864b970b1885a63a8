@@ -167,6 +167,30 @@
       },
       "revId": "7aae9b8af2c82336882d0ae864b970b1885a63a8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5dd7dd3_c43abfe5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/TrustLevelCacheConfig.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-10-16T10:14:17Z",
+      "side": 1,
+      "message": "I tested on my local machine with multiple instances and came to a conclusion as below.\n\n1. if the TTL feature is not needed then use the Map interface ( as it would just provide us with standard collection Map api\u0027s )\n2. if the TTL feature is needed we use the more specialized interface i.e IMap.\nAs IMap provides us with APIs to put the keys with its TTL as well.\n\nReplication works for both the cases.\n\nAs I understand , we dont need to expire the keys in this use case. So I am ok to let this one merge.",
+      "parentUuid": "0a51a1c2_7772bdbf",
+      "range": {
+        "startLine": 56,
+        "startChar": 11,
+        "endLine": 56,
+        "endChar": 14
+      },
+      "revId": "7aae9b8af2c82336882d0ae864b970b1885a63a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
