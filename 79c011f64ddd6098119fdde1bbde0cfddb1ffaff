@@ -157,6 +157,30 @@
       },
       "revId": "79c011f64ddd6098119fdde1bbde0cfddb1ffaff",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25cc9375_7c02aa51",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/cmsubscriptionmerge/cm-subscription-merge-ncmp-out-event-schema-1.0.0.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-10-17T10:01:28Z",
+      "side": 1,
+      "message": "That is fine. it was just a minor heads up, either ways are ok for me.",
+      "parentUuid": "9df49470_dedf73e8",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 27
+      },
+      "revId": "79c011f64ddd6098119fdde1bbde0cfddb1ffaff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
