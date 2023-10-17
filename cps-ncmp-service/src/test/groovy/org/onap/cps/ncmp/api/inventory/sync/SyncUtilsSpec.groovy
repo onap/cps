@@ -21,6 +21,7 @@
 
 package org.onap.cps.ncmp.api.inventory.sync
 
+import static org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory.LOCKED_MISBEHAVING
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_OPERATIONAL
 import static org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory.MODULE_SYNC_FAILED
 import static org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory.MODULE_UPGRADE
@@ -163,6 +164,7 @@ class SyncUtilsSpec extends Specification{
         scenario             | lockReasonCategory || logReason                    | retryAttempt
         'module upgrade'     | MODULE_UPGRADE     || 'Locked for module upgrade.' | true
         'module sync failed' | MODULE_SYNC_FAILED || 'First Attempt:'             | false
+        'lock misbehaving'   | LOCKED_MISBEHAVING || 'Locked for other reason'    | false
     }
 
     def 'Get a Cm-Handle where #scenario'() {

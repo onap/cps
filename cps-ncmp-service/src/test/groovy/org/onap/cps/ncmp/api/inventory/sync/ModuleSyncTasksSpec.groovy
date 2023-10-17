@@ -21,9 +21,15 @@
 
 package org.onap.cps.ncmp.api.inventory.sync
 
+import ch.qos.logback.classic.Level
+import ch.qos.logback.classic.Logger
+import ch.qos.logback.classic.spi.ILoggingEvent
+import ch.qos.logback.core.read.ListAppender
 import com.hazelcast.config.Config
 import com.hazelcast.instance.impl.HazelcastInstanceFactory
 import com.hazelcast.map.IMap
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.BeforeEach
 import org.onap.cps.ncmp.api.impl.events.lcm.LcmEventsCmHandleStateHandler
 import org.onap.cps.ncmp.api.impl.inventory.sync.ModuleSyncService
 import org.onap.cps.ncmp.api.impl.inventory.sync.ModuleSyncTasks
@@ -35,10 +41,24 @@ import org.onap.cps.ncmp.api.impl.inventory.CompositeStateBuilder
 import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence
 import org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory
 import org.onap.cps.spi.model.DataNode
+import org.slf4j.LoggerFactory
 import spock.lang.Specification
 import java.util.concurrent.atomic.AtomicInteger
 
 class ModuleSyncTasksSpec extends Specification {
+
+    def logger = Spy(ListAppender<ILoggingEvent>)
+
+    @BeforeEach
+    void setup() {
+        ((Logger) LoggerFactory.getLogger(ModuleSyncTasks.class)).addAppender(logger);
+        logger.start();
+    }
+
+    @AfterEach
+    void teardown() {
+        ((Logger) LoggerFactory.getLogger(ModuleSyncTasks.class)).detachAndStopAllAppenders();
+    }
 
     def mockInventoryPersistence = Mock(InventoryPersistence)
 
@@ -140,6 +160,29 @@ class ModuleSyncTasksSpec extends Specification {
             assert moduleSyncStartedOnCmHandles.get('other-cm-handle') != null
     }
 
+    def 'Remove already processed cm handle id from hazelcast map'() {
+        given: 'hazelcast map contains cm handle id'
+            moduleSyncStartedOnCmHandles.put('some', 'started')
+        when: 'remove cm handle entry'
+            objectUnderTest.removeResetCmHandleFromModuleSyncMap('some')
+        then: 'an event is logged with level INFO'
+            def loggingEvent = getLoggingEvent()
+            assert loggingEvent.level == Level.INFO
+        and: 'the log indicates the cm handle entry is removed successfully'
+            assert loggingEvent.formattedMessage == 'some removed from in progress map'
+    }
+
+    def 'Remove non-existing cm handle id from hazelcast map'() {
+        given: 'hazelcast map does not contains cm handle id'
+            def result = moduleSyncStartedOnCmHandles.get('non-existing-cm-handle')
+            assert result == null
+        when: 'remove cm handle entry from  hazelcast map'
+            objectUnderTest.removeResetCmHandleFromModuleSyncMap('non-existing-cm-handle')
+        then: 'no event is logged'
+            def loggingEvent = getLoggingEvent()
+            assert loggingEvent == null
+    }
+
     def advisedCmHandleAsDataNode(cmHandleId) {
         return new DataNode(anchorName: cmHandleId, leaves: ['id': cmHandleId, 'cm-handle-state': 'ADVISED'])
     }
@@ -166,5 +209,9 @@ class ModuleSyncTasksSpec extends Specification {
 
     def resetModuleSyncStartedOnCmHandles(moduleSyncStartedOnCmHandles) {
         moduleSyncStartedOnCmHandles.clear();
+    }
+
+    def getLoggingEvent() {
+        return logger.list[0]
     }
 }

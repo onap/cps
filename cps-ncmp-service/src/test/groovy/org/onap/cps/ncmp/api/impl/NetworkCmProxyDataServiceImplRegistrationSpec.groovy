@@ -21,6 +21,8 @@
 
 package org.onap.cps.ncmp.api.impl
 
+import org.onap.cps.ncmp.api.models.UpgradedCmHandles
+
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLES_NOT_FOUND
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLE_ALREADY_EXIST
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLE_INVALID_ID
@@ -61,7 +63,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def mockDmiDataOperations = Mock(DmiDataOperations)
     def mockNetworkCmProxyDataServicePropertyHandler = Mock(NetworkCmProxyDataServicePropertyHandler)
     def mockInventoryPersistence = Mock(InventoryPersistence)
-    def mockCmhandleQueries = Mock(CmHandleQueries)
+    def mockCmHandleQueries = Mock(CmHandleQueries)
     def stubbedNetworkCmProxyCmHandlerQueryService = Stub(NetworkCmProxyCmHandleQueryService)
     def mockLcmEventsCmHandleStateHandler = Mock(LcmEventsCmHandleStateHandler)
     def mockCpsDataService = Mock(CpsDataService)
@@ -69,14 +71,17 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def mockTrustLevelPerDmiPlugin = Mock(IMap<String, TrustLevel>)
     def objectUnderTest = getObjectUnderTest()
 
-    def 'DMI Registration: Create, Update & Delete operations are processed in the right order'() {
+    def 'DMI Registration: Create, Update, Delete & Upgrade operations are processed in the right order'() {
         given: 'a registration with operations of all three types'
             def dmiRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server')
             dmiRegistration.setCreatedCmHandles([new NcmpServiceCmHandle(cmHandleId: 'cmhandle-1', publicProperties: ['publicProp1': 'value'], dmiProperties: [:])])
             dmiRegistration.setUpdatedCmHandles([new NcmpServiceCmHandle(cmHandleId: 'cmhandle-2', publicProperties: ['publicProp1': 'value'], dmiProperties: [:])])
             dmiRegistration.setRemovedCmHandles(['cmhandle-2'])
+            dmiRegistration.setUpgradedCmHandles(new UpgradedCmHandles(cmHandles: ['cmhandle-3'], moduleSetTag: 'some-module-set-tag'))
         and: 'cm handles are persisted'
             mockInventoryPersistence.getYangModelCmHandles(['cmhandle-2']) >> [new YangModelCmHandle()]
+        and: 'cm handle is in READY state'
+            mockCmHandleQueries.cmHandleHasState('cmhandle-3', CmHandleState.READY) >> true
         when: 'registration is processed'
             objectUnderTest.updateDmiRegistrationAndSyncModule(dmiRegistration)
         then: 'cm-handles are removed first'
@@ -87,6 +92,8 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             1 * objectUnderTest.parseAndProcessCreatedCmHandlesInRegistration(*_)
         then: 'cm-handles are updated'
             1 * mockNetworkCmProxyDataServicePropertyHandler.updateCmHandleProperties(*_)
+        then: 'cm-handles are upgraded'
+            1 * objectUnderTest.parseAndProcessUpgradedCmHandlesInRegistration(*_)
     }
 
     def 'DMI Registration: Response from all operations types are in response'() {
@@ -378,7 +385,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
 
     def getObjectUnderTest() {
         return Spy(new NetworkCmProxyDataServiceImpl(spiedJsonObjectMapper, mockDmiDataOperations,
-                mockNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence, mockCmhandleQueries,
+                mockNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence, mockCmHandleQueries,
                 stubbedNetworkCmProxyCmHandlerQueryService, mockLcmEventsCmHandleStateHandler, mockCpsDataService,
                 mockModuleSyncStartedOnCmHandles, mockTrustLevelPerDmiPlugin))
     }

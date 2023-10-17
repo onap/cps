@@ -389,11 +389,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             }
         });
 
-        final List<CmHandleRegistrationResponse> cmHandleRegistrationResponses
-                = upgradeCmHandles(cmHandleStatePerCmHandle);
-        cmHandleRegistrationResponses.addAll(CmHandleRegistrationResponse.createFailureResponses(notReadyCmHandles,
-                CM_HANDLES_NOT_READY));
-        return cmHandleRegistrationResponses;
+        return prepareAndGetCmHandleUpgradeResponses(cmHandleStatePerCmHandle, notReadyCmHandles);
     }
 
     private CmHandleRegistrationResponse deleteCmHandleAndGetCmHandleRegistrationResponse(final String cmHandleId) {
@@ -460,6 +456,16 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         } catch (final Exception exception) {
             return CmHandleRegistrationResponse.createFailureResponses(cmHandleIds, exception);
         }
+    }
+
+    private List<CmHandleRegistrationResponse> prepareAndGetCmHandleUpgradeResponses(final Map<YangModelCmHandle,
+            CmHandleState> cmHandleStatePerCmHandle, final Collection<String> notReadyCmHandles) {
+        final List<CmHandleRegistrationResponse> cmHandleRegistrationResponses
+                = upgradeCmHandles(cmHandleStatePerCmHandle);
+        final List<CmHandleRegistrationResponse> failedCmHandleRegistrationResponses
+                = CmHandleRegistrationResponse.createFailureResponses(notReadyCmHandles, CM_HANDLES_NOT_READY);
+        failedCmHandleRegistrationResponses.forEach(cmHandleRegistrationResponses::add);
+        return cmHandleRegistrationResponses;
     }
 
     private List<CmHandleRegistrationResponse> upgradeCmHandles(final Map<YangModelCmHandle, CmHandleState>
