@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "111eb20c_f55b589c",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/cmsubscriptionmerge/cm-subscription-dmi-in-event-schema-1.0.0.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2023-10-17T11:26:59Z",
+      "side": 1,
+      "message": "Change /schemas/cmsubscriptionmerge/ to /schemas/cmsubscription/",
+      "revId": "c97c20c6ec95c48c87a3790ec48f6755f36adb83",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
