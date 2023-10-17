@@ -20,8 +20,12 @@
 
 package org.onap.cps.ncmp.api.inventory.sync
 
+import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
 import org.onap.cps.spi.FetchDescendantsOption
+import org.onap.cps.spi.model.DataNode
 
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
 import static org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory.MODULE_UPGRADE
 
@@ -55,13 +59,12 @@ class ModuleSyncServiceSpec extends Specification {
     def expectedDataspaceName = NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
 
     def 'Sync model for a (new) cm handle with #scenario'() {
-        given: 'a cm handle having lock reason : MODULE_UPGRADE'
+        given: 'a cm handle'
             def ncmpServiceCmHandle = new NcmpServiceCmHandle()
-            ncmpServiceCmHandle.setCompositeState(new CompositeStateBuilder()
-                .withLockReason(MODULE_UPGRADE, 'new moduleSetTag: someModuleSetTag').build())
+            ncmpServiceCmHandle.setCompositeState(new CompositeStateBuilder().build())
             def dmiServiceName = 'some service name'
             ncmpServiceCmHandle.cmHandleId = 'cmHandleId-1'
-            def yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle(dmiServiceName, '', '', ncmpServiceCmHandle,'someModuleSetTag')
+            def yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle(dmiServiceName, '', '', ncmpServiceCmHandle,'')
         and: 'DMI operations returns some module references'
             def moduleReferences =  [ new ModuleReference('module1','1'), new ModuleReference('module2','2') ]
             mockDmiModelOperations.getModuleReferences(yangModelCmHandle) >> moduleReferences
@@ -69,9 +72,6 @@ class ModuleSyncServiceSpec extends Specification {
             mockCpsModuleService.getYangResourceModuleReferences(expectedDataspaceName) >> toModuleReference(existingModuleResourcesInCps)
         and: 'DMI-Plugin returns resource(s) for "new" module(s)'
             mockDmiModelOperations.getNewYangResourcesFromDmi(yangModelCmHandle, [new ModuleReference('module1', '1')]) >> newModuleNameContentToMap
-        and: 'empty data node list is returned by cps path a query'
-        mockCmHandleQueries.queryNcmpRegistryByCpsPath("//cm-handles[@module-set-tag='someModuleSetTag']",
-                FetchDescendantsOption.OMIT_DESCENDANTS) >> Collections.emptyList()
         when: 'module sync is triggered'
             mockCpsModuleService.identifyNewModuleReferences(moduleReferences) >> toModuleReference(identifiedNewModuleReferences)
             objectUnderTest.syncAndCreateOrUpgradeSchemaSetAndAnchor(yangModelCmHandle)
@@ -84,6 +84,27 @@ class ModuleSyncServiceSpec extends Specification {
             'one new module'     | [['module2' : '2'], ['module3' : '3']] | [['module1' : '1']]           | [module1: 'some yang source']
             'no add. properties' | [['module2' : '2'], ['module3' : '3']] | [['module1' : '1']]           | [module1: 'some yang source']
             'no new module'      | [['module1' : '1'], ['module2' : '2']] | []                            | [:]
+    }
+
+    def 'upgrade model for a existing cm handle'() {
+        given: 'a cm handle that is ready but locked for upgrade'
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle()
+            ncmpServiceCmHandle.setCompositeState(new CompositeStateBuilder()
+                .withLockReason(MODULE_UPGRADE, 'new moduleSetTag: targetModuleSetTag').build())
+            ncmpServiceCmHandle.setCmHandleId('cmHandleId-1')
+            def yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle('some service name', '', '', ncmpServiceCmHandle, 'targetModuleSetTag')
+            mockCmHandleQueries.cmHandleHasState('cmHandleId-1', CmHandleState.READY) >> true
+        and: 'the module service returns some module references'
+            def moduleReferences = [new ModuleReference('module1', '1'), new ModuleReference('module2', '2')]
+            mockCpsModuleService.getYangResourcesModuleReferences(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR) >> moduleReferences
+        and: 'a cm handle with the same moduleSetTag can be found in the registry'
+            mockCmHandleQueries.queryNcmpRegistryByCpsPath("//cm-handles[@module-set-tag='targetModuleSetTag']",
+                FetchDescendantsOption.OMIT_DESCENDANTS) >> [new DataNode(xpath: '/dmi-registry/cm-handles[@id=\'cmHandleId-1\']', leaves: ['id': 'cmHandleId-1', 'cm-handle-state': 'READY'])]
+        when: 'module upgrade is triggered'
+            objectUnderTest.syncAndCreateOrUpgradeSchemaSetAndAnchor(yangModelCmHandle)
+        then: 'the upgrade is delegated to the module service (with the correct parameters)'
+            1 * mockCpsModuleService.createOrUpgradeSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME,
+                 'cmHandleId-1', Collections.emptyMap(), moduleReferences)
     }
 
     def 'Delete Schema Set for CmHandle' () {
