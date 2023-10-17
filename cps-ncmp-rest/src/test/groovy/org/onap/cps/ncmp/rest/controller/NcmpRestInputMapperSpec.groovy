@@ -21,6 +21,7 @@
 package org.onap.cps.ncmp.rest.controller
 
 import org.mapstruct.factory.Mappers
+import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.rest.model.CmHandleQueryParameters
 import org.onap.cps.ncmp.rest.model.ConditionProperties
@@ -53,9 +54,10 @@ class NcmpRestInputMapperSpec extends Specification {
             result.createdCmHandles[0].dmiProperties == expectedDmiProperties
             result.createdCmHandles[0].publicProperties == expectedPublicProperties
         where: 'the following parameters are used'
-            scenario                    | dmiProperties                            | publicProperties                                         || expectedDmiProperties                     | expectedPublicProperties
-            'dmi and public properties' | ['Property-Example': 'example property'] | ['Public-Property-Example': 'public example property']   || ['Property-Example': 'example property']  | ['Public-Property-Example': 'public example property']
-            'no properties'             | null                                     | null                                                     || [:]                                       | [:]
+            scenario                    | dmiProperties                            | publicProperties                                       | trustLevel || expectedDmiProperties                    | expectedPublicProperties                               | expectedTrustLevels
+            'dmi and public properties' | ['Property-Example': 'example property'] | ['Public-Property-Example': 'public example property'] | 'COMPLETE' || ['Property-Example': 'example property'] | ['Public-Property-Example': 'public example property'] | TrustLevel.COMPLETE
+            'no properties'             | null                                     | null                                                   | null       || [:]                                      | [:]                                                    | null
+            'invalid trustLevel'        | null                                     | null                                                   | 'invalid'  || [:]                                      | [:]                                                    | null
     }
 
     def 'Handling empty dmi registration'() {
