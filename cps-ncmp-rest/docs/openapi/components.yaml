@@ -136,6 +136,10 @@ components:
         moduleSetTag:
           type: string
           example: "my-module-set-tag"
+        trustLevel:
+            type: string
+            enum: [COMPLETE, NONE]
+            example: "COMPLETE"
     RestCmHandleProperties:
       type: object
       additionalProperties:

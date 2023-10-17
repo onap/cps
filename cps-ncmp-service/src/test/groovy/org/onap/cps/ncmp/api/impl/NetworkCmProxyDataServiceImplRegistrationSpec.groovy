@@ -68,7 +68,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def mockLcmEventsCmHandleStateHandler = Mock(LcmEventsCmHandleStateHandler)
     def mockCpsDataService = Mock(CpsDataService)
     def mockModuleSyncStartedOnCmHandles = Mock(IMap<String, Object>)
-    def mockTrustLevelPerDmiPlugin = Mock(IMap<String, TrustLevel>)
+    def trustLevelPerCmHandle = [:]
     def objectUnderTest = getObjectUnderTest()
 
     def 'DMI Registration: Create, Update, Delete & Upgrade operations are processed in the right order'() {
@@ -128,13 +128,11 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'create cm handles registration and sync modules is called with the correct plugin information'
             1 * objectUnderTest.parseAndProcessCreatedCmHandlesInRegistration(dmiPluginRegistration)
-        and: 'dmi is added to the trustLevel map'
-            1 * mockTrustLevelPerDmiPlugin.put(dmiPluginRegisteredName, TrustLevel.COMPLETE)
         where:
-            scenario                          | dmiPlugin  | dmiModelPlugin | dmiDataPlugin | dmiPluginRegisteredName
-            'combined DMI plugin'             | 'service1' | ''             | ''            | 'service1'
-            'data & model DMI plugins'        | ''         | 'service1'     | 'service2'    | 'service2'
-            'data & model using same service' | ''         | 'service1'     | 'service1'    | 'service1'
+            scenario                          | dmiPlugin  | dmiModelPlugin | dmiDataPlugin
+            'combined DMI plugin'             | 'service1' | ''             | ''
+            'data & model DMI plugins'        | ''         | 'service1'     | 'service2'
+            'data & model using same service' | ''         | 'service1'     | 'service1'
     }
 
     def 'Create CM-handle Validation: Invalid DMI plugin service name with #scenario'() {
@@ -191,6 +189,24 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             'with only public properties'     | [:]                      | ['public-key': 'public-value'] || '[]'                                       | '[{"name":"public-key","value":"public-value"}]'
             'with only dmi properties'        | ['dmi-key': 'dmi-value'] | [:]                            || '[{"name":"dmi-key","value":"dmi-value"}]' | '[]'
             'without dmi & public properties' | [:]                      | [:]                            || '[]'                                       | '[]'
+    }
+
+    def 'Add CM-Handle to trustLevelPerCmHandle Successfully with: #scenario.'() {
+        given: 'a registration with trustLevel and populated cache'
+            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server')
+            dmiPluginRegistration.createdCmHandles = [new NcmpServiceCmHandle(cmHandleId: 'ch-1', registrationTrustLevel: TrustLevel.NONE),
+                                                      new NcmpServiceCmHandle(cmHandleId: cmHandleId, registrationTrustLevel: registrationTrustLevel)]
+        when: 'registration is updated'
+            def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+        then: 'a successful response is received'
+            assert response.createdCmHandles.size() == expectedNumberOfCreatedCmHandles
+        and: 'trustLevel is set for the created cm-handle'
+            assert trustLevelPerCmHandle.get(cmHandleId) == expectedTrustLevel
+        where:
+            scenario                                   | cmHandleId | registrationTrustLevel || expectedNumberOfCreatedCmHandles | expectedTrustLevel
+            'new cmHandleId and trustLevel'            | 'ch-new'   | TrustLevel.COMPLETE    || 2                                | TrustLevel.COMPLETE
+            'existing cmHandleId with null trustLevel' | 'ch-1'     | null                   || 1                                | TrustLevel.NONE
+            'cmHandleId with null trustLevel'          | 'ch-new'   | null                   || 2                                | TrustLevel.COMPLETE
     }
 
     def 'Create CM-Handle Multiple Requests: All cm-handles creation requests are processed with some failures'() {
@@ -387,7 +403,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         return Spy(new NetworkCmProxyDataServiceImpl(spiedJsonObjectMapper, mockDmiDataOperations,
                 mockNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence, mockCmHandleQueries,
                 stubbedNetworkCmProxyCmHandlerQueryService, mockLcmEventsCmHandleStateHandler, mockCpsDataService,
-                mockModuleSyncStartedOnCmHandles, mockTrustLevelPerDmiPlugin))
+                mockModuleSyncStartedOnCmHandles, trustLevelPerCmHandle))
     }
 
     def addPersistedYangModelCmHandles(ids) {
