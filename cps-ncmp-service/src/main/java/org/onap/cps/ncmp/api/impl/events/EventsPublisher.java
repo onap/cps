@@ -42,12 +42,6 @@ import org.springframework.util.SerializationUtils;
 @RequiredArgsConstructor
 public class EventsPublisher<T> {
 
-    /**
-     * KafaTemplate for legacy (non-cloud) events.
-     *
-     * @deprecated Cloud events should be used. Will address soon as part of  https://jira.onap.org/browse/CPS-1717
-     */
-    @Deprecated(forRemoval = true)
     private final KafkaTemplate<String, T> legacyKafkaEventTemplate;
 
     private final KafkaTemplate<String, CloudEvent> cloudEventKafkaTemplate;
@@ -58,6 +52,7 @@ public class EventsPublisher<T> {
      * @param topicName valid topic name
      * @param eventKey  message key
      * @param event     message payload
+     * Cloud events should be used. Will address soon as part of  https://jira.onap.org/browse/CPS-1717
      */
     public void publishCloudEvent(final String topicName, final String eventKey, final CloudEvent event) {
         final CompletableFuture<SendResult<String, CloudEvent>> eventFuture =
@@ -79,9 +74,8 @@ public class EventsPublisher<T> {
      * @param topicName valid topic name
      * @param eventKey  message key
      * @param event     message payload
-     * @deprecated Cloud events should be used. Will address soon as part of  https://jira.onap.org/browse/CPS-1717
+     * Cloud events should be used. Will address soon as part of  https://jira.onap.org/browse/CPS-1717
      */
-    @Deprecated(forRemoval = true)
     public void publishEvent(final String topicName, final String eventKey, final T event) {
         final CompletableFuture<SendResult<String, T>> eventFuture =
                 legacyKafkaEventTemplate.send(topicName, eventKey, event);
