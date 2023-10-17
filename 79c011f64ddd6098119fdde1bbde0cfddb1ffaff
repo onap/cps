@@ -66,6 +66,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "204d6d9c_ce361395",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/cmsubscriptionmerge/cm-subscription-merge-dmi-out-event-schema-1.0.0.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-10-17T09:04:52Z",
+      "side": 1,
+      "message": "i guess it would not just be 2 values..can increase.\nmaybe once we are clear then we can think abt the enum.\nfor now string should be fine.",
+      "parentUuid": "a6c2953a_9693094b",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 9
+      },
+      "revId": "79c011f64ddd6098119fdde1bbde0cfddb1ffaff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "20586cb8_4bd656b1",
         "filename": "cps-ncmp-events/src/main/resources/schemas/cmsubscriptionmerge/cm-subscription-merge-ncmp-out-event-schema-1.0.0.json",
         "patchSetId": 1
@@ -77,6 +101,30 @@
       "writtenOn": "2023-10-16T16:44:36Z",
       "side": 1,
       "message": "Are these meant to be optional as per wiki page?",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 27
+      },
+      "revId": "79c011f64ddd6098119fdde1bbde0cfddb1ffaff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7cb3f037_22093898",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/cmsubscriptionmerge/cm-subscription-merge-ncmp-out-event-schema-1.0.0.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-10-17T09:04:52Z",
+      "side": 1,
+      "message": "Amm. Need to confirm this if the attribute itself should be removed when empty.",
+      "parentUuid": "20586cb8_4bd656b1",
       "range": {
         "startLine": 53,
         "startChar": 0,
