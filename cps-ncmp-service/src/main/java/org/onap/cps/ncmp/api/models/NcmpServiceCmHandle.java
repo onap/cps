@@ -29,6 +29,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.onap.cps.ncmp.api.impl.inventory.CompositeState;
+import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel;
 import org.springframework.validation.annotation.Validated;
 
 /**
@@ -55,6 +56,9 @@ public class NcmpServiceCmHandle {
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     private String moduleSetTag;
 
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
+    private TrustLevel registrationTrustLevel;
+
     /**
      * NcmpServiceCmHandle copy constructor.
      *
@@ -67,5 +71,6 @@ public class NcmpServiceCmHandle {
         this.compositeState = ncmpServiceCmHandle.getCompositeState() != null ? new CompositeState(
                 ncmpServiceCmHandle.getCompositeState()) : null;
         this.moduleSetTag = ncmpServiceCmHandle.getModuleSetTag();
+        this.registrationTrustLevel = ncmpServiceCmHandle.getRegistrationTrustLevel();
     }
 }

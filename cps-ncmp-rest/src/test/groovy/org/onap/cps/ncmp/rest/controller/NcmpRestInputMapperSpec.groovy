@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@
 package org.onap.cps.ncmp.rest.controller
 
 import org.mapstruct.factory.Mappers
+import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.rest.model.CmHandleQueryParameters
 import org.onap.cps.ncmp.rest.model.ConditionProperties
@@ -39,8 +40,8 @@ class NcmpRestInputMapperSpec extends Specification {
 
     def 'Convert a created REST CM Handle Input to an NCMP Service CM Handle with #scenario'() {
         given: 'a rest cm handle input'
-            def inputRestCmHandle = new RestInputCmHandle(cmHandle : 'example-id', cmHandleProperties: dmiProperties,
-                publicCmHandleProperties: publicProperties)
+            def inputRestCmHandle = new RestInputCmHandle(cmHandle : 'example-id', cmHandleProperties: registrationDmiProperties,
+                publicCmHandleProperties: registrationPublicProperties, trustLevel: registrationTrustLevel)
             def restDmiPluginRegistration = new RestDmiPluginRegistration(
                 createdCmHandles: [inputRestCmHandle])
         when: 'to plugin dmi registration is called'
@@ -50,12 +51,13 @@ class NcmpRestInputMapperSpec extends Specification {
         and: 'the converted cm handle has the same id'
             result.createdCmHandles[0].cmHandleId == 'example-id'
         and: '(empty) properties are converted correctly'
-            result.createdCmHandles[0].dmiProperties == expectedDmiProperties
-            result.createdCmHandles[0].publicProperties == expectedPublicProperties
+            result.createdCmHandles[0].dmiProperties == expectedRegistrationDmiProperties
+            result.createdCmHandles[0].publicProperties == expectedRegistrationPublicProperties
+            result.createdCmHandles[0].registrationTrustLevel == expectedRegistrationTrustLevel
         where: 'the following parameters are used'
-            scenario                    | dmiProperties                            | publicProperties                                         || expectedDmiProperties                     | expectedPublicProperties
-            'dmi and public properties' | ['Property-Example': 'example property'] | ['Public-Property-Example': 'public example property']   || ['Property-Example': 'example property']  | ['Public-Property-Example': 'public example property']
-            'no properties'             | null                                     | null                                                     || [:]                                       | [:]
+            scenario                    | registrationDmiProperties                | registrationPublicProperties                           | registrationTrustLevel || expectedRegistrationDmiProperties        | expectedRegistrationPublicProperties                   | expectedRegistrationTrustLevel
+            'dmi and public properties' | ['Property-Example': 'example property'] | ['Public-Property-Example': 'public example property'] | 'COMPLETE'             || ['Property-Example': 'example property'] | ['Public-Property-Example': 'public example property'] | TrustLevel.COMPLETE
+            'no properties'             | null                                     | null                                                   | null                   || [:]                                      | [:]                                                    | null
     }
 
     def 'Handling empty dmi registration'() {
