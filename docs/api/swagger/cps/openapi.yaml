@@ -2732,9 +2732,6 @@ components:
       properties:
         file:
           description: multipartFile
-          example: !!binary |-
-            aHR0cHM6Ly9naXRodWIuY29tL29uYXAvY3BzL2Jsb2IvbWFzdGVyL2Nwcy1zZXJ2aWNlL3NyYy90
-            ZXN0L3Jlc291cmNlcy9ib29rc3RvcmUueWFuZw==
           format: binary
           type: string
       required:

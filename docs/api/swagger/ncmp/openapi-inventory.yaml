@@ -287,6 +287,12 @@ components:
           moduleSetTag: my-module-set-tag
         dmiPlugin: my-dmi-plugin
         dmiModelPlugin: my-dmi-model-plugin
+        upgradedCmHandles:
+          cmHandles:
+          - my-cm-handle1
+          - my-cm-handle2
+          - my-cm-handle3
+          moduleSetTag: my-module-set-tag
         dmiDataPlugin: my-dmi-data-plugin
         removedCmHandles:
         - my-cm-handle1
@@ -321,6 +327,8 @@ components:
           items:
             type: string
           type: array
+        upgradedCmHandles:
+          $ref: '#/components/schemas/UpgradedCmHandles'
       type: object
     RestInputCmHandle:
       example:
@@ -355,6 +363,28 @@ components:
         example: my-property
         type: string
       type: object
+    UpgradedCmHandles:
+      example:
+        cmHandles:
+        - my-cm-handle1
+        - my-cm-handle2
+        - my-cm-handle3
+        moduleSetTag: my-module-set-tag
+      properties:
+        cmHandles:
+          example:
+          - my-cm-handle1
+          - my-cm-handle2
+          - my-cm-handle3
+          items:
+            type: string
+          type: array
+        moduleSetTag:
+          example: my-module-set-tag
+          type: string
+      required:
+      - cmHandles
+      type: object
     ErrorMessage:
       properties:
         status:
@@ -376,6 +406,10 @@ components:
             $ref: '#/components/schemas/CmHandlerRegistrationErrorResponse'
           type: array
         failedRemovedCmHandles:
+          items:
+            $ref: '#/components/schemas/CmHandlerRegistrationErrorResponse'
+          type: array
+        failedUpgradeCmHandles:
           items:
             $ref: '#/components/schemas/CmHandlerRegistrationErrorResponse'
           type: array
