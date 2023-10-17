@@ -133,6 +133,30 @@
       },
       "revId": "79c011f64ddd6098119fdde1bbde0cfddb1ffaff",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9df49470_dedf73e8",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/cmsubscriptionmerge/cm-subscription-merge-ncmp-out-event-schema-1.0.0.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-10-17T09:50:17Z",
+      "side": 1,
+      "message": "I just checked our discussion page and they are marked as optional over thr.\nSo if nothing is present ( lets say in the accepted-targets ) then the attribute ( accepted-target ) will not be present in the outcome message.",
+      "parentUuid": "7cb3f037_22093898",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 27
+      },
+      "revId": "79c011f64ddd6098119fdde1bbde0cfddb1ffaff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
