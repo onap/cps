@@ -21,6 +21,16 @@
 
 package org.onap.cps.ncmp.rest.exceptions
 
+import static org.springframework.http.HttpStatus.BAD_GATEWAY
+import static org.springframework.http.HttpStatus.BAD_REQUEST
+import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
+import static org.springframework.http.HttpStatus.NOT_FOUND
+import static org.springframework.http.HttpStatus.CONFLICT
+import static org.onap.cps.ncmp.rest.exceptions.NetworkCmProxyRestExceptionHandlerSpec.ApiType.NCMP
+import static org.onap.cps.ncmp.rest.exceptions.NetworkCmProxyRestExceptionHandlerSpec.ApiType.NCMPINVENTORY
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
+
 import groovy.json.JsonSlurper
 import org.mapstruct.factory.Mappers
 import org.onap.cps.TestUtils
@@ -44,17 +54,10 @@ import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
-import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Shared
 import spock.lang.Specification
-
-import static org.onap.cps.ncmp.rest.exceptions.NetworkCmProxyRestExceptionHandlerSpec.ApiType.NCMP
-import static org.onap.cps.ncmp.rest.exceptions.NetworkCmProxyRestExceptionHandlerSpec.ApiType.NCMPINVENTORY
-import static org.springframework.http.HttpStatus.*
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 
 @WebMvcTest
 class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
@@ -142,7 +145,7 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
         when: 'the DMI request is executed'
             def response = performTestRequest(NCMP)
         then: 'NCMP service responds with 502 Bad Gateway status'
-            response.status == HttpStatus.BAD_GATEWAY.value()
+            response.status == BAD_GATEWAY.value()
         and: 'the NCMP response also contains the original DMI response details'
             response.contentAsString.contains('400')
             response.contentAsString.contains('Bad Request from DMI')
