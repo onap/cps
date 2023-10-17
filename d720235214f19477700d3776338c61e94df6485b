@@ -16,6 +16,167 @@
       "message": "recheck",
       "revId": "d720235214f19477700d3776338c61e94df6485b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b5f26d2_913c5e97",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-17T17:31:42Z",
+      "side": 1,
+      "message": "as diccussed with Halil and Priyank this should be a normal Map",
+      "range": {
+        "startLine": 102,
+        "startChar": 18,
+        "endLine": 102,
+        "endChar": 19
+      },
+      "revId": "d720235214f19477700d3776338c61e94df6485b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2db0ae3_f338651d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 488,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-17T17:31:42Z",
+      "side": 1,
+      "message": "always use \u0027constants\u0027 on left with .equals() to prevent NPE issue\nif (\"NONE\".equals(....))\n\nactually why are you comparing?!the JSON should contain valid options\n\nSo you should convert ANY string to eany eum using .valueOf() method. \nneed to think about invalid options ie possibly catch an exception durign this conversion and set it to \u0027NONE\u0027\n\nPS\u003e Make suer to unit test all these variations! (you can easily test a private method in Groovy to this...",
+      "range": {
+        "startLine": 488,
+        "startChar": 16,
+        "endLine": 488,
+        "endChar": 79
+      },
+      "revId": "d720235214f19477700d3776338c61e94df6485b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fefd70b6_88bebcc5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 490,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-17T17:31:42Z",
+      "side": 1,
+      "message": "no need for else",
+      "range": {
+        "startLine": 490,
+        "startChar": 14,
+        "endLine": 490,
+        "endChar": 20
+      },
+      "revId": "d720235214f19477700d3776338c61e94df6485b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2de67b26_49128b2e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-17T17:31:42Z",
+      "side": 1,
+      "message": "else not needed",
+      "range": {
+        "startLine": 493,
+        "startChar": 11,
+        "endLine": 493,
+        "endChar": 16
+      },
+      "revId": "d720235214f19477700d3776338c61e94df6485b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "355c1b3a_75515388",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-17T17:31:42Z",
+      "side": 1,
+      "message": "when using Map you no longer need to mock btu can more easily test this use groovy Maps mySampleMap \u003d [k1:123, k2.456] or [\u0027key with space\u0027:] etc.",
+      "range": {
+        "startLine": 69,
+        "startChar": 36,
+        "endLine": 69,
+        "endChar": 66
+      },
+      "revId": "d720235214f19477700d3776338c61e94df6485b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efcd6bc2_20669ef0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-17T17:31:42Z",
+      "side": 1,
+      "message": "if you are only checking interactions you coudl use a stub. Still (teh content) of a real map could eb asserted heer too",
+      "range": {
+        "startLine": 180,
+        "startChar": 16,
+        "endLine": 180,
+        "endChar": 77
+      },
+      "revId": "d720235214f19477700d3776338c61e94df6485b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "626c13f8_b6edaece",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-17T17:31:42Z",
+      "side": 1,
+      "message": "Map, like previous comments",
+      "range": {
+        "startLine": 79,
+        "startChar": 41,
+        "endLine": 79,
+        "endChar": 42
+      },
+      "revId": "d720235214f19477700d3776338c61e94df6485b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
