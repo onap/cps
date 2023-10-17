@@ -16,6 +16,24 @@
       "message": "Change /schemas/cmsubscriptionmerge/ to /schemas/cmsubscription/",
       "revId": "c97c20c6ec95c48c87a3790ec48f6755f36adb83",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c81ff62_2e072f0b",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/cmsubscriptionmerge/cm-subscription-dmi-in-event-schema-1.0.0.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-10-17T13:15:46Z",
+      "side": 1,
+      "message": "we already have that \"cmsubscription\" folder.\nFor now we can have \"cmsubscriptiomerge\" and when later we remove the old code then we can rename it.\nAgree?",
+      "parentUuid": "111eb20c_f55b589c",
+      "revId": "c97c20c6ec95c48c87a3790ec48f6755f36adb83",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
