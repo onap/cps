@@ -1,0 +1,251 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21ff5799_91b872c9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-17T17:05:56Z",
+      "side": 1,
+      "message": "some comment below, the test really need to be described betert in PO speak, I given detailed example how to do that below.\n\nLooking at the code coverage report, there are some gaps related to the new code that easily can be tested\nI am using relative links which contain class and line#:\n \njacoco-ut/org.onap.cps.ncmp.api.impl.inventory.sync/SyncUtils.java.html#L173\njacoco-ut/org.onap.cps.ncmp.api.impl.inventory.sync/ModuleSyncService.java.html#L161 (1 branch missing)\njacoco-ut/org.onap.cps.ncmp.api.impl.inventory.sync/ModuleSyncTasks.java.html#L121",
+      "revId": "0f2e76cbd819ebd3d86554c062e74c70abdb2dbe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ccdfd54_e192c232",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 483,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-17T17:05:56Z",
+      "side": 1,
+      "message": "this method is upgrade specific but the name doesn\u0027t reflect that.\nsuggestion: prepareAndGetCmHandleUpgradeResponses\n\nAlso if possible keep related private message (especially if they are only used once) together and in the logical order. eg. move tis method to just above upgradeCmHandles)",
+      "range": {
+        "startLine": 483,
+        "startChar": 47,
+        "endLine": 483,
+        "endChar": 89
+      },
+      "revId": "0f2e76cbd819ebd3d86554c062e74c70abdb2dbe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00530fa1_90bd171e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-17T17:05:56Z",
+      "side": 1,
+      "message": "we never discussed the order but I think it shoudl be last. and you shoudl test that. But to test order you need to use \u0027then\u0027 instead of \u0027and (on line 95)",
+      "range": {
+        "startLine": 74,
+        "startChar": 92,
+        "endLine": 74,
+        "endChar": 103
+      },
+      "revId": "0f2e76cbd819ebd3d86554c062e74c70abdb2dbe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a94abe10_6dd14e8a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-17T17:05:56Z",
+      "side": 1,
+      "message": "then",
+      "range": {
+        "startLine": 95,
+        "startChar": 8,
+        "endLine": 95,
+        "endChar": 11
+      },
+      "revId": "0f2e76cbd819ebd3d86554c062e74c70abdb2dbe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af60c71d_0137c09d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-17T17:05:56Z",
+      "side": 1,
+      "message": "no scenarios (no table, not needed I assume)",
+      "range": {
+        "startLine": 89,
+        "startChar": 48,
+        "endLine": 89,
+        "endChar": 62
+      },
+      "revId": "0f2e76cbd819ebd3d86554c062e74c70abdb2dbe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af649655_5354673e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-17T17:05:56Z",
+      "side": 1,
+      "message": "this is almost literal code. A better PO-type description would be:\n\u0027a cm handle that is locked for upgrade\u0027",
+      "range": {
+        "startLine": 90,
+        "startChar": 28,
+        "endLine": 90,
+        "endChar": 62
+      },
+      "revId": "0f2e76cbd819ebd3d86554c062e74c70abdb2dbe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8cd7d66_4ca97ff4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-17T17:05:56Z",
+      "side": 1,
+      "message": "not \u0027some\u0027 as it is needed/used later (line# 102)!\nsuggestion: targetModuleSetTag",
+      "range": {
+        "startLine": 95,
+        "startChar": 125,
+        "endLine": 95,
+        "endChar": 129
+      },
+      "revId": "0f2e76cbd819ebd3d86554c062e74c70abdb2dbe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe585346_ff7fc0ae",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-17T17:05:56Z",
+      "side": 1,
+      "message": "the module service",
+      "range": {
+        "startLine": 96,
+        "startChar": 14,
+        "endLine": 96,
+        "endChar": 28
+      },
+      "revId": "0f2e76cbd819ebd3d86554c062e74c70abdb2dbe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34fe94d6_b9594c22",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-17T17:05:56Z",
+      "side": 1,
+      "message": "I would combine this with the first (given) block\ngiven: \u0027a cm handle that is ready but locked for upgrade\u0027",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 93
+      },
+      "revId": "0f2e76cbd819ebd3d86554c062e74c70abdb2dbe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01a408cf_e254fbe9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-17T17:05:56Z",
+      "side": 1,
+      "message": "a cm handle with the same moduleSetTag can be found in the registry",
+      "range": {
+        "startLine": 101,
+        "startChar": 14,
+        "endLine": 101,
+        "endChar": 60
+      },
+      "revId": "0f2e76cbd819ebd3d86554c062e74c70abdb2dbe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca9eacf5_36eaea19",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-17T17:05:56Z",
+      "side": 1,
+      "message": "the upgrade is delegated to the module service (with the correct parameters)",
+      "range": {
+        "startLine": 106,
+        "startChar": 15,
+        "endLine": 106,
+        "endChar": 80
+      },
+      "revId": "0f2e76cbd819ebd3d86554c062e74c70abdb2dbe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
