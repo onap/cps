@@ -169,6 +169,30 @@
       },
       "revId": "500134c9c745eeda707e5738a5a699c69bb899c6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "11cae599_f399d4d3",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/CmDataSubscriptionsPerfTest.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-17T13:17:03Z",
+      "side": 1,
+      "message": "OK, agreed. I will +2 and merge this now",
+      "parentUuid": "422cda7c_ee964616",
+      "range": {
+        "startLine": 81,
+        "startChar": 12,
+        "endLine": 81,
+        "endChar": 89
+      },
+      "revId": "500134c9c745eeda707e5738a5a699c69bb899c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
