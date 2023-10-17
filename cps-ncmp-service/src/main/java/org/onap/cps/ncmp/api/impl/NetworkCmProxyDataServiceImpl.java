@@ -99,7 +99,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private final LcmEventsCmHandleStateHandler lcmEventsCmHandleStateHandler;
     private final CpsDataService cpsDataService;
     private final IMap<String, Object> moduleSyncStartedOnCmHandles;
-    private final Map<String, TrustLevel> trustLevelPerDmiPlugin;
+    private final IMap<String, TrustLevel> trustLevelPerCmHandle;
 
     @Override
     public DmiPluginRegistrationResponse updateDmiRegistrationAndSyncModule(
@@ -113,6 +113,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         }
 
         if (!dmiPluginRegistration.getCreatedCmHandles().isEmpty()) {
+            setTrustLevelPerCmHandle(dmiPluginRegistration);
             dmiPluginRegistrationResponse.setCreatedCmHandles(
                     parseAndProcessCreatedCmHandlesInRegistration(dmiPluginRegistration));
         }
@@ -126,8 +127,6 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             dmiPluginRegistrationResponse.setUpgradedCmHandles(
                     parseAndProcessUpgradedCmHandlesInRegistration(dmiPluginRegistration));
         }
-
-        setTrustLevelPerDmiPlugin(dmiPluginRegistration);
 
         return dmiPluginRegistrationResponse;
     }
@@ -478,11 +477,27 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         return cmHandleStatePerCmHandle.keySet().stream().map(YangModelCmHandle::getId).toList();
     }
 
-    private void setTrustLevelPerDmiPlugin(final DmiPluginRegistration dmiPluginRegistration) {
+    private void setTrustLevelPerCmHandle(final DmiPluginRegistration dmiPluginRegistration) {
         if (DmiPluginRegistration.isNullEmptyOrBlank(dmiPluginRegistration.getDmiDataPlugin())) {
-            trustLevelPerDmiPlugin.put(dmiPluginRegistration.getDmiPlugin(), TrustLevel.COMPLETE);
+            for (final NcmpServiceCmHandle cmHandle: dmiPluginRegistration.getCreatedCmHandles()) {
+                trustLevelPerCmHandle.put(cmHandle.getCmHandleId(), getTrustLevel(cmHandle));
+            }
         } else {
-            trustLevelPerDmiPlugin.put(dmiPluginRegistration.getDmiDataPlugin(), TrustLevel.COMPLETE);
+            for (final NcmpServiceCmHandle cmHandle: dmiPluginRegistration.getCreatedCmHandles()) {
+                trustLevelPerCmHandle.put(cmHandle.getCmHandleId(), getTrustLevel(cmHandle));
+            }
+        }
+    }
+
+    private TrustLevel getTrustLevel(final NcmpServiceCmHandle cmHandle) {
+        if (cmHandle.getPublicProperties().containsKey("trustLevel")) {
+            if (cmHandle.getPublicProperties().get("trustLevel").equals("NONE")) {
+                return TrustLevel.NONE;
+            } else {
+                return TrustLevel.COMPLETE;
+            }
+        } else {
+            return TrustLevel.COMPLETE;
         }
     }
 
