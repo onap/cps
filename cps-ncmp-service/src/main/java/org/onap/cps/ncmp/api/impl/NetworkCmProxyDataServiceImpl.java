@@ -126,9 +126,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             dmiPluginRegistrationResponse.setUpgradedCmHandles(
                     parseAndProcessUpgradedCmHandlesInRegistration(dmiPluginRegistration));
         }
-
         setTrustLevelPerDmiPlugin(dmiPluginRegistration);
-
         return dmiPluginRegistrationResponse;
     }
 
@@ -389,11 +387,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             }
         });
 
-        final List<CmHandleRegistrationResponse> cmHandleRegistrationResponses
-                = upgradeCmHandles(cmHandleStatePerCmHandle);
-        cmHandleRegistrationResponses.addAll(CmHandleRegistrationResponse.createFailureResponses(notReadyCmHandles,
-                CM_HANDLES_NOT_READY));
-        return cmHandleRegistrationResponses;
+        return prepareAndGetCmHandleRegistrationResponses(cmHandleStatePerCmHandle, notReadyCmHandles);
     }
 
     private CmHandleRegistrationResponse deleteCmHandleAndGetCmHandleRegistrationResponse(final String cmHandleId) {
@@ -484,6 +478,16 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         } else {
             trustLevelPerDmiPlugin.put(dmiPluginRegistration.getDmiDataPlugin(), TrustLevel.COMPLETE);
         }
+    }
+
+    private List<CmHandleRegistrationResponse> prepareAndGetCmHandleRegistrationResponses(final Map<YangModelCmHandle,
+            CmHandleState> cmHandleStatePerCmHandle, final Collection<String> notReadyCmHandles) {
+        final List<CmHandleRegistrationResponse> cmHandleRegistrationResponses
+                = upgradeCmHandles(cmHandleStatePerCmHandle);
+        final List<CmHandleRegistrationResponse> failedCmHandleRegistrationResponses
+                = CmHandleRegistrationResponse.createFailureResponses(notReadyCmHandles, CM_HANDLES_NOT_READY);
+        failedCmHandleRegistrationResponses.forEach(cmHandleRegistrationResponses::add);
+        return cmHandleRegistrationResponses;
     }
 
 }

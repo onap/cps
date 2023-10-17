@@ -191,7 +191,6 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
             response.status == HttpStatus.OK.value()
         and: 'the response body is empty'
             response.getContentAsString() == ''
-
     }
 
     def 'DMI Registration Error Handling: #scenario.'() {
