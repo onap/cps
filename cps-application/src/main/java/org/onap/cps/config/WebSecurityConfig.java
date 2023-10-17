@@ -27,6 +27,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
@@ -76,20 +77,19 @@ public class WebSecurityConfig {
     @SuppressWarnings("squid:S4502")
     public SecurityFilterChain filterChain(final HttpSecurity http) throws Exception {
         http
-                .httpBasic()
-                .and()
-                .authorizeHttpRequests()
-                .requestMatchers(permitUris).permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .csrf().disable();
+                .httpBasic(httpBasicCustomizer -> {})
+                .authorizeHttpRequests(authorizeHttpRequestsCustomizer -> {
+                    authorizeHttpRequestsCustomizer.requestMatchers(permitUris).permitAll();
+                    authorizeHttpRequestsCustomizer.anyRequest().authenticated();
+                })
+                .csrf(AbstractHttpConfigurer::disable);
         return http.build();
     }
 
     /**
      * In memory user authentication details.
      *
-     * @return in memory authetication
+     * @return in memory authentication
      */
     @Bean
     public InMemoryUserDetailsManager userDetailsService() {
