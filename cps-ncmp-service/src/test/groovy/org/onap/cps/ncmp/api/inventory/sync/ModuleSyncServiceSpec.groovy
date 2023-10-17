@@ -20,11 +20,15 @@
 
 package org.onap.cps.ncmp.api.inventory.sync
 
-import org.onap.cps.spi.FetchDescendantsOption
-
+import static org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory.LOCKED_MISBEHAVING
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
 import static org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory.MODULE_UPGRADE
 
+import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
+import org.onap.cps.spi.FetchDescendantsOption
+import org.onap.cps.spi.model.DataNode
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
@@ -55,13 +59,12 @@ class ModuleSyncServiceSpec extends Specification {
     def expectedDataspaceName = NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
 
     def 'Sync model for a (new) cm handle with #scenario'() {
-        given: 'a cm handle having lock reason : MODULE_UPGRADE'
+        given: 'a cm handle'
             def ncmpServiceCmHandle = new NcmpServiceCmHandle()
-            ncmpServiceCmHandle.setCompositeState(new CompositeStateBuilder()
-                .withLockReason(MODULE_UPGRADE, 'new moduleSetTag: someModuleSetTag').build())
+            ncmpServiceCmHandle.setCompositeState(new CompositeStateBuilder().build())
             def dmiServiceName = 'some service name'
             ncmpServiceCmHandle.cmHandleId = 'cmHandleId-1'
-            def yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle(dmiServiceName, '', '', ncmpServiceCmHandle,'someModuleSetTag')
+            def yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle(dmiServiceName, '', '', ncmpServiceCmHandle,'')
         and: 'DMI operations returns some module references'
             def moduleReferences =  [ new ModuleReference('module1','1'), new ModuleReference('module2','2') ]
             mockDmiModelOperations.getModuleReferences(yangModelCmHandle) >> moduleReferences
@@ -69,9 +72,6 @@ class ModuleSyncServiceSpec extends Specification {
             mockCpsModuleService.getYangResourceModuleReferences(expectedDataspaceName) >> toModuleReference(existingModuleResourcesInCps)
         and: 'DMI-Plugin returns resource(s) for "new" module(s)'
             mockDmiModelOperations.getNewYangResourcesFromDmi(yangModelCmHandle, [new ModuleReference('module1', '1')]) >> newModuleNameContentToMap
-        and: 'empty data node list is returned by cps path a query'
-        mockCmHandleQueries.queryNcmpRegistryByCpsPath("//cm-handles[@module-set-tag='someModuleSetTag']",
-                FetchDescendantsOption.OMIT_DESCENDANTS) >> Collections.emptyList()
         when: 'module sync is triggered'
             mockCpsModuleService.identifyNewModuleReferences(moduleReferences) >> toModuleReference(identifiedNewModuleReferences)
             objectUnderTest.syncAndCreateOrUpgradeSchemaSetAndAnchor(yangModelCmHandle)
@@ -86,7 +86,27 @@ class ModuleSyncServiceSpec extends Specification {
             'no new module'      | [['module1' : '1'], ['module2' : '2']] | []                            | [:]
     }
 
-    def 'Delete Schema Set for CmHandle' () {
+    def 'upgrade model for a existing cm handle'() {
+        given: 'a cm handle that is ready but locked for upgrade'
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle()
+            ncmpServiceCmHandle.setCompositeState(new CompositeStateBuilder()
+                .withLockReason(MODULE_UPGRADE, 'new moduleSetTag: targetModuleSetTag').build())
+            ncmpServiceCmHandle.setCmHandleId('cmHandleId-1')
+            def yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle('some service name', '', '', ncmpServiceCmHandle, 'targetModuleSetTag')
+            mockCmHandleQueries.cmHandleHasState('cmHandleId-1', CmHandleState.READY) >> true
+        and: 'the module service returns some module references'
+            def moduleReferences = [new ModuleReference('module1', '1'), new ModuleReference('module2', '2')]
+            mockCpsModuleService.getYangResourcesModuleReferences(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR) >> moduleReferences
+        and: 'a cm handle with the same moduleSetTag can be found in the registry'
+            mockCmHandleQueries.queryNcmpRegistryByCpsPath("//cm-handles[@module-set-tag='targetModuleSetTag']",
+                FetchDescendantsOption.OMIT_DESCENDANTS) >> [new DataNode(xpath: '/dmi-registry/cm-handles[@id=\'cmHandleId-1\']', leaves: ['id': 'cmHandleId-1', 'cm-handle-state': 'READY'])]
+        when: 'module upgrade is triggered'
+            objectUnderTest.syncAndCreateOrUpgradeSchemaSetAndAnchor(yangModelCmHandle)
+        then: 'the upgrade is delegated to the module service (with the correct parameters)'
+            1 * mockCpsModuleService.createOrUpgradeSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'cmHandleId-1', Collections.emptyMap(), moduleReferences)
+    }
+
+    def 'Delete Schema Set for CmHandle'() {
         when: 'delete schema set if exists is called'
             objectUnderTest.deleteSchemaSetIfExists('some-cmhandle-id')
         then: 'the module service is invoked to delete the correct schema set'
@@ -111,6 +131,16 @@ class ModuleSyncServiceSpec extends Specification {
         then: 'an exception is thrown'
             def result = thrown(UnsupportedOperationException)
             result == unsupportedOperationException
+    }
+
+    def 'Extract module set tag with #scenario'() {
+        expect: 'the module set tag is extracted correctly'
+            assert expectedModuleSetTag == objectUnderTest.extractModuleSetTag(new CompositeStateBuilder().withLockReason(lockReason, 'new moduleSetTag: targetModuleSetTag').build())
+        where: 'the following parameters are used'
+            scenario                    | lockReason         || expectedModuleSetTag
+            'locked reason is null'     | null               || ''
+            'locked for other reason'   | LOCKED_MISBEHAVING || ''
+            'locked for module upgrade' | MODULE_UPGRADE     || 'targetModuleSetTag'
     }
 
     def toModuleReference(moduleReferenceAsMap) {
