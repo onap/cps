@@ -16,6 +16,98 @@
       "message": "recheck",
       "revId": "ab2a1620dcdbe91517fb37ee60d3d694cee2b1be",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e39c865e_d054ba1d",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/cmsubscriptionmerge/cm-subscription-dmi-in-event-schema-1.0.0.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-17T17:20:00Z",
+      "side": 1,
+      "message": "NB: redundant",
+      "range": {
+        "startLine": 22,
+        "startChar": 22,
+        "endLine": 22,
+        "endChar": 49
+      },
+      "revId": "ab2a1620dcdbe91517fb37ee60d3d694cee2b1be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5bd1ea3_770e8631",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/cmsubscriptionmerge/cm-subscription-dmi-out-event-schema-1.0.0.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-17T17:20:00Z",
+      "side": 1,
+      "message": "NB: I think this is redundant \u0027data\u0027 is predefined and part of a now established pattern for event structures",
+      "range": {
+        "startLine": 23,
+        "startChar": 22,
+        "endLine": 23,
+        "endChar": 49
+      },
+      "revId": "ab2a1620dcdbe91517fb37ee60d3d694cee2b1be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40d04b23_3e648c9c",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/cmsubscriptionmerge/cm-subscription-ncmp-in-event-schema-1.0.0.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-17T17:20:00Z",
+      "side": 1,
+      "message": "NB: I noticed a inconsistency in descriptions:\nsome start with capital letter and some dont. Maybe find out what best practice is and try to be consistent in new/modified schemas",
+      "range": {
+        "startLine": 18,
+        "startChar": 30,
+        "endLine": 18,
+        "endChar": 31
+      },
+      "revId": "ab2a1620dcdbe91517fb37ee60d3d694cee2b1be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73f2da80_277be8b8",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/cmsubscriptionmerge/cm-subscription-ncmp-out-event-schema-1.0.0.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-17T17:20:00Z",
+      "side": 1,
+      "message": "NB: not needed",
+      "range": {
+        "startLine": 23,
+        "startChar": 22,
+        "endLine": 23,
+        "endChar": 49
+      },
+      "revId": "ab2a1620dcdbe91517fb37ee60d3d694cee2b1be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
