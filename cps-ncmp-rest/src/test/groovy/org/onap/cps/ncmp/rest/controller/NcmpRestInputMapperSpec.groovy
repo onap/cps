@@ -21,6 +21,7 @@
 package org.onap.cps.ncmp.rest.controller
 
 import org.mapstruct.factory.Mappers
+import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.rest.model.CmHandleQueryParameters
 import org.onap.cps.ncmp.rest.model.ConditionProperties
@@ -40,7 +41,7 @@ class NcmpRestInputMapperSpec extends Specification {
     def 'Convert a created REST CM Handle Input to an NCMP Service CM Handle with #scenario'() {
         given: 'a rest cm handle input'
             def inputRestCmHandle = new RestInputCmHandle(cmHandle : 'example-id', cmHandleProperties: dmiProperties,
-                publicCmHandleProperties: publicProperties)
+                publicCmHandleProperties: publicProperties, trustLevel: registrationTrustLevel)
             def restDmiPluginRegistration = new RestDmiPluginRegistration(
                 createdCmHandles: [inputRestCmHandle])
         when: 'to plugin dmi registration is called'
@@ -52,10 +53,11 @@ class NcmpRestInputMapperSpec extends Specification {
         and: '(empty) properties are converted correctly'
             result.createdCmHandles[0].dmiProperties == expectedDmiProperties
             result.createdCmHandles[0].publicProperties == expectedPublicProperties
+            result.createdCmHandles[0].registrationTrustLevel == expectedRegistrationTrustLevel
         where: 'the following parameters are used'
-            scenario                    | dmiProperties                            | publicProperties                                         || expectedDmiProperties                     | expectedPublicProperties
-            'dmi and public properties' | ['Property-Example': 'example property'] | ['Public-Property-Example': 'public example property']   || ['Property-Example': 'example property']  | ['Public-Property-Example': 'public example property']
-            'no properties'             | null                                     | null                                                     || [:]                                       | [:]
+            scenario                    | dmiProperties                            | publicProperties                                       | registrationTrustLevel || expectedDmiProperties                    | expectedPublicProperties                               | expectedRegistrationTrustLevel
+            'dmi and public properties' | ['Property-Example': 'example property'] | ['Public-Property-Example': 'public example property'] | 'COMPLETE'             || ['Property-Example': 'example property'] | ['Public-Property-Example': 'public example property'] | TrustLevel.COMPLETE
+            'no properties'             | null                                     | null                                                   | null                   || [:]                                      | [:]                                                    | null
     }
 
     def 'Handling empty dmi registration'() {

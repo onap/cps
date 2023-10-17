@@ -56,6 +56,7 @@ public interface NcmpRestInputMapper {
     @Mapping(source = "cmHandle", target = "cmHandleId")
     @Mapping(source = "cmHandleProperties", target = "dmiProperties")
     @Mapping(source = "publicCmHandleProperties", target = "publicProperties")
+    @Mapping(source = "trustLevel", target = "registrationTrustLevel")
     NcmpServiceCmHandle toNcmpServiceCmHandle(final RestInputCmHandle restInputCmHandle);
 
     RestModuleReference toRestModuleReference(
