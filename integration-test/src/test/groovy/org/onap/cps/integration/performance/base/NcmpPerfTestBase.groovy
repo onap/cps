@@ -21,6 +21,7 @@
 package org.onap.cps.integration.performance.base
 
 import java.time.OffsetDateTime
+import org.onap.cps.integration.ResourceMeter
 
 class NcmpPerfTestBase extends PerfTestBase {
 
@@ -35,6 +36,8 @@ class NcmpPerfTestBase extends PerfTestBase {
     def numberOfCmDataSubscribers = 200
     def numberOfFiltersPerCmHandle = 10
     def numberOfCmHandlesPerCmDataSubscription = 200
+
+    ResourceMeter resourceMeter = new ResourceMeter()
 
 // SHORT versions for easier debugging
 //    def subscriberIdPrefix = 'sub'

@@ -20,6 +20,7 @@
 
 package org.onap.cps.integration.performance.ncmp
 
+import org.onap.cps.integration.ResourceMeter
 import java.util.stream.Collectors
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.integration.performance.base.NcmpPerfTestBase
@@ -29,22 +30,23 @@ import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 class CmHandleQueryPerfTest extends NcmpPerfTestBase {
 
     CpsQueryService objectUnderTest
+    ResourceMeter resourceMeter = new ResourceMeter()
 
     def setup() { objectUnderTest = cpsQueryService }
 
     def 'Query CM Handle IDs by a property name and value.'() {
         when: 'a cps-path query on name-value pair is performed (without getting descendants)'
-            stopWatch.start()
+            resourceMeter.start()
             def cpsPath = '//additional-properties[@name="neType" and @value="RadioNode"]/ancestor::cm-handles'
             def dataNodes = objectUnderTest.queryDataNodes(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_ANCHOR, cpsPath, OMIT_DESCENDANTS)
         and: 'the ids of the result are extracted and converted to xpath'
             def xpaths = dataNodes.stream().map(dataNode -> "/dmi-registry/cm-handles[@id='${dataNode.leaves.id}']".toString() ).collect(Collectors.toSet())
         and: 'a single get is executed to get all the parent objects and their descendants'
             def result = cpsDataService.getDataNodesForMultipleXpaths(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_ANCHOR, xpaths, INCLUDE_ALL_DESCENDANTS)
-            stopWatch.stop()
-            def durationInMillis = stopWatch.getTotalTimeMillis()
+            resourceMeter.stop()
+            def durationInMillis = resourceMeter.getTotalTimeMillis()
         then: 'the required operations are performed within 1200 ms'
-            recordAndAssertPerformance("CpsPath Registry attributes Query", 250, durationInMillis)
+            recordAndAssertResourceUsage("CpsPath Registry attributes Query", 250, durationInMillis, 150, resourceMeter.getTotalMemoryUsageInMB())
         and: 'all but 1 (other node) are returned'
             result.size() == 999
         and: 'the tree contains all the expected descendants too'

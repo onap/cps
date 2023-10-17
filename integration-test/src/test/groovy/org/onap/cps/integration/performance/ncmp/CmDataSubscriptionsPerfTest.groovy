@@ -41,18 +41,18 @@ class CmDataSubscriptionsPerfTest extends NcmpPerfTestBase {
 
     def 'Find many subscribers in large dataset.'() {
         when: 'all filters are queried'
-            stopWatch.start()
+            resourceMeter.start()
             def cpsPath = '//filter'
             def result = objectUnderTest.queryDataNodes(NCMP_PERFORMANCE_TEST_DATASPACE, CM_DATA_SUBSCRIPTIONS_ANCHOR, cpsPath, INCLUDE_ALL_DESCENDANTS)
         then: 'got all filter entries'
             result.size() == totalNumberOfEntries
         then: 'find a random subscriptions by iteration (worst case: whole subscription matches previous entries)'
             def matches = querySubscriptionsByIteration(result, -1)
-            stopWatch.stop()
+            resourceMeter.stop()
             matches.size() == numberOfFiltersPerCmHandle * numberOfCmHandlesPerCmDataSubscription
         and: 'query all subscribers within 1 second'
-            def durationInMillis = stopWatch.getTotalTimeMillis()
-            recordAndAssertPerformance("Query all subscribers", 1_000, durationInMillis)
+            def durationInMillis = resourceMeter.getTotalTimeMillis()
+            recordAndAssertResourceUsage("Query all subscribers", 1_000, durationInMillis, 400, resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def 'Worst case subscription update (200x10 matching entries).'() {
@@ -64,7 +64,7 @@ class CmDataSubscriptionsPerfTest extends NcmpPerfTestBase {
         and: 'find all entries for an existing subscriptions'
             def matches = querySubscriptionsByIteration(result, 1)
         when: 'update all subscriptions found'
-            stopWatch.start()
+            resourceMeter.start()
             HashMap<String, List<String>> filterEntriesPerPath = [:]
             matches.each { dataNode, subscribersAsArray ->
                 def updatedSubscribers = createLeafList('subscribers', 1 + numberOfCmDataSubscribers, subscriberIdPrefix)
@@ -89,13 +89,13 @@ class CmDataSubscriptionsPerfTest extends NcmpPerfTestBase {
                 cpsDataService.updateNodeLeaves(NCMP_PERFORMANCE_TEST_DATASPACE, CM_DATA_SUBSCRIPTIONS_ANCHOR, parentPath, json, now)
             }
 
-            stopWatch.stop()
-            def durationInMillis = stopWatch.getTotalTimeMillis()
+            resourceMeter.stop()
+            def durationInMillis = resourceMeter.getTotalTimeMillis()
         then: 'a subscriber has been added to each filter entry'
             def resultAfter = objectUnderTest.queryDataNodes(NCMP_PERFORMANCE_TEST_DATASPACE, CM_DATA_SUBSCRIPTIONS_ANCHOR, cpsPath, INCLUDE_ALL_DESCENDANTS)
             assert resultAfter.collect {it.leaves.subscribers.size()}.sum() == totalNumberOfEntries * (1 + numberOfCmDataSubscribers)
         and: 'update matching subscription within 8 seconds'
-            recordAndAssertPerformance("Update matching subscription", 8_000, durationInMillis)
+            recordAndAssertResourceUsage("Update matching subscription", 8_000, durationInMillis, 400, resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def 'Worst case new subscription (200x10 new entries).'() {
@@ -104,12 +104,12 @@ class CmDataSubscriptionsPerfTest extends NcmpPerfTestBase {
             def filters = '"filters":' + createJsonArray('filter',numberOfFiltersPerCmHandle,'xpath','other_' + xpathPrefix,subscribers)
             def cmHandles = createJsonArray('cm-handle',numberOfCmHandlesPerCmDataSubscription,'id','other' + cmHandlePrefix, filters)
         when: 'Insert a new subscription'
-            stopWatch.start()
+            resourceMeter.start()
             cpsDataService.saveData(NCMP_PERFORMANCE_TEST_DATASPACE, CM_DATA_SUBSCRIPTIONS_ANCHOR, xPathForDataStore1CmHandles, cmHandles, now)
-            stopWatch.stop()
-            def durationInMillis = stopWatch.getTotalTimeMillis()
+            resourceMeter.stop()
+            def durationInMillis = resourceMeter.getTotalTimeMillis()
         then: 'insert new subscription with 1 second'
-            recordAndAssertPerformance("Insert new subscription", 1_000, durationInMillis)
+            recordAndAssertResourceUsage("Insert new subscription", 1_000, durationInMillis, 400,resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def querySubscriptionsByIteration(Collection<DataNode> allSubscriptionsAsDataNodes, targetSubscriptionSequenceNumber) {
@@ -118,7 +118,7 @@ class CmDataSubscriptionsPerfTest extends NcmpPerfTestBase {
             String[] subscribersAsArray = it.leaves.get('subscribers')
             Set<String> subscribersAsSet = new HashSet<>(Arrays.asList(subscribersAsArray))
             def targetSubscriptionId = subscriberIdPrefix + '-' + ( targetSubscriptionSequenceNumber > 0 ? targetSubscriptionSequenceNumber
-                                                                                                     : 1 + random.nextInt(numberOfCmDataSubscribers) )
+                    : 1 + random.nextInt(numberOfCmDataSubscribers) )
             if (subscribersAsSet.contains(targetSubscriptionId)) {
                 matches.put(it, subscribersAsArray)
             }

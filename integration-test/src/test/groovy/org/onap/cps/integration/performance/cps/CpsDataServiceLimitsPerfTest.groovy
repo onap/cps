@@ -41,15 +41,15 @@ class CpsDataServiceLimitsPerfTest extends CpsPerfTestBase {
             def parentNodeData = '{"bookstore": { "categories": [{ "code": 1, "name": "Test", "books" : [] }] }}'
             cpsDataService.saveData(CPS_PERFORMANCE_TEST_DATASPACE, 'limitsAnchor', parentNodeData, OffsetDateTime.now())
         when: '33,000 books are added'
-            stopWatch.start()
+            resourceMeter.start()
             for (int i = 1; i <= 33_000; i+=100) {
                 def booksData = '{"books":[' + (i..<i+100).collect {'{ "title": "' + it + '" }' }.join(',') + ']}'
                 cpsDataService.saveData(CPS_PERFORMANCE_TEST_DATASPACE, 'limitsAnchor', '/bookstore/categories[@code=1]', booksData, OffsetDateTime.now())
             }
-            stopWatch.stop()
-            def durationInMillis = stopWatch.getTotalTimeMillis()
+            resourceMeter.stop()
+            def durationInMillis = resourceMeter.getTotalTimeMillis()
         then: 'the operation completes within 25 seconds'
-            recordAndAssertPerformance("Creating 33,000 books", TimeUnit.SECONDS.toMillis(25), durationInMillis)
+            recordAndAssertResourceUsage("Creating 33,000 books", TimeUnit.SECONDS.toMillis(25), durationInMillis, 200, resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def 'Get data nodes from multiple xpaths 32K (2^15) limit exceeded.'() {
@@ -84,13 +84,13 @@ class CpsDataServiceLimitsPerfTest extends CpsPerfTestBase {
 
     def 'Clean up test data.'() {
         when:
-            stopWatch.start()
+            resourceMeter.start()
             cpsDataService.deleteDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, 'limitsAnchor', OffsetDateTime.now())
             cpsAdminService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, 'limitsAnchor')
-            stopWatch.stop()
-            def durationInMillis = stopWatch.getTotalTimeMillis()
+            resourceMeter.stop()
+            def durationInMillis = resourceMeter.getTotalTimeMillis()
         then: 'test data is deleted in 1 second'
-            recordAndAssertPerformance("Deleting test data", TimeUnit.SECONDS.toMillis(1), durationInMillis)
+            recordAndAssertResourceUsage("Deleting test data", TimeUnit.SECONDS.toMillis(1), durationInMillis, 200, resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def countDataNodes() {
