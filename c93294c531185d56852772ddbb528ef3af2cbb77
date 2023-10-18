@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2863cb9e_ae0b6e4b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-10-18T09:00:13Z",
+      "side": 1,
+      "message": "looks fine to me.",
+      "revId": "c93294c531185d56852772ddbb528ef3af2cbb77",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ad31c63_2789f758",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/EventsPublisher.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-10-18T09:00:13Z",
+      "side": 1,
+      "message": "maybe when we work on transforming legacy events to cloud events then we can mark this forRemoval.\nAnd later remove it in the next release.\nOtherwise results in Sonar violations.",
+      "revId": "c93294c531185d56852772ddbb528ef3af2cbb77",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
