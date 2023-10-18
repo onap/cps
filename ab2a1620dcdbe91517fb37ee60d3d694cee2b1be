@@ -221,6 +221,30 @@
       },
       "revId": "ab2a1620dcdbe91517fb37ee60d3d694cee2b1be",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ea18cac_e0a9ee0c",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/cmsubscriptionmerge/cm-subscription-ncmp-out-event-schema-1.0.0.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-18T15:43:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73f2da80_277be8b8",
+      "range": {
+        "startLine": 23,
+        "startChar": 22,
+        "endLine": 23,
+        "endChar": 49
+      },
+      "revId": "ab2a1620dcdbe91517fb37ee60d3d694cee2b1be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
