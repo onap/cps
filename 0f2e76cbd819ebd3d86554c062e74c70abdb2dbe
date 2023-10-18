@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "006eaf8e_f97c5a15",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 483,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-18T14:38:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ccdfd54_e192c232",
+      "range": {
+        "startLine": 483,
+        "startChar": 47,
+        "endLine": 483,
+        "endChar": 89
+      },
+      "revId": "0f2e76cbd819ebd3d86554c062e74c70abdb2dbe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "00530fa1_90bd171e",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-10-17T17:05:56Z",
       "side": 1,
       "message": "we never discussed the order but I think it shoudl be last. and you shoudl test that. But to test order you need to use \u0027then\u0027 instead of \u0027and (on line 95)",
+      "range": {
+        "startLine": 74,
+        "startChar": 92,
+        "endLine": 74,
+        "endChar": 103
+      },
+      "revId": "0f2e76cbd819ebd3d86554c062e74c70abdb2dbe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4d1c74c_eaf4134b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-18T14:38:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "00530fa1_90bd171e",
       "range": {
         "startLine": 74,
         "startChar": 92,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a0965d5_5d89593f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-18T14:38:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a94abe10_6dd14e8a",
+      "range": {
+        "startLine": 95,
+        "startChar": 8,
+        "endLine": 95,
+        "endChar": 11
+      },
+      "revId": "0f2e76cbd819ebd3d86554c062e74c70abdb2dbe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "af60c71d_0137c09d",
@@ -100,6 +172,30 @@
       "writtenOn": "2023-10-17T17:05:56Z",
       "side": 1,
       "message": "no scenarios (no table, not needed I assume)",
+      "range": {
+        "startLine": 89,
+        "startChar": 48,
+        "endLine": 89,
+        "endChar": 62
+      },
+      "revId": "0f2e76cbd819ebd3d86554c062e74c70abdb2dbe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "41dd6d0e_56f45e60",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-18T14:38:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af60c71d_0137c09d",
       "range": {
         "startLine": 89,
         "startChar": 48,
@@ -133,6 +229,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "efeab62f_5905995b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-18T14:38:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af649655_5354673e",
+      "range": {
+        "startLine": 90,
+        "startChar": 28,
+        "endLine": 90,
+        "endChar": 62
+      },
+      "revId": "0f2e76cbd819ebd3d86554c062e74c70abdb2dbe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b8cd7d66_4ca97ff4",
@@ -146,6 +266,30 @@
       "writtenOn": "2023-10-17T17:05:56Z",
       "side": 1,
       "message": "not \u0027some\u0027 as it is needed/used later (line# 102)!\nsuggestion: targetModuleSetTag",
+      "range": {
+        "startLine": 95,
+        "startChar": 125,
+        "endLine": 95,
+        "endChar": 129
+      },
+      "revId": "0f2e76cbd819ebd3d86554c062e74c70abdb2dbe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbd9f33f_212bfa0e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-18T14:38:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b8cd7d66_4ca97ff4",
       "range": {
         "startLine": 95,
         "startChar": 125,
@@ -179,6 +323,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6a5b78d_bbcd2381",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-18T14:38:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fe585346_ff7fc0ae",
+      "range": {
+        "startLine": 96,
+        "startChar": 14,
+        "endLine": 96,
+        "endChar": 28
+      },
+      "revId": "0f2e76cbd819ebd3d86554c062e74c70abdb2dbe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "34fe94d6_b9594c22",
@@ -192,6 +360,30 @@
       "writtenOn": "2023-10-17T17:05:56Z",
       "side": 1,
       "message": "I would combine this with the first (given) block\ngiven: \u0027a cm handle that is ready but locked for upgrade\u0027",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 93
+      },
+      "revId": "0f2e76cbd819ebd3d86554c062e74c70abdb2dbe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb2a199d_605d31e5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-18T14:38:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "34fe94d6_b9594c22",
       "range": {
         "startLine": 99,
         "startChar": 0,
@@ -238,6 +430,30 @@
       "writtenOn": "2023-10-17T17:05:56Z",
       "side": 1,
       "message": "the upgrade is delegated to the module service (with the correct parameters)",
+      "range": {
+        "startLine": 106,
+        "startChar": 15,
+        "endLine": 106,
+        "endChar": 80
+      },
+      "revId": "0f2e76cbd819ebd3d86554c062e74c70abdb2dbe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28b706ea_1404c40d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-18T14:38:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca9eacf5_36eaea19",
       "range": {
         "startLine": 106,
         "startChar": 15,
