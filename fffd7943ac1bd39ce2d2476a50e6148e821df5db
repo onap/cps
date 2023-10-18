@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a7adbf1_9a3be4da",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-18T14:44:51Z",
+      "side": 1,
+      "message": "Looking good, jsut need to add some testware for teh new config and lofic changes.\nOne suggestion see below",
+      "revId": "fffd7943ac1bd39ce2d2476a50e6148e821df5db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d295d05e_abeef377",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-18T14:44:51Z",
+      "side": 1,
+      "message": "used twice now, define as a \u0027cosntant\u0027 in teh class\nprivate static final Map NO_NEW_MODULES...",
+      "range": {
+        "startLine": 170,
+        "startChar": 34,
+        "endLine": 170,
+        "endChar": 47
+      },
+      "revId": "fffd7943ac1bd39ce2d2476a50e6148e821df5db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
