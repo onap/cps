@@ -16,6 +16,161 @@
       "message": "recheck",
       "revId": "be19a29b20e2482c42e9ec9e56b447fd247b4310",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0f264a5_bab64ddd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-19T09:12:56Z",
+      "side": 1,
+      "message": "somehow I didn\u0027t see these tests the last time, they are pretty good. \nJust a few small sugegstions",
+      "revId": "be19a29b20e2482c42e9ec9e56b447fd247b4310",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f5f035c_f1bdc316",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-19T09:12:56Z",
+      "side": 1,
+      "message": "NB: prefer to use static (less lines)",
+      "range": {
+        "startLine": 61,
+        "startChar": 4,
+        "endLine": 61,
+        "endChar": 11
+      },
+      "revId": "be19a29b20e2482c42e9ec9e56b447fd247b4310",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77678f53_89e3ddd0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-19T09:12:56Z",
+      "side": 1,
+      "message": "use camelCase and have better name:",
+      "range": {
+        "startLine": 62,
+        "startChar": 8,
+        "endLine": 62,
+        "endChar": 18
+      },
+      "revId": "be19a29b20e2482c42e9ec9e56b447fd247b4310",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04d4eb48_29e69a23",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-19T09:12:56Z",
+      "side": 1,
+      "message": "[] will do",
+      "range": {
+        "startLine": 93,
+        "startChar": 223,
+        "endLine": 93,
+        "endChar": 246
+      },
+      "revId": "be19a29b20e2482c42e9ec9e56b447fd247b4310",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7ffb03f_5f16a9c1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-19T09:12:56Z",
+      "side": 1,
+      "message": "maybe extract this out as a prdefine sattci varaibel instead of the path e.g.\n\ndef static cmHandleWithModuleSetTag \u003d new...\n     :\ndataNodeList     \n[ cmHandleWithModuelSetTag]",
+      "range": {
+        "startLine": 94,
+        "startChar": 223,
+        "endLine": 94,
+        "endChar": 246
+      },
+      "revId": "be19a29b20e2482c42e9ec9e56b447fd247b4310",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf8093e8_e47f0cb4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-19T09:12:56Z",
+      "side": 1,
+      "message": "this description doesn\u0027t make sense",
+      "range": {
+        "startLine": 94,
+        "startChar": 13,
+        "endLine": 94,
+        "endChar": 31
+      },
+      "revId": "be19a29b20e2482c42e9ec9e56b447fd247b4310",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "195a871e_264ea57f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-19T09:12:56Z",
+      "side": 1,
+      "message": "[] will do",
+      "range": {
+        "startLine": 95,
+        "startChar": 224,
+        "endLine": 95,
+        "endChar": 246
+      },
+      "revId": "be19a29b20e2482c42e9ec9e56b447fd247b4310",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
