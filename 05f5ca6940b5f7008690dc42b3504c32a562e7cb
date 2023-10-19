@@ -1,0 +1,176 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5070be8e_760ade8c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 42
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-10-19T10:55:17Z",
+      "side": 1,
+      "message": "Based on our group review , we discussed to devise a new algorithm ( details are already shared on the chat )",
+      "revId": "05f5ca6940b5f7008690dc42b3504c32a562e7cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dde0c6b1_edfe2657",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-10-19T10:55:17Z",
+      "side": 1,
+      "message": "define a structure in the yaml file.\nAction\n - actionName\n - xpath\n - Map of source\n - Map of target",
+      "range": {
+        "startLine": 179,
+        "startChar": 14,
+        "endLine": 179,
+        "endChar": 39
+      },
+      "revId": "05f5ca6940b5f7008690dc42b3504c32a562e7cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f76a0ddb_d4a6c2cc",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-10-19T10:55:17Z",
+      "side": 1,
+      "message": "maybe extract to a method.\nand validate\nand no need of reassignment.",
+      "range": {
+        "startLine": 226,
+        "startChar": 8,
+        "endLine": 227,
+        "endChar": 120
+      },
+      "revId": "05f5ca6940b5f7008690dc42b3504c32a562e7cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6dbb0d4_0e9f3d33",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-10-19T10:55:17Z",
+      "side": 1,
+      "message": "this check not required.",
+      "range": {
+        "startLine": 229,
+        "startChar": 8,
+        "endLine": 231,
+        "endChar": 9
+      },
+      "revId": "05f5ca6940b5f7008690dc42b3504c32a562e7cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb74a2ca_e2bf0e8a",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-10-19T10:55:17Z",
+      "side": 1,
+      "message": "this check not required.\ncomparing 2 empty nodes.\nthe delta report should show the same.\n\nThe algorithm should be able to handle this.",
+      "range": {
+        "startLine": 237,
+        "startChar": 8,
+        "endLine": 239,
+        "endChar": 9
+      },
+      "revId": "05f5ca6940b5f7008690dc42b3504c32a562e7cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49d4a22e_f06c3cb6",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsDeltaService.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-10-19T10:55:17Z",
+      "side": 1,
+      "message": "if you want it to be spring managed then I would suggest to remove \n@NoArgsConstructor(access \u003d AccessLevel.PRIVATE)\n\nOR\nif you want it to be utility then we should remove the spring @Service annotation.",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 48
+      },
+      "revId": "05f5ca6940b5f7008690dc42b3504c32a562e7cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ccdcb870_05c9c716",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsDeltaService.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-10-19T10:55:17Z",
+      "side": 1,
+      "message": "CpsDeleteServiceImpl\n also create an interface.\n should co-exist with the other services.",
+      "range": {
+        "startLine": 41,
+        "startChar": 13,
+        "endLine": 41,
+        "endChar": 28
+      },
+      "revId": "05f5ca6940b5f7008690dc42b3504c32a562e7cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "374772b0_16546730",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsDeltaService.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-10-19T10:55:17Z",
+      "side": 1,
+      "message": "compare leaves in separate method.\ncompare children in separate method.\n\nThen we just call the methods to make it more readable.",
+      "revId": "05f5ca6940b5f7008690dc42b3504c32a562e7cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
