@@ -272,6 +272,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f48cbb60_b5466250",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-19T11:21:22Z",
+      "side": 1,
+      "message": "I though you added this scenario?!",
+      "parentUuid": "67b4ab9b_63b65d47",
+      "range": {
+        "startLine": 94,
+        "startChar": 13,
+        "endLine": 94,
+        "endChar": 31
+      },
+      "revId": "be19a29b20e2482c42e9ec9e56b447fd247b4310",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "195a871e_264ea57f",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncServiceSpec.groovy",
         "patchSetId": 3
