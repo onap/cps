@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e770c46_02e8134e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2023-10-19T17:46:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ba5c2f8_07698633",
+      "range": {
+        "startLine": 103,
+        "startChar": 40,
+        "endLine": 103,
+        "endChar": 62
+      },
+      "revId": "477522973d8cf000cdfc65feb5eba8369e2e9856",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0aa2a52f_03361ca8",
@@ -71,6 +95,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "47a86a39_407e0993",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/ModuleSetTagCacheConfigSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2023-10-19T17:46:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a5d8199d_a2d96e4d",
+      "range": {
+        "startLine": 36,
+        "startChar": 30,
+        "endLine": 36,
+        "endChar": 55
+      },
+      "revId": "477522973d8cf000cdfc65feb5eba8369e2e9856",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b338e4f6_0ca1df3a",
@@ -84,6 +132,30 @@
       "writtenOn": "2023-10-19T12:07:29Z",
       "side": 1,
       "message": "hazelcast instance name of module set tag is correct",
+      "range": {
+        "startLine": 41,
+        "startChar": 14,
+        "endLine": 41,
+        "endChar": 40
+      },
+      "revId": "477522973d8cf000cdfc65feb5eba8369e2e9856",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "424e2222_8907543b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/ModuleSetTagCacheConfigSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2023-10-19T17:46:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b338e4f6_0ca1df3a",
       "range": {
         "startLine": 41,
         "startChar": 14,
@@ -117,6 +189,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3eb35aa7_5d70b6b4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/ModuleSetTagCacheConfigSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2023-10-19T17:46:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "55d220ca_98ccb3ba",
+      "range": {
+        "startLine": 42,
+        "startChar": 56,
+        "endLine": 42,
+        "endChar": 67
+      },
+      "revId": "477522973d8cf000cdfc65feb5eba8369e2e9856",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "691b1ef6_fde14d13",
@@ -130,6 +226,30 @@
       "writtenOn": "2023-10-19T12:07:29Z",
       "side": 1,
       "message": "NB: of module set tag distributed",
+      "range": {
+        "startLine": 45,
+        "startChar": 24,
+        "endLine": 45,
+        "endChar": 39
+      },
+      "revId": "477522973d8cf000cdfc65feb5eba8369e2e9856",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a354b702_56521d27",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/ModuleSetTagCacheConfigSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2023-10-19T17:46:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "691b1ef6_fde14d13",
       "range": {
         "startLine": 45,
         "startChar": 24,
@@ -163,6 +283,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "32831c44_7b4362d0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/ModuleSetTagCacheConfigSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2023-10-19T17:46:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a7a8ae57_46457a25",
+      "range": {
+        "startLine": 46,
+        "startChar": 7,
+        "endLine": 54,
+        "endChar": 73
+      },
+      "revId": "477522973d8cf000cdfc65feb5eba8369e2e9856",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b8933550_e45789b2",
@@ -186,6 +330,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7bfb73a6_6d913329",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/ModuleSetTagCacheConfigSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2023-10-19T17:46:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b8933550_e45789b2",
+      "range": {
+        "startLine": 57,
+        "startChar": 43,
+        "endLine": 57,
+        "endChar": 65
+      },
+      "revId": "477522973d8cf000cdfc65feb5eba8369e2e9856",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "90296d1e_582a15af",
@@ -199,6 +367,30 @@
       "writtenOn": "2023-10-19T12:07:29Z",
       "side": 1,
       "message": "NB : network config of module set tag cache",
+      "range": {
+        "startLine": 58,
+        "startChar": 16,
+        "endLine": 58,
+        "endChar": 45
+      },
+      "revId": "477522973d8cf000cdfc65feb5eba8369e2e9856",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5bb3a0fe_f1c04037",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/ModuleSetTagCacheConfigSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2023-10-19T17:46:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "90296d1e_582a15af",
       "range": {
         "startLine": 58,
         "startChar": 16,
@@ -255,6 +447,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c38bc74_69fb492f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/ModuleSetTagCacheConfigSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2023-10-19T17:46:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e3a7214_78cbcce8",
+      "range": {
+        "startLine": 60,
+        "startChar": 8,
+        "endLine": 60,
+        "endChar": 12
+      },
+      "revId": "477522973d8cf000cdfc65feb5eba8369e2e9856",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16631f59_86fcf001",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/ModuleSetTagCacheConfigSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2023-10-19T17:46:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "96d42cd7_59a8a037",
+      "range": {
+        "startLine": 60,
+        "startChar": 14,
+        "endLine": 60,
+        "endChar": 32
+      },
+      "revId": "477522973d8cf000cdfc65feb5eba8369e2e9856",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "45e3dd61_4a7f8db4",
@@ -278,6 +518,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "29289a58_4da5bc3b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/ModuleSetTagCacheConfigSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2023-10-19T17:46:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "45e3dd61_4a7f8db4",
+      "range": {
+        "startLine": 65,
+        "startChar": 24,
+        "endLine": 65,
+        "endChar": 30
+      },
+      "revId": "477522973d8cf000cdfc65feb5eba8369e2e9856",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "268fd436_6251db90",
@@ -291,6 +555,30 @@
       "writtenOn": "2023-10-19T12:07:29Z",
       "side": 1,
       "message": "Rearrange :\n\nimport static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME\nimport static org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory.MODULE_UPGRADE\n\nimport org.onap.cps.ncmp.api.impl.inventory.CmHandleState\nimport org.onap.cps.spi.FetchDescendantsOption\nimport org.onap.cps.spi.model.DataNodeBuilder\nimport org.onap.cps.api.CpsAdminService",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 39
+      },
+      "revId": "477522973d8cf000cdfc65feb5eba8369e2e9856",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d951cf61_17647bc5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2023-10-19T17:46:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "268fd436_6251db90",
       "range": {
         "startLine": 23,
         "startChar": 0,
