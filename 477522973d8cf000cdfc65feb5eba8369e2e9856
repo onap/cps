@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a5d8199d_a2d96e4d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/ModuleSetTagCacheConfigSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-10-19T12:34:58Z",
+      "side": 1,
+      "message": "NB (sentence case): caches for module set tag",
+      "parentUuid": "0aa2a52f_03361ca8",
+      "range": {
+        "startLine": 36,
+        "startChar": 30,
+        "endLine": 36,
+        "endChar": 55
+      },
+      "revId": "477522973d8cf000cdfc65feb5eba8369e2e9856",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b338e4f6_0ca1df3a",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/ModuleSetTagCacheConfigSpec.groovy",
         "patchSetId": 4
