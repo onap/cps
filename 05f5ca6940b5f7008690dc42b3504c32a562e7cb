@@ -171,6 +171,29 @@
       "message": "compare leaves in separate method.\ncompare children in separate method.\n\nThen we just call the methods to make it more readable.",
       "revId": "05f5ca6940b5f7008690dc42b3504c32a562e7cb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4157e5c4_1ab2a5e6",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsDeltaService.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 577,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-10-20T06:38:51Z",
+      "side": 1,
+      "message": "found the mistake in my approach. I was creating the Map only at the parent level of data nodes and not considering child data nodes here, hence I had to individually check for child data nodes above making the code more complex. \nThanks for the insight Toine and Priyank 😊",
+      "range": {
+        "startLine": 577,
+        "startChar": 3,
+        "endLine": 577,
+        "endChar": 59
+      },
+      "revId": "05f5ca6940b5f7008690dc42b3504c32a562e7cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
