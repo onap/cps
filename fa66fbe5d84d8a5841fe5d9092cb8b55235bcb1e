@@ -35,6 +35,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b3d5960_ac1ea141",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-23T13:49:29Z",
+      "side": 1,
+      "message": "as per comment below, need to include the REST API update as well",
+      "revId": "fa66fbe5d84d8a5841fe5d9092cb8b55235bcb1e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0870c70e_a8b77c4e",
@@ -60,6 +77,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1e81cc40_9f489089",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-23T13:49:29Z",
+      "side": 1,
+      "message": "agreed, assuming that is in the scope of this US too...",
+      "parentUuid": "0870c70e_a8b77c4e",
+      "range": {
+        "startLine": 493,
+        "startChar": 12,
+        "endLine": 493,
+        "endChar": 48
+      },
+      "revId": "fa66fbe5d84d8a5841fe5d9092cb8b55235bcb1e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2b046ef4_e0926bf1",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/NcmpServiceCmHandle.java",
         "patchSetId": 6
@@ -71,6 +112,24 @@
       "writtenOn": "2023-10-23T13:03:26Z",
       "side": 1,
       "message": "I believe, we agreed on to have as trustLevel after today\u0027s discussions.",
+      "revId": "fa66fbe5d84d8a5841fe5d9092cb8b55235bcb1e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "251090b0_4eecbd30",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/NcmpServiceCmHandle.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-23T13:49:29Z",
+      "side": 1,
+      "message": "json (external) name (use annotation to define): trustLevel \njava name: registrationTrustLevel",
+      "parentUuid": "2b046ef4_e0926bf1",
       "revId": "fa66fbe5d84d8a5841fe5d9092cb8b55235bcb1e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
