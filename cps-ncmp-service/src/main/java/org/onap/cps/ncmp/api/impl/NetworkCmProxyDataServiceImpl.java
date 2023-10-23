@@ -43,6 +43,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -223,7 +224,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     @Override
     public void setDataSyncEnabled(final String cmHandleId, final boolean dataSyncEnabled) {
         final CompositeState compositeState = inventoryPersistence.getCmHandleState(cmHandleId);
-        if (compositeState.getDataSyncEnabled().equals(dataSyncEnabled)) {
+        if (Optional.ofNullable(compositeState.getDataSyncEnabled()).orElse(false).equals(dataSyncEnabled)) {
             log.info("Data-Sync Enabled flag is already: {} ", dataSyncEnabled);
         } else if (compositeState.getCmHandleState() != CmHandleState.READY) {
             throw new CpsException("State mismatch exception.", "Cm-Handle not in READY state. Cm handle state is: "
@@ -236,8 +237,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                         "/netconf-state", OffsetDateTime.now());
             }
             CompositeStateUtils.setDataSyncEnabledFlagWithDataSyncState(dataSyncEnabled, compositeState);
-            inventoryPersistence.saveCmHandleState(cmHandleId,
-                    compositeState);
+            inventoryPersistence.saveCmHandleState(cmHandleId, compositeState);
         }
     }
 

@@ -72,7 +72,6 @@ public class CpsModuleServiceImpl implements CpsModuleService {
         cpsValidator.validateNameCharacters(dataspaceName, schemaSetName);
         cpsModulePersistenceService.storeSchemaSetFromModules(dataspaceName, schemaSetName,
             newModuleNameToContentMap, allModuleReferences);
-
     }
 
     @Override

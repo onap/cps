@@ -19,7 +19,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.inventory.sync
+package org.onap.cps.ncmp.api.impl.inventory.sync
 
 import com.hazelcast.map.IMap
 import org.onap.cps.ncmp.api.impl.inventory.sync.ModuleSyncTasks
@@ -45,9 +45,7 @@ class ModuleSyncWatchdogSpec extends Specification {
 
     def spiedAsyncTaskExecutor = Spy(AsyncTaskExecutor)
 
-    def moduleSetTagCache = Mock(IMap<String, Set<String>>)
-
-    def objectUnderTest = new ModuleSyncWatchdog(mockSyncUtils, moduleSyncWorkQueue , mockModuleSyncStartedOnCmHandles, mockModuleSyncTasks, spiedAsyncTaskExecutor, moduleSetTagCache)
+    def objectUnderTest = new ModuleSyncWatchdog(mockSyncUtils, moduleSyncWorkQueue , mockModuleSyncStartedOnCmHandles, mockModuleSyncTasks, spiedAsyncTaskExecutor)
 
     void setup() {
         spiedAsyncTaskExecutor.setupThreadPool()
