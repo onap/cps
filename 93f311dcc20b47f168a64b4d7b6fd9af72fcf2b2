@@ -51,6 +51,69 @@
       "parentUuid": "fdc022ca_618c6741",
       "revId": "93f311dcc20b47f168a64b4d7b6fd9af72fcf2b2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b1c89b9_48aed405",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-23T13:57:41Z",
+      "side": 1,
+      "message": "no more comment then what we already discussed. I didn\u0027t review teh testcode since the prod.code needs to change first",
+      "revId": "93f311dcc20b47f168a64b4d7b6fd9af72fcf2b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c94b4b1_e1a6d9e5",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-23T13:57:41Z",
+      "side": 1,
+      "message": "should/can we add a \u0027description\u0027 to clarify this is the current trustlevel based on teh state of DMI adn message from DMI etc?",
+      "range": {
+        "startLine": 226,
+        "startChar": 10,
+        "endLine": 226,
+        "endChar": 57
+      },
+      "revId": "93f311dcc20b47f168a64b4d7b6fd9af72fcf2b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b510088_28e63c89",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-23T13:57:41Z",
+      "side": 1,
+      "message": "as discussed this is the \u0027registration\u0027 trustlevel. INstead you shoudl retreive teh CURRENT trustlevel from Hazelcast here...",
+      "range": {
+        "startLine": 369,
+        "startChar": 61,
+        "endLine": 369,
+        "endChar": 74
+      },
+      "revId": "93f311dcc20b47f168a64b4d7b6fd9af72fcf2b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
