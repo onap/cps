@@ -16,6 +16,63 @@
       "message": "the changes has to be done in the Rest Layer as well , otherwise how the user will be providing the optional trustLevel.\nSee RestInputCmHandle in the components.yaml\nIt is used by create and update of registration , so we need to decide if its ok to have that attribute available for both the cases.",
       "revId": "fa66fbe5d84d8a5841fe5d9092cb8b55235bcb1e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "37d4611a_30480ec3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-10-23T13:03:26Z",
+      "side": 1,
+      "message": "Please find my notes on this commit.",
+      "revId": "fa66fbe5d84d8a5841fe5d9092cb8b55235bcb1e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0870c70e_a8b77c4e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-10-23T13:03:26Z",
+      "side": 1,
+      "message": "To be able to get this attribute from the request, the filed should be given in components.yaml (in RestInputCmHanlde block).\n\nPlease correct me if Im wrong.",
+      "range": {
+        "startLine": 493,
+        "startChar": 12,
+        "endLine": 493,
+        "endChar": 48
+      },
+      "revId": "fa66fbe5d84d8a5841fe5d9092cb8b55235bcb1e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b046ef4_e0926bf1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/NcmpServiceCmHandle.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-10-23T13:03:26Z",
+      "side": 1,
+      "message": "I believe, we agreed on to have as trustLevel after today\u0027s discussions.",
+      "revId": "fa66fbe5d84d8a5841fe5d9092cb8b55235bcb1e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
