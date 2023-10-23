@@ -84,6 +84,92 @@
       "message": "recheck",
       "revId": "51868edd2554a0122c52b00a516d8fe9c6bf31b0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dabc61f8_9e5bbb6b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-23T07:43:38Z",
+      "side": 1,
+      "message": "some small comments but many of the CSIT test are failing possibly a deployment issue?",
+      "revId": "51868edd2554a0122c52b00a516d8fe9c6bf31b0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23d84943_a81aa4db",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-23T07:43:38Z",
+      "side": 1,
+      "message": "no need for the stream and conversion!, just get the first element of the array and trim it:\ncompositeState.getLockReason().getDetails().split(\":\")[1].trim\n\n\nie. [1] replaces Arrays.stream()...tolist.get[1]  :-)",
+      "range": {
+        "startLine": 177,
+        "startChar": 29,
+        "endLine": 177,
+        "endChar": 84
+      },
+      "revId": "51868edd2554a0122c52b00a516d8fe9c6bf31b0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9003302_d7339c1c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncServiceSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-23T07:43:38Z",
+      "side": 1,
+      "message": "shoudln\u0027t need this bit (IntelliJ might complain but is OK for Groovy)",
+      "range": {
+        "startLine": 54,
+        "startChar": 36,
+        "endLine": 54,
+        "endChar": 79
+      },
+      "revId": "51868edd2554a0122c52b00a516d8fe9c6bf31b0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6254d39_2cf73dcd",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/sync/ModuleSyncServiceSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-23T07:43:38Z",
+      "side": 1,
+      "message": "there are no scenarios (maybe there shoudl be?)",
+      "range": {
+        "startLine": 173,
+        "startChar": 36,
+        "endLine": 173,
+        "endChar": 46
+      },
+      "revId": "51868edd2554a0122c52b00a516d8fe9c6bf31b0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
