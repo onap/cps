@@ -98,6 +98,29 @@
       },
       "revId": "d576a030a49811071918019a0182b3f47ca1dc17",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b8fa238_21cc435b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/ModuleSetTagCacheConfigSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-10-23T16:19:34Z",
+      "side": 1,
+      "message": "NB: No need for word like \u0027Verify\u0027 in test titles since all tests are for already verification. You may think about the other test cases as well. (Not blocker but better to handle in another commit.)",
+      "range": {
+        "startLine": 45,
+        "startChar": 9,
+        "endLine": 45,
+        "endChar": 16
+      },
+      "revId": "d576a030a49811071918019a0182b3f47ca1dc17",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

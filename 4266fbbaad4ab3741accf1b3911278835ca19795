@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77be1b0d_b8f653e7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-10-23T16:19:34Z",
+      "side": 1,
+      "message": "I\u0027ve dropped some NB comments.",
+      "revId": "4266fbbaad4ab3741accf1b3911278835ca19795",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0caec783_3900e2f6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NetworkCmProxyDataService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-10-23T16:19:34Z",
+      "side": 1,
+      "message": "NB: For the sake of comparison (null-safe) it has always been better to use primitive boolean, I belive. However, I saw you why you should change it to Object Boolean (CompositeState class has already dataSyncEnabled with Object Boolean). Thus, just wanted to share my opinions that are not blockers.\n\nAlso, Object version consume 128 bit memory whereas primitive consume 1 bit. The primitive version of boolean is set to false by default, where as object booleans are null by default (not null safe).",
+      "range": {
+        "startLine": 174,
+        "startChar": 47,
+        "endLine": 174,
+        "endChar": 55
+      },
+      "revId": "4266fbbaad4ab3741accf1b3911278835ca19795",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "347ed3a3_3fc348f8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-10-23T16:19:34Z",
+      "side": 1,
+      "message": "NB: If this piece of log is essential to have it at info-level. Then, I would suggest you include cmHandleId in this log so that it might be more specific.",
+      "range": {
+        "startLine": 227,
+        "startChar": 12,
+        "endLine": 227,
+        "endChar": 91
+      },
+      "revId": "4266fbbaad4ab3741accf1b3911278835ca19795",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
