@@ -171,7 +171,7 @@ public interface NetworkCmProxyDataService {
      * @param cmHandleId cm handle id
      * @param dataSyncEnabled data sync enabled flag
      */
-    void setDataSyncEnabled(String cmHandleId, boolean dataSyncEnabled);
+    void setDataSyncEnabled(String cmHandleId, Boolean dataSyncEnabled);
 
     /**
      * Get all cm handle IDs by DMI plugin identifier.

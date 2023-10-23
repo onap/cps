@@ -218,26 +218,29 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
      * based on the data sync enabled boolean for the cm handle id provided.
      *
      * @param cmHandleId      cm handle id
-     * @param dataSyncEnabled data sync enabled flag
+     * @param dataSyncEnabledTargetValue data sync enabled flag
      */
     @Override
-    public void setDataSyncEnabled(final String cmHandleId, final boolean dataSyncEnabled) {
+    public void setDataSyncEnabled(final String cmHandleId, final Boolean dataSyncEnabledTargetValue) {
         final CompositeState compositeState = inventoryPersistence.getCmHandleState(cmHandleId);
-        if (compositeState.getDataSyncEnabled().equals(dataSyncEnabled)) {
-            log.info("Data-Sync Enabled flag is already: {} ", dataSyncEnabled);
-        } else if (compositeState.getCmHandleState() != CmHandleState.READY) {
-            throw new CpsException("State mismatch exception.", "Cm-Handle not in READY state. Cm handle state is: "
-                    + compositeState.getCmHandleState());
-        } else {
+        if (dataSyncEnabledTargetValue.equals(compositeState.getDataSyncEnabled())) {
+            log.info("Data-Sync Enabled flag is already: {} ", dataSyncEnabledTargetValue);
+            return;
+        }
+        if (CmHandleState.READY.equals(compositeState.getCmHandleState())) {
             final DataStoreSyncState dataStoreSyncState = compositeState.getDataStores()
                     .getOperationalDataStore().getDataStoreSyncState();
-            if (!dataSyncEnabled && dataStoreSyncState == DataStoreSyncState.SYNCHRONIZED) {
+            if (Boolean.FALSE.equals(dataSyncEnabledTargetValue)
+                    && DataStoreSyncState.SYNCHRONIZED.equals(dataStoreSyncState)) {
+                // TODO : This is hard-coded for onap dmi that need to be addressed
                 cpsDataService.deleteDataNode(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId,
                         "/netconf-state", OffsetDateTime.now());
             }
-            CompositeStateUtils.setDataSyncEnabledFlagWithDataSyncState(dataSyncEnabled, compositeState);
-            inventoryPersistence.saveCmHandleState(cmHandleId,
-                    compositeState);
+            CompositeStateUtils.setDataSyncEnabledFlagWithDataSyncState(dataSyncEnabledTargetValue, compositeState);
+            inventoryPersistence.saveCmHandleState(cmHandleId, compositeState);
+        } else {
+            throw new CpsException("State mismatch exception.", "Cm-Handle not in READY state. Cm handle state is: "
+                    + compositeState.getCmHandleState());
         }
     }
 

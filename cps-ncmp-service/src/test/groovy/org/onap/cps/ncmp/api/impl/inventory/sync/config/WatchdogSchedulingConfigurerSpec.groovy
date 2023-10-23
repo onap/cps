@@ -18,7 +18,7 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.inventory.sync.config
+package org.onap.cps.ncmp.api.impl.inventory.sync.config
 
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach

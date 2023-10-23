@@ -34,6 +34,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.apache.commons.lang3.StringUtils;
 import org.onap.cps.ncmp.api.impl.inventory.CompositeState;
 import org.onap.cps.ncmp.api.impl.operations.RequiredDmiService;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
@@ -112,7 +113,7 @@ public class YangModelCmHandle {
         yangModelCmHandle.setDmiServiceName(dmiServiceName);
         yangModelCmHandle.setDmiDataServiceName(dmiDataServiceName);
         yangModelCmHandle.setDmiModelServiceName(dmiModelServiceName);
-        yangModelCmHandle.setModuleSetTag(moduleSetTag);
+        yangModelCmHandle.setModuleSetTag(moduleSetTag == null ? StringUtils.EMPTY : moduleSetTag);
         yangModelCmHandle.setDmiProperties(asYangModelCmHandleProperties(ncmpServiceCmHandle.getDmiProperties()));
         yangModelCmHandle.setPublicProperties(asYangModelCmHandleProperties(
                 ncmpServiceCmHandle.getPublicProperties()));

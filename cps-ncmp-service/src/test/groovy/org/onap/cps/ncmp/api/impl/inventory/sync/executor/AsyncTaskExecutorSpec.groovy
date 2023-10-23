@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.inventory.sync.executor
+package org.onap.cps.ncmp.api.impl.inventory.sync.executor
 
 import org.onap.cps.ncmp.api.impl.inventory.sync.executor.AsyncTaskExecutor
 import org.springframework.beans.factory.annotation.Autowired
