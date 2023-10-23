@@ -22,6 +22,30 @@
       },
       "revId": "cd5cdb474a45467ca1fd7ec5aa3d358c5bdfefbc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbd753c4_73a0bf13",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 495,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2023-10-23T11:08:38Z",
+      "side": 1,
+      "message": "Attribute \u0027registrationTrustLevel\u0027 added to NcmpServiceCmHandle",
+      "parentUuid": "0515d13c_b885f21c",
+      "range": {
+        "startLine": 495,
+        "startChar": 42,
+        "endLine": 495,
+        "endChar": 90
+      },
+      "revId": "cd5cdb474a45467ca1fd7ec5aa3d358c5bdfefbc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
