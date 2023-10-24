@@ -60,7 +60,7 @@ import org.onap.cps.ncmp.api.impl.inventory.DataStoreSyncState;
 import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations;
 import org.onap.cps.ncmp.api.impl.operations.OperationType;
-import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel;
+import org.onap.cps.ncmp.api.impl.trustlevel.dmiavailability.DmiPluginStatus;
 import org.onap.cps.ncmp.api.impl.utils.CmHandleQueryConditions;
 import org.onap.cps.ncmp.api.impl.utils.InventoryQueryConditions;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
@@ -99,7 +99,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private final LcmEventsCmHandleStateHandler lcmEventsCmHandleStateHandler;
     private final CpsDataService cpsDataService;
     private final IMap<String, Object> moduleSyncStartedOnCmHandles;
-    private final Map<String, TrustLevel> trustLevelPerDmiPlugin;
+    private final Map<String, DmiPluginStatus> healthStatusPerDmiPlugin;
 
     @Override
     public DmiPluginRegistrationResponse updateDmiRegistrationAndSyncModule(
@@ -127,7 +127,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                     parseAndProcessUpgradedCmHandlesInRegistration(dmiPluginRegistration));
         }
 
-        setTrustLevelPerDmiPlugin(dmiPluginRegistration);
+        setHealthStatusPerDmiPlugin(dmiPluginRegistration);
 
         return dmiPluginRegistrationResponse;
     }
@@ -484,11 +484,11 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         return cmHandleStatePerCmHandle.keySet().stream().map(YangModelCmHandle::getId).toList();
     }
 
-    private void setTrustLevelPerDmiPlugin(final DmiPluginRegistration dmiPluginRegistration) {
+    private void setHealthStatusPerDmiPlugin(final DmiPluginRegistration dmiPluginRegistration) {
         if (DmiPluginRegistration.isNullEmptyOrBlank(dmiPluginRegistration.getDmiDataPlugin())) {
-            trustLevelPerDmiPlugin.put(dmiPluginRegistration.getDmiPlugin(), TrustLevel.COMPLETE);
+            healthStatusPerDmiPlugin.put(dmiPluginRegistration.getDmiPlugin(), DmiPluginStatus.UP);
         } else {
-            trustLevelPerDmiPlugin.put(dmiPluginRegistration.getDmiDataPlugin(), TrustLevel.COMPLETE);
+            healthStatusPerDmiPlugin.put(dmiPluginRegistration.getDmiDataPlugin(),  DmiPluginStatus.UP);
         }
     }
 

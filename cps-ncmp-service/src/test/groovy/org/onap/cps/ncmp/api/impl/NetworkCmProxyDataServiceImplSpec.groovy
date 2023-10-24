@@ -23,6 +23,8 @@
 
 package org.onap.cps.ncmp.api.impl
 
+import org.onap.cps.ncmp.api.impl.trustlevel.dmiavailability.DmiPluginStatus
+
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
@@ -35,7 +37,6 @@ import static org.onap.cps.ncmp.api.impl.operations.OperationType.UPDATE
 import com.hazelcast.map.IMap
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandleQueryService
 import org.onap.cps.ncmp.api.impl.events.lcm.LcmEventsCmHandleStateHandler
-import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueries
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
@@ -76,7 +77,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def mockCpsCmHandlerQueryService = Mock(NetworkCmProxyCmHandleQueryService)
     def mockLcmEventsCmHandleStateHandler = Mock(LcmEventsCmHandleStateHandler)
     def stubModuleSyncStartedOnCmHandles = Stub(IMap<String, Object>)
-    def stubTrustLevelPerDmiPlugin = Stub(Map<String, TrustLevel>)
+    def stubHealthStatusPerDmiPlugin = Stub(Map<String, DmiPluginStatus>)
 
     def NO_TOPIC = null
     def NO_REQUEST_ID = null
@@ -95,7 +96,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             mockLcmEventsCmHandleStateHandler,
             mockCpsDataService,
             stubModuleSyncStartedOnCmHandles,
-            stubTrustLevelPerDmiPlugin)
+            stubHealthStatusPerDmiPlugin)
 
     def cmHandleXPath = "/dmi-registry/cm-handles[@id='testCmHandle']"
 

@@ -334,7 +334,7 @@ Below are the list of distributed datastructures that we have.
 +--------------+---------------------------------+----------------------------------------------------------+
 | cps-ncmp     | untrustworthyCmHandlesSet       | Stores untrustworthy cmHandles whose TrustLevel is NONE. |
 +--------------+---------------------------------+----------------------------------------------------------+
-| cps-ncmp     | trustLevelPerDmiPlugin          | Stores the TrustLevel for the dmi-plugins.               |
+| cps-ncmp     | healthStatusPerDmiPlugin        | Stores the health status for the dmi-plugins.            |
 +--------------+---------------------------------+----------------------------------------------------------+
 | cps-ncmp     | moduleSetTagCacheMapConfig      | Stores the Module Set Tags for cmHandles.                |
 +--------------+---------------------------------+----------------------------------------------------------+

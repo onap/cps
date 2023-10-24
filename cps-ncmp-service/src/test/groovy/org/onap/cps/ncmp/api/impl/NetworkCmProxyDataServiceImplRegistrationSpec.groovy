@@ -21,6 +21,7 @@
 
 package org.onap.cps.ncmp.api.impl
 
+import org.onap.cps.ncmp.api.impl.trustlevel.dmiavailability.DmiPluginStatus
 import org.onap.cps.ncmp.api.models.UpgradedCmHandles
 
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLES_NOT_FOUND
@@ -37,7 +38,6 @@ import org.onap.cps.ncmp.api.NetworkCmProxyCmHandleQueryService
 import org.onap.cps.ncmp.api.impl.events.lcm.LcmEventsCmHandleStateHandler
 import org.onap.cps.ncmp.api.impl.exception.DmiRequestException
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations
-import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueries
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
@@ -68,7 +68,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def mockLcmEventsCmHandleStateHandler = Mock(LcmEventsCmHandleStateHandler)
     def mockCpsDataService = Mock(CpsDataService)
     def mockModuleSyncStartedOnCmHandles = Mock(IMap<String, Object>)
-    def mockTrustLevelPerDmiPlugin = Mock(IMap<String, TrustLevel>)
+    def mockHealthStatusPerDmiPlugin = Mock(Map<String, DmiPluginStatus>)
     def objectUnderTest = getObjectUnderTest()
 
     def 'DMI Registration: Create, Update, Delete & Upgrade operations are processed in the right order'() {
@@ -129,7 +129,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         then: 'create cm handles registration and sync modules is called with the correct plugin information'
             1 * objectUnderTest.parseAndProcessCreatedCmHandlesInRegistration(dmiPluginRegistration)
         and: 'dmi is added to the trustLevel map'
-            1 * mockTrustLevelPerDmiPlugin.put(dmiPluginRegisteredName, TrustLevel.COMPLETE)
+            1 * mockHealthStatusPerDmiPlugin.put(dmiPluginRegisteredName, DmiPluginStatus.UP)
         where:
             scenario                          | dmiPlugin  | dmiModelPlugin | dmiDataPlugin | dmiPluginRegisteredName
             'combined DMI plugin'             | 'service1' | ''             | ''            | 'service1'
@@ -387,7 +387,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         return Spy(new NetworkCmProxyDataServiceImpl(spiedJsonObjectMapper, mockDmiDataOperations,
                 mockNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence, mockCmHandleQueries,
                 stubbedNetworkCmProxyCmHandlerQueryService, mockLcmEventsCmHandleStateHandler, mockCpsDataService,
-                mockModuleSyncStartedOnCmHandles, mockTrustLevelPerDmiPlugin))
+                mockModuleSyncStartedOnCmHandles, mockHealthStatusPerDmiPlugin))
     }
 
     def addPersistedYangModelCmHandles(ids) {
