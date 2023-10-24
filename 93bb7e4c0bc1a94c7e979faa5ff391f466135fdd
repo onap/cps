@@ -16,6 +16,23 @@
       "message": "As discussed I don\u0027t agree with limiting the trustlevel for the DMI to a separate enum with fewer values. Its just unneccesary work and I think the original idea was that even a DMI might have other levels eventually (ie. it was down for a small amount of time v. a long amount of time)\nsecondly using the same enum makes it easier to compare and decide with trustLevel overrules the other",
       "revId": "93bb7e4c0bc1a94c7e979faa5ff391f466135fdd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "704751cf_389074d9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-10-24T16:32:47Z",
+      "side": 1,
+      "message": "We have had a internal meeting on this commit and decided to abandon it for the reasons given below:\n\n- dmiPluginTrustMap and cmHandleTrustMap should be comparable with the same enum value that is TrustLevel.\n- The return value should be the same as TrustLevel in DmiRestClient for querying the health uri of dmis. By this way, less code with less enum should have the same functionality.\n- Dmi plugin trust level should not be limited to UP or DOWN values since there may be more level of trust of dmi plugins in the future.",
+      "revId": "93bb7e4c0bc1a94c7e979faa5ff391f466135fdd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
