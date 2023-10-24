@@ -16,6 +16,23 @@
       "message": "A minor change to comply with the conditional review made in this commit:\n\nhttps://gerrit.onap.org/r/c/cps/+/136040/comments/944c150e_b84bebd4\n\nSince the TrustLevel enum has numeric values which are irrelevant to healthiness of dmi plugin cache config anymore.",
       "revId": "162d7a6a94a42e4f0e26f8cb82db6b6ccee38577",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e2e6742_47e4d54b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-10-24T11:19:11Z",
+      "side": 1,
+      "message": "recheck",
+      "revId": "162d7a6a94a42e4f0e26f8cb82db6b6ccee38577",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
