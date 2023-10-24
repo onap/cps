@@ -24,6 +24,7 @@ import com.hazelcast.config.MapConfig;
 import java.util.Map;
 import org.onap.cps.cache.HazelcastCacheConfig;
 import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel;
+import org.onap.cps.ncmp.api.impl.trustlevel.dmiavailability.DmiPluginStatus;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -33,8 +34,8 @@ public class TrustLevelCacheConfig extends HazelcastCacheConfig {
     private static final MapConfig trustLevelPerCmHandleCacheConfig =
             createMapConfig("trustLevelPerCmHandleCacheConfig");
 
-    private static final MapConfig trustLevelPerDmiPluginCacheConfig =
-            createMapConfig("trustLevelPerDmiPluginCacheConfig");
+    private static final MapConfig healthStatusPerDmiPluginCacheConfig =
+            createMapConfig("healthStatusPerDmiPluginCacheConfig");
 
     /**
      * Distributed instance of trust level cache containing the trust level per cm handle.
@@ -48,14 +49,14 @@ public class TrustLevelCacheConfig extends HazelcastCacheConfig {
     }
 
     /**
-     * Distributed instance of trust level cache containing the trust level per dmi plugin service(name).
+     * Distributed instance of health status cache containing the healthiness per dmi plugin service(name).
      *
-     * @return configured map of dmi-plugin name as keys to trust-level for values.
+     * @return configured map of dmi-plugin name as keys to healthiness for values.
      */
     @Bean
-    public Map<String, TrustLevel> trustLevelPerDmiPlugin() {
-        return createHazelcastInstance("hazelcastInstanceTrustLevelPerDmiPluginMap",
-                trustLevelPerDmiPluginCacheConfig).getMap("trustLevelPerDmiPlugin");
+    public Map<String, DmiPluginStatus> healthStatusPerDmiPlugin() {
+        return createHazelcastInstance("hazelcastInstanceHealthStatusPerDmiPluginMap",
+            healthStatusPerDmiPluginCacheConfig).getMap("healthStatusPerDmiPlugin");
     }
 
 }

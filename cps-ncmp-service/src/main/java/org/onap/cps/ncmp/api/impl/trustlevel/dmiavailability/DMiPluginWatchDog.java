@@ -24,7 +24,6 @@ import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
-import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +32,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class DMiPluginWatchDog {
 
-    private final Map<String, TrustLevel> trustLevelPerDmiPlugin;
+    private final Map<String, DmiPluginStatus> healthStatusPerDmiPlugin;
 
     private final DmiRestClient dmiRestClient;
 
@@ -46,13 +45,13 @@ public class DMiPluginWatchDog {
      */
     @Scheduled(fixedDelayString = "${ncmp.timers.trust-evel.dmi-availability-watchdog-ms:30000}")
     public void watchDmiPluginAliveness() {
-        trustLevelPerDmiPlugin.keySet().forEach(dmiPluginName -> {
+        healthStatusPerDmiPlugin.keySet().forEach(dmiPluginName -> {
             final DmiPluginStatus dmiPluginStatus = dmiRestClient.getDmiPluginStatus(dmiPluginName);
-            log.debug("Trust level for dmi-plugin: {} is {}", dmiPluginName, dmiPluginStatus.toString());
+            log.debug("Trust level for dmi-plugin: {} is {}", dmiPluginName, dmiPluginStatus);
             if (DmiPluginStatus.UP.equals(dmiPluginStatus)) {
-                trustLevelPerDmiPlugin.put(dmiPluginName, TrustLevel.COMPLETE);
+                healthStatusPerDmiPlugin.put(dmiPluginName, DmiPluginStatus.UP);
             } else {
-                trustLevelPerDmiPlugin.put(dmiPluginName, TrustLevel.NONE);
+                healthStatusPerDmiPlugin.put(dmiPluginName, DmiPluginStatus.DOWN);
             }
         });
     }

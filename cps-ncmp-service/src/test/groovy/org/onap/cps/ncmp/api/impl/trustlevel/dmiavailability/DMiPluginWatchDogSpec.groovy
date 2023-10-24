@@ -21,30 +21,25 @@
 package org.onap.cps.ncmp.api.impl.trustlevel.dmiavailability
 
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient
-import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel
 import spock.lang.Specification
 
 class DMiPluginWatchDogSpec extends Specification {
 
-
-    def mockTrustLevelPerDmiPlugin = Mock(Map<String, TrustLevel>)
+    def healthStatusPerDmiPlugin = ['my dmi plugin': '', 'my other dmi plugin': '']
     def mockDmiRestClient = Mock(DmiRestClient)
-    def objectUnderTest = new DMiPluginWatchDog(mockTrustLevelPerDmiPlugin, mockDmiRestClient)
-
+    def objectUnderTest = new DMiPluginWatchDog(healthStatusPerDmiPlugin, mockDmiRestClient)
 
     def 'watch dmi plugin aliveness'() {
-        given: 'the dmi client returns aliveness for #dmi1Status'
-            mockDmiRestClient.getDmiPluginStatus('dmi1') >> dmi1Status
-        and: 'trust level cache returns dmi1'
-            mockTrustLevelPerDmiPlugin.keySet() >> {['dmi1'] as Set}
-        when: 'watch dog started'
+        given: 'the dmi client returns aliveness for #dmiPlugin'
+            mockDmiRestClient.getDmiPluginStatus(dmiPlugin) >> dmiPluginStatus
+        when: 'dmi watch dog started'
             objectUnderTest.watchDmiPluginAliveness()
-        then: 'trust level cache has been populated with #dmi1TrustLevel for dmi1'
-            1 * mockTrustLevelPerDmiPlugin.put('dmi1', dmi1TrustLevel)
+        then: 'dmi healthiness cache has been populated with #dmiPluginStatus'
+            healthStatusPerDmiPlugin.put(dmiPlugin, dmiPluginStatus)
         where: 'the following parameter are used'
-            scenario                  | dmi1Status              || dmi1TrustLevel
-            'dmi1 is UP'              | DmiPluginStatus.UP      || TrustLevel.COMPLETE
-            'dmi1 is DOWN'            | DmiPluginStatus.DOWN    || TrustLevel.NONE
+            scenario      | dmiPlugin             || dmiPluginStatus
+            'dmi is UP'   | 'my dmi plugin'       || DmiPluginStatus.UP
+            'dmi is DOWN' | 'my other dmi plugin' || DmiPluginStatus.DOWN
     }
 
 }
