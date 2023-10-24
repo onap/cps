@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5a43c61_0db8f1aa",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NetworkCmProxyDataService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-24T06:54:38Z",
+      "side": 1,
+      "message": "Sourabh and I spend about 30 minutes defined the best option here and we agreed a non-primitive was best as in this case it cannot be null as teh value is a request parameter defined in the API",
+      "parentUuid": "0caec783_3900e2f6",
+      "range": {
+        "startLine": 174,
+        "startChar": 47,
+        "endLine": 174,
+        "endChar": 55
+      },
+      "revId": "4266fbbaad4ab3741accf1b3911278835ca19795",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "347ed3a3_3fc348f8",
