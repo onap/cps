@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab462be0_87e20e7a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-24T15:10:37Z",
+      "side": 1,
+      "message": "As discussed I don\u0027t agree with limiting the trustlevel for the DMI to a separate enum with fewer values. Its just unneccesary work and I think the original idea was that even a DMI might have other levels eventually (ie. it was down for a small amount of time v. a long amount of time)\nsecondly using the same enum makes it easier to compare and decide with trustLevel overrules the other",
+      "revId": "93bb7e4c0bc1a94c7e979faa5ff391f466135fdd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
