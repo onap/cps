@@ -53,6 +53,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1eaa0303_89efc763",
+        "filename": "csit/plans/cps/setup.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-25T13:10:48Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ed050577_d1d0e8c6",
+      "revId": "c183281dc94078719b9140deb8ff745ea702a561",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4c79e01e_5514abed",
@@ -66,6 +84,30 @@
       "writtenOn": "2023-10-25T13:03:52Z",
       "side": 1,
       "message": "NB: Same as above, this should be removed after ONAP DMI plugin has the same changes.",
+      "range": {
+        "startLine": 88,
+        "startChar": 6,
+        "endLine": 88,
+        "endChar": 41
+      },
+      "revId": "c183281dc94078719b9140deb8ff745ea702a561",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f4cb470_21c27c16",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-25T13:10:48Z",
+      "side": 1,
+      "message": "but removing this should be part of the bug/other commits...",
+      "parentUuid": "4c79e01e_5514abed",
       "range": {
         "startLine": 88,
         "startChar": 6,
