@@ -39,6 +39,7 @@ Release Data
 Bug Fixes
 ---------
 3.3.9
+    - `CPS-1923 <https://jira.onap.org/browse/CPS-1923>`_ CPS and NCMP changed management endpoint and port from /manage to /actuator and port same as cps application port.
 
 Features
 --------

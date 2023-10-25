@@ -32,7 +32,7 @@ check_health()
 
   while [ "$TICKER" -le "$TIME_OUT" ]; do
 
-    RESPONSE=$(curl --location --request GET 'http://'$1'/manage/health/readiness')
+    RESPONSE=$(curl --location --request GET 'http://'$1'/actuator/health/readiness')
 
     if [[ "$RESPONSE" == *"UP"* ]]; then
       echo "$2 started in $TICKER"
@@ -121,12 +121,12 @@ done
 
 ###################### verify ncmp-cps health ##########################
 
-check_health $CPS_CORE_HOST:$CPS_CORE_MANAGEMENT_PORT 'cps-ncmp'
+check_health $CPS_CORE_HOST:$CPS_CORE_PORT 'cps-ncmp'
 
 ###################### verify dmi health ##########################
 
-check_health $DMI_HOST:$DMI_MANAGEMENT_PORT 'dmi-plugin'
+check_health $DMI_HOST:$DMI_PORT 'dmi-plugin'
 
 ###################### ROBOT Configurations ##########################
 # Pass variables required for Robot test suites in ROBOT_VARIABLES
-ROBOT_VARIABLES="-v CPS_CORE_HOST:$CPS_CORE_HOST -v CPS_CORE_PORT:$CPS_CORE_PORT -v DMI_HOST:$LOCAL_IP -v DMI_PORT:$DMI_PORT -v DMI_CSIT_STUB_HOST:$LOCAL_IP -v DMI_CSIT_STUB_PORT:$DMI_DEMO_STUB_PORT -v DMI_AUTH_ENABLED:$DMI_AUTH_ENABLED -v CPS_CORE_MANAGEMENT_PORT:$CPS_CORE_MANAGEMENT_PORT -v DATADIR:$WORKSPACE/data -v DATADIR_SUBS_NOTIFICATION:$WORKSPACE/data/subscription-notification --exitonfailure"
+ROBOT_VARIABLES="-v CPS_CORE_HOST:$CPS_CORE_HOST -v CPS_CORE_PORT:$CPS_CORE_PORT -v DMI_HOST:$LOCAL_IP -v DMI_PORT:$DMI_PORT -v DMI_CSIT_STUB_HOST:$LOCAL_IP -v DMI_CSIT_STUB_PORT:$DMI_DEMO_STUB_PORT -v DMI_AUTH_ENABLED:$DMI_AUTH_ENABLED -v DATADIR:$WORKSPACE/data -v DATADIR_SUBS_NOTIFICATION:$WORKSPACE/data/subscription-notification --exitonfailure"

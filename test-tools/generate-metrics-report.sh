@@ -25,7 +25,7 @@ function script_usage() {
 Usage:
      -h|--help              Displays this help
      -u|--metrics-url=URL   URL to Prometheus metrics
-                            Default: http://localhost:8887/manage/prometheus
+                            Default: http://localhost:8883/actuator/prometheus
      -o|--output=FILE       Path to output file
                             Default: metrics-reports/metrics-[timestamp].tsv
 EOF
@@ -33,7 +33,7 @@ EOF
 
 function parse_params() {
   # Set parameter defaults
-  METRICS_URL="http://localhost:8887/manage/prometheus"
+  METRICS_URL="http://localhost:8883/actuator/prometheus"
   OUTFILE="metrics-reports/metrics-$(date --iso-8601=seconds).tsv"
   TEMP_DIR="/tmp/cps-metrics"
 

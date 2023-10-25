@@ -139,7 +139,7 @@ springdoc:
             - name: cps-ncmp-inventory
               url: /api-docs/cps-ncmp/openapi-inventory.yaml
 
-permit-uri: /manage/**,/swagger-ui.html,/swagger-ui/**,/swagger-resources/**,/api-docs/**
+permit-uri: /actuator/**,/swagger-ui.html,/swagger-ui/**,/swagger-resources/**,/api-docs/**
 
 security:
     # comma-separated uri patterns which do not require authorization
@@ -149,11 +149,8 @@ security:
 
 # Actuator
 management:
-    server:
-        port: 8081
     endpoints:
         web:
-            base-path: /manage
             exposure:
                 include: info,health,loggers,prometheus
     endpoint:
