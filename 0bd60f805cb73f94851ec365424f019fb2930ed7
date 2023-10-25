@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7b7030a_9e2f55fc",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NcmpRestInputMapperSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-25T11:20:55Z",
+      "side": 1,
+      "message": "add test for \u0027invalid\u0027 trustlevel  (expect null)",
+      "range": {
+        "startLine": 57,
+        "startChar": 12,
+        "endLine": 57,
+        "endChar": 40
+      },
+      "revId": "0bd60f805cb73f94851ec365424f019fb2930ed7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0efe0d4c_296b5604",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-25T11:20:55Z",
+      "side": 1,
+      "message": "rename to populate...Cache",
+      "range": {
+        "startLine": 489,
+        "startChar": 17,
+        "endLine": 489,
+        "endChar": 41
+      },
+      "revId": "0bd60f805cb73f94851ec365424f019fb2930ed7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c19468df_3dd65ca1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-25T11:20:55Z",
+      "side": 1,
+      "message": "do NOT override if already in cache (log a warning instead)",
+      "range": {
+        "startLine": 491,
+        "startChar": 34,
+        "endLine": 491,
+        "endChar": 37
+      },
+      "revId": "0bd60f805cb73f94851ec365424f019fb2930ed7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43119edc_bb9562ed",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 499,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-25T11:20:55Z",
+      "side": 1,
+      "message": "this exception wil never be thrown here: Not needed",
+      "range": {
+        "startLine": 499,
+        "startChar": 20,
+        "endLine": 499,
+        "endChar": 58
+      },
+      "revId": "0bd60f805cb73f94851ec365424f019fb2930ed7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
