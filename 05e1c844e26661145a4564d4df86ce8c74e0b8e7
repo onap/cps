@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88173aa3_e4e575e1",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-10-25T11:59:22Z",
+      "side": 1,
+      "message": "confirm for everyone that understanding is correct based on that cm handles registered with no trust level shall be mark as \u0027COMPLETE\u0027 therefore cm handles that has been registered before (backward compatibility) / for all rest output cmhandle when trustLevel does not exist (in map) its shall be assumed says to be \u0027COMPLETE\u0027",
+      "range": {
+        "startLine": 373,
+        "startChar": 7,
+        "endLine": 378,
+        "endChar": 17
+      },
+      "revId": "05e1c844e26661145a4564d4df86ce8c74e0b8e7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2896e8d5_a21ce176",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-10-25T11:59:22Z",
+      "side": 1,
+      "message": "cm handle is assumed to be \u0027COMPLETE\u0027",
+      "range": {
+        "startLine": 355,
+        "startChar": 248,
+        "endLine": 355,
+        "endChar": 272
+      },
+      "revId": "05e1c844e26661145a4564d4df86ce8c74e0b8e7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
