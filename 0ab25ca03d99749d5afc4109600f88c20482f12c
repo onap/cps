@@ -87,6 +87,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "83886e90_dad6837a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/utils/CpsDeltaService.java",
+        "patchSetId": 40
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-10-25T08:37:51Z",
+      "side": 1,
+      "message": "removed these excessive conditions 😊",
+      "parentUuid": "0c82a37b_bf68a9a7",
+      "revId": "0ab25ca03d99749d5afc4109600f88c20482f12c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ecb3b496_97f07dde",
@@ -147,6 +165,30 @@
       "writtenOn": "2023-10-16T12:32:37Z",
       "side": 1,
       "message": "NB : we can also use the schemas been defined here ( if the schema here is finalized ). Basically it will create a POJO class which can act as a container of the data.",
+      "range": {
+        "startLine": 150,
+        "startChar": 8,
+        "endLine": 165,
+        "endChar": 28
+      },
+      "revId": "0ab25ca03d99749d5afc4109600f88c20482f12c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a06f4bc7_7bde40bd",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/utils/CpsDeltaService.java",
+        "patchSetId": 40
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-10-25T08:37:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f316698b_2e0a454d",
       "range": {
         "startLine": 150,
         "startChar": 8,

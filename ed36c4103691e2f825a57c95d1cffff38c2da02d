@@ -177,6 +177,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e33696a7_8519be24",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-10-25T08:37:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "76d8d9a1_38e78baf",
+      "range": {
+        "startLine": 226,
+        "startChar": 8,
+        "endLine": 226,
+        "endChar": 118
+      },
+      "revId": "ed36c4103691e2f825a57c95d1cffff38c2da02d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c5de6d0b_9d981c7e",
