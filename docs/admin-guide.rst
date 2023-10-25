@@ -52,7 +52,7 @@ Change logging level
 
 .. code-block:: bash
 
-    curl --location --request GET 'http://{cps-service-name:cps-management-port}/manage/loggers/org.onap.cps' \
+    curl --location --request GET 'http://{cps-service-name:cps-port}/actuator/loggers/org.onap.cps' \
     --header 'Content-Type: application/json; charset=utf-8'
 
     Response body : HTTP Status 200
@@ -70,7 +70,7 @@ Change logging level
 
 .. code-block:: bash
 
-    curl --location --request POST 'http://{cps-service-name:cps-management-port}/manage/loggers/org.onap.cps' \
+    curl --location --request POST 'http://{cps-service-name:cps-port}/actuator/loggers/org.onap.cps' \
     --header 'Content-Type: application/json; charset=utf-8' \
     --data-raw '{
                     "configuredLevel": "DEBUG"
@@ -82,7 +82,7 @@ Change logging level
 
 .. code-block:: bash
 
-    curl --location --request GET 'http://{cps-service-name:cps-management-port}/manage/loggers/org.onap.cps' \
+    curl --location --request GET 'http://{cps-service-name:cps-port}/actuator/loggers/org.onap.cps' \
     --header 'Content-Type: application/json; charset=utf-8'
 
     Response body : HTTP Status 200
@@ -173,7 +173,7 @@ Once CPS-Core is deployed, information related to the running instance of the ap
 
 .. code::
 
-    http://<cps-component-service-name>:8081/manage/info/
+    http://<cps-component-service-name>:8080/actuator/info/
 
 Health
 ------
@@ -183,7 +183,7 @@ This also includes both the liveliness state and readiness state.
 
 .. code::
 
-    http://<cps-component-service-name>:8081/manage/health/
+    http://<cps-component-service-name>:8080/actuator/health/
 
 Metrics
 -------
@@ -192,7 +192,7 @@ Prometheus Metrics can be checked at the following endpoint
 
 .. code::
 
-    http://<cps-component-service-name>:8081/manage/prometheus
+    http://<cps-component-service-name>:8080/actuator/prometheus
 
 Naming Validation
 -----------------

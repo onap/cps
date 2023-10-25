@@ -37,7 +37,6 @@ services:
     image: ${DOCKER_REPO:-nexus3.onap.org:10003}/onap/cps-and-ncmp:${CPS_VERSION:-latest}
     ports:
       - ${CPS_CORE_PORT:-8883}:8080
-      - ${CPS_CORE_MANAGEMENT_PORT:-8887}:8081
       - ${CPS_CORE_DEBUG_PORT:-5005}:5005
     environment:
       CPS_USERNAME: ${CPS_CORE_USERNAME:-cpsuser}
@@ -86,7 +85,6 @@ services:
     image: ${DOCKER_REPO:-nexus3.onap.org:10003}/onap/ncmp-dmi-plugin:${DMI_VERSION:-1.4.0-SNAPSHOT-latest}
     ports:
       - ${DMI_PORT:-8783}:8080
-      - ${DMI_MANAGEMENT_PORT:-8787}:8081
     environment:
       CPS_USERNAME: ${CPS_CORE_USERNAME:-cpsuser}
       CPS_PASSWORD: ${CPS_CORE_PASSWORD:-cpsr0cks!}
