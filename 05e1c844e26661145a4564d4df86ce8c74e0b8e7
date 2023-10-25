@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8339e88f_684026e3",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-10-25T15:09:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "88173aa3_e4e575e1",
+      "range": {
+        "startLine": 373,
+        "startChar": 7,
+        "endLine": 378,
+        "endChar": 17
+      },
+      "revId": "05e1c844e26661145a4564d4df86ce8c74e0b8e7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2896e8d5_a21ce176",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-10-25T11:59:22Z",
       "side": 1,
       "message": "cm handle is assumed to be \u0027COMPLETE\u0027",
+      "range": {
+        "startLine": 355,
+        "startChar": 248,
+        "endLine": 355,
+        "endChar": 272
+      },
+      "revId": "05e1c844e26661145a4564d4df86ce8c74e0b8e7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "96f4ec1e_72de0643",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-10-25T15:09:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2896e8d5_a21ce176",
       "range": {
         "startLine": 355,
         "startChar": 248,

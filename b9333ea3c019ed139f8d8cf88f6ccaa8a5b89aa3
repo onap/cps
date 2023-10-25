@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4df8a780_b34b201b",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-10-25T15:09:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87afb258_96cb20d8",
+      "range": {
+        "startLine": 272,
+        "startChar": 69,
+        "endLine": 272,
+        "endChar": 134
+      },
+      "revId": "b9333ea3c019ed139f8d8cf88f6ccaa8a5b89aa3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5470af16_d5e3f799",
@@ -71,6 +95,30 @@
       "writtenOn": "2023-10-25T13:29:03Z",
       "side": 1,
       "message": "dont use mock but standard Groovy map instead like [:]\nSean made similar change here: https://gerrit.nordix.org/c/onap/cps/+/19610/18..19/cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+      "range": {
+        "startLine": 107,
+        "startChar": 52,
+        "endLine": 107,
+        "endChar": 81
+      },
+      "revId": "b9333ea3c019ed139f8d8cf88f6ccaa8a5b89aa3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "91a73e8d_47b774b0",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-10-25T15:09:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5470af16_d5e3f799",
       "range": {
         "startLine": 107,
         "startChar": 52,
