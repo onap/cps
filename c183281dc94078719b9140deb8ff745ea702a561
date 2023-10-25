@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ed050577_d1d0e8c6",
+        "filename": "csit/plans/cps/setup.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-10-25T13:06:09Z",
+      "side": 1,
+      "message": "yup. thats what conveyed during our meeting.\na sequence has to be followed for merging these commits 😊",
+      "parentUuid": "df1e700f_2c60f30e",
+      "revId": "c183281dc94078719b9140deb8ff745ea702a561",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4c79e01e_5514abed",
         "filename": "docker-compose/docker-compose.yml",
         "patchSetId": 1
