@@ -41,6 +41,7 @@ import org.springframework.web.client.RestTemplate;
 @Slf4j
 public class DmiRestClient {
 
+    private static final String HEALTH_CHECK_URL_EXTENSION = "/actuator/health";
     private RestTemplate restTemplate;
     private DmiProperties dmiProperties;
 
@@ -73,8 +74,8 @@ public class DmiRestClient {
     public DmiPluginStatus getDmiPluginStatus(final String dmiPluginBaseUrl) {
         try {
             final HttpEntity<Object> httpHeaders = new HttpEntity<>(configureHttpHeaders(new HttpHeaders()));
-            final JsonNode dmiPluginHealthStatus = restTemplate.getForObject(dmiPluginBaseUrl + "/manage/health",
-                    JsonNode.class, httpHeaders);
+            final JsonNode dmiPluginHealthStatus = restTemplate
+                .getForObject(dmiPluginBaseUrl + HEALTH_CHECK_URL_EXTENSION, JsonNode.class, httpHeaders);
             if (dmiPluginHealthStatus != null && dmiPluginHealthStatus.get("status").asText().equals("UP")) {
                 return DmiPluginStatus.UP;
             }
