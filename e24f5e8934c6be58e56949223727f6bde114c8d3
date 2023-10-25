@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07ee49fc_4f634bf5",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 347,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-25T15:42:17Z",
+      "side": 1,
+      "message": "NB: remove this in future",
+      "range": {
+        "startLine": 347,
+        "startChar": 0,
+        "endLine": 347,
+        "endChar": 66
+      },
+      "revId": "e24f5e8934c6be58e56949223727f6bde114c8d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
