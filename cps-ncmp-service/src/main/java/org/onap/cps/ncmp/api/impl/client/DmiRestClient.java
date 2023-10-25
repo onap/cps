@@ -73,7 +73,7 @@ public class DmiRestClient {
     public DmiPluginStatus getDmiPluginStatus(final String dmiPluginBaseUrl) {
         try {
             final HttpEntity<Object> httpHeaders = new HttpEntity<>(configureHttpHeaders(new HttpHeaders()));
-            final JsonNode dmiPluginHealthStatus = restTemplate.getForObject(dmiPluginBaseUrl + "/manage/health",
+            final JsonNode dmiPluginHealthStatus = restTemplate.getForObject(dmiPluginBaseUrl + "/actuator/health",
                     JsonNode.class, httpHeaders);
             if (dmiPluginHealthStatus != null && dmiPluginHealthStatus.get("status").asText().equals("UP")) {
                 return DmiPluginStatus.UP;
