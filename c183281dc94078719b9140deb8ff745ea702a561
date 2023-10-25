@@ -116,6 +116,30 @@
       },
       "revId": "c183281dc94078719b9140deb8ff745ea702a561",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "099b985c_7e2105e2",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-10-25T13:18:42Z",
+      "side": 1,
+      "message": "Yes, it can be handled later in any commit. Since it has no effect.",
+      "parentUuid": "2f4cb470_21c27c16",
+      "range": {
+        "startLine": 88,
+        "startChar": 6,
+        "endLine": 88,
+        "endChar": 41
+      },
+      "revId": "c183281dc94078719b9140deb8ff745ea702a561",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
