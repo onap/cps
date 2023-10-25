@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "96de845a_456ba44a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-10-25T13:03:52Z",
+      "side": 1,
+      "message": "With having NB two reminders that is ok for me.",
+      "revId": "c183281dc94078719b9140deb8ff745ea702a561",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df1e700f_2c60f30e",
+        "filename": "csit/plans/cps/setup.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-10-25T13:03:52Z",
+      "side": 1,
+      "message": "NB: This is a circular dependency exactly same as in setup.sh in ONAP DMI plugin. I saw why it has not been changed to DMI_PORT since ONAP dmi has still using the management port. Maybe not in this commit, but later this has to be DMI_PORT.",
+      "revId": "c183281dc94078719b9140deb8ff745ea702a561",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c79e01e_5514abed",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-10-25T13:03:52Z",
+      "side": 1,
+      "message": "NB: Same as above, this should be removed after ONAP DMI plugin has the same changes.",
+      "range": {
+        "startLine": 88,
+        "startChar": 6,
+        "endLine": 88,
+        "endChar": 41
+      },
+      "revId": "c183281dc94078719b9140deb8ff745ea702a561",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
