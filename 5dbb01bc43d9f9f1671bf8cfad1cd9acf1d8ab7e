@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ed3f1580_afb55d55",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NcmpRestInputMapperSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2023-10-25T15:20:34Z",
+      "side": 1,
+      "message": "My mistake, I\u0027ve added enums to the components.yaml so third scenario (invalid trustlevel) should not happen",
+      "parentUuid": "fc896b9d_0dbbbf91",
+      "range": {
+        "startLine": 56,
+        "startChar": 30,
+        "endLine": 56,
+        "endChar": 50
+      },
+      "revId": "5dbb01bc43d9f9f1671bf8cfad1cd9acf1d8ab7e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fdd742de_d789e7b8",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 8
@@ -54,6 +78,30 @@
       "writtenOn": "2023-10-25T13:23:58Z",
       "side": 1,
       "message": "are all of these scenarios covered now?\n(after reviewing your test I think that might be, but doubled check your coverage jacoco report after running mvn install!)",
+      "range": {
+        "startLine": 490,
+        "startChar": 7,
+        "endLine": 501,
+        "endChar": 0
+      },
+      "revId": "5dbb01bc43d9f9f1671bf8cfad1cd9acf1d8ab7e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfe408c3_e4dc54f8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2023-10-25T15:20:34Z",
+      "side": 1,
+      "message": "jacoco report indicates all scenarios are covered",
+      "parentUuid": "fdd742de_d789e7b8",
       "range": {
         "startLine": 490,
         "startChar": 7,
