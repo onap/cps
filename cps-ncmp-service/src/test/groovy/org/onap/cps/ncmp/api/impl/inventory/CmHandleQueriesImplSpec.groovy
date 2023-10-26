@@ -23,6 +23,7 @@ package org.onap.cps.ncmp.api.impl.inventory
 
 import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel
 import org.onap.cps.spi.utils.CpsValidator
+import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevelFilter
 
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
@@ -30,21 +31,18 @@ import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DM
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 
-import com.hazelcast.map.IMap
-import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueriesImpl
-import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
-import org.onap.cps.ncmp.api.impl.inventory.DataStoreSyncState
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.model.DataNode
 import spock.lang.Shared
 import spock.lang.Specification
 
 class CmHandleQueriesImplSpec extends Specification {
-    def cpsDataPersistenceService = Mock(CpsDataPersistenceService)
-    def mockCpsValidator = Mock(CpsValidator)
-    def trustLevelPerCmHandle = [ 'my completed cm handle': TrustLevel.COMPLETE, 'my untrusted cm handle': TrustLevel.NONE ]
 
-    def objectUnderTest = new CmHandleQueriesImpl(cpsDataPersistenceService, trustLevelPerCmHandle, mockCpsValidator)
+    def cpsDataPersistenceService = Mock(CpsDataPersistenceService)
+    def mockTrustLevelFilter = Mock(TrustLevelFilter)
+    def mockCpsValidator = Mock(CpsValidator)
+
+    def objectUnderTest = new CmHandleQueriesImpl(cpsDataPersistenceService, mockTrustLevelFilter, mockCpsValidator)
 
     @Shared
     def static sampleDataNodes = [new DataNode()]
@@ -74,13 +72,15 @@ class CmHandleQueriesImplSpec extends Specification {
     }
 
     def 'Query cm handles on trust level'() {
-        given: 'query properties for trustlevel COMPLETE'
+        given: 'query properties for trust level COMPLETE'
             def trustLevelPropertyQueryPairs = ['trustLevel' : TrustLevel.COMPLETE.toString()]
-        when: 'the query is executed'
+        and: 'the filter service return ch-1'
+            mockTrustLevelFilter.getCmHandleIdsByTrustLevel(TrustLevel.COMPLETE) >> ['ch-1']
+        when: 'the query is run'
             def result = objectUnderTest.queryCmHandlesByTrustLevel(trustLevelPropertyQueryPairs)
-        then: 'the result only contains the completed cm handle'
+        then: 'the result contain ch-1'
             assert result.size() == 1
-            assert result[0] == 'my completed cm handle'
+            assert result[0] == 'ch-1'
     }
 
     def 'Query CmHandles using empty public properties query pair.'() {
