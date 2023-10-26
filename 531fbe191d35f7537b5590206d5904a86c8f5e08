@@ -33,6 +33,46 @@
       "message": "Half of this commit already reviewed, will continue to finalize today.",
       "revId": "531fbe191d35f7537b5590206d5904a86c8f5e08",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b88ca697_32046d07",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-10-26T12:41:19Z",
+      "side": 1,
+      "message": "Tested locally working fine. It\u0027s ok for me.",
+      "revId": "531fbe191d35f7537b5590206d5904a86c8f5e08",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21f0cb2f_b31b457a",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NcmpRestInputMapperSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-10-26T12:41:19Z",
+      "side": 1,
+      "message": "NB: 2023",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 23
+      },
+      "revId": "531fbe191d35f7537b5590206d5904a86c8f5e08",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
