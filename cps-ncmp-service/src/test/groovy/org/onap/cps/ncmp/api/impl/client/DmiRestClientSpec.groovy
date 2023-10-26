@@ -25,8 +25,8 @@ import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.node.ObjectNode
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration
+import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration.DmiProperties;
 import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException
-import org.onap.cps.ncmp.api.impl.trustlevel.dmiavailability.DmiPluginStatus
 import org.onap.cps.ncmp.utils.TestUtils
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
@@ -45,11 +45,14 @@ import static org.onap.cps.ncmp.api.impl.operations.OperationType.PATCH
 import static org.onap.cps.ncmp.api.impl.operations.OperationType.CREATE
 
 @SpringBootTest
-@ContextConfiguration(classes = [NcmpConfiguration.DmiProperties, DmiRestClient, ObjectMapper])
+@ContextConfiguration(classes = [DmiProperties, DmiRestClient, ObjectMapper])
 class DmiRestClientSpec extends Specification {
 
     @SpringBean
     RestTemplate mockRestTemplate = Mock(RestTemplate)
+
+    @Autowired
+    NcmpConfiguration.DmiProperties dmiProperties
 
     @Autowired
     DmiRestClient objectUnderTest
@@ -57,23 +60,15 @@ class DmiRestClientSpec extends Specification {
     @Autowired
     ObjectMapper objectMapper
 
-    def resourceUrl = 'some url'
-    def mockResponseEntity = Mock(ResponseEntity)
-    def dmiProperties = new NcmpConfiguration.DmiProperties()
-
-    def setup() {
-        dmiProperties.authUsername = 'test user'
-        dmiProperties.authPassword = 'test pass'
-        dmiProperties.dmiBasePath = 'dmi'
-    }
+    def responseFromRestTemplate = Mock(ResponseEntity)
 
     def 'DMI POST operation with JSON.'() {
-        given: 'the rest template returns a valid response entity'
-            mockRestTemplate.postForEntity(resourceUrl, _ as HttpEntity, Object.class) >> mockResponseEntity
+        given: 'the rest template returns a valid response entity for the expected parameters'
+            mockRestTemplate.postForEntity('my url', _ as HttpEntity, Object.class) >> responseFromRestTemplate
         when: 'POST operation is invoked'
-            def result = objectUnderTest.postOperationWithJsonData(resourceUrl, 'json-data', READ)
+            def result = objectUnderTest.postOperationWithJsonData('my url', 'some json', READ)
         then: 'the output of the method is equal to the output from the test template'
-            result == mockResponseEntity
+            result == responseFromRestTemplate
     }
 
     def 'Failing DMI POST operation.'() {
@@ -93,40 +88,34 @@ class DmiRestClientSpec extends Specification {
             operation << [CREATE, READ, PATCH]
     }
 
-    def 'Get dmi plugin health status #scenario'() {
-        given: 'a health check response data as jsonNode'
+    def 'Dmi trust level is determined by spring boot health status'() {
+        given: 'a health check response'
             def dmiPluginHealthCheckResponseJsonData = TestUtils.getResourceFileContent('dmiPluginHealthCheckResponse.json')
             def jsonNode = objectMapper.readValue(dmiPluginHealthCheckResponseJsonData, JsonNode.class)
-            ((ObjectNode) jsonNode).put('status', dmiAliveness);
-        and: 'the rest template return a valid json node'
+            ((ObjectNode) jsonNode).put('status', 'my status')
             mockRestTemplate.getForObject(*_) >> {jsonNode}
-        when: 'get aliveness of the dmi plugin'
-            def result = objectUnderTest.getDmiPluginStatus(resourceUrl)
-        then: 'return value is equal to result of rest template call'
-            result == expectedResult
-        where: 'the following dmi aliveness are being used'
-            scenario             | dmiAliveness || expectedResult
-            'dmi plugin is UP'   | 'UP'         || DmiPluginStatus.UP
-            'dmi plugin is DOWN' | 'DOWN'       || DmiPluginStatus.DOWN
+        when: 'get trust level of the dmi plugin'
+            def result = objectUnderTest.getDmiHealthStatus('some url')
+        then: 'the correct trust level is returned'
+            assert result == 'my status'
     }
 
     def 'Failing to get dmi plugin health status #scenario'() {
-        given: 'the rest template return null'
-            mockRestTemplate.getForObject(*_) >> {getResponse}
-        when: 'get aliveness of the dmi plugin'
-            def result = objectUnderTest.getDmiPluginStatus(resourceUrl)
-        then: 'return value is equal to result of rest template call'
-            result == expectedResult
-        where: 'the following dmi responses are being used'
-            scenario                        | getResponse                  || expectedResult
-            'get response is null'          | null                         || DmiPluginStatus.DOWN
-            'get response throws exception' | {throw new Exception()}      || DmiPluginStatus.DOWN
+        given: 'rest template with #scenario'
+            mockRestTemplate.getForObject(*_) >> healthStatusResponse
+        when: 'attempt to get health status of the dmi plugin'
+            def result = objectUnderTest.getDmiHealthStatus('some url')
+        then: 'result will be EMPTY_STRING "" '
+            assert result == ''
+        where: 'the following values are used'
+            scenario    | healthStatusResponse
+            'null'      | null
+            'exception' | {throw new Exception()}
     }
 
     def 'Basic auth header #scenario'() {
         when: 'Specific dmi properties are provided'
             dmiProperties.dmiBasicAuthEnabled = authEnabled
-            objectUnderTest.dmiProperties = dmiProperties
         then: 'http headers to conditionally have Authorization header'
             assert (objectUnderTest.configureHttpHeaders(new HttpHeaders()).get('Authorization') != null) == isPresentInHttpHeader
         where: 'the following configurations are used'
