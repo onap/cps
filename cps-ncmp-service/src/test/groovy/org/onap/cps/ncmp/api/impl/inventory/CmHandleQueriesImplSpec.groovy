@@ -23,28 +23,27 @@ package org.onap.cps.ncmp.api.impl.inventory
 
 import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel
 import org.onap.cps.spi.utils.CpsValidator
-
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
-
-import com.hazelcast.map.IMap
-import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueriesImpl
-import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
-import org.onap.cps.ncmp.api.impl.inventory.DataStoreSyncState
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.model.DataNode
 import spock.lang.Shared
 import spock.lang.Specification
 
 class CmHandleQueriesImplSpec extends Specification {
-    def cpsDataPersistenceService = Mock(CpsDataPersistenceService)
-    def mockCpsValidator = Mock(CpsValidator)
-    def trustLevelPerCmHandle = [ 'my completed cm handle': TrustLevel.COMPLETE, 'my untrusted cm handle': TrustLevel.NONE ]
 
-    def objectUnderTest = new CmHandleQueriesImpl(cpsDataPersistenceService, trustLevelPerCmHandle, mockCpsValidator)
+    def mockCpsDataPersistenceService = Mock(CpsDataPersistenceService)
+
+    def trustLevelPerDmiPlugin = [:]
+
+    def trustLevelPerCmHandle = [ 'PNFDemo': TrustLevel.COMPLETE, 'PNFDemo2': TrustLevel.NONE, 'PNFDemo4': TrustLevel.NONE ]
+
+    def mockCpsValidator = Mock(CpsValidator)
+
+    def objectUnderTest = new CmHandleQueriesImpl(mockCpsDataPersistenceService, trustLevelPerDmiPlugin, trustLevelPerCmHandle, mockCpsValidator)
 
     @Shared
     def static sampleDataNodes = [new DataNode()]
@@ -74,13 +73,17 @@ class CmHandleQueriesImplSpec extends Specification {
     }
 
     def 'Query cm handles on trust level'() {
-        given: 'query properties for trustlevel COMPLETE'
+        given: 'query properties for trust level COMPLETE'
             def trustLevelPropertyQueryPairs = ['trustLevel' : TrustLevel.COMPLETE.toString()]
-        when: 'the query is executed'
+        and: 'the dmi cache has been initialised and "knows" about my-dmi-plugin-identifier'
+            trustLevelPerDmiPlugin.put('my-dmi-plugin-identifier', TrustLevel.COMPLETE)
+        and: 'the DataNodes queried for a given cpsPath are returned from the persistence service'
+            mockResponses()
+        when: 'the query is run'
             def result = objectUnderTest.queryCmHandlesByTrustLevel(trustLevelPropertyQueryPairs)
-        then: 'the result only contains the completed cm handle'
+        then: 'the result contain trusted PNFDemo'
             assert result.size() == 1
-            assert result[0] == 'my completed cm handle'
+            assert result[0] == 'PNFDemo'
     }
 
     def 'Query CmHandles using empty public properties query pair.'() {
@@ -99,7 +102,7 @@ class CmHandleQueriesImplSpec extends Specification {
 
     def 'Query CmHandles by a private field\'s value.'() {
         given: 'a data node exists with a certain additional-property'
-            cpsDataPersistenceService.queryDataNodes(_, _, dataNodeWithPrivateField, _) >> [pnfDemo5]
+            mockCpsDataPersistenceService.queryDataNodes(_, _, dataNodeWithPrivateField, _) >> [pnfDemo5]
         when: 'a query on CmHandle private properties is executed using a map'
             def result = objectUnderTest.queryCmHandleAdditionalProperties(['Contact3': 'newemailforstore3@bookstore.com'])
         then: 'one cm handle is returned'
@@ -110,7 +113,7 @@ class CmHandleQueriesImplSpec extends Specification {
         given: 'a cm handle state to query'
             def cmHandleState = CmHandleState.ADVISED
         and: 'the persistence service returns a list of data nodes'
-            cpsDataPersistenceService.queryDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+            mockCpsDataPersistenceService.queryDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
                 '//state[@cm-handle-state="ADVISED"]/ancestor::cm-handles', INCLUDE_ALL_DESCENDANTS) >> sampleDataNodes
         when: 'cm handles are fetched by state'
             def result = objectUnderTest.queryCmHandlesByState(cmHandleState)
@@ -122,7 +125,7 @@ class CmHandleQueriesImplSpec extends Specification {
         given: 'a cm handle state to compare'
             def cmHandleState = state
         and: 'the persistence service returns a list of data nodes'
-            cpsDataPersistenceService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+            mockCpsDataPersistenceService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
                     NCMP_DMI_REGISTRY_PARENT + '/cm-handles[@id=\'some-cm-handle\']/state',
                     OMIT_DESCENDANTS) >> [new DataNode(leaves: ['cm-handle-state': 'READY'])]
         when: 'cm handles are compared by state'
@@ -139,7 +142,7 @@ class CmHandleQueriesImplSpec extends Specification {
         given: 'a cm handle state to query'
             def cmHandleState = CmHandleState.READY
         and: 'cps data service returns a list of data nodes'
-            cpsDataPersistenceService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+            mockCpsDataPersistenceService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
                     NCMP_DMI_REGISTRY_PARENT + '/cm-handles[@id=\'some-cm-handle\']/state',
                     OMIT_DESCENDANTS) >> [new DataNode(leaves: ['cm-handle-state': 'READY'])]
         when: 'cm handles are fetched by state and id'
@@ -152,7 +155,7 @@ class CmHandleQueriesImplSpec extends Specification {
         given: 'a cm handle state to query'
             def cmHandleState = CmHandleState.READY
         and: 'cps data service returns a list of data nodes'
-            cpsDataPersistenceService.queryDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+            mockCpsDataPersistenceService.queryDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
                 '//state/datastores/operational[@sync-state="'+'UNSYNCHRONIZED'+'"]/ancestor::cm-handles', OMIT_DESCENDANTS) >> sampleDataNodes
         when: 'cm handles are fetched by the UNSYNCHRONIZED operational sync state'
             def result = objectUnderTest.queryCmHandlesByOperationalSyncState(DataStoreSyncState.UNSYNCHRONIZED)
@@ -165,7 +168,7 @@ class CmHandleQueriesImplSpec extends Specification {
             def cmHandleDataNode = new DataNode(xpath: 'xpath', leaves: ['cm-handle-state': 'LOCKED'])
             def cpsPath = '//cps-path'
         and: 'cps data service returns a valid data node'
-            cpsDataPersistenceService.queryDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+            mockCpsDataPersistenceService.queryDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
                 cpsPath + '/ancestor::cm-handles', INCLUDE_ALL_DESCENDANTS)
                 >> Arrays.asList(cmHandleDataNode)
         when: 'get cm handles by cps path is invoked'
@@ -186,15 +189,15 @@ class CmHandleQueriesImplSpec extends Specification {
     }
 
     void mockResponses() {
-        cpsDataPersistenceService.queryDataNodes(_, _, '//public-properties[@name=\"Contact\" and @value=\"newemailforstore@bookstore.com\"]/ancestor::cm-handles', _) >> [pnfDemo, pnfDemo2, pnfDemo4]
-        cpsDataPersistenceService.queryDataNodes(_, _, '//public-properties[@name=\"wont_match\" and @value=\"wont_match\"]/ancestor::cm-handles', _) >> []
-        cpsDataPersistenceService.queryDataNodes(_, _, '//public-properties[@name=\"Contact2\" and @value=\"newemailforstore2@bookstore.com\"]/ancestor::cm-handles', _) >> [pnfDemo4]
-        cpsDataPersistenceService.queryDataNodes(_, _, '//public-properties[@name=\"Contact2\" and @value=\"\"]/ancestor::cm-handles', _) >> []
-        cpsDataPersistenceService.queryDataNodes(_, _, '//state[@cm-handle-state=\"READY\"]/ancestor::cm-handles', _) >> [pnfDemo, pnfDemo3]
-        cpsDataPersistenceService.queryDataNodes(_, _, '//state[@cm-handle-state=\"LOCKED\"]/ancestor::cm-handles', _) >> [pnfDemo2, pnfDemo4]
-        cpsDataPersistenceService.queryDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry/cm-handles[@dmi-service-name=\'my-dmi-plugin-identifier\']', OMIT_DESCENDANTS) >> [pnfDemo, pnfDemo2]
-        cpsDataPersistenceService.queryDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry/cm-handles[@dmi-data-service-name=\'my-dmi-plugin-identifier\']', OMIT_DESCENDANTS) >> [pnfDemo, pnfDemo4]
-        cpsDataPersistenceService.queryDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry/cm-handles[@dmi-model-service-name=\'my-dmi-plugin-identifier\']', OMIT_DESCENDANTS) >> [pnfDemo2, pnfDemo4]
+        mockCpsDataPersistenceService.queryDataNodes(_, _, '//public-properties[@name=\"Contact\" and @value=\"newemailforstore@bookstore.com\"]/ancestor::cm-handles', _) >> [pnfDemo, pnfDemo2, pnfDemo4]
+        mockCpsDataPersistenceService.queryDataNodes(_, _, '//public-properties[@name=\"wont_match\" and @value=\"wont_match\"]/ancestor::cm-handles', _) >> []
+        mockCpsDataPersistenceService.queryDataNodes(_, _, '//public-properties[@name=\"Contact2\" and @value=\"newemailforstore2@bookstore.com\"]/ancestor::cm-handles', _) >> [pnfDemo4]
+        mockCpsDataPersistenceService.queryDataNodes(_, _, '//public-properties[@name=\"Contact2\" and @value=\"\"]/ancestor::cm-handles', _) >> []
+        mockCpsDataPersistenceService.queryDataNodes(_, _, '//state[@cm-handle-state=\"READY\"]/ancestor::cm-handles', _) >> [pnfDemo, pnfDemo3]
+        mockCpsDataPersistenceService.queryDataNodes(_, _, '//state[@cm-handle-state=\"LOCKED\"]/ancestor::cm-handles', _) >> [pnfDemo2, pnfDemo4]
+        mockCpsDataPersistenceService.queryDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry/cm-handles[@dmi-service-name=\'my-dmi-plugin-identifier\']', OMIT_DESCENDANTS) >> [pnfDemo, pnfDemo2]
+        mockCpsDataPersistenceService.queryDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry/cm-handles[@dmi-data-service-name=\'my-dmi-plugin-identifier\']', OMIT_DESCENDANTS) >> [pnfDemo, pnfDemo4]
+        mockCpsDataPersistenceService.queryDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry/cm-handles[@dmi-model-service-name=\'my-dmi-plugin-identifier\']', OMIT_DESCENDANTS) >> [pnfDemo2, pnfDemo4]
     }
 
     def static createDataNode(dataNodeId) {
