@@ -20,31 +20,38 @@
 
 package org.onap.cps.ncmp.api.impl.trustlevel.dmiavailability
 
+import org.onap.cps.ncmp.api.NetworkCmProxyDataService
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient
 import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel
 import spock.lang.Specification
 
 class DMiPluginWatchDogSpec extends Specification {
 
-
-    def mockTrustLevelPerDmiPlugin = Mock(Map<String, TrustLevel>)
     def mockDmiRestClient = Mock(DmiRestClient)
-    def objectUnderTest = new DMiPluginWatchDog(mockTrustLevelPerDmiPlugin, mockDmiRestClient)
+    def mockNetworkCmProxyDataService = Mock(NetworkCmProxyDataService)
+    def trustLevelPerDmiPlugin = [:]
+    def trustLevelPerCmHandle = [:]
 
+    def objectUnderTest = new DMiPluginWatchDog(mockDmiRestClient, mockNetworkCmProxyDataService, trustLevelPerDmiPlugin, trustLevelPerCmHandle)
 
-    def 'watch dmi plugin aliveness'() {
-        given: 'the dmi client returns aliveness for #dmi1Status'
-            mockDmiRestClient.getDmiPluginStatus('dmi1') >> dmi1Status
-        and: 'trust level cache returns dmi1'
-            mockTrustLevelPerDmiPlugin.keySet() >> {['dmi1'] as Set}
-        when: 'watch dog started'
+    def 'watch dmi plugin aliveness for #scenario'() {
+        given: 'dmi-1 having trust level complete'
+            trustLevelPerDmiPlugin.put('dmi-1', TrustLevel.COMPLETE)
+        and: 'ch-1 having trust level complete'
+            trustLevelPerCmHandle.put('ch-1', TrustLevel.COMPLETE)
+        and: 'dmi client returns health status none'
+            mockDmiRestClient.getDmiPluginTrustLevel('dmi-1') >> { newDmiTrustLevel }
+        and: 'data service returns cm handles'
+            mockNetworkCmProxyDataService.getAllCmHandleIdsByDmiPluginIdentifier('dmi-1') >> ['ch-1']
+        when: 'watch dog started and updated the caches'
             objectUnderTest.watchDmiPluginAliveness()
-        then: 'trust level cache has been populated with #dmi1TrustLevel for dmi1'
-            1 * mockTrustLevelPerDmiPlugin.put('dmi1', dmi1TrustLevel)
-        where: 'the following parameter are used'
-            scenario                  | dmi1Status              || dmi1TrustLevel
-            'dmi1 is UP'              | DmiPluginStatus.UP      || TrustLevel.COMPLETE
-            'dmi1 is DOWN'            | DmiPluginStatus.DOWN    || TrustLevel.NONE
+        then: 'the result is as expected'
+            trustLevelPerDmiPlugin.get('dmi-1') == expectedResult
+            trustLevelPerCmHandle.get('ch-1') == expectedResult
+        where: 'the given values is used'
+            scenario                        | newDmiTrustLevel    || expectedResult
+            'dmi-1 trust level changed'     | TrustLevel.NONE     || TrustLevel.NONE
+            'dmi-1 trust level stayed same' | TrustLevel.COMPLETE || TrustLevel.COMPLETE
     }
 
 }

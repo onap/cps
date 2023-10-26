@@ -20,9 +20,11 @@
 
 package org.onap.cps.ncmp.api.impl.trustlevel.dmiavailability;
 
+import java.util.Collection;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
 import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -33,26 +35,34 @@ import org.springframework.stereotype.Service;
 @Service
 public class DMiPluginWatchDog {
 
-    private final Map<String, TrustLevel> trustLevelPerDmiPlugin;
-
     private final DmiRestClient dmiRestClient;
+    private final NetworkCmProxyDataService networkCmProxyDataService;
+
+    private final Map<String, TrustLevel> trustLevelPerDmiPlugin;
+    private final Map<String, TrustLevel> trustLevelPerCmHandle;
+
 
     /**
      * Monitors the aliveness of DMI plugins by this watchdog.
      * This method periodically checks the health and status of each DMI plugin to ensure that
      * they are functioning properly. If a plugin is found to be unresponsive or in an
-     * unhealthy state, the cache will be updated with the latest status.
+     * unhealthy state, the caches will be updated with the latest status.
      * The @fixedDelayString is the time interval, in milliseconds, between consecutive aliveness checks.
      */
     @Scheduled(fixedDelayString = "${ncmp.timers.trust-evel.dmi-availability-watchdog-ms:30000}")
     public void watchDmiPluginAliveness() {
         trustLevelPerDmiPlugin.keySet().forEach(dmiPluginName -> {
-            final DmiPluginStatus dmiPluginStatus = dmiRestClient.getDmiPluginStatus(dmiPluginName);
-            log.debug("Trust level for dmi-plugin: {} is {}", dmiPluginName, dmiPluginStatus.toString());
-            if (DmiPluginStatus.UP.equals(dmiPluginStatus)) {
-                trustLevelPerDmiPlugin.put(dmiPluginName, TrustLevel.COMPLETE);
-            } else {
-                trustLevelPerDmiPlugin.put(dmiPluginName, TrustLevel.NONE);
+            final TrustLevel dmiPluginNewTrustLevel = dmiRestClient.getDmiPluginTrustLevel(dmiPluginName);
+            final TrustLevel dmiPluginOldTrustLevel = trustLevelPerDmiPlugin.get(dmiPluginName);
+            log.debug("New trust level {} and old trust level {} for dmi-plugin: {}", dmiPluginNewTrustLevel,
+                dmiPluginOldTrustLevel, dmiPluginName);
+
+            if (dmiPluginNewTrustLevel != dmiPluginOldTrustLevel) {
+                trustLevelPerDmiPlugin.put(dmiPluginName, dmiPluginNewTrustLevel);
+
+                final Collection<String> allCmHandleIds =
+                    networkCmProxyDataService.getAllCmHandleIdsByDmiPluginIdentifier(dmiPluginName);
+                allCmHandleIds.forEach(cmHandleId -> trustLevelPerCmHandle.put(cmHandleId, dmiPluginNewTrustLevel));
             }
         });
     }
