@@ -60,6 +60,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "04606b96_123d769c",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-10-26T10:25:29Z",
+      "side": 1,
+      "message": "I think we are not displaying the attributes which are null in the rest response.\nJackson property is thr.",
+      "parentUuid": "23c2621c_770f0e37",
+      "range": {
+        "startLine": 373,
+        "startChar": 0,
+        "endLine": 375,
+        "endChar": 9
+      },
+      "revId": "e24f5e8934c6be58e56949223727f6bde114c8d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "07ee49fc_4f634bf5",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
         "patchSetId": 6
