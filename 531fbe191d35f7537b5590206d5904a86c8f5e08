@@ -16,6 +16,23 @@
       "message": "recheck",
       "revId": "531fbe191d35f7537b5590206d5904a86c8f5e08",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0efec5ed_3bd80192",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-10-26T11:08:32Z",
+      "side": 1,
+      "message": "Half of this commit already reviewed, will continue to finalize today.",
+      "revId": "531fbe191d35f7537b5590206d5904a86c8f5e08",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
