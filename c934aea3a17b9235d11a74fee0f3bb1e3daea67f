@@ -16,6 +16,114 @@
       "message": "recheck",
       "revId": "c934aea3a17b9235d11a74fee0f3bb1e3daea67f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab4ce6a8_5646e764",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 47
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-10-26T13:27:50Z",
+      "side": 1,
+      "message": "initial comments on the actual code.\nNot looking at the testware at the moment.\nLet me know what do u think.\n\nGood improvement from the previous patch 😊\nI will continue to review it.",
+      "revId": "c934aea3a17b9235d11a74fee0f3bb1e3daea67f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87051f3f_cbb840be",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 47
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-10-26T13:27:50Z",
+      "side": 1,
+      "message": "NB: optional here as we are not injecting any dependency.\nSuggestion : you can remove this or if u want to be explicit u can annotate with @NoArgsConstructor. upto you. Technically nothing wrong.",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 24
+      },
+      "revId": "c934aea3a17b9235d11a74fee0f3bb1e3daea67f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37f1dae4_1bf2d1e3",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 47
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-10-26T13:27:50Z",
+      "side": 1,
+      "message": "i dont think these if-else condition is needed coz anyways u can checking in your DeltaReportBuilder build method if it is null or empty..right ?",
+      "revId": "c934aea3a17b9235d11a74fee0f3bb1e3daea67f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43e95aa4_6805d310",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 47
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-10-26T13:27:50Z",
+      "side": 1,
+      "message": "same comment as above regarding the if-else condition needed or not.as you are already checking in build()",
+      "revId": "c934aea3a17b9235d11a74fee0f3bb1e3daea67f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5111736b_d75aa324",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DeltaReport.java",
+        "patchSetId": 47
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-10-26T13:27:50Z",
+      "side": 1,
+      "message": "i was thinking more of defining it in the openapi yaml file somewhere.\nmaybe components.yaml file of the relevant package.\nfor u it would be cps-rest.\n\nJust for reference you can check \"RestOutputCmHandle\" how it is defined , generated and then later used.",
+      "revId": "c934aea3a17b9235d11a74fee0f3bb1e3daea67f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "365ce1e8_caec0a36",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DeltaReportBuilder.java",
+        "patchSetId": 47
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-10-26T13:27:50Z",
+      "side": 1,
+      "message": "NB: Custom builder.\nI see you doing some custom logic.\njust FYI , lombok also has @Builder annotation. But since you have some custom checks in place thats y i wont suggest that.",
+      "revId": "c934aea3a17b9235d11a74fee0f3bb1e3daea67f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
