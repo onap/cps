@@ -25,11 +25,28 @@ import lombok.Getter;
 @Getter
 public enum TrustLevel {
     NONE(0), COMPLETE(99);
+    private final int level;
 
-    private final int value;
+    /**
+     * Creates TrustLevel enum from a numeric value.
+     *
+     * @param       level numeric value between 0-99
+     */
+    TrustLevel(final int level) {
+        this.level = level;
+    }
 
-    TrustLevel(final int value) {
-        this.value = value;
+    /**
+     * Gets the lower trust level (effective) among two.
+     *
+     * @param       other the trust level compared with this
+     * @return      the lower trust level
+     */
+    final TrustLevel getEffectiveTrustLevel(final TrustLevel other) {
+        if (other.level < this.level) {
+            return other;
+        }
+        return this;
     }
 
 }
