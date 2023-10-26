@@ -35,6 +35,92 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b3932ba_07d7dafd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 47
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-26T15:28:40Z",
+      "side": 1,
+      "message": "good improvements and great to see you add a load of test.\nThe etst need some clean up first\n\nThe prod code needs some intial cleanup as per commend below. you can do and I suggest we then do a workshop together to simplify the production code, I still think it is much more complicated then needed but since you have good tests now we can quickly refactor and test!",
+      "revId": "c934aea3a17b9235d11a74fee0f3bb1e3daea67f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e64de592_594131d1",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 47
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-26T15:28:40Z",
+      "side": 1,
+      "message": "this has to be fixed as part of thsi commit!\nI suggest smaller patches with complete test coverage of whatever is in teh patch!",
+      "range": {
+        "startLine": 41,
+        "startChar": 26,
+        "endLine": 41,
+        "endChar": 30
+      },
+      "revId": "c934aea3a17b9235d11a74fee0f3bb1e3daea67f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd6a72a8_923fcec0",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 47
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-26T15:28:40Z",
+      "side": 1,
+      "message": "NB: no need to define these as variable (dont add value) just use string-literals",
+      "range": {
+        "startLine": 340,
+        "startChar": 12,
+        "endLine": 340,
+        "endChar": 33
+      },
+      "revId": "c934aea3a17b9235d11a74fee0f3bb1e3daea67f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "812336c7_48b8a531",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 47
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-26T15:28:40Z",
+      "side": 1,
+      "message": "javadoc not in line with method!",
+      "range": {
+        "startLine": 297,
+        "startChar": 1,
+        "endLine": 300,
+        "endChar": 72
+      },
+      "revId": "c934aea3a17b9235d11a74fee0f3bb1e3daea67f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "87051f3f_cbb840be",
@@ -60,6 +146,144 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6f6d0ce9_269bcce7",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 47
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-26T15:28:40Z",
+      "side": 1,
+      "message": "suggestio for better name:\ncompare   or\ncompareDataNodes  or\ngetDeltaReports   (to reflect the output type)",
+      "range": {
+        "startLine": 54,
+        "startChar": 29,
+        "endLine": 54,
+        "endChar": 53
+      },
+      "revId": "c934aea3a17b9235d11a74fee0f3bb1e3daea67f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08a3a8ff_44afee0c",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 47
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-26T15:28:40Z",
+      "side": 1,
+      "message": "rename to: convertToXPathTODataNodesMap",
+      "range": {
+        "startLine": 59,
+        "startChar": 64,
+        "endLine": 59,
+        "endChar": 82
+      },
+      "revId": "c934aea3a17b9235d11a74fee0f3bb1e3daea67f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e6004af_6682a523",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 47
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-26T15:28:40Z",
+      "side": 1,
+      "message": "question: why LinkedHashMap?",
+      "range": {
+        "startLine": 70,
+        "startChar": 58,
+        "endLine": 70,
+        "endChar": 64
+      },
+      "revId": "c934aea3a17b9235d11a74fee0f3bb1e3daea67f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "beff15eb_b81f1f92",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 47
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-26T15:28:40Z",
+      "side": 1,
+      "message": "DeltaReports",
+      "range": {
+        "startLine": 81,
+        "startChar": 58,
+        "endLine": 81,
+        "endChar": 63
+      },
+      "revId": "c934aea3a17b9235d11a74fee0f3bb1e3daea67f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7712c808_5727862d",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 47
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-26T15:28:40Z",
+      "side": 1,
+      "message": "not nodes but DeltaReports! see comment below",
+      "range": {
+        "startLine": 85,
+        "startChar": 32,
+        "endLine": 85,
+        "endChar": 55
+      },
+      "revId": "c934aea3a17b9235d11a74fee0f3bb1e3daea67f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fea1797_5a7e58eb",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 47
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-26T15:28:40Z",
+      "side": 1,
+      "message": "you naming is very inconsistent, you are NOT getting (Data)nodes. you are getting DeltaReports\n\nso my sugegestion for this method is : createDelatReportsForRemoveDataNodes\nPlease apply consistent naming throughout I wont comment on all",
+      "range": {
+        "startLine": 100,
+        "startChar": 37,
+        "endLine": 100,
+        "endChar": 52
+      },
+      "revId": "c934aea3a17b9235d11a74fee0f3bb1e3daea67f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "37f1dae4_1bf2d1e3",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDeltaServiceImpl.java",
         "patchSetId": 47
@@ -71,6 +295,29 @@
       "writtenOn": "2023-10-26T13:27:50Z",
       "side": 1,
       "message": "i dont think these if-else condition is needed coz anyways u can checking in your DeltaReportBuilder build method if it is null or empty..right ?",
+      "revId": "c934aea3a17b9235d11a74fee0f3bb1e3daea67f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91d6734a_285d44ea",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 47
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-26T15:28:40Z",
+      "side": 1,
+      "message": "I thought we discussed this the last time (maybe on a datanodes level but the same logic applies leaves)! I think you just need lines 13-132. That method should handle either collection being empty too!",
+      "range": {
+        "startLine": 129,
+        "startChar": 1,
+        "endLine": 141,
+        "endChar": 9
+      },
       "revId": "c934aea3a17b9235d11a74fee0f3bb1e3daea67f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -94,6 +341,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "89a4f64c_05a31298",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 47
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-26T15:28:40Z",
+      "side": 1,
+      "message": "what are \u0027Source\u0027 leaves ?!",
+      "range": {
+        "startLine": 169,
+        "startChar": 80,
+        "endLine": 169,
+        "endChar": 92
+      },
+      "revId": "c934aea3a17b9235d11a74fee0f3bb1e3daea67f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bd92c5c_6384d05b",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 47
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-26T15:28:40Z",
+      "side": 1,
+      "message": "again this seems overly complex. But I need to understand what you are looking for heer the term \u0027Source\u0027 is confusing...",
+      "range": {
+        "startLine": 173,
+        "startChar": 4,
+        "endLine": 196,
+        "endChar": 9
+      },
+      "revId": "c934aea3a17b9235d11a74fee0f3bb1e3daea67f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5111736b_d75aa324",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DeltaReport.java",
         "patchSetId": 47
@@ -111,6 +404,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c3164ed9_2e0c2732",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DeltaReport.java",
+        "patchSetId": 47
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-26T15:28:40Z",
+      "side": 1,
+      "message": "agreed",
+      "parentUuid": "5111736b_d75aa324",
+      "revId": "c934aea3a17b9235d11a74fee0f3bb1e3daea67f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "365ce1e8_caec0a36",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DeltaReportBuilder.java",
         "patchSetId": 47
@@ -122,6 +433,144 @@
       "writtenOn": "2023-10-26T13:27:50Z",
       "side": 1,
       "message": "NB: Custom builder.\nI see you doing some custom logic.\njust FYI , lombok also has @Builder annotation. But since you have some custom checks in place thats y i wont suggest that.",
+      "revId": "c934aea3a17b9235d11a74fee0f3bb1e3daea67f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4f900f9_07187348",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 47
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-26T15:28:40Z",
+      "side": 1,
+      "message": "no need to test \u0027delegation\u0027 with multiple scenarios.\nThe only thing being converted here really is descendanst option and that is already tested in many other places",
+      "range": {
+        "startLine": 260,
+        "startChar": 0,
+        "endLine": 263,
+        "endChar": 115
+      },
+      "revId": "c934aea3a17b9235d11a74fee0f3bb1e3daea67f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "319c4725_509fc5f4",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsDataServiceIntegrationSpec.groovy",
+        "patchSetId": 47
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-26T15:28:40Z",
+      "side": 1,
+      "message": "I think we need to discuss this test, not suer why you manually create suhch long list here...",
+      "range": {
+        "startLine": 454,
+        "startChar": 7,
+        "endLine": 454,
+        "endChar": 923
+      },
+      "revId": "c934aea3a17b9235d11a74fee0f3bb1e3daea67f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97a3fad5_c5c53bcd",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsDataServiceIntegrationSpec.groovy",
+        "patchSetId": 47
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-26T15:28:40Z",
+      "side": 1,
+      "message": "remove redudant spaces (in all tables)\nUse || to separate input parameters from expected values",
+      "range": {
+        "startLine": 484,
+        "startChar": 162,
+        "endLine": 484,
+        "endChar": 176
+      },
+      "revId": "c934aea3a17b9235d11a74fee0f3bb1e3daea67f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2cbdea17_c4f48fb8",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsDataServiceIntegrationSpec.groovy",
+        "patchSetId": 47
+      },
+      "lineNbr": 555,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-26T15:28:40Z",
+      "side": 1,
+      "message": "too many variant in oen test, please break down in 2 or 3 test one focussing on datdanodes and children, one focussing on leaves etc.",
+      "range": {
+        "startLine": 541,
+        "startChar": 0,
+        "endLine": 555,
+        "endChar": 6
+      },
+      "revId": "c934aea3a17b9235d11a74fee0f3bb1e3daea67f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e7fac33_6a1331a9",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsDataServiceIntegrationSpec.groovy",
+        "patchSetId": 47
+      },
+      "lineNbr": 591,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-26T15:28:40Z",
+      "side": 1,
+      "message": "always same , no need for column",
+      "range": {
+        "startLine": 591,
+        "startChar": 90,
+        "endLine": 591,
+        "endChar": 111
+      },
+      "revId": "c934aea3a17b9235d11a74fee0f3bb1e3daea67f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb2da213_daa699e3",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsDataServiceIntegrationSpec.groovy",
+        "patchSetId": 47
+      },
+      "lineNbr": 596,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-26T15:28:40Z",
+      "side": 1,
+      "message": "edgas test extract out tehn you alas will need less columsn for other secarios!",
+      "range": {
+        "startLine": 596,
+        "startChar": 13,
+        "endLine": 596,
+        "endChar": 210
+      },
       "revId": "c934aea3a17b9235d11a74fee0f3bb1e3daea67f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }

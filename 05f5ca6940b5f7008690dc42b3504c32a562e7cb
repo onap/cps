@@ -208,6 +208,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3987c573_7e3be888",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-10-26T15:28:40Z",
+      "side": 1,
+      "message": "I can see a valid use-case where the xpath is empty for the Reference and empty for te comparand. SO maybe empty for both is still valid too... \nIt is very much a stakeholder decision to treat this as an error if BOTH are empty, I simply wouldn\u0027t that is my advise but decision should be by ProductOwners",
+      "parentUuid": "73242d01_4dff1cf9",
+      "range": {
+        "startLine": 237,
+        "startChar": 8,
+        "endLine": 239,
+        "endChar": 9
+      },
+      "revId": "05f5ca6940b5f7008690dc42b3504c32a562e7cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "49d4a22e_f06c3cb6",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsDeltaService.java",
         "patchSetId": 42
