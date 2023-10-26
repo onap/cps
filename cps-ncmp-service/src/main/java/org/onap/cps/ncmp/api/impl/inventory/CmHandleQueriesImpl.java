@@ -34,6 +34,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
+import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.api.impl.inventory.enums.PropertyType;
 import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel;
 import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevelFilter;
@@ -49,6 +50,8 @@ public class CmHandleQueriesImpl implements CmHandleQueries {
     private static final String DESCENDANT_PATH = "//";
     private static final String ANCESTOR_CM_HANDLES = "/ancestor::cm-handles";
     private final CpsDataPersistenceService cpsDataPersistenceService;
+    private final NetworkCmProxyDataService networkCmProxyDataService;
+    private final Map<String, TrustLevel> trustLevelPerDmiPlugin;
     private final Map<String, TrustLevel> trustLevelPerCmHandle;
 
     @Override
@@ -66,7 +69,8 @@ public class CmHandleQueriesImpl implements CmHandleQueries {
         final String trustLevelProperty = trustLevelPropertyQueryPairs.values().iterator().next();
         final TrustLevel targetTrustLevel = TrustLevel.valueOf(trustLevelProperty);
 
-        final TrustLevelFilter trustLevelFilter = new TrustLevelFilter(targetTrustLevel, trustLevelPerCmHandle);
+        final TrustLevelFilter trustLevelFilter = new TrustLevelFilter(targetTrustLevel, networkCmProxyDataService,
+            trustLevelPerDmiPlugin, trustLevelPerCmHandle);
         return trustLevelFilter.getAllCmHandleIdsByTargetTrustLevel();
     }
 

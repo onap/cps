@@ -21,37 +21,68 @@
 package org.onap.cps.ncmp.api.impl.trustlevel;
 
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Map;
 import lombok.EqualsAndHashCode;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 
 @RequiredArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class TrustLevelFilter implements Comparable<TrustLevel> {
+public class TrustLevelFilter implements Comparator<TrustLevel> {
 
     @EqualsAndHashCode.Include
     private final TrustLevel targetTrustLevel;
+    private final NetworkCmProxyDataService networkCmProxyDataService;
+    private final Map<String, TrustLevel> trustLevelPerDmiPlugin;
     private final Map<String, TrustLevel> trustLevelPerCmHandle;
 
+    /**
+     * if left < right then return -1
+     * if left > right then return 1
+     * if left == right then return 0
+     *
+     * @param left the first object to be compared.
+     * @param right the second object to be compared.
+     *
+     * @return integer value
+     */
     @Override
-    public int compareTo(@NonNull final TrustLevel other) {
-        return Integer.compare(this.targetTrustLevel.getValue(), other.getValue());
+    public int compare(@NonNull final TrustLevel left, @NonNull final TrustLevel right) {
+        return left.compareTo(right);
     }
 
     /**
      * This method return cm handles that matches with given trust level.
      *
-     * @return cm handle ids.
+     * @return cm handle ids
      */
     public Collection<String> getAllCmHandleIdsByTargetTrustLevel() {
         final Collection<String> resultCmHandleIds = new HashSet<>();
-        trustLevelPerCmHandle.entrySet().forEach(cmHandleTrustLevelEntrySet -> {
-            if (compareTo(cmHandleTrustLevelEntrySet.getValue()) == 0) {
-                resultCmHandleIds.add(cmHandleTrustLevelEntrySet.getKey());
-            }
+
+        trustLevelPerDmiPlugin.keySet().forEach(dmiKey -> {
+            final Collection<String> cmHandleKeySet =
+                networkCmProxyDataService.getAllCmHandleIdsByDmiPluginIdentifier(dmiKey);
+
+            cmHandleKeySet.forEach(cmHandleKey -> {
+                final TrustLevel dmiTrustLevel = trustLevelPerDmiPlugin.get(dmiKey);
+                final TrustLevel chTrustLevel = trustLevelPerCmHandle.get(cmHandleKey);
+                int result = compare(dmiTrustLevel, chTrustLevel);
+                if (result < 0) { // dmi has the lower value
+                    if (targetTrustLevel.equals(dmiTrustLevel)) {
+                        resultCmHandleIds.add(cmHandleKey);
+                    }
+                } else { // ch has the lower value
+                    if (targetTrustLevel.equals(chTrustLevel)) {
+                        resultCmHandleIds.add(cmHandleKey);
+                    }
+                }
+            });
+
         });
+
         return resultCmHandleIds;
     }
 

@@ -27,7 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration.DmiProperties;
 import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException;
 import org.onap.cps.ncmp.api.impl.operations.OperationType;
-import org.onap.cps.ncmp.api.impl.trustlevel.dmiavailability.DmiPluginStatus;
+import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -42,6 +42,7 @@ import org.springframework.web.client.RestTemplate;
 public class DmiRestClient {
 
     private static final String HEALTH_CHECK_URL_EXTENSION = "/actuator/health";
+    public static final String SPRING_BOOT_HEALTH_RESPONSE_STATUS_FIELD = "status";
     private RestTemplate restTemplate;
     private DmiProperties dmiProperties;
 
@@ -69,20 +70,21 @@ public class DmiRestClient {
      * Sends GET operation to DMI plugin's health check URL.
      *
      * @param       dmiPluginBaseUrl the base URL of the dmi-plugin
-     * @return      DmiPluginStatus as UP or DOWN
+     * @return      TrustLevel dmi
      */
-    public DmiPluginStatus getDmiPluginStatus(final String dmiPluginBaseUrl) {
+    public TrustLevel getDmiPluginTrustLevel(final String dmiPluginBaseUrl) {
         try {
             final HttpEntity<Object> httpHeaders = new HttpEntity<>(configureHttpHeaders(new HttpHeaders()));
             final JsonNode dmiPluginHealthStatus = restTemplate
                 .getForObject(dmiPluginBaseUrl + HEALTH_CHECK_URL_EXTENSION, JsonNode.class, httpHeaders);
-            if (dmiPluginHealthStatus != null && dmiPluginHealthStatus.get("status").asText().equals("UP")) {
-                return DmiPluginStatus.UP;
+
+            if (dmiPluginHealthStatus.get(SPRING_BOOT_HEALTH_RESPONSE_STATUS_FIELD).asText().equals("UP")) {
+                return TrustLevel.COMPLETE;
             }
         } catch (final Exception exception) {
             log.warn("Could not send request for health check since {}", exception.getMessage());
         }
-        return DmiPluginStatus.DOWN;
+        return TrustLevel.NONE;
     }
 
     private HttpHeaders configureHttpHeaders(final HttpHeaders httpHeaders) {
