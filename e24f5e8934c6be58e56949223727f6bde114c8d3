@@ -37,6 +37,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "23c2621c_770f0e37",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-10-26T10:22:21Z",
+      "side": 1,
+      "message": "Hi Toine \u0026 Priyank, as per my local tests, if the cmhandle present in the cache, trustLevel atribute become visible in the output of get APIs. Whereas, if the cmhandle does not present, the trustLevel attribute does not appear in the response bodies at all even the attribute key. \n\nIf the behaviour should be exactly like that that it is ok. If we should render trustLevel attribute without any value but the key should present in the response bodies the we have to set it here to empty string.\n\nWhat do you think which way is the most convenient?",
+      "range": {
+        "startLine": 373,
+        "startChar": 0,
+        "endLine": 375,
+        "endChar": 9
+      },
+      "revId": "e24f5e8934c6be58e56949223727f6bde114c8d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "07ee49fc_4f634bf5",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
         "patchSetId": 6
