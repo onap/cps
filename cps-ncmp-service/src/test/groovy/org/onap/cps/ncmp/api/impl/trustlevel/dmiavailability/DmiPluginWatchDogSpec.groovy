@@ -24,27 +24,27 @@ import org.onap.cps.ncmp.api.impl.client.DmiRestClient
 import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel
 import spock.lang.Specification
 
-class DMiPluginWatchDogSpec extends Specification {
+class DmiPluginWatchDogSpec extends Specification {
 
-
-    def mockTrustLevelPerDmiPlugin = Mock(Map<String, TrustLevel>)
     def mockDmiRestClient = Mock(DmiRestClient)
-    def objectUnderTest = new DMiPluginWatchDog(mockTrustLevelPerDmiPlugin, mockDmiRestClient)
+    def trustLevelPerDmiPlugin = [:]
 
+    def objectUnderTest = new DmiPluginWatchDog(mockDmiRestClient, trustLevelPerDmiPlugin)
 
-    def 'watch dmi plugin aliveness'() {
-        given: 'the dmi client returns aliveness for #dmi1Status'
-            mockDmiRestClient.getDmiPluginStatus('dmi1') >> dmi1Status
-        and: 'trust level cache returns dmi1'
-            mockTrustLevelPerDmiPlugin.keySet() >> {['dmi1'] as Set}
-        when: 'watch dog started'
-            objectUnderTest.watchDmiPluginAliveness()
-        then: 'trust level cache has been populated with #dmi1TrustLevel for dmi1'
-            1 * mockTrustLevelPerDmiPlugin.put('dmi1', dmi1TrustLevel)
-        where: 'the following parameter are used'
-            scenario                  | dmi1Status              || dmi1TrustLevel
-            'dmi1 is UP'              | DmiPluginStatus.UP      || TrustLevel.COMPLETE
-            'dmi1 is DOWN'            | DmiPluginStatus.DOWN    || TrustLevel.NONE
+    def 'watch dmi plugin health status for #dmiHealhStatus'() {
+        given: 'the cache has been initialised and "knows" about dmi-1'
+            trustLevelPerDmiPlugin.put('dmi-1',null)
+        and: 'dmi client returns health status #dmiHealhStatus'
+            mockDmiRestClient.getDmiHealthStatus('dmi-1') >> dmiHealhStatus
+        when: 'dmi watch dog method runs'
+            objectUnderTest.watchDmiPluginTrustLevel()
+        then: 'the result is as expected'
+            assert trustLevelPerDmiPlugin.get('dmi-1') == expectedResult
+        where: 'the following health status is used'
+            dmiHealhStatus || expectedResult
+            'UP'           || TrustLevel.COMPLETE
+            'Other'        || TrustLevel.NONE
+            null           || TrustLevel.NONE
     }
 
 }

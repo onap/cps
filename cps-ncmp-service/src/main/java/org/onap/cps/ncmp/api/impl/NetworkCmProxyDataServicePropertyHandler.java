@@ -74,8 +74,8 @@ public class NetworkCmProxyDataServicePropertyHandler {
                 cmHandleRegistrationResponses.add(CmHandleRegistrationResponse.createSuccessResponse(cmHandleId));
             } catch (final DataNodeNotFoundException e) {
                 log.error("Unable to find dataNode for cmHandleId : {} , caused by : {}", cmHandleId, e.getMessage());
-                cmHandleRegistrationResponses.add(CmHandleRegistrationResponse
-                    .createFailureResponse(cmHandleId, CM_HANDLES_NOT_FOUND));
+                cmHandleRegistrationResponses.add(
+                    CmHandleRegistrationResponse.createFailureResponse(cmHandleId, CM_HANDLES_NOT_FOUND));
             } catch (final DataValidationException e) {
                 log.error("Unable to update cm handle : {}, caused by : {}", cmHandleId, e.getMessage());
                 cmHandleRegistrationResponses.add(

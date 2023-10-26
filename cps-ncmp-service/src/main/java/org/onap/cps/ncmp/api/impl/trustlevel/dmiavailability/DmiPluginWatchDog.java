@@ -31,28 +31,24 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @RequiredArgsConstructor
 @Service
-public class DMiPluginWatchDog {
-
-    private final Map<String, TrustLevel> trustLevelPerDmiPlugin;
+public class DmiPluginWatchDog {
 
     private final DmiRestClient dmiRestClient;
+    private final Map<String, TrustLevel> trustLevelPerDmiPlugin;
 
     /**
-     * Monitors the aliveness of DMI plugins by this watchdog.
-     * This method periodically checks the health and status of each DMI plugin to ensure that
-     * they are functioning properly. If a plugin is found to be unresponsive or in an
-     * unhealthy state, the cache will be updated with the latest status.
-     * The @fixedDelayString is the time interval, in milliseconds, between consecutive aliveness checks.
+     * This class monitors the trust level of all DMI plugin by checking the health status
+     * the resulting trustlevel wil be stored in the relevant cache.
+     * The @fixedDelayString is the time interval, in milliseconds, between consecutive checks.
      */
     @Scheduled(fixedDelayString = "${ncmp.timers.trust-evel.dmi-availability-watchdog-ms:30000}")
-    public void watchDmiPluginAliveness() {
-        trustLevelPerDmiPlugin.keySet().forEach(dmiPluginName -> {
-            final DmiPluginStatus dmiPluginStatus = dmiRestClient.getDmiPluginStatus(dmiPluginName);
-            log.debug("Trust level for dmi-plugin: {} is {}", dmiPluginName, dmiPluginStatus.toString());
-            if (DmiPluginStatus.UP.equals(dmiPluginStatus)) {
-                trustLevelPerDmiPlugin.put(dmiPluginName, TrustLevel.COMPLETE);
+    public void watchDmiPluginTrustLevel() {
+        trustLevelPerDmiPlugin.keySet().forEach(dmiKey -> {
+            final String dmiHealthStatus = dmiRestClient.getDmiHealthStatus(dmiKey);
+            if ("UP".equals(dmiHealthStatus)) {
+                trustLevelPerDmiPlugin.put(dmiKey, TrustLevel.COMPLETE);
             } else {
-                trustLevelPerDmiPlugin.put(dmiPluginName, TrustLevel.NONE);
+                trustLevelPerDmiPlugin.put(dmiKey, TrustLevel.NONE);
             }
         });
     }

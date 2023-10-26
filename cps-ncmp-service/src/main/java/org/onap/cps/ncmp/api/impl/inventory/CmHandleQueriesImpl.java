@@ -50,7 +50,7 @@ public class CmHandleQueriesImpl implements CmHandleQueries {
     private static final String DESCENDANT_PATH = "//";
     private static final String ANCESTOR_CM_HANDLES = "/ancestor::cm-handles";
     private final CpsDataPersistenceService cpsDataPersistenceService;
-    private final Map<String, TrustLevel> trustLevelPerCmHandle;
+    private final TrustLevelFilter trustLevelFilter;
     private final CpsValidator cpsValidator;
 
     @Override
@@ -68,8 +68,7 @@ public class CmHandleQueriesImpl implements CmHandleQueries {
         final String trustLevelProperty = trustLevelPropertyQueryPairs.values().iterator().next();
         final TrustLevel targetTrustLevel = TrustLevel.valueOf(trustLevelProperty);
 
-        final TrustLevelFilter trustLevelFilter = new TrustLevelFilter(targetTrustLevel, trustLevelPerCmHandle);
-        return trustLevelFilter.getAllCmHandleIdsByTargetTrustLevel();
+        return trustLevelFilter.getCmHandleIdsByTrustLevel(targetTrustLevel);
     }
 
     @Override

@@ -20,22 +20,26 @@
 
 package org.onap.cps.ncmp.api.impl.trustlevel
 
-
+import org.onap.cps.ncmp.api.NetworkCmProxyDataService
 import spock.lang.Specification
 
 class TrustLevelFilterSpec extends Specification {
 
-    def targetTrustLevel = TrustLevel.COMPLETE
+    def mockNetworkCmProxyDataService = Mock(NetworkCmProxyDataService)
+    def trustLevelPerDmiPlugin = [:]
+    def trustLevelPerCmHandle = [ 'my trusted cm handle': TrustLevel.COMPLETE, 'my untrusted cm handle': TrustLevel.NONE ]
 
-    def trustLevelPerCmHandle = [ 'my completed cm handle': TrustLevel.COMPLETE, 'my untrusted cm handle': TrustLevel.NONE ]
+    def objectUnderTest = new TrustLevelFilter(mockNetworkCmProxyDataService, trustLevelPerDmiPlugin, trustLevelPerCmHandle)
 
-    def objectUnderTest = new TrustLevelFilter(targetTrustLevel, trustLevelPerCmHandle)
-
-    def 'Obtain cm handle ids by a given trust level value'() {
-        when: 'cm handles are retrieved'
-            def result = objectUnderTest.getAllCmHandleIdsByTargetTrustLevel()
-        then: 'the result only contains the completed cm handle'
+    def 'Filter cm handle ids for the given trust level'() {
+        given: 'the cache has been initialised and "knows" about my-dmi'
+            trustLevelPerDmiPlugin.put('my-dmi', TrustLevel.COMPLETE)
+        and: 'network data service returns cm handles for my-dmi'
+            mockNetworkCmProxyDataService.getAllCmHandleIdsByDmiPluginIdentifier('my-dmi') >> ['my trusted cm handle', 'my untrusted cm handle']
+        when: 'attempt to get cm handles trust level COMPLETE'
+            def result = objectUnderTest.getCmHandleIdsByTrustLevel(TrustLevel.COMPLETE)
+        then: 'the result contain my trusted cm handle'
             assert result.size() == 1
-            assert result[0] == 'my completed cm handle'
+            assert result[0] == 'my trusted cm handle'
     }
 }
