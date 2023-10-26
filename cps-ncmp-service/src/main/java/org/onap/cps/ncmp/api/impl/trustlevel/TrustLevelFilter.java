@@ -24,35 +24,43 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Map;
 import lombok.EqualsAndHashCode;
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
+import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class TrustLevelFilter implements Comparable<TrustLevel> {
-
-    @EqualsAndHashCode.Include
-    private final TrustLevel targetTrustLevel;
+@Component
+public class TrustLevelFilter {
+    private final NetworkCmProxyDataService networkCmProxyDataService;
+    private final Map<String, TrustLevel> trustLevelPerDmiPlugin;
     private final Map<String, TrustLevel> trustLevelPerCmHandle;
 
-    @Override
-    public int compareTo(@NonNull final TrustLevel other) {
-        return Integer.compare(this.targetTrustLevel.getValue(), other.getValue());
-    }
 
     /**
      * This method return cm handles that matches with given trust level.
      *
-     * @return cm handle ids.
+     * @return cm handle ids
      */
-    public Collection<String> getAllCmHandleIdsByTargetTrustLevel() {
-        final Collection<String> resultCmHandleIds = new HashSet<>();
-        trustLevelPerCmHandle.entrySet().forEach(cmHandleTrustLevelEntrySet -> {
-            if (compareTo(cmHandleTrustLevelEntrySet.getValue()) == 0) {
-                resultCmHandleIds.add(cmHandleTrustLevelEntrySet.getKey());
+    public Collection<String> getCmHandleIdsByTrustLevel(final TrustLevel targetTrustLevel) {
+        final Collection<String> selectedCmHandleIds = new HashSet<>();
+
+        for (final Map.Entry<String, TrustLevel> mapEntry : trustLevelPerDmiPlugin.entrySet()) {
+            final String dmiPluginIdentifier = mapEntry.getKey();
+            final TrustLevel dmiTrustLevel = mapEntry.getValue();
+            final Collection<String> candidateCmHandleIds =
+                networkCmProxyDataService.getAllCmHandleIdsByDmiPluginIdentifier(dmiPluginIdentifier);
+            for (final String candidateCmHandleId : candidateCmHandleIds) {
+                final TrustLevel candidateCmHandleTrustLevel = trustLevelPerCmHandle.get(candidateCmHandleId);
+                final TrustLevel effectiveTrustlevel =
+                    candidateCmHandleTrustLevel.getEffectiveTrustLevel(dmiTrustLevel);
+                if (targetTrustLevel.equals(effectiveTrustlevel)) {
+                    selectedCmHandleIds.add(candidateCmHandleId);
+                }
             }
-        });
-        return resultCmHandleIds;
+        }
+
+        return selectedCmHandleIds;
     }
 
 }
