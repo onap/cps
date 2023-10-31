@@ -26,6 +26,7 @@ import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNKNOWN_ERROR;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 import lombok.Builder;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -116,7 +117,8 @@ public class CmHandleRegistrationResponse {
     }
 
     public static List<CmHandleRegistrationResponse> createSuccessResponses(final List<String> cmHandleIds) {
-        return cmHandleIds.stream().map(CmHandleRegistrationResponse::createSuccessResponse).toList();
+        return cmHandleIds.stream().map(CmHandleRegistrationResponse::createSuccessResponse)
+                .collect(Collectors.toList());
     }
 
     public enum Status {

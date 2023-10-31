@@ -40,6 +40,7 @@ import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevelFilter;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.spi.utils.CpsValidator;
 import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
@@ -50,6 +51,7 @@ public class CmHandleQueriesImpl implements CmHandleQueries {
     private static final String ANCESTOR_CM_HANDLES = "/ancestor::cm-handles";
     private final CpsDataPersistenceService cpsDataPersistenceService;
     private final Map<String, TrustLevel> trustLevelPerCmHandle;
+    private final CpsValidator cpsValidator;
 
     @Override
     public Collection<String> queryCmHandleAdditionalProperties(final Map<String, String> privatePropertyQueryPairs) {
@@ -154,6 +156,7 @@ public class CmHandleQueriesImpl implements CmHandleQueries {
     }
 
     private DataNode getCmHandleState(final String cmHandleId) {
+        cpsValidator.validateNameCharacters(cmHandleId);
         final String xpath = NCMP_DMI_REGISTRY_PARENT + "/cm-handles[@id='" + cmHandleId + "']/state";
         return cpsDataPersistenceService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
                 xpath, OMIT_DESCENDANTS).iterator().next();

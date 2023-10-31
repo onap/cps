@@ -22,6 +22,7 @@
 package org.onap.cps.ncmp.api.impl
 
 import org.onap.cps.ncmp.api.models.UpgradedCmHandles
+import org.onap.cps.spi.exceptions.NotFoundInDataspaceException
 
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLES_NOT_FOUND
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLE_ALREADY_EXIST
@@ -71,7 +72,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def mockTrustLevelPerDmiPlugin = Mock(IMap<String, TrustLevel>)
     def objectUnderTest = getObjectUnderTest()
 
-    def 'DMI Registration: Create, Update, Delete & Upgrade operations are processed in the right order'() {
+    def 'DMI Registration: Create, Update, Delete & Upgrade operations with #scenario are processed in the right order'() {
         given: 'a registration with operations of all three types'
             def dmiRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server')
             dmiRegistration.setCreatedCmHandles([new NcmpServiceCmHandle(cmHandleId: 'cmhandle-1', publicProperties: ['publicProp1': 'value'], dmiProperties: [:])])
@@ -81,7 +82,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         and: 'cm handles are persisted'
             mockInventoryPersistence.getYangModelCmHandles(['cmhandle-2']) >> [new YangModelCmHandle()]
         and: 'cm handle is in READY state'
-            mockCmHandleQueries.cmHandleHasState('cmhandle-3', CmHandleState.READY) >> true
+            mockCmHandleQueries.cmHandleHasState('cmhandle-3', CmHandleState.READY) >> getResponse
         when: 'registration is processed'
             objectUnderTest.updateDmiRegistrationAndSyncModule(dmiRegistration)
         then: 'cm-handles are removed first'
@@ -94,6 +95,12 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             1 * mockNetworkCmProxyDataServicePropertyHandler.updateCmHandleProperties(*_)
         then: 'cm-handles are upgraded'
             1 * objectUnderTest.parseAndProcessUpgradedCmHandlesInRegistration(*_)
+        where: 'the following parameters are used'
+        scenario                           | getResponse
+        'cmhandle-3 is in READY state'     | true
+        'cmhandle-3 is not in READY state' | false
+        'data node not found'              | { throw new DataNodeNotFoundException('some-dataspace-name', 'some-anchor-name') }
+        'cm handle is invalid'             | { throw new DataValidationException('some error message', 'some error details') }
     }
 
     def 'DMI Registration: Response from all operations types are in response'() {
