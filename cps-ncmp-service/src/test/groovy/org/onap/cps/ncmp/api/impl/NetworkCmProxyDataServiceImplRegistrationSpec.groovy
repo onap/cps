@@ -71,8 +71,8 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def mockTrustLevelPerDmiPlugin = Mock(IMap<String, TrustLevel>)
     def objectUnderTest = getObjectUnderTest()
 
-    def 'DMI Registration: Create, Update, Delete & Upgrade operations are processed in the right order'() {
-        given: 'a registration with operations of all three types'
+    def 'DMI Registration: Create, Update, Delete & Upgrade operations with #scenario are processed in the right order'() {
+        given: 'a registration with operations of all types'
             def dmiRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server')
             dmiRegistration.setCreatedCmHandles([new NcmpServiceCmHandle(cmHandleId: 'cmhandle-1', publicProperties: ['publicProp1': 'value'], dmiProperties: [:])])
             dmiRegistration.setUpdatedCmHandles([new NcmpServiceCmHandle(cmHandleId: 'cmhandle-2', publicProperties: ['publicProp1': 'value'], dmiProperties: [:])])
@@ -80,10 +80,10 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             dmiRegistration.setUpgradedCmHandles(new UpgradedCmHandles(cmHandles: ['cmhandle-3'], moduleSetTag: 'some-module-set-tag'))
         and: 'cm handles are persisted'
             mockInventoryPersistence.getYangModelCmHandles(['cmhandle-2']) >> [new YangModelCmHandle()]
-        and: 'cm handle is in READY state'
-            mockCmHandleQueries.cmHandleHasState('cmhandle-3', CmHandleState.READY) >> true
+        and: 'cmhandle-3 is #scenario'
+            mockCmHandleQueries.cmHandleHasState('cmhandle-3', CmHandleState.READY) >> isReady
         when: 'registration is processed'
-            objectUnderTest.updateDmiRegistrationAndSyncModule(dmiRegistration)
+            def result= objectUnderTest.updateDmiRegistrationAndSyncModule(dmiRegistration)
         then: 'cm-handles are removed first'
             1 * objectUnderTest.parseAndProcessDeletedCmHandlesInRegistration(*_)
         and: 'de-registered cm handle entry is removed from in progress map'
@@ -94,6 +94,30 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             1 * mockNetworkCmProxyDataServicePropertyHandler.updateCmHandleProperties(*_)
         then: 'cm-handles are upgraded'
             1 * objectUnderTest.parseAndProcessUpgradedCmHandlesInRegistration(*_)
+        and: 'upgrade operation contains error code as'
+            assert result.upgradedCmHandles.status[0] == expectedResponseStatus
+        where: 'the following parameters are used'
+            scenario    | isReady || expectedResponseStatus
+            'READY'     | true    || Status.SUCCESS
+            'Not READY' | false   || Status.FAILURE
+    }
+
+    def 'DMI Registration upgrade with exception #scenario'() {
+        given: 'a registration with upgrade operation'
+            def dmiRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server')
+            dmiRegistration.setUpgradedCmHandles(new UpgradedCmHandles(cmHandles: ['cmhandle-3'], moduleSetTag: 'some-module-set-tag'))
+        and: 'cm handles are persisted'
+            mockInventoryPersistence.getYangModelCmHandles(['cmhandle-2']) >> [new YangModelCmHandle()]
+        and: 'exception while checking cm handle state'
+            mockCmHandleQueries.cmHandleHasState('cmhandle-3', CmHandleState.READY) >> { throw exception }
+        when: 'registration is processed'
+            def result = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiRegistration)
+        then: 'upgrade operation contains error code as'
+            assert result.upgradedCmHandles.ncmpResponseStatus.code[0] == expectedErrorCode
+        where: 'the following parameters are used'
+            scenario               | exception                                                                || expectedErrorCode
+            'data node not found'  | new DataNodeNotFoundException('some-dataspace-name', 'some-anchor-name') || '100'
+            'cm handle is invalid' | new DataValidationException('some error message', 'some error details')  || '110'
     }
 
     def 'DMI Registration: Response from all operations types are in response'() {
