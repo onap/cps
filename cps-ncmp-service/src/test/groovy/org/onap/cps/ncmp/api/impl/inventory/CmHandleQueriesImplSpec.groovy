@@ -22,6 +22,7 @@
 package org.onap.cps.ncmp.api.impl.inventory
 
 import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel
+import org.onap.cps.spi.utils.CpsValidator
 
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
@@ -40,9 +41,10 @@ import spock.lang.Specification
 
 class CmHandleQueriesImplSpec extends Specification {
     def cpsDataPersistenceService = Mock(CpsDataPersistenceService)
+    def mockCpsValidator = Mock(CpsValidator)
     def trustLevelPerCmHandle = [ 'my completed cm handle': TrustLevel.COMPLETE, 'my untrusted cm handle': TrustLevel.NONE ]
 
-    def objectUnderTest = new CmHandleQueriesImpl(cpsDataPersistenceService, trustLevelPerCmHandle)
+    def objectUnderTest = new CmHandleQueriesImpl(cpsDataPersistenceService, trustLevelPerCmHandle, mockCpsValidator)
 
     @Shared
     def static sampleDataNodes = [new DataNode()]
