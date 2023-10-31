@@ -515,6 +515,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "db643324_ab00f1f6",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 47
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-10-31T10:24:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "37f1dae4_1bf2d1e3",
+      "revId": "c934aea3a17b9235d11a74fee0f3bb1e3daea67f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "91d6734a_285d44ea",
@@ -575,6 +593,24 @@
       "writtenOn": "2023-10-26T13:27:50Z",
       "side": 1,
       "message": "same comment as above regarding the if-else condition needed or not.as you are already checking in build()",
+      "revId": "c934aea3a17b9235d11a74fee0f3bb1e3daea67f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a3edd84_120cfc53",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 47
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-10-31T10:24:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "43e95aa4_6805d310",
       "revId": "c934aea3a17b9235d11a74fee0f3bb1e3daea67f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
