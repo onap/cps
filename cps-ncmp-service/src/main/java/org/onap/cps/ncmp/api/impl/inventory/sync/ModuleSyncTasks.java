@@ -73,10 +73,9 @@ public class ModuleSyncTasks {
                     yangModelCmHandle.getCompositeState().setLockReason(null);
                     cmHandelStatePerCmHandle.put(yangModelCmHandle, CmHandleState.READY);
                 } catch (final Exception e) {
-                    log.warn("Processing of {} module sync failed due to reason {}.",
-                            cmHandleId, e.getMessage());
-                    syncUtils.updateLockReasonDetailsAndAttempts(compositeState,
-                            LockReasonCategory.MODULE_SYNC_FAILED, e.getMessage());
+                    log.warn("Processing of {} module sync failed due to reason {}.", cmHandleId, e.getMessage());
+                    syncUtils.updateLockReasonDetailsAndAttempts(compositeState, LockReasonCategory.MODULE_SYNC_FAILED,
+                            e.getMessage());
                     setCmHandleStateLocked(yangModelCmHandle, compositeState.getLockReason());
                     cmHandelStatePerCmHandle.put(yangModelCmHandle, CmHandleState.LOCKED);
                 }

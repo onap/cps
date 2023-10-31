@@ -72,7 +72,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def objectUnderTest = getObjectUnderTest()
 
     def 'DMI Registration: Create, Update, Delete & Upgrade operations are processed in the right order'() {
-        given: 'a registration with operations of all three types'
+        given: 'a registration with operations of all types'
             def dmiRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server')
             dmiRegistration.setCreatedCmHandles([new NcmpServiceCmHandle(cmHandleId: 'cmhandle-1', publicProperties: ['publicProp1': 'value'], dmiProperties: [:])])
             dmiRegistration.setUpdatedCmHandles([new NcmpServiceCmHandle(cmHandleId: 'cmhandle-2', publicProperties: ['publicProp1': 'value'], dmiProperties: [:])])
@@ -94,6 +94,38 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             1 * mockNetworkCmProxyDataServicePropertyHandler.updateCmHandleProperties(*_)
         then: 'cm-handles are upgraded'
             1 * objectUnderTest.parseAndProcessUpgradedCmHandlesInRegistration(*_)
+    }
+
+    def 'DMI Registration upgrade operation with upgrade node state #scenario'() {
+        given: 'a registration with upgrade operation'
+            def dmiRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server')
+            dmiRegistration.setUpgradedCmHandles(new UpgradedCmHandles(cmHandles: ['cmhandle-3'], moduleSetTag: 'some-module-set-tag'))
+        and: 'exception while checking cm handle state'
+            mockCmHandleQueries.cmHandleHasState('cmhandle-3', CmHandleState.READY) >> isReady
+        when: 'registration is processed'
+            def result = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiRegistration)
+        then: 'upgrade operation contains expected error code'
+            assert result.upgradedCmHandles.status[0] == expectedResponseStatus
+        where: 'the following parameters are used'
+            scenario    | isReady || expectedResponseStatus
+            'READY'     | true    || Status.SUCCESS
+            'Not READY' | false   || Status.FAILURE
+    }
+
+    def 'DMI Registration upgrade with exception #scenario'() {
+        given: 'a registration with upgrade operation'
+            def dmiRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server')
+            dmiRegistration.setUpgradedCmHandles(new UpgradedCmHandles(cmHandles: ['cmhandle-3'], moduleSetTag: 'some-module-set-tag'))
+        and: 'exception while checking cm handle state'
+            mockCmHandleQueries.cmHandleHasState('cmhandle-3', CmHandleState.READY) >> { throw exception }
+        when: 'registration is processed'
+            def result = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiRegistration)
+        then: 'upgrade operation contains expected error code'
+            assert result.upgradedCmHandles.ncmpResponseStatus.code[0] == expectedErrorCode
+        where: 'the following parameters are used'
+            scenario               | exception                                                                || expectedErrorCode
+            'data node not found'  | new DataNodeNotFoundException('some-dataspace-name', 'some-anchor-name') || '100'
+            'cm handle is invalid' | new DataValidationException('some error message', 'some error details')  || '110'
     }
 
     def 'DMI Registration: Response from all operations types are in response'() {
