@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a71a94f_9c6dc9b9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-01T11:57:39Z",
+      "side": 1,
+      "message": "I know it is oly a WiP but you are on teh wrong track... Let me work on this with you for a bit...",
+      "revId": "a729c8a631034f85ba68d86d55b70a596283a98a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2438c300_6fcccabc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/client/DmiRestClient.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-01T11:57:39Z",
+      "side": 1,
+      "message": "private ?\n(did you do a  seld review ?)",
+      "range": {
+        "startLine": 45,
+        "startChar": 4,
+        "endLine": 45,
+        "endChar": 11
+      },
+      "revId": "a729c8a631034f85ba68d86d55b70a596283a98a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41a99a31_aa666793",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/CmHandleQueriesImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-01T11:57:39Z",
+      "side": 1,
+      "message": "should (almost)never pass a service (bean) as a paremeter",
+      "range": {
+        "startLine": 72,
+        "startChar": 89,
+        "endLine": 72,
+        "endChar": 114
+      },
+      "revId": "a729c8a631034f85ba68d86d55b70a596283a98a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e839d6dc_4cda7e30",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelFilter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-01T11:57:39Z",
+      "side": 1,
+      "message": "do not use @NonNull , we agreed long time ago as a team not to use such annotations",
+      "range": {
+        "startLine": 53,
+        "startChar": 23,
+        "endLine": 53,
+        "endChar": 31
+      },
+      "revId": "a729c8a631034f85ba68d86d55b70a596283a98a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03620561_5f9dfe87",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelFilter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-01T11:57:39Z",
+      "side": 1,
+      "message": "let me",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 0
+      },
+      "revId": "a729c8a631034f85ba68d86d55b70a596283a98a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bde0e15e_80e56b47",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/dmiavailability/DMiPluginWatchDog.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-01T11:57:39Z",
+      "side": 1,
+      "message": "if think this is broken down incorrectlty.\nthe dmiRestClient should just return the healthtState\nAn then in THIS method you you should handle the return value and catch any error \nIt a matter of dividing the responsibities correctly!",
+      "range": {
+        "startLine": 49,
+        "startChar": 59,
+        "endLine": 49,
+        "endChar": 81
+      },
+      "revId": "a729c8a631034f85ba68d86d55b70a596283a98a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
