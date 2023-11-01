@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "urn:cps:org.onap.cps.ncmp.events:attribute-value-change-event-schema:1.0.0",
+  "$ref": "#/definitions/AttributeValueChangeEvent",
+  "definitions": {
+    "AttributeValueChangeEvent": {
+      "javaType": "org.onap.cps.ncmp.events.avc.ncmp_to_client.AttributeValueChangeEvent",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/Data"
+        }
+      },
+      "required": [
+        "data"
+      ],
+      "title": "AttributeValueChangeEvent"
+    },
+    "Data": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "attributeValueChange": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AttributeValueChange"
+          }
+        }
+      },
+      "required": [
+        "attributeValueChange"
+      ],
+      "title": "Data"
+    },
+    "AttributeValueChange": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "attributeName": {
+          "type": "string"
+        },
+        "oldAttributeValue": {
+          "type": "string"
+        },
+        "newAttributeValue": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "attributeName",
+        "newAttributeValue",
+        "oldAttributeValue"
+      ],
+      "title": "AttributeValueChange"
+    }
+  }
+}
