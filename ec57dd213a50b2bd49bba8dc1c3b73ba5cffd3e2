@@ -33,6 +33,52 @@
       "message": "recheck",
       "revId": "ec57dd213a50b2bd49bba8dc1c3b73ba5cffd3e2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c21c70b_397a565a",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/trustlevel/trust-level-change-event-schema-1.0.0.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-01T18:17:22Z",
+      "side": 1,
+      "message": "this schema is more generic: it is supposed to be able to capture any \u0027AttributeValueChange\u0027\nCheck the Analasys  what the intended scope is. Maybe discuss with me and Halil and Priyank...",
+      "range": {
+        "startLine": 4,
+        "startChar": 25,
+        "endLine": 4,
+        "endChar": 35
+      },
+      "revId": "ec57dd213a50b2bd49bba8dc1c3b73ba5cffd3e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e63d4a56_cd177733",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/trustlevel/trust-level-change-event-schema-1.0.0.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-01T18:17:22Z",
+      "side": 1,
+      "message": "as aboev this schema should not mention TrustLevel anywhere!",
+      "range": {
+        "startLine": 6,
+        "startChar": 5,
+        "endLine": 6,
+        "endChar": 21
+      },
+      "revId": "ec57dd213a50b2bd49bba8dc1c3b73ba5cffd3e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
