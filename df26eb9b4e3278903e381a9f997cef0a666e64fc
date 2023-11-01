@@ -16,6 +16,98 @@
       "message": "looks good !",
       "revId": "df26eb9b4e3278903e381a9f997cef0a666e64fc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50c5f76d_c92c00ed",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NcmpRestInputMapperSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-01T18:12:58Z",
+      "side": 1,
+      "message": "NB: shoudl be 2022-2023 I think",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 23
+      },
+      "revId": "df26eb9b4e3278903e381a9f997cef0a666e64fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a9f74b7_3edfc165",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NcmpRestInputMapperSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-01T18:12:58Z",
+      "side": 1,
+      "message": "I deliberately asked to change only the input parameters.\nmy intention was that  \u0027registration\u0027 equated for \u0027input\u0027(parameters)\nI realize now that the expected value also need some clarification. Since we are testing a mapper maybe we can use that word:\n1) mappedPublicProperties  or 2) expectedMappedPublicProperties\nIn my opinion 1 is clear enough",
+      "range": {
+        "startLine": 58,
+        "startChar": 176,
+        "endLine": 58,
+        "endChar": 188
+      },
+      "revId": "df26eb9b4e3278903e381a9f997cef0a666e64fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61dbeecb_4f16f44f",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NcmpRestInputMapperSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-01T18:12:58Z",
+      "side": 1,
+      "message": "mappedPublicProperties",
+      "range": {
+        "startLine": 58,
+        "startChar": 211,
+        "endLine": 58,
+        "endChar": 266
+      },
+      "revId": "df26eb9b4e3278903e381a9f997cef0a666e64fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fdcf19c1_c7fb049b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-01T18:12:58Z",
+      "side": 1,
+      "message": "NB: aligment",
+      "range": {
+        "startLine": 207,
+        "startChar": 44,
+        "endLine": 207,
+        "endChar": 64
+      },
+      "revId": "df26eb9b4e3278903e381a9f997cef0a666e64fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
