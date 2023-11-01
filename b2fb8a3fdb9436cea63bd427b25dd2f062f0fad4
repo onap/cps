@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9590697d_1d23cf5d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-01T17:35:44Z",
+      "side": 1,
+      "message": "one non-blockign suggestion,lets get review from others first",
+      "revId": "b2fb8a3fdb9436cea63bd427b25dd2f062f0fad4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9eaf67de_03e28993",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-01T17:35:44Z",
+      "side": 1,
+      "message": "I think it is OK to create this INSIDE thsi method. I understand we might repeat it for a few cm handles but it won\u0027t be thousands an it is fast enough...",
+      "range": {
+        "startLine": 411,
+        "startChar": 74,
+        "endLine": 411,
+        "endChar": 100
+      },
+      "revId": "b2fb8a3fdb9436cea63bd427b25dd2f062f0fad4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
