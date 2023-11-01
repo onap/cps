@@ -163,6 +163,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "df9fcea4_32adf067",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/21-fragment-id-sequence-forward.sql",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-01T18:37:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "eb33614d_525642ef",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 89
+      },
+      "revId": "46d92642586fcb3d05a728ec518f262ae63fc7b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "18c978f0_c29b5d06",
