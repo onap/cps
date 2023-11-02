@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c045050_761da51b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-02T13:55:48Z",
+      "side": 1,
+      "message": "Thank Toine for the review session. Please find my up to date patch set.",
+      "revId": "fabb21a5fab267a03006bdcb570829482687dd3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10e6db56_ba18b6c5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/client/DmiRestClient.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-02T13:55:48Z",
+      "side": 1,
+      "message": "\u0027possible null pointer dereference exception\u0027 occurred during local compile and stopped the compile, thus I need to divide this statement into two.",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 92
+      },
+      "revId": "fabb21a5fab267a03006bdcb570829482687dd3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

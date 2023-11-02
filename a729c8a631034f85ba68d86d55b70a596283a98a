@@ -129,6 +129,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2def0432_c868e867",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/CmHandleQueriesImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-02T13:55:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f5cb198_833ad0da",
+      "range": {
+        "startLine": 72,
+        "startChar": 89,
+        "endLine": 72,
+        "endChar": 114
+      },
+      "revId": "a729c8a631034f85ba68d86d55b70a596283a98a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e839d6dc_4cda7e30",
@@ -213,6 +237,30 @@
       "side": 1,
       "message": "This is the algorithm I need to talk about that.",
       "parentUuid": "03620561_5f9dfe87",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 0
+      },
+      "revId": "a729c8a631034f85ba68d86d55b70a596283a98a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80f2a7c0_e6aae975",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelFilter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-02T13:55:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e7d9635_a92e93f4",
       "range": {
         "startLine": 62,
         "startChar": 0,
