@@ -99,6 +99,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c574b926_18bce17f",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/trustlevel/trust-level-change-event-schema-1.0.0.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-02T16:03:20Z",
+      "side": 1,
+      "message": "Its OK with me but still need to ask Kieran. we can merge for now and always change th name againe",
+      "parentUuid": "12803a77_6d0b29ba",
+      "range": {
+        "startLine": 4,
+        "startChar": 25,
+        "endLine": 4,
+        "endChar": 35
+      },
+      "revId": "ec57dd213a50b2bd49bba8dc1c3b73ba5cffd3e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e63d4a56_cd177733",
