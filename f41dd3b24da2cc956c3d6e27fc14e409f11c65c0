@@ -22,6 +22,30 @@
       },
       "revId": "f41dd3b24da2cc956c3d6e27fc14e409f11c65c0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5dc061a4_6fed7b03",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-02T16:22:02Z",
+      "side": 1,
+      "message": "The exampels and conventions are unclear about this. U think we agreed to use || nly once to separet unput from output. SO teh current way is prefered",
+      "parentUuid": "89fc7ff9_09fdd86e",
+      "range": {
+        "startLine": 206,
+        "startChar": 129,
+        "endLine": 206,
+        "endChar": 131
+      },
+      "revId": "f41dd3b24da2cc956c3d6e27fc14e409f11c65c0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
