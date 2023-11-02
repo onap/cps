@@ -86,6 +86,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2612ec5_d3023859",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-02T17:49:25Z",
+      "side": 1,
+      "message": "As far as I seen, in the CSIT the first test get fail (CPS - Actuator endpoints) since [Errno 111] Connection refused\u0027. I\u0027ll look at this more to understand why?",
+      "parentUuid": "b4e21bdc_bb7d8e33",
+      "revId": "fabb21a5fab267a03006bdcb570829482687dd3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a5912be8_200c75c0",
@@ -99,6 +117,30 @@
       "writtenOn": "2023-11-02T15:17:35Z",
       "side": 1,
       "message": "NB: can you try NOT to change formatting of uncahnged code lines!\nIts is very distracting during code review!\nThere shoudl be a settign in out IDE to prevent that",
+      "range": {
+        "startLine": 143,
+        "startChar": 0,
+        "endLine": 146,
+        "endChar": 23
+      },
+      "revId": "fabb21a5fab267a03006bdcb570829482687dd3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c96837a6_55327f6f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-02T17:49:25Z",
+      "side": 1,
+      "message": "You right, my IDE did it. I\u0027ll be looking to stop this settings in my IDE.",
+      "parentUuid": "a5912be8_200c75c0",
       "range": {
         "startLine": 143,
         "startChar": 0,
@@ -158,6 +200,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "3b94b34f_0736310e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/client/DmiRestClient.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-02T17:49:25Z",
+      "side": 1,
+      "message": "Yes, both are tested the null case in the negative test cases whereas not-null response is tested in positive test case.",
+      "parentUuid": "816eb605_435c8102",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 92
+      },
+      "revId": "fabb21a5fab267a03006bdcb570829482687dd3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "4ff3cdb4_1c13e86d",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevel.java",
         "patchSetId": 3
@@ -169,6 +235,30 @@
       "writtenOn": "2023-11-02T15:17:35Z",
       "side": 1,
       "message": "nice description :-D",
+      "range": {
+        "startLine": 40,
+        "startChar": 7,
+        "endLine": 40,
+        "endChar": 55
+      },
+      "revId": "fabb21a5fab267a03006bdcb570829482687dd3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c1f6052_31efe1eb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevel.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-02T17:49:25Z",
+      "side": 1,
+      "message": "Thanks",
+      "parentUuid": "4ff3cdb4_1c13e86d",
       "range": {
         "startLine": 40,
         "startChar": 7,
@@ -192,6 +282,30 @@
       "writtenOn": "2023-11-02T15:17:35Z",
       "side": 1,
       "message": "NB, incomplete suggestion.\nneed to intialise the DMI keys for this cache upon restart from DB. It should not depend on INitial registration!",
+      "range": {
+        "startLine": 46,
+        "startChar": 15,
+        "endLine": 46,
+        "endChar": 84
+      },
+      "revId": "fabb21a5fab267a03006bdcb570829482687dd3b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2cd729f4_0f0cb3c1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/dmiavailability/DmiPluginWatchDog.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-02T17:49:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "21e8180d_b80de59e",
       "range": {
         "startLine": 46,
         "startChar": 15,
