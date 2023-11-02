@@ -39,6 +39,30 @@
       },
       "revId": "b2fb8a3fdb9436cea63bd427b25dd2f062f0fad4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f9cb029_31a228bd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-11-02T10:18:13Z",
+      "side": 1,
+      "message": "moved",
+      "parentUuid": "9eaf67de_03e28993",
+      "range": {
+        "startLine": 411,
+        "startChar": 74,
+        "endLine": 411,
+        "endChar": 100
+      },
+      "revId": "b2fb8a3fdb9436cea63bd427b25dd2f062f0fad4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
