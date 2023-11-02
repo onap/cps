@@ -271,6 +271,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "874311eb_b4c2c6a9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelFilter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-02T15:17:35Z",
+      "side": 1,
+      "message": "as agreed I will send you an updated version from our pair coding session",
+      "parentUuid": "3e7d9635_a92e93f4",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 0
+      },
+      "revId": "a729c8a631034f85ba68d86d55b70a596283a98a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bde0e15e_80e56b47",
@@ -308,6 +332,30 @@
       "side": 1,
       "message": "Recently we have talked about this, and decided to client return TrustLevel other than health state. Also TrustLevel is a kind of Health State. We can talk more on this. For the exception handling, as we have spoken yesterday all exceptions are handled in the client in case of it returning TrustLevel.NONE (from client) at the worst case.",
       "parentUuid": "bde0e15e_80e56b47",
+      "range": {
+        "startLine": 49,
+        "startChar": 59,
+        "endLine": 49,
+        "endChar": 81
+      },
+      "revId": "a729c8a631034f85ba68d86d55b70a596283a98a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5fba718d_644d7c05",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/dmiavailability/DMiPluginWatchDog.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-02T15:17:35Z",
+      "side": 1,
+      "message": "still need to do the right thing in teh right place",
+      "parentUuid": "fb7e9d0b_f794e032",
       "range": {
         "startLine": 49,
         "startChar": 59,
