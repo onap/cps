@@ -122,6 +122,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc5c8308_667fa124",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 47
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-02T15:54:33Z",
+      "side": 1,
+      "message": "ok, but I am not a big fan. I dont think it improves reability or maintenance...",
+      "parentUuid": "a4b1edb6_ccf856ca",
+      "range": {
+        "startLine": 340,
+        "startChar": 12,
+        "endLine": 340,
+        "endChar": 33
+      },
+      "revId": "c934aea3a17b9235d11a74fee0f3bb1e3daea67f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "812336c7_48b8a531",
@@ -159,6 +183,30 @@
       "side": 1,
       "message": "this method is not part of my commit. were you referring to my method starting at line 304?",
       "parentUuid": "812336c7_48b8a531",
+      "range": {
+        "startLine": 297,
+        "startChar": 1,
+        "endLine": 300,
+        "endChar": 72
+      },
+      "revId": "c934aea3a17b9235d11a74fee0f3bb1e3daea67f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ee8ebeb_c35af358",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 47
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-02T15:54:33Z",
+      "side": 1,
+      "message": "my bad I look at teh wrong Javaodc",
+      "parentUuid": "81fc1c21_77eedf60",
       "range": {
         "startLine": 297,
         "startChar": 1,
@@ -357,6 +405,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d3544bd_06fdb074",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 47
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-02T15:54:33Z",
+      "side": 1,
+      "message": "OK\u003c thanks for explaining",
+      "parentUuid": "07311eaf_38c76b74",
+      "range": {
+        "startLine": 70,
+        "startChar": 58,
+        "endLine": 70,
+        "endChar": 64
+      },
+      "revId": "c934aea3a17b9235d11a74fee0f3bb1e3daea67f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "beff15eb_b81f1f92",
@@ -498,6 +570,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "39e5ad6b_09b41c62",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 47
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-02T15:54:33Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "18bb2d35_908f8067",
+      "range": {
+        "startLine": 100,
+        "startChar": 37,
+        "endLine": 100,
+        "endChar": 52
+      },
+      "revId": "c934aea3a17b9235d11a74fee0f3bb1e3daea67f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "37f1dae4_1bf2d1e3",
@@ -570,6 +666,30 @@
       "side": 1,
       "message": "true. these if conditions are redundant. The same is checked while comparing leaves down at line 191.\nThanks for pointing out the redundancy 😊",
       "parentUuid": "91d6734a_285d44ea",
+      "range": {
+        "startLine": 129,
+        "startChar": 1,
+        "endLine": 141,
+        "endChar": 9
+      },
+      "revId": "c934aea3a17b9235d11a74fee0f3bb1e3daea67f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "847d5d7e_4b17e66a",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 47
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-02T15:54:33Z",
+      "side": 1,
+      "message": "latest version look a lot better!",
+      "parentUuid": "dd408c70_6e9d2cad",
       "range": {
         "startLine": 129,
         "startChar": 1,
@@ -699,6 +819,30 @@
       "side": 1,
       "message": "the method getSourceLeavesAndUpdatedLeaves() compares the leaves of reference and comparand nodes,\n\nSo here we can have 2 scenarios\n1. first I compare common leaves between reference and comparand nodes, which might have changed over time so a simple comparison of their values, if a value is changed it is captured as an update operation\n2. there is a possibility of some leaves not present in reference node but only in comparand node, so I have taken them as uniqueLeavesOfComparandDataNode node and captured them as update operation separately\n\nthe terms source are causing a confusion so I refactored the code to have a consistent naming.",
       "parentUuid": "0bd92c5c_6384d05b",
+      "range": {
+        "startLine": 173,
+        "startChar": 4,
+        "endLine": 196,
+        "endChar": 9
+      },
+      "revId": "c934aea3a17b9235d11a74fee0f3bb1e3daea67f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7f3f6c3_5bb34295",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 47
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-02T15:54:33Z",
+      "side": 1,
+      "message": "it looks more consistent and should be easier to review. I stil think a \u0027workshop\u0027 might be the best next step/ I\u0027ll discuss with Priyank",
+      "parentUuid": "cb978e81_ee1a6327",
       "range": {
         "startLine": 173,
         "startChar": 4,
@@ -845,6 +989,30 @@
       "side": 1,
       "message": "i was manually checking if the delta report has all the expected xpaths or not. But we can remove the list and test it with number of child node xpaths as well",
       "parentUuid": "319c4725_509fc5f4",
+      "range": {
+        "startLine": 454,
+        "startChar": 7,
+        "endLine": 454,
+        "endChar": 923
+      },
+      "revId": "c934aea3a17b9235d11a74fee0f3bb1e3daea67f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9dc33125_39620aa6",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsDataServiceIntegrationSpec.groovy",
+        "patchSetId": 47
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-02T15:54:33Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8e6713f0_49b6bf9b",
       "range": {
         "startLine": 454,
         "startChar": 7,

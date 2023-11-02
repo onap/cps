@@ -35,6 +35,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf3320db_c38684fa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 56
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-02T15:54:33Z",
+      "side": 1,
+      "message": "another good step in the right direction. But the volume and complexity(especially of the \u0027updated/leafs\u0027 scenarios is still too complex.\nPriyank and I discuss and agreed this commit needs to be broken down by taking out the update/leafs code (and testware) and add that again (but possibly in a much simpler way later).\n\nThe size of the commit is really becoming a bottleneck as Priyank and I cant set aside enough time to review something this size! Smaller (baby) steps is rally the only way forward.",
+      "revId": "eb1f94d14899648590cfab7a5d9a342f1818aa3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1f5fa705_5c8b6133",
@@ -106,6 +123,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c2e0b57f_8997eceb",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDeltaService.java",
+        "patchSetId": 56
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-02T15:54:33Z",
+      "side": 1,
+      "message": "agreed",
+      "parentUuid": "87f5e869_05d0ffbc",
+      "range": {
+        "startLine": 36,
+        "startChar": 14,
+        "endLine": 36,
+        "endChar": 28
+      },
+      "revId": "eb1f94d14899648590cfab7a5d9a342f1818aa3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a7e153dd_89f01827",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDeltaServiceImpl.java",
         "patchSetId": 56
@@ -145,6 +186,52 @@
         "startChar": 50,
         "endLine": 215,
         "endChar": 93
+      },
+      "revId": "eb1f94d14899648590cfab7a5d9a342f1818aa3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88375085_ff4ece41",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 56
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-02T15:54:33Z",
+      "side": 1,
+      "message": "the method you are testing does NOT behave differently if the 2 anchors are the same. There is no separate code-paths. \nIt also doesn\u0027t clarify any further behavior of the method.\nSo No need for a WHERE block at all...",
+      "range": {
+        "startLine": 258,
+        "startChar": 1,
+        "endLine": 261,
+        "endChar": 118
+      },
+      "revId": "eb1f94d14899648590cfab7a5d9a342f1818aa3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "baef2453_3d03f892",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsDataServiceIntegrationSpec.groovy",
+        "patchSetId": 56
+      },
+      "lineNbr": 546,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-02T15:54:33Z",
+      "side": 1,
+      "message": "it looks you combine to much test (scenarios) into one. Again simplification is needed here.",
+      "range": {
+        "startLine": 511,
+        "startChar": 1,
+        "endLine": 546,
+        "endChar": 5
       },
       "revId": "eb1f94d14899648590cfab7a5d9a342f1818aa3f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
