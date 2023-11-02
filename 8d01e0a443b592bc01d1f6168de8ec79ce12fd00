@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6760294_632daf7d",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/ncmpdataavc/attribute-value-change-event-schema-1.0.0.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-02T14:37:33Z",
+      "side": 1,
+      "message": "These are not mandatory, so you can remove them.",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 27
+      },
+      "revId": "8d01e0a443b592bc01d1f6168de8ec79ce12fd00",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
