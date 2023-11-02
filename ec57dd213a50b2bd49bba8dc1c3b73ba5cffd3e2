@@ -60,6 +60,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "12803a77_6d0b29ba",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/trustlevel/trust-level-change-event-schema-1.0.0.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2023-11-02T12:33:26Z",
+      "side": 1,
+      "message": "Hopefully this is better, if not we can discuss",
+      "parentUuid": "0c21c70b_397a565a",
+      "range": {
+        "startLine": 4,
+        "startChar": 25,
+        "endLine": 4,
+        "endChar": 35
+      },
+      "revId": "ec57dd213a50b2bd49bba8dc1c3b73ba5cffd3e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e63d4a56_cd177733",
         "filename": "cps-ncmp-events/src/main/resources/schemas/trustlevel/trust-level-change-event-schema-1.0.0.json",
         "patchSetId": 2
@@ -71,6 +95,30 @@
       "writtenOn": "2023-11-01T18:17:22Z",
       "side": 1,
       "message": "as aboev this schema should not mention TrustLevel anywhere!",
+      "range": {
+        "startLine": 6,
+        "startChar": 5,
+        "endLine": 6,
+        "endChar": 21
+      },
+      "revId": "ec57dd213a50b2bd49bba8dc1c3b73ba5cffd3e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f70f158_976b51e8",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/trustlevel/trust-level-change-event-schema-1.0.0.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2023-11-02T12:33:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e63d4a56_cd177733",
       "range": {
         "startLine": 6,
         "startChar": 5,
