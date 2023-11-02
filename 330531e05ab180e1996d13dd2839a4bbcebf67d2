@@ -70,6 +70,30 @@
       },
       "revId": "330531e05ab180e1996d13dd2839a4bbcebf67d2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a185c12_4f64a754",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-02T16:16:36Z",
+      "side": 1,
+      "message": "I think it is mock behavior formatting issue, in any case they should be tested separately which will solve the formatting issue too",
+      "parentUuid": "6dae520f_8f85b17b",
+      "range": {
+        "startLine": 102,
+        "startChar": 7,
+        "endLine": 103,
+        "endChar": 126
+      },
+      "revId": "330531e05ab180e1996d13dd2839a4bbcebf67d2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
