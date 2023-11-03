@@ -254,6 +254,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "78d0a36d_58018c8a",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-11-03T08:55:00Z",
+      "side": 1,
+      "message": "Marking this as resolved as no further comments were received. as per our discussion it returns an empty delta report",
+      "parentUuid": "68217979_fce7be37",
+      "range": {
+        "startLine": 237,
+        "startChar": 8,
+        "endLine": 239,
+        "endChar": 9
+      },
+      "revId": "05f5ca6940b5f7008690dc42b3504c32a562e7cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "49d4a22e_f06c3cb6",

@@ -75,6 +75,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "440865f6_c58f8e48",
+        "filename": "cps-rest/docs/openapi/cpsDataV2.yml",
+        "patchSetId": 56
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-11-03T08:55:00Z",
+      "side": 1,
+      "message": "yes",
+      "parentUuid": "1f5fa705_5c8b6133",
+      "range": {
+        "startLine": 61,
+        "startChar": 53,
+        "endLine": 61,
+        "endChar": 69
+      },
+      "revId": "eb1f94d14899648590cfab7a5d9a342f1818aa3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "53f52285_212229f7",
@@ -88,6 +112,30 @@
       "writtenOn": "2023-11-02T15:35:57Z",
       "side": 1,
       "message": "NB: def",
+      "range": {
+        "startLine": 341,
+        "startChar": 12,
+        "endLine": 341,
+        "endChar": 23
+      },
+      "revId": "eb1f94d14899648590cfab7a5d9a342f1818aa3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24ce886b_b783d7d9",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 56
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-11-03T08:55:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "53f52285_212229f7",
       "range": {
         "startLine": 341,
         "startChar": 12,
@@ -145,6 +193,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "95a79da3_6c6db034",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDeltaService.java",
+        "patchSetId": 56
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-11-03T08:55:00Z",
+      "side": 1,
+      "message": "yes",
+      "parentUuid": "c2e0b57f_8997eceb",
+      "range": {
+        "startLine": 36,
+        "startChar": 14,
+        "endLine": 36,
+        "endChar": 28
+      },
+      "revId": "eb1f94d14899648590cfab7a5d9a342f1818aa3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a7e153dd_89f01827",
@@ -158,6 +230,30 @@
       "writtenOn": "2023-11-02T15:35:57Z",
       "side": 1,
       "message": "javadoc not required here as already defined in the interface.",
+      "range": {
+        "startLine": 45,
+        "startChar": 4,
+        "endLine": 53,
+        "endChar": 7
+      },
+      "revId": "eb1f94d14899648590cfab7a5d9a342f1818aa3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b20483b6_d669acf5",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 56
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-11-03T08:55:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a7e153dd_89f01827",
       "range": {
         "startLine": 45,
         "startChar": 4,
@@ -191,6 +287,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1c318e2_c2a9f481",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 56
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-11-03T08:55:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "94ce1181_88accb5f",
+      "range": {
+        "startLine": 215,
+        "startChar": 50,
+        "endLine": 215,
+        "endChar": 93
+      },
+      "revId": "eb1f94d14899648590cfab7a5d9a342f1818aa3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "88375085_ff4ece41",
@@ -204,6 +324,30 @@
       "writtenOn": "2023-11-02T15:54:33Z",
       "side": 1,
       "message": "the method you are testing does NOT behave differently if the 2 anchors are the same. There is no separate code-paths. \nIt also doesn\u0027t clarify any further behavior of the method.\nSo No need for a WHERE block at all...",
+      "range": {
+        "startLine": 258,
+        "startChar": 1,
+        "endLine": 261,
+        "endChar": 118
+      },
+      "revId": "eb1f94d14899648590cfab7a5d9a342f1818aa3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa3c544a_94fe6583",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 56
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-11-03T08:55:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "88375085_ff4ece41",
       "range": {
         "startLine": 258,
         "startChar": 1,
