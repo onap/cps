@@ -63,6 +63,7 @@ public class HazelcastCacheConfig {
         }
 
         config.setClusterName(clusterName);
+        config.setClassLoader(org.onap.cps.spi.model.Dataspace.class.getClassLoader());
         updateDiscoveryMode(config);
         return config;
     }
