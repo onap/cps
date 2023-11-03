@@ -890,6 +890,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "89da3004_462e36a7",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DeltaReport.java",
+        "patchSetId": 47
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-11-03T14:47:13Z",
+      "side": 1,
+      "message": "I understand arpits point that if we introduce it in the cps-rest layer , it wont be available in the layer down to it i.e the cps-service layer.\nSo I think we can continue like this in this patch and think about it in the next patch.",
+      "parentUuid": "c3164ed9_2e0c2732",
+      "revId": "c934aea3a17b9235d11a74fee0f3bb1e3daea67f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "365ce1e8_caec0a36",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DeltaReportBuilder.java",
         "patchSetId": 47
