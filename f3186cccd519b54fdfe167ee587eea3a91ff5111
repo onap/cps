@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "75081227_5891b6c3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-11-03T12:45:26Z",
+      "side": 1,
+      "message": "Merging based on previous +1s.\nNot looking in detail.",
+      "revId": "f3186cccd519b54fdfe167ee587eea3a91ff5111",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
