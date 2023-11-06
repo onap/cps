@@ -51,7 +51,7 @@ class NcmpPerfTestBase extends PerfTestBase {
     def cmHandlePrefix = 'some really long cm handle id to see if this makes any difference to the performance'
 
     def printTitle() {
-        println('##      N C M P   P E R F O R M A N C E   T E S T   R E S U L T S          ##')
+        println('##              N C M P   P E R F O R M A N C E   T E S T   R E S U L T S                 ##')
     }
 
     def isInitialised() {

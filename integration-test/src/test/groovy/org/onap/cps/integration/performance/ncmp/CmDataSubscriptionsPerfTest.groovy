@@ -51,8 +51,8 @@ class CmDataSubscriptionsPerfTest extends NcmpPerfTestBase {
             resourceMeter.stop()
             matches.size() == numberOfFiltersPerCmHandle * numberOfCmHandlesPerCmDataSubscription
         and: 'query all subscribers within 1 second'
-            def durationInMillis = resourceMeter.getTotalTimeMillis()
-            recordAndAssertResourceUsage("Query all subscribers", 1_000, durationInMillis, 400, resourceMeter.getTotalMemoryUsageInMB())
+            def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
+            recordAndAssertResourceUsage("Query all subscribers", 1, durationInSeconds, 400, resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def 'Worst case subscription update (200x10 matching entries).'() {
@@ -90,12 +90,12 @@ class CmDataSubscriptionsPerfTest extends NcmpPerfTestBase {
             }
 
             resourceMeter.stop()
-            def durationInMillis = resourceMeter.getTotalTimeMillis()
+            def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'a subscriber has been added to each filter entry'
             def resultAfter = objectUnderTest.queryDataNodes(NCMP_PERFORMANCE_TEST_DATASPACE, CM_DATA_SUBSCRIPTIONS_ANCHOR, cpsPath, INCLUDE_ALL_DESCENDANTS)
             assert resultAfter.collect {it.leaves.subscribers.size()}.sum() == totalNumberOfEntries * (1 + numberOfCmDataSubscribers)
         and: 'update matching subscription within 8 seconds'
-            recordAndAssertResourceUsage("Update matching subscription", 8_000, durationInMillis, 400, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage("Update matching subscription", 8, durationInSeconds, 400, resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def 'Worst case new subscription (200x10 new entries).'() {
@@ -107,9 +107,9 @@ class CmDataSubscriptionsPerfTest extends NcmpPerfTestBase {
             resourceMeter.start()
             cpsDataService.saveData(NCMP_PERFORMANCE_TEST_DATASPACE, CM_DATA_SUBSCRIPTIONS_ANCHOR, xPathForDataStore1CmHandles, cmHandles, now)
             resourceMeter.stop()
-            def durationInMillis = resourceMeter.getTotalTimeMillis()
+            def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'insert new subscription with 1 second'
-            recordAndAssertResourceUsage("Insert new subscription", 1_000, durationInMillis, 400,resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage("Insert new subscription", 1, durationInSeconds, 400,resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def querySubscriptionsByIteration(Collection<DataNode> allSubscriptionsAsDataNodes, targetSubscriptionSequenceNumber) {
