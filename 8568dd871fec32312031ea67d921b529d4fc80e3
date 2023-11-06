@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3798d80_640d5a3c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 62
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-11-06T11:04:09Z",
+      "side": 1,
+      "message": "Suggestion to use Map of xpaths to leaves instead of convertToXpathToDataNodesMap()",
+      "revId": "8568dd871fec32312031ea67d921b529d4fc80e3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
