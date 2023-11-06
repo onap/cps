@@ -33,6 +33,24 @@
       "message": "This change would apply for every distributed object..\nDo we parameterize it and set the classloader only when it is required.\ni.e for ModuleReference cache ( where we see the issue ) and not set explicitly for others? Does that makes sense ?",
       "revId": "4fb19b0a6b3b2a17ffb78ef51091ea87ca9bc2e3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec23f8af_526747ac",
+        "filename": "cps-service/src/main/java/org/onap/cps/cache/HazelcastCacheConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-06T12:24:09Z",
+      "side": 1,
+      "message": "please create Jira to address proper solution later (might depend outcome)",
+      "parentUuid": "3ca483b6_25209c3e",
+      "revId": "4fb19b0a6b3b2a17ffb78ef51091ea87ca9bc2e3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
