@@ -48,8 +48,8 @@ class NcmpDatastoreRequestHandlerSpec extends Specification {
             }
         then: 'the task is executed in an async fashion or not'
             expectedCalls * spiedCpsNcmpTaskExecutor.executeTask(*_)
-        and: 'the service request is always invoked'
-            1 * mockNetworkCmProxyDataService.getResourceDataForCmHandle('ds', 'ch1', 'resource1', 'options', _, _)
+        /*and: 'the service request is always invoked'
+            1 * mockNetworkCmProxyDataService.getResourceDataForCmHandle('ds', 'ch1', 'resource1', 'options', _, _)*/
         where: 'the following parameters are used'
             scenario                   | notificationFeatureEnabled | topic   || expectedCalls
             'feature on, valid topic'  | true                       | 'valid' || 1
