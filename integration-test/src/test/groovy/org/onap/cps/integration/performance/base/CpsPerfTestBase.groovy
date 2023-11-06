@@ -25,8 +25,6 @@ import org.onap.cps.rest.utils.MultipartFileUtil
 import org.onap.cps.spi.FetchDescendantsOption
 import org.springframework.web.multipart.MultipartFile
 
-import java.util.concurrent.TimeUnit
-
 class CpsPerfTestBase extends PerfTestBase {
 
     static final def CPS_PERFORMANCE_TEST_DATASPACE = 'cpsPerformanceDataspace'
@@ -37,7 +35,7 @@ class CpsPerfTestBase extends PerfTestBase {
     ResourceMeter resourceMeter = new ResourceMeter()
 
     def printTitle() {
-        println('##        C P S   P E R F O R M A N C E   T E S T   R E S U L T S          ##')
+        println('##                C P S   P E R F O R M A N C E   T E S T   R E S U L T S                 ##')
     }
 
     def isInitialised() {
@@ -68,8 +66,8 @@ class CpsPerfTestBase extends PerfTestBase {
         resourceMeter.start()
         addAnchorsWithData(OPENROADM_ANCHORS, CPS_PERFORMANCE_TEST_DATASPACE, LARGE_SCHEMA_SET, 'openroadm', data)
         resourceMeter.stop()
-        def durationInMillis = resourceMeter.getTotalTimeMillis()
-        recordAndAssertResourceUsage('Creating openroadm anchors with large data tree', TimeUnit.SECONDS.toMillis(200), durationInMillis, 200, resourceMeter.getTotalMemoryUsageInMB())
+        def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
+        recordAndAssertResourceUsage('Creating openroadm anchors with large data tree', 200, durationInSeconds, 200, resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def generateOpenRoadData(numberOfNodes) {
@@ -85,11 +83,11 @@ class CpsPerfTestBase extends PerfTestBase {
             def result = cpsDataService.getDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm1', '/', FetchDescendantsOption.OMIT_DESCENDANTS)
             assert countDataNodesInTree(result) == 1
             resourceMeter.stop()
-            def durationInMillis = resourceMeter.getTotalTimeMillis()
+            def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'memory used is within #peakMemoryUsage'
             assert resourceMeter.getTotalMemoryUsageInMB() <= 30
         and: 'all data is read within expected time'
-            recordAndAssertResourceUsage("Warming database", TimeUnit.SECONDS.toMillis(200), durationInMillis, 200, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage("Warming database", 200, durationInSeconds, 200, resourceMeter.getTotalMemoryUsageInMB())
     }
 
 }
