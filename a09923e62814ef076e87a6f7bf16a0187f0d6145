@@ -16,6 +16,69 @@
       "message": "I cross checked and all the json files are being used in the tests.",
       "revId": "a09923e62814ef076e87a6f7bf16a0187f0d6145",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e88bdc45_e8c897a2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 61
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-06T08:21:21Z",
+      "side": 1,
+      "message": "Definity on the right path now. I dont have time for an in-depth review but I can see most of thee complex code re leaves has been removed. Like I mentioned in my comment on code cover I think it is only a matter now of find out missing test scenario or remove unnecessary checks in the code to get the code coverage back to the level before these changes.",
+      "revId": "a09923e62814ef076e87a6f7bf16a0187f0d6145",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2f6d90d_3ef57475",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 61
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-06T08:21:21Z",
+      "side": 1,
+      "message": "still stil indicate there are not enough tests or not all branches in the production code are needed and the code is too complex... You need to get to the bottom of this using the cobertura coverage report. Priyank can help with that",
+      "range": {
+        "startLine": 41,
+        "startChar": 26,
+        "endLine": 41,
+        "endChar": 30
+      },
+      "revId": "a09923e62814ef076e87a6f7bf16a0187f0d6145",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a14a456_418db95e",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DeltaReportCustomBuilder.java",
+        "patchSetId": 61
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-06T08:21:21Z",
+      "side": 1,
+      "message": "NB: not suer you need this in the classname. I know priyank mentioned that you cannot use a Lombok builder because of customization but that doesn\u0027t mean you have to change the name of the class...",
+      "range": {
+        "startLine": 28,
+        "startChar": 24,
+        "endLine": 28,
+        "endChar": 30
+      },
+      "revId": "a09923e62814ef076e87a6f7bf16a0187f0d6145",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
