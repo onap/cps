@@ -33,6 +33,75 @@
       "message": "recheck",
       "revId": "71e0c3abc61669980e270b227c51109068910fe3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ee4999d_eb4b1b27",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/base/PerfTestBase.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-11-06T17:30:31Z",
+      "side": 1,
+      "message": "NB NB NB: legacy -- but if you can add more of this on this commit to extend and line up pass the memory usage results , would be great :)",
+      "range": {
+        "startLine": 32,
+        "startChar": 16,
+        "endLine": 32,
+        "endChar": 94
+      },
+      "revId": "71e0c3abc61669980e270b227c51109068910fe3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8161290a_a6342b71",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/base/PerfTestBase.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-11-06T17:30:31Z",
+      "side": 1,
+      "message": "seconds or s",
+      "range": {
+        "startLine": 62,
+        "startChar": 66,
+        "endLine": 62,
+        "endChar": 70
+      },
+      "revId": "71e0c3abc61669980e270b227c51109068910fe3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "023cf68a_2bceb080",
+        "filename": "integration-test/src/test/java/org/onap/cps/integration/ResourceMeter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-11-06T17:30:31Z",
+      "side": 1,
+      "message": "make it consistent with the other \u0027InSeconds\u0027 \n\n\u003e getTotalTimeInSeconds",
+      "range": {
+        "startLine": 54,
+        "startChar": 18,
+        "endLine": 54,
+        "endChar": 37
+      },
+      "revId": "71e0c3abc61669980e270b227c51109068910fe3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
