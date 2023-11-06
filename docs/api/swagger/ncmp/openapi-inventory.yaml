@@ -266,12 +266,14 @@ components:
           cmHandleProperties:
             key: my-property
           moduleSetTag: my-module-set-tag
+          trustLevel: COMPLETE
         - cmHandle: my-cm-handle
           publicCmHandleProperties:
             key: my-property
           cmHandleProperties:
             key: my-property
           moduleSetTag: my-module-set-tag
+          trustLevel: COMPLETE
         createdCmHandles:
         - cmHandle: my-cm-handle
           publicCmHandleProperties:
@@ -279,12 +281,14 @@ components:
           cmHandleProperties:
             key: my-property
           moduleSetTag: my-module-set-tag
+          trustLevel: COMPLETE
         - cmHandle: my-cm-handle
           publicCmHandleProperties:
             key: my-property
           cmHandleProperties:
             key: my-property
           moduleSetTag: my-module-set-tag
+          trustLevel: COMPLETE
         dmiPlugin: my-dmi-plugin
         dmiModelPlugin: my-dmi-model-plugin
         upgradedCmHandles:
@@ -338,6 +342,7 @@ components:
         cmHandleProperties:
           key: my-property
         moduleSetTag: my-module-set-tag
+        trustLevel: COMPLETE
       properties:
         cmHandle:
           example: my-cm-handle
@@ -354,6 +359,12 @@ components:
           type: object
         moduleSetTag:
           example: my-module-set-tag
+          type: string
+        trustLevel:
+          enum:
+          - COMPLETE
+          - NONE
+          example: COMPLETE
           type: string
       required:
       - cmHandle
