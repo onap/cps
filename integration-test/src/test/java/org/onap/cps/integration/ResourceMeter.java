@@ -51,8 +51,8 @@ public class ResourceMeter {
      * Get the total time in milliseconds.
      * @return total time in milliseconds
      */
-    public long getTotalTimeMillis() {
-        return stopWatch.getTotalTimeMillis();
+    public double getTotalTimeSeconds() {
+        return stopWatch.getTotalTimeSeconds();
     }
 
     /**

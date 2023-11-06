@@ -36,9 +36,9 @@ class WritePerfTest extends CpsPerfTestBase {
             resourceMeter.start()
             cpsDataService.saveData(CPS_PERFORMANCE_TEST_DATASPACE, 'writeAnchor', jsonData, OffsetDateTime.now())
             resourceMeter.stop()
-            def durationInMillis = resourceMeter.getTotalTimeMillis()
+            def durationInSeconds = resourceMeter.getTotalTimeSeconds()
         then: 'the operation takes less than #expectedDuration and memory used is within limit'
-            recordAndAssertResourceUsage("Writing ${totalNodes} devices", TimeUnit.SECONDS.toMillis(expectedDurationInSeconds), durationInMillis, 400, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage("Writing ${totalNodes} devices", expectedDurationInSeconds, durationInSeconds, 400, resourceMeter.getTotalMemoryUsageInMB())
         cleanup:
             cpsDataService.deleteDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, 'writeAnchor', OffsetDateTime.now())
             cpsAdminService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, 'writeAnchor')
@@ -64,22 +64,22 @@ class WritePerfTest extends CpsPerfTestBase {
             resourceMeter.start()
             cpsDataService.saveData(CPS_PERFORMANCE_TEST_DATASPACE, 'writeAnchor', '/bookstore/categories[@code=1]', booksData, OffsetDateTime.now())
             resourceMeter.stop()
-            def durationInMillis = resourceMeter.getTotalTimeMillis()
+            def durationInSeconds = resourceMeter.getTotalTimeSeconds()
         then: 'the operation takes less than #expectedDuration and memory used is within limit'
-            recordAndAssertResourceUsage("Writing ${totalBooks} books", expectedDuration, durationInMillis, 400, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage("Writing ${totalBooks} books", expectedDuration, durationInSeconds, 400, resourceMeter.getTotalMemoryUsageInMB())
         cleanup:
             cpsDataService.deleteDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, 'writeAnchor', OffsetDateTime.now())
             cpsAdminService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, 'writeAnchor')
         where:
             totalBooks || expectedDuration
-            400        || 200
-            800        || 500
-            1600       || TimeUnit.SECONDS.toMillis(1)
-            3200       || TimeUnit.SECONDS.toMillis(3)
-            6400       || TimeUnit.SECONDS.toMillis(10)
-//          12800      || TimeUnit.SECONDS.toMillis(30)
-//          25600      || TimeUnit.SECONDS.toMillis(120)
-//          51200      || TimeUnit.SECONDS.toMillis(600)
+            400        || 0.2
+            800        || 0.5
+            1600       || 1
+            3200       || 3
+            6400       || 10
+//          12800      || 30
+//          25600      || 120
+//          51200      || 600
     }
 
 }

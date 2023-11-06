@@ -38,17 +38,17 @@ class QueryPerfTest extends CpsPerfTestBase {
             resourceMeter.start()
             def result = objectUnderTest.queryDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm1', cpsPath, INCLUDE_ALL_DESCENDANTS)
             resourceMeter.stop()
-            def durationInMillis = resourceMeter.getTotalTimeMillis()
+            def durationInSeconds = resourceMeter.getTotalTimeSeconds()
         then: 'the expected number of nodes is returned'
             assert countDataNodesInTree(result) == expectedNumberOfDataNodes
         and: 'all data is read within #durationLimit ms  and memory used is within limit'
-            recordAndAssertResourceUsage("Query 1 anchor ${scenario}", durationLimit, durationInMillis, memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage("Query 1 anchor ${scenario}", durationLimit, durationInSeconds, memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
         where: 'the following parameters are used'
-            scenario                     | cpsPath                                                             || durationLimit                          | memoryLimit  | expectedNumberOfDataNodes
-            'top element'                | '/openroadm-devices'                                                || TimeUnit.SECONDS.toMillis(2)           | 300          | OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE + 1
-            'leaf condition'             | '//openroadm-device[@ne-state="inservice"]'                         || TimeUnit.SECONDS.toMillis(3)           | 200          | OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
-            'ancestors'                  | '//openroadm-device/ancestor::openroadm-devices'                    || TimeUnit.SECONDS.toMillis(2)           | 200          | OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE + 1
-            'leaf condition + ancestors' | '//openroadm-device[@status="success"]/ancestor::openroadm-devices' || TimeUnit.SECONDS.toMillis(2)           | 300          | OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE + 1
+            scenario                     | cpsPath                                                             || durationLimit  | memoryLimit  | expectedNumberOfDataNodes
+            'top element'                | '/openroadm-devices'                                                || 2              | 300          | OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE + 1
+            'leaf condition'             | '//openroadm-device[@ne-state="inservice"]'                         || 3              | 200          | OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
+            'ancestors'                  | '//openroadm-device/ancestor::openroadm-devices'                    || 2              | 200          | OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE + 1
+            'leaf condition + ancestors' | '//openroadm-device[@status="success"]/ancestor::openroadm-devices' || 2              | 300          | OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE + 1
     }
 
     def 'Query complete data trees across all anchors with #scenario.'() {
@@ -56,18 +56,18 @@ class QueryPerfTest extends CpsPerfTestBase {
             resourceMeter.start()
             def result = objectUnderTest.queryDataNodesAcrossAnchors(CPS_PERFORMANCE_TEST_DATASPACE, cpspath, INCLUDE_ALL_DESCENDANTS, PaginationOption.NO_PAGINATION)
             resourceMeter.stop()
-            def durationInMillis = resourceMeter.getTotalTimeMillis()
+            def durationInSeconds = resourceMeter.getTotalTimeSeconds()
         then: 'the expected number of nodes is returned'
             assert countDataNodesInTree(result) == expectedNumberOfDataNodes
         and: 'all data is read within #durationLimit ms and memory used is within limit'
-            recordAndAssertResourceUsage("Query across anchors ${scenario}", durationLimit, durationInMillis, memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage("Query across anchors ${scenario}", durationLimit, durationInSeconds, memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
         where: 'the following parameters are used'
-            scenario                     | cpspath                                                             || durationLimit                 | memoryLimit   | expectedNumberOfDataNodes
-            'top element'                | '/openroadm-devices'                                                || TimeUnit.SECONDS.toMillis(6)  | 600           | OPENROADM_ANCHORS * (OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE + 1)
-            'leaf condition'             | '//openroadm-device[@ne-state="inservice"]'                         || TimeUnit.SECONDS.toMillis(6)  | 600           | OPENROADM_ANCHORS * (OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE)
-            'ancestors'                  | '//openroadm-device/ancestor::openroadm-devices'                    || TimeUnit.SECONDS.toMillis(6)  | 800           | OPENROADM_ANCHORS * (OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE + 1)
-            'leaf condition + ancestors' | '//openroadm-device[@status="success"]/ancestor::openroadm-devices' || TimeUnit.SECONDS.toMillis(6)  | 600           | OPENROADM_ANCHORS * (OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE + 1)
-            'non-existing data'          | '/path/to/non-existing/node[@id="1"]'                               || 100                           | 3             | 0
+            scenario                     | cpspath                                                             || durationLimit  | memoryLimit   | expectedNumberOfDataNodes
+            'top element'                | '/openroadm-devices'                                                || 6              | 600           | OPENROADM_ANCHORS * (OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE + 1)
+            'leaf condition'             | '//openroadm-device[@ne-state="inservice"]'                         || 6              | 600           | OPENROADM_ANCHORS * (OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE)
+            'ancestors'                  | '//openroadm-device/ancestor::openroadm-devices'                    || 6              | 800           | OPENROADM_ANCHORS * (OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE + 1)
+            'leaf condition + ancestors' | '//openroadm-device[@status="success"]/ancestor::openroadm-devices' || 6              | 600           | OPENROADM_ANCHORS * (OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE + 1)
+            'non-existing data'          | '/path/to/non-existing/node[@id="1"]'                               || 0.1            | 3             | 0
     }
 
     def 'Query with leaf condition and #scenario.'() {
@@ -75,16 +75,16 @@ class QueryPerfTest extends CpsPerfTestBase {
             resourceMeter.start()
             def result = objectUnderTest.queryDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm2', '//openroadm-device[@status="success"]', fetchDescendantsOption)
             resourceMeter.stop()
-            def durationInMillis = resourceMeter.getTotalTimeMillis()
+            def durationInSeconds = resourceMeter.getTotalTimeSeconds()
         then: 'the expected number of nodes is returned'
             assert countDataNodesInTree(result) == expectedNumberOfDataNodes
         and: 'all data is read within #durationLimit ms and memory used is within limit'
-            recordAndAssertResourceUsage("Query with ${scenario}", durationLimit, durationInMillis, memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage("Query with ${scenario}", durationLimit, durationInSeconds, memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
         where: 'the following parameters are used'
-            scenario             | fetchDescendantsOption  || durationLimit                | memoryLimit   | expectedNumberOfDataNodes
-            'no descendants'     | OMIT_DESCENDANTS        || 100                          | 30            | OPENROADM_DEVICES_PER_ANCHOR
-            'direct descendants' | DIRECT_CHILDREN_ONLY    || 150                          | 30            | OPENROADM_DEVICES_PER_ANCHOR * 2
-            'all descendants'    | INCLUDE_ALL_DESCENDANTS || TimeUnit.SECONDS.toMillis(2) | 200           | OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
+            scenario             | fetchDescendantsOption  || durationLimit  | memoryLimit   | expectedNumberOfDataNodes
+            'no descendants'     | OMIT_DESCENDANTS        || 0.1            | 30            | OPENROADM_DEVICES_PER_ANCHOR
+            'direct descendants' | DIRECT_CHILDREN_ONLY    || 0.15           | 30            | OPENROADM_DEVICES_PER_ANCHOR * 2
+            'all descendants'    | INCLUDE_ALL_DESCENDANTS || 2              | 200           | OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
     }
 
     def 'Query ancestors with #scenario.'() {
@@ -92,16 +92,16 @@ class QueryPerfTest extends CpsPerfTestBase {
             resourceMeter.start()
             def result = objectUnderTest.queryDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm3', '//openroadm-device[@ne-state="inservice"]/ancestor::openroadm-devices', fetchDescendantsOption)
             resourceMeter.stop()
-            def durationInMillis = resourceMeter.getTotalTimeMillis()
+            def durationInSeconds = resourceMeter.getTotalTimeSeconds()
         then: 'the expected number of nodes is returned'
             assert countDataNodesInTree(result) == expectedNumberOfDataNodes
         and: 'all data is read within #durationLimit ms and memory used is within limit'
-            recordAndAssertResourceUsage("Query ancestors with ${scenario}", durationLimit, durationInMillis, memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage("Query ancestors with ${scenario}", durationLimit, durationInSeconds, memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
         where: 'the following parameters are used'
-            scenario             | fetchDescendantsOption  || durationLimit                | memoryLimit | expectedNumberOfDataNodes
-            'no descendants'     | OMIT_DESCENDANTS        || 100                          | 20          | 1
-            'direct descendants' | DIRECT_CHILDREN_ONLY    || 100                          | 20          | 1 + OPENROADM_DEVICES_PER_ANCHOR
-            'all descendants'    | INCLUDE_ALL_DESCENDANTS || TimeUnit.SECONDS.toMillis(2) | 200         | 1 + OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
+            scenario             | fetchDescendantsOption  || durationLimit  | memoryLimit | expectedNumberOfDataNodes
+            'no descendants'     | OMIT_DESCENDANTS        || 0.1            | 20          | 1
+            'direct descendants' | DIRECT_CHILDREN_ONLY    || 0.1            | 20          | 1 + OPENROADM_DEVICES_PER_ANCHOR
+            'all descendants'    | INCLUDE_ALL_DESCENDANTS || 2              | 200         | 1 + OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
     }
 
 }

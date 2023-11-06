@@ -40,9 +40,9 @@ class UpdatePerfTest extends CpsPerfTestBase {
             resourceMeter.start()
             objectUnderTest.updateDataNodeAndDescendants(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm1', parentNodeXpath, jsonData, now)
             resourceMeter.stop()
-            def updateDurationInMillis = resourceMeter.getTotalTimeMillis()
+            def updateDurationInSeconds = resourceMeter.getTotalTimeSeconds()
         then: 'update completes within expected time and memory used is within limit'
-            recordAndAssertResourceUsage('Update 1 data node', 600, updateDurationInMillis, 200, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage('Update 1 data node', 0.6, updateDurationInSeconds, 200, resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def 'Batch update 100 data nodes with descendants'() {
@@ -56,9 +56,9 @@ class UpdatePerfTest extends CpsPerfTestBase {
             resourceMeter.start()
             objectUnderTest.updateDataNodesAndDescendants(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm1', nodesJsonData, now)
             resourceMeter.stop()
-            def updateDurationInMillis = resourceMeter.getTotalTimeMillis()
+            def updateDurationInSeconds = resourceMeter.getTotalTimeSeconds()
         then: 'update completes within expected time and memory used is within limit'
-            recordAndAssertResourceUsage('Update 100 data nodes', TimeUnit.SECONDS.toMillis(30), updateDurationInMillis, 800, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage('Update 100 data nodes', 30, updateDurationInSeconds, 800, resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def 'Update leaves for 1 data node (twice)'() {
@@ -70,9 +70,9 @@ class UpdatePerfTest extends CpsPerfTestBase {
             objectUnderTest.updateNodeLeaves(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm2', "/openroadm-devices", jsonDataUpdated, now)
             objectUnderTest.updateNodeLeaves(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm2', "/openroadm-devices", jsonDataOriginal, now)
             resourceMeter.stop()
-            def updateDurationInMillis = resourceMeter.getTotalTimeMillis()
+            def updateDurationInSeconds = resourceMeter.getTotalTimeSeconds()
         then: 'update completes within expected time and memory used is within limit'
-            recordAndAssertResourceUsage('Update leaves for 1 data node', 500, updateDurationInMillis, 300, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage('Update leaves for 1 data node', 0.5, updateDurationInSeconds, 300, resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def 'Batch update leaves for 100 data nodes (twice)'() {
@@ -84,9 +84,9 @@ class UpdatePerfTest extends CpsPerfTestBase {
             objectUnderTest.updateNodeLeaves(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm2', "/openroadm-devices", jsonDataUpdated, now)
             objectUnderTest.updateNodeLeaves(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm2', "/openroadm-devices", jsonDataOriginal, now)
             resourceMeter.stop()
-            def updateDurationInMillis = resourceMeter.getTotalTimeMillis()
+            def updateDurationInSeconds = resourceMeter.getTotalTimeSeconds()
         then: 'update completes within expected time and memory used is within limit'
-            recordAndAssertResourceUsage('Batch update leaves for 100 data nodes', TimeUnit.SECONDS.toMillis(1), updateDurationInMillis, 300, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage('Batch update leaves for 100 data nodes', 1, updateDurationInSeconds, 300, resourceMeter.getTotalMemoryUsageInMB())
     }
 
 }
