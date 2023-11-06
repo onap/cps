@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "53c16391_b0e56930",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 60
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-11-06T06:57:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5fd192f5_6f8f9506",
+      "range": {
+        "startLine": 338,
+        "startChar": 45,
+        "endLine": 338,
+        "endChar": 68
+      },
+      "revId": "09751cead01e6b25e7ee20446ec2b233e3141c69",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d90f6864_f9d19785",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-11-03T14:47:13Z",
       "side": 1,
       "message": "we take care about the update later.\nrename it to getRemovedDeltaReports and change the code accordingly.\n\nIn this patch we will just focus on the add and remove operation.",
+      "range": {
+        "startLine": 72,
+        "startChar": 37,
+        "endLine": 72,
+        "endChar": 69
+      },
+      "revId": "09751cead01e6b25e7ee20446ec2b233e3141c69",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6134215e_91da799c",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 60
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-11-06T06:57:52Z",
+      "side": 1,
+      "message": "sorry my bad, I forgot to remove this. Now it will directly call getRemovedDeltaReports()",
+      "parentUuid": "d90f6864_f9d19785",
       "range": {
         "startLine": 72,
         "startChar": 37,

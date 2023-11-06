@@ -48,6 +48,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d49ed75_1221cae5",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-11-06T06:57:52Z",
+      "side": 1,
+      "message": "as of current patch the DeltaReport POJO resembles the rfc standard as closely aa possible with a few parameter names differing as per requirement of CPS.\nAs of now the following format is used for delta report\n  action: \"UPDATE\"\n  xpath: \"/bookstore/categories/[@code\u003d2]\"\n  source-data:\n    name: \"Funny\"\n  target-data:\n    name: \"Comic\"",
+      "parentUuid": "db48b6cc_71faaaac",
+      "range": {
+        "startLine": 339,
+        "startChar": 36,
+        "endLine": 340,
+        "endChar": 26
+      },
+      "revId": "ed36c4103691e2f825a57c95d1cffff38c2da02d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ec4c38c1_3f5757ba",

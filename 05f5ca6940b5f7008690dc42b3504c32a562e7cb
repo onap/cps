@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "16ceb3c0_73583550",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-11-06T06:57:52Z",
+      "side": 1,
+      "message": "as per latest comment we will use a pojo of DeltaReport. But I have defined a example in the components.yml file for reference to DetaReport format\nMarking this as resolved",
+      "parentUuid": "dde0c6b1_edfe2657",
+      "range": {
+        "startLine": 179,
+        "startChar": 14,
+        "endLine": 179,
+        "endChar": 39
+      },
+      "revId": "05f5ca6940b5f7008690dc42b3504c32a562e7cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f76a0ddb_d4a6c2cc",
