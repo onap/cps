@@ -35,6 +35,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "63f9267d_ae53fbe7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 61
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-11-06T10:40:52Z",
+      "side": 1,
+      "message": "recheck",
+      "revId": "a09923e62814ef076e87a6f7bf16a0187f0d6145",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a2f6d90d_3ef57475",
@@ -60,6 +77,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0dd6919f_a7cecb64",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 61
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-11-06T10:40:52Z",
+      "side": 1,
+      "message": "Its jacoco report that we currently use.\nArpit u can use the same to check the missing coverage for code and branch.",
+      "parentUuid": "a2f6d90d_3ef57475",
+      "range": {
+        "startLine": 41,
+        "startChar": 26,
+        "endLine": 41,
+        "endChar": 30
+      },
+      "revId": "a09923e62814ef076e87a6f7bf16a0187f0d6145",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7a14a456_418db95e",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DeltaReportCustomBuilder.java",
         "patchSetId": 61
@@ -71,6 +112,30 @@
       "writtenOn": "2023-11-06T08:21:21Z",
       "side": 1,
       "message": "NB: not suer you need this in the classname. I know priyank mentioned that you cannot use a Lombok builder because of customization but that doesn\u0027t mean you have to change the name of the class...",
+      "range": {
+        "startLine": 28,
+        "startChar": 24,
+        "endLine": 28,
+        "endChar": 30
+      },
+      "revId": "a09923e62814ef076e87a6f7bf16a0187f0d6145",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f524c86b_20d01558",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DeltaReportCustomBuilder.java",
+        "patchSetId": 61
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-11-06T10:40:52Z",
+      "side": 1,
+      "message": "yeah. little misunderstanding here I guess. I was just keeping my POV.\nThe class name can be \"DeltaReportBuilder\" . custom is not required.",
+      "parentUuid": "7a14a456_418db95e",
       "range": {
         "startLine": 28,
         "startChar": 24,
