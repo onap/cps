@@ -21,6 +21,7 @@
 
 package org.onap.cps.ncmp.api.impl
 
+import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevelManager
 import org.onap.cps.ncmp.api.models.UpgradedCmHandles
 
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLES_NOT_FOUND
@@ -68,8 +69,8 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def mockLcmEventsCmHandleStateHandler = Mock(LcmEventsCmHandleStateHandler)
     def mockCpsDataService = Mock(CpsDataService)
     def mockModuleSyncStartedOnCmHandles = Mock(IMap<String, Object>)
-    def trustLevelPerCmHandle = [:]
     def trustLevelPerDmiPlugin = [:]
+    def mockTrustLevelManager = Mock(TrustLevelManager)
     def objectUnderTest = getObjectUnderTest()
 
     def 'DMI Registration: Create, Update, Delete & Upgrade operations are processed in the right order'() {
@@ -208,14 +209,13 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
                 assert it.cmHandle == 'cmhandle'
             }
         and: 'state handler is invoked with the expected parameters'
-            1 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(_) >> {
+            1 * mockLcmEventsCmHandleStateHandler.initiateState(_) >> {
                 args ->
                     {
                         def cmHandleStatePerCmHandle = (args[0] as Map)
                         cmHandleStatePerCmHandle.each {
-                            assert (it.key.id == 'cmhandle'
-                                    && it.key.dmiServiceName == 'my-server'
-                                    && it.value == CmHandleState.ADVISED)
+                            assert (it.id == 'cmhandle'
+                                    && it.dmiServiceName == 'my-server')
                         }
                     }
             }
@@ -237,12 +237,12 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         then: 'a successful response is received'
             assert response.createdCmHandles.size() == expectedNumberOfCreatedCmHandles
         and: 'trustLevel is set for the created cm-handle'
-            assert trustLevelPerCmHandle.get(cmHandleId) == expectedTrustLevel
+            1 * mockTrustLevelManager.handleInitialRegistrationOfTrustLevels(_)
         where:
-            scenario                                   | cmHandleId | registrationTrustLevel || expectedNumberOfCreatedCmHandles | expectedTrustLevel
-            'new cmHandleId and trustLevel'            | 'ch-new'   | TrustLevel.COMPLETE    || 2                                | TrustLevel.COMPLETE
-            'existing cmHandleId with null trustLevel' | 'ch-1'     | null                   || 1                                | TrustLevel.NONE
-            'cmHandleId with null trustLevel'          | 'ch-new'   | null                   || 2                                | TrustLevel.COMPLETE
+            scenario                                   | cmHandleId | registrationTrustLevel || expectedNumberOfCreatedCmHandles
+            'new cmHandleId and trustLevel'            | 'ch-new'   | TrustLevel.COMPLETE    || 2
+            'existing cmHandleId with null trustLevel' | 'ch-1'     | null                   || 1
+            'cmHandleId with null trustLevel'          | 'ch-new'   | null                   || 2
     }
 
     def 'Create CM-Handle Multiple Requests: All cm-handles creation requests are processed with some failures'() {
@@ -253,7 +253,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
                                        new NcmpServiceCmHandle(cmHandleId: 'cmhandle3')])
         and: 'cm-handle creation is successful for 1st and 3rd; failed for 2nd'
             def xpath = "somePathWithId[@id='cmhandle2']"
-            mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(*_) >> { throw AlreadyDefinedException.forDataNodes([xpath], 'some-context') }
+            mockLcmEventsCmHandleStateHandler.initiateState(*_) >> { throw AlreadyDefinedException.forDataNodes([xpath], 'some-context') }
         when: 'registration is updated to create cm-handles'
             def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'a response is received for all cm-handles'
@@ -272,7 +272,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server')
             dmiPluginRegistration.createdCmHandles = [new NcmpServiceCmHandle(cmHandleId: 'cmhandle')]
         and: 'cm-handler registration fails: #scenario'
-            mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(*_) >> { throw exception }
+            mockLcmEventsCmHandleStateHandler.initiateState(*_) >> { throw exception }
         when: 'registration is updated'
             def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'a failure response is received'
@@ -439,7 +439,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         return Spy(new NetworkCmProxyDataServiceImpl(spiedJsonObjectMapper, mockDmiDataOperations,
                 mockNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence, mockCmHandleQueries,
                 stubbedNetworkCmProxyCmHandlerQueryService, mockLcmEventsCmHandleStateHandler, mockCpsDataService,
-                mockModuleSyncStartedOnCmHandles, trustLevelPerCmHandle, trustLevelPerDmiPlugin))
+                mockModuleSyncStartedOnCmHandles, trustLevelPerDmiPlugin, mockTrustLevelManager))
     }
 
     def addPersistedYangModelCmHandles(ids) {

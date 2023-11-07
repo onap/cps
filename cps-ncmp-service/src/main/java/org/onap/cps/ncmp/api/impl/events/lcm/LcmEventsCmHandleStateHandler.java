@@ -20,6 +20,7 @@
 
 package org.onap.cps.ncmp.api.impl.events.lcm;
 
+import java.util.Collection;
 import java.util.Map;
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleState;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
@@ -45,4 +46,10 @@ public interface LcmEventsCmHandleStateHandler {
      */
     void updateCmHandleStateBatch(final Map<YangModelCmHandle, CmHandleState> cmHandleStatePerCmHandle);
 
+    /**
+     * Sets the initial state of cmHandles to ADVISED.
+     *
+     * @param yangModelCmHandles List of Yang Model Cm Handle.
+     */
+    void initiateState(Collection<YangModelCmHandle> yangModelCmHandles);
 }

@@ -96,7 +96,7 @@ class DmiRestClientSpec extends Specification {
             mockRestTemplate.getForObject(*_) >> {jsonNode}
         when: 'get trust level of the dmi plugin'
             def result = objectUnderTest.getDmiHealthStatus('some url')
-        then: 'the correct trust level is returned'
+        then: 'the status value from the json is return'
             assert result == 'my status'
     }
 
@@ -105,9 +105,9 @@ class DmiRestClientSpec extends Specification {
             mockRestTemplate.getForObject(*_) >> healthStatusResponse
         when: 'attempt to get health status of the dmi plugin'
             def result = objectUnderTest.getDmiHealthStatus('some url')
-        then: 'result will be EMPTY_STRING "" '
+        then: 'result will be empty'
             assert result == ''
-        where: 'the following values are used'
+        where: 'the following responses are used'
             scenario    | healthStatusResponse
             'null'      | null
             'exception' | {throw new Exception()}

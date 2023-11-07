@@ -169,9 +169,9 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
 
     def 'Batch of new cm handles provided'() {
         given: 'A batch of new cm handles'
-            def cmHandleStateMap = setupBatch('NEW')
-        when: 'updating a batch of changes'
-            objectUnderTest.updateCmHandleStateBatch(cmHandleStateMap)
+            def yangModelCmHandlesToBeCreated = setupBatch('NEW')
+        when: 'instantiating a batch of new cm handles'
+            objectUnderTest.initiateState(yangModelCmHandlesToBeCreated)
         then: 'new cm handles are saved using inventory persistence'
             1 * mockInventoryPersistence.saveCmHandleBatch(_) >> {
                 args -> {
@@ -180,7 +180,6 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
             }
         and: 'event service is called to publish events'
             2 * mockLcmEventsService.publishLcmEvent(_, _, _)
-
     }
 
     def 'Batch of existing cm handles is updated'() {
@@ -219,7 +218,7 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
         def yangModelCmHandle2 = new YangModelCmHandle(id: 'cmhandle2', dmiProperties: [], publicProperties: [])
 
         if ('NEW' == type) {
-            return [(yangModelCmHandle1): ADVISED, (yangModelCmHandle2): ADVISED]
+            return [(yangModelCmHandle1), (yangModelCmHandle2)]
         }
 
         if ('DELETED' == type) {
