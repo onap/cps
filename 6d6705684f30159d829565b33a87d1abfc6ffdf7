@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7abf340f_6f9f87b7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-07T08:38:40Z",
+      "side": 1,
+      "message": "Seed code for early review. Please ignore the changes in DmiRestClient since my existing commit hasn\u0027t been merged yet.",
+      "revId": "6d6705684f30159d829565b33a87d1abfc6ffdf7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
