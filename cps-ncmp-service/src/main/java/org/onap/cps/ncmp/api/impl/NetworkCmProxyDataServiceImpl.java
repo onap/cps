@@ -61,6 +61,7 @@ import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations;
 import org.onap.cps.ncmp.api.impl.operations.OperationType;
 import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel;
+import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevelManager;
 import org.onap.cps.ncmp.api.impl.utils.CmHandleQueryConditions;
 import org.onap.cps.ncmp.api.impl.utils.InventoryQueryConditions;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
@@ -100,6 +101,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private final CpsDataService cpsDataService;
     private final IMap<String, Object> moduleSyncStartedOnCmHandles;
     private final Map<String, TrustLevel> trustLevelPerCmHandle;
+    private final TrustLevelManager trustLevelManager;
 
     @Override
     public DmiPluginRegistrationResponse updateDmiRegistrationAndSyncModule(
@@ -113,9 +115,9 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         }
 
         if (!dmiPluginRegistration.getCreatedCmHandles().isEmpty()) {
-            populateTrustLevelPerCmHandleCache(dmiPluginRegistration);
             dmiPluginRegistrationResponse.setCreatedCmHandles(
                     parseAndProcessCreatedCmHandlesInRegistration(dmiPluginRegistration));
+            populateTrustLevelPerCmHandleCache(dmiPluginRegistration);
         }
         if (!dmiPluginRegistration.getUpdatedCmHandles().isEmpty()) {
             dmiPluginRegistrationResponse.setUpdatedCmHandles(
@@ -314,7 +316,8 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     public List<CmHandleRegistrationResponse> parseAndProcessCreatedCmHandlesInRegistration(
             final DmiPluginRegistration dmiPluginRegistration) {
         final Map<YangModelCmHandle, CmHandleState> cmHandleStatePerCmHandle = new HashMap<>();
-        dmiPluginRegistration.getCreatedCmHandles()
+        final List<NcmpServiceCmHandle> cmHandlesToBeCreated = dmiPluginRegistration.getCreatedCmHandles();
+        cmHandlesToBeCreated
                 .forEach(cmHandle -> {
                     final YangModelCmHandle yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle(
                             dmiPluginRegistration.getDmiPlugin(),
@@ -324,7 +327,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                             cmHandle.getModuleSetTag());
                     cmHandleStatePerCmHandle.put(yangModelCmHandle, CmHandleState.ADVISED);
                 });
-        return registerNewCmHandles(cmHandleStatePerCmHandle);
+        return registerNewCmHandles(cmHandleStatePerCmHandle, cmHandlesToBeCreated);
     }
 
     protected List<CmHandleRegistrationResponse> parseAndProcessDeletedCmHandlesInRegistration(
@@ -446,10 +449,13 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     }
 
     private List<CmHandleRegistrationResponse> registerNewCmHandles(final Map<YangModelCmHandle, CmHandleState>
-                                                                            cmHandleStatePerCmHandle) {
+                                                                            cmHandleStatePerCmHandle,
+                                                                    final List<NcmpServiceCmHandle>
+                                                                        cmHandlesToBeCreated) {
         final List<String> cmHandleIds = getCmHandleIds(cmHandleStatePerCmHandle);
         try {
             lcmEventsCmHandleStateHandler.updateCmHandleStateBatch(cmHandleStatePerCmHandle);
+            trustLevelManager.handleInitialRegistrationOfTrustLevels(cmHandlesToBeCreated);
             return CmHandleRegistrationResponse.createSuccessResponses(cmHandleIds);
         } catch (final AlreadyDefinedException alreadyDefinedException) {
             return CmHandleRegistrationResponse.createFailureResponses(

@@ -22,7 +22,6 @@ package org.onap.cps.ncmp.api.impl.trustlevel;
 
 import io.cloudevents.CloudEvent;
 import io.cloudevents.kafka.impl.KafkaHeaders;
-import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -37,7 +36,8 @@ import org.springframework.stereotype.Component;
 public class DeviceHeartbeatConsumer {
 
     private static final String CLOUD_EVENT_ID_HEADER_NAME = "ce_id";
-    private final Map<String, TrustLevel> trustLevelPerCmHandle;
+    private final TrustLevelManager trustLevelManager;
+
 
     /**
      * Listening the device heartbeats.
@@ -45,20 +45,20 @@ public class DeviceHeartbeatConsumer {
      * @param deviceHeartbeatConsumerRecord Device Heartbeat record.
      */
     @KafkaListener(topics = "${app.dmi.device-heartbeat.topic}",
-            containerFactory = "cloudEventConcurrentKafkaListenerContainerFactory")
+        containerFactory = "cloudEventConcurrentKafkaListenerContainerFactory")
     public void heartbeatListener(final ConsumerRecord<String, CloudEvent> deviceHeartbeatConsumerRecord) {
 
         final String cmHandleId = KafkaHeaders.getParsedKafkaHeader(deviceHeartbeatConsumerRecord.headers(),
-                CLOUD_EVENT_ID_HEADER_NAME);
+            CLOUD_EVENT_ID_HEADER_NAME);
 
         final DeviceTrustLevel deviceTrustLevel =
-                CloudEventMapper.toTargetEvent(deviceHeartbeatConsumerRecord.value(), DeviceTrustLevel.class);
+            CloudEventMapper.toTargetEvent(deviceHeartbeatConsumerRecord.value(), DeviceTrustLevel.class);
 
         if (cmHandleId != null && deviceTrustLevel != null) {
-            final String trustLevel = deviceTrustLevel.getData().getTrustLevel();
-            trustLevelPerCmHandle.put(cmHandleId, TrustLevel.valueOf(trustLevel));
-            log.debug("Added cmHandleId to trustLevelPerCmHandle map as {}:{}", cmHandleId, trustLevel);
+            final String newTrustLevel = deviceTrustLevel.getData().getTrustLevel();
+            trustLevelManager.handleUpdateOfTrustLevels(cmHandleId, newTrustLevel);
         }
+
     }
 
 }
