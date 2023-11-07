@@ -20,20 +20,38 @@
 
 package org.onap.cps.ncmp.api.impl.trustlevel.dmiavailability;
 
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT;
+import static org.onap.cps.spi.FetchDescendantsOption.DIRECT_CHILDREN_ONLY;
+
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
+import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel;
+import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevelManager;
+import org.onap.cps.spi.model.DataNode;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.ApplicationListener;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @RequiredArgsConstructor
 @Service
-public class DmiPluginWatchDog {
+public class DmiPluginWatchDog implements ApplicationListener<ApplicationReadyEvent> {
 
     private final DmiRestClient dmiRestClient;
+    private final NetworkCmProxyDataService networkCmProxyDataService;
+    private final InventoryPersistence inventoryPersistence;
+    private final TrustLevelManager trustLevelManager;
     private final Map<String, TrustLevel> trustLevelPerDmiPlugin;
 
     /**
@@ -42,15 +60,85 @@ public class DmiPluginWatchDog {
      * The @fixedDelayString is the time interval, in milliseconds, between consecutive checks.
      */
     @Scheduled(fixedDelayString = "${ncmp.timers.trust-evel.dmi-availability-watchdog-ms:30000}")
-    public void watchDmiPluginTrustLevel() {
-        trustLevelPerDmiPlugin.keySet().forEach(dmiKey -> {
-            final String dmiHealthStatus = dmiRestClient.getDmiHealthStatus(dmiKey);
+    public void checkDmiAvailability() {
+        trustLevelPerDmiPlugin.entrySet().forEach(dmiTrustLevel -> {
+            TrustLevel newDmiTrustLevel = TrustLevel.NONE;
+            final TrustLevel oldDmiTrustLevel = dmiTrustLevel.getValue();
+            final String dmiHealthStatus = getDmiHealthStatus(dmiTrustLevel.getKey());
+            log.debug("The health status for dmi-plugin: {} is {}", dmiTrustLevel.getKey(), dmiHealthStatus);
+
             if ("UP".equals(dmiHealthStatus)) {
-                trustLevelPerDmiPlugin.put(dmiKey, TrustLevel.COMPLETE);
+                newDmiTrustLevel = TrustLevel.COMPLETE;
+            }
+
+            if (oldDmiTrustLevel.equals(newDmiTrustLevel)) {
+                log.debug("The Dmi Plugin: {} has already the same trust level: {}", dmiTrustLevel.getKey(),
+                        newDmiTrustLevel);
             } else {
-                trustLevelPerDmiPlugin.put(dmiKey, TrustLevel.NONE);
+                dmiTrustLevel.setValue(newDmiTrustLevel);
+
+                final Collection<String> notificationCandidateCmHandleIds =
+                    networkCmProxyDataService.getAllCmHandleIdsByDmiPluginIdentifier(dmiTrustLevel.getKey());
+                for (final String cmHandleId: notificationCandidateCmHandleIds) {
+                    trustLevelManager.handleUpdateOfTrustLevels(cmHandleId, newDmiTrustLevel.name());
+                }
             }
         });
     }
 
+    /**
+     * This method listens to ApplicationReadyEvent, which is triggered when the
+     * CPS application has fully started and is ready. Upon receiving this,
+     * it initialises dmi cache from database. This should not only depend on initial registration.
+     *
+     * @param applicationReadyEvent the event to respond to
+     */
+    @Override
+    public void onApplicationEvent(final ApplicationReadyEvent applicationReadyEvent) {
+        final Map<String, Set<String>> cmHandleIdsPerDmi = getAllCmHandleIdsPerDmiPlugin();
+        final Set<Map.Entry<String, Set<String>>> cmHandleIdsPerDmiEntries = cmHandleIdsPerDmi.entrySet();
+        for (final Map.Entry<String, Set<String>> cmHandleIdsPerDmiEntry: cmHandleIdsPerDmiEntries) {
+            final String dmiServiceName = cmHandleIdsPerDmiEntry.getKey();
+            final Set<String> cmHandleIds = cmHandleIdsPerDmiEntry.getValue();
+            final TrustLevel effectiveTrustLevel;
+            final String dmiHealthStatus = getDmiHealthStatus(dmiServiceName);
+            if ("UP".equals(dmiHealthStatus)) {
+                effectiveTrustLevel = TrustLevel.COMPLETE.getEffectiveTrustLevel(TrustLevel.COMPLETE);
+            } else {
+                effectiveTrustLevel = TrustLevel.NONE.getEffectiveTrustLevel(TrustLevel.COMPLETE);
+            }
+            trustLevelPerDmiPlugin.put(dmiServiceName, effectiveTrustLevel);
+            for (final String cmHandleId: cmHandleIds) {
+                trustLevelManager.handleRestartCpsNcmpApplication(cmHandleId, effectiveTrustLevel.name());
+            }
+        }
+    }
+
+    private Map<String, Set<String>> getAllCmHandleIdsPerDmiPlugin() {
+        final Map<String, Set<String>> cmHandleIdsPerDmi = new HashMap<>();
+        final DataNode dmiRegistryRootDataNode = inventoryPersistence
+            .getDataNode(NCMP_DMI_REGISTRY_PARENT, DIRECT_CHILDREN_ONLY).iterator().next();
+        for (final DataNode childDataNode: dmiRegistryRootDataNode.getChildDataNodes()) {
+            final String cmHandleId = (String) childDataNode.getLeaves().get("id");
+            final String dmiServiceName = resolveDmiServiceName(childDataNode);
+            if (cmHandleIdsPerDmi.containsKey(dmiServiceName)) {
+                cmHandleIdsPerDmi.get(dmiServiceName).add(cmHandleId);
+            } else {
+                cmHandleIdsPerDmi.put(dmiServiceName, new HashSet<>(Arrays.asList(cmHandleId)));
+            }
+        }
+        return cmHandleIdsPerDmi;
+    }
+
+    private String resolveDmiServiceName(final DataNode childDataNode) {
+        final String dmiServiceName = (String) childDataNode.getLeaves().get("dmi-service-name");
+        if (StringUtils.isEmpty(dmiServiceName)) {
+            return  (String) childDataNode.getLeaves().get("dmi-data-service-name");
+        }
+        return dmiServiceName;
+    }
+
+    private String getDmiHealthStatus(final String dmiServiceName) {
+        return dmiRestClient.getDmiHealthStatus(dmiServiceName);
+    }
 }

@@ -21,6 +21,7 @@
 
 package org.onap.cps.ncmp.api.impl
 
+import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevelManager
 import org.onap.cps.ncmp.api.models.UpgradedCmHandles
 
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLES_NOT_FOUND
@@ -70,6 +71,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def mockModuleSyncStartedOnCmHandles = Mock(IMap<String, Object>)
     def trustLevelPerCmHandle = [:]
     def trustLevelPerDmiPlugin = [:]
+    def mockTrustLevelManager = Mock(TrustLevelManager)
     def objectUnderTest = getObjectUnderTest()
 
     def 'DMI Registration: Create, Update, Delete & Upgrade operations are processed in the right order'() {
@@ -439,7 +441,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         return Spy(new NetworkCmProxyDataServiceImpl(spiedJsonObjectMapper, mockDmiDataOperations,
                 mockNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence, mockCmHandleQueries,
                 stubbedNetworkCmProxyCmHandlerQueryService, mockLcmEventsCmHandleStateHandler, mockCpsDataService,
-                mockModuleSyncStartedOnCmHandles, trustLevelPerCmHandle, trustLevelPerDmiPlugin))
+                mockModuleSyncStartedOnCmHandles, trustLevelPerCmHandle, trustLevelPerDmiPlugin, mockTrustLevelManager))
     }
 
     def addPersistedYangModelCmHandles(ids) {
