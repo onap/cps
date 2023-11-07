@@ -1,0 +1,11 @@
+{
+  "data": {
+    "attributeValueChange": [
+      {
+        "attributeName": "someAttributeName",
+        "oldAttributeValue": "someOldAttributeValue",
+        "newAttributeValue": "someNewAttributeValue"
+      }
+    ]
+  }
+}

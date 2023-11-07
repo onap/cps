@@ -21,7 +21,6 @@
 package org.onap.cps.ncmp.api.impl.trustlevel
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.hazelcast.map.IMap
 import io.cloudevents.CloudEvent
 import io.cloudevents.core.builder.CloudEventBuilder
 import org.apache.kafka.clients.consumer.ConsumerRecord
@@ -34,9 +33,9 @@ import spock.lang.Specification
 @SpringBootTest(classes = [ObjectMapper, JsonObjectMapper])
 class DeviceHeartbeatConsumerSpec extends Specification {
 
-    def mockTrustLevelPerCmHandle = Mock(Map<String, TrustLevel>)
+    def mockTrustLevelManager = Mock(TrustLevelManager)
 
-    def objectUnderTest = new DeviceHeartbeatConsumer(mockTrustLevelPerCmHandle)
+    def objectUnderTest = new DeviceHeartbeatConsumer(mockTrustLevelManager)
     def objectMapper = new ObjectMapper()
 
     @Autowired
@@ -54,7 +53,7 @@ class DeviceHeartbeatConsumerSpec extends Specification {
         when: 'the event is consumed'
             objectUnderTest.heartbeatListener(consumerRecord)
         then: 'cm handles are stored with correct trust level'
-            1 * mockTrustLevelPerCmHandle.put('"cmhandle1"', TrustLevel.COMPLETE)
+            1 * mockTrustLevelManager.handleUpdateOfTrustLevels('"cmhandle1"', TrustLevel.COMPLETE.name())
     }
 
     def 'Consume trustlevel event without cloud event id'() {
@@ -66,7 +65,7 @@ class DeviceHeartbeatConsumerSpec extends Specification {
         when: 'the event is consumed'
             objectUnderTest.heartbeatListener(consumerRecord)
         then: 'no cm handle has been stored in the map'
-            0 * mockTrustLevelPerCmHandle.put(*_)
+            0 * mockTrustLevelManager.handleUpdateOfTrustLevels(*_)
     }
 
     def 'Consume a trust level event without payload'() {
@@ -76,7 +75,7 @@ class DeviceHeartbeatConsumerSpec extends Specification {
         when: 'the event is consumed'
             objectUnderTest.heartbeatListener(consumerRecord)
         then: 'no cm handle has been stored in the map'
-            0 * mockTrustLevelPerCmHandle.put(*_)
+            0 * mockTrustLevelManager.handleUpdateOfTrustLevels(*_)
     }
 
     def createTrustLevelEvent(eventPayload) {
