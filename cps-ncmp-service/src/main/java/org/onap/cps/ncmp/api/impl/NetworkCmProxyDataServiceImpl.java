@@ -50,6 +50,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandleQueryService;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
+import org.onap.cps.ncmp.api.impl.events.avc.ncmptoclient.AttributeValueChangeEventPublisher;
 import org.onap.cps.ncmp.api.impl.events.lcm.LcmEventsCmHandleStateHandler;
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueries;
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleState;
@@ -100,6 +101,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private final CpsDataService cpsDataService;
     private final IMap<String, Object> moduleSyncStartedOnCmHandles;
     private final Map<String, TrustLevel> trustLevelPerCmHandle;
+    private final AttributeValueChangeEventPublisher attributeValueChangeEventPublisher;
 
     @Override
     public DmiPluginRegistrationResponse updateDmiRegistrationAndSyncModule(
@@ -314,6 +316,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     public List<CmHandleRegistrationResponse> parseAndProcessCreatedCmHandlesInRegistration(
             final DmiPluginRegistration dmiPluginRegistration) {
         final Map<YangModelCmHandle, CmHandleState> cmHandleStatePerCmHandle = new HashMap<>();
+        final Map<String, TrustLevel> trustLevelPerCmHandleId = new HashMap<>();
         dmiPluginRegistration.getCreatedCmHandles()
                 .forEach(cmHandle -> {
                     final YangModelCmHandle yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle(
@@ -323,8 +326,11 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                             cmHandle,
                             cmHandle.getModuleSetTag());
                     cmHandleStatePerCmHandle.put(yangModelCmHandle, CmHandleState.ADVISED);
+                    final TrustLevel registrationTrustLevel = cmHandle.getRegistrationTrustLevel();
+                    final String cmHandleId = cmHandle.getCmHandleId();
+                    trustLevelPerCmHandleId.put(cmHandleId, registrationTrustLevel);
                 });
-        return registerNewCmHandles(cmHandleStatePerCmHandle);
+        return registerNewCmHandles(cmHandleStatePerCmHandle, trustLevelPerCmHandleId);
     }
 
     protected List<CmHandleRegistrationResponse> parseAndProcessDeletedCmHandlesInRegistration(
@@ -446,10 +452,20 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     }
 
     private List<CmHandleRegistrationResponse> registerNewCmHandles(final Map<YangModelCmHandle, CmHandleState>
-                                                                            cmHandleStatePerCmHandle) {
+                                                                            cmHandleStatePerCmHandle,
+                                                                    final Map<String, TrustLevel>
+                                                                        trustLevelPerCmHandleId) {
         final List<String> cmHandleIds = getCmHandleIds(cmHandleStatePerCmHandle);
         try {
             lcmEventsCmHandleStateHandler.updateCmHandleStateBatch(cmHandleStatePerCmHandle);
+            for (final Map.Entry<String, TrustLevel> trustLevelCmHandleId: trustLevelPerCmHandleId.entrySet()) {
+                final String cmHandleId = trustLevelCmHandleId.getKey();
+                final TrustLevel registeredTrustLevelValue = trustLevelCmHandleId.getValue();
+                if (TrustLevel.NONE.equals(registeredTrustLevelValue)) {
+                    attributeValueChangeEventPublisher.publishAttributeValueChangeEvent(cmHandleId,
+                        "trustLevel", TrustLevel.NONE.name());
+                }
+            }
             return CmHandleRegistrationResponse.createSuccessResponses(cmHandleIds);
         } catch (final AlreadyDefinedException alreadyDefinedException) {
             return CmHandleRegistrationResponse.createFailureResponses(
