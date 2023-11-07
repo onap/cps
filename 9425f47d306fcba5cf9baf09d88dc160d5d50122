@@ -1,0 +1,234 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c5ea934_c4215674",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-07T18:40:30Z",
+      "side": 1,
+      "message": "NB: typo",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 6
+      },
+      "revId": "9425f47d306fcba5cf9baf09d88dc160d5d50122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f11d5646_a58da848",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-07T18:40:30Z",
+      "side": 1,
+      "message": "why don\u0027t insert the HazelCast cache (bean) in the class instead?!\n\nAfter reviewing the remainder of this code I would just create a new class  like\nTrustLevelManager wich wraps the cache and the notifications, not need to break it down in smaller user stories (its getting to small!)\nThe new class would have a reference to the cache and can use the notifation service. it WILL need a dedicate method to handle NEW Registration v. other (normal) TrustLevel Changes\n\n\npseudo code:\n\nclass TrustLevelManager\n\ntrustLevelPerCmHandle  (hazelcast map, injected)\nnotificationService    (injected)\n\nstatic TrustLevel NO_OLD_VALUE \u003d null\n\n\npublic initialTrustLevel(cmHandleId, trustLevel)\n\n  if (trustLevelPerCmHandle.containsKey(cmHandleId) {\n    // Ignore but log warning\n  } else {\n    trustLevelPerCmHandle.put(cmHandleId,trustLevel)  \n    sendNotification(cmHandleId, trustLevel, NO_OLD_VALUE) \n  }\n  \n}\n  \npublic updateTrustLevel(cmHandleId, newTrustLevel) {\n  oldTrustLevel \u003d trustLevelPerCmHandle.get(cmHandleId)  // Can be null, is OK\n  trustLevelPerCmHandle.put(cmHandleId, newtrustLevel, oldTrustLevel )\n\n}\n\nprivate sendNotification(cmHandleId, newTrustLevel, oldTrustLevel) {\n   create message\n   if (oldTrustLevel !\u003d NO_OLD_VALUE) {\n     Add optional message info about old value\n   }\n   notificationService.sendMessage()\n}",
+      "range": {
+        "startLine": 319,
+        "startChar": 8,
+        "endLine": 319,
+        "endChar": 80
+      },
+      "revId": "9425f47d306fcba5cf9baf09d88dc160d5d50122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7243cbec_77ac535a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-07T18:40:30Z",
+      "side": 1,
+      "message": "NB: no need to extract local variables",
+      "range": {
+        "startLine": 329,
+        "startChar": 0,
+        "endLine": 330,
+        "endChar": 71
+      },
+      "revId": "9425f47d306fcba5cf9baf09d88dc160d5d50122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d17ef853_bc488053",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-07T18:40:30Z",
+      "side": 1,
+      "message": "just insert the cache no need to pass one map like this...",
+      "range": {
+        "startLine": 333,
+        "startChar": 62,
+        "endLine": 333,
+        "endChar": 85
+      },
+      "revId": "9425f47d306fcba5cf9baf09d88dc160d5d50122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1573bae_c66ef543",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 467,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-07T18:40:30Z",
+      "side": 1,
+      "message": "your only send notificatons for the ones that come in as NONE ?!",
+      "range": {
+        "startLine": 464,
+        "startChar": 2,
+        "endLine": 467,
+        "endChar": 17
+      },
+      "revId": "9425f47d306fcba5cf9baf09d88dc160d5d50122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aff2a056_1478b63f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avc/ncmptoclient/AttributeValueChangeEventPublisher.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-07T18:40:30Z",
+      "side": 1,
+      "message": "private methods should come after public methods",
+      "range": {
+        "startLine": 46,
+        "startChar": 4,
+        "endLine": 46,
+        "endChar": 18
+      },
+      "revId": "9425f47d306fcba5cf9baf09d88dc160d5d50122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9f4749f_54eb7c5d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avc/ncmptoclient/AttributeValueChangeEventPublisher.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-07T18:40:30Z",
+      "side": 1,
+      "message": "not sure about null handling in this case, who is calling the public method. If we control that we should know/prevent it being called with null values...",
+      "range": {
+        "startLine": 50,
+        "startChar": 12,
+        "endLine": 50,
+        "endChar": 37
+      },
+      "revId": "9425f47d306fcba5cf9baf09d88dc160d5d50122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b440788_64d5ab71",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avc/ncmptoclient/AttributeValueChangeEventPublisher.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-07T18:40:30Z",
+      "side": 1,
+      "message": "blank could be a valid new value!",
+      "range": {
+        "startLine": 50,
+        "startChar": 41,
+        "endLine": 50,
+        "endChar": 69
+      },
+      "revId": "9425f47d306fcba5cf9baf09d88dc160d5d50122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aba085d6_cf0aefb9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avc/ncmptoclient/AttributeValueChangeEventPublisher.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-07T18:40:30Z",
+      "side": 1,
+      "message": "NB: if you need to break parameter list best to pout one on each line...",
+      "range": {
+        "startLine": 65,
+        "startChar": 71,
+        "endLine": 65,
+        "endChar": 99
+      },
+      "revId": "9425f47d306fcba5cf9baf09d88dc160d5d50122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c2a2cf8_5ecfc5f7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/AttributeValueChangeEventCloudMapper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-07T18:40:30Z",
+      "side": 1,
+      "message": "extract out NCMP-SOURCE-PREFIX (private)",
+      "range": {
+        "startLine": 53,
+        "startChar": 39,
+        "endLine": 53,
+        "endChar": 46
+      },
+      "revId": "9425f47d306fcba5cf9baf09d88dc160d5d50122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
