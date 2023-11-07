@@ -23,6 +23,8 @@
 
 package org.onap.cps.ncmp.api.impl
 
+import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevelManager
+
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
@@ -78,6 +80,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def stubModuleSyncStartedOnCmHandles = Stub(IMap<String, Object>)
     def stubTrustLevelPerCmHandle = Stub(Map<String, TrustLevel>)
     def stubTrustLevelPerDmiPlugin = Stub(Map<String, TrustLevel>)
+    def mockTrustLevelManager = Mock(TrustLevelManager)
 
     def NO_TOPIC = null
     def NO_REQUEST_ID = null
@@ -97,7 +100,8 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             mockCpsDataService,
             stubModuleSyncStartedOnCmHandles,
             stubTrustLevelPerCmHandle,
-            stubTrustLevelPerDmiPlugin)
+            stubTrustLevelPerDmiPlugin,
+            mockTrustLevelManager)
 
     def cmHandleXPath = "/dmi-registry/cm-handles[@id='testCmHandle']"
 
