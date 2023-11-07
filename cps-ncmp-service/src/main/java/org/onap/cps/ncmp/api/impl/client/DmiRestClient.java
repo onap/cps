@@ -27,7 +27,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration.DmiProperties;
 import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException;
 import org.onap.cps.ncmp.api.impl.operations.OperationType;
-import org.onap.cps.ncmp.api.impl.trustlevel.dmiavailability.DmiPluginStatus;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -40,8 +39,8 @@ import org.springframework.web.client.RestTemplate;
 @AllArgsConstructor
 @Slf4j
 public class DmiRestClient {
-
     private static final String HEALTH_CHECK_URL_EXTENSION = "/actuator/health";
+    private static final String SPRING_BOOT_HEALTH_RESPONSE_STATUS_FIELD = "status";
     private RestTemplate restTemplate;
     private DmiProperties dmiProperties;
 
@@ -65,24 +64,25 @@ public class DmiRestClient {
         }
     }
 
+
     /**
-     * Sends GET operation to DMI plugin's health check URL.
+     * Get DMI plugin health status.
      *
      * @param       dmiPluginBaseUrl the base URL of the dmi-plugin
-     * @return      DmiPluginStatus as UP or DOWN
+     * @return      plugin health status ("UP" is all OK, null in case of any exception)
      */
-    public DmiPluginStatus getDmiPluginStatus(final String dmiPluginBaseUrl) {
+    public String getDmiHealthStatus(final String dmiPluginBaseUrl) {
+        final HttpEntity<Object> httpHeaders = new HttpEntity<>(configureHttpHeaders(new HttpHeaders()));
         try {
-            final HttpEntity<Object> httpHeaders = new HttpEntity<>(configureHttpHeaders(new HttpHeaders()));
-            final JsonNode dmiPluginHealthStatus = restTemplate
-                .getForObject(dmiPluginBaseUrl + HEALTH_CHECK_URL_EXTENSION, JsonNode.class, httpHeaders);
-            if (dmiPluginHealthStatus != null && dmiPluginHealthStatus.get("status").asText().equals("UP")) {
-                return DmiPluginStatus.UP;
-            }
-        } catch (final Exception exception) {
-            log.warn("Could not send request for health check since {}", exception.getMessage());
+            final JsonNode responseHealthStatus =
+                restTemplate.getForObject(dmiPluginBaseUrl + HEALTH_CHECK_URL_EXTENSION,
+                    JsonNode.class, httpHeaders);
+            return responseHealthStatus == null ? null :
+                responseHealthStatus.get(SPRING_BOOT_HEALTH_RESPONSE_STATUS_FIELD).asText();
+        } catch (final Exception e) {
+            log.warn("Failed to retrieve health status from {}. Error Message: {}", dmiPluginBaseUrl, e.getMessage());
+            return null;
         }
-        return DmiPluginStatus.DOWN;
     }
 
     private HttpHeaders configureHttpHeaders(final HttpHeaders httpHeaders) {
