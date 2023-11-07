@@ -21,15 +21,25 @@
 package org.onap.cps.ncmp.api.impl.trustlevel.dmiavailability
 
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient
+import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence
 import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel
+import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
+import org.onap.cps.spi.model.DataNode
+import org.springframework.boot.context.event.ApplicationReadyEvent
 import spock.lang.Specification
+
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT
 
 class DmiPluginWatchDogSpec extends Specification {
 
+    def mockInventoryPersistence = Mock(InventoryPersistence)
     def mockDmiRestClient = Mock(DmiRestClient)
     def trustLevelPerDmiPlugin = [:]
+    def trustLevelPerCmHandle = [:]
 
-    def objectUnderTest = new DmiPluginWatchDog(mockDmiRestClient, trustLevelPerDmiPlugin)
+    def objectUnderTest = new DmiPluginWatchDog(mockInventoryPersistence, mockDmiRestClient, trustLevelPerDmiPlugin, trustLevelPerCmHandle)
+
+    def dmiRegistry = new DataNode(xpath: NCMP_DMI_REGISTRY_PARENT, childDataNodes: createDataNodeListForMyDmi(['ch-1', 'ch-2']))
 
     def 'watch dmi plugin health status for #dmiHealhStatus'() {
         given: 'the cache has been initialised and "knows" about dmi-1'
@@ -47,4 +57,32 @@ class DmiPluginWatchDogSpec extends Specification {
             null           || TrustLevel.NONE
     }
 
+    def 'initialise the caches upon restart'() {
+        given: 'inventory persistence service returns dmi registry'
+            mockInventoryPersistence.getDataNode(*_) >> [dmiRegistry]
+        and: 'inventory persistence service returns yang model cm handles for "my-dmi"'
+            mockInventoryPersistence.getYangModelCmHandles(*_) >> [
+                createYangModelCmHandleForMyDmi('ch-2'),
+                createYangModelCmHandleForMyDmi('ch-1' )
+            ]
+        and: 'dmi client returns "UP" health status for "my-dmi"'
+            mockDmiRestClient.getDmiHealthStatus('my-dmi') >> 'UP'
+        when: 'the application is re-started'
+            objectUnderTest.onApplicationEvent(Mock(ApplicationReadyEvent))
+        then: 'trust level for "my-dmi" is complete'
+            assert trustLevelPerDmiPlugin.get('my-dmi') == TrustLevel.COMPLETE
+        and: 'trust level for "ch-1" and "ch-2" is complete'
+            assert trustLevelPerCmHandle.get('ch-1') == TrustLevel.COMPLETE
+            assert trustLevelPerCmHandle.get('ch-2') == TrustLevel.COMPLETE
+    }
+
+    def static createDataNodeListForMyDmi(dataNodeIds) {
+        def dataNodes =[]
+        dataNodeIds.each{ dataNodes << new DataNode(xpath: "/dmi-registry/cm-handles[@id='${it}']", leaves: ['id':it,'dmi-service-name':'my-dmi']) }
+        return dataNodes
+    }
+
+    def static createYangModelCmHandleForMyDmi(cmHandleId) {
+        return new YangModelCmHandle(id: cmHandleId, dmiServiceName: 'my-dmi')
+    }
 }

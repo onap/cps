@@ -20,37 +20,101 @@
 
 package org.onap.cps.ncmp.api.impl.trustlevel.dmiavailability;
 
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT;
+import static org.onap.cps.spi.FetchDescendantsOption.DIRECT_CHILDREN_ONLY;
+
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
+import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence;
+import org.onap.cps.ncmp.api.impl.operations.RequiredDmiService;
 import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel;
+import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
+import org.onap.cps.spi.model.DataNode;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.ApplicationListener;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @RequiredArgsConstructor
 @Service
-public class DmiPluginWatchDog {
-
+public class DmiPluginWatchDog implements ApplicationListener<ApplicationReadyEvent> {
+    private final InventoryPersistence inventoryPersistence;
     private final DmiRestClient dmiRestClient;
     private final Map<String, TrustLevel> trustLevelPerDmiPlugin;
+    private final Map<String, TrustLevel> trustLevelPerCmHandle;
 
     /**
-     * This class monitors the trust level of all DMI plugin by checking the health status
-     * the resulting trustlevel wil be stored in the relevant cache.
+     * This method monitors the trust level of all DMI plugin by checking the health status
+     * the resulting trust level wil be stored in the relevant cache.
      * The @fixedDelayString is the time interval, in milliseconds, between consecutive checks.
      */
     @Scheduled(fixedDelayString = "${ncmp.timers.trust-evel.dmi-availability-watchdog-ms:30000}")
     public void watchDmiPluginTrustLevel() {
-        trustLevelPerDmiPlugin.keySet().forEach(dmiKey -> {
-            final String dmiHealthStatus = dmiRestClient.getDmiHealthStatus(dmiKey);
-            if ("UP".equals(dmiHealthStatus)) {
-                trustLevelPerDmiPlugin.put(dmiKey, TrustLevel.COMPLETE);
-            } else {
-                trustLevelPerDmiPlugin.put(dmiKey, TrustLevel.NONE);
-            }
-        });
+        final Set<String> allDmiServiceNames = trustLevelPerDmiPlugin.keySet();
+        for (final String dmiServiceName: allDmiServiceNames) {
+            final String dmiHealthStatus = getDmiHealthStatus(dmiServiceName);
+            populateDmiTrustLevelCache(dmiServiceName, dmiHealthStatus);
+        }
     }
 
+    private String getDmiHealthStatus(final String dmiServiceName) {
+        return dmiRestClient.getDmiHealthStatus(dmiServiceName);
+    }
+
+    private void populateDmiTrustLevelCache(final String dmiServiceName, final String dmiHealthStatus) {
+        if ("UP".equals(dmiHealthStatus)) {
+            trustLevelPerDmiPlugin.put(dmiServiceName, TrustLevel.COMPLETE);
+        } else {
+            trustLevelPerDmiPlugin.put(dmiServiceName, TrustLevel.NONE);
+        }
+    }
+
+    /**
+     * This method listens to ApplicationReadyEvent, which is triggered when the
+     * CPS application has fully started and is ready. Upon receiving this,
+     * it initialises dmi cache from database. This should not only depend on initial registration.
+     *
+     * @param applicationReadyEvent the event to respond to
+     */
+    @Override
+    public void onApplicationEvent(final ApplicationReadyEvent applicationReadyEvent) {
+        final Set<String> dmiServiceNames = new HashSet<>();
+        final Set<String> allCmHandleIds = getAllCmHandleIds();
+        final Collection<YangModelCmHandle> allYangModelCmHandles =
+            inventoryPersistence.getYangModelCmHandles(allCmHandleIds);
+
+        for (final YangModelCmHandle yangModelCmHandle: allYangModelCmHandles) {
+            final String dmiServiceName = yangModelCmHandle.resolveDmiServiceName(RequiredDmiService.DATA);
+            dmiServiceNames.add(dmiServiceName);
+        }
+
+        for (final String dmiServiceName: dmiServiceNames) {
+            final String dmiHealthStatus = getDmiHealthStatus(dmiServiceName);
+            populateDmiTrustLevelCache(dmiServiceName, dmiHealthStatus);
+        }
+
+        for (final String cmHandleId: allCmHandleIds) {
+            populateCmHandleTrustLevelCache(cmHandleId, TrustLevel.COMPLETE);
+        }
+    }
+
+    private void populateCmHandleTrustLevelCache(final String cmHandleId, final TrustLevel cmHandleTrustLevel) {
+        trustLevelPerCmHandle.put(cmHandleId, cmHandleTrustLevel);
+    }
+
+    private Set<String> getAllCmHandleIds() {
+        final Set<String> allCmHandleIds = new HashSet<>();
+        final DataNode dmiRegistryRootDataNode = inventoryPersistence
+            .getDataNode(NCMP_DMI_REGISTRY_PARENT, DIRECT_CHILDREN_ONLY).iterator().next();
+        for (final DataNode childDataNode: dmiRegistryRootDataNode.getChildDataNodes()) {
+            allCmHandleIds.add((String) childDataNode.getLeaves().get("id"));
+        }
+        return allCmHandleIds;
+    }
 }

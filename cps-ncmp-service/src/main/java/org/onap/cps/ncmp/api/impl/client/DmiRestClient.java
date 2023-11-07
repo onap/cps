@@ -39,7 +39,6 @@ import org.springframework.web.client.RestTemplate;
 @RequiredArgsConstructor
 @Slf4j
 public class DmiRestClient {
-
     private static final String HEALTH_CHECK_URL_EXTENSION = "/actuator/health";
     private static final String EMPTY_STRING = "";
     private final RestTemplate restTemplate;
@@ -51,7 +50,7 @@ public class DmiRestClient {
      * @param dmiResourceUrl          dmi resource url
      * @param requestBodyAsJsonString json data body
      * @param operationType           the type of operation being executed (for error reporting only)
-     * @return response entity of type String
+     * @return                        response entity of type String
      */
     public ResponseEntity<Object> postOperationWithJsonData(final String dmiResourceUrl,
                                                             final String requestBodyAsJsonString,
@@ -65,6 +64,7 @@ public class DmiRestClient {
                 httpStatusCodeException.getStatusCode().value());
         }
     }
+
 
     /**
      * Get DMI plugin health status.
