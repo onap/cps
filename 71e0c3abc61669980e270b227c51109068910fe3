@@ -81,6 +81,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a2694fa_83cefd21",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/base/PerfTestBase.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-11-08T12:55:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8161290a_a6342b71",
+      "range": {
+        "startLine": 62,
+        "startChar": 66,
+        "endLine": 62,
+        "endChar": 70
+      },
+      "revId": "71e0c3abc61669980e270b227c51109068910fe3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "023cf68a_2bceb080",
@@ -94,6 +118,30 @@
       "writtenOn": "2023-11-06T17:30:31Z",
       "side": 1,
       "message": "make it consistent with the other \u0027InSeconds\u0027 \n\n\u003e getTotalTimeInSeconds",
+      "range": {
+        "startLine": 54,
+        "startChar": 18,
+        "endLine": 54,
+        "endChar": 37
+      },
+      "revId": "71e0c3abc61669980e270b227c51109068910fe3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2d2c5da_87de7389",
+        "filename": "integration-test/src/test/java/org/onap/cps/integration/ResourceMeter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-11-08T12:55:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "023cf68a_2bceb080",
       "range": {
         "startLine": 54,
         "startChar": 18,
