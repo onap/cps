@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9f55ffb_278b6586",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-08T17:36:08Z",
+      "side": 0,
+      "message": "TODO: Create Jira to remove this functionality from CPS",
+      "range": {
+        "startLine": 246,
+        "startChar": 0,
+        "endLine": 252,
+        "endChar": 68
+      },
+      "revId": "cc2d5837b72abf3c2d83889c45c646dbb4756b2b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

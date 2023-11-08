@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5fd5a247_d2ce4f3e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-08T17:36:08Z",
+      "side": 1,
+      "message": "See TODOs",
+      "revId": "176466743a1cd2ed3e56675dbc805f81642ce326",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5020125_040d7ca3",
+        "filename": "docs/architecture.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-08T17:36:08Z",
+      "side": 1,
+      "message": "TODO: Update diagram",
+      "range": {
+        "startLine": 31,
+        "startChar": 19,
+        "endLine": 31,
+        "endChar": 42
+      },
+      "revId": "176466743a1cd2ed3e56675dbc805f81642ce326",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
