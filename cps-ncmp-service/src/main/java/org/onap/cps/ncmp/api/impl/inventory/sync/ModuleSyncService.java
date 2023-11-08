@@ -41,7 +41,6 @@ import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueries;
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleState;
 import org.onap.cps.ncmp.api.impl.inventory.CompositeState;
-import org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory;
 import org.onap.cps.ncmp.api.impl.operations.DmiModelOperations;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
@@ -77,10 +76,11 @@ public class ModuleSyncService {
         final String moduleSetTag;
         final String cmHandleId = yangModelCmHandle.getId();
         final CompositeState compositeState = yangModelCmHandle.getCompositeState();
-        final boolean inUpgrade = isInUpgrade(compositeState);
+        final boolean inUpgrade = ModuleOperationsUtils.isInUpgradeOrUpgradeFailed(compositeState);
 
         if (inUpgrade) {
-            moduleSetTag = extractModuleSetTag(compositeState);
+            moduleSetTag = ModuleOperationsUtils.getLockedCompositeStateDetails(compositeState.getLockReason())
+                    .get(ModuleOperationsUtils.MODULE_SET_TAG_KEY);
         } else {
             moduleSetTag = yangModelCmHandle.getModuleSetTag();
         }
@@ -174,12 +174,4 @@ public class ModuleSyncService {
         moduleSetTagCache.put(moduleSetTag, moduleReferencesFromExistingCmHandle);
     }
 
-    private static String extractModuleSetTag(final CompositeState compositeState) {
-        return compositeState.getLockReason().getDetails().split(":")[1].trim();
-    }
-
-    private static boolean isInUpgrade(final CompositeState compositeState) {
-        return compositeState.getLockReason() != null && LockReasonCategory.MODULE_UPGRADE.equals(
-                compositeState.getLockReason().getLockReasonCategory());
-    }
 }

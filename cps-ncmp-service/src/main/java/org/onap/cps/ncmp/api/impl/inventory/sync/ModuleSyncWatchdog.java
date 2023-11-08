@@ -43,7 +43,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ModuleSyncWatchdog {
 
-    private final SyncUtils syncUtils;
+    private final ModuleOperationsUtils moduleOperationsUtils;
     private final BlockingQueue<DataNode> moduleSyncWorkQueue;
     private final IMap<String, Object> moduleSyncStartedOnCmHandles;
     private final ModuleSyncTasks moduleSyncTasks;
@@ -88,7 +88,8 @@ public class ModuleSyncWatchdog {
     @Scheduled(fixedDelayString = "${ncmp.timers.locked-modules-sync.sleep-time-ms:300000}")
     public void resetPreviouslyFailedCmHandles() {
         log.info("Processing module sync retry-watchdog waking up.");
-        final List<YangModelCmHandle> failedCmHandles = syncUtils.getCmHandlesThatFailedModelSyncOrUpgrade();
+        final List<YangModelCmHandle> failedCmHandles
+                = moduleOperationsUtils.getCmHandlesThatFailedModelSyncOrUpgrade();
         log.info("Retrying {} cmHandles", failedCmHandles.size());
         moduleSyncTasks.resetFailedCmHandles(failedCmHandles);
     }
@@ -104,7 +105,7 @@ public class ModuleSyncWatchdog {
 
     private void populateWorkQueueIfNeeded() {
         if (moduleSyncWorkQueue.isEmpty()) {
-            final List<DataNode> advisedCmHandles = syncUtils.getAdvisedCmHandles();
+            final List<DataNode> advisedCmHandles = moduleOperationsUtils.getAdvisedCmHandles();
             log.info("Processing module sync fetched {} advised cm handles from DB", advisedCmHandles.size());
             for (final DataNode advisedCmHandle : advisedCmHandles) {
                 if (!moduleSyncWorkQueue.offer(advisedCmHandle)) {

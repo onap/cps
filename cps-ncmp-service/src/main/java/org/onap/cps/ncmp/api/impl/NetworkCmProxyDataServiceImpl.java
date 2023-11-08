@@ -60,6 +60,7 @@ import org.onap.cps.ncmp.api.impl.inventory.CompositeStateBuilder;
 import org.onap.cps.ncmp.api.impl.inventory.CompositeStateUtils;
 import org.onap.cps.ncmp.api.impl.inventory.DataStoreSyncState;
 import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence;
+import org.onap.cps.ncmp.api.impl.inventory.sync.ModuleOperationsUtils;
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations;
 import org.onap.cps.ncmp.api.impl.operations.OperationType;
 import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel;
@@ -409,7 +410,8 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         final NcmpServiceCmHandle ncmpServiceCmHandle = new NcmpServiceCmHandle();
         ncmpServiceCmHandle.setCmHandleId(cmHandleId);
         final String moduleSetTag = dmiPluginRegistration.getUpgradedCmHandles().getModuleSetTag();
-        final String lockReasonWithModuleSetTag = MessageFormat.format("ModuleSetTag: {0}", moduleSetTag);
+        final String lockReasonWithModuleSetTag = MessageFormat.format(
+                ModuleOperationsUtils.MODULE_SET_TAG_MESSAGE_FORMAT, moduleSetTag);
         ncmpServiceCmHandle.setCompositeState(new CompositeStateBuilder().withCmHandleState(CmHandleState.READY)
                 .withLockReason(MODULE_UPGRADE, lockReasonWithModuleSetTag).build());
         return YangModelCmHandle.toYangModelCmHandle(dmiPluginRegistration.getDmiPlugin(),
