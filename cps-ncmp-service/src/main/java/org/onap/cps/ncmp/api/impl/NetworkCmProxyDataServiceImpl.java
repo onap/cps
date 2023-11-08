@@ -409,7 +409,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         final NcmpServiceCmHandle ncmpServiceCmHandle = new NcmpServiceCmHandle();
         ncmpServiceCmHandle.setCmHandleId(cmHandleId);
         final String moduleSetTag = dmiPluginRegistration.getUpgradedCmHandles().getModuleSetTag();
-        final String lockReasonWithModuleSetTag = MessageFormat.format("ModuleSetTag: {0}", moduleSetTag);
+        final String lockReasonWithModuleSetTag = MessageFormat.format("Upgrade to ModuleSetTag: {0}", moduleSetTag);
         ncmpServiceCmHandle.setCompositeState(new CompositeStateBuilder().withCmHandleState(CmHandleState.READY)
                 .withLockReason(MODULE_UPGRADE, lockReasonWithModuleSetTag).build());
         return YangModelCmHandle.toYangModelCmHandle(dmiPluginRegistration.getDmiPlugin(),
