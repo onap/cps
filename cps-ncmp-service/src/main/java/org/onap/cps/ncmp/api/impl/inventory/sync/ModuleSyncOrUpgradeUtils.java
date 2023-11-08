@@ -29,6 +29,7 @@ import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -54,12 +55,17 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class SyncUtils {
+public class ModuleSyncOrUpgradeUtils {
 
+    private static final int ATTEMPTS_REGEX_GROUP_ID = 4;
+    private static final int MODULE_SET_TAG_REGEX_GROUP_ID = 2;
+    private static final String RETRY_ATTEMPT_KEY = "attempt";
+    public static final String MODULE_SET_TAG_KEY = "moduleSetTag";
     private final CmHandleQueries cmHandleQueries;
     private final DmiDataOperations dmiDataOperations;
     private final JsonObjectMapper jsonObjectMapper;
-    private static final Pattern retryAttemptPattern = Pattern.compile("^Attempt #(\\d+) failed:");
+    private static final Pattern retryAttemptPattern
+            = Pattern.compile("(Upgrade to ModuleSetTag: (\\S+))?(Attempt #(\\d+) failed:.+)?");
 
     /**
      * Query data nodes for cm handles with an "ADVISED" cm handle state.
@@ -121,15 +127,41 @@ public class SyncUtils {
                                                    final LockReasonCategory lockReasonCategory,
                                                    final String errorMessage) {
         int attempt = 1;
-        if (compositeState.getLockReason() != null) {
-            final Matcher matcher = retryAttemptPattern.matcher(compositeState.getLockReason().getDetails());
-            if (matcher.find()) {
-                attempt = 1 + Integer.parseInt(matcher.group(1));
-            }
+        final Map<String, String> compositeStateDetails
+                = getLockedCompositeStateDetails(compositeState.getLockReason());
+        if (!compositeStateDetails.isEmpty()) {
+            attempt = 1 + Integer.parseInt(compositeStateDetails.get(RETRY_ATTEMPT_KEY));
         }
         compositeState.setLockReason(CompositeState.LockReason.builder()
-                .details(String.format("Attempt #%d failed: %s", attempt, errorMessage))
+                .details(String.format("Upgrade to ModuleSetTag: %s Attempt #%d failed: %s",
+                        compositeStateDetails.get(MODULE_SET_TAG_KEY), attempt, errorMessage))
                 .lockReasonCategory(lockReasonCategory).build());
+    }
+
+    /**
+     * Extract lock reason details as key-value pair.
+     *
+     * @param compositeStateLockReason lock reason having all the details
+     * @return a map of lock reason details
+     */
+    public static Map<String, String> getLockedCompositeStateDetails(final CompositeState.LockReason
+                                                                       compositeStateLockReason) {
+        if (compositeStateLockReason != null) {
+            final Map<String, String> compositeStateDetails = new HashMap<>(2);
+            final Matcher matcher = retryAttemptPattern.matcher(compositeStateLockReason.getDetails());
+            if (matcher.find()) {
+                final String moduleSetTag = matcher.group(MODULE_SET_TAG_REGEX_GROUP_ID);
+                if (null != moduleSetTag) {
+                    compositeStateDetails.put(MODULE_SET_TAG_KEY, moduleSetTag);
+                }
+                final String numberOfAttempts = matcher.group(ATTEMPTS_REGEX_GROUP_ID);
+                if (null != numberOfAttempts) {
+                    compositeStateDetails.put(RETRY_ATTEMPT_KEY, numberOfAttempts);
+                }
+            }
+            return compositeStateDetails;
+        }
+        return Collections.emptyMap();
     }
 
 
@@ -146,32 +178,34 @@ public class SyncUtils {
 
         final boolean failedDuringModuleSync = LockReasonCategory.MODULE_SYNC_FAILED
                 == lockReason.getLockReasonCategory();
-        final boolean moduleUpgrade = LockReasonCategory.MODULE_UPGRADE
+        final boolean failedDuringModuleUpgrade = LockReasonCategory.MODULE_UPGRADE_FAILED
                 == lockReason.getLockReasonCategory();
 
-        if (failedDuringModuleSync) {
-            final int timeInMinutesUntilNextAttempt;
-            final Matcher matcher = retryAttemptPattern.matcher(lockReason.getDetails());
-            if (matcher.find()) {
-                timeInMinutesUntilNextAttempt = (int) Math.pow(2, Integer.parseInt(matcher.group(1)));
-            } else {
-                timeInMinutesUntilNextAttempt = 1;
-                log.info("First Attempt: no current attempts found.");
-            }
-            final int timeSinceLastAttempt = (int) Duration.between(time, OffsetDateTime.now()).toMinutes();
-            if (timeInMinutesUntilNextAttempt >= timeSinceLastAttempt) {
-                log.info("Time until next attempt is {} minutes: ",
-                        timeInMinutesUntilNextAttempt - timeSinceLastAttempt);
-                return false;
-            }
-            log.info("Retry due now");
-            return true;
-        } else if (moduleUpgrade) {
-            log.info("Locked for module upgrade.");
-            return true;
+        if (failedDuringModuleSync || failedDuringModuleUpgrade) {
+            log.info("Locked for module {}.", failedDuringModuleSync ? "sync" : "upgrade");
+            return isRetryDue(lockReason, time);
         }
         log.info("Locked for other reason");
         return false;
+    }
+
+    private boolean isRetryDue(final CompositeState.LockReason compositeStateLockReason, final OffsetDateTime time) {
+        final int timeInMinutesUntilNextAttempt;
+        final Map<String, String> compositeStateDetails = getLockedCompositeStateDetails(compositeStateLockReason);
+        if (compositeStateDetails.isEmpty()) {
+            timeInMinutesUntilNextAttempt = 1;
+            log.info("First Attempt: no current attempts found.");
+        } else {
+            timeInMinutesUntilNextAttempt = (int) Math.pow(2, Integer.parseInt(compositeStateDetails
+                    .get(RETRY_ATTEMPT_KEY)));
+        }
+        final int timeSinceLastAttempt = (int) Duration.between(time, OffsetDateTime.now()).toMinutes();
+        if (timeInMinutesUntilNextAttempt >= timeSinceLastAttempt) {
+            log.info("Time until next attempt is {} minutes: ", timeInMinutesUntilNextAttempt - timeSinceLastAttempt);
+            return false;
+        }
+        log.info("Retry due now");
+        return true;
     }
 
     /**
@@ -189,6 +223,19 @@ public class SyncUtils {
             return getFirstResource(resourceDataResponseEntity.getBody());
         }
         return null;
+    }
+
+    /**
+     * Checks if cm handle state module is in upgrade or upgrade failed.
+     *
+     * @param compositeState current lock reason of  cm handle
+     * @return true or false based on lock reason category
+     */
+    public static boolean isInUpgradeOrUpgradeFailed(final CompositeState compositeState) {
+        return compositeState.getLockReason() != null
+                && (LockReasonCategory.MODULE_UPGRADE.equals(compositeState.getLockReason().getLockReasonCategory())
+                || LockReasonCategory.MODULE_UPGRADE_FAILED.equals(compositeState.getLockReason()
+                .getLockReasonCategory()));
     }
 
     private String getFirstResource(final Object responseBody) {

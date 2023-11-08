@@ -44,7 +44,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class ModuleSyncTasks {
     private final InventoryPersistence inventoryPersistence;
-    private final SyncUtils syncUtils;
+    private final ModuleSyncOrUpgradeUtils moduleSyncOrUpgradeUtils;
     private final ModuleSyncService moduleSyncService;
     private final LcmEventsCmHandleStateHandler lcmEventsCmHandleStateHandler;
     private final IMap<String, Object> moduleSyncStartedOnCmHandles;
@@ -73,9 +73,14 @@ public class ModuleSyncTasks {
                     yangModelCmHandle.getCompositeState().setLockReason(null);
                     cmHandelStatePerCmHandle.put(yangModelCmHandle, CmHandleState.READY);
                 } catch (final Exception e) {
-                    log.warn("Processing of {} module sync failed due to reason {}.", cmHandleId, e.getMessage());
-                    syncUtils.updateLockReasonDetailsAndAttempts(compositeState, LockReasonCategory.MODULE_SYNC_FAILED,
-                            e.getMessage());
+                    log.warn("Processing of {} module failed due to reason {}.", cmHandleId, e.getMessage());
+                    if (ModuleSyncOrUpgradeUtils.isInUpgradeOrUpgradeFailed(compositeState)) {
+                        moduleSyncOrUpgradeUtils.updateLockReasonDetailsAndAttempts(compositeState,
+                                LockReasonCategory.MODULE_UPGRADE_FAILED, e.getMessage());
+                    } else {
+                        moduleSyncOrUpgradeUtils.updateLockReasonDetailsAndAttempts(compositeState,
+                                LockReasonCategory.MODULE_SYNC_FAILED, e.getMessage());
+                    }
                     setCmHandleStateLocked(yangModelCmHandle, compositeState.getLockReason());
                     cmHandelStatePerCmHandle.put(yangModelCmHandle, CmHandleState.LOCKED);
                 }
@@ -98,7 +103,7 @@ public class ModuleSyncTasks {
         final Map<YangModelCmHandle, CmHandleState> cmHandleStatePerCmHandle = new HashMap<>(failedCmHandles.size());
         for (final YangModelCmHandle failedCmHandle : failedCmHandles) {
             final CompositeState compositeState = failedCmHandle.getCompositeState();
-            final boolean isReadyForRetry = syncUtils.needsModuleSyncRetryOrUpgrade(compositeState);
+            final boolean isReadyForRetry = moduleSyncOrUpgradeUtils.needsModuleSyncRetryOrUpgrade(compositeState);
             log.info("Retry for cmHandleId : {} is {}", failedCmHandle.getId(), isReadyForRetry);
             if (isReadyForRetry) {
                 final String resetCmHandleId = failedCmHandle.getId();
