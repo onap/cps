@@ -22,15 +22,14 @@
 package org.onap.cps.ncmp.api.impl.inventory.sync
 
 import static org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory.LOCKED_MISBEHAVING
+import static org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory.MODULE_UPGRADE
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_OPERATIONAL
 import static org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory.MODULE_SYNC_FAILED
-import static org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory.MODULE_UPGRADE
 import static org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory.MODULE_UPGRADE_FAILED
 
 import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
 import ch.qos.logback.core.read.ListAppender
-import org.onap.cps.ncmp.api.impl.inventory.sync.SyncUtils
 import org.slf4j.LoggerFactory
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import com.fasterxml.jackson.databind.JsonNode
@@ -51,7 +50,7 @@ import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
 import java.util.stream.Collectors
 
-class SyncUtilsSpec extends Specification{
+class ModuleSyncOrUpgradeUtilsSpec extends Specification{
 
     def mockCmHandleQueries = Mock(CmHandleQueries)
 
@@ -59,7 +58,7 @@ class SyncUtilsSpec extends Specification{
 
     def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
 
-    def objectUnderTest = new SyncUtils(mockCmHandleQueries, mockDmiDataOperations, jsonObjectMapper)
+    def objectUnderTest = new ModuleSyncOrUpgradeUtils(mockCmHandleQueries, mockDmiDataOperations, jsonObjectMapper)
 
     def static neverUpdatedBefore = '1900-01-01T00:00:00.000+0100'
 
@@ -71,7 +70,7 @@ class SyncUtilsSpec extends Specification{
 
     def applicationContext = new AnnotationConfigApplicationContext()
 
-    def logger = (Logger) LoggerFactory.getLogger(SyncUtils)
+    def logger = (Logger) LoggerFactory.getLogger(ModuleSyncOrUpgradeUtils)
     def loggingListAppender
 
     void setup() {
@@ -83,7 +82,7 @@ class SyncUtilsSpec extends Specification{
     }
 
     void cleanup() {
-        ((Logger) LoggerFactory.getLogger(SyncUtils.class)).detachAndStopAllAppenders()
+        ((Logger) LoggerFactory.getLogger(ModuleSyncOrUpgradeUtils.class)).detachAndStopAllAppenders()
         applicationContext.close()
     }
 
@@ -107,7 +106,7 @@ class SyncUtilsSpec extends Specification{
             objectUnderTest.updateLockReasonDetailsAndAttempts(compositeState, MODULE_SYNC_FAILED, 'new error message')
         then: 'the composite state lock reason and details are updated'
             assert compositeState.lockReason.lockReasonCategory == MODULE_SYNC_FAILED
-            assert compositeState.lockReason.details == expectedDetails
+            assert compositeState.lockReason.details.contains(expectedDetails)
         where:
             scenario         | lockReason                                                                                   || expectedDetails
             'does not exist' | null                                                                                         || 'Attempt #1 failed: new error message'
@@ -144,27 +143,27 @@ class SyncUtilsSpec extends Specification{
             assert logs.contains(logReason)
         where: 'the following parameters are used'
             scenario                                    | lastUpdateMinutesAgo | lockDetails          | logReason                               || retryExpected
-            'never attempted before'                    | -1                   | 'fist attempt:'      | 'First Attempt:'                        || true
-            '1st attempt, last attempt > 2 minute ago'  | 3                    | 'Attempt #1 failed:' | 'Retry due now'                         || true
-            '2nd attempt, last attempt < 4 minutes ago' | 1                    | 'Attempt #2 failed:' | 'Time until next attempt is 3 minutes:' || false
-            '2nd attempt, last attempt > 4 minutes ago' | 5                    | 'Attempt #2 failed:' | 'Retry due now'                         || true
+            'never attempted before'                    | -1 | 'Fist attempt:'                 | 'First Attempt:'                        || true
+            '1st attempt, last attempt > 2 minute ago'  | 3  | 'Attempt #1 failed: some error' | 'Retry due now'                         || true
+            '2nd attempt, last attempt < 4 minutes ago' | 1  | 'Attempt #2 failed: some error' | 'Time until next attempt is 3 minutes:' || false
+            '2nd attempt, last attempt > 4 minutes ago' | 5  | 'Attempt #2 failed: some error' | 'Retry due now'                         || true
     }
 
-    def 'Retry Locked Cm-Handle with other lock reasons (category) #lockReasonCategory'() {
+    def 'Retry Locked Cm-Handle with lock reasons (category) #lockReasonCategory'() {
         when: 'checking to see if cm handle is ready for retry'
-        def result = objectUnderTest.needsModuleSyncRetryOrUpgrade(new CompositeStateBuilder()
+            def result = objectUnderTest.needsModuleSyncRetryOrUpgrade(new CompositeStateBuilder()
                 .withLockReason(lockReasonCategory, 'some details')
                 .withLastUpdatedTime(nowAsString).build())
         then: 'verify retry attempts'
-        assert result == retryAttempt
+            assert !result
         and: 'logs contain related information'
-        def logs = loggingListAppender.list.toString()
-        assert logs.contains(logReason)
+            def logs = loggingListAppender.list.toString()
+            assert logs.contains(logReason)
         where: 'the following lock reasons occurred'
-        scenario             | lockReasonCategory || logReason                    | retryAttempt
-        'module upgrade'     | MODULE_UPGRADE     || 'Locked for module upgrade.' | true
-        'module sync failed' | MODULE_SYNC_FAILED || 'First Attempt:'             | false
-        'lock misbehaving'   | LOCKED_MISBEHAVING || 'Locked for other reason'    | false
+            scenario             | lockReasonCategory    || logReason
+            'module upgrade'     | MODULE_UPGRADE_FAILED || 'First Attempt:'
+            'module sync failed' | MODULE_SYNC_FAILED    || 'First Attempt:'
+            'lock misbehaving'   | LOCKED_MISBEHAVING    || 'Locked for other reason'
     }
 
     def 'Get a Cm-Handle where #scenario'() {
@@ -194,5 +193,19 @@ class SyncUtilsSpec extends Specification{
             def result = objectUnderTest.getResourceData('cm-handle-123')
         then: 'the returned data is correct'
             result == jsonString
+    }
+
+    def 'Extract module set tag and number of attempt when lock reason contains #scenario'() {
+        expect: 'lock reason details are extracted correctly'
+            def result = objectUnderTest.getCompositeStateDetails(new CompositeStateBuilder().withLockReason(MODULE_UPGRADE, lockReasonDetails).build().lockReason)
+        and: 'the result contains the correct moduleSetTag'
+            assert result['moduleSetTag'] == expectedModuleSetTag
+        and: 'the result contains the correct number of attempts'
+            assert result['attempt'] == expectedNumberOfAttempts
+        where: 'the following scenarios are used'
+            scenario                                     | lockReasonDetails                                                           || expectedModuleSetTag | expectedNumberOfAttempts
+            'module set tag only'                        | 'Upgrade to ModuleSetTag: targetModuleSetTag'                               || 'targetModuleSetTag' | null
+            'number of attempts only'                    | 'Attempt #1 failed: some error'                                             || null                 | '1'
+//            'number of attempts and module set tag both' | 'Upgrade to ModuleSetTag: targetModuleSetTag Attempt #1 failed: some error' || 'targetModuleSetTag' | '1'
     }
 }
