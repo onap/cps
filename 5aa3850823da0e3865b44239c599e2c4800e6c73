@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c4df313_8207049b",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 67
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-11-08T14:33:35Z",
+      "side": 1,
+      "message": "NB: i think these 2 tests are too similar.\nand you already have a table for scenarios.\nWhy not do it in a single test.",
+      "range": {
+        "startLine": 21,
+        "startChar": 4,
+        "endLine": 45,
+        "endChar": 5
+      },
+      "revId": "5aa3850823da0e3865b44239c599e2c4800e6c73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0365606d_587f9761",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/spi/model/DeltaReportBuilderSpec.groovy",
+        "patchSetId": 67
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-11-08T14:33:35Z",
+      "side": 1,
+      "message": "NB: remove or uncomment.",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 7
+      },
+      "revId": "5aa3850823da0e3865b44239c599e2c4800e6c73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
