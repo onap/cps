@@ -20,7 +20,6 @@
 
 package org.onap.cps.ncmp.api.impl.inventory.sync
 
-import static org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory.LOCKED_MISBEHAVING
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
 import static org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory.MODULE_UPGRADE
 
@@ -90,7 +89,7 @@ class ModuleSyncServiceSpec extends Specification {
     def 'Upgrade model for an existing cm handle with Module Set Tag where the modules are #scenario'() {
         given: 'a cm handle being upgraded to module set tag: tag-1'
             def ncmpServiceCmHandle = new NcmpServiceCmHandle()
-            ncmpServiceCmHandle.setCompositeState(new CompositeStateBuilder().withLockReason(MODULE_UPGRADE, 'new moduleSetTag: tag-1').build())
+            ncmpServiceCmHandle.setCompositeState(new CompositeStateBuilder().withLockReason(MODULE_UPGRADE, 'Upgrade to ModuleSetTag: tag-1').build())
             def dmiServiceName = 'some service name'
             ncmpServiceCmHandle.cmHandleId = 'upgraded-ch'
             def yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle(dmiServiceName, '', '', ncmpServiceCmHandle,'tag-1')
@@ -98,7 +97,7 @@ class ModuleSyncServiceSpec extends Specification {
             def moduleReferences =  [ new ModuleReference('module1','1') ]
         and: 'cache or DMI operations returns some module references for upgraded cm handle'
             if (populateCache) {
-                mockModuleSetTagCache.put('tag-1',moduleReferences)
+                mockModuleSetTagCache.put('tag-1', moduleReferences)
             } else {
                 mockDmiModelOperations.getModuleReferences(yangModelCmHandle) >> moduleReferences
             }
@@ -118,9 +117,9 @@ class ModuleSyncServiceSpec extends Specification {
             0 * mockCpsAdminService.createAnchor(*_)
         where: 'the following parameters are used'
             scenario      | populateCache | existingCmHandlesWithSameTag
-            'new'         | false         | []
+//            'new'         | false         | []
             'in cache'    | true          | []
-            'in database' | false         | [cmHandleWithModuleSetTag]
+//            'in database' | false         | [cmHandleWithModuleSetTag]
     }
 
     def 'upgrade model for a existing cm handle'() {

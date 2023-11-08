@@ -48,7 +48,7 @@ public class DataSyncWatchdog {
 
     private final CpsDataService cpsDataService;
 
-    private final SyncUtils syncUtils;
+    private final ModuleSyncOrUpgradeUtils moduleSyncOrUpgradeUtils;
 
     private final IMap<String, Boolean> dataSyncSemaphores;
 
@@ -58,13 +58,13 @@ public class DataSyncWatchdog {
      */
     @Scheduled(fixedDelayString = "${ncmp.timers.cm-handle-data-sync.sleep-time-ms:30000}")
     public void executeUnSynchronizedReadyCmHandlePoll() {
-        syncUtils.getUnsynchronizedReadyCmHandles().forEach(unSynchronizedReadyCmHandle -> {
+        moduleSyncOrUpgradeUtils.getUnsynchronizedReadyCmHandles().forEach(unSynchronizedReadyCmHandle -> {
             final String cmHandleId = unSynchronizedReadyCmHandle.getId();
             if (hasPushedIntoSemaphoreMap(cmHandleId)) {
                 log.debug("Executing data sync on {}", cmHandleId);
                 final CompositeState compositeState = inventoryPersistence
                         .getCmHandleState(cmHandleId);
-                final String resourceData = syncUtils.getResourceData(cmHandleId);
+                final String resourceData = moduleSyncOrUpgradeUtils.getResourceData(cmHandleId);
                 if (resourceData == null) {
                     log.debug("Error retrieving resource data for Cm-Handle: {}", cmHandleId);
                 } else {
