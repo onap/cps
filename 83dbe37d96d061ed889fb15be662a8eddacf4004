@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e8f7d33_4086a0c2",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/base/CpsPerfTestBase.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-11-08T16:05:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3bad5191_bf19e588",
+      "range": {
+        "startLine": 38,
+        "startChar": 111,
+        "endLine": 38,
+        "endChar": 112
+      },
+      "revId": "83dbe37d96d061ed889fb15be662a8eddacf4004",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a071a3fc_1c450ab3",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-11-08T12:55:19Z",
       "side": 1,
       "message": "one more space here",
+      "range": {
+        "startLine": 54,
+        "startChar": 111,
+        "endLine": 54,
+        "endChar": 112
+      },
+      "revId": "83dbe37d96d061ed889fb15be662a8eddacf4004",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1db89c85_5761703f",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/base/NcmpPerfTestBase.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-11-08T16:05:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a071a3fc_1c450ab3",
       "range": {
         "startLine": 54,
         "startChar": 111,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "df7a497e_fffbd109",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/base/PerfTestBase.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-11-08T16:05:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "08f144ca_f60eaa21",
+      "range": {
+        "startLine": 32,
+        "startChar": 113,
+        "endLine": 32,
+        "endChar": 114
+      },
+      "revId": "83dbe37d96d061ed889fb15be662a8eddacf4004",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f926bc13_da7511dd",
@@ -100,6 +172,30 @@
       "writtenOn": "2023-11-08T12:55:19Z",
       "side": 1,
       "message": "There\u0027s some misalignment here, can you change %.3f to %8.2f, like this:\n\n    \u0027%2d.%-40s limit %8.2f took %8.2f sec %,8.2f MB used \u0027",
+      "range": {
+        "startLine": 62,
+        "startChar": 35,
+        "endLine": 62,
+        "endChar": 87
+      },
+      "revId": "83dbe37d96d061ed889fb15be662a8eddacf4004",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0276307f_a217504b",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/base/PerfTestBase.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-11-08T16:05:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f926bc13_da7511dd",
       "range": {
         "startLine": 62,
         "startChar": 35,
