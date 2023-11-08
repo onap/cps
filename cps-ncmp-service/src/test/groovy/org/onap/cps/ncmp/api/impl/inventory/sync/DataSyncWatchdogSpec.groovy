@@ -24,8 +24,6 @@ import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NFP_OPE
 
 import com.hazelcast.map.IMap
 import org.onap.cps.api.CpsDataService
-import org.onap.cps.ncmp.api.impl.inventory.sync.DataSyncWatchdog
-import org.onap.cps.ncmp.api.impl.inventory.sync.SyncUtils
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
 import org.onap.cps.ncmp.api.impl.inventory.CompositeState
@@ -39,7 +37,7 @@ class DataSyncWatchdogSpec extends Specification {
 
     def mockCpsDataService = Mock(CpsDataService)
 
-    def mockSyncUtils = Mock(SyncUtils)
+    def mockSyncUtils = Mock(ModuleSyncOrUpgradeUtils)
 
     def mockDataSyncSemaphores = Mock(IMap<String,Boolean>)
 
