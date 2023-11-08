@@ -122,7 +122,9 @@ public class ModuleSyncService {
         }
         cpsModuleService.createOrUpgradeSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME,
             yangModelCmHandle.getId(), newModuleNameToContentMap, allModuleReferencesFromCmHandle);
-        moduleSetTagCache.put(moduleSetTag, allModuleReferencesFromCmHandle);
+        if (StringUtils.isNotBlank(moduleSetTag)) {
+            moduleSetTagCache.put(moduleSetTag, allModuleReferencesFromCmHandle);
+        }
     }
 
     /**
