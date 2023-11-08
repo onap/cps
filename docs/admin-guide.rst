@@ -97,7 +97,7 @@ Location of log files
 ---------------------
 By default, Spring Boot will only log to the console and will not write log files.
 
-.. image:: images/cps-service-console.JPG
+.. image:: _static/cps-service-console.JPG
   :width: 700
   :alt: CPS service console
 
@@ -158,8 +158,6 @@ Logger configuration is provided as a chart resource :
     | cps-component-service-name     | logback.xml location                                                                                                                          |
     +================================+===============================================================================================================================================+
     | cps-core                       | `logback-spring.xml <https://github.com/onap/oom/blob/master/kubernetes/cps/components/cps-core/resources/config/logback-spring.xml>`__       |
-    +--------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
-    | cps-temporal                   | `logback.xml <https://github.com/onap/oom/blob/master/kubernetes/cps/components/cps-temporal/resources/config/logback.xml>`__                 |
     +--------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
     | ncmp-dmi-plugin                | Not yet applicable to DMI-Plugin                                                                                                              |
     +--------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
