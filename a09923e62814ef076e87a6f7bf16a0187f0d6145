@@ -148,6 +148,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a6bde69d_4d38d97f",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 61
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-11-08T11:00:59Z",
+      "side": 1,
+      "message": "About this we can discuss later.\nWe can plan to review what we currently have.",
+      "parentUuid": "ac2fcb89_cc54e2d4",
+      "range": {
+        "startLine": 60,
+        "startChar": 41,
+        "endLine": 60,
+        "endChar": 69
+      },
+      "revId": "a09923e62814ef076e87a6f7bf16a0187f0d6145",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7a14a456_418db95e",
         "filename": "cps-service/src/main/java/org/onap/cps/spi/model/DeltaReportCustomBuilder.java",
         "patchSetId": 61

@@ -33,6 +33,23 @@
       "message": "recheck",
       "revId": "41b8362ee59c8b9918a7d19fd2000dfec5735664",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72a8873c_f3873c7d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 64
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-11-08T11:00:59Z",
+      "side": 1,
+      "message": "As discussed yesterday , since you dont have a test class in the cps-service package for DeltaService , thats why that module is complaining about the missing coverage.\nSuggest u to have dedicated test in that package as well.",
+      "revId": "41b8362ee59c8b9918a7d19fd2000dfec5735664",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
