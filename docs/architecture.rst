@@ -16,19 +16,14 @@ High Level Component Definition and Architectural Relationships
 The Configuration Persistence Service (CPS) provides storage for run-time configuration and operational
 parameters that need to be used by ONAP.
 
-In this release CPS is no longer a stand alone component and is released along with Cps-Temporal and the NCMP-DMI-Plugin.
+CPS is no longer a stand alone component and is released along with and the NCMP-DMI-Plugin.
 
 Project page describing eventual scope and ambition is here:
 `Configuration Persistence Service Project <https://wiki.onap.org/display/DW/Configuration+Persistence+Service+Project>`_
 
 This page reflects the state for the latest release.
 
-.. image:: _static/star.png
-    :class: float-left
-
-**Note:** SDC and AAI interfaces have not yet been implemented.
-
-.. image:: _static/cps-r9-arch-diagram.png
+.. image:: _static/cps-r13-arch-diagram.png
 
 API definitions
 ===============
@@ -68,10 +63,6 @@ Configuration Persistence Service provides the following interfaces.
      - xNF Data Access
      - - read xNF data
        - query xNF data
-     - REST
-   * - CPS-E-06
-     - Temporal Data Access
-     - - data storage and access
      - REST
    * - CPS-E-07
      - Admin

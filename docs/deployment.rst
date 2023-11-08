@@ -20,7 +20,6 @@ This chart includes different cps components referred as <cps-component-name> fu
 .. container:: ulist
 
   - `cps-core <https://github.com/onap/oom/tree/master/kubernetes/cps/components/cps-core>`__
-  - `cps-temporal <https://github.com/onap/oom/tree/master/kubernetes/cps/components/cps-temporal>`__
   - `ncmp-dmi-plugin <https://github.com/onap/oom/tree/master/kubernetes/cps/components/ncmp-dmi-plugin>`__
 
 Please refer to the `OOM documentation <https://docs.onap.org/projects/onap-oom/en/latest/sections/guides/user_guides/oom_user_guide.html>`_ on how to install and deploy ONAP.
@@ -111,7 +110,6 @@ values.yaml file to be used across different components as :
 .. container:: ulist
 
   - `cps-core <https://github.com/onap/oom/blob/master/kubernetes/cps/components/cps-core/values.yaml>`_
-  - `cps-temporal <https://github.com/onap/oom/blob/master/kubernetes/cps/components/cps-temporal/values.yaml>`_
   - `ncmp-dmi-plugin <https://github.com/onap/oom/blob/master/kubernetes/cps/components/ncmp-dmi-plugin/values.yaml>`_
 
 Below are the list of secrets for different cps components.
@@ -122,10 +120,6 @@ Below are the list of secrets for different cps components.
 | cps-core                 | Database authentication         | <my-helm-release>-cps-core-pg-user-creds          |
 +--------------------------+---------------------------------+---------------------------------------------------+
 | cps-core                 | Rest API Authentication         | <my-helm-release>-cps-core-app-user-creds         |
-+--------------------------+---------------------------------+---------------------------------------------------+
-| cps-temporal             | Rest API Authentication         | <my-helm-release>-cps-temporal-app-user-creds     |
-+--------------------------+---------------------------------+---------------------------------------------------+
-| cps-temporal             | Database authentication         | <my-helm-release>-cps-temporal-pg-user-creds      |
 +--------------------------+---------------------------------+---------------------------------------------------+
 | ncmp-dmi-plugin          | Rest API Authentication         | <my-helm-release>-cps-dmi-plugin-user-creds       |
 +--------------------------+---------------------------------+---------------------------------------------------+
@@ -176,8 +170,6 @@ Any spring supported property can be configured by providing in ``config.additio
 |                                       | This is the user name to be used by cps-core REST clients to authenticate themselves.                   |                               |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
 | config.appUserPassword                | Password used by cps-core service to configure the authentication for REST API it exposes.              | Not defined                   |
-|                                       |                                                                                                         |                               |
-|                                       | This is the password to be used by CPS Temporal REST clients to authenticate themselves.                |                               |
 |                                       |                                                                                                         |                               |
 |                                       | If not defined, the password is generated when deploying the application.                               |                               |
 |                                       |                                                                                                         |                               |
@@ -242,13 +234,6 @@ Any spring supported property can be configured by providing in ``config.additio
 | spring.kafka.properties.              | Possible value is:                                                                                      |                               |
 | ssl.endpoint.identification.algorithm |                                                                                                         |                               |
 |                                       | * ``""``, empty string to disable                                                                       |                               |
-+---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.additional.                    | Kafka topic to publish to cps-temporal                                                                  | ``cps.data-updated-events``   |
-| notification.data-updated.topic       |                                                                                                         |                               |
-+---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.additional.                    | Array of dataspaces to be enabled for publishing events to cps-temporal                                 | []                            |
-| notification.data-updated.filters.    | If left blank CPS-Temporal notification will be sent for all dataspaces                                 |                               |
-| enabled-dataspaces                    |                                                                                                         |                               |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
 | config.additional.                    | If asynchronous messaging, user notifications, and updated event persistence should be enabled          | ``true``                      |
 | notification.data-updated.enabled     |                                                                                                         |                               |
