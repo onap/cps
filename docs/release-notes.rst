@@ -1098,7 +1098,6 @@ Following CPS components are available with default ONAP/CPS installation.
     * Service components
 
         - CPS-NCMP
-        - CPS-Temporal
         - DMI-Plugin
 
     * Additional resources that CPS utilizes deployed using ONAP common charts
