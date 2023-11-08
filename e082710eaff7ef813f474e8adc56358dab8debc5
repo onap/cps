@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "64b0beba_f6e9ea96",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-08T16:32:16Z",
+      "side": 1,
+      "message": "Below are really non-blocking i.e. don\u0027t fix them now unless someone else has blocking comments! They can be dealt with a future commits",
+      "revId": "e082710eaff7ef813f474e8adc56358dab8debc5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0754d7c_8105971d",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/base/PerfTestBase.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-08T16:32:16Z",
+      "side": 1,
+      "message": "NB: shoudln\u0027t need types in Groovy",
+      "range": {
+        "startLine": 57,
+        "startChar": 56,
+        "endLine": 57,
+        "endChar": 63
+      },
+      "revId": "e082710eaff7ef813f474e8adc56358dab8debc5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1eb74562_61ef1f64",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/QueryPerfTest.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-08T16:32:16Z",
+      "side": 1,
+      "message": "NB: some surplus spaces can be removed",
+      "range": {
+        "startLine": 47,
+        "startChar": 127,
+        "endLine": 47,
+        "endChar": 144
+      },
+      "revId": "e082710eaff7ef813f474e8adc56358dab8debc5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
