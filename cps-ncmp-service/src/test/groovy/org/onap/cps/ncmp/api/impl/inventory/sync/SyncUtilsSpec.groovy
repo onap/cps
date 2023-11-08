@@ -107,7 +107,7 @@ class SyncUtilsSpec extends Specification{
             objectUnderTest.updateLockReasonDetailsAndAttempts(compositeState, MODULE_SYNC_FAILED, 'new error message')
         then: 'the composite state lock reason and details are updated'
             assert compositeState.lockReason.lockReasonCategory == MODULE_SYNC_FAILED
-            assert compositeState.lockReason.details == expectedDetails
+            assert compositeState.lockReason.details.contains(expectedDetails)
         where:
             scenario         | lockReason                                                                                   || expectedDetails
             'does not exist' | null                                                                                         || 'Attempt #1 failed: new error message'

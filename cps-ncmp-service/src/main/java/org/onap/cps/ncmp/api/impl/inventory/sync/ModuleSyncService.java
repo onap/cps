@@ -176,8 +176,16 @@ public class ModuleSyncService {
         return compositeState.getLockReason().getDetails().split(":")[1].trim();
     }
 
-    private static boolean isInUpgrade(final CompositeState compositeState) {
-        return compositeState.getLockReason() != null && LockReasonCategory.MODULE_UPGRADE.equals(
-                compositeState.getLockReason().getLockReasonCategory());
+    /**
+     * Checks if cm handle state module is in upgrade or upgrade failed.
+     *
+     * @param compositeState current lock reason of  cm handle
+     * @return true or false based on lock reason category
+     */
+    public static boolean isInUpgrade(final CompositeState compositeState) {
+        return compositeState.getLockReason() != null
+                && (LockReasonCategory.MODULE_UPGRADE.equals(compositeState.getLockReason().getLockReasonCategory())
+                || LockReasonCategory.MODULE_UPGRADE_FAILED.equals(compositeState.getLockReason()
+                .getLockReasonCategory()));
     }
 }

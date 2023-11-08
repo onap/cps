@@ -59,7 +59,7 @@ public class SyncUtils {
     private final CmHandleQueries cmHandleQueries;
     private final DmiDataOperations dmiDataOperations;
     private final JsonObjectMapper jsonObjectMapper;
-    private static final Pattern retryAttemptPattern = Pattern.compile("^Attempt #(\\d+) failed:");
+    private static final Pattern retryAttemptPattern = Pattern.compile("(ModuleSetTag:(.*) )?Attempt #(\\d+) failed:");
 
     /**
      * Query data nodes for cm handles with an "ADVISED" cm handle state.
@@ -121,14 +121,16 @@ public class SyncUtils {
                                                    final LockReasonCategory lockReasonCategory,
                                                    final String errorMessage) {
         int attempt = 1;
+        String moduleSetTag = "";
         if (compositeState.getLockReason() != null) {
             final Matcher matcher = retryAttemptPattern.matcher(compositeState.getLockReason().getDetails());
             if (matcher.find()) {
-                attempt = 1 + Integer.parseInt(matcher.group(1));
+                attempt = 1 + Integer.parseInt(matcher.group(3));
+                moduleSetTag = matcher.group(2);
             }
         }
         compositeState.setLockReason(CompositeState.LockReason.builder()
-                .details(String.format("Attempt #%d failed: %s", attempt, errorMessage))
+                .details(String.format("ModuleSetTag: %s Attempt #%d failed: %s", moduleSetTag, attempt, errorMessage))
                 .lockReasonCategory(lockReasonCategory).build());
     }
 
@@ -153,7 +155,7 @@ public class SyncUtils {
             final int timeInMinutesUntilNextAttempt;
             final Matcher matcher = retryAttemptPattern.matcher(lockReason.getDetails());
             if (matcher.find()) {
-                timeInMinutesUntilNextAttempt = (int) Math.pow(2, Integer.parseInt(matcher.group(1)));
+                timeInMinutesUntilNextAttempt = (int) Math.pow(2, Integer.parseInt(matcher.group(3)));
             } else {
                 timeInMinutesUntilNextAttempt = 1;
                 log.info("First Attempt: no current attempts found.");
