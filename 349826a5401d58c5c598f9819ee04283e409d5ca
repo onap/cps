@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1cccd51a_153d6128",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-08T14:10:12Z",
+      "side": 1,
+      "message": "is more or less what I suspected... well done\nThe bigger problem is though that we had no test that detected the fault!\nAs we discussed we might need a stricter assert on one of the existing test and/or maybe we need to make sure we test with more than 1 (common/new)  module and verify the number of modules saved... \nBasically the new/improved test should FAIL if you comment out the fix in this patch.\nThis can be handled in a separate commit so our client can progress quickly and take this fix without further delay",
+      "revId": "349826a5401d58c5c598f9819ee04283e409d5ca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
