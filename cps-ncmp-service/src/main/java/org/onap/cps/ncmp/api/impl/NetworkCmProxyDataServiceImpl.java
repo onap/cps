@@ -484,10 +484,9 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             final Map<NcmpResponseStatus, List<String>> failedCmHandlesPerResponseStatus) {
         final List<CmHandleRegistrationResponse> cmHandleUpgradeResponses
                 = upgradeCmHandles(acceptedCmHandleStatePerCmHandle);
-        failedCmHandlesPerResponseStatus.forEach((ncmpResponseStatus, cmHandleIds) -> {
+        failedCmHandlesPerResponseStatus.forEach((ncmpResponseStatus, cmHandleIds) ->
             cmHandleIds.forEach(cmHandleId -> cmHandleUpgradeResponses.add(CmHandleRegistrationResponse
-                    .createFailureResponse(cmHandleId, ncmpResponseStatus)));
-        });
+                .createFailureResponse(cmHandleId, ncmpResponseStatus))));
         return cmHandleUpgradeResponses;
     }
 
