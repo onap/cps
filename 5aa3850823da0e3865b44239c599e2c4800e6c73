@@ -67,6 +67,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "895e3811_3f224fb9",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 67
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-11-09T10:18:46Z",
+      "side": 1,
+      "message": "I think we can combine them.\nWe can always add scenarios in the \u0027where\u0027 condition.",
+      "parentUuid": "7ed24dcf_3d4da30b",
+      "range": {
+        "startLine": 21,
+        "startChar": 4,
+        "endLine": 45,
+        "endChar": 5
+      },
+      "revId": "5aa3850823da0e3865b44239c599e2c4800e6c73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0365606d_587f9761",
         "filename": "cps-service/src/test/groovy/org/onap/cps/spi/model/DeltaReportBuilderSpec.groovy",
         "patchSetId": 67
