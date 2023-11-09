@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3aced162_e12cd334",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 67
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-11-09T05:57:16Z",
+      "side": 1,
+      "message": "Resolved a few comments, replied to some as well",
+      "revId": "5aa3850823da0e3865b44239c599e2c4800e6c73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0c4df313_8207049b",
@@ -26,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7ed24dcf_3d4da30b",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 67
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-11-09T05:57:16Z",
+      "side": 1,
+      "message": "yes they are very similar, but one tests REMOVE operation and other tests ADD operation so I thought of keeping them separate. So what do you suggest should both operations be in separate tests or should I combine them? I can edit the scenario to something like, ADD operation where data nodes are with leaf data and REMOVE operation where data nodes are with leaf data.",
+      "parentUuid": "0c4df313_8207049b",
+      "range": {
+        "startLine": 21,
+        "startChar": 4,
+        "endLine": 45,
+        "endChar": 5
+      },
+      "revId": "5aa3850823da0e3865b44239c599e2c4800e6c73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0365606d_587f9761",
         "filename": "cps-service/src/test/groovy/org/onap/cps/spi/model/DeltaReportBuilderSpec.groovy",
         "patchSetId": 67
@@ -37,6 +78,30 @@
       "writtenOn": "2023-11-08T14:33:35Z",
       "side": 1,
       "message": "NB: remove or uncomment.",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 7
+      },
+      "revId": "5aa3850823da0e3865b44239c599e2c4800e6c73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7a4a2af_a79e6836",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/spi/model/DeltaReportBuilderSpec.groovy",
+        "patchSetId": 67
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-11-09T05:57:16Z",
+      "side": 1,
+      "message": "removed as its a redundant test case, same as add operation test above",
+      "parentUuid": "0365606d_587f9761",
       "range": {
         "startLine": 33,
         "startChar": 0,
