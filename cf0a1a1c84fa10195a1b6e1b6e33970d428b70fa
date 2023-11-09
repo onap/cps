@@ -18,6 +18,46 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9db8a771_a2186057",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-09T15:28:33Z",
+      "side": 1,
+      "message": "@Sean, can we have change the name of this method (setTrustLevelPerDmiPlugin) to populateTrustLevelPerDmiPlugin(...) and form up the order of methods mentioned in my comment below? Then, I\u0027ll give +1.",
+      "revId": "cf0a1a1c84fa10195a1b6e1b6e33970d428b70fa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d33a7df_106033c5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-09T15:28:33Z",
+      "side": 1,
+      "message": "I got what you meant. For this patch set lets have the order of populating the caches like this:\n\n   1. setTrustLevelPerDmiPlugin(dmiPluginRegistration);\n   2. dmiPluginRegistrationResponse.setCreatedCmHandles(                parseAndProcessCreatedCmHandlesInRegistration(dmiPluginRegistration));\n   3. populateTrustLevelPerCmHandleCache(dmiPluginRegistration);\n   \n   \nActually, the 3rd one has to be handled in parseAndProcess... method but let\u0027s have this commit merge in this way so that later we\u0027ll change to populate process of cm handle cache.",
+      "range": {
+        "startLine": 118,
+        "startChar": 0,
+        "endLine": 120,
+        "endChar": 90
+      },
+      "revId": "cf0a1a1c84fa10195a1b6e1b6e33970d428b70fa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5209a9d5_3d518d7c",
