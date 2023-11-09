@@ -76,6 +76,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def mockCpsCmHandlerQueryService = Mock(NetworkCmProxyCmHandleQueryService)
     def mockLcmEventsCmHandleStateHandler = Mock(LcmEventsCmHandleStateHandler)
     def stubModuleSyncStartedOnCmHandles = Stub(IMap<String, Object>)
+    def stubTrustLevelPerCmHandle = Stub(Map<String, TrustLevel>)
     def stubTrustLevelPerDmiPlugin = Stub(Map<String, TrustLevel>)
 
     def NO_TOPIC = null
@@ -95,6 +96,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             mockLcmEventsCmHandleStateHandler,
             mockCpsDataService,
             stubModuleSyncStartedOnCmHandles,
+            stubTrustLevelPerCmHandle,
             stubTrustLevelPerDmiPlugin)
 
     def cmHandleXPath = "/dmi-registry/cm-handles[@id='testCmHandle']"
