@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "22950fb5_30942775",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-09T13:07:38Z",
+      "side": 1,
+      "message": "As of now -1 till get confirmation from Toine.",
+      "revId": "cf0a1a1c84fa10195a1b6e1b6e33970d428b70fa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5209a9d5_3d518d7c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-09T13:07:38Z",
+      "side": 1,
+      "message": "I think, populating DMI plugin and cm handle caches have to be done after a successful registration? @Toine, please share your thoughts on this so that we can decide on moving this line to after line 120. Also we should consider moving \u0027line 118\u0027 to after line 120.",
+      "range": {
+        "startLine": 133,
+        "startChar": 8,
+        "endLine": 133,
+        "endChar": 57
+      },
+      "revId": "cf0a1a1c84fa10195a1b6e1b6e33970d428b70fa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
