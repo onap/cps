@@ -39,6 +39,30 @@
       },
       "revId": "cf0a1a1c84fa10195a1b6e1b6e33970d428b70fa",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "609c08d9_b2eb6980",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-09T14:09:24Z",
+      "side": 1,
+      "message": "The DMI (plugin) trustlevel itself can be set at the start ie. we know the DMI is alive!!!!\nbut the CM-Handles trustlevel should be set as we process them. I am not sure if the  method being called here does both... Maybe it needs to be split in that case \n\n\nthink of this scenario: registration can take 20 Minutes!\nAfter 1 minute a few hundred cm handles might be ready and trusted! The user could theoreticaly look for data form them\nbut if we check the TrustLevel and combine it with the DMI (plugin) trustlevel it wil NOT be trusted which doesn\u0027t make sense...",
+      "parentUuid": "5209a9d5_3d518d7c",
+      "range": {
+        "startLine": 133,
+        "startChar": 8,
+        "endLine": 133,
+        "endChar": 57
+      },
+      "revId": "cf0a1a1c84fa10195a1b6e1b6e33970d428b70fa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
