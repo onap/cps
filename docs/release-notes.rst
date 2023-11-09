@@ -12,12 +12,12 @@ CPS Release Notes
     :depth: 2
 ..
 
-..      ========================
-..      * * *   MONTREAL   * * *
-..      ========================
+..      =========================
+..      * * *   NEW DELHI   * * *
+..      =========================
 
-Version: 3.3.10
-===============
+Version: 3.4.0
+==============
 
 Release Data
 ------------
@@ -26,10 +26,10 @@ Release Data
 | **CPS Project**                      |                                                        |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
-| **Docker images**                    | onap/cps-and-ncmp:3.3.10                               |
+| **Docker images**                    | onap/cps-and-ncmp:3.4.0                                |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
-| **Release designation**              | 3.3.10 Montreal                                        |
+| **Release designation**              | 3.4.0 New Delhi                                        |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
 | **Release date**                     | Not yet released                                       |
@@ -38,10 +38,12 @@ Release Data
 
 Bug Fixes
 ---------
-3.3.10
+3.4.0
+    - `CPS-1956 <https://jira.onap.org/browse/CPS-1956>`_ Bug fix for No yang resources stored during cmhandle discovery.
 
-Features
---------
+..      ========================
+..      * * *   MONTREAL   * * *
+..      ========================
 
 Version: 3.3.9
 ==============
