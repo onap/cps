@@ -69,6 +69,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def mockCpsDataService = Mock(CpsDataService)
     def mockModuleSyncStartedOnCmHandles = Mock(IMap<String, Object>)
     def trustLevelPerCmHandle = [:]
+    def trustLevelPerDmiPlugin = [:]
     def objectUnderTest = getObjectUnderTest()
 
     def 'DMI Registration: Create, Update, Delete & Upgrade operations are processed in the right order'() {
@@ -160,11 +161,14 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'create cm handles registration and sync modules is called with the correct plugin information'
             1 * objectUnderTest.parseAndProcessCreatedCmHandlesInRegistration(dmiPluginRegistration)
+        and: 'dmi is added to the dmi trustLevel map'
+            assert trustLevelPerDmiPlugin.size() == 1
+            assert trustLevelPerDmiPlugin.containsKey(expectedDmiPluginRegisteredName)
         where:
-            scenario                          | dmiPlugin  | dmiModelPlugin | dmiDataPlugin
-            'combined DMI plugin'             | 'service1' | ''             | ''
-            'data & model DMI plugins'        | ''         | 'service1'     | 'service2'
-            'data & model using same service' | ''         | 'service1'     | 'service1'
+            scenario                          | dmiPlugin  | dmiModelPlugin | dmiDataPlugin || expectedDmiPluginRegisteredName
+            'combined DMI plugin'             | 'service1' | ''             | ''            || 'service1'
+            'data & model DMI plugins'        | ''         | 'service1'     | 'service2'    || 'service2'
+            'data & model using same service' | ''         | 'service1'     | 'service1'    || 'service1'
     }
 
     def 'Create CM-handle Validation: Invalid DMI plugin service name with #scenario'() {
@@ -435,7 +439,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         return Spy(new NetworkCmProxyDataServiceImpl(spiedJsonObjectMapper, mockDmiDataOperations,
                 mockNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence, mockCmHandleQueries,
                 stubbedNetworkCmProxyCmHandlerQueryService, mockLcmEventsCmHandleStateHandler, mockCpsDataService,
-                mockModuleSyncStartedOnCmHandles, trustLevelPerCmHandle))
+                mockModuleSyncStartedOnCmHandles, trustLevelPerCmHandle, trustLevelPerDmiPlugin))
     }
 
     def addPersistedYangModelCmHandles(ids) {

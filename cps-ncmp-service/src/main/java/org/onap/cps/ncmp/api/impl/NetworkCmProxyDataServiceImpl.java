@@ -101,6 +101,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private final CpsDataService cpsDataService;
     private final IMap<String, Object> moduleSyncStartedOnCmHandles;
     private final Map<String, TrustLevel> trustLevelPerCmHandle;
+    private final Map<String, TrustLevel> trustLevelPerDmiPlugin;
 
     @Override
     public DmiPluginRegistrationResponse updateDmiRegistrationAndSyncModule(
@@ -128,6 +129,9 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             dmiPluginRegistrationResponse.setUpgradedCmHandles(
                     parseAndProcessUpgradedCmHandlesInRegistration(dmiPluginRegistration));
         }
+
+        setTrustLevelPerDmiPlugin(dmiPluginRegistration);
+
         return dmiPluginRegistrationResponse;
     }
 
@@ -518,6 +522,14 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             } else {
                 trustLevelPerCmHandle.put(cmHandle.getCmHandleId(), cmHandle.getRegistrationTrustLevel());
             }
+        }
+    }
+
+    private void setTrustLevelPerDmiPlugin(final DmiPluginRegistration dmiPluginRegistration) {
+        if (DmiPluginRegistration.isNullEmptyOrBlank(dmiPluginRegistration.getDmiDataPlugin())) {
+            trustLevelPerDmiPlugin.put(dmiPluginRegistration.getDmiPlugin(), TrustLevel.COMPLETE);
+        } else {
+            trustLevelPerDmiPlugin.put(dmiPluginRegistration.getDmiDataPlugin(), TrustLevel.COMPLETE);
         }
     }
 
