@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9b3e58b_690b98cb",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/21-escape-quotes-in-xpath-forward.sql",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-11-10T15:33:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1740895c_74ec0a73",
+      "range": {
+        "startLine": 19,
+        "startChar": 51,
+        "endLine": 19,
+        "endChar": 66
+      },
+      "revId": "3172d11b320d6eee149a3bd117bf9948b7c49e67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b6bc9f4f_969cb258",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-11-01T18:37:16Z",
       "side": 1,
       "message": "It almost looks like a duplicate of the previous file (Gerrit seem to think teh same :-) Can you add a comment to this magic as well?",
+      "range": {
+        "startLine": 19,
+        "startChar": 50,
+        "endLine": 19,
+        "endChar": 66
+      },
+      "revId": "3172d11b320d6eee149a3bd117bf9948b7c49e67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "071bcf32_f69d7234",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/21-escape-quotes-in-xpath-rollback.sql",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-11-10T15:33:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b6bc9f4f_969cb258",
       "range": {
         "startLine": 19,
         "startChar": 50,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1b0e00d_bec380c6",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/CpsDataServiceLimitsPerfTest.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-11-10T15:33:44Z",
+      "side": 1,
+      "message": "Yes, they\u0027re different limits. There is a different \u002732K limit\u0027 test for each cps-service method that takes in a collection. They each have different implementations and SQL, hence each needs its own test.",
+      "parentUuid": "2c30d3cd_cf086e58",
+      "range": {
+        "startLine": 64,
+        "startChar": 3,
+        "endLine": 83,
+        "endChar": 5
+      },
+      "revId": "3172d11b320d6eee149a3bd117bf9948b7c49e67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f3aee939_e7822469",
@@ -100,6 +172,30 @@
       "writtenOn": "2023-11-01T18:37:16Z",
       "side": 1,
       "message": "suggestion:  I wonder should ALL our test use \u0027seconds\u0027 as the type here.\n We can implement as float (or double) and pas 0.1 i needed etc. \n Any meaningful performacce test should at least take 100ms I think\n For readabiliy I think I prefer that this a float representing seconds everywhere...",
+      "range": {
+        "startLine": 45,
+        "startChar": 62,
+        "endLine": 45,
+        "endChar": 92
+      },
+      "revId": "3172d11b320d6eee149a3bd117bf9948b7c49e67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db38ce2d_337623a7",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/DeletePerfTest.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-11-10T15:33:44Z",
+      "side": 1,
+      "message": "Sean did this as a separate task",
+      "parentUuid": "f3aee939_e7822469",
       "range": {
         "startLine": 45,
         "startChar": 62,
@@ -127,6 +223,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4063884a_7023d0e1",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/WritePerfTest.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-11-10T15:33:44Z",
+      "side": 1,
+      "message": "Yeah, kinda new, I added it for the Montreal performance report.",
+      "parentUuid": "ae4f6887_6158cc47",
+      "revId": "3172d11b320d6eee149a3bd117bf9948b7c49e67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a3541285_14cc0a61",
@@ -140,6 +254,30 @@
       "writtenOn": "2023-11-01T18:37:16Z",
       "side": 1,
       "message": "I am a bit worried that we have to \u0027duplicate\u0027 our prod code condig here. Is there an easier way to \u0027inherit\u0027 it ?!\nWe could easily have a discrepancy in the (test)config rendering all performance test results invalid without us noticing for a long time!\n\nIf there is no easy solution at least we could have a comment in both config files to remind any develop to ensure consistency when they make any changes?!",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 31
+      },
+      "revId": "3172d11b320d6eee149a3bd117bf9948b7c49e67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7d8ec40_d82b1382",
+        "filename": "integration-test/src/test/resources/application.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-11-10T15:33:44Z",
+      "side": 1,
+      "message": "I see no easy way to share config here. So I have added comments to both config files",
+      "parentUuid": "a3541285_14cc0a61",
       "range": {
         "startLine": 18,
         "startChar": 0,
