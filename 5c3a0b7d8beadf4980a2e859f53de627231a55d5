@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "561bf164_c862563d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 72
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-11-10T15:15:03Z",
+      "side": 1,
+      "message": "Resolved comments, and replied to few of them.",
+      "revId": "5c3a0b7d8beadf4980a2e859f53de627231a55d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7995f7e9_e74cda08",
@@ -31,6 +48,30 @@
       "writtenOn": "2023-11-10T12:52:39Z",
       "side": 1,
       "message": "maybe say \"deltaReportsList\" or something than result\n\ncalling it result is confusing for the test",
+      "range": {
+        "startLine": 340,
+        "startChar": 16,
+        "endLine": 340,
+        "endChar": 22
+      },
+      "revId": "5c3a0b7d8beadf4980a2e859f53de627231a55d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2fc582d_f2d4c98f",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 72
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-11-10T15:15:03Z",
+      "side": 1,
+      "message": "my bad it was deltaReports earlier I did a replace all shortcut and this also got replaced 😄",
+      "parentUuid": "7995f7e9_e74cda08",
       "range": {
         "startLine": 340,
         "startChar": 16,
@@ -64,6 +105,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "89556bc7_28a6d7ae",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDeltaService.java",
+        "patchSetId": 72
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-11-10T15:15:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0200b481_8c28abf1",
+      "range": {
+        "startLine": 38,
+        "startChar": 36,
+        "endLine": 38,
+        "endChar": 38
+      },
+      "revId": "5c3a0b7d8beadf4980a2e859f53de627231a55d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f9da07f9_63d4731f",
@@ -77,6 +142,30 @@
       "writtenOn": "2023-11-10T12:52:39Z",
       "side": 1,
       "message": "2022-2023",
+      "range": {
+        "startLine": 7,
+        "startChar": 32,
+        "endLine": 7,
+        "endChar": 36
+      },
+      "revId": "5c3a0b7d8beadf4980a2e859f53de627231a55d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5cbac986_1feb081a",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 72
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-11-10T15:15:03Z",
+      "side": 1,
+      "message": "I am from TechMahindra 😄",
+      "parentUuid": "f9da07f9_63d4731f",
       "range": {
         "startLine": 7,
         "startChar": 32,
@@ -110,6 +199,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "33b3680a_da621a66",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 72
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-11-10T15:15:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f0d4c536_8f7683ee",
+      "range": {
+        "startLine": 223,
+        "startChar": 27,
+        "endLine": 223,
+        "endChar": 64
+      },
+      "revId": "5c3a0b7d8beadf4980a2e859f53de627231a55d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "156ccbb7_bd565387",
@@ -123,6 +236,30 @@
       "writtenOn": "2023-11-10T12:52:39Z",
       "side": 1,
       "message": "2022-2023?",
+      "range": {
+        "startLine": 7,
+        "startChar": 32,
+        "endLine": 7,
+        "endChar": 36
+      },
+      "revId": "5c3a0b7d8beadf4980a2e859f53de627231a55d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ddd64ce2_6d6148b9",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 72
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-11-10T15:15:03Z",
+      "side": 1,
+      "message": "Same as another comment. 😊",
+      "parentUuid": "156ccbb7_bd565387",
       "range": {
         "startLine": 7,
         "startChar": 32,
@@ -158,6 +295,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "14473ac4_b3f4006a",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 72
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-11-10T15:15:03Z",
+      "side": 1,
+      "message": "it is just setup data, should I put it under given?",
+      "parentUuid": "04680e89_d4498857",
+      "range": {
+        "startLine": 245,
+        "startChar": 8,
+        "endLine": 248,
+        "endChar": 33
+      },
+      "revId": "5c3a0b7d8beadf4980a2e859f53de627231a55d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "743767b7_f2830b6a",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
         "patchSetId": 72
@@ -169,6 +330,30 @@
       "writtenOn": "2023-11-10T12:52:39Z",
       "side": 1,
       "message": "assertions and use of \u003e\u003e is not correct\n\nsuggestion: \n\u003e         given: \u0027...\u0027    \n            def xpath \u003d \u0027/xpath\u0027\n            def sourceDataNodes \u003d [new DataNodeBuilder().withXpath(xpath).build()]\n            def targetDataNodes \u003d [new DataNodeBuilder().withXpath(xpath).build()]\n        when: \u0027attempt to get delta between 2 anchors is invoked\u0027\n            objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, ANCHOR_NAME_1, ANCHOR_NAME_2, xpath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)\n        then: \u0027the dataspace and anchor names are validated\u0027\n            2 * mockCpsValidator.validateNameCharacters(_)\n        and: \u0027data nodes are fetched using appropriate persistence layer method\u0027\n            1 * mockCpsDataPersistenceService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_1, [xpath], FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)\n            1 * mockCpsDataPersistenceService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_2, [xpath], FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)\n        and: \u0027appropriate delta service method is invoked once with source and target data nodes\u0027\n            1 * mockCpsDeltaService.getDeltaReports(sourceDataNodes, targetDataNodes)",
+      "range": {
+        "startLine": 249,
+        "startChar": 0,
+        "endLine": 257,
+        "endChar": 96
+      },
+      "revId": "5c3a0b7d8beadf4980a2e859f53de627231a55d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b8723eb_ed9ef05b",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 72
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-11-10T15:15:03Z",
+      "side": 1,
+      "message": "agreed for line 257, but if we remove the return operator \u003e\u003e from line 254,255 we get a zero invocations of form mockCpsDeltaService.getDeltaReports(sourceDataNodes, targetDataNodes) instead it gives one invocation for mockCpsDeltaService.getDeltaReports(null, null) because it does not know what data is being used to invoke delta report layer from data service layer",
+      "parentUuid": "743767b7_f2830b6a",
       "range": {
         "startLine": 249,
         "startChar": 0,
@@ -202,6 +387,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b5099633_cecc37c5",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/E2ENetworkSliceSpec.groovy",
+        "patchSetId": 72
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-11-10T15:15:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b7f66d54_ae354bd1",
+      "range": {
+        "startLine": 6,
+        "startChar": 31,
+        "endLine": 6,
+        "endChar": 35
+      },
+      "revId": "5c3a0b7d8beadf4980a2e859f53de627231a55d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "457f8959_41b4d88f",
@@ -215,6 +424,30 @@
       "writtenOn": "2023-11-10T12:52:39Z",
       "side": 1,
       "message": "add techMahindra here",
+      "range": {
+        "startLine": 3,
+        "startChar": 5,
+        "endLine": 4,
+        "endChar": 40
+      },
+      "revId": "5c3a0b7d8beadf4980a2e859f53de627231a55d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "852b8ba4_d74ee734",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/FunctionalSpecBase.groovy",
+        "patchSetId": 72
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-11-10T15:15:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "457f8959_41b4d88f",
       "range": {
         "startLine": 3,
         "startChar": 5,
@@ -248,6 +481,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "16984c9a_e0aaf464",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsDataServiceIntegrationSpec.groovy",
+        "patchSetId": 72
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-11-10T15:15:03Z",
+      "side": 1,
+      "message": "removed it as it is just being used in line 477 as xpath.",
+      "parentUuid": "5c396c8c_f54951d9",
+      "range": {
+        "startLine": 475,
+        "startChar": 8,
+        "endLine": 475,
+        "endChar": 35
+      },
+      "revId": "5c3a0b7d8beadf4980a2e859f53de627231a55d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4f4b34bb_da4da7cb",
@@ -271,6 +528,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2f2939f_d3d5102c",
+        "filename": "integration-test/src/test/resources/data/bookstore/bookstore.yang",
+        "patchSetId": 72
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-11-10T15:15:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4f4b34bb_da4da7cb",
+      "range": {
+        "startLine": 43,
+        "startChar": 17,
+        "endLine": 43,
+        "endChar": 26
+      },
+      "revId": "5c3a0b7d8beadf4980a2e859f53de627231a55d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f2c6813e_b637c70d",
@@ -284,6 +565,24 @@
       "writtenOn": "2023-11-10T12:52:39Z",
       "side": 1,
       "message": "for consistency , kebab casing-\u003e \n\"suppport-info\" ?",
+      "revId": "5c3a0b7d8beadf4980a2e859f53de627231a55d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "580bd0c6_2ceb5516",
+        "filename": "integration-test/src/test/resources/data/bookstore/bookstore.yang",
+        "patchSetId": 72
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-11-10T15:15:03Z",
+      "side": 1,
+      "message": "yes makes it much more readable",
+      "parentUuid": "f2c6813e_b637c70d",
       "revId": "5c3a0b7d8beadf4980a2e859f53de627231a55d5",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
