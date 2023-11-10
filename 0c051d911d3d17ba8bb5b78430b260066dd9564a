@@ -16,6 +16,24 @@
       "message": "Will these TODOs show up as code smells?",
       "revId": "0c051d911d3d17ba8bb5b78430b260066dd9564a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "64a77a7d_4621119a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/dmiavailability/DmiPluginWatchDog.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-10T11:38:01Z",
+      "side": 1,
+      "message": "Yes, it will. However, I removed TODO since there is another commit handle that task already: 136391: Initialise DMI and CmHadle keys in the caches upon restart | https://gerrit.onap.org/r/c/cps/+/136391",
+      "parentUuid": "73622cdc_db17161b",
+      "revId": "0c051d911d3d17ba8bb5b78430b260066dd9564a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
