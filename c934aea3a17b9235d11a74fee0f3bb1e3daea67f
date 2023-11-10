@@ -75,6 +75,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "58e0072f_4b5504da",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 47
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-11-10T08:34:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e64de592_594131d1",
+      "range": {
+        "startLine": 41,
+        "startChar": 26,
+        "endLine": 41,
+        "endChar": 30
+      },
+      "revId": "c934aea3a17b9235d11a74fee0f3bb1e3daea67f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cd6a72a8_923fcec0",

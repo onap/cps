@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e43a6ab0_5e349d07",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 71
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-11-10T08:34:26Z",
+      "side": 1,
+      "message": "Resolved comments, and yeah from here on smaller patches with bits of functionality being added 😊",
+      "revId": "2e188a6185e13af782055fcd79c1c33e6ba7cca8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
