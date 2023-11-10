@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73622cdc_db17161b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/dmiavailability/DmiPluginWatchDog.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2023-11-10T11:02:52Z",
+      "side": 1,
+      "message": "Will these TODOs show up as code smells?",
+      "revId": "0c051d911d3d17ba8bb5b78430b260066dd9564a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
