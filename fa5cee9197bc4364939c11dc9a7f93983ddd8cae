@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9f03cc8_7d55cbeb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/SyncUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-11-10T10:57:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e3d644c0_e7b6d060",
+      "range": {
+        "startLine": 133,
+        "startChar": 40,
+        "endLine": 133,
+        "endChar": 53
+      },
+      "revId": "fa5cee9197bc4364939c11dc9a7f93983ddd8cae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2dc8e32b_e1bdd461",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-11-08T11:32:32Z",
       "side": 1,
       "message": "NB suggestion: extract out \nATTEMPTS_REGEX_GROUP_ID",
+      "range": {
+        "startLine": 158,
+        "startChar": 97,
+        "endLine": 158,
+        "endChar": 99
+      },
+      "revId": "fa5cee9197bc4364939c11dc9a7f93983ddd8cae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac01da3d_992d03b1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/SyncUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-11-10T10:57:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2dc8e32b_e1bdd461",
       "range": {
         "startLine": 158,
         "startChar": 97,
