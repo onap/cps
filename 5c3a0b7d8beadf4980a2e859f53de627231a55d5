@@ -319,6 +319,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cc1977b2_43be4877",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 72
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-11-11T17:08:35Z",
+      "side": 1,
+      "message": "yes, given",
+      "parentUuid": "14473ac4_b3f4006a",
+      "range": {
+        "startLine": 245,
+        "startChar": 8,
+        "endLine": 248,
+        "endChar": 33
+      },
+      "revId": "5c3a0b7d8beadf4980a2e859f53de627231a55d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "743767b7_f2830b6a",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
         "patchSetId": 72

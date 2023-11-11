@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "74e673c1_7423a200",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 73
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-11-11T17:08:35Z",
+      "side": 1,
+      "message": "minor comments , once all build passes will +1",
+      "revId": "ea955b514d8fbc08ef7d98fd0bbe70dc2bc42ce1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "81c7e04c_1db51bac",
@@ -31,6 +48,52 @@
       "writtenOn": "2023-11-10T15:26:37Z",
       "side": 1,
       "message": "NB: given",
+      "revId": "ea955b514d8fbc08ef7d98fd0bbe70dc2bc42ce1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff1f488f_3399b220",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 73
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-11-11T17:08:35Z",
+      "side": 1,
+      "message": "no proof of this on the next line so maybe best to remove",
+      "range": {
+        "startLine": 255,
+        "startChar": 92,
+        "endLine": 255,
+        "endChar": 123
+      },
+      "revId": "ea955b514d8fbc08ef7d98fd0bbe70dc2bc42ce1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "226555a1_2f6c8bd6",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 73
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-11-11T17:08:35Z",
+      "side": 1,
+      "message": "invoked once with correct source and target data nodes",
+      "range": {
+        "startLine": 255,
+        "startChar": 50,
+        "endLine": 255,
+        "endChar": 91
+      },
       "revId": "ea955b514d8fbc08ef7d98fd0bbe70dc2bc42ce1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
