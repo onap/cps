@@ -68,6 +68,24 @@
       "message": "I also learnt that marking a bean with @Lazy annotation delay its instantiation until they are actually needed. \n\nIn other words, the bean annotated with that breaks the circular dependency during application start-up until that bean has been requested.",
       "revId": "4cd5b8cba35adbf12e171600a690709a6876f6c1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af152dd5_4851e9a3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-11-13T15:54:30Z",
+      "side": 1,
+      "message": "This seems like the simplest solution. CmHandleQueriesImpl may be the best place for this, since it is implementing a CmHandleQueries interface method after all.",
+      "parentUuid": "324c4b29_c73f96d4",
+      "revId": "4cd5b8cba35adbf12e171600a690709a6876f6c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
