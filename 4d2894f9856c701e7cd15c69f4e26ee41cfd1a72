@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85865ed7_029d10ab",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-13T15:58:34Z",
+      "side": 1,
+      "message": "NB: i woulf ahve preferred if you had extracted out something like:\neffectiveServiceName \u003d .... ?  ...  : ...\ntrustLevelPerDmiPLugin.put(effectiveServiceName, TrustLevel.COMPLETE)",
+      "range": {
+        "startLine": 529,
+        "startChar": 8,
+        "endLine": 533,
+        "endChar": 9
+      },
+      "revId": "4d2894f9856c701e7cd15c69f4e26ee41cfd1a72",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
