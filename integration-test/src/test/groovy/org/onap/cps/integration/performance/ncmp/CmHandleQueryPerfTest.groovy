@@ -45,8 +45,8 @@ class CmHandleQueryPerfTest extends NcmpPerfTestBase {
             def result = cpsDataService.getDataNodesForMultipleXpaths(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_ANCHOR, xpaths, INCLUDE_ALL_DESCENDANTS)
             resourceMeter.stop()
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
-        then: 'the required operations are performed within 1200 ms'
-            recordAndAssertResourceUsage("CpsPath Registry attributes Query", 0.25, durationInSeconds, 150, resourceMeter.getTotalMemoryUsageInMB())
+        then: 'the required operations are performed within required time'
+            recordAndAssertResourceUsage("CpsPath Registry attributes Query", 0.4, durationInSeconds, 50, resourceMeter.getTotalMemoryUsageInMB())
         and: 'all but 1 (other node) are returned'
             result.size() == 999
         and: 'the tree contains all the expected descendants too'

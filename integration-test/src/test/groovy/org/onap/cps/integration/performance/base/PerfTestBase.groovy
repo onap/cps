@@ -55,7 +55,7 @@ abstract class PerfTestBase extends CpsIntegrationSpecBase {
     abstract def createInitialData()
 
     def recordAndAssertResourceUsage(String shortTitle, double thresholdInSec, double recordedTimeInSec, memoryLimit, memoryUsageInMB) {
-        def pass = recordedTimeInSec <= thresholdInSec
+        def pass = recordedTimeInSec <= thresholdInSec && memoryUsageInMB <= memoryLimit
         if (shortTitle.length() > 40) {
             shortTitle = shortTitle.substring(0, 40)
         }

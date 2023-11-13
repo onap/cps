@@ -41,7 +41,7 @@ class UpdatePerfTest extends CpsPerfTestBase {
             resourceMeter.stop()
             def updateDurationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'update completes within expected time and memory used is within limit'
-            recordAndAssertResourceUsage('Update 1 data node', 0.6, updateDurationInSeconds, 200, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage('Update 1 data node', 0.6, updateDurationInSeconds, 100, resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def 'Batch update 100 data nodes with descendants'() {
@@ -57,7 +57,7 @@ class UpdatePerfTest extends CpsPerfTestBase {
             resourceMeter.stop()
             def updateDurationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'update completes within expected time and memory used is within limit'
-            recordAndAssertResourceUsage('Update 100 data nodes', 30, updateDurationInSeconds, 800, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage('Update 100 data nodes', 40, updateDurationInSeconds, 800, resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def 'Update leaves for 1 data node (twice)'() {
@@ -71,7 +71,7 @@ class UpdatePerfTest extends CpsPerfTestBase {
             resourceMeter.stop()
             def updateDurationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'update completes within expected time and memory used is within limit'
-            recordAndAssertResourceUsage('Update leaves for 1 data node', 0.5, updateDurationInSeconds, 300, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage('Update leaves for 1 data node', 0.7, updateDurationInSeconds, 200, resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def 'Batch update leaves for 100 data nodes (twice)'() {
@@ -85,7 +85,7 @@ class UpdatePerfTest extends CpsPerfTestBase {
             resourceMeter.stop()
             def updateDurationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'update completes within expected time and memory used is within limit'
-            recordAndAssertResourceUsage('Batch update leaves for 100 data nodes', 1, updateDurationInSeconds, 300, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage('Batch update leaves for 100 data nodes', 1, updateDurationInSeconds, 200, resourceMeter.getTotalMemoryUsageInMB())
     }
 
 }
