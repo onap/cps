@@ -52,6 +52,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3339774_467edc32",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 73
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-11-13T10:54:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "81c7e04c_1db51bac",
+      "revId": "ea955b514d8fbc08ef7d98fd0bbe70dc2bc42ce1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ff1f488f_3399b220",
@@ -98,6 +116,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2fe33254_269e4670",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 73
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-11-13T10:54:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "226555a1_2f6c8bd6",
+      "range": {
+        "startLine": 255,
+        "startChar": 50,
+        "endLine": 255,
+        "endChar": 91
+      },
+      "revId": "ea955b514d8fbc08ef7d98fd0bbe70dc2bc42ce1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9116a672_b1e209b5",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 73
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-11-13T10:54:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff1f488f_3399b220",
+      "range": {
+        "startLine": 255,
+        "startChar": 92,
+        "endLine": 255,
+        "endChar": 123
+      },
+      "revId": "ea955b514d8fbc08ef7d98fd0bbe70dc2bc42ce1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1999612e_286a9dbd",
@@ -111,6 +177,30 @@
       "writtenOn": "2023-11-11T17:33:20Z",
       "side": 1,
       "message": "NB: with other tests some is used for none relevant \u0027some-xpath\u0027",
+      "range": {
+        "startLine": 476,
+        "startChar": 103,
+        "endLine": 476,
+        "endChar": 115
+      },
+      "revId": "ea955b514d8fbc08ef7d98fd0bbe70dc2bc42ce1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3c02ba5_471f339b",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsDataServiceIntegrationSpec.groovy",
+        "patchSetId": 73
+      },
+      "lineNbr": 476,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-11-13T10:54:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1999612e_286a9dbd",
       "range": {
         "startLine": 476,
         "startChar": 103,
