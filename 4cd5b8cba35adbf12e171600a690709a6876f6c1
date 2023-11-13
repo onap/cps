@@ -16,6 +16,41 @@
       "message": "Hi Halil, Apologies I cannot give this review enough time this week but I see the main change heer is that TrustLevelFilter has been removed. But that seems a stap backward in the single-responsibility best practice... What exactly was the cause of the cyclic dependency?! Can it not be addressed without removing thje TrustLevelFiter class ?!",
       "revId": "4cd5b8cba35adbf12e171600a690709a6876f6c1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "324c4b29_c73f96d4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-13T15:28:18Z",
+      "side": 1,
+      "message": "That is ok Toine. As per the logs, NetworkCmProxyDataServiceImpl injects CmHandleQueriesImpl. Then, CmHandleQueriesImpl injects  TrustLevelFilter that injects NetworkCmProxyDataServiceImpl back which created the cyclic dependency in previous patch-set.\n\nAs a solution, I thought if I moved the method getCmHandleIdsByTrustLevel (in TrustLevelFilter ) into CmHandleQueriesImpl which exactly its location since the needed method - getCmHandleIdsByDmiPluginIdentifier - has already been there.\n\nBy this solution, there is no more need to have additional bean like TrustLevelFilter and its unit tests.",
+      "parentUuid": "f13e965a_5f84602f",
+      "revId": "4cd5b8cba35adbf12e171600a690709a6876f6c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fcdfddef_877ca5f2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-13T15:28:18Z",
+      "side": 1,
+      "message": "Hi Toine, please find the reason for the latest changes.",
+      "revId": "4cd5b8cba35adbf12e171600a690709a6876f6c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
