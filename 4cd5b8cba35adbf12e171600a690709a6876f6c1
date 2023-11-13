@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f13e965a_5f84602f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-13T15:13:46Z",
+      "side": 1,
+      "message": "Hi Halil, Apologies I cannot give this review enough time this week but I see the main change heer is that TrustLevelFilter has been removed. But that seems a stap backward in the single-responsibility best practice... What exactly was the cause of the cyclic dependency?! Can it not be addressed without removing thje TrustLevelFiter class ?!",
+      "revId": "4cd5b8cba35adbf12e171600a690709a6876f6c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
