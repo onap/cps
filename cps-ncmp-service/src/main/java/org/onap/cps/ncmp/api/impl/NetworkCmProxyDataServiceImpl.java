@@ -101,6 +101,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private final CpsDataService cpsDataService;
     private final IMap<String, Object> moduleSyncStartedOnCmHandles;
     private final Map<String, TrustLevel> trustLevelPerCmHandle;
+    private final Map<String, TrustLevel> trustLevelPerDmiPlugin;
 
     @Override
     public DmiPluginRegistrationResponse updateDmiRegistrationAndSyncModule(
@@ -108,15 +109,17 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         dmiPluginRegistration.validateDmiPluginRegistration();
         final DmiPluginRegistrationResponse dmiPluginRegistrationResponse = new DmiPluginRegistrationResponse();
 
+        setTrustLevelPerDmiPlugin(dmiPluginRegistration);
+
         if (!dmiPluginRegistration.getRemovedCmHandles().isEmpty()) {
             dmiPluginRegistrationResponse.setRemovedCmHandles(
                     parseAndProcessDeletedCmHandlesInRegistration(dmiPluginRegistration.getRemovedCmHandles()));
         }
 
         if (!dmiPluginRegistration.getCreatedCmHandles().isEmpty()) {
-            populateTrustLevelPerCmHandleCache(dmiPluginRegistration);
             dmiPluginRegistrationResponse.setCreatedCmHandles(
                     parseAndProcessCreatedCmHandlesInRegistration(dmiPluginRegistration));
+            populateTrustLevelPerCmHandleCache(dmiPluginRegistration);
         }
         if (!dmiPluginRegistration.getUpdatedCmHandles().isEmpty()) {
             dmiPluginRegistrationResponse.setUpdatedCmHandles(
@@ -128,6 +131,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             dmiPluginRegistrationResponse.setUpgradedCmHandles(
                     parseAndProcessUpgradedCmHandlesInRegistration(dmiPluginRegistration));
         }
+
         return dmiPluginRegistrationResponse;
     }
 
@@ -518,6 +522,14 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             } else {
                 trustLevelPerCmHandle.put(cmHandle.getCmHandleId(), cmHandle.getRegistrationTrustLevel());
             }
+        }
+    }
+
+    private void setTrustLevelPerDmiPlugin(final DmiPluginRegistration dmiPluginRegistration) {
+        if (DmiPluginRegistration.isNullEmptyOrBlank(dmiPluginRegistration.getDmiDataPlugin())) {
+            trustLevelPerDmiPlugin.put(dmiPluginRegistration.getDmiPlugin(), TrustLevel.COMPLETE);
+        } else {
+            trustLevelPerDmiPlugin.put(dmiPluginRegistration.getDmiDataPlugin(), TrustLevel.COMPLETE);
         }
     }
 
