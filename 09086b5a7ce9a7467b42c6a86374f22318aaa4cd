@@ -22,6 +22,30 @@
       },
       "revId": "09086b5a7ce9a7467b42c6a86374f22318aaa4cd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dec371a2_8d8e8317",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/base/CpsPerfTestBase.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-11-14T10:25:27Z",
+      "side": 1,
+      "message": "Depends on the test. This test varies between 300 and 600 MB. But some tests are extremely stable, having no variance across runs.",
+      "parentUuid": "106f201f_21552f91",
+      "range": {
+        "startLine": 70,
+        "startChar": 111,
+        "endLine": 70,
+        "endChar": 114
+      },
+      "revId": "09086b5a7ce9a7467b42c6a86374f22318aaa4cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
