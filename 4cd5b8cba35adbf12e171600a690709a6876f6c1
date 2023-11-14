@@ -104,6 +104,24 @@
       "parentUuid": "af152dd5_4851e9a3",
       "revId": "4cd5b8cba35adbf12e171600a690709a6876f6c1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d890cff_bd733c80",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-14T13:29:20Z",
+      "side": 1,
+      "message": "ok, i find it a disadvantage there is no longer a separate filter class wit test but if it has to be that way it has to be...",
+      "parentUuid": "fcdfddef_877ca5f2",
+      "revId": "4cd5b8cba35adbf12e171600a690709a6876f6c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
