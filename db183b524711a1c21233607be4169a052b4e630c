@@ -18,6 +18,69 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "37909086_8f4d0617",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 75
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-11-14T14:05:41Z",
+      "side": 1,
+      "message": "just few NBs but looks good",
+      "revId": "db183b524711a1c21233607be4169a052b4e630c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42e7efaf_eb932bbb",
+        "filename": "cps-rest/docs/openapi/cpsDataV2.yml",
+        "patchSetId": 75
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-11-14T14:05:41Z",
+      "side": 1,
+      "message": "NB: can add \u0027... in the same dataspace\u0027",
+      "range": {
+        "startLine": 56,
+        "startChar": 13,
+        "endLine": 56,
+        "endChar": 38
+      },
+      "revId": "db183b524711a1c21233607be4169a052b4e630c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f9fe98f_1146fb70",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 75
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-11-14T14:05:41Z",
+      "side": 1,
+      "message": "NB: some xpath, source and target data nodes\u0027 ---\u003e thats it no need for the rest",
+      "range": {
+        "startLine": 245,
+        "startChar": 16,
+        "endLine": 245,
+        "endChar": 92
+      },
+      "revId": "db183b524711a1c21233607be4169a052b4e630c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a95114b1_2f860800",
