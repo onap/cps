@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "106f201f_21552f91",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/base/CpsPerfTestBase.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-14T09:15:32Z",
+      "side": 1,
+      "message": "just wondering do you see (significant) variations in memory usage?!",
+      "range": {
+        "startLine": 70,
+        "startChar": 111,
+        "endLine": 70,
+        "endChar": 114
+      },
+      "revId": "09086b5a7ce9a7467b42c6a86374f22318aaa4cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
