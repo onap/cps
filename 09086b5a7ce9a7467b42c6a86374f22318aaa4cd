@@ -87,6 +87,30 @@
       },
       "revId": "09086b5a7ce9a7467b42c6a86374f22318aaa4cd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0dd45290_3ce9dcc3",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/base/CpsPerfTestBase.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-11-14T15:41:14Z",
+      "side": 1,
+      "message": "Yes, I think you\u0027re correct. Tests that use small amounts of memory always report same usage across runs:\n   \n    4.72\t4.72\t4.72\t4.72\t4.72\n   \nBut tests using large amounts of memory tend to fluctuate:\n\n    589.15\t381.56\t266.63\t232.72\t634.67\n\nObvious explanation is that GC is freeing memory during tests.\n\nSo right now I\u0027m writing tests for the ResourceMeter class itself, and I\u0027m looking at a different way of reporting memory used.",
+      "parentUuid": "f2852bd1_1cdd227c",
+      "range": {
+        "startLine": 70,
+        "startChar": 111,
+        "endLine": 70,
+        "endChar": 114
+      },
+      "revId": "09086b5a7ce9a7467b42c6a86374f22318aaa4cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
