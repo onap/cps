@@ -48,8 +48,8 @@ public class ResourceMeter {
     }
 
     /**
-     * Get the total time in milliseconds.
-     * @return total time in milliseconds
+     * Get the total time in seconds.
+     * @return total time in seconds
      */
     public double getTotalTimeInSeconds() {
         return stopWatch.getTotalTimeSeconds();

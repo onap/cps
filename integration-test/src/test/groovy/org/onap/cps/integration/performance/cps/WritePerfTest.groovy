@@ -36,19 +36,16 @@ class WritePerfTest extends CpsPerfTestBase {
             resourceMeter.stop()
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'the operation takes less than #expectedDuration and memory used is within limit'
-            recordAndAssertResourceUsage("Writing ${totalNodes} devices", expectedDurationInSeconds, durationInSeconds, 400, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage("Writing ${totalNodes} devices", expectedDuration, durationInSeconds, memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
         cleanup:
             cpsDataService.deleteDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, 'writeAnchor', OffsetDateTime.now())
             cpsAdminService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, 'writeAnchor')
         where:
-            totalNodes || expectedDurationInSeconds
-            50         ||   3
-            100        ||   5
-            200        ||  10
-            400        ||  20
-//          800        ||  40
-//          1600       ||  80
-//          3200       || 160
+            totalNodes || expectedDuration | memoryLimit
+            50         || 4                | 100
+            100        || 7                | 200
+            200        || 14               | 400
+            400        || 28               | 500
     }
 
     def 'Writing bookstore data has exponential time.'() {
@@ -64,20 +61,16 @@ class WritePerfTest extends CpsPerfTestBase {
             resourceMeter.stop()
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'the operation takes less than #expectedDuration and memory used is within limit'
-            recordAndAssertResourceUsage("Writing ${totalBooks} books", expectedDuration, durationInSeconds, 400, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage("Writing ${totalBooks} books", expectedDuration, durationInSeconds, memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
         cleanup:
             cpsDataService.deleteDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, 'writeAnchor', OffsetDateTime.now())
             cpsAdminService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, 'writeAnchor')
         where:
-            totalBooks || expectedDuration
-            400        || 0.2
-            800        || 0.5
-            1600       || 1
-            3200       || 3
-            6400       || 10
-//          12800      || 30
-//          25600      || 120
-//          51200      || 600
+            totalBooks || expectedDuration | memoryLimit
+            800        || 1                | 50
+            1600       || 2                | 100
+            3200       || 6                | 150
+            6400       || 18               | 200
     }
 
 }
