@@ -46,6 +46,30 @@
       },
       "revId": "09086b5a7ce9a7467b42c6a86374f22318aaa4cd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2852bd1_1cdd227c",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/base/CpsPerfTestBase.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-14T15:29:28Z",
+      "side": 1,
+      "message": "maybe some test (which use larger around of memory) are affected by GC run during the test?!",
+      "parentUuid": "dec371a2_8d8e8317",
+      "range": {
+        "startLine": 70,
+        "startChar": 111,
+        "endLine": 70,
+        "endChar": 114
+      },
+      "revId": "09086b5a7ce9a7467b42c6a86374f22318aaa4cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
