@@ -20,6 +20,9 @@
 
 package org.onap.cps.integration;
 
+import java.lang.management.ManagementFactory;
+import java.lang.management.MemoryPoolMXBean;
+import java.lang.management.MemoryType;
 import org.springframework.util.StopWatch;
 
 /**
@@ -35,7 +38,8 @@ public class ResourceMeter {
      */
     public void start() {
         System.gc();
-        memoryUsedBefore = getCurrentMemoryUsage();
+        resetPeakHeapUsage();
+        memoryUsedBefore = getPeakHeapUsage();
         stopWatch.start();
     }
 
@@ -44,7 +48,7 @@ public class ResourceMeter {
      */
     public void stop() {
         stopWatch.stop();
-        memoryUsedAfter = getCurrentMemoryUsage();
+        memoryUsedAfter = getPeakHeapUsage();
     }
 
     /**
@@ -63,8 +67,17 @@ public class ResourceMeter {
         return (memoryUsedAfter - memoryUsedBefore) / 1_000_000.0;
     }
 
-    private static long getCurrentMemoryUsage() {
-        return Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+    private static long getPeakHeapUsage() {
+        return ManagementFactory.getMemoryPoolMXBeans().stream()
+                .filter(pool -> pool.getType() == MemoryType.HEAP)
+                .mapToLong(pool -> pool.getPeakUsage().getUsed())
+                .sum();
+    }
+
+    private static void resetPeakHeapUsage() {
+        ManagementFactory.getMemoryPoolMXBeans().stream()
+                .filter(pool -> pool.getType() == MemoryType.HEAP)
+                .forEach(MemoryPoolMXBean::resetPeakUsage);
     }
 }
 
