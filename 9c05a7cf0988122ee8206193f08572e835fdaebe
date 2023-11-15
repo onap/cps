@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ccbfe10_a164dce9",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-15T08:20:13Z",
+      "side": 1,
+      "message": "NB: use end users perspective e.g.  \"Performance improvements for data writing\"",
+      "range": {
+        "startLine": 45,
+        "startChar": 58,
+        "endLine": 45,
+        "endChar": 89
+      },
+      "revId": "9c05a7cf0988122ee8206193f08572e835fdaebe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
