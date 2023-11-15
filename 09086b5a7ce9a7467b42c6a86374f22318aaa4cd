@@ -111,6 +111,30 @@
       },
       "revId": "09086b5a7ce9a7467b42c6a86374f22318aaa4cd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9d60648_7c88628e",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/base/CpsPerfTestBase.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-11-15T18:24:10Z",
+      "side": 1,
+      "message": "CPS-1967 attempts to address this. We are now incorrectly recording current memory usage instead of peak memory usage. So if GC runs during a test, the amount of memory may be hugely under-reported (possibly zero). It may be some time before we have an adequate solution - Micro-benchmarking with Garbage Collection is hard!",
+      "parentUuid": "0dd45290_3ce9dcc3",
+      "range": {
+        "startLine": 70,
+        "startChar": 111,
+        "endLine": 70,
+        "endChar": 114
+      },
+      "revId": "09086b5a7ce9a7467b42c6a86374f22318aaa4cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ],
   "submitRequirementResults": [
