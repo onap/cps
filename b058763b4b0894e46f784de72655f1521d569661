@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c78631af_0bfff4bf",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/ResourceMeterPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-11-15T17:55:07Z",
+      "side": 1,
+      "message": "This test fails with the previous implementation, reporting zero memory used.",
+      "range": {
+        "startLine": 68,
+        "startChar": 89,
+        "endLine": 70,
+        "endChar": 85
+      },
+      "revId": "b058763b4b0894e46f784de72655f1521d569661",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
