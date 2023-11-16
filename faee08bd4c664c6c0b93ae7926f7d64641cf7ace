@@ -16,6 +16,23 @@
       "message": "Ready for an early review.",
       "revId": "faee08bd4c664c6c0b93ae7926f7d64641cf7ace",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5670938_b1c5257a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-16T11:06:17Z",
+      "side": 1,
+      "message": "P.S This commit have to be rebased on top of that: 136331: Trust level updates with dmi status change | https://gerrit.onap.org/r/c/cps/+/136331",
+      "revId": "faee08bd4c664c6c0b93ae7926f7d64641cf7ace",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
