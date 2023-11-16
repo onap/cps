@@ -64,6 +64,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1550e335_9e980ab3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avc/ncmptoclient/AttributeValueChangeEventPublisher.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2023-11-16T19:28:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ac14218e_a6ddd105",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 6
+      },
+      "revId": "f0550e1e5698f88f0c226ffec759238b43e224b5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b1bdbc2c_5e19202c",
@@ -77,6 +101,30 @@
       "writtenOn": "2023-11-16T15:43:30Z",
       "side": 1,
       "message": "Maybe a shorter name is better like avcEvent",
+      "range": {
+        "startLine": 53,
+        "startChar": 40,
+        "endLine": 53,
+        "endChar": 66
+      },
+      "revId": "f0550e1e5698f88f0c226ffec759238b43e224b5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d80f0c5_5db4bc26",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avc/ncmptoclient/AttributeValueChangeEventPublisher.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2023-11-16T19:28:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b1bdbc2c_5e19202c",
       "range": {
         "startLine": 53,
         "startChar": 40,
@@ -110,6 +158,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd09f705_9cda6774",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avc/ncmptoclient/AttributeValueChangeEventPublisher.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2023-11-16T19:28:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6efe11ab_c886c6a6",
+      "range": {
+        "startLine": 55,
+        "startChar": 33,
+        "endLine": 55,
+        "endChar": 79
+      },
+      "revId": "f0550e1e5698f88f0c226ffec759238b43e224b5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "698aaade_9ff28437",
@@ -123,6 +195,30 @@
       "writtenOn": "2023-11-16T15:43:30Z",
       "side": 1,
       "message": "avcCloudEvent can be a better name.",
+      "range": {
+        "startLine": 56,
+        "startChar": 25,
+        "endLine": 56,
+        "endChar": 56
+      },
+      "revId": "f0550e1e5698f88f0c226ffec759238b43e224b5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "810c2667_6bd77cb7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avc/ncmptoclient/AttributeValueChangeEventPublisher.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2023-11-16T19:28:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "698aaade_9ff28437",
       "range": {
         "startLine": 56,
         "startChar": 25,
@@ -156,6 +252,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1f7ad38_46bf9eb0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avc/ncmptoclient/AttributeValueChangeEventPublisher.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2023-11-16T19:28:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a2ac95a0_f1616700",
+      "range": {
+        "startLine": 61,
+        "startChar": 45,
+        "endLine": 61,
+        "endChar": 73
+      },
+      "revId": "f0550e1e5698f88f0c226ffec759238b43e224b5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3dcd91a7_463cad94",
@@ -169,6 +289,30 @@
       "writtenOn": "2023-11-16T15:43:30Z",
       "side": 1,
       "message": "not needed here unless used to log sth.",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 6
+      },
+      "revId": "f0550e1e5698f88f0c226ffec759238b43e224b5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa5e8cd8_c9045428",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/DeviceHeartbeatConsumer.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2023-11-16T19:28:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3dcd91a7_463cad94",
       "range": {
         "startLine": 33,
         "startChar": 0,
@@ -202,6 +346,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6b9ff17_9d32aa33",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2023-11-16T19:28:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de448d87_af6ff488",
+      "range": {
+        "startLine": 43,
+        "startChar": 24,
+        "endLine": 43,
+        "endChar": 58
+      },
+      "revId": "f0550e1e5698f88f0c226ffec759238b43e224b5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dcdd930d_59977ca0",
@@ -215,6 +383,30 @@
       "writtenOn": "2023-11-16T15:43:30Z",
       "side": 1,
       "message": "the cache and publish notification",
+      "range": {
+        "startLine": 67,
+        "startChar": 28,
+        "endLine": 67,
+        "endChar": 62
+      },
+      "revId": "f0550e1e5698f88f0c226ffec759238b43e224b5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d2b49ef_01c9fe3a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2023-11-16T19:28:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dcdd930d_59977ca0",
       "range": {
         "startLine": 67,
         "startChar": 28,
@@ -248,6 +440,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e299ec7_f89bff48",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2023-11-16T19:28:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8851020f_e87495de",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 73
+      },
+      "revId": "f0550e1e5698f88f0c226ffec759238b43e224b5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d1c31d24_2cad1479",
@@ -271,6 +487,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "433c2bf9_d687af1c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/AttributeValueChangeEventCloudMapper.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2023-11-16T19:28:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d1c31d24_2cad1479",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 32
+      },
+      "revId": "f0550e1e5698f88f0c226ffec759238b43e224b5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fc9b0828_7cfa1b5e",
@@ -284,6 +524,30 @@
       "writtenOn": "2023-11-16T15:43:30Z",
       "side": 1,
       "message": "a better naming maybe avcEvent",
+      "range": {
+        "startLine": 50,
+        "startChar": 67,
+        "endLine": 50,
+        "endChar": 92
+      },
+      "revId": "f0550e1e5698f88f0c226ffec759238b43e224b5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "977bd115_0aa0b631",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/AttributeValueChangeEventCloudMapper.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2023-11-16T19:28:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fc9b0828_7cfa1b5e",
       "range": {
         "startLine": 50,
         "startChar": 67,
@@ -340,6 +604,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fe2279b_116b1740",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avc/ncmptoclient/AttributeValueChangeEventPublisherSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2023-11-16T19:28:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d2b0abb9_b4712848",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 36
+      },
+      "revId": "f0550e1e5698f88f0c226ffec759238b43e224b5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "28a205d7_d3df6cfa",
@@ -353,6 +641,30 @@
       "writtenOn": "2023-11-16T15:43:30Z",
       "side": 1,
       "message": "Does it needed?",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 70
+      },
+      "revId": "f0550e1e5698f88f0c226ffec759238b43e224b5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4aef6c2_0e4d6c18",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avc/ncmptoclient/AttributeValueChangeEventPublisherSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2023-11-16T19:28:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "28a205d7_d3df6cfa",
       "range": {
         "startLine": 28,
         "startChar": 0,
@@ -386,6 +698,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "206a404e_85e06a98",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avc/ncmptoclient/AttributeValueChangeEventPublisherSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2023-11-16T19:28:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0fe4ac85_d6c2dbef",
+      "range": {
+        "startLine": 45,
+        "startChar": 32,
+        "endLine": 45,
+        "endChar": 71
+      },
+      "revId": "f0550e1e5698f88f0c226ffec759238b43e224b5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f5da980d_90e91953",
@@ -399,6 +735,30 @@
       "writtenOn": "2023-11-16T15:43:30Z",
       "side": 1,
       "message": "missing description",
+      "range": {
+        "startLine": 50,
+        "startChar": 8,
+        "endLine": 50,
+        "endChar": 17
+      },
+      "revId": "f0550e1e5698f88f0c226ffec759238b43e224b5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45e0ef41_51625357",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avc/ncmptoclient/AttributeValueChangeEventPublisherSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2023-11-16T19:28:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f5da980d_90e91953",
       "range": {
         "startLine": 50,
         "startChar": 8,
@@ -432,6 +792,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "00c96e81_82fb786d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avc/ncmptoclient/AttributeValueChangeEventPublisherSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2023-11-16T19:28:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a089ae56_fad264d3",
+      "range": {
+        "startLine": 55,
+        "startChar": 8,
+        "endLine": 55,
+        "endChar": 16
+      },
+      "revId": "f0550e1e5698f88f0c226ffec759238b43e224b5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6650225e_e853fdb3",
@@ -445,6 +829,30 @@
       "writtenOn": "2023-11-16T15:43:30Z",
       "side": 1,
       "message": "missing description",
+      "range": {
+        "startLine": 57,
+        "startChar": 8,
+        "endLine": 57,
+        "endChar": 16
+      },
+      "revId": "f0550e1e5698f88f0c226ffec759238b43e224b5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f726bbe_9560ae98",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avc/ncmptoclient/AttributeValueChangeEventPublisherSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2023-11-16T19:28:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6650225e_e853fdb3",
       "range": {
         "startLine": 57,
         "startChar": 8,
@@ -478,6 +886,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6db829c_0b9e24b5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/trustlevel/dmiavailability/DmiPluginWatchDogSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2023-11-16T19:28:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e02320cd_d60d80f8",
+      "range": {
+        "startLine": 53,
+        "startChar": 58,
+        "endLine": 53,
+        "endChar": 72
+      },
+      "revId": "f0550e1e5698f88f0c226ffec759238b43e224b5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f4d56422_dcf094b7",
@@ -491,6 +923,30 @@
       "writtenOn": "2023-11-16T15:43:30Z",
       "side": 1,
       "message": "redundant import",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 88
+      },
+      "revId": "f0550e1e5698f88f0c226ffec759238b43e224b5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09c88e23_220dfdf9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/AttributeValueChangeEventMapperSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2023-11-16T19:28:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f4d56422_dcf094b7",
       "range": {
         "startLine": 27,
         "startChar": 0,
