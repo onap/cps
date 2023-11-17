@@ -36,7 +36,6 @@ import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.api.impl.inventory.enums.PropertyType;
 import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel;
-import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevelFilter;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
@@ -50,6 +49,7 @@ public class CmHandleQueriesImpl implements CmHandleQueries {
     private static final String DESCENDANT_PATH = "//";
     private static final String ANCESTOR_CM_HANDLES = "/ancestor::cm-handles";
     private final CpsDataPersistenceService cpsDataPersistenceService;
+    private final Map<String, TrustLevel> trustLevelPerDmiPlugin;
     private final Map<String, TrustLevel> trustLevelPerCmHandle;
     private final CpsValidator cpsValidator;
 
@@ -68,8 +68,7 @@ public class CmHandleQueriesImpl implements CmHandleQueries {
         final String trustLevelProperty = trustLevelPropertyQueryPairs.values().iterator().next();
         final TrustLevel targetTrustLevel = TrustLevel.valueOf(trustLevelProperty);
 
-        final TrustLevelFilter trustLevelFilter = new TrustLevelFilter(targetTrustLevel, trustLevelPerCmHandle);
-        return trustLevelFilter.getAllCmHandleIdsByTargetTrustLevel();
+        return getCmHandleIdsByTrustLevel(targetTrustLevel);
     }
 
     @Override
@@ -115,6 +114,26 @@ public class CmHandleQueriesImpl implements CmHandleQueries {
             }
         }
         return cmHandleIds;
+    }
+
+    private Collection<String> getCmHandleIdsByTrustLevel(final TrustLevel targetTrustLevel) {
+        final Collection<String> selectedCmHandleIds = new HashSet<>();
+
+        for (final Map.Entry<String, TrustLevel> mapEntry : trustLevelPerDmiPlugin.entrySet()) {
+            final String dmiPluginIdentifier = mapEntry.getKey();
+            final TrustLevel dmiTrustLevel = mapEntry.getValue();
+            final Collection<String> candidateCmHandleIds = getCmHandleIdsByDmiPluginIdentifier(dmiPluginIdentifier);
+            for (final String candidateCmHandleId : candidateCmHandleIds) {
+                final TrustLevel candidateCmHandleTrustLevel = trustLevelPerCmHandle.get(candidateCmHandleId);
+                final TrustLevel effectiveTrustlevel =
+                    candidateCmHandleTrustLevel.getEffectiveTrustLevel(dmiTrustLevel);
+                if (targetTrustLevel.equals(effectiveTrustlevel)) {
+                    selectedCmHandleIds.add(candidateCmHandleId);
+                }
+            }
+        }
+
+        return selectedCmHandleIds;
     }
 
     private Collection<String> collectCmHandleIdsFromDataNodes(final Collection<DataNode> dataNodes) {
