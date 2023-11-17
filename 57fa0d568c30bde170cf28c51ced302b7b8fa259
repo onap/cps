@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "187bb3df_27e72a2d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-17T14:29:31Z",
+      "side": 1,
+      "message": "see comment in duplication I am not reviewing this until it is clears who (which) commit is responsible for what?!",
+      "revId": "57fa0d568c30bde170cf28c51ced302b7b8fa259",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18b113c7_587e1374",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/dmiavailability/DmiPluginWatchDog.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-17T14:29:31Z",
+      "side": 1,
+      "message": "why are ther 2 commits introducing teh same file?!\nWE just review this here \nhttps://gerrit.onap.org/r/c/cps/+/136401/5/cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/dmiavailability/DmiPluginWatchDog.java please coordinate your work!",
+      "revId": "57fa0d568c30bde170cf28c51ced302b7b8fa259",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
