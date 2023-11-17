@@ -1,0 +1,699 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d3eb4f7_482398be",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-17T13:53:08Z",
+      "side": 1,
+      "message": "Overall this commit quality is pretty good!\nBut Levente and I went trouhgh this with a very fine comb as an excercise so dont mind the number of comments. Becasue of time constraints we didn\u0027t review the last 2 tests but you have some stuff to work on first anyway.",
+      "revId": "c2e569163ba5e51af8a496f4cf8aaa9a293bfecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26e6e4e5_da76c983",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 478,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-17T13:53:08Z",
+      "side": 1,
+      "message": "is this reall yneed, same data shoudl be avaialeb in teh map (first paaremeter)",
+      "range": {
+        "startLine": 477,
+        "startChar": 74,
+        "endLine": 478,
+        "endChar": 96
+      },
+      "revId": "c2e569163ba5e51af8a496f4cf8aaa9a293bfecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d69843b7_b4dd8741",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/client/DmiRestClient.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-17T13:53:08Z",
+      "side": 1,
+      "message": "NB: not a public constant (and do NOT make it taht either) teh ja va dox shoudl just say \"\" or engkish \u0027empty string\u0027",
+      "range": {
+        "startLine": 72,
+        "startChar": 58,
+        "endLine": 72,
+        "endChar": 70
+      },
+      "revId": "c2e569163ba5e51af8a496f4cf8aaa9a293bfecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "249edf8e_78c9c5f7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avc/ncmptoclient/AttributeValueChangeEventPublisher.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-17T13:53:08Z",
+      "side": 1,
+      "message": "NB: Levente prposed attributeData to give it a bit more meaning. II suppose Data is LIek String so calling it data woudl be silly... But open to there suggestions\n \nMaybe as a team we shoudl agree a convention/pattern for all cloude evnets , we can discuss later",
+      "range": {
+        "startLine": 68,
+        "startChar": 19,
+        "endLine": 68,
+        "endChar": 27
+      },
+      "revId": "c2e569163ba5e51af8a496f4cf8aaa9a293bfecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa99fabc_11702b4b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-17T13:53:08Z",
+      "side": 1,
+      "message": "CHANGED_ATTRIBUTE_NAME",
+      "range": {
+        "startLine": 39,
+        "startChar": 32,
+        "endLine": 39,
+        "endChar": 52
+      },
+      "revId": "c2e569163ba5e51af8a496f4cf8aaa9a293bfecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c787989b_1755a243",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-17T13:53:08Z",
+      "side": 1,
+      "message": "should be in else-block",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 13
+      },
+      "revId": "c2e569163ba5e51af8a496f4cf8aaa9a293bfecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68a7410b_38d25672",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-17T13:53:08Z",
+      "side": 1,
+      "message": "I though we always would send notifactions? Maybe i missed a (change) in a decision. The user story A/C shoudl define this kind of stuff\nOK I checked and it is mentioned in the use (although the A?C are not well defined in teh US same fro CPS_1907 you ream needs to work on that)",
+      "range": {
+        "startLine": 58,
+        "startChar": 20,
+        "endLine": 58,
+        "endChar": 56
+      },
+      "revId": "c2e569163ba5e51af8a496f4cf8aaa9a293bfecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4122798d_91c794ab",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-17T13:53:08Z",
+      "side": 1,
+      "message": "i think this should be info level (trustlevel SHOULD not change really)",
+      "range": {
+        "startLine": 79,
+        "startChar": 16,
+        "endLine": 79,
+        "endChar": 21
+      },
+      "revId": "c2e569163ba5e51af8a496f4cf8aaa9a293bfecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c5c9d01_0ab7595d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/dmiavailability/DmiPluginWatchDog.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-17T13:53:08Z",
+      "side": 1,
+      "message": "checkDmiAvailability \n(align with config param. also sounds beter English, class is already called watchdog methodes does not HAVE to start with the word \u0027watch\u0027",
+      "range": {
+        "startLine": 52,
+        "startChar": 16,
+        "endLine": 52,
+        "endChar": 39
+      },
+      "revId": "c2e569163ba5e51af8a496f4cf8aaa9a293bfecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e7a97b8_f27b226c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/dmiavailability/DmiPluginWatchDog.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-17T13:53:08Z",
+      "side": 1,
+      "message": "use mapEntrySet because you need both key and value!",
+      "range": {
+        "startLine": 53,
+        "startChar": 31,
+        "endLine": 53,
+        "endChar": 39
+      },
+      "revId": "c2e569163ba5e51af8a496f4cf8aaa9a293bfecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a7055ff_26f36de1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/dmiavailability/DmiPluginWatchDog.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-17T13:53:08Z",
+      "side": 1,
+      "message": "mapEntry.value()",
+      "range": {
+        "startLine": 55,
+        "startChar": 47,
+        "endLine": 55,
+        "endChar": 91
+      },
+      "revId": "c2e569163ba5e51af8a496f4cf8aaa9a293bfecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fdd49ce3_f385766a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/dmiavailability/DmiPluginWatchDog.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-17T13:53:08Z",
+      "side": 1,
+      "message": "mapEntry.setValue()",
+      "range": {
+        "startLine": 66,
+        "startChar": 16,
+        "endLine": 66,
+        "endChar": 42
+      },
+      "revId": "c2e569163ba5e51af8a496f4cf8aaa9a293bfecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "981b2803_1ba64287",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/dmiavailability/DmiPluginWatchDog.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-17T13:53:08Z",
+      "side": 1,
+      "message": "the word \u0027candidate\u0027 is not applicable heer because AAL cm handles will be affteced and notified",
+      "range": {
+        "startLine": 68,
+        "startChar": 53,
+        "endLine": 68,
+        "endChar": 62
+      },
+      "revId": "c2e569163ba5e51af8a496f4cf8aaa9a293bfecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b9a169b_faf3cda4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/AttributeValueChangeEventCloudMapper.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-17T13:53:08Z",
+      "side": 1,
+      "message": "this might wokr OK but seems misleading just create as a var in teh method",
+      "range": {
+        "startLine": 39,
+        "startChar": 4,
+        "endLine": 39,
+        "endChar": 66
+      },
+      "revId": "c2e569163ba5e51af8a496f4cf8aaa9a293bfecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "837a52d5_5cbde598",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/AttributeValueChangeEventCloudMapper.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-17T13:53:08Z",
+      "side": 1,
+      "message": "dont shorten",
+      "range": {
+        "startLine": 50,
+        "startChar": 67,
+        "endLine": 50,
+        "endChar": 75
+      },
+      "revId": "c2e569163ba5e51af8a496f4cf8aaa9a293bfecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53d62bdb_901908ca",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/AttributeValueChangeEventCloudMapper.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-17T13:53:08Z",
+      "side": 1,
+      "message": "this shoudl be hardcoded to prevevent accidentle change of schemaname (maybe to discuss)",
+      "range": {
+        "startLine": 57,
+        "startChar": 43,
+        "endLine": 57,
+        "endChar": 108
+      },
+      "revId": "c2e569163ba5e51af8a496f4cf8aaa9a293bfecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16d28d87_f21cf72e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/client/DmiRestClientSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-17T13:53:08Z",
+      "side": 1,
+      "message": "the status value from the json is return (or extraxted)",
+      "range": {
+        "startLine": 103,
+        "startChar": 15,
+        "endLine": 103,
+        "endChar": 41
+      },
+      "revId": "c2e569163ba5e51af8a496f4cf8aaa9a293bfecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79d3fe30_55506992",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/client/DmiRestClientSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-17T13:53:08Z",
+      "side": 1,
+      "message": "just use English no constants?! or qoute\nie\n\u0027result wil be empty\u0027",
+      "range": {
+        "startLine": 112,
+        "startChar": 30,
+        "endLine": 112,
+        "endChar": 45
+      },
+      "revId": "c2e569163ba5e51af8a496f4cf8aaa9a293bfecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62f1ca61_ef2a7cee",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/client/DmiRestClientSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-17T13:53:08Z",
+      "side": 1,
+      "message": "reponses",
+      "range": {
+        "startLine": 114,
+        "startChar": 30,
+        "endLine": 114,
+        "endChar": 37
+      },
+      "revId": "c2e569163ba5e51af8a496f4cf8aaa9a293bfecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd661157_8ac751dc",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avc/ncmptoclient/AttributeValueChangeEventPublisherSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-17T13:53:08Z",
+      "side": 1,
+      "message": "this is really just a standard spock/groovy test, no need fro springboot since uoui are not integating/test with kafak etc.\nJUst use teh constructoe to insert your dependencies",
+      "range": {
+        "startLine": 37,
+        "startChar": 1,
+        "endLine": 37,
+        "endChar": 15
+      },
+      "revId": "c2e569163ba5e51af8a496f4cf8aaa9a293bfecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "512f204d_d128d747",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avc/ncmptoclient/AttributeValueChangeEventPublisherSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-17T13:53:08Z",
+      "side": 1,
+      "message": "as above dont use these annotations",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 15
+      },
+      "revId": "c2e569163ba5e51af8a496f4cf8aaa9a293bfecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d667c1c_ca42909c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avc/ncmptoclient/AttributeValueChangeEventPublisherSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-17T13:53:08Z",
+      "side": 1,
+      "message": "replace all \" with \u0027   (as per our convention)",
+      "range": {
+        "startLine": 49,
+        "startChar": 31,
+        "endLine": 49,
+        "endChar": 32
+      },
+      "revId": "c2e569163ba5e51af8a496f4cf8aaa9a293bfecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0913458_b9ed1ae1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avc/ncmptoclient/AttributeValueChangeEventPublisherSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-17T13:53:08Z",
+      "side": 1,
+      "message": "an AVC event is published",
+      "range": {
+        "startLine": 56,
+        "startChar": 15,
+        "endLine": 56,
+        "endChar": 43
+      },
+      "revId": "c2e569163ba5e51af8a496f4cf8aaa9a293bfecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb74bae2_f8e772cc",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avc/ncmptoclient/AttributeValueChangeEventPublisherSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-17T13:53:08Z",
+      "side": 1,
+      "message": "This is a \u0027delegation test\u0027 nothing really happens /can be verifed becasue it is handed over to a delegat whihc you moccked.\n\nThe test is fine but just clarify\ne.g. \"the cloud event publisher is invoked with the correct data\u0027",
+      "range": {
+        "startLine": 58,
+        "startChar": 15,
+        "endLine": 58,
+        "endChar": 85
+      },
+      "revId": "c2e569163ba5e51af8a496f4cf8aaa9a293bfecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3608c5b8_dfe5977d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avc/ncmptoclient/AttributeValueChangeEventPublisherSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-17T13:53:08Z",
+      "side": 1,
+      "message": "in Groovy you can shorten (inline) this using a Map constructor ie. you dont really need a method\n\n def attributeValueChange \u003d new AttributeValueChange(attributeName:attributeName\n oldAttributeValue:oldAttributeValue, newAttributeValue:newAttributeValue)\n )",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 5
+      },
+      "revId": "c2e569163ba5e51af8a496f4cf8aaa9a293bfecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45b24df6_d263e009",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/trustlevel/DeviceHeartbeatConsumerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-17T13:53:08Z",
+      "side": 1,
+      "message": "I prefer hardcoded sting in tests to prevent accidental changes",
+      "range": {
+        "startLine": 56,
+        "startChar": 79,
+        "endLine": 56,
+        "endChar": 105
+      },
+      "revId": "c2e569163ba5e51af8a496f4cf8aaa9a293bfecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f45d072a_1a14fd27",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/trustlevel/dmiavailability/DmiPluginWatchDogSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-17T13:53:08Z",
+      "side": 1,
+      "message": "very get test, just one little thin on minimum approach see below",
+      "revId": "c2e569163ba5e51af8a496f4cf8aaa9a293bfecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c820e45_cf425192",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/trustlevel/dmiavailability/DmiPluginWatchDogSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-17T13:53:08Z",
+      "side": 1,
+      "message": "FYI dont use static ion groovy test never (only needed for table values)",
+      "range": {
+        "startLine": 41,
+        "startChar": 8,
+        "endLine": 41,
+        "endChar": 15
+      },
+      "revId": "c2e569163ba5e51af8a496f4cf8aaa9a293bfecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79a3589f_a3cec036",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/trustlevel/dmiavailability/DmiPluginWatchDogSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-17T13:53:08Z",
+      "side": 1,
+      "message": "BUT you dont really need content in thies list at all: for test alwasy ony providie teh minimum data needed to pass teh test.! in this case just [] (no need for varaibel really)",
+      "range": {
+        "startLine": 41,
+        "startChar": 15,
+        "endLine": 41,
+        "endChar": 55
+      },
+      "revId": "c2e569163ba5e51af8a496f4cf8aaa9a293bfecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe4da265_9ec8e00e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/trustlevel/dmiavailability/DmiPluginWatchDogSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-17T13:53:08Z",
+      "side": 1,
+      "message": "as explaianed above just [] will do!",
+      "range": {
+        "startLine": 49,
+        "startChar": 93,
+        "endLine": 49,
+        "endChar": 114
+      },
+      "revId": "c2e569163ba5e51af8a496f4cf8aaa9a293bfecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95e48a12_714708b1",
+        "filename": "cps-ncmp-service/src/test/resources/attributeValueChangeEvent.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-17T13:53:08Z",
+      "side": 1,
+      "message": "This json is small enough to hardcode in teh test whihc makes it easier to read/verify",
+      "revId": "c2e569163ba5e51af8a496f4cf8aaa9a293bfecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
