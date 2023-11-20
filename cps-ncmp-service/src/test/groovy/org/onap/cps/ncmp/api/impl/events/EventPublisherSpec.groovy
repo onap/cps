@@ -26,7 +26,7 @@ import ch.qos.logback.core.read.ListAppender
 import org.apache.kafka.clients.producer.ProducerRecord
 import org.apache.kafka.clients.producer.RecordMetadata
 import org.apache.kafka.common.TopicPartition
-import org.onap.cps.ncmp.init.SubscriptionModelLoader
+import org.onap.cps.ncmp.init.CmDataSubscriptionModelLoader
 import org.slf4j.LoggerFactory
 import org.springframework.kafka.support.SendResult
 import spock.lang.Ignore
@@ -46,7 +46,7 @@ class EventPublisherSpec extends Specification {
     }
 
     void cleanup() {
-        ((Logger) LoggerFactory.getLogger(SubscriptionModelLoader.class)).detachAndStopAllAppenders()
+        ((Logger) LoggerFactory.getLogger(CmDataSubscriptionModelLoader.class)).detachAndStopAllAppenders()
     }
 
     @Ignore
