@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2023 Nordix Foundation
+ *  Copyright (C) 2022-2024 Nordix Foundation
  *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -92,7 +92,8 @@ public class FragmentQueryBuilder {
         sqlStringBuilder.append("SELECT distinct(fragment.anchor_id) FROM fragment "
                 + "JOIN anchor ON anchor.id = fragment.anchor_id WHERE dataspace_id = :dataspaceId");
         queryParameters.put("dataspaceId", dataspaceEntity.getId());
-        addXpathSearch(cpsPathQuery, sqlStringBuilder, queryParameters);
+        addAbsoluteParentXpathSearchCondition(cpsPathQuery, sqlStringBuilder, queryParameters, ACROSS_ALL_ANCHORS);
+        addXpathSearchCondition(cpsPathQuery, sqlStringBuilder, queryParameters);
         addLeafConditions(cpsPathQuery, sqlStringBuilder);
         addTextFunctionCondition(cpsPathQuery, sqlStringBuilder, queryParameters);
         addContainsFunctionCondition(cpsPathQuery, sqlStringBuilder, queryParameters);
@@ -125,7 +126,8 @@ public class FragmentQueryBuilder {
             sqlStringBuilder.append("SELECT * FROM fragment WHERE anchor_id = :anchorId");
             queryParameters.put("anchorId", anchorEntity.getId());
         }
-        addXpathSearch(cpsPathQuery, sqlStringBuilder, queryParameters);
+        addAbsoluteParentXpathSearchCondition(cpsPathQuery, sqlStringBuilder, queryParameters, anchorEntity);
+        addXpathSearchCondition(cpsPathQuery, sqlStringBuilder, queryParameters);
         addLeafConditions(cpsPathQuery, sqlStringBuilder);
         addTextFunctionCondition(cpsPathQuery, sqlStringBuilder, queryParameters);
         addContainsFunctionCondition(cpsPathQuery, sqlStringBuilder, queryParameters);
@@ -135,15 +137,34 @@ public class FragmentQueryBuilder {
         return query;
     }
 
-    private static void addXpathSearch(final CpsPathQuery cpsPathQuery,
-                                       final StringBuilder sqlStringBuilder,
-                                       final Map<String, Object> queryParameters) {
+    private static void addXpathSearchCondition(final CpsPathQuery cpsPathQuery,
+                                                final StringBuilder sqlStringBuilder,
+                                                final Map<String, Object> queryParameters) {
         sqlStringBuilder.append(" AND (xpath LIKE :escapedXpath OR "
                 + "(xpath LIKE :escapedXpath||'[@%]' AND xpath NOT LIKE :escapedXpath||'[@%]/%[@%]'))");
         if (CpsPathPrefixType.ABSOLUTE.equals(cpsPathQuery.getCpsPathPrefixType())) {
             queryParameters.put("escapedXpath", EscapeUtils.escapeForSqlLike(cpsPathQuery.getXpathPrefix()));
         } else {
             queryParameters.put("escapedXpath", "%/" + EscapeUtils.escapeForSqlLike(cpsPathQuery.getDescendantName()));
+        }
+    }
+
+    private static void addAbsoluteParentXpathSearchCondition(final CpsPathQuery cpsPathQuery,
+                                                              final StringBuilder sqlStringBuilder,
+                                                              final Map<String, Object> queryParameters,
+                                                              final AnchorEntity anchorEntity) {
+        if (CpsPathPrefixType.ABSOLUTE.equals(cpsPathQuery.getCpsPathPrefixType())) {
+            if (cpsPathQuery.getNormalizedParentPath().isEmpty()) {
+                sqlStringBuilder.append(" AND parent_id IS NULL");
+            } else {
+                if (anchorEntity == ACROSS_ALL_ANCHORS) {
+                    sqlStringBuilder.append(" AND parent_id IN (SELECT id FROM fragment WHERE xpath = :parentXpath)");
+                } else {
+                    sqlStringBuilder.append(" AND parent_id = (SELECT id FROM fragment WHERE xpath = :parentXpath"
+                            + " AND anchor_id = :anchorId)");
+                }
+                queryParameters.put("parentXpath", cpsPathQuery.getNormalizedParentPath());
+            }
         }
     }
 
