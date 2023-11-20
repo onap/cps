@@ -21,11 +21,14 @@
 package org.onap.cps.ncmp.init;
 
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME;
+import static org.onap.cps.ncmp.init.inventory.SubscriptionModels.CURRENT_MODEL;
+import static org.onap.cps.ncmp.init.inventory.SubscriptionModels.PREVIOUS_MODEL;
 
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAdminService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsModuleService;
+import org.onap.cps.ncmp.init.inventory.SubscriptionModels;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -33,10 +36,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class SubscriptionModelLoader extends AbstractModelLoader {
 
-    private static final String MODEL_FILENAME = "subscription.yang";
     private static final String ANCHOR_NAME = "AVC-Subscriptions";
     private static final String SCHEMASET_NAME = "subscriptions";
-    private static final String REGISTRY_DATANODE_NAME = "subscription-registry";
 
     public SubscriptionModelLoader(final CpsAdminService cpsAdminService,
                                    final CpsModuleService cpsModuleService,
@@ -51,17 +52,20 @@ public class SubscriptionModelLoader extends AbstractModelLoader {
     public void onboardOrUpgradeModel() {
         if (subscriptionModelLoaderEnabled) {
             waitUntilDataspaceIsAvailable(NCMP_DATASPACE_NAME);
-            onboardSubscriptionModel();
-            log.info("Subscription Model onboarded successfully");
+            onboardSubscriptionModels();
+            log.info("Subscription Models onboarded successfully");
         } else {
             log.info("Subscription Model Loader is disabled");
         }
     }
 
-    private void onboardSubscriptionModel() {
-        createSchemaSet(NCMP_DATASPACE_NAME, SCHEMASET_NAME, MODEL_FILENAME);
+    private void onboardSubscriptionModels() {
+        createSchemaSet(NCMP_DATASPACE_NAME, SCHEMASET_NAME,
+                CURRENT_MODEL.getResourceName(), PREVIOUS_MODEL.getResourceName());
         createAnchor(NCMP_DATASPACE_NAME, SCHEMASET_NAME, ANCHOR_NAME);
-        createTopLevelDataNode(NCMP_DATASPACE_NAME, ANCHOR_NAME, REGISTRY_DATANODE_NAME);
+        for (final SubscriptionModels subscriptionModel : SubscriptionModels.values()) {
+            final String modelTopRegistryDataNodeName = subscriptionModel.getTopLevelRegistryDatanodeName();
+            createTopLevelDataNode(NCMP_DATASPACE_NAME, ANCHOR_NAME, modelTopRegistryDataNodeName);
+        }
     }
-
 }
