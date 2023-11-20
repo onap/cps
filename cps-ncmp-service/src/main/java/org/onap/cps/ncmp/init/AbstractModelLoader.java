@@ -24,6 +24,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.time.OffsetDateTime;
+import java.util.HashMap;
 import java.util.Map;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -85,10 +86,10 @@ abstract class AbstractModelLoader implements ModelLoader {
         }
     }
 
-    void createSchemaSet(final String dataspaceName, final String schemaSetName, final String resourceName) {
+    void createSchemaSet(final String dataspaceName, final String schemaSetName, final String... resourceNames) {
         try {
-            final Map<String, String> yangResourceContentMap = createYangResourceToContentMap(resourceName);
-            cpsModuleService.createSchemaSet(dataspaceName, schemaSetName, yangResourceContentMap);
+            final Map<String, String> yangResourcesContentMap = createYangResourcesToContentMap(resourceNames);
+            cpsModuleService.createSchemaSet(dataspaceName, schemaSetName, yangResourcesContentMap);
         } catch (final AlreadyDefinedException alreadyDefinedException) {
             log.warn("Creating new schema set failed as schema set already exists");
         } catch (final Exception exception) {
@@ -140,8 +141,12 @@ abstract class AbstractModelLoader implements ModelLoader {
         }
     }
 
-    Map<String, String> createYangResourceToContentMap(final String resourceName) {
-        return Map.of(resourceName, getFileContentAsString("models/" + resourceName));
+    Map<String, String> createYangResourcesToContentMap(final String... resourceNames) {
+        final Map<String, String> yangResourcesToContentMap = new HashMap<>();
+        for (final String resourceName: resourceNames) {
+            yangResourcesToContentMap.put(resourceName, getFileContentAsString("models/" + resourceName));
+        }
+        return yangResourcesToContentMap;
     }
 
     private String getFileContentAsString(final String fileName) {
