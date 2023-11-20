@@ -21,6 +21,8 @@
 package org.onap.cps.ncmp.init
 
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
+import static org.onap.cps.ncmp.init.inventory.SubscriptionModels.CURRENT_MODEL;
+import static org.onap.cps.ncmp.init.inventory.SubscriptionModels.PREVIOUS_MODEL;
 
 import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
@@ -34,7 +36,7 @@ import org.springframework.boot.context.event.ApplicationReadyEvent
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import spock.lang.Specification
 
-class SubscriptionModelLoaderSpec extends Specification {
+class SubscriptionModelsLoaderSpec extends Specification {
 
     def mockCpsAdminService = Mock(CpsAdminService)
     def mockCpsModuleService = Mock(CpsModuleService)
@@ -43,12 +45,13 @@ class SubscriptionModelLoaderSpec extends Specification {
 
     def applicationContext = new AnnotationConfigApplicationContext()
 
-    def expectedYangResourceToContentMap
+    def expectedYangResourcesToContentMap
     def logger = (Logger) LoggerFactory.getLogger(objectUnderTest.class)
     def loggingListAppender
 
     void setup() {
-        expectedYangResourceToContentMap = objectUnderTest.createYangResourceToContentMap('subscription.yang')
+        expectedYangResourcesToContentMap = objectUnderTest.createYangResourcesToContentMap(CURRENT_MODEL.getResourceName(),
+                PREVIOUS_MODEL.getResourceName())
         logger.setLevel(Level.DEBUG)
         loggingListAppender = new ListAppender()
         logger.addAppender(loggingListAppender)
@@ -61,7 +64,7 @@ class SubscriptionModelLoaderSpec extends Specification {
         applicationContext.close()
     }
 
-    def 'Onboard subscription model via application ready event.'() {
+    def 'Onboard subscription model(s) via application ready event.'() {
         given:'model loader is enabled'
             objectUnderTest.subscriptionModelLoaderEnabled = true
         and: 'dataspace is ready for use'
@@ -69,11 +72,12 @@ class SubscriptionModelLoaderSpec extends Specification {
         when: 'the application is ready'
             objectUnderTest.onApplicationEvent(Mock(ApplicationReadyEvent))
         then: 'the module service to create schema set is called once'
-            1 * mockCpsModuleService.createSchemaSet(NCMP_DATASPACE_NAME, 'subscriptions', expectedYangResourceToContentMap)
+            1 * mockCpsModuleService.createSchemaSet(NCMP_DATASPACE_NAME, 'subscriptions', expectedYangResourcesToContentMap)
         and: 'the admin service to create an anchor set is called once'
             1 * mockCpsAdminService.createAnchor(NCMP_DATASPACE_NAME, 'subscriptions', 'AVC-Subscriptions')
-        and: 'the data service to create a top level datanode is called once'
+        and: 'the data service to create a top level datanode is called once for each model (current and previous)'
             1 * mockCpsDataService.saveData(NCMP_DATASPACE_NAME, 'AVC-Subscriptions', '{"subscription-registry":{}}', _)
+            1 * mockCpsDataService.saveData(NCMP_DATASPACE_NAME, 'AVC-Subscriptions', '{"datastores":{}}', _)
     }
 
     def 'Subscription model loader disabled.' () {
