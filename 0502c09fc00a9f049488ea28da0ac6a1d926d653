@@ -1,0 +1,389 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f51a713_6886db6d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-21T15:29:35Z",
+      "side": 1,
+      "message": "main issue is to remove \u0027audit\u0027 functionality.\nTestware not review",
+      "revId": "0502c09fc00a9f049488ea28da0ac6a1d926d653",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c859936e_008b1083",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-21T15:29:35Z",
+      "side": 1,
+      "message": "create a map for TrustLevel instead: Map\u003cString, TrustLevel\u003e",
+      "range": {
+        "startLine": 322,
+        "startChar": 8,
+        "endLine": 322,
+        "endChar": 95
+      },
+      "revId": "0502c09fc00a9f049488ea28da0ac6a1d926d653",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12596af9_c832298d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-21T15:29:35Z",
+      "side": 1,
+      "message": "instead of a map we just need the KEYS ALL of them can be set to the INITIAL state: ADVISED\nLets create and impl. a new method here:\nLcmEventsCmHandleStateHandler.initiateState(Collection YangModelCmHandle yangModelCmHandles)\nin taht method create the required MAP (all pointing to ADVISED state) and call the old existing method",
+      "range": {
+        "startLine": 332,
+        "startChar": 20,
+        "endLine": 332,
+        "endChar": 91
+      },
+      "revId": "0502c09fc00a9f049488ea28da0ac6a1d926d653",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2d31b51_9ddb8d7b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-21T15:29:35Z",
+      "side": 1,
+      "message": "create a NEW map initialTrustLevelPerCmHandleId\nso new call will look like this:\nregisterNewCmHandles(yangModelCmHandles, initialTrustLevelPerCmHandleId);",
+      "range": {
+        "startLine": 334,
+        "startChar": 36,
+        "endLine": 334,
+        "endChar": 60
+      },
+      "revId": "0502c09fc00a9f049488ea28da0ac6a1d926d653",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86ed2178_a66c264b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/DeviceHeartbeatConsumer.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-21T15:29:35Z",
+      "side": 1,
+      "message": "not needed!",
+      "range": {
+        "startLine": 55,
+        "startChar": 8,
+        "endLine": 55,
+        "endChar": 59
+      },
+      "revId": "0502c09fc00a9f049488ea28da0ac6a1d926d653",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "861fb553_50f77d24",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/DeviceHeartbeatConsumer.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-21T15:29:35Z",
+      "side": 1,
+      "message": "beter not giving it another name, inline below instead",
+      "range": {
+        "startLine": 56,
+        "startChar": 25,
+        "endLine": 56,
+        "endChar": 39
+      },
+      "revId": "0502c09fc00a9f049488ea28da0ac6a1d926d653",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b223d9e_2fa46ace",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-21T15:29:35Z",
+      "side": 1,
+      "message": "warn",
+      "range": {
+        "startLine": 51,
+        "startChar": 20,
+        "endLine": 51,
+        "endChar": 25
+      },
+      "revId": "0502c09fc00a9f049488ea28da0ac6a1d926d653",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c7f624c_373e7aec",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-21T15:29:35Z",
+      "side": 1,
+      "message": "initialTrustLevel",
+      "range": {
+        "startLine": 53,
+        "startChar": 27,
+        "endLine": 53,
+        "endChar": 41
+      },
+      "revId": "0502c09fc00a9f049488ea28da0ac6a1d926d653",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c42e92a5_a576b638",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-21T15:29:35Z",
+      "side": 1,
+      "message": "please remove (Audit in separtae epic!)",
+      "range": {
+        "startLine": 89,
+        "startChar": 16,
+        "endLine": 89,
+        "endChar": 47
+      },
+      "revId": "0502c09fc00a9f049488ea28da0ac6a1d926d653",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b1445d6_1a11bcbb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/dmiavailability/DmiPluginWatchDog.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-21T15:29:35Z",
+      "side": 1,
+      "message": "please remove",
+      "range": {
+        "startLine": 53,
+        "startChar": 4,
+        "endLine": 53,
+        "endChar": 60
+      },
+      "revId": "0502c09fc00a9f049488ea28da0ac6a1d926d653",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08fe30dd_33206744",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/dmiavailability/DmiPluginWatchDog.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-21T15:29:35Z",
+      "side": 1,
+      "message": "use 2 variables \n(dmiServiceName, oldTrustLevel)",
+      "range": {
+        "startLine": 64,
+        "startChar": 50,
+        "endLine": 64,
+        "endChar": 64
+      },
+      "revId": "0502c09fc00a9f049488ea28da0ac6a1d926d653",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4352592_d9c261e3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/dmiavailability/DmiPluginWatchDog.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-21T15:29:35Z",
+      "side": 1,
+      "message": "move in else for \u0027UP\u0027 check",
+      "range": {
+        "startLine": 65,
+        "startChar": 13,
+        "endLine": 65,
+        "endChar": 58
+      },
+      "revId": "0502c09fc00a9f049488ea28da0ac6a1d926d653",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3a607f4_e440171d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/dmiavailability/DmiPluginWatchDog.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-21T15:29:35Z",
+      "side": 1,
+      "message": "extract variable dmiServiceName \u003d ...",
+      "range": {
+        "startLine": 81,
+        "startChar": 85,
+        "endLine": 81,
+        "endChar": 107
+      },
+      "revId": "0502c09fc00a9f049488ea28da0ac6a1d926d653",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25182162_0452afb7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/dmiavailability/DmiPluginWatchDog.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-21T15:29:35Z",
+      "side": 1,
+      "message": "audit NOT in scope, please delete",
+      "range": {
+        "startLine": 97,
+        "startChar": 16,
+        "endLine": 97,
+        "endChar": 34
+      },
+      "revId": "0502c09fc00a9f049488ea28da0ac6a1d926d653",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "529412a1_76957a6d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/dmiavailability/DmiPluginWatchDog.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-21T15:29:35Z",
+      "side": 1,
+      "message": "part of audit, please remove",
+      "range": {
+        "startLine": 117,
+        "startChar": 37,
+        "endLine": 117,
+        "endChar": 66
+      },
+      "revId": "0502c09fc00a9f049488ea28da0ac6a1d926d653",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0957cca3_475c486d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/dmiavailability/DmiPluginWatchDog.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-21T15:29:35Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 133,
+        "startChar": 19,
+        "endLine": 133,
+        "endChar": 40
+      },
+      "revId": "0502c09fc00a9f049488ea28da0ac6a1d926d653",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79bc1441_f6458d44",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avc/ncmptoclient/AttributeValueChangeEventPublisherSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-21T15:29:35Z",
+      "side": 1,
+      "message": "use _ instead",
+      "range": {
+        "startLine": 56,
+        "startChar": 54,
+        "endLine": 56,
+        "endChar": 58
+      },
+      "revId": "0502c09fc00a9f049488ea28da0ac6a1d926d653",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

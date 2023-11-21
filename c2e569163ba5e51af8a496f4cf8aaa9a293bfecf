@@ -91,6 +91,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1884e68f_9e23e11b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 478,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-21T15:29:35Z",
+      "side": 1,
+      "message": "see new comment above",
+      "parentUuid": "fbd3ecef_01eb04f7",
+      "range": {
+        "startLine": 477,
+        "startChar": 74,
+        "endLine": 478,
+        "endChar": 96
+      },
+      "revId": "c2e569163ba5e51af8a496f4cf8aaa9a293bfecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d69843b7_b4dd8741",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/client/DmiRestClient.java",
         "patchSetId": 5
@@ -149,6 +173,30 @@
       "writtenOn": "2023-11-17T13:53:08Z",
       "side": 1,
       "message": "NB: Levente prposed attributeData to give it a bit more meaning. II suppose Data is LIek String so calling it data woudl be silly... But open to there suggestions\n \nMaybe as a team we shoudl agree a convention/pattern for all cloude evnets , we can discuss later",
+      "range": {
+        "startLine": 68,
+        "startChar": 19,
+        "endLine": 68,
+        "endChar": 27
+      },
+      "revId": "c2e569163ba5e51af8a496f4cf8aaa9a293bfecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58638651_db7c8434",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avc/ncmptoclient/AttributeValueChangeEventPublisher.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-21T15:29:35Z",
+      "side": 1,
+      "message": "agreed on \u0027payload\u0027 as a common name",
+      "parentUuid": "249edf8e_78c9c5f7",
       "range": {
         "startLine": 68,
         "startChar": 19,
@@ -572,6 +620,30 @@
       "side": 1,
       "message": "Hi Toine, the parameter name can be anything to handle the code at this point. \n\nThe reason why we decide on \u0027candidate\u0027 is that we only need to process notification for the cm-handle ids that belong to the dmi which has different health status than previous health status (within the time frame in scheduled job).\n\nWe are open to have a good variable naming if you can suggest. Thanks.",
       "parentUuid": "36b382c0_9e1cdde8",
+      "range": {
+        "startLine": 68,
+        "startChar": 53,
+        "endLine": 68,
+        "endChar": 62
+      },
+      "revId": "c2e569163ba5e51af8a496f4cf8aaa9a293bfecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92c51e9a_74af54fc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/dmiavailability/DmiPluginWatchDog.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-21T15:29:35Z",
+      "side": 1,
+      "message": "ok I see",
+      "parentUuid": "9296535d_efcd6ea1",
       "range": {
         "startLine": 68,
         "startChar": 53,
