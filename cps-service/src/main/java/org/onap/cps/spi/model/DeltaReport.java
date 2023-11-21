@@ -32,6 +32,7 @@ public class DeltaReport {
 
     public static final String ADD_ACTION = "add";
     public static final String REMOVE_ACTION = "remove";
+    public static final String UPDATE_ACTION = "update";
 
     DeltaReport() {}
 
