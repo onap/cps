@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b42eadbe_27689623",
+        "filename": "cps-ncmp-service/src/main/resources/models/cm-data-subscriptions@2023-09-21.yang",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-11-21T11:47:31Z",
+      "side": 1,
+      "message": "NB: do u have to change the filename here?? \nI mean the date part?",
+      "revId": "7780e554d09b17caff56770f82bf85f64f603982",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
