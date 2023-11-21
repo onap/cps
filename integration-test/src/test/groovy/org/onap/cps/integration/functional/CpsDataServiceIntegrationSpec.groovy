@@ -453,7 +453,7 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
         when: 'attempt to get delta report between anchors'
             def result = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_ANCHOR_3, BOOKSTORE_ANCHOR_5, parentNodeXpath, INCLUDE_ALL_DESCENDANTS)
         then: 'delta report contains expected number of changes'
-            result.size() == 11
+            result.size() == 17
         and: 'the delta report does not contain parent node xpath'
             def xpaths = getDeltaReportEntities(result).get('xpaths')
             assert !(xpaths.contains(parentNodeXpath))
