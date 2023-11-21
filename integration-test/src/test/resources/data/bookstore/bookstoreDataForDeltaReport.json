@@ -7,7 +7,7 @@
     }
   ],
   "bookstore": {
-    "bookstore-name": "Easons",
+    "bookstore-name": "Crossword Bookstores",
     "premises": {
       "addresses": [
         {
@@ -96,8 +96,7 @@
             "title": "Book 1",
             "lang": "blah",
             "authors": [],
-            "editions": [],
-            "price": 1
+            "editions": []
           },
           {
             "title": "Book 2",
