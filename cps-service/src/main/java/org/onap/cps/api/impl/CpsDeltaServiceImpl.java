@@ -28,6 +28,7 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsDeltaService;
@@ -50,7 +51,7 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
         final Map<String, DataNode> xpathToSourceDataNodes = convertToXPathToDataNodesMap(sourceDataNodes);
         final Map<String, DataNode> xpathToTargetDataNodes = convertToXPathToDataNodesMap(targetDataNodes);
 
-        deltaReport.addAll(getRemovedDeltaReports(xpathToSourceDataNodes, xpathToTargetDataNodes));
+        deltaReport.addAll(getRemovedAndUpdatedDeltaReports(xpathToSourceDataNodes, xpathToTargetDataNodes));
 
         deltaReport.addAll(getAddedDeltaReports(xpathToSourceDataNodes, xpathToTargetDataNodes));
 
@@ -70,11 +71,10 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
         return xpathToDataNode;
     }
 
-    private static List<DeltaReport> getRemovedDeltaReports(
-                                                            final Map<String, DataNode> xpathToSourceDataNodes,
-                                                            final Map<String, DataNode> xpathToTargetDataNodes) {
-
-        final List<DeltaReport> removedDeltaReportEntries = new ArrayList<>();
+    private static List<DeltaReport> getRemovedAndUpdatedDeltaReports(
+                                                                final Map<String, DataNode> xpathToSourceDataNodes,
+                                                                final Map<String, DataNode> xpathToTargetDataNodes) {
+        final List<DeltaReport> removedAndUpdatedDeltaReportEntries = new ArrayList<>();
         for (final Map.Entry<String, DataNode> entry: xpathToSourceDataNodes.entrySet()) {
             final String xpath = entry.getKey();
             final DataNode sourceDataNode = entry.getValue();
@@ -84,10 +84,101 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
                 final Map<String, Serializable> sourceDataNodeLeaves = sourceDataNode.getLeaves();
                 final DeltaReport removedData = new DeltaReportBuilder().actionRemove().withXpath(xpath)
                         .withSourceData(sourceDataNodeLeaves).build();
-                removedDeltaReportEntries.add(removedData);
+                removedAndUpdatedDeltaReportEntries.add(removedData);
+            } else {
+                final List<DeltaReport> updatedDeltaReportEntries = new ArrayList<>();
+
+                final Map<String, Serializable> leavesOfSourceDataNode = sourceDataNode.getLeaves();
+                final Map<String, Serializable> leavesOfTargetDataNode = targetDataNode.getLeaves();
+
+                final Map<Map<String, Serializable>, Map<String, Serializable>> updatedLeavesAsSourceDataToTargetData =
+                        compareLeavesData(leavesOfSourceDataNode, leavesOfTargetDataNode);
+
+                addUpdatedLeavesToDeltaReport(xpath, updatedLeavesAsSourceDataToTargetData, updatedDeltaReportEntries);
+
+                removedAndUpdatedDeltaReportEntries.addAll(updatedDeltaReportEntries);
             }
         }
-        return removedDeltaReportEntries;
+        return removedAndUpdatedDeltaReportEntries;
+    }
+
+    private static Map<Map<String, Serializable>, Map<String, Serializable>> compareLeavesData(
+                                                            final Map<String, Serializable> leavesOfSourceDataNode,
+                                                            final Map<String, Serializable> leavesOfTargetDataNode) {
+        final Map<Map<String, Serializable>, Map<String, Serializable>> updatedLeavesAsSourceDataToTargetData =
+                new LinkedHashMap<>();
+        final Map<String, Serializable> sourceDataInDeltaReport = new LinkedHashMap<>();
+        final Map<String, Serializable> targetDataInDeltaReport = new LinkedHashMap<>();
+        processLeavesPresentInSourceAndTargetDataNode(leavesOfSourceDataNode, leavesOfTargetDataNode,
+                sourceDataInDeltaReport, targetDataInDeltaReport);
+        processLeavesUniqueInTargetDataNode(leavesOfSourceDataNode, leavesOfTargetDataNode,
+                sourceDataInDeltaReport, targetDataInDeltaReport);
+        if (!sourceDataInDeltaReport.isEmpty() || !targetDataInDeltaReport.isEmpty()) {
+            updatedLeavesAsSourceDataToTargetData.put(sourceDataInDeltaReport, targetDataInDeltaReport);
+        }
+        return updatedLeavesAsSourceDataToTargetData;
+    }
+
+    private static void processLeavesPresentInSourceAndTargetDataNode(
+                                                            final Map<String, Serializable> leavesOfSourceDataNode,
+                                                            final Map<String, Serializable> leavesOfTargetDataNode,
+                                                            final Map<String, Serializable> sourceDataInDeltaReport,
+                                                            final Map<String, Serializable> targetDataInDeltaReport) {
+        for (final Map.Entry<String, Serializable> entry: leavesOfSourceDataNode.entrySet()) {
+            final String key = entry.getKey();
+            final Serializable sourceLeaf = entry.getValue();
+            final Serializable targetLeaf = leavesOfTargetDataNode.get(key);
+            compareLeafDataToGetSourceAndTargetDataForDeltaReport(key, sourceLeaf, targetLeaf,
+                    sourceDataInDeltaReport, targetDataInDeltaReport);
+        }
+    }
+
+    private static void processLeavesUniqueInTargetDataNode(
+                                                            final Map<String, Serializable> leavesOfSourceDataNode,
+                                                            final Map<String, Serializable> leavesOfTargetDataNode,
+                                                            final Map<String, Serializable> sourceDataInDeltaReport,
+                                                            final Map<String, Serializable> targetDataInDeltaReport) {
+        final Map<String, Serializable> uniqueLeavesOfTargetDataNode =
+                new LinkedHashMap<>(leavesOfTargetDataNode);
+        uniqueLeavesOfTargetDataNode.keySet().removeAll(leavesOfSourceDataNode.keySet());
+        for (final Map.Entry<String, Serializable> entry: uniqueLeavesOfTargetDataNode.entrySet()) {
+            final String key = entry.getKey();
+            final Serializable targetLeaf = entry.getValue();
+            final Serializable sourceLeaf = leavesOfSourceDataNode.get(key);
+            compareLeafDataToGetSourceAndTargetDataForDeltaReport(key, sourceLeaf, targetLeaf,
+                    sourceDataInDeltaReport, targetDataInDeltaReport);
+        }
+    }
+
+    private static void compareLeafDataToGetSourceAndTargetDataForDeltaReport(final String key,
+                                                            final Serializable sourceLeaf,
+                                                            final Serializable targetLeaf,
+                                                            final Map<String, Serializable> sourceDataInDeltaReport,
+                                                            final Map<String, Serializable> targetDataInDeltaReport) {
+        if (sourceLeaf != null && targetLeaf != null) {
+            if (!Objects.equals(sourceLeaf, targetLeaf)) {
+                sourceDataInDeltaReport.put(key, sourceLeaf);
+                targetDataInDeltaReport.put(key, targetLeaf);
+            }
+        } else if (sourceLeaf != null) {
+            sourceDataInDeltaReport.put(key, sourceLeaf);
+        } else if (targetLeaf != null) {
+            targetDataInDeltaReport.put(key, targetLeaf);
+        }
+    }
+
+    private static void addUpdatedLeavesToDeltaReport(final String xpath,
+                                                      final Map<Map<String, Serializable>, Map<String,
+                                                              Serializable>> updatedLeavesAsSourceDataToTargetData,
+                                                      final List<DeltaReport> updatedDeltaReportEntries) {
+        if (!updatedLeavesAsSourceDataToTargetData.isEmpty()) {
+            for (final Map.Entry<Map<String, Serializable>, Map<String, Serializable>> entry:
+                    updatedLeavesAsSourceDataToTargetData.entrySet()) {
+                final DeltaReport updatedDataForDeltaReport = new DeltaReportBuilder().actionUpdate()
+                        .withXpath(xpath).withSourceData(entry.getKey()).withTargetData(entry.getValue()).build();
+                updatedDeltaReportEntries.add(updatedDataForDeltaReport);
+            }
+        }
     }
 
     private static List<DeltaReport> getAddedDeltaReports(final Map<String, DataNode> xpathToSourceDataNodes,
