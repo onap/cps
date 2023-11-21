@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f9f803c7_f4467cd6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-11-21T11:33:48Z",
+      "side": 1,
+      "message": "agreed",
+      "parentUuid": "c9d76f95_7bf15c41",
+      "range": {
+        "startLine": 185,
+        "startChar": 26,
+        "endLine": 185,
+        "endChar": 37
+      },
+      "revId": "fa5cee9197bc4364939c11dc9a7f93983ddd8cae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c7378435_c5d582f8",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncService.java",
         "patchSetId": 1
@@ -54,6 +78,30 @@
       "writtenOn": "2023-11-16T11:30:55Z",
       "side": 1,
       "message": "might have been simplified otherwise will return always true if upgrade_failed since \u0026\u0026 has higher precedence over || opertor. The current binding of operators like (sth \u0026\u0026 sth2) || sth3",
+      "range": {
+        "startLine": 186,
+        "startChar": 15,
+        "endLine": 189,
+        "endChar": 43
+      },
+      "revId": "fa5cee9197bc4364939c11dc9a7f93983ddd8cae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b85785c9_587884b3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-11-21T11:33:48Z",
+      "side": 1,
+      "message": "It is suppossed to return true in case of module upgrade or failed.",
+      "parentUuid": "c7378435_c5d582f8",
       "range": {
         "startLine": 186,
         "startChar": 15,
