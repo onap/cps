@@ -433,26 +433,16 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
         when: 'attempt to get delta report between anchors'
             def result = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_ANCHOR_3, BOOKSTORE_ANCHOR_5, xpath, fetchDescendantOption)
         then: 'delta report contains expected number of changes'
-            result.size() == 2
+            result.size() == 3
         and: 'delta report contains expected action'
             assert result.get(index).getAction() == expectedActions
         and: 'delta report contains expected xpath'
             assert result.get(index).getXpath() == expectedXpath
         where: 'following data was used'
             scenario            | index | xpath || expectedActions || expectedXpath                                                | fetchDescendantOption
-            'a node is removed' |   0   | '/'   ||    'remove'     || "/bookstore-address[@bookstore-name='Easons-1']"             | OMIT_DESCENDANTS
-            'a node is added'   |   1   | '/'   ||     'add'       || "/bookstore-address[@bookstore-name='Crossword Bookstores']" | OMIT_DESCENDANTS
-    }
-
-    def 'Get delta between 2 anchors where child nodes are added/removed but parent node remains unchanged'() {
-        def parentNodeXpath = "/bookstore"
-        when: 'attempt to get delta report between anchors'
-            def result = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_ANCHOR_3, BOOKSTORE_ANCHOR_5, parentNodeXpath, INCLUDE_ALL_DESCENDANTS)
-        then: 'delta report contains expected number of changes'
-            result.size() == 11
-        and: 'the delta report does not contain parent node xpath'
-            def xpaths = getDeltaReportEntities(result).get('xpaths')
-            assert !(xpaths.contains(parentNodeXpath))
+            'a node is updated' |   0   | '/'   ||    'update'     || "/bookstore"                                                 | OMIT_DESCENDANTS
+            'a node is removed' |   1   | '/'   ||    'remove'     || "/bookstore-address[@bookstore-name='Easons-1']"             | OMIT_DESCENDANTS
+            'a node is added'   |   2   | '/'   ||     'add'       || "/bookstore-address[@bookstore-name='Crossword Bookstores']" | OMIT_DESCENDANTS
     }
 
     def 'Get delta between 2 anchors returns empty response when #scenario'() {
@@ -509,6 +499,64 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
             'has leaves only'            | "/bookstore/categories[@code='5']/books[@title='Book 11']"
             'has child data node only'   | "/bookstore/support-info/contact-emails"
             'is empty'                   | "/bookstore/container-without-leaves"
+    }
+
+    def 'Get delta between anchors when leaves of existing data nodes are updated,: #scenario'() {
+        when: 'attempt to get delta between leaves of existing data nodes'
+            def result = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, sourceAnchor, targetAnchor, xpath, OMIT_DESCENDANTS)
+        then: 'expected action is update'
+            assert result.first().getAction() == 'update'
+        and: 'the payload has expected leaf values'
+            def sourceData = result.first().getSourceData()
+            def targetData = result.first().getTargetData()
+            assert sourceData.equals(expectedSourceValue)
+            assert targetData.equals(expectedTargetValue)
+        where: 'following data was used'
+            scenario                           | sourceAnchor       | targetAnchor       | xpath                                                     || expectedSourceValue            | expectedTargetValue
+            'leaf is updated in target anchor' | BOOKSTORE_ANCHOR_3 | BOOKSTORE_ANCHOR_5 | '/bookstore'                                              || ['bookstore-name': 'Easons-1'] | ['bookstore-name': 'Crossword Bookstores']
+            'leaf is removed in target anchor' | BOOKSTORE_ANCHOR_3 | BOOKSTORE_ANCHOR_5 | "/bookstore/categories[@code='5']/books[@title='Book 1']" || [price:1]                      | null
+            'leaf is added in target anchor'   | BOOKSTORE_ANCHOR_5 | BOOKSTORE_ANCHOR_3 | "/bookstore/categories[@code='5']/books[@title='Book 1']" || null                           | [price:1]
+    }
+
+    def 'Get delta between anchors when child data nodes under existing parent data nodes are updated: #scenario'() {
+        when: 'attempt to get delta between leaves of existing data nodes'
+            def result = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, sourceAnchor, targetAnchor, xpath, DIRECT_CHILDREN_ONLY)
+        then: 'expected action is update'
+            assert result.first().getAction() == 'update'
+        and: 'the delta report has expected child node xpaths'
+            def deltaReportEntities = getDeltaReportEntities(result)
+            def childNodeXpathsInDeltaReport = deltaReportEntities.get('xpaths')
+            assert childNodeXpathsInDeltaReport.contains(expectedChildNodeXpath)
+        where: 'following data was used'
+            scenario                                          | sourceAnchor       | targetAnchor       | xpath                 || expectedChildNodeXpath
+            'source and target anchors have child data nodes' | BOOKSTORE_ANCHOR_3 | BOOKSTORE_ANCHOR_5 | '/bookstore/premises' || '/bookstore/premises/addresses[@house-number=\'2\' and @street=\'Main Street\']'
+            'removed child data nodes in target anchor'       | BOOKSTORE_ANCHOR_5 | BOOKSTORE_ANCHOR_3 | '/bookstore'          || '/bookstore/support-info'
+            'added  child data nodes in target anchor'        | BOOKSTORE_ANCHOR_3 | BOOKSTORE_ANCHOR_5 | '/bookstore'          || '/bookstore/support-info'
+    }
+
+    def 'Get delta between anchors where source and target data nodes have leaves and child data nodes'() {
+        given: 'parent node xpath and expected data in delta report'
+            def parentNodeXpath = "/bookstore/categories[@code='1']"
+            def expectedSourceDataInParentNode = ['name':'Children']
+            def expectedTargetDataInParentNode = ['name':'Kids']
+            def expectedSourceDataInChildNode = [['lang' : 'English'],['price':20, 'editions':[1988, 2000]]]
+            def expectedTargetDataInChildNode = [['lang':'English/German'], ['price':200, 'editions':[2023, 1988, 2000]]]
+        when: 'attempt to get delta between leaves of existing data nodes'
+            def result = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_ANCHOR_3, BOOKSTORE_ANCHOR_5, parentNodeXpath, INCLUDE_ALL_DESCENDANTS)
+             def deltaReportEntities = getDeltaReportEntities(result)
+        then: 'expected action is update'
+            assert result.first().getAction() == 'update'
+        and: 'the payload has expected parent node xpath'
+            assert deltaReportEntities.get('xpaths').contains(parentNodeXpath)
+        and: 'delta report has expected source and target data'
+            assert deltaReportEntities.get('sourcePayload').contains(expectedSourceDataInParentNode)
+            assert deltaReportEntities.get('targetPayload').contains(expectedTargetDataInParentNode)
+        and: 'the delta report also has expected child node xpaths'
+            assert deltaReportEntities.get('xpaths').containsAll(["/bookstore/categories[@code='1']/books[@title='The Gruffalo']", "/bookstore/categories[@code='1']/books[@title='Matilda']"])
+        and: 'the delta report also has expected source and target data of child nodes'
+            assert deltaReportEntities.get('sourcePayload').containsAll(expectedSourceDataInChildNode)
+            assert deltaReportEntities.get('targetPayload').containsAll(expectedTargetDataInChildNode)
+
     }
 
     def getDeltaReportEntities(List<DeltaReport> deltaReport) {

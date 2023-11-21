@@ -58,6 +58,11 @@ public class DeltaReportBuilder {
         return this;
     }
 
+    public DeltaReportBuilder actionUpdate() {
+        this.action = DeltaReport.UPDATE_ACTION;
+        return this;
+    }
+
     /**
      * To create a single entry of {@link DeltaReport}.
      *
