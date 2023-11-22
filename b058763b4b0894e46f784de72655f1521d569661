@@ -3,6 +3,29 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "470b855a_35dd4d37",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-22T10:26:56Z",
+      "side": 1,
+      "message": "very good! Now I understand what you are doing!",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 56
+      },
+      "revId": "b058763b4b0894e46f784de72655f1521d569661",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "989bec15_f7102293",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -14,6 +37,69 @@
       "writtenOn": "2023-11-22T10:18:37Z",
       "side": 1,
       "message": "minor question , otherwise I get it what u are trying to do.",
+      "revId": "b058763b4b0894e46f784de72655f1521d569661",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "066507ff_8a8ec85d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-22T10:26:56Z",
+      "side": 1,
+      "message": "good improvement, I just dont see the need to run all these test with several values...",
+      "revId": "b058763b4b0894e46f784de72655f1521d569661",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfc85a2c_2895fae3",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/ResourceMeterPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-22T10:26:56Z",
+      "side": 1,
+      "message": "I don\u0027t think you need to test this with 3 values",
+      "range": {
+        "startLine": 41,
+        "startChar": 40,
+        "endLine": 41,
+        "endChar": 49
+      },
+      "revId": "b058763b4b0894e46f784de72655f1521d569661",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60b0062d_19744285",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/ResourceMeterPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-22T10:26:56Z",
+      "side": 1,
+      "message": "again no need for several values...",
+      "range": {
+        "startLine": 55,
+        "startChar": 32,
+        "endLine": 55,
+        "endChar": 53
+      },
       "revId": "b058763b4b0894e46f784de72655f1521d569661",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -59,6 +145,52 @@
         "startChar": 89,
         "endLine": 70,
         "endChar": 85
+      },
+      "revId": "b058763b4b0894e46f784de72655f1521d569661",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd78e696_a3946b8e",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/ResourceMeterPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-22T10:26:56Z",
+      "side": 1,
+      "message": "as before",
+      "range": {
+        "startLine": 72,
+        "startChar": 32,
+        "endLine": 72,
+        "endChar": 53
+      },
+      "revId": "b058763b4b0894e46f784de72655f1521d569661",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f40f72f_e565d282",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/ResourceMeterPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-22T10:26:56Z",
+      "side": 1,
+      "message": "as befoer",
+      "range": {
+        "startLine": 88,
+        "startChar": 32,
+        "endLine": 88,
+        "endChar": 53
       },
       "revId": "b058763b4b0894e46f784de72655f1521d569661",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
