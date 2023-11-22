@@ -571,6 +571,30 @@
       },
       "revId": "3f91b9a272de03d8932538b1ab346338db26925c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0bd045fa_97211bd6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncOrUpgradeUtilsSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-11-22T17:36:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "17b708d4_24e04fb5",
+      "range": {
+        "startLine": 209,
+        "startChar": 14,
+        "endLine": 209,
+        "endChar": 166
+      },
+      "revId": "3f91b9a272de03d8932538b1ab346338db26925c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
