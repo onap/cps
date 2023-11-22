@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4cc8f43_b3d10a28",
+        "filename": "integration-test/src/test/java/org/onap/cps/integration/ResourceMeter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-11-22T16:07:46Z",
+      "side": 1,
+      "message": "This code waits for the GC count to increase after calling System.gc(). So it will work even with async collector. This approach is used in benchmarking frameworks like JMH. See https://cruftex.net/2017/03/28/The-6-Memory-Metrics-You-Should-Track-in-Your-Java-Benchmarks.html#metric-used-memory-after-forced-gc",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 5
+      },
+      "revId": "c6dfb03f66eb4573c6fcea761e2414aadaaf7878",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

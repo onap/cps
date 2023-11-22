@@ -81,6 +81,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b54dd0f_82cf1b0a",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/ResourceMeterPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-11-22T16:07:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dfc85a2c_2895fae3",
+      "range": {
+        "startLine": 41,
+        "startChar": 40,
+        "endLine": 41,
+        "endChar": 49
+      },
+      "revId": "b058763b4b0894e46f784de72655f1521d569661",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "60b0062d_19744285",
@@ -104,6 +128,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "581ba483_4149c397",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/ResourceMeterPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-11-22T16:07:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "60b0062d_19744285",
+      "range": {
+        "startLine": 55,
+        "startChar": 32,
+        "endLine": 55,
+        "endChar": 53
+      },
+      "revId": "b058763b4b0894e46f784de72655f1521d569661",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "449214e6_612cf26a",
@@ -117,6 +165,30 @@
       "writtenOn": "2023-11-22T10:18:37Z",
       "side": 1,
       "message": "does this test gives u deterministic results??",
+      "range": {
+        "startLine": 65,
+        "startChar": 12,
+        "endLine": 65,
+        "endChar": 23
+      },
+      "revId": "b058763b4b0894e46f784de72655f1521d569661",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "942eeaad_c1b483e9",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/ResourceMeterPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-11-22T16:07:46Z",
+      "side": 1,
+      "message": "I have changed it to wait for the GC to finish.",
+      "parentUuid": "449214e6_612cf26a",
       "range": {
         "startLine": 65,
         "startChar": 12,
@@ -173,6 +245,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d35f0fd7_f1efdcf1",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/ResourceMeterPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-11-22T16:07:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd78e696_a3946b8e",
+      "range": {
+        "startLine": 72,
+        "startChar": 32,
+        "endLine": 72,
+        "endChar": 53
+      },
+      "revId": "b058763b4b0894e46f784de72655f1521d569661",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4f40f72f_e565d282",
@@ -186,6 +282,30 @@
       "writtenOn": "2023-11-22T10:26:56Z",
       "side": 1,
       "message": "as befoer",
+      "range": {
+        "startLine": 88,
+        "startChar": 32,
+        "endLine": 88,
+        "endChar": 53
+      },
+      "revId": "b058763b4b0894e46f784de72655f1521d569661",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de848714_617e1dfd",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/ResourceMeterPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-11-22T16:07:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4f40f72f_e565d282",
       "range": {
         "startLine": 88,
         "startChar": 32,
