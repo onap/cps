@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "388803e5_097b18a0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-11-22T17:11:53Z",
+      "side": 1,
+      "message": "overall I do understand what we are trying to do.\nExtending the framework to support multiple versions of the YANG model.",
+      "revId": "8090317460b8076f128fd8da46873135b007e2fd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8ce3db9_2d0a7494",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/CmDataSubscriptionModelLoader.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-11-22T17:11:53Z",
+      "side": 1,
+      "message": "NB: anchor-name and schema-set-name both are same.. just pointing..\nNothing stopping us from doing that.",
+      "range": {
+        "startLine": 37,
+        "startChar": 4,
+        "endLine": 38,
+        "endChar": 70
+      },
+      "revId": "8090317460b8076f128fd8da46873135b007e2fd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
