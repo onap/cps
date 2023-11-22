@@ -3,6 +3,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d73f1602_169447c1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncOrUpgradeUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2023-11-22T13:51:35Z",
+      "side": 1,
+      "message": "I dont really like the name here. Using \u0027Or\u0027 is not a good pattern, if the class has more responsibilities then we should create 2 separate classes and a base class for common stuff.\n\nBut in this case I would stuck with the original name or with something like \u0027SyncOperationsUtil\u0027.",
+      "revId": "3f91b9a272de03d8932538b1ab346338db26925c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c83bf719_97635dad",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncOrUpgradeUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2023-11-22T13:51:35Z",
+      "side": 1,
+      "message": "private methods should be placed after public methods\n\nalso why private static?",
+      "revId": "3f91b9a272de03d8932538b1ab346338db26925c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bc269fbe_2f74447f",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncOrUpgradeUtilsSpec.groovy",
         "patchSetId": 4
