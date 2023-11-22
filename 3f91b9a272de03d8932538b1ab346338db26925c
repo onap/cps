@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dfb91e1d_2fc880e1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncOrUpgradeUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-11-22T15:01:10Z",
+      "side": 1,
+      "message": "ModuleOperationsUtils is more appropriate name.",
+      "parentUuid": "d73f1602_169447c1",
+      "revId": "3f91b9a272de03d8932538b1ab346338db26925c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "11a9b7c7_85f7852d",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncOrUpgradeUtils.java",
         "patchSetId": 4
