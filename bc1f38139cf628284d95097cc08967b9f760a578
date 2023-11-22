@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2520d0a8_0cd308e7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleOperationsUtils.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2023-11-22T16:34:12Z",
+      "side": 1,
+      "message": "this should be moved under the public methods to form a separate section with other private methods",
+      "revId": "bc1f38139cf628284d95097cc08967b9f760a578",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
