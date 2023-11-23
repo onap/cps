@@ -70,14 +70,14 @@ public class DmiRestClient {
      * Get DMI plugin health status.
      *
      * @param       dmiPluginBaseUrl the base URL of the dmi-plugin
-     * @return      plugin health status ("UP" is all OK, EMPTY_STRING in case of any exception)
+     * @return      plugin health status ("UP" is all OK, "empty string" in case of any exception)
      */
     public String getDmiHealthStatus(final String dmiPluginBaseUrl) {
         final HttpEntity<Object> httpHeaders = new HttpEntity<>(configureHttpHeaders(new HttpHeaders()));
         try {
             final JsonNode responseHealthStatus =
                 restTemplate.getForObject(dmiPluginBaseUrl + HEALTH_CHECK_URL_EXTENSION,
-                JsonNode.class, httpHeaders);
+                    JsonNode.class, httpHeaders);
             return responseHealthStatus == null ? EMPTY_STRING :
                 responseHealthStatus.get("status").asText();
         } catch (final Exception e) {
