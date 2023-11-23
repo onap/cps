@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3999c167_e1df8386",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-23T09:29:31Z",
+      "side": 1,
+      "message": "looks pretty good and the testware is excellent too!\nJust would like you to extract out constants for the string(format)s since they are so important and need to match the regexs and used in 2 different classes, see details suggested below",
+      "revId": "99255e1a1dd81fab572667334888ea8b5c56b72c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d049a448_26ad434d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-23T09:29:31Z",
+      "side": 1,
+      "message": "Since this string shoudl be same as the string used in moduleOPerationUtils and also for the regex you probaly should extract and use a constant in moduleOPerationUtils",
+      "range": {
+        "startLine": 412,
+        "startChar": 71,
+        "endLine": 412,
+        "endChar": 101
+      },
+      "revId": "99255e1a1dd81fab572667334888ea8b5c56b72c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "480c7e58_bfcce1dd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleOperationsUtils.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-23T09:29:31Z",
+      "side": 1,
+      "message": "NB: Move this UNDER teh regex tehy belong too",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 63
+      },
+      "revId": "99255e1a1dd81fab572667334888ea8b5c56b72c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84fb3db8_a1bdb5e7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleOperationsUtils.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-23T09:29:31Z",
+      "side": 1,
+      "message": "NB: for readbiliy/easy comparison extarct out a conntant and put it just above the regex\u0027s for the same.\nSee also the comment in NetworkCmProxyDataServiceImpl.java\nYou probably need 2 constants\nUPGRADE_FORMAT \u003d \"Upgrade to ModuleSetTag: %s\"\nUPGRADE_FAILED_FORMAT \u003d UPGRADE_FORMAT + \" Attempt #%d failed: %s\"",
+      "range": {
+        "startLine": 133,
+        "startChar": 39,
+        "endLine": 133,
+        "endChar": 91
+      },
+      "revId": "99255e1a1dd81fab572667334888ea8b5c56b72c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a152c517_de79b5c2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleOperationsUtils.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-23T09:29:31Z",
+      "side": 1,
+      "message": "this lok a lot easier now :-)",
+      "range": {
+        "startLine": 149,
+        "startChar": 0,
+        "endLine": 156,
+        "endChar": 13
+      },
+      "revId": "99255e1a1dd81fab572667334888ea8b5c56b72c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "070f3e44_9c9d415e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleOperationsUtils.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-23T09:29:31Z",
+      "side": 1,
+      "message": "make suer all scenarios are tested , beste with a  simple test that just call this method!\nAfter seeing reviewing the testware I think you have :-D",
+      "range": {
+        "startLine": 204,
+        "startChar": 0,
+        "endLine": 215,
+        "endChar": 5
+      },
+      "revId": "99255e1a1dd81fab572667334888ea8b5c56b72c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "19de3004_5072ef8a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleOperationsUtils.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-23T09:29:31Z",
+      "side": 1,
+      "message": "like above best to test this with a test just callign this method (Groovy doesn\u0027t care it is private)\nAfter seeing reviewing the testware I think you have :-D",
+      "range": {
+        "startLine": 232,
+        "startChar": 20,
+        "endLine": 232,
+        "endChar": 30
+      },
+      "revId": "99255e1a1dd81fab572667334888ea8b5c56b72c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

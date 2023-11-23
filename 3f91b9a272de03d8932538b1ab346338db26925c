@@ -73,6 +73,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c80029ad_5edb4168",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncOrUpgradeUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-23T09:29:31Z",
+      "side": 1,
+      "message": "NB: sicnce this is related to the regex belwo move it right under the regex pattern",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 63
+      },
+      "revId": "3f91b9a272de03d8932538b1ab346338db26925c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "11a9b7c7_85f7852d",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncOrUpgradeUtils.java",
         "patchSetId": 4
