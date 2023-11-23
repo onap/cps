@@ -22,7 +22,7 @@ package org.onap.cps.ncmp.api.impl.trustlevel
 
 import spock.lang.Specification
 
-class TrustLevelTest extends Specification {
+class TrustLevelSpec extends Specification {
 
     def 'Get effective trust level between this and other.'() {
         expect: 'the lower of two is returned'
