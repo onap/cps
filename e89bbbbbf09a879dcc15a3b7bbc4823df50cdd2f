@@ -183,6 +183,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9e5977d_f1c1cb07",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-23T16:30:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "91def903_e09f68f3",
+      "range": {
+        "startLine": 88,
+        "startChar": 92,
+        "endLine": 88,
+        "endChar": 94
+      },
+      "revId": "e89bbbbbf09a879dcc15a3b7bbc4823df50cdd2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "94c2c8ee_6565bd5e",
@@ -441,6 +465,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d91445a_3938e8a8",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManagerSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-23T16:30:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f47f5e3a_10fdb191",
+      "range": {
+        "startLine": 33,
+        "startChar": 9,
+        "endLine": 33,
+        "endChar": 56
+      },
+      "revId": "e89bbbbbf09a879dcc15a3b7bbc4823df50cdd2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c2fe98ba_3885eca9",
@@ -454,6 +502,30 @@
       "writtenOn": "2023-11-23T14:42:15Z",
       "side": 1,
       "message": "two cm handles: onr with no trustlevel and one trusted",
+      "range": {
+        "startLine": 34,
+        "startChar": 16,
+        "endLine": 34,
+        "endChar": 40
+      },
+      "revId": "e89bbbbbf09a879dcc15a3b7bbc4823df50cdd2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cefeb8a9_99710b82",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManagerSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-23T16:30:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c2fe98ba_3885eca9",
       "range": {
         "startLine": 34,
         "startChar": 16,
@@ -487,6 +559,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "24a92377_92d888d0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManagerSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-23T16:30:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de4d5893_5e37bb7a",
+      "range": {
+        "startLine": 35,
+        "startChar": 78,
+        "endLine": 35,
+        "endChar": 82
+      },
+      "revId": "e89bbbbbf09a879dcc15a3b7bbc4823df50cdd2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "157ef31a_0acb5ef2",
@@ -500,6 +596,30 @@
       "writtenOn": "2023-11-23T14:42:15Z",
       "side": 1,
       "message": "are in the cache and are trusted",
+      "range": {
+        "startLine": 40,
+        "startChar": 30,
+        "endLine": 40,
+        "endChar": 52
+      },
+      "revId": "e89bbbbbf09a879dcc15a3b7bbc4823df50cdd2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "153f1ce8_e50c61d6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManagerSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-23T16:30:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "157ef31a_0acb5ef2",
       "range": {
         "startLine": 40,
         "startChar": 30,
@@ -533,6 +653,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d1f3535_d2874571",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManagerSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-23T16:30:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "afc6cb05_0b205419",
+      "range": {
+        "startLine": 42,
+        "startChar": 67,
+        "endLine": 42,
+        "endChar": 71
+      },
+      "revId": "e89bbbbbf09a879dcc15a3b7bbc4823df50cdd2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3a67e03f_e2c26201",
@@ -546,6 +690,30 @@
       "writtenOn": "2023-11-23T14:42:15Z",
       "side": 1,
       "message": "Initial cm handle registration with a cm handle that is not trusted",
+      "range": {
+        "startLine": 45,
+        "startChar": 9,
+        "endLine": 45,
+        "endChar": 58
+      },
+      "revId": "e89bbbbbf09a879dcc15a3b7bbc4823df50cdd2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "042dd33a_bd22b451",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManagerSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-23T16:30:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a67e03f_e2c26201",
       "range": {
         "startLine": 45,
         "startChar": 9,
@@ -579,6 +747,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8763fc5_f32941bc",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManagerSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-23T16:30:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2a64146f_0662270e",
+      "range": {
+        "startLine": 47,
+        "startChar": 12,
+        "endLine": 47,
+        "endChar": 66
+      },
+      "revId": "e89bbbbbf09a879dcc15a3b7bbc4823df50cdd2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7d72368e_0e7a02f0",
@@ -592,6 +784,30 @@
       "writtenOn": "2023-11-23T14:42:15Z",
       "side": 1,
       "message": "a cm handle that is not trusted",
+      "range": {
+        "startLine": 49,
+        "startChar": 15,
+        "endLine": 49,
+        "endChar": 38
+      },
+      "revId": "e89bbbbbf09a879dcc15a3b7bbc4823df50cdd2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8fb6896f_1c94814d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManagerSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-23T16:30:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7d72368e_0e7a02f0",
       "range": {
         "startLine": 49,
         "startChar": 15,
@@ -625,6 +841,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c574eb2f_3a8ae569",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManagerSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-23T16:30:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "218bd035_17a2735e",
+      "range": {
+        "startLine": 50,
+        "startChar": 45,
+        "endLine": 50,
+        "endChar": 73
+      },
+      "revId": "e89bbbbbf09a879dcc15a3b7bbc4823df50cdd2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6bf42c11_9e1eb103",
@@ -638,6 +878,30 @@
       "writtenOn": "2023-11-23T14:42:15Z",
       "side": 1,
       "message": "need _*  \ntest is now giving false (positives)",
+      "range": {
+        "startLine": 54,
+        "startChar": 87,
+        "endLine": 54,
+        "endChar": 89
+      },
+      "revId": "e89bbbbbf09a879dcc15a3b7bbc4823df50cdd2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c863c6a3_2e3c8c9a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManagerSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-23T16:30:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6bf42c11_9e1eb103",
       "range": {
         "startLine": 54,
         "startChar": 87,
