@@ -63,6 +63,53 @@
       },
       "revId": "8090317460b8076f128fd8da46873135b007e2fd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae8b894b_c55accbb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/CmDataSubscriptionModelLoader.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-23T10:10:27Z",
+      "side": 1,
+      "message": "yeas but this way is is clear they are names of different things!",
+      "parentUuid": "8c8671fc_7dddbbd3",
+      "range": {
+        "startLine": 37,
+        "startChar": 4,
+        "endLine": 38,
+        "endChar": 70
+      },
+      "revId": "8090317460b8076f128fd8da46873135b007e2fd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a8c4c1d_4640c02f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/CmDataSubscriptionModelLoader.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-23T10:10:27Z",
+      "side": 1,
+      "message": "NB: add a comment explaining deprecated stuff should be removed when a new version is added",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 80
+      },
+      "revId": "8090317460b8076f128fd8da46873135b007e2fd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
