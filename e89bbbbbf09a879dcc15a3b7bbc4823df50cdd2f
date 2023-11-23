@@ -1,0 +1,205 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c65c142c_48267a78",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-23T10:30:43Z",
+      "side": 1,
+      "message": "soem small comemnt, need to go to mneeting now",
+      "revId": "e89bbbbbf09a879dcc15a3b7bbc4823df50cdd2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84983245_0767267c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-23T10:30:43Z",
+      "side": 1,
+      "message": "always stay consistent with naming: initialTrustLevelPerCmHandleId",
+      "range": {
+        "startLine": 477,
+        "startChar": 76,
+        "endLine": 477,
+        "endChar": 105
+      },
+      "revId": "e89bbbbbf09a879dcc15a3b7bbc4823df50cdd2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8943ce16_b75503d2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 478,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-23T10:30:43Z",
+      "side": 1,
+      "message": "instead of converting this, can we improve the methods below to accept any Collection (or a Set)",
+      "range": {
+        "startLine": 478,
+        "startChar": 80,
+        "endLine": 478,
+        "endChar": 98
+      },
+      "revId": "e89bbbbbf09a879dcc15a3b7bbc4823df50cdd2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22b4459d_40d8243a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-23T10:30:43Z",
+      "side": 1,
+      "message": "initialise with the known size",
+      "range": {
+        "startLine": 88,
+        "startChar": 92,
+        "endLine": 88,
+        "endChar": 94
+      },
+      "revId": "e89bbbbbf09a879dcc15a3b7bbc4823df50cdd2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94c2c8ee_6565bd5e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-23T10:30:43Z",
+      "side": 1,
+      "message": "NB: please combien with previous line",
+      "range": {
+        "startLine": 218,
+        "startChar": 36,
+        "endLine": 218,
+        "endChar": 72
+      },
+      "revId": "e89bbbbbf09a879dcc15a3b7bbc4823df50cdd2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3ed714d_f049a995",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-23T10:30:43Z",
+      "side": 1,
+      "message": "NB: use \u0027english\u0027 e.g. \u0027 new trusted cm handle\u0027",
+      "range": {
+        "startLine": 243,
+        "startChar": 17,
+        "endLine": 243,
+        "endChar": 28
+      },
+      "revId": "e89bbbbbf09a879dcc15a3b7bbc4823df50cdd2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "210e9c21_67903f9d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-23T10:30:43Z",
+      "side": 1,
+      "message": "existing cm handle without trust level",
+      "range": {
+        "startLine": 244,
+        "startChar": 13,
+        "endLine": 244,
+        "endChar": 53
+      },
+      "revId": "e89bbbbbf09a879dcc15a3b7bbc4823df50cdd2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a32de6fa_0bef2267",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-23T10:30:43Z",
+      "side": 1,
+      "message": "new cm handle without trustlevel",
+      "range": {
+        "startLine": 245,
+        "startChar": 13,
+        "endLine": 245,
+        "endChar": 44
+      },
+      "revId": "e89bbbbbf09a879dcc15a3b7bbc4823df50cdd2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14235711_9136f9c5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/lcm/LcmEventsCmHandleStateHandlerImplSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-23T10:30:43Z",
+      "side": 1,
+      "message": "NB: No need for ( and )",
+      "range": {
+        "startLine": 221,
+        "startChar": 20,
+        "endLine": 221,
+        "endChar": 40
+      },
+      "revId": "e89bbbbbf09a879dcc15a3b7bbc4823df50cdd2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
