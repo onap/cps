@@ -30,6 +30,7 @@ import static org.onap.cps.ncmp.api.impl.operations.OperationType.DELETE;
 import static org.onap.cps.ncmp.api.impl.operations.OperationType.PATCH;
 import static org.onap.cps.ncmp.api.impl.operations.OperationType.UPDATE;
 
+import io.micrometer.core.annotation.Timed;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -92,16 +93,14 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      * @param includeDescendants   whether to include descendants or not
      * @return {@code ResponseEntity} response from dmi plugin
      */
-
     @Override
+    @Timed(value = "cps.ncmp.controller.get", description = "Time taken to get resource data from datastore")
     public ResponseEntity<Object> getResourceDataForCmHandle(final String datastoreName,
                                                              final String cmHandle,
                                                              final String resourceIdentifier,
                                                              final String optionsParamInQuery,
                                                              final String topicParamInQuery,
                                                              final Boolean includeDescendants) {
-
-
         final NcmpDatastoreRequestHandler ncmpDatastoreRequestHandler = getNcmpDatastoreRequestHandler(datastoreName);
         return ncmpDatastoreRequestHandler.executeRequest(datastoreName, cmHandle, resourceIdentifier,
                 optionsParamInQuery, topicParamInQuery, includeDescendants);
