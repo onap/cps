@@ -28,6 +28,7 @@ import static org.onap.cps.ncmp.api.impl.inventory.CmHandleState.READY;
 import io.micrometer.core.annotation.Timed;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -80,6 +81,15 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
                 prepareCmHandleTransitionBatch(cmHandleStatePerCmHandle);
         persistCmHandleBatch(cmHandleTransitionPairs);
         lcmEventsCmHandleStateHandlerAsyncHelper.publishLcmEventBatchAsynchronously(cmHandleTransitionPairs);
+    }
+
+    @Override
+    public void initiateState(final Collection<YangModelCmHandle> yangModelCmHandles) {
+        final Map<YangModelCmHandle, CmHandleState> cmHandleStatePerCmHandle = new HashMap<>(yangModelCmHandles.size());
+        for (final YangModelCmHandle yangModelCmHandle : yangModelCmHandles) {
+            cmHandleStatePerCmHandle.put(yangModelCmHandle, ADVISED);
+        }
+        updateCmHandleStateBatch(cmHandleStatePerCmHandle);
     }
 
     private Collection<CmHandleTransitionPair> prepareCmHandleTransitionBatch(
