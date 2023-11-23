@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e85f5b66_557e19ef",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 1140,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-11-23T09:37:57Z",
+      "side": 1,
+      "message": "Question, isnt this removed already from Montreal? why is it added again",
+      "range": {
+        "startLine": 1140,
+        "startChar": 6,
+        "endLine": 1140,
+        "endChar": 22
+      },
+      "revId": "8ceaa3da8611b72b1171b5027b860dc3b97706eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
