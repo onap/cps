@@ -95,6 +95,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8cbed69_dbfca159",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-23T11:58:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a0e54050_4b55d23c",
+      "range": {
+        "startLine": 319,
+        "startChar": 8,
+        "endLine": 319,
+        "endChar": 80
+      },
+      "revId": "9425f47d306fcba5cf9baf09d88dc160d5d50122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7243cbec_77ac535a",
@@ -226,6 +250,30 @@
       "side": 1,
       "message": "Yeah it was agreed to only send for NONE",
       "parentUuid": "e1573bae_c66ef543",
+      "range": {
+        "startLine": 464,
+        "startChar": 2,
+        "endLine": 467,
+        "endChar": 17
+      },
+      "revId": "9425f47d306fcba5cf9baf09d88dc160d5d50122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbc08901_5f664828",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 467,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-23T11:58:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2bcc5bb0_e223187b",
       "range": {
         "startLine": 464,
         "startChar": 2,

@@ -348,6 +348,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "042bda83_6509c999",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-23T11:58:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "68a7410b_38d25672",
+      "range": {
+        "startLine": 58,
+        "startChar": 20,
+        "endLine": 58,
+        "endChar": 56
+      },
+      "revId": "c2e569163ba5e51af8a496f4cf8aaa9a293bfecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4122798d_91c794ab",
@@ -668,6 +692,30 @@
       "side": 1,
       "message": "ok I see",
       "parentUuid": "9296535d_efcd6ea1",
+      "range": {
+        "startLine": 68,
+        "startChar": 53,
+        "endLine": 68,
+        "endChar": 62
+      },
+      "revId": "c2e569163ba5e51af8a496f4cf8aaa9a293bfecf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5440b3a1_f54cace4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/dmiavailability/DmiPluginWatchDog.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-23T11:58:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "92c51e9a_74af54fc",
       "range": {
         "startLine": 68,
         "startChar": 53,

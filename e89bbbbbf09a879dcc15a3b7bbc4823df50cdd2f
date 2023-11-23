@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b54775cd_715481c9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-23T11:58:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "84983245_0767267c",
+      "range": {
+        "startLine": 477,
+        "startChar": 76,
+        "endLine": 477,
+        "endChar": 105
+      },
+      "revId": "e89bbbbbf09a879dcc15a3b7bbc4823df50cdd2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8943ce16_b75503d2",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-11-23T10:30:43Z",
       "side": 1,
       "message": "instead of converting this, can we improve the methods below to accept any Collection (or a Set)",
+      "range": {
+        "startLine": 478,
+        "startChar": 80,
+        "endLine": 478,
+        "endChar": 98
+      },
+      "revId": "e89bbbbbf09a879dcc15a3b7bbc4823df50cdd2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ef70cd1_08266894",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 478,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-23T11:58:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8943ce16_b75503d2",
       "range": {
         "startLine": 478,
         "startChar": 80,
@@ -89,6 +137,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "38a7c1f1_d10e0fb5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-23T11:58:31Z",
+      "side": 1,
+      "message": "How is that giving it 2 as init capacity? Since in a request, there would not be too much cm handle?",
+      "parentUuid": "22b4459d_40d8243a",
+      "range": {
+        "startLine": 88,
+        "startChar": 92,
+        "endLine": 88,
+        "endChar": 94
+      },
+      "revId": "e89bbbbbf09a879dcc15a3b7bbc4823df50cdd2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "94c2c8ee_6565bd5e",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
         "patchSetId": 9
@@ -100,6 +172,30 @@
       "writtenOn": "2023-11-23T10:30:43Z",
       "side": 1,
       "message": "NB: please combien with previous line",
+      "range": {
+        "startLine": 218,
+        "startChar": 36,
+        "endLine": 218,
+        "endChar": 72
+      },
+      "revId": "e89bbbbbf09a879dcc15a3b7bbc4823df50cdd2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16a97590_cc338c36",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-23T11:58:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "94c2c8ee_6565bd5e",
       "range": {
         "startLine": 218,
         "startChar": 36,
@@ -133,6 +229,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f750aeda_c9731afa",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-23T11:58:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d3ed714d_f049a995",
+      "range": {
+        "startLine": 243,
+        "startChar": 17,
+        "endLine": 243,
+        "endChar": 28
+      },
+      "revId": "e89bbbbbf09a879dcc15a3b7bbc4823df50cdd2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "210e9c21_67903f9d",
@@ -146,6 +266,30 @@
       "writtenOn": "2023-11-23T10:30:43Z",
       "side": 1,
       "message": "existing cm handle without trust level",
+      "range": {
+        "startLine": 244,
+        "startChar": 13,
+        "endLine": 244,
+        "endChar": 53
+      },
+      "revId": "e89bbbbbf09a879dcc15a3b7bbc4823df50cdd2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28415bd6_b46c7dde",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-23T11:58:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "210e9c21_67903f9d",
       "range": {
         "startLine": 244,
         "startChar": 13,
@@ -179,6 +323,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f73f1d0_636db5af",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-23T11:58:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a32de6fa_0bef2267",
+      "range": {
+        "startLine": 245,
+        "startChar": 13,
+        "endLine": 245,
+        "endChar": 44
+      },
+      "revId": "e89bbbbbf09a879dcc15a3b7bbc4823df50cdd2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "14235711_9136f9c5",
@@ -192,6 +360,30 @@
       "writtenOn": "2023-11-23T10:30:43Z",
       "side": 1,
       "message": "NB: No need for ( and )",
+      "range": {
+        "startLine": 221,
+        "startChar": 20,
+        "endLine": 221,
+        "endChar": 40
+      },
+      "revId": "e89bbbbbf09a879dcc15a3b7bbc4823df50cdd2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc763c14_3a626777",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/lcm/LcmEventsCmHandleStateHandlerImplSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-23T11:58:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "14235711_9136f9c5",
       "range": {
         "startLine": 221,
         "startChar": 20,

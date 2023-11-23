@@ -65,6 +65,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf47663a_388def14",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/client/DmiRestClient.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-23T11:58:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3a9aecc9_57ed1fb7",
+      "range": {
+        "startLine": 41,
+        "startChar": 13,
+        "endLine": 41,
+        "endChar": 27
+      },
+      "revId": "f0550e1e5698f88f0c226ffec759238b43e224b5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ac14218e_a6ddd105",
@@ -595,6 +619,30 @@
       "writtenOn": "2023-11-16T15:43:30Z",
       "side": 1,
       "message": "P.S. No need to review since already handled in other commit.",
+      "range": {
+        "startLine": 48,
+        "startChar": 6,
+        "endLine": 48,
+        "endChar": 24
+      },
+      "revId": "f0550e1e5698f88f0c226ffec759238b43e224b5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dda74fe6_ac835a2a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/client/DmiRestClientSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-23T11:58:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "cc1ec75d_89c43809",
       "range": {
         "startLine": 48,
         "startChar": 6,
