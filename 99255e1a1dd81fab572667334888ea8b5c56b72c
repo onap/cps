@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7270f212_74cfd925",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-23T10:37:09Z",
+      "side": 1,
+      "message": "Nice to me with some NB comments in tests.",
+      "revId": "99255e1a1dd81fab572667334888ea8b5c56b72c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d049a448_26ad434d",
@@ -151,6 +168,75 @@
         "startChar": 20,
         "endLine": 232,
         "endChar": 30
+      },
+      "revId": "99255e1a1dd81fab572667334888ea8b5c56b72c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c313691a_d69a1ed8",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleOperationsUtilsSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-23T10:37:09Z",
+      "side": 1,
+      "message": "NB: needs indentation",
+      "range": {
+        "startLine": 145,
+        "startChar": 0,
+        "endLine": 145,
+        "endChar": 160
+      },
+      "revId": "99255e1a1dd81fab572667334888ea8b5c56b72c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42efb680_89d01d73",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleOperationsUtilsSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-23T10:37:09Z",
+      "side": 1,
+      "message": "NB: ||",
+      "range": {
+        "startLine": 206,
+        "startChar": 57,
+        "endLine": 206,
+        "endChar": 58
+      },
+      "revId": "99255e1a1dd81fab572667334888ea8b5c56b72c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61e38fbc_739566e8",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncTasksSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-23T10:37:09Z",
+      "side": 1,
+      "message": "NB: I think this is redundant since the test start with Failed already.",
+      "range": {
+        "startLine": 138,
+        "startChar": 28,
+        "endLine": 138,
+        "endChar": 34
       },
       "revId": "99255e1a1dd81fab572667334888ea8b5c56b72c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
