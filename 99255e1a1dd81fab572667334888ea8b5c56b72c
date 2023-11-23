@@ -387,6 +387,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b45ac00f_56eb9fd9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleOperationsUtilsSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-23T11:40:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1f2139ec_499ca8b4",
+      "range": {
+        "startLine": 206,
+        "startChar": 57,
+        "endLine": 206,
+        "endChar": 58
+      },
+      "revId": "99255e1a1dd81fab572667334888ea8b5c56b72c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "61e38fbc_739566e8",
