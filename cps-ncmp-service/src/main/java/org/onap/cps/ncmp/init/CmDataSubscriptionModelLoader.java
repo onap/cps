@@ -31,16 +31,23 @@ import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
-public class SubscriptionModelLoader extends AbstractModelLoader {
+public class CmDataSubscriptionModelLoader extends AbstractModelLoader {
 
-    private static final String MODEL_FILENAME = "subscription.yang";
-    private static final String ANCHOR_NAME = "AVC-Subscriptions";
-    private static final String SCHEMASET_NAME = "subscriptions";
-    private static final String REGISTRY_DATANODE_NAME = "subscription-registry";
+    private static final String MODEL_FILENAME = "cm-data-subscriptions@2023-11-13.yang";
+    private static final String SCHEMASET_NAME = "cm-data-subscriptions";
+    private static final String ANCHOR_NAME = "cm-data-subscriptions";
+    private static final String REGISTRY_DATANODE_NAME = "datastores";
 
-    public SubscriptionModelLoader(final CpsAdminService cpsAdminService,
-                                   final CpsModuleService cpsModuleService,
-                                   final CpsDataService cpsDataService) {
+    private static final String DEPRECATED_MODEL_FILENAME = "subscription.yang";
+    private static final String DEPRECATED_ANCHOR_NAME = "AVC-Subscriptions";
+    private static final String DEPRECATED_SCHEMASET_NAME = "subscriptions";
+    private static final String DEPRECATED_REGISTRY_DATANODE_NAME = "subscription-registry";
+
+
+
+    public CmDataSubscriptionModelLoader(final CpsAdminService cpsAdminService,
+                                         final CpsModuleService cpsModuleService,
+                                         final CpsDataService cpsDataService) {
         super(cpsAdminService, cpsModuleService, cpsDataService);
     }
 
@@ -51,17 +58,20 @@ public class SubscriptionModelLoader extends AbstractModelLoader {
     public void onboardOrUpgradeModel() {
         if (subscriptionModelLoaderEnabled) {
             waitUntilDataspaceIsAvailable(NCMP_DATASPACE_NAME);
-            onboardSubscriptionModel();
-            log.info("Subscription Model onboarded successfully");
+            onboardSubscriptionModels();
+            log.info("Subscription Models onboarded successfully");
         } else {
             log.info("Subscription Model Loader is disabled");
         }
     }
 
-    private void onboardSubscriptionModel() {
+    private void onboardSubscriptionModels() {
+        createSchemaSet(NCMP_DATASPACE_NAME, DEPRECATED_SCHEMASET_NAME, DEPRECATED_MODEL_FILENAME);
+        createAnchor(NCMP_DATASPACE_NAME, DEPRECATED_SCHEMASET_NAME, DEPRECATED_ANCHOR_NAME);
+        createTopLevelDataNode(NCMP_DATASPACE_NAME, DEPRECATED_ANCHOR_NAME, DEPRECATED_REGISTRY_DATANODE_NAME);
+
         createSchemaSet(NCMP_DATASPACE_NAME, SCHEMASET_NAME, MODEL_FILENAME);
         createAnchor(NCMP_DATASPACE_NAME, SCHEMASET_NAME, ANCHOR_NAME);
         createTopLevelDataNode(NCMP_DATASPACE_NAME, ANCHOR_NAME, REGISTRY_DATANODE_NAME);
     }
-
 }

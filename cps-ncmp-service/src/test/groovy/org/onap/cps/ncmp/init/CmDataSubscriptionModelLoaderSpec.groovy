@@ -34,21 +34,21 @@ import org.springframework.boot.context.event.ApplicationReadyEvent
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import spock.lang.Specification
 
-class SubscriptionModelLoaderSpec extends Specification {
+class CmDataSubscriptionModelLoaderSpec extends Specification {
 
     def mockCpsAdminService = Mock(CpsAdminService)
     def mockCpsModuleService = Mock(CpsModuleService)
     def mockCpsDataService = Mock(CpsDataService)
-    def objectUnderTest = new SubscriptionModelLoader(mockCpsAdminService, mockCpsModuleService, mockCpsDataService)
+    def objectUnderTest = new CmDataSubscriptionModelLoader(mockCpsAdminService, mockCpsModuleService, mockCpsDataService)
 
     def applicationContext = new AnnotationConfigApplicationContext()
 
-    def expectedYangResourceToContentMap
+    def expectedYangResourcesToContentMap
     def logger = (Logger) LoggerFactory.getLogger(objectUnderTest.class)
     def loggingListAppender
 
     void setup() {
-        expectedYangResourceToContentMap = objectUnderTest.createYangResourceToContentMap('subscription.yang')
+        expectedYangResourcesToContentMap = objectUnderTest.createYangResourcesToContentMap('cm-data-subscriptions@2023-11-13.yang')
         logger.setLevel(Level.DEBUG)
         loggingListAppender = new ListAppender()
         logger.addAppender(loggingListAppender)
@@ -57,7 +57,7 @@ class SubscriptionModelLoaderSpec extends Specification {
     }
 
     void cleanup() {
-        ((Logger) LoggerFactory.getLogger(SubscriptionModelLoader.class)).detachAndStopAllAppenders()
+        ((Logger) LoggerFactory.getLogger(CmDataSubscriptionModelLoader.class)).detachAndStopAllAppenders()
         applicationContext.close()
     }
 
@@ -69,11 +69,11 @@ class SubscriptionModelLoaderSpec extends Specification {
         when: 'the application is ready'
             objectUnderTest.onApplicationEvent(Mock(ApplicationReadyEvent))
         then: 'the module service to create schema set is called once'
-            1 * mockCpsModuleService.createSchemaSet(NCMP_DATASPACE_NAME, 'subscriptions', expectedYangResourceToContentMap)
+            1 * mockCpsModuleService.createSchemaSet(NCMP_DATASPACE_NAME, 'cm-data-subscriptions', expectedYangResourcesToContentMap)
         and: 'the admin service to create an anchor set is called once'
-            1 * mockCpsAdminService.createAnchor(NCMP_DATASPACE_NAME, 'subscriptions', 'AVC-Subscriptions')
+            1 * mockCpsAdminService.createAnchor(NCMP_DATASPACE_NAME, 'cm-data-subscriptions', 'cm-data-subscriptions')
         and: 'the data service to create a top level datanode is called once'
-            1 * mockCpsDataService.saveData(NCMP_DATASPACE_NAME, 'AVC-Subscriptions', '{"subscription-registry":{}}', _)
+            1 * mockCpsDataService.saveData(NCMP_DATASPACE_NAME, 'cm-data-subscriptions', '{"datastores":{}}', _)
     }
 
     def 'Subscription model loader disabled.' () {

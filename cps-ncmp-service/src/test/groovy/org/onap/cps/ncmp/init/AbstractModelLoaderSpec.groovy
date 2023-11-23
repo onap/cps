@@ -49,7 +49,7 @@ class AbstractModelLoaderSpec extends Specification {
     def loggingListAppender
 
     void setup() {
-        yangResourceToContentMap = objectUnderTest.createYangResourceToContentMap('subscription.yang')
+        yangResourceToContentMap = objectUnderTest.createYangResourcesToContentMap('subscription.yang')
         logger.setLevel(Level.DEBUG)
         loggingListAppender = new ListAppender()
         logger.addAppender(loggingListAppender)
@@ -58,7 +58,7 @@ class AbstractModelLoaderSpec extends Specification {
     }
 
     void cleanup() {
-        ((Logger) LoggerFactory.getLogger(SubscriptionModelLoader.class)).detachAndStopAllAppenders()
+        ((Logger) LoggerFactory.getLogger(CmDataSubscriptionModelLoader.class)).detachAndStopAllAppenders()
         applicationContext.close()
     }
 

@@ -49,7 +49,7 @@ class InventoryModelLoaderSpec extends Specification {
     def loggingListAppender
 
     void setup() {
-        expectedYangResourceToContentMap = objectUnderTest.createYangResourceToContentMap('dmi-registry@2023-08-23.yang')
+        expectedYangResourceToContentMap = objectUnderTest.createYangResourcesToContentMap('dmi-registry@2023-08-23.yang')
         logger.setLevel(Level.DEBUG)
         loggingListAppender = new ListAppender()
         logger.addAppender(loggingListAppender)
@@ -58,7 +58,7 @@ class InventoryModelLoaderSpec extends Specification {
     }
 
     void cleanup() {
-        ((Logger) LoggerFactory.getLogger(SubscriptionModelLoader.class)).detachAndStopAllAppenders()
+        ((Logger) LoggerFactory.getLogger(CmDataSubscriptionModelLoader.class)).detachAndStopAllAppenders()
         applicationContext.close()
     }
 
