@@ -18,6 +18,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0590c99_db4c7f00",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManagerSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-24T14:54:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e9deb1d_83872a88",
+      "revId": "08b5b1c4074deb4ac8215e12e0e9eca6dd2530e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "53f271ca_de50781d",
@@ -35,6 +53,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bbb13ff_d6cbbe2c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManagerSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-24T14:54:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "53f271ca_de50781d",
+      "revId": "08b5b1c4074deb4ac8215e12e0e9eca6dd2530e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9c9a2f48_db5528bd",
@@ -48,6 +84,24 @@
       "writtenOn": "2023-11-24T14:13:59Z",
       "side": 1,
       "message": "typo in \u0027wit\u0027",
+      "revId": "08b5b1c4074deb4ac8215e12e0e9eca6dd2530e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c3b8598_42ef5757",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManagerSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-24T14:54:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9c9a2f48_db5528bd",
       "revId": "08b5b1c4074deb4ac8215e12e0e9eca6dd2530e5",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
