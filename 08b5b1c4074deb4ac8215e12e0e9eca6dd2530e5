@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e9deb1d_83872a88",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManagerSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2023-11-24T14:13:59Z",
+      "side": 1,
+      "message": "I think in general the \u0027given\u0027 parts of each test should be redone.\nThink about the slogans as some simple description about what each use case represents.\nE.g: \u0027a cm handle: with not trusted\u0027 should be something like \u0027a not trusted cm handle\u0027 or in the opposite case: \u0027a trusted cm handle\u0027.",
+      "revId": "08b5b1c4074deb4ac8215e12e0e9eca6dd2530e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53f271ca_de50781d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManagerSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2023-11-24T14:13:59Z",
+      "side": 1,
+      "message": "should not use words that are representing variables from the code or anything like that.\n\u0027trustlevel\u0027 --\u003e \u0027trust level\u0027",
+      "revId": "08b5b1c4074deb4ac8215e12e0e9eca6dd2530e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c9a2f48_db5528bd",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManagerSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2023-11-24T14:13:59Z",
+      "side": 1,
+      "message": "typo in \u0027wit\u0027",
+      "revId": "08b5b1c4074deb4ac8215e12e0e9eca6dd2530e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
