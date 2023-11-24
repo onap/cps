@@ -20,6 +20,10 @@
 
 package org.onap.cps.ncmp.rest.mapper
 
+import org.onap.cps.ncmp.api.impl.events.cmsubscription.CmSubscriptionNcmpInEventMapper
+import org.onap.cps.ncmp.api.impl.inventory.CompositeState
+import org.springframework.boot.test.context.SpringBootTest
+
 import static org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory.LOCKED_MISBEHAVING
 import static org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory.MODULE_SYNC_FAILED
 
@@ -62,10 +66,9 @@ class CmHandleStateMapperSpec extends Specification {
             assert result.dataSyncState.operational.getSyncState() != null
     }
 
-    @Ignore
     def 'Handling null state.'() {
         expect: 'converting null returns null'
-            objectUnderTest.toDataStores(null) == null
+            CmHandleStateMapper.toDataStores(null) == null
     }
 
     def 'Internal to External Lock Reason Mapping of #scenario'() {
