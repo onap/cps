@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14bca1d7_b1db11f8",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-11-24T12:42:14Z",
+      "side": 1,
+      "message": "NB: leavesOfTargetDataNode",
+      "range": {
+        "startLine": 109,
+        "startChar": 40,
+        "endLine": 109,
+        "endChar": 62
+      },
+      "revId": "d29d3ddf13794d05d946a40781ac4a3503e3bb54",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d9185b9_8997995a",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-11-24T12:42:14Z",
+      "side": 1,
+      "message": "do u think we can make the formal args of the below 3 methods similar.\ngetAddedDeltaReports\ngetRemovedDeltaReports\ngetUpdatedDeltaReports\n\nfor consistency. Eventually it might remove some of the duplicacy if we have it.",
+      "range": {
+        "startLine": 198,
+        "startChar": 37,
+        "endLine": 198,
+        "endChar": 57
+      },
+      "revId": "d29d3ddf13794d05d946a40781ac4a3503e3bb54",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
