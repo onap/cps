@@ -3,6 +3,466 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "56abe7c0_5f65f2f2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 15
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-11-24T15:27:25Z",
+      "side": 1,
+      "message": "NB : heart",
+      "range": {
+        "startLine": 13,
+        "startChar": 11,
+        "endLine": 13,
+        "endChar": 18
+      },
+      "revId": "08b5b1c4074deb4ac8215e12e0e9eca6dd2530e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34816485_0ed33e80",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 15
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-11-24T15:27:25Z",
+      "side": 1,
+      "message": "watchdog",
+      "range": {
+        "startLine": 14,
+        "startChar": 34,
+        "endLine": 14,
+        "endChar": 43
+      },
+      "revId": "08b5b1c4074deb4ac8215e12e0e9eca6dd2530e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81dbdc7f_fd39f7b3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-11-24T15:27:25Z",
+      "side": 1,
+      "message": "cmHandlesToBeCreated.size()",
+      "range": {
+        "startLine": 320,
+        "startChar": 84,
+        "endLine": 320,
+        "endChar": 86
+      },
+      "revId": "08b5b1c4074deb4ac8215e12e0e9eca6dd2530e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c9fd0d4_9b40bf41",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-11-24T15:27:25Z",
+      "side": 1,
+      "message": "cmHandlesToBeCreated.size()",
+      "range": {
+        "startLine": 322,
+        "startChar": 74,
+        "endLine": 322,
+        "endChar": 76
+      },
+      "revId": "08b5b1c4074deb4ac8215e12e0e9eca6dd2530e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79e94037_f26c7ad7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/client/DmiRestClient.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-11-24T15:27:25Z",
+      "side": 1,
+      "message": "NOT_SPECIFIED",
+      "range": {
+        "startLine": 44,
+        "startChar": 32,
+        "endLine": 44,
+        "endChar": 45
+      },
+      "revId": "08b5b1c4074deb4ac8215e12e0e9eca6dd2530e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7485cedb_2f307f0d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/client/DmiRestClient.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-11-24T15:27:25Z",
+      "side": 1,
+      "message": "NB : \"\" (not-specified)",
+      "range": {
+        "startLine": 73,
+        "startChar": 58,
+        "endLine": 73,
+        "endChar": 72
+      },
+      "revId": "08b5b1c4074deb4ac8215e12e0e9eca6dd2530e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "135197d4_4c2c0e0b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avc/ncmptoclient/AttributeValueChangeEventPublisher.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-11-24T15:27:25Z",
+      "side": 1,
+      "message": "Service",
+      "range": {
+        "startLine": 34,
+        "startChar": 1,
+        "endLine": 34,
+        "endChar": 10
+      },
+      "revId": "08b5b1c4074deb4ac8215e12e0e9eca6dd2530e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4588c602_4370ee73",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avc/ncmptoclient/AttributeValueChangeEventPublisher.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-11-24T15:27:25Z",
+      "side": 1,
+      "message": "we are not creating Avc event here. give correct method name",
+      "range": {
+        "startLine": 51,
+        "startChar": 51,
+        "endLine": 51,
+        "endChar": 65
+      },
+      "revId": "08b5b1c4074deb4ac8215e12e0e9eca6dd2530e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d3c509c_041cebb3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avc/ncmptoclient/AttributeValueChangeEventPublisher.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-11-24T15:27:25Z",
+      "side": 1,
+      "message": "make use of NcmpCloudEventBuilder",
+      "range": {
+        "startLine": 54,
+        "startChar": 41,
+        "endLine": 57,
+        "endChar": 94
+      },
+      "revId": "08b5b1c4074deb4ac8215e12e0e9eca6dd2530e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2d3d1ac_54350015",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avc/ncmptoclient/AttributeValueChangeEventPublisher.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-11-24T15:27:25Z",
+      "side": 1,
+      "message": "As it is private is static is required here?",
+      "range": {
+        "startLine": 60,
+        "startChar": 12,
+        "endLine": 60,
+        "endChar": 18
+      },
+      "revId": "08b5b1c4074deb4ac8215e12e0e9eca6dd2530e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b447e35_d551569e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avc/ncmptoclient/AttributeValueChangeEventPublisher.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-11-24T15:27:25Z",
+      "side": 1,
+      "message": "use data here for consistency",
+      "range": {
+        "startLine": 68,
+        "startChar": 19,
+        "endLine": 68,
+        "endChar": 26
+      },
+      "revId": "08b5b1c4074deb4ac8215e12e0e9eca6dd2530e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a8a1b22_508b66e7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-11-24T15:27:25Z",
+      "side": 1,
+      "message": "initiateStateAdvised",
+      "range": {
+        "startLine": 87,
+        "startChar": 16,
+        "endLine": 87,
+        "endChar": 29
+      },
+      "revId": "08b5b1c4074deb4ac8215e12e0e9eca6dd2530e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ec8f0bf_b70e31bf",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManager.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-11-24T15:27:25Z",
+      "side": 1,
+      "message": "Service",
+      "range": {
+        "startLine": 30,
+        "startChar": 1,
+        "endLine": 30,
+        "endChar": 10
+      },
+      "revId": "08b5b1c4074deb4ac8215e12e0e9eca6dd2530e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d3db360_e68dd80c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManager.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-11-24T15:27:25Z",
+      "side": 1,
+      "message": "cmHandleTrustLevel",
+      "range": {
+        "startLine": 46,
+        "startChar": 49,
+        "endLine": 46,
+        "endChar": 76
+      },
+      "revId": "08b5b1c4074deb4ac8215e12e0e9eca6dd2530e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8a867f3_13d3c5b5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManager.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-11-24T15:27:25Z",
+      "side": 1,
+      "message": "cmHandleTrustLevel",
+      "range": {
+        "startLine": 47,
+        "startChar": 38,
+        "endLine": 47,
+        "endChar": 64
+      },
+      "revId": "08b5b1c4074deb4ac8215e12e0e9eca6dd2530e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "117bab71_90218848",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManager.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-11-24T15:27:25Z",
+      "side": 1,
+      "message": "cmHandleTrustLevel",
+      "range": {
+        "startLine": 51,
+        "startChar": 47,
+        "endLine": 51,
+        "endChar": 73
+      },
+      "revId": "08b5b1c4074deb4ac8215e12e0e9eca6dd2530e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b87c4fe0_83a87eb4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/dmiavailability/DmiPluginWatchDog.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-11-24T15:27:25Z",
+      "side": 1,
+      "message": "dmiTrustLevel",
+      "range": {
+        "startLine": 51,
+        "startChar": 50,
+        "endLine": 51,
+        "endChar": 71
+      },
+      "revId": "08b5b1c4074deb4ac8215e12e0e9eca6dd2530e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9174cb2c_6626b832",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/dmiavailability/DmiPluginWatchDog.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-11-24T15:27:25Z",
+      "side": 1,
+      "message": "dmiTrustLevel",
+      "range": {
+        "startLine": 53,
+        "startChar": 48,
+        "endLine": 53,
+        "endChar": 69
+      },
+      "revId": "08b5b1c4074deb4ac8215e12e0e9eca6dd2530e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d2e135b_7a0559bf",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/dmiavailability/DmiPluginWatchDog.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-11-24T15:27:25Z",
+      "side": 1,
+      "message": "dmiTrustLevel",
+      "range": {
+        "startLine": 54,
+        "startChar": 42,
+        "endLine": 54,
+        "endChar": 63
+      },
+      "revId": "08b5b1c4074deb4ac8215e12e0e9eca6dd2530e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efc2ce5e_0f81e911",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/AttributeValueChangeEventCloudMapper.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-11-24T15:27:25Z",
+      "side": 1,
+      "message": "Service",
+      "range": {
+        "startLine": 35,
+        "startChar": 1,
+        "endLine": 35,
+        "endChar": 10
+      },
+      "revId": "08b5b1c4074deb4ac8215e12e0e9eca6dd2530e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6e9deb1d_83872a88",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManagerSpec.groovy",
         "patchSetId": 15
