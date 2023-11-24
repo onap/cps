@@ -28,9 +28,7 @@ import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
 import org.onap.cps.ncmp.api.impl.inventory.CompositeStateBuilder
 import org.onap.cps.ncmp.rest.model.CmHandleCompositeState
 import org.onap.cps.ncmp.api.impl.inventory.DataStoreSyncState
-import spock.lang.Ignore
 import spock.lang.Specification
-
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
@@ -62,10 +60,9 @@ class CmHandleStateMapperSpec extends Specification {
             assert result.dataSyncState.operational.getSyncState() != null
     }
 
-    @Ignore
     def 'Handling null state.'() {
         expect: 'converting null returns null'
-            objectUnderTest.toDataStores(null) == null
+            CmHandleStateMapper.toDataStores(null) == null
     }
 
     def 'Internal to External Lock Reason Mapping of #scenario'() {
