@@ -518,6 +518,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d44e08db_336e216e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avc/ncmptoclient/AttributeValueChangeEventPublisher.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-27T09:39:52Z",
+      "side": 1,
+      "message": "Yes Sourabh we agreed that \u0027payload\u0027 was better as \u0027data\u0027 was too generic and not very clear",
+      "parentUuid": "391dd538_15cbc4a5",
+      "range": {
+        "startLine": 68,
+        "startChar": 19,
+        "endLine": 68,
+        "endChar": 26
+      },
+      "revId": "08b5b1c4074deb4ac8215e12e0e9eca6dd2530e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9a8a1b22_508b66e7",
