@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "527b2d95_e6513d11",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-27T14:50:55Z",
+      "side": 1,
+      "message": "all good but lets add something the RTD docs on how to use these checjks",
+      "revId": "c0a8baba153feedc9dfc18971f1e3a5becaa9d69",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
