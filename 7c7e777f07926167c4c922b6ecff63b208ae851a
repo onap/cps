@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "37783b26_eb814bda",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-27T17:26:24Z",
+      "side": 1,
+      "message": "could work on using \u0027avc\u0027 consistently.\na few small comments left....",
+      "revId": "7c7e777f07926167c4c922b6ecff63b208ae851a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c50b6b4b_3e14b03e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avc/ncmptoclient/AvcEventPublisher.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-27T17:26:24Z",
+      "side": 1,
+      "message": "nb; probably fits on one line now",
+      "range": {
+        "startLine": 53,
+        "startChar": 16,
+        "endLine": 54,
+        "endChar": 35
+      },
+      "revId": "7c7e777f07926167c4c922b6ecff63b208ae851a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b002765b_5625115c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avc/ncmptoclient/AvcEventPublisher.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-27T17:26:24Z",
+      "side": 1,
+      "message": "NB: align",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 83
+      },
+      "revId": "7c7e777f07926167c4c922b6ecff63b208ae851a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf062c93_c9f531b5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManager.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-27T17:26:24Z",
+      "side": 1,
+      "message": "just entry",
+      "range": {
+        "startLine": 46,
+        "startChar": 49,
+        "endLine": 46,
+        "endChar": 73
+      },
+      "revId": "7c7e777f07926167c4c922b6ecff63b208ae851a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d329a66d_3271b43f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/dmiavailability/DmiPluginWatchDog.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-27T17:26:24Z",
+      "side": 1,
+      "message": "maybe we weren\u0027t clear enough but my understanding was to just use the word \u0027entry\u0027 W9ithout any prefix)",
+      "range": {
+        "startLine": 51,
+        "startChar": 50,
+        "endLine": 51,
+        "endChar": 68
+      },
+      "revId": "7c7e777f07926167c4c922b6ecff63b208ae851a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75d5559d_fd715488",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avc/ncmptoclient/AvcEventPublisherSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-27T17:26:24Z",
+      "side": 1,
+      "message": "expectedAvc",
+      "range": {
+        "startLine": 56,
+        "startChar": 24,
+        "endLine": 56,
+        "endChar": 27
+      },
+      "revId": "7c7e777f07926167c4c922b6ecff63b208ae851a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae6f798e_7b2ba3cb",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avc/ncmptoclient/AvcEventPublisherSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-27T17:26:24Z",
+      "side": 1,
+      "message": "would prefer to be a bit more explicit here (aslo make sure to use the assert keyword!) e.g\n\ndef actualAvcs \u003d ...\ndef expectedAvc \u003d ...\nassert actualAvcs \u003d\u003d [expectedAvc]\n\nOR\n\ndef actualAvcs \u003d ...\ndef expectedAvc \u003d ...\nassert actualAvs.size() \u003d\u003d 1\ndef actualAvc \u003d\u003d actualAvcs[0]\nassert actualAvc \u003d\u003d expectedAvc",
+      "range": {
+        "startLine": 59,
+        "startChar": 20,
+        "endLine": 59,
+        "endChar": 33
+      },
+      "revId": "7c7e777f07926167c4c922b6ecff63b208ae851a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bc630d0_5b72f1f9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManagerSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-27T17:26:24Z",
+      "side": 1,
+      "message": "this is the NORMAL case (should be tested first) call it \u0027Trust Level updated\u0027\nThe test on lien 53 is the unusual/edgecase : \u0027Trustlevel updated with same value\u0027 \n\nSo just rename and swap the two test please",
+      "range": {
+        "startLine": 62,
+        "startChar": 9,
+        "endLine": 62,
+        "endChar": 60
+      },
+      "revId": "7c7e777f07926167c4c922b6ecff63b208ae851a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
