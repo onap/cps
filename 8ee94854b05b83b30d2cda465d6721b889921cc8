@@ -16,6 +16,24 @@
       "message": "no jira reference for this ???",
       "revId": "8ee94854b05b83b30d2cda465d6721b889921cc8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15e9cca4_09e240ad",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-27T16:50:36Z",
+      "side": 1,
+      "message": "NO, since we are REMOVING a feature I didn\u0027t hink that made sense",
+      "parentUuid": "1fdb2ce2_66a32df3",
+      "revId": "8ee94854b05b83b30d2cda465d6721b889921cc8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
