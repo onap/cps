@@ -192,6 +192,18 @@ Prometheus Metrics can be checked at the following endpoint
 
     http://<cps-component-service-name>:8080/actuator/prometheus
 
+Hazelcast
+---------
+
+Hazelcast cluster state and health check can be seen using the below endpoints
+
+.. code::
+
+    http://<cps-component-service-name>:<member-port>/hazelcast/health
+    http://<cps-component-service-name>:<member-port>/hazelcast/rest/management/cluster/state
+
+More details about the cluster can be seen `here <https://docs.onap.org/projects/onap-cps/en/latest/deployment.html#cps-core-and-ncmp-distributed-datastructures>`__
+
 Naming Validation
 -----------------
 
