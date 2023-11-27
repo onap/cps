@@ -111,6 +111,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8461b187_320af3df",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/avc/ncmptoclient/AttributeValueChangeEventPublisher.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2023-11-27T16:54:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1913b662_91049740",
+      "range": {
+        "startLine": 79,
+        "startChar": 38,
+        "endLine": 79,
+        "endChar": 41
+      },
+      "revId": "e269956230ca59ccda441192a15dd7836904a5b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5c4ef8a7_a89fedf6",
@@ -205,6 +229,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "da67fc75_f9923c64",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManager.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2023-11-27T16:54:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "96d400fb_26e7aab2",
+      "range": {
+        "startLine": 46,
+        "startChar": 49,
+        "endLine": 46,
+        "endChar": 68
+      },
+      "revId": "e269956230ca59ccda441192a15dd7836904a5b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "99889883_ea4f8ec1",
@@ -242,6 +290,30 @@
       "side": 1,
       "message": "team agreed on \u0027entry\u0027 (assuming get and value are \u0027named\u0027 immediately after)",
       "parentUuid": "99889883_ea4f8ec1",
+      "range": {
+        "startLine": 51,
+        "startChar": 50,
+        "endLine": 51,
+        "endChar": 64
+      },
+      "revId": "e269956230ca59ccda441192a15dd7836904a5b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf43bcfc_16a585f2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/dmiavailability/DmiPluginWatchDog.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2023-11-27T16:54:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e77eed6b_087a3df9",
       "range": {
         "startLine": 51,
         "startChar": 50,
@@ -299,6 +371,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c84baf6_9df417cd",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/avc/ncmptoclient/AttributeValueChangeEventPublisherSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2023-11-27T16:54:20Z",
+      "side": 1,
+      "message": "Sourabh suggested a much better way to do this so a lot cleaner now",
+      "parentUuid": "8adaec53_1bb5d359",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 29
+      },
+      "revId": "e269956230ca59ccda441192a15dd7836904a5b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "14150096_ee1bb064",
@@ -336,6 +432,30 @@
       "side": 1,
       "message": "wil restore \u0027\u0027 case",
       "parentUuid": "14150096_ee1bb064",
+      "range": {
+        "startLine": 56,
+        "startChar": 12,
+        "endLine": 56,
+        "endChar": 27
+      },
+      "revId": "e269956230ca59ccda441192a15dd7836904a5b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c117f360_503fd4fd",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/trustlevel/dmiavailability/DmiPluginWatchDogSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2023-11-27T16:54:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "745a977f_9c6c8fb7",
       "range": {
         "startLine": 56,
         "startChar": 12,
