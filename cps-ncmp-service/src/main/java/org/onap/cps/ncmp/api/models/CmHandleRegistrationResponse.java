@@ -116,7 +116,7 @@ public class CmHandleRegistrationResponse {
             .status(Status.SUCCESS).build();
     }
 
-    public static List<CmHandleRegistrationResponse> createSuccessResponses(final List<String> cmHandleIds) {
+    public static List<CmHandleRegistrationResponse> createSuccessResponses(final Collection<String> cmHandleIds) {
         return cmHandleIds.stream().map(CmHandleRegistrationResponse::createSuccessResponse)
                 .collect(Collectors.toList());
     }
