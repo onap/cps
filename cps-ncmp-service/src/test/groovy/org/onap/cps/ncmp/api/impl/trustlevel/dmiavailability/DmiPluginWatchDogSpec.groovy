@@ -20,31 +20,45 @@
 
 package org.onap.cps.ncmp.api.impl.trustlevel.dmiavailability
 
+import org.onap.cps.ncmp.api.NetworkCmProxyDataService
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient
 import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel
+import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevelManager
 import spock.lang.Specification
 
 class DmiPluginWatchDogSpec extends Specification {
 
     def mockDmiRestClient = Mock(DmiRestClient)
+    def mockNetworkCmProxyDataService = Mock(NetworkCmProxyDataService)
+    def mockTrustLevelManager = Mock(TrustLevelManager)
     def trustLevelPerDmiPlugin = [:]
 
-    def objectUnderTest = new DmiPluginWatchDog(mockDmiRestClient, trustLevelPerDmiPlugin)
+
+    def objectUnderTest = new DmiPluginWatchDog(mockDmiRestClient,
+        mockNetworkCmProxyDataService,
+        mockTrustLevelManager,
+        trustLevelPerDmiPlugin)
 
     def 'watch dmi plugin health status for #dmiHealhStatus'() {
         given: 'the cache has been initialised and "knows" about dmi-1'
-            trustLevelPerDmiPlugin.put('dmi-1',null)
+            trustLevelPerDmiPlugin.put('dmi-1', dmiOldTrustLevel)
         and: 'dmi client returns health status #dmiHealhStatus'
             mockDmiRestClient.getDmiHealthStatus('dmi-1') >> dmiHealhStatus
+        and: 'network cm proxy data returns a list of all cm handle ids belonging to a dmi'
+            mockNetworkCmProxyDataService.getAllCmHandleIdsByDmiPluginIdentifier('dmi-1') >> ['ch-1']
         when: 'dmi watch dog method runs'
-            objectUnderTest.watchDmiPluginTrustLevel()
+            objectUnderTest.checkDmiAvailability()
         then: 'the result is as expected'
-            assert trustLevelPerDmiPlugin.get('dmi-1') == expectedResult
-        where: 'the following health status is used'
-            dmiHealhStatus || expectedResult
-            'UP'           || TrustLevel.COMPLETE
-            'Other'        || TrustLevel.NONE
-            null           || TrustLevel.NONE
+            assert trustLevelPerDmiPlugin.get('dmi-1') == newDmiTrustLevel
+        and: 'the update delegated to manager'
+            times * mockTrustLevelManager.handleUpdateOfTrustLevels(*_)
+        where: 'the following parameters are used'
+            dmiHealhStatus | dmiOldTrustLevel    || newDmiTrustLevel    || times
+            'UP'           | TrustLevel.COMPLETE || TrustLevel.COMPLETE || 0
+            'DOWN'         | TrustLevel.COMPLETE || TrustLevel.NONE     || 1
+            'DOWN'         | TrustLevel.NONE     || TrustLevel.NONE     || 0
+            'UP'           | TrustLevel.NONE     || TrustLevel.COMPLETE || 1
+            ''             | TrustLevel.COMPLETE || TrustLevel.NONE     || 1
     }
 
 }

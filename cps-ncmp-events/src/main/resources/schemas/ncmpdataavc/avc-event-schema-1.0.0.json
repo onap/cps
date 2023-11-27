@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "urn:cps:org.onap.cps.ncmp.events:attribute-value-change-event-schema:1.0.0",
-  "$ref": "#/definitions/AttributeValueChangeEvent",
+  "$id": "urn:cps:org.onap.cps.ncmp.events:avc-event-schema:1.0.0",
+  "$ref": "#/definitions/AvcEvent",
   "definitions": {
-    "AttributeValueChangeEvent": {
-      "javaType": "org.onap.cps.ncmp.events.avc.ncmp_to_client.AttributeValueChangeEvent",
+    "AvcEvent": {
+      "javaType": "org.onap.cps.ncmp.events.avc.ncmp_to_client.AvcEvent",
       "type": "object",
       "additionalProperties": false,
       "properties": {
@@ -15,7 +15,7 @@
       "required": [
         "data"
       ],
-      "title": "AttributeValueChangeEvent"
+      "title": "AvcEvent"
     },
     "Data": {
       "type": "object",
@@ -24,16 +24,16 @@
         "attributeValueChange": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/AttributeValueChange"
+            "$ref": "#/definitions/Avc"
           }
         }
       },
       "required": [
-        "attributeValueChange"
+        "avc"
       ],
       "title": "Data"
     },
-    "AttributeValueChange": {
+    "Avc": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
@@ -50,7 +50,7 @@
       "required": [
         "attributeName"
       ],
-      "title": "AttributeValueChange"
+      "title": "avc"
     }
   }
 }

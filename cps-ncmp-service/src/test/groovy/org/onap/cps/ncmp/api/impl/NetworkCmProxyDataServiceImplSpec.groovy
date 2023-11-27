@@ -22,7 +22,6 @@
  */
 
 package org.onap.cps.ncmp.api.impl
-
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
@@ -36,6 +35,7 @@ import com.hazelcast.map.IMap
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandleQueryService
 import org.onap.cps.ncmp.api.impl.events.lcm.LcmEventsCmHandleStateHandler
 import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel
+import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevelManager
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueries
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
@@ -76,8 +76,8 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def mockCpsCmHandlerQueryService = Mock(NetworkCmProxyCmHandleQueryService)
     def mockLcmEventsCmHandleStateHandler = Mock(LcmEventsCmHandleStateHandler)
     def stubModuleSyncStartedOnCmHandles = Stub(IMap<String, Object>)
-    def stubTrustLevelPerCmHandle = Stub(Map<String, TrustLevel>)
     def stubTrustLevelPerDmiPlugin = Stub(Map<String, TrustLevel>)
+    def mockTrustLevelManager = Mock(TrustLevelManager)
 
     def NO_TOPIC = null
     def NO_REQUEST_ID = null
@@ -96,8 +96,8 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             mockLcmEventsCmHandleStateHandler,
             mockCpsDataService,
             stubModuleSyncStartedOnCmHandles,
-            stubTrustLevelPerCmHandle,
-            stubTrustLevelPerDmiPlugin)
+            stubTrustLevelPerDmiPlugin,
+            mockTrustLevelManager)
 
     def cmHandleXPath = "/dmi-registry/cm-handles[@id='testCmHandle']"
 
@@ -265,11 +265,11 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         when: 'parse and create cm handle in dmi registration then sync module'
             objectUnderTest.parseAndProcessCreatedCmHandlesInRegistration(mockDmiPluginRegistration)
         then: 'system persists the cm handle state'
-            1 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(_) >> {
+            1 * mockLcmEventsCmHandleStateHandler.initiateStateAdvised(_) >> {
                 args -> {
-                          def cmHandleStatePerCmHandle = (args[0] as Map)
+                          def cmHandleStatePerCmHandle = (args[0] as Collection)
                           cmHandleStatePerCmHandle.each {
-                            assert it.key.id == 'test-cm-handle-id' && it.value == CmHandleState.ADVISED
+                            assert it.id == 'test-cm-handle-id'
                           }
                     }
             }
