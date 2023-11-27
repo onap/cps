@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fdb2ce2_66a32df3",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-11-27T15:13:30Z",
+      "side": 1,
+      "message": "no jira reference for this ???",
+      "revId": "8ee94854b05b83b30d2cda465d6721b889921cc8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
