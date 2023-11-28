@@ -39,6 +39,11 @@ Release Data
 Bug Fixes
 ---------
 
+Features
+--------
+    - CPS-Temporal is no longer supported and any related documentation has been removed.
+
+
 Version: 3.4.0
 ==============
 
