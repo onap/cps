@@ -34,6 +34,24 @@
       "parentUuid": "1fdb2ce2_66a32df3",
       "revId": "8ee94854b05b83b30d2cda465d6721b889921cc8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71f9bdf0_fe30b816",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-11-28T10:39:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "15e9cca4_09e240ad",
+      "revId": "8ee94854b05b83b30d2cda465d6721b889921cc8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
