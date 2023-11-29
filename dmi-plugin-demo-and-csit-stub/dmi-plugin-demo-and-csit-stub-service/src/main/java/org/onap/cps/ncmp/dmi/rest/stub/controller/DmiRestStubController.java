@@ -118,6 +118,30 @@ public class DmiRestStubController {
     }
 
     /**
+     * Get resource data from passthrough operational or running for a cm handle.
+     *
+     * @param cmHandleId              The identifier for a network function, network element, subnetwork,
+     *                                or any other cm object by managed Network CM Proxy
+     * @param datastoreName           datastore name
+     * @param resourceIdentifier      resource identifier
+     * @param options                 options
+     * @param topic                   client given topic name
+     * @return (@ code ResponseEntity) response entity
+     */
+    @PostMapping("/v1/ch/{cmHandleId}/data/ds/{datastoreName}")
+    public ResponseEntity<String> getResourceDataForCmHandle(
+            @PathVariable("cmHandleId") final String cmHandleId,
+            @PathVariable("datastoreName") final String datastoreName,
+            @RequestParam(value = "resourceIdentifier") final String resourceIdentifier,
+            @RequestParam(value = "options", required = false) final String options,
+            @RequestParam(value = "topic", required = false) final String topic) {
+        delay(dataForCmHandleDelayMs);
+        final String sampleJson = ResourceFileReaderUtil.getResourceFileContent(applicationContext.getResource(
+                ResourceLoader.CLASSPATH_URL_PREFIX + "data/operational/ietf-network-topology-sample-rfc8345.json"));
+        return ResponseEntity.ok(sampleJson);
+    }
+
+    /**
      * This method is not implemented for ONAP DMI plugin.
      *
      * @param topic                   client given topic name
@@ -126,12 +150,10 @@ public class DmiRestStubController {
      * @return (@ code ResponseEntity) response entity
      */
     @PostMapping("/v1/data")
-    public ResponseEntity<Void> getResourceDataForCmHandleDataOperation(@RequestParam(value = "topic")
-                                                                            final String topic,
-                                                                        @RequestParam(value = "requestId")
-                                                                        final String requestId,
-                                                                        @RequestBody final DmiDataOperationRequest
-                                                                                    dmiDataOperationRequest) {
+    public ResponseEntity<Void> getResourceDataForCmHandleDataOperation(
+            @RequestParam(value = "topic") final String topic,
+            @RequestParam(value = "requestId") final String requestId,
+            @RequestBody final DmiDataOperationRequest dmiDataOperationRequest) {
         delay(dataForCmHandleDelayMs);
         try {
             log.info("Request received from the NCMP to DMI Plugin: {}",
