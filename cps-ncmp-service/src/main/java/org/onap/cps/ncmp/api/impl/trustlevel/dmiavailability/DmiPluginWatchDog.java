@@ -38,12 +38,13 @@ public class DmiPluginWatchDog {
 
     private final DmiRestClient dmiRestClient;
     private final NetworkCmProxyDataService networkCmProxyDataService;
+
     private final TrustLevelManager trustLevelManager;
     private final Map<String, TrustLevel> trustLevelPerDmiPlugin;
 
     /**
      * This class monitors the trust level of all DMI plugin by checking the health status
-     * the resulting trustlevel wil be stored in the relevant cache.
+     * the resulting trust level wil be stored in the relevant cache.
      * The @fixedDelayString is the time interval, in milliseconds, between consecutive checks.
      */
     @Scheduled(fixedDelayString = "${ncmp.timers.trust-evel.dmi-availability-watchdog-ms:30000}")
@@ -60,18 +61,12 @@ public class DmiPluginWatchDog {
             } else {
                 newDmiTrustLevel = TrustLevel.NONE;
             }
-
             if (oldDmiTrustLevel.equals(newDmiTrustLevel)) {
-                log.debug("The Dmi Plugin: {} has already the same trust level: {}", dmiServiceName,
-                        newDmiTrustLevel);
+                log.debug("The Dmi Plugin: {} has already the same trust level: {}", dmiServiceName, newDmiTrustLevel);
             } else {
-                trustLevelPerDmiPlugin.put(dmiServiceName, newDmiTrustLevel);
-
-                final Collection<String> notificationCandidateCmHandleIds =
+                final Collection<String> cmHandleIds =
                     networkCmProxyDataService.getAllCmHandleIdsByDmiPluginIdentifier(dmiServiceName);
-                for (final String cmHandleId: notificationCandidateCmHandleIds) {
-                    trustLevelManager.handleUpdateOfTrustLevels(cmHandleId, newDmiTrustLevel.name());
-                }
+                trustLevelManager.handleUpdateOfDmiTrustLevel(dmiServiceName, cmHandleIds, newDmiTrustLevel);
             }
         });
     }

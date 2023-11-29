@@ -20,10 +20,14 @@
 
 package org.onap.cps.ncmp.api.impl.trustlevel;
 
+import java.util.Collection;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.events.avc.ncmptoclient.AvcEventPublisher;
+import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence;
+import org.onap.cps.ncmp.api.impl.operations.RequiredDmiService;
+import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -32,10 +36,12 @@ import org.springframework.stereotype.Service;
 public class TrustLevelManager {
 
     private final Map<String, TrustLevel> trustLevelPerCmHandle;
-    private final AvcEventPublisher avcEventPublisher;
-    private static final String NO_OLD_VALUE = null;
-    private static final String CHANGED_ATTRIBUTE_NAME = "trustLevel";
+    private final Map<String, TrustLevel> trustLevelPerDmiPlugin;
 
+    private final InventoryPersistence inventoryPersistence;
+    private final AvcEventPublisher avcEventPublisher;
+    private static final String AVC_CHANGED_ATTRIBUTE_NAME = "trustLevel";
+    private static final String AVC_NO_OLD_VALUE = null;
 
     /**
      * Add cmHandles to the cache and publish notification for initial trust level of cmHandles if it is NONE.
@@ -54,27 +60,67 @@ public class TrustLevelManager {
                 }
                 trustLevelPerCmHandle.put(cmHandleId, initialTrustLevel);
                 if (TrustLevel.NONE.equals(initialTrustLevel)) {
-                    sendAvcNotificationEvent(cmHandleId, NO_OLD_VALUE, initialTrustLevel.name());
+                    sendAvcNotificationEvent(cmHandleId, AVC_NO_OLD_VALUE, initialTrustLevel.name());
                 }
             }
         }
     }
 
+    /**
+     * Updates trust level of dmi plugin in the cache and publish notification for trust level of cmHandles if it
+     * has changed.
+     *
+     * @param dmiServiceName   dmi service name
+     * @param cmHandleIds      cm handle ids belonging to dmi service name
+     * @param newDmiTrustLevel new trust level of the dmi plugin
+     */
+    public void handleUpdateOfDmiTrustLevel(final String dmiServiceName,
+                                            final Collection<String> cmHandleIds,
+                                            final TrustLevel newDmiTrustLevel) {
+        final TrustLevel oldDmiTrustLevel  = trustLevelPerDmiPlugin.get(dmiServiceName);
+        trustLevelPerDmiPlugin.put(dmiServiceName, newDmiTrustLevel);
+        for (final String cmHandleId : cmHandleIds) {
+            final TrustLevel deviceTrustLevel = trustLevelPerCmHandle.get(cmHandleId);
+            final TrustLevel oldEffectiveTrustLevel = deviceTrustLevel.getEffectiveTrustLevel(oldDmiTrustLevel);
+            final TrustLevel newEffectiveTrustLevel = deviceTrustLevel.getEffectiveTrustLevel(newDmiTrustLevel);
+            sendAvcNotificationIfRequired(cmHandleId, oldEffectiveTrustLevel, newEffectiveTrustLevel);
+        }
+    }
 
     /**
-     * Update a cmHandle in the cache and publish notification if the trust level is different.
+     * Updates trust level of device in the cache and publish notification for trust level of device if it has
+     * changed.
      *
-     * @param cmHandleId    id of the cmHandle being updated
-     * @param newTrustLevel new trust level of the cmHandle being updated
+     * @param cmHandleId            cm handle id
+     * @param newDeviceTrustLevel   new trust level of the device
      */
-    public void handleUpdateOfTrustLevels(final String cmHandleId, final String newTrustLevel) {
-        final TrustLevel oldTrustLevel = trustLevelPerCmHandle.get(cmHandleId);
-        if (newTrustLevel.equals(oldTrustLevel.name())) {
-            log.debug("The Cm Handle: {} has already the same trust level: {}", cmHandleId, newTrustLevel);
+    public void handleUpdateOfDeviceTrustLevel(final String cmHandleId,
+                                               final TrustLevel newDeviceTrustLevel) {
+        final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(cmHandleId);
+        final String dmiServiceName = yangModelCmHandle.resolveDmiServiceName(RequiredDmiService.DATA);
+
+        final TrustLevel dmiTrustLevel = trustLevelPerDmiPlugin.get(dmiServiceName);
+        final TrustLevel oldDeviceTrustLevel = trustLevelPerCmHandle.get(cmHandleId);
+
+        final TrustLevel oldEffectiveTrustLevel = oldDeviceTrustLevel.getEffectiveTrustLevel(dmiTrustLevel);
+        final TrustLevel newEffectiveTrustLevel = newDeviceTrustLevel.getEffectiveTrustLevel(dmiTrustLevel);
+
+        trustLevelPerCmHandle.put(cmHandleId, newDeviceTrustLevel);
+        sendAvcNotificationIfRequired(cmHandleId, oldEffectiveTrustLevel, newEffectiveTrustLevel);
+    }
+
+    private void sendAvcNotificationIfRequired(final String notificationCandidateCmHandleId,
+                                               final TrustLevel oldEffectiveTrustLevel,
+                                               final TrustLevel newEffectiveTrustLevel) {
+        if (oldEffectiveTrustLevel.equals(newEffectiveTrustLevel)) {
+            log.debug("The Cm Handle: {} has already the same trust level: {}", notificationCandidateCmHandleId,
+                newEffectiveTrustLevel);
         } else {
-            trustLevelPerCmHandle.put(cmHandleId, TrustLevel.valueOf(newTrustLevel));
-            sendAvcNotificationEvent(cmHandleId, oldTrustLevel.name(), newTrustLevel);
-            log.info("The new trust level: {} has been updated for Cm Handle: {}", newTrustLevel, cmHandleId);
+            log.info("The trust level for Cm Handle: {} is now: {} ", notificationCandidateCmHandleId,
+                newEffectiveTrustLevel);
+            sendAvcNotificationEvent(notificationCandidateCmHandleId,
+                oldEffectiveTrustLevel.name(),
+                newEffectiveTrustLevel.name());
         }
     }
 
@@ -82,7 +128,7 @@ public class TrustLevelManager {
                                           final String oldTrustLevel,
                                           final String newTrustLevel) {
         avcEventPublisher.publishAvcEvent(cmHandleId,
-                CHANGED_ATTRIBUTE_NAME,
+            AVC_CHANGED_ATTRIBUTE_NAME,
                 oldTrustLevel,
                 newTrustLevel);
     }
