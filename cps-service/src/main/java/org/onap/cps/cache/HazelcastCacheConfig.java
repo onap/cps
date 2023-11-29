@@ -24,6 +24,7 @@ import com.hazelcast.config.Config;
 import com.hazelcast.config.MapConfig;
 import com.hazelcast.config.NamedConfig;
 import com.hazelcast.config.QueueConfig;
+import com.hazelcast.config.RestEndpointGroup;
 import com.hazelcast.config.SetConfig;
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
@@ -64,6 +65,7 @@ public class HazelcastCacheConfig {
 
         config.setClusterName(clusterName);
         config.setClassLoader(org.onap.cps.spi.model.Dataspace.class.getClassLoader());
+        exposeClusterInformation(config);
         updateDiscoveryMode(config);
         return config;
     }
@@ -95,6 +97,11 @@ public class HazelcastCacheConfig {
             config.getNetworkConfig().getJoin().getKubernetesConfig().setEnabled(true)
                 .setProperty("service-name", cacheKubernetesServiceName);
         }
+    }
+
+    protected void exposeClusterInformation(final Config config) {
+        config.getNetworkConfig().getRestApiConfig().setEnabled(true)
+                .enableGroups(RestEndpointGroup.HEALTH_CHECK, RestEndpointGroup.CLUSTER_READ);
     }
 
 }
