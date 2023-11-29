@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9923ce63_068e6962",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-29T15:15:13Z",
+      "side": 1,
+      "message": "I\u0027ve not seen complains for indentation while I was compiling locally.",
+      "parentUuid": "edc143c9_dd1be777",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 64
+      },
+      "revId": "954a305f0046afdced84cd3e3a2050f1a887fc37",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "02421faa_6a19db0d",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-11-29T12:23:12Z",
       "side": 1,
       "message": "NF: dont just copy and paste my suggestions I make a lot of Typos when typing quickly! IDs is should always be spelled with a lower case \u0027d\u0027",
+      "range": {
+        "startLine": 81,
+        "startChar": 85,
+        "endLine": 81,
+        "endChar": 88
+      },
+      "revId": "954a305f0046afdced84cd3e3a2050f1a887fc37",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1d5d943_8a6afa91",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-29T15:15:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "02421faa_6a19db0d",
       "range": {
         "startLine": 81,
         "startChar": 85,
@@ -70,6 +118,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6b03ffa_433cd471",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManagerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-29T15:15:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ce5d5f5_5ce82462",
+      "range": {
+        "startLine": 91,
+        "startChar": 31,
+        "endLine": 91,
+        "endChar": 33
+      },
+      "revId": "954a305f0046afdced84cd3e3a2050f1a887fc37",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "42cc6f3e_63cd7666",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-11-29T12:23:12Z",
       "side": 1,
       "message": "remove (duid you do a thorough self review ?!)",
+      "range": {
+        "startLine": 93,
+        "startChar": 45,
+        "endLine": 93,
+        "endChar": 49
+      },
+      "revId": "954a305f0046afdced84cd3e3a2050f1a887fc37",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70220a47_b439f667",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManagerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-29T15:15:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "42cc6f3e_63cd7666",
       "range": {
         "startLine": 93,
         "startChar": 45,
@@ -116,6 +212,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "10933ee5_55628eaf",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManagerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-29T15:15:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "79582a82_266716ce",
+      "range": {
+        "startLine": 106,
+        "startChar": 44,
+        "endLine": 106,
+        "endChar": 51
+      },
+      "revId": "954a305f0046afdced84cd3e3a2050f1a887fc37",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6b98c089_02d286e5",
@@ -139,6 +259,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0d20733_fa2f27c8",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManagerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-29T15:15:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6b98c089_02d286e5",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 1
+      },
+      "revId": "954a305f0046afdced84cd3e3a2050f1a887fc37",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fae0f51a_adaf41a8",
@@ -152,6 +296,30 @@
       "writtenOn": "2023-11-29T12:23:12Z",
       "side": 1,
       "message": "numberOfCalls\nOR\nexpectedNumberOfCalls",
+      "range": {
+        "startLine": 52,
+        "startChar": 74,
+        "endLine": 52,
+        "endChar": 79
+      },
+      "revId": "954a305f0046afdced84cd3e3a2050f1a887fc37",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a96ba0d_2420a16b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/trustlevel/dmiavailability/DmiPluginWatchDogSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-29T15:15:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fae0f51a_adaf41a8",
       "range": {
         "startLine": 52,
         "startChar": 74,
