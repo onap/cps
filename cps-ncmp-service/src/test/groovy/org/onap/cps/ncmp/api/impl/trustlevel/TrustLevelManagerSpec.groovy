@@ -21,13 +21,17 @@
 package org.onap.cps.ncmp.api.impl.trustlevel
 
 import org.onap.cps.ncmp.api.impl.events.avc.ncmptoclient.AvcEventPublisher
+import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence
 import spock.lang.Specification
 
 class TrustLevelManagerSpec extends Specification {
 
     def trustLevelPerCmHandle = [:]
+    def trustLevelPerDmiPlugin = [:]
+
+    def mockInventoryPersistence = Mock(InventoryPersistence)
     def mockAttributeValueChangeEventPublisher = Mock(AvcEventPublisher)
-    def objectUnderTest = new TrustLevelManager(trustLevelPerCmHandle, mockAttributeValueChangeEventPublisher)
+    def objectUnderTest = new TrustLevelManager(trustLevelPerCmHandle, trustLevelPerDmiPlugin, mockInventoryPersistence, mockAttributeValueChangeEventPublisher)
 
     def 'Initial cm handle registration'() {
         given: 'two cm handles: one with no trust level and one trusted'
@@ -50,24 +54,38 @@ class TrustLevelManagerSpec extends Specification {
             1 * mockAttributeValueChangeEventPublisher.publishAvcEvent(*_)
     }
 
-    def 'Trust level updated'() {
-        given: 'a not trusted cm handle'
-            trustLevelPerCmHandle.put('ch-1', TrustLevel.NONE)
-        when: 'the update is handled'
-            objectUnderTest.handleUpdateOfTrustLevels('ch-1', 'COMPLETE')
-        then: 'notification is sent'
-            1 * mockAttributeValueChangeEventPublisher.publishAvcEvent('ch-1', 'trustLevel', 'NONE', 'COMPLETE')
-        and: 'the cm handle in the cache is trusted'
-            assert trustLevelPerCmHandle.get('ch-1') == TrustLevel.COMPLETE
-    }
-
-    def 'Trust level updated with same value'() {
-        given: 'a trusted cm handle'
+    def 'Dmi trust level updated'() {
+        given: 'a trusted dmi plugin'
+            trustLevelPerDmiPlugin.put('my-dmi', TrustLevel.COMPLETE)
+        and: 'a trusted cm handle'
             trustLevelPerCmHandle.put('ch-1', TrustLevel.COMPLETE)
         when: 'the update is handled'
-            objectUnderTest.handleUpdateOfTrustLevels('ch-1', 'COMPLETE')
+            objectUnderTest.handleUpdateOfDmiTrustLevel('my-dmi', ['ch-1'], TrustLevel.NONE)
+        then: 'notification is sent'
+            1 * mockAttributeValueChangeEventPublisher.publishAvcEvent('ch-1', 'trustLevel', 'COMPLETE', 'NONE')
+        and: 'the dmi in the cache is not trusted'
+            assert trustLevelPerDmiPlugin.get('my-dmi') == TrustLevel.NONE
+    }
+
+    def 'Dmi trust level updated with same value'() {
+        given: 'a trusted dmi plugin'
+            trustLevelPerDmiPlugin.put('my-dmi', TrustLevel.COMPLETE)
+        and: 'a trusted cm handle'
+            trustLevelPerCmHandle.put('ch-1', TrustLevel.COMPLETE)
+        when: 'the update is handled'
+            objectUnderTest.handleUpdateOfDmiTrustLevel('my-dmi', ['ch-1'], TrustLevel.COMPLETE)
         then: 'no notification is sent'
             0 * mockAttributeValueChangeEventPublisher.publishAvcEvent(*_)
+        and: 'the dmi in the cache is trusted'
+            assert trustLevelPerDmiPlugin.get('my-dmi') == TrustLevel.COMPLETE
+    }
+
+    def 'Device trust level updated'() {
+
+    }
+
+    def 'Device trust level updated with same value'() {
+
     }
 
 }
