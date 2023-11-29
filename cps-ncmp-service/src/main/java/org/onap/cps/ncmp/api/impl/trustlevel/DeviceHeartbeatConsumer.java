@@ -36,7 +36,6 @@ public class DeviceHeartbeatConsumer {
     private static final String CLOUD_EVENT_ID_HEADER_NAME = "ce_id";
     private final TrustLevelManager trustLevelManager;
 
-
     /**
      * Listening the device heartbeats.
      *
@@ -51,8 +50,8 @@ public class DeviceHeartbeatConsumer {
 
         final DeviceTrustLevel deviceTrustLevel =
             CloudEventMapper.toTargetEvent(deviceHeartbeatConsumerRecord.value(), DeviceTrustLevel.class);
-
-        trustLevelManager.handleUpdateOfTrustLevels(cmHandleId, deviceTrustLevel.getData().getTrustLevel());
+        final TrustLevel newDeviceTrustLevel = TrustLevel.valueOf(deviceTrustLevel.getData().getTrustLevel());
+        trustLevelManager.handleUpdateOfDeviceTrustLevel(cmHandleId, newDeviceTrustLevel);
 
     }
 
