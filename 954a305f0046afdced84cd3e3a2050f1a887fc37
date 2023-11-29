@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edc143c9_dd1be777",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-29T12:23:12Z",
+      "side": 1,
+      "message": "NB: aligment (maybe checkstyle complains about this ?!)",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 64
+      },
+      "revId": "954a305f0046afdced84cd3e3a2050f1a887fc37",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02421faa_6a19db0d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-29T12:23:12Z",
+      "side": 1,
+      "message": "NF: dont just copy and paste my suggestions I make a lot of Typos when typing quickly! IDs is should always be spelled with a lower case \u0027d\u0027",
+      "range": {
+        "startLine": 81,
+        "startChar": 85,
+        "endLine": 81,
+        "endChar": 88
+      },
+      "revId": "954a305f0046afdced84cd3e3a2050f1a887fc37",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ce5d5f5_5ce82462",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManagerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-29T12:23:12Z",
+      "side": 1,
+      "message": "insert \u0027to COMPLETE\u0027\nOR \u0027to trusted\u0027",
+      "range": {
+        "startLine": 91,
+        "startChar": 31,
+        "endLine": 91,
+        "endChar": 33
+      },
+      "revId": "954a305f0046afdced84cd3e3a2050f1a887fc37",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42cc6f3e_63cd7666",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManagerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-29T12:23:12Z",
+      "side": 1,
+      "message": "remove (duid you do a thorough self review ?!)",
+      "range": {
+        "startLine": 93,
+        "startChar": 45,
+        "endLine": 93,
+        "endChar": 49
+      },
+      "revId": "954a305f0046afdced84cd3e3a2050f1a887fc37",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79582a82_266716ce",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManagerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-29T12:23:12Z",
+      "side": 1,
+      "message": "to the same level (value)",
+      "range": {
+        "startLine": 106,
+        "startChar": 44,
+        "endLine": 106,
+        "endChar": 51
+      },
+      "revId": "954a305f0046afdced84cd3e3a2050f1a887fc37",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b98c089_02d286e5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManagerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-29T12:23:12Z",
+      "side": 1,
+      "message": "add one more test\n\n\u0027Dmi trust level restored to complete with non trusted device\u0027\n\n\nthsi test shodul start with\n- a non trusted DMI\n- a non-trusted  deived\nwhen\n- restore teh DMI trustlevel to COMPLETE\nassert\n- cm handle trustlevel is still NONE\n- 0 notification send",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 1
+      },
+      "revId": "954a305f0046afdced84cd3e3a2050f1a887fc37",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fae0f51a_adaf41a8",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/trustlevel/dmiavailability/DmiPluginWatchDogSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-29T12:23:12Z",
+      "side": 1,
+      "message": "numberOfCalls\nOR\nexpectedNumberOfCalls",
+      "range": {
+        "startLine": 52,
+        "startChar": 74,
+        "endLine": 52,
+        "endChar": 79
+      },
+      "revId": "954a305f0046afdced84cd3e3a2050f1a887fc37",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
