@@ -39,6 +39,7 @@ Release Data
 Bug Fixes
 ---------
 3.3.10
+    - `CPS-1875 <https://jira.onap.org/browse/CPS-1875>`_ Return permit-uri from root to security.
 
 Features
 --------
