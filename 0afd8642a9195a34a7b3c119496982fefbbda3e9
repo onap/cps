@@ -22,6 +22,30 @@
       },
       "revId": "0afd8642a9195a34a7b3c119496982fefbbda3e9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e6b36a0_6ae583eb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-29T11:13:57Z",
+      "side": 0,
+      "message": "Exactly. This is kind of \u0027separation of responsibilities\u0027. The take away here a lot. Many thanks for identifying this earlier Toine.",
+      "parentUuid": "9cd0aff0_21a55a4a",
+      "range": {
+        "startLine": 75,
+        "startChar": 12,
+        "endLine": 75,
+        "endChar": 85
+      },
+      "revId": "0afd8642a9195a34a7b3c119496982fefbbda3e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

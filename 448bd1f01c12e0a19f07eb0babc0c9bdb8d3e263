@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "efdc3a80_dccdab84",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-29T11:13:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "45486d72_ce2a2724",
+      "range": {
+        "startLine": 78,
+        "startChar": 69,
+        "endLine": 78,
+        "endChar": 80
+      },
+      "revId": "448bd1f01c12e0a19f07eb0babc0c9bdb8d3e263",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2c0cce98_b3162759",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-11-29T10:29:46Z",
       "side": 1,
       "message": "NB: change this name if the colletion name changes",
+      "range": {
+        "startLine": 82,
+        "startChar": 26,
+        "endLine": 82,
+        "endChar": 37
+      },
+      "revId": "448bd1f01c12e0a19f07eb0babc0c9bdb8d3e263",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "38516a67_867a0f08",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-29T11:13:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2c0cce98_b3162759",
       "range": {
         "startLine": 82,
         "startChar": 26,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "437f1b18_c30ae2f6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-29T11:13:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b33b7509_821d1a0a",
+      "range": {
+        "startLine": 127,
+        "startChar": 4,
+        "endLine": 127,
+        "endChar": 41
+      },
+      "revId": "448bd1f01c12e0a19f07eb0babc0c9bdb8d3e263",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a160f871_73066d8a",
@@ -104,6 +176,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f366170e_b3026cab",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManagerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-29T11:13:57Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a160f871_73066d8a",
+      "revId": "448bd1f01c12e0a19f07eb0babc0c9bdb8d3e263",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5cab18be_2363d5f1",
@@ -117,6 +207,30 @@
       "writtenOn": "2023-11-29T10:29:46Z",
       "side": 1,
       "message": "NB: you could be stricter here ie expect exact values",
+      "range": {
+        "startLine": 50,
+        "startChar": 70,
+        "endLine": 50,
+        "endChar": 72
+      },
+      "revId": "448bd1f01c12e0a19f07eb0babc0c9bdb8d3e263",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b5ff992_ff33ba3a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/trustlevel/dmiavailability/DmiPluginWatchDogSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-11-29T11:13:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5cab18be_2363d5f1",
       "range": {
         "startLine": 50,
         "startChar": 70,
