@@ -41,7 +41,7 @@ import org.springframework.web.client.RestTemplate;
 public class DmiRestClient {
 
     private static final String HEALTH_CHECK_URL_EXTENSION = "/actuator/health";
-    private static final String EMPTY_STRING = "";
+    private static final String NOT_SPECIFIED = "";
     private final RestTemplate restTemplate;
     private final DmiProperties dmiProperties;
 
@@ -70,19 +70,19 @@ public class DmiRestClient {
      * Get DMI plugin health status.
      *
      * @param       dmiPluginBaseUrl the base URL of the dmi-plugin
-     * @return      plugin health status ("UP" is all OK, EMPTY_STRING in case of any exception)
+     * @return      plugin health status ("UP" is all OK, "" (not-specified) in case of any exception)
      */
     public String getDmiHealthStatus(final String dmiPluginBaseUrl) {
         final HttpEntity<Object> httpHeaders = new HttpEntity<>(configureHttpHeaders(new HttpHeaders()));
         try {
             final JsonNode responseHealthStatus =
                 restTemplate.getForObject(dmiPluginBaseUrl + HEALTH_CHECK_URL_EXTENSION,
-                JsonNode.class, httpHeaders);
-            return responseHealthStatus == null ? EMPTY_STRING :
+                    JsonNode.class, httpHeaders);
+            return responseHealthStatus == null ? NOT_SPECIFIED :
                 responseHealthStatus.get("status").asText();
         } catch (final Exception e) {
             log.warn("Failed to retrieve health status from {}. Error Message: {}", dmiPluginBaseUrl, e.getMessage());
-            return EMPTY_STRING;
+            return NOT_SPECIFIED;
         }
     }
 
