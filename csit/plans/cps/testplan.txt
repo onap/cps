@@ -25,3 +25,4 @@ cps-subscriptions
 ncmp-passthrough
 cm-handle-query
 cps-data-operations
+cps-trust-level
