@@ -16,7 +16,7 @@ CPS Release Notes
 ..      * * *   MONTREAL   * * *
 ..      ========================
 
-Version: 3.3.10
+Version: 3.3.11
 ===============
 
 Release Data
@@ -26,10 +26,10 @@ Release Data
 | **CPS Project**                      |                                                        |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
-| **Docker images**                    | onap/cps-and-ncmp:3.3.10                               |
+| **Docker images**                    | onap/cps-and-ncmp:3.3.11                               |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
-| **Release designation**              | 3.3.10 Montreal                                        |
+| **Release designation**              | 3.3.11 Montreal                                        |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
 | **Release date**                     | Not yet released                                       |
@@ -38,7 +38,7 @@ Release Data
 
 Bug Fixes
 ---------
-3.3.10
+3.3.11
     - `CPS-1875 <https://jira.onap.org/browse/CPS-1875>`_ Return permit-uri from root to security.
 
 Features
