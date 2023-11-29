@@ -1,0 +1,130 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3316387_35552799",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-29T10:29:46Z",
+      "side": 1,
+      "message": "left  some explanation and a few suggestions...",
+      "revId": "448bd1f01c12e0a19f07eb0babc0c9bdb8d3e263",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45486d72_ce2a2724",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-29T10:29:46Z",
+      "side": 1,
+      "message": "NB suggestion: affectedCmHandleIDs  OR cmHandleIdsInDmi\n(we tried to resolve the affected cm handles in this class but that lead to  circular dependency we coudln\u0027t resolve easily without much more refactoring)",
+      "range": {
+        "startLine": 78,
+        "startChar": 69,
+        "endLine": 78,
+        "endChar": 80
+      },
+      "revId": "448bd1f01c12e0a19f07eb0babc0c9bdb8d3e263",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c0cce98_b3162759",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-29T10:29:46Z",
+      "side": 1,
+      "message": "NB: change this name if the colletion name changes",
+      "range": {
+        "startLine": 82,
+        "startChar": 26,
+        "endLine": 82,
+        "endChar": 37
+      },
+      "revId": "448bd1f01c12e0a19f07eb0babc0c9bdb8d3e263",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b33b7509_821d1a0a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-29T10:29:46Z",
+      "side": 1,
+      "message": "NB: method only wraps one line call to another method. methodname does not add value so it could simply be inlined...",
+      "range": {
+        "startLine": 127,
+        "startChar": 4,
+        "endLine": 127,
+        "endChar": 41
+      },
+      "revId": "448bd1f01c12e0a19f07eb0babc0c9bdb8d3e263",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a160f871_73066d8a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManagerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-29T10:29:46Z",
+      "side": 1,
+      "message": "I\u0027ll review thsi fiel once new tests are added",
+      "revId": "448bd1f01c12e0a19f07eb0babc0c9bdb8d3e263",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5cab18be_2363d5f1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/trustlevel/dmiavailability/DmiPluginWatchDogSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-11-29T10:29:46Z",
+      "side": 1,
+      "message": "NB: you could be stricter here ie expect exact values",
+      "range": {
+        "startLine": 50,
+        "startChar": 70,
+        "endLine": 50,
+        "endChar": 72
+      },
+      "revId": "448bd1f01c12e0a19f07eb0babc0c9bdb8d3e263",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
