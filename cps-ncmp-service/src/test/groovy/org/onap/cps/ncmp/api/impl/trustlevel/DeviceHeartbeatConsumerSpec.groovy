@@ -26,7 +26,6 @@ import io.cloudevents.core.builder.CloudEventBuilder
 import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.onap.cps.ncmp.events.trustlevel.DeviceTrustLevel
 import org.onap.cps.utils.JsonObjectMapper
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification
 
@@ -37,28 +36,24 @@ class DeviceHeartbeatConsumerSpec extends Specification {
 
     def objectUnderTest = new DeviceHeartbeatConsumer(mockTrustLevelManager)
     def objectMapper = new ObjectMapper()
+    def jsonObjectMapper = new JsonObjectMapper(objectMapper)
 
-    @Autowired
-    JsonObjectMapper jsonObjectMapper
-
-    def static trustLevelString = '{"data":{"trustLevel": "COMPLETE"}}'
-
-    def 'Consume a trustlevel event'() {
+    def 'Consume a trust level event'() {
         given: 'an event from dmi with trust level complete'
-            def payload = jsonObjectMapper.convertJsonString(trustLevelString, DeviceTrustLevel.class)
+            def payload = jsonObjectMapper.convertJsonString('{"data":{"trustLevel": "COMPLETE"}}', DeviceTrustLevel.class)
             def eventFromDmi = createTrustLevelEvent(payload)
         and: 'transformed to a consumer record with a cloud event id (ce_id)'
             def consumerRecord = new ConsumerRecord<String, CloudEvent>('test-device-heartbeat', 0, 0, 'sample-message-key', eventFromDmi)
-            consumerRecord.headers().add('ce_id', objectMapper.writeValueAsBytes('cmhandle1'))
+            consumerRecord.headers().add('ce_id', objectMapper.writeValueAsBytes('ch-1'))
         when: 'the event is consumed'
             objectUnderTest.heartbeatListener(consumerRecord)
         then: 'cm handles are stored with correct trust level'
-            1 * mockTrustLevelManager.handleUpdateOfTrustLevels('"cmhandle1"', 'COMPLETE')
+            1 * mockTrustLevelManager.handleUpdateOfDeviceTrustLevel('"ch-1"', TrustLevel.COMPLETE)
     }
 
     def createTrustLevelEvent(eventPayload) {
         return CloudEventBuilder.v1().withData(objectMapper.writeValueAsBytes(eventPayload))
-            .withId("cmhandle1")
+            .withId('ch-1')
             .withSource(URI.create('DMI'))
             .withDataSchema(URI.create('test'))
             .withType('org.onap.cps.ncmp.events.trustlevel.DeviceTrustLevel')
