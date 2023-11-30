@@ -69,6 +69,10 @@ Bug Fixes
 3.4.0
     - `CPS-1956 <https://jira.onap.org/browse/CPS-1956>`_ Bug fix for No yang resources stored during cmhandle discovery.
 
+Features
+--------
+    - `CPS-1980 <https://jira.onap.org/browse/CPS-1980>`_ Exposing health and cluster metrics for hazelcast.
+
 ..      ========================
 ..      * * *   MONTREAL   * * *
 ..      ========================
