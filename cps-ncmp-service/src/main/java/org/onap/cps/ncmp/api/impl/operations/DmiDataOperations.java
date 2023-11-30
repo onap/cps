@@ -26,6 +26,7 @@ import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNABLE_TO_READ_RESOURCE_D
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING;
 import static org.onap.cps.ncmp.api.impl.operations.OperationType.READ;
 
+import io.micrometer.core.annotation.Timed;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -80,6 +81,9 @@ public class DmiDataOperations extends DmiOperations {
      * @param requestId           requestId for async responses
      * @return {@code ResponseEntity} response entity
      */
+    @Timed(value = "cps.ncmp.dmi.get",
+            description = "Time taken to fetch the resource data from operational data store for given cm handle "
+                    + "identifier on given resource using dmi client")
     public ResponseEntity<Object> getResourceDataFromDmi(final String dataStoreName,
                                                          final String cmHandleId,
                                                          final String resourceId,
