@@ -1,6 +1,6 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
-.. Copyright (C) 2022 Nordix Foundation
+.. Copyright (C) 2022-2023 Nordix Foundation
 
 .. DO NOT CHANGE THIS LABEL FOR RELEASE NOTES - EVEN THOUGH IT GIVES A WARNING
 .. _cmhandlequerying:
@@ -83,6 +83,14 @@ Request Body example using all available query criteria. This query would return
               "cpsPath": "//state[@cm-handle-state='ADVISED']"
             }
           ]
+        },
+        {
+          "conditionName": "cmHandleWithTrustLevel",
+          "conditionParameters": [
+            {
+              "trustLevel": "COMPLETE"
+            }
+          ]
         }
       ]
     }
@@ -154,6 +162,26 @@ The *cmHandleWithCpsPath* condition allows any data of the CM Handle to be queri
           "conditionParameters": [
             {
               "cpsPath": "//state[@cm-handle-state='LOCKED']"
+            }
+          ]
+        }
+      ]
+    }
+
+CM Handle with Trust Level
+--------------------------
+
+With the *cmHandleWithTrustLevel* condition, we can provide just one trust level. The CM handles returned will have this trust level. Providing more than one parameter causes unexpected results. Condition parameter name is not being validated.
+
+.. code-block:: json
+
+    {
+      "cmHandleQueryParameters": [
+        {
+          "conditionName": "cmHandleWithTrustLevel",
+          "conditionParameters": [
+            {
+              "trustLevel": "COMPLETE"
             }
           ]
         }
