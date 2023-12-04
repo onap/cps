@@ -44,21 +44,17 @@ class DmiPluginWatchDogSpec extends Specification {
             trustLevelPerDmiPlugin.put('dmi-1', dmiOldTrustLevel)
         and: 'dmi client returns health status #dmiHealhStatus'
             mockDmiRestClient.getDmiHealthStatus('dmi-1') >> dmiHealhStatus
-        and: 'network cm proxy data returns a list of all cm handle ids belonging to a dmi'
-            mockNetworkCmProxyDataService.getAllCmHandleIdsByDmiPluginIdentifier('dmi-1') >> ['ch-1']
         when: 'dmi watch dog method runs'
             objectUnderTest.checkDmiAvailability()
-        then: 'the result is as expected'
-            assert trustLevelPerDmiPlugin.get('dmi-1') == newDmiTrustLevel
-        and: 'the update delegated to manager'
-            times * mockTrustLevelManager.handleUpdateOfTrustLevels(*_)
+        then: 'the update delegated to manager'
+            numberOfCalls * mockTrustLevelManager.handleUpdateOfDmiTrustLevel('dmi-1', _, newDmiTrustLevel)
         where: 'the following parameters are used'
-            dmiHealhStatus | dmiOldTrustLevel    || newDmiTrustLevel    || times
-            'UP'           | TrustLevel.COMPLETE || TrustLevel.COMPLETE || 0
-            'DOWN'         | TrustLevel.COMPLETE || TrustLevel.NONE     || 1
-            'DOWN'         | TrustLevel.NONE     || TrustLevel.NONE     || 0
-            'UP'           | TrustLevel.NONE     || TrustLevel.COMPLETE || 1
-            ''             | TrustLevel.COMPLETE || TrustLevel.NONE     || 1
+            dmiHealhStatus | dmiOldTrustLevel    | newDmiTrustLevel    || numberOfCalls
+            'UP'           | TrustLevel.COMPLETE | TrustLevel.COMPLETE || 0
+            'DOWN'         | TrustLevel.COMPLETE | TrustLevel.NONE     || 1
+            'DOWN'         | TrustLevel.NONE     | TrustLevel.NONE     || 0
+            'UP'           | TrustLevel.NONE     | TrustLevel.COMPLETE || 1
+            ''             | TrustLevel.COMPLETE | TrustLevel.NONE     || 1
     }
 
 }
