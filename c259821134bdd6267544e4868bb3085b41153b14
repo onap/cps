@@ -188,6 +188,30 @@
       },
       "revId": "c259821134bdd6267544e4868bb3085b41153b14",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29629416_62ad927f",
+        "filename": "csit/tests/cps-trust-level/cps-trust-level.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2023-12-04T15:33:35Z",
+      "side": 1,
+      "message": "I have tested locally with ${dmiUrl} and all seems to be good. The cm handles that get registered (CH-1, CH-2, CH-3) are still up after the tests run, so I think DMI plugin watch dog can still reach the Health check URL",
+      "parentUuid": "fc1b5a58_7be70189",
+      "range": {
+        "startLine": 37,
+        "startChar": 58,
+        "endLine": 37,
+        "endChar": 85
+      },
+      "revId": "c259821134bdd6267544e4868bb3085b41153b14",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
