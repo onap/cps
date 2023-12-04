@@ -179,6 +179,18 @@ class CmSubscriptionNcmpInEventForwarderSpec extends MessagingBaseSpec {
             1 * mockCmSubscriptionNcmpOutEventPublisher.sendResponse(_, 'subscriptionCreatedStatus')
     }
 
+    def 'Extract domain name from URL'() {
+        when: 'a valid dmi name is provided'
+            def domainName = objectUnderTest.toValidTopicSuffix(dmiName)
+        then: 'domain name is as expected with no port information'
+            assert domainName == expectedDomainName
+        where: ''
+            scenario            | dmiName                            || expectedDomainName
+            'valid url'         | 'http://www.onap-dmi:8080/xyz=123' || 'www.onap-dmi'
+            'another valid url' | 'https://127.0.0.1:8080/xyz=123'   || '127.0.0.1'
+            'invalid url'       | 'dminame1'                         || 'dminame1'
+    }
+
     static def createYangModelCmHandleWithDmiProperty(id, dmiId, propertyName, propertyValue) {
         return new YangModelCmHandle(id: "CMHandle" + id, dmiDataServiceName: "DMIName" + dmiId, dmiProperties: [new YangModelCmHandle.Property(propertyName, propertyValue)])
     }
