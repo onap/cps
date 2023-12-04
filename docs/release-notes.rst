@@ -38,6 +38,7 @@ Release Data
 
 Bug Fixes
 ---------
+    - `CPS-1979 <https://jira.onap.org/browse/CPS-1979>`_ Bug fix for Invalid topic name suffix.
 
 Features
 --------
