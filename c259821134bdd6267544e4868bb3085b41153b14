@@ -84,6 +84,23 @@
       "message": "starting to look good. Niot suer if we need to add much more, what are you plans?",
       "revId": "c259821134bdd6267544e4868bb3085b41153b14",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "943f6126_6d5ec082",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2023-12-04T09:57:24Z",
+      "side": 1,
+      "message": "Investigating a intermittent issue where the tests will sometimes fail on my local machine, due to not responding to the dmi stub liveness correctly",
+      "revId": "c259821134bdd6267544e4868bb3085b41153b14",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
