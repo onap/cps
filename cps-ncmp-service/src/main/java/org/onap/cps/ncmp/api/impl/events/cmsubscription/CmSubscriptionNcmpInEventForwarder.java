@@ -31,6 +31,8 @@ import java.util.Set;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -55,6 +57,9 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @RequiredArgsConstructor
 public class CmSubscriptionNcmpInEventForwarder {
+
+    private static final Pattern REGEX_TO_EXTRACT_DOMAIN_FROM_URL_EXCLUDING_PORT =
+            Pattern.compile("^(?:http:\\/\\/|www\\.|https:\\/\\/)(([^\\/]+)(:[0-9]+))");
 
     private final InventoryPersistence inventoryPersistence;
     private final EventsPublisher<CloudEvent> eventsPublisher;
@@ -153,8 +158,9 @@ public class CmSubscriptionNcmpInEventForwarder {
                     }).collect(Collectors.toList());
 
             cmSubscriptionDmiInEvent.getData().getPredicates().setTargets(cmHandleTargets);
-            final String eventKey = createEventKey(cmSubscriptionDmiInEvent, dmiName);
-            final String dmiAvcSubscriptionTopic = dmiAvcSubscriptionTopicPrefix + dmiName;
+            final String dmiNameSuffix = toValidTopicSuffix(dmiName);
+            final String eventKey = createEventKey(cmSubscriptionDmiInEvent, dmiNameSuffix);
+            final String dmiAvcSubscriptionTopic = dmiAvcSubscriptionTopicPrefix + dmiNameSuffix;
 
             final CloudEvent cmSubscriptionDmiInCloudEvent =
                     cmSubscriptionEventCloudMapper.toCloudEvent(cmSubscriptionDmiInEvent, eventKey, eventType);
@@ -185,5 +191,14 @@ public class CmSubscriptionNcmpInEventForwarder {
                     .map(target -> new YangModelSubscriptionEvent.TargetCmHandle(target.getCmHandleId(),
                                     SubscriptionStatus.REJECTED, "Targets not found"))
                 .collect(Collectors.toList());
+    }
+
+    /*
+    CPS-1979 : DmiName can be a URL , which is not a valid topic name.
+               Hence just taking the domain name(excluding port) information to be part of the topic name.
+     */
+    private String toValidTopicSuffix(final String dmiName) {
+        final Matcher matcher = REGEX_TO_EXTRACT_DOMAIN_FROM_URL_EXCLUDING_PORT.matcher(dmiName);
+        return matcher.find() ? matcher.group(2) : dmiName;
     }
 }
