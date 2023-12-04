@@ -101,6 +101,52 @@
       "message": "Investigating a intermittent issue where the tests will sometimes fail on my local machine, due to not responding to the dmi stub liveness correctly",
       "revId": "c259821134bdd6267544e4868bb3085b41153b14",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96b6e650_9c1583db",
+        "filename": "csit/plans/cps/testplan.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-12-04T10:44:30Z",
+      "side": 1,
+      "message": "Can we change the order of these two test cases? Otherwise, you may have intermittently different notification created by cps-data-operations tests.\n\nIn which, stub url is given as dmi name. (${dmipluginCsitStubUrl}                 http://${DMI_CSIT_STUB_HOST}:${DMI_CSIT_STUB_PORT})\n\nHowever, dmi stub plugin may not have an healt check end point which make registered cm hanlde to send notification as you may seen on your local.",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 15
+      },
+      "revId": "c259821134bdd6267544e4868bb3085b41153b14",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b8a12ca_16380f89",
+        "filename": "csit/tests/cps-trust-level/cps-trust-level.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-12-04T10:44:30Z",
+      "side": 1,
+      "message": "This is better to replace with : ${dmiUrl}  since the dmi url and port may be changed in the future.",
+      "range": {
+        "startLine": 37,
+        "startChar": 58,
+        "endLine": 37,
+        "endChar": 85
+      },
+      "revId": "c259821134bdd6267544e4868bb3085b41153b14",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
