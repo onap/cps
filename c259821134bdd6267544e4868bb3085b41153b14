@@ -147,6 +147,30 @@
       },
       "revId": "c259821134bdd6267544e4868bb3085b41153b14",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc1b5a58_7be70189",
+        "filename": "csit/tests/cps-trust-level/cps-trust-level.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-12-04T13:35:17Z",
+      "side": 1,
+      "message": "Sorry Jeff, I\u0027ve just realized/forgot to mention if ${DMI_HOST} is a LOCAL_IP ( probably it is ), then DMI plugin watch dog may not reach the Health check URL to verify.\n\nIn that case, you can give it as is, but don\u0027t forget to remove line #36 if that is not being used.",
+      "parentUuid": "7b8a12ca_16380f89",
+      "range": {
+        "startLine": 37,
+        "startChar": 58,
+        "endLine": 37,
+        "endChar": 85
+      },
+      "revId": "c259821134bdd6267544e4868bb3085b41153b14",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
