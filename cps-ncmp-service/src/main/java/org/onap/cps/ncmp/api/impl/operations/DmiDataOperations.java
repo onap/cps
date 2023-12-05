@@ -260,6 +260,7 @@ public class DmiDataOperations extends DmiOperations {
                                                final String dataOperationResourceUrl,
                                                final List<DmiDataOperation> dmiDataOperationRequestBodies) {
         if (throwable != null) {
+            log.error("dmi-data-operation-customlog {}", throwable.getMessage());
             final MultiValueMap<String, String> dataOperationResourceUrlParameters =
                     UriComponentsBuilder.fromUriString(dataOperationResourceUrl).build().getQueryParams();
             final String topicName = dataOperationResourceUrlParameters.get("topic").get(0);
@@ -274,9 +275,13 @@ public class DmiDataOperations extends DmiOperations {
                 if (throwable.getCause() instanceof HttpClientRequestException) {
                     cmHandleIdsPerResponseCodesPerOperation.add(dmiDataOperationRequestBody,
                             Map.of(UNABLE_TO_READ_RESOURCE_DATA, cmHandleIds));
+                    log.info("dmi-data-operation-specificlog-notread {}, cm-handle-ids {}", dmiDataOperationRequestBody,
+                        cmHandleIds);
                 } else {
                     cmHandleIdsPerResponseCodesPerOperation.add(dmiDataOperationRequestBody,
                             Map.of(DMI_SERVICE_NOT_RESPONDING, cmHandleIds));
+                    log.info("dmi-data-operation-specificlog-notresponding {}, cm-handle-ids {}",
+                        dmiDataOperationRequestBody, cmHandleIds);
                 }
             });
             ResourceDataOperationRequestUtils.publishErrorMessageToClientTopic(topicName, requestId,

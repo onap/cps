@@ -174,7 +174,8 @@ class CpsAdminServiceIntegrationSpec extends CpsIntegrationSpecBase {
             def updatedTreeJsonData = readResourceDataFile('tree/updated-test-tree.json')
             cpsDataService.updateNodeLeaves(GENERAL_TEST_DATASPACE, "anchor4", "/test-tree/branch[@name='left']", updatedTreeJsonData, OffsetDateTime.now())
         then: 'updated tree data node can be retrieved by its normalized xpath'
-            def birdsName = cpsDataService.getDataNodes(GENERAL_TEST_DATASPACE, 'anchor4',"/test-tree/branch[@name='left']/nest", FetchDescendantsOption.DIRECT_CHILDREN_ONLY)[0].leaves['birds']
-            assert birdsName as String == '[Raven, Night Owl, Crow]'
+            def birdsName = cpsDataService.getDataNodes(GENERAL_TEST_DATASPACE, 'anchor4',"/test-tree/branch[@name='left']/nest", FetchDescendantsOption.DIRECT_CHILDREN_ONLY)[0].leaves['birds'] as List
+            assert birdsName.size() == 3
+            assert birdsName.containsAll('Night Owl', 'Raven', 'Crow')
     }
 }

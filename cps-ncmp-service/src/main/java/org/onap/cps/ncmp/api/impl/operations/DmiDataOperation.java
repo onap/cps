@@ -26,12 +26,14 @@ import java.util.ArrayList;
 import java.util.List;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.ToString;
 import org.onap.cps.ncmp.api.models.DataOperationDefinition;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Getter
 @Builder
 @JsonPropertyOrder({"operation", "operationId", "datastore", "options", "resourceIdentifier", "cmHandles"})
+@ToString
 public class DmiDataOperation {
 
     private OperationType operation;
