@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "73a311e1_86d7d959",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionNcmpInEventForwarder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-12-05T10:59:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db23f816_e0393665",
+      "range": {
+        "startLine": 61,
+        "startChar": 33,
+        "endLine": 61,
+        "endChar": 69
+      },
+      "revId": "dd5f75ca6b66018eb6cf190e91d8947666c8f440",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a98c2672_419c5449",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-12-05T08:53:50Z",
       "side": 1,
       "message": "duplicate line ?!",
+      "range": {
+        "startLine": 203,
+        "startChar": 8,
+        "endLine": 203,
+        "endChar": 23
+      },
+      "revId": "dd5f75ca6b66018eb6cf190e91d8947666c8f440",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d673b89e_9c95acfe",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionNcmpInEventForwarderSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-12-05T10:59:10Z",
+      "side": 1,
+      "message": "yeah. intellij shortcut mistake.",
+      "parentUuid": "a98c2672_419c5449",
       "range": {
         "startLine": 203,
         "startChar": 8,
