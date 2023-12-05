@@ -23,6 +23,9 @@
 
 package org.onap.cps.api.impl
 
+import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED
+import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED
+
 import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAdminService
 import org.onap.cps.spi.CpsModulePersistenceService
@@ -38,8 +41,6 @@ import org.onap.cps.yang.TimedYangTextSchemaSourceSetBuilder
 import org.onap.cps.yang.YangTextSchemaSourceSet
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import spock.lang.Specification
-import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED
-import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED
 
 class CpsModuleServiceImplSpec extends Specification {
 
@@ -65,7 +66,7 @@ class CpsModuleServiceImplSpec extends Specification {
             def moduleReferenceForExistingModule = new ModuleReference('test',  '2021-10-12','test.org')
             def listOfExistingModulesModuleReference = [moduleReferenceForExistingModule]
         when: 'create schema set from modules method is invoked'
-            objectUnderTest.createOrUpgradeSchemaSetFromModules('someDataspaceName', 'someSchemaSetName', [newModule: 'newContent'], listOfExistingModulesModuleReference)
+            objectUnderTest.createSchemaSetFromModules('someDataspaceName', 'someSchemaSetName', [newModule: 'newContent'], listOfExistingModulesModuleReference)
         then: 'processing is delegated to persistence service'
             1 * mockCpsModulePersistenceService.storeSchemaSetFromModules('someDataspaceName', 'someSchemaSetName', [newModule: 'newContent'], listOfExistingModulesModuleReference)
         and: 'the CpsValidator is called on the dataspaceName and schemaSetName'
@@ -175,12 +176,6 @@ class CpsModuleServiceImplSpec extends Specification {
             thrown(SchemaSetInUseException)
     }
 
-    def createAnchors(int anchorCount) {
-        def anchors = []
-        (0..<anchorCount).each { anchors.add(new Anchor("my-anchor-$it", 'my-dataspace', 'my-schemaset')) }
-        return anchors
-    }
-
     def 'Delete multiple schema-sets when cascade is allowed.'() {
         given: '#numberOfAnchors anchors are associated with each schemaset'
             mockCpsAdminService.getAnchors('my-dataspace', ['my-schemaset1', 'my-schemaset2']) >> createAnchors(numberOfAnchors * 2)
@@ -202,9 +197,16 @@ class CpsModuleServiceImplSpec extends Specification {
             numberOfAnchors << [0, 3]
     }
 
+    def 'Upgrade existing schema set'() {
+        when: 'schema set update is requested'
+        objectUnderTest.upgradeSchemaSetFromModules('my-dataspace', 'my-schemaset', [:], moduleReferences)
+        then: 'no exception is thrown '
+        noExceptionThrown()
+    }
+
     def 'Get all yang resources module references.'() {
         given: 'an already present module reference'
-            def moduleReferences = [new ModuleReference('some module name','some revision name')]
+            def moduleReferences = getModuleReferences()
             mockCpsModulePersistenceService.getYangResourceModuleReferences('someDataspaceName') >> moduleReferences
         when: 'get yang resource module references is called'
             def result = objectUnderTest.getYangResourceModuleReferences('someDataspaceName')
@@ -228,7 +230,7 @@ class CpsModuleServiceImplSpec extends Specification {
 
     def 'Identifying new module references.'(){
         given: 'module references from cm handle'
-            def moduleReferencesToCheck = [new ModuleReference('some-module', 'some-revision')]
+            def moduleReferencesToCheck = getModuleReferences()
         when: 'identifyNewModuleReferences is called'
             objectUnderTest.identifyNewModuleReferences(moduleReferencesToCheck)
         then: 'cps module persistence service is called with module references to check'
@@ -245,5 +247,15 @@ class CpsModuleServiceImplSpec extends Specification {
             assert result == moduleDefinitionsFromPersistenceService
         and: 'the CpsValidator is called on the dataspaceName and schemaSetName'
             1 * mockCpsValidator.validateNameCharacters('some-dataspace-name', 'some-anchor-name')
+    }
+
+    def getModuleReferences() {
+        return [new ModuleReference('some module name','some revision name')]
+    }
+
+    def createAnchors(int anchorCount) {
+        def anchors = []
+        (0..<anchorCount).each { anchors.add(new Anchor("my-anchor-$it", 'my-dataspace', 'my-schemaset')) }
+        return anchors
     }
 }

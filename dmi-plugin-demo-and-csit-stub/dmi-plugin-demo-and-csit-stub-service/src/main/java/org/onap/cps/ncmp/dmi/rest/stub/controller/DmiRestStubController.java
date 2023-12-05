@@ -84,6 +84,7 @@ public class DmiRestStubController {
         final String moduleResponseContent = ResourceFileReaderUtil
                 .getResourceFileContent(applicationContext.getResource(
                         ResourceLoader.CLASSPATH_URL_PREFIX + "module/moduleResponse.json"));
+        log.info("cm handle: {} requested for modules", cmHandle);
         return ResponseEntity.ok(moduleResponseContent);
     }
 
@@ -102,6 +103,7 @@ public class DmiRestStubController {
         final String moduleResourcesResponseContent = ResourceFileReaderUtil
                 .getResourceFileContent(applicationContext.getResource(
                         ResourceLoader.CLASSPATH_URL_PREFIX + "module/moduleResourcesResponse.json"));
+        log.info("cm handle: {} requested for module resources", cmHandle);
         return ResponseEntity.ok(moduleResourcesResponseContent);
     }
 

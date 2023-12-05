@@ -53,7 +53,7 @@ public interface CpsModuleService {
      * @param newModuleNameToContentMap YANG resources map where key is a module name and value is content
      * @param allModuleReferences       All YANG resource module references
      */
-    void createOrUpgradeSchemaSetFromModules(String dataspaceName, String schemaSetName,
+    void createSchemaSetFromModules(String dataspaceName, String schemaSetName,
                                     Map<String, String> newModuleNameToContentMap,
                                     Collection<ModuleReference> allModuleReferences);
 
@@ -93,6 +93,19 @@ public interface CpsModuleService {
      * @param schemaSetNames       schema set names
      */
     void deleteSchemaSetsWithCascade(String dataspaceName, Collection<String> schemaSetNames);
+
+
+    /**
+     * upgrade schema sets with existing or new modules.
+     *
+     * @param dataspaceName             dataspace name
+     * @param schemaSetName             schema set name
+     * @param newModuleNameToContentMap YANG resources map where key is a module name and value is content
+     * @param allModuleReferences       All YANG resource module references
+     */
+    void upgradeSchemaSetFromModules(final String dataspaceName, final String schemaSetName,
+                                     final Map<String, String> newModuleNameToContentMap,
+                                     final Collection<ModuleReference> allModuleReferences);
 
     /**
      * Retrieve module references for the given dataspace name.
