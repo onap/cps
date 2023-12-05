@@ -158,6 +158,7 @@ components:
           example: [ my-cm-handle1, my-cm-handle2, my-cm-handle3 ]
         moduleSetTag:
           type: string
+          default: ""
           example: 'my-module-set-tag'
 
     #Response Schemas

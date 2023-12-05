@@ -108,9 +108,11 @@ class ModuleOperationsUtilsSpec extends Specification{
             assert compositeState.lockReason.lockReasonCategory == MODULE_SYNC_FAILED
             assert compositeState.lockReason.details.contains(expectedDetails)
         where:
-            scenario         | lockReason                                                                                   || expectedDetails
-            'does not exist' | null                                                                                         || 'Attempt #1 failed: new error message'
-            'exists'         | CompositeState.LockReason.builder().details("Attempt #2 failed: some error message").build() || 'Attempt #3 failed: new error message'
+        scenario                           | lockReason                                                                                       || expectedDetails
+            'does not exist'                   | null                                                                                             || 'Attempt #1 failed: new error message'
+            'exists'                           | CompositeState.LockReason.builder().details("Attempt #2 failed: some error message").build()     || 'Attempt #3 failed: new error message'
+            'exists with valid module set tag' | CompositeState.LockReason.builder().details("Upgrade to ModuleSetTag: someModuleSetTag").build() || 'Upgrade to ModuleSetTag: someModuleSetTag'
+            'exists with empty module set tag' | CompositeState.LockReason.builder().details("Upgrade to ModuleSetTag:").build()                  || 'Upgrade to ModuleSetTag: not-specified'
     }
 
     def 'Get all locked Cm-Handle where Lock Reason is MODULE_SYNC_FAILED cm handle #scenario'() {

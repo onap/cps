@@ -66,9 +66,9 @@ public class CpsModuleServiceImpl implements CpsModuleService {
     }
 
     @Override
-    public void createOrUpgradeSchemaSetFromModules(final String dataspaceName, final String schemaSetName,
-        final Map<String, String> newModuleNameToContentMap,
-        final Collection<ModuleReference> allModuleReferences) {
+    public void createSchemaSetFromModules(final String dataspaceName, final String schemaSetName,
+                                           final Map<String, String> newModuleNameToContentMap,
+                                           final Collection<ModuleReference> allModuleReferences) {
         cpsValidator.validateNameCharacters(dataspaceName, schemaSetName);
         cpsModulePersistenceService.storeSchemaSetFromModules(dataspaceName, schemaSetName,
             newModuleNameToContentMap, allModuleReferences);
@@ -123,6 +123,16 @@ public class CpsModuleServiceImpl implements CpsModuleService {
             yangTextSchemaSourceSetCache.removeFromCache(dataspaceName, schemaSetName);
         }
     }
+
+    @Override
+    public void upgradeSchemaSetFromModules(final String dataspaceName, final String schemaSetName,
+                                            final Map<String, String> newModuleNameToContentMap,
+                                            final Collection<ModuleReference> allModuleReferences) {
+        cpsValidator.validateNameCharacters(dataspaceName, schemaSetName);
+        cpsModulePersistenceService.updateSchemaSetFromModules(dataspaceName, schemaSetName,
+                newModuleNameToContentMap, allModuleReferences);
+    }
+
 
     @Override
     public Collection<ModuleReference> getYangResourceModuleReferences(final String dataspaceName) {

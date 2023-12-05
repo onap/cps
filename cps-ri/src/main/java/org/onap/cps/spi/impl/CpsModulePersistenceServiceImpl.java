@@ -34,6 +34,7 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -189,6 +190,21 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         schemaSetRepository.deleteByDataspaceAndNameIn(dataspaceEntity, schemaSetNames);
     }
+
+
+    @Override
+    @Transactional
+    public void updateSchemaSetFromModules(final String dataspaceName, final String schemaSetName,
+                                           final Map<String, String> newModuleNameToContentMap,
+                                           final Collection<ModuleReference> allModuleReferences) {
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final SchemaSetEntity schemaSetEntity =
+            schemaSetRepository.getByDataspaceAndName(dataspaceEntity, schemaSetName);
+        storeAndLinkNewModules(newModuleNameToContentMap, schemaSetEntity);
+        updateAllModuleReferences(allModuleReferences, schemaSetEntity.getId());
+    }
+
+
 
     @Override
     @Transactional
@@ -364,4 +380,21 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
         return SchemaSet.builder().name(schemaSetEntity.getName())
                 .dataspaceName(schemaSetEntity.getDataspace().getName()).build();
     }
+
+    private void storeAndLinkNewModules(final Map<String, String> newModuleNameToContentMap,
+                                        final SchemaSetEntity schemaSetEntity) {
+        final Set<YangResourceEntity> yangResourceEntities
+            = new HashSet<>(synchronizeYangResources(newModuleNameToContentMap));
+        schemaSetEntity.setYangResources(yangResourceEntities);
+        schemaSetRepository.save(schemaSetEntity);
+    }
+
+    private void updateAllModuleReferences(final Collection<ModuleReference> allModuleReferences,
+                                           final Integer schemaSetEntityId) {
+        yangResourceRepository.deleteSchemaSetYangResourceForSchemaSetId(schemaSetEntityId);
+        final List<Integer> allYangResourceIds =
+            yangResourceRepository.getResourceIdsByModuleReferences(allModuleReferences);
+        yangResourceRepository.insertSchemaSetIdYangResourceId(schemaSetEntityId, allYangResourceIds);
+    }
+
 }

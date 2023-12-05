@@ -20,16 +20,16 @@
 package org.onap.cps.spi.impl
 
 import org.hibernate.exception.ConstraintViolationException
-import org.onap.cps.spi.CpsAdminPersistenceService
 import org.onap.cps.spi.CpsModulePersistenceService
+import org.onap.cps.spi.entities.SchemaSetEntity
 import org.onap.cps.spi.exceptions.DuplicatedYangResourceException
+import org.onap.cps.spi.model.ModuleReference
 import org.onap.cps.spi.repository.DataspaceRepository
 import org.onap.cps.spi.repository.ModuleReferenceRepository
 import org.onap.cps.spi.repository.SchemaSetRepository
 import org.onap.cps.spi.repository.YangResourceRepository
 import org.springframework.dao.DataIntegrityViolationException
 import spock.lang.Specification
-
 import java.sql.SQLException
 
 /**
@@ -39,11 +39,10 @@ class CpsModulePersistenceServiceSpec extends Specification {
 
     CpsModulePersistenceService objectUnderTest
 
-    def dataspaceRepositoryMock = Mock(DataspaceRepository)
-    def yangResourceRepositoryMock = Mock(YangResourceRepository)
-    def schemaSetRepositoryMock = Mock(SchemaSetRepository)
-    def cpsAdminPersistenceServiceMock = Mock(CpsAdminPersistenceService)
-    def moduleReferenceRepositoryMock = Mock(ModuleReferenceRepository)
+    def mockDataspaceRepository = Mock(DataspaceRepository)
+    def mockYangResourceRepository = Mock(YangResourceRepository)
+    def mockSchemaSetRepository = Mock(SchemaSetRepository)
+    def mockModuleReferenceRepository = Mock(ModuleReferenceRepository)
 
     def yangResourceName = 'my-yang-resource-name'
     def yangResourceContent = 'module stores {\n' +
@@ -68,15 +67,15 @@ class CpsModulePersistenceServiceSpec extends Specification {
     static otherIntegrityException = new DataIntegrityViolationException('another integrity exception')
 
     def setup() {
-        objectUnderTest = new CpsModulePersistenceServiceImpl(yangResourceRepositoryMock, schemaSetRepositoryMock,
-            dataspaceRepositoryMock, moduleReferenceRepositoryMock)
+        objectUnderTest = new CpsModulePersistenceServiceImpl(mockYangResourceRepository, mockSchemaSetRepository,
+            mockDataspaceRepository, mockModuleReferenceRepository)
     }
 
     def 'Store schema set error scenario: #scenario.'() {
         given: 'no yang resource are currently saved'
-            yangResourceRepositoryMock.findAllByChecksumIn(_ as Collection<String>) >> Collections.emptyList()
+            mockYangResourceRepository.findAllByChecksumIn(_ as Collection<String>) >> Collections.emptyList()
         and: 'persisting yang resource raises db constraint exception (in case of concurrent requests for example)'
-            yangResourceRepositoryMock.saveAll(_) >> { throw dbException }
+            mockYangResourceRepository.saveAll(_) >> { throw dbException }
         when: 'attempt to store schema set '
             def newYangResourcesNameToContentMap = [(yangResourceName):yangResourceContent]
             objectUnderTest.storeSchemaSet('my-dataspace', 'my-schema-set', newYangResourcesNameToContentMap)
@@ -88,6 +87,17 @@ class CpsModulePersistenceServiceSpec extends Specification {
             'checksum data failure'             | checksumIntegrityException                || DuplicatedYangResourceException | yangResourceChecksum
             'checksum failure without checksum' | checksumIntegrityExceptionWithoutChecksum || DuplicatedYangResourceException | 'no checksum found'
             'other data failure'                | otherIntegrityException                   || DataIntegrityViolationException | 'another integrity exception'
+    }
+
+    def 'Upgrade existing schema set'() {
+        given: 'no yang resource are currently saved'
+            mockYangResourceRepository.findAllByChecksumIn(_ as Collection<String>) >> Collections.emptyList()
+            def schemaSetEntity = new SchemaSetEntity(id: 1)
+            mockSchemaSetRepository.getByDataspaceAndName(_, _) >> schemaSetEntity
+        when: 'schema set update is requested'
+            objectUnderTest.updateSchemaSetFromModules('my-dataspace', 'my-schemaset', [:], [new ModuleReference('some module name','some revision name')])
+        then: 'no exception is thrown '
+            noExceptionThrown()
     }
 
 }
