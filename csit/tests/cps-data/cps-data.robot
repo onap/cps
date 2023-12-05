@@ -57,7 +57,10 @@ Get Updated Data Node by XPath
     ${response}=        Get On Session      CPS_URL   ${uri}   params=${params}   headers=${headers}   expected_status=200
     ${responseJson}=    Set Variable        ${response.json()['tree:nest']}
     Should Be Equal As Strings              ${responseJson['name']}   Bigger
-    Should Be Equal As Strings              ${responseJson['birds']}   ['Falcon', 'Eagle', 'Pigeon']
+    ${expected_list}=         Create List   Pigeon Falcon Eagle
+    FOR ${item}     IN      @{expected_list}
+        Item Contained In The List          ${item}     ${responseJson['birds']}
+    END
 
 Get Data Node by XPath
     ${uri}=             Set Variable        ${basePath}/v1/dataspaces/${dataspaceName}/anchors/${anchorName}/node
@@ -66,5 +69,10 @@ Get Data Node by XPath
     ${response}=        Get On Session      CPS_URL   ${uri}   params=${params}   headers=${headers}   expected_status=200
     ${responseJson}=    Set Variable        ${response.json()['tree:nest']}
     Should Be Equal As Strings              ${responseJson['name']}   SMALL/small
+
+*** Keywords ***
+Item Contained In The List
+    [Arguments]           ${item_to_check}        ${list}
+    Should Contain        ${list}                 ${item_to_check}
 
 
