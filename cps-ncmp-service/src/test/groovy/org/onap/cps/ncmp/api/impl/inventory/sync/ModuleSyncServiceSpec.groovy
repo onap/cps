@@ -76,7 +76,7 @@ class ModuleSyncServiceSpec extends Specification {
         when: 'module sync is triggered'
             objectUnderTest.syncAndCreateOrUpgradeSchemaSetAndAnchor(yangModelCmHandle)
         then: 'create schema set from module is invoked with correct parameters'
-            1 * mockCpsModuleService.createOrUpgradeSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'ch-1', newModuleNameContentToMap, moduleReferences)
+            1 * mockCpsModuleService.createSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'ch-1', newModuleNameContentToMap, moduleReferences)
         and: 'anchor is created with the correct parameters'
             1 * mockCpsAdminService.createAnchor(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'ch-1', 'ch-1')
         where: 'the following parameters are used'
@@ -111,7 +111,7 @@ class ModuleSyncServiceSpec extends Specification {
         when: 'module sync is triggered'
             objectUnderTest.syncAndCreateOrUpgradeSchemaSetAndAnchor(yangModelCmHandle)
         then: 'create schema set from module is invoked for the upgraded cm handle'
-            1 * mockCpsModuleService.createOrUpgradeSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'upgraded-ch', [:], moduleReferences)
+            1 * mockCpsModuleService.createSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'upgraded-ch', [:], moduleReferences)
         and: 'No anchor is created for the upgraded cm handle'
             0 * mockCpsAdminService.createAnchor(*_)
         where: 'the following parameters are used'
@@ -138,7 +138,7 @@ class ModuleSyncServiceSpec extends Specification {
         when: 'module upgrade is triggered'
             objectUnderTest.syncAndCreateOrUpgradeSchemaSetAndAnchor(yangModelCmHandle)
         then: 'the upgrade is delegated to the module service (with the correct parameters)'
-            1 * mockCpsModuleService.createOrUpgradeSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'cmHandleId-1', Collections.emptyMap(), moduleReferences)
+            1 * mockCpsModuleService.createSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'cmHandleId-1', Collections.emptyMap(), moduleReferences)
     }
 
     def 'Delete Schema Set for CmHandle'() {

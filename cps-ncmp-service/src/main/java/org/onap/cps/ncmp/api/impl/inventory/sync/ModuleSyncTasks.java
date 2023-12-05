@@ -67,14 +67,17 @@ public class ModuleSyncTasks {
                 final YangModelCmHandle yangModelCmHandle =
                         YangDataConverter.convertCmHandleToYangModel(cmHandleAsDataNode, cmHandleId);
                 final CompositeState compositeState = inventoryPersistence.getCmHandleState(cmHandleId);
+                final boolean inUpgrade = ModuleOperationsUtils.isInUpgradeOrUpgradeFailed(compositeState);
                 try {
-                    moduleSyncService.deleteSchemaSetIfExists(cmHandleId);
+                    if (!inUpgrade) {
+                        moduleSyncService.deleteSchemaSetIfExists(cmHandleId);
+                    }
                     moduleSyncService.syncAndCreateOrUpgradeSchemaSetAndAnchor(yangModelCmHandle);
                     yangModelCmHandle.getCompositeState().setLockReason(null);
                     cmHandelStatePerCmHandle.put(yangModelCmHandle, CmHandleState.READY);
                 } catch (final Exception e) {
                     log.warn("Processing of {} module failed due to reason {}.", cmHandleId, e.getMessage());
-                    if (ModuleOperationsUtils.isInUpgradeOrUpgradeFailed(compositeState)) {
+                    if (inUpgrade) {
                         moduleOperationsUtils.updateLockReasonDetailsAndAttempts(compositeState,
                                 LockReasonCategory.MODULE_UPGRADE_FAILED, e.getMessage());
                     } else {

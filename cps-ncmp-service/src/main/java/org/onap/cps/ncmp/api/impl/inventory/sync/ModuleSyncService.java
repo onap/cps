@@ -73,58 +73,33 @@ public class ModuleSyncService {
      */
     public void syncAndCreateOrUpgradeSchemaSetAndAnchor(final YangModelCmHandle yangModelCmHandle) {
 
-        final String moduleSetTag;
         final String cmHandleId = yangModelCmHandle.getId();
         final CompositeState compositeState = yangModelCmHandle.getCompositeState();
         final boolean inUpgrade = ModuleOperationsUtils.isInUpgradeOrUpgradeFailed(compositeState);
-
-        if (inUpgrade) {
-            moduleSetTag = ModuleOperationsUtils.getLockedCompositeStateDetails(compositeState.getLockReason())
-                    .get(ModuleOperationsUtils.MODULE_SET_TAG_KEY);
-        } else {
-            moduleSetTag = yangModelCmHandle.getModuleSetTag();
-        }
+        final String moduleSetTag = getModuleSetTag(yangModelCmHandle, inUpgrade, compositeState);
 
         final Collection<ModuleReference> moduleReferencesFromCache = moduleSetTagCache.get(moduleSetTag);
 
         if (moduleReferencesFromCache == null) {
-            final Optional<DataNode> optionalExistingCmHandleWithSameModuleSetTag
+            final Optional<DataNode> existingCmHandleWithSameModuleSetTag
                     = getFirstReadyDataNodeWithModuleSetTag(moduleSetTag);
 
-            if (optionalExistingCmHandleWithSameModuleSetTag.isPresent()) {
-                final String existingCmHandleAnchorName
-                        = optionalExistingCmHandleWithSameModuleSetTag.get().getAnchorName();
-                createOrUpgradeSchemaSetUsingModuleSetTag(cmHandleId, moduleSetTag, existingCmHandleAnchorName);
+            if (existingCmHandleWithSameModuleSetTag.isPresent()) {
+                final String existingAnchorName = existingCmHandleWithSameModuleSetTag.get().getAnchorName();
+                final Collection<ModuleReference> moduleReferencesFromExistingCmHandle =
+                        upgradeOrCreateSchemaSetUsingModuleSetTag(yangModelCmHandle.getId(), moduleSetTag,
+                                existingAnchorName, inUpgrade);
+                updateModuleSetTagCache(moduleSetTag, moduleReferencesFromExistingCmHandle);
             } else {
                 syncAndCreateSchemaSet(yangModelCmHandle, moduleSetTag);
             }
         } else {
-            cpsModuleService.createOrUpgradeSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME,
-                    cmHandleId, NO_NEW_MODULES, moduleReferencesFromCache);
+            createOrUpdateSchemaSetFromModules(cmHandleId, inUpgrade, moduleReferencesFromCache);
         }
         if (!inUpgrade) {
             cpsAdminService.createAnchor(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId, cmHandleId);
         }
         setCmHandleModuleSetTag(yangModelCmHandle, moduleSetTag);
-    }
-
-    private void syncAndCreateSchemaSet(final YangModelCmHandle yangModelCmHandle, final String moduleSetTag) {
-        final Collection<ModuleReference> allModuleReferencesFromCmHandle =
-                dmiModelOperations.getModuleReferences(yangModelCmHandle);
-        final Collection<ModuleReference> identifiedNewModuleReferencesFromCmHandle = cpsModuleService
-                .identifyNewModuleReferences(allModuleReferencesFromCmHandle);
-        final Map<String, String> newModuleNameToContentMap;
-        if (identifiedNewModuleReferencesFromCmHandle.isEmpty()) {
-            newModuleNameToContentMap = NO_NEW_MODULES;
-        } else {
-            newModuleNameToContentMap = dmiModelOperations.getNewYangResourcesFromDmi(yangModelCmHandle,
-                    identifiedNewModuleReferencesFromCmHandle);
-        }
-        cpsModuleService.createOrUpgradeSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME,
-            yangModelCmHandle.getId(), newModuleNameToContentMap, allModuleReferencesFromCmHandle);
-        if (StringUtils.isNotBlank(moduleSetTag)) {
-            moduleSetTagCache.put(moduleSetTag, allModuleReferencesFromCmHandle);
-        }
     }
 
     /**
@@ -162,16 +137,63 @@ public class ModuleSyncService {
                 jsonObjectMapper.asJsonString(dmiRegistryProperties), OffsetDateTime.now());
     }
 
-    private void createOrUpgradeSchemaSetUsingModuleSetTag(final String schemaSetName,
-                                                           final String moduleSetTag,
-                                                           final String existingCmHandleAnchorName) {
+    private void syncAndCreateSchemaSet(final YangModelCmHandle yangModelCmHandle, final String moduleSetTag) {
+        final Collection<ModuleReference> allModuleReferencesFromCmHandle =
+                dmiModelOperations.getModuleReferences(yangModelCmHandle);
+        final Collection<ModuleReference> identifiedNewModuleReferencesFromCmHandle = cpsModuleService
+                .identifyNewModuleReferences(allModuleReferencesFromCmHandle);
+        final Map<String, String> newModuleNameToContentMap;
+        if (identifiedNewModuleReferencesFromCmHandle.isEmpty()) {
+            newModuleNameToContentMap = NO_NEW_MODULES;
+        } else {
+            newModuleNameToContentMap = dmiModelOperations.getNewYangResourcesFromDmi(yangModelCmHandle,
+                    identifiedNewModuleReferencesFromCmHandle);
+        }
+        cpsModuleService.createSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME,
+                yangModelCmHandle.getId(), newModuleNameToContentMap, allModuleReferencesFromCmHandle);
+        updateModuleSetTagCache(moduleSetTag, allModuleReferencesFromCmHandle);
+    }
+
+    private Collection<ModuleReference> upgradeOrCreateSchemaSetUsingModuleSetTag(final String schemaSetName,
+                                                                                  final String moduleSetTag,
+                                                                                  final String existingAnchorName,
+                                                                                  final boolean inUpgrade) {
         log.info("Found cm handle having module set tag: {}", moduleSetTag);
         final Collection<ModuleReference> moduleReferencesFromExistingCmHandle =
                 cpsModuleService.getYangResourcesModuleReferences(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME,
-                        existingCmHandleAnchorName);
-        cpsModuleService.createOrUpgradeSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME,
-            schemaSetName, NO_NEW_MODULES, moduleReferencesFromExistingCmHandle);
-        moduleSetTagCache.put(moduleSetTag, moduleReferencesFromExistingCmHandle);
+                        existingAnchorName);
+        createOrUpdateSchemaSetFromModules(schemaSetName, inUpgrade, moduleReferencesFromExistingCmHandle);
+        return moduleReferencesFromExistingCmHandle;
+    }
+
+    private void createOrUpdateSchemaSetFromModules(final String schemaSetName,
+                                                    final boolean inUpgrade,
+                                                    final Collection<ModuleReference>
+                                                            moduleReferencesFromExistingCmHandle) {
+        if (inUpgrade) {
+            cpsModuleService.upgradeSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, schemaSetName,
+                    NO_NEW_MODULES, moduleReferencesFromExistingCmHandle);
+        } else {
+            cpsModuleService.createSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME,
+                    schemaSetName, NO_NEW_MODULES, moduleReferencesFromExistingCmHandle);
+        }
+    }
+
+    private String getModuleSetTag(final YangModelCmHandle yangModelCmHandle,
+                                   final boolean inUpgrade,
+                                   final CompositeState compositeState) {
+        if (inUpgrade) {
+            return ModuleOperationsUtils.getLockedCompositeStateDetails(compositeState.getLockReason())
+                    .get(ModuleOperationsUtils.MODULE_SET_TAG_KEY);
+        }
+        return yangModelCmHandle.getModuleSetTag();
+    }
+
+    private void updateModuleSetTagCache(final String moduleSetTag,
+                                         final Collection<ModuleReference> allModuleReferencesFromCmHandle) {
+        if (StringUtils.isNotBlank(moduleSetTag)) {
+            moduleSetTagCache.putIfAbsent(moduleSetTag, allModuleReferencesFromCmHandle);
+        }
     }
 
 }

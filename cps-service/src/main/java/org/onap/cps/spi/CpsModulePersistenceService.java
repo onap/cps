@@ -43,7 +43,7 @@ public interface CpsModulePersistenceService {
     void storeSchemaSet(String dataspaceName, String schemaSetName, Map<String, String> yangResourcesNameToContentMap);
 
     /**
-     * Stores a schema set from new modules and existing modules.
+     * Stores a new schema set from new modules and existing modules.
      *
      * @param dataspaceName             Dataspace name
      * @param schemaSetName             Schema set name
@@ -52,6 +52,19 @@ public interface CpsModulePersistenceService {
      */
     void storeSchemaSetFromModules(String dataspaceName, String schemaSetName,
         Map<String, String> newModuleNameToContentMap, Collection<ModuleReference> allModuleReferences);
+
+    /**
+     * Update an existing schema set from new modules and existing modules.
+     *
+     * @param dataspaceName             Dataspace name
+     * @param schemaSetName             Schema set name
+     * @param newModuleNameToContentMap YANG resources map where key is a module name and value is content
+     * @param allModuleReferences       All YANG resources module references
+     */
+    void updateSchemaSetFromModules(final String dataspaceName, final String schemaSetName,
+                                    final Map<String, String> newModuleNameToContentMap,
+                                    final Collection<ModuleReference> allModuleReferences);
+
 
     /**
      * Get all schema sets for a given dataspace.
