@@ -20,10 +20,10 @@
 
 package org.onap.cps.ncmp.api.impl.config.embeddedcache;
 
+import com.hazelcast.collection.IQueue;
 import com.hazelcast.config.MapConfig;
 import com.hazelcast.config.QueueConfig;
 import com.hazelcast.map.IMap;
-import java.util.concurrent.BlockingQueue;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.cache.HazelcastCacheConfig;
 import org.onap.cps.spi.model.DataNode;
@@ -50,7 +50,7 @@ public class SynchronizationCacheConfig extends HazelcastCacheConfig {
      * @return queue of cm handles (data nodes) that need module sync
      */
     @Bean
-    public BlockingQueue<DataNode> moduleSyncWorkQueue() {
+    public IQueue<DataNode> moduleSyncWorkQueue() {
         return createHazelcastInstance("moduleSyncWorkQueue", commonQueueConfig).getQueue("moduleSyncWorkQueue");
     }
 
