@@ -130,10 +130,11 @@ public class ModuleOperationsUtils {
         if (!compositeStateDetails.isEmpty()) {
             attempt = 1 + Integer.parseInt(compositeStateDetails.get(RETRY_ATTEMPT_KEY));
         }
+        final String moduleSetTag = compositeStateDetails.get(MODULE_SET_TAG_KEY);
         compositeState.setLockReason(CompositeState.LockReason.builder()
                 .details(String.format(UPGRADE_FAILED_FORMAT,
-                        compositeStateDetails.get(MODULE_SET_TAG_KEY), attempt, errorMessage))
-                .lockReasonCategory(lockReasonCategory).build());
+                        moduleSetTag == null || moduleSetTag.equals("null") ? "not-specified" : moduleSetTag, attempt,
+                        errorMessage)).lockReasonCategory(lockReasonCategory).build());
     }
 
     /**
@@ -174,13 +175,19 @@ public class ModuleOperationsUtils {
                 DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ"));
         final CompositeState.LockReason lockReason = compositeState.getLockReason();
 
+        final boolean moduleUpgrade = LockReasonCategory.MODULE_UPGRADE == lockReason.getLockReasonCategory();
+        if (moduleUpgrade) {
+            log.info("Locked for module upgrade");
+            return true;
+        }
+
         final boolean failedDuringModuleSync = LockReasonCategory.MODULE_SYNC_FAILED
                 == lockReason.getLockReasonCategory();
         final boolean failedDuringModuleUpgrade = LockReasonCategory.MODULE_UPGRADE_FAILED
                 == lockReason.getLockReasonCategory();
 
         if (failedDuringModuleSync || failedDuringModuleUpgrade) {
-            log.info("Locked for module {}.", failedDuringModuleSync ? "sync" : "upgrade");
+            log.info("Locked for module {} (last attempt failed).", failedDuringModuleSync ? "sync" : "upgrade");
             return isRetryDue(lockReason, time);
         }
         log.info("Locked for other reason");
