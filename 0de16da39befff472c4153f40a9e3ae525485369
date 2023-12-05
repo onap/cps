@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce81b2c8_f465b3ff",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-12-05T17:26:06Z",
+      "side": 1,
+      "message": "NB: i think the impl. in patch#2 is more appropriate where u have separate methods for removed and updated delta report.",
+      "range": {
+        "startLine": 84,
+        "startChar": 16,
+        "endLine": 87,
+        "endChar": 69
+      },
+      "revId": "0de16da39befff472c4153f40a9e3ae525485369",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c6e4562_5a10b785",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-12-05T17:26:06Z",
+      "side": 1,
+      "message": "NB: same here as above.\ncan be a small separate method.",
+      "range": {
+        "startLine": 89,
+        "startChar": 16,
+        "endLine": 99,
+        "endChar": 86
+      },
+      "revId": "0de16da39befff472c4153f40a9e3ae525485369",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
