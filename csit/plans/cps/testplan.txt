@@ -24,4 +24,5 @@ cps-data-sync
 cps-subscriptions
 ncmp-passthrough
 cm-handle-query
+cps-trust-level
 cps-data-operations
