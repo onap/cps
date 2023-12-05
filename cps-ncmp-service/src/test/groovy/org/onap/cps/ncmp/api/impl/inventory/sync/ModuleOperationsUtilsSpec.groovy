@@ -108,9 +108,24 @@ class ModuleOperationsUtilsSpec extends Specification{
             assert compositeState.lockReason.lockReasonCategory == MODULE_SYNC_FAILED
             assert compositeState.lockReason.details.contains(expectedDetails)
         where:
-            scenario         | lockReason                                                                                   || expectedDetails
-            'does not exist' | null                                                                                         || 'Attempt #1 failed: new error message'
-            'exists'         | CompositeState.LockReason.builder().details("Attempt #2 failed: some error message").build() || 'Attempt #3 failed: new error message'
+            scenario                           | lockReason                                                                                       || expectedDetails
+            'does not exist'                   | null                                                                                             || 'Attempt #1 failed: new error message'
+            'exists'                           | CompositeState.LockReason.builder().details("Attempt #2 failed: some error message").build()     || 'Attempt #3 failed: new error message'
+    }
+
+    def 'Update lock reason details that contains #scenario'() {
+        given: 'A locked state'
+            def compositeState = new CompositeStateBuilder().withCmHandleState(CmHandleState.LOCKED)
+                .withLockReason(MODULE_UPGRADE, lockReasonDetails).build()
+        when: 'update cm handle details and attempts is called'
+            objectUnderTest.updateLockReasonDetailsAndAttempts(compositeState, MODULE_UPGRADE_FAILED, 'new error message')
+        then: 'the composite state lock reason and details are updated'
+            assert compositeState.lockReason.lockReasonCategory == MODULE_UPGRADE_FAILED
+            assert compositeState.lockReason.details.contains(expectedDetails)
+        where:
+            scenario                   | lockReasonDetails                           || expectedDetails
+            'non empty module set tag' | "Upgrade to ModuleSetTag: someModuleSetTag" || 'Upgrade to ModuleSetTag: someModuleSetTag'
+            'empty module set tag'     | "Upgrade to ModuleSetTag:"                  || 'Upgrade to ModuleSetTag: not-specified'
     }
 
     def 'Get all locked Cm-Handle where Lock Reason is MODULE_SYNC_FAILED cm handle #scenario'() {
