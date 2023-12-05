@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db23f816_e0393665",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionNcmpInEventForwarder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-12-05T08:53:50Z",
+      "side": 1,
+      "message": "NB Sugegstion\nREGEX_TO_EXTRACT_DOMAIN\nor even \nREGEX_TO_EXTRACT_DOMAIN_FROM_URL_EXCLUDING_PORT",
+      "range": {
+        "startLine": 61,
+        "startChar": 33,
+        "endLine": 61,
+        "endChar": 69
+      },
+      "revId": "dd5f75ca6b66018eb6cf190e91d8947666c8f440",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a98c2672_419c5449",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionNcmpInEventForwarderSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-12-05T08:53:50Z",
+      "side": 1,
+      "message": "duplicate line ?!",
+      "range": {
+        "startLine": 203,
+        "startChar": 8,
+        "endLine": 203,
+        "endChar": 23
+      },
+      "revId": "dd5f75ca6b66018eb6cf190e91d8947666c8f440",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
