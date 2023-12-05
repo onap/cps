@@ -221,9 +221,9 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         where:
             scenario                          | dmiProperties            | publicProperties               || expectedDmiProperties                      | expectedPublicProperties
             'with dmi & public properties'    | ['dmi-key': 'dmi-value'] | ['public-key': 'public-value'] || '[{"name":"dmi-key","value":"dmi-value"}]' | '[{"name":"public-key","value":"public-value"}]'
-            'with only public properties'     | [:]                      | ['public-key': 'public-value'] || '[]'                                       | '[{"name":"public-key","value":"public-value"}]'
-            'with only dmi properties'        | ['dmi-key': 'dmi-value'] | [:]                            || '[{"name":"dmi-key","value":"dmi-value"}]' | '[]'
-            'without dmi & public properties' | [:]                      | [:]                            || '[]'                                       | '[]'
+            'with only public properties'     | [:]                      | ['public-key': 'public-value'] || [:]                                        | '[{"name":"public-key","value":"public-value"}]'
+            'with only dmi properties'        | ['dmi-key': 'dmi-value'] | [:]                            || '[{"name":"dmi-key","value":"dmi-value"}]' | [:]
+            'without dmi & public properties' | [:]                      | [:]                            || [:]                                        | [:]
     }
 
     def 'Add CM-Handle to trustLevelPerCmHandle Successfully with: #scenario.'() {
