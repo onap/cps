@@ -67,20 +67,20 @@ public class ModuleSyncTasks {
                 final YangModelCmHandle yangModelCmHandle =
                         YangDataConverter.convertCmHandleToYangModel(cmHandleAsDataNode, cmHandleId);
                 final CompositeState compositeState = inventoryPersistence.getCmHandleState(cmHandleId);
+                final boolean inUpgrade = ModuleOperationsUtils.isInUpgradeOrUpgradeFailed(compositeState);
                 try {
-                    moduleSyncService.deleteSchemaSetIfExists(cmHandleId);
+                    if (!inUpgrade) {
+                        moduleSyncService.deleteSchemaSetIfExists(cmHandleId);
+                    }
                     moduleSyncService.syncAndCreateOrUpgradeSchemaSetAndAnchor(yangModelCmHandle);
                     yangModelCmHandle.getCompositeState().setLockReason(null);
                     cmHandelStatePerCmHandle.put(yangModelCmHandle, CmHandleState.READY);
                 } catch (final Exception e) {
                     log.warn("Processing of {} module failed due to reason {}.", cmHandleId, e.getMessage());
-                    if (ModuleOperationsUtils.isInUpgradeOrUpgradeFailed(compositeState)) {
-                        moduleOperationsUtils.updateLockReasonDetailsAndAttempts(compositeState,
-                                LockReasonCategory.MODULE_UPGRADE_FAILED, e.getMessage());
-                    } else {
-                        moduleOperationsUtils.updateLockReasonDetailsAndAttempts(compositeState,
-                                LockReasonCategory.MODULE_SYNC_FAILED, e.getMessage());
-                    }
+                    final LockReasonCategory lockReasonCategory = inUpgrade ? LockReasonCategory.MODULE_UPGRADE_FAILED
+                            : LockReasonCategory.MODULE_SYNC_FAILED;
+                    moduleOperationsUtils.updateLockReasonDetailsAndAttempts(compositeState,
+                            lockReasonCategory, e.getMessage());
                     setCmHandleStateLocked(yangModelCmHandle, compositeState.getLockReason());
                     cmHandelStatePerCmHandle.put(yangModelCmHandle, CmHandleState.LOCKED);
                 }
