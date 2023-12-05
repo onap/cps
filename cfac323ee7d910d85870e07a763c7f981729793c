@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ffa990d_302138ca",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionNcmpInEventForwarderSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-12-05T18:43:08Z",
+      "side": 1,
+      "message": "Please use more descriptive scenarios, its not clear whey some are valid/invalid\nsuggestions:\n\u0027insecure http url with port\u0027\n\u0027secure https url with port\n\u0027servername without protocol and port\u0027\netc.\n\nMaybe one or two more new scenarios needed\n\u0027insecure http url without port\u0027\n\u0027secure https url without port",
+      "range": {
+        "startLine": 189,
+        "startChar": 13,
+        "endLine": 189,
+        "endChar": 19
+      },
+      "revId": "cfac323ee7d910d85870e07a763c7f981729793c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
