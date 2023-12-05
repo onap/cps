@@ -52,6 +52,7 @@ class CpsModuleServiceIntegrationSpec extends FunctionalSpecBase {
 
     def newYangResourcesNameToContentMap = [:]
     def moduleReferences = []
+    def noNewModules = [:]
 
     def setup() {
         objectUnderTest = cpsModuleService
@@ -94,7 +95,7 @@ class CpsModuleServiceIntegrationSpec extends FunctionalSpecBase {
             moduleReferences.addAll(existingModuleReferences)
         when: 'the new schema set is created'
             def schemaSetName = "NewSchemaWith${numberOfNewModules}Modules"
-            objectUnderTest.createOrUpgradeSchemaSetFromModules(FUNCTIONAL_TEST_DATASPACE_1, schemaSetName, newYangResourcesNameToContentMap, moduleReferences)
+            objectUnderTest.createSchemaSetFromModules(FUNCTIONAL_TEST_DATASPACE_1, schemaSetName, newYangResourcesNameToContentMap, moduleReferences)
         and: 'associated with a new anchor'
             cpsAdminService.createAnchor(FUNCTIONAL_TEST_DATASPACE_1, schemaSetName, 'newAnchor')
         then: 'the new anchor has the correct number of modules'
@@ -262,15 +263,74 @@ class CpsModuleServiceIntegrationSpec extends FunctionalSpecBase {
     }
 
     /*
+        U P G R A D E
+     */
+
+    def 'Upgrade schema set (with existing and new modules, no matching module set tag in NCMP)'() {
+        given: 'an anchor and schema set with 2 modules (to be upgraded)'
+            populateNewYangResourcesNameToContentMapAndAllModuleReferences('original', 2)
+            objectUnderTest.createSchemaSetFromModules(FUNCTIONAL_TEST_DATASPACE_1, 'targetSchema', newYangResourcesNameToContentMap, [])
+            cpsAdminService.createAnchor(FUNCTIONAL_TEST_DATASPACE_1, 'targetSchema', 'targetAnchor')
+            def yangResourceModuleReferencesBeforeUpgrade = objectUnderTest.getYangResourcesModuleReferences(FUNCTIONAL_TEST_DATASPACE_1, 'targetAnchor')
+            assert yangResourceModuleReferencesBeforeUpgrade.size() == 2
+            assert yangResourceModuleReferencesBeforeUpgrade.containsAll([new ModuleReference('original_0','2000-01-01'),new ModuleReference('original_1','2001-01-01')])
+        and: 'two new 2 modules (from node)'
+            populateNewYangResourcesNameToContentMapAndAllModuleReferences('new', 2)
+            def newModuleReferences = [new ModuleReference('new_0','2000-01-01'),new ModuleReference('new_1','2001-01-01')]
+        and: 'a list of all module references (normally retrieved from node)'
+            def allModuleReferences = []
+            allModuleReferences.add(existingModuleReference)
+            allModuleReferences.addAll(newModuleReferences)
+        when: 'the schema set is upgraded'
+            objectUnderTest.upgradeSchemaSetFromModules(FUNCTIONAL_TEST_DATASPACE_1, 'targetSchema', newYangResourcesNameToContentMap, allModuleReferences)
+        then: 'the new anchor has the correct new and existing modules'
+            def yangResourceModuleReferencesAfterUpgrade = objectUnderTest.getYangResourcesModuleReferences(FUNCTIONAL_TEST_DATASPACE_1, 'targetAnchor')
+            assert yangResourceModuleReferencesAfterUpgrade.size() == 3
+            assert yangResourceModuleReferencesAfterUpgrade.contains(existingModuleReference)
+            assert yangResourceModuleReferencesAfterUpgrade.containsAll(newModuleReferences);
+        cleanup:
+            objectUnderTest.deleteSchemaSetsWithCascade(FUNCTIONAL_TEST_DATASPACE_1, ['targetSchema'])
+    }
+    
+    def 'Upgrade existing schema set from another anchor (used in NCMP for matching module set tag)'() {
+        given: 'an anchor and schema set with 1 module (target)'
+            populateNewYangResourcesNameToContentMapAndAllModuleReferences('target', 1)
+            objectUnderTest.createSchemaSetFromModules(FUNCTIONAL_TEST_DATASPACE_1, 'targetSchema', newYangResourcesNameToContentMap, [])
+            cpsAdminService.createAnchor(FUNCTIONAL_TEST_DATASPACE_1, 'targetSchema', 'targetAnchor')
+            def moduleReferencesBeforeUpgrade = objectUnderTest.getYangResourcesModuleReferences(FUNCTIONAL_TEST_DATASPACE_1, 'targetAnchor')
+            assert moduleReferencesBeforeUpgrade.size() == 1
+        and: 'another anchor and schema set with 2 other modules (source for upgrade)'
+            populateNewYangResourcesNameToContentMapAndAllModuleReferences('source', 2)
+            objectUnderTest.createSchemaSetFromModules(FUNCTIONAL_TEST_DATASPACE_1, 'sourceSchema', newYangResourcesNameToContentMap, [])
+            cpsAdminService.createAnchor(FUNCTIONAL_TEST_DATASPACE_1, 'sourceSchema', 'sourceAnchor')
+            assert objectUnderTest.getYangResourcesModuleReferences(FUNCTIONAL_TEST_DATASPACE_1, 'sourceAnchor').size() == 2
+        when: 'the target schema is upgraded using the module references from the source anchor'
+            def moduleReferencesFromSourceAnchor = objectUnderTest.getYangResourcesModuleReferences(FUNCTIONAL_TEST_DATASPACE_1, 'sourceAnchor')
+            objectUnderTest.upgradeSchemaSetFromModules(FUNCTIONAL_TEST_DATASPACE_1, 'targetSchema', noNewModules, moduleReferencesFromSourceAnchor)
+        then: 'the target schema now refers to the source modules (with namespace) modules'
+            def schemaSetModuleReferencesAfterUpgrade = getObjectUnderTest().getSchemaSet(FUNCTIONAL_TEST_DATASPACE_1, 'targetSchema').moduleReferences
+            assert schemaSetModuleReferencesAfterUpgrade.containsAll([new ModuleReference('source_0','2000-01-01','org:onap:ccsdk:sample'),new ModuleReference('source_1','2001-01-01','org:onap:ccsdk:sample')]);
+        and: 'the associated target anchor has the same module references (without namespace but that is a legacy issue)'
+            def anchorModuleReferencesAfterUpgrade = objectUnderTest.getYangResourcesModuleReferences(FUNCTIONAL_TEST_DATASPACE_1, 'targetAnchor')
+            assert anchorModuleReferencesAfterUpgrade.containsAll([new ModuleReference('source_0','2000-01-01'),new ModuleReference('source_1','2001-01-01')]);
+        cleanup:
+            objectUnderTest.deleteSchemaSetsWithCascade(FUNCTIONAL_TEST_DATASPACE_1, ['sourceSchema', 'targetSchema'])
+    }
+
+    /*
         H E L P E R   M E T H O D S
      */
 
     def populateNewYangResourcesNameToContentMapAndAllModuleReferences(numberOfModules) {
+        populateNewYangResourcesNameToContentMapAndAllModuleReferences('name', numberOfModules)
+    }
+
+    def populateNewYangResourcesNameToContentMapAndAllModuleReferences(namePrefix, numberOfModules) {
         numberOfModules.times {
-            def uniqueName = 'name_' + it
+            def uniqueName = namePrefix + '_' + it
             def uniqueRevision = String.valueOf(2000 + it) + '-01-01'
             moduleReferences.add(new ModuleReference(uniqueName, uniqueRevision))
-            def uniqueContent = NEW_RESOURCE_CONTENT.replace(NEW_RESOURCE_REVISION, uniqueRevision)
+            def uniqueContent = NEW_RESOURCE_CONTENT.replace(NEW_RESOURCE_REVISION, uniqueRevision).replace('module test_module', 'module '+uniqueName)
             newYangResourcesNameToContentMap.put(uniqueRevision, uniqueContent)
         }
     }

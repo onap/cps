@@ -38,6 +38,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueries;
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleState;
 import org.onap.cps.ncmp.api.impl.inventory.CompositeState;
@@ -64,7 +65,7 @@ public class ModuleOperationsUtils {
     public static final String MODULE_SET_TAG_KEY = "moduleSetTag";
     public static final String MODULE_SET_TAG_MESSAGE_FORMAT = "Upgrade to ModuleSetTag: {0}";
     private static final String UPGRADE_FORMAT = "Upgrade to ModuleSetTag: %s";
-    private static final String UPGRADE_FAILED_FORMAT = UPGRADE_FORMAT + " Attempt #%d failed: %s";
+    private static final String LOCK_REASON_DETAILS_MSG_FORMAT = UPGRADE_FORMAT + " Attempt #%d failed: %s";
     private static final Pattern retryAttemptPattern = Pattern.compile("Attempt #(\\d+) failed:.+");
     private static final Pattern moduleSetTagPattern = Pattern.compile("Upgrade to ModuleSetTag: (\\S+)");
 
@@ -127,13 +128,14 @@ public class ModuleOperationsUtils {
         int attempt = 1;
         final Map<String, String> compositeStateDetails
                 = getLockedCompositeStateDetails(compositeState.getLockReason());
-        if (!compositeStateDetails.isEmpty()) {
+        if (!compositeStateDetails.isEmpty() && compositeStateDetails.containsKey(RETRY_ATTEMPT_KEY)) {
             attempt = 1 + Integer.parseInt(compositeStateDetails.get(RETRY_ATTEMPT_KEY));
         }
+        final String moduleSetTag = compositeStateDetails.get(MODULE_SET_TAG_KEY);
         compositeState.setLockReason(CompositeState.LockReason.builder()
-                .details(String.format(UPGRADE_FAILED_FORMAT,
-                        compositeStateDetails.get(MODULE_SET_TAG_KEY), attempt, errorMessage))
-                .lockReasonCategory(lockReasonCategory).build());
+                .details(String.format(LOCK_REASON_DETAILS_MSG_FORMAT, StringUtils.isNotBlank(moduleSetTag)
+                        ? moduleSetTag : "not-specified", attempt, errorMessage)).lockReasonCategory(lockReasonCategory)
+                .build());
     }
 
     /**
@@ -174,13 +176,19 @@ public class ModuleOperationsUtils {
                 DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ"));
         final CompositeState.LockReason lockReason = compositeState.getLockReason();
 
+        final boolean moduleUpgrade = LockReasonCategory.MODULE_UPGRADE == lockReason.getLockReasonCategory();
+        if (moduleUpgrade) {
+            log.info("Locked for module upgrade");
+            return true;
+        }
+
         final boolean failedDuringModuleSync = LockReasonCategory.MODULE_SYNC_FAILED
                 == lockReason.getLockReasonCategory();
         final boolean failedDuringModuleUpgrade = LockReasonCategory.MODULE_UPGRADE_FAILED
                 == lockReason.getLockReasonCategory();
 
         if (failedDuringModuleSync || failedDuringModuleUpgrade) {
-            log.info("Locked for module {}.", failedDuringModuleSync ? "sync" : "upgrade");
+            log.info("Locked for module {} (last attempt failed).", failedDuringModuleSync ? "sync" : "upgrade");
             return isRetryDue(lockReason, time);
         }
         log.info("Locked for other reason");
