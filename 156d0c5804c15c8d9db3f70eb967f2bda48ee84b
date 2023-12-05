@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76dfe52a_c9fece98",
+        "filename": "csit/tests/cps-data/cps-data.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-12-05T18:17:36Z",
+      "side": 1,
+      "message": "suggestion:\ncan you change this into a \u0027contains-all\u0027 type check that is NOT order dependent ?!",
+      "range": {
+        "startLine": 60,
+        "startChar": 71,
+        "endLine": 60,
+        "endChar": 100
+      },
+      "revId": "156d0c5804c15c8d9db3f70eb967f2bda48ee84b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78232a53_651f653a",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsAdminServiceIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-12-05T18:17:36Z",
+      "side": 1,
+      "message": "as before we need a method to check collection in an order dependent way\n\nbirdsName.size \u003d\u003d 4\nbirdsName.containsAll([Night Owl, Raven, Crow])",
+      "range": {
+        "startLine": 178,
+        "startChar": 42,
+        "endLine": 178,
+        "endChar": 68
+      },
+      "revId": "156d0c5804c15c8d9db3f70eb967f2bda48ee84b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
