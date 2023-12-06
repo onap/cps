@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "43aff5b6_3a267568",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-12-06T10:18:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce81b2c8_f465b3ff",
+      "range": {
+        "startLine": 84,
+        "startChar": 16,
+        "endLine": 87,
+        "endChar": 69
+      },
+      "revId": "0de16da39befff472c4153f40a9e3ae525485369",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7c6e4562_5a10b785",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-12-05T17:26:06Z",
       "side": 1,
       "message": "NB: same here as above.\ncan be a small separate method.",
+      "range": {
+        "startLine": 89,
+        "startChar": 16,
+        "endLine": 99,
+        "endChar": 86
+      },
+      "revId": "0de16da39befff472c4153f40a9e3ae525485369",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c64672d3_912312bd",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-12-06T10:18:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c6e4562_5a10b785",
       "range": {
         "startLine": 89,
         "startChar": 16,
