@@ -42,7 +42,7 @@ ${newCmHandleRequestBody}               {"dmiPlugin":"${dmipluginCsitStubUrl}","
 
 NCMP Data Operation, forwarded to DMI, response on Client Topic
         ${uri}=                          Set Variable        ${ncmpBasePath}/v1/data
-        ${dataOperationReqBody}=         Get Binary File     ${DATADIR}${/}dataOperationRequest.json
+        ${dataOperationReqBody}=         Get Binary File     ${DATADIR_CPS_CORE}${/}dataOperationRequest.json
         ${params}=                       Create Dictionary   topic=${topic}
         ${headers}=                      Create Dictionary   Content-Type=application/json         Authorization=${auth}
                                          POST On Session     CPS_URL   ncmpInventory/v1/ch         headers=${headers}     data=${newCmHandleRequestBody}
