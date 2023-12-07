@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Copyright (C) 2021-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -25,6 +25,12 @@ import java.util.Arrays;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.apache.hc.client5.http.config.ConnectionConfig;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
+import org.apache.hc.client5.http.impl.classic.HttpClients;
+import org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManager;
+import org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManagerBuilder;
+import org.apache.hc.core5.util.Timeout;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -32,6 +38,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.http.MediaType;
+import org.springframework.http.client.ClientHttpRequestFactory;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -40,8 +48,9 @@ import org.springframework.web.client.RestTemplate;
 @RequiredArgsConstructor(access = AccessLevel.PROTECTED)
 public class NcmpConfiguration {
 
-    private static final Duration CONNECTION_TIMEOUT_MILLISECONDS = Duration.ofMillis(180000);
-    private static final Duration READ_TIMEOUT_MILLISECONDS = Duration.ofMillis(180000);
+    private static final Duration CONNECTION_TIMEOUT = Duration.ofMinutes(3);
+    private static final int POOL_SIZE_PER_ROUTE = 50;
+    private static final int POOL_SIZE_TOTAL = POOL_SIZE_PER_ROUTE * 2;
 
     @Getter
     @Component
@@ -65,8 +74,22 @@ public class NcmpConfiguration {
     @Bean
     @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
     public static RestTemplate restTemplate(final RestTemplateBuilder restTemplateBuilder) {
-        final RestTemplate restTemplate = restTemplateBuilder.setConnectTimeout(CONNECTION_TIMEOUT_MILLISECONDS)
-                .setReadTimeout(READ_TIMEOUT_MILLISECONDS).build();
+        final ConnectionConfig connectionConfig = ConnectionConfig.copy(ConnectionConfig.DEFAULT)
+                .setConnectTimeout(Timeout.of(CONNECTION_TIMEOUT))
+                .build();
+        final PoolingHttpClientConnectionManager connectionManager = PoolingHttpClientConnectionManagerBuilder.create()
+                .setDefaultConnectionConfig(connectionConfig)
+                .setMaxConnTotal(POOL_SIZE_TOTAL)
+                .setMaxConnPerRoute(POOL_SIZE_PER_ROUTE)
+                .build();
+        final CloseableHttpClient httpClient = HttpClients.custom()
+                .setConnectionManager(connectionManager)
+                .build();
+        final ClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory(httpClient);
+        final RestTemplate restTemplate = restTemplateBuilder
+                .requestFactory(() -> requestFactory)
+                .setConnectTimeout(CONNECTION_TIMEOUT)
+                .build();
         setRestTemplateMessageConverters(restTemplate);
         return restTemplate;
     }
