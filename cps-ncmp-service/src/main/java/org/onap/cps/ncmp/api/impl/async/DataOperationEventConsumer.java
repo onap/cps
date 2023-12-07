@@ -53,7 +53,7 @@ public class DataOperationEventConsumer {
             groupId = "ncmp-data-operation-event-group",
             containerFactory = "cloudEventConcurrentKafkaListenerContainerFactory")
     public void consumeAndPublish(final ConsumerRecord<String, CloudEvent> dataOperationEventConsumerRecord) {
-        log.info("Consuming event payload {} ...", dataOperationEventConsumerRecord.value());
+        log.debug("Consuming event payload {} ...", dataOperationEventConsumerRecord.value());
         final String eventTarget = KafkaHeaders.getParsedKafkaHeader(
                 dataOperationEventConsumerRecord.headers(), "ce_destination");
         final String correlationId = KafkaHeaders.getParsedKafkaHeader(
