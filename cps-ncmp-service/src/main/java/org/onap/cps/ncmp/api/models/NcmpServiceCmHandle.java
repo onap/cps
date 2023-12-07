@@ -59,6 +59,9 @@ public class NcmpServiceCmHandle {
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     private TrustLevel registrationTrustLevel;
 
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
+    private String alternateId;
+
     /**
      * NcmpServiceCmHandle copy constructor.
      *
