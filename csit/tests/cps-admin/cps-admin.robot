@@ -46,7 +46,7 @@ Create Dataspace
 Create Schema Set from YANG file
     ${uri}=             Set Variable        ${basePath}/v1/dataspaces/${dataspaceName}/schema-sets
     ${params}=          Create Dictionary   schema-set-name=${schemaSetName}
-    ${fileData}=        Get Binary File     ${DATADIR}${/}test-tree.yang
+    ${fileData}=        Get Binary File     ${DATADIR_CPS_CORE}${/}test-tree.yang
     ${fileTuple}=       Create List         test.yang   ${fileData}   application/zip
     &{files}=           Create Dictionary   file=${fileTuple}
     ${headers}=         Create Dictionary   Authorization=${auth}
@@ -56,7 +56,7 @@ Create Schema Set from YANG file
 Create Schema Set from ZIP file
     ${uri}=             Set Variable        ${basePath}/v1/dataspaces/${dataspaceName}/schema-sets
     ${params}=          Create Dictionary   schema-set-name=ZipTestSchemaSet
-    ${fileData}=        Get Binary File     ${DATADIR}${/}yang-resources.zip
+    ${fileData}=        Get Binary File     ${DATADIR_CPS_CORE}${/}yang-resources.zip
     ${fileTuple}=       Create List         test.zip   ${fileData}   application/zip
     &{files}=           Create Dictionary   file=${fileTuple}
     ${headers}=         Create Dictionary   Authorization=${auth}
