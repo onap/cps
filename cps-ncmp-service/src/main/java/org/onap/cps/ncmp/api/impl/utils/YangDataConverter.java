@@ -87,7 +87,8 @@ public class YangDataConverter {
                 (String) cmHandleDataNode.getLeaves().get("dmi-data-service-name"),
                 (String) cmHandleDataNode.getLeaves().get("dmi-model-service-name"),
                 ncmpServiceCmHandle,
-                (String) cmHandleDataNode.getLeaves().get("module-set-tag")
+                (String) cmHandleDataNode.getLeaves().get("module-set-tag"),
+                (String) cmHandleDataNode.getLeaves().get("alternate-id")
         );
     }
 
