@@ -23,7 +23,6 @@ package org.onap.cps.ncmp.api.models;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import java.util.Collections;
-import java.util.LinkedHashMap;
 import java.util.Map;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -59,18 +58,6 @@ public class NcmpServiceCmHandle {
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     private TrustLevel registrationTrustLevel;
 
-    /**
-     * NcmpServiceCmHandle copy constructor.
-     *
-     * @param ncmpServiceCmHandle Ncmp Service CmHandle
-     */
-    public NcmpServiceCmHandle(final NcmpServiceCmHandle ncmpServiceCmHandle) {
-        this.cmHandleId = ncmpServiceCmHandle.getCmHandleId();
-        this.dmiProperties = new LinkedHashMap<>(ncmpServiceCmHandle.getDmiProperties());
-        this.publicProperties = new LinkedHashMap<>(ncmpServiceCmHandle.getPublicProperties());
-        this.compositeState = ncmpServiceCmHandle.getCompositeState() != null ? new CompositeState(
-                ncmpServiceCmHandle.getCompositeState()) : null;
-        this.moduleSetTag = ncmpServiceCmHandle.getModuleSetTag();
-        this.registrationTrustLevel = ncmpServiceCmHandle.getRegistrationTrustLevel();
-    }
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
+    private String alternateId;
 }
