@@ -49,7 +49,7 @@ class InventoryModelLoaderSpec extends Specification {
     def loggingListAppender
 
     void setup() {
-        expectedYangResourceToContentMap = objectUnderTest.createYangResourcesToContentMap('dmi-registry@2023-08-23.yang')
+        expectedYangResourceToContentMap = objectUnderTest.createYangResourcesToContentMap('dmi-registry@2023-11-27.yang')
         logger.setLevel(Level.DEBUG)
         loggingListAppender = new ListAppender()
         logger.addAppender(loggingListAppender)
@@ -68,9 +68,9 @@ class InventoryModelLoaderSpec extends Specification {
         when: 'the application is ready'
             objectUnderTest.onApplicationEvent(Mock(ApplicationReadyEvent))
         then: 'the module service is used to create the new schema set from the correct resource'
-            1 * mockCpsModuleService.createSchemaSet(NCMP_DATASPACE_NAME, 'dmi-registry-2023-08-23', expectedYangResourceToContentMap)
+            1 * mockCpsModuleService.createSchemaSet(NCMP_DATASPACE_NAME, 'dmi-registry-2023-11-27', expectedYangResourceToContentMap)
         and: 'the admin service is used to update the anchor'
-            1 * mockCpsAdminService.updateAnchorSchemaSet(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, 'dmi-registry-2023-08-23')
+            1 * mockCpsAdminService.updateAnchorSchemaSet(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, 'dmi-registry-2023-11-27')
         and: 'No schema sets are being removed by the module service (yet)'
             0 * mockCpsModuleService.deleteSchemaSet(NCMP_DATASPACE_NAME, _, _)
     }
