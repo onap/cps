@@ -34,3 +34,6 @@ tmp/
 /docs/_build/*
 
 /test-tools/metrics-reports/
+
+csit/env.properties
+csit/archives/

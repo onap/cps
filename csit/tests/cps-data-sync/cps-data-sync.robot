@@ -43,13 +43,11 @@ Operational state goes to UNSYNCHRONIZED when data sync (flag) is enabled
     ${verifyUri}=              Set Variable       ${ncmpBasePath}/v1/ch/PNFDemo/state
     ${verifyHeaders}=          Create Dictionary  Authorization=${auth}
     ${verifyResponse}=         GET On Session     CPS_URL   ${verifyUri}   headers=${verifyHeaders}
-    ${verifyResponseJson}=    Set Variable        ${verifyResponse.json()['state']['dataSyncState']['operational']}
-    Should Be Equal As Strings                    ${verifyResponseJson['syncState']}   UNSYNCHRONIZED
+    Should Be Equal As Strings                    ${verifyResponse.json()['state']['dataSyncState']['operational']['syncState']}   UNSYNCHRONIZED
     Sleep    5
 
 Operational state goes to SYNCHRONIZED after sometime when data sync (flag) is enabled
     ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/PNFDemo/state
     ${headers}=          Create Dictionary  Authorization=${auth}
     ${response}=         GET On Session     CPS_URL   ${uri}   headers=${headers}
-    ${responseJson}=    Set Variable        ${response.json()['state']['dataSyncState']['operational']}
-    Should Be Equal As Strings              ${responseJson['syncState']}   SYNCHRONIZED
+    Should Be Equal As Strings              ${response.json()['state']['dataSyncState']['operational']['syncState']}   SYNCHRONIZED
