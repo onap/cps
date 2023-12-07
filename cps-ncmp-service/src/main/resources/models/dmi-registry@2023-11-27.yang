@@ -8,6 +8,16 @@ module dmi-registry {
 
   contact "toine.siebelink@est.tech";
 
+  revision "2023-11-27" {
+    description
+    "Added alternateId";
+  }
+
+  revision "2023-08-23" {
+    description
+    "Added ModuleSetTag";
+  }
+
   revision "2022-05-10" {
     description
     "Added DataSyncEnabled, SyncState with State, LastSyncTime, DataStoreSyncState with Operational and Running syncstate";
@@ -75,6 +85,12 @@ module dmi-registry {
       leaf dmi-model-service-name {
         type string;
       }
+      leaf module-set-tag {
+        type string;
+      }
+      leaf alternate-id {
+        type string;
+      }
 
       list additional-properties {
         key "name";
@@ -121,3 +137,4 @@ module dmi-registry {
     }
   }
 }
+
