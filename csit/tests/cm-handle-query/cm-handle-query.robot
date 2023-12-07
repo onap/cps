@@ -41,17 +41,15 @@ Retrieve CM Handle ids where query parameters Match (module and property query)
     ${uri}=              Set Variable       ${ncmpBasePath}/ch/id-searches
     ${headers}=          Create Dictionary  Content-Type=application/json   Authorization=${auth}
     ${response}=         POST On Session    CPS_URL   ${uri}   headers=${headers}   data=${jsonModuleAndPropertyQueryParameters}
-    ${responseJson}=     Set Variable       ${response.json()}
     Should Be Equal As Strings              ${response.status_code}   200
-    Should Contain       ${responseJson}    PNFDemo
+    Should Contain       ${response.json()}    PNFDemo
 
 Retrieve CM Handle ids where query parameters Match (empty query)
     ${uri}=              Set Variable       ${ncmpBasePath}/ch/id-searches
     ${headers}=          Create Dictionary  Content-Type=application/json   Authorization=${auth}
     ${response}=         POST On Session    CPS_URL   ${uri}   headers=${headers}   data=${jsonEmptyQueryParameters}
-    ${responseJson}=     Set Variable       ${response.json()}
     Should Be Equal As Strings              ${response.status_code}   200
-    Should Contain       ${responseJson}    PNFDemo
+    Should Contain       ${response.json()}    PNFDemo
 
 Throw 400 when Structure of Request is Incorrect
     ${uri}=              Set Variable       ${ncmpBasePath}/ch/id-searches
