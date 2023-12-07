@@ -59,6 +59,9 @@ public class NcmpServiceCmHandle {
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     private TrustLevel registrationTrustLevel;
 
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
+    private String alternateId;
+
     /**
      * NcmpServiceCmHandle copy constructor.
      *
@@ -72,5 +75,6 @@ public class NcmpServiceCmHandle {
                 ncmpServiceCmHandle.getCompositeState()) : null;
         this.moduleSetTag = ncmpServiceCmHandle.getModuleSetTag();
         this.registrationTrustLevel = ncmpServiceCmHandle.getRegistrationTrustLevel();
+        this.alternateId = ncmpServiceCmHandle.getAlternateId();
     }
 }

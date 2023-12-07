@@ -328,7 +328,8 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                             dmiPluginRegistration.getDmiDataPlugin(),
                             dmiPluginRegistration.getDmiModelPlugin(),
                             cmHandle,
-                            cmHandle.getModuleSetTag());
+                            cmHandle.getModuleSetTag(),
+                            cmHandle.getAlternateId());
                     yangModelCmHandles.add(yangModelCmHandle);
                     initialTrustLevelPerCmHandleId.put(cmHandle.getCmHandleId(), cmHandle.getRegistrationTrustLevel());
                 });
@@ -420,7 +421,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                 .withLockReason(MODULE_UPGRADE, lockReasonWithModuleSetTag).build());
         return YangModelCmHandle.toYangModelCmHandle(dmiPluginRegistration.getDmiPlugin(),
                 dmiPluginRegistration.getDmiDataPlugin(), dmiPluginRegistration.getDmiModelPlugin(),
-                ncmpServiceCmHandle, moduleSetTag);
+                ncmpServiceCmHandle, moduleSetTag, ncmpServiceCmHandle.getAlternateId());
     }
 
     private CmHandleRegistrationResponse deleteCmHandleAndGetCmHandleRegistrationResponse(final String cmHandleId) {

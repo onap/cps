@@ -41,7 +41,7 @@ class NcmpRestInputMapperSpec extends Specification {
     def 'Convert a created REST CM Handle Input to an NCMP Service CM Handle with #scenario'() {
         given: 'a rest cm handle input'
             def inputRestCmHandle = new RestInputCmHandle(cmHandle : 'example-id', cmHandleProperties: registrationDmiProperties,
-                publicCmHandleProperties: registrationPublicProperties, trustLevel: registrationTrustLevel)
+                publicCmHandleProperties: registrationPublicProperties, trustLevel: registrationTrustLevel, alternateId: mappedAlternateId, moduleSetTag: mappedModuleSetTag)
             def restDmiPluginRegistration = new RestDmiPluginRegistration(
                 createdCmHandles: [inputRestCmHandle])
         when: 'to plugin dmi registration is called'
@@ -54,10 +54,12 @@ class NcmpRestInputMapperSpec extends Specification {
             result.createdCmHandles[0].dmiProperties == mappedDmiProperties
             result.createdCmHandles[0].publicProperties == mappedPublicProperties
             result.createdCmHandles[0].registrationTrustLevel == mappedTrustLevel
+            result.createdCmHandles[0].alternateId == mappedAlternateId
+            result.createdCmHandles[0].moduleSetTag == mappedModuleSetTag
         where: 'the following parameters are used'
-            scenario                    | registrationDmiProperties                | registrationPublicProperties                           | registrationTrustLevel || mappedDmiProperties                      | mappedPublicProperties                                 | mappedTrustLevel
-            'dmi and public properties' | ['Property-Example': 'example property'] | ['Public-Property-Example': 'public example property'] | 'COMPLETE'             || ['Property-Example': 'example property'] | ['Public-Property-Example': 'public example property'] | TrustLevel.COMPLETE
-            'no properties'             | null                                     | null                                                   | null                   || [:]                                      | [:]                                                    | null
+            scenario                    | registrationDmiProperties                | registrationPublicProperties                           | registrationTrustLevel || mappedDmiProperties                      | mappedPublicProperties                                 | mappedTrustLevel    | mappedAlternateId  | mappedModuleSetTag
+            'dmi and public properties' | ['Property-Example': 'example property'] | ['Public-Property-Example': 'public example property'] | 'COMPLETE'             || ['Property-Example': 'example property'] | ['Public-Property-Example': 'public example property'] | TrustLevel.COMPLETE | 'my-alternate-id'  | 'my-module-set-tag'
+            'no properties'             | null                                     | null                                                   | null                   || [:]                                      | [:]                                                    | null                | null               | null
     }
 
     def 'Handling empty dmi registration'() {
