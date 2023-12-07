@@ -68,6 +68,9 @@ public class YangModelCmHandle {
     @JsonProperty("module-set-tag")
     private String moduleSetTag;
 
+    @JsonProperty("alternate-id")
+    private String alternateId;
+
     @JsonProperty("additional-properties")
     private List<Property> dmiProperties;
 
@@ -91,6 +94,7 @@ public class YangModelCmHandle {
         copy.dmiProperties = original.getDmiProperties() == null ? null : new ArrayList<>(original.getDmiProperties());
         copy.publicProperties =
                 original.getPublicProperties() == null ? null : new ArrayList<>(original.getPublicProperties());
+        copy.alternateId = original.getAlternateId();
         return copy;
     }
 
@@ -107,13 +111,15 @@ public class YangModelCmHandle {
                                                         final String dmiDataServiceName,
                                                         final String dmiModelServiceName,
                                                         final NcmpServiceCmHandle ncmpServiceCmHandle,
-                                                        final String moduleSetTag) {
+                                                        final String moduleSetTag,
+                                                        final String alternateId) {
         final YangModelCmHandle yangModelCmHandle = new YangModelCmHandle();
         yangModelCmHandle.setId(ncmpServiceCmHandle.getCmHandleId());
         yangModelCmHandle.setDmiServiceName(dmiServiceName);
         yangModelCmHandle.setDmiDataServiceName(dmiDataServiceName);
         yangModelCmHandle.setDmiModelServiceName(dmiModelServiceName);
         yangModelCmHandle.setModuleSetTag(moduleSetTag == null ? StringUtils.EMPTY : moduleSetTag);
+        yangModelCmHandle.setAlternateId(alternateId);
         yangModelCmHandle.setDmiProperties(asYangModelCmHandleProperties(ncmpServiceCmHandle.getDmiProperties()));
         yangModelCmHandle.setPublicProperties(asYangModelCmHandleProperties(
                 ncmpServiceCmHandle.getPublicProperties()));

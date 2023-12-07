@@ -41,7 +41,7 @@ class NcmpRestInputMapperSpec extends Specification {
     def 'Convert a created REST CM Handle Input to an NCMP Service CM Handle with #scenario'() {
         given: 'a rest cm handle input'
             def inputRestCmHandle = new RestInputCmHandle(cmHandle : 'example-id', cmHandleProperties: registrationDmiProperties,
-                publicCmHandleProperties: registrationPublicProperties, trustLevel: registrationTrustLevel)
+                publicCmHandleProperties: registrationPublicProperties, trustLevel: registrationTrustLevel, alternateId: 'my-alternate-id', moduleSetTag: 'my-module-set-tag')
             def restDmiPluginRegistration = new RestDmiPluginRegistration(
                 createdCmHandles: [inputRestCmHandle])
         when: 'to plugin dmi registration is called'
@@ -54,6 +54,9 @@ class NcmpRestInputMapperSpec extends Specification {
             result.createdCmHandles[0].dmiProperties == mappedDmiProperties
             result.createdCmHandles[0].publicProperties == mappedPublicProperties
             result.createdCmHandles[0].registrationTrustLevel == mappedTrustLevel
+        and: 'alternate ID and module set tag converted correctly'
+            result.createdCmHandles[0].alternateId == 'my-alternate-id'
+            result.createdCmHandles[0].moduleSetTag == 'my-module-set-tag'
         where: 'the following parameters are used'
             scenario                    | registrationDmiProperties                | registrationPublicProperties                           | registrationTrustLevel || mappedDmiProperties                      | mappedPublicProperties                                 | mappedTrustLevel
             'dmi and public properties' | ['Property-Example': 'example property'] | ['Public-Property-Example': 'public example property'] | 'COMPLETE'             || ['Property-Example': 'example property'] | ['Public-Property-Example': 'public example property'] | TrustLevel.COMPLETE
