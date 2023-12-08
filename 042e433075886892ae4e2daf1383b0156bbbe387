@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d76d8430_4f04d05c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/NcmpConfiguration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-12-08T13:35:02Z",
+      "side": 0,
+      "message": "It is no longer possible to set read timeout when using apache httpclient. CPS fails to start giving exception:\n   \n\u003e HttpComponentsClientHttpRequestFactory has the setReadTimeout method marked as deprecated\n  \nSee https://github.com/spring-projects/spring-boot/issues/32857",
+      "range": {
+        "startLine": 69,
+        "startChar": 17,
+        "endLine": 69,
+        "endChar": 31
+      },
+      "revId": "042e433075886892ae4e2daf1383b0156bbbe387",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
