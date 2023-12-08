@@ -33,6 +33,52 @@
       "message": "recheck",
       "revId": "195df8d43a4b7adebe6f5fcccf9c805557a51900",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6682562f_8adbe2c1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/NcmpConfiguration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-12-08T14:31:09Z",
+      "side": 1,
+      "message": "This should use @Value so it can be overridden in application.yaml",
+      "range": {
+        "startLine": 52,
+        "startChar": 51,
+        "endLine": 52,
+        "endChar": 53
+      },
+      "revId": "195df8d43a4b7adebe6f5fcccf9c805557a51900",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8caaa78_752f422c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/NcmpConfiguration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-12-08T14:31:09Z",
+      "side": 1,
+      "message": "We may want to use different restTemplates for NCMP passthrough operations and DMI liveness checks. If the connection pool is full with long-running DMI operations, the liveness check may incorrectly time out. \nWe may also want different connection/read timeouts for liveness checks vs passthrough operations",
+      "range": {
+        "startLine": 76,
+        "startChar": 31,
+        "endLine": 76,
+        "endChar": 43
+      },
+      "revId": "195df8d43a4b7adebe6f5fcccf9c805557a51900",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
