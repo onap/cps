@@ -47,7 +47,7 @@ public class DmiPluginWatchDog {
      * the resulting trust level wil be stored in the relevant cache.
      * The @fixedDelayString is the time interval, in milliseconds, between consecutive checks.
      */
-    @Scheduled(fixedDelayString = "${ncmp.timers.trust-evel.dmi-availability-watchdog-ms:30000}")
+    @Scheduled(fixedDelayString = "${ncmp.timers.trust-level.dmi-availability-watchdog-ms:30000}")
     public void checkDmiAvailability() {
         trustLevelPerDmiPlugin.entrySet().forEach(entry -> {
             final TrustLevel newDmiTrustLevel;
