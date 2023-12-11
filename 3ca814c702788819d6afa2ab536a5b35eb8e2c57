@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "032aada9_3a7a0933",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2023-12-11T13:47:45Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "38411892_66175e6f",
+      "range": {
+        "startLine": 9,
+        "startChar": 4,
+        "endLine": 9,
+        "endChar": 41
+      },
+      "revId": "3ca814c702788819d6afa2ab536a5b35eb8e2c57",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "502c4f18_40f8c3ce",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -83,6 +107,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4a3d46ea_557656f0",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NcmpRestInputMapperSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2023-12-11T13:47:45Z",
+      "side": 1,
+      "message": "i think extra tests wont hurt especially when we test functionality. Lets discuss this tomorow during DS!",
+      "parentUuid": "f85ed4dc_d76f512c",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 49
+      },
+      "revId": "3ca814c702788819d6afa2ab536a5b35eb8e2c57",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e1598cc6_6f7c9b02",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/yangmodels/YangModelCmHandle.java",
         "patchSetId": 1
@@ -94,6 +142,30 @@
       "writtenOn": "2023-12-08T15:14:48Z",
       "side": 1,
       "message": "This method of copy has been actively used in 3 places thus you may need to add the field into this method to copy it.",
+      "range": {
+        "startLine": 86,
+        "startChar": 4,
+        "endLine": 86,
+        "endChar": 82
+      },
+      "revId": "3ca814c702788819d6afa2ab536a5b35eb8e2c57",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "996dc751_b653fb30",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/yangmodels/YangModelCmHandle.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2023-12-11T13:47:45Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e1598cc6_6f7c9b02",
       "range": {
         "startLine": 86,
         "startChar": 4,
@@ -117,6 +189,30 @@
       "writtenOn": "2023-12-08T15:14:48Z",
       "side": 1,
       "message": "Does this constructor actively being used in any .java class? Since I could not find it in any place other than a unit test groovy file.\n\nIt seems only NoArgsConstructor has been used for new instance creation in 4 places. Thus, I suggest removal of this copy constuctor. Otherwise, You need add alternateId to this one.",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 5
+      },
+      "revId": "3ca814c702788819d6afa2ab536a5b35eb8e2c57",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "148fe2ee_bcf671df",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/NcmpServiceCmHandle.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2023-12-11T13:47:45Z",
+      "side": 1,
+      "message": "I added the new field. There is only a test using this method, but im not sure if we should remove the constructor",
+      "parentUuid": "03e15bba_7476bb42",
       "range": {
         "startLine": 70,
         "startChar": 0,
