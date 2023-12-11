@@ -50,6 +50,23 @@
       "message": "Please find the new patch-set.",
       "revId": "6dae13128eafb5af753d1a9fa1689816e906150b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5311317_a1327233",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-12-11T17:58:35Z",
+      "side": 1,
+      "message": "+2 based on prev +1s",
+      "revId": "6dae13128eafb5af753d1a9fa1689816e906150b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
