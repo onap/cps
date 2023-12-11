@@ -48,6 +48,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd241001_6bc79389",
+        "filename": "csit/tests/cps-data/cps-data.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-12-11T13:25:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dc7238ff_38f99405",
+      "range": {
+        "startLine": 60,
+        "startChar": 71,
+        "endLine": 60,
+        "endChar": 100
+      },
+      "revId": "156d0c5804c15c8d9db3f70eb967f2bda48ee84b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "78232a53_651f653a",
