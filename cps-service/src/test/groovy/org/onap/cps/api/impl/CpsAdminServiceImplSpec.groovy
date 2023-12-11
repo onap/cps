@@ -23,20 +23,23 @@
 
 package org.onap.cps.api.impl
 
-import org.onap.cps.api.CpsDataService
+import org.onap.cps.notification.NotificationService
+import org.onap.cps.notification.Operation
 import org.onap.cps.spi.CpsAdminPersistenceService
+import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.exceptions.ModuleNamesNotFoundException
 import org.onap.cps.spi.model.Anchor
 import org.onap.cps.spi.model.Dataspace
 import org.onap.cps.spi.utils.CpsValidator
 import spock.lang.Specification
-import java.time.OffsetDateTime
+
 
 class CpsAdminServiceImplSpec extends Specification {
     def mockCpsAdminPersistenceService = Mock(CpsAdminPersistenceService)
-    def mockCpsDataService = Mock(CpsDataService)
+    def mockCpsDataPersistenceService = Mock(CpsDataPersistenceService)
+    def mockNotificationService = Mock(NotificationService)
     def mockCpsValidator = Mock(CpsValidator)
-    def objectUnderTest = new CpsAdminServiceImpl(mockCpsAdminPersistenceService, mockCpsDataService,mockCpsValidator)
+    def objectUnderTest = new CpsAdminServiceImpl(mockCpsAdminPersistenceService, mockCpsDataPersistenceService, mockNotificationService, mockCpsValidator)
 
     def 'Create dataspace method invokes persistence service.'() {
         when: 'create dataspace method is invoked'
@@ -122,26 +125,36 @@ class CpsAdminServiceImplSpec extends Specification {
     }
 
     def 'Delete anchor.'() {
+        given: 'an anchor associated with the dataspace'
+            Anchor anchor = new Anchor()
+            mockCpsAdminPersistenceService.getAnchor('my-dataspace','my-anchor') >>  anchor
         when: 'delete anchor is invoked'
-            objectUnderTest.deleteAnchor('someDataspace','someAnchor')
-        then: 'delete data nodes is invoked on the data service with expected parameters'
-            1 * mockCpsDataService.deleteDataNodes('someDataspace','someAnchor', _ as OffsetDateTime )
-        and: 'the persistence service method is invoked with same parameters to delete anchor'
-             1 * mockCpsAdminPersistenceService.deleteAnchor('someDataspace','someAnchor')
-        and: 'the CpsValidator is called on the dataspaceName, anchorName'
-            1 * mockCpsValidator.validateNameCharacters('someDataspace', 'someAnchor')
+            objectUnderTest.deleteAnchor('my-dataspace','my-anchor')
+        then: 'dataspace and anchor names are valid'
+            1 * mockCpsValidator.validateNameCharacters('my-dataspace', 'my-anchor')
+        and: 'delete data nodes is invoked on the data persistence service'
+            1 * mockCpsDataPersistenceService.deleteDataNodes('my-dataspace','my-anchor')
+        and: 'delete anchor is invoked on the admin persistence service'
+            1 * mockCpsAdminPersistenceService.deleteAnchor('my-dataspace','my-anchor')
+        and: 'notification is sent for anchor'
+            1 * mockNotificationService.processDataUpdatedEvent(anchor, '/', Operation.DELETE, _)
     }
 
     def 'Delete multiple anchors.'() {
+        given: 'two anchors are associated with the same dataspace name'
+            def anchors = [new Anchor(), new Anchor()]
+            mockCpsAdminPersistenceService.getAnchors('my-dataspace', _ as Collection<String>) >> anchors
         when: 'delete anchors is invoked'
-            objectUnderTest.deleteAnchors('someDataspace', ['anchor1', 'anchor2'])
-        then: 'delete data nodes is invoked on the data service with expected parameters'
-            1 * mockCpsDataService.deleteDataNodes('someDataspace', _ as Collection<String>, _ as OffsetDateTime)
-        and: 'the persistence service method is invoked with same parameters to delete anchor'
-            1 * mockCpsAdminPersistenceService.deleteAnchors('someDataspace',_ as Collection<String>)
-        and: 'the CpsValidator is called on the dataspace name and anchor names'
-            1 * mockCpsValidator.validateNameCharacters('someDataspace')
+            objectUnderTest.deleteAnchors('my-dataspace', ['anchor1', 'anchor2'])
+        then: 'dataspace name is valid'
+            1 * mockCpsValidator.validateNameCharacters('my-dataspace')
             1 * mockCpsValidator.validateNameCharacters(_)
+        and: 'delete data nodes is invoked on the data persistence service'
+            1 * mockCpsDataPersistenceService.deleteDataNodes('my-dataspace', _ as Collection<String>)
+        and: 'delete anchors is invoked on the admin persistence service'
+            1 * mockCpsAdminPersistenceService.deleteAnchors('my-dataspace',_ as Collection<String>)
+        and: 'notifications are sent for all anchors'
+            2 * mockNotificationService.processDataUpdatedEvent(_, '/', Operation.DELETE, _)
     }
 
     def 'Query all anchor identifiers for a dataspace and module names.'() {

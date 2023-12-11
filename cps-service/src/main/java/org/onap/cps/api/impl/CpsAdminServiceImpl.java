@@ -23,26 +23,30 @@
 
 package org.onap.cps.api.impl;
 
+import static org.onap.cps.notification.Operation.DELETE;
+
 import java.time.OffsetDateTime;
 import java.util.Collection;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsAdminService;
-import org.onap.cps.api.CpsDataService;
+import org.onap.cps.notification.NotificationService;
 import org.onap.cps.spi.CpsAdminPersistenceService;
+import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.model.Dataspace;
 import org.onap.cps.spi.utils.CpsValidator;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
-@Component("CpsAdminServiceImpl")
-@RequiredArgsConstructor(onConstructor = @__(@Lazy))
+@Component
+@RequiredArgsConstructor
 public class CpsAdminServiceImpl implements CpsAdminService {
 
+    private static final String ROOT_NODE_XPATH = "/";
+
     private final CpsAdminPersistenceService cpsAdminPersistenceService;
-    @Lazy
-    private final CpsDataService cpsDataService;
+    private final CpsDataPersistenceService cpsDataPersistenceService;
+    private final NotificationService notificationService;
     private final CpsValidator cpsValidator;
 
     @Override
@@ -101,17 +105,20 @@ public class CpsAdminServiceImpl implements CpsAdminService {
 
     @Override
     public void deleteAnchor(final String dataspaceName, final String anchorName) {
-        cpsValidator.validateNameCharacters(dataspaceName, anchorName);
-        cpsDataService.deleteDataNodes(dataspaceName, anchorName, OffsetDateTime.now());
+        final Anchor anchor = getAnchor(dataspaceName, anchorName);
+        cpsDataPersistenceService.deleteDataNodes(dataspaceName, anchorName);
         cpsAdminPersistenceService.deleteAnchor(dataspaceName, anchorName);
+        notificationService.processDataUpdatedEvent(anchor, ROOT_NODE_XPATH, DELETE, OffsetDateTime.now());
     }
 
     @Override
     public void deleteAnchors(final String dataspaceName, final Collection<String> anchorNames) {
-        cpsValidator.validateNameCharacters(dataspaceName);
-        cpsValidator.validateNameCharacters(anchorNames);
-        cpsDataService.deleteDataNodes(dataspaceName, anchorNames, OffsetDateTime.now());
+        final Collection<Anchor> anchors = getAnchors(dataspaceName, anchorNames);
+        cpsDataPersistenceService.deleteDataNodes(dataspaceName, anchorNames);
         cpsAdminPersistenceService.deleteAnchors(dataspaceName, anchorNames);
+        for (final Anchor anchor : anchors) {
+            notificationService.processDataUpdatedEvent(anchor, ROOT_NODE_XPATH, DELETE, OffsetDateTime.now());
+        }
     }
 
     @Override
