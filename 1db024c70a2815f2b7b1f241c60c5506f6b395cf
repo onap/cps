@@ -22,6 +22,30 @@
       },
       "revId": "1db024c70a2815f2b7b1f241c60c5506f6b395cf",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0dfd020d_292c5f47",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsDataServiceIntegrationSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 452,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2023-12-11T05:16:51Z",
+      "side": 1,
+      "message": "yes, I wanted to discuss about it, but I can put it up here.\nSo basically this test just checks if there are expected number of changes(deltas) in a delta report or not, nothing else. So i  think we can remove it as it is achievable by other tests as well.",
+      "parentUuid": "60e59a9e_86cb7362",
+      "range": {
+        "startLine": 452,
+        "startChar": 4,
+        "endLine": 452,
+        "endChar": 63
+      },
+      "revId": "1db024c70a2815f2b7b1f241c60c5506f6b395cf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
