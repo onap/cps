@@ -16,6 +16,46 @@
       "message": "Looks good",
       "revId": "4a5752093111c5d19426b143a24dc3716fb3416c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f624d4c_a0943303",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-12-11T10:03:55Z",
+      "side": 1,
+      "message": "Just add a size check then I can approve and merge based on previous +1s",
+      "revId": "4a5752093111c5d19426b143a24dc3716fb3416c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e7d179f_ff5b0ab0",
+        "filename": "csit/tests/cps-data/cps-data.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-12-11T10:03:55Z",
+      "side": 1,
+      "message": "since you are only using contains check you need to check teh list SIZE as well!\n(just like in equivalent groovy test)",
+      "range": {
+        "startLine": 60,
+        "startChar": 6,
+        "endLine": 60,
+        "endChar": 20
+      },
+      "revId": "4a5752093111c5d19426b143a24dc3716fb3416c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
