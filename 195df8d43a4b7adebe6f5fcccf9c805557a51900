@@ -35,6 +35,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "59107bc1_ac1c8059",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-12-11T18:12:13Z",
+      "side": 1,
+      "message": "As agreed. Update this to refer to a new jira for \u0027Deployment Alignment\u0027",
+      "revId": "195df8d43a4b7adebe6f5fcccf9c805557a51900",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6682562f_8adbe2c1",
