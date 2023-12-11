@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07a9cd80_da0cea21",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NcmpRestInputMapperSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-12-11T18:10:47Z",
+      "side": 1,
+      "message": "no need to VARY these ie. dont combine this with existing \u0027scenarios\u0027 (for ollections of \u0027properties\u0027)\nI think you can hardcode a MOduelSetTag and AlternatID and ALWASY expect that",
+      "range": {
+        "startLine": 44,
+        "startChar": 121,
+        "endLine": 44,
+        "endChar": 172
+      },
+      "revId": "7bf04a8e16ae22e337fa4fb8b5aab7569f1faa62",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
