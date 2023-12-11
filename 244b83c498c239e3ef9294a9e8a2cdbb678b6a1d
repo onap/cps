@@ -84,6 +84,23 @@
       "message": "recheck",
       "revId": "244b83c498c239e3ef9294a9e8a2cdbb678b6a1d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ffdcd20_0afcbeef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-12-11T17:57:46Z",
+      "side": 1,
+      "message": "looks good to me, but one CSIT test is still failing, do you know why?",
+      "revId": "244b83c498c239e3ef9294a9e8a2cdbb678b6a1d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
