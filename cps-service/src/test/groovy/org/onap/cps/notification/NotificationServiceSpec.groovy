@@ -21,7 +21,6 @@
 
 package org.onap.cps.notification
 
-import org.onap.cps.api.CpsAdminService
 import org.onap.cps.config.AsyncConfig
 import org.onap.cps.event.model.CpsDataUpdatedEvent
 import org.onap.cps.spi.model.Anchor
@@ -44,29 +43,25 @@ class NotificationServiceSpec extends Specification {
 
     @SpringSpy
     NotificationProperties spyNotificationProperties
+
     @SpringBean
     NotificationPublisher mockNotificationPublisher = Mock()
+
     @SpringBean
     CpsDataUpdatedEventFactory mockCpsDataUpdatedEventFactory = Mock()
+
     @SpringSpy
     NotificationErrorHandler spyNotificationErrorHandler
-    @SpringBean
-    CpsAdminService mockCpsAdminService = Mock()
 
     @Autowired
     NotificationService objectUnderTest
 
     @Shared
     def dataspaceName = 'my-dataspace-published'
-    @Shared
-    def anchorName = 'my-anchorname'
+
     @Shared
     def anchor = new Anchor('my-anchorname', 'my-dataspace-published', 'my-schemaset-name')
     def myObservedTimestamp = OffsetDateTime.now()
-
-    def setup() {
-        mockCpsAdminService.getAnchor(dataspaceName, anchorName) >> anchor
-    }
 
     def 'Skip sending notification when disabled.'() {
         given: 'notification is disabled'
@@ -150,7 +145,7 @@ class NotificationServiceSpec extends Specification {
     def 'Disabled Notification services'() {
         given: 'a notification service that is disabled'
             spyNotificationProperties.enabled >> false
-            NotificationService notificationService = new NotificationService(spyNotificationProperties, mockNotificationPublisher, mockCpsDataUpdatedEventFactory, spyNotificationErrorHandler, mockCpsAdminService)
+            NotificationService notificationService = new NotificationService(spyNotificationProperties, mockNotificationPublisher, mockCpsDataUpdatedEventFactory, spyNotificationErrorHandler)
             notificationService.init()
         expect: 'it will not send notifications'
             assert notificationService.shouldSendNotification('') == false
