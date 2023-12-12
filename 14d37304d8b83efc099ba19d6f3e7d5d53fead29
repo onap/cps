@@ -16,6 +16,29 @@
       "message": "recheck",
       "revId": "14d37304d8b83efc099ba19d6f3e7d5d53fead29",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fee4771_11aca263",
+        "filename": "csit/tests/cps-data-operations/cps-data-operations.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-12-12T11:27:27Z",
+      "side": 1,
+      "message": "I wonder if this is needed because of te order change... \nI any case I think it is acceptable and I think we can go ahead",
+      "range": {
+        "startLine": 49,
+        "startChar": 40,
+        "endLine": 49,
+        "endChar": 43
+      },
+      "revId": "14d37304d8b83efc099ba19d6f3e7d5d53fead29",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
