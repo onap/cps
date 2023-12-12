@@ -39,6 +39,29 @@
       },
       "revId": "14d37304d8b83efc099ba19d6f3e7d5d53fead29",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07d23dc7_4118c5ea",
+        "filename": "csit/tests/cps-data-operations/cps-data-operations.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2023-12-12T11:30:12Z",
+      "side": 1,
+      "message": "changed to 8 seconds to give more time for the cm handle to be ready otherwise the POST request on line 50 would produce an incorrect response to the topic",
+      "range": {
+        "startLine": 49,
+        "startChar": 8,
+        "endLine": 49,
+        "endChar": 119
+      },
+      "revId": "14d37304d8b83efc099ba19d6f3e7d5d53fead29",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
