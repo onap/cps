@@ -42,8 +42,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class SubscriptionPersistenceImpl extends NcmpPersistenceImpl implements SubscriptionPersistence {
 
-    private static final String SUBSCRIPTION_ANCHOR_NAME = "AVC-Subscriptions";
-    private static final String SUBSCRIPTION_REGISTRY_PARENT = "/subscription-registry";
+    private static final String DEPRECATED_SUBSCRIPTION_ANCHOR_NAME = "AVC-Subscriptions";
+    private static final String DEPRECATED_SUBSCRIPTION_REGISTRY_PARENT = "/subscription-registry";
 
     public SubscriptionPersistenceImpl(final JsonObjectMapper jsonObjectMapper, final CpsDataService cpsDataService,
                                        final CpsModuleService cpsModuleService, final CpsValidator cpsValidator) {
@@ -57,7 +57,7 @@ public class SubscriptionPersistenceImpl extends NcmpPersistenceImpl implements 
         final String subscriptionName = yangModelSubscriptionEvent.getSubscriptionName();
 
         final Collection<DataNode> dataNodes = cpsDataService.getDataNodes(NCMP_DATASPACE_NAME,
-                SUBSCRIPTION_ANCHOR_NAME, SUBSCRIPTION_REGISTRY_PARENT, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
+                DEPRECATED_SUBSCRIPTION_ANCHOR_NAME, DEPRECATED_SUBSCRIPTION_REGISTRY_PARENT, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
 
         if (isSubscriptionRegistryEmptyOrNonExist(dataNodes, clientId, subscriptionName)) {
             saveSubscriptionEventYangModel(createSubscriptionEventJsonData(
@@ -130,30 +130,30 @@ public class SubscriptionPersistenceImpl extends NcmpPersistenceImpl implements 
                                                           final boolean isAddListElementOperation) {
         if (isAddListElementOperation) {
             log.info("targetCmHandleAsJson to be added into DB {}", targetCmHandleAsJson);
-            cpsDataService.saveListElements(NCMP_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME,
+            cpsDataService.saveListElements(NCMP_DATASPACE_NAME, DEPRECATED_SUBSCRIPTION_ANCHOR_NAME,
                     createCmHandleXpathPredicates(clientId, subscriptionName), targetCmHandleAsJson, NO_TIMESTAMP);
         } else {
             log.info("targetCmHandleAsJson to be updated into DB {}", targetCmHandleAsJson);
-            cpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME,
+            cpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, DEPRECATED_SUBSCRIPTION_ANCHOR_NAME,
                     createCmHandleXpathPredicates(clientId, subscriptionName), targetCmHandleAsJson, NO_TIMESTAMP);
         }
     }
 
     private void saveSubscriptionEventYangModel(final String subscriptionEventJsonData) {
         log.info("SubscriptionEventJsonData to be saved into DB {}", subscriptionEventJsonData);
-        cpsDataService.saveListElements(NCMP_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME,
-                SUBSCRIPTION_REGISTRY_PARENT, subscriptionEventJsonData, NO_TIMESTAMP);
+        cpsDataService.saveListElements(NCMP_DATASPACE_NAME, DEPRECATED_SUBSCRIPTION_ANCHOR_NAME,
+                DEPRECATED_SUBSCRIPTION_REGISTRY_PARENT, subscriptionEventJsonData, NO_TIMESTAMP);
     }
 
     @Override
     public Collection<DataNode> getDataNodesForSubscriptionEvent() {
-        return cpsDataService.getDataNodes(NCMP_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME,
-                SUBSCRIPTION_REGISTRY_PARENT, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
+        return cpsDataService.getDataNodes(NCMP_DATASPACE_NAME, DEPRECATED_SUBSCRIPTION_ANCHOR_NAME,
+                DEPRECATED_SUBSCRIPTION_REGISTRY_PARENT, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
     }
 
     @Override
     public Collection<DataNode> getCmHandlesForSubscriptionEvent(final String clientId, final String subscriptionName) {
-        return cpsDataService.getDataNodesForMultipleXpaths(NCMP_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME,
+        return cpsDataService.getDataNodesForMultipleXpaths(NCMP_DATASPACE_NAME, DEPRECATED_SUBSCRIPTION_ANCHOR_NAME,
                 List.of(createCmHandleXpath(clientId, subscriptionName)),
                 FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
     }
