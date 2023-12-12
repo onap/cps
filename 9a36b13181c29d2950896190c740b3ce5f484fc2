@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96f34202_2b1840bc",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NcmpRestInputMapperSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-12-12T14:07:04Z",
+      "side": 1,
+      "message": "NB: technically they are just mapped not really converted\n(trustlevel could go into this block as well)",
+      "range": {
+        "startLine": 57,
+        "startChar": 46,
+        "endLine": 57,
+        "endChar": 56
+      },
+      "revId": "9a36b13181c29d2950896190c740b3ce5f484fc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

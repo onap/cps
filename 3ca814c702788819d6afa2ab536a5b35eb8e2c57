@@ -153,6 +153,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2fd0662e_f1de9cea",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NcmpRestInputMapperSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-12-12T14:07:04Z",
+      "side": 1,
+      "message": "agreed no further tests are needed",
+      "parentUuid": "e9e6a3c7_2d9b190b",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 49
+      },
+      "revId": "3ca814c702788819d6afa2ab536a5b35eb8e2c57",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e1598cc6_6f7c9b02",
@@ -261,6 +285,30 @@
       "side": 1,
       "message": "if it is ONLY used in groovy you might be able to remove it. And use a mapbases-cosntructor this way in Groocy you can create any object with an(number) of private fields",
       "parentUuid": "148fe2ee_bcf671df",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 5
+      },
+      "revId": "3ca814c702788819d6afa2ab536a5b35eb8e2c57",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "052fac9d_6a1d3c3b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/NcmpServiceCmHandle.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-12-12T14:07:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b9fce0e9_ed6b2843",
       "range": {
         "startLine": 70,
         "startChar": 0,
