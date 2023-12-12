@@ -101,6 +101,24 @@
       "message": "looks good to me, but one CSIT test is still failing, do you know why?",
       "revId": "244b83c498c239e3ef9294a9e8a2cdbb678b6a1d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c12e63d3_ee157771",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2023-12-12T09:30:34Z",
+      "side": 1,
+      "message": "I\u0027ve been looking into it and DmiRestStubController#getResourceDataForCmHandleDataOperation that\u0027s supposed to get the call just doesn\u0027t receive it sometimes. On my local machine it will only sometimes fail so not sure why it\u0027s happening so consistently here",
+      "parentUuid": "8ffdcd20_0afcbeef",
+      "revId": "244b83c498c239e3ef9294a9e8a2cdbb678b6a1d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
