@@ -25,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
-import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionStatus;
+import org.onap.cps.ncmp.api.impl.deprecated_subscriptions.SubscriptionStatus;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Getter

@@ -18,7 +18,7 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.events.cmsubscription;
+package org.onap.cps.ncmp.api.impl.events.deprecated_cmsubscription;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -49,7 +49,7 @@ public interface CmSubscriptionDmiOutEventToYangModelSubscriptionEventMapper {
     default List<YangModelSubscriptionEvent.TargetCmHandle> mapSubscriptionStatusToCmHandleTargets(
             List<SubscriptionStatus> subscriptionStatus) {
         return subscriptionStatus.stream().map(status -> new YangModelSubscriptionEvent.TargetCmHandle(status.getId(),
-                org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionStatus.fromString(status.getStatus().value()),
+                org.onap.cps.ncmp.api.impl.deprecated_subscriptions.SubscriptionStatus.fromString(status.getStatus().value()),
                         status.getDetails())).collect(Collectors.toList());
     }
 }

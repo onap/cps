@@ -18,33 +18,32 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.subscriptions;
+package org.onap.cps.ncmp.api.impl.deprecated_subscriptions;
 
-import java.util.Collection;
-import org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence;
-import org.onap.cps.ncmp.api.impl.yangmodels.YangModelSubscriptionEvent;
-import org.onap.cps.spi.model.DataNode;
 
-public interface SubscriptionPersistence extends NcmpPersistence {
+public enum SubscriptionStatus {
+    ACCEPTED("ACCEPTED"),
+    REJECTED("REJECTED"),
+    PENDING("PENDING");
 
-    /**
-     * Save subscription Event.
-     *
-     * @param yangModelSubscriptionEvent subscription Event as Yang Model.
-     */
-    void saveSubscriptionEvent(YangModelSubscriptionEvent yangModelSubscriptionEvent);
+    private final String subscriptionStatusValue;
+
+    SubscriptionStatus(final String subscriptionStatusValue) {
+        this.subscriptionStatusValue = subscriptionStatusValue;
+    }
 
     /**
-     * Get data nodes.
+     * Finds the value of the given enum.
      *
-     * @return the DataNode as collection.
+     * @param statusValue value of the enum
+     * @return a SubscriptionStatus
      */
-    Collection<DataNode> getDataNodesForSubscriptionEvent();
-
-    /**
-     * Get data nodes by xpath.
-     *
-     * @return the DataNode as collection.
-     */
-    Collection<DataNode> getCmHandlesForSubscriptionEvent(String clientId, String subscriptionName);
+    public static SubscriptionStatus fromString(final String statusValue) {
+        for (final SubscriptionStatus subscriptionStatusType : SubscriptionStatus.values()) {
+            if (subscriptionStatusType.subscriptionStatusValue.equalsIgnoreCase(statusValue)) {
+                return subscriptionStatusType;
+            }
+        }
+        return null;
+    }
 }

@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.events.cmsubscription;
+package org.onap.cps.ncmp.api.impl.events.deprecated_cmsubscription;
 
 import com.hazelcast.map.IMap;
 import io.cloudevents.CloudEvent;
@@ -39,8 +39,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.config.embeddedcache.ForwardedSubscriptionEventCacheConfig;
 import org.onap.cps.ncmp.api.impl.events.EventsPublisher;
 import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence;
-import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionPersistence;
-import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionStatus;
+import org.onap.cps.ncmp.api.impl.deprecated_subscriptions.SubscriptionPersistence;
+import org.onap.cps.ncmp.api.impl.deprecated_subscriptions.SubscriptionStatus;
 import org.onap.cps.ncmp.api.impl.utils.CmSubscriptionEventCloudMapper;
 import org.onap.cps.ncmp.api.impl.utils.DmiServiceNameOrganizer;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;

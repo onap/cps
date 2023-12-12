@@ -18,7 +18,7 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.events.cmsubscription;
+package org.onap.cps.ncmp.api.impl.events.deprecated_cmsubscription;
 
 import java.util.List;
 import java.util.stream.Collectors;

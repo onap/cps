@@ -18,7 +18,7 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.events.cmsubscription;
+package org.onap.cps.ncmp.api.impl.events.deprecated_cmsubscription;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

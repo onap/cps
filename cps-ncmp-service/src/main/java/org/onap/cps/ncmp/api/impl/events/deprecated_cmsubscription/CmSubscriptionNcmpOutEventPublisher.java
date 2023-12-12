@@ -18,15 +18,15 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.events.cmsubscription;
+package org.onap.cps.ncmp.api.impl.events.deprecated_cmsubscription;
 
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.PARTIALLY_APPLIED_SUBSCRIPTION;
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.SUBSCRIPTION_NOT_APPLICABLE;
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.SUBSCRIPTION_PENDING;
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.SUCCESSFULLY_APPLIED_SUBSCRIPTION;
-import static org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionStatus.ACCEPTED;
-import static org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionStatus.PENDING;
-import static org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionStatus.REJECTED;
+import static org.onap.cps.ncmp.api.impl.deprecated_subscriptions.SubscriptionStatus.ACCEPTED;
+import static org.onap.cps.ncmp.api.impl.deprecated_subscriptions.SubscriptionStatus.PENDING;
+import static org.onap.cps.ncmp.api.impl.deprecated_subscriptions.SubscriptionStatus.REJECTED;
 
 import io.cloudevents.CloudEvent;
 import java.util.List;
@@ -35,8 +35,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.NcmpResponseStatus;
 import org.onap.cps.ncmp.api.impl.events.EventsPublisher;
-import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionPersistence;
-import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionStatus;
+import org.onap.cps.ncmp.api.impl.deprecated_subscriptions.SubscriptionPersistence;
+import org.onap.cps.ncmp.api.impl.deprecated_subscriptions.SubscriptionStatus;
 import org.onap.cps.ncmp.api.impl.utils.DataNodeHelper;
 import org.onap.cps.ncmp.api.impl.utils.SubscriptionOutcomeCloudMapper;
 import org.onap.cps.ncmp.api.models.CmSubscriptionEvent;

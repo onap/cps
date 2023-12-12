@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.events.cmsubscription
+package org.onap.cps.ncmp.api.impl.events.deprecated_cmsubscription
 
 import static org.onap.cps.ncmp.api.impl.events.mapper.CloudEventMapper.toTargetEvent
 
@@ -27,8 +27,8 @@ import com.hazelcast.map.IMap
 import io.cloudevents.CloudEvent
 import org.mapstruct.factory.Mappers
 import org.onap.cps.ncmp.api.impl.events.EventsPublisher
-import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionPersistence
-import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionStatus
+import org.onap.cps.ncmp.api.impl.deprecated_subscriptions.SubscriptionPersistence
+import org.onap.cps.ncmp.api.impl.deprecated_subscriptions.SubscriptionStatus
 import org.onap.cps.ncmp.api.impl.utils.CmSubscriptionEventCloudMapper
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelSubscriptionEvent.TargetCmHandle

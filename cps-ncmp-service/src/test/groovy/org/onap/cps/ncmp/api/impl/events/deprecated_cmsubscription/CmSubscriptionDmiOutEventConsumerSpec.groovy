@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.events.cmsubscription
+package org.onap.cps.ncmp.api.impl.events.deprecated_cmsubscription
 
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
 
@@ -27,7 +27,7 @@ import com.hazelcast.map.IMap
 import io.cloudevents.CloudEvent
 import io.cloudevents.core.builder.CloudEventBuilder
 import org.apache.kafka.clients.consumer.ConsumerRecord
-import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionPersistenceImpl
+import org.onap.cps.ncmp.api.impl.deprecated_subscriptions.SubscriptionPersistenceImpl
 import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
 import org.onap.cps.ncmp.events.cmsubscription1_0_0.dmi_to_ncmp.CmSubscriptionDmiOutEvent
 import org.onap.cps.ncmp.utils.TestUtils

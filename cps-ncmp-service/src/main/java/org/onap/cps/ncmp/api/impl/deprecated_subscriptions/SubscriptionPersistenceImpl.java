@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.subscriptions;
+package org.onap.cps.ncmp.api.impl.deprecated_subscriptions;
 
 import java.util.Collection;
 import java.util.HashMap;

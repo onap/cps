@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.events.cmsubscription
+package org.onap.cps.ncmp.api.impl.events.deprecated_cmsubscription
 
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.SUCCESSFULLY_APPLIED_SUBSCRIPTION
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.SUBSCRIPTION_PENDING
@@ -30,7 +30,7 @@ import io.cloudevents.CloudEvent
 import io.cloudevents.core.builder.CloudEventBuilder
 import org.mapstruct.factory.Mappers
 import org.onap.cps.ncmp.api.impl.events.EventsPublisher
-import org.onap.cps.ncmp.api.impl.subscriptions.SubscriptionPersistence
+import org.onap.cps.ncmp.api.impl.deprecated_subscriptions.SubscriptionPersistence
 import org.onap.cps.ncmp.api.impl.utils.DataNodeBaseSpec
 import org.onap.cps.ncmp.api.impl.utils.SubscriptionOutcomeCloudMapper
 import org.onap.cps.ncmp.api.models.CmSubscriptionEvent
