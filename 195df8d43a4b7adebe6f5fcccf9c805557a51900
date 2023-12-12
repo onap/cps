@@ -120,6 +120,30 @@
       },
       "revId": "195df8d43a4b7adebe6f5fcccf9c805557a51900",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bcc682ef_a9c14193",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/NcmpConfiguration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-12-12T13:35:20Z",
+      "side": 1,
+      "message": "Yes. Basically we define two RestTemplate @Beans here (or in separate @Configuration classes):\n\n    public RestTemplate restTemplate() { ... }\n    public RestTemplate dmiHealthRestTemplate() { ... }\n  \nand use @Qualifier to select which RestTemplate from other classes:\n\n    @Qualifier(\"dmiHealthRestTemplate\")\n    private RestTemplate dmiHealthRestTemplate;\n\nAnother reason for wanting this is to have different connection timeouts. For DMI liveness, we check DMI /actuator/health every 30 seconds by default, but our connection timeout here is set to 3 minutes - the timeout should be only 30 seconds or less.",
+      "parentUuid": "d55d4e74_e5c7c579",
+      "range": {
+        "startLine": 76,
+        "startChar": 31,
+        "endLine": 76,
+        "endChar": 43
+      },
+      "revId": "195df8d43a4b7adebe6f5fcccf9c805557a51900",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
