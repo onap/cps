@@ -132,9 +132,9 @@ class CmSubscriptionDmiOutEventConsumerSpec extends MessagingBaseSpec {
     }
 
     def getDataNode() {
-        def leaves = [status:'ACCEPTED', cmHandleId:'cmhandle1'] as Map
+        def leaves = [xpath:'some/xpath'] as Map
         return new DataNodeBuilder().withDataspace(NCMP_DATASPACE_NAME)
-            .withAnchor('AVC-Subscriptions').withXpath('/subscription-registry/subscription')
+            .withAnchor('cm-data-subscriptions').withXpath('/datastores/datastore')
             .withLeaves(leaves).build()
     }
 }

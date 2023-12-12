@@ -34,9 +34,9 @@ import spock.lang.Specification
 
 class SubscriptionPersistenceSpec extends Specification {
 
-    private static final String SUBSCRIPTION_ANCHOR_NAME = "AVC-Subscriptions";
-    private static final String SUBSCRIPTION_REGISTRY_PARENT = "/subscription-registry";
-    private static final String SUBSCRIPTION_REGISTRY_PREDICATES_XPATH = "/subscription-registry/subscription[@clientID='some-client-id' and @subscriptionName='some-subscription-name']/predicates";
+    private static final String DEPRECATED_SUBSCRIPTION_ANCHOR_NAME = "AVC-Subscriptions";
+    private static final String DEPRECATED_SUBSCRIPTION_REGISTRY_PARENT = "/subscription-registry";
+    private static final String DEPRECATED_SUBSCRIPTION_REGISTRY_PREDICATES_XPATH = "/subscription-registry/subscription[@clientID='some-client-id' and @subscriptionName='some-subscription-name']/predicates";
 
     def spiedJsonObjectMapper = Spy(new JsonObjectMapper(new ObjectMapper()))
     def mockCpsDataService = Mock(CpsDataService)
@@ -61,8 +61,8 @@ class SubscriptionPersistenceSpec extends Specification {
        when: 'the yangModelSubscriptionEvent is saved into db'
             objectUnderTest.saveSubscriptionEvent(yangModelSubscriptionEvent)
        then: 'the cpsDataService save operation is called with the correct data'
-            1 * mockCpsDataService.saveListElements(NCMP_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME,
-                SUBSCRIPTION_REGISTRY_PARENT,
+            1 * mockCpsDataService.saveListElements(NCMP_DATASPACE_NAME, DEPRECATED_SUBSCRIPTION_ANCHOR_NAME,
+                DEPRECATED_SUBSCRIPTION_REGISTRY_PARENT,
                 '{"subscription":[{' +
                     '"topic":"some-topic",' +
                     '"predicates":{"datastore":"some-datastore","targetCmHandles":[{"cmHandleId":"cmhandle1","status":"PENDING","details":"Subscription forwarded to dmi plugin"},' +
@@ -87,12 +87,12 @@ class SubscriptionPersistenceSpec extends Specification {
         when: 'the yang model subscription event is saved into db'
             objectUnderTest.saveSubscriptionEvent(yangModelSubscriptionEvent)
         then: 'the cpsDataService save non-existing cm handle with the correct data'
-            1 * mockCpsDataService.saveListElements(NCMP_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME,
-                SUBSCRIPTION_REGISTRY_PREDICATES_XPATH, '{"targetCmHandles":[{"cmHandleId":"cmhandle2","status":"PENDING","details":"Subscription forwarded to dmi plugin"}]}',
+            1 * mockCpsDataService.saveListElements(NCMP_DATASPACE_NAME, DEPRECATED_SUBSCRIPTION_ANCHOR_NAME,
+                DEPRECATED_SUBSCRIPTION_REGISTRY_PREDICATES_XPATH, '{"targetCmHandles":[{"cmHandleId":"cmhandle2","status":"PENDING","details":"Subscription forwarded to dmi plugin"}]}',
                 NO_TIMESTAMP)
         and: 'the cpsDataService update existing cm handle with the correct data'
-            1 * mockCpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME,
-                SUBSCRIPTION_REGISTRY_PREDICATES_XPATH, '{"targetCmHandles":[{"cmHandleId":"cmhandle1","status":"PENDING","details":"Subscription forwarded to dmi plugin"}]}',
+            1 * mockCpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, DEPRECATED_SUBSCRIPTION_ANCHOR_NAME,
+                DEPRECATED_SUBSCRIPTION_REGISTRY_PREDICATES_XPATH, '{"targetCmHandles":[{"cmHandleId":"cmhandle1","status":"PENDING","details":"Subscription forwarded to dmi plugin"}]}',
                 NO_TIMESTAMP)
     }
 
