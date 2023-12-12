@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf4df16d_d3e1bf77",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-12-12T14:14:07Z",
+      "side": 1,
+      "message": "Just Some minor Non-Blocking test improvements, they can be doen in a a separate commit when you extend the other tests as well...",
+      "revId": "8bf3b68dd0ec46d0b74067c6d6d085bdb14a6bb7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07aeab2e_ca09b145",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleOperationsUtilsSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-12-12T14:14:07Z",
+      "side": 1,
+      "message": "NB: use \u0027",
+      "range": {
+        "startLine": 127,
+        "startChar": 41,
+        "endLine": 127,
+        "endChar": 42
+      },
+      "revId": "8bf3b68dd0ec46d0b74067c6d6d085bdb14a6bb7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0cf23f27_2d37123d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleOperationsUtilsSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-12-12T14:14:07Z",
+      "side": 1,
+      "message": "NB: this is common. instead of lockResonDetaisl you could just have a moduelSetTag column",
+      "range": {
+        "startLine": 127,
+        "startChar": 42,
+        "endLine": 127,
+        "endChar": 66
+      },
+      "revId": "8bf3b68dd0ec46d0b74067c6d6d085bdb14a6bb7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95a00c61_1b777f38",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleOperationsUtilsSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-12-12T14:14:07Z",
+      "side": 1,
+      "message": "NB: just say \u0027a module set tag\u0027 better english just as clear I think",
+      "range": {
+        "startLine": 127,
+        "startChar": 13,
+        "endLine": 127,
+        "endChar": 22
+      },
+      "revId": "8bf3b68dd0ec46d0b74067c6d6d085bdb14a6bb7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

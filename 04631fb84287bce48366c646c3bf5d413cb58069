@@ -403,6 +403,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d44e824_00a95a06",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-12-12T14:14:07Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "17da98e1_e4efc650",
+      "range": {
+        "startLine": 93,
+        "startChar": 16,
+        "endLine": 93,
+        "endChar": 52
+      },
+      "revId": "04631fb84287bce48366c646c3bf5d413cb58069",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6ed7af83_70b646da",
@@ -450,6 +474,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6241585d_48e52196",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsModulePersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-12-12T14:14:07Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "438050f5_93aa7c3e",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 31
+      },
+      "revId": "04631fb84287bce48366c646c3bf5d413cb58069",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8b0dc489_ae963ca0",
@@ -487,6 +535,30 @@
       "side": 1,
       "message": "improve it into another commit",
       "parentUuid": "8b0dc489_ae963ca0",
+      "range": {
+        "startLine": 200,
+        "startChar": 0,
+        "endLine": 205,
+        "endChar": 5
+      },
+      "revId": "04631fb84287bce48366c646c3bf5d413cb58069",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7df81486_12979c9d",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-12-12T14:14:07Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "501cee21_0faee7a9",
       "range": {
         "startLine": 200,
         "startChar": 0,
