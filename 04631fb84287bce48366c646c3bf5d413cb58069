@@ -48,6 +48,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b3b21f0_caf3e1ec",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-12-12T12:57:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb353f62_ae619920",
+      "range": {
+        "startLine": 154,
+        "startChar": 8,
+        "endLine": 154,
+        "endChar": 79
+      },
+      "revId": "04631fb84287bce48366c646c3bf5d413cb58069",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7b3d91d6_23781b6f",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "done",
       "parentUuid": "7b3d91d6_23781b6f",
+      "range": {
+        "startLine": 169,
+        "startChar": 17,
+        "endLine": 169,
+        "endChar": 51
+      },
+      "revId": "04631fb84287bce48366c646c3bf5d413cb58069",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6fe7ba9_361187e0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-12-12T12:57:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ebd00b2_99b21324",
       "range": {
         "startLine": 169,
         "startChar": 17,
@@ -142,6 +190,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "94e23bc3_461f201b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-12-12T12:57:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4007cdbe_e96c241b",
+      "range": {
+        "startLine": 170,
+        "startChar": 52,
+        "endLine": 170,
+        "endChar": 74
+      },
+      "revId": "04631fb84287bce48366c646c3bf5d413cb58069",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3084f4c0_3168c533",
@@ -189,6 +261,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a8e1e5f_23c210ed",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncTasks.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-12-12T12:57:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ed1d4843_50617d88",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 86,
+        "endChar": 21
+      },
+      "revId": "04631fb84287bce48366c646c3bf5d413cb58069",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4c0c2982_0b9e75b4",
@@ -226,6 +322,30 @@
       "side": 1,
       "message": "extracted",
       "parentUuid": "4c0c2982_0b9e75b4",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 115,
+        "endChar": 189
+      },
+      "revId": "04631fb84287bce48366c646c3bf5d413cb58069",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a968acf7_59127d3e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleOperationsUtilsSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-12-12T12:57:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6b45d436_cd96dc6e",
       "range": {
         "startLine": 113,
         "startChar": 0,
@@ -424,6 +544,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a92c46ea_837fed3c",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsModuleServiceIntegrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-12-12T12:57:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c0dacda1_a974131c",
+      "range": {
+        "startLine": 55,
+        "startChar": 8,
+        "endLine": 55,
+        "endChar": 22
+      },
+      "revId": "04631fb84287bce48366c646c3bf5d413cb58069",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0e0bcaaa_352098da",
@@ -461,6 +605,30 @@
       "side": 1,
       "message": "done",
       "parentUuid": "0e0bcaaa_352098da",
+      "range": {
+        "startLine": 294,
+        "startChar": 0,
+        "endLine": 294,
+        "endChar": 4
+      },
+      "revId": "04631fb84287bce48366c646c3bf5d413cb58069",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "302c2231_e0f459d0",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsModuleServiceIntegrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-12-12T12:57:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "813c5d07_d3b1978d",
       "range": {
         "startLine": 294,
         "startChar": 0,
