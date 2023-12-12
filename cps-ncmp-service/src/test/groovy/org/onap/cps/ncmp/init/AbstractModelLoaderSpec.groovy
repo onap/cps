@@ -49,7 +49,7 @@ class AbstractModelLoaderSpec extends Specification {
     def loggingListAppender
 
     void setup() {
-        yangResourceToContentMap = objectUnderTest.createYangResourcesToContentMap('subscription.yang')
+        yangResourceToContentMap = objectUnderTest.createYangResourcesToContentMap('cm-data-subscriptions@2023-11-13.yang')
         logger.setLevel(Level.DEBUG)
         loggingListAppender = new ListAppender()
         logger.addAppender(loggingListAppender)
@@ -89,7 +89,7 @@ class AbstractModelLoaderSpec extends Specification {
 
     def 'Create schema set.'() {
         when: 'creating a schema set'
-            objectUnderTest.createSchemaSet('some dataspace','new name','subscription.yang')
+            objectUnderTest.createSchemaSet('some dataspace','new name','cm-data-subscriptions@2023-11-13.yang')
         then: 'the operation is delegated to the admin service'
             1 * mockCpsModuleService.createSchemaSet('some dataspace','new name',_)
     }
@@ -98,7 +98,7 @@ class AbstractModelLoaderSpec extends Specification {
         given: 'the module service throws an already defined exception'
             mockCpsModuleService.createSchemaSet(*_) >>  { throw AlreadyDefinedException.forSchemaSet('name','context',null) }
         when: 'attempt to create a schema set'
-            objectUnderTest.createSchemaSet('some dataspace','new name','subscription.yang')
+            objectUnderTest.createSchemaSet('some dataspace','new name','cm-data-subscriptions@2023-11-13.yang')
         then: 'the exception is ignored i.e. no exception thrown up'
             noExceptionThrown()
         and: 'the exception message is logged'
