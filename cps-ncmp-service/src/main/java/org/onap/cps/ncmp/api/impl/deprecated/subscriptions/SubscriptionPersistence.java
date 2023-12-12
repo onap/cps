@@ -18,28 +18,33 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.models;
+package org.onap.cps.ncmp.api.impl.deprecated.subscriptions;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.Setter;
-import org.onap.cps.ncmp.api.impl.deprecated.subscriptions.SubscriptionStatus;
+import java.util.Collection;
+import org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence;
+import org.onap.cps.ncmp.api.impl.yangmodels.YangModelSubscriptionEvent;
+import org.onap.cps.spi.model.DataNode;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@Getter
-@Setter
-public class CmSubscriptionStatus {
+public interface SubscriptionPersistence extends NcmpPersistence {
 
-    @JsonProperty("id")
-    @NotNull
-    private String id;
+    /**
+     * Save subscription Event.
+     *
+     * @param yangModelSubscriptionEvent subscription Event as Yang Model.
+     */
+    void saveSubscriptionEvent(YangModelSubscriptionEvent yangModelSubscriptionEvent);
 
-    @JsonProperty("status")
-    @NotNull
-    private SubscriptionStatus status;
+    /**
+     * Get data nodes.
+     *
+     * @return the DataNode as collection.
+     */
+    Collection<DataNode> getDataNodesForSubscriptionEvent();
 
-    @JsonProperty("details")
-    private String details;
+    /**
+     * Get data nodes by xpath.
+     *
+     * @return the DataNode as collection.
+     */
+    Collection<DataNode> getCmHandlesForSubscriptionEvent(String clientId, String subscriptionName);
 }

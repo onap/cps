@@ -4,86 +4,61 @@
   "$schema": "https://json-schema.org/draft/2019-09/schema",
   "definitions": {
     "CmSubscriptionNcmpInEvent": {
-      "description": "The payload for subscription event.",
-      "javaType": "org.onap.cps.ncmp.events.cmsubscription1_0_0.client_to_ncmp.CmSubscriptionNcmpInEvent",
+      "description": "The payload for subscription merge event.",
+      "javaType": "org.onap.cps.ncmp.events.cmsubscription_merge1_0_0.client_to_ncmp.CmSubscriptionNcmpInEvent",
       "properties": {
         "data": {
           "properties": {
-            "dataType": {
-              "description": "The datatype content.",
-              "properties": {
-                "dataCategory": {
-                  "description": "The category type of the data",
-                  "type": "string"
-                },
-                "dataProvider": {
-                  "description": "The provider name of the data",
-                  "type": "string"
-                },
-                "dataspace": {
-                  "description": "The dataspace name",
-                  "type": "string"
-                }
-              },
-              "required": [
-                "dataCategory",
-                "dataProvider",
-                "dataspace"
-              ],
-              "type": "object",
-              "additionalProperties": false
+            "subscriptionId": {
+              "description": "The subscription details.",
+              "type": "string"
             },
             "predicates": {
+              "type": "array",
               "description": "Additional values to be added into the subscription",
-              "properties": {
-                "datastore": {
-                  "description": "datastore which is to be used by the subscription",
-                  "type": "string"
-                },
-                "targets": {
-                  "description": "CM Handles to be targeted by the subscription",
-                  "type": "array",
-                  "items": {
-                    "type": "string"
+              "items": {
+                "type": "object",
+                "properties": {
+                  "targetFilter": {
+                    "description": "CM Handles to be targeted by the subscription",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "scopeFilter": {
+                    "type": "object",
+                    "properties": {
+                      "datastore": {
+                        "description": "Datastore which is to be used by the subscription",
+                        "type": "string",
+                        "enum": ["ncmp-datastore:passthrough-operational", "ncmp-datastore:passthrough-running"]
+                      },
+                      "xpath-filter": {
+                        "description": "Filter to be applied to the CM Handles through this event",
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                      "xpath-filter"
+                    ]
                   }
                 },
-                "datastore-xpath-filter": {
-                  "description": "filter to be applied to the CM Handles through this event",
-                  "type": "string"
-                }
+                "additionalProperties": false,
+                "required": [
+                  "targetFilter"
+                ]
               },
-              "required": [
-                "datastore",
-                "targets",
-                "datastore-xpath-filter"
-              ],
-              "type": "object",
-              "additionalProperties": false
-            },
-            "subscription": {
-              "description": "The subscription details.",
-              "properties": {
-                "clientID": {
-                  "description": "The clientID",
-                  "type": "string"
-                },
-                "name": {
-                  "description": "The name of the subscription",
-                  "type": "string"
-                }
-              },
-              "required": [
-                "clientID",
-                "name"
-              ],
-              "type": "object",
               "additionalProperties": false
             }
           },
           "required": [
-            "dataType",
-            "predicates",
-            "subscription"
+            "subscriptionId",
+            "predicates"
           ],
           "type": "object",
           "additionalProperties": false
