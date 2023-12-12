@@ -39,6 +39,23 @@
       "message": "Need to get Sourabh\u0027s opinion if we still want/need to do this change",
       "revId": "9d2069ffd69a570d59b4db6024641fd555511e74",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c43306d_cc76c0d4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-12-12T10:13:58Z",
+      "side": 1,
+      "message": "@Jeff : We should abandon this commit as IQueue extends BlockingQueue into  hazelcast collection and in our current code while preparing batch of cm handles we are using 2 methods from BlockingQueue 1. Offer 2. drainTo where as IQueue doesn\u0027t have these operations. Hope it\u0027s clear why we need BlockingQueue.\n\npackage com.hazelcast.collection;\npublic interface IQueue\u003cE\u003e extends BlockingQueue\u003cE\u003e",
+      "revId": "9d2069ffd69a570d59b4db6024641fd555511e74",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
