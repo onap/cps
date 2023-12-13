@@ -16,6 +16,24 @@
       "message": "I think for correct functioning even with a single instance, we\u0027d need to remove the old schemaset yang from the cache:\n   \n    yangTextSchemaSourceSetCache.removeFromCache(dataspaceName, schemaSetName);\n    \n(cache will automatically update new yang on next read)",
       "revId": "92d59fc713c29329d1c2f8107ab5e77f999beef9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "adc3927f_c15a3661",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-12-13T12:48:41Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8ee58b1d_f3274e27",
+      "revId": "92d59fc713c29329d1c2f8107ab5e77f999beef9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
