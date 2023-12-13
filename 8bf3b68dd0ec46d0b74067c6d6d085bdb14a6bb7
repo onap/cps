@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bfbd65d_820e8317",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-12-13T10:48:09Z",
+      "side": 1,
+      "message": "It\u0027s upgrade opreation only for existing cm handle schema set using module set.",
+      "parentUuid": "54467240_09ba01a1",
+      "range": {
+        "startLine": 7,
+        "startChar": 21,
+        "endLine": 7,
+        "endChar": 29
+      },
+      "revId": "8bf3b68dd0ec46d0b74067c6d6d085bdb14a6bb7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "cf4df16d_d3e1bf77",
@@ -71,6 +95,30 @@
       "writtenOn": "2023-12-12T14:21:28Z",
       "side": 1,
       "message": "Just want to remind if you really putIfAbsent or just by put ( also to update the cache)",
+      "range": {
+        "startLine": 196,
+        "startChar": 30,
+        "endLine": 196,
+        "endChar": 41
+      },
+      "revId": "8bf3b68dd0ec46d0b74067c6d6d085bdb14a6bb7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a68a49a_de5b0acf",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-12-13T10:48:09Z",
+      "side": 1,
+      "message": "purposely we used putIfAbsent here.",
+      "parentUuid": "f98a8086_31f0fce9",
       "range": {
         "startLine": 196,
         "startChar": 30,
@@ -150,6 +198,78 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "69b7bcb0_d4db7612",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleOperationsUtilsSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-12-13T10:48:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "95a00c61_1b777f38",
+      "range": {
+        "startLine": 127,
+        "startChar": 13,
+        "endLine": 127,
+        "endChar": 22
+      },
+      "revId": "8bf3b68dd0ec46d0b74067c6d6d085bdb14a6bb7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "94599fb8_b3f5ecc9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleOperationsUtilsSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-12-13T10:48:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "07aeab2e_ca09b145",
+      "range": {
+        "startLine": 127,
+        "startChar": 41,
+        "endLine": 127,
+        "endChar": 42
+      },
+      "revId": "8bf3b68dd0ec46d0b74067c6d6d085bdb14a6bb7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b268f284_bb328d22",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleOperationsUtilsSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-12-13T10:48:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0cf23f27_2d37123d",
+      "range": {
+        "startLine": 127,
+        "startChar": 42,
+        "endLine": 127,
+        "endChar": 66
+      },
+      "revId": "8bf3b68dd0ec46d0b74067c6d6d085bdb14a6bb7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "798a5179_fee87068",
@@ -175,6 +295,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "661ca73b_8b1855e6",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/YangResourceRepository.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-12-13T10:48:09Z",
+      "side": 1,
+      "message": "we kept all native query here as this extends SchemaSetYangResourceRepository",
+      "parentUuid": "798a5179_fee87068",
+      "range": {
+        "startLine": 112,
+        "startChar": 32,
+        "endLine": 112,
+        "endChar": 58
+      },
+      "revId": "8bf3b68dd0ec46d0b74067c6d6d085bdb14a6bb7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9a3111e6_43f603e2",
         "filename": "cps-service/src/main/java/org/onap/cps/api/CpsModuleService.java",
         "patchSetId": 6
@@ -186,6 +330,30 @@
       "writtenOn": "2023-12-12T14:21:28Z",
       "side": 1,
       "message": "In this interface, all methods have Java Doc so better to have a java doc for the new one.",
+      "range": {
+        "startLine": 97,
+        "startChar": 9,
+        "endLine": 97,
+        "endChar": 36
+      },
+      "revId": "8bf3b68dd0ec46d0b74067c6d6d085bdb14a6bb7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "234b7188_2fedf8c3",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsModuleService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-12-13T10:48:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9a3111e6_43f603e2",
       "range": {
         "startLine": 97,
         "startChar": 9,
