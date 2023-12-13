@@ -18,28 +18,32 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.models;
+package org.onap.cps.ncmp.api.impl.deprecated.subscriptions;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.Setter;
-import org.onap.cps.ncmp.api.impl.deprecated.subscriptions.SubscriptionStatus;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@Getter
-@Setter
-public class CmSubscriptionStatus {
+public enum SubscriptionStatus {
+    ACCEPTED("ACCEPTED"),
+    REJECTED("REJECTED"),
+    PENDING("PENDING");
 
-    @JsonProperty("id")
-    @NotNull
-    private String id;
+    private final String subscriptionStatusValue;
 
-    @JsonProperty("status")
-    @NotNull
-    private SubscriptionStatus status;
+    SubscriptionStatus(final String subscriptionStatusValue) {
+        this.subscriptionStatusValue = subscriptionStatusValue;
+    }
 
-    @JsonProperty("details")
-    private String details;
+    /**
+     * Finds the value of the given enum.
+     *
+     * @param statusValue value of the enum
+     * @return a SubscriptionStatus
+     */
+    public static SubscriptionStatus fromString(final String statusValue) {
+        for (final SubscriptionStatus subscriptionStatusType : SubscriptionStatus.values()) {
+            if (subscriptionStatusType.subscriptionStatusValue.equalsIgnoreCase(statusValue)) {
+                return subscriptionStatusType;
+            }
+        }
+        return null;
+    }
 }
