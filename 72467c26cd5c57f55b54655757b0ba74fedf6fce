@@ -108,6 +108,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "120cccc9_3fbffce9",
+        "filename": "cps-ncmp-service/src/main/resources/models/dmi-registry@2023-11-27.yang",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-12-13T15:19:34Z",
+      "side": 1,
+      "message": "actually you are right it should be the leaf name as used in this model\nso yes we need to update ALL (revision) descriptions to use snake-case when they mention new or modified elements",
+      "parentUuid": "4c949947_c3ef4199",
+      "range": {
+        "startLine": 13,
+        "startChar": 11,
+        "endLine": 13,
+        "endChar": 22
+      },
+      "revId": "72467c26cd5c57f55b54655757b0ba74fedf6fce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "091fdea7_8ebff23a",
         "filename": "cps-ncmp-service/src/main/resources/models/dmi-registry@2023-11-27.yang",
         "patchSetId": 1
