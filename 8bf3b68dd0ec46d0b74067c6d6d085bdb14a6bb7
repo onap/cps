@@ -50,6 +50,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "64634858_134e4f6c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-12-13T10:48:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7bfbd65d_820e8317",
+      "range": {
+        "startLine": 7,
+        "startChar": 21,
+        "endLine": 7,
+        "endChar": 29
+      },
+      "revId": "8bf3b68dd0ec46d0b74067c6d6d085bdb14a6bb7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "cf4df16d_d3e1bf77",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 6
@@ -119,6 +143,30 @@
       "side": 1,
       "message": "purposely we used putIfAbsent here.",
       "parentUuid": "f98a8086_31f0fce9",
+      "range": {
+        "startLine": 196,
+        "startChar": 30,
+        "endLine": 196,
+        "endChar": 41
+      },
+      "revId": "8bf3b68dd0ec46d0b74067c6d6d085bdb14a6bb7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff003083_3004b0f4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-12-13T10:48:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a68a49a_de5b0acf",
       "range": {
         "startLine": 196,
         "startChar": 30,
