@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03d642b2_b295508a",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2023-12-13T15:41:29Z",
+      "side": 1,
+      "message": "NB: do we need this? Isn\u0027t it already presumed that that the parameters are what we expect?",
+      "range": {
+        "startLine": 135,
+        "startChar": 43,
+        "endLine": 135,
+        "endChar": 67
+      },
+      "revId": "ab0ca79dd823a1d82e4914462e962db59a8de9bf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb8abd4b_ee53b636",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2023-12-13T15:41:29Z",
+      "side": 1,
+      "message": "NB: same as above",
+      "range": {
+        "startLine": 137,
+        "startChar": 39,
+        "endLine": 137,
+        "endChar": 63
+      },
+      "revId": "ab0ca79dd823a1d82e4914462e962db59a8de9bf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3486be6_65aead9f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2023-12-13T15:41:29Z",
+      "side": 1,
+      "message": "NB: just say the anchor",
+      "range": {
+        "startLine": 139,
+        "startChar": 39,
+        "endLine": 139,
+        "endChar": 48
+      },
+      "revId": "ab0ca79dd823a1d82e4914462e962db59a8de9bf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
