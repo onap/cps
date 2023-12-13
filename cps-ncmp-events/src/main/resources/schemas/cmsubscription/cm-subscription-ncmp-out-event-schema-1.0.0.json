@@ -4,66 +4,60 @@
   "$ref": "#/definitions/CmSubscriptionNcmpOutEvent",
   "definitions": {
     "CmSubscriptionNcmpOutEvent": {
-      "description": "The payload for avc subscription event outcome message.",
       "type": "object",
-      "javaType": "org.onap.cps.ncmp.events.cmsubscription1_0_0.ncmp_to_client.CmSubscriptionNcmpOutEvent",
+      "description": "The payload applied cm subscription merge event coming out from NCMP.",
+      "javaType": "org.onap.cps.ncmp.events.cmsubscription_merge1_0_0.ncmp_to_client.CmSubscriptionNcmpOutEvent",
       "additionalProperties": false,
       "properties": {
         "data": {
-          "$ref": "#/definitions/data"
+          "$ref": "#/definitions/Data"
         }
       },
       "required": [
         "data"
-      ]
+      ],
+      "title": "CmSubscriptionNcmpOutEvent"
     },
-    "data": {
+    "Data": {
       "type": "object",
-      "description": "The actual data containing information about the pending and rejected targets",
+      "description": "Information about the targets and subscription",
       "additionalProperties": false,
       "properties": {
-        "statusCode": {
-          "type": "integer"
+        "subscriptionId": {
+          "type": "string",
+          "description": "The unique subscription id"
         },
-        "statusMessage": {
-          "type": "string"
+        "accepted-targets": {
+          "type": "array",
+          "description": "List of accepted targets",
+          "items": {
+            "type": "string"
+          }
         },
-        "additionalInfo": {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "rejected": {
-              "$ref": "#/definitions/additionalInfoDetails"
-            },
-            "pending": {
-              "$ref": "#/definitions/additionalInfoDetails"
-            }
+        "rejected-targets": {
+          "type": "array",
+          "description": "List of rejected targets",
+          "items": {
+            "type": "string"
+          }
+        },
+        "pending-targets": {
+          "type": "array",
+          "description": "List of pending targets",
+          "items": {
+            "type": "string"
           }
         }
       },
       "required": [
-        "statusCode",
-        "statusMessage"
-      ]
-    },
-    "additionalInfoDetails": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "description": "Details for the target cmhandles",
-        "additionalProperties": false,
-        "properties": {
-          "details": {
-            "type": "string"
-          },
-          "targets": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        }
-      }
+        "accepted-targets",
+        "pending-targets",
+        "rejected-targets",
+        "subscriptionId"
+      ],
+      "title": "Data"
     }
   }
+
+
 }
