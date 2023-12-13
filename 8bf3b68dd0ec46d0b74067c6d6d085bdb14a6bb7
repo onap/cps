@@ -317,6 +317,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bcb2c939_e3bad2fa",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/YangResourceRepository.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2023-12-13T10:48:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "661ca73b_8b1855e6",
+      "range": {
+        "startLine": 112,
+        "startChar": 32,
+        "endLine": 112,
+        "endChar": 58
+      },
+      "revId": "8bf3b68dd0ec46d0b74067c6d6d085bdb14a6bb7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9a3111e6_43f603e2",
