@@ -42,11 +42,11 @@ ${newCmHandleRequestBody}               {"dmiPlugin":"${dmipluginCsitStubUrl}","
 
 NCMP Data Operation, forwarded to DMI, response on Client Topic
         ${uri}=                          Set Variable        ${ncmpBasePath}/v1/data
-        ${dataOperationReqBody}=         Get Binary File     ${DATADIR}${/}dataOperationRequest.json
+        ${dataOperationReqBody}=         Get Binary File     ${DATADIR_CPS_CORE}${/}dataOperationRequest.json
         ${params}=                       Create Dictionary   topic=${topic}
         ${headers}=                      Create Dictionary   Content-Type=application/json         Authorization=${auth}
                                          POST On Session     CPS_URL   ncmpInventory/v1/ch         headers=${headers}     data=${newCmHandleRequestBody}
-        Sleep                            5                   wait some time to get updated the cm handle state to READY
+        Sleep                            8                   wait some time to get updated the cm handle state to READY
         ${response}=                     POST On Session     CPS_URL   ${uri}   params=${params}   headers=${headers}     data=${dataOperationReqBody}
         Set Global Variable              ${expectedRequestId}       ${response.json()}[requestId]
         Should Be Equal As Strings       ${response.status_code}   200

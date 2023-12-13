@@ -80,9 +80,8 @@ Get modules for registered data node
     ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/PNFDemo/modules
     ${headers}=          Create Dictionary  Authorization=${auth}
     ${response}=         GET On Session     CPS_URL   ${uri}   headers=${headers}
-    ${responseJson}=     Set Variable       ${response.json()}
     Should Be Equal As Strings              ${response.status_code}   200
-    FOR   ${item}   IN  @{responseJson}
+    FOR   ${item}   IN  @{response.json()}
             IF   "${item['moduleName']}" == "stores"
                 Should Be Equal As Strings              "${item['revision']}"   "2020-09-15"
             END
