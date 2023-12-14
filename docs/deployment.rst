@@ -235,9 +235,6 @@ Any spring supported property can be configured by providing in ``config.additio
 | ssl.endpoint.identification.algorithm |                                                                                                         |                               |
 |                                       | * ``""``, empty string to disable                                                                       |                               |
 +---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.additional.                    | If asynchronous messaging, user notifications, and updated event persistence should be enabled          | ``true``                      |
-| notification.data-updated.enabled     |                                                                                                         |                               |
-+---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
 | config.additional.                    | Core pool size in asynchronous execution of notification.                                               | ``2``                         |
 | notification.async.executor.          |                                                                                                         |                               |
 | core-pool-size                        |                                                                                                         |                               |
