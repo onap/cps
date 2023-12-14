@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82f9edc3_bab29dc3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-12-14T15:55:39Z",
+      "side": 1,
+      "message": "I\u0027m currently changing also integration-test for the new AnchorService interface.",
+      "revId": "fca1a273738840b9ad72b3ced8f7b0a87a7165b5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
