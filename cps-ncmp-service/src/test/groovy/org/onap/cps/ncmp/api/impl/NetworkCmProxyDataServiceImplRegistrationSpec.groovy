@@ -212,7 +212,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             1 * mockLcmEventsCmHandleStateHandler.initiateStateAdvised(_) >> {
                 args ->
                     {
-                        def cmHandleStatePerCmHandle = (args[0] as Map)
+                        def cmHandleStatePerCmHandle = (args[0] as List)
                         cmHandleStatePerCmHandle.each {
                             assert (it.id == 'cmhandle' && it.dmiServiceName == 'my-server')
                         }
