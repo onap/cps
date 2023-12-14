@@ -73,8 +73,8 @@ class FunctionalSpecBase extends CpsIntegrationSpecBase {
 
     def restoreBookstoreDataAnchor(anchorNumber) {
         def anchorName = 'bookstoreAnchor' + anchorNumber
-        cpsAdminService.deleteAnchor(FUNCTIONAL_TEST_DATASPACE_1, anchorName)
-        cpsAdminService.createAnchor(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_SCHEMA_SET, anchorName)
+        cpsAnchorService.deleteAnchor(FUNCTIONAL_TEST_DATASPACE_1, anchorName)
+        cpsAnchorService.createAnchor(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_SCHEMA_SET, anchorName)
         cpsDataService.saveData(FUNCTIONAL_TEST_DATASPACE_1, anchorName, bookstoreJsonData.replace("Easons", "Easons-"+anchorNumber.toString()), OffsetDateTime.now())
     }
 

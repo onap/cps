@@ -20,6 +20,7 @@
 
 package org.onap.cps.integration.base
 
+import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.api.impl.CpsAdminServiceImpl
 import org.onap.cps.api.impl.CpsDataServiceImpl
@@ -58,6 +59,10 @@ class CpsIntegrationSpecBase extends Specification {
     @Autowired
     @Lazy
     CpsAdminServiceImpl cpsAdminService
+
+    @Autowired
+    @Lazy
+    CpsAnchorService cpsAnchorService
 
     @Autowired
     @Lazy
@@ -117,7 +122,7 @@ class CpsIntegrationSpecBase extends Specification {
 
     def addAnchorsWithData(numberOfAnchors, dataspaceName, schemaSetName, anchorNamePrefix, data) {
         (1..numberOfAnchors).each {
-            cpsAdminService.createAnchor(dataspaceName, schemaSetName, anchorNamePrefix + it)
+            cpsAnchorService.createAnchor(dataspaceName, schemaSetName, anchorNamePrefix + it)
             cpsDataService.saveData(dataspaceName, anchorNamePrefix + it, data.replace("Easons", "Easons-"+it.toString()), OffsetDateTime.now())
         }
     }

@@ -20,6 +20,8 @@
 
 package org.onap.cps.ncmp.init
 
+import org.onap.cps.api.CpsAnchorService
+
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
 
@@ -40,7 +42,8 @@ class InventoryModelLoaderSpec extends Specification {
     def mockCpsAdminService = Mock(CpsAdminService)
     def mockCpsModuleService = Mock(CpsModuleService)
     def mockCpsDataService = Mock(CpsDataService)
-    def objectUnderTest = new InventoryModelLoader(mockCpsAdminService, mockCpsModuleService, mockCpsDataService)
+    def mockCpsAnchorService = Mock(CpsAnchorService)
+    def objectUnderTest = new InventoryModelLoader(mockCpsAdminService, mockCpsModuleService, mockCpsDataService, mockCpsAnchorService)
 
     def applicationContext = new AnnotationConfigApplicationContext()
 
@@ -70,7 +73,7 @@ class InventoryModelLoaderSpec extends Specification {
         then: 'the module service is used to create the new schema set from the correct resource'
             1 * mockCpsModuleService.createSchemaSet(NCMP_DATASPACE_NAME, 'dmi-registry-2023-08-23', expectedYangResourceToContentMap)
         and: 'the admin service is used to update the anchor'
-            1 * mockCpsAdminService.updateAnchorSchemaSet(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, 'dmi-registry-2023-08-23')
+            1 * mockCpsAnchorService.updateAnchorSchemaSet(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, 'dmi-registry-2023-08-23')
         and: 'No schema sets are being removed by the module service (yet)'
             0 * mockCpsModuleService.deleteSchemaSet(NCMP_DATASPACE_NAME, _, _)
     }

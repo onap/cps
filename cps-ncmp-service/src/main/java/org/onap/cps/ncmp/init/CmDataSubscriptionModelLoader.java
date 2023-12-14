@@ -24,6 +24,7 @@ import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DA
 
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAdminService;
+import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsModuleService;
 import org.springframework.beans.factory.annotation.Value;
@@ -47,8 +48,9 @@ public class CmDataSubscriptionModelLoader extends AbstractModelLoader {
 
     public CmDataSubscriptionModelLoader(final CpsAdminService cpsAdminService,
                                          final CpsModuleService cpsModuleService,
-                                         final CpsDataService cpsDataService) {
-        super(cpsAdminService, cpsModuleService, cpsDataService);
+                                         final CpsDataService cpsDataService,
+                                         final CpsAnchorService cpsAnchorService) {
+        super(cpsAdminService, cpsModuleService, cpsDataService, cpsAnchorService);
     }
 
     @Value("${ncmp.model-loader.subscription:true}")
