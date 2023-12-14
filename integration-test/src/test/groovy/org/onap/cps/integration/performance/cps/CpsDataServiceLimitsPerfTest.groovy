@@ -35,7 +35,7 @@ class CpsDataServiceLimitsPerfTest extends CpsPerfTestBase {
 
     def 'Create 33,000 books (note further tests depend on this running first).'() {
         given: 'an anchor containing a bookstore with one category'
-            cpsAdminService.createAnchor(CPS_PERFORMANCE_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET, 'limitsAnchor')
+            cpsAnchorService.createAnchor(CPS_PERFORMANCE_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET, 'limitsAnchor')
             def parentNodeData = '{"bookstore": { "categories": [{ "code": 1, "name": "Test", "books" : [] }] }}'
             cpsDataService.saveData(CPS_PERFORMANCE_TEST_DATASPACE, 'limitsAnchor', parentNodeData, OffsetDateTime.now())
         when: '33,000 books are added'
@@ -84,7 +84,7 @@ class CpsDataServiceLimitsPerfTest extends CpsPerfTestBase {
         when:
             resourceMeter.start()
             cpsDataService.deleteDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, 'limitsAnchor', OffsetDateTime.now())
-            cpsAdminService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, 'limitsAnchor')
+            cpsAnchorService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, 'limitsAnchor')
             resourceMeter.stop()
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'test data is deleted in 1 second'

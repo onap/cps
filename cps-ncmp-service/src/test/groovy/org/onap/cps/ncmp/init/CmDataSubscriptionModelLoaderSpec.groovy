@@ -20,12 +20,14 @@
 
 package org.onap.cps.ncmp.init
 
+import org.onap.cps.api.CpsAnchorService
+
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
 
 import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
 import ch.qos.logback.core.read.ListAppender
-import org.onap.cps.api.CpsAdminService
+import org.onap.cps.api.CpsDataspaceService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.spi.model.Dataspace
@@ -36,10 +38,11 @@ import spock.lang.Specification
 
 class CmDataSubscriptionModelLoaderSpec extends Specification {
 
-    def mockCpsAdminService = Mock(CpsAdminService)
+    def mockCpsDataspaceService = Mock(CpsDataspaceService)
     def mockCpsModuleService = Mock(CpsModuleService)
     def mockCpsDataService = Mock(CpsDataService)
-    def objectUnderTest = new CmDataSubscriptionModelLoader(mockCpsAdminService, mockCpsModuleService, mockCpsDataService)
+    def mockCpsAnchorService = Mock(CpsAnchorService)
+    def objectUnderTest = new CmDataSubscriptionModelLoader(mockCpsDataspaceService, mockCpsModuleService, mockCpsDataService, mockCpsAnchorService)
 
     def applicationContext = new AnnotationConfigApplicationContext()
 
@@ -65,13 +68,13 @@ class CmDataSubscriptionModelLoaderSpec extends Specification {
         given:'model loader is enabled'
             objectUnderTest.subscriptionModelLoaderEnabled = true
         and: 'dataspace is ready for use'
-            mockCpsAdminService.getDataspace(NCMP_DATASPACE_NAME) >> new Dataspace('')
+            mockCpsDataspaceService.getDataspace(NCMP_DATASPACE_NAME) >> new Dataspace('')
         when: 'the application is ready'
             objectUnderTest.onApplicationEvent(Mock(ApplicationReadyEvent))
         then: 'the module service to create schema set is called once'
             1 * mockCpsModuleService.createSchemaSet(NCMP_DATASPACE_NAME, 'cm-data-subscriptions', expectedYangResourcesToContentMap)
         and: 'the admin service to create an anchor set is called once'
-            1 * mockCpsAdminService.createAnchor(NCMP_DATASPACE_NAME, 'cm-data-subscriptions', 'cm-data-subscriptions')
+            1 * mockCpsAnchorService.createAnchor(NCMP_DATASPACE_NAME, 'cm-data-subscriptions', 'cm-data-subscriptions')
         and: 'the data service to create a top level datanode is called once'
             1 * mockCpsDataService.saveData(NCMP_DATASPACE_NAME, 'cm-data-subscriptions', '{"datastores":{}}', _)
     }
@@ -82,7 +85,7 @@ class CmDataSubscriptionModelLoaderSpec extends Specification {
         when: 'application is ready'
             objectUnderTest.onApplicationEvent(Mock(ApplicationReadyEvent))
         then: 'no interaction with admin service'
-            0 * mockCpsAdminService.getDataspace(_)
+            0 * mockCpsDataspaceService.getDataspace(_)
         then: 'a message is logged that the function is disabled'
             def logs = loggingListAppender.list.toString()
             assert logs.contains('Subscription Model Loader is disabled')

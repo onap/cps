@@ -21,7 +21,7 @@
 
 package org.onap.cps.notification
 
-import org.onap.cps.api.CpsAdminService
+import org.onap.cps.api.CpsDataspaceService
 import org.onap.cps.config.AsyncConfig
 import org.onap.cps.event.model.CpsDataUpdatedEvent
 import org.onap.cps.spi.model.Anchor
@@ -51,7 +51,7 @@ class NotificationServiceSpec extends Specification {
     @SpringSpy
     NotificationErrorHandler spyNotificationErrorHandler
     @SpringBean
-    CpsAdminService mockCpsAdminService = Mock()
+    CpsDataspaceService mockCpsAdminService = Mock()
 
     @Autowired
     NotificationService objectUnderTest

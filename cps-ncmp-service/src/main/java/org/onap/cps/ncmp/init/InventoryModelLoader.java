@@ -24,8 +24,9 @@ import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DA
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR;
 
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.api.CpsAdminService;
+import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.CpsDataService;
+import org.onap.cps.api.CpsDataspaceService;
 import org.onap.cps.api.CpsModuleService;
 import org.springframework.stereotype.Service;
 
@@ -36,10 +37,11 @@ public class InventoryModelLoader extends AbstractModelLoader {
     private static final String NEW_MODEL_FILE_NAME = "dmi-registry@2023-08-23.yang";
     private static final String NEW_SCHEMA_SET_NAME = "dmi-registry-2023-08-23";
 
-    public InventoryModelLoader(final CpsAdminService cpsAdminService,
+    public InventoryModelLoader(final CpsDataspaceService cpsDataspaceService,
                                 final CpsModuleService cpsModuleService,
-                                final CpsDataService cpsDataService) {
-        super(cpsAdminService, cpsModuleService, cpsDataService);
+                                final CpsDataService cpsDataService,
+                                final CpsAnchorService cpsAnchorService) {
+        super(cpsDataspaceService, cpsModuleService, cpsDataService, cpsAnchorService);
     }
 
     @Override
