@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b2d5a31_d63b2f8a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/HttpClientConfiguration.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-12-14T17:08:41Z",
+      "side": 1,
+      "message": "This is not correct. The connections per route (host) should be LESS than the total connections, e.g. maxConnTotal \u003d 100, maxConnPerRoute \u003d 50",
+      "range": {
+        "startLine": 48,
+        "startChar": 7,
+        "endLine": 49,
+        "endChar": 51
+      },
+      "revId": "ec57b7a3076bbfb57d61c22225ad63982b44c124",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
