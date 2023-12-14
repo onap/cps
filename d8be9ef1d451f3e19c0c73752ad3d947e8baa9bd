@@ -33,6 +33,23 @@
       "message": "recheck",
       "revId": "d8be9ef1d451f3e19c0c73752ad3d947e8baa9bd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce98264b_b80e31a3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-12-14T08:36:30Z",
+      "side": 1,
+      "message": "CI now passing, no real changes since you got 3 +1s so merging it now",
+      "revId": "d8be9ef1d451f3e19c0c73752ad3d947e8baa9bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

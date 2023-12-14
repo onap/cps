@@ -39,6 +39,30 @@
       },
       "revId": "7bf04a8e16ae22e337fa4fb8b5aab7569f1faa62",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5fe731db_8f666908",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NcmpRestInputMapperSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-12-14T08:36:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "07a9cd80_da0cea21",
+      "range": {
+        "startLine": 44,
+        "startChar": 121,
+        "endLine": 44,
+        "endChar": 172
+      },
+      "revId": "7bf04a8e16ae22e337fa4fb8b5aab7569f1faa62",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
