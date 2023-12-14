@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f941033_7abc2a89",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-12-14T11:53:29Z",
+      "side": 1,
+      "message": "As discussed with Toine , plz provide a detailed commit message explaining the below.\n\n1. moved the existing code to deprecated package\n2. replaced the existing schemas with the new ones\n3. we will be removing the deprecated code once we deliver first version of the cmsubscription with positive use cases.",
+      "revId": "13485aece025592bb82c67798b096a20b1b5fbea",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
