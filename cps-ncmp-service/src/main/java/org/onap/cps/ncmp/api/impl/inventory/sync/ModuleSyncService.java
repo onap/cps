@@ -35,7 +35,7 @@ import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.onap.cps.api.CpsAdminService;
+import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueries;
@@ -59,9 +59,9 @@ public class ModuleSyncService {
 
     private final DmiModelOperations dmiModelOperations;
     private final CpsModuleService cpsModuleService;
-    private final CpsAdminService cpsAdminService;
     private final CmHandleQueries cmHandleQueries;
     private final CpsDataService cpsDataService;
+    private final CpsAnchorService cpsAnchorService;
     private final JsonObjectMapper jsonObjectMapper;
     private final Map<String, Collection<ModuleReference>> moduleSetTagCache;
     private static final Map<String, String> NO_NEW_MODULES = Collections.emptyMap();
@@ -105,7 +105,7 @@ public class ModuleSyncService {
             }
         }
         if (!inUpgrade) {
-            cpsAdminService.createAnchor(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId, cmHandleId);
+            cpsAnchorService.createAnchor(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId, cmHandleId);
         }
         setCmHandleModuleSetTag(yangModelCmHandle, moduleSetTag);
     }

@@ -23,6 +23,8 @@
 
 package org.onap.cps.rest.controller
 
+import org.onap.cps.api.CpsAnchorService
+
 import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
@@ -57,6 +59,9 @@ class AdminRestControllerSpec extends Specification {
 
     @SpringBean
     CpsAdminService mockCpsAdminService = Mock()
+
+    @SpringBean
+    CpsAnchorService mockCpsAnchorService = Mock()
 
     @SpringBean
     CpsRestInputMapper cpsRestInputMapper = Mappers.getMapper(CpsRestInputMapper)
@@ -317,7 +322,7 @@ class AdminRestControllerSpec extends Specification {
                                     .params(requestParams as MultiValueMap))
                                     .andReturn().response
         then: 'anchor is created successfully'
-            1 * mockCpsAdminService.createAnchor(dataspaceName, schemaSetName, anchorName)
+            1 * mockCpsAnchorService.createAnchor(dataspaceName, schemaSetName, anchorName)
             assert response.status == HttpStatus.CREATED.value()
             assert response.getContentAsString() == expectedResponseBody
         where: 'following cases are tested'
@@ -328,7 +333,7 @@ class AdminRestControllerSpec extends Specification {
 
     def 'Get existing anchor.'() {
         given: 'service method returns a list of anchors'
-            mockCpsAdminService.getAnchors(dataspaceName) >> [anchor]
+            mockCpsAnchorService.getAnchors(dataspaceName) >> [anchor]
         and: 'an endpoint'
             def anchorEndpoint = "$basePath/v1/dataspaces/$dataspaceName/anchors"
         when: 'get all anchors API is invoked'
@@ -340,7 +345,7 @@ class AdminRestControllerSpec extends Specification {
 
     def 'Get existing anchor by dataspace and anchor name.'() {
         given: 'service method returns an anchor'
-            mockCpsAdminService.getAnchor(dataspaceName, anchorName) >>
+            mockCpsAnchorService.getAnchor(dataspaceName, anchorName) >>
                     new Anchor(name: anchorName, dataspaceName: dataspaceName, schemaSetName: schemaSetName)
         and: 'an endpoint'
             def anchorEndpoint = "$basePath/v1/dataspaces/$dataspaceName/anchors/$anchorName"
@@ -360,7 +365,7 @@ class AdminRestControllerSpec extends Specification {
         when: 'delete method is invoked on anchor endpoint'
             def response = mvc.perform(delete(anchorEndpoint)).andReturn().response
         then: 'associated service method is invoked with expected parameters'
-            1 * mockCpsAdminService.deleteAnchor(dataspaceName, anchorName)
+            1 * mockCpsAnchorService.deleteAnchor(dataspaceName, anchorName)
         and: 'response code indicates success'
             response.status == HttpStatus.NO_CONTENT.value()
     }

@@ -20,6 +20,8 @@
 
 package org.onap.cps.ncmp.init
 
+import org.onap.cps.api.CpsAnchorService
+
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
 
 import ch.qos.logback.classic.Level
@@ -39,7 +41,8 @@ class CmDataSubscriptionModelLoaderSpec extends Specification {
     def mockCpsAdminService = Mock(CpsAdminService)
     def mockCpsModuleService = Mock(CpsModuleService)
     def mockCpsDataService = Mock(CpsDataService)
-    def objectUnderTest = new CmDataSubscriptionModelLoader(mockCpsAdminService, mockCpsModuleService, mockCpsDataService)
+    def mockCpsAnchorService = Mock(CpsAnchorService)
+    def objectUnderTest = new CmDataSubscriptionModelLoader(mockCpsAdminService, mockCpsModuleService, mockCpsDataService, mockCpsAnchorService)
 
     def applicationContext = new AnnotationConfigApplicationContext()
 
@@ -71,7 +74,7 @@ class CmDataSubscriptionModelLoaderSpec extends Specification {
         then: 'the module service to create schema set is called once'
             1 * mockCpsModuleService.createSchemaSet(NCMP_DATASPACE_NAME, 'cm-data-subscriptions', expectedYangResourcesToContentMap)
         and: 'the admin service to create an anchor set is called once'
-            1 * mockCpsAdminService.createAnchor(NCMP_DATASPACE_NAME, 'cm-data-subscriptions', 'cm-data-subscriptions')
+            1 * mockCpsAnchorService.createAnchor(NCMP_DATASPACE_NAME, 'cm-data-subscriptions', 'cm-data-subscriptions')
         and: 'the data service to create a top level datanode is called once'
             1 * mockCpsDataService.saveData(NCMP_DATASPACE_NAME, 'cm-data-subscriptions', '{"datastores":{}}', _)
     }
