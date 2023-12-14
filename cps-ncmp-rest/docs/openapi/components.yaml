@@ -140,6 +140,9 @@ components:
             type: string
             enum: [COMPLETE, NONE]
             example: "COMPLETE"
+        alternateId:
+          type: string
+          example: "my-alternate-id"
     RestCmHandleProperties:
       type: object
       additionalProperties:
