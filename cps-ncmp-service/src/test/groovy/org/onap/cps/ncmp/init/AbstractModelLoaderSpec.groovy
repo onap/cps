@@ -23,7 +23,8 @@ package org.onap.cps.ncmp.init
 import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
 import ch.qos.logback.core.read.ListAppender
-import org.onap.cps.api.CpsAdminService
+import org.onap.cps.api.CpsDataspaceService
+import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.ncmp.api.impl.exception.NcmpStartUpException
@@ -37,10 +38,11 @@ import spock.lang.Specification
 
 class AbstractModelLoaderSpec extends Specification {
 
-    def mockCpsAdminService = Mock(CpsAdminService)
+    def mockCpsDataspaceService = Mock(CpsDataspaceService)
     def mockCpsModuleService = Mock(CpsModuleService)
     def mockCpsDataService = Mock(CpsDataService)
-    def objectUnderTest = Spy(new TestModelLoader(mockCpsAdminService, mockCpsModuleService, mockCpsDataService))
+    def mockCpsAnchorService = Mock(CpsAnchorService)
+    def objectUnderTest = Spy(new TestModelLoader(mockCpsDataspaceService, mockCpsModuleService, mockCpsDataService, mockCpsAnchorService))
 
     def applicationContext = new AnnotationConfigApplicationContext()
 
@@ -141,12 +143,12 @@ class AbstractModelLoaderSpec extends Specification {
         when: 'creating an anchor'
             objectUnderTest.createAnchor('some dataspace','some schema set','new name')
         then: 'the operation is delegated to the admin service'
-            1 * mockCpsAdminService.createAnchor('some dataspace','some schema set', 'new name')
+            1 * mockCpsAnchorService.createAnchor('some dataspace','some schema set', 'new name')
     }
 
     def 'Create anchor with already defined exception.'() {
         given: 'the admin service throws an already defined exception'
-            mockCpsAdminService.createAnchor(*_)>>  { throw AlreadyDefinedException.forAnchor('name','context',null) }
+            mockCpsAnchorService.createAnchor(*_)>>  { throw AlreadyDefinedException.forAnchor('name','context',null) }
         when: 'attempt to create anchor'
             objectUnderTest.createAnchor('some dataspace','some schema set','new name')
         then: 'the exception is ignored i.e. no exception thrown up'
@@ -158,7 +160,7 @@ class AbstractModelLoaderSpec extends Specification {
 
     def 'Create anchor with any other exception.'() {
         given: 'the admin service throws a exception'
-            mockCpsAdminService.createAnchor(*_)>>  { throw new RuntimeException('test message') }
+            mockCpsAnchorService.createAnchor(*_)>>  { throw new RuntimeException('test message') }
         when: 'attempt to create anchor'
             objectUnderTest.createAnchor('some dataspace','some schema set','new name')
         then: 'a startup exception with correct message and details is thrown'
@@ -201,12 +203,12 @@ class AbstractModelLoaderSpec extends Specification {
         when: 'a schema set for an anchor is updated'
             objectUnderTest.updateAnchorSchemaSet('some dataspace', 'anchor', 'new schema set')
         then: 'the request is delegated to the admin service'
-            1 * mockCpsAdminService.updateAnchorSchemaSet('some dataspace', 'anchor', 'new schema set')
+            1 * mockCpsAnchorService.updateAnchorSchemaSet('some dataspace', 'anchor', 'new schema set')
     }
 
     def 'Update anchor schema set with exception.'() {
         given: 'the admin service throws an exception'
-            mockCpsAdminService.updateAnchorSchemaSet(*_) >> { throw new RuntimeException('test message') }
+            mockCpsAnchorService.updateAnchorSchemaSet(*_) >> { throw new RuntimeException('test message') }
         when: 'a schema set for an anchor is updated'
             objectUnderTest.updateAnchorSchemaSet('some dataspace', 'anchor', 'new schema set')
         then: 'a startup exception with correct message and details is thrown'
@@ -217,10 +219,11 @@ class AbstractModelLoaderSpec extends Specification {
 
     class TestModelLoader extends AbstractModelLoader {
 
-        TestModelLoader(final CpsAdminService cpsAdminService,
+        TestModelLoader(final CpsDataspaceService cpsDataspaceService,
                         final CpsModuleService cpsModuleService,
-                        final CpsDataService cpsDataService) {
-            super(cpsAdminService, cpsModuleService, cpsDataService)
+                        final CpsDataService cpsDataService,
+                        final CpsAnchorService cpsAnchorService) {
+            super(cpsDataspaceService, cpsModuleService, cpsDataService, cpsAnchorService)
             super.maximumAttemptCount = 2
             super.retryTimeMs = 1
         }

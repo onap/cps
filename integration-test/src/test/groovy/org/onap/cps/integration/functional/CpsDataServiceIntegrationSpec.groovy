@@ -174,7 +174,7 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Attempt to create a top level data node using root.'() {
         given: 'a new anchor'
-            cpsAdminService.createAnchor(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_SCHEMA_SET, 'newAnchor1');
+            cpsAnchorService.createAnchor(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_SCHEMA_SET, 'newAnchor1');
         when: 'attempt to save new top level datanode'
             def json = '{"bookstore": {"bookstore-name": "New Store"} }'
             objectUnderTest.saveData(FUNCTIONAL_TEST_DATASPACE_1, 'newAnchor1' , '/', json, now)

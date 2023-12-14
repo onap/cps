@@ -29,8 +29,9 @@ import java.util.Map;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.api.CpsAdminService;
+import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.CpsDataService;
+import org.onap.cps.api.CpsDataspaceService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.ncmp.api.impl.exception.NcmpStartUpException;
 import org.onap.cps.spi.CascadeDeleteAllowed;
@@ -44,9 +45,10 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 @RequiredArgsConstructor
 abstract class AbstractModelLoader implements ModelLoader {
 
-    private final CpsAdminService cpsAdminService;
+    private final CpsDataspaceService cpsDataspaceService;
     private final CpsModuleService cpsModuleService;
     private final CpsDataService cpsDataService;
+    private final CpsAnchorService cpsAnchorService;
 
     private static final int EXIT_CODE_ON_ERROR = 1;
 
@@ -71,7 +73,7 @@ abstract class AbstractModelLoader implements ModelLoader {
     void waitUntilDataspaceIsAvailable(final String dataspaceName) {
         log.info("Model Loader start-up, waiting for database to be ready");
         int attemptCount = 0;
-        while (cpsAdminService.getDataspace(dataspaceName) == null) {
+        while (cpsDataspaceService.getDataspace(dataspaceName) == null) {
             if (attemptCount < maximumAttemptCount) {
                 try {
                     Thread.sleep(attemptCount * retryTimeMs);
@@ -111,7 +113,7 @@ abstract class AbstractModelLoader implements ModelLoader {
 
     void createAnchor(final String dataspaceName, final String schemaSetName, final String anchorName) {
         try {
-            cpsAdminService.createAnchor(dataspaceName, schemaSetName, anchorName);
+            cpsAnchorService.createAnchor(dataspaceName, schemaSetName, anchorName);
         } catch (final AlreadyDefinedException alreadyDefinedException) {
             log.warn("Creating new anchor failed as anchor already exists");
         } catch (final Exception exception) {
@@ -134,7 +136,7 @@ abstract class AbstractModelLoader implements ModelLoader {
 
     void updateAnchorSchemaSet(final String dataspaceName, final String anchorName, final String schemaSetName) {
         try {
-            cpsAdminService.updateAnchorSchemaSet(dataspaceName, anchorName, schemaSetName);
+            cpsAnchorService.updateAnchorSchemaSet(dataspaceName, anchorName, schemaSetName);
         } catch (final Exception exception) {
             log.error("Updating schema set failed: {}", exception.getMessage());
             throw new NcmpStartUpException("Updating schema set failed", exception.getMessage());

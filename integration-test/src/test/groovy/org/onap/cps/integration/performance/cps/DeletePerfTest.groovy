@@ -182,7 +182,7 @@ class DeletePerfTest extends CpsPerfTestBase {
             def anchorNames = (1..10).collect {'delete' + it}
         when: 'data nodes are deleted'
             resourceMeter.start()
-            cpsAdminService.deleteAnchors(CPS_PERFORMANCE_TEST_DATASPACE, anchorNames)
+            cpsAnchorService.deleteAnchors(CPS_PERFORMANCE_TEST_DATASPACE, anchorNames)
             resourceMeter.stop()
             def deleteDurationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'delete duration is within expected time and memory used is within limit'

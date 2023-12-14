@@ -26,7 +26,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import lombok.RequiredArgsConstructor;
-import org.onap.cps.api.CpsAdminService;
+import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.impl.YangTextSchemaSourceSetCache;
 import org.onap.cps.cache.AnchorDataCacheEntry;
 import org.onap.cps.cpspath.parser.CpsPathPrefixType;
@@ -48,7 +48,7 @@ public class PrefixResolver {
 
     private static final String CACHE_ENTRY_PROPERTY_NAME = "prefixPerContainerName";
 
-    private final CpsAdminService cpsAdminService;
+    private final CpsAnchorService cpsAnchorService;
 
     private final YangTextSchemaSourceSetCache yangTextSchemaSourceSetCache;
 
@@ -63,7 +63,7 @@ public class PrefixResolver {
      * @return the prefix of the module the top level element of given xpath
      */
     public String getPrefix(final String dataspaceName, final String anchorName, final String xpath) {
-        final Anchor anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
+        final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
         return getPrefix(anchor, xpath);
     }
 
