@@ -28,7 +28,7 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
-import org.onap.cps.api.CpsAdminService;
+import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.spi.CascadeDeleteAllowed;
 import org.onap.cps.spi.CpsModulePersistenceService;
@@ -49,7 +49,7 @@ public class CpsModuleServiceImpl implements CpsModuleService {
 
     private final CpsModulePersistenceService cpsModulePersistenceService;
     private final YangTextSchemaSourceSetCache yangTextSchemaSourceSetCache;
-    private final CpsAdminService cpsAdminService;
+    private final CpsAnchorService cpsAnchorService;
     private final CpsValidator cpsValidator;
     private final TimedYangTextSchemaSourceSetBuilder timedYangTextSchemaSourceSetBuilder;
 
@@ -97,12 +97,12 @@ public class CpsModuleServiceImpl implements CpsModuleService {
     public void deleteSchemaSet(final String dataspaceName, final String schemaSetName,
                                 final CascadeDeleteAllowed cascadeDeleteAllowed) {
         cpsValidator.validateNameCharacters(dataspaceName, schemaSetName);
-        final Collection<Anchor> anchors = cpsAdminService.getAnchors(dataspaceName, schemaSetName);
+        final Collection<Anchor> anchors = cpsAnchorService.getAnchors(dataspaceName, schemaSetName);
         if (!anchors.isEmpty() && isCascadeDeleteProhibited(cascadeDeleteAllowed)) {
             throw new SchemaSetInUseException(dataspaceName, schemaSetName);
         }
         for (final Anchor anchor : anchors) {
-            cpsAdminService.deleteAnchor(dataspaceName, anchor.getName());
+            cpsAnchorService.deleteAnchor(dataspaceName, anchor.getName());
         }
         cpsModulePersistenceService.deleteSchemaSet(dataspaceName, schemaSetName);
         yangTextSchemaSourceSetCache.removeFromCache(dataspaceName, schemaSetName);
@@ -114,9 +114,9 @@ public class CpsModuleServiceImpl implements CpsModuleService {
     public void deleteSchemaSetsWithCascade(final String dataspaceName, final Collection<String> schemaSetNames) {
         cpsValidator.validateNameCharacters(dataspaceName);
         cpsValidator.validateNameCharacters(schemaSetNames);
-        final Collection<String> anchorNames = cpsAdminService.getAnchors(dataspaceName, schemaSetNames)
+        final Collection<String> anchorNames = cpsAnchorService.getAnchors(dataspaceName, schemaSetNames)
             .stream().map(Anchor::getName).collect(Collectors.toSet());
-        cpsAdminService.deleteAnchors(dataspaceName, anchorNames);
+        cpsAnchorService.deleteAnchors(dataspaceName, anchorNames);
         cpsModulePersistenceService.deleteUnusedYangResourceModules();
         cpsModulePersistenceService.deleteSchemaSets(dataspaceName, schemaSetNames);
         for (final String schemaSetName : schemaSetNames) {

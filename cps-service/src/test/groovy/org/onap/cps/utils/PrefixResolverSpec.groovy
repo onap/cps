@@ -24,7 +24,7 @@ package org.onap.cps.utils
 
 import com.hazelcast.map.IMap
 import org.onap.cps.TestUtils
-import org.onap.cps.api.CpsAdminService
+import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.impl.YangTextSchemaSourceSetCache
 import org.onap.cps.cache.AnchorDataCacheEntry
 import org.onap.cps.spi.model.Anchor
@@ -34,13 +34,13 @@ import spock.lang.Specification
 
 class PrefixResolverSpec extends Specification {
 
-    def mockCpsAdminService = Mock(CpsAdminService)
+    def mockCpsAnchorService = Mock(CpsAnchorService)
 
     def mockYangTextSchemaSourceSetCache = Mock(YangTextSchemaSourceSetCache)
 
     def mockAnchorDataCache = Mock(IMap<String, AnchorDataCacheEntry>)
 
-    def objectUnderTest = new PrefixResolver(mockCpsAdminService, mockYangTextSchemaSourceSetCache, mockAnchorDataCache)
+    def objectUnderTest = new PrefixResolver(mockCpsAnchorService, mockYangTextSchemaSourceSetCache, mockAnchorDataCache)
 
     def mockYangTextSchemaSourceSet = Mock(YangTextSchemaSourceSet)
 
@@ -52,7 +52,7 @@ class PrefixResolverSpec extends Specification {
         given: 'an anchor for the test-tree model'
             def anchor = new Anchor(dataspaceName: 'testDataspace', name: 'testAnchor')
         and: 'the system can get this anchor'
-            mockCpsAdminService.getAnchor('testDataspace', 'testAnchor') >> anchor
+            mockCpsAnchorService.getAnchor('testDataspace', 'testAnchor') >> anchor
         and: 'the schema source cache contains the schema context for the test-tree module'
             mockYangTextSchemaSourceSet.getSchemaContext() >> schemaContext
     }

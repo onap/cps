@@ -34,6 +34,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsAdminService;
+import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.rest.api.CpsAdminApi;
 import org.onap.cps.rest.model.AnchorDetails;
@@ -56,6 +57,7 @@ public class AdminRestController implements CpsAdminApi {
     private final CpsAdminService cpsAdminService;
     private final CpsModuleService cpsModuleService;
     private final CpsRestInputMapper cpsRestInputMapper;
+    private final CpsAnchorService cpsAnchorService;
 
     /**
      * Create a dataspace.
@@ -184,7 +186,7 @@ public class AdminRestController implements CpsAdminApi {
     @Override
     public ResponseEntity<String> createAnchor(final String dataspaceName, @NotNull @Valid final String schemaSetName,
         @NotNull @Valid final String anchorName) {
-        cpsAdminService.createAnchor(dataspaceName, schemaSetName, anchorName);
+        cpsAnchorService.createAnchor(dataspaceName, schemaSetName, anchorName);
         return new ResponseEntity<>(anchorName, HttpStatus.CREATED);
     }
 
@@ -199,7 +201,7 @@ public class AdminRestController implements CpsAdminApi {
     @Override
     public ResponseEntity<Void> createAnchorV2(final String dataspaceName, @NotNull @Valid final String schemaSetName,
         @NotNull @Valid final String anchorName) {
-        cpsAdminService.createAnchor(dataspaceName, schemaSetName, anchorName);
+        cpsAnchorService.createAnchor(dataspaceName, schemaSetName, anchorName);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -214,7 +216,7 @@ public class AdminRestController implements CpsAdminApi {
     @Override
     public ResponseEntity<Void> deleteAnchor(final String apiVersion,
             final String dataspaceName, final String anchorName) {
-        cpsAdminService.deleteAnchor(dataspaceName, anchorName);
+        cpsAnchorService.deleteAnchor(dataspaceName, anchorName);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
@@ -229,7 +231,7 @@ public class AdminRestController implements CpsAdminApi {
     @Override
     public ResponseEntity<AnchorDetails> getAnchor(final String apiVersion,
             final String dataspaceName, final String anchorName) {
-        final var anchor = cpsAdminService.getAnchor(dataspaceName, anchorName);
+        final var anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
         final var anchorDetails = cpsRestInputMapper.toAnchorDetails(anchor);
         return new ResponseEntity<>(anchorDetails, HttpStatus.OK);
     }
@@ -244,7 +246,7 @@ public class AdminRestController implements CpsAdminApi {
     @Override
     public ResponseEntity<List<AnchorDetails>> getAnchors(final String apiVersion,
             final String dataspaceName) {
-        final Collection<Anchor> anchors = cpsAdminService.getAnchors(dataspaceName);
+        final Collection<Anchor> anchors = cpsAnchorService.getAnchors(dataspaceName);
         final List<AnchorDetails> anchorDetails = anchors.stream().map(cpsRestInputMapper::toAnchorDetails)
             .collect(Collectors.toList());
         return new ResponseEntity<>(anchorDetails, HttpStatus.OK);
