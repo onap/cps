@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "488c6b17_ab1537d2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/yangmodels/YangModelCmDataSubscriptionEvent.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2023-12-14T16:27:22Z",
+      "side": 1,
+      "message": "private List\u003cCmHandle\u003e would follow the yang model more closely as there\u0027s no list of IDs?",
+      "range": {
+        "startLine": 50,
+        "startChar": 4,
+        "endLine": 50,
+        "endChar": 21
+      },
+      "revId": "f3f027d2b4268da0101a9174f4912e16d7279dd5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
