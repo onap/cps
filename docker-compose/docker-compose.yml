@@ -101,8 +101,6 @@ services:
       DMI_USERNAME: ${DMI_USERNAME:-cpsuser}
       DMI_PASSWORD: ${DMI_PASSWORD:-cpsr0cks!}
       KAFKA_BOOTSTRAP_SERVER: kafka:29092
-      notification.data-updated.enabled: 'true'
-      NOTIFICATION_DATASPACE_FILTER_PATTERNS: '.*'
     restart: unless-stopped
     profiles:
       - dmi-service

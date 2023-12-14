@@ -114,10 +114,6 @@ app:
 
 notification:
     enabled: true
-    data-updated:
-        topic: ${CPS_CHANGE_EVENT_TOPIC:cps.data-updated-events}
-        filters:
-            enabled-dataspaces: ${NOTIFICATION_DATASPACE_FILTER_PATTERNS:""}
     async:
         executor:
             core-pool-size: 2
