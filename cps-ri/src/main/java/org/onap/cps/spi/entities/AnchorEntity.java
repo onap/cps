@@ -73,4 +73,7 @@ public class AnchorEntity implements Serializable {
     @JoinColumn(name = "dataspace_id")
     @EqualsAndHashCode.Include
     private DataspaceEntity dataspace;
+
+    @Column
+    private String notification;
 }

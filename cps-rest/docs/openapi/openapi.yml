@@ -89,6 +89,9 @@ paths:
   /{apiVersion}/dataspaces/{dataspace-name}/schema-sets/{schema-set-name}:
     $ref: 'cpsAdmin.yml#/schemaSetBySchemaSetName'
 
+  /v2/dataspaces/{dataspace-name}/deltanotification:
+    $ref: 'cpsAdminV2.yml#/deltaNotification'
+
   /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/node:
     $ref: 'cpsDataV1Deprecated.yml#/nodeByDataspaceAndAnchor'
 

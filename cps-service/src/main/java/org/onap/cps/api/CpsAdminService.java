@@ -144,4 +144,6 @@ public interface CpsAdminService {
      * @param schemaSetName schema set name
      */
     void updateAnchorSchemaSet(String dataspaceName, String anchorName, String schemaSetName);
+
+    void updateAnchorForDeltaNotification(String dataspaceName, String notificationConfigData);
 }

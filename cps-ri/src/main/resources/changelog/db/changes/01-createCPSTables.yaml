@@ -40,6 +40,11 @@ databaseChangeLog:
                     nullable: false
                   name: dataspace_id
                   type: INTEGER
+              - column:
+                  constraints:
+                    nullable: true
+                  name: notification
+                  type: TEXT
             tableName: anchor
   - changeSet:
       id: 1-2

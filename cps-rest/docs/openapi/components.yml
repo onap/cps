@@ -137,6 +137,12 @@ components:
                   name: SciFi
                 - code: 02
                   name: kids
+    configDeltaNotificationSample:
+      value:
+        - anchorName: bookstore1
+          subscribeDeltaNotification: true
+        - anchorName: bookstore2
+          subscribeDeltaNotification: true
     deltaReportSample:
       value:
         - action: "ADD"

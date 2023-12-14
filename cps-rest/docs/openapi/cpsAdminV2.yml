@@ -93,3 +93,33 @@ schemaSet:
         $ref: 'components.yml#/components/responses/Conflict'
       '500':
         $ref: 'components.yml#/components/responses/InternalServerError'
+
+deltaNotification:
+  put:
+    description: Configure anchor for delta notification
+    tags:
+      - cps-admin
+    summary: Configure anchor for delta notification
+    operationId: deltaNotification
+    parameters:
+      - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+          examples:
+            dataSample:
+              $ref: 'components.yml#/components/examples/configDeltaNotificationSample'
+    responses:
+      '200':
+        $ref: 'components.yml#/components/responses/Ok'
+      '400':
+        $ref: 'components.yml#/components/responses/BadRequest'
+      '401':
+        $ref: 'components.yml#/components/responses/Unauthorized'
+      '403':
+        $ref: 'components.yml#/components/responses/Forbidden'
+      '500':
+        $ref: 'components.yml#/components/responses/InternalServerError'

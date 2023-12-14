@@ -127,4 +127,9 @@ public class CpsAdminServiceImpl implements CpsAdminService {
                                          final String schemaSetName) {
         cpsAdminPersistenceService.updateAnchorSchemaSet(dataspaceName, anchorName, schemaSetName);
     }
+
+    @Override
+    public void updateAnchorForDeltaNotification(String dataspaceName, String notificationConfigData) {
+        //TODO:
+    }
 }

@@ -42,6 +42,7 @@ import org.onap.cps.rest.model.SchemaSetDetails;
 import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.model.Dataspace;
 import org.onap.cps.spi.model.SchemaSet;
+import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -56,6 +57,7 @@ public class AdminRestController implements CpsAdminApi {
     private final CpsAdminService cpsAdminService;
     private final CpsModuleService cpsModuleService;
     private final CpsRestInputMapper cpsRestInputMapper;
+    private final JsonObjectMapper jsonObjectMapper;
 
     /**
      * Create a dataspace.
@@ -263,5 +265,11 @@ public class AdminRestController implements CpsAdminApi {
         final Dataspace dataspace = cpsAdminService.getDataspace(dataspaceName);
         final DataspaceDetails dataspaceDetails = cpsRestInputMapper.toDataspaceDetails(dataspace);
         return new ResponseEntity<>(dataspaceDetails, HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<Object> deltaNotification(final String dataspaceName, @NotNull @Valid final Object jsonData) {
+        cpsAdminService.updateAnchorForDeltaNotification(dataspaceName, jsonObjectMapper.asJsonString(jsonData));
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

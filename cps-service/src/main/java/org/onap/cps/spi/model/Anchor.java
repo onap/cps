@@ -38,4 +38,6 @@ public class Anchor implements Serializable {
     private String dataspaceName;
     private String schemaSetName;
 
+    private String notification;
+
 }
