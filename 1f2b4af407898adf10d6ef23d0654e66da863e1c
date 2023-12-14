@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc0ce5b2_2d46d883",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-12-14T10:05:09Z",
+      "side": 1,
+      "message": "Toine and I had a good technical discussion on this commit morning. We agreed on that the deleteDataNode function which is in CpsDataService is duplicated in this commit. Decided on moving common dependencies ( from CpsDataService and CpsAdminService ) can be extracted into another bean e.g. AnchorService. Thus, I\u0027ll abandon this commit and raise a new one.",
+      "revId": "1f2b4af407898adf10d6ef23d0654e66da863e1c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6ee669a7_cbe82e10",
