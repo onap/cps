@@ -46,6 +46,30 @@
       },
       "revId": "1f2b4af407898adf10d6ef23d0654e66da863e1c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cead1e8_d8efe793",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsAdminServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-12-14T09:06:42Z",
+      "side": 1,
+      "message": "Correction: original method is CpsDataService::deleteDataNodes",
+      "parentUuid": "4e5fabe8_58e0ee22",
+      "range": {
+        "startLine": 108,
+        "startChar": 8,
+        "endLine": 108,
+        "endChar": 67
+      },
+      "revId": "1f2b4af407898adf10d6ef23d0654e66da863e1c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
