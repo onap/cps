@@ -46,6 +46,30 @@
       },
       "revId": "f3f027d2b4268da0101a9174f4912e16d7279dd5",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffd133c5_4af8dfe0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/yangmodels/YangModelCmDataSubscriptionEvent.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2023-12-14T16:59:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "757b0e79_13b4083b",
+      "range": {
+        "startLine": 50,
+        "startChar": 4,
+        "endLine": 50,
+        "endChar": 21
+      },
+      "revId": "f3f027d2b4268da0101a9174f4912e16d7279dd5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
