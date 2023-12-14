@@ -24,9 +24,7 @@ import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
 import ch.qos.logback.classic.spi.ILoggingEvent
 import ch.qos.logback.core.read.ListAppender
-import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
-import org.onap.cps.notification.NotificationErrorHandler
 import org.slf4j.LoggerFactory
 import spock.lang.Specification
 
@@ -40,11 +38,6 @@ class CpsNcmpTaskExecutorSpec extends Specification {
     void setup() {
         ((Logger) LoggerFactory.getLogger(CpsNcmpTaskExecutor.class)).addAppender(logger);
         logger.start();
-    }
-
-    @AfterEach
-    void teardown() {
-        ((Logger) LoggerFactory.getLogger(NotificationErrorHandler.class)).detachAndStopAllAppenders();
     }
 
     def 'Execute successful task.'() {
