@@ -21,7 +21,6 @@
 package org.onap.cps.integration.base
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import org.onap.cps.notification.NotificationService
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.CpsModulePersistenceService
 import org.onap.cps.spi.impl.CpsAdminPersistenceServiceImpl
@@ -96,11 +95,6 @@ class TestConfig extends Specification{
     @Bean
     JsonObjectMapper jsonObjectMapper() {
         return new JsonObjectMapper(new ObjectMapper())
-    }
-
-    @Bean
-    NotificationService notificationService() {
-        return Stub(NotificationService)
     }
 
     @Bean
