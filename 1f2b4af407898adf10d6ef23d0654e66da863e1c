@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ee669a7_cbe82e10",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsAdminServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-12-14T08:41:15Z",
+      "side": 1,
+      "message": "you replaced validating an anchor name with GETTING an anchor, there is a serious performance consequence of that!\nwe need to resolve the cyclic dependency in a beter wat\ny.\n\nPossibly by introducing a common utils jar...",
+      "range": {
+        "startLine": 108,
+        "startChar": 8,
+        "endLine": 108,
+        "endChar": 67
+      },
+      "revId": "1f2b4af407898adf10d6ef23d0654e66da863e1c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
