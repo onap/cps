@@ -19,22 +19,27 @@
  */
 package org.onap.cps.ncmp.api.impl.config
 
+import org.apache.hc.client5.http.impl.classic.CloseableHttpClient
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.web.client.RestTemplateBuilder
 import org.springframework.http.MediaType
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.web.client.RestTemplate
 import spock.lang.Specification
 
 @SpringBootTest
-@ContextConfiguration(classes = [NcmpConfiguration.DmiProperties])
+@ContextConfiguration(classes = [NcmpConfiguration.DmiProperties, HttpClientConfiguration])
 class NcmpConfigurationSpec extends Specification{
 
     @Autowired
     NcmpConfiguration.DmiProperties dmiProperties
-
+    
+    @Autowired
+    HttpClientConfiguration httpClientConfiguration
+    
     def mockRestTemplateBuilder = new RestTemplateBuilder()
 
     def 'NcmpConfiguration Construction.'() {
@@ -48,11 +53,14 @@ class NcmpConfigurationSpec extends Specification{
             dmiProperties.authPassword == 'some-password'
     }
 
-    def 'Rest Template creation.'() {
+    def 'Rest Template creation with CloseableHttpClient and MappingJackson2HttpMessageConverter.'() {
         when: 'a rest template is created'
-            def result = NcmpConfiguration.restTemplate(mockRestTemplateBuilder)
+            def result = NcmpConfiguration.restTemplate(mockRestTemplateBuilder, httpClientConfiguration)
         then: 'the rest template is returned'
             assert result instanceof RestTemplate
+        and: 'the rest template is created with httpclient5'
+            assert result.getRequestFactory() instanceof HttpComponentsClientHttpRequestFactory
+            assert ((HttpComponentsClientHttpRequestFactory) result.getRequestFactory()).getHttpClient() instanceof CloseableHttpClient;
         and: 'a jackson media converter has been added'
             def lastMessageConverter = result.getMessageConverters().get(result.getMessageConverters().size()-1)
             lastMessageConverter instanceof MappingJackson2HttpMessageConverter
