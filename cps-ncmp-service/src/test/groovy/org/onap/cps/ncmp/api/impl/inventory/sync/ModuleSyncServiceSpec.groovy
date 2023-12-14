@@ -20,13 +20,14 @@
 
 package org.onap.cps.ncmp.api.impl.inventory.sync
 
+import org.onap.cps.api.CpsAnchorService
+
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
 import static org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory.MODULE_UPGRADE
 
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.model.DataNode
-import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.spi.model.DataNodeBuilder
@@ -45,14 +46,14 @@ class ModuleSyncServiceSpec extends Specification {
 
     def mockCpsModuleService = Mock(CpsModuleService)
     def mockDmiModelOperations = Mock(DmiModelOperations)
-    def mockCpsAdminService = Mock(CpsAdminService)
+    def mockCpsAnchorService = Mock(CpsAnchorService)
     def mockCmHandleQueries = Mock(CmHandleQueries)
     def mockCpsDataService = Mock(CpsDataService)
     def mockJsonObjectMapper = Mock(JsonObjectMapper)
     def mockModuleSetTagCache = [:]
 
-    def objectUnderTest = new ModuleSyncService(mockDmiModelOperations, mockCpsModuleService, mockCpsAdminService,
-            mockCmHandleQueries, mockCpsDataService, mockJsonObjectMapper, mockModuleSetTagCache)
+    def objectUnderTest = new ModuleSyncService(mockDmiModelOperations, mockCpsModuleService,
+            mockCmHandleQueries, mockCpsDataService, mockCpsAnchorService, mockJsonObjectMapper, mockModuleSetTagCache)
 
     def expectedDataspaceName = NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
     def static cmHandleWithModuleSetTag = new DataNodeBuilder().withXpath("//cm-handles[@module-set-tag='tag-1'][@id='otherId']").withAnchor('otherId').build()
@@ -78,7 +79,7 @@ class ModuleSyncServiceSpec extends Specification {
         then: 'create schema set from module is invoked with correct parameters'
             1 * mockCpsModuleService.createSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'ch-1', newModuleNameContentToMap, moduleReferences)
         and: 'anchor is created with the correct parameters'
-            1 * mockCpsAdminService.createAnchor(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'ch-1', 'ch-1')
+            1 * mockCpsAnchorService.createAnchor(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'ch-1', 'ch-1')
         where: 'the following parameters are used'
             scenario         | existingModuleResourcesInCps         | identifiedNewModuleReferences | newModuleNameContentToMap     | moduleSetTag
             'one new module' | [['module2': '2'], ['module3': '3']] | [['module1': '1']]            | [module1: 'some yang source'] | ''
@@ -115,7 +116,7 @@ class ModuleSyncServiceSpec extends Specification {
         and: 'create schema set from module is invoked for the upgraded cm handle'
             expectedCallsToCeateSchemaSet * mockCpsModuleService.createSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'upgraded-ch', [:], moduleReferences)
         and: 'No anchor is created for the upgraded cm handle'
-            0 * mockCpsAdminService.createAnchor(*_)
+            0 * mockCpsAnchorService.createAnchor(*_)
         where: 'the following parameters are used'
             scenario      | populateCache | existingCmHandlesWithSameTag || expectedCallsToUpgradeSchemaSet | expectedCallsToCeateSchemaSet
             'new'         | false         | []                           || 0                               | 1

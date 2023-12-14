@@ -97,7 +97,7 @@ class CpsModuleServiceIntegrationSpec extends FunctionalSpecBase {
             def schemaSetName = "NewSchemaWith${numberOfNewModules}Modules"
             objectUnderTest.createSchemaSetFromModules(FUNCTIONAL_TEST_DATASPACE_1, schemaSetName, newYangResourcesNameToContentMap, moduleReferences)
         and: 'associated with a new anchor'
-            cpsAdminService.createAnchor(FUNCTIONAL_TEST_DATASPACE_1, schemaSetName, 'newAnchor')
+            cpsAnchorService.createAnchor(FUNCTIONAL_TEST_DATASPACE_1, schemaSetName, 'newAnchor')
         then: 'the new anchor has the correct number of modules'
             def yangResourceModuleReferences = objectUnderTest.getYangResourcesModuleReferences(FUNCTIONAL_TEST_DATASPACE_1, 'newAnchor')
             assert expectedNumberOfModulesForAnchor == yangResourceModuleReferences.size()
@@ -204,7 +204,7 @@ class CpsModuleServiceIntegrationSpec extends FunctionalSpecBase {
             objectUnderTest.createSchemaSet(FUNCTIONAL_TEST_DATASPACE_1, 'newSchemaSet', newYangResourcesNameToContentMap)
         and: 'optionally create anchor for the schema set'
             if (associateWithAnchor) {
-                cpsAdminService.createAnchor(FUNCTIONAL_TEST_DATASPACE_1, 'newSchemaSet', 'newAnchor')
+                cpsAnchorService.createAnchor(FUNCTIONAL_TEST_DATASPACE_1, 'newSchemaSet', 'newAnchor')
             }
         when: 'attempt to delete the schema set'
             try {
@@ -270,7 +270,7 @@ class CpsModuleServiceIntegrationSpec extends FunctionalSpecBase {
         given: 'an anchor and schema set with 2 modules (to be upgraded)'
             populateNewYangResourcesNameToContentMapAndAllModuleReferences('original', 2)
             objectUnderTest.createSchemaSetFromModules(FUNCTIONAL_TEST_DATASPACE_1, 'targetSchema', newYangResourcesNameToContentMap, [])
-            cpsAdminService.createAnchor(FUNCTIONAL_TEST_DATASPACE_1, 'targetSchema', 'targetAnchor')
+            cpsAnchorService.createAnchor(FUNCTIONAL_TEST_DATASPACE_1, 'targetSchema', 'targetAnchor')
             def yangResourceModuleReferencesBeforeUpgrade = objectUnderTest.getYangResourcesModuleReferences(FUNCTIONAL_TEST_DATASPACE_1, 'targetAnchor')
             assert yangResourceModuleReferencesBeforeUpgrade.size() == 2
             assert yangResourceModuleReferencesBeforeUpgrade.containsAll([new ModuleReference('original_0','2000-01-01'),new ModuleReference('original_1','2001-01-01')])
@@ -296,13 +296,13 @@ class CpsModuleServiceIntegrationSpec extends FunctionalSpecBase {
         given: 'an anchor and schema set with 1 module (target)'
             populateNewYangResourcesNameToContentMapAndAllModuleReferences('target', 1)
             objectUnderTest.createSchemaSetFromModules(FUNCTIONAL_TEST_DATASPACE_1, 'targetSchema', newYangResourcesNameToContentMap, [])
-            cpsAdminService.createAnchor(FUNCTIONAL_TEST_DATASPACE_1, 'targetSchema', 'targetAnchor')
+            cpsAnchorService.createAnchor(FUNCTIONAL_TEST_DATASPACE_1, 'targetSchema', 'targetAnchor')
             def moduleReferencesBeforeUpgrade = objectUnderTest.getYangResourcesModuleReferences(FUNCTIONAL_TEST_DATASPACE_1, 'targetAnchor')
             assert moduleReferencesBeforeUpgrade.size() == 1
         and: 'another anchor and schema set with 2 other modules (source for upgrade)'
             populateNewYangResourcesNameToContentMapAndAllModuleReferences('source', 2)
             objectUnderTest.createSchemaSetFromModules(FUNCTIONAL_TEST_DATASPACE_1, 'sourceSchema', newYangResourcesNameToContentMap, [])
-            cpsAdminService.createAnchor(FUNCTIONAL_TEST_DATASPACE_1, 'sourceSchema', 'sourceAnchor')
+            cpsAnchorService.createAnchor(FUNCTIONAL_TEST_DATASPACE_1, 'sourceSchema', 'sourceAnchor')
             assert objectUnderTest.getYangResourcesModuleReferences(FUNCTIONAL_TEST_DATASPACE_1, 'sourceAnchor').size() == 2
         when: 'the target schema is upgraded using the module references from the source anchor'
             def moduleReferencesFromSourceAnchor = objectUnderTest.getYangResourcesModuleReferences(FUNCTIONAL_TEST_DATASPACE_1, 'sourceAnchor')

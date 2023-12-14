@@ -29,7 +29,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.api.CpsAdminService;
+import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
@@ -48,7 +48,7 @@ import org.springframework.stereotype.Component;
 public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements InventoryPersistence {
 
     private final CpsModuleService cpsModuleService;
-    private final CpsAdminService cpsAdminService;
+    private final CpsAnchorService cpsAnchorService;
     private final CpsValidator cpsValidator;
 
     /**
@@ -58,14 +58,14 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
      * @param cpsDataService   cps data service instance
      * @param cpsModuleService cps module service instance
      * @param cpsValidator     cps validation service instance
-     * @param cpsAdminService  cps admin service instance
+     * @param cpsAnchorService  cps anchor service instance
      */
     public InventoryPersistenceImpl(final JsonObjectMapper jsonObjectMapper, final CpsDataService cpsDataService,
                                     final CpsModuleService cpsModuleService, final CpsValidator cpsValidator,
-                                    final CpsAdminService cpsAdminService) {
+                                    final CpsAnchorService cpsAnchorService) {
         super(jsonObjectMapper, cpsDataService, cpsModuleService, cpsValidator);
         this.cpsModuleService = cpsModuleService;
-        this.cpsAdminService = cpsAdminService;
+        this.cpsAnchorService = cpsAnchorService;
         this.cpsValidator = cpsValidator;
     }
 
@@ -160,7 +160,7 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
 
     @Override
     public Collection<String> getCmHandleIdsWithGivenModules(final Collection<String> moduleNamesForQuery) {
-        return cpsAdminService.queryAnchorNames(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, moduleNamesForQuery);
+        return cpsAnchorService.queryAnchorNames(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, moduleNamesForQuery);
     }
 
     private static String createCmHandleXPath(final String cmHandleId) {
