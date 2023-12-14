@@ -22,6 +22,8 @@
 
 package org.onap.cps.ncmp.api.impl.inventory
 
+import org.onap.cps.api.CpsAnchorService
+
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
@@ -30,12 +32,8 @@ import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NO_TIME
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import org.onap.cps.api.CpsAdminService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
-import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
-import org.onap.cps.ncmp.api.impl.inventory.CompositeState
-import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistenceImpl
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.spi.CascadeDeleteAllowed
 import org.onap.cps.spi.FetchDescendantsOption
@@ -58,12 +56,12 @@ class InventoryPersistenceImplSpec extends Specification {
 
     def mockCpsModuleService = Mock(CpsModuleService)
 
-    def mockCpsAdminService = Mock(CpsAdminService)
+    def mockCpsAnchorService = Mock(CpsAnchorService)
 
     def mockCpsValidator = Mock(CpsValidator)
 
     def objectUnderTest = new InventoryPersistenceImpl(spiedJsonObjectMapper, mockCpsDataService, mockCpsModuleService,
-            mockCpsValidator, mockCpsAdminService)
+            mockCpsValidator, mockCpsAnchorService)
 
     def formattedDateAndTime = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
             .format(OffsetDateTime.of(2022, 12, 31, 20, 30, 40, 1, ZoneOffset.UTC))
@@ -284,7 +282,7 @@ class InventoryPersistenceImplSpec extends Specification {
         when: 'the method to get cm handles is called'
             objectUnderTest.getCmHandleIdsWithGivenModules(['sample-module-name'])
         then: 'the admin persistence service method to query anchors is invoked once with the same parameter'
-            1 * mockCpsAdminService.queryAnchorNames(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, ['sample-module-name'])
+            1 * mockCpsAnchorService.queryAnchorNames(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, ['sample-module-name'])
     }
 
     def 'Replace list content'() {

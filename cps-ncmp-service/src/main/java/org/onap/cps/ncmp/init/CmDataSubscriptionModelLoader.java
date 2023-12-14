@@ -23,8 +23,9 @@ package org.onap.cps.ncmp.init;
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME;
 
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.api.CpsAdminService;
+import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.CpsDataService;
+import org.onap.cps.api.CpsDataspaceService;
 import org.onap.cps.api.CpsModuleService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -45,10 +46,11 @@ public class CmDataSubscriptionModelLoader extends AbstractModelLoader {
 
 
 
-    public CmDataSubscriptionModelLoader(final CpsAdminService cpsAdminService,
+    public CmDataSubscriptionModelLoader(final CpsDataspaceService cpsDataspaceService,
                                          final CpsModuleService cpsModuleService,
-                                         final CpsDataService cpsDataService) {
-        super(cpsAdminService, cpsModuleService, cpsDataService);
+                                         final CpsDataService cpsDataService,
+                                         final CpsAnchorService cpsAnchorService) {
+        super(cpsDataspaceService, cpsModuleService, cpsDataService, cpsAnchorService);
     }
 
     @Value("${ncmp.model-loader.subscription:true}")

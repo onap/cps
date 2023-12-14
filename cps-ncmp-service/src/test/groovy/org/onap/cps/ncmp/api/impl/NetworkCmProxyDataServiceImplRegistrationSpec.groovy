@@ -199,7 +199,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def 'Create CM-Handle Successfully: #scenario.'() {
         given: 'a registration without cm-handle properties'
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server')
-            dmiPluginRegistration.createdCmHandles = [new NcmpServiceCmHandle(cmHandleId: 'cmhandle', dmiProperties: dmiProperties, publicProperties: publicProperties)]
+            dmiPluginRegistration.setCreatedCmHandles([new NcmpServiceCmHandle(cmHandleId: 'cmhandle', dmiProperties: dmiProperties, publicProperties: publicProperties)])
         when: 'registration is updated'
             def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'a successful response is received'
@@ -212,7 +212,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             1 * mockLcmEventsCmHandleStateHandler.initiateStateAdvised(_) >> {
                 args ->
                     {
-                        def cmHandleStatePerCmHandle = (args[0] as Map)
+                        def cmHandleStatePerCmHandle = (args[0] as Collection)
                         cmHandleStatePerCmHandle.each {
                             assert (it.id == 'cmhandle' && it.dmiServiceName == 'my-server')
                         }
