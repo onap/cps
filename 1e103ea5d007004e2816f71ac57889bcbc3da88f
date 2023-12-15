@@ -71,6 +71,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9850db8_2b34a48e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 3237
+      },
+      "writtenOn": "2023-12-15T14:20:43Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "72f95b9d_41a12c3c",
+      "range": {
+        "startLine": 215,
+        "startChar": 67,
+        "endLine": 215,
+        "endChar": 72
+      },
+      "revId": "1e103ea5d007004e2816f71ac57889bcbc3da88f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "41e03968_df05dce2",
@@ -84,6 +108,30 @@
       "writtenOn": "2023-12-15T12:54:06Z",
       "side": 1,
       "message": "NB: unaligned. need to follow same indendation as the above. ( 4 spaces to right I guess )",
+      "range": {
+        "startLine": 45,
+        "startChar": 8,
+        "endLine": 46,
+        "endChar": 81
+      },
+      "revId": "1e103ea5d007004e2816f71ac57889bcbc3da88f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "839fc77e_64db665a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/HttpClientConfigurationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 3237
+      },
+      "writtenOn": "2023-12-15T14:20:43Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "41e03968_df05dce2",
       "range": {
         "startLine": 45,
         "startChar": 8,
