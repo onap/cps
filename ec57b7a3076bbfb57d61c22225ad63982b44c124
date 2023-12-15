@@ -73,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "00567826_06ab8c93",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/HttpClientConfiguration.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 3237
+      },
+      "writtenOn": "2023-12-15T11:16:33Z",
+      "side": 1,
+      "message": "Disregard my previous message. After discussing with Priyank, I believe it would be acceptable to set maxConnTotal \u003d 100 and maxConnPerRoute \u003d 50, as suggested by Daniel. This is because CPS doesn\u0027t communicate directly with cm-handlers but through DMI. Additionally, if I understand correctly, we can have two DMIs per deployment. will upload new patch with that change",
+      "parentUuid": "dc350130_9dc1fdab",
+      "range": {
+        "startLine": 48,
+        "startChar": 7,
+        "endLine": 49,
+        "endChar": 51
+      },
+      "revId": "ec57b7a3076bbfb57d61c22225ad63982b44c124",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1d42200f_4ecbe737",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/HttpClientConfigurationSpec.groovy",
         "patchSetId": 3
