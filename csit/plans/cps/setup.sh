@@ -72,53 +72,6 @@ source $WORKSPACE/plans/cps/sdnc/sdnc_setup.sh
 ###################### setup pnfsim #####################################
 docker-compose -f $WORKSPACE/plans/cps/pnfsim/docker-compose.yml up -d
 
-# Allow time for netconf-pnp-simulator & SDNC to come up fully
-sleep 30s
-
-###################### mount pnf-sim as PNFDemo ##########################
-SDNC_TIME_OUT=250
-SDNC_INTERVAL=10
-SDNC_TIME=0
-
-while [ "$SDNC_TIME" -le "$SDNC_TIME_OUT" ]; do
-
-  # Mount netconf node
-  curl --location --request PUT 'http://'$SDNC_HOST:$SDNC_PORT'/restconf/config/network-topology:network-topology/topology/topology-netconf/node/PNFDemo' \
-  --header 'Authorization: Basic YWRtaW46S3A4Yko0U1hzek0wV1hsaGFrM2VIbGNzZTJnQXc4NHZhb0dHbUp2VXkyVQ==' \
-  --header 'Content-Type: application/json' \
-  --data-raw '{
-    "node": [
-    {
-      "node-id": "PNFDemo",
-      "netconf-node-topology:protocol": {
-      "name": "TLS"
-      },
-      "netconf-node-topology:host": "'$LOCAL_IP'",
-      "netconf-node-topology:key-based": {
-      "username": "netconf",
-      "key-id": "ODL_private_key_0"
-      },
-      "netconf-node-topology:port": 6512,
-      "netconf-node-topology:tcp-only": false,
-      "netconf-node-topology:max-connection-attempts": 5
-    }
-    ]
-  }'
-
-   # Verify node has been mounted
-
-  RESPONSE=$( curl --location --request GET 'http://'$SDNC_HOST:$SDNC_PORT'/restconf/config/network-topology:network-topology/topology/topology-netconf' --header 'Authorization: basic YWRtaW46S3A4Yko0U1hzek0wV1hsaGFrM2VIbGNzZTJnQXc4NHZhb0dHbUp2VXkyVQ==')
-
-  if [[ "$RESPONSE" == *"PNFDemo"* ]]; then
-    echo "Node mounted in $SDNC_TIME"
-    break;
-  fi
-
-  sleep $SDNC_INTERVAL
-  SDNC_TIME=$((SDNC_TIME + SDNC_INTERVAL))
-
-done
-
 ###################### verify ncmp-cps health ##########################
 
 check_health $CPS_CORE_HOST:$CPS_CORE_PORT 'cps-ncmp'

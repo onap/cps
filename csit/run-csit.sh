@@ -43,6 +43,32 @@ fi
 # functions
 #
 
+# relax set options so the sourced file will not fail
+# the responsibility is shifted to the sourced file...
+function relax_set() {
+    set +e
+    set +o pipefail
+}
+
+# load the saved set options
+function load_set() {
+    _setopts="$-"
+
+    # bash shellopts
+    for i in $(echo "$SHELLOPTS" | tr ':' ' ') ; do
+        set +o ${i}
+    done
+    for i in $(echo "$RUN_CSIT_SHELLOPTS" | tr ':' ' ') ; do
+        set -o ${i}
+    done
+
+    # other options
+    for i in $(echo "$_setopts" | sed 's/./& /g') ; do
+        set +${i}
+    done
+    set -${RUN_CSIT_SAVE_SET}
+}
+
 # wrapper for sourcing a file
 function source_safely() {
     [ -z "$1" ] && return 1
@@ -104,36 +130,26 @@ function save_set() {
     RUN_CSIT_SHELLOPTS="$SHELLOPTS"
 }
 
-# load the saved set options
-function load_set() {
-    _setopts="$-"
-
-    # bash shellopts
-    for i in $(echo "$SHELLOPTS" | tr ':' ' ') ; do
-        set +o ${i}
-    done
-    for i in $(echo "$RUN_CSIT_SHELLOPTS" | tr ':' ' ') ; do
-        set -o ${i}
-    done
-
-    # other options
-    for i in $(echo "$_setopts" | sed 's/./& /g') ; do
-        set +${i}
-    done
-    set -${RUN_CSIT_SAVE_SET}
-}
-
 # set options for quick bailout when error
 function harden_set() {
     set -xeo pipefail
     set +u # enabled it would probably fail too many often
 }
 
-# relax set options so the sourced file will not fail
-# the responsibility is shifted to the sourced file...
-function relax_set() {
-    set +e
-    set +o pipefail
+function run_test_plan() {
+    testplan=$1
+
+    cd "$WORKDIR"
+    echo "Reading the testplan:"
+    cat "${TESTPLANDIR}/${testplan}.txt" | egrep -v '(^[[:space:]]*#|^[[:space:]]*$)' | sed "s|^|${WORKSPACE}/tests/|" > ${testplan}.txt
+    cat ${testplan}.txt
+    SUITES=$( xargs -a ${testplan}.txt )
+
+    python3 -m robot.run -N ${TESTPLAN} -v WORKSPACE:/tmp ${ROBOT_VARIABLES} ${TESTOPTIONS} ${SUITES}
+    RESULT=$?
+    load_set
+    echo "RESULT: $RESULT"
+    return $RESULT
 }
 
 #
@@ -158,10 +174,10 @@ if [ -z "$WORKSPACE" ]; then
     export WORKSPACE=$(git rev-parse --show-toplevel)
 fi
 
-if [ -f "${WORKSPACE}/${1}/testplan.txt" ]; then
+if [ -f "${WORKSPACE}/${1}/testplanCps.txt" ]; then
     export TESTPLAN="${1}"
 else
-    echo "testplan not found: ${WORKSPACE}/${TESTPLAN}/testplan.txt"
+    echo "testplan not found: ${WORKSPACE}/${TESTPLAN}/testplanCps.txt or testplanNcmp.txt"
     exit 2
 fi
 
@@ -198,12 +214,6 @@ fi
 docker_stats | tee "$WORKSPACE/archives/$TESTPLAN/_sysinfo-1-after-setup.txt"
 
 # Run test plan
-cd "$WORKDIR"
-echo "Reading the testplan:"
-cat "${TESTPLANDIR}/testplan.txt" | egrep -v '(^[[:space:]]*#|^[[:space:]]*$)' | sed "s|^|${WORKSPACE}/tests/|" > testplan.txt
-cat testplan.txt
-SUITES=$( xargs -a testplan.txt )
-
 echo ROBOT_VARIABLES="${ROBOT_VARIABLES}"
 echo "Starting Robot test suites ${SUITES} ..."
 relax_set
@@ -213,9 +223,18 @@ python3 --version
 pip freeze
 python3 -m robot.run --version || :
 
-python3 -m robot.run -N ${TESTPLAN} -v WORKSPACE:/tmp ${ROBOT_VARIABLES} ${TESTOPTIONS} ${SUITES}
-RESULT=$?
-load_set
-echo "RESULT: $RESULT"
+run_test_plan "testplanCps"
+CPSRESULT="$?"
+
+cd "${TESTPLANDIR}"
+checkandmount="${TESTPLANDIR}/sdnc/check_sdnc_mount_node.sh"
+if [ -f "${checkandmount}" ]; then
+    echo "Running check_sdnc_mount_node script ${checkandmount}"
+    source_safely "${checkandmount}"
+fi
+
+run_test_plan "testplanNcmp"
+NCMPRESULT="$?"
+
 # Note that the final steps are done in on_exit function after this exit!
-exit $RESULT
+exit $CPSRESULT || $NCMPRESULT
