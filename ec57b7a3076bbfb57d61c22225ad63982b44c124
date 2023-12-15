@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2dfde7e0_7c7e5b9f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/HttpClientConfiguration.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 3237
+      },
+      "writtenOn": "2023-12-15T11:36:32Z",
+      "side": 1,
+      "message": "no need to as these values are optional",
+      "parentUuid": "3ee47f39_ab6bd19d",
+      "range": {
+        "startLine": 32,
+        "startChar": 35,
+        "endLine": 32,
+        "endChar": 46
+      },
+      "revId": "ec57b7a3076bbfb57d61c22225ad63982b44c124",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3b2d5a31_d63b2f8a",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/HttpClientConfiguration.java",
         "patchSetId": 3
@@ -118,6 +142,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1731caab_b0f924c5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/HttpClientConfigurationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 3237
+      },
+      "writtenOn": "2023-12-15T11:36:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1d42200f_4ecbe737",
+      "range": {
+        "startLine": 44,
+        "startChar": 38,
+        "endLine": 44,
+        "endChar": 39
+      },
+      "revId": "ec57b7a3076bbfb57d61c22225ad63982b44c124",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aea8161d_985b9670",
@@ -131,6 +179,30 @@
       "writtenOn": "2023-12-15T11:11:19Z",
       "side": 1,
       "message": "NB: extra space remove",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 4
+      },
+      "revId": "ec57b7a3076bbfb57d61c22225ad63982b44c124",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59a2e960_57542eaf",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/NcmpConfigurationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 3237
+      },
+      "writtenOn": "2023-12-15T11:36:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aea8161d_985b9670",
       "range": {
         "startLine": 39,
         "startChar": 0,
