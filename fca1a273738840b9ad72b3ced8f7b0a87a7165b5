@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "39d359b0_3be28809",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-12-15T14:23:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c8c6fcbc_cbbfa5e3",
+      "range": {
+        "startLine": 9,
+        "startChar": 1,
+        "endLine": 11,
+        "endChar": 22
+      },
+      "revId": "fca1a273738840b9ad72b3ced8f7b0a87a7165b5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e644e593_2f3619a3",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-12-14T16:41:57Z",
       "side": 1,
       "message": "No need to state these",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 19
+      },
+      "revId": "fca1a273738840b9ad72b3ced8f7b0a87a7165b5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dcad1d45_a8bbcf3e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-12-15T14:23:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e644e593_2f3619a3",
       "range": {
         "startLine": 12,
         "startChar": 0,
@@ -104,6 +152,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "618e2c6b_472e9643",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-12-15T14:23:24Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ed809a6a_c46cb249",
+      "range": {
+        "startLine": 40,
+        "startChar": 32,
+        "endLine": 43,
+        "endChar": 71
+      },
+      "revId": "fca1a273738840b9ad72b3ced8f7b0a87a7165b5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0b37edb6_83f057a9",
@@ -127,6 +199,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "584a77d2_017a19fd",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-12-15T14:23:24Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0b37edb6_83f057a9",
+      "range": {
+        "startLine": 57,
+        "startChar": 3,
+        "endLine": 60,
+        "endChar": 52
+      },
+      "revId": "fca1a273738840b9ad72b3ced8f7b0a87a7165b5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b88f6270_4635b094",
@@ -140,6 +236,30 @@
       "writtenOn": "2023-12-14T16:41:57Z",
       "side": 1,
       "message": "NB: organise import in groovy too! This should be on line 36 \n(I dont cate to much about alphabetical order but those service should be at least grouped together in imports)",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 40
+      },
+      "revId": "fca1a273738840b9ad72b3ced8f7b0a87a7165b5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "543049ba_6be5d865",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-12-15T14:23:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b88f6270_4635b094",
       "range": {
         "startLine": 26,
         "startChar": 0,
@@ -196,6 +316,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "95c7f125_25b73785",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsAdminService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-12-15T14:23:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b0bba7e_c95e528e",
+      "range": {
+        "startLine": 33,
+        "startChar": 17,
+        "endLine": 33,
+        "endChar": 33
+      },
+      "revId": "fca1a273738840b9ad72b3ced8f7b0a87a7165b5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "60a028b6_f8373c00",
@@ -219,6 +363,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eec539fd_5a7deca5",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsAdminServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-12-15T14:23:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "60a028b6_f8373c00",
+      "range": {
+        "startLine": 36,
+        "startChar": 13,
+        "endLine": 36,
+        "endChar": 33
+      },
+      "revId": "fca1a273738840b9ad72b3ced8f7b0a87a7165b5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "13f99db4_39ab2161",
@@ -232,6 +400,30 @@
       "writtenOn": "2023-12-14T16:41:57Z",
       "side": 1,
       "message": "rename in line with production code",
+      "range": {
+        "startLine": 31,
+        "startChar": 6,
+        "endLine": 31,
+        "endChar": 30
+      },
+      "revId": "fca1a273738840b9ad72b3ced8f7b0a87a7165b5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1b774fd_d46e509c",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAdminServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2023-12-15T14:23:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13f99db4_39ab2161",
       "range": {
         "startLine": 31,
         "startChar": 6,
