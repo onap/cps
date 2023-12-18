@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51e50fb3_eb7fe412",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/executor/CpsNcmpTaskExecutorSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-12-18T14:09:40Z",
+      "side": 0,
+      "message": "I think there was a legacy issue here and the logger should have been detached use CpsNcmpTaskExecutor.class, so maybe restoree these lines but change teh class",
+      "range": {
+        "startLine": 47,
+        "startChar": 42,
+        "endLine": 47,
+        "endChar": 66
+      },
+      "revId": "66d033e5bb4317d02d343fc3a5f50dde2d4097d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
