@@ -68,6 +68,24 @@
       "parentUuid": "3dce021d_da4ae632",
       "revId": "cb853790e186fa66487b1a22042345af7163ce34",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09dcf87e_60825ef0",
+        "filename": "csit/plans/cps/sdnc/check_sdnc_mount_node.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-12-18T11:08:55Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5ac20e92_8637e16a",
+      "revId": "cb853790e186fa66487b1a22042345af7163ce34",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
