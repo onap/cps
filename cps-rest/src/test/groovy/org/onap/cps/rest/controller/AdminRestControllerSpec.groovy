@@ -23,6 +23,8 @@
 
 package org.onap.cps.rest.controller
 
+import org.onap.cps.api.CpsAnchorService
+
 import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
@@ -30,7 +32,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 
 import org.mapstruct.factory.Mappers
-import org.onap.cps.api.CpsAdminService
+import org.onap.cps.api.CpsDataspaceService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.spi.exceptions.AlreadyDefinedException
 import org.onap.cps.spi.exceptions.SchemaSetInUseException
@@ -56,7 +58,10 @@ class AdminRestControllerSpec extends Specification {
     CpsModuleService mockCpsModuleService = Mock()
 
     @SpringBean
-    CpsAdminService mockCpsAdminService = Mock()
+    CpsDataspaceService mockCpsDataspaceService = Mock()
+
+    @SpringBean
+    CpsAnchorService mockCpsAnchorService = Mock()
 
     @SpringBean
     CpsRestInputMapper cpsRestInputMapper = Mappers.getMapper(CpsRestInputMapper)
@@ -76,26 +81,27 @@ class AdminRestControllerSpec extends Specification {
     def 'Create new dataspace with #scenario.'() {
         when: 'post is invoked'
             def response =
-                    mvc.perform(
-                            post("/cps/api/${apiVersion}/dataspaces")
-                                    .param('dataspace-name', dataspaceName))
-                            .andReturn().response
+                mvc.perform(
+                    post("/cps/api/${apiVersion}/dataspaces")
+                        .param('dataspace-name', dataspaceName))
+                    .andReturn().response
         then: 'service method is invoked with expected parameters'
-            1 * mockCpsAdminService.createDataspace(dataspaceName)
+            1 * mockCpsDataspaceService.createDataspace(dataspaceName)
         and: 'dataspace is create successfully'
             response.status == HttpStatus.CREATED.value()
             assert response.getContentAsString() == expectedResponseBody
         where: 'following cases are tested'
-            scenario | apiVersion  || expectedResponseBody
-            'V1 API' | 'v1'        || 'my_dataspace'
-            'V2 API' | 'v2'        || ''
-    } 
+            scenario | apiVersion || expectedResponseBody
+            'V1 API' | 'v1'       || 'my_dataspace'
+            'V2 API' | 'v2'       || ''
+    }
+
     def 'Create dataspace over existing with same name.'() {
         given: 'an endpoint'
             def createDataspaceEndpoint = "$basePath/v1/dataspaces"
         and: 'the service method throws an exception indicating the dataspace is already defined'
             def thrownException = new AlreadyDefinedException(dataspaceName, new RuntimeException())
-            mockCpsAdminService.createDataspace(dataspaceName) >> { throw thrownException }
+            mockCpsDataspaceService.createDataspace(dataspaceName) >> { throw thrownException }
         when: 'post is invoked'
             def response =
                     mvc.perform(
@@ -108,7 +114,7 @@ class AdminRestControllerSpec extends Specification {
 
     def 'Get a dataspace.'() {
         given: 'service method returns a dataspace'
-            mockCpsAdminService.getDataspace(dataspaceName) >> dataspace
+            mockCpsDataspaceService.getDataspace(dataspaceName) >> dataspace
         and: 'an endpoint'
             def getDataspaceEndpoint = "$basePath/v1/admin/dataspaces/$dataspaceName"
         when: 'get dataspace API is invoked'
@@ -120,7 +126,7 @@ class AdminRestControllerSpec extends Specification {
 
     def 'Get all dataspaces.'() {
         given: 'service method returns all dataspace'
-            mockCpsAdminService.getAllDataspaces() >> [dataspace, new Dataspace(name: "dataspace-test2")]
+            mockCpsDataspaceService.getAllDataspaces() >> [dataspace, new Dataspace(name: "dataspace-test2")]
         and: 'an endpoint'
             def getAllDataspaceEndpoint = "$basePath/v1/admin/dataspaces"
         when: 'get all dataspace API is invoked'
@@ -317,7 +323,7 @@ class AdminRestControllerSpec extends Specification {
                                     .params(requestParams as MultiValueMap))
                                     .andReturn().response
         then: 'anchor is created successfully'
-            1 * mockCpsAdminService.createAnchor(dataspaceName, schemaSetName, anchorName)
+            1 * mockCpsAnchorService.createAnchor(dataspaceName, schemaSetName, anchorName)
             assert response.status == HttpStatus.CREATED.value()
             assert response.getContentAsString() == expectedResponseBody
         where: 'following cases are tested'
@@ -328,7 +334,7 @@ class AdminRestControllerSpec extends Specification {
 
     def 'Get existing anchor.'() {
         given: 'service method returns a list of anchors'
-            mockCpsAdminService.getAnchors(dataspaceName) >> [anchor]
+            mockCpsAnchorService.getAnchors(dataspaceName) >> [anchor]
         and: 'an endpoint'
             def anchorEndpoint = "$basePath/v1/dataspaces/$dataspaceName/anchors"
         when: 'get all anchors API is invoked'
@@ -340,7 +346,7 @@ class AdminRestControllerSpec extends Specification {
 
     def 'Get existing anchor by dataspace and anchor name.'() {
         given: 'service method returns an anchor'
-            mockCpsAdminService.getAnchor(dataspaceName, anchorName) >>
+            mockCpsAnchorService.getAnchor(dataspaceName, anchorName) >>
                     new Anchor(name: anchorName, dataspaceName: dataspaceName, schemaSetName: schemaSetName)
         and: 'an endpoint'
             def anchorEndpoint = "$basePath/v1/dataspaces/$dataspaceName/anchors/$anchorName"
@@ -360,7 +366,7 @@ class AdminRestControllerSpec extends Specification {
         when: 'delete method is invoked on anchor endpoint'
             def response = mvc.perform(delete(anchorEndpoint)).andReturn().response
         then: 'associated service method is invoked with expected parameters'
-            1 * mockCpsAdminService.deleteAnchor(dataspaceName, anchorName)
+            1 * mockCpsAnchorService.deleteAnchor(dataspaceName, anchorName)
         and: 'response code indicates success'
             response.status == HttpStatus.NO_CONTENT.value()
     }
@@ -373,7 +379,7 @@ class AdminRestControllerSpec extends Specification {
                 .param('dataspace-name', dataspaceName))
                 .andReturn().response
         then: 'associated service method is invoked with expected parameter'
-            1 * mockCpsAdminService.deleteDataspace(dataspaceName)
+            1 * mockCpsDataspaceService.deleteDataspace(dataspaceName)
         and: 'response code indicates success'
             response.status == HttpStatus.NO_CONTENT.value()
     }

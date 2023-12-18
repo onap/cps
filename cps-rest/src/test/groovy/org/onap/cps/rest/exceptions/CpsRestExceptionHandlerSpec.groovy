@@ -26,7 +26,8 @@ package org.onap.cps.rest.exceptions
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import groovy.json.JsonSlurper
-import org.onap.cps.api.CpsAdminService
+import org.onap.cps.api.CpsDataspaceService
+import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.api.CpsQueryService
@@ -63,7 +64,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 class CpsRestExceptionHandlerSpec extends Specification {
 
     @SpringBean
-    CpsAdminService mockCpsAdminService = Stub()
+    CpsDataspaceService mockCpsAdminService = Stub()
+
+    @SpringBean
+    CpsAnchorService mockCpsAnchorService = Stub()
 
     @SpringBean
     CpsModuleService mockCpsModuleService = Stub()
@@ -198,7 +202,7 @@ class CpsRestExceptionHandlerSpec extends Specification {
      */
 
     def setupTestException(exception) {
-        mockCpsAdminService.getAnchors(_) >> { throw exception }
+        mockCpsAnchorService.getAnchors(_) >> { throw exception }
     }
 
     def performTestRequest() {

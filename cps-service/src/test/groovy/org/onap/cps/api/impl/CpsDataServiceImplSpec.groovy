@@ -24,7 +24,7 @@
 package org.onap.cps.api.impl
 
 import org.onap.cps.TestUtils
-import org.onap.cps.api.CpsAdminService
+import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDeltaService
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.FetchDescendantsOption
@@ -43,26 +43,24 @@ import org.onap.cps.yang.YangTextSchemaSourceSet
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import spock.lang.Shared
 import spock.lang.Specification
-
 import java.time.OffsetDateTime
 import java.util.stream.Collectors
 
 class CpsDataServiceImplSpec extends Specification {
     def mockCpsDataPersistenceService = Mock(CpsDataPersistenceService)
-    def mockCpsAdminService = Mock(CpsAdminService)
+    def mockCpsAnchorService = Mock(CpsAnchorService)
     def mockYangTextSchemaSourceSetCache = Mock(YangTextSchemaSourceSetCache)
     def mockCpsValidator = Mock(CpsValidator)
     def timedYangParser = new TimedYangParser()
     def mockCpsDeltaService = Mock(CpsDeltaService);
 
-    def objectUnderTest = new CpsDataServiceImpl(mockCpsDataPersistenceService, mockCpsAdminService,
+    def objectUnderTest = new CpsDataServiceImpl(mockCpsDataPersistenceService, mockCpsAnchorService,
             mockYangTextSchemaSourceSetCache, mockCpsValidator, timedYangParser, mockCpsDeltaService)
 
     def setup() {
-
-        mockCpsAdminService.getAnchor(dataspaceName, anchorName) >> anchor
-        mockCpsAdminService.getAnchor(dataspaceName, ANCHOR_NAME_1) >> anchor1
-        mockCpsAdminService.getAnchor(dataspaceName, ANCHOR_NAME_2) >> anchor2
+        mockCpsAnchorService.getAnchor(dataspaceName, anchorName) >> anchor
+        mockCpsAnchorService.getAnchor(dataspaceName, ANCHOR_NAME_1) >> anchor1
+        mockCpsAnchorService.getAnchor(dataspaceName, ANCHOR_NAME_2) >> anchor2
     }
 
     @Shared
@@ -426,7 +424,7 @@ class CpsDataServiceImplSpec extends Specification {
     def 'Delete all data nodes for given dataspace and multiple anchors.'() {
         given: 'schema set for given anchors and dataspace references test tree model'
             setupSchemaSetMocks('test-tree.yang')
-            mockCpsAdminService.getAnchors(dataspaceName, ['anchor1', 'anchor2']) >>
+            mockCpsAnchorService.getAnchors(dataspaceName, ['anchor1', 'anchor2']) >>
                 [new Anchor(name: 'anchor1', dataspaceName: dataspaceName),
                  new Anchor(name: 'anchor2', dataspaceName: dataspaceName)]
         when: 'delete data node method is invoked with correct parameters'

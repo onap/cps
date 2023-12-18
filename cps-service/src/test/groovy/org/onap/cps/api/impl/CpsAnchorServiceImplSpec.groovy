@@ -1,9 +1,6 @@
 /*
- *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2023 Nordix Foundation
- *  Modifications Copyright (C) 2020-2022 Bell Canada.
- *  Modifications Copyright (C) 2021 Pantheon.tech
- *  Modifications Copyright (C) 2022 TechMahindra Ltd.
+ * ============LICENSE_START=======================================================
+ *  Copyright (C) 2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -23,29 +20,20 @@
 
 package org.onap.cps.api.impl
 
-import org.onap.cps.api.CpsDataService
 import org.onap.cps.spi.CpsAdminPersistenceService
+import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.exceptions.ModuleNamesNotFoundException
 import org.onap.cps.spi.model.Anchor
-import org.onap.cps.spi.model.Dataspace
 import org.onap.cps.spi.utils.CpsValidator
 import spock.lang.Specification
-import java.time.OffsetDateTime
 
-class CpsAdminServiceImplSpec extends Specification {
+class CpsAnchorServiceImplSpec extends Specification {
+
     def mockCpsAdminPersistenceService = Mock(CpsAdminPersistenceService)
-    def mockCpsDataService = Mock(CpsDataService)
+    def mockCpsDataPersistenceService = Mock(CpsDataPersistenceService)
     def mockCpsValidator = Mock(CpsValidator)
-    def objectUnderTest = new CpsAdminServiceImpl(mockCpsAdminPersistenceService, mockCpsDataService,mockCpsValidator)
 
-    def 'Create dataspace method invokes persistence service.'() {
-        when: 'create dataspace method is invoked'
-            objectUnderTest.createDataspace('someDataspace')
-        then: 'the persistence service method is invoked with same parameters'
-            1 * mockCpsAdminPersistenceService.createDataspace('someDataspace')
-        and: 'the CpsValidator is called on the dataspaceName'
-            1 * mockCpsValidator.validateNameCharacters('someDataspace')
-    }
+    def objectUnderTest = new CpsAnchorServiceImpl(mockCpsAdminPersistenceService, mockCpsDataPersistenceService, mockCpsValidator)
 
     def 'Create anchor method invokes persistence service.'() {
         when: 'create anchor method is invoked'
@@ -105,29 +93,13 @@ class CpsAdminServiceImplSpec extends Specification {
             1 * mockCpsValidator.validateNameCharacters('someDataspace', 'someAnchor')
     }
 
-    def 'Retrieve dataspace.'() {
-        given: 'a dataspace is already created'
-            def dataspace = new Dataspace(name: "someDataspace")
-            mockCpsAdminPersistenceService.getDataspace('someDataspace') >> dataspace
-        expect: 'the dataspace provided by persistence service is returned as result'
-          assert objectUnderTest.getDataspace('someDataspace') == dataspace
-    }
-
-    def 'Retrieve all dataspaces.'() {
-        given: 'that all given dataspaces are already created'
-        def dataspaces = [new Dataspace(name: "test-dataspace1"), new Dataspace(name: "test-dataspace2")]
-            mockCpsAdminPersistenceService.getAllDataspaces() >> dataspaces
-        expect: 'the dataspace provided by persistence service is returned as result'
-           assert objectUnderTest.getAllDataspaces() == dataspaces
-    }
-
     def 'Delete anchor.'() {
         when: 'delete anchor is invoked'
             objectUnderTest.deleteAnchor('someDataspace','someAnchor')
         then: 'delete data nodes is invoked on the data service with expected parameters'
-            1 * mockCpsDataService.deleteDataNodes('someDataspace','someAnchor', _ as OffsetDateTime )
+            1 * mockCpsDataPersistenceService.deleteDataNodes('someDataspace','someAnchor')
         and: 'the persistence service method is invoked with same parameters to delete anchor'
-             1 * mockCpsAdminPersistenceService.deleteAnchor('someDataspace','someAnchor')
+            1 * mockCpsAdminPersistenceService.deleteAnchor('someDataspace','someAnchor')
         and: 'the CpsValidator is called on the dataspaceName, anchorName'
             1 * mockCpsValidator.validateNameCharacters('someDataspace', 'someAnchor')
     }
@@ -136,7 +108,7 @@ class CpsAdminServiceImplSpec extends Specification {
         when: 'delete anchors is invoked'
             objectUnderTest.deleteAnchors('someDataspace', ['anchor1', 'anchor2'])
         then: 'delete data nodes is invoked on the data service with expected parameters'
-            1 * mockCpsDataService.deleteDataNodes('someDataspace', _ as Collection<String>, _ as OffsetDateTime)
+            1 * mockCpsDataPersistenceService.deleteDataNodes('someDataspace', _ as Collection<String>)
         and: 'the persistence service method is invoked with same parameters to delete anchor'
             1 * mockCpsAdminPersistenceService.deleteAnchors('someDataspace',_ as Collection<String>)
         and: 'the CpsValidator is called on the dataspace name and anchor names'
@@ -157,7 +129,7 @@ class CpsAdminServiceImplSpec extends Specification {
 
     def 'Query all anchors with Module Names Not Found Exception in persistence layer.'() {
         given: 'the persistence layer throws a Module Names Not Found Exception'
-            def originalException = new ModuleNamesNotFoundException('exception-ds', [ 'm1', 'm2'])
+            def originalException = new ModuleNamesNotFoundException('exception-ds', ['m1', 'm2'])
             mockCpsAdminPersistenceService.queryAnchors(*_) >> { throw originalException}
         when: 'attempt query anchors'
             objectUnderTest.queryAnchorNames('some-dataspace-name', [])
@@ -170,19 +142,11 @@ class CpsAdminServiceImplSpec extends Specification {
             assert thrownUp.details.contains('m2')
     }
 
-    def 'Delete dataspace.'() {
-        when: 'delete dataspace is invoked'
-            objectUnderTest.deleteDataspace('someDataspace')
-        then: 'associated persistence service method is invoked with correct parameter'
-            1 * mockCpsAdminPersistenceService.deleteDataspace('someDataspace')
-        and: 'the CpsValidator is called on the dataspaceName'
-            1 * mockCpsValidator.validateNameCharacters('someDataspace')
-    }
-
     def 'Update anchor schema set.'() {
         when: 'update anchor is invoked'
             objectUnderTest.updateAnchorSchemaSet('someDataspace', 'someAnchor', 'someSchemaSetName')
         then: 'associated persistence service method is invoked with correct parameter'
             1 * mockCpsAdminPersistenceService.updateAnchorSchemaSet('someDataspace', 'someAnchor', 'someSchemaSetName')
     }
+
 }

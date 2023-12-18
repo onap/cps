@@ -50,9 +50,9 @@ class FunctionalSpecBase extends CpsIntegrationSpecBase {
     }
 
     def setupBookstoreInfraStructure() {
-        cpsAdminService.createDataspace(FUNCTIONAL_TEST_DATASPACE_1)
-        cpsAdminService.createDataspace(FUNCTIONAL_TEST_DATASPACE_2)
-        cpsAdminService.createDataspace(FUNCTIONAL_TEST_DATASPACE_3)
+        cpsDataspaceService.createDataspace(FUNCTIONAL_TEST_DATASPACE_1)
+        cpsDataspaceService.createDataspace(FUNCTIONAL_TEST_DATASPACE_2)
+        cpsDataspaceService.createDataspace(FUNCTIONAL_TEST_DATASPACE_3)
         def bookstoreYangModelAsString = readResourceDataFile('bookstore/bookstore.yang')
         cpsModuleService.createSchemaSet(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_SCHEMA_SET, [bookstore: bookstoreYangModelAsString])
         cpsModuleService.createSchemaSet(FUNCTIONAL_TEST_DATASPACE_2, BOOKSTORE_SCHEMA_SET, [bookstore: bookstoreYangModelAsString])
@@ -73,8 +73,8 @@ class FunctionalSpecBase extends CpsIntegrationSpecBase {
 
     def restoreBookstoreDataAnchor(anchorNumber) {
         def anchorName = 'bookstoreAnchor' + anchorNumber
-        cpsAdminService.deleteAnchor(FUNCTIONAL_TEST_DATASPACE_1, anchorName)
-        cpsAdminService.createAnchor(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_SCHEMA_SET, anchorName)
+        cpsAnchorService.deleteAnchor(FUNCTIONAL_TEST_DATASPACE_1, anchorName)
+        cpsAnchorService.createAnchor(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_SCHEMA_SET, anchorName)
         cpsDataService.saveData(FUNCTIONAL_TEST_DATASPACE_1, anchorName, bookstoreJsonData.replace("Easons", "Easons-"+anchorNumber.toString()), OffsetDateTime.now())
     }
 

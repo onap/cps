@@ -24,7 +24,7 @@
 package org.onap.cps.api.impl
 
 import org.onap.cps.TestUtils
-import org.onap.cps.api.CpsAdminService
+import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDeltaService
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.CpsDataPersistenceService
@@ -40,7 +40,7 @@ import spock.lang.Specification
 class E2ENetworkSliceSpec extends Specification {
     def mockModuleStoreService = Mock(CpsModulePersistenceService)
     def mockDataStoreService = Mock(CpsDataPersistenceService)
-    def mockCpsAdminService = Mock(CpsAdminService)
+    def mockCpsAnchorService = Mock(CpsAnchorService)
     def mockYangTextSchemaSourceSetCache = Mock(YangTextSchemaSourceSetCache)
     def mockCpsValidator = Mock(CpsValidator)
     def timedYangTextSchemaSourceSetBuilder = new TimedYangTextSchemaSourceSetBuilder()
@@ -48,9 +48,9 @@ class E2ENetworkSliceSpec extends Specification {
     def mockCpsDeltaService = Mock(CpsDeltaService)
 
     def cpsModuleServiceImpl = new CpsModuleServiceImpl(mockModuleStoreService,
-            mockYangTextSchemaSourceSetCache, mockCpsAdminService, mockCpsValidator,timedYangTextSchemaSourceSetBuilder)
+            mockYangTextSchemaSourceSetCache, mockCpsAnchorService, mockCpsValidator,timedYangTextSchemaSourceSetBuilder)
 
-    def cpsDataServiceImpl = new CpsDataServiceImpl(mockDataStoreService, mockCpsAdminService,
+    def cpsDataServiceImpl = new CpsDataServiceImpl(mockDataStoreService, mockCpsAnchorService,
             mockYangTextSchemaSourceSetCache, mockCpsValidator, timedYangParser, mockCpsDeltaService)
 
     def dataspaceName = 'someDataspace'
@@ -90,7 +90,7 @@ class E2ENetworkSliceSpec extends Specification {
         and : 'a valid json is provided for the model'
             def jsonData = TestUtils.getResourceFileContent('e2e/basic/cps-Cavsta-Data.txt')
         and : 'all the further dependencies are mocked '
-            mockCpsAdminService.getAnchor(dataspaceName, anchorName) >>
+            mockCpsAnchorService.getAnchor(dataspaceName, anchorName) >>
                     new Anchor().builder().name(anchorName).schemaSetName(schemaSetName).dataspaceName(dataspaceName).build()
             mockYangTextSchemaSourceSetCache.get(dataspaceName, schemaSetName) >>
                     YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap)
@@ -123,7 +123,7 @@ class E2ENetworkSliceSpec extends Specification {
         and : 'a valid json is provided for the model'
             def jsonData = TestUtils.getResourceFileContent('e2e/basic/cps-ran-inventory-data.json')
         and : 'all the further dependencies are mocked '
-            mockCpsAdminService.getAnchor('someDataspace', 'someAnchor') >>
+            mockCpsAnchorService.getAnchor('someDataspace', 'someAnchor') >>
                     new Anchor().builder().name('someAnchor').schemaSetName('someSchemaSet').dataspaceName(dataspaceName).build()
             mockYangTextSchemaSourceSetCache.get('someDataspace', 'someSchemaSet') >> YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap)
             mockModuleStoreService.getYangSchemaResources('someDataspace', 'someSchemaSet') >> schemaContext
