@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e7228ead_2110137c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/HttpClientConfiguration.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-12-18T11:40:28Z",
+      "side": 1,
+      "message": "Ack. Though for documentation purposes, I\u0027d like to see these values in application.yml or documented in ReadTheDocs.",
+      "parentUuid": "2dfde7e0_7c7e5b9f",
+      "range": {
+        "startLine": 32,
+        "startChar": 35,
+        "endLine": 32,
+        "endChar": 46
+      },
+      "revId": "ec57b7a3076bbfb57d61c22225ad63982b44c124",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3b2d5a31_d63b2f8a",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/HttpClientConfiguration.java",
         "patchSetId": 3
@@ -109,6 +133,30 @@
       "side": 1,
       "message": "Disregard my previous message. After discussing with Priyank, I believe it would be acceptable to set maxConnTotal \u003d 100 and maxConnPerRoute \u003d 50, as suggested by Daniel. This is because CPS doesn\u0027t communicate directly with cm-handlers but through DMI. Additionally, if I understand correctly, we can have two DMIs per deployment. will upload new patch with that change",
       "parentUuid": "dc350130_9dc1fdab",
+      "range": {
+        "startLine": 48,
+        "startChar": 7,
+        "endLine": 49,
+        "endChar": 51
+      },
+      "revId": "ec57b7a3076bbfb57d61c22225ad63982b44c124",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7cfe706b_da61511b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/HttpClientConfiguration.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-12-18T11:40:28Z",
+      "side": 1,
+      "message": "Yes, 5 connections per route is the cause of the observed degradation when Apache HttpClient is on the class-path (Apache uses maxConnPerRoute \u003d 5 by default). The use-case has a DMI that supports 24 parallel connections, with DMI requests having high latency (\u003e 1 second), so 24 connections minimum. We also need a connection for DMI healthcheck, so 25. To future-proof, I double that to 50. The user may have two or more DMIs, so 2x that for total connections (100) is a sensible default. No need for more since it\u0027s now configurable.",
+      "parentUuid": "00567826_06ab8c93",
       "range": {
         "startLine": 48,
         "startChar": 7,
