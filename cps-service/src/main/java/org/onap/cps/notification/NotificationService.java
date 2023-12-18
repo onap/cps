@@ -32,7 +32,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.api.CpsAdminService;
+import org.onap.cps.api.CpsDataspaceService;
 import org.onap.cps.spi.model.Anchor;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -46,7 +46,7 @@ public class NotificationService {
     private final NotificationPublisher notificationPublisher;
     private final CpsDataUpdatedEventFactory cpsDataUpdatedEventFactory;
     private final NotificationErrorHandler notificationErrorHandler;
-    private final CpsAdminService cpsAdminService;
+    private final CpsDataspaceService cpsDataspaceService;
     private List<Pattern> dataspacePatterns;
 
     @PostConstruct

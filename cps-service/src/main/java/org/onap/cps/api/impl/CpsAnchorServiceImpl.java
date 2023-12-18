@@ -1,9 +1,6 @@
 /*
- *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2023 Nordix Foundation
- *  Modifications Copyright (C) 2020-2022 Bell Canada.
- *  Modifications Copyright (C) 2021 Pantheon.tech
- *  Modifications Copyright (C) 2022 TechMahindra Ltd.
+ * ============LICENSE_START=======================================================
+ *  Copyright (C) 2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -23,50 +20,23 @@
 
 package org.onap.cps.api.impl;
 
-import java.time.OffsetDateTime;
 import java.util.Collection;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
-import org.onap.cps.api.CpsAdminService;
-import org.onap.cps.api.CpsDataService;
+import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.spi.CpsAdminPersistenceService;
+import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.model.Anchor;
-import org.onap.cps.spi.model.Dataspace;
 import org.onap.cps.spi.utils.CpsValidator;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component("CpsAdminServiceImpl")
-@RequiredArgsConstructor(onConstructor = @__(@Lazy))
-public class CpsAdminServiceImpl implements CpsAdminService {
+@Service
+@RequiredArgsConstructor
+public class CpsAnchorServiceImpl implements CpsAnchorService {
 
     private final CpsAdminPersistenceService cpsAdminPersistenceService;
-    @Lazy
-    private final CpsDataService cpsDataService;
+    private final CpsDataPersistenceService cpsDataPersistenceService;
     private final CpsValidator cpsValidator;
-
-    @Override
-    public void createDataspace(final String dataspaceName) {
-        cpsValidator.validateNameCharacters(dataspaceName);
-        cpsAdminPersistenceService.createDataspace(dataspaceName);
-    }
-
-    @Override
-    public void deleteDataspace(final String dataspaceName) {
-        cpsValidator.validateNameCharacters(dataspaceName);
-        cpsAdminPersistenceService.deleteDataspace(dataspaceName);
-    }
-
-    @Override
-    public Dataspace getDataspace(final String dataspaceName) {
-        cpsValidator.validateNameCharacters(dataspaceName);
-        return cpsAdminPersistenceService.getDataspace(dataspaceName);
-    }
-
-    @Override
-    public Collection<Dataspace> getAllDataspaces() {
-        return cpsAdminPersistenceService.getAllDataspaces();
-    }
 
     @Override
     public void createAnchor(final String dataspaceName, final String schemaSetName, final String anchorName) {
@@ -102,7 +72,7 @@ public class CpsAdminServiceImpl implements CpsAdminService {
     @Override
     public void deleteAnchor(final String dataspaceName, final String anchorName) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
-        cpsDataService.deleteDataNodes(dataspaceName, anchorName, OffsetDateTime.now());
+        cpsDataPersistenceService.deleteDataNodes(dataspaceName, anchorName);
         cpsAdminPersistenceService.deleteAnchor(dataspaceName, anchorName);
     }
 
@@ -110,7 +80,7 @@ public class CpsAdminServiceImpl implements CpsAdminService {
     public void deleteAnchors(final String dataspaceName, final Collection<String> anchorNames) {
         cpsValidator.validateNameCharacters(dataspaceName);
         cpsValidator.validateNameCharacters(anchorNames);
-        cpsDataService.deleteDataNodes(dataspaceName, anchorNames, OffsetDateTime.now());
+        cpsDataPersistenceService.deleteDataNodes(dataspaceName, anchorNames);
         cpsAdminPersistenceService.deleteAnchors(dataspaceName, anchorNames);
     }
 
@@ -123,8 +93,8 @@ public class CpsAdminServiceImpl implements CpsAdminService {
 
     @Override
     public void updateAnchorSchemaSet(final String dataspaceName,
-                                         final String anchorName,
-                                         final String schemaSetName) {
+                                      final String anchorName,
+                                      final String schemaSetName) {
         cpsAdminPersistenceService.updateAnchorSchemaSet(dataspaceName, anchorName, schemaSetName);
     }
 }

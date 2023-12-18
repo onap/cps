@@ -20,13 +20,15 @@
 
 package org.onap.cps.ncmp.init
 
+import org.onap.cps.api.CpsAnchorService
+
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
 
 import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
 import ch.qos.logback.core.read.ListAppender
-import org.onap.cps.api.CpsAdminService
+import org.onap.cps.api.CpsDataspaceService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.spi.model.Dataspace
@@ -37,10 +39,11 @@ import spock.lang.Specification
 
 class InventoryModelLoaderSpec extends Specification {
 
-    def mockCpsAdminService = Mock(CpsAdminService)
+    def mockCpsAdminService = Mock(CpsDataspaceService)
     def mockCpsModuleService = Mock(CpsModuleService)
     def mockCpsDataService = Mock(CpsDataService)
-    def objectUnderTest = new InventoryModelLoader(mockCpsAdminService, mockCpsModuleService, mockCpsDataService)
+    def mockCpsAnchorService = Mock(CpsAnchorService)
+    def objectUnderTest = new InventoryModelLoader(mockCpsAdminService, mockCpsModuleService, mockCpsDataService, mockCpsAnchorService)
 
     def applicationContext = new AnnotationConfigApplicationContext()
 
