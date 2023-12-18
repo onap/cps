@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "5be982ea_768f0b65",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-12-18T12:15:30Z",
+      "side": 1,
+      "message": "remove this reference to \u0027bug\u0027. I really dont want this to bee seen as a bug-fix by teh CPS team!",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 5
+      },
+      "revId": "2e1c1b2e03cdff4d1739906644ae158a6bee7929",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "66ca6e41_99edcbbd",
@@ -14,6 +37,98 @@
       "writtenOn": "2023-12-18T11:40:28Z",
       "side": 1,
       "message": "I tested using 24 parallel clients, performance is as expected.",
+      "revId": "2e1c1b2e03cdff4d1739906644ae158a6bee7929",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad7816c2_92209899",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/HttpClientConfiguration.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-12-18T12:15:30Z",
+      "side": 1,
+      "message": "as per CPS bets practice: dont unnecessary shorten words \nconnectionTimeoutInSeconds",
+      "range": {
+        "startLine": 39,
+        "startChar": 21,
+        "endLine": 39,
+        "endChar": 28
+      },
+      "revId": "2e1c1b2e03cdff4d1739906644ae158a6bee7929",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2045dea_c7cd7fb2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/HttpClientConfiguration.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-12-18T12:15:30Z",
+      "side": 1,
+      "message": "maximumConnectionsPerRoute",
+      "range": {
+        "startLine": 44,
+        "startChar": 16,
+        "endLine": 44,
+        "endChar": 32
+      },
+      "revId": "2e1c1b2e03cdff4d1739906644ae158a6bee7929",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "291a241a_b1739791",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/HttpClientConfiguration.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-12-18T12:15:30Z",
+      "side": 1,
+      "message": "maximumConnectionsTotal",
+      "range": {
+        "startLine": 49,
+        "startChar": 16,
+        "endLine": 49,
+        "endChar": 29
+      },
+      "revId": "2e1c1b2e03cdff4d1739906644ae158a6bee7929",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b467b6c7_a9da5c8d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/HttpClientConfiguration.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-12-18T12:15:30Z",
+      "side": 1,
+      "message": "evictIdleConnectionsInSeconds\nnot suer about the name though. suggestion:\nidleConnectionEvictionTresholdInSeconds",
+      "range": {
+        "startLine": 55,
+        "startChar": 21,
+        "endLine": 55,
+        "endChar": 41
+      },
       "revId": "2e1c1b2e03cdff4d1739906644ae158a6bee7929",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
