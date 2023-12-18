@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ced19442_50c23ad4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/NcmpConfiguration.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 3237
+      },
+      "writtenOn": "2023-12-18T11:22:14Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b7e45987_9492e6c6",
+      "range": {
+        "startLine": 3,
+        "startChar": 24,
+        "endLine": 3,
+        "endChar": 27
+      },
+      "revId": "1e103ea5d007004e2816f71ac57889bcbc3da88f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "84c08b36_d89b72ec",
@@ -155,6 +179,30 @@
       "writtenOn": "2023-12-15T13:24:46Z",
       "side": 1,
       "message": "update license 2021-2023",
+      "range": {
+        "startLine": 3,
+        "startChar": 17,
+        "endLine": 3,
+        "endChar": 23
+      },
+      "revId": "1e103ea5d007004e2816f71ac57889bcbc3da88f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af86eab6_50520a6f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/NcmpConfigurationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 3237
+      },
+      "writtenOn": "2023-12-18T11:22:14Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "13f76e67_a0712add",
       "range": {
         "startLine": 3,
         "startChar": 17,
