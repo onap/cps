@@ -20,14 +20,14 @@
 
 package org.onap.cps.integration.performance.cps
 
-import org.onap.cps.api.CpsAdminService
+import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.integration.performance.base.CpsPerfTestBase
 
-class CpsAdminServiceLimitsPerfTest extends CpsPerfTestBase {
+class CpsDataspaceServiceLimitsPerfTest extends CpsPerfTestBase {
 
-    CpsAdminService objectUnderTest
+    CpsAnchorService objectUnderTest
 
-    def setup() { objectUnderTest = cpsAdminService }
+    def setup() { objectUnderTest = cpsAnchorService }
 
     def 'Get anchors from multiple schema set names limit exceeded: 32,766 (~ 2^15) schema set names.'() {
         given: 'more than 32,766 schema set names'

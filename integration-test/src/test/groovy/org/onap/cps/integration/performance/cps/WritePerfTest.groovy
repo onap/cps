@@ -27,7 +27,7 @@ class WritePerfTest extends CpsPerfTestBase {
 
     def 'Writing openroadm data has linear time.'() {
         given: 'an empty anchor exists for openroadm'
-            cpsAdminService.createAnchor(CPS_PERFORMANCE_TEST_DATASPACE, LARGE_SCHEMA_SET, 'writeAnchor')
+            cpsAnchorService.createAnchor(CPS_PERFORMANCE_TEST_DATASPACE, LARGE_SCHEMA_SET, 'writeAnchor')
         and: 'a list of device nodes to add'
             def jsonData = generateOpenRoadData(totalNodes)
         when: 'device nodes are added'
@@ -39,7 +39,7 @@ class WritePerfTest extends CpsPerfTestBase {
             recordAndAssertResourceUsage("Writing ${totalNodes} devices", expectedDuration, durationInSeconds, memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
         cleanup:
             cpsDataService.deleteDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, 'writeAnchor', OffsetDateTime.now())
-            cpsAdminService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, 'writeAnchor')
+            cpsAnchorService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, 'writeAnchor')
         where:
             totalNodes || expectedDuration | memoryLimit
             50         || 4                | 100
@@ -50,7 +50,7 @@ class WritePerfTest extends CpsPerfTestBase {
 
     def 'Writing bookstore data has exponential time.'() {
         given: 'an anchor containing a bookstore with a single category'
-            cpsAdminService.createAnchor(CPS_PERFORMANCE_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET, 'writeAnchor')
+            cpsAnchorService.createAnchor(CPS_PERFORMANCE_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET, 'writeAnchor')
             def parentNodeData = '{"bookstore": { "categories": [{ "code": 1, "name": "Test", "books" : [] }] }}'
             cpsDataService.saveData(CPS_PERFORMANCE_TEST_DATASPACE, 'writeAnchor', parentNodeData, OffsetDateTime.now())
         and: 'a list of books to add'
@@ -64,7 +64,7 @@ class WritePerfTest extends CpsPerfTestBase {
             recordAndAssertResourceUsage("Writing ${totalBooks} books", expectedDuration, durationInSeconds, memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
         cleanup:
             cpsDataService.deleteDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, 'writeAnchor', OffsetDateTime.now())
-            cpsAdminService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, 'writeAnchor')
+            cpsAnchorService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, 'writeAnchor')
         where:
             totalBooks || expectedDuration | memoryLimit
             800        || 1                | 50

@@ -210,12 +210,10 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             }
         and: 'state handler is invoked with the expected parameters'
             1 * mockLcmEventsCmHandleStateHandler.initiateStateAdvised(_) >> {
-                args ->
-                    {
-                        def cmHandleStatePerCmHandle = (args[0] as List)
-                        cmHandleStatePerCmHandle.each {
-                            assert (it.id == 'cmhandle' && it.dmiServiceName == 'my-server')
-                        }
+                args ->  {
+                        def yangModelCmHandles = args[0]
+                        assert yangModelCmHandles.id == ['cmhandle']
+                        assert yangModelCmHandles.dmiServiceName == ['my-server']
                     }
             }
         where:

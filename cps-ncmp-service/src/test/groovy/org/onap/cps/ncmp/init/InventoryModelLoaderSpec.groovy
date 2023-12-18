@@ -20,13 +20,15 @@
 
 package org.onap.cps.ncmp.init
 
+import org.onap.cps.api.CpsAnchorService
+
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
 
 import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
 import ch.qos.logback.core.read.ListAppender
-import org.onap.cps.api.CpsAdminService
+import org.onap.cps.api.CpsDataspaceService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.spi.model.Dataspace
@@ -37,10 +39,11 @@ import spock.lang.Specification
 
 class InventoryModelLoaderSpec extends Specification {
 
-    def mockCpsAdminService = Mock(CpsAdminService)
+    def mockCpsAdminService = Mock(CpsDataspaceService)
     def mockCpsModuleService = Mock(CpsModuleService)
     def mockCpsDataService = Mock(CpsDataService)
-    def objectUnderTest = new InventoryModelLoader(mockCpsAdminService, mockCpsModuleService, mockCpsDataService)
+    def mockCpsAnchorService = Mock(CpsAnchorService)
+    def objectUnderTest = new InventoryModelLoader(mockCpsAdminService, mockCpsModuleService, mockCpsDataService, mockCpsAnchorService)
 
     def applicationContext = new AnnotationConfigApplicationContext()
 
@@ -70,7 +73,7 @@ class InventoryModelLoaderSpec extends Specification {
         then: 'the module service is used to create the new schema set from the correct resource'
             1 * mockCpsModuleService.createSchemaSet(NCMP_DATASPACE_NAME, 'dmi-registry-2023-11-27', expectedYangResourceToContentMap)
         and: 'the admin service is used to update the anchor'
-            1 * mockCpsAdminService.updateAnchorSchemaSet(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, 'dmi-registry-2023-11-27')
+            1 * mockCpsAnchorService.updateAnchorSchemaSet(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, 'dmi-registry-2023-11-27')
         and: 'No schema sets are being removed by the module service (yet)'
             0 * mockCpsModuleService.deleteSchemaSet(NCMP_DATASPACE_NAME, _, _)
     }
