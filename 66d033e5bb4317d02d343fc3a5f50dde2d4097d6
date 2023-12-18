@@ -1,6 +1,46 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "99686e96_b562c493",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-12-18T12:53:34Z",
+      "side": 1,
+      "message": "some non-blocking minor comments that can be dealt with in future",
+      "revId": "66d033e5bb4317d02d343fc3a5f50dde2d4097d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d31a712_3971de81",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/NcmpConfiguration.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-12-18T12:53:34Z",
+      "side": 1,
+      "message": "NB: you have a lot of redundant spacing (comes up as Pink in Gerrit) in the new code. Should be able to setup your INtelliJ to remove that (but not needed for now)",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 8
+      },
+      "revId": "66d033e5bb4317d02d343fc3a5f50dde2d4097d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b0b830d8_262310c1",
@@ -43,6 +83,29 @@
         "startChar": 0,
         "endLine": 81,
         "endChar": 8
+      },
+      "revId": "66d033e5bb4317d02d343fc3a5f50dde2d4097d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16bdcd7e_ad1b656f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/HttpClientConfigurationSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-12-18T12:53:34Z",
+      "side": 1,
+      "message": "NB: as per convention \u0027assert\u0027 keyword shoudl ALWAYS be used",
+      "range": {
+        "startLine": 42,
+        "startChar": 68,
+        "endLine": 42,
+        "endChar": 70
       },
       "revId": "66d033e5bb4317d02d343fc3a5f50dde2d4097d6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
