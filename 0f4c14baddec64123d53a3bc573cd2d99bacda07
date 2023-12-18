@@ -35,6 +35,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "11e0e731_2d4b7e88",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-12-18T09:18:16Z",
+      "side": 1,
+      "message": "need to re-enabl disabled test",
+      "revId": "0f4c14baddec64123d53a3bc573cd2d99bacda07",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "74604685_23e8d6dd",
@@ -53,6 +70,29 @@
         "startChar": 34,
         "endLine": 202,
         "endChar": 38
+      },
+      "revId": "0f4c14baddec64123d53a3bc573cd2d99bacda07",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ad987f6_b137b2d6",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsDataspaceServiceIntegrationSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-12-18T09:18:16Z",
+      "side": 1,
+      "message": "why are these disabled ?",
+      "range": {
+        "startLine": 72,
+        "startChar": 1,
+        "endLine": 73,
+        "endChar": 143
       },
       "revId": "0f4c14baddec64123d53a3bc573cd2d99bacda07",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
