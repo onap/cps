@@ -22,6 +22,30 @@
       },
       "revId": "66d033e5bb4317d02d343fc3a5f50dde2d4097d6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23930d25_e4c5493c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/NcmpConfiguration.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 3237
+      },
+      "writtenOn": "2023-12-18T12:53:28Z",
+      "side": 1,
+      "message": "will do it next patch now ...",
+      "parentUuid": "b0b830d8_262310c1",
+      "range": {
+        "startLine": 81,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 8
+      },
+      "revId": "66d033e5bb4317d02d343fc3a5f50dde2d4097d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
