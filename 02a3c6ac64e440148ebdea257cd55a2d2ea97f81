@@ -1,0 +1,205 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7af65de7_b6b78bee",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-12-18T16:30:12Z",
+      "side": 1,
+      "message": "few minor comments.\notherwise I understand the split of AdminService in CpsDataspaceService and CpsAnchorService.",
+      "revId": "02a3c6ac64e440148ebdea257cd55a2d2ea97f81",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f91d18b2_0c84ab8d",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-12-18T16:30:12Z",
+      "side": 1,
+      "message": "NB: space and one new line can be inserted.",
+      "range": {
+        "startLine": 97,
+        "startChar": 5,
+        "endLine": 97,
+        "endChar": 6
+      },
+      "revId": "02a3c6ac64e440148ebdea257cd55a2d2ea97f81",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f055642_7f5ed170",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataspaceServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-12-18T16:30:12Z",
+      "side": 1,
+      "message": "@Service",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 10
+      },
+      "revId": "02a3c6ac64e440148ebdea257cd55a2d2ea97f81",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43209cf5_31065204",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataspaceServiceImplSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-12-18T16:30:12Z",
+      "side": 1,
+      "message": "NB: 2023",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 27
+      },
+      "revId": "02a3c6ac64e440148ebdea257cd55a2d2ea97f81",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84b82d3e_4e4fca71",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataspaceServiceImplSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-12-18T16:30:12Z",
+      "side": 1,
+      "message": "not required.",
+      "range": {
+        "startLine": 4,
+        "startChar": 4,
+        "endLine": 6,
+        "endChar": 54
+      },
+      "revId": "02a3c6ac64e440148ebdea257cd55a2d2ea97f81",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f454387_4eb898e3",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-12-18T16:30:12Z",
+      "side": 1,
+      "message": "I think just the interface should be enough.\nCpsDataspaceService",
+      "range": {
+        "startLine": 62,
+        "startChar": 23,
+        "endLine": 62,
+        "endChar": 27
+      },
+      "revId": "02a3c6ac64e440148ebdea257cd55a2d2ea97f81",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87e7e063_d8d146c4",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-12-18T16:30:12Z",
+      "side": 1,
+      "message": "old code.\nbut CpsDataService",
+      "range": {
+        "startLine": 70,
+        "startChar": 4,
+        "endLine": 70,
+        "endChar": 22
+      },
+      "revId": "02a3c6ac64e440148ebdea257cd55a2d2ea97f81",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "232fb0e4_5fd160b1",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-12-18T16:30:12Z",
+      "side": 1,
+      "message": "CpsModuleService",
+      "range": {
+        "startLine": 74,
+        "startChar": 4,
+        "endLine": 74,
+        "endChar": 20
+      },
+      "revId": "02a3c6ac64e440148ebdea257cd55a2d2ea97f81",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91a69d7a_95623c11",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsModuleServiceIntegrationSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-12-18T16:30:12Z",
+      "side": 1,
+      "message": "NB: space",
+      "range": {
+        "startLine": 294,
+        "startChar": 0,
+        "endLine": 294,
+        "endChar": 4
+      },
+      "revId": "02a3c6ac64e440148ebdea257cd55a2d2ea97f81",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
