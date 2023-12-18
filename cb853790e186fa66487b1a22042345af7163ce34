@@ -16,6 +16,40 @@
       "message": "recheck",
       "revId": "cb853790e186fa66487b1a22042345af7163ce34",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "577117fa_f3e4f5e2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-12-18T09:24:34Z",
+      "side": 1,
+      "message": "would like to discuss during standup",
+      "revId": "cb853790e186fa66487b1a22042345af7163ce34",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3dce021d_da4ae632",
+        "filename": "csit/plans/cps/sdnc/check_sdnc_mount_node.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-12-18T09:24:34Z",
+      "side": 1,
+      "message": "q: where did this code originate from? I expected to see similar code to be removed from somewhere else. I hope it is NOT duplicated now...",
+      "revId": "cb853790e186fa66487b1a22042345af7163ce34",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
