@@ -35,6 +35,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e6c2d1f_d3367174",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-12-18T14:38:07Z",
+      "side": 1,
+      "message": "A Groovy tip for you below",
+      "revId": "66d033e5bb4317d02d343fc3a5f50dde2d4097d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3d31a712_3971de81",
@@ -100,6 +117,29 @@
         "startChar": 0,
         "endLine": 81,
         "endChar": 8
+      },
+      "revId": "66d033e5bb4317d02d343fc3a5f50dde2d4097d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41fc3e2b_fecd39fb",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2023-12-18T14:38:07Z",
+      "side": 1,
+      "message": "casting is often no needed in Groovy. IntelliJ might complain about it but just run the test! \nI my latest patch I have simplified this even moe by comparing the attributes directly (as a collection)\n\nso you can do stuff like : \nassert someCollection.someProperty \u003d\u003d [\u0027expactedValue1\u0027,\u0027expectedValue2\u0027]\n\nin many case (like this one) we are only expecting 1 value so there is no order issue either :-)",
+      "range": {
+        "startLine": 215,
+        "startChar": 55,
+        "endLine": 215,
+        "endChar": 72
       },
       "revId": "66d033e5bb4317d02d343fc3a5f50dde2d4097d6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
