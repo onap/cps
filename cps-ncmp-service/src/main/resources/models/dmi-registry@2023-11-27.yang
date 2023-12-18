@@ -8,19 +8,29 @@ module dmi-registry {
 
   contact "toine.siebelink@est.tech";
 
+  revision "2023-11-27" {
+    description
+    "Added alternate-id";
+  }
+
+  revision "2023-08-23" {
+    description
+    "Added module-set-tag";
+  }
+
   revision "2022-05-10" {
     description
-    "Added DataSyncEnabled, SyncState with State, LastSyncTime, DataStoreSyncState with Operational and Running syncstate";
+    "Added data-sync-enabled, sync-state with state, last-sync-time, data-store-sync-state with operational and running syncstate";
   }
 
   revision "2022-02-10" {
     description
-    "Added State, LockReason, LockReasonDetails to aid with cmHandle sync and timestamp to aid with retry/timeout scenarios";
+    "Added state, lock-reason, lock-reason-details to aid with cmHandle sync and timestamp to aid with retry/timeout scenarios";
   }
 
   revision "2021-12-13" {
     description
-    "Added new list of public additional properties for a Cm-Handle which are exposed to clients of the NCMP interface";
+    "Added new list of public-properties and additional-properties for a Cm-Handle which are exposed to clients of the NCMP interface";
   }
 
   revision "2021-10-20" {
@@ -75,6 +85,12 @@ module dmi-registry {
       leaf dmi-model-service-name {
         type string;
       }
+      leaf module-set-tag {
+        type string;
+      }
+      leaf alternate-id {
+        type string;
+      }
 
       list additional-properties {
         key "name";
@@ -121,3 +137,4 @@ module dmi-registry {
     }
   }
 }
+
