@@ -52,7 +52,7 @@ class CmSubscriptionNcmpInEventConsumerSpec extends MessagingBaseSpec {
 
     def 'Consume, persist and forward valid CM create message'() {
         given: 'an event with data category CM'
-            def jsonData = TestUtils.getResourceFileContent('cmSubscriptionNcmpInEvent.json')
+            def jsonData = TestUtils.getResourceFileContent('deprecatedCmSubscription/cmSubscriptionNcmpInEvent.json')
             def testEventSent = jsonObjectMapper.convertJsonString(jsonData, CmSubscriptionNcmpInEvent.class)
             testEventSent.getData().getDataType().setDataCategory(dataCategory)
             def testCloudEventSent = CloudEventBuilder.v1()
@@ -86,7 +86,7 @@ class CmSubscriptionNcmpInEventConsumerSpec extends MessagingBaseSpec {
 
     def 'Consume event with wrong datastore causes an exception'() {
         given: 'an event'
-            def jsonData = TestUtils.getResourceFileContent('cmSubscriptionNcmpInEvent.json')
+            def jsonData = TestUtils.getResourceFileContent('deprecatedCmSubscription/cmSubscriptionNcmpInEvent.json')
             def testEventSent = jsonObjectMapper.convertJsonString(jsonData, CmSubscriptionNcmpInEvent.class)
         and: 'datastore is set to a passthrough-running datastore'
             testEventSent.getData().getPredicates().setDatastore('operational')

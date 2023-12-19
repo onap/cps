@@ -64,10 +64,10 @@ class CmSubscriptionNcmpOutEventPublisherSpec extends DataNodeBaseSpec {
 
     def 'Send response to the client apps successfully'() {
         given: 'a cm subscription event'
-            def cmSubscriptionEventJsonData = TestUtils.getResourceFileContent('cmSubscriptionEvent.json')
+            def cmSubscriptionEventJsonData = TestUtils.getResourceFileContent('deprecatedCmSubscription/cmSubscriptionEvent.json')
             def cmSubscriptionEvent = jsonObjectMapper.convertJsonString(cmSubscriptionEventJsonData, CmSubscriptionEvent.class)
         and: 'a ncmp out event'
-            def ncmpOutEventJsonData = TestUtils.getResourceFileContent('cmSubscriptionNcmpOutEvent2.json')
+            def ncmpOutEventJsonData = TestUtils.getResourceFileContent('deprecatedCmSubscription/cmSubscriptionNcmpOutEvent2.json')
             def ncmpOutEvent = jsonObjectMapper.convertJsonString(ncmpOutEventJsonData, CmSubscriptionNcmpOutEvent.class)
         and: 'a random id for the cloud event'
             SubscriptionOutcomeCloudMapper.randomId = 'some-id'
@@ -89,10 +89,10 @@ class CmSubscriptionNcmpOutEventPublisherSpec extends DataNodeBaseSpec {
 
     def 'Create ncmp out message as expected'() {
         given: 'a cm subscription event'
-            def cmSubscriptionEventJsonData = TestUtils.getResourceFileContent('cmSubscriptionEvent.json')
+            def cmSubscriptionEventJsonData = TestUtils.getResourceFileContent('deprecatedCmSubscription/cmSubscriptionEvent.json')
             def cmSubscriptionEvent = jsonObjectMapper.convertJsonString(cmSubscriptionEventJsonData, CmSubscriptionEvent.class)
         and: 'a ncmp out event'
-            def ncmpOutEventJsonData = TestUtils.getResourceFileContent('cmSubscriptionNcmpOutEvent.json')
+            def ncmpOutEventJsonData = TestUtils.getResourceFileContent('deprecatedCmSubscription/cmSubscriptionNcmpOutEvent.json')
             def ncmpOutEvent = jsonObjectMapper.convertJsonString(ncmpOutEventJsonData, CmSubscriptionNcmpOutEvent.class)
         and: 'a status code and status message a per #scenarios'
             ncmpOutEvent.getData().setStatusCode(statusCode)

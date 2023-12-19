@@ -18,11 +18,12 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.utils
+package org.onap.cps.ncmp.api.impl.util.deprecated
 
 import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.cloudevents.core.builder.CloudEventBuilder
+import org.onap.cps.ncmp.api.impl.utils.CmSubscriptionEventCloudMapper
 import org.onap.cps.ncmp.events.cmsubscription1_0_0.ncmp_to_dmi.CmSubscriptionDmiInEvent
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.utils.JsonObjectMapper
@@ -45,7 +46,7 @@ class CmSubscriptionEventCloudMapperSpec extends Specification {
 
     def 'Map the subscription event to data of the cloud event'() {
         given: 'a subscription event'
-            def jsonData = TestUtils.getResourceFileContent('cmSubscriptionDmiInEvent.json')
+            def jsonData = TestUtils.getResourceFileContent('deprecatedCmSubscription/cmSubscriptionDmiInEvent.json')
             def testEventData = jsonObjectMapper.convertJsonString(jsonData,
                 CmSubscriptionDmiInEvent.class)
             def testCloudEvent = CloudEventBuilder.v1()
@@ -70,7 +71,7 @@ class CmSubscriptionEventCloudMapperSpec extends Specification {
             def jsonProcessingException = new JsonProcessingException('The Cloud Event could not be constructed')
             spyObjectMapper.writeValueAsBytes(_) >> { throw jsonProcessingException }
         and: 'a subscription event of ncmp version'
-            def jsonData = TestUtils.getResourceFileContent('cmSubscriptionDmiInEvent.json')
+            def jsonData = TestUtils.getResourceFileContent('deprecatedCmSubscription/cmSubscriptionDmiInEvent.json')
             def testEventData = jsonObjectMapper.convertJsonString(jsonData,
                 CmSubscriptionDmiInEvent.class)
         when: 'the subscription event map to cloud event'

@@ -41,7 +41,7 @@ class CmSubscriptionNcmpInEventMapperSpec extends Specification {
 
     def 'Map subscription event to yang model subscription event where #scenario'() {
         given: 'a Subscription Event'
-            def jsonData = TestUtils.getResourceFileContent('cmSubscriptionNcmpInEvent.json')
+            def jsonData = TestUtils.getResourceFileContent('deprecatedCmSubscription/cmSubscriptionNcmpInEvent.json')
             def testEventToMap = jsonObjectMapper.convertJsonString(jsonData, CmSubscriptionNcmpInEvent.class)
         when: 'the event is mapped to a yang model subscription'
             def result = objectUnderTest.toYangModelSubscriptionEvent(testEventToMap)
