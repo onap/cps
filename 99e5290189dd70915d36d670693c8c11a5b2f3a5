@@ -33,6 +33,23 @@
       "message": "recheck",
       "revId": "99e5290189dd70915d36d670693c8c11a5b2f3a5",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20beb292_d4f54c2b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-12-19T13:28:08Z",
+      "side": 1,
+      "message": "can u raise a separate patch for the stuff u are doing for deprecated stuff.\nraise a patch for that first.",
+      "revId": "99e5290189dd70915d36d670693c8c11a5b2f3a5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
