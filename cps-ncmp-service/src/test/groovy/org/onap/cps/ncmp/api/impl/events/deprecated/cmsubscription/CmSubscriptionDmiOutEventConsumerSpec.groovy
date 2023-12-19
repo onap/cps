@@ -115,7 +115,7 @@ class CmSubscriptionDmiOutEventConsumerSpec extends MessagingBaseSpec {
     }
 
     def getDmiOutEvent() {
-        def cmSubscriptionDmiOutEventJsonData = TestUtils.getResourceFileContent('cmSubscriptionDmiOutEvent.json')
+        def cmSubscriptionDmiOutEventJsonData = TestUtils.getResourceFileContent('deprecatedCmSubscriptions/cmSubscriptionDmiOutEvent.json')
         return jsonObjectMapper.convertJsonString(cmSubscriptionDmiOutEventJsonData, CmSubscriptionDmiOutEvent.class)
     }
 

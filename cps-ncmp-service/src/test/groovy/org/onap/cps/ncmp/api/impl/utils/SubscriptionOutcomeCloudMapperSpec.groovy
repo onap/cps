@@ -45,7 +45,7 @@ class SubscriptionOutcomeCloudMapperSpec extends Specification {
 
     def 'Map the subscription outcome to cloud event'() {
         given: 'a subscription event'
-            def jsonData = TestUtils.getResourceFileContent('cmSubscriptionNcmpOutEvent.json')
+            def jsonData = TestUtils.getResourceFileContent('deprecatedCmSubscriptions/cmSubscriptionNcmpOutEvent.json')
             def testEventData = jsonObjectMapper.convertJsonString(jsonData, CmSubscriptionNcmpOutEvent.class)
             def testCloudEvent = CloudEventBuilder.v1()
                 .withData(objectMapper.writeValueAsBytes(testEventData))
@@ -69,7 +69,7 @@ class SubscriptionOutcomeCloudMapperSpec extends Specification {
             def jsonProcessingException = new JsonProcessingException('The Cloud Event could not be constructed')
             spyObjectMapper.writeValueAsBytes(_) >> { throw jsonProcessingException }
         and: 'a cloud event having a subscription outcome in the data part'
-            def jsonData = TestUtils.getResourceFileContent('cmSubscriptionNcmpOutEvent.json')
+            def jsonData = TestUtils.getResourceFileContent('deprecatedCmSubscriptions/cmSubscriptionNcmpOutEvent.json')
             def testEventData = jsonObjectMapper.convertJsonString(jsonData, CmSubscriptionNcmpOutEvent.class)
         when: 'the subscription outcome map to cloud event'
             def expectedResult = objectUnderTest.toCloudEvent(testEventData, 'some-key', 'some-event-type')
