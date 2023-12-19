@@ -29,7 +29,7 @@ import org.springframework.boot.convert.DurationUnit;
 
 @Getter
 @Setter
-@ConfigurationProperties(prefix = "httpclient5", ignoreUnknownFields = true)
+@ConfigurationProperties(prefix = "ncmp.dmi.httpclient", ignoreUnknownFields = true)
 public class HttpClientConfiguration {
 
     /**
