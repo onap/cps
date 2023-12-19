@@ -31,7 +31,7 @@ import spock.lang.Specification
 @SpringBootTest
 @ContextConfiguration(classes = [HttpClientConfiguration])
 @EnableConfigurationProperties(HttpClientConfiguration.class)
-@TestPropertySource(properties = ["httpclient5.connectionTimeoutInSeconds=1", "httpclient5.maximumConnectionsTotal=200"])
+@TestPropertySource(properties = ["ncmp.dmi.httpclient.connectionTimeoutInSeconds=1", "ncmp.dmi.httpclient.maximumConnectionsTotal=200"])
 class HttpClientConfigurationSpec extends Specification {
 
     @Autowired
@@ -39,10 +39,10 @@ class HttpClientConfigurationSpec extends Specification {
 
     def 'Test HttpClientConfiguration properties with custom and default values'() {
         expect: 'custom property values'
-            httpClientConfiguration.getConnectionTimeoutInSeconds() == Duration.ofSeconds(1)
-            httpClientConfiguration.getMaximumConnectionsTotal() == 200
+        assert httpClientConfiguration.getConnectionTimeoutInSeconds() == Duration.ofSeconds(1)
+        assert httpClientConfiguration.getMaximumConnectionsTotal() == 200
         and: 'default property values'
-            httpClientConfiguration.getMaximumConnectionsPerRoute() == 50
-            httpClientConfiguration.getIdleConnectionEvictionThresholdInSeconds() == Duration.ofSeconds(5)
+        assert httpClientConfiguration.getMaximumConnectionsPerRoute() == 50
+        assert httpClientConfiguration.getIdleConnectionEvictionThresholdInSeconds() == Duration.ofSeconds(5)
     }
 }

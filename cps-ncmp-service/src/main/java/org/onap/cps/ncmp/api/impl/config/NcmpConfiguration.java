@@ -72,33 +72,33 @@ public class NcmpConfiguration {
      */
     @Bean
     @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
-    public static RestTemplate restTemplate(final RestTemplateBuilder restTemplateBuilder, 
+    public static RestTemplate restTemplate(final RestTemplateBuilder restTemplateBuilder,
                                             final HttpClientConfiguration httpClientConfiguration) {
-        
+
         final ConnectionConfig connectionConfig = ConnectionConfig.copy(ConnectionConfig.DEFAULT)
                 .setConnectTimeout(Timeout.of(httpClientConfiguration.getConnectionTimeoutInSeconds()))
                 .build();
-        
+
         final PoolingHttpClientConnectionManager connectionManager = PoolingHttpClientConnectionManagerBuilder.create()
                 .setDefaultConnectionConfig(connectionConfig)
                 .setMaxConnTotal(httpClientConfiguration.getMaximumConnectionsTotal())
                 .setMaxConnPerRoute(httpClientConfiguration.getMaximumConnectionsPerRoute())
                 .build();
-        
+
         final CloseableHttpClient httpClient = HttpClients.custom()
                 .setConnectionManager(connectionManager)
                 .evictExpiredConnections()
                 .evictIdleConnections(
                         TimeValue.of(httpClientConfiguration.getIdleConnectionEvictionThresholdInSeconds()))
                 .build();
-        
+
         final ClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory(httpClient);
-        
+
         final RestTemplate restTemplate = restTemplateBuilder
                 .requestFactory(() -> requestFactory)
                 .setConnectTimeout(httpClientConfiguration.getConnectionTimeoutInSeconds())
                 .build();
-        
+
         setRestTemplateMessageConverters(restTemplate);
         return restTemplate;
     }
