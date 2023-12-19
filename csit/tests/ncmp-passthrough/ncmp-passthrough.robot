@@ -74,7 +74,7 @@ Verify create to bookstore using passthrough-running
         END
     END
 
-Update Bookstore using passthrough-running for Category 01
+Update Bookstore using passthrough-running update Category 01 (replace category)
     ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/PNFDemo/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=stores:bookstore/categories=01
     ${headers}=          Create Dictionary  Content-Type=application/json   Authorization=${auth}
     ${jsonData}=         Get Binary File    ${DATADIR_NCMP}${/}bookstoreUpdateExample.json
