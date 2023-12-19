@@ -73,7 +73,7 @@ class CmSubscriptionNcmpInEventForwarderSpec extends MessagingBaseSpec {
 
     def 'Forward valid CM create subscription and simulate timeout'() {
         given: 'a ncmp in event'
-            def ncmpInEventJsonData = TestUtils.getResourceFileContent('cmSubscriptionNcmpInEvent.json')
+            def ncmpInEventJsonData = TestUtils.getResourceFileContent('deprecatedCmSubscription/cmSubscriptionNcmpInEvent.json')
             def ncmpInEventJson = jsonObjectMapper.convertJsonString(ncmpInEventJsonData, CmSubscriptionNcmpInEvent.class)
         and: 'the InventoryPersistence returns private properties for the supplied CM Handles'
             1 * mockInventoryPersistence.getYangModelCmHandles(["CMHandle1", "CMHandle2", "CMHandle3"]) >> [
@@ -116,7 +116,7 @@ class CmSubscriptionNcmpInEventForwarderSpec extends MessagingBaseSpec {
 
     def 'Forward CM create subscription where target CM Handles are #scenario'() {
         given: 'a ncmp in event'
-            def ncmpInEventJsonData = TestUtils.getResourceFileContent('cmSubscriptionNcmpInEvent.json')
+            def ncmpInEventJsonData = TestUtils.getResourceFileContent('deprecatedCmSubscription/cmSubscriptionNcmpInEvent.json')
             def ncmpInEventJson = jsonObjectMapper.convertJsonString(ncmpInEventJsonData, CmSubscriptionNcmpInEvent.class)
         and: 'the target CMHandles are set to #scenario'
             ncmpInEventJson.getData().getPredicates().setTargets(invalidTargets)
@@ -133,7 +133,7 @@ class CmSubscriptionNcmpInEventForwarderSpec extends MessagingBaseSpec {
 
     def 'Forward valid CM create subscription where targets are not associated to any existing CMHandles'() {
         given: 'a ncmp in event'
-            def ncmpInEventJsonData = TestUtils.getResourceFileContent('cmSubscriptionNcmpInEvent.json')
+            def ncmpInEventJsonData = TestUtils.getResourceFileContent('deprecatedCmSubscription/cmSubscriptionNcmpInEvent.json')
             def ncmpInEventJson = jsonObjectMapper.convertJsonString(ncmpInEventJsonData, CmSubscriptionNcmpInEvent.class)
         and: 'the InventoryPersistence returns no private properties for the supplied CM Handles'
             1 * mockInventoryPersistence.getYangModelCmHandles(["CMHandle1", "CMHandle2", "CMHandle3"]) >> []

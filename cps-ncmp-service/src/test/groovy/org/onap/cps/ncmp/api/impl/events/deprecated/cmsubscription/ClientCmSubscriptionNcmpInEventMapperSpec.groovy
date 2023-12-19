@@ -39,7 +39,7 @@ class ClientCmSubscriptionNcmpInEventMapperSpec extends Specification {
 
     def 'Map clients subscription event to ncmps subscription event'() {
         given: 'a Subscription Event'
-            def jsonData = TestUtils.getResourceFileContent('cmSubscriptionNcmpInEvent.json')
+            def jsonData = TestUtils.getResourceFileContent('deprecatedCmSubscription/cmSubscriptionNcmpInEvent.json')
             def testEventToMap = jsonObjectMapper.convertJsonString(jsonData, CmSubscriptionNcmpInEvent.class)
         when: 'the client event is mapped to a ncmp subscription event'
             def result = objectUnderTest.toCmSubscriptionDmiInEvent(testEventToMap)

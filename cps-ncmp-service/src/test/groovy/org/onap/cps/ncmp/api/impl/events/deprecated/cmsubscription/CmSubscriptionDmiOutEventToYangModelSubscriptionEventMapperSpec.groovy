@@ -41,7 +41,7 @@ class CmSubscriptionDmiOutEventToYangModelSubscriptionEventMapperSpec extends Sp
 
     def 'Map dmi out event to yang model subscription event'() {
         given: 'a dmi out event'
-            def jsonData = TestUtils.getResourceFileContent('cmSubscriptionDmiOutEvent.json')
+            def jsonData = TestUtils.getResourceFileContent('deprecatedCmSubscription/cmSubscriptionDmiOutEvent.json')
             def testEventToMap = jsonObjectMapper.convertJsonString(jsonData, CmSubscriptionDmiOutEvent.class)
         when: 'the event is mapped to a yang model subscription'
             def result = objectUnderTest.toYangModelSubscriptionEvent(testEventToMap)

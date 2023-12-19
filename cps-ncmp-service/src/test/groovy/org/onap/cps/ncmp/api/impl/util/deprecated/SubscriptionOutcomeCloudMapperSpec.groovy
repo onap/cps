@@ -18,11 +18,12 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.utils
+package org.onap.cps.ncmp.api.impl.util.deprecated
 
 import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.cloudevents.core.builder.CloudEventBuilder
+import org.onap.cps.ncmp.api.impl.utils.SubscriptionOutcomeCloudMapper
 import org.onap.cps.ncmp.events.cmsubscription1_0_0.ncmp_to_client.CmSubscriptionNcmpOutEvent
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.utils.JsonObjectMapper
@@ -45,7 +46,7 @@ class SubscriptionOutcomeCloudMapperSpec extends Specification {
 
     def 'Map the subscription outcome to cloud event'() {
         given: 'a subscription event'
-            def jsonData = TestUtils.getResourceFileContent('cmSubscriptionNcmpOutEvent.json')
+            def jsonData = TestUtils.getResourceFileContent('deprecatedCmSubscription/cmSubscriptionNcmpOutEvent.json')
             def testEventData = jsonObjectMapper.convertJsonString(jsonData, CmSubscriptionNcmpOutEvent.class)
             def testCloudEvent = CloudEventBuilder.v1()
                 .withData(objectMapper.writeValueAsBytes(testEventData))
@@ -69,7 +70,7 @@ class SubscriptionOutcomeCloudMapperSpec extends Specification {
             def jsonProcessingException = new JsonProcessingException('The Cloud Event could not be constructed')
             spyObjectMapper.writeValueAsBytes(_) >> { throw jsonProcessingException }
         and: 'a cloud event having a subscription outcome in the data part'
-            def jsonData = TestUtils.getResourceFileContent('cmSubscriptionNcmpOutEvent.json')
+            def jsonData = TestUtils.getResourceFileContent('deprecatedCmSubscription/cmSubscriptionNcmpOutEvent.json')
             def testEventData = jsonObjectMapper.convertJsonString(jsonData, CmSubscriptionNcmpOutEvent.class)
         when: 'the subscription outcome map to cloud event'
             def expectedResult = objectUnderTest.toCloudEvent(testEventData, 'some-key', 'some-event-type')
