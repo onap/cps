@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7eea423_adc92a96",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2023-12-19T21:10:35Z",
+      "side": 1,
+      "message": "Tests are broken due to setup() and cleanup() running after each test scenario (in \u0027where\u0027 clause). It was intended for them to run once for each test method",
+      "revId": "280c42689f5b57d8d5ae96cb1affddded3be25b0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
