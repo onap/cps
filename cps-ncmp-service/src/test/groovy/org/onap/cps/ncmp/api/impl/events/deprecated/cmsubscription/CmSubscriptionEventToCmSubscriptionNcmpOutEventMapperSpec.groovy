@@ -42,7 +42,7 @@ class CmSubscriptionEventToCmSubscriptionNcmpOutEventMapperSpec extends Specific
 
     def 'Map cm subscription event to ncmp out event'() {
         given: 'a cm subscription event'
-            def cmSubscriptionEventJsonData = TestUtils.getResourceFileContent('cmSubscriptionEvent.json')
+            def cmSubscriptionEventJsonData = TestUtils.getResourceFileContent('deprecatedCmSubscription/cmSubscriptionEvent.json')
             def cmSubscriptionEvent = jsonObjectMapper.convertJsonString(cmSubscriptionEventJsonData, CmSubscriptionEvent.class)
         when: 'cm subscription event is mapped to ncmp out event'
             def result = objectUnderTest.toCmSubscriptionNcmpOutEvent(cmSubscriptionEvent)
@@ -62,7 +62,7 @@ class CmSubscriptionEventToCmSubscriptionNcmpOutEventMapperSpec extends Specific
 
     def 'Map cm subscription event to ncmp out event with the given scenarios causes an exception'() {
         given: 'a cm subscription event'
-            def cmSubscriptionEventJsonData = TestUtils.getResourceFileContent('cmSubscriptionEvent.json')
+            def cmSubscriptionEventJsonData = TestUtils.getResourceFileContent('deprecatedCmSubscription/cmSubscriptionEvent.json')
             def cmSubscriptionEvent = jsonObjectMapper.convertJsonString(cmSubscriptionEventJsonData, CmSubscriptionEvent.class)
         and: 'set cm subscription status with given scenarios'
             cmSubscriptionEvent.setCmSubscriptionStatus(subscriptionStatusList)
@@ -79,7 +79,7 @@ class CmSubscriptionEventToCmSubscriptionNcmpOutEventMapperSpec extends Specific
 
     def 'Map cm subscription event to ncmp out event without any exception'() {
         given: 'a cm subscription Event'
-            def subscriptionResponseJsonData = TestUtils.getResourceFileContent('cmSubscriptionEvent.json')
+            def subscriptionResponseJsonData = TestUtils.getResourceFileContent('deprecatedCmSubscription/cmSubscriptionEvent.json')
             def subscriptionResponseEvent = jsonObjectMapper.convertJsonString(subscriptionResponseJsonData, CmSubscriptionEvent.class)
         when: 'cm subscription event is mapped to ncmp out event'
             objectUnderTest.toCmSubscriptionNcmpOutEvent(subscriptionResponseEvent)
