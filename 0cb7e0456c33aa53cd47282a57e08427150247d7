@@ -33,6 +33,24 @@
       "message": "final",
       "revId": "0cb7e0456c33aa53cd47282a57e08427150247d7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "420fb9f1_289934dc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/yangmodels/YangModelCmDataSubscriptionEvent.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-12-19T13:52:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f8d8d914_15a46750",
+      "revId": "0cb7e0456c33aa53cd47282a57e08427150247d7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
