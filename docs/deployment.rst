@@ -162,130 +162,142 @@ values to configure the application to be deployed. This list is not exhaustive.
 
 Any spring supported property can be configured by providing in ``config.additional.<spring-supported-property-name>: value`` Example: config.additional.spring.datasource.hikari.maximumPoolSize: 30
 
-+---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| Property                              | Description                                                                                             | Default Value                 |
-+=======================================+=========================================================================================================+===============================+
-| config.appUserName                    | User name used by cps-core service to configure the authentication for REST API it exposes.             | ``cpsuser``                   |
-|                                       |                                                                                                         |                               |
-|                                       | This is the user name to be used by cps-core REST clients to authenticate themselves.                   |                               |
-+---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.appUserPassword                | Password used by cps-core service to configure the authentication for REST API it exposes.              | Not defined                   |
-|                                       |                                                                                                         |                               |
-|                                       | If not defined, the password is generated when deploying the application.                               |                               |
-|                                       |                                                                                                         |                               |
-|                                       | See also :ref:`cps_common_credentials_retrieval`.                                                       |                               |
-+---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| postgres.config.pgUserName            | Internal user name used by cps-core to connect to its own database.                                     | ``cps``                       |
-+---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| postgres.config.pgUserPassword        | Internal password used by cps-core to connect to its own database.                                      | Not defined                   |
-|                                       |                                                                                                         |                               |
-|                                       | If not defined, the password is generated when deploying the application.                               |                               |
-|                                       |                                                                                                         |                               |
-|                                       | See also :ref:`cps_common_credentials_retrieval`.                                                       |                               |
-+---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| postgres.config.pgDatabase            | Database name used by cps-core                                                                          | ``cpsdb``                     |
-|                                       |                                                                                                         |                               |
-+---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| logging.level                         | Logging level set in cps-core                                                                           | info                          |
-|                                       |                                                                                                         |                               |
-+---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.useStrimziKafka                | If targeting a custom kafka cluster, i.e. useStrimziKafka: false, the                                   | true                          |
-|                                       | config.eventPublisher.spring.kafka values below must be set.                                            |                               |
-+---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.eventPublisher.                | Kafka hostname and port                                                                                 | ``<kafka-bootstrap>:9092``    |
-| spring.kafka.bootstrap-servers        |                                                                                                         |                               |
-+---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.eventPublisher.                | Kafka consumer client id                                                                                | ``cps-core``                  |
-| spring.kafka.consumer.client-id       |                                                                                                         |                               |
-+---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.eventPublisher.                | Kafka security protocol.                                                                                | ``SASL_PLAINTEXT``            |
-| spring.kafka.security.protocol        | Some possible values are:                                                                               |                               |
-|                                       |                                                                                                         |                               |
-|                                       | * ``PLAINTEXT``                                                                                         |                               |
-|                                       | * ``SASL_PLAINTEXT``, for authentication                                                                |                               |
-|                                       | * ``SASL_SSL``, for authentication and encryption                                                       |                               |
-+---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.eventPublisher.                | Kafka security SASL mechanism. Required for SASL_PLAINTEXT and SASL_SSL protocols.                      | Not defined                   |
-| spring.kafka.properties.              | Some possible values are:                                                                               |                               |
-| sasl.mechanism                        |                                                                                                         |                               |
-|                                       | * ``PLAIN``, for PLAINTEXT                                                                              |                               |
-|                                       | * ``SCRAM-SHA-512``, for SSL                                                                            |                               |
-+---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.eventPublisher.                | Kafka security SASL JAAS configuration. Required for SASL_PLAINTEXT and SASL_SSL protocols.             | Not defined                   |
-| spring.kafka.properties.              | Some possible values are:                                                                               |                               |
-| sasl.jaas.config                      |                                                                                                         |                               |
-|                                       | * ``org.apache.kafka.common.security.plain.PlainLoginModule required username="..." password="...";``,  |                               |
-|                                       |   for PLAINTEXT                                                                                         |                               |
-|                                       | * ``org.apache.kafka.common.security.scram.ScramLoginModule required username="..." password="...";``,  |                               |
-|                                       |   for SSL                                                                                               |                               |
-+---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.eventPublisher.                | Kafka security SASL SSL store type. Required for SASL_SSL protocol.                                     | Not defined                   |
-| spring.kafka.ssl.trust-store-type     | Some possible values are:                                                                               |                               |
-|                                       |                                                                                                         |                               |
-|                                       | * ``JKS``                                                                                               |                               |
-+---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.eventPublisher.                | Kafka security SASL SSL store file location. Required for SASL_SSL protocol.                            | Not defined                   |
-| spring.kafka.ssl.trust-store-location |                                                                                                         |                               |
-+---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.eventPublisher.                | Kafka security SASL SSL store password. Required for SASL_SSL protocol.                                 | Not defined                   |
-| spring.kafka.ssl.trust-store-password |                                                                                                         |                               |
-+---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.eventPublisher.                | Kafka security SASL SSL broker hostname identification verification. Required for SASL_SSL protocol.    | Not defined                   |
-| spring.kafka.properties.              | Possible value is:                                                                                      |                               |
-| ssl.endpoint.identification.algorithm |                                                                                                         |                               |
-|                                       | * ``""``, empty string to disable                                                                       |                               |
-+---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.additional.                    | Core pool size in asynchronous execution of notification.                                               | ``2``                         |
-| notification.async.executor.          |                                                                                                         |                               |
-| core-pool-size                        |                                                                                                         |                               |
-+---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.additional.                    | Max pool size in asynchronous execution of notification.                                                | ``1``                         |
-| notification.async.executor.          |                                                                                                         |                               |
-| max-pool-size                         |                                                                                                         |                               |
-+---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.additional.                    | Queue Capacity in asynchronous execution of notification.                                               | ``500``                       |
-| notification.async.executor.          |                                                                                                         |                               |
-| queue-capacity                        |                                                                                                         |                               |
-+---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.additional.                    | If the executor should wait for the tasks to be completed on shutdown                                   | ``true``                      |
-| notification.async.executor.          |                                                                                                         |                               |
-| wait-for-tasks-to-complete-on-shutdown|                                                                                                         |                               |
-+---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.additional.                    | Prefix to be added to the thread name in asynchronous execution of notifications.                       | ``Async-``                    |
-| notification.async.executor.          |                                                                                                         |                               |
-| thread-name-prefix                    |                                                                                                         |                               |
-+---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.additional.                    | Specifies number of database connections between database and application.                              | ``10``                        |
-| spring.datasource.hikari.             | This property controls the maximum size that the pool is allowed to reach,                              |                               |
-| maximumPoolSize                       | including both idle and in-use connections.                                                             |                               |
-+---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
++-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| Property                                  | Description                                                                                             | Default Value                 |
++===========================================+=========================================================================================================+===============================+
+| config.appUserName                        | User name used by cps-core service to configure the authentication for REST API it exposes.             | ``cpsuser``                   |
+|                                           |                                                                                                         |                               |
+|                                           | This is the user name to be used by cps-core REST clients to authenticate themselves.                   |                               |
++-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.appUserPassword                    | Password used by cps-core service to configure the authentication for REST API it exposes.              | Not defined                   |
+|                                           |                                                                                                         |                               |
+|                                           | If not defined, the password is generated when deploying the application.                               |                               |
+|                                           |                                                                                                         |                               |
+|                                           | See also :ref:`cps_common_credentials_retrieval`.                                                       |                               |
++-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| postgres.config.pgUserName                | Internal user name used by cps-core to connect to its own database.                                     | ``cps``                       |
++-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| postgres.config.pgUserPassword            | Internal password used by cps-core to connect to its own database.                                      | Not defined                   |
+|                                           |                                                                                                         |                               |
+|                                           | If not defined, the password is generated when deploying the application.                               |                               |
+|                                           |                                                                                                         |                               |
+|                                           | See also :ref:`cps_common_credentials_retrieval`.                                                       |                               |
++-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| postgres.config.pgDatabase                | Database name used by cps-core                                                                          | ``cpsdb``                     |
+|                                           |                                                                                                         |                               |
++-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| logging.level                             | Logging level set in cps-core                                                                           | info                          |
+|                                           |                                                                                                         |                               |
++-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.useStrimziKafka                    | If targeting a custom kafka cluster, i.e. useStrimziKafka: false, the                                   | true                          |
+|                                           | config.eventPublisher.spring.kafka values below must be set.                                            |                               |
++-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.eventPublisher.                    | Kafka hostname and port                                                                                 | ``<kafka-bootstrap>:9092``    |
+| spring.kafka.bootstrap-servers            |                                                                                                         |                               |
++-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.eventPublisher.                    | Kafka consumer client id                                                                                | ``cps-core``                  |
+| spring.kafka.consumer.client-id           |                                                                                                         |                               |
++-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.eventPublisher.                    | Kafka security protocol.                                                                                | ``SASL_PLAINTEXT``            |
+| spring.kafka.security.protocol            | Some possible values are:                                                                               |                               |
+|                                           |                                                                                                         |                               |
+|                                           | * ``PLAINTEXT``                                                                                         |                               |
+|                                           | * ``SASL_PLAINTEXT``, for authentication                                                                |                               |
+|                                           | * ``SASL_SSL``, for authentication and encryption                                                       |                               |
++-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.eventPublisher.                    | Kafka security SASL mechanism. Required for SASL_PLAINTEXT and SASL_SSL protocols.                      | Not defined                   |
+| spring.kafka.properties.                  | Some possible values are:                                                                               |                               |
+| sasl.mechanism                            |                                                                                                         |                               |
+|                                           | * ``PLAIN``, for PLAINTEXT                                                                              |                               |
+|                                           | * ``SCRAM-SHA-512``, for SSL                                                                            |                               |
++-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.eventPublisher.                    | Kafka security SASL JAAS configuration. Required for SASL_PLAINTEXT and SASL_SSL protocols.             | Not defined                   |
+| spring.kafka.properties.                  | Some possible values are:                                                                               |                               |
+| sasl.jaas.config                          |                                                                                                         |                               |
+|                                           | * ``org.apache.kafka.common.security.plain.PlainLoginModule required username="..." password="...";``,  |                               |
+|                                           |   for PLAINTEXT                                                                                         |                               |
+|                                           | * ``org.apache.kafka.common.security.scram.ScramLoginModule required username="..." password="...";``,  |                               |
+|                                           |   for SSL                                                                                               |                               |
++-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.eventPublisher.                    | Kafka security SASL SSL store type. Required for SASL_SSL protocol.                                     | Not defined                   |
+| spring.kafka.ssl.trust-store-type         | Some possible values are:                                                                               |                               |
+|                                           |                                                                                                         |                               |
+|                                           | * ``JKS``                                                                                               |                               |
++-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.eventPublisher.                    | Kafka security SASL SSL store file location. Required for SASL_SSL protocol.                            | Not defined                   |
+| spring.kafka.ssl.trust-store-location     |                                                                                                         |                               |
++-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.eventPublisher.                    | Kafka security SASL SSL store password. Required for SASL_SSL protocol.                                 | Not defined                   |
+| spring.kafka.ssl.trust-store-password     |                                                                                                         |                               |
++-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.eventPublisher.                    | Kafka security SASL SSL broker hostname identification verification. Required for SASL_SSL protocol.    | Not defined                   |
+| spring.kafka.properties.                  | Possible value is:                                                                                      |                               |
+| ssl.endpoint.identification.algorithm     |                                                                                                         |                               |
+|                                           | * ``""``, empty string to disable                                                                       |                               |
++-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.additional.                        | Core pool size in asynchronous execution of notification.                                               | ``2``                         |
+| notification.async.executor.              |                                                                                                         |                               |
+| core-pool-size                            |                                                                                                         |                               |
++-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.additional.                        | Max pool size in asynchronous execution of notification.                                                | ``1``                         |
+| notification.async.executor.              |                                                                                                         |                               |
+| max-pool-size                             |                                                                                                         |                               |
++-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.additional.                        | Queue Capacity in asynchronous execution of notification.                                               | ``500``                       |
+| notification.async.executor.              |                                                                                                         |                               |
+| queue-capacity                            |                                                                                                         |                               |
++-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.additional.                        | If the executor should wait for the tasks to be completed on shutdown                                   | ``true``                      |
+| notification.async.executor.              |                                                                                                         |                               |
+| wait-for-tasks-to-complete-on-shutdown    |                                                                                                         |                               |
++-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.additional.                        | Prefix to be added to the thread name in asynchronous execution of notifications.                       | ``Async-``                    |
+| notification.async.executor.              |                                                                                                         |                               |
+| thread-name-prefix                        |                                                                                                         |                               |
++-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.additional.                        | Specifies number of database connections between database and application.                              | ``10``                        |
+| spring.datasource.hikari.                 | This property controls the maximum size that the pool is allowed to reach,                              |                               |
+| maximumPoolSize                           | including both idle and in-use connections.                                                             |                               |
++-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
 
 .. _additional-cps-ncmp-customizations:
 
 Additional CPS-NCMP Customizations
 ==================================
-+---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.dmiPluginUserName              | User name used by cps-core to authenticate themselves for using ncmp-dmi-plugin service.                | ``dmiuser``                   |
-+---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.dmiPluginUserPassword          | Internal password used by cps-core to connect to ncmp-dmi-plugin service.                               | Not defined                   |
-|                                       |                                                                                                         |                               |
-|                                       | If not defined, the password is generated when deploying the application.                               |                               |
-|                                       |                                                                                                         |                               |
-|                                       | See also :ref:`cps_common_credentials_retrieval`.                                                       |                               |
-+---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.ncmp.timers                    | Specifies the delay in milliseconds in which the module sync watch dog will wake again after finishing. | ``30000``                     |
-| .advised-modules-sync.sleep-time-ms   |                                                                                                         |                               |
-|                                       |                                                                                                         |                               |
-+---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.ncmp.timers                    | Specifies the delay in milliseconds in which the retry mechanism watch dog                              |                               |
-| .locked-modules-sync.sleep-time-ms    | will wake again after finishing.                                                                        | ``300000``                    |
-|                                       |                                                                                                         |                               |
-|                                       |                                                                                                         |                               |
-+---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.ncmp.timers                    | Specifies the delay in milliseconds in which the data sync watch dog will wake again after finishing.   | ``30000``                     |
-| .cm-handle-data-sync.sleep-time-ms    |                                                                                                         |                               |
-|                                       |                                                                                                         |                               |
-+---------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
++-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.dmiPluginUserName                  | User name used by cps-core to authenticate themselves for using ncmp-dmi-plugin service.                | ``dmiuser``                   |
++-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.dmiPluginUserPassword              | Internal password used by cps-core to connect to ncmp-dmi-plugin service.                               | Not defined                   |
+|                                           |                                                                                                         |                               |
+|                                           | If not defined, the password is generated when deploying the application.                               |                               |
+|                                           |                                                                                                         |                               |
+|                                           | See also :ref:`cps_common_credentials_retrieval`.                                                       |                               |
++-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.ncmp.timers                        | Specifies the delay in milliseconds in which the module sync watch dog will wake again after finishing. | ``30000``                     |
+| .advised-modules-sync.sleep-time-ms       |                                                                                                         |                               |
+|                                           |                                                                                                         |                               |
++-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.ncmp.timers                        | Specifies the delay in milliseconds in which the retry mechanism watch dog                              |                               |
+| .locked-modules-sync.sleep-time-ms        | will wake again after finishing.                                                                        | ``300000``                    |
+|                                           |                                                                                                         |                               |
+|                                           |                                                                                                         |                               |
++-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.ncmp.timers                        | Specifies the delay in milliseconds in which the data sync watch dog will wake again after finishing.   | ``30000``                     |
+| .cm-handle-data-sync.sleep-time-ms        |                                                                                                         |                               |
+|                                           |                                                                                                         |                               |
++-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.additional.ncmp.dmi.httpclient     | Specifies the maximum time in seconds, to wait for establishing a connection for the HTTP Client.       | ``180``                       |
+| .connectionTimeoutInSeconds               |                                                                                                         |                               |
++-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.additional.ncmp.dmi.httpclient     | Specifies the maximum number of connections allowed per route in the HTTP client.                       | ``50``                        |
+| .maximumConnectionsPerRoute               |                                                                                                         |                               |
++-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.additional.ncmp.dmi.httpclient     | Specifies the maximum total number of connections that can be held by the HTTP client.                  | ``100``                       |
+| .maximumConnectionsTotal                  |                                                                                                         |                               |
++-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.additional.ncmp.dmi.httpclient     | Specifies the duration in seconds for the threshold, after which idle connections will be evicted       | ``5``                         |
+| .idleConnectionEvictionThresholdInSeconds | from the connection pool by the HTTP client.                                                            |                               |
++-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
 
 CPS-Core Docker Installation
 ============================
