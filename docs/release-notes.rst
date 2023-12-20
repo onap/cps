@@ -38,14 +38,20 @@ Release Data
 
 Bug Fixes
 ---------
+3.4.1
     - `CPS-1979 <https://jira.onap.org/browse/CPS-1979>`_ Bug fix for Invalid topic name suffix.
 
 Features
 --------
     - CPS-Temporal is no longer supported and any related documentation has been removed.
+    - `CPS-1733 <https://jira.onap.org/browse/CPS-1733>`_ Upgrade YANG schema-set for CM handle without removing and adding it.
     - `CPS-1980 <https://jira.onap.org/browse/CPS-1980>`_ Exposing health and cluster metrics for hazelcast.
     - `CPS-1994 <https://jira.onap.org/browse/CPS-1994>`_ Use Apache Http Client for DMI REST requests.
     - `CPS-2005 <https://jira.onap.org/browse/CPS-2005>`_ Removing notification feature for cps updated events ( exclusively used by cps-temporal )
+
+Known Issues
+------------
+    - `CPS-2000 <https://jira.onap.org/browse/CPS-2000>`_ Schema object cache is not distributed.
 
 
 Version: 3.4.0

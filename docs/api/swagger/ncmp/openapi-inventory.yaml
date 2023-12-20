@@ -261,6 +261,7 @@ components:
       example:
         updatedCmHandles:
         - cmHandle: my-cm-handle
+          alternateId: my-alternate-id
           publicCmHandleProperties:
             key: my-property
           cmHandleProperties:
@@ -268,6 +269,7 @@ components:
           moduleSetTag: my-module-set-tag
           trustLevel: COMPLETE
         - cmHandle: my-cm-handle
+          alternateId: my-alternate-id
           publicCmHandleProperties:
             key: my-property
           cmHandleProperties:
@@ -276,6 +278,7 @@ components:
           trustLevel: COMPLETE
         createdCmHandles:
         - cmHandle: my-cm-handle
+          alternateId: my-alternate-id
           publicCmHandleProperties:
             key: my-property
           cmHandleProperties:
@@ -283,6 +286,7 @@ components:
           moduleSetTag: my-module-set-tag
           trustLevel: COMPLETE
         - cmHandle: my-cm-handle
+          alternateId: my-alternate-id
           publicCmHandleProperties:
             key: my-property
           cmHandleProperties:
@@ -337,6 +341,7 @@ components:
     RestInputCmHandle:
       example:
         cmHandle: my-cm-handle
+        alternateId: my-alternate-id
         publicCmHandleProperties:
           key: my-property
         cmHandleProperties:
@@ -366,6 +371,9 @@ components:
           - NONE
           example: COMPLETE
           type: string
+        alternateId:
+          example: my-alternate-id
+          type: string
       required:
       - cmHandle
       type: object
@@ -391,6 +399,7 @@ components:
             type: string
           type: array
         moduleSetTag:
+          default: ""
           example: my-module-set-tag
           type: string
       required:

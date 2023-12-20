@@ -1974,6 +1974,7 @@ components:
             reason: LOCKED_MISBEHAVING
             details: locked due to failure in module sync
           lastUpdateTime: 2022-12-31T20:30:40.000+0000
+        trustLevel: COMPLETE
       properties:
         cmHandle:
           example: my-cm-handle1
@@ -1987,6 +1988,10 @@ components:
           type: array
         state:
           $ref: '#/components/schemas/CmHandleCompositeState'
+        trustLevel:
+          description: Current trust level of the relevant CM handle ID.
+          example: COMPLETE
+          type: string
       title: CM handle Details
       type: object
     CmHandlePublicProperties:
@@ -2064,6 +2069,10 @@ components:
           example: 2022-12-31T20:30:40.000+0000
           type: string
       type: object
+    CmHandleTrustLevel:
+      description: Current trust level of the relevant CM handle ID.
+      example: COMPLETE
+      type: string
     RestOutputCmHandlePublicProperties:
       example:
         publicCmHandleProperties:
