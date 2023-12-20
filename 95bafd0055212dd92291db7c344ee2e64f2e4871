@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "677c4bb3_e7cba891",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-12-20T14:40:21Z",
+      "side": 1,
+      "message": "first raise the maven stage file and then docker stage yaml as both are dependent on each other.",
+      "revId": "95bafd0055212dd92291db7c344ee2e64f2e4871",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
