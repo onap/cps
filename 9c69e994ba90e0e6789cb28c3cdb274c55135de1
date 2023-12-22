@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0566deed_48abe31c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2023-12-22T14:09:18Z",
+      "side": 1,
+      "message": "I see a lot of changes but from what I understood is in this patch.\n- dataspace and anchor service split is present\n- refactoring the methods",
+      "revId": "9c69e994ba90e0e6789cb28c3cdb274c55135de1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
