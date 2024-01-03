@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db1d19d7_47b913df",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-01-03T12:31:55Z",
+      "side": 1,
+      "message": "minor comments/questions.\notherwise it looks fine to me.",
+      "revId": "61f5c313e82aee03699f89fdc4fd660ba767bf5b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a045200d_f1fddd0d",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-01-03T12:31:55Z",
+      "side": 1,
+      "message": "is null not accepted now ??",
+      "range": {
+        "startLine": 229,
+        "startChar": 60,
+        "endLine": 229,
+        "endChar": 64
+      },
+      "revId": "61f5c313e82aee03699f89fdc4fd660ba767bf5b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef95ce11_d1060b1f",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/spi/impl/CpsDataPersistenceServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-01-03T12:31:55Z",
+      "side": 1,
+      "message": "and is this mandatorily required now.\nto have a empty json block.\nor its for test illustration ?",
+      "range": {
+        "startLine": 265,
+        "startChar": 124,
+        "endLine": 265,
+        "endChar": 140
+      },
+      "revId": "61f5c313e82aee03699f89fdc4fd660ba767bf5b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
