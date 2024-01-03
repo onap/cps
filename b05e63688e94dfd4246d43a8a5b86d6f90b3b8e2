@@ -33,6 +33,138 @@
       "message": "recheck",
       "revId": "b05e63688e94dfd4246d43a8a5b86d6f90b3b8e2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9215ebb4_a9767190",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-01-03T10:46:33Z",
+      "side": 1,
+      "message": "Minor issues",
+      "revId": "b05e63688e94dfd4246d43a8a5b86d6f90b3b8e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a579869_e65758b1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionNcmpInEventMapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-01-03T10:46:33Z",
+      "side": 1,
+      "message": "This should return Collections.emptyList() instead of null (sonar code smell)",
+      "range": {
+        "startLine": 50,
+        "startChar": 12,
+        "endLine": 50,
+        "endChar": 24
+      },
+      "revId": "b05e63688e94dfd4246d43a8a5b86d6f90b3b8e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d10c6eb_52f31835",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionNcmpInEventConsumerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-01-03T10:46:33Z",
+      "side": 1,
+      "message": "2022?",
+      "range": {
+        "startLine": 3,
+        "startChar": 17,
+        "endLine": 3,
+        "endChar": 22
+      },
+      "revId": "b05e63688e94dfd4246d43a8a5b86d6f90b3b8e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17af5a03_13e873a5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionNcmpInEventConsumerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-01-03T10:46:33Z",
+      "side": 1,
+      "message": "Could use import",
+      "range": {
+        "startLine": 38,
+        "startChar": 51,
+        "endLine": 38,
+        "endChar": 99
+      },
+      "revId": "b05e63688e94dfd4246d43a8a5b86d6f90b3b8e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6af768e0_ee2870d2",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionNcmpInEventConsumerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-01-03T10:46:33Z",
+      "side": 1,
+      "message": "Could use import",
+      "range": {
+        "startLine": 39,
+        "startChar": 30,
+        "endLine": 39,
+        "endChar": 79
+      },
+      "revId": "b05e63688e94dfd4246d43a8a5b86d6f90b3b8e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93cc218f_2cff6853",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionNcmpInEventMapperSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-01-03T10:46:33Z",
+      "side": 1,
+      "message": "Could use import",
+      "range": {
+        "startLine": 36,
+        "startChar": 4,
+        "endLine": 36,
+        "endChar": 53
+      },
+      "revId": "b05e63688e94dfd4246d43a8a5b86d6f90b3b8e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
