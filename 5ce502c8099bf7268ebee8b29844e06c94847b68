@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa9c72ce_bd318d5d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2024-01-04T12:29:17Z",
+      "side": 1,
+      "message": "NB 2024",
+      "revId": "5ce502c8099bf7268ebee8b29844e06c94847b68",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58394869_a62037ca",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2024-01-04T12:29:17Z",
+      "side": 1,
+      "message": "Do we need a log warning if the alternateId is not empty?",
+      "revId": "5ce502c8099bf7268ebee8b29844e06c94847b68",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5de49ad6_3c477e05",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandlerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2024-01-04T12:29:17Z",
+      "side": 1,
+      "message": "NB 2024",
+      "revId": "5ce502c8099bf7268ebee8b29844e06c94847b68",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
