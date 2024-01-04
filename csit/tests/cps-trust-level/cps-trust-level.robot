@@ -34,7 +34,7 @@ ${auth}                                     Basic Y3BzdXNlcjpjcHNyMGNrcyE=
 ${ncmpInventoryBasePath}                    /ncmpInventory
 ${ncmpBasePath}                             /ncmp/v1
 ${dmiUrl}                                   http://${DMI_HOST}:${DMI_PORT}
-${jsonCreateCmHandles}                      {"dmiPlugin":"${dmiUrl}","dmiDataPlugin":"","dmiModelPlugin":"","createdCmHandles":[{"trustLevel":"COMPLETE","cmHandle":"CH-1"},{"trustLevel":"COMPLETE","cmHandle":"CH-2"},{"cmHandle":"CH-3"},{"trustLevel":"NONE","cmHandle":"CH-4"}]}
+${jsonCreateCmHandles}                      {"dmiPlugin":"${dmiUrl}","dmiDataPlugin":"","dmiModelPlugin":"","createdCmHandles":[{"trustLevel":"COMPLETE","cmHandle":"ietfYang-CH-1"},{"trustLevel":"COMPLETE","cmHandle":"bookStore-CH-2"},{"cmHandle":"ietfYang-CH-3"},{"trustLevel":"NONE","cmHandle":"bookStore-CH-4"}]}
 ${jsonTrustLevelPropertyQueryParameters}    {"cmHandleQueryParameters": [{"conditionName": "cmHandleWithTrustLevel", "conditionParameters": [ {"trustLevel": "COMPLETE"} ] }]}
 ${jsonTrustLevelQueryResponse}              {"data":{"attributeValueChange":[{"attributeName":"trustLevel","newAttributeValue":"NONE"}]}}
 ${partitionId}                              ${0}
@@ -66,10 +66,10 @@ Retrieve CM Handle ids where query parameters Match (trust level query)
     ${response}=         POST On Session    CPS_URL   ${uri}   headers=${headers}   data=${jsonTrustLevelPropertyQueryParameters}
     ${responseJson}=     Set Variable       ${response.json()}
     Should Be Equal As Strings              ${response.status_code}   200
-    Should Contain       ${responseJson}    CH-1
-    Should Contain       ${responseJson}    CH-2
-    Should Contain       ${responseJson}    CH-3
-    Should Not Contain   ${responseJson}    CH-4
+    Should Contain       ${responseJson}    ietfYang-CH-1
+    Should Contain       ${responseJson}    bookStore-CH-2
+    Should Contain       ${responseJson}    ietfYang-CH-3
+    Should Not Contain   ${responseJson}    bookStore-CH-4
 
 *** Keywords ***
 Register Data Nodes

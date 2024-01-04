@@ -40,14 +40,14 @@ Operational state goes to UNSYNCHRONIZED when data sync (flag) is enabled
     ${headers}=          Create Dictionary  Authorization=${auth}
     ${response}=         PUT On Session     CPS_URL   ${uri}   params=${params}   headers=${headers}
     Should Be Equal As Strings              ${response.status_code}   200
-    ${verifyUri}=              Set Variable       ${ncmpBasePath}/v1/ch/PNFDemo/state
+    ${verifyUri}=              Set Variable       ${ncmpBasePath}/v1/ch/ietfYang-PNFDemo/state
     ${verifyHeaders}=          Create Dictionary  Authorization=${auth}
     ${verifyResponse}=         GET On Session     CPS_URL   ${verifyUri}   headers=${verifyHeaders}
     Should Be Equal As Strings                    ${verifyResponse.json()['state']['dataSyncState']['operational']['syncState']}   UNSYNCHRONIZED
     Sleep    5
 
 Operational state goes to SYNCHRONIZED after sometime when data sync (flag) is enabled
-    ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/PNFDemo/state
+    ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/ietfYang-PNFDemo/state
     ${headers}=          Create Dictionary  Authorization=${auth}
     ${response}=         GET On Session     CPS_URL   ${uri}   headers=${headers}
     Should Be Equal As Strings              ${response.json()['state']['dataSyncState']['operational']['syncState']}   SYNCHRONIZED

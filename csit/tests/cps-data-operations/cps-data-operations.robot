@@ -36,7 +36,7 @@ ${topic}                                data-operation-client-topic
 ${ncmpBasePath}                         /ncmp
 ${expectedRequestId}                    ${EMPTY}
 ${dmipluginCsitStubUrl}                 http://${DMI_CSIT_STUB_HOST}:${DMI_CSIT_STUB_PORT}
-${newCmHandleRequestBody}               {"dmiPlugin":"${dmipluginCsitStubUrl}","createdCmHandles":[{"cmHandle":"850117873c9a4936856a5081be96e6a8"}]}
+${newCmHandleRequestBody}               {"dmiPlugin":"${dmipluginCsitStubUrl}","createdCmHandles":[{"cmHandle":"bookStore-850117873c9a4936856a5081be96e6a8"}]}
 
 *** Test Cases ***
 
