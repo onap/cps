@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c276dd00_3bc99313",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-01-04T13:49:03Z",
+      "side": 1,
+      "message": "Will get others to review as well and then you can incorporate the comments in one go.",
+      "revId": "49e9059786c4f3a2a443d9e1c870ed029ee41acf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79f10ba9_2258ba53",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-01-04T13:49:03Z",
+      "side": 1,
+      "message": "NB: not required explicitly.",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 18
+      },
+      "revId": "49e9059786c4f3a2a443d9e1c870ed029ee41acf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29bfc7f1_d065a29d",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-01-04T13:49:03Z",
+      "side": 1,
+      "message": "NB: leavesOfTargetDataNode",
+      "range": {
+        "startLine": 106,
+        "startChar": 40,
+        "endLine": 106,
+        "endChar": 62
+      },
+      "revId": "49e9059786c4f3a2a443d9e1c870ed029ee41acf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b84d6047_5233b812",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-01-04T13:49:03Z",
+      "side": 1,
+      "message": "this check is not required. plz check.",
+      "range": {
+        "startLine": 181,
+        "startChar": 8,
+        "endLine": 181,
+        "endChar": 63
+      },
+      "revId": "49e9059786c4f3a2a443d9e1c870ed029ee41acf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
