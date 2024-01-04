@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2022-2023 Nordix Foundation
+ * Copyright (C) 2022-2024 Nordix Foundation
  * Modifications Copyright (C) 2022 Bell Canada
  * Modifications Copyright (C) 2023 TechMahindra Ltd.
  * ================================================================================
@@ -29,6 +29,8 @@ import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLE_INVALID_ID
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNKNOWN_ERROR
 import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.Status
 
+import org.onap.cps.api.CpsDataService
+import org.onap.cps.utils.JsonObjectMapper
 import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
@@ -40,8 +42,10 @@ import spock.lang.Specification
 class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
 
     def mockInventoryPersistence = Mock(InventoryPersistence)
+    def mockCpsDataService = Mock(CpsDataService)
+    def mockJsonObjectMapper = Mock(JsonObjectMapper)
 
-    def objectUnderTest = new NetworkCmProxyDataServicePropertyHandler(mockInventoryPersistence)
+    def objectUnderTest = new NetworkCmProxyDataServicePropertyHandler(mockInventoryPersistence, mockCpsDataService, mockJsonObjectMapper)
     def static cmHandleId = 'myHandle1'
     def static cmHandleXpath = "/dmi-registry/cm-handles[@id='${cmHandleId}']"
 
@@ -49,7 +53,7 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
                                     new DataNodeBuilder().withXpath("/dmi-registry/cm-handles[@id='${cmHandleId}']/additional-properties[@name='additionalProp2']").withLeaves(['name': 'additionalProp2', 'value': 'additionalValue2']).build(),
                                     new DataNodeBuilder().withXpath("/dmi-registry/cm-handles[@id='${cmHandleId}']/public-properties[@name='publicProp3']").withLeaves(['name': 'publicProp3', 'value': 'publicValue3']).build(),
                                     new DataNodeBuilder().withXpath("/dmi-registry/cm-handles[@id='${cmHandleId}']/public-properties[@name='publicProp4']").withLeaves(['name': 'publicProp4', 'value': 'publicValue4']).build()]
-    def static cmHandleDataNodeAsCollection = [new DataNode(xpath: cmHandleXpath, childDataNodes: propertyDataNodes)]
+    def static cmHandleDataNodeAsCollection = [new DataNode(xpath: cmHandleXpath, childDataNodes: propertyDataNodes, leaves: ['alternate-id': ''])]
 
     def 'Update CM Handle Public Properties: #scenario'() {
         given: 'the CPS service return a CM handle'
