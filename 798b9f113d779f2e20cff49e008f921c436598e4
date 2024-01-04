@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e3d6e38_644e4fef",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionNcmpInEventConsumer.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-01-04T14:51:41Z",
+      "side": 1,
+      "message": "this doesnt look conventional.",
+      "range": {
+        "startLine": 59,
+        "startChar": 8,
+        "endLine": 59,
+        "endChar": 49
+      },
+      "revId": "798b9f113d779f2e20cff49e008f921c436598e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "024e2be8_9ac79137",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionNcmpInEventConsumer.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-01-04T14:51:41Z",
+      "side": 1,
+      "message": "not required at this moment I guess.",
+      "range": {
+        "startLine": 63,
+        "startChar": 8,
+        "endLine": 67,
+        "endChar": 9
+      },
+      "revId": "798b9f113d779f2e20cff49e008f921c436598e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ba9d3ea_b3908fd3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionNcmpInEventConsumerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-01-04T14:51:41Z",
+      "side": 1,
+      "message": "?? Subscription.. right ?",
+      "range": {
+        "startLine": 52,
+        "startChar": 44,
+        "endLine": 52,
+        "endChar": 46
+      },
+      "revId": "798b9f113d779f2e20cff49e008f921c436598e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffb437de_c5e674be",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionNcmpInEventConsumerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-01-04T14:51:41Z",
+      "side": 1,
+      "message": "if its same for all the scenarios then better hardcode it.",
+      "range": {
+        "startLine": 73,
+        "startChar": 61,
+        "endLine": 73,
+        "endChar": 80
+      },
+      "revId": "798b9f113d779f2e20cff49e008f921c436598e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
