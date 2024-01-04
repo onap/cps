@@ -73,37 +73,41 @@ public class DmiRestStubController {
     /**
      * Get all modules for given cm handle.
      *
-     * @param cmHandle                The identifier for a network function, network element, subnetwork,
+     * @param cmHandleId              The identifier for a network function, network element, subnetwork,
      *                                or any other cm object by managed Network CM Proxy
      * @param moduleReferencesRequest module references request body
      * @return ResponseEntity response entity having module response as json string.
      */
-    @PostMapping("/v1/ch/{cmHandle}/modules")
-    public ResponseEntity<String> getModuleReferences(@PathVariable final String cmHandle,
+    @PostMapping("/v1/ch/{cmHandleId}/modules")
+    public ResponseEntity<String> getModuleReferences(@PathVariable final String cmHandleId,
                                                       @RequestBody final Object moduleReferencesRequest) {
+        final String moduleResponseContentFilePath = cmHandleId.length() % 2 == 0
+                ? "module/bookStoreModuleResponse.json" : "module/ietfYangModuleResponse.json";
         final String moduleResponseContent = ResourceFileReaderUtil
                 .getResourceFileContent(applicationContext.getResource(
-                        ResourceLoader.CLASSPATH_URL_PREFIX + "module/moduleResponse.json"));
-        log.info("cm handle: {} requested for modules", cmHandle);
+                        ResourceLoader.CLASSPATH_URL_PREFIX + moduleResponseContentFilePath));
+        log.info("cm handle: {} requested for modules", cmHandleId);
         return ResponseEntity.ok(moduleResponseContent);
     }
 
     /**
-     * Get all module resources for given cm handle.
+     * Retrieves module resources for a given cmHandleId.
      *
-     * @param cmHandle                   The identifier for a network function, network element, subnetwork,
+     * @param cmHandleId                 The identifier for a network function, network element, subnetwork,
      *                                   or any other cm object by managed Network CM Proxy
      * @param moduleResourcesReadRequest module resources read request body
      * @return ResponseEntity response entity having module resources response as json string.
      */
-    @PostMapping("/v1/ch/{cmHandle}/moduleResources")
+    @PostMapping("/v1/ch/{cmHandleId}/moduleResources")
     public ResponseEntity<String> retrieveModuleResources(
-            @PathVariable final String cmHandle,
+            @PathVariable final String cmHandleId,
             @RequestBody final Object moduleResourcesReadRequest) {
+        final String moduleResourcesResponseContentFilePath = cmHandleId.length() % 2 == 0
+                ? "module/bookStoreModuleResourcesResponse.json" : "module/ietfYangModuleResourcesResponse.json";
         final String moduleResourcesResponseContent = ResourceFileReaderUtil
                 .getResourceFileContent(applicationContext.getResource(
-                        ResourceLoader.CLASSPATH_URL_PREFIX + "module/moduleResourcesResponse.json"));
-        log.info("cm handle: {} requested for module resources", cmHandle);
+                        ResourceLoader.CLASSPATH_URL_PREFIX + moduleResourcesResponseContentFilePath));
+        log.info("cm handle: {} requested for module resources", cmHandleId);
         return ResponseEntity.ok(moduleResourcesResponseContent);
     }
 
