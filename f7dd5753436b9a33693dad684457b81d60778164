@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b913e7a4_992c5f3d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-04T15:57:15Z",
+      "side": 1,
+      "message": "CAN it be null really?",
+      "range": {
+        "startLine": 108,
+        "startChar": 67,
+        "endLine": 108,
+        "endChar": 87
+      },
+      "revId": "f7dd5753436b9a33693dad684457b81d60778164",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5aa5c454_ac74d8d7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-04T15:57:15Z",
+      "side": 1,
+      "message": "you have 8 possible code paths here, I doubt that is necessary (see also next comment)\nAlways be carefull with such checks, it means to u need 8 diferent tests now!",
+      "range": {
+        "startLine": 108,
+        "startChar": 8,
+        "endLine": 108,
+        "endChar": 10
+      },
+      "revId": "f7dd5753436b9a33693dad684457b81d60778164",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc9d13b3_06557fa5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-04T15:57:15Z",
+      "side": 1,
+      "message": "another 8 paths! \nThis statement should easily be combined with those from line 108 as you are repeating (most of) the conditions",
+      "range": {
+        "startLine": 114,
+        "startChar": 17,
+        "endLine": 115,
+        "endChar": 50
+      },
+      "revId": "f7dd5753436b9a33693dad684457b81d60778164",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d5fb391_137f6c3d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-04T15:57:15Z",
+      "side": 1,
+      "message": "\u0027warn\u0027 i think",
+      "range": {
+        "startLine": 116,
+        "startChar": 16,
+        "endLine": 116,
+        "endChar": 20
+      },
+      "revId": "f7dd5753436b9a33693dad684457b81d60778164",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea9c5b76_ce0a1dad",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandlerSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-04T15:57:15Z",
+      "side": 1,
+      "message": "not clear, need to discuss",
+      "range": {
+        "startLine": 198,
+        "startChar": 9,
+        "endLine": 198,
+        "endChar": 36
+      },
+      "revId": "f7dd5753436b9a33693dad684457b81d60778164",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
