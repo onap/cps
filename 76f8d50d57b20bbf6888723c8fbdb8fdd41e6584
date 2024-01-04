@@ -39,6 +39,30 @@
       },
       "revId": "76f8d50d57b20bbf6888723c8fbdb8fdd41e6584",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5161c20_a24ffa73",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-01-04T13:55:07Z",
+      "side": 1,
+      "message": "It\u0027s not backwards incompatible, but the ordering change is needed for these unit tests using mocks. Note the integration tests pass without changes, and some of those use unordered JSON, for example org/onap/cps/integration/functional/CpsDataServiceIntegrationSpec.groovy:396\n\n    {\"webinfo\": {\"domain-name\":\"ourbookstore.com\" ,\"contact-email\":\"info@ourbookstore.com\" }}",
+      "parentUuid": "e24cc0b1_b6de1cf1",
+      "range": {
+        "startLine": 81,
+        "startChar": 27,
+        "endLine": 81,
+        "endChar": 50
+      },
+      "revId": "76f8d50d57b20bbf6888723c8fbdb8fdd41e6584",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
