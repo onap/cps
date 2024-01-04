@@ -6,8 +6,8 @@
 .. _cmHandleDataOperation:
 
 
-CM Handles Data Operation Endpoints
-###################################
+Data Operations Endpoint
+########################
 
 .. toctree::
    :maxdepth: 1
@@ -15,11 +15,11 @@ CM Handles Data Operation Endpoints
 Introduction
 ============
 
-For data operation CM Handles we have a Post endpoints:
+For all data operations on cm handle(s), we have a post endpoint:
 
 - /ncmp/v1/data?topic={client-topic-name} forward request to it's dmi plugin service.
 
-- Returns request id (UUID) with http status 202.
+- When asynchronous (with topic) operations are executed, a request id (UUID) wil be returned.
 
 Request Body
 ============
@@ -143,6 +143,6 @@ DMI Service 2 (POST) : `http://{dmi-host-name}:{dmi-port}/dmi/v1/data?topic=my-t
     }
     ]
 
-Above examples are for illustration purpose only please refer link below for latest schema.
+Above examples are for illustration purposes only. Please refer to link below for latest schema.
 
 :download:`Data operation event schema <schemas/data-operation-event-schema-1.0.0.json>`
