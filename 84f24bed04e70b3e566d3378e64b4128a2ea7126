@@ -39,6 +39,30 @@
       },
       "revId": "84f24bed04e70b3e566d3378e64b4128a2ea7126",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4767ac9c_c7e6b2a7",
+        "filename": "docs/ncmp-data-operation.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-01-04T17:38:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d00a892e_aac54221",
+      "range": {
+        "startLine": 10,
+        "startChar": 24,
+        "endLine": 10,
+        "endChar": 35
+      },
+      "revId": "84f24bed04e70b3e566d3378e64b4128a2ea7126",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
