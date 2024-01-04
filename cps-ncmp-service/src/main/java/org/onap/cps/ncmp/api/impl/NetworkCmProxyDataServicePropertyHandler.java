@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2023 Nordix Foundation
+ *  Copyright (C) 2022-2024 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
  *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
@@ -26,10 +26,15 @@ import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLES_NOT_FOUND;
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLE_INVALID_ID;
 import static org.onap.cps.ncmp.api.impl.NetworkCmProxyDataServicePropertyHandler.PropertyType.DMI_PROPERTY;
 import static org.onap.cps.ncmp.api.impl.NetworkCmProxyDataServicePropertyHandler.PropertyType.PUBLIC_PROPERTY;
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME;
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR;
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT;
 
 import com.google.common.collect.ImmutableMap;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -38,13 +43,17 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.api.CpsDataService;
 import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence;
+import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
+import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.DataNodeBuilder;
+import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -55,6 +64,8 @@ import org.springframework.stereotype.Service;
 public class NetworkCmProxyDataServicePropertyHandler {
 
     private final InventoryPersistence inventoryPersistence;
+    private final CpsDataService cpsDataService;
+    private final JsonObjectMapper jsonObjectMapper;
 
     /**
      * Iterates over incoming ncmpServiceCmHandles and update the dataNodes based on the updated attributes.
@@ -70,6 +81,7 @@ public class NetworkCmProxyDataServicePropertyHandler {
             try {
                 final DataNode existingCmHandleDataNode = inventoryPersistence.getCmHandleDataNode(cmHandleId)
                         .iterator().next();
+                updateAlternateId(existingCmHandleDataNode, ncmpServiceCmHandle);
                 processUpdates(existingCmHandleDataNode, ncmpServiceCmHandle);
                 cmHandleRegistrationResponses.add(CmHandleRegistrationResponse.createSuccessResponse(cmHandleId));
             } catch (final DataNodeNotFoundException e) {
@@ -87,6 +99,23 @@ public class NetworkCmProxyDataServicePropertyHandler {
             }
         }
         return cmHandleRegistrationResponses;
+    }
+
+    private void updateAlternateId(final DataNode existingCmHandleDataNode,
+                                   final NcmpServiceCmHandle ncmpServiceCmHandle) {
+        final String newAlternateId = ncmpServiceCmHandle.getAlternateId();
+        final String existingAlternateId = (String) existingCmHandleDataNode.getLeaves().get("alternate-id");
+        if (newAlternateId != null && !newAlternateId.isEmpty() && existingAlternateId != null
+                && existingAlternateId.isEmpty()) {
+            final YangModelCmHandle yangModelCmHandle =
+                    YangDataConverter.convertCmHandleToYangModel(existingCmHandleDataNode,
+                            ncmpServiceCmHandle.getCmHandleId());
+            setAndUpdateAlternateId(yangModelCmHandle, newAlternateId);
+        } else if (newAlternateId != null && !newAlternateId.isEmpty() && existingAlternateId != null
+                && !existingAlternateId.isEmpty()) {
+            log.info("Unable to update alternateId for cmHandle {}. Value for alternateId have been set previously.",
+                    ncmpServiceCmHandle.getCmHandleId());
+        }
     }
 
     private void processUpdates(final DataNode existingCmHandleDataNode, final NcmpServiceCmHandle incomingCmHandle) {
@@ -163,6 +192,17 @@ public class NetworkCmProxyDataServicePropertyHandler {
         log.debug("Building a new node with xpath {} with leaves (name : {} , value : {})", xpath, attributeKey,
                 attributeValue);
         return new DataNodeBuilder().withXpath(xpath).withLeaves(ImmutableMap.copyOf(updatedLeaves)).build();
+    }
+
+    private void setAndUpdateAlternateId(final YangModelCmHandle upgradedCmHandle, final String alternateId) {
+        final Map<String, Map<String, String>> dmiRegistryProperties = new HashMap<>(1);
+        final Map<String, String> cmHandleProperties = new HashMap<>(2);
+        cmHandleProperties.put("id", upgradedCmHandle.getId());
+        cmHandleProperties.put("alternate-id", alternateId);
+        dmiRegistryProperties.put("cm-handles", cmHandleProperties);
+        cpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
+                jsonObjectMapper.asJsonString(dmiRegistryProperties), OffsetDateTime.now());
+        log.debug("Updating alternateId for cmHandle {} with value : {})", upgradedCmHandle.getId(), alternateId);
     }
 
     enum PropertyType {
