@@ -18,6 +18,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "58d8ccbe_5fec4220",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-01-04T12:51:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa9c72ce_bd318d5d",
+      "revId": "5ce502c8099bf7268ebee8b29844e06c94847b68",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "58394869_a62037ca",
@@ -35,6 +53,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c0c33f6_b7e02716",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-01-04T12:51:32Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "58394869_a62037ca",
+      "revId": "5ce502c8099bf7268ebee8b29844e06c94847b68",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5de49ad6_3c477e05",
@@ -48,6 +84,24 @@
       "writtenOn": "2024-01-04T12:29:17Z",
       "side": 1,
       "message": "NB 2024",
+      "revId": "5ce502c8099bf7268ebee8b29844e06c94847b68",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce0c76d2_8ae6c51c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandlerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-01-04T12:51:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5de49ad6_3c477e05",
       "revId": "5ce502c8099bf7268ebee8b29844e06c94847b68",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
