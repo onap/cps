@@ -3,7 +3,7 @@
   "dmiModelPlugin":"x",
   "createdCmHandles": [
     {
-      "cmHandle": "CMHandle1",
+      "cmHandle": "ietfYang-CMHandle1",
       "cmHandleProperties": {
         "Books": "Social Media"
       },
