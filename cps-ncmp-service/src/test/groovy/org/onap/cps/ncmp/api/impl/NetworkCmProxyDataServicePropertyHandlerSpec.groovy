@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2022-2023 Nordix Foundation
+ * Copyright (C) 2022-2024 Nordix Foundation
  * Modifications Copyright (C) 2022 Bell Canada
  * Modifications Copyright (C) 2023 TechMahindra Ltd.
  * ================================================================================
@@ -22,6 +22,8 @@
 
 package org.onap.cps.ncmp.api.impl
 
+import java.time.OffsetDateTime
+
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLES_NOT_FOUND
@@ -29,6 +31,8 @@ import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLE_INVALID_ID
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNKNOWN_ERROR
 import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.Status
 
+import org.onap.cps.api.CpsDataService
+import org.onap.cps.utils.JsonObjectMapper
 import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
@@ -40,8 +44,10 @@ import spock.lang.Specification
 class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
 
     def mockInventoryPersistence = Mock(InventoryPersistence)
+    def mockCpsDataService = Mock(CpsDataService)
+    def mockJsonObjectMapper = Mock(JsonObjectMapper)
 
-    def objectUnderTest = new NetworkCmProxyDataServicePropertyHandler(mockInventoryPersistence)
+    def objectUnderTest = new NetworkCmProxyDataServicePropertyHandler(mockInventoryPersistence, mockCpsDataService, mockJsonObjectMapper)
     def static cmHandleId = 'myHandle1'
     def static cmHandleXpath = "/dmi-registry/cm-handles[@id='${cmHandleId}']"
 
@@ -49,7 +55,7 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
                                     new DataNodeBuilder().withXpath("/dmi-registry/cm-handles[@id='${cmHandleId}']/additional-properties[@name='additionalProp2']").withLeaves(['name': 'additionalProp2', 'value': 'additionalValue2']).build(),
                                     new DataNodeBuilder().withXpath("/dmi-registry/cm-handles[@id='${cmHandleId}']/public-properties[@name='publicProp3']").withLeaves(['name': 'publicProp3', 'value': 'publicValue3']).build(),
                                     new DataNodeBuilder().withXpath("/dmi-registry/cm-handles[@id='${cmHandleId}']/public-properties[@name='publicProp4']").withLeaves(['name': 'publicProp4', 'value': 'publicValue4']).build()]
-    def static cmHandleDataNodeAsCollection = [new DataNode(xpath: cmHandleXpath, childDataNodes: propertyDataNodes)]
+    def static cmHandleDataNodeAsCollection = [new DataNode(xpath: cmHandleXpath, childDataNodes: propertyDataNodes, leaves: ['alternate-id': ''])]
 
     def 'Update CM Handle Public Properties: #scenario'() {
         given: 'the CPS service return a CM handle'
@@ -171,6 +177,21 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
             }
         then: 'the replace list method is called twice'
             2 * mockInventoryPersistence.replaceListContent(cmHandleXpath,_)
+    }
+
+    def 'Update CM Handle Alternate ID when #scenario'() {
+        given: 'the CPS service return a CM handle'
+            mockInventoryPersistence.getCmHandleDataNode(cmHandleId) >> returnedCmHandleCollection
+        and: 'an update cm handle request with alternate id updates'
+            def cmHandleUpdateRequest = [new NcmpServiceCmHandle(cmHandleId: cmHandleId, alternateId: 'my-alternate-id')]
+        when: 'update data node leaves is called with the update request'
+            objectUnderTest.updateCmHandleProperties(cmHandleUpdateRequest)
+        then: 'the update node leaves method is invoked as many times as expected'
+            numberOfInvocations * mockCpsDataService.updateNodeLeaves('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry', _, _)
+        where: 'following updates are made'
+        scenario                        | returnedCmHandleCollection                                                         || numberOfInvocations
+        'new alternate id added'        | [new DataNode(xpath: cmHandleXpath, leaves: ['alternate-id': 'old-alternate-id'])] || 0
+        'alternate id already exists'   | [new DataNode(xpath: cmHandleXpath, leaves: ['alternate-id': ''])]                 || 1
     }
 
     def convertToProperties(expectedPropertiesAfterUpdateAsMap) {
