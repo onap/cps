@@ -73,37 +73,38 @@ public class DmiRestStubController {
     /**
      * Get all modules for given cm handle.
      *
-     * @param cmHandle                The identifier for a network function, network element, subnetwork,
+     * @param cmHandleId              The identifier for a network function, network element, subnetwork,
      *                                or any other cm object by managed Network CM Proxy
      * @param moduleReferencesRequest module references request body
      * @return ResponseEntity response entity having module response as json string.
      */
-    @PostMapping("/v1/ch/{cmHandle}/modules")
-    public ResponseEntity<String> getModuleReferences(@PathVariable final String cmHandle,
+    @PostMapping("/v1/ch/{cmHandleId}/modules")
+    public ResponseEntity<String> getModuleReferences(@PathVariable final String cmHandleId,
                                                       @RequestBody final Object moduleReferencesRequest) {
-        final String moduleResponseContent = ResourceFileReaderUtil
-                .getResourceFileContent(applicationContext.getResource(
-                        ResourceLoader.CLASSPATH_URL_PREFIX + "module/moduleResponse.json"));
-        log.info("cm handle: {} requested for modules", cmHandle);
+        final String moduleResponseContent = ResourceFileReaderUtil.getResourceFileContent(applicationContext
+                .getResource(ResourceLoader.CLASSPATH_URL_PREFIX + getmoduleResponseFilePath(
+                        cmHandleId, "ModuleResponse.json")));
+        log.info("cm handle: {} requested for modules", cmHandleId);
         return ResponseEntity.ok(moduleResponseContent);
     }
 
     /**
-     * Get all module resources for given cm handle.
+     * Retrieves module resources for a given cmHandleId.
      *
-     * @param cmHandle                   The identifier for a network function, network element, subnetwork,
+     * @param cmHandleId                 The identifier for a network function, network element, subnetwork,
      *                                   or any other cm object by managed Network CM Proxy
      * @param moduleResourcesReadRequest module resources read request body
      * @return ResponseEntity response entity having module resources response as json string.
      */
-    @PostMapping("/v1/ch/{cmHandle}/moduleResources")
+    @PostMapping("/v1/ch/{cmHandleId}/moduleResources")
     public ResponseEntity<String> retrieveModuleResources(
-            @PathVariable final String cmHandle,
+            @PathVariable final String cmHandleId,
             @RequestBody final Object moduleResourcesReadRequest) {
-        final String moduleResourcesResponseContent = ResourceFileReaderUtil
-                .getResourceFileContent(applicationContext.getResource(
-                        ResourceLoader.CLASSPATH_URL_PREFIX + "module/moduleResourcesResponse.json"));
-        log.info("cm handle: {} requested for module resources", cmHandle);
+        final String moduleResourcesResponseContent
+                = ResourceFileReaderUtil.getResourceFileContent(applicationContext.getResource(
+                ResourceLoader.CLASSPATH_URL_PREFIX + getmoduleResponseFilePath(
+                        cmHandleId, "ModuleResourcesResponse.json")));
+        log.info("cm handle: {} requested for modules resources", cmHandleId);
         return ResponseEntity.ok(moduleResourcesResponseContent);
     }
 
@@ -185,5 +186,13 @@ public class DmiRestStubController {
         final DataOperationEvent dataOperationEvent = new DataOperationEvent();
         dataOperationEvent.setData(data);
         return dataOperationEvent;
+    }
+
+    private String getmoduleResponseFilePath(final String cmHandleId, final String moduleResponseType) {
+        final String[] cmHandleIdParts = cmHandleId.split("-");
+        final String nodeType = cmHandleIdParts.length > 0
+                && cmHandleIdParts[0].equalsIgnoreCase("bookStore")
+                ? "bookStore" : "ietfYang";
+        return String.format("module/%s%s", nodeType, moduleResponseType);
     }
 }
