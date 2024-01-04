@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7aa8b1e_eb9b1aaf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-04T17:20:01Z",
+      "side": 1,
+      "message": "tiny update required, all text is good for me!",
+      "revId": "84f24bed04e70b3e566d3378e64b4128a2ea7126",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d00a892e_aac54221",
+        "filename": "docs/ncmp-data-operation.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-04T17:20:01Z",
+      "side": 1,
+      "message": "remove these #s\nnumber of #s always needs to tach title exactly! (RTD rule/convention)",
+      "range": {
+        "startLine": 10,
+        "startChar": 24,
+        "endLine": 10,
+        "endChar": 35
+      },
+      "revId": "84f24bed04e70b3e566d3378e64b4128a2ea7126",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
