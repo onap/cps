@@ -11,7 +11,7 @@
     },
     "predicates": {
       "targets": [
-        "CMHandle1"
+        "ietfYang-CMHandle1"
       ],
       "datastore": "ncmp-datastore:passthrough-running",
       "datastore-xpath-filter": "//_3gpp-nr-nrm-gnbdufunction:GNBDUFunction/_3gpp-nr-nrm-nrcelldu:NRCellDU/ | //_3gpp-nr-nrm-gnbcuupfunction:GNBCUUPFunction// | //_3gpp-nr-nrm-gnbcucpfunction:GNBCUCPFunction/_3gpp-nr-nrm-nrcelldu:NRCellCU// | //_3gpp-nr-nrm-nrsectorcarrier:NRSectorCarrier//"
