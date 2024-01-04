@@ -34,8 +34,8 @@ ${auth}                   Basic Y3BzdXNlcjpjcHNyMGNrcyE=
 ${ncmpInventoryBasePath}  /ncmpInventory
 ${ncmpBasePath}           /ncmp
 ${dmiUrl}                 http://${DMI_HOST}:${DMI_PORT}
-${jsonDataCreate}         {"dmiPlugin":"${dmiUrl}","dmiDataPlugin":"","dmiModelPlugin":"","createdCmHandles":[{"cmHandle":"PNFDemo","cmHandleProperties":{"Book1":"Sci-Fi Book"},"publicCmHandleProperties":{"Contact":"storeemail@bookstore.com", "Contact2":"storeemail2@bookstore.com"}}]}
-${jsonDataUpdate}         {"dmiPlugin":"${dmiUrl}","dmiDataPlugin":"","dmiModelPlugin":"","updatedCmHandles":[{"cmHandle":"PNFDemo","cmHandleProperties":{"Book1":"Romance Book"},"publicCmHandleProperties":{"Contact":"newemailforstore@bookstore.com"}}]}
+${jsonDataCreate}         {"dmiPlugin":"${dmiUrl}","dmiDataPlugin":"","dmiModelPlugin":"","createdCmHandles":[{"cmHandle":"ietfYang-PNFDemo","cmHandleProperties":{"Book1":"Sci-Fi Book"},"publicCmHandleProperties":{"Contact":"storeemail@bookstore.com", "Contact2":"storeemail2@bookstore.com"}}]}
+${jsonDataUpdate}         {"dmiPlugin":"${dmiUrl}","dmiDataPlugin":"","dmiModelPlugin":"","updatedCmHandles":[{"cmHandle":"ietfYang-PNFDemo","cmHandleProperties":{"Book1":"Romance Book"},"publicCmHandleProperties":{"Contact":"newemailforstore@bookstore.com"}}]}
 
 *** Test Cases ***
 Register data node and sync modules.
@@ -45,13 +45,13 @@ Register data node and sync modules.
     Should Be Equal As Strings              ${response.status_code}   200
 
 Get CM Handle details and confirm it has been registered.
-    ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/PNFDemo
+    ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/ietfYang-PNFDemo
     ${headers}=          Create Dictionary  Authorization=${auth}
     ${response}=         GET On Session     CPS_URL   ${uri}   headers=${headers}
     ${responseJson}=     Set Variable       ${response.json()}
     ${schemaCount}=      Get length         ${responseJson}
     Should Be Equal As Strings              ${response.status_code}   200
-    IF    "${responseJson['cmHandle']}" == "PNFDemo"
+    IF    "${responseJson['cmHandle']}" == "ietfYang-PNFDemo"
            FOR   ${item}   IN  @{responseJson['publicCmHandleProperties']}
                    Should Be Equal As Strings              "${item['Contact']}"  "storeemail@bookstore.com"
            END
@@ -64,20 +64,20 @@ Update data node and sync modules.
     Should Be Equal As Strings              ${response.status_code}   200
 
 Get CM Handle details and confirm it has been updated.
-    ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/PNFDemo
+    ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/ietfYang-PNFDemo
     ${headers}=          Create Dictionary  Authorization=${auth}
     ${response}=         GET On Session     CPS_URL   ${uri}   headers=${headers}
     ${responseJson}=     Set Variable       ${response.json()}
     ${schemaCount}=      Get length         ${responseJson}
     Should Be Equal As Strings              ${response.status_code}   200
-    IF    "${responseJson['cmHandle']}" == "PNFDemo"
+    IF    "${responseJson['cmHandle']}" == "ietfYang-PNFDemo"
            FOR   ${item}   IN  @{responseJson['publicCmHandleProperties']}
                    Should Be Equal As Strings              "${item['Contact']}"  "newemailforstore@bookstore.com"
            END
     END
 
 Get modules for registered data node
-    ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/PNFDemo/modules
+    ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/ietfYang-PNFDemo/modules
     ${headers}=          Create Dictionary  Authorization=${auth}
     ${response}=         GET On Session     CPS_URL   ${uri}   headers=${headers}
     Should Be Equal As Strings              ${response.status_code}   200

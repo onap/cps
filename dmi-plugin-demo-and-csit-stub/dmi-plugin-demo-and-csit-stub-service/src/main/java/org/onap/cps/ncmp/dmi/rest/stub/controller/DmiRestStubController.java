@@ -44,6 +44,7 @@ import org.onap.cps.ncmp.events.async1_0_0.DataOperationEvent;
 import org.onap.cps.ncmp.events.async1_0_0.Response;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
+import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -73,37 +74,35 @@ public class DmiRestStubController {
     /**
      * Get all modules for given cm handle.
      *
-     * @param cmHandle                The identifier for a network function, network element, subnetwork,
+     * @param cmHandleId              The identifier for a network function, network element, subnetwork,
      *                                or any other cm object by managed Network CM Proxy
      * @param moduleReferencesRequest module references request body
      * @return ResponseEntity response entity having module response as json string.
      */
-    @PostMapping("/v1/ch/{cmHandle}/modules")
-    public ResponseEntity<String> getModuleReferences(@PathVariable final String cmHandle,
+    @PostMapping("/v1/ch/{cmHandleId}/modules")
+    public ResponseEntity<String> getModuleReferences(@PathVariable final String cmHandleId,
                                                       @RequestBody final Object moduleReferencesRequest) {
-        final String moduleResponseContent = ResourceFileReaderUtil
-                .getResourceFileContent(applicationContext.getResource(
-                        ResourceLoader.CLASSPATH_URL_PREFIX + "module/moduleResponse.json"));
-        log.info("cm handle: {} requested for modules", cmHandle);
+        final String moduleResponseContent = getModuleResourceResponseAsString(cmHandleId,
+                "ModuleResponse.json");
+        log.info("cm handle: {} requested for modules", cmHandleId);
         return ResponseEntity.ok(moduleResponseContent);
     }
 
     /**
-     * Get all module resources for given cm handle.
+     * Retrieves module resources for a given cmHandleId.
      *
-     * @param cmHandle                   The identifier for a network function, network element, subnetwork,
+     * @param cmHandleId                 The identifier for a network function, network element, subnetwork,
      *                                   or any other cm object by managed Network CM Proxy
      * @param moduleResourcesReadRequest module resources read request body
      * @return ResponseEntity response entity having module resources response as json string.
      */
-    @PostMapping("/v1/ch/{cmHandle}/moduleResources")
+    @PostMapping("/v1/ch/{cmHandleId}/moduleResources")
     public ResponseEntity<String> retrieveModuleResources(
-            @PathVariable final String cmHandle,
+            @PathVariable final String cmHandleId,
             @RequestBody final Object moduleResourcesReadRequest) {
-        final String moduleResourcesResponseContent = ResourceFileReaderUtil
-                .getResourceFileContent(applicationContext.getResource(
-                        ResourceLoader.CLASSPATH_URL_PREFIX + "module/moduleResourcesResponse.json"));
-        log.info("cm handle: {} requested for module resources", cmHandle);
+        final String moduleResourcesResponseContent = getModuleResourceResponseAsString(cmHandleId,
+                "ModuleResourcesResponse.json");
+        log.info("cm handle: {} requested for modules resources", cmHandleId);
         return ResponseEntity.ok(moduleResourcesResponseContent);
     }
 
@@ -185,5 +184,19 @@ public class DmiRestStubController {
         final DataOperationEvent dataOperationEvent = new DataOperationEvent();
         dataOperationEvent.setData(data);
         return dataOperationEvent;
+    }
+
+    private String getModuleResourceResponseAsString(final String cmHandleId, final String moduleResponseType) {
+        final String nodeType = cmHandleId.split("-")[0];
+        final String moduleResponseFilePath = String.format("module/%s%s", nodeType, moduleResponseType);
+        final Resource moduleResponseResource = applicationContext.getResource(
+                ResourceLoader.CLASSPATH_URL_PREFIX + moduleResponseFilePath);
+        if (moduleResponseResource.exists()) {
+            log.info("Using requested node type: {}", nodeType);
+            return ResourceFileReaderUtil.getResourceFileContent(moduleResponseResource);
+        }
+        log.info("Using default node type: ietfYang");
+        return ResourceFileReaderUtil.getResourceFileContent(applicationContext.getResource(
+                ResourceLoader.CLASSPATH_URL_PREFIX + "module/ietfYang" + moduleResponseType));
     }
 }
