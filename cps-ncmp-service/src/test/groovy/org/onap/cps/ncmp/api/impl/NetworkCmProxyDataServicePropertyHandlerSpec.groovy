@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2022-2023 Nordix Foundation
+ * Copyright (C) 2022-2024 Nordix Foundation
  * Modifications Copyright (C) 2022 Bell Canada
  * Modifications Copyright (C) 2023 TechMahindra Ltd.
  * ================================================================================
@@ -22,6 +22,14 @@
 
 package org.onap.cps.ncmp.api.impl
 
+import ch.qos.logback.classic.Level
+import ch.qos.logback.classic.Logger
+import ch.qos.logback.classic.spi.ILoggingEvent
+import com.fasterxml.jackson.databind.ObjectMapper
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.BeforeEach
+import org.slf4j.LoggerFactory
+
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLES_NOT_FOUND
@@ -29,6 +37,9 @@ import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLE_INVALID_ID
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNKNOWN_ERROR
 import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.Status
 
+import ch.qos.logback.core.read.ListAppender
+import org.onap.cps.api.CpsDataService
+import org.onap.cps.utils.JsonObjectMapper
 import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
@@ -40,8 +51,22 @@ import spock.lang.Specification
 class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
 
     def mockInventoryPersistence = Mock(InventoryPersistence)
+    def mockCpsDataService = Mock(CpsDataService)
+    def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
+    def logger = Spy(ListAppender<ILoggingEvent>)
 
-    def objectUnderTest = new NetworkCmProxyDataServicePropertyHandler(mockInventoryPersistence)
+    @BeforeEach
+    void setup() {
+        ((Logger) LoggerFactory.getLogger(NetworkCmProxyDataServicePropertyHandler.class)).addAppender(logger);
+        logger.start();
+    }
+
+    @AfterEach
+    void teardown() {
+        ((Logger) LoggerFactory.getLogger(NetworkCmProxyDataServicePropertyHandler.class)).detachAndStopAllAppenders();
+    }
+
+    def objectUnderTest = new NetworkCmProxyDataServicePropertyHandler(mockInventoryPersistence, mockCpsDataService, jsonObjectMapper)
     def static cmHandleId = 'myHandle1'
     def static cmHandleXpath = "/dmi-registry/cm-handles[@id='${cmHandleId}']"
 
@@ -173,6 +198,38 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
             2 * mockInventoryPersistence.replaceListContent(cmHandleXpath,_)
     }
 
+    def 'Update CM Handle Alternate ID when #scenario'() {
+        given: 'an existing cm handle with alternate id #existingAlternateId'
+            DataNode existingCmHandleDataNode = new DataNode(xpath: cmHandleXpath, leaves: ['alternate-id': oldAlternateId])
+        and: 'an update request with an alternate id #newAlternateId'
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, alternateId: newAlternateId)
+        when: 'update data node leaves is called with the update request'
+            objectUnderTest.updateAlternateId(existingCmHandleDataNode, ncmpServiceCmHandle)
+        then: 'the update node leaves method is invoked as many times as expected'
+            numberOfInvocations * mockCpsDataService.updateNodeLeaves('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry', _, _) >> { args ->
+                assert args[3].contains(newAlternateId)
+            }
+        and: 'correct information is logged'
+            def lastLoggingEvent = logger.list[0]
+            if (expectLogWarning) {
+                assert lastLoggingEvent.level == Level.WARN
+                assert lastLoggingEvent.formattedMessage.contains('Unable')
+            } else if (numberOfInvocations == 1) {
+                assert lastLoggingEvent.level == Level.INFO
+                assert lastLoggingEvent.formattedMessage.contains('Updating alternateId')
+            } else {
+                assert lastLoggingEvent == null
+            }
+        where: 'following updates are attempted'
+            scenario                     | oldAlternateId | newAlternateId || numberOfInvocations | expectLogWarning
+            'old alternate id null'      | null           | 'new'          || 1                   | false
+            'old alternate id empty'     | ''             | 'new'          || 1                   | false
+            'old alternate id not empty' | 'old'          | 'new'          || 0                   | true
+            'same alternate id'          | 'old'          | 'old'          || 0                   | false
+            'empty new alternate id'     | 'old'          | ''             || 0                   | false
+            'null new alternate id'      | 'old'          | null           || 0                   | false
+    }
+
     def convertToProperties(expectedPropertiesAfterUpdateAsMap) {
         def properties = [].withDefault { [:] }
         expectedPropertiesAfterUpdateAsMap.forEach(property ->
@@ -181,5 +238,4 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
             }))
         return properties
     }
-
 }
