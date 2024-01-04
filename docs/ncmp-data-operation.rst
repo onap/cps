@@ -19,7 +19,7 @@ For data operation CM Handles we have a Post endpoints:
 
 - /ncmp/v1/data?topic={client-topic-name} forward request to it's dmi plugin service.
 
-- Returns request id (UUID) with http status 202.
+- Returns request id (UUID) with http status 200.
 
 Request Body
 ============
