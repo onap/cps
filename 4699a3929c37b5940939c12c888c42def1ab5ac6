@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "91e8b84e_31560238",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-05T10:26:56Z",
+      "side": 1,
+      "message": "- please beautify all (old and new) json files\n- I am not so sure if the cmHandeId is the best way to choose a module(set) It is not very readably ie. you cannot tell from the names easily which module(set) will be used :-(\n\nCan you instead do somethign with a prefix ie. split cmHnaldeId on a token (- or _ or similar) can then use the prefix(type) to (build) a filename for the response (with a backup default option)\n\nPseudo code:\n\ne.g. cmHandleId \u003d \u0027bookStore-123\u0027\n\ndefaultNodeType \u003d \u0027ietfYang\u0027\nnodeType \u003d cmHandleId .split(\u0027-\u0027)[0]\nresponseFileName \u003d nodeType+\u0027ModuleResponse.json\u0027\nif !file(responseFileName).exists() {\n  responseFileName \u003d defaultNodeType +\u0027ModuleResponse.json\u0027\n}\n\netc.\n\nThis mean you wil have to change the Existing CIST (and performance) Test as well to use the new names but I think it will improve the understanding of the tests...\nAnd better control of what modules are used where",
+      "revId": "4699a3929c37b5940939c12c888c42def1ab5ac6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "313236cb_f3af2a2c",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/resources/module/bookStoreModuleResourcesResponse.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-05T10:26:56Z",
+      "side": 1,
+      "message": "Can you process this file with a beautifier and replace it with teh beautified version please",
+      "revId": "4699a3929c37b5940939c12c888c42def1ab5ac6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e128ac5_941ec207",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/resources/module/bookStoreModuleResponse.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-05T10:26:56Z",
+      "side": 1,
+      "message": "beautify (should NOT have tabs)",
+      "revId": "4699a3929c37b5940939c12c888c42def1ab5ac6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91b05507_207be957",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/resources/module/ietfYangModuleResourcesResponse.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-05T10:26:56Z",
+      "side": 1,
+      "message": "beautify",
+      "revId": "4699a3929c37b5940939c12c888c42def1ab5ac6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
