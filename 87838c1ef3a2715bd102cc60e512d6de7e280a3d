@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf0924a6_fb3a4f42",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-05T15:58:53Z",
+      "side": 1,
+      "message": "you cant do an else as you will always see warning when the user does NOT attempt to change the alternateId\n\ninstead you need to do something like this (pseudo code):\n\nif (!empty(newAlternateId)) {\n   if (empty(existingAlternateId)) {\n     // all OK, update alternate ID\n   } else {\n     if (!newAlternateId.equals(existingAlternateId)) {\n       // WARNING attempt to change already defined ID\n     }\n   }\n}\n     \nI typed above with some indentation but I think that wil be lost when I save this  comment...",
+      "range": {
+        "startLine": 114,
+        "startChar": 10,
+        "endLine": 114,
+        "endChar": 16
+      },
+      "revId": "87838c1ef3a2715bd102cc60e512d6de7e280a3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05c4793b_5cd87209",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandlerSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-05T15:58:53Z",
+      "side": 1,
+      "message": "use a real mapper so you can assert the parameters too",
+      "range": {
+        "startLine": 52,
+        "startChar": 31,
+        "endLine": 52,
+        "endChar": 35
+      },
+      "revId": "87838c1ef3a2715bd102cc60e512d6de7e280a3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ad58c54_c57bead9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandlerSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-05T15:58:53Z",
+      "side": 1,
+      "message": "simplify the test by testign the new private method directly",
+      "range": {
+        "startLine": 192,
+        "startChar": 28,
+        "endLine": 192,
+        "endChar": 52
+      },
+      "revId": "87838c1ef3a2715bd102cc60e512d6de7e280a3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28d35ca1_0d05787b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandlerSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-05T15:58:53Z",
+      "side": 1,
+      "message": "as discussed; test/assert for log warning  too! (these test wil fail based on existing production code you get warning in cases we dont need a warning)",
+      "range": {
+        "startLine": 196,
+        "startChar": 8,
+        "endLine": 196,
+        "endChar": 40
+      },
+      "revId": "87838c1ef3a2715bd102cc60e512d6de7e280a3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eaa9f63c_53d98603",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandlerSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-05T15:58:53Z",
+      "side": 1,
+      "message": "incorrect name and no need for collection.",
+      "range": {
+        "startLine": 196,
+        "startChar": 42,
+        "endLine": 196,
+        "endChar": 125
+      },
+      "revId": "87838c1ef3a2715bd102cc60e512d6de7e280a3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
