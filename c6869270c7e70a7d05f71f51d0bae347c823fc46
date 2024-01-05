@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07b7c709_cc7cee93",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-01-05T17:15:28Z",
+      "side": 1,
+      "message": "NB: This can be moved inside the if-statement body",
+      "range": {
+        "startLine": 107,
+        "startChar": 75,
+        "endLine": 108,
+        "endChar": 109
+      },
+      "revId": "c6869270c7e70a7d05f71f51d0bae347c823fc46",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0bfaf89_eff6ca7f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-01-05T17:15:28Z",
+      "side": 1,
+      "message": "NB: Remove info log spam (I see test depends on logging, so maybe use log.trace)",
+      "range": {
+        "startLine": 209,
+        "startChar": 8,
+        "endLine": 209,
+        "endChar": 112
+      },
+      "revId": "c6869270c7e70a7d05f71f51d0bae347c823fc46",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
