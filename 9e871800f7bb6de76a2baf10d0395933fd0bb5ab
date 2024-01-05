@@ -39,6 +39,30 @@
       },
       "revId": "9e871800f7bb6de76a2baf10d0395933fd0bb5ab",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b53ae23a_cb797ec7",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 703,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-01-05T10:30:10Z",
+      "side": 1,
+      "message": "Yes, this is covered (sonar reports 100% coverage). Actually, the null check is only needed because some unit tests set attribute string to null - it never happens in production. There\u0027s a few places in CpsDataPersistenceService where we do these null checks entirely because of unit tests using nulls.",
+      "parentUuid": "056bbdbb_5084830f",
+      "range": {
+        "startLine": 701,
+        "startChar": 0,
+        "endLine": 703,
+        "endChar": 9
+      },
+      "revId": "9e871800f7bb6de76a2baf10d0395933fd0bb5ab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
