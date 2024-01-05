@@ -71,6 +71,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7c5c3e4_ee7f784e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-01-05T16:26:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5aa5c454_ac74d8d7",
+      "range": {
+        "startLine": 108,
+        "startChar": 8,
+        "endLine": 108,
+        "endChar": 10
+      },
+      "revId": "f7dd5753436b9a33693dad684457b81d60778164",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bc9d13b3_06557fa5",
@@ -84,6 +108,30 @@
       "writtenOn": "2024-01-04T15:57:15Z",
       "side": 1,
       "message": "another 8 paths! \nThis statement should easily be combined with those from line 108 as you are repeating (most of) the conditions",
+      "range": {
+        "startLine": 114,
+        "startChar": 17,
+        "endLine": 115,
+        "endChar": 50
+      },
+      "revId": "f7dd5753436b9a33693dad684457b81d60778164",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd29748e_d401466d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-01-05T16:26:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bc9d13b3_06557fa5",
       "range": {
         "startLine": 114,
         "startChar": 17,
