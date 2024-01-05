@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52bfa9b4_e7191652",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-05T16:36:10Z",
+      "side": 1,
+      "message": "almost there",
+      "revId": "30f11b44ba949c870b2d4e4af412247c66c9f12b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2ac60c2_5b21639f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-05T16:36:10Z",
+      "side": 1,
+      "message": "remove the old code",
+      "range": {
+        "startLine": 109,
+        "startChar": 0,
+        "endLine": 117,
+        "endChar": 11
+      },
+      "revId": "30f11b44ba949c870b2d4e4af412247c66c9f12b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9bf31032_adea58e8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-05T16:36:10Z",
+      "side": 1,
+      "message": "has",
+      "range": {
+        "startLine": 126,
+        "startChar": 98,
+        "endLine": 126,
+        "endChar": 103
+      },
+      "revId": "30f11b44ba949c870b2d4e4af412247c66c9f12b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02ffc115_1ce76c1b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandlerSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-05T16:36:10Z",
+      "side": 1,
+      "message": "attempted",
+      "range": {
+        "startLine": 223,
+        "startChar": 38,
+        "endLine": 223,
+        "endChar": 42
+      },
+      "revId": "30f11b44ba949c870b2d4e4af412247c66c9f12b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
