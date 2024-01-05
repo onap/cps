@@ -22,6 +22,30 @@
       },
       "revId": "52739eaaf797d9f800a55c2e77982dc8be6661c6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b48ecdc4_aee6edee",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/WritePerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-01-05T16:27:52Z",
+      "side": 1,
+      "message": "Yeah, it\u0027s useful sometimes to clean up. We also have:\n- given (setup)\n- when (stimulus)\n- then (assertion)\n- setup (alias for given)\n- expect (stimulus and assertion - like a combined when/then)\n- cleanup (teardown, opposite of setup)\n\nHere is description of the all block types: https://www.baeldung.com/groovy-spock#2-blocks",
+      "parentUuid": "945cd218_91221d1e",
+      "range": {
+        "startLine": 98,
+        "startChar": 8,
+        "endLine": 98,
+        "endChar": 15
+      },
+      "revId": "52739eaaf797d9f800a55c2e77982dc8be6661c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
