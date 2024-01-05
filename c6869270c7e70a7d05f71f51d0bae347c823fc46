@@ -45,6 +45,30 @@
       },
       "revId": "c6869270c7e70a7d05f71f51d0bae347c823fc46",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d77dc9b6_eb08ed98",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-05T17:23:57Z",
+      "side": 1,
+      "message": "I think Updates wont happen very frequently so Info level logging is OK but admit this is very subjective...",
+      "parentUuid": "b0bfaf89_eff6ca7f",
+      "range": {
+        "startLine": 209,
+        "startChar": 8,
+        "endLine": 209,
+        "endChar": 112
+      },
+      "revId": "c6869270c7e70a7d05f71f51d0bae347c823fc46",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
