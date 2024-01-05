@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2023 Nordix Foundation
+ *  Copyright (C) 2021-2024 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
@@ -38,6 +38,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -526,7 +527,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
     private void updateFragmentEntityAndDescendantsWithDataNode(final FragmentEntity existingFragmentEntity,
                                                                 final DataNode newDataNode) {
-        existingFragmentEntity.setAttributes(jsonObjectMapper.asJsonString(newDataNode.getLeaves()));
+        copyAttributesFromNewDataNode(existingFragmentEntity, newDataNode);
 
         final Map<String, FragmentEntity> existingChildrenByXpath = existingFragmentEntity.getChildFragments().stream()
                 .collect(Collectors.toMap(FragmentEntity::getXpath, childFragmentEntity -> childFragmentEntity));
@@ -668,7 +669,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             return convertToFragmentWithAllDescendants(parentEntity.getAnchor(), newListElement);
         }
         if (newListElement.getChildDataNodes().isEmpty()) {
-            copyAttributesFromNewListElement(existingListElementEntity, newListElement);
+            copyAttributesFromNewDataNode(existingListElementEntity, newListElement);
             existingListElementEntity.getChildFragments().clear();
         } else {
             updateFragmentEntityAndDescendantsWithDataNode(existingListElementEntity, newListElement);
@@ -681,12 +682,28 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         return !existingListElementsByXpath.containsKey(replacementDataNode.getXpath());
     }
 
-    private void copyAttributesFromNewListElement(final FragmentEntity existingListElementEntity,
-                                                  final DataNode newListElement) {
-        final FragmentEntity replacementFragmentEntity =
-                FragmentEntity.builder().attributes(jsonObjectMapper.asJsonString(
-                        newListElement.getLeaves())).build();
-        existingListElementEntity.setAttributes(replacementFragmentEntity.getAttributes());
+    private void copyAttributesFromNewDataNode(final FragmentEntity existingFragmentEntity,
+                                               final DataNode newDataNode) {
+        final String oldOrderedLeavesAsJson = getOrderedLeavesAsJson(existingFragmentEntity.getAttributes());
+        final String newOrderedLeavesAsJson = getOrderedLeavesAsJson(newDataNode.getLeaves());
+        if (!oldOrderedLeavesAsJson.equals(newOrderedLeavesAsJson)) {
+            existingFragmentEntity.setAttributes(jsonObjectMapper.asJsonString(newDataNode.getLeaves()));
+        }
+    }
+
+    private String getOrderedLeavesAsJson(final Map<String, Serializable> currentLeaves) {
+        final Map<String, Serializable> sortedLeaves = new TreeMap<>(String::compareTo);
+        sortedLeaves.putAll(currentLeaves);
+        return jsonObjectMapper.asJsonString(sortedLeaves);
+    }
+
+    private String getOrderedLeavesAsJson(final String currentLeavesAsString) {
+        if (currentLeavesAsString == null) {
+            return "{}";
+        }
+        final Map<String, Serializable> sortedLeaves = jsonObjectMapper.convertJsonString(currentLeavesAsString,
+                TreeMap.class);
+        return jsonObjectMapper.asJsonString(sortedLeaves);
     }
 
     private static Map<String, FragmentEntity> extractListElementFragmentEntitiesByXPath(
