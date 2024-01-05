@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3b95ae4_c1e233c7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-05T10:06:34Z",
+      "side": 1,
+      "message": "Much better (less invasive) than the previous solution, good work!\nJust oen question on a test scenario (it is likely already covered)",
+      "revId": "9e871800f7bb6de76a2baf10d0395933fd0bb5ab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "056bbdbb_5084830f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 703,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-05T10:06:34Z",
+      "side": 1,
+      "message": "NB: Can you make suer you have a test covering this scenario",
+      "range": {
+        "startLine": 701,
+        "startChar": 0,
+        "endLine": 703,
+        "endChar": 9
+      },
+      "revId": "9e871800f7bb6de76a2baf10d0395933fd0bb5ab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
