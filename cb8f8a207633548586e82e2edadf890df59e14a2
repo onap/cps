@@ -123,6 +123,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ca2c093_cbfd4d69",
+        "filename": "cps-events/src/main/resources/schemas/dummy.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-01-08T18:08:12Z",
+      "side": 1,
+      "message": "I tried adding some text to the file but I got an error saying \"Unrecognized token \u0027this\u0027: was expecting (JSON String, Number, Array, Object or token \u0027null\u0027, \u0027true\u0027 or \u0027false\u0027)\"",
+      "parentUuid": "fb2c938b_fcd52f77",
+      "revId": "cb8f8a207633548586e82e2edadf890df59e14a2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6bb91eb2_409ba537",
