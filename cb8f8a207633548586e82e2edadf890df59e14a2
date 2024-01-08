@@ -71,6 +71,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e689ab11_fc12345c",
+        "filename": "cps-events/src/main/resources/schemas/dummy.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-01-08T16:37:44Z",
+      "side": 1,
+      "message": "needed for file structure. Without it src/main/resources/schemas wouldn\u0027t be part of the the cps-events module file structure anymore",
+      "parentUuid": "1a0182d7_12466f85",
+      "revId": "cb8f8a207633548586e82e2edadf890df59e14a2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6bb91eb2_409ba537",
         "filename": "cps-service/src/test/resources/application.yml",
         "patchSetId": 1
