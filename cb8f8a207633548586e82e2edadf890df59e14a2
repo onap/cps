@@ -222,6 +222,30 @@
       },
       "revId": "cb8f8a207633548586e82e2edadf890df59e14a2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b39e8854_dc2de632",
+        "filename": "cps-service/src/test/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-01-08T17:46:39Z",
+      "side": 1,
+      "message": "removing \u0027enabled: true\u0027 from this file doesn\u0027t seem to cause any failures so I removed it. Removing \u0027async: executor:...\u0027 causes the CSITs to fail so that is needed",
+      "parentUuid": "05503aa7_40f0b7eb",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 15
+      },
+      "revId": "cb8f8a207633548586e82e2edadf890df59e14a2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
