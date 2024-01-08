@@ -145,6 +145,30 @@
       },
       "revId": "cb8f8a207633548586e82e2edadf890df59e14a2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05503aa7_40f0b7eb",
+        "filename": "cps-service/src/test/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-01-08T16:03:56Z",
+      "side": 1,
+      "message": "Never mind, we don\u0027t want to remove the Lcm Events, only the \u0027data-updated\u0027 events. So the classes above can stay, but the \u0027notification.enabled\u0027 part in this file should be kept, only the \u0027data-updated\u0027 part should be removed.\n(Tbh I\u0027m not sure if this test application.yml file is even used anymore.)",
+      "parentUuid": "d10ce609_8c7532ba",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 15
+      },
+      "revId": "cb8f8a207633548586e82e2edadf890df59e14a2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
