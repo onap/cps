@@ -33,6 +33,46 @@
       "message": "recheck",
       "revId": "ff814f733c0fb1304ad58617561d9007f6f073be",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f370ae4_2df26d36",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-08T15:31:30Z",
+      "side": 1,
+      "message": "1) some common code can be extracted, see comment below\n 2) I would like to see the new names being used in TestWare",
+      "revId": "ff814f733c0fb1304ad58617561d9007f6f073be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "667d5ade_476dc3d2",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-08T15:31:30Z",
+      "side": 1,
+      "message": "lot of common code with lines 85-94, I think you can extract out a method and pass in a postFix as parameter e.g. ModuleResourcesResponse.json / ModuleResponse.json",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 123,
+        "endChar": 78
+      },
+      "revId": "ff814f733c0fb1304ad58617561d9007f6f073be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
