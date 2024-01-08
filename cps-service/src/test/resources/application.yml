@@ -19,10 +19,6 @@
 
 notification:
   enabled: true
-  data-updated:
-    filters:
-      enabled-dataspaces: ".*-published,.*-important"
-    topic: cps-event
   async:
     executor:
       core-pool-size: 2
@@ -42,8 +38,6 @@ spring:
       group-id: cps-test
       auto-offset-reset: earliest
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
-      properties:
-        spring.json.value.default.type: org.onap.cps.event.model.CpsDataUpdatedEvent
 
 logging:
   level:
