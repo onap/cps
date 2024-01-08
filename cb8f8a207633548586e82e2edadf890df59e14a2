@@ -87,6 +87,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c5c58fc_4bd20441",
+        "filename": "cps-events/src/main/resources/schemas/dummy.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-01-08T17:04:32Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e689ab11_fc12345c",
+      "revId": "cb8f8a207633548586e82e2edadf890df59e14a2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6bb91eb2_409ba537",
