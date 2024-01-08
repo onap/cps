@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f7b172e9_c175a455",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionNcmpInEventConsumer.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-01-08T11:09:32Z",
+      "side": 1,
+      "message": "agree\n\ncan maybe put line 56 to end in a try-catch clock to throw an exception if event is null or use an if else method instead .",
+      "parentUuid": "7e3d6e38_644e4fef",
+      "range": {
+        "startLine": 59,
+        "startChar": 8,
+        "endLine": 59,
+        "endChar": 49
+      },
+      "revId": "798b9f113d779f2e20cff49e008f921c436598e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "024e2be8_9ac79137",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionNcmpInEventConsumer.java",
         "patchSetId": 3
@@ -96,6 +120,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "05b06b70_ee809131",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionNcmpInEventConsumerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-01-08T11:09:32Z",
+      "side": 1,
+      "message": "i would just say \u0027testEventData\u0027 as in line 70 \u0027testEventSent\u0027 got confusing",
+      "range": {
+        "startLine": 55,
+        "startChar": 20,
+        "endLine": 55,
+        "endChar": 29
+      },
+      "revId": "798b9f113d779f2e20cff49e008f921c436598e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a588f546_71c26727",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionNcmpInEventConsumerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-01-08T11:09:32Z",
+      "side": 1,
+      "message": "testCloudEventData?",
+      "range": {
+        "startLine": 56,
+        "startChar": 16,
+        "endLine": 56,
+        "endChar": 34
+      },
+      "revId": "798b9f113d779f2e20cff49e008f921c436598e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ffb437de_c5e674be",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionNcmpInEventConsumerSpec.groovy",
         "patchSetId": 3
@@ -112,6 +182,75 @@
         "startChar": 61,
         "endLine": 73,
         "endChar": 80
+      },
+      "revId": "798b9f113d779f2e20cff49e008f921c436598e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba30d5bb_743f4315",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionNcmpInEventMapperSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-01-08T11:09:32Z",
+      "side": 1,
+      "message": "no scenarios here",
+      "range": {
+        "startLine": 42,
+        "startChar": 71,
+        "endLine": 42,
+        "endChar": 81
+      },
+      "revId": "798b9f113d779f2e20cff49e008f921c436598e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "524148f0_0c746370",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionNcmpInEventMapperSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-01-08T11:09:32Z",
+      "side": 1,
+      "message": "is it clientID or subscriptionId?",
+      "range": {
+        "startLine": 48,
+        "startChar": 80,
+        "endLine": 48,
+        "endChar": 88
+      },
+      "revId": "798b9f113d779f2e20cff49e008f921c436598e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "770eaeeb_879bbec3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionNcmpInEventMapperSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-01-08T11:09:32Z",
+      "side": 1,
+      "message": "same here",
+      "range": {
+        "startLine": 61,
+        "startChar": 73,
+        "endLine": 61,
+        "endChar": 81
       },
       "revId": "798b9f113d779f2e20cff49e008f921c436598e4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
