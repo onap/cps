@@ -105,6 +105,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb2c938b_fcd52f77",
+        "filename": "cps-events/src/main/resources/schemas/dummy.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-08T17:56:52Z",
+      "side": 1,
+      "message": "that is why I usually out a message like that inside the file.\ne.g. \u0027this is needed to maintain directory structure. Only remove when other files have been added\u0027",
+      "parentUuid": "0c5c58fc_4bd20441",
+      "revId": "cb8f8a207633548586e82e2edadf890df59e14a2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6bb91eb2_409ba537",
@@ -259,6 +277,30 @@
         "id": 6742
       },
       "writtenOn": "2024-01-08T17:56:04Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b39e8854_dc2de632",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 15
+      },
+      "revId": "cb8f8a207633548586e82e2edadf890df59e14a2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea2f6138_857f3213",
+        "filename": "cps-service/src/test/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-08T17:56:52Z",
       "side": 1,
       "message": "Ack",
       "parentUuid": "b39e8854_dc2de632",
