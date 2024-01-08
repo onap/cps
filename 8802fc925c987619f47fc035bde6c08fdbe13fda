@@ -16,6 +16,23 @@
       "message": "Recheck",
       "revId": "8802fc925c987619f47fc035bde6c08fdbe13fda",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14853cc3_d3269afd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-01-08T16:45:45Z",
+      "side": 1,
+      "message": "as discussed , correct mapping from the yang model",
+      "revId": "8802fc925c987619f47fc035bde6c08fdbe13fda",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
