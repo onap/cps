@@ -97,6 +97,30 @@
       },
       "revId": "cb8f8a207633548586e82e2edadf890df59e14a2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a24d856_2c4ff017",
+        "filename": "cps-service/src/test/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-01-08T15:37:33Z",
+      "side": 1,
+      "message": "notification.enabled \u003d true can be removed as no test using that I guess.\nRemove and check if the local build passes.",
+      "parentUuid": "7146aae0_78cf2ee7",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 15
+      },
+      "revId": "cb8f8a207633548586e82e2edadf890df59e14a2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
