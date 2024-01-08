@@ -1,6 +1,7 @@
 {
   "comments": [
     {
+      "unresolved": true,
       "key": {
         "uuid": "3ae2f5e8_acd006f4",
         "filename": "csit/data/bookstoreAddEntry.json",
@@ -14,10 +15,10 @@
       "side": 1,
       "message": "sub-folder for both cps-core and ncmp will make it easier to maintain.",
       "revId": "ac325101b76917e2c718163b04288a9b9f38c47f",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "4fad8081_e8565ad6",
         "filename": "csit/data/bookstoreAddEntry.json",
@@ -32,10 +33,28 @@
       "message": "future improvement, see https://jira.onap.org/browse/CPS-734",
       "parentUuid": "3ae2f5e8_acd006f4",
       "revId": "ac325101b76917e2c718163b04288a9b9f38c47f",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "14ebe7e7_a1c2ec27",
+        "filename": "csit/data/bookstoreAddEntry.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-08T11:01:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4fad8081_e8565ad6",
+      "revId": "ac325101b76917e2c718163b04288a9b9f38c47f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "3ca341da_89f7b350",
         "filename": "csit/plans/cps/sdn/sdn_setup.sh",
@@ -49,10 +68,10 @@
       "side": 1,
       "message": "Why did we choose to keep the folder and file name start with \u0027sdn\u0027 instead of \u0027sdnc\u0027?",
       "revId": "ac325101b76917e2c718163b04288a9b9f38c47f",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "35aa4d35_d29d7ef6",
         "filename": "csit/plans/cps/sdn/sdn_setup.sh",
@@ -67,10 +86,28 @@
       "message": "agreed, will change",
       "parentUuid": "3ca341da_89f7b350",
       "revId": "ac325101b76917e2c718163b04288a9b9f38c47f",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b94c755_bde295b4",
+        "filename": "csit/plans/cps/sdn/sdn_setup.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-08T11:01:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "35aa4d35_d29d7ef6",
+      "revId": "ac325101b76917e2c718163b04288a9b9f38c47f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "a6356f09_ca93408f",
         "filename": "csit/plans/cps/sdn/sdn_setup.sh",
@@ -90,10 +127,10 @@
         "endChar": 115
       },
       "revId": "ac325101b76917e2c718163b04288a9b9f38c47f",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "321d1272_14b5eba7",
         "filename": "csit/plans/cps/sdn/sdn_setup.sh",
@@ -114,10 +151,34 @@
         "endChar": 115
       },
       "revId": "ac325101b76917e2c718163b04288a9b9f38c47f",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc24df5b_b0eda843",
+        "filename": "csit/plans/cps/sdn/sdn_setup.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-08T11:01:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "321d1272_14b5eba7",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 115
+      },
+      "revId": "ac325101b76917e2c718163b04288a9b9f38c47f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "bb23c6d7_23bef874",
         "filename": "csit/plans/cps/sdn/sdn_setup.sh",
@@ -137,10 +198,10 @@
         "endChar": 6
       },
       "revId": "ac325101b76917e2c718163b04288a9b9f38c47f",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "f8daa97c_0d3e7668",
         "filename": "csit/plans/cps/sdn/sdn_setup.sh",
@@ -160,10 +221,58 @@
         "endChar": 6
       },
       "revId": "ac325101b76917e2c718163b04288a9b9f38c47f",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "93bc488b_b239d385",
+        "filename": "csit/plans/cps/sdn/sdn_setup.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-08T11:01:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb23c6d7_23bef874",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 6
+      },
+      "revId": "ac325101b76917e2c718163b04288a9b9f38c47f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf7df8d9_9b4327c5",
+        "filename": "csit/plans/cps/sdn/sdn_setup.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-08T11:01:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f8daa97c_0d3e7668",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 6
+      },
+      "revId": "ac325101b76917e2c718163b04288a9b9f38c47f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "04eb076b_93c2e287",
         "filename": "csit/plans/cps/setup.sh",
@@ -183,10 +292,34 @@
         "endChar": 22
       },
       "revId": "ac325101b76917e2c718163b04288a9b9f38c47f",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "02cf6f88_1684efc5",
+        "filename": "csit/plans/cps/setup.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-08T11:01:39Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "04eb076b_93c2e287",
+      "range": {
+        "startLine": 128,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 22
+      },
+      "revId": "ac325101b76917e2c718163b04288a9b9f38c47f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "fc9b673f_a480e72a",
         "filename": "csit/plans/cps/setup.sh",
@@ -206,10 +339,10 @@
         "endChar": 168
       },
       "revId": "ac325101b76917e2c718163b04288a9b9f38c47f",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "e97e8090_e4b91c60",
         "filename": "csit/plans/cps/teardown.sh",
@@ -229,10 +362,34 @@
         "endChar": 48
       },
       "revId": "ac325101b76917e2c718163b04288a9b9f38c47f",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f575f78_a39ce34b",
+        "filename": "csit/plans/cps/teardown.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-08T11:01:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e97e8090_e4b91c60",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 48
+      },
+      "revId": "ac325101b76917e2c718163b04288a9b9f38c47f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "6d8bf878_c60ceda7",
         "filename": "csit/plans/cps/testplan.txt",
@@ -246,10 +403,10 @@
       "side": 1,
       "message": "I think it would be better to have two separate test plans and two separate set-up instructions\n1. One for cps-core\n2. One for ncmp and onap-dmi-plugin\n\nCurrently, we are testing completely different things in the same testplan.\n\nFor later : We can also have filters to run only relevant test-cases (defined by the which project has been updates) based on maven modules changes, but run all test cases when merge.",
       "revId": "ac325101b76917e2c718163b04288a9b9f38c47f",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "6b0ba08d_3fa71e67",
         "filename": "csit/plans/cps/testplan.txt",
@@ -264,10 +421,28 @@
       "message": "agreed but for future improvement, already created task for this: https://jira.onap.org/browse/CPS-734",
       "parentUuid": "6d8bf878_c60ceda7",
       "revId": "ac325101b76917e2c718163b04288a9b9f38c47f",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "44dff37f_ecf55ec4",
+        "filename": "csit/plans/cps/testplan.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-08T11:01:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6b0ba08d_3fa71e67",
+      "revId": "ac325101b76917e2c718163b04288a9b9f38c47f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "7d9c9d73_16397bf8",
         "filename": "csit/tests/cps-model-sync/cps-model-sync.robot",
@@ -281,10 +456,10 @@
       "side": 1,
       "message": "I think we are testing ncmp-inventory-model-sync and it is not reflected in the folder and the robot file name.",
       "revId": "ac325101b76917e2c718163b04288a9b9f38c47f",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "60d229c4_44d44897",
         "filename": "csit/tests/cps-model-sync/cps-model-sync.robot",
@@ -299,10 +474,28 @@
       "message": "not sure if interface name needs to be reflected in robot file name\ndid add as possible point in https://jira.onap.org/browse/CPS-734",
       "parentUuid": "7d9c9d73_16397bf8",
       "revId": "ac325101b76917e2c718163b04288a9b9f38c47f",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b591601_7f411370",
+        "filename": "csit/tests/cps-model-sync/cps-model-sync.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-08T11:01:39Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "60d229c4_44d44897",
+      "revId": "ac325101b76917e2c718163b04288a9b9f38c47f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "d1683aab_ae79ce21",
         "filename": "docker-compose/docker-compose.yml",
@@ -322,10 +515,10 @@
         "endChar": 112
       },
       "revId": "ac325101b76917e2c718163b04288a9b9f38c47f",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "49e42db8_d34bb9a3",
         "filename": "docker-compose/docker-compose.yml",
@@ -346,8 +539,7 @@
         "endChar": 112
       },
       "revId": "ac325101b76917e2c718163b04288a9b9f38c47f",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

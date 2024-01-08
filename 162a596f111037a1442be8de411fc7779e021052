@@ -1,6 +1,7 @@
 {
   "comments": [
     {
+      "unresolved": true,
       "key": {
         "uuid": "bae4c1c5_68fc1498",
         "filename": "csit/.gitignore",
@@ -20,10 +21,34 @@
         "endChar": 9
       },
       "revId": "162a596f111037a1442be8de411fc7779e021052",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "97aa3f2b_eb7e575a",
+        "filename": "csit/.gitignore",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-08T11:01:39Z",
+      "side": 0,
+      "message": "Ack",
+      "parentUuid": "bae4c1c5_68fc1498",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 9
+      },
+      "revId": "162a596f111037a1442be8de411fc7779e021052",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "d99f73ef_0a84b364",
         "filename": "docker-compose/docker-compose.yml",
@@ -43,8 +68,31 @@
         "endChar": 48
       },
       "revId": "162a596f111037a1442be8de411fc7779e021052",
-      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
-      "unresolved": true
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69315dd2_1b18503d",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-08T11:01:39Z",
+      "side": 0,
+      "message": "Ack",
+      "parentUuid": "d99f73ef_0a84b364",
+      "range": {
+        "startLine": 93,
+        "startChar": 0,
+        "endLine": 113,
+        "endChar": 48
+      },
+      "revId": "162a596f111037a1442be8de411fc7779e021052",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
