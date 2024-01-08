@@ -49,7 +49,6 @@ services:
       KAFKA_BOOTSTRAP_SERVER: kafka:29092
       notification.enabled: 'true'
       notification.async.executor.time-out-value-in-ms: 2000
-      NOTIFICATION_DATASPACE_FILTER_PATTERNS: '.*'
       NCMP_TIMERS_ADVISED-MODULES-SYNC_SLEEP-TIME-MS: ${ADVISED_MODULES_SYNC_SLEEP_TIME_MS:-30000}
       NCMP_TIMERS_CM-HANDLE-DATA-SYNC_SLEEP-TIME-MS: ${CMHANDLE_DATA_SYNC_SLEEP_TIME_MS:-30000}
       JAVA_TOOL_OPTIONS: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
