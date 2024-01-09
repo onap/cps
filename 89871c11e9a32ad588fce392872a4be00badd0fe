@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2cb7cbd8_2bc27808",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-09T09:18:31Z",
+      "side": 0,
+      "message": "this is a PUIBLIC API, we might get away with removing this because we (NCMP) still are the only user. But in future we should just redirect to the new method.\n(Actually DT might be using it although that seems unlikely)",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 113,
+        "endChar": 79
+      },
+      "revId": "89871c11e9a32ad588fce392872a4be00badd0fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

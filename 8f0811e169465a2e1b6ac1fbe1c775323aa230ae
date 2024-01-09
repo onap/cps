@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "97a1cd9d_f85d3b1a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-09T09:18:31Z",
+      "side": 1,
+      "message": "bit worried about the removing of a public API method. maybe we should do it the proper way. deprecate it and update the implementation to delegate to the new better method?!",
+      "revId": "8f0811e169465a2e1b6ac1fbe1c775323aa230ae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "10a15376_9abdc315",
@@ -43,6 +60,53 @@
         "startChar": 51,
         "endLine": 52,
         "endChar": 55
+      },
+      "revId": "8f0811e169465a2e1b6ac1fbe1c775323aa230ae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3466d7f4_f540cf5f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-09T09:18:31Z",
+      "side": 1,
+      "message": "agreed, only make thing configurable when really needed or when requested by stakeholders",
+      "parentUuid": "75ca4818_1cae27e5",
+      "range": {
+        "startLine": 52,
+        "startChar": 51,
+        "endLine": 52,
+        "endChar": 55
+      },
+      "revId": "8f0811e169465a2e1b6ac1fbe1c775323aa230ae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c629b12c_e1f7dc74",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-09T09:18:31Z",
+      "side": 1,
+      "message": "should mention the removal of the public API method",
+      "range": {
+        "startLine": 47,
+        "startChar": 58,
+        "endLine": 47,
+        "endChar": 98
       },
       "revId": "8f0811e169465a2e1b6ac1fbe1c775323aa230ae",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
