@@ -22,6 +22,30 @@
       },
       "revId": "89871c11e9a32ad588fce392872a4be00badd0fe",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "297cd6da_9d47004a",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-01-09T10:38:28Z",
+      "side": 0,
+      "message": "Well it was never publicly exposed through REST, and given the method was only introduced within the last year specifically for NCMP to use for saving CM-handles - I doubt anyone is using it.\nI can create a wrapper and deprecate if you think it\u0027s needed?",
+      "parentUuid": "2cb7cbd8_2bc27808",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 113,
+        "endChar": 79
+      },
+      "revId": "89871c11e9a32ad588fce392872a4be00badd0fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
