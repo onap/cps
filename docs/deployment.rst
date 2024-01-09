@@ -335,5 +335,6 @@ Below are the list of distributed datastructures that we have.
 +--------------+---------------------------------+----------------------------------------------------------+
 | cps-ncmp     | moduleSetTagCacheMapConfig      | Stores the Module Set Tags for cmHandles.                |
 +--------------+---------------------------------+----------------------------------------------------------+
-
-Total number of caches : 8
+| cps-ncmp     | cmSubscriptionEventCache        | Stores the Ongoing CmSubscriptions.                      |
++--------------+---------------------------------+----------------------------------------------------------+
+Total number of caches : 9
