@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a259ed2_35d0eb8f",
+        "filename": "csit/tests/cps-data-operations/cps-data-operations.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-01-10T10:06:22Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "aa5e1cd0_6d2fbe0d",
+      "range": {
+        "startLine": 39,
+        "startChar": 122,
+        "endLine": 39,
+        "endChar": 154
+      },
+      "revId": "e16a4408f2d89556db9701fa84433a17e5d61a69",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "89445ee2_97354ff6",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-01-10T09:40:26Z",
       "side": 1,
       "message": "incorrect, nbeed to hardcode ietfYang instead here",
+      "range": {
+        "startLine": 198,
+        "startChar": 43,
+        "endLine": 198,
+        "endChar": 56
+      },
+      "revId": "e16a4408f2d89556db9701fa84433a17e5d61a69",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8037d45d_342b9189",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-01-10T10:06:22Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "89445ee2_97354ff6",
       "range": {
         "startLine": 198,
         "startChar": 43,
