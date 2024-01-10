@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "115da1b2_380849f0",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/21-escape-quotes-in-xpath-forward.sql",
+        "patchSetId": 14
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-01-10T12:55:46Z",
+      "side": 1,
+      "message": "-2024",
+      "revId": "36b81b27703d298f016180a71c85113d5c90c6b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3b47ca8_62f62488",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/21-escape-quotes-in-xpath-rollback.sql",
+        "patchSetId": 14
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-01-10T12:55:46Z",
+      "side": 1,
+      "message": "-2024",
+      "revId": "36b81b27703d298f016180a71c85113d5c90c6b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
