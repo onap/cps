@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b43414c_7fb95d65",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/model/CmSubscriptionPredicate.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-01-10T12:58:22Z",
+      "side": 1,
+      "message": "NB: It may be clearer if this was called \u0027targetCmHandles\u0027 or similar... \u0027targetFilter\u0027 is a bit ambiguous",
+      "range": {
+        "startLine": 31,
+        "startChar": 25,
+        "endLine": 31,
+        "endChar": 37
+      },
+      "revId": "34ac8e767246788afb5eeefa221acb5e587f568d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
