@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c99f675_a7607934",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-10T14:21:25Z",
+      "side": 1,
+      "message": "well done, looks spot on, you got heh logging and mocking all sorted\nJust some very minor comments to simplfy the slogans...\n\nI forgot to say un unused (you are Not definininh any behavior for it)  Mock can be replaced with a Stub , which is a litle more performant but that is very minor comment",
+      "revId": "a98bdbaa2c046476ab099464cf40ad8b0074b51c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43b73e9e_05e97ba9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/EventsPublisherSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-10T14:21:25Z",
+      "side": 1,
+      "message": "keep slogans short.Typcially we start with teh psoitive case but you dont need to say it is posstive in teh sloga\nso \n1) \u0027Publish Cloud Event.\u0027\n2) \u0027Publish Cloud Event with Exception\u0027  (use this on line 79)",
+      "range": {
+        "startLine": 61,
+        "startChar": 9,
+        "endLine": 61,
+        "endChar": 72
+      },
+      "revId": "a98bdbaa2c046476ab099464cf40ad8b0074b51c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7332b557_2413b255",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/EventsPublisherSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-10T14:21:25Z",
+      "side": 1,
+      "message": "remove this part of the slogan",
+      "range": {
+        "startLine": 93,
+        "startChar": 38,
+        "endLine": 93,
+        "endChar": 75
+      },
+      "revId": "a98bdbaa2c046476ab099464cf40ad8b0074b51c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d62a755d_a205ecf5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/EventsPublisherSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-10T14:21:25Z",
+      "side": 1,
+      "message": "with exception",
+      "range": {
+        "startLine": 109,
+        "startChar": 38,
+        "endLine": 109,
+        "endChar": 66
+      },
+      "revId": "a98bdbaa2c046476ab099464cf40ad8b0074b51c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
