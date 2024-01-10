@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2023 Nordix Foundation
+ *  Copyright (C) 2022-2024 Nordix Foundation
  *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,6 +22,7 @@
 package org.onap.cps.ncmp.api.impl.inventory;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
@@ -98,7 +99,7 @@ public interface InventoryPersistence extends NcmpPersistence {
      *
      * @param yangModelCmHandles cm handle represented as Yang Models
      */
-    void saveCmHandleBatch(Collection<YangModelCmHandle> yangModelCmHandles);
+    void saveCmHandleBatch(List<YangModelCmHandle> yangModelCmHandles);
 
     /**
      * Get data node of given cm handle.

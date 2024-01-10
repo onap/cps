@@ -97,23 +97,6 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         addChildrenDataNodes(anchorEntity, parentNodeXpath, newListElements);
     }
 
-    @Override
-    public void addMultipleLists(final String dataspaceName, final String anchorName, final String parentNodeXpath,
-                                 final Collection<Collection<DataNode>> newLists) {
-        final AnchorEntity anchorEntity = getAnchorEntity(dataspaceName, anchorName);
-        final Collection<String> failedXpaths = new HashSet<>();
-        for (final Collection<DataNode> newList : newLists) {
-            try {
-                addChildrenDataNodes(anchorEntity, parentNodeXpath, newList);
-            } catch (final AlreadyDefinedException alreadyDefinedException) {
-                failedXpaths.addAll(alreadyDefinedException.getAlreadyDefinedObjectNames());
-            }
-        }
-        if (!failedXpaths.isEmpty()) {
-            throw AlreadyDefinedException.forDataNodes(failedXpaths, anchorEntity.getName());
-        }
-    }
-
     private void addNewChildDataNode(final AnchorEntity anchorEntity, final String parentNodeXpath,
                                      final DataNode newChild) {
         final FragmentEntity parentFragmentEntity = getFragmentEntity(anchorEntity, parentNodeXpath);
