@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac467900_aa3644e3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/model/ScopeFilter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-01-10T11:15:07Z",
+      "side": 1,
+      "message": "NB: xpathFilters",
+      "range": {
+        "startLine": 33,
+        "startChar": 25,
+        "endLine": 33,
+        "endChar": 36
+      },
+      "revId": "27ee75ac18df6d8e28a3cf6c4f75f41226032a25",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5de07c0_a43e142f",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-01-10T11:15:07Z",
+      "side": 1,
+      "message": "suggestion: \u0027ongoing\u0027- makes it sound \u0027active\u0027 like the ones in database\n- \"Dynamic repository for tracking CmSubscription requests\" ?",
+      "range": {
+        "startLine": 338,
+        "startChar": 52,
+        "endLine": 338,
+        "endChar": 89
+      },
+      "revId": "27ee75ac18df6d8e28a3cf6c4f75f41226032a25",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
