@@ -118,11 +118,11 @@ public class EventsPublisher<T> {
     private void handleLegacyEventCallback(final String topicName,
             final CompletableFuture<SendResult<String, T>> eventFuture) {
         eventFuture.whenComplete((result, e) -> {
-            if (e != null) {
-                log.error("Unable to publish event to topic : {} due to {}", topicName, e.getMessage());
-            } else {
+            if (e == null) {
                 log.debug("Successfully published event to topic : {} , Event : {}", result.getRecordMetadata().topic(),
                         result.getProducerRecord().value());
+            } else {
+                log.error("Unable to publish event to topic : {} due to {}", topicName, e.getMessage());
             }
         });
     }
