@@ -22,6 +22,30 @@
       },
       "revId": "34ac8e767246788afb5eeefa221acb5e587f568d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8e0467d_8ed92ce9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/model/CmSubscriptionPredicate.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-01-10T14:28:07Z",
+      "side": 1,
+      "message": "actually in the incoming request its called targetFilter thats why I named it like that.\nBut yeah I agree targetCmHandles would be clear for us internally.\nWill do it in the next commit.",
+      "parentUuid": "7b43414c_7fb95d65",
+      "range": {
+        "startLine": 31,
+        "startChar": 25,
+        "endLine": 31,
+        "endChar": 37
+      },
+      "revId": "34ac8e767246788afb5eeefa221acb5e587f568d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
