@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ce6d524_f5f99182",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-01-11T14:32:29Z",
+      "side": 1,
+      "message": "NB: I see you tested not only error scenarios but also some success cases\n\nYou could have also elaborate commit message.",
+      "range": {
+        "startLine": 7,
+        "startChar": 32,
+        "endLine": 7,
+        "endChar": 47
+      },
+      "revId": "561c0c2dc91ef127f5ff5b8c4cc5212c316c3ef9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "75e2513d_bc80bc59",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-01-11T14:32:29Z",
+      "side": 1,
+      "message": "Left some NB- minor suggestions.",
+      "revId": "561c0c2dc91ef127f5ff5b8c4cc5212c316c3ef9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab23be29_1375d904",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/EventsPublisher.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-01-11T14:32:29Z",
+      "side": 1,
+      "message": "NB: 2024",
+      "range": {
+        "startLine": 3,
+        "startChar": 22,
+        "endLine": 3,
+        "endChar": 27
+      },
+      "revId": "561c0c2dc91ef127f5ff5b8c4cc5212c316c3ef9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
