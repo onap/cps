@@ -16,6 +16,24 @@
       "message": "remove white space",
       "revId": "f67dd39396d6f5c0d8b479f0270004284125dbfd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d28be1a8_799cef95",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/EventsPublisherSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-01-11T13:52:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c0225d9_520c8522",
+      "revId": "f67dd39396d6f5c0d8b479f0270004284125dbfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
