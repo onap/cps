@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "e6bd14a9_f751cd64",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-01-11T14:38:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7ce6d524_f5f99182",
+      "range": {
+        "startLine": 7,
+        "startChar": 32,
+        "endLine": 7,
+        "endChar": 47
+      },
+      "revId": "561c0c2dc91ef127f5ff5b8c4cc5212c316c3ef9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "75e2513d_bc80bc59",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 4
@@ -54,6 +78,30 @@
       "writtenOn": "2024-01-11T14:32:29Z",
       "side": 1,
       "message": "NB: 2024",
+      "range": {
+        "startLine": 3,
+        "startChar": 22,
+        "endLine": 3,
+        "endChar": 27
+      },
+      "revId": "561c0c2dc91ef127f5ff5b8c4cc5212c316c3ef9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "abb706d5_1019ee41",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/EventsPublisher.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-01-11T14:38:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab23be29_1375d904",
       "range": {
         "startLine": 3,
         "startChar": 22,
