@@ -52,6 +52,24 @@
       "parentUuid": "d28be1a8_799cef95",
       "revId": "f67dd39396d6f5c0d8b479f0270004284125dbfd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e0f515a_ff199fa2",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/EventsPublisherSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-11T14:13:36Z",
+      "side": 1,
+      "message": "yes .Groovy files are not checked",
+      "parentUuid": "3be90bc7_94aeb536",
+      "revId": "f67dd39396d6f5c0d8b479f0270004284125dbfd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
