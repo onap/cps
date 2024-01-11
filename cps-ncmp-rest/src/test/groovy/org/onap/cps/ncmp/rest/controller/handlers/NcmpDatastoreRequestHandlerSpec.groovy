@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023 Nordix Foundation
+ *  Copyright (C) 2023-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -40,16 +40,20 @@ class NcmpDatastoreRequestHandlerSpec extends Specification {
     def 'Attempt to execute async get request with #scenario.'() {
         given: 'notification feature is turned on/off'
             objectUnderTest.notificationFeatureEnabled = notificationFeatureEnabled
+        and: ' a flag to track the network service call'
+            def networkServiceMethodCalled = false
+        and: 'the (mocked) service will use the flag to indicate if it is called'
+            mockNetworkCmProxyDataService.getResourceDataForCmHandle('ds', 'ch1', 'resource1', 'options', _, _) >> {
+                networkServiceMethodCalled = true
+            }
         when: 'get request is executed with topic = #topic'
             objectUnderTest.executeRequest('ds', 'ch1', 'resource1', 'options', topic, false)
-        and: 'wait a little for async execution (only if expected)'
-            if (expectedCalls > 0) {
-                Thread.sleep(500)
-            }
         then: 'the task is executed in an async fashion or not'
             expectedCalls * spiedCpsNcmpTaskExecutor.executeTask(*_)
-        /*and: 'the service request is always invoked'
-            1 * mockNetworkCmProxyDataService.getResourceDataForCmHandle('ds', 'ch1', 'resource1', 'options', _, _)*/
+        and: 'the service request is always invoked within 5 seconds'
+            new PollingConditions().within(5) {
+                assert networkServiceMethodCalled == true
+            }
         where: 'the following parameters are used'
             scenario                   | notificationFeatureEnabled | topic   || expectedCalls
             'feature on, valid topic'  | true                       | 'valid' || 1
@@ -89,9 +93,9 @@ class NcmpDatastoreRequestHandlerSpec extends Specification {
             objectUnderTest.executeRequest('myTopic', dataOperationRequest)
         then: 'the task is executed in an async fashion'
             1 * spiedCpsNcmpTaskExecutor.executeTask(*_)
-        and: 'the network service is invoked (wait max. 5 seconds)'
-            new PollingConditions(timeout: 30).eventually {
-                //TODO Fix test assertion
+        and: 'the network service is invoked within 30 seconds'
+            new PollingConditions().within(30) {
+                networkServiceMethodCalled == true
             }
         where: 'the following datastores are used'
             datastore << ['ncmp-datastore:passthrough-running', 'ncmp-datastore:passthrough-operational']
