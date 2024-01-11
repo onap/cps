@@ -71,7 +71,15 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def mockModuleSyncStartedOnCmHandles = Mock(IMap<String, Object>)
     def trustLevelPerDmiPlugin = [:]
     def mockTrustLevelManager = Mock(TrustLevelManager)
+    def alternateIdPerCmHandle = new HashMap<String, String>()
+    def cmHandlePerAlternateId = new HashMap<String, String>()
     def objectUnderTest = getObjectUnderTest()
+
+    def static cmHandlesWithAllPopulatedAlternateIds = [new NcmpServiceCmHandle(cmHandleId: 'cmhandle1', alternateId: 'my-alternate-id-1'),
+             new NcmpServiceCmHandle(cmHandleId: 'cmhandle2', alternateId: 'my-alternate-id-2')]
+
+    def static cmHandlesWithSomePopulatedAlternateIds = [new NcmpServiceCmHandle(cmHandleId: 'cmhandle1', alternateId: 'my-alternate-id-1'),
+             new NcmpServiceCmHandle(cmHandleId: 'cmhandle2')]
 
     def 'DMI Registration: Create, Update, Delete & Upgrade operations are processed in the right order'() {
         given: 'a registration with operations of all types'
@@ -432,11 +440,29 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         'an unexpected exception'    | 'cmhandle'             | new RuntimeException('Failed')            || UNKNOWN_ERROR        | 'Failed'
     }
 
+    def 'Adding data to alternate id caches: #scenario'() {
+        given: 'a registration with three CM Handles to be created'
+            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server',
+                    createdCmHandles: dmiPluginRegistrations)
+        and: 'the caches are empty initially'
+            assert alternateIdPerCmHandle.size() == 0
+            assert cmHandlePerAlternateId.size() == 0
+        when: 'the DMI plugin registration happens'
+            objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+        then: 'the caches have the correct number of entries'
+            assert alternateIdPerCmHandle.size() == expectedCacheSize
+            assert cmHandlePerAlternateId.size() == expectedCacheSize
+        where:
+            scenario                   | dmiPluginRegistrations                 || expectedCacheSize
+            'an alternate id for each' | cmHandlesWithAllPopulatedAlternateIds  || 2
+            'an alternate id for one'  | cmHandlesWithSomePopulatedAlternateIds || 1
+    }
+
     def getObjectUnderTest() {
         return Spy(new NetworkCmProxyDataServiceImpl(spiedJsonObjectMapper, mockDmiDataOperations,
                 mockNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence, mockCmHandleQueries,
                 stubbedNetworkCmProxyCmHandlerQueryService, mockLcmEventsCmHandleStateHandler, mockCpsDataService,
-                mockModuleSyncStartedOnCmHandles, trustLevelPerDmiPlugin, mockTrustLevelManager))
+                mockModuleSyncStartedOnCmHandles, trustLevelPerDmiPlugin as Map<String, TrustLevel>, mockTrustLevelManager, alternateIdPerCmHandle, cmHandlePerAlternateId))
     }
 
     def addPersistedYangModelCmHandles(ids) {
