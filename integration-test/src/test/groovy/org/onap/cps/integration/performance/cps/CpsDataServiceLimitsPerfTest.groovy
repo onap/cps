@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023 Nordix Foundation
+ *  Copyright (C) 2023-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -46,8 +46,8 @@ class CpsDataServiceLimitsPerfTest extends CpsPerfTestBase {
             }
             resourceMeter.stop()
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
-        then: 'the operation completes within 25 seconds'
-            recordAndAssertResourceUsage("Creating 33,000 books", 25, durationInSeconds, 150, resourceMeter.getTotalMemoryUsageInMB())
+        then: 'the operation completes within 12 seconds'
+            recordAndAssertResourceUsage("Creating 33,000 books", 12, durationInSeconds, 150, resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def 'Get data nodes from multiple xpaths 32K (2^15) limit exceeded.'() {

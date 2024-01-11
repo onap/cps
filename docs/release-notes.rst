@@ -43,12 +43,24 @@ Bug Fixes
 
 Features
 --------
+    - `CPS-1795 <https://jira.onap.org/browse/CPS-1795>`_ Double performance of CPS write operations (via write batching)
     - `CPS-2018 <https://jira.onap.org/browse/CPS-2018>`_ Improve performance of CPS update operations.
     - `CPS-2019 <https://jira.onap.org/browse/CPS-2019>`_ Improve performance of saving CM handles.
 
 Notes
 -----
     - Java API method CpsDataService::saveListElementsBatch has been removed as part of CPS-2019.
+
+Known Limitations, Issues and Workarounds
+-----------------------------------------
+
+*System Limitations*
+
+For upgrading, CPS uses Liquibase for database upgrades. In order to enable Hibernate write batching
+(`CPS-1795 <https://jira.onap.org/browse/CPS-1795>`_), a change to the database entity ID generation is required.
+As such, *this release does not fully support In-Service Software Upgrade* - CPS will not store new DataNodes and
+NCMP will not register new CM-handles during an upgrade with old and new versions of CPS running concurrently.
+Other operations (read, update, delete) are not impacted.
 
 
 Version: 3.4.1

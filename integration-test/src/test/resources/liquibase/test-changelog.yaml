@@ -1,5 +1,5 @@
 # ============LICENSE_START=======================================================
-# Copyright (c) 2023 Nordix Foundation.
+# Copyright (c) 2023-2024 Nordix Foundation.
 # ================================================================================
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -100,7 +100,7 @@ databaseChangeLog:
         - createTable:
             columns:
               - column:
-                  autoIncrement: true
+                  autoIncrement: false
                   constraints:
                     nullable: false
                     primaryKey: true
@@ -127,6 +127,11 @@ databaseChangeLog:
                   name: schema_node_id
                   type: INTEGER
             tableName: fragment
+        - createSequence:
+            dataType: BIGINT
+            incrementBy: 100
+            sequenceName: fragment_id_seq
+            startValue: 100
   - changeSet:
       id: 1-5
       author: cps
