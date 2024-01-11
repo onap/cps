@@ -57,7 +57,7 @@ import spock.lang.Specification
 class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
 
     @Shared
-    def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: 'some-cm-handle-id')
+    def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: 'some-cm-handle-id',  alternateId: '')
 
     def mockCpsModuleService = Mock(CpsModuleService)
     def spiedJsonObjectMapper = Spy(new JsonObjectMapper(new ObjectMapper()))
@@ -71,12 +71,14 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def mockModuleSyncStartedOnCmHandles = Mock(IMap<String, Object>)
     def trustLevelPerDmiPlugin = [:]
     def mockTrustLevelManager = Mock(TrustLevelManager)
+    def alternateIdPerCmHandle = new HashMap<String, String>()
+    def cmHandlePerAlternateId = new HashMap<String, String>()
     def objectUnderTest = getObjectUnderTest()
 
     def 'DMI Registration: Create, Update, Delete & Upgrade operations are processed in the right order'() {
         given: 'a registration with operations of all types'
             def dmiRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server')
-            dmiRegistration.setCreatedCmHandles([new NcmpServiceCmHandle(cmHandleId: 'cmhandle-1', publicProperties: ['publicProp1': 'value'], dmiProperties: [:])])
+            dmiRegistration.setCreatedCmHandles([new NcmpServiceCmHandle(cmHandleId: 'cmhandle-1', alternateId: '', publicProperties: ['publicProp1': 'value'], dmiProperties: [:])])
             dmiRegistration.setUpdatedCmHandles([new NcmpServiceCmHandle(cmHandleId: 'cmhandle-2', publicProperties: ['publicProp1': 'value'], dmiProperties: [:])])
             dmiRegistration.setRemovedCmHandles(['cmhandle-2'])
             dmiRegistration.setUpgradedCmHandles(new UpgradedCmHandles(cmHandles: ['cmhandle-3'], moduleSetTag: 'some-module-set-tag'))
@@ -133,7 +135,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def 'DMI Registration: Response from all operations types are in response'() {
         given: 'a registration with operations of all three types'
             def dmiRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server')
-            dmiRegistration.setCreatedCmHandles([new NcmpServiceCmHandle(cmHandleId: 'cmhandle-1', publicProperties: ['publicProp1': 'value'], dmiProperties: [:])])
+            dmiRegistration.setCreatedCmHandles([new NcmpServiceCmHandle(cmHandleId: 'cmhandle-1', alternateId: '', publicProperties: ['publicProp1': 'value'], dmiProperties: [:])])
             dmiRegistration.setUpdatedCmHandles([new NcmpServiceCmHandle(cmHandleId: 'cmhandle-2', publicProperties: ['publicProp1': 'value'], dmiProperties: [:])])
             dmiRegistration.setRemovedCmHandles(['cmhandle-2'])
         and: 'update cm-handles can be processed successfully'
@@ -199,7 +201,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def 'Create CM-Handle Successfully: #scenario.'() {
         given: 'a registration without cm-handle properties'
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server')
-            dmiPluginRegistration.createdCmHandles = [new NcmpServiceCmHandle(cmHandleId: 'cmhandle', dmiProperties: dmiProperties, publicProperties: publicProperties)]
+            dmiPluginRegistration.createdCmHandles = [new NcmpServiceCmHandle(cmHandleId: 'cmhandle', alternateId: '', dmiProperties: dmiProperties, publicProperties: publicProperties)]
         when: 'registration is updated'
             def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'a successful response is received'
@@ -227,8 +229,8 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def 'Add CM-Handle to trustLevelPerCmHandle Successfully with: #scenario.'() {
         given: 'a registration with trustLevel and populated cache'
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server')
-            dmiPluginRegistration.createdCmHandles = [new NcmpServiceCmHandle(cmHandleId: 'ch-1', registrationTrustLevel: TrustLevel.NONE),
-                                                      new NcmpServiceCmHandle(cmHandleId: cmHandleId, registrationTrustLevel: registrationTrustLevel)]
+            dmiPluginRegistration.createdCmHandles = [new NcmpServiceCmHandle(cmHandleId: 'ch-1', alternateId: '', registrationTrustLevel: TrustLevel.NONE),
+                                                      new NcmpServiceCmHandle(cmHandleId: cmHandleId, alternateId: '', registrationTrustLevel: registrationTrustLevel)]
         when: 'registration is updated'
             def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'a successful response is received'
@@ -245,9 +247,9 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def 'Create CM-Handle Multiple Requests: All cm-handles creation requests are processed with some failures'() {
         given: 'a registration with three cm-handles to be created'
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server',
-                    createdCmHandles: [new NcmpServiceCmHandle(cmHandleId: 'cmhandle1'),
-                                       new NcmpServiceCmHandle(cmHandleId: 'cmhandle2'),
-                                       new NcmpServiceCmHandle(cmHandleId: 'cmhandle3')])
+                    createdCmHandles: [new NcmpServiceCmHandle(cmHandleId: 'cmhandle1', alternateId: ''),
+                                       new NcmpServiceCmHandle(cmHandleId: 'cmhandle2', alternateId: ''),
+                                       new NcmpServiceCmHandle(cmHandleId: 'cmhandle3', alternateId: '')])
         and: 'cm-handle creation is successful for 1st and 3rd; failed for 2nd'
             def xpath = "somePathWithId[@id='cmhandle2']"
             mockLcmEventsCmHandleStateHandler.initiateStateAdvised(*_) >> { throw AlreadyDefinedException.forDataNodes([xpath], 'some-context') }
@@ -267,7 +269,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def 'Create CM-Handle Error Handling: Registration fails: #scenario'() {
         given: 'a registration without cm-handle properties'
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server')
-            dmiPluginRegistration.createdCmHandles = [new NcmpServiceCmHandle(cmHandleId: 'cmhandle')]
+            dmiPluginRegistration.createdCmHandles = [new NcmpServiceCmHandle(cmHandleId: 'cmhandle', alternateId: '')]
         and: 'cm-handler registration fails: #scenario'
             mockLcmEventsCmHandleStateHandler.initiateStateAdvised(*_) >> { throw exception }
         when: 'registration is updated'
@@ -436,7 +438,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         return Spy(new NetworkCmProxyDataServiceImpl(spiedJsonObjectMapper, mockDmiDataOperations,
                 mockNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence, mockCmHandleQueries,
                 stubbedNetworkCmProxyCmHandlerQueryService, mockLcmEventsCmHandleStateHandler, mockCpsDataService,
-                mockModuleSyncStartedOnCmHandles, trustLevelPerDmiPlugin, mockTrustLevelManager))
+                mockModuleSyncStartedOnCmHandles, trustLevelPerDmiPlugin, mockTrustLevelManager, alternateIdPerCmHandle, cmHandlePerAlternateId))
     }
 
     def addPersistedYangModelCmHandles(ids) {
