@@ -1,6 +1,6 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
-.. Copyright (C) 2021-2022 Nordix Foundation
+.. Copyright (C) 2021-2024 Nordix Foundation
 .. Modifications Copyright (C) 2021 Bell Canada.
 
 .. DO NOT CHANGE THIS LABEL FOR RELEASE NOTES - EVEN THOUGH IT GIVES A WARNING
@@ -316,24 +316,28 @@ These instances require some additional ports to be available. The default range
 
 Below are the list of distributed datastructures that we have.
 
-+--------------+---------------------------------+----------------------------------------------------------+
-| Component    | Datastructure name              |                 Use                                      |
-+==============+=================================+==========================================================+
-| cps-core     | anchorDataCache                 | Used to resolve prefix for the container name.           |
-+--------------+---------------------------------+----------------------------------------------------------+
-| cps-ncmp     | moduleSyncStartedOnCmHandles    | Watchdog process to register cmHandles.                  |
-+--------------+---------------------------------+----------------------------------------------------------+
-| cps-ncmp     | dataSyncSemaphores              | Watchdog process to sync data from the nodes.            |
-+--------------+---------------------------------+----------------------------------------------------------+
-| cps-ncmp     | moduleSyncWorkQueue             | Queue used internally for workers to pick the task.      |
-+--------------+---------------------------------+----------------------------------------------------------+
-| cps-ncmp     | untrustworthyCmHandlesSet       | Stores untrustworthy cmHandles whose TrustLevel is NONE. |
-+--------------+---------------------------------+----------------------------------------------------------+
-| cps-ncmp     | trustLevelPerDmiPlugin          | Stores the TrustLevel for the dmi-plugins.               |
-+--------------+---------------------------------+----------------------------------------------------------+
-| cps-ncmp     | moduleSetTagCacheMapConfig      | Stores the Module Set Tags for cmHandles.                |
-+--------------+---------------------------------+----------------------------------------------------------+
-| cps-ncmp     | cmSubscriptionEventCache        | Stores and tracks CmSubscription requests.               |
-+--------------+---------------------------------+----------------------------------------------------------+
++--------------+------------------------------------+-----------------------------------------------------------+
+| Component    | Datastructure name                 |                 Use                                       |
++==============+====================================+===========================================================+
+| cps-core     | anchorDataCache                    | Used to resolve prefix for the container name.            |
++--------------+------------------------------------+-----------------------------------------------------------+
+| cps-ncmp     | moduleSyncStartedOnCmHandles       | Watchdog process to register cm handles.                  |
++--------------+------------------------------------+-----------------------------------------------------------+
+| cps-ncmp     | dataSyncSemaphores                 | Watchdog process to sync data from the nodes.             |
++--------------+------------------------------------+-----------------------------------------------------------+
+| cps-ncmp     | moduleSyncWorkQueue                | Queue used internally for workers to pick the task.       |
++--------------+------------------------------------+-----------------------------------------------------------+
+| cps-ncmp     | untrustworthyCmHandlesSet          | Stores untrustworthy cm handles whose trust level is NONE.|
++--------------+------------------------------------+-----------------------------------------------------------+
+| cps-ncmp     | trustLevelPerDmiPlugin             | Stores the trust level for the dmi-plugins.               |
++--------------+------------------------------------+-----------------------------------------------------------+
+| cps-ncmp     | moduleSetTagCacheMapConfig         | Stores the module set tags for cm handles.                |
++--------------+------------------------------------+-----------------------------------------------------------+
+| cps-ncmp     | cmSubscriptionEventCache           | Stores and tracks cm notification subscription requests.  |
++--------------+------------------------------------+-----------------------------------------------------------+
+| cps-ncmp     | alternateIdPerCmHandleId           | Stores the alternate id for each cm handle id.            |
++--------------+------------------------------------+-----------------------------------------------------------+
+| cps-ncmp     | cmHandleIdPerAlternateId           | Stores the cm handle id for each alternate id.            |
++--------------+------------------------------------+-----------------------------------------------------------+
 
-Total number of caches : 8
+Total number of caches : 10

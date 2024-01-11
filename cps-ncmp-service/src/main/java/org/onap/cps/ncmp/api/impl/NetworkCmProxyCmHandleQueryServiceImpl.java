@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2023 Nordix Foundation
+ *  Copyright (C) 2022-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -95,6 +95,12 @@ public class NetworkCmProxyCmHandleQueryServiceImpl implements NetworkCmProxyCmH
         final Collection<String> cmHandleIds = queryCmHandleIds(cmHandleQueryServiceParameters);
 
         return getNcmpServiceCmHandles(cmHandleIds);
+    }
+
+    @Override
+    public Collection<NcmpServiceCmHandle> getAllCmHandles() {
+        final DataNode dataNode = inventoryPersistence.getDataNode(NCMP_DMI_REGISTRY_PARENT).iterator().next();
+        return dataNode.getChildDataNodes().stream().map(this::createNcmpServiceCmHandle).collect(Collectors.toSet());
     }
 
     private Collection<String> queryCmHandlesByDmiPlugin(
@@ -214,11 +220,6 @@ public class NetworkCmProxyCmHandleQueryServiceImpl implements NetworkCmProxyCmH
             }
         }
         return Collections.emptyList();
-    }
-
-    private Collection<NcmpServiceCmHandle> getAllCmHandles() {
-        final DataNode dataNode = inventoryPersistence.getDataNode(NCMP_DMI_REGISTRY_PARENT).iterator().next();
-        return dataNode.getChildDataNodes().stream().map(this::createNcmpServiceCmHandle).collect(Collectors.toSet());
     }
 
     private Collection<String> getAllCmHandleIds() {
