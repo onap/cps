@@ -316,24 +316,28 @@ These instances require some additional ports to be available. The default range
 
 Below are the list of distributed datastructures that we have.
 
-+--------------+---------------------------------+----------------------------------------------------------+
-| Component    | Datastructure name              |                 Use                                      |
-+==============+=================================+==========================================================+
-| cps-core     | anchorDataCache                 | Used to resolve prefix for the container name.           |
-+--------------+---------------------------------+----------------------------------------------------------+
-| cps-ncmp     | moduleSyncStartedOnCmHandles    | Watchdog process to register cmHandles.                  |
-+--------------+---------------------------------+----------------------------------------------------------+
-| cps-ncmp     | dataSyncSemaphores              | Watchdog process to sync data from the nodes.            |
-+--------------+---------------------------------+----------------------------------------------------------+
-| cps-ncmp     | moduleSyncWorkQueue             | Queue used internally for workers to pick the task.      |
-+--------------+---------------------------------+----------------------------------------------------------+
-| cps-ncmp     | untrustworthyCmHandlesSet       | Stores untrustworthy cmHandles whose TrustLevel is NONE. |
-+--------------+---------------------------------+----------------------------------------------------------+
-| cps-ncmp     | trustLevelPerDmiPlugin          | Stores the TrustLevel for the dmi-plugins.               |
-+--------------+---------------------------------+----------------------------------------------------------+
-| cps-ncmp     | moduleSetTagCacheMapConfig      | Stores the Module Set Tags for cmHandles.                |
-+--------------+---------------------------------+----------------------------------------------------------+
-| cps-ncmp     | cmSubscriptionEventCache        | Stores and tracks CmSubscription requests.               |
-+--------------+---------------------------------+----------------------------------------------------------+
++--------------+----------------------------------+----------------------------------------------------------+
+| Component    | Datastructure name               |                 Use                                      |
++==============+==================================+==========================================================+
+| cps-core     | anchorDataCache                  | Used to resolve prefix for the container name.           |
++--------------+----------------------------------+----------------------------------------------------------+
+| cps-ncmp     | moduleSyncStartedOnCmHandles     | Watchdog process to register cmHandles.                  |
++--------------+----------------------------------+----------------------------------------------------------+
+| cps-ncmp     | dataSyncSemaphores               | Watchdog process to sync data from the nodes.            |
++--------------+----------------------------------+----------------------------------------------------------+
+| cps-ncmp     | moduleSyncWorkQueue              | Queue used internally for workers to pick the task.      |
++--------------+----------------------------------+----------------------------------------------------------+
+| cps-ncmp     | untrustworthyCmHandlesSet        | Stores untrustworthy cmHandles whose TrustLevel is NONE. |
++--------------+----------------------------------+----------------------------------------------------------+
+| cps-ncmp     | trustLevelPerDmiPlugin           | Stores the TrustLevel for the dmi-plugins.               |
++--------------+----------------------------------+----------------------------------------------------------+
+| cps-ncmp     | moduleSetTagCacheMapConfig       | Stores the Module Set Tags for cmHandles.                |
++--------------+----------------------------------+----------------------------------------------------------+
+| cps-ncmp     | cmSubscriptionEventCache         | Stores and tracks CmSubscription requests.               |
++--------------+----------------------------------+----------------------------------------------------------+
+| cps-ncmp     | alternateIdToCmHandleCacheConfig | Stores the Module Set Tags for cmHandles.                |
++--------------+----------------------------------+----------------------------------------------------------+
+| cps-ncmp     | cmHandleToAlternateIdCacheConfig | Stores and tracks CmSubscription requests.               |
++--------------+----------------------------------+----------------------------------------------------------+
 
-Total number of caches : 8
+Total number of caches : 10
