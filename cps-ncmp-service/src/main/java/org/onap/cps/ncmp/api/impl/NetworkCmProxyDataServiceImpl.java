@@ -45,6 +45,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -52,6 +53,7 @@ import org.onap.cps.api.CpsDataService;
 import org.onap.cps.ncmp.api.NcmpResponseStatus;
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandleQueryService;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
+import org.onap.cps.ncmp.api.impl.config.embeddedcache.AlternateIdCacheConfig;
 import org.onap.cps.ncmp.api.impl.events.lcm.LcmEventsCmHandleStateHandler;
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueries;
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleState;
@@ -104,10 +106,13 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private final IMap<String, Object> moduleSyncStartedOnCmHandles;
     private final Map<String, TrustLevel> trustLevelPerDmiPlugin;
     private final TrustLevelManager trustLevelManager;
+    private final Map<String, String> alternateIdToCmHandle;
+    private final Map<String, String> cmHandleToAlternateId;
 
     @Override
     public DmiPluginRegistrationResponse updateDmiRegistrationAndSyncModule(
         final DmiPluginRegistration dmiPluginRegistration) {
+        initializeAlternateIdCaches(dmiPluginRegistration);
         dmiPluginRegistration.validateDmiPluginRegistration();
         final DmiPluginRegistrationResponse dmiPluginRegistrationResponse = new DmiPluginRegistrationResponse();
 
@@ -524,6 +529,23 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             trustLevelPerDmiPlugin.put(dmiPluginRegistration.getDmiPlugin(), TrustLevel.COMPLETE);
         } else {
             trustLevelPerDmiPlugin.put(dmiPluginRegistration.getDmiDataPlugin(), TrustLevel.COMPLETE);
+        }
+    }
+
+    private void initializeAlternateIdCaches(final DmiPluginRegistration dmiPluginRegistration) {
+        final List<NcmpServiceCmHandle> ncmpServiceCmHandleList = dmiPluginRegistration.getCreatedCmHandles();
+        if (cmHandleToAlternateId.isEmpty() || alternateIdToCmHandle.isEmpty()) {
+            Collection<NcmpServiceCmHandle> existingCmHandles =
+                    networkCmProxyCmHandleQueryService.getAllExistingCmHandles();
+            ncmpServiceCmHandleList.addAll(existingCmHandles);
+        }
+        for (NcmpServiceCmHandle ncmpServiceCmHandle : ncmpServiceCmHandleList) {
+            String alternateId = ncmpServiceCmHandle.getAlternateId();
+            String cmHandleId = ncmpServiceCmHandle.getCmHandleId();
+            if (!alternateId.isEmpty() && !cmHandleId.isEmpty()) {
+                cmHandleToAlternateId.putIfAbsent(cmHandleId, alternateId);
+                alternateIdToCmHandle.putIfAbsent(alternateId, cmHandleId);
+            }
         }
     }
 
