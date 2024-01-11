@@ -41,7 +41,8 @@ import org.springframework.boot.test.context.SpringBootTest
 @SpringBootTest(classes = [ObjectMapper, JsonObjectMapper])
 class CmSubscriptionNcmpInEventConsumerSpec extends MessagingBaseSpec {
 
-    def objectUnderTest = new CmSubscriptionNcmpInEventConsumer()
+    def mockCmSubscriptionCacheHandler = Mock(CmSubscriptionCacheHandler)
+    def objectUnderTest = new CmSubscriptionNcmpInEventConsumer(mockCmSubscriptionCacheHandler)
     def logger = Spy(ListAppender<ILoggingEvent>)
 
     @Autowired
@@ -84,6 +85,8 @@ class CmSubscriptionNcmpInEventConsumerSpec extends MessagingBaseSpec {
             assert loggingEvent.level == Level.INFO
         and: 'the log indicates the task completed successfully'
             assert loggingEvent.formattedMessage == 'Subscription with name cm-subscription-001 to be mapped to hazelcast object...'
+        and: 'the cache handler method is called once'
+            1 * mockCmSubscriptionCacheHandler.loadCmSubscriptionEventToCache(_)
     }
 
     def getLoggingEvent() {
