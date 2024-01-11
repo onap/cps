@@ -104,10 +104,13 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private final IMap<String, Object> moduleSyncStartedOnCmHandles;
     private final Map<String, TrustLevel> trustLevelPerDmiPlugin;
     private final TrustLevelManager trustLevelManager;
+    private final Map<String, String> alternateIdToCmHandle;
+    private final Map<String, String> cmHandleToAlternateId;
 
     @Override
     public DmiPluginRegistrationResponse updateDmiRegistrationAndSyncModule(
         final DmiPluginRegistration dmiPluginRegistration) {
+        initializeAlternateIdCaches(dmiPluginRegistration);
         dmiPluginRegistration.validateDmiPluginRegistration();
         final DmiPluginRegistrationResponse dmiPluginRegistrationResponse = new DmiPluginRegistrationResponse();
 
@@ -524,6 +527,23 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             trustLevelPerDmiPlugin.put(dmiPluginRegistration.getDmiPlugin(), TrustLevel.COMPLETE);
         } else {
             trustLevelPerDmiPlugin.put(dmiPluginRegistration.getDmiDataPlugin(), TrustLevel.COMPLETE);
+        }
+    }
+
+    private void initializeAlternateIdCaches(final DmiPluginRegistration dmiPluginRegistration) {
+        final List<NcmpServiceCmHandle> ncmpServiceCmHandleList = dmiPluginRegistration.getCreatedCmHandles();
+        if (cmHandleToAlternateId.isEmpty() || alternateIdToCmHandle.isEmpty()) {
+            final Collection<NcmpServiceCmHandle> existingCmHandles =
+                    networkCmProxyCmHandleQueryService.getAllExistingCmHandles();
+            ncmpServiceCmHandleList.addAll(existingCmHandles);
+        }
+        for (final NcmpServiceCmHandle ncmpServiceCmHandle : ncmpServiceCmHandleList) {
+            final String alternateId = ncmpServiceCmHandle.getAlternateId();
+            final String cmHandleId = ncmpServiceCmHandle.getCmHandleId();
+            if (!alternateId.isEmpty() && !cmHandleId.isEmpty()) {
+                cmHandleToAlternateId.putIfAbsent(cmHandleId, alternateId);
+                alternateIdToCmHandle.putIfAbsent(alternateId, cmHandleId);
+            }
         }
     }
 

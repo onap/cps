@@ -61,4 +61,11 @@ public interface NetworkCmProxyCmHandleQueryService {
      * @return collection of cm handles
      */
     Collection<NcmpServiceCmHandle> queryCmHandles(CmHandleQueryServiceParameters cmHandleQueryServiceParameters);
+
+    /**
+     * Query and return all cm handle objects.
+     *
+     * @return collection of cm handles
+     */
+    Collection<NcmpServiceCmHandle> getAllExistingCmHandles();
 }
