@@ -97,6 +97,11 @@ public class NetworkCmProxyCmHandleQueryServiceImpl implements NetworkCmProxyCmH
         return getNcmpServiceCmHandles(cmHandleIds);
     }
 
+    @Override
+    public Collection<NcmpServiceCmHandle> getAllExistingCmHandles() {
+        return getAllCmHandles();
+    }
+
     private Collection<String> queryCmHandlesByDmiPlugin(
             final CmHandleQueryServiceParameters cmHandleQueryServiceParameters) {
         final Map<String, String> dmiPropertyQueryPairs =
