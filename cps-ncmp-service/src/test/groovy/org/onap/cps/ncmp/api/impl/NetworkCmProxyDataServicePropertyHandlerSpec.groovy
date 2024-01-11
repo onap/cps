@@ -22,13 +22,9 @@
 
 package org.onap.cps.ncmp.api.impl
 
-import ch.qos.logback.classic.Level
-import ch.qos.logback.classic.Logger
-import ch.qos.logback.classic.spi.ILoggingEvent
+
 import com.fasterxml.jackson.databind.ObjectMapper
-import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.BeforeEach
-import org.slf4j.LoggerFactory
+import org.onap.cps.ncmp.api.impl.utils.CmHandleIdMapper
 
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
@@ -37,7 +33,6 @@ import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLE_INVALID_ID
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNKNOWN_ERROR
 import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.Status
 
-import ch.qos.logback.core.read.ListAppender
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.utils.JsonObjectMapper
 import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence
@@ -53,20 +48,9 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
     def mockInventoryPersistence = Mock(InventoryPersistence)
     def mockCpsDataService = Mock(CpsDataService)
     def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
-    def logger = Spy(ListAppender<ILoggingEvent>)
+    def mockCmHandleIdMapper = Mock(CmHandleIdMapper)
 
-    @BeforeEach
-    void setup() {
-        ((Logger) LoggerFactory.getLogger(NetworkCmProxyDataServicePropertyHandler.class)).addAppender(logger);
-        logger.start();
-    }
-
-    @AfterEach
-    void teardown() {
-        ((Logger) LoggerFactory.getLogger(NetworkCmProxyDataServicePropertyHandler.class)).detachAndStopAllAppenders();
-    }
-
-    def objectUnderTest = new NetworkCmProxyDataServicePropertyHandler(mockInventoryPersistence, mockCpsDataService, jsonObjectMapper)
+    def objectUnderTest = new NetworkCmProxyDataServicePropertyHandler(mockInventoryPersistence, mockCpsDataService, jsonObjectMapper, mockCmHandleIdMapper)
     def static cmHandleId = 'myHandle1'
     def static cmHandleXpath = "/dmi-registry/cm-handles[@id='${cmHandleId}']"
 
@@ -198,36 +182,41 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
             2 * mockInventoryPersistence.replaceListContent(cmHandleXpath,_)
     }
 
-    def 'Update CM Handle Alternate ID when #scenario'() {
+    def 'Update CM Handle Alternate ID with #scenario'() {
         given: 'an existing cm handle with alternate id #existingAlternateId'
-            DataNode existingCmHandleDataNode = new DataNode(xpath: cmHandleXpath, leaves: ['alternate-id': oldAlternateId])
+            DataNode existingCmHandleDataNode = new DataNode(xpath: cmHandleXpath)
         and: 'an update request with an alternate id #newAlternateId'
-            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, alternateId: newAlternateId)
-        when: 'update data node leaves is called with the update request'
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, alternateId: 'alt-1' )
+        when: 'update alternate id method is called with the update request'
             objectUnderTest.updateAlternateId(existingCmHandleDataNode, ncmpServiceCmHandle)
         then: 'the update node leaves method is invoked as many times as expected'
-            numberOfInvocations * mockCpsDataService.updateNodeLeaves('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry', _, _) >> { args ->
-                assert args[3].contains(newAlternateId)
-            }
-        and: 'correct information is logged'
-            def lastLoggingEvent = logger.list[0]
-            if (expectLogWarning) {
-                assert lastLoggingEvent.level == Level.WARN
-                assert lastLoggingEvent.formattedMessage.contains('Unable')
-            } else if (numberOfInvocations == 1) {
-                assert lastLoggingEvent.level == Level.INFO
-                assert lastLoggingEvent.formattedMessage.contains('Updating alternateId')
-            } else {
-                assert lastLoggingEvent == null
-            }
+            callsToDataService * mockCpsDataService.updateNodeLeaves('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry', _, _) >>
+                    { args ->
+                        assert args[3].contains('alt-1')
+                    }
+            mockCmHandleIdMapper.addMapping(cmHandleId, 'alt-1') >> isNewMapping
         where: 'following updates are attempted'
-            scenario                     | oldAlternateId | newAlternateId || numberOfInvocations | expectLogWarning
-            'old alternate id null'      | null           | 'new'          || 1                   | false
-            'old alternate id empty'     | ''             | 'new'          || 1                   | false
-            'old alternate id not empty' | 'old'          | 'new'          || 0                   | true
-            'same alternate id'          | 'old'          | 'old'          || 0                   | false
-            'empty new alternate id'     | 'old'          | ''             || 0                   | false
-            'null new alternate id'      | 'old'          | null           || 0                   | false
+            scenario                | isNewMapping || callsToDataService
+            'new alternate id   '   | true         || 1
+            'existing alternate id' | false        || 0
+    }
+
+    def 'Alternate ID removed from cache when persisting fails.'() {
+        given: 'an existing data node and an update request with an alternate id'
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, alternateId: 'alt-1')
+            DataNode existingCmHandleDataNode = new DataNode(xpath: cmHandleXpath, leaves: ['alternate-id': null])
+        and: 'a new mapping is added'
+            mockCmHandleIdMapper.addMapping(cmHandleId, 'alt-1') >> true
+        and: 'but an exception occurs while saving'
+            def originalException = new NullPointerException('some exception')
+            mockCpsDataService.updateNodeLeaves(*_) >> { throw originalException }
+        when: 'updating of alternate id called'
+            objectUnderTest.updateAlternateId(existingCmHandleDataNode, ncmpServiceCmHandle)
+        then: 'the original exception is thrown up'
+            def thrownException = thrown(NullPointerException)
+            assert thrownException == originalException
+        and: 'the mapping is removed from the cache'
+            1 * mockCmHandleIdMapper.removeMapping(cmHandleId)
     }
 
     def convertToProperties(expectedPropertiesAfterUpdateAsMap) {

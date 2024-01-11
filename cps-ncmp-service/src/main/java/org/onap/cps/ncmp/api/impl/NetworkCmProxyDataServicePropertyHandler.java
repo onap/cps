@@ -43,9 +43,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence;
+import org.onap.cps.ncmp.api.impl.utils.CmHandleIdMapper;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse;
@@ -67,6 +67,7 @@ public class NetworkCmProxyDataServicePropertyHandler {
     private final InventoryPersistence inventoryPersistence;
     private final CpsDataService cpsDataService;
     private final JsonObjectMapper jsonObjectMapper;
+    private final CmHandleIdMapper cmHandleIdMapper;
 
     /**
      * Iterates over incoming ncmpServiceCmHandles and update the dataNodes based on the updated attributes.
@@ -105,19 +106,15 @@ public class NetworkCmProxyDataServicePropertyHandler {
     private void updateAlternateId(final DataNode existingCmHandleDataNode,
                                    final NcmpServiceCmHandle ncmpServiceCmHandle) {
         final String newAlternateId = ncmpServiceCmHandle.getAlternateId();
-        if (!StringUtils.isEmpty(newAlternateId)) {
-            final String existingAlternateId = (String) existingCmHandleDataNode.getLeaves().get("alternate-id");
-            if (StringUtils.isEmpty(existingAlternateId)) {
+        if (cmHandleIdMapper.addMapping(ncmpServiceCmHandle.getCmHandleId(), newAlternateId)) {
+            try {
                 final YangModelCmHandle yangModelCmHandle =
                         YangDataConverter.convertCmHandleToYangModel(existingCmHandleDataNode,
                                 ncmpServiceCmHandle.getCmHandleId());
                 setAndUpdateAlternateId(yangModelCmHandle, newAlternateId);
-            } else {
-                if (!newAlternateId.equals(existingAlternateId)) {
-                    log.warn("Unable to update alternateId for cmHandle {}. "
-                                    + "Value for alternateId has been set previously.",
-                            ncmpServiceCmHandle.getCmHandleId());
-                }
+            } catch (final Exception e) {
+                cmHandleIdMapper.removeMapping(ncmpServiceCmHandle.getCmHandleId());
+                throw e;
             }
         }
     }
