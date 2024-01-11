@@ -22,6 +22,30 @@
       },
       "revId": "01e063672e55b760fd58625c8d57919568d8ba1a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46896d38_64d3cb69",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-01-11T11:35:51Z",
+      "side": 1,
+      "message": "Good suggession I like it. However I got already three +1 and can wait to get a review from Toine as well before raising a new patch set.",
+      "parentUuid": "6ee3c1ec_319c165d",
+      "range": {
+        "startLine": 46,
+        "startChar": 58,
+        "endLine": 46,
+        "endChar": 85
+      },
+      "revId": "01e063672e55b760fd58625c8d57919568d8ba1a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
