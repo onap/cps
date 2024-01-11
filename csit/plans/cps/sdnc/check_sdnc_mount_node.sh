@@ -1,5 +1,5 @@
 # ============LICENSE_START=======================================================
-# Copyright (C) 2023 Nordix Foundation
+# Copyright (C) 2023-2024 Nordix Foundation
 # ================================================================================
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -44,13 +44,13 @@ SDNC_TIME=0
 while [ "$SDNC_TIME" -le "$SDNC_TIME_OUT" ]; do
 
   # Mount netconf node
-  curl --location --request PUT 'http://'$SDNC_HOST:$SDNC_PORT'/restconf/config/network-topology:network-topology/topology/topology-netconf/node/PNFDemo' \
+  curl --location --request PUT 'http://'$SDNC_HOST:$SDNC_PORT'/restconf/config/network-topology:network-topology/topology/topology-netconf/node/ietfYang-PNFDemo' \
   --header 'Authorization: Basic YWRtaW46S3A4Yko0U1hzek0wV1hsaGFrM2VIbGNzZTJnQXc4NHZhb0dHbUp2VXkyVQ==' \
   --header 'Content-Type: application/json' \
   --data-raw '{
     "node": [
     {
-      "node-id": "PNFDemo",
+      "node-id": "ietfYang-PNFDemo",
       "netconf-node-topology:protocol": {
       "name": "TLS"
       },
@@ -70,7 +70,7 @@ while [ "$SDNC_TIME" -le "$SDNC_TIME_OUT" ]; do
 
   RESPONSE=$( curl --location --request GET 'http://'$SDNC_HOST:$SDNC_PORT'/restconf/config/network-topology:network-topology/topology/topology-netconf' --header 'Authorization: basic YWRtaW46S3A4Yko0U1hzek0wV1hsaGFrM2VIbGNzZTJnQXc4NHZhb0dHbUp2VXkyVQ==')
 
-  if [[ "$RESPONSE" == *"PNFDemo"* ]]; then
+  if [[ "$RESPONSE" == *"ietfYang-PNFDemo"* ]]; then
     echo "Node mounted in $SDNC_TIME"
     sleep 10
     break;

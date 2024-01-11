@@ -6,7 +6,7 @@
       "datastore": "ncmp-datastore:passthrough-operational",
       "options": "(fields=schemas/schema)",
       "resourceIdentifier": "parent/child",
-      "targetIds": ["850117873c9a4936856a5081be96e6a8"]
+      "targetIds": ["CMHandle1"]
     }
   ]
 }

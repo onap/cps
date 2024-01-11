@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023 Nordix Foundation
+ *  Copyright (C) 2023-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -36,7 +36,7 @@ ${topic}                                data-operation-client-topic
 ${ncmpBasePath}                         /ncmp
 ${expectedRequestId}                    ${EMPTY}
 ${dmipluginCsitStubUrl}                 http://${DMI_CSIT_STUB_HOST}:${DMI_CSIT_STUB_PORT}
-${newCmHandleRequestBody}               {"dmiPlugin":"${dmipluginCsitStubUrl}","createdCmHandles":[{"cmHandle":"850117873c9a4936856a5081be96e6a8"}]}
+${newCmHandleRequestBody}               {"dmiPlugin":"${dmipluginCsitStubUrl}","createdCmHandles":[{"cmHandle":"CMHandle1"}]}
 
 *** Test Cases ***
 
