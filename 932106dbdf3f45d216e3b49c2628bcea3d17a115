@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c5d4e261_69bdf9d6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-01-11T11:24:51Z",
+      "side": 1,
+      "message": "It looks correct into intellij",
+      "parentUuid": "0e21a2b2_3e794d06",
+      "revId": "932106dbdf3f45d216e3b49c2628bcea3d17a115",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ecede09b_3ca222b4",
         "filename": "csit/plans/cps/sdnc/check_sdnc_mount_node.sh",
         "patchSetId": 9
@@ -48,6 +66,30 @@
       "writtenOn": "2024-01-10T14:47:01Z",
       "side": 1,
       "message": "NB: 2023-2024",
+      "range": {
+        "startLine": 2,
+        "startChar": 16,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "932106dbdf3f45d216e3b49c2628bcea3d17a115",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da5c8bd2_fda4d4d0",
+        "filename": "csit/plans/cps/sdnc/check_sdnc_mount_node.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-01-11T11:24:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ecede09b_3ca222b4",
       "range": {
         "startLine": 2,
         "startChar": 16,
@@ -81,6 +123,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "603dbc55_1d642bf7",
+        "filename": "csit/tests/cm-handle-query/cm-handle-query.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-01-11T11:24:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6038770c_2eaea90d",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 23
+      },
+      "revId": "932106dbdf3f45d216e3b49c2628bcea3d17a115",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b71cc495_510edfe6",
@@ -94,6 +160,30 @@
       "writtenOn": "2024-01-10T14:47:01Z",
       "side": 1,
       "message": "NB: 2023-2024",
+      "range": {
+        "startLine": 3,
+        "startChar": 17,
+        "endLine": 3,
+        "endChar": 22
+      },
+      "revId": "932106dbdf3f45d216e3b49c2628bcea3d17a115",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd569abe_a3b4a4e9",
+        "filename": "csit/tests/cps-data-operations/cps-data-operations.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-01-11T11:24:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b71cc495_510edfe6",
       "range": {
         "startLine": 3,
         "startChar": 17,
@@ -127,6 +217,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "077ea5cc_ddfa9cc9",
+        "filename": "csit/tests/cps-data-sync/cps-data-sync.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-01-11T11:24:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "39e4b496_6f48e843",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 23
+      },
+      "revId": "932106dbdf3f45d216e3b49c2628bcea3d17a115",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "907acbf4_fc298b9f",
@@ -140,6 +254,30 @@
       "writtenOn": "2024-01-10T14:47:01Z",
       "side": 1,
       "message": "NB: 2024",
+      "range": {
+        "startLine": 3,
+        "startChar": 23,
+        "endLine": 3,
+        "endChar": 28
+      },
+      "revId": "932106dbdf3f45d216e3b49c2628bcea3d17a115",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e85b745_b48ddb28",
+        "filename": "csit/tests/cps-model-sync/cps-model-sync.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-01-11T11:24:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "907acbf4_fc298b9f",
       "range": {
         "startLine": 3,
         "startChar": 23,
@@ -196,6 +334,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a44ee32d_15736061",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-01-11T11:24:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a1c4db56_f3e0e6a5",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 23
+      },
+      "revId": "932106dbdf3f45d216e3b49c2628bcea3d17a115",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9badea26_2ecd23df",
@@ -209,6 +371,30 @@
       "writtenOn": "2024-01-10T14:47:01Z",
       "side": 1,
       "message": "Method return type is already indicate that is a String",
+      "range": {
+        "startLine": 189,
+        "startChar": 44,
+        "endLine": 189,
+        "endChar": 52
+      },
+      "revId": "932106dbdf3f45d216e3b49c2628bcea3d17a115",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c15ec74_68165e83",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-01-11T11:24:51Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9badea26_2ecd23df",
       "range": {
         "startLine": 189,
         "startChar": 44,
