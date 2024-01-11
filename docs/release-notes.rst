@@ -43,6 +43,7 @@ Bug Fixes
 
 Features
 --------
+    - `CPS-1638 <https://jira.onap.org/browse/CPS-1638>`_ Introduce trust level for CM handle.
     - `CPS-1795 <https://jira.onap.org/browse/CPS-1795>`_ Double performance of CPS write operations (via write batching)
     - `CPS-2018 <https://jira.onap.org/browse/CPS-2018>`_ Improve performance of CPS update operations.
     - `CPS-2019 <https://jira.onap.org/browse/CPS-2019>`_ Improve performance of saving CM handles.
