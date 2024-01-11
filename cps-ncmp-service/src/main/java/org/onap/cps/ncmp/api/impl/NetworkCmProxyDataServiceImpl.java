@@ -48,6 +48,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.ncmp.api.NcmpResponseStatus;
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandleQueryService;
@@ -65,6 +66,7 @@ import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations;
 import org.onap.cps.ncmp.api.impl.operations.OperationType;
 import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel;
 import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevelManager;
+import org.onap.cps.ncmp.api.impl.utils.CmHandleIdMapper;
 import org.onap.cps.ncmp.api.impl.utils.CmHandleQueryConditions;
 import org.onap.cps.ncmp.api.impl.utils.InventoryQueryConditions;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
@@ -104,10 +106,12 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private final IMap<String, Object> moduleSyncStartedOnCmHandles;
     private final Map<String, TrustLevel> trustLevelPerDmiPlugin;
     private final TrustLevelManager trustLevelManager;
+    private final CmHandleIdMapper cmHandleIdMapper;
 
     @Override
     public DmiPluginRegistrationResponse updateDmiRegistrationAndSyncModule(
         final DmiPluginRegistration dmiPluginRegistration) {
+        cacheNewRegistrations(dmiPluginRegistration.getCreatedCmHandles());
         dmiPluginRegistration.validateDmiPluginRegistration();
         final DmiPluginRegistrationResponse dmiPluginRegistrationResponse = new DmiPluginRegistrationResponse();
 
@@ -367,8 +371,15 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
         yangModelCmHandles.removeIf(yangModelCmHandle -> notDeletedCmHandles.contains(yangModelCmHandle.getId()));
         updateCmHandleStateBatch(yangModelCmHandles, CmHandleState.DELETED);
+        removeEntriesFromAlternateIdCache(yangModelCmHandles);
 
         return cmHandleRegistrationResponses;
+    }
+
+    private void removeEntriesFromAlternateIdCache(final Collection<YangModelCmHandle> yangModelCmHandles) {
+        for (final YangModelCmHandle yangModelCmHandle : yangModelCmHandles) {
+            cmHandleIdMapper.removeMapping(yangModelCmHandle.getId());
+        }
     }
 
     protected List<CmHandleRegistrationResponse> parseAndProcessUpgradedCmHandlesInRegistration(
@@ -524,6 +535,14 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             trustLevelPerDmiPlugin.put(dmiPluginRegistration.getDmiPlugin(), TrustLevel.COMPLETE);
         } else {
             trustLevelPerDmiPlugin.put(dmiPluginRegistration.getDmiDataPlugin(), TrustLevel.COMPLETE);
+        }
+    }
+
+    private void cacheNewRegistrations(final Collection<NcmpServiceCmHandle> ncmpServiceCmHandles) {
+        for (final NcmpServiceCmHandle ncmpServiceCmHandle : ncmpServiceCmHandles) {
+            if (!StringUtils.isEmpty(ncmpServiceCmHandle.getAlternateId())) {
+                cmHandleIdMapper.addMapping(ncmpServiceCmHandle.getCmHandleId(), ncmpServiceCmHandle.getAlternateId());
+            }
         }
     }
 
