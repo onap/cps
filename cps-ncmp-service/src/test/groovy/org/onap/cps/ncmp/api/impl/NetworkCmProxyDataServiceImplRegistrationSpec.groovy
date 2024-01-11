@@ -22,6 +22,7 @@
 package org.onap.cps.ncmp.api.impl
 
 import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevelManager
+import org.onap.cps.ncmp.api.impl.utils.CmHandleIdMapper
 import org.onap.cps.ncmp.api.models.UpgradedCmHandles
 
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLES_NOT_FOUND
@@ -71,6 +72,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def mockModuleSyncStartedOnCmHandles = Mock(IMap<String, Object>)
     def trustLevelPerDmiPlugin = [:]
     def mockTrustLevelManager = Mock(TrustLevelManager)
+    def mockCmHandleIdMapper = Mock(CmHandleIdMapper)
     def objectUnderTest = getObjectUnderTest()
 
     def 'DMI Registration: Create, Update, Delete & Upgrade operations are processed in the right order'() {
@@ -432,11 +434,21 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         'an unexpected exception'    | 'cmhandle'             | new RuntimeException('Failed')            || UNKNOWN_ERROR        | 'Failed'
     }
 
+    def 'Adding data to alternate id caches: #scenario'() {
+        given: 'a registration with three CM Handles to be created'
+            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server',
+                    createdCmHandles: [new NcmpServiceCmHandle(cmHandleId: 'cmhandle1', alternateId: 'my-alternate-id-1')])
+        when: 'the DMI plugin registration happens'
+            objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+        then: 'the caches have the correct number of entries'
+            1 * mockCmHandleIdMapper.addMapping(_, _)
+    }
+
     def getObjectUnderTest() {
         return Spy(new NetworkCmProxyDataServiceImpl(spiedJsonObjectMapper, mockDmiDataOperations,
                 mockNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence, mockCmHandleQueries,
                 stubbedNetworkCmProxyCmHandlerQueryService, mockLcmEventsCmHandleStateHandler, mockCpsDataService,
-                mockModuleSyncStartedOnCmHandles, trustLevelPerDmiPlugin, mockTrustLevelManager))
+                mockModuleSyncStartedOnCmHandles, trustLevelPerDmiPlugin as Map<String, TrustLevel>, mockTrustLevelManager, mockCmHandleIdMapper))
     }
 
     def addPersistedYangModelCmHandles(ids) {
