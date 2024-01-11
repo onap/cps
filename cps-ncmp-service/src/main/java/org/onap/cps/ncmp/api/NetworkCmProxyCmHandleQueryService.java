@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2023 Nordix Foundation
+ *  Copyright (C) 2022-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -61,4 +61,11 @@ public interface NetworkCmProxyCmHandleQueryService {
      * @return collection of cm handles
      */
     Collection<NcmpServiceCmHandle> queryCmHandles(CmHandleQueryServiceParameters cmHandleQueryServiceParameters);
+
+    /**
+     * Query and return all cm handle objects.
+     *
+     * @return collection of cm handles
+     */
+    Collection<NcmpServiceCmHandle> getAllCmHandles();
 }
