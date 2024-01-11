@@ -46,6 +46,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence;
+import org.onap.cps.ncmp.api.impl.utils.CmHandleIdMapper;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse;
@@ -67,6 +68,7 @@ public class NetworkCmProxyDataServicePropertyHandler {
     private final InventoryPersistence inventoryPersistence;
     private final CpsDataService cpsDataService;
     private final JsonObjectMapper jsonObjectMapper;
+    private final CmHandleIdMapper cmHandleIdMapper;
 
     /**
      * Iterates over incoming ncmpServiceCmHandles and update the dataNodes based on the updated attributes.
@@ -82,6 +84,7 @@ public class NetworkCmProxyDataServicePropertyHandler {
             try {
                 final DataNode existingCmHandleDataNode = inventoryPersistence.getCmHandleDataNode(cmHandleId)
                         .iterator().next();
+                cmHandleIdMapper.addMapping(ncmpServiceCmHandle.getCmHandleId(), ncmpServiceCmHandle.getAlternateId());
                 updateAlternateId(existingCmHandleDataNode, ncmpServiceCmHandle);
                 processUpdates(existingCmHandleDataNode, ncmpServiceCmHandle);
                 cmHandleRegistrationResponses.add(CmHandleRegistrationResponse.createSuccessResponse(cmHandleId));

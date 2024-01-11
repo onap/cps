@@ -26,8 +26,7 @@ import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
 import ch.qos.logback.classic.spi.ILoggingEvent
 import com.fasterxml.jackson.databind.ObjectMapper
-import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.BeforeEach
+import org.onap.cps.ncmp.api.impl.utils.CmHandleIdMapper
 import org.slf4j.LoggerFactory
 
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
@@ -54,19 +53,18 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
     def mockCpsDataService = Mock(CpsDataService)
     def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
     def logger = Spy(ListAppender<ILoggingEvent>)
+    def mockCmHandleIdMapper = Mock(CmHandleIdMapper)
 
-    @BeforeEach
     void setup() {
         ((Logger) LoggerFactory.getLogger(NetworkCmProxyDataServicePropertyHandler.class)).addAppender(logger);
         logger.start();
     }
 
-    @AfterEach
-    void teardown() {
+    void cleanup() {
         ((Logger) LoggerFactory.getLogger(NetworkCmProxyDataServicePropertyHandler.class)).detachAndStopAllAppenders();
     }
 
-    def objectUnderTest = new NetworkCmProxyDataServicePropertyHandler(mockInventoryPersistence, mockCpsDataService, jsonObjectMapper)
+    def objectUnderTest = new NetworkCmProxyDataServicePropertyHandler(mockInventoryPersistence, mockCpsDataService, jsonObjectMapper, mockCmHandleIdMapper)
     def static cmHandleId = 'myHandle1'
     def static cmHandleXpath = "/dmi-registry/cm-handles[@id='${cmHandleId}']"
 
