@@ -71,6 +71,8 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def mockModuleSyncStartedOnCmHandles = Mock(IMap<String, Object>)
     def trustLevelPerDmiPlugin = [:]
     def mockTrustLevelManager = Mock(TrustLevelManager)
+    def alternateIdPerCmHandle = new HashMap<String, String>()
+    def cmHandlePerAlternateId = new HashMap<String, String>()
     def objectUnderTest = getObjectUnderTest()
 
     def 'DMI Registration: Create, Update, Delete & Upgrade operations are processed in the right order'() {
@@ -432,15 +434,46 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         'an unexpected exception'    | 'cmhandle'             | new RuntimeException('Failed')            || UNKNOWN_ERROR        | 'Failed'
     }
 
+    def 'Populate caches to store alternate ids and CM Handle ids'() {
+        given: 'a registration with three CM Handles to be created'
+            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server',
+                    createdCmHandles: registrationRequest)
+        and: 'the caches are empty initially'
+            assert alternateIdPerCmHandle.size() == 0
+            assert cmHandlePerAlternateId.size() == 0
+        when: 'the DMI plugin registration happens'
+            objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+        then: 'the caches have the correct number of entries'
+            assert alternateIdPerCmHandle.size() == cacheSize
+            assert cmHandlePerAlternateId.size() == cacheSize
+        where:
+            scenario                                            | registrationRequest                          || cacheSize
+            'the registration request contains 3 alternate ids' | getRegistrationRequestWithAlternateIds()     || 3
+            'the registration request contains 2 alternate ids' | getRegistrationRequestWithSomeAlternateIds() || 2
+    }
+
     def getObjectUnderTest() {
         return Spy(new NetworkCmProxyDataServiceImpl(spiedJsonObjectMapper, mockDmiDataOperations,
                 mockNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence, mockCmHandleQueries,
                 stubbedNetworkCmProxyCmHandlerQueryService, mockLcmEventsCmHandleStateHandler, mockCpsDataService,
-                mockModuleSyncStartedOnCmHandles, trustLevelPerDmiPlugin, mockTrustLevelManager))
+                mockModuleSyncStartedOnCmHandles, trustLevelPerDmiPlugin as Map<String, TrustLevel>, mockTrustLevelManager, alternateIdPerCmHandle, cmHandlePerAlternateId))
     }
 
     def addPersistedYangModelCmHandles(ids) {
         def yangModelCmHandles = ids.collect { new YangModelCmHandle(id:it) }
         mockInventoryPersistence.getYangModelCmHandles(ids) >> yangModelCmHandles
+    }
+
+    def getRegistrationRequestWithAlternateIds() {
+        return [new NcmpServiceCmHandle(cmHandleId: 'cmhandle1', alternateId: 'my-alternate-id-1'),
+                new NcmpServiceCmHandle(cmHandleId: 'cmhandle2', alternateId: 'my-alternate-id-2'),
+                new NcmpServiceCmHandle(cmHandleId: 'cmhandle3', alternateId: 'my-alternate-id-3')]
+    }
+
+
+    def getRegistrationRequestWithSomeAlternateIds() {
+        return [new NcmpServiceCmHandle(cmHandleId: 'cmhandle1', alternateId: 'my-alternate-id-1'),
+                new NcmpServiceCmHandle(cmHandleId: 'cmhandle2'),
+                new NcmpServiceCmHandle(cmHandleId: 'cmhandle3', alternateId: 'my-alternate-id-3')]
     }
 }
