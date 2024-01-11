@@ -46,6 +46,30 @@
       },
       "revId": "01e063672e55b760fd58625c8d57919568d8ba1a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb477c60_93773776",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-11T13:19:44Z",
+      "side": 1,
+      "message": "I agree with Lee Anjella\u0027s sugegstion. Not need fo 3 reviwersocne done...",
+      "parentUuid": "46896d38_64d3cb69",
+      "range": {
+        "startLine": 46,
+        "startChar": 58,
+        "endLine": 46,
+        "endChar": 85
+      },
+      "revId": "01e063672e55b760fd58625c8d57919568d8ba1a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
