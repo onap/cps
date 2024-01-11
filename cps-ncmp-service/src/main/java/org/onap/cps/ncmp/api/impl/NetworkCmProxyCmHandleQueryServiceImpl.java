@@ -97,6 +97,12 @@ public class NetworkCmProxyCmHandleQueryServiceImpl implements NetworkCmProxyCmH
         return getNcmpServiceCmHandles(cmHandleIds);
     }
 
+    @Override
+    public Collection<NcmpServiceCmHandle> getAllCmHandles() {
+        final DataNode dataNode = inventoryPersistence.getDataNode(NCMP_DMI_REGISTRY_PARENT).iterator().next();
+        return dataNode.getChildDataNodes().stream().map(this::createNcmpServiceCmHandle).collect(Collectors.toSet());
+    }
+
     private Collection<String> queryCmHandlesByDmiPlugin(
             final CmHandleQueryServiceParameters cmHandleQueryServiceParameters) {
         final Map<String, String> dmiPropertyQueryPairs =
@@ -214,11 +220,6 @@ public class NetworkCmProxyCmHandleQueryServiceImpl implements NetworkCmProxyCmH
             }
         }
         return Collections.emptyList();
-    }
-
-    private Collection<NcmpServiceCmHandle> getAllCmHandles() {
-        final DataNode dataNode = inventoryPersistence.getDataNode(NCMP_DMI_REGISTRY_PARENT).iterator().next();
-        return dataNode.getChildDataNodes().stream().map(this::createNcmpServiceCmHandle).collect(Collectors.toSet());
     }
 
     private Collection<String> getAllCmHandleIds() {
