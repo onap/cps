@@ -107,6 +107,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private final Map<String, TrustLevel> trustLevelPerDmiPlugin;
     private final TrustLevelManager trustLevelManager;
     private final CmHandleIdMapper cmHandleIdMapper;
+    private final Map<String, Collection<ModuleReference>> moduleSetTagCache;
 
     @Override
     public DmiPluginRegistrationResponse updateDmiRegistrationAndSyncModule(
@@ -346,13 +347,16 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             new ArrayList<>(tobeRemovedCmHandles.size());
         final Collection<YangModelCmHandle> yangModelCmHandles =
             inventoryPersistence.getYangModelCmHandles(tobeRemovedCmHandles);
-
+        final Set<String> moduleSetTags = yangModelCmHandles.stream().map(YangModelCmHandle::getModuleSetTag)
+                .collect(Collectors.toSet());
         updateCmHandleStateBatch(yangModelCmHandles, CmHandleState.DELETING);
 
         final Set<String> notDeletedCmHandles = new HashSet<>();
         for (final List<String> tobeRemovedCmHandleBatch : Lists.partition(tobeRemovedCmHandles, DELETE_BATCH_SIZE)) {
             try {
                 batchDeleteCmHandlesFromDbAndModuleSyncMap(tobeRemovedCmHandleBatch);
+                moduleSetTags.forEach(moduleSetTagCache::remove);
+                log.debug("Removed module set tags: {}", moduleSetTags);
                 tobeRemovedCmHandleBatch.forEach(cmHandleId ->
                     cmHandleRegistrationResponses.add(CmHandleRegistrationResponse.createSuccessResponse(cmHandleId)));
 
