@@ -91,6 +91,9 @@ public class ModuleSyncService {
                                 existingAnchorName, inUpgrade);
                 updateModuleSetTagCache(moduleSetTag, moduleReferencesFromExistingCmHandle);
             } else {
+                if (inUpgrade) {
+                    deleteSchemaSetIfExists(cmHandleId);
+                }
                 final Collection<ModuleReference> allModuleReferencesFromCmHandle
                         = syncAndCreateSchemaSet(yangModelCmHandle);
                 updateModuleSetTagCache(moduleSetTag, allModuleReferencesFromCmHandle);
