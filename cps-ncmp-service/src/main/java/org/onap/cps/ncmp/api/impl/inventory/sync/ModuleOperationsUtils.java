@@ -111,8 +111,8 @@ public class ModuleOperationsUtils {
     public List<YangModelCmHandle> getCmHandlesThatFailedModelSyncOrUpgrade() {
         final List<DataNode> lockedCmHandlesAsDataNodeList
                 = cmHandleQueries.queryCmHandleAncestorsByCpsPath(
-                "//lock-reason[@reason=\"MODULE_SYNC_FAILED\" or @reason=\"MODULE_UPGRADE\"]",
-                FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
+                "//lock-reason[@reason=\"MODULE_SYNC_FAILED\" or @reason=\"MODULE_UPGRADE\" "
+                        + "or @reason=\"MODULE_UPGRADE_FAILED\"]", FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
         return convertCmHandlesDataNodesToYangModelCmHandles(lockedCmHandlesAsDataNodeList);
     }
 
