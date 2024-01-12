@@ -327,8 +327,6 @@ Below are the list of distributed datastructures that we have.
 +--------------+---------------------------------+----------------------------------------------------------+
 | cps-ncmp     | moduleSyncWorkQueue             | Queue used internally for workers to pick the task.      |
 +--------------+---------------------------------+----------------------------------------------------------+
-| cps-ncmp     | forwardedSubscriptionEventCache | Keeps track of the LCM Subscription Events.              |
-+--------------+---------------------------------+----------------------------------------------------------+
 | cps-ncmp     | untrustworthyCmHandlesSet       | Stores untrustworthy cmHandles whose TrustLevel is NONE. |
 +--------------+---------------------------------+----------------------------------------------------------+
 | cps-ncmp     | trustLevelPerDmiPlugin          | Stores the TrustLevel for the dmi-plugins.               |
@@ -338,4 +336,4 @@ Below are the list of distributed datastructures that we have.
 | cps-ncmp     | cmSubscriptionEventCache        | Stores and tracks CmSubscription requests.               |
 +--------------+---------------------------------+----------------------------------------------------------+
 
-Total number of caches : 9
+Total number of caches : 8
