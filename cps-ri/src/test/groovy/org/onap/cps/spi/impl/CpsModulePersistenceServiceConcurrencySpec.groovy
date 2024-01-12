@@ -130,6 +130,7 @@ class CpsModulePersistenceServiceConcurrencySpec extends Specification {
             dataspaceRepository.getByName(_) >> new DataspaceEntity()
             yangResourceRepository.findAllByChecksumIn(_) >> Collections.emptyList()
             yangResourceRepository.getResourceIdsByModuleReferences(_) >> []
+            schemaSetRepository.findById(_) >> Optional.empty()
         and: 'can retrieve schemaset details after storing it'
             def schemaSetEntity = new SchemaSetEntity()
             schemaSetRepository.getByDataspaceAndName(dataspaceEntity, 'new schema set') >> schemaSetEntity

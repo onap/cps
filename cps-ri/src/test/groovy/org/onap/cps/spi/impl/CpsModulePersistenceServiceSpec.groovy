@@ -94,6 +94,7 @@ class CpsModulePersistenceServiceSpec extends Specification {
             mockYangResourceRepository.findAllByChecksumIn(_ as Collection<String>) >> Collections.emptyList()
         def schemaSetEntity = new SchemaSetEntity(id: 1)
             mockSchemaSetRepository.getByDataspaceAndName(_, _) >> schemaSetEntity
+            mockSchemaSetRepository.findById(_) >> Optional.empty()
         when: 'schema set update is requested'
             objectUnderTest.updateSchemaSetFromModules('my-dataspace', 'my-schemaset', [:], [new ModuleReference('some module name', 'some revision name')])
         then: 'no exception is thrown '
