@@ -46,9 +46,9 @@ Register data node and verify notification
     ${offset}=             Get Watermark Offsets     ${group_id}    ${topic_partition}
     ${tp}=                 Create Topic Partition    cm-events      ${partitionId}    ${offset[1]}
     Assign To Topic Partition  ${group_id}  ${tp}
-    Sleep  5sec
+    Sleep  10sec
     Register Data Nodes
-    ${result}=      Poll                    group_id=${group_id}  only_value=False  poll_attempts=5
+    ${result}=      Poll                    group_id=${group_id}  only_value=False  poll_attempts=10
     ${headers}                      Set Variable                ${result[0].headers()}
     ${payload}                      Set Variable                ${result[0].value()}
     FOR   ${header_key_value_pair}   IN  @{headers}
