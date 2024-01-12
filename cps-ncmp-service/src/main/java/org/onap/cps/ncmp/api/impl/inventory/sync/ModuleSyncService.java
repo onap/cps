@@ -100,8 +100,9 @@ public class ModuleSyncService {
                 cpsModuleService.upgradeSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId,
                         NO_NEW_MODULES, moduleReferencesFromCache);
             } else {
-                cpsModuleService.createSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME,
-                        cmHandleId, NO_NEW_MODULES, moduleReferencesFromCache);
+                final Collection<ModuleReference> allModuleReferencesFromCmHandle
+                        = syncAndCreateSchemaSet(yangModelCmHandle, moduleReferencesFromCache);
+                updateModuleSetTagCache(moduleSetTag, allModuleReferencesFromCmHandle);
             }
         }
         if (!inUpgrade) {
@@ -148,6 +149,11 @@ public class ModuleSyncService {
     private Collection<ModuleReference> syncAndCreateSchemaSet(final YangModelCmHandle yangModelCmHandle) {
         final Collection<ModuleReference> allModuleReferencesFromCmHandle =
                 dmiModelOperations.getModuleReferences(yangModelCmHandle);
+        return syncAndCreateSchemaSet(yangModelCmHandle, allModuleReferencesFromCmHandle);
+    }
+
+    private Collection<ModuleReference> syncAndCreateSchemaSet(final YangModelCmHandle yangModelCmHandle,
+                                                    final Collection<ModuleReference> allModuleReferencesFromCmHandle) {
         final Collection<ModuleReference> identifiedNewModuleReferencesFromCmHandle = cpsModuleService
                 .identifyNewModuleReferences(allModuleReferencesFromCmHandle);
         final Map<String, String> newModuleNameToContentMap;

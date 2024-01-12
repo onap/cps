@@ -171,8 +171,8 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
         final SchemaSetEntity schemaSetEntity =
                 schemaSetRepository.getByDataspaceAndName(dataspaceEntity, schemaSetName);
         final List<Integer> allYangResourceIds =
-            yangResourceRepository.getResourceIdsByModuleReferences(allModuleReferences);
-        yangResourceRepository.insertSchemaSetIdYangResourceId(schemaSetEntity.getId(), allYangResourceIds);
+                yangResourceRepository.getResourceIdsByModuleReferences(allModuleReferences);
+        insertUnmappedYangResourceIds(schemaSetEntity.getId(), allYangResourceIds);
     }
 
     @Override
@@ -393,8 +393,18 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
                                            final Integer schemaSetEntityId) {
         yangResourceRepository.deleteSchemaSetYangResourceForSchemaSetId(schemaSetEntityId);
         final List<Integer> allYangResourceIds =
-            yangResourceRepository.getResourceIdsByModuleReferences(allModuleReferences);
-        yangResourceRepository.insertSchemaSetIdYangResourceId(schemaSetEntityId, allYangResourceIds);
+                yangResourceRepository.getResourceIdsByModuleReferences(allModuleReferences);
+        insertUnmappedYangResourceIds(schemaSetEntityId, allYangResourceIds);
+    }
+
+    private void insertUnmappedYangResourceIds(final Integer schemaSetId,
+                                               final List<Integer> allUnmappedYangResourceIds) {
+        schemaSetRepository.findById(schemaSetId).ifPresent(schemaSetEntity -> {
+            final List<Integer> allMappedYangResourceIds = schemaSetEntity.getYangResources().stream()
+                    .map(YangResourceEntity::getId).toList();
+            allUnmappedYangResourceIds.removeAll(allMappedYangResourceIds);
+        });
+        yangResourceRepository.insertSchemaSetIdYangResourceId(schemaSetId, allUnmappedYangResourceIds);
     }
 
 }
