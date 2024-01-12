@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2023 Nordix Foundation
+ *  Copyright (C) 2022-2024 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -128,10 +128,9 @@ class ModuleOperationsUtilsSpec extends Specification{
             'empty module set tag' | ''                 || 'not-specified'
     }
 
-    def 'Get all locked Cm-Handle where Lock Reason is MODULE_SYNC_FAILED cm handle #scenario'() {
+    def 'Get all locked cm-Handles where lock reasons are model sync failed or upgrade'() {
         given: 'the cps (persistence service) returns a collection of data nodes'
-            mockCmHandleQueries.queryCmHandleAncestorsByCpsPath(
-                    '//lock-reason[@reason="MODULE_SYNC_FAILED" or @reason="MODULE_UPGRADE"]',
+            mockCmHandleQueries.queryCmHandleAncestorsByCpsPath(ModuleOperationsUtils.CPS_PATH_CM_HANDLES_MODEL_SYNC_FAILED_OR_UPGRADE,
                 FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> [dataNode]
         when: 'get locked Misbehaving cm handle is called'
             def result = objectUnderTest.getCmHandlesThatFailedModelSyncOrUpgrade()
