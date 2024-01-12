@@ -40,14 +40,16 @@ ${jsonTrustLevelQueryResponse}              {"data":{"attributeValueChange":[{"a
 ${partitionId}                              ${0}
 
 *** Test Cases ***
-Register data node and verify notification
-    ${group_id}=           Create Consumer
-    ${topic_partition}=    Create Topic Partition    cm-events      ${partitionId}
-    ${offset}=             Get Watermark Offsets     ${group_id}    ${topic_partition}
-    ${tp}=                 Create Topic Partition    cm-events      ${partitionId}    ${offset[1]}
-    Assign To Topic Partition  ${group_id}  ${tp}
-    Sleep  5sec
-    Register Data Nodes
+Register data node
+    ${uri}=         Set Variable         ${ncmpInventoryBasePath}/v1/ch
+    ${headers}=     Create Dictionary    Content-Type=application/json    Authorization=${auth}
+    ${response}=    POST On Session      CPS_URL   ${uri}    headers=${headers}    data=${jsonCreateCmHandles}
+    Should Be Equal As Strings           ${response.status_code}    200
+    Sleep           5
+
+Verify notification
+    ${group_id}=         Create Consumer     auto_offset_reset=earliest
+    Subscribe Topic      topics=cm-events     group_id=${group_id}
     ${result}=      Poll                    group_id=${group_id}  only_value=False  poll_attempts=5
     ${headers}                      Set Variable                ${result[0].headers()}
     ${payload}                      Set Variable                ${result[0].value()}
@@ -72,11 +74,6 @@ Retrieve CM Handle ids where query parameters Match (trust level query)
     Should Not Contain   ${responseJson}    CH-4
 
 *** Keywords ***
-Register Data Nodes
-    ${uri}=         Set Variable         ${ncmpInventoryBasePath}/v1/ch
-    ${headers}=     Create Dictionary    Content-Type=application/json    Authorization=${auth}
-    ${response}=    POST On Session      CPS_URL   ${uri}    headers=${headers}    data=${jsonCreateCmHandles}
-    Should Be Equal As Strings           ${response.status_code}    200
 
 Compare Header Values
     [Arguments]    ${header_key}    ${header_value}    ${header_to_check}    ${expected_header_value}
