@@ -4,6 +4,7 @@ netaddr
 netifaces
 pyhocon
 requests
+robotframework==6.1.1
 robotframework-httplibrary
 robotframework-requests==0.9.3
 robotframework-selenium2library==3.0.0
