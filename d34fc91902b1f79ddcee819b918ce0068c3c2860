@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0eb04682_7ec9d135",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-01-12T10:06:54Z",
+      "side": 1,
+      "message": "Some early reviews...",
+      "revId": "d34fc91902b1f79ddcee819b918ce0068c3c2860",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a795b55_ef2889c2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/AlternateIdCacheConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-01-12T10:06:54Z",
+      "side": 1,
+      "message": "if the logger not used, no need to import.",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 6
+      },
+      "revId": "d34fc91902b1f79ddcee819b918ce0068c3c2860",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9c5531c_12917cbf",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/AlternateIdCacheConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-01-12T10:06:54Z",
+      "side": 1,
+      "message": "As far as remember, we have a naming convention for our caches like in TrustLevelCacheConfig. \n\nE.g. the cache name has to be like value-Per-key . if the cache Map\u003calternateId, cmHandleId\u003e then the map name to have cmHandleIdPerAlternateId.",
+      "range": {
+        "startLine": 46,
+        "startChar": 31,
+        "endLine": 46,
+        "endChar": 52
+      },
+      "revId": "d34fc91902b1f79ddcee819b918ce0068c3c2860",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd209185_6b6b980d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/AlternateIdCacheConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-01-12T10:06:54Z",
+      "side": 1,
+      "message": "Same as above. also the cmHandle looks like here an Object it might be better cmHandleId.",
+      "range": {
+        "startLine": 57,
+        "startChar": 31,
+        "endLine": 57,
+        "endChar": 52
+      },
+      "revId": "d34fc91902b1f79ddcee819b918ce0068c3c2860",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
