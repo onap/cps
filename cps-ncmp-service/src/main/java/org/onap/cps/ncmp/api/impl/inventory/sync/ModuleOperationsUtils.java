@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2023 Nordix Foundation
+ *  Copyright (C) 2022-2024 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -58,6 +58,10 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ModuleOperationsUtils {
 
+    private static final String CPS_PATH_CM_HANDLES_MODEL_SYNC_FAILED_OR_UPGRADE = """
+            //lock-reason[@reason="MODULE_SYNC_FAILED"
+            or @reason="MODULE_UPGRADE"
+            or @reason="MODULE_UPGRADE_FAILED"]""";
     private final CmHandleQueries cmHandleQueries;
     private final DmiDataOperations dmiDataOperations;
     private final JsonObjectMapper jsonObjectMapper;
@@ -110,8 +114,7 @@ public class ModuleOperationsUtils {
      */
     public List<YangModelCmHandle> getCmHandlesThatFailedModelSyncOrUpgrade() {
         final List<DataNode> lockedCmHandlesAsDataNodeList
-                = cmHandleQueries.queryCmHandleAncestorsByCpsPath(
-                "//lock-reason[@reason=\"MODULE_SYNC_FAILED\" or @reason=\"MODULE_UPGRADE\"]",
+                = cmHandleQueries.queryCmHandleAncestorsByCpsPath(CPS_PATH_CM_HANDLES_MODEL_SYNC_FAILED_OR_UPGRADE,
                 FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
         return convertCmHandlesDataNodesToYangModelCmHandles(lockedCmHandlesAsDataNodeList);
     }
