@@ -131,7 +131,9 @@ class ModuleOperationsUtilsSpec extends Specification{
     def 'Get all locked Cm-Handle where Lock Reason is MODULE_SYNC_FAILED cm handle #scenario'() {
         given: 'the cps (persistence service) returns a collection of data nodes'
             mockCmHandleQueries.queryCmHandleAncestorsByCpsPath(
-                    '//lock-reason[@reason="MODULE_SYNC_FAILED" or @reason="MODULE_UPGRADE"]',
+                    '//lock-reason[@reason="MODULE_SYNC_FAILED"\n' +
+                            'or @reason="MODULE_UPGRADE"\n' +
+                            'or @reason="MODULE_UPGRADE_FAILED"]',
                 FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> [dataNode]
         when: 'get locked Misbehaving cm handle is called'
             def result = objectUnderTest.getCmHandlesThatFailedModelSyncOrUpgrade()
