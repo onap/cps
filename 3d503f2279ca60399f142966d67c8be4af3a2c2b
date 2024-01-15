@@ -16,6 +16,29 @@
       "message": "Resolved and replied to comments",
       "revId": "3d503f2279ca60399f142966d67c8be4af3a2c2b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44b77de0_701c0004",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 25
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-01-15T12:33:21Z",
+      "side": 1,
+      "message": "in groovy , try to use single-quotes everywhere instead of double-quotes",
+      "range": {
+        "startLine": 93,
+        "startChar": 43,
+        "endLine": 93,
+        "endChar": 44
+      },
+      "revId": "3d503f2279ca60399f142966d67c8be4af3a2c2b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
