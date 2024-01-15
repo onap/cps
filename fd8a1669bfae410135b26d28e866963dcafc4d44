@@ -16,6 +16,46 @@
       "message": "recheck",
       "revId": "fd8a1669bfae410135b26d28e866963dcafc4d44",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fa6e6a4_c0f21030",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-15T08:52:12Z",
+      "side": 1,
+      "message": "Good work Sourabh!\n\nIN general code looks good but I think I need a bit of a walkthrough to understand why you are doing what.\n\nAlso we need to add test that would have failed before the fixes.... And make sure we cover all the (new) code brances.",
+      "revId": "fd8a1669bfae410135b26d28e866963dcafc4d44",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b571647_ae9de691",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-15T08:52:12Z",
+      "side": 1,
+      "message": "NB: can this be written in simpler Java to improve readability ?\nEspcially the embedded ifPresent(), can we not just just if else ?",
+      "range": {
+        "startLine": 402,
+        "startChar": 0,
+        "endLine": 404,
+        "endChar": 61
+      },
+      "revId": "fd8a1669bfae410135b26d28e866963dcafc4d44",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
