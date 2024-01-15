@@ -70,6 +70,9 @@ python3 -m pip install --upgrade --extra-index-url="https://nexus3.onap.org/repo
 echo "Versioning information:"
 python3 --version
 
+echo "Installing specific version of the robot framework:"
+pip install robotframework==6.1.1
+
 echo "Installing confluent kafka library for robot framework:"
 pip install robotframework-confluentkafkalibrary
 
