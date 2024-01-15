@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0062fa6_8dc15ec9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-01-15T11:39:47Z",
+      "side": 1,
+      "message": "+1",
+      "revId": "1a82f6da341acaea29d7bc9893a4001604d1f992",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "07cc6c4f_15975523",
@@ -14,6 +31,30 @@
       "writtenOn": "2024-01-15T11:28:23Z",
       "side": 1,
       "message": "is this based on new robot framework is version 7.0?",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 33
+      },
+      "revId": "1a82f6da341acaea29d7bc9893a4001604d1f992",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6caa48ca_c7ebcf39",
+        "filename": "csit/prepare-csit.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-01-15T11:39:47Z",
+      "side": 1,
+      "message": "this change removed the following error\n-Assigning results to build:\nERROR: Build step failed with exception\njava.lang.NullPointerException\nBuild step \u0027Publish Robot Framework test results\u0027 marked build as failure",
+      "parentUuid": "07cc6c4f_15975523",
       "range": {
         "startLine": 74,
         "startChar": 0,
