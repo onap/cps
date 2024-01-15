@@ -35,6 +35,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad94e220_6a03cfbe",
+        "filename": "csit/prepare-csit.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-01-15T11:55:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a1870c63_85efae38",
+      "revId": "1a82f6da341acaea29d7bc9893a4001604d1f992",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "07cc6c4f_15975523",
@@ -72,6 +90,30 @@
       "side": 1,
       "message": "this change removed the following error\n-Assigning results to build:\nERROR: Build step failed with exception\njava.lang.NullPointerException\nBuild step \u0027Publish Robot Framework test results\u0027 marked build as failure",
       "parentUuid": "07cc6c4f_15975523",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 33
+      },
+      "revId": "1a82f6da341acaea29d7bc9893a4001604d1f992",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0de0bfc0_1de0113b",
+        "filename": "csit/prepare-csit.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-01-15T11:55:25Z",
+      "side": 1,
+      "message": "Yes, it is. Until identify the issue with robotframework version 7.0, this is a remedy action back to version 6.1.1",
+      "parentUuid": "6caa48ca_c7ebcf39",
       "range": {
         "startLine": 74,
         "startChar": 0,
