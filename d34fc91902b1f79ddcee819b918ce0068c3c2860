@@ -18,6 +18,92 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7e0f80a_d0756219",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-15T09:06:12Z",
+      "side": 1,
+      "message": "some suggestions below.\n\nI also assume you wil add tets specifically for checking the population of the cache (combination of with and without alternate id)\nwil you handle the error scenarios (duplicates) in this commit or in a future commit (the latter might be better)",
+      "revId": "d34fc91902b1f79ddcee819b918ce0068c3c2860",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4df75759_97c8b264",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandleQueryServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-15T09:06:12Z",
+      "side": 1,
+      "message": "why a new method, just make the existing private method public.\n\nDont think we need to word \u0027existing\u0027 in the name but I you want it you can still rename the existing private method and make it public",
+      "range": {
+        "startLine": 101,
+        "startChar": 43,
+        "endLine": 101,
+        "endChar": 66
+      },
+      "revId": "d34fc91902b1f79ddcee819b918ce0068c3c2860",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c414356_33a480f7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 536,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-15T09:06:12Z",
+      "side": 1,
+      "message": "NB: no need for variabel, just inline on line 538",
+      "range": {
+        "startLine": 536,
+        "startChar": 50,
+        "endLine": 536,
+        "endChar": 68
+      },
+      "revId": "d34fc91902b1f79ddcee819b918ce0068c3c2860",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69bcdf15_43b92562",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 543,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-15T09:06:12Z",
+      "side": 1,
+      "message": "I dont think it is possible for tehe primary id to be empty, shoudl NOT have to check",
+      "range": {
+        "startLine": 543,
+        "startChar": 39,
+        "endLine": 543,
+        "endChar": 63
+      },
+      "revId": "d34fc91902b1f79ddcee819b918ce0068c3c2860",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2a795b55_ef2889c2",
@@ -66,6 +152,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4ddc7ef8_8b4796cc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/AlternateIdCacheConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-15T09:06:12Z",
+      "side": 1,
+      "message": "teh xPerY convention only seems to be applied to TrustLevel caches. Otehr maps dont use did. But it is not a bad idea to align these names now.",
+      "parentUuid": "c9c5531c_12917cbf",
+      "range": {
+        "startLine": 46,
+        "startChar": 31,
+        "endLine": 46,
+        "endChar": 52
+      },
+      "revId": "d34fc91902b1f79ddcee819b918ce0068c3c2860",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dd209185_6b6b980d",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/AlternateIdCacheConfig.java",
         "patchSetId": 3
@@ -82,6 +192,53 @@
         "startChar": 31,
         "endLine": 57,
         "endChar": 52
+      },
+      "revId": "d34fc91902b1f79ddcee819b918ce0068c3c2860",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef8901d3_4dc8e86c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/AlternateIdCacheConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-15T09:06:12Z",
+      "side": 1,
+      "message": "disagree: AlternateID is a String and should NOT be handled as an object here",
+      "parentUuid": "dd209185_6b6b980d",
+      "range": {
+        "startLine": 57,
+        "startChar": 31,
+        "endLine": 57,
+        "endChar": 52
+      },
+      "revId": "d34fc91902b1f79ddcee819b918ce0068c3c2860",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2b07657_42e0b477",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-15T09:06:12Z",
+      "side": 1,
+      "message": "you shouldn\u0027t have to update existing test with an \u0027optional\u0027 new field. The existing test should NOT fail if you don\u0027t set this!",
+      "range": {
+        "startLine": 138,
+        "startChar": 99,
+        "endLine": 138,
+        "endChar": 114
       },
       "revId": "d34fc91902b1f79ddcee819b918ce0068c3c2860",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
