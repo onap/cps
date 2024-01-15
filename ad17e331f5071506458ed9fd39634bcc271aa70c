@@ -16,6 +16,23 @@
       "message": "Please find the comments.",
       "revId": "ad17e331f5071506458ed9fd39634bcc271aa70c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8673eec9_82a2b9db",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-15T14:47:11Z",
+      "side": 1,
+      "message": "can we abandon  thsi in favor of teh legacy output flag fix",
+      "revId": "ad17e331f5071506458ed9fd39634bcc271aa70c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
