@@ -145,7 +145,7 @@ function run_test_plan() {
     cat ${testplan}.txt
     SUITES=$( xargs -a ${testplan}.txt )
 
-    python3 -m robot.run -N ${TESTPLAN} -v WORKSPACE:/tmp ${ROBOT_VARIABLES} ${TESTOPTIONS} ${SUITES}
+    python3 -m robot.run -N ${TESTPLAN} -v WORKSPACE:/tmp --legacy-output ${ROBOT_VARIABLES} ${TESTOPTIONS} ${SUITES}
     RESULT=$?
     load_set
     echo "RESULT: $RESULT"
