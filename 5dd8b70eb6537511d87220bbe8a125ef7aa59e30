@@ -314,6 +314,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "52b2d817_468a36fd",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-01-16T09:15:32Z",
+      "side": 1,
+      "message": "sry I meant for all @Shared annotation.. you can use static.",
+      "parentUuid": "01a9fb06_d0318bb9",
+      "range": {
+        "startLine": 32,
+        "startChar": 4,
+        "endLine": 32,
+        "endChar": 11
+      },
+      "revId": "5dd8b70eb6537511d87220bbe8a125ef7aa59e30",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6341c7e4_2e4c1066",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDeltaServiceImplSpec.groovy",
         "patchSetId": 22
