@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2021-2023 Nordix Foundation.
+ * Copyright (C) 2021-2024 Nordix Foundation.
  * Modifications Copyright (C) 2021-2022 Bell Canada.
  * Modifications Copyright (C) 2021 Pantheon.tech
  * Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
@@ -27,12 +27,12 @@ import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDeltaService
 import org.onap.cps.spi.CpsDataPersistenceService
-import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.CpsModulePersistenceService
 import org.onap.cps.spi.model.Anchor
 import org.onap.cps.spi.utils.CpsValidator
-import org.onap.cps.utils.TimedYangParser
-import org.onap.cps.utils.YangUtils
+import org.onap.cps.utils.ContentType
+import org.onap.cps.utils.YangParser
+import org.onap.cps.utils.YangParserHelper
 import org.onap.cps.yang.TimedYangTextSchemaSourceSetBuilder
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import spock.lang.Specification
@@ -44,14 +44,13 @@ class E2ENetworkSliceSpec extends Specification {
     def mockYangTextSchemaSourceSetCache = Mock(YangTextSchemaSourceSetCache)
     def mockCpsValidator = Mock(CpsValidator)
     def timedYangTextSchemaSourceSetBuilder = new TimedYangTextSchemaSourceSetBuilder()
-    def timedYangParser = new TimedYangParser()
+    def yangParser = new YangParser(new YangParserHelper(), mockYangTextSchemaSourceSetCache)
     def mockCpsDeltaService = Mock(CpsDeltaService)
 
     def cpsModuleServiceImpl = new CpsModuleServiceImpl(mockModuleStoreService,
             mockYangTextSchemaSourceSetCache, mockCpsAnchorService, mockCpsValidator,timedYangTextSchemaSourceSetBuilder)
 
-    def cpsDataServiceImpl = new CpsDataServiceImpl(mockDataStoreService, mockCpsAnchorService,
-            mockYangTextSchemaSourceSetCache, mockCpsValidator, timedYangParser, mockCpsDeltaService)
+    def cpsDataServiceImpl = new CpsDataServiceImpl(mockDataStoreService, mockCpsAnchorService, mockCpsValidator, yangParser, mockCpsDeltaService)
 
     def dataspaceName = 'someDataspace'
     def anchorName = 'someAnchor'
@@ -165,6 +164,6 @@ class E2ENetworkSliceSpec extends Specification {
         expect: 'schema context is built with no exception indicating the schema set being valid '
             def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap).getSchemaContext()
         and: 'data is parsed with no exception indicating the model match'
-            YangUtils.parseJsonData(jsonData, schemaContext) != null
+            new YangParserHelper().parseData(ContentType.JSON, jsonData, schemaContext, '') != null
     }
 }

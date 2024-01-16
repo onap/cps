@@ -48,9 +48,8 @@ import org.onap.cps.spi.model.DataNodeBuilder;
 import org.onap.cps.spi.model.DeltaReport;
 import org.onap.cps.spi.utils.CpsValidator;
 import org.onap.cps.utils.ContentType;
-import org.onap.cps.utils.TimedYangParser;
+import org.onap.cps.utils.YangParser;
 import org.opendaylight.yangtools.yang.data.api.schema.ContainerNode;
-import org.opendaylight.yangtools.yang.model.api.SchemaContext;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -63,9 +62,8 @@ public class CpsDataServiceImpl implements CpsDataService {
 
     private final CpsDataPersistenceService cpsDataPersistenceService;
     private final CpsAnchorService cpsAnchorService;
-    private final YangTextSchemaSourceSetCache yangTextSchemaSourceSetCache;
     private final CpsValidator cpsValidator;
-    private final TimedYangParser timedYangParser;
+    private final YangParser yangParser;
     private final CpsDeltaService cpsDeltaService;
 
     @Override
@@ -309,10 +307,9 @@ public class CpsDataServiceImpl implements CpsDataService {
 
     private Collection<DataNode> buildDataNodes(final Anchor anchor, final String parentNodeXpath,
                                                 final String nodeData, final ContentType contentType) {
-        final SchemaContext schemaContext = getSchemaContext(anchor);
 
         if (ROOT_NODE_XPATH.equals(parentNodeXpath)) {
-            final ContainerNode containerNode = timedYangParser.parseData(contentType, nodeData, schemaContext);
+            final ContainerNode containerNode = yangParser.parseData(contentType, nodeData, anchor, "");
             final Collection<DataNode> dataNodes = new DataNodeBuilder()
                     .withContainerNode(containerNode)
                     .buildCollection();
@@ -323,7 +320,7 @@ public class CpsDataServiceImpl implements CpsDataService {
         }
         final String normalizedParentNodeXpath = CpsPathUtil.getNormalizedXpath(parentNodeXpath);
         final ContainerNode containerNode =
-            timedYangParser.parseData(contentType, nodeData, schemaContext, normalizedParentNodeXpath);
+            yangParser.parseData(contentType, nodeData, anchor, normalizedParentNodeXpath);
         final Collection<DataNode> dataNodes = new DataNodeBuilder()
             .withParentNodeXpath(normalizedParentNodeXpath)
             .withContainerNode(containerNode)
@@ -334,10 +331,6 @@ public class CpsDataServiceImpl implements CpsDataService {
         return dataNodes;
     }
 
-    private SchemaContext getSchemaContext(final Anchor anchor) {
-        return yangTextSchemaSourceSetCache
-            .get(anchor.getDataspaceName(), anchor.getSchemaSetName()).getSchemaContext();
-    }
 
     private static boolean isRootNodeXpath(final String xpath) {
         return ROOT_NODE_XPATH.equals(xpath);
