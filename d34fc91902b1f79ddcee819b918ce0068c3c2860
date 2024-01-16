@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d96b2ebd_6daff452",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandleQueryServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-01-16T09:39:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4df75759_97c8b264",
+      "range": {
+        "startLine": 101,
+        "startChar": 43,
+        "endLine": 101,
+        "endChar": 66
+      },
+      "revId": "d34fc91902b1f79ddcee819b918ce0068c3c2860",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2c414356_33a480f7",
@@ -104,6 +128,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ab36d03_8670f15e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 543,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-01-16T09:39:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "69bcdf15_43b92562",
+      "range": {
+        "startLine": 543,
+        "startChar": 39,
+        "endLine": 543,
+        "endChar": 63
+      },
+      "revId": "d34fc91902b1f79ddcee819b918ce0068c3c2860",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2a795b55_ef2889c2",
@@ -117,6 +165,30 @@
       "writtenOn": "2024-01-12T10:06:54Z",
       "side": 1,
       "message": "if the logger not used, no need to import.",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 6
+      },
+      "revId": "d34fc91902b1f79ddcee819b918ce0068c3c2860",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3422c213_077de1c8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/AlternateIdCacheConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-01-16T09:39:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2a795b55_ef2889c2",
       "range": {
         "startLine": 30,
         "startChar": 0,
@@ -174,6 +246,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "73802a73_62ecc709",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/AlternateIdCacheConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-01-16T09:39:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ddc7ef8_8b4796cc",
+      "range": {
+        "startLine": 46,
+        "startChar": 31,
+        "endLine": 46,
+        "endChar": 52
+      },
+      "revId": "d34fc91902b1f79ddcee819b918ce0068c3c2860",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dd209185_6b6b980d",
@@ -211,6 +307,30 @@
       "side": 1,
       "message": "disagree: AlternateID is a String and should NOT be handled as an object here",
       "parentUuid": "dd209185_6b6b980d",
+      "range": {
+        "startLine": 57,
+        "startChar": 31,
+        "endLine": 57,
+        "endChar": 52
+      },
+      "revId": "d34fc91902b1f79ddcee819b918ce0068c3c2860",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc673137_24ff7f91",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/AlternateIdCacheConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-01-16T09:39:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ef8901d3_4dc8e86c",
       "range": {
         "startLine": 57,
         "startChar": 31,
