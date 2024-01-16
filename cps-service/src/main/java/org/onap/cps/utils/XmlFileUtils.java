@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Deutsche Telekom AG
- *  Modifications Copyright (C) 2023 Nordix Foundation.
+ *  Modifications Copyright (C) 2023-2024 Nordix Foundation.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -67,7 +67,7 @@ public class XmlFileUtils {
     public static String prepareXmlContent(final String xmlContent, final SchemaContext schemaContext)
         throws IOException, ParserConfigurationException, TransformerException, SAXException {
         return addRootNodeToXmlContent(xmlContent, schemaContext.getModules().iterator().next().getName(),
-                YangUtils.DATA_ROOT_NODE_NAMESPACE);
+                YangParserHelper.DATA_ROOT_NODE_NAMESPACE);
     }
 
     /**
@@ -106,7 +106,7 @@ public class XmlFileUtils {
             documentBuilder.parse(new ByteArrayInputStream(xmlContent.getBytes(StandardCharsets.UTF_8)));
         final Element root = document.getDocumentElement();
         if (!root.getTagName().equals(rootNodeTagName)
-            && !root.getTagName().equals(YangUtils.DATA_ROOT_NODE_TAG_NAME)) {
+            && !root.getTagName().equals(YangParserHelper.DATA_ROOT_NODE_TAG_NAME)) {
             final Document documentWithRootNode = addDataRootNode(root, rootNodeTagName, namespace, rootNodeProperty);
             documentWithRootNode.setXmlStandalone(true);
             final Transformer transformer = getTransformerFactory().newTransformer();

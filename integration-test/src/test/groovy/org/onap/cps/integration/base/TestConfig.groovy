@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023 Nordix Foundation
+ *  Copyright (C) 2023-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@
 package org.onap.cps.integration.base
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import org.onap.cps.api.impl.YangTextSchemaSourceSetCache
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.CpsModulePersistenceService
 import org.onap.cps.spi.impl.CpsAdminPersistenceServiceImpl
@@ -35,7 +36,8 @@ import org.onap.cps.spi.repository.YangResourceRepository
 import org.onap.cps.spi.utils.SessionManager
 import org.onap.cps.spi.utils.TimeLimiterProvider
 import org.onap.cps.utils.JsonObjectMapper
-import org.onap.cps.utils.TimedYangParser
+import org.onap.cps.utils.YangParser
+import org.onap.cps.utils.YangParserHelper
 import org.onap.cps.yang.TimedYangTextSchemaSourceSetBuilder
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
@@ -77,6 +79,15 @@ class TestConfig extends Specification{
     @Lazy
     SessionManager sessionManager
 
+    @Autowired
+    @Lazy
+    YangParserHelper yangParserHelper
+
+    @Autowired
+    @Lazy
+    YangTextSchemaSourceSetCache YangTextSchemaSourceSetCache
+
+
     @Bean
     CpsAdminPersistenceServiceImpl cpsAdminPersistenceService() {
         new CpsAdminPersistenceServiceImpl(dataspaceRepository, anchorRepository, schemaSetRepository, yangResourceRepository)
@@ -98,8 +109,13 @@ class TestConfig extends Specification{
     }
 
     @Bean
-    TimedYangParser timedYangParser() {
-        return new TimedYangParser()
+    YangParserHelper yangParserHelper() {
+        return new YangParserHelper()
+    }
+
+    @Bean
+    YangParser yangParser() {
+        return new YangParser(yangParserHelper, yangTextSchemaSourceSetCache)
     }
 
     @Bean
