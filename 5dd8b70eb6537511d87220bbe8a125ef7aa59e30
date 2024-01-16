@@ -336,6 +336,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a3a920b_c5663d90",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-01-16T10:28:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "01a9fb06_d0318bb9",
+      "range": {
+        "startLine": 32,
+        "startChar": 4,
+        "endLine": 32,
+        "endChar": 11
+      },
+      "revId": "5dd8b70eb6537511d87220bbe8a125ef7aa59e30",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6341c7e4_2e4c1066",
@@ -653,6 +677,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "75871ed5_af2492c6",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-01-16T10:28:04Z",
+      "side": 1,
+      "message": "ok, changed to \"Delta Report between leaves for parent and child nodes #scenario\".",
+      "parentUuid": "66720810_edd9c00d",
+      "range": {
+        "startLine": 71,
+        "startChar": 9,
+        "endLine": 71,
+        "endChar": 66
+      },
+      "revId": "5dd8b70eb6537511d87220bbe8a125ef7aa59e30",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "adc73d86_bd185bb7",
@@ -923,6 +971,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2877875a_e870ab8a",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-01-16T10:28:04Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "891f9a60_e922c055",
+      "range": {
+        "startLine": 92,
+        "startChar": 9,
+        "endLine": 92,
+        "endChar": 74
+      },
+      "revId": "5dd8b70eb6537511d87220bbe8a125ef7aa59e30",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "28207d7c_befbf611",
@@ -1160,6 +1232,30 @@
       "side": 1,
       "message": "yes.. something like this.\nwithout the where clause and explicitly adding the assertions.",
       "parentUuid": "66788cee_6bfe5dd7",
+      "range": {
+        "startLine": 441,
+        "startChar": 8,
+        "endLine": 442,
+        "endChar": 154
+      },
+      "revId": "5dd8b70eb6537511d87220bbe8a125ef7aa59e30",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ace9458_69ffd033",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsDataServiceIntegrationSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 442,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-01-16T10:28:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "767b0c2c_d12036ff",
       "range": {
         "startLine": 441,
         "startChar": 8,
