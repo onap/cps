@@ -34,28 +34,26 @@ import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.exceptions.SessionManagerException
 import org.onap.cps.spi.exceptions.SessionTimeoutException
 import org.onap.cps.spi.model.Anchor
-import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
 import org.onap.cps.spi.utils.CpsValidator
 import org.onap.cps.utils.ContentType
-import org.onap.cps.utils.TimedYangParser
+import org.onap.cps.utils.YangParser
+import org.onap.cps.utils.YangParserHelper
 import org.onap.cps.yang.YangTextSchemaSourceSet
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import spock.lang.Shared
 import spock.lang.Specification
 import java.time.OffsetDateTime
-import java.util.stream.Collectors
 
 class CpsDataServiceImplSpec extends Specification {
     def mockCpsDataPersistenceService = Mock(CpsDataPersistenceService)
     def mockCpsAnchorService = Mock(CpsAnchorService)
     def mockYangTextSchemaSourceSetCache = Mock(YangTextSchemaSourceSetCache)
     def mockCpsValidator = Mock(CpsValidator)
-    def timedYangParser = new TimedYangParser()
+    def yangParser = new YangParser(new YangParserHelper(), mockYangTextSchemaSourceSetCache)
     def mockCpsDeltaService = Mock(CpsDeltaService);
 
-    def objectUnderTest = new CpsDataServiceImpl(mockCpsDataPersistenceService, mockCpsAnchorService,
-            mockYangTextSchemaSourceSetCache, mockCpsValidator, timedYangParser, mockCpsDeltaService)
+    def objectUnderTest = new CpsDataServiceImpl(mockCpsDataPersistenceService, mockCpsAnchorService, mockCpsValidator, yangParser, mockCpsDeltaService)
 
     def setup() {
         mockCpsAnchorService.getAnchor(dataspaceName, anchorName) >> anchor

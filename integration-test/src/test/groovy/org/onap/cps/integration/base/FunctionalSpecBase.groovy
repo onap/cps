@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023 Nordix Foundation
+ *  Copyright (C) 2023-2024 Nordix Foundation
  *  Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
@@ -75,7 +75,7 @@ class FunctionalSpecBase extends CpsIntegrationSpecBase {
         def anchorName = 'bookstoreAnchor' + anchorNumber
         cpsAnchorService.deleteAnchor(FUNCTIONAL_TEST_DATASPACE_1, anchorName)
         cpsAnchorService.createAnchor(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_SCHEMA_SET, anchorName)
-        cpsDataService.saveData(FUNCTIONAL_TEST_DATASPACE_1, anchorName, bookstoreJsonData.replace("Easons", "Easons-"+anchorNumber.toString()), OffsetDateTime.now())
+        cpsDataService.saveData(FUNCTIONAL_TEST_DATASPACE_1, anchorName, bookstoreJsonData.replace('Easons', 'Easons-'+anchorNumber.toString()), OffsetDateTime.now())
     }
 
 }
