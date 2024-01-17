@@ -33,6 +33,23 @@
       "message": "recheck",
       "revId": "a9850bf4ca2b67b1ac18415a2d2ba45a1de3c7ec",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7178c276_51901750",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-01-17T10:14:49Z",
+      "side": 1,
+      "message": "with this also remove the onboarding of all deprecated in \nCmDataSubscriptionModelLoader.java and that it doesnt break anymore other codes",
+      "revId": "a9850bf4ca2b67b1ac18415a2d2ba45a1de3c7ec",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
