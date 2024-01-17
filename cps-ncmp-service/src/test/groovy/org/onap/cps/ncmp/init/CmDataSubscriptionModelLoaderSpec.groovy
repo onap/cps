@@ -21,6 +21,8 @@
 package org.onap.cps.ncmp.init
 
 import org.onap.cps.api.CpsAnchorService
+import org.onap.cps.ncmp.api.impl.exception.NcmpStartUpException
+import org.onap.cps.spi.exceptions.AlreadyDefinedException
 
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
 
@@ -42,7 +44,7 @@ class CmDataSubscriptionModelLoaderSpec extends Specification {
     def mockCpsModuleService = Mock(CpsModuleService)
     def mockCpsDataService = Mock(CpsDataService)
     def mockCpsAnchorService = Mock(CpsAnchorService)
-    def objectUnderTest = new CmDataSubscriptionModelLoader(mockCpsDataspaceService, mockCpsModuleService, mockCpsDataService, mockCpsAnchorService)
+    def objectUnderTest = new CmDataSubscriptionModelLoader(mockCpsDataspaceService, mockCpsModuleService, mockCpsAnchorService, mockCpsDataService)
 
     def applicationContext = new AnnotationConfigApplicationContext()
 
@@ -77,6 +79,35 @@ class CmDataSubscriptionModelLoaderSpec extends Specification {
             1 * mockCpsAnchorService.createAnchor(NCMP_DATASPACE_NAME, 'cm-data-subscriptions', 'cm-data-subscriptions')
         and: 'the data service to create a top level datanode is called once'
             1 * mockCpsDataService.saveData(NCMP_DATASPACE_NAME, 'cm-data-subscriptions', '{"datastores":{}}', _)
+        and: 'the data service is called once to create datastore for Passthrough-operational'
+            1 * mockCpsDataService.saveData(NCMP_DATASPACE_NAME, 'cm-data-subscriptions', '/datastores',
+                    '{"datastore":[{"name":"ncmp-datastores:passthrough-operational","cm-handles":{}}]}', _, _)
+        and: 'the data service is called once to create datastore for Passthrough-running'
+            1 * mockCpsDataService.saveData(NCMP_DATASPACE_NAME, 'cm-data-subscriptions', '/datastores',
+                    '{"datastore":[{"name":"ncmp-datastores:passthrough-running","cm-handles":{}}]}', _, _)
+    }
+
+    def 'Create node for datastore with already defined exception.'() {
+        given:'the data service throws an Already Defined exception'
+            mockCpsDataService.saveData(*_) >> { throw AlreadyDefinedException.forDataNodes([], 'some context') }
+        when: 'attempt to create datastore'
+            objectUnderTest.createDatastore('some datastore')
+        then: 'the exception is ignored i.e. no exception thrown up'
+            noExceptionThrown()
+        and: 'the exception message is logged'
+            def logs = loggingListAppender.list.toString()
+            logs.contains("Creating new child data node 'some datastore' for data node 'datastores' failed as data node already exists")
+    }
+
+    def 'Create node for datastore with any other exception.'() {
+        given: 'the data service throws an exception'
+            mockCpsDataService.saveData(*_) >> { throw new RuntimeException('test message') }
+        when: 'attempt to create datastore'
+            objectUnderTest.createDatastore('some datastore')
+        then: 'a startup exception with correct message and details is thrown'
+            def thrown = thrown(NcmpStartUpException)
+            assert thrown.message.contains('Creating data node failed')
+            assert thrown.details.contains('test message')
     }
 
     def 'Subscription model loader disabled.' () {
