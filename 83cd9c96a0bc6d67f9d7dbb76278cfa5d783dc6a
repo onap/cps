@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ead27620_c653a6fa",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/CmDataSubscriptionModelLoader.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-01-17T17:52:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2384f26d_70ab0c76",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 22
+      },
+      "revId": "83cd9c96a0bc6d67f9d7dbb76278cfa5d783dc6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e016b16e_5e803c44",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-01-17T17:47:56Z",
       "side": 1,
       "message": "NB: no need for warning, since it\u0027s normal for it to already exist (.info or .trace is enough)",
+      "range": {
+        "startLine": 94,
+        "startChar": 20,
+        "endLine": 94,
+        "endChar": 24
+      },
+      "revId": "83cd9c96a0bc6d67f9d7dbb76278cfa5d783dc6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f18772af_51c785ad",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/CmDataSubscriptionModelLoader.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-01-17T17:52:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e016b16e_5e803c44",
       "range": {
         "startLine": 94,
         "startChar": 20,
