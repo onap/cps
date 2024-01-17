@@ -16,6 +16,23 @@
       "message": "recheck",
       "revId": "885980d8ebf6bc8be9efad7ce9094deeb602a076",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "173be4b4_48421508",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 29
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-01-17T16:16:00Z",
+      "side": 1,
+      "message": "fine with the changes now as most of the review comments are incorporated now.",
+      "revId": "885980d8ebf6bc8be9efad7ce9094deeb602a076",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
