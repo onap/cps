@@ -50,6 +50,24 @@
       "message": "with this also remove the onboarding of all deprecated in \nCmDataSubscriptionModelLoader.java and that it doesnt break anymore other codes",
       "revId": "a9850bf4ca2b67b1ac18415a2d2ba45a1de3c7ec",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b02cf45_3e5cedf6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-01-17T10:19:25Z",
+      "side": 1,
+      "message": "nope..this removal is just for removing kafka and subscription related code,\nYang modules and Module loader code is unchanged.",
+      "parentUuid": "7178c276_51901750",
+      "revId": "a9850bf4ca2b67b1ac18415a2d2ba45a1de3c7ec",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
