@@ -1,0 +1,135 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "897a0ae0_f906e7e6",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/TimedYangParser.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-17T14:10:04Z",
+      "side": 1,
+      "message": "this file ahs renamed to YangParser but also changed a lot so Gerrit cannot match it...",
+      "revId": "911b0c6652a3968a03514c6f7f5d4c615b1db811",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0e6da94_f3a28ea2",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParser.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-17T14:10:04Z",
+      "side": 1,
+      "message": "this file is the core of where the fix (retry mechanism is)",
+      "revId": "911b0c6652a3968a03514c6f7f5d4c615b1db811",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3474af8_607d2971",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-17T14:10:04Z",
+      "side": 1,
+      "message": "this file is not really new. All this code was in YangUtils before\n\nI just cleaned it up a little, got rid op optional (just handle empty string) for parentNode.\nAlso change the acces modifies. there was only ONE method that needed to be public (used in production code)\n\nPlease dont comment on old logic (check your own version in YangUtils) unless it is critical",
+      "revId": "911b0c6652a3968a03514c6f7f5d4c615b1db811",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebe6b016_1ab75058",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-17T14:10:04Z",
+      "side": 1,
+      "message": "I think I can change this back to a Private NoArgsConstructor...",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 38
+      },
+      "revId": "911b0c6652a3968a03514c6f7f5d4c615b1db811",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1bb58dfa_4961400e",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/GsonSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-17T14:10:04Z",
+      "side": 1,
+      "message": "jsut stumbled on this missing copyright and I check teh latest change was in 2022...",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 23
+      },
+      "revId": "911b0c6652a3968a03514c6f7f5d4c615b1db811",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5baf4ea_9e27ee6d",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangParserHelperSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-17T14:10:04Z",
+      "side": 1,
+      "message": "not new really just split off. apart from using an empty string for parent isntead of teh optional nothing has really changed",
+      "revId": "911b0c6652a3968a03514c6f7f5d4c615b1db811",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3153610_5dba3e4b",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangParserSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-17T14:10:04Z",
+      "side": 1,
+      "message": "these test are important, this is verifying the wanted retry behavior with clearing cache",
+      "revId": "911b0c6652a3968a03514c6f7f5d4c615b1db811",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
