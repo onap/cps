@@ -1,0 +1,234 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee94dc8e_fd4fee0f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/AlternateIdCacheConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-17T08:57:20Z",
+      "side": 1,
+      "message": "be careful here you need to swap th name when you Change from \u0027To\u0027 to \u0027Per\u0027\n\nI dont mind either naming convention but think of a map as key value pairs then the names could either be\n\nkeyToValue  OR valuePerKey\n\nso this should now be cmHandleIDPerAlternateId\n(NOte hwo I also added \u0027id\u0027 since yot are NOT store CM Handle objects but just their Ids!)",
+      "range": {
+        "startLine": 44,
+        "startChar": 31,
+        "endLine": 44,
+        "endChar": 53
+      },
+      "revId": "45114e50446db595b4ad8c65da67539fd706f153",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf102b07_8e5f0e13",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/AlternateIdCacheConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-17T08:57:20Z",
+      "side": 1,
+      "message": "like above change this to alternateIdPerCmHandleId",
+      "range": {
+        "startLine": 55,
+        "startChar": 31,
+        "endLine": 55,
+        "endChar": 53
+      },
+      "revId": "45114e50446db595b4ad8c65da67539fd706f153",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "259ddef8_9f45eede",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-17T08:57:20Z",
+      "side": 1,
+      "message": "simplify and use \u0027scenario, see comments below for suggestion",
+      "range": {
+        "startLine": 437,
+        "startChar": 9,
+        "endLine": 437,
+        "endChar": 66
+      },
+      "revId": "45114e50446db595b4ad8c65da67539fd706f153",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac463611_b746793c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 447,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-17T08:57:20Z",
+      "side": 1,
+      "message": "expectedCacheSize",
+      "range": {
+        "startLine": 447,
+        "startChar": 52,
+        "endLine": 447,
+        "endChar": 61
+      },
+      "revId": "45114e50446db595b4ad8c65da67539fd706f153",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba3e8158_5a181d00",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-17T08:57:20Z",
+      "side": 1,
+      "message": "al lot of duplication in the scenario, also this is NOT realy the scenario but more teh expectation (which itself is clear more teh last column: expectedCacheSize\n\nsee my suggestion below for teh array names you can use simal (but maye a bit more elaborate like \n\n\u0027an alternate id each\u0027\n\u0027an alternate id for on\u0027\n\nMake sure you USE the #scenario in the title of the test and you can put the start of it like so\n\n\u0027Alternate Id registration of 2 cm handles with #scenario\u0027",
+      "range": {
+        "startLine": 451,
+        "startChar": 13,
+        "endLine": 451,
+        "endChar": 62
+      },
+      "revId": "45114e50446db595b4ad8c65da67539fd706f153",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4cfa3c99_98080745",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 470,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-17T08:57:20Z",
+      "side": 1,
+      "message": "no need for 3 (or more entries) to prove iteration (just adds maintenance in test)",
+      "range": {
+        "startLine": 470,
+        "startChar": 16,
+        "endLine": 470,
+        "endChar": 98
+      },
+      "revId": "45114e50446db595b4ad8c65da67539fd706f153",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "233ad099_f8d7e9e1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 471,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-17T08:57:20Z",
+      "side": 1,
+      "message": "instead of methods declare them at class level (static) also suggesting better names here:\n\nstatic def cmHandlesWithAllPopulatedAlternateIds \u003d [....]",
+      "range": {
+        "startLine": 466,
+        "startChar": 0,
+        "endLine": 471,
+        "endChar": 5
+      },
+      "revId": "45114e50446db595b4ad8c65da67539fd706f153",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30df5ebe_64b6087e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-17T08:57:20Z",
+      "side": 1,
+      "message": "statis def cmHandlesWithSoemPopulatedAlternateIds \u003d [...]",
+      "range": {
+        "startLine": 474,
+        "startChar": 8,
+        "endLine": 474,
+        "endChar": 50
+      },
+      "revId": "45114e50446db595b4ad8c65da67539fd706f153",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e45a719b_57180163",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-17T08:57:20Z",
+      "side": 1,
+      "message": "no need for 3 (or more entries) to prove iteration (just adds maintenance in test)",
+      "range": {
+        "startLine": 477,
+        "startChar": 16,
+        "endLine": 477,
+        "endChar": 98
+      },
+      "revId": "45114e50446db595b4ad8c65da67539fd706f153",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "582974f5_e4eba69e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-17T08:57:20Z",
+      "side": 1,
+      "message": "NB. I think you can use something like Collection.EmptyMap()\nI dont think you need to type \u003cString, String\u003e either fro Groovy tests, especially as we are NOT using these maps for these tests)\n(this would prevent maintenance when we decide to change to datatypes fro some reason...",
+      "range": {
+        "startLine": 81,
+        "startChar": 33,
+        "endLine": 81,
+        "endChar": 62
+      },
+      "revId": "45114e50446db595b4ad8c65da67539fd706f153",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
