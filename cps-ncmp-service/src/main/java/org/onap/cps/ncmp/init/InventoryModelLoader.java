@@ -39,9 +39,9 @@ public class InventoryModelLoader extends AbstractModelLoader {
 
     public InventoryModelLoader(final CpsDataspaceService cpsDataspaceService,
                                 final CpsModuleService cpsModuleService,
-                                final CpsDataService cpsDataService,
-                                final CpsAnchorService cpsAnchorService) {
-        super(cpsDataspaceService, cpsModuleService, cpsDataService, cpsAnchorService);
+                                final CpsAnchorService cpsAnchorService,
+                                final CpsDataService cpsDataService) {
+        super(cpsDataspaceService, cpsModuleService, cpsAnchorService, cpsDataService);
     }
 
     @Override

@@ -47,8 +47,8 @@ abstract class AbstractModelLoader implements ModelLoader {
 
     private final CpsDataspaceService cpsDataspaceService;
     private final CpsModuleService cpsModuleService;
-    private final CpsDataService cpsDataService;
     private final CpsAnchorService cpsAnchorService;
+    protected final CpsDataService cpsDataService;
 
     private static final int EXIT_CODE_ON_ERROR = 1;
 
