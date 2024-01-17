@@ -21,7 +21,9 @@
 package org.onap.cps.ncmp.init;
 
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME;
+import static org.onap.cps.utils.ContentType.JSON;
 
+import java.time.OffsetDateTime;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.CpsDataService;
@@ -38,6 +40,8 @@ public class CmDataSubscriptionModelLoader extends AbstractModelLoader {
     private static final String SCHEMASET_NAME = "cm-data-subscriptions";
     private static final String ANCHOR_NAME = "cm-data-subscriptions";
     private static final String REGISTRY_DATANODE_NAME = "datastores";
+    private static final String DATASTORE_PASSTHROUGH_OPERATIONAL = "ncmp-datastores:passthrough-operational";
+    private static final String DATASTORE_PASSTHROUGH_RUNNING = "ncmp-datastores:passthrough-running";
 
     private static final String DEPRECATED_MODEL_FILENAME = "subscription.yang";
     private static final String DEPRECATED_ANCHOR_NAME = "AVC-Subscriptions";
@@ -48,9 +52,9 @@ public class CmDataSubscriptionModelLoader extends AbstractModelLoader {
 
     public CmDataSubscriptionModelLoader(final CpsDataspaceService cpsDataspaceService,
                                          final CpsModuleService cpsModuleService,
-                                         final CpsDataService cpsDataService,
-                                         final CpsAnchorService cpsAnchorService) {
-        super(cpsDataspaceService, cpsModuleService, cpsDataService, cpsAnchorService);
+                                         final CpsAnchorService cpsAnchorService,
+                                         final CpsDataService cpsDataService) {
+        super(cpsDataspaceService, cpsModuleService, cpsAnchorService, cpsDataService);
     }
 
     @Value("${ncmp.model-loader.subscription:true}")
@@ -75,5 +79,15 @@ public class CmDataSubscriptionModelLoader extends AbstractModelLoader {
         createSchemaSet(NCMP_DATASPACE_NAME, SCHEMASET_NAME, MODEL_FILENAME);
         createAnchor(NCMP_DATASPACE_NAME, SCHEMASET_NAME, ANCHOR_NAME);
         createTopLevelDataNode(NCMP_DATASPACE_NAME, ANCHOR_NAME, REGISTRY_DATANODE_NAME);
+        createDatastore(DATASTORE_PASSTHROUGH_OPERATIONAL, DATASTORE_PASSTHROUGH_RUNNING);
     }
+
+    private void createDatastore(final String... datastoreNames) {
+        for (final String datastoreName : datastoreNames) {
+            final String nodeData = "{\"datastore\":[{\"name\":\"" + datastoreName + "\",\"cm-handles\":{}}]}";
+            cpsDataService.saveData(NCMP_DATASPACE_NAME, ANCHOR_NAME, "/" + REGISTRY_DATANODE_NAME, nodeData,
+                    OffsetDateTime.now(), JSON);
+        }
+    }
+
 }
