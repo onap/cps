@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2022-2023 Nordix Foundation
+ * Copyright (C) 2022-2024 Nordix Foundation
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -164,12 +164,12 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
     }
 
     private void setInitialStates(final YangModelCmHandle yangModelCmHandle) {
-        CompositeStateUtils.setInitialDataStoreSyncState().accept(yangModelCmHandle.getCompositeState());
-        CompositeStateUtils.setCompositeState(READY).accept(yangModelCmHandle.getCompositeState());
+        CompositeStateUtils.setInitialDataStoreSyncState(yangModelCmHandle.getCompositeState());
+        CompositeStateUtils.setCompositeState(READY, yangModelCmHandle.getCompositeState());
     }
 
     private void retryCmHandle(final YangModelCmHandle yangModelCmHandle) {
-        CompositeStateUtils.setCompositeStateForRetry().accept(yangModelCmHandle.getCompositeState());
+        CompositeStateUtils.setCompositeStateForRetry(yangModelCmHandle.getCompositeState());
     }
 
     private void registerNewCmHandle(final YangModelCmHandle yangModelCmHandle) {
@@ -178,7 +178,7 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
     }
 
     private void setCmHandleState(final YangModelCmHandle yangModelCmHandle, final CmHandleState targetCmHandleState) {
-        CompositeStateUtils.setCompositeState(targetCmHandleState).accept(yangModelCmHandle.getCompositeState());
+        CompositeStateUtils.setCompositeState(targetCmHandleState, yangModelCmHandle.getCompositeState());
     }
 
     private boolean isNew(final CompositeState existingCompositeState) {
