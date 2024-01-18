@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1df6cba5_a3ca4dbf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-01-18T22:26:38Z",
+      "side": 1,
+      "message": "just to confirm that nothing relates to liquibase steps here. right ?",
+      "revId": "6c0f24cafc8aa0be475484b2d950d48b6741ca7c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
