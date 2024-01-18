@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5211e3f4_1ccd23eb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-01-18T10:51:40Z",
+      "side": 1,
+      "message": "NB: any reason for the change in  sequence of formal arguments ??\nresults in unnecessary changes in the patch.",
+      "range": {
+        "startLine": 43,
+        "startChar": 38,
+        "endLine": 43,
+        "endChar": 67
+      },
+      "revId": "723994d3a9fb5909c1035db7f520a07fb6995ee0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
