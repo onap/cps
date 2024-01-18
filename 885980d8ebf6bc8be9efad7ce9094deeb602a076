@@ -33,6 +33,155 @@
       "message": "fine with the changes now as most of the review comments are incorporated now.",
       "revId": "885980d8ebf6bc8be9efad7ce9094deeb602a076",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "459e88bb_c0ce4b5d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 29
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-18T16:51:40Z",
+      "side": 1,
+      "message": "approved with minor comments (on testware only), which can be handled with release notes",
+      "revId": "885980d8ebf6bc8be9efad7ce9094deeb602a076",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f07cbf0b_5dd60abe",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-18T16:51:40Z",
+      "side": 1,
+      "message": "This method will NOT be called when both leave are nul. Therefor you do NOT need the condition on line #170. \nAS is clear from the coverage report that condition is not covered for false.\nYou can simplify the code as shown in my next comment",
+      "range": {
+        "startLine": 158,
+        "startChar": 24,
+        "endLine": 158,
+        "endChar": 37
+      },
+      "revId": "885980d8ebf6bc8be9efad7ce9094deeb602a076",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d002148_3f6a1782",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-18T16:51:40Z",
+      "side": 1,
+      "message": "PLease Note I changed !\u003d to \u003d\u003d and swape the blocks!\n\nif (sourceLeaf \u003d\u003d null) {\n          targetDataInDeltaReport.put(key, targetLeaf);\n} else \n          targetDataInDeltaReport.put(key, targetLeaf);\n}",
+      "range": {
+        "startLine": 168,
+        "startChar": 15,
+        "endLine": 172,
+        "endChar": 9
+      },
+      "revId": "885980d8ebf6bc8be9efad7ce9094deeb602a076",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "650191be_79b650fe",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-18T16:51:40Z",
+      "side": 1,
+      "message": "NB: no scenarios anymore. Is the first part of the title enough for this test (I think so)",
+      "range": {
+        "startLine": 39,
+        "startChar": 55,
+        "endLine": 39,
+        "endChar": 91
+      },
+      "revId": "885980d8ebf6bc8be9efad7ce9094deeb602a076",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97bfb060_d1ec444d",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-18T16:51:40Z",
+      "side": 1,
+      "message": "NB: no scenarios anymore. Is the first part of the title enough for this test (I think so)",
+      "range": {
+        "startLine": 52,
+        "startChar": 49,
+        "endLine": 52,
+        "endChar": 90
+      },
+      "revId": "885980d8ebf6bc8be9efad7ce9094deeb602a076",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77b030f1_8f5debb2",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-18T16:51:40Z",
+      "side": 1,
+      "message": "NB: you are NOT executing 2 test. but test the same thing twice but asserting first the parent and then the child.\n\nAlso no need to describe each assert especially if if the assert code is very clear. Instead focus your descriptions on the significant part/word in this case parent and child. SO no need for where but re-write your asserts like this:\n\nand: \u0027the delta report contain the correct details for the parent\u0027\n  assert ...\n  assert ...\n  assert ...  \n  \nand: \u0027the delta report contain the correct details for the child\u0027\n  assert ...\n  assert ...\n  assert ...",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 5
+      },
+      "revId": "885980d8ebf6bc8be9efad7ce9094deeb602a076",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c385f9a_a2efd6a5",
+        "filename": "integration-test/src/test/resources/data/bookstore/bookstoreDataForDeltaReport.json",
+        "patchSetId": 29
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-18T16:51:40Z",
+      "side": 1,
+      "message": "suggestion: I would just call this \u0027otherBookstore\u0027",
+      "revId": "885980d8ebf6bc8be9efad7ce9094deeb602a076",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

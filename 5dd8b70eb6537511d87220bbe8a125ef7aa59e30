@@ -491,6 +491,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0805db9c_11400704",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-18T16:51:40Z",
+      "side": 1,
+      "message": "it is not really a different scenario. It doesnt help describing the behavior any betetr. SO it is only extra maintenance\nOver time redundant test that dont add value can really become a hindrance when they need to be updated...",
+      "parentUuid": "a838f2f7_78b2dfa5",
+      "range": {
+        "startLine": 50,
+        "startChar": 8,
+        "endLine": 50,
+        "endChar": 40
+      },
+      "revId": "5dd8b70eb6537511d87220bbe8a125ef7aa59e30",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0b497f2e_cd05f797",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDeltaServiceImplSpec.groovy",
         "patchSetId": 22
