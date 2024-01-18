@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ba9dfc7a_6408232d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/AbstractModelLoader.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-01-18T11:01:20Z",
+      "side": 1,
+      "message": "u want to separate protected and private instance vars. thats why u changed the sequence or something else ??\ndoes checkstyle also enforces this ?",
+      "range": {
+        "startLine": 51,
+        "startChar": 4,
+        "endLine": 51,
+        "endChar": 13
+      },
+      "revId": "723994d3a9fb5909c1035db7f520a07fb6995ee0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5211e3f4_1ccd23eb",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
         "patchSetId": 4
