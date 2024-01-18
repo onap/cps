@@ -33,6 +33,29 @@
       "message": "recheck",
       "revId": "5248af1ef8e5c38a368eadf76456ed99107798ab",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1df98e47_1ab361ef",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionNcmpInEventConsumer.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-01-18T16:01:50Z",
+      "side": 1,
+      "message": "if (cmSubscriptionNcmpInEvent.getData() !\u003d null) {\n\nmaybe can you have this in one if ?",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 9
+      },
+      "revId": "5248af1ef8e5c38a368eadf76456ed99107798ab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
