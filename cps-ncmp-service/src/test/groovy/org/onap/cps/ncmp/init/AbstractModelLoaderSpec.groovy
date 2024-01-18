@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023 Nordix Foundation
+ *  Copyright (C) 2023-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@ class AbstractModelLoaderSpec extends Specification {
     def mockCpsModuleService = Mock(CpsModuleService)
     def mockCpsDataService = Mock(CpsDataService)
     def mockCpsAnchorService = Mock(CpsAnchorService)
-    def objectUnderTest = Spy(new TestModelLoader(mockCpsDataspaceService, mockCpsModuleService, mockCpsDataService, mockCpsAnchorService))
+    def objectUnderTest = Spy(new TestModelLoader(mockCpsDataspaceService, mockCpsModuleService, mockCpsAnchorService, mockCpsDataService))
 
     def applicationContext = new AnnotationConfigApplicationContext()
 
@@ -221,9 +221,9 @@ class AbstractModelLoaderSpec extends Specification {
 
         TestModelLoader(final CpsDataspaceService cpsDataspaceService,
                         final CpsModuleService cpsModuleService,
-                        final CpsDataService cpsDataService,
-                        final CpsAnchorService cpsAnchorService) {
-            super(cpsDataspaceService, cpsModuleService, cpsDataService, cpsAnchorService)
+                        final CpsAnchorService cpsAnchorService,
+                        final CpsDataService cpsDataService) {
+            super(cpsDataspaceService, cpsModuleService, cpsAnchorService, cpsDataService)
             super.maximumAttemptCount = 2
             super.retryTimeMs = 1
         }
