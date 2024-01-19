@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "654733b1_16c00cd8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2024-01-19T13:27:40Z",
+      "side": 1,
+      "message": "I\u0027ve been looking at this a bit. The old ideal of ordering public, private, protected doesn\u0027t hold water for me anymore. Your ordering creates the least vertical distance between the related methods. I can get onboard with this approach.",
+      "revId": "3853136d656edb1e405b50602c284e56cfaa31ba",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c96cb6e0_b30a0622",
