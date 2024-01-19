@@ -52,6 +52,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fabd6f79_aa94884e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 29
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-01-19T10:13:51Z",
+      "side": 1,
+      "message": "Resolved comments",
+      "revId": "885980d8ebf6bc8be9efad7ce9094deeb602a076",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f07cbf0b_5dd60abe",
@@ -65,6 +82,30 @@
       "writtenOn": "2024-01-18T16:51:40Z",
       "side": 1,
       "message": "This method will NOT be called when both leave are nul. Therefor you do NOT need the condition on line #170. \nAS is clear from the coverage report that condition is not covered for false.\nYou can simplify the code as shown in my next comment",
+      "range": {
+        "startLine": 158,
+        "startChar": 24,
+        "endLine": 158,
+        "endChar": 37
+      },
+      "revId": "885980d8ebf6bc8be9efad7ce9094deeb602a076",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e275a9f_6a48966b",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-01-19T10:13:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f07cbf0b_5dd60abe",
       "range": {
         "startLine": 158,
         "startChar": 24,
@@ -98,6 +139,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fcc243d_4522f190",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-01-19T10:13:51Z",
+      "side": 1,
+      "message": "thanks for this suggestion",
+      "parentUuid": "2d002148_3f6a1782",
+      "range": {
+        "startLine": 168,
+        "startChar": 15,
+        "endLine": 172,
+        "endChar": 9
+      },
+      "revId": "885980d8ebf6bc8be9efad7ce9094deeb602a076",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "650191be_79b650fe",
@@ -111,6 +176,30 @@
       "writtenOn": "2024-01-18T16:51:40Z",
       "side": 1,
       "message": "NB: no scenarios anymore. Is the first part of the title enough for this test (I think so)",
+      "range": {
+        "startLine": 39,
+        "startChar": 55,
+        "endLine": 39,
+        "endChar": 91
+      },
+      "revId": "885980d8ebf6bc8be9efad7ce9094deeb602a076",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18a2cd81_8dbf8b69",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-01-19T10:13:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "650191be_79b650fe",
       "range": {
         "startLine": 39,
         "startChar": 55,
@@ -144,6 +233,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6fcb5496_546854f5",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-01-19T10:13:51Z",
+      "side": 1,
+      "message": "yup, my bad 😄",
+      "parentUuid": "97bfb060_d1ec444d",
+      "range": {
+        "startLine": 52,
+        "startChar": 49,
+        "endLine": 52,
+        "endChar": 90
+      },
+      "revId": "885980d8ebf6bc8be9efad7ce9094deeb602a076",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "77b030f1_8f5debb2",
@@ -167,6 +280,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f77c0ffc_8afc02e3",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-01-19T10:13:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "77b030f1_8f5debb2",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 5
+      },
+      "revId": "885980d8ebf6bc8be9efad7ce9094deeb602a076",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6c385f9a_a2efd6a5",
@@ -180,6 +317,24 @@
       "writtenOn": "2024-01-18T16:51:40Z",
       "side": 1,
       "message": "suggestion: I would just call this \u0027otherBookstore\u0027",
+      "revId": "885980d8ebf6bc8be9efad7ce9094deeb602a076",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "788781b9_040ecf54",
+        "filename": "integration-test/src/test/resources/data/bookstore/bookstoreDataForDeltaReport.json",
+        "patchSetId": 29
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-01-19T10:13:51Z",
+      "side": 1,
+      "message": "I kept the name specific to Delta because if anything is changed in the file it will lead to multiple test failures, So, if any developer is working on this they should know exactly what this json will impact upon.",
+      "parentUuid": "6c385f9a_a2efd6a5",
       "revId": "885980d8ebf6bc8be9efad7ce9094deeb602a076",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
