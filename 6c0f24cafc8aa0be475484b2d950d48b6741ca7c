@@ -16,6 +16,24 @@
       "message": "just to confirm that nothing relates to liquibase steps here. right ?",
       "revId": "6c0f24cafc8aa0be475484b2d950d48b6741ca7c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf6986a2_d57bc24d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-01-19T11:58:02Z",
+      "side": 1,
+      "message": "yup , the onboarding doesnt touch that.",
+      "parentUuid": "1df6cba5_a3ca4dbf",
+      "revId": "6c0f24cafc8aa0be475484b2d950d48b6741ca7c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
