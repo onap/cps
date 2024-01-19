@@ -45,13 +45,6 @@ public class CmDataSubscriptionModelLoader extends AbstractModelLoader {
     private static final String DATASTORE_PASSTHROUGH_OPERATIONAL = "ncmp-datastores:passthrough-operational";
     private static final String DATASTORE_PASSTHROUGH_RUNNING = "ncmp-datastores:passthrough-running";
 
-    private static final String DEPRECATED_MODEL_FILENAME = "subscription.yang";
-    private static final String DEPRECATED_ANCHOR_NAME = "AVC-Subscriptions";
-    private static final String DEPRECATED_SCHEMASET_NAME = "subscriptions";
-    private static final String DEPRECATED_REGISTRY_DATANODE_NAME = "subscription-registry";
-
-
-
     public CmDataSubscriptionModelLoader(final CpsDataspaceService cpsDataspaceService,
                                          final CpsModuleService cpsModuleService,
                                          final CpsAnchorService cpsAnchorService,
@@ -74,10 +67,6 @@ public class CmDataSubscriptionModelLoader extends AbstractModelLoader {
     }
 
     private void onboardSubscriptionModels() {
-        createSchemaSet(NCMP_DATASPACE_NAME, DEPRECATED_SCHEMASET_NAME, DEPRECATED_MODEL_FILENAME);
-        createAnchor(NCMP_DATASPACE_NAME, DEPRECATED_SCHEMASET_NAME, DEPRECATED_ANCHOR_NAME);
-        createTopLevelDataNode(NCMP_DATASPACE_NAME, DEPRECATED_ANCHOR_NAME, DEPRECATED_REGISTRY_DATANODE_NAME);
-
         createSchemaSet(NCMP_DATASPACE_NAME, SCHEMASET_NAME, MODEL_FILENAME);
         createAnchor(NCMP_DATASPACE_NAME, SCHEMASET_NAME, ANCHOR_NAME);
         createTopLevelDataNode(NCMP_DATASPACE_NAME, ANCHOR_NAME, REGISTRY_DATANODE_NAME);
