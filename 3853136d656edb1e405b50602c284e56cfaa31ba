@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a530edd_c3079937",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/CompositeStateUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-01-19T14:23:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c96cb6e0_b30a0622",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 37
+      },
+      "revId": "3853136d656edb1e405b50602c284e56cfaa31ba",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dc4e37cd_7ce8b27c",
@@ -71,6 +95,30 @@
       "writtenOn": "2024-01-17T18:04:40Z",
       "side": 1,
       "message": "result is never used, so make it void",
+      "range": {
+        "startLine": 39,
+        "startChar": 18,
+        "endLine": 39,
+        "endChar": 32
+      },
+      "revId": "3853136d656edb1e405b50602c284e56cfaa31ba",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03acd78c_f2231204",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/CompositeStateUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-01-19T14:23:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dc4e37cd_7ce8b27c",
       "range": {
         "startLine": 39,
         "startChar": 18,
@@ -104,6 +152,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1eaf748_4ab241c6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/CompositeStateUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-01-19T14:23:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7608e21c_13036094",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 32
+      },
+      "revId": "3853136d656edb1e405b50602c284e56cfaa31ba",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9f2d123e_49c65bae",
@@ -117,6 +189,30 @@
       "writtenOn": "2024-01-17T18:04:40Z",
       "side": 1,
       "message": "same as above",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 32
+      },
+      "revId": "3853136d656edb1e405b50602c284e56cfaa31ba",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "33db28e7_46fe6bcc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/CompositeStateUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-01-19T14:23:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f2d123e_49c65bae",
       "range": {
         "startLine": 91,
         "startChar": 0,
