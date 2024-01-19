@@ -21,7 +21,6 @@
 package org.onap.cps.api.impl
 
 import org.onap.cps.spi.model.DataNode
-import spock.lang.Shared
 import spock.lang.Specification
 
 class CpsDeltaServiceImplSpec extends Specification{
@@ -36,7 +35,7 @@ class CpsDeltaServiceImplSpec extends Specification{
     static def sourceDataNodeWithMultipleLeaves = [new DataNode(xpath: '/parent', leaves: ['leaf-1': 'leaf-1-in-source', 'leaf-2': 'leaf-2-in-source'])]
     static def targetDataNodeWithMultipleLeaves = [new DataNode(xpath: '/parent', leaves: ['leaf-1': 'leaf-1-in-target', 'leaf-2': 'leaf-2-in-target'])]
 
-    def 'Get delta between data nodes for REMOVED data where source data node has #scenario'() {
+    def 'Get delta between data nodes for REMOVED data'() {
         when: 'attempt to get delta between 2 data nodes'
             def result = objectUnderTest.getDeltaReports(sourceDataNodeWithLeafData, [])
         then: 'the delta report contains expected "remove" action'
@@ -49,7 +48,7 @@ class CpsDeltaServiceImplSpec extends Specification{
             assert  result[0].targetData == null
     }
 
-    def 'Get delta between data nodes with ADDED data where target data node has #scenario'() {
+    def 'Get delta between data nodes for ADDED data'() {
         when: 'attempt to get delta between 2 data nodes'
             def result = objectUnderTest.getDeltaReports([], targetDataNodeWithLeafData)
         then: 'the delta report contains expected "add" action'
@@ -62,23 +61,22 @@ class CpsDeltaServiceImplSpec extends Specification{
             assert result[0].targetData == ['parent-leaf': 'parent-payload-in-target']
     }
 
-    def 'Delta Report between leaves for parent and child nodes, #scenario'() {
+    def 'Delta Report between leaves for parent and child nodes'() {
         given: 'Two data nodes'
             def sourceDataNode  = [new DataNode(xpath: '/parent', leaves: ['parent-leaf': 'parent-payload'], childDataNodes: [new DataNode(xpath: '/parent/child', leaves: ['child-leaf': 'child-payload'])])]
             def targetDataNode  = [new DataNode(xpath: '/parent', leaves: ['parent-leaf': 'parent-payload-updated'], childDataNodes: [new DataNode(xpath: '/parent/child', leaves: ['child-leaf': 'child-payload-updated'])])]
         when: 'attempt to get delta between 2 data nodes'
             def result = objectUnderTest.getDeltaReports(sourceDataNode, targetDataNode)
-        then: 'the delta report contains expected "update" action'
-            assert result[index].action.equals('update')
-        and: 'the delta report contains expected xpath'
-            assert result[index].xpath == expectedXpath
-        and: 'the delta report contains expected source and target data'
-            assert result[index].sourceData == expectedSourceData
-            assert result[index].targetData == expectedTargetData
-        where: 'the following data was used'
-            scenario           | index || expectedXpath   | expectedSourceData                | expectedTargetData
-            'parent data node' | 0     || '/parent'       | ['parent-leaf': 'parent-payload'] | ['parent-leaf': 'parent-payload-updated']
-            'child data node'  | 1     || '/parent/child' | ['child-leaf': 'child-payload']   | ['child-leaf': 'child-payload-updated']
+        then: 'the delta report contains expected details for parent node'
+            assert result[0].action.equals('update')
+            assert result[0].xpath == '/parent'
+            assert result[0].sourceData == ['parent-leaf': 'parent-payload']
+            assert result[0].targetData == ['parent-leaf': 'parent-payload-updated']
+        and: 'the delta report contains expected details for child node'
+            assert result[1].action.equals('update')
+            assert result[1].xpath == '/parent/child'
+            assert result[1].sourceData == ['child-leaf': 'child-payload']
+            assert result[1].targetData == ['child-leaf': 'child-payload-updated']
     }
 
     def 'Delta report between leaves, #scenario'() {
