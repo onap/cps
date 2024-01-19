@@ -105,6 +105,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1222b45b_1b3927cc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 536,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-01-19T16:48:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2c414356_33a480f7",
+      "range": {
+        "startLine": 536,
+        "startChar": 50,
+        "endLine": 536,
+        "endChar": 68
+      },
+      "revId": "d34fc91902b1f79ddcee819b918ce0068c3c2860",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "69bcdf15_43b92562",
@@ -354,6 +378,30 @@
       "writtenOn": "2024-01-15T09:06:12Z",
       "side": 1,
       "message": "you shouldn\u0027t have to update existing test with an \u0027optional\u0027 new field. The existing test should NOT fail if you don\u0027t set this!",
+      "range": {
+        "startLine": 138,
+        "startChar": 99,
+        "endLine": 138,
+        "endChar": 114
+      },
+      "revId": "d34fc91902b1f79ddcee819b918ce0068c3c2860",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "087b02b8_143c9d0b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-01-19T16:48:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e2b07657_42e0b477",
       "range": {
         "startLine": 138,
         "startChar": 99,
