@@ -88,6 +88,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "520e17fd_d05e1939",
+        "filename": "csit/tests/cps-data-operations/cps-data-operations.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-01-22T17:12:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "40ed5971_f292b6bb",
+      "range": {
+        "startLine": 80,
+        "startChar": 17,
+        "endLine": 80,
+        "endChar": 96
+      },
+      "revId": "3f36215b0be480458a137e6aa8c1186682c063ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9508d3e1_05f69613",
@@ -101,6 +125,30 @@
       "writtenOn": "2024-01-22T15:47:33Z",
       "side": 1,
       "message": "same comemtn on redundant spaces as befoer",
+      "range": {
+        "startLine": 64,
+        "startChar": 17,
+        "endLine": 64,
+        "endChar": 96
+      },
+      "revId": "3f36215b0be480458a137e6aa8c1186682c063ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e54a7b89_79b9a512",
+        "filename": "csit/tests/cps-data-sync/cps-data-sync.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-01-22T17:12:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9508d3e1_05f69613",
       "range": {
         "startLine": 64,
         "startChar": 17,
