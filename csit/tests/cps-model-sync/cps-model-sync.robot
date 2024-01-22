@@ -86,4 +86,3 @@ Get modules for registered data node
                 Should Be Equal As Strings              "${item['revision']}"   "2020-09-15"
             END
     END
-    Sleep    10
