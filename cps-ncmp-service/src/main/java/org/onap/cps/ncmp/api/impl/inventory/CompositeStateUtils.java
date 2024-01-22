@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2022-2023 Nordix Foundation
+ * Copyright (C) 2022-2024 Nordix Foundation
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,7 +20,6 @@
 
 package org.onap.cps.ncmp.api.impl.inventory;
 
-import java.util.function.Consumer;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -34,31 +33,23 @@ public class CompositeStateUtils {
 
     /**
      * Sets the cmHandleState to the provided state and updates the timestamp.
-     *
-     * @return Updated CompositeState
      */
-    public static Consumer<CompositeState> setCompositeState(final CmHandleState cmHandleState) {
-        return compositeState -> {
-            compositeState.setCmHandleState(cmHandleState);
-            compositeState.setLastUpdateTimeNow();
-        };
+    public static void setCompositeState(final CmHandleState cmHandleState,
+                                                   final CompositeState compositeState) {
+        compositeState.setCmHandleState(cmHandleState);
+        compositeState.setLastUpdateTimeNow();
     }
 
     /**
      * Set the Operational datastore sync state based on the global flag.
-     *
-     * @return Updated CompositeState
      */
-    public static Consumer<CompositeState> setInitialDataStoreSyncState() {
-
-        return compositeState -> {
-            compositeState.setDataSyncEnabled(false);
-            final CompositeState.Operational operational =
-                    getInitialDataStoreSyncState(compositeState.getDataSyncEnabled());
-            final CompositeState.DataStores dataStores =
-                    CompositeState.DataStores.builder().operationalDataStore(operational).build();
-            compositeState.setDataStores(dataStores);
-        };
+    public static void setInitialDataStoreSyncState(final CompositeState compositeState) {
+        compositeState.setDataSyncEnabled(false);
+        final CompositeState.Operational operational =
+            getInitialDataStoreSyncState(compositeState.getDataSyncEnabled());
+        final CompositeState.DataStores dataStores =
+            CompositeState.DataStores.builder().operationalDataStore(operational).build();
+        compositeState.setDataStores(dataStores);
     }
 
     /**
@@ -91,19 +82,15 @@ public class CompositeStateUtils {
 
     /**
      * Sets the cmHandleState to ADVISED and retain the lock details. Used in retry scenarios.
-     *
-     * @return Updated CompositeState
      */
-    public static Consumer<CompositeState> setCompositeStateForRetry() {
-        return compositeState -> {
-            compositeState.setCmHandleState(CmHandleState.ADVISED);
-            compositeState.setLastUpdateTimeNow();
-            final String oldLockReasonDetails = compositeState.getLockReason().getDetails();
-            final CompositeState.LockReason lockReason =
-                    CompositeState.LockReason.builder()
-                            .lockReasonCategory(compositeState.getLockReason().getLockReasonCategory())
-                            .details(oldLockReasonDetails).build();
-            compositeState.setLockReason(lockReason);
-        };
+    public static void setCompositeStateForRetry(final CompositeState compositeState) {
+        compositeState.setCmHandleState(CmHandleState.ADVISED);
+        compositeState.setLastUpdateTimeNow();
+        final String oldLockReasonDetails = compositeState.getLockReason().getDetails();
+        final CompositeState.LockReason lockReason =
+            CompositeState.LockReason.builder()
+                .lockReasonCategory(compositeState.getLockReason().getLockReasonCategory())
+                .details(oldLockReasonDetails).build();
+        compositeState.setLockReason(lockReason);
     }
 }
