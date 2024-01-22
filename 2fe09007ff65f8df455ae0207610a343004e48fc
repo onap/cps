@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "062cfd93_6bc77285",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-22T10:53:47Z",
+      "side": 1,
+      "message": "create a Wrapper do NOT use these MAPP direct (also make them package protected and put the new Mapper in that package)\n\npublic CmHandleIdMapper with 2 methods\nprivate static boolean cacheIsInitialized \u003d false\n\npublic cmHandleIdToALternAteId(cmHandleId)\n  initializeCache()\nreturn cache.get(cmHandleId)\n\npublic alternatIdToCmHandleId(alternateId)\n  initializeCache()\nreturn cache.get(alternateId)  \n\npublic void addMapping(cmHandleId, alternatId)\n   initializeCache()\n   cmHandlePerAlternateId.putIfAbsent(cmHandleId, alternateId);\n   alternateIdPerCmHandle.putIfAbsent(alternateId, cmHandleId);\n}   \n\n   \nprivate void initializeCache()\n  if (!cacheIsInitialized)\n   cacheIsInitialized  \u003d true\n   if cache.empty()\n     poplate from DB \n   endif   \n)",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 61
+      },
+      "revId": "2fe09007ff65f8df455ae0207610a343004e48fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4078e3e3_db1814ad",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-22T10:53:47Z",
+      "side": 1,
+      "message": "cacheNewRegistrations \n\nNOTE, \n\n1) do something similar for UPDATED regsitrations\n2) do something similar for DELETED regsitrations (incl new metthod in mapper to remove cache entries)",
+      "range": {
+        "startLine": 534,
+        "startChar": 17,
+        "endLine": 534,
+        "endChar": 44
+      },
+      "revId": "2fe09007ff65f8df455ae0207610a343004e48fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8897ecd1_531b7507",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 538,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-22T10:53:47Z",
+      "side": 1,
+      "message": "Remove",
+      "range": {
+        "startLine": 536,
+        "startChar": 2,
+        "endLine": 538,
+        "endChar": 9
+      },
+      "revId": "2fe09007ff65f8df455ae0207610a343004e48fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c55f5d0f_39e26981",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 544,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-22T10:53:47Z",
+      "side": 1,
+      "message": "CmHandleMapper.addMapping(...,...)",
+      "range": {
+        "startLine": 543,
+        "startChar": 7,
+        "endLine": 544,
+        "endChar": 76
+      },
+      "revId": "2fe09007ff65f8df455ae0207610a343004e48fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
