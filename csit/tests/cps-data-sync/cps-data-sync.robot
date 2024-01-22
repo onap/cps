@@ -34,6 +34,12 @@ ${auth}                   Basic Y3BzdXNlcjpjcHNyMGNrcyE=
 ${ncmpBasePath}           /ncmp
 
 *** Test Cases ***
+
+Check if ietfYang-PNFDemo is READY
+    ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/ietfYang-PNFDemo
+    ${headers}=          Create Dictionary  Authorization=${auth}
+    Wait Until Keyword Succeeds    10sec    100ms    Is CM Handle READY    ${uri}    ${headers}    ietfYang-PNFDemo
+
 Operational state goes to UNSYNCHRONIZED when data sync (flag) is enabled
     ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/ietfYang-PNFDemo/data-sync
     ${params}=           Create Dictionary  dataSyncEnabled=true
@@ -51,3 +57,14 @@ Operational state goes to SYNCHRONIZED after sometime when data sync (flag) is e
     ${headers}=          Create Dictionary  Authorization=${auth}
     ${response}=         GET On Session     CPS_URL   ${uri}   headers=${headers}
     Should Be Equal As Strings              ${response.json()['state']['dataSyncState']['operational']['syncState']}   SYNCHRONIZED
+
+*** Keywords ***
+Is CM Handle READY
+    [Arguments]    ${uri}    ${headers}    ${cmHandle}
+    ${response}=                 GET On Session            CPS_URL   ${uri}   headers=${headers}
+    Should Be Equal As Strings   ${response.status_code}   200
+    FOR  ${item}  IN  ${response.json()}
+            IF  "${item['cmHandle']}" == "${cmHandle}"
+                Should Be Equal As Strings    ${item['state']['cmHandleState']}    READY
+            END
+    END
