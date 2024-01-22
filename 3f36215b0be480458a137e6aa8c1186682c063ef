@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a8f664cf_a4adb22f",
+        "filename": "csit/tests/cps-data-operations/cps-data-operations.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-01-22T16:45:58Z",
+      "side": 1,
+      "message": "Yes! I just learned about too",
+      "parentUuid": "94c13d30_b693d393",
+      "range": {
+        "startLine": 51,
+        "startChar": 8,
+        "endLine": 51,
+        "endChar": 57
+      },
+      "revId": "3f36215b0be480458a137e6aa8c1186682c063ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "40ed5971_f292b6bb",
         "filename": "csit/tests/cps-data-operations/cps-data-operations.robot",
         "patchSetId": 1
@@ -100,6 +124,30 @@
       "writtenOn": "2024-01-22T15:47:33Z",
       "side": 1,
       "message": "you remvoed 5 second wait from here but I dont see an alternative check ?!",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 19
+      },
+      "revId": "3f36215b0be480458a137e6aa8c1186682c063ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9acae88_b07b5f47",
+        "filename": "csit/tests/cps-trust-level/cps-trust-level.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-01-22T16:45:58Z",
+      "side": 1,
+      "message": "I think the polling on line 51 will do a 5 checks to see if the notification is present in the topic. I removed it just to see if it was necessary and it looks like it wasn\u0027t",
+      "parentUuid": "1c26767a_dda17ded",
       "range": {
         "startLine": 48,
         "startChar": 0,
