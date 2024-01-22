@@ -46,7 +46,9 @@ NCMP Data Operation, forwarded to DMI, response on Client Topic
         ${params}=                       Create Dictionary   topic=${topic}
         ${headers}=                      Create Dictionary   Content-Type=application/json         Authorization=${auth}
                                          POST On Session     CPS_URL   ncmpInventory/v1/ch         headers=${headers}     data=${newCmHandleRequestBody}
-        Sleep                            8                   wait some time to get updated the cm handle state to READY
+        ${checkIfReadyUri}=              Set Variable        ${ncmpBasePath}/v1/ch/CMHandle1
+        ${checkIfReadyHeaders}=          Create Dictionary   Authorization=${auth}
+        Wait Until Keyword Succeeds      8sec    100ms       Is CM Handle READY    ${checkIfReadyUri}    ${checkIfReadyHeaders}    CMHandle1
         ${response}=                     POST On Session     CPS_URL   ${uri}   params=${params}   headers=${headers}     data=${dataOperationReqBody}
         Set Global Variable              ${expectedRequestId}       ${response.json()}[requestId]
         Should Be Equal As Strings       ${response.status_code}   200
@@ -71,6 +73,16 @@ Compare Header Values
     [Arguments]                    ${header_key}        ${header_value}     ${header_to_check}       ${expected_header_value}
     IF   "${header_key}" == ${header_to_check}
         Should Be Equal As Strings              "${header_value}"    ${expected_header_value}
+    END
+
+Is CM Handle READY
+    [Arguments]    ${uri}    ${headers}    ${cmHandle}
+    ${response}=    GET On Session    CPS_URL    ${uri}    headers=${headers}
+    Should Be Equal As Strings    ${response.status_code}    200
+    FOR  ${item}  IN  ${response.json()}
+            IF  "${item['cmHandle']}" == "${cmHandle}"
+                Should Be Equal As Strings    ${item['state']['cmHandleState']}    READY
+            END
     END
 
 Basic Teardown

@@ -44,7 +44,6 @@ Register data node
     ${headers}=     Create Dictionary    Content-Type=application/json    Authorization=${auth}
     ${response}=    POST On Session      CPS_URL   ${uri}    headers=${headers}    data=${jsonCreateCmHandles}
     Should Be Equal As Strings           ${response.status_code}    200
-    Sleep           5
 
 Verify notification
     ${group_id}=         Create Consumer     auto_offset_reset=earliest
