@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c8be61e8_be22b409",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 535,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-22T09:44:53Z",
+      "side": 1,
+      "message": "I think this is wrong... Lets discuss",
+      "range": {
+        "startLine": 535,
+        "startChar": 88,
+        "endLine": 535,
+        "endChar": 107
+      },
+      "revId": "926f3a852c745fe25fe14d772fb7ed60a0b9725e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "192bb3e1_4ad26e75",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 9
@@ -31,6 +54,30 @@
       "writtenOn": "2024-01-22T09:41:16Z",
       "side": 1,
       "message": "not all scenarios covered",
+      "range": {
+        "startLine": 536,
+        "startChar": 11,
+        "endLine": 536,
+        "endChar": 82
+      },
+      "revId": "926f3a852c745fe25fe14d772fb7ed60a0b9725e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0f03f6d_27671ac2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 536,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-22T09:44:53Z",
+      "side": 1,
+      "message": "I wonder if you need the or-condition at all...",
+      "parentUuid": "192bb3e1_4ad26e75",
       "range": {
         "startLine": 536,
         "startChar": 11,
