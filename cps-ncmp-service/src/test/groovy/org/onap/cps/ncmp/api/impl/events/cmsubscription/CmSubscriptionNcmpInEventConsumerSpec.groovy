@@ -64,7 +64,7 @@ class CmSubscriptionNcmpInEventConsumerSpec extends MessagingBaseSpec {
 
     def 'Consume valid CMSubscription create message'() {
         given: 'a cmsubscription event'
-            def jsonData = TestUtils.getResourceFileContent('cmSubscriptionNcmpInEvent.json')
+            def jsonData = TestUtils.getResourceFileContent('cmSubscription/cmSubscriptionNcmpInEvent.json')
             def testEventSent = jsonObjectMapper.convertJsonString(jsonData, CmSubscriptionNcmpInEvent.class)
             def testCloudEventSent = CloudEventBuilder.v1()
                 .withData(objectMapper.writeValueAsBytes(testEventSent))
