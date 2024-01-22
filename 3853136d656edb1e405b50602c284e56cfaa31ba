@@ -256,6 +256,24 @@
       "parentUuid": "dcf38570_0848a502",
       "revId": "3853136d656edb1e405b50602c284e56cfaa31ba",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8615d23d_e11578f7",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-01-22T09:41:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4625d7be_d9485866",
+      "revId": "3853136d656edb1e405b50602c284e56cfaa31ba",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
