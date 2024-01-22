@@ -44,14 +44,13 @@ Register data node
     ${headers}=     Create Dictionary    Content-Type=application/json    Authorization=${auth}
     ${response}=    POST On Session      CPS_URL   ${uri}    headers=${headers}    data=${jsonCreateCmHandles}
     Should Be Equal As Strings           ${response.status_code}    200
-    Sleep           5
 
 Verify notification
     ${group_id}=         Create Consumer     auto_offset_reset=earliest
-    Subscribe Topic      topics=cm-events     group_id=${group_id}
-    ${result}=      Poll                    group_id=${group_id}  only_value=False  poll_attempts=5
-    ${headers}                      Set Variable                ${result[0].headers()}
-    ${payload}                      Set Variable                ${result[0].value()}
+    Subscribe Topic      topics=cm-events    group_id=${group_id}
+    ${result}=           Poll                group_id=${group_id}  only_value=False  poll_attempts=5
+    ${headers}           Set Variable        ${result[0].headers()}
+    ${payload}           Set Variable        ${result[0].value()}
     FOR   ${header_key_value_pair}   IN  @{headers}
         Compare Header Values       ${header_key_value_pair[0]}   ${header_key_value_pair[1]}     "ce_specversion"      "1.0"
         Compare Header Values       ${header_key_value_pair[0]}   ${header_key_value_pair[1]}     "ce_source"           "NCMP"
