@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2686c1be_4432fabc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-22T09:35:30Z",
+      "side": 1,
+      "message": "just q quick question to discuss",
+      "revId": "926f3a852c745fe25fe14d772fb7ed60a0b9725e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a194e97_23fcf8f3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-22T09:35:30Z",
+      "side": 1,
+      "message": "NB: expectedCacheSize",
+      "range": {
+        "startLine": 456,
+        "startChar": 83,
+        "endLine": 456,
+        "endChar": 92
+      },
+      "revId": "926f3a852c745fe25fe14d772fb7ed60a0b9725e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63c8179e_eb4c921a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/AlternateIdCacheConfigSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-22T09:35:30Z",
+      "side": 1,
+      "message": "NB: are",
+      "range": {
+        "startLine": 20,
+        "startChar": 22,
+        "endLine": 20,
+        "endChar": 23
+      },
+      "revId": "926f3a852c745fe25fe14d772fb7ed60a0b9725e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

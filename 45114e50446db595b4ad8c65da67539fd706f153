@@ -300,6 +300,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e70d69a_c6f1613d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 470,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-22T09:35:30Z",
+      "side": 1,
+      "message": "why did you remvoe this tets compeletely?. mayeb have a quick chat during standup..",
+      "parentUuid": "f2d48f88_e0c63ce1",
+      "range": {
+        "startLine": 470,
+        "startChar": 16,
+        "endLine": 470,
+        "endChar": 98
+      },
+      "revId": "45114e50446db595b4ad8c65da67539fd706f153",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "233ad099_f8d7e9e1",
