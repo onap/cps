@@ -46,18 +46,19 @@ NCMP Data Operation, forwarded to DMI, response on Client Topic
         ${params}=                       Create Dictionary   topic=${topic}
         ${headers}=                      Create Dictionary   Content-Type=application/json         Authorization=${auth}
                                          POST On Session     CPS_URL   ncmpInventory/v1/ch         headers=${headers}     data=${newCmHandleRequestBody}
-        Sleep                            8                   wait some time to get updated the cm handle state to READY
+        ${checkIfReadyUri}=              Set Variable        ${ncmpBasePath}/v1/ch/CMHandle1
+        ${checkIfReadyHeaders}=          Create Dictionary   Authorization=${auth}
+        Wait Until Keyword Succeeds      8sec    100ms       Is CM Handle READY    ${checkIfReadyUri}    ${checkIfReadyHeaders}    CMHandle1
         ${response}=                     POST On Session     CPS_URL   ${uri}   params=${params}   headers=${headers}     data=${dataOperationReqBody}
         Set Global Variable              ${expectedRequestId}       ${response.json()}[requestId]
         Should Be Equal As Strings       ${response.status_code}   200
-        Sleep                            5                         wait some time to get published a message to the client topic
 
 Consume cloud event from client topic
     ${group_id}=         Create Consumer     auto_offset_reset=earliest
     Subscribe Topic      topics=${topic}     group_id=${group_id}
     ${messages}=         Poll                group_id=${group_id}     only_value=false
-    ${event}                        Set Variable                      ${messages}[0]
-    ${headers}                      Set Variable                      ${event.headers()}
+    ${event}             Set Variable        ${messages}[0]
+    ${headers}           Set Variable        ${event.headers()}
     FOR   ${header_key_value_pair}   IN  @{headers}
         Compare Header Values       ${header_key_value_pair[0]}   ${header_key_value_pair[1]}      "ce_specversion"      "1.0"
         Compare Header Values       ${header_key_value_pair[0]}   ${header_key_value_pair[1]}      "ce_type"             "org.onap.cps.ncmp.events.async1_0_0.DataOperationEvent"
@@ -68,9 +69,19 @@ Consume cloud event from client topic
 
 *** Keywords ***
 Compare Header Values
-    [Arguments]                    ${header_key}        ${header_value}     ${header_to_check}       ${expected_header_value}
+    [Arguments]    ${header_key}    ${header_value}    ${header_to_check}    ${expected_header_value}
     IF   "${header_key}" == ${header_to_check}
-        Should Be Equal As Strings              "${header_value}"    ${expected_header_value}
+        Should Be Equal As Strings    "${header_value}"    ${expected_header_value}
+    END
+
+Is CM Handle READY
+    [Arguments]    ${uri}    ${headers}    ${cmHandle}
+    ${response}=    GET On Session    CPS_URL    ${uri}    headers=${headers}
+    Should Be Equal As Strings    ${response.status_code}    200
+    FOR  ${item}  IN  ${response.json()}
+            IF  "${item['cmHandle']}" == "${cmHandle}"
+                Should Be Equal As Strings    ${item['state']['cmHandleState']}    READY
+            END
     END
 
 Basic Teardown
