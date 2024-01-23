@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (c) 2023 Nordix Foundation.
+ * Copyright (c) 2023-2024 Nordix Foundation.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ package org.onap.cps.ncmp.api.impl.events.avc.ncmptoclient
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.cloudevents.CloudEvent
-import org.onap.cps.ncmp.api.impl.events.EventsPublisher
+import org.onap.cps.events.EventsPublisher
 import org.onap.cps.ncmp.api.impl.utils.context.CpsApplicationContext
 import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
 import org.onap.cps.ncmp.events.avc.ncmp_to_client.Avc

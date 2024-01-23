@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (c) 2023 Nordix Foundation.
+ * Copyright (c) 2023-2024 Nordix Foundation.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -21,8 +21,9 @@
 package org.onap.cps.ncmp.api.impl.async
 
 import io.cloudevents.core.builder.CloudEventBuilder
+import org.onap.cps.events.EventsPublisher
 import org.onap.cps.ncmp.api.impl.config.kafka.KafkaConfig
-import org.onap.cps.ncmp.api.impl.events.EventsPublisher
+
 import org.onap.cps.ncmp.api.kafka.ConsumerBaseSpec
 import org.onap.cps.ncmp.event.model.DmiAsyncRequestResponseEvent
 import org.spockframework.spring.SpringBean
