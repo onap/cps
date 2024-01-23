@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2023 Nordix Foundation
+ *  Copyright (C) 2020-2024 Nordix Foundation
  *  Modifications Copyright (C) 2020-2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
@@ -132,6 +132,18 @@ public interface CpsModuleService {
      * @return a collection of module definitions (moduleName, revision, yang resource content)
      */
     Collection<ModuleDefinition> getModuleDefinitionsByAnchorName(String dataspaceName, String anchorName);
+
+    /**
+     * Retrieve module definitions for the given parameters.
+     *
+     * @param dataspaceName     dataspace name
+     * @param anchorName        anchor name
+     * @param moduleName        module name
+     * @param moduleRevision    the revision of the module
+     * @return a collection of module definitions (moduleName, revision, yang resource content)
+     */
+    Collection<ModuleDefinition> getModuleDefinitionsByAnchorAndModule(String dataspaceName, String anchorName,
+                                                                  String moduleName, String moduleRevision);
 
     /**
      * Identify previously unknown Yang Resource module references.
