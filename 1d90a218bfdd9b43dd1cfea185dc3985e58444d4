@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c51b563_c6b534fa",
+        "filename": "csit/tests/cps-data-operations/cps-data-operations.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-01-23T11:38:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a3aad962_f0263923",
+      "range": {
+        "startLine": 49,
+        "startChar": 10,
+        "endLine": 49,
+        "endChar": 25
+      },
+      "revId": "1d90a218bfdd9b43dd1cfea185dc3985e58444d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4555119d_e1671923",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-01-23T10:45:44Z",
       "side": 1,
       "message": "same as above e.g. getCmHandleHeaders",
+      "range": {
+        "startLine": 50,
+        "startChar": 10,
+        "endLine": 50,
+        "endChar": 29
+      },
+      "revId": "1d90a218bfdd9b43dd1cfea185dc3985e58444d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff13055e_d8967c4c",
+        "filename": "csit/tests/cps-data-operations/cps-data-operations.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-01-23T11:38:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4555119d_e1671923",
       "range": {
         "startLine": 50,
         "startChar": 10,
