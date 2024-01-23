@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (c) 2023 Nordix Foundation.
+ * Copyright (c) 2023-2024 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ package org.onap.cps.ncmp.api.impl.async;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.ncmp.api.impl.events.EventsPublisher;
+import org.onap.cps.events.EventsPublisher;
 import org.onap.cps.ncmp.event.model.DmiAsyncRequestResponseEvent;
 import org.onap.cps.ncmp.event.model.NcmpAsyncRequestResponseEvent;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
