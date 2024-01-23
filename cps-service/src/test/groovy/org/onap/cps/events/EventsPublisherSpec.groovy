@@ -18,27 +18,32 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.events
+package org.onap.cps.events
 
 import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
 import ch.qos.logback.classic.spi.ILoggingEvent
 import ch.qos.logback.core.read.ListAppender
 import io.cloudevents.CloudEvent
-import java.util.concurrent.CompletableFuture
 import org.apache.kafka.clients.producer.ProducerRecord
 import org.apache.kafka.clients.producer.RecordMetadata
 import org.apache.kafka.common.TopicPartition
+import org.apache.kafka.common.header.Headers
+import org.apache.kafka.common.header.internals.RecordHeader
+import org.apache.kafka.common.header.internals.RecordHeaders
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.slf4j.LoggerFactory
 import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.kafka.support.SendResult
+import org.springframework.util.SerializationUtils
 import spock.lang.Specification
+
+import java.util.concurrent.CompletableFuture
 
 class EventsPublisherSpec extends Specification {
 
-    def legacyKafkaTemplateStub = Stub(KafkaTemplate)
+    def legacyKafkaTemplateMock = Mock(KafkaTemplate)
     def mockCloudEventKafkaTemplate = Mock(KafkaTemplate)
     def logger = Spy(ListAppender<ILoggingEvent>)
 
@@ -55,7 +60,7 @@ class EventsPublisherSpec extends Specification {
         ((Logger) LoggerFactory.getLogger(EventsPublisher.class)).detachAndStopAllAppenders()
     }
 
-    def objectUnderTest = new EventsPublisher(legacyKafkaTemplateStub, mockCloudEventKafkaTemplate)
+    def objectUnderTest = new EventsPublisher(legacyKafkaTemplateMock, mockCloudEventKafkaTemplate)
 
     def 'Publish Cloud Event'() {
         given: 'a successfully published event'
@@ -89,6 +94,65 @@ class EventsPublisherSpec extends Specification {
             assert lastLoggingEvent.formattedMessage.contains('Unable to publish event')
     }
 
+    def 'Publish Legacy Event'() {
+        given: 'a successfully published event'
+            def eventFuture = CompletableFuture.completedFuture(
+                new SendResult(
+                    new ProducerRecord('some-topic', 'some-value'),
+                    new RecordMetadata(new TopicPartition('some-topic', 0), 0, 0, 0, 0, 0)
+                )
+            )
+            def someEvent = Mock(Object)
+            1 * legacyKafkaTemplateMock.send('some-topic', 'some-event-key', someEvent) >> eventFuture
+        when: 'publishing the cloud event'
+            objectUnderTest.publishEvent('some-topic', 'some-event-key', someEvent)
+        then: 'the correct debug message is logged'
+            def lastLoggingEvent = logger.list[0]
+            assert lastLoggingEvent.level == Level.DEBUG
+            assert lastLoggingEvent.formattedMessage.contains('Successfully published event')
+    }
+
+    def 'Publish Legacy Event with Headers as Map'() {
+        given: 'a successfully published event'
+            def sampleEventHeaders = ['k1': SerializationUtils.serialize('v1')]
+            def eventFuture = CompletableFuture.completedFuture(
+                new SendResult(
+                    new ProducerRecord('some-topic', 'some-value'),
+                    new RecordMetadata(new TopicPartition('some-topic', 0), 0, 0, 0, 0, 0)
+                )
+            )
+            def someEvent = Mock(Object.class)
+        when: 'publishing the legacy event'
+            objectUnderTest.publishEvent('some-topic', 'some-event-key', sampleEventHeaders, someEvent)
+        then: 'event is published'
+            1 * legacyKafkaTemplateMock.send(_) >> eventFuture
+        and: 'the correct debug message is logged'
+            def lastLoggingEvent = logger.list[0]
+            assert lastLoggingEvent.level == Level.DEBUG
+            assert lastLoggingEvent.formattedMessage.contains('Successfully published event')
+    }
+
+    def 'Publish Legacy Event with Record Headers'() {
+        given: 'a successfully published event'
+            def sampleEventHeaders = new RecordHeaders([new RecordHeader('k1', SerializationUtils.serialize('v1'))])
+            def sampleProducerRecord = new ProducerRecord('some-topic', null, 'some-key', 'some-value', sampleEventHeaders)
+            def eventFuture = CompletableFuture.completedFuture(
+                new SendResult(
+                    sampleProducerRecord,
+                    new RecordMetadata(new TopicPartition('some-topic', 0), 0, 0, 0, 0, 0)
+                )
+            )
+            def someEvent = Mock(Object.class)
+        when: 'publishing the legacy event'
+            objectUnderTest.publishEvent('some-topic', 'some-event-key', sampleEventHeaders, someEvent)
+        then: 'event is published'
+            1 * legacyKafkaTemplateMock.send(_) >> eventFuture
+        and: 'the correct debug message is logged'
+            def lastLoggingEvent = logger.list[0]
+            assert lastLoggingEvent.level == Level.DEBUG
+            assert lastLoggingEvent.formattedMessage.contains('Successfully published event')
+    }
+
     def 'Handle Legacy Event Callback'() {
         given: 'an event is successfully published'
             def eventFuture = CompletableFuture.completedFuture(
@@ -115,6 +179,18 @@ class EventsPublisherSpec extends Specification {
             def lastLoggingEvent = logger.list[0]
             assert lastLoggingEvent.level == Level.ERROR
             assert lastLoggingEvent.formattedMessage.contains('Unable to publish event')
+    }
+
+    def 'Convert to kafka headers'() {
+        given: 'Few key value pairs'
+            def someKeyValue = ['key1': 'value1', 'key2': 'value2']
+        when: 'we convert to headers'
+            def headers = objectUnderTest.convertToKafkaHeaders(someKeyValue)
+        then: 'it is correctly converted'
+            assert headers instanceof Headers
+        and: 'also has correct values'
+            assert headers[0].key() == 'key1'
+            assert headers[1].key() == 'key2'
     }
 
 }
