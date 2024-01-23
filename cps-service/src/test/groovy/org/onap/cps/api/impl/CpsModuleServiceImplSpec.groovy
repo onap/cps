@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2023 Nordix Foundation
+ *  Copyright (C) 2020-2024 Nordix Foundation
  *  Modifications Copyright (C) 2020-2021 Pantheon.tech
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2022 TechMahindra Ltd.
@@ -238,15 +238,25 @@ class CpsModuleServiceImplSpec extends Specification {
             1 * mockCpsModulePersistenceService.identifyNewModuleReferences(moduleReferencesToCheck)
     }
 
-    def 'Getting module definitions.'() {
-        given: 'the module persistence service returns a collection of module definitions'
+    def 'Getting module definitions with module name'() {
+        given: 'module persistence service returns module definitions for module name'
+            def moduleDefinitionsFromPersistenceService = [ new ModuleDefinition('name', 'revision', 'content' ) ]
+            mockCpsModulePersistenceService.getYangResourceDefinitionsByAnchorAndModule('some-dataspace-name', 'some-anchor-name', 'some-module', '2024-01-01')  >> moduleDefinitionsFromPersistenceService
+        when: 'get module definitions method is called with anchor and module name'
+            def result = objectUnderTest.getModuleDefinitionsByAnchorAndModule('some-dataspace-name', 'some-anchor-name', 'some-module', '2024-01-01')
+        then: 'the result is the same collection returned by the persistence service'
+            assert result == moduleDefinitionsFromPersistenceService
+    }
+
+    def 'Getting module definitions with anchor name'() {
+        given: 'the module persistence service returns module definitions for cm handle id'
             def moduleDefinitionsFromPersistenceService = [ new ModuleDefinition('name', 'revision', 'content' ) ]
             mockCpsModulePersistenceService.getYangResourceDefinitions('some-dataspace-name', 'some-anchor-name')  >> moduleDefinitionsFromPersistenceService
         when: 'get module definitions method is called with a valid dataspace and anchor name'
             def result = objectUnderTest.getModuleDefinitionsByAnchorName('some-dataspace-name', 'some-anchor-name')
         then: 'the result is the same collection returned by the persistence service'
             assert result == moduleDefinitionsFromPersistenceService
-        and: 'the CpsValidator is called on the dataspaceName and schemaSetName'
+        and: 'cps validator is called on the dataspace and anchor name'
             1 * mockCpsValidator.validateNameCharacters('some-dataspace-name', 'some-anchor-name')
     }
 

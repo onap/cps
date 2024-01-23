@@ -2,7 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021 highstreet technologies GmbH
- *  Modifications Copyright (C) 2021-2023 Nordix Foundation
+ *  Modifications Copyright (C) 2021-2024 Nordix Foundation
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,46 +23,35 @@
 
 package org.onap.cps.ncmp.rest.controller
 
-import static org.onap.cps.ncmp.api.impl.inventory.CompositeState.DataStores
-import static org.onap.cps.ncmp.api.impl.inventory.CompositeState.Operational
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
-import static org.onap.cps.ncmp.api.impl.operations.OperationType.CREATE
-import static org.onap.cps.ncmp.api.impl.operations.OperationType.UPDATE
-import static org.onap.cps.ncmp.api.impl.operations.OperationType.PATCH
-import static org.onap.cps.ncmp.api.impl.operations.OperationType.DELETE
-import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_OPERATIONAL
-import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING
-import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.OPERATIONAL
-import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
-import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
-
+import ch.qos.logback.classic.Level
+import ch.qos.logback.classic.Logger
+import ch.qos.logback.classic.spi.ILoggingEvent
+import ch.qos.logback.core.read.ListAppender
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.mapstruct.factory.Mappers
 import org.onap.cps.TestUtils
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService
 import org.onap.cps.ncmp.api.NetworkCmProxyQueryService
+import org.onap.cps.ncmp.api.impl.events.EventsPublisher
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
 import org.onap.cps.ncmp.api.impl.inventory.CompositeState
 import org.onap.cps.ncmp.api.impl.inventory.DataStoreSyncState
 import org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory
 import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel
-import org.onap.cps.ncmp.rest.model.DataOperationRequest
-import org.onap.cps.ncmp.rest.model.DataOperationDefinition
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.rest.controller.handlers.NcmpCachedResourceRequestHandler
 import org.onap.cps.ncmp.rest.controller.handlers.NcmpPassthroughResourceRequestHandler
 import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor
 import org.onap.cps.ncmp.rest.mapper.CmHandleStateMapper
 import org.onap.cps.ncmp.rest.mapper.DataOperationRequestMapper
+import org.onap.cps.ncmp.rest.model.DataOperationDefinition
+import org.onap.cps.ncmp.rest.model.DataOperationRequest
 import org.onap.cps.ncmp.rest.util.DeprecationHelper
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.model.ModuleDefinition
 import org.onap.cps.spi.model.ModuleReference
 import org.onap.cps.utils.JsonObjectMapper
+import org.slf4j.LoggerFactory
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
@@ -72,9 +61,18 @@ import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Shared
 import spock.lang.Specification
+
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
+
+import static org.onap.cps.ncmp.api.impl.inventory.CompositeState.DataStores
+import static org.onap.cps.ncmp.api.impl.inventory.CompositeState.Operational
+import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.*
+import static org.onap.cps.ncmp.api.impl.operations.OperationType.*
+import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
+import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*
 
 @WebMvcTest(NetworkCmProxyController)
 class NetworkCmProxyControllerSpec extends Specification {
@@ -130,11 +128,18 @@ class NetworkCmProxyControllerSpec extends Specification {
     def NO_REQUEST_ID = null
     def TIMOUT_FOR_TEST = 1234
 
+    def logger = Spy(ListAppender<ILoggingEvent>)
+
     def setup() {
         ncmpCachedResourceRequestHandler.notificationFeatureEnabled = true
         ncmpCachedResourceRequestHandler.timeOutInMilliSeconds = TIMOUT_FOR_TEST
         ncmpPassthroughResourceRequestHandler.notificationFeatureEnabled = true
         ncmpPassthroughResourceRequestHandler.timeOutInMilliSeconds = TIMOUT_FOR_TEST
+        setupLogger()
+    }
+
+    def cleanup() {
+        ((Logger) LoggerFactory.getLogger(EventsPublisher.class)).detachAndStopAllAppenders()
     }
 
     def 'Get Resource Data from pass-through operational.'() {
@@ -516,19 +521,44 @@ class NetworkCmProxyControllerSpec extends Specification {
             ':passthrough-running'     | 'passthrough-running'
     }
 
-    def 'Get module definitions based on cmHandleId.'() {
-        when: 'get module definition request is performed'
+    def 'Getting module definitions for a module'() {
+        when: 'get module definition request is performed with module name'
             def response = mvc.perform(
-                    get("$ncmpBasePathV1/ch/some-cmhandle/modules/definitions"))
-                    .andReturn().response
-        then: 'ncmp service method to get module definitions is called'
-            mockNetworkCmProxyDataService.getModuleDefinitionsByCmHandleId('some-cmhandle')
-                    >> [new ModuleDefinition('sampleModuleName', '2021-10-03',
-                    'module sampleModuleName{ sample module content }')]
+                get("$ncmpBasePathV1/ch/some-cmhandle/modules/definitions?module-name=sampleModuleName"))
+                .andReturn().response
+        then: 'ncmp service method is invoked with correct parameters'
+            mockNetworkCmProxyDataService.getModuleDefinitionsByCmHandleAndModule('some-cmhandle', 'sampleModuleName', _)
+                >> [new ModuleDefinition('sampleModuleName', '2021-10-03',
+                'module sampleModuleName{ sample module content }')]
         and: 'response contains an array with the module name, revision and content'
             response.getContentAsString() == '[{"moduleName":"sampleModuleName","revision":"2021-10-03","content":"module sampleModuleName{ sample module content }"}]'
         and: 'response returns an OK http code'
             response.status == HttpStatus.OK.value()
+    }
+
+    def 'Getting module definitions filtering on #scenario'() {
+        when: 'get module definition request is performed'
+            def response = mvc.perform(
+                get("$ncmpBasePathV1/ch/some-cmhandle/modules/definitions?module-name=" + moduleName + "&revision=" + revision))
+                .andReturn().response
+        then: 'ncmp service method to get definitions by cm handle is invoked when needed'
+            numberOfCallsToByCmHandleId * mockNetworkCmProxyDataService.getModuleDefinitionsByCmHandleId('some-cmhandle')
+        and: 'ncmp service method to get definitions by module is invoked when needed'
+            numberOfCallsToByModule * mockNetworkCmProxyDataService.getModuleDefinitionsByCmHandleAndModule('some-cmhandle', moduleName, revision)
+        and: 'response returns an OK http code'
+            response.status == HttpStatus.OK.value()
+        and: 'the correct message is logged when needed'
+            if (expectLogWarning) {
+                def lastLoggingEvent = logger.list[0]
+                assert lastLoggingEvent.level == Level.WARN
+                assert lastLoggingEvent.formattedMessage.contains('Ignoring revision')
+            }
+        where: 'following parameters are used'
+            scenario                   | moduleName    | revision        || numberOfCallsToByCmHandleId | numberOfCallsToByModule | expectLogWarning
+            'module name'              | 'some-module' | ''              || 0                           | 1                       | false
+            'module name and revision' | 'some-module' | 'some-revision' || 0                           | 1                       | false
+            'no filtering'             | ''            | ''              || 1                           | 0                       | false
+            'only revision'            | ''            | 'some-revision' || 1                           | 0                       | true
     }
 
     def 'Set the data sync enabled based on the cm handle id and the data sync flag is #scenario'() {
@@ -665,6 +695,13 @@ class NetworkCmProxyControllerSpec extends Specification {
         dataOperationDefinition.setResourceIdentifier("some resource identifier")
         dataOperationDefinition.addTargetIdsItem("some-cm-handle")
         return dataOperationDefinition
+    }
+
+    def setupLogger() {
+        def setupLogger = ((Logger) LoggerFactory.getLogger(NetworkCmProxyController.class))
+        setupLogger.setLevel(Level.DEBUG)
+        setupLogger.addAppender(logger)
+        logger.start()
     }
 
 }
