@@ -80,6 +80,30 @@
       },
       "revId": "0ef5323a38d5b128b6bf347a8ddc30ccc462b906",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fda5989b_da3ebc03",
+        "filename": "csit/tests/cps-data-sync/cps-data-sync.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-23T11:52:21Z",
+      "side": 1,
+      "message": "yes we need to wait till it is ready. \nIn any case the Goal of Jeff\u0027s updates is to improve (fixed) waits by polling, not to scrutinize each test....",
+      "parentUuid": "3a23e8b1_224144b3",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 118
+      },
+      "revId": "0ef5323a38d5b128b6bf347a8ddc30ccc462b906",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

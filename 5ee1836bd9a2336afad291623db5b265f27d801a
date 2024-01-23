@@ -46,6 +46,30 @@
       },
       "revId": "5ee1836bd9a2336afad291623db5b265f27d801a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f01d44b_94a3b27d",
+        "filename": "csit/tests/cps-model-sync/cps-model-sync.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-23T11:52:21Z",
+      "side": 0,
+      "message": "agreed with Jeff. we need to check conditions (poll)  in the test that depends on that as a pre-condition.\n\nThis is espcially important if in the future we would move test order, introduce new test etc.",
+      "parentUuid": "a7cf7648_b41a7058",
+      "range": {
+        "startLine": 89,
+        "startChar": 4,
+        "endLine": 89,
+        "endChar": 15
+      },
+      "revId": "5ee1836bd9a2336afad291623db5b265f27d801a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
