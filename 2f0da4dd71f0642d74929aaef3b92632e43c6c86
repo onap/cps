@@ -1,0 +1,130 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "114e5ab6_2c615a54",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-23T18:43:09Z",
+      "side": 1,
+      "message": "Was trying to get you today to help you in teh right direct. but couldn\u0027t get you.\nMaybe tomorrow",
+      "revId": "2f0da4dd71f0642d74929aaef3b92632e43c6c86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19234b3e_8ddd1a83",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-23T18:43:09Z",
+      "side": 1,
+      "message": "see comments on Patch #12 I think you might have missed them",
+      "revId": "2f0da4dd71f0642d74929aaef3b92632e43c6c86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecf7661b_7d10cf29",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapper.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-23T18:43:09Z",
+      "side": 1,
+      "message": "No need for getter and setter methods",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 0
+      },
+      "revId": "2f0da4dd71f0642d74929aaef3b92632e43c6c86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b2a2b6a_15d68896",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-23T18:43:09Z",
+      "side": 1,
+      "message": "incorrect description",
+      "range": {
+        "startLine": 443,
+        "startChar": 15,
+        "endLine": 443,
+        "endChar": 61
+      },
+      "revId": "2f0da4dd71f0642d74929aaef3b92632e43c6c86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61af5930_cf1e589f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 444,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-23T18:43:09Z",
+      "side": 1,
+      "message": "could easily be stricter",
+      "range": {
+        "startLine": 444,
+        "startChar": 48,
+        "endLine": 444,
+        "endChar": 53
+      },
+      "revId": "2f0da4dd71f0642d74929aaef3b92632e43c6c86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8ec27f9_c2aa2070",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapperSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-23T18:43:09Z",
+      "side": 1,
+      "message": "use common setup() to mock initialization with empty result!\ncreate a seprate test where you test the initialization with a mock with 2 elements from the DB\n\nOcne you odne taht all oteh test wil be a lot easier (to read)",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 147
+      },
+      "revId": "2f0da4dd71f0642d74929aaef3b92632e43c6c86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
