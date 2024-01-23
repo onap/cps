@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3aad962_f0263923",
+        "filename": "csit/tests/cps-data-operations/cps-data-operations.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-01-23T10:45:44Z",
+      "side": 1,
+      "message": "we could have more meaningful variable names e.g. getCmHandleUri",
+      "range": {
+        "startLine": 49,
+        "startChar": 10,
+        "endLine": 49,
+        "endChar": 25
+      },
+      "revId": "1d90a218bfdd9b43dd1cfea185dc3985e58444d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4555119d_e1671923",
+        "filename": "csit/tests/cps-data-operations/cps-data-operations.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-01-23T10:45:44Z",
+      "side": 1,
+      "message": "same as above e.g. getCmHandleHeaders",
+      "range": {
+        "startLine": 50,
+        "startChar": 10,
+        "endLine": 50,
+        "endChar": 29
+      },
+      "revId": "1d90a218bfdd9b43dd1cfea185dc3985e58444d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

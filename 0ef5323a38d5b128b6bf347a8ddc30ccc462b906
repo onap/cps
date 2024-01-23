@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02884362_883b894d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-01-23T10:45:44Z",
+      "side": 1,
+      "message": "Overall is good to me, but I asked a few questions.",
+      "revId": "0ef5323a38d5b128b6bf347a8ddc30ccc462b906",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7979da8_14c06a08",
+        "filename": "csit/tests/cps-data-sync/cps-data-sync.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-01-23T10:45:44Z",
+      "side": 1,
+      "message": "NB: I don\u0027t understand the business maybe, just asking. Shall we really rely on the READY state of  ietfYang-PNFDemo to proceed with data-sync here? Also, in every case should ietfYang-PNFDemo always ended-up with READY state, or it could have end up with some other state as well?",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 118
+      },
+      "revId": "0ef5323a38d5b128b6bf347a8ddc30ccc462b906",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

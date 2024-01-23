@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20228f16_e1d47278",
+        "filename": "csit/tests/cps-model-sync/cps-model-sync.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-01-23T10:45:44Z",
+      "side": 0,
+      "message": "if the intention for that sleep to check the READY state of ietfYang-PNFDemo, then you could have move the Ready Check function that I asked about on cps-data-sync.robot file into here.",
+      "range": {
+        "startLine": 89,
+        "startChar": 4,
+        "endLine": 89,
+        "endChar": 15
+      },
+      "revId": "5ee1836bd9a2336afad291623db5b265f27d801a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
