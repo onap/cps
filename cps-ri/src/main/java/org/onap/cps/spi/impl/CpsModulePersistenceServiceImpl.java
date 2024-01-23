@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2023 Nordix Foundation
+ *  Copyright (C) 2020-2024 Nordix Foundation
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 TechMahindra Ltd.
@@ -32,6 +32,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -79,6 +80,8 @@ import org.springframework.stereotype.Component;
 public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceService {
 
     private static final String YANG_RESOURCE_CHECKSUM_CONSTRAINT_NAME = "yang_resource_checksum_key";
+    private static final String NO_MODULE_NAME_FILTER = null;
+    private static final String NO_MODULE_REVISION = null;
     private static final Pattern CHECKSUM_EXCEPTION_PATTERN = Pattern.compile(".*\\(checksum\\)=\\((\\w+)\\).*");
     private static final Pattern RFC6020_RECOMMENDED_FILENAME_PATTERN = Pattern
             .compile("([\\w-]+)@(\\d{4}-\\d{2}-\\d{2})(?:\\.yang)?", Pattern.CASE_INSENSITIVE);
@@ -122,10 +125,29 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
     public Collection<ModuleDefinition> getYangResourceDefinitions(final String dataspaceName,
                                                                    final String anchorName) {
         final Set<YangResourceEntity> yangResourceEntities =
-                yangResourceRepository
-                        .findAllModuleDefinitionsByDataspaceAndAnchor(dataspaceName, anchorName);
-        return yangResourceEntities.stream().map(CpsModulePersistenceServiceImpl::toModuleDefinition)
-                .collect(Collectors.toList());
+                yangResourceRepository.findAllModuleDefinitionsByDataspaceAndAnchorAndModule(dataspaceName, anchorName,
+                    NO_MODULE_NAME_FILTER, NO_MODULE_REVISION);
+        return convertYangResourceEntityToModuleDefinition(yangResourceEntities);
+    }
+
+    @Override
+    public Collection<ModuleDefinition> getYangResourceDefinitionsByAnchorAndModule(final String dataspaceName,
+                                                                                    final String anchorName,
+                                                                                    final String moduleName,
+                                                                                    final String moduleRevision) {
+        final Set<YangResourceEntity> yangResourceEntities =
+            yangResourceRepository.findAllModuleDefinitionsByDataspaceAndAnchorAndModule(dataspaceName, anchorName,
+                moduleName, moduleRevision);
+        return convertYangResourceEntityToModuleDefinition(yangResourceEntities);
+    }
+
+    private List<ModuleDefinition> convertYangResourceEntityToModuleDefinition(final Set<YangResourceEntity>
+                                                                                   yangResourceEntities) {
+        final List<ModuleDefinition> resultModuleDefinitions = new ArrayList<>(yangResourceEntities.size());
+        for (final YangResourceEntity yangResourceEntity: yangResourceEntities) {
+            resultModuleDefinitions.add(toModuleDefinition(yangResourceEntity));
+        }
+        return resultModuleDefinitions;
     }
 
     @Override
