@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2023 Nordix Foundation
+ *  Copyright (C) 2020-2024 Nordix Foundation
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
@@ -124,6 +124,18 @@ public interface CpsModulePersistenceService {
      * @return a collection of module definitions (moduleName, revision and yang resource content)
      */
     Collection<ModuleDefinition> getYangResourceDefinitions(String dataspaceName, String anchorName);
+
+    /**
+     * Get YANG resource definitions for the given parameters.
+     *
+     * @param dataspaceName  dataspace name
+     * @param anchorName     anchor name
+     * @param moduleName     module name
+     * @param moduleRevision the revision of the module
+     * @return a collection of module definitions (moduleName, revision and yang resource content)
+     */
+    Collection<ModuleDefinition> getYangResourceDefinitionsByAnchorAndModule(String dataspaceName, String anchorName,
+                                                                             String moduleName, String moduleRevision);
 
     /**
      * Remove unused Yang Resource Modules.

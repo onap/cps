@@ -2,7 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021 highstreet technologies GmbH
- *  Modifications Copyright (C) 2021-2023 Nordix Foundation
+ *  Modifications Copyright (C) 2021-2024 Nordix Foundation
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,6 +22,9 @@
  */
 
 package org.onap.cps.ncmp.rest.controller
+
+import ch.qos.logback.classic.spi.ILoggingEvent
+import ch.qos.logback.core.read.ListAppender
 
 import static org.onap.cps.ncmp.api.impl.inventory.CompositeState.DataStores
 import static org.onap.cps.ncmp.api.impl.inventory.CompositeState.Operational
@@ -129,6 +132,8 @@ class NetworkCmProxyControllerSpec extends Specification {
     def NO_TOPIC = null
     def NO_REQUEST_ID = null
     def TIMOUT_FOR_TEST = 1234
+
+    def logger = Spy(ListAppender<ILoggingEvent>)
 
     def setup() {
         ncmpCachedResourceRequestHandler.notificationFeatureEnabled = true
@@ -516,19 +521,38 @@ class NetworkCmProxyControllerSpec extends Specification {
             ':passthrough-running'     | 'passthrough-running'
     }
 
-    def 'Get module definitions based on cmHandleId.'() {
-        when: 'get module definition request is performed'
+    def 'Getting module definitions for a module'() {
+        when: 'get module definition request is performed with module name'
             def response = mvc.perform(
-                    get("$ncmpBasePathV1/ch/some-cmhandle/modules/definitions"))
-                    .andReturn().response
-        then: 'ncmp service method to get module definitions is called'
-            mockNetworkCmProxyDataService.getModuleDefinitionsByCmHandleId('some-cmhandle')
-                    >> [new ModuleDefinition('sampleModuleName', '2021-10-03',
-                    'module sampleModuleName{ sample module content }')]
+                get("$ncmpBasePathV1/ch/some-cmhandle/modules/definitions?module-name=sampleModuleName"))
+                .andReturn().response
+        then: 'ncmp service method is invoked with correct parameters'
+            mockNetworkCmProxyDataService.getModuleDefinitionsByCmHandleAndModule('some-cmhandle', 'sampleModuleName', _)
+                >> [new ModuleDefinition('sampleModuleName', '2021-10-03',
+                'module sampleModuleName{ sample module content }')]
         and: 'response contains an array with the module name, revision and content'
             response.getContentAsString() == '[{"moduleName":"sampleModuleName","revision":"2021-10-03","content":"module sampleModuleName{ sample module content }"}]'
         and: 'response returns an OK http code'
             response.status == HttpStatus.OK.value()
+    }
+
+    def 'Getting module definitions filtering for revision: #scenario'() {
+        when: 'get module definition request is performed'
+            def response = mvc.perform(
+                get("$ncmpBasePathV1/ch/some-cmhandle/modules/definitions?module-name=" + moduleName + "&revision=" + revision))
+                .andReturn().response
+        then: 'ncmp service method is invoked by cm handle'
+            numberOfCallsToByCmHandleId * mockNetworkCmProxyDataService.getModuleDefinitionsByCmHandleId('some-cmhandle')
+        and: 'ncmp service method is invoked by module name'
+            numberOfCallsToByModule * mockNetworkCmProxyDataService.getModuleDefinitionsByCmHandleAndModule('some-cmhandle', moduleName, revision)
+        and: 'response returns an OK http code'
+            response.status == HttpStatus.OK.value()
+        where: 'following revision parameters are used'
+            scenario                 | moduleName    |  revision        || numberOfCallsToByCmHandleId || numberOfCallsToByModule
+            'module name specified'  | 'some-module' |  ''              || 0                           || 1
+            'both specified'         | 'some-module' |  'some-revision' || 0                           || 1
+            'none of them specified' | ''            |  ''              || 1                           || 0
+            'revision specified'     | ''            |  'some-revision' || 1                           || 0
     }
 
     def 'Set the data sync enabled based on the cm handle id and the data sync flag is #scenario'() {
