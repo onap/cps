@@ -20,7 +20,7 @@
 
 package org.onap.cps.ncmp.api.impl.events.lcm
 
-import org.onap.cps.ncmp.api.impl.events.EventsPublisher
+import org.onap.cps.events.EventsPublisher
 import org.onap.cps.ncmp.events.lcm.v1.LcmEvent
 import org.onap.cps.ncmp.events.lcm.v1.LcmEventHeader
 import org.onap.cps.utils.JsonObjectMapper

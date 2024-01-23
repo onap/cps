@@ -22,8 +22,9 @@ package org.onap.cps.ncmp.api.impl.async
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.cloudevents.core.builder.CloudEventBuilder
+import org.onap.cps.events.EventsPublisher
 import org.onap.cps.ncmp.api.impl.config.kafka.KafkaConfig
-import org.onap.cps.ncmp.api.impl.events.EventsPublisher
+
 import org.onap.cps.ncmp.api.kafka.ConsumerBaseSpec
 import org.onap.cps.ncmp.event.model.DmiAsyncRequestResponseEvent
 import org.onap.cps.ncmp.event.model.NcmpAsyncRequestResponseEvent

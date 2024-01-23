@@ -18,7 +18,7 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.events;
+package org.onap.cps.events;
 
 import io.cloudevents.CloudEvent;
 import java.util.Map;

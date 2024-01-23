@@ -25,7 +25,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
-import org.onap.cps.ncmp.api.impl.events.EventsPublisher;
+import org.onap.cps.events.EventsPublisher;
 import org.onap.cps.ncmp.api.impl.events.NcmpCloudEventBuilder;
 import org.onap.cps.ncmp.events.avc.ncmp_to_client.Avc;
 import org.onap.cps.ncmp.events.avc.ncmp_to_client.AvcEvent;

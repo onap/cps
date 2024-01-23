@@ -35,6 +35,10 @@
 
   <artifactId>cps-service</artifactId>
 
+  <properties>
+    <minimum-coverage>0.99</minimum-coverage>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>org.springframework</groupId>
@@ -127,6 +131,18 @@
       <!-- For logging -->
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.cloudevents</groupId>
+      <artifactId>cloudevents-json-jackson</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.cloudevents</groupId>
+      <artifactId>cloudevents-kafka</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.cloudevents</groupId>
+      <artifactId>cloudevents-spring</artifactId>
     </dependency>
     <!-- T E S T   D E P E N D E N C I E S -->
     <dependency>

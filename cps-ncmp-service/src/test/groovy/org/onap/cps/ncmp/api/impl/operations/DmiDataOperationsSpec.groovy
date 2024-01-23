@@ -21,18 +21,20 @@
 
 package org.onap.cps.ncmp.api.impl.operations
 
+import org.onap.cps.events.EventsPublisher
+
+import static org.onap.cps.events.mapper.CloudEventMapper.toTargetEvent
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_OPERATIONAL
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING
 import static org.onap.cps.ncmp.api.impl.operations.OperationType.CREATE
 import static org.onap.cps.ncmp.api.impl.operations.OperationType.READ
 import static org.onap.cps.ncmp.api.impl.operations.OperationType.UPDATE
-import static org.onap.cps.ncmp.api.impl.events.mapper.CloudEventMapper.toTargetEvent
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNABLE_TO_READ_RESOURCE_DATA
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.DMI_SERVICE_NOT_RESPONDING
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration
-import org.onap.cps.ncmp.api.impl.events.EventsPublisher
+
 import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException
 import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder
 import org.onap.cps.ncmp.api.impl.utils.context.CpsApplicationContext
