@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "0520a0ef_78acec26",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-23T17:57:49Z",
+      "side": 1,
+      "message": "then you didnt move ALL relevant testware...\nAfte a more closer look I think you get some implicet cover from test around NCMP sepcific Events\nStil mean you need to add some tets for the common code in CPS(Core) itself.\nIs OK as a separate commit for teh same user story",
+      "range": {
+        "startLine": 12,
+        "startChar": 39,
+        "endLine": 12,
+        "endChar": 59
+      },
+      "revId": "aac0077c57f41bbe8cd2e5b48dfc660191bb2574",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "0b0043df_1bc121b8",
