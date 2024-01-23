@@ -39,6 +39,30 @@
       },
       "revId": "0ef5323a38d5b128b6bf347a8ddc30ccc462b906",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a23e8b1_224144b3",
+        "filename": "csit/tests/cps-data-sync/cps-data-sync.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-01-23T11:18:17Z",
+      "side": 1,
+      "message": "I\u0027m also not familiar with the business but I assume it needs be in a READY state to proceed with the rest of the tests. I have tried without the sleep and the next test will fail without it.\n\nI think the state could be LOCKED or ADVISED but I assume if it is any of those the next test will fail",
+      "parentUuid": "b7979da8_14c06a08",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 118
+      },
+      "revId": "0ef5323a38d5b128b6bf347a8ddc30ccc462b906",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

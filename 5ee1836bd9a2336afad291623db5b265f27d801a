@@ -22,6 +22,30 @@
       },
       "revId": "5ee1836bd9a2336afad291623db5b265f27d801a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7cf7648_b41a7058",
+        "filename": "csit/tests/cps-model-sync/cps-model-sync.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-01-23T11:18:17Z",
+      "side": 0,
+      "message": "We actually moved it to cps-data-sync.robot because this test doesn\u0027t rely on ietfYang-PNFDemo to be ready whereas cps-data-sync.robot needs it to be in a READY state",
+      "parentUuid": "20228f16_e1d47278",
+      "range": {
+        "startLine": 89,
+        "startChar": 4,
+        "endLine": 89,
+        "endChar": 15
+      },
+      "revId": "5ee1836bd9a2336afad291623db5b265f27d801a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
