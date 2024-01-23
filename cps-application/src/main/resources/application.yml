@@ -17,6 +17,12 @@
 #
 #  SPDX-License-Identifier: Apache-2.0
 #  ============LICENSE_END=========================================================
+info:
+  app:
+    name: CPS and NCMP
+    description: Description of CPS and NCMP application
+    version: 3.4.3
+    docs: https://docs.onap.org/projects/onap-cps/en/latest/overview.html
 
 server:
     port: 8080
@@ -159,6 +165,9 @@ management:
             # kubernetes probes: liveness and readiness
             probes:
                 enabled: true
+    info:
+      env:
+        enabled: true
 
 logging:
     format: json

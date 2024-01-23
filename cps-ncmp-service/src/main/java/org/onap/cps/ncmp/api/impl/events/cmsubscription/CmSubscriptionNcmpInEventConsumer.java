@@ -20,7 +20,7 @@
 
 package org.onap.cps.ncmp.api.impl.events.cmsubscription;
 
-import static org.onap.cps.ncmp.api.impl.events.mapper.CloudEventMapper.toTargetEvent;
+import static org.onap.cps.events.mapper.CloudEventMapper.toTargetEvent;
 
 import io.cloudevents.CloudEvent;
 import lombok.extern.slf4j.Slf4j;

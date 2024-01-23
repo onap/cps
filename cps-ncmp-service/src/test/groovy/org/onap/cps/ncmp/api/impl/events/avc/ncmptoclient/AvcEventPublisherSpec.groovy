@@ -22,7 +22,7 @@ package org.onap.cps.ncmp.api.impl.events.avc.ncmptoclient
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.cloudevents.CloudEvent
-import org.onap.cps.ncmp.api.impl.events.EventsPublisher
+import org.onap.cps.events.EventsPublisher
 import org.onap.cps.ncmp.api.impl.utils.context.CpsApplicationContext
 import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
 import org.onap.cps.ncmp.events.avc.ncmp_to_client.Avc
@@ -30,7 +30,7 @@ import org.onap.cps.ncmp.events.avc.ncmp_to_client.AvcEvent
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.test.context.ContextConfiguration
 
-import static org.onap.cps.ncmp.api.impl.events.mapper.CloudEventMapper.toTargetEvent
+import static org.onap.cps.events.mapper.CloudEventMapper.toTargetEvent
 
 @ContextConfiguration(classes = [CpsApplicationContext, ObjectMapper, JsonObjectMapper])
 class AvcEventPublisherSpec extends MessagingBaseSpec {

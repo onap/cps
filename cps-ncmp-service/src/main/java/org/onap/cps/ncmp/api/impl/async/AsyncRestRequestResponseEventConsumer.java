@@ -22,7 +22,7 @@ package org.onap.cps.ncmp.api.impl.async;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.ncmp.api.impl.events.EventsPublisher;
+import org.onap.cps.events.EventsPublisher;
 import org.onap.cps.ncmp.event.model.DmiAsyncRequestResponseEvent;
 import org.onap.cps.ncmp.event.model.NcmpAsyncRequestResponseEvent;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
