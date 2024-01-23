@@ -18,6 +18,46 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "78aac227_67fdce99",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-23T09:31:54Z",
+      "side": 1,
+      "message": "some addiotnal comments",
+      "revId": "a63370804aec924f2692838abaac248baae8eaad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3c6d5a8_bfe28545",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-23T09:31:54Z",
+      "side": 1,
+      "message": "unused?!",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 44
+      },
+      "revId": "a63370804aec924f2692838abaac248baae8eaad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2680637d_1a0a2d82",
@@ -82,6 +122,75 @@
         "startChar": 0,
         "endLine": 34,
         "endChar": 68
+      },
+      "revId": "a63370804aec924f2692838abaac248baae8eaad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5037c066_e813716c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-23T09:31:54Z",
+      "side": 1,
+      "message": "dont need both of these anymore and sicne you dont need where-block anymore you can just initialize the variable you need (or hardcode) in teh relevant test",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 62
+      },
+      "revId": "a63370804aec924f2692838abaac248baae8eaad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "292bd2be_fc775315",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 450,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-23T09:31:54Z",
+      "side": 1,
+      "message": "NB: indent",
+      "range": {
+        "startLine": 450,
+        "startChar": 8,
+        "endLine": 450,
+        "endChar": 65
+      },
+      "revId": "a63370804aec924f2692838abaac248baae8eaad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c73bc5cc_3e2760c7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-23T09:31:54Z",
+      "side": 1,
+      "message": "no need for where block as you only have one scneario anymore",
+      "range": {
+        "startLine": 451,
+        "startChar": 0,
+        "endLine": 454,
+        "endChar": 5
       },
       "revId": "a63370804aec924f2692838abaac248baae8eaad",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"

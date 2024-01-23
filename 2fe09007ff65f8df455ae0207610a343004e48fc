@@ -111,6 +111,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c07d62b1_4c7adaae",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 538,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-23T09:31:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8897ecd1_531b7507",
+      "range": {
+        "startLine": 536,
+        "startChar": 2,
+        "endLine": 538,
+        "endChar": 9
+      },
+      "revId": "2fe09007ff65f8df455ae0207610a343004e48fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c55f5d0f_39e26981",
@@ -124,6 +148,30 @@
       "writtenOn": "2024-01-22T10:53:47Z",
       "side": 1,
       "message": "CmHandleMapper.addMapping(...,...)",
+      "range": {
+        "startLine": 543,
+        "startChar": 7,
+        "endLine": 544,
+        "endChar": 76
+      },
+      "revId": "2fe09007ff65f8df455ae0207610a343004e48fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f836b5c_437d236f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 544,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-23T09:31:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c55f5d0f_39e26981",
       "range": {
         "startLine": 543,
         "startChar": 7,
