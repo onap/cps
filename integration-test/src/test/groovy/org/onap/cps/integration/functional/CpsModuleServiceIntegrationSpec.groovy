@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023 Nordix Foundation
+ *  Copyright (C) 2023-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -21,7 +21,6 @@
 package org.onap.cps.integration.functional
 
 import org.onap.cps.api.CpsModuleService
-import org.onap.cps.api.impl.CpsModuleServiceImpl
 import org.onap.cps.integration.base.FunctionalSpecBase
 import org.onap.cps.spi.CascadeDeleteAllowed
 import org.onap.cps.spi.exceptions.AlreadyDefinedException
@@ -151,6 +150,17 @@ class CpsModuleServiceIntegrationSpec extends FunctionalSpecBase {
             def result = objectUnderTest.getModuleDefinitionsByAnchorName(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1)
         then: 'the correct module definitions are returned'
             result == [new ModuleDefinition('stores','2020-09-15','')]
+    }
+
+    def 'Retrieving module definitions: #scenarios'() {
+        when: 'module definitions for module name are retrieved'
+            def result = objectUnderTest.getModuleDefinitionsByAnchorAndModule(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, moduleName, moduleRevision)
+        then: 'the correct module definitions are returned'
+            result == [new ModuleDefinition('stores','2020-09-15','')]
+        where: 'following parameters are used'
+            scenarios               | moduleName | moduleRevision
+            'both specified'        | 'stores'   | '2020-09-15'
+            'module name specified' | 'stores'   | null
     }
 
     def 'Retrieving yang resource module references by anchor.'() {

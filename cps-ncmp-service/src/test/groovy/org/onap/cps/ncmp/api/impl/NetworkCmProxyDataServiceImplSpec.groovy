@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2023 Nordix Foundation
+ *  Copyright (C) 2021-2024 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada
  *  Modifications Copyright (C) 2023 TechMahindra Ltd.
@@ -292,10 +292,17 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             assert result == ['cm-handle-id-1']
     }
 
-    def 'Getting module definitions.'() {
-        when: 'get module definitions method is called with a valid cm handle ID'
+    def 'Getting module definitions by module'() {
+        when: 'get module definitions is performed with module name'
+            objectUnderTest.getModuleDefinitionsByCmHandleAndModule('some-cm-handle', 'some-module', '2021-08-04')
+        then: 'ncmp inventory persistence service is invoked once with correct parameters'
+            1 * mockInventoryPersistence.getModuleDefinitionsByCmHandleAndModule('some-cm-handle', 'some-module', '2021-08-04')
+    }
+
+    def 'Getting module definitions by cm handle id'() {
+        when: 'get module definitions is performed with cm handle id'
             objectUnderTest.getModuleDefinitionsByCmHandleId('some-cm-handle')
-        then: 'CPS module services is invoked once'
+        then: 'ncmp inventory persistence service is invoked once with correct parameter'
             1 * mockInventoryPersistence.getModuleDefinitionsByCmHandleId('some-cm-handle')
     }
 
