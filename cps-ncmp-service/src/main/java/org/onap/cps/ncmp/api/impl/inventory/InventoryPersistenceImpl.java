@@ -128,6 +128,15 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
     }
 
     @Override
+    public Collection<ModuleDefinition> getModuleDefinitionsByCmHandleAndModule(final String cmHandleId,
+                                                                                final String moduleName,
+                                                                                final String moduleRevision) {
+        cpsValidator.validateNameCharacters(cmHandleId, moduleName);
+        return cpsModuleService.getModuleDefinitionsByAnchorAndModule(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME,
+                    cmHandleId, moduleName, moduleRevision);
+    }
+
+    @Override
     public Collection<ModuleReference> getYangResourcesModuleReferences(final String cmHandleId) {
         cpsValidator.validateNameCharacters(cmHandleId);
         return cpsModuleService.getYangResourcesModuleReferences(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId);
