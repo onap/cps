@@ -1,5 +1,5 @@
 #  ============LICENSE_START=======================================================
-#  Copyright (C) 2021-2023 Nordix Foundation
+#  Copyright (C) 2021-2024 Nordix Foundation
 #  Modifications Copyright (C) 2021 Pantheon.tech
 #  Modifications Copyright (C) 2021-2022 Bell Canada
 #  ================================================================================
@@ -289,15 +289,17 @@ fetchModuleReferencesByCmHandle:
       500:
         $ref: 'components.yaml#/components/responses/InternalServerError'
 
-fetchModuleDefinitionsByCmHandle:
+getModuleDefinitions:
   get:
-    description: Fetch all module definitions (name, revision, yang resource) for a given cm handle
     tags:
       - network-cm-proxy
-    summary: Fetch all module definitions (name, revision, yang resource) for a given cm handle
-    operationId: getModuleDefinitionsByCmHandleId
+    summary: Query module definitions
+    description: Query module definitions (module name, revision, yang resource) for the given parameter or parameters
+    operationId: getModuleDefinitions
     parameters:
       - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
+      - $ref: 'components.yaml#/components/parameters/moduleNameInQuery'
+      - $ref: 'components.yaml#/components/parameters/revisionInQuery'
     responses:
       200:
         description: OK

@@ -1,5 +1,5 @@
 #  ============LICENSE_START=======================================================
-#  Copyright (C) 2021-2023 Nordix Foundation
+#  Copyright (C) 2021-2024 Nordix Foundation
 #  Modifications Copyright (C) 2021 Pantheon.tech
 #  Modifications Copyright (C) 2022 Bell Canada
 #  ================================================================================
@@ -492,6 +492,22 @@ components:
       schema:
         type: string
         example: my-cm-handle
+    moduleNameInQuery:
+      name: module-name
+      in: query
+      description: module-name
+      required: false
+      schema:
+        type: string
+        example: my-module
+    revisionInQuery:
+      name: revision
+      in: query
+      description: revision
+      required: false
+      schema:
+        type: string
+        example: 2024-01-22
     dataSyncEnabled:
       name: dataSyncEnabled
       in: query

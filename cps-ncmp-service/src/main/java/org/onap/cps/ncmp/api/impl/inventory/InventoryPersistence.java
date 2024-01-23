@@ -80,6 +80,18 @@ public interface InventoryPersistence extends NcmpPersistence {
     Collection<ModuleDefinition> getModuleDefinitionsByCmHandleId(String cmHandleId);
 
     /**
+     * Method to return module definitions for the given parameters.
+     *
+     * @param cmHandleId        cm-handle identifier
+     * @param moduleName        module identifier
+     * @param moduleRevision    the revision of the module
+     * @return list of module definitions (module name, revision, yang resource content)
+     */
+    Collection<ModuleDefinition> getModuleDefinitionsByCmHandleAndModule(String cmHandleId,
+                                                                         String moduleName,
+                                                                         String moduleRevision);
+
+    /**
      * Method to return module references by cmHandleId.
      *
      * @param cmHandleId cm handle ID

@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 highstreet technologies GmbH
- *  Modifications Copyright (C) 2021-2023 Nordix Foundation
+ *  Modifications Copyright (C) 2021-2024 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
@@ -124,6 +124,18 @@ public interface NetworkCmProxyDataService {
      * @return a collection of module definition (moduleName, revision and yang resource content)
      */
     Collection<ModuleDefinition> getModuleDefinitionsByCmHandleId(String cmHandleId);
+
+    /**
+     * Get module definitions for the given parameters.
+     *
+     * @param cmHandleId        cm-handle identifier
+     * @param moduleName        module name
+     * @param moduleRevision    the revision of the module
+     * @return list of module definitions (module name, revision, yang resource content)
+     */
+    Collection<ModuleDefinition> getModuleDefinitionsByCmHandleAndModule(String cmHandleId,
+                                                                         String moduleName,
+                                                                         String moduleRevision);
 
     /**
      * Query cm handle details by cm handle's name.

@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2023 Nordix Foundation
+ *  Copyright (C) 2020-2024 Nordix Foundation
  *  Modifications Copyright (C) 2020-2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 Bell Canada
  *  Modifications Copyright (C) 2022 TechMahindra Ltd
@@ -153,6 +153,15 @@ public class CpsModuleServiceImpl implements CpsModuleService {
                                                                          final String anchorName) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         return cpsModulePersistenceService.getYangResourceDefinitions(dataspaceName, anchorName);
+    }
+
+    @Override
+    public Collection<ModuleDefinition> getModuleDefinitionsByAnchorAndModule(final String dataspaceName,
+                                                                              final String anchorName,
+                                                                              final String moduleName,
+                                                                              final String moduleRevision) {
+        return cpsModulePersistenceService.getYangResourceDefinitionsByAnchorAndModule(dataspaceName, anchorName,
+            moduleName, moduleRevision);
     }
 
     @Override

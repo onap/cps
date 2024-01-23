@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Pantheon.tech
- *  Modifications Copyright (C) 2021-2023 Nordix Foundation
+ *  Modifications Copyright (C) 2021-2024 Nordix Foundation
  *  Modifications Copyright (C) 2021 highstreet technologies GmbH
  *  Modifications Copyright (C) 2021-2022 Bell Canada
  *  ================================================================================
@@ -31,6 +31,7 @@ import static org.onap.cps.ncmp.api.impl.operations.OperationType.PATCH;
 import static org.onap.cps.ncmp.api.impl.operations.OperationType.UPDATE;
 
 import io.micrometer.core.annotation.Timed;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -59,9 +60,11 @@ import org.onap.cps.ncmp.rest.model.RestOutputCmHandle;
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandleCompositeState;
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandlePublicProperties;
 import org.onap.cps.ncmp.rest.util.DeprecationHelper;
+import org.onap.cps.spi.model.ModuleDefinition;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -317,18 +320,37 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     }
 
     /**
-     * Return module definitions for a cm handle.
+     * Return module definitions.
      *
-     * @param cmHandleId cm-handle identifier
+     * @param cmHandleId    cm-handle identifier
+     * @param moduleName    module name
+     * @param revision      the revision of the module
      * @return list of module definitions (module name, revision, yang resource content)
      */
     @Override
-    public ResponseEntity<List<RestModuleDefinition>> getModuleDefinitionsByCmHandleId(final String cmHandleId) {
-        final List<RestModuleDefinition> restModuleDefinitions =
-                networkCmProxyDataService.getModuleDefinitionsByCmHandleId(cmHandleId).stream()
-                        .map(ncmpRestInputMapper::toRestModuleDefinition)
-                        .collect(Collectors.toList());
-        return new ResponseEntity<>(restModuleDefinitions, HttpStatus.OK);
+    public ResponseEntity<List<RestModuleDefinition>> getModuleDefinitions(final String cmHandleId,
+                                                                           final String moduleName,
+                                                                           final String revision) {
+        final Collection<ModuleDefinition> moduleDefinitions;
+        if (StringUtils.hasText(moduleName)) {
+            moduleDefinitions =
+                networkCmProxyDataService.getModuleDefinitionsByCmHandleAndModule(cmHandleId, moduleName, revision);
+        } else {
+            moduleDefinitions = networkCmProxyDataService.getModuleDefinitionsByCmHandleId(cmHandleId);
+            if (StringUtils.hasText(revision)) {
+                log.warn("Ignoring the filter condition since it only has revision, will return all modules");
+            } else {
+                log.debug("Returning the specific revision of the module: {}", revision);
+            }
+        }
+        final List<RestModuleDefinition> response = new ArrayList<>();
+        if (moduleDefinitions != null) {
+            for (final ModuleDefinition moduleDefinition: moduleDefinitions) {
+                response.add(ncmpRestInputMapper.toRestModuleDefinition(moduleDefinition));
+            }
+        }
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     /**

@@ -184,11 +184,23 @@ class InventoryPersistenceImplSpec extends Specification {
             'DELETING'  | CmHandleState.DELETING || ['/dmi-registry/cm-handles[@id=\'Some-Cm-Handle1\']':'{"state":{"cm-handle-state":"DELETING","last-update-time":"2022-12-31T20:30:40.000+0000"}}', '/dmi-registry/cm-handles[@id=\'Some-Cm-Handle2\']':'{"state":{"cm-handle-state":"DELETING","last-update-time":"2022-12-31T20:30:40.000+0000"}}']
     }
 
-    def 'Get module definitions'() {
-        given: 'cps module service returns a collection of module definitions'
+    def 'Getting module definitions with module name'() {
+        given: 'cps module service returns module definition for module name'
+            def moduleDefinitions = [new ModuleDefinition('moduleName','revision','content')]
+            mockCpsModuleService.getModuleDefinitionsByAnchorAndModule(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME,'some-cmHandle-Id', 'some-module', '2024-01-25') >> moduleDefinitions
+        when: 'get module definitions is invoked with module name'
+            def result = objectUnderTest.getModuleDefinitionsByCmHandleAndModule('some-cmHandle-Id', 'some-module', '2024-01-25')
+        then: 'returned result are the same module definitions as returned from module service'
+            assert result == moduleDefinitions
+        and: 'cm handle id and module name validated'
+            1 * mockCpsValidator.validateNameCharacters('some-cmHandle-Id', 'some-module')
+    }
+
+    def 'Getting module definitions with cm handle id'() {
+        given: 'cps module service returns module definitions for cm handle id'
             def moduleDefinitions = [new ModuleDefinition('moduleName','revision','content')]
             mockCpsModuleService.getModuleDefinitionsByAnchorName(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME,'some-cmHandle-Id') >> moduleDefinitions
-        when: 'get module definitions by cmHandle is invoked'
+        when: 'get module definitions is invoked with cm handle id'
             def result = objectUnderTest.getModuleDefinitionsByCmHandleId('some-cmHandle-Id')
         then: 'the returned result are the same module definitions as returned from the module service'
             assert result == moduleDefinitions
