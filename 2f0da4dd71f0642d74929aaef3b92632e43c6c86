@@ -78,6 +78,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7de7e459_7709df2f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapper.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-01-24T10:21:15Z",
+      "side": 1,
+      "message": "i think this is more complicated. the build fails if i dont use these. but i could not find an other workaround (yet)\n\n[INFO] --- spotbugs:4.4.2:check (analyze-compile) @ cps-ncmp-service ---\n[INFO] BugInstance size is 1\n[INFO] Error size is 0\n[INFO] Total bugs: 1\n[ERROR] Low: Write to static field org.onap.cps.ncmp.api.impl.utils.CmHandleIdMapper.CACHE_IS_INITIALIZED from instance method org.onap.cps.ncmp.api.impl.utils.CmHandleIdMapper.initializeCache() [org.onap.cps.ncmp.api.impl.utils.CmHandleIdMapper] At CmHandleIdMapper.java:[line 83] ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD",
+      "parentUuid": "ecf7661b_7d10cf29",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 0
+      },
+      "revId": "2f0da4dd71f0642d74929aaef3b92632e43c6c86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7b2a2b6a_15d68896",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
         "patchSetId": 14
