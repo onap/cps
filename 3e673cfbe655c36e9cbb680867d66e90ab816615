@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ee3a175_18ac19d3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/CmDataSubscriptionModelLoader.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-01-24T23:02:14Z",
+      "side": 1,
+      "message": "NB: can directly use it instead of extra static variable.\nDoesnt add much value.\nSame for below.",
+      "range": {
+        "startLine": 47,
+        "startChar": 12,
+        "endLine": 47,
+        "endChar": 68
+      },
+      "revId": "3e673cfbe655c36e9cbb680867d66e90ab816615",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
