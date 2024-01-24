@@ -3,19 +3,17 @@
     "subscriptionId": "cm-subscription-001",
     "predicates": [
       {
-        "targetFilter": [
-          "CMHandle1",
-          "CMHandle2",
-          "CMHandle3"
-        ],
+        "targetFilter":  ["ch1","ch2"],
         "scopeFilter": {
-          "datastore": "ncmp-datastore:passthrough-running",
-          "xpath-filter": [
-            "//_3gpp-nr-nrm-gnbdufunction:GNBDUFunction/_3gpp-nr-nrm-nrcelldu:NRCellDU/",
-            "//_3gpp-nr-nrm-gnbcuupfunction:GNBCUUPFunction//",
-            "//_3gpp-nr-nrm-gnbcucpfunction:GNBCUCPFunction/_3gpp-nr-nrm-nrcelldu:NRCellCU//",
-            "//_3gpp-nr-nrm-nrsectorcarrier:NRSectorCarrier//"
-          ]
+          "datastore": "ncmp-datastore:passthrough-operational",
+          "xpath-filter": ["/x1/y1","x2/y2"]
+        }
+      },
+      {
+        "targetFilter":  ["ch3","ch4"],
+        "scopeFilter": {
+          "datastore": "ncmp-datastore:passthrough-operational",
+          "xpath-filter": ["/x3/y3","x4/y4"]
         }
       }
     ]
