@@ -39,7 +39,8 @@ import org.springframework.boot.test.context.SpringBootTest
 @SpringBootTest(classes = [ObjectMapper, JsonObjectMapper])
 class CmNotificationSubscriptionNcmpInEventConsumerSpec extends MessagingBaseSpec {
 
-    def objectUnderTest = new CmNotificationSubscriptionNcmpInEventConsumer()
+    def mockDmiCmNotificationSubscriptionCacheHandler = Mock(DmiCmNotificationSubscriptionCacheHandler)
+    def objectUnderTest = new CmNotificationSubscriptionNcmpInEventConsumer(mockDmiCmNotificationSubscriptionCacheHandler)
     def logger = Spy(ListAppender<ILoggingEvent>)
 
     @Autowired
@@ -60,7 +61,7 @@ class CmNotificationSubscriptionNcmpInEventConsumerSpec extends MessagingBaseSpe
 
     def 'Consume valid CMSubscription create message'() {
         given: 'a cmsubscription event'
-            def jsonData = TestUtils.getResourceFileContent('cmSubscription/cmSubscriptionNcmpInEvent.json')
+            def jsonData = TestUtils.getResourceFileContent('cmSubscription/cmNotificationSubscriptionNcmpInEvent.json')
             def testEventSent = jsonObjectMapper.convertJsonString(jsonData, CmNotificationSubscriptionNcmpInEvent.class)
             def testCloudEventSent = CloudEventBuilder.v1()
                 .withData(objectMapper.writeValueAsBytes(testEventSent))
@@ -80,6 +81,8 @@ class CmNotificationSubscriptionNcmpInEventConsumerSpec extends MessagingBaseSpe
             assert loggingEvent.level == Level.INFO
         and: 'the log indicates the task completed successfully'
             assert loggingEvent.formattedMessage == 'Subscription with name cm-subscription-001 to be mapped to hazelcast object...'
+        and: 'the cache handler method is called once'
+            1 * mockDmiCmNotificationSubscriptionCacheHandler.add('cm-subscription-001',_)
     }
 
     def getLoggingEvent() {
