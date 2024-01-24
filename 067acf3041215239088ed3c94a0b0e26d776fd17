@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c042aff1_0a015b27",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-24T10:49:54Z",
+      "side": 1,
+      "message": "\u0027created\u0027 is no longer relevant in the context of this method. \nJust call it ncmpServiceCmHandles",
+      "range": {
+        "startLine": 534,
+        "startChar": 77,
+        "endLine": 534,
+        "endChar": 93
+      },
+      "revId": "067acf3041215239088ed3c94a0b0e26d776fd17",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ac55912_2bfdb234",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapper.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-24T10:49:54Z",
+      "side": 1,
+      "message": "there is an easier way: make it non-static :-)\nA service is Singleton by default, i think it should be oK, check with Priyank. Wort case we can add a dummy entry in teh ache as per my original idea...",
+      "range": {
+        "startLine": 71,
+        "startChar": 1,
+        "endLine": 78,
+        "endChar": 0
+      },
+      "revId": "067acf3041215239088ed3c94a0b0e26d776fd17",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24c29523_6de21f36",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapperSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-24T10:49:54Z",
+      "side": 1,
+      "message": "no common setup yet ?\nI like to talk to you about this test class...",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 147
+      },
+      "revId": "067acf3041215239088ed3c94a0b0e26d776fd17",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
