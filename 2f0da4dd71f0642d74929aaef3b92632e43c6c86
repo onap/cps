@@ -35,6 +35,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f8f815c_7dc07753",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-01-24T10:19:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "19234b3e_8ddd1a83",
+      "revId": "2f0da4dd71f0642d74929aaef3b92632e43c6c86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ecf7661b_7d10cf29",
@@ -165,6 +183,30 @@
       "writtenOn": "2024-01-23T18:43:09Z",
       "side": 1,
       "message": "use common setup() to mock initialization with empty result!\ncreate a seprate test where you test the initialization with a mock with 2 elements from the DB\n\nOcne you odne taht all oteh test wil be a lot easier (to read)",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 147
+      },
+      "revId": "2f0da4dd71f0642d74929aaef3b92632e43c6c86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92351c10_b3bd65a6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapperSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-01-24T10:19:57Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e8ec27f9_c2aa2070",
       "range": {
         "startLine": 37,
         "startChar": 0,
