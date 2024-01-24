@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4734bd0_02aff079",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-01-24T09:55:44Z",
+      "side": 1,
+      "message": "yeah.. I need to add some more test.\nI just want to share an early commit.\nIts fine to move CloudEvent related code to cps-service layer from cps-ncmp-service.right ? \nWith that we can have support both in cps-core and NCMP.",
+      "parentUuid": "0520a0ef_78acec26",
+      "range": {
+        "startLine": 12,
+        "startChar": 39,
+        "endLine": 12,
+        "endChar": 59
+      },
+      "revId": "aac0077c57f41bbe8cd2e5b48dfc660191bb2574",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "0b0043df_1bc121b8",
