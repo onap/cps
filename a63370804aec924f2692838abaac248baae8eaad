@@ -81,6 +81,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "90c6ae71_f8180e47",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 535,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-01-24T10:00:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2680637d_1a0a2d82",
+      "range": {
+        "startLine": 535,
+        "startChar": 61,
+        "endLine": 535,
+        "endChar": 104
+      },
+      "revId": "a63370804aec924f2692838abaac248baae8eaad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "933cf494_6d7b6c8a",
@@ -104,6 +128,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "db98c93d_fc877f73",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 537,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-01-24T10:00:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "933cf494_6d7b6c8a",
+      "range": {
+        "startLine": 536,
+        "startChar": 0,
+        "endLine": 537,
+        "endChar": 74
+      },
+      "revId": "a63370804aec924f2692838abaac248baae8eaad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1330d544_94fd5ee9",
@@ -117,6 +165,30 @@
       "writtenOn": "2024-01-23T09:19:03Z",
       "side": 1,
       "message": "as per our Discussion (AC too?) we should log a warning in case of an attempt to overwrite an existing alternat id. So I think we should change it like this\n\n(short version for some vars)\n\nif (alternateIdPerCmHandle.containsKey(cmHandleId) {\n   if (!alternateId.equals(alternateIdPerCmHandle.get(cmHandleId)) {\n     log(warning)\n   } }\nelse {  // I don\u0027t think you need to use the IfAbsent now anymore since you checked that above\n        cmHandlePerAlternateId.put(cmHandleId, alternateId);\n        alternateIdPerCmHandle.put(alternateId, cmHandleId);\n}",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 68
+      },
+      "revId": "a63370804aec924f2692838abaac248baae8eaad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "39fbb523_33a61d74",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapper.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-01-24T10:00:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1330d544_94fd5ee9",
       "range": {
         "startLine": 33,
         "startChar": 0,
