@@ -50,7 +50,7 @@ class CmNotificationSubscriptionCacheConfigSpec extends Specification {
             def subscriptionId = 'sub123'
             def dmiPluginName = 'dummydmi'
             def cmSubscriptionPredicate = new DmiCmNotificationSubscriptionPredicate(['cmhandle1', 'cmhandle2'].toSet(), DatastoreType.PASSTHROUGH_RUNNING, ['/a/b/c'].toSet())
-            def cmSubscriptionCacheObject = new DmiCmNotificationSubscriptionDetails(dmiCmNotificationSubscriptionPredicates: [cmSubscriptionPredicate], cmNotificationSubscriptionStatus: CmNotificationSubscriptionStatus.PENDING)
+            def cmSubscriptionCacheObject = new DmiCmNotificationSubscriptionDetails([cmSubscriptionPredicate], CmNotificationSubscriptionStatus.PENDING)
         when: 'the cache is populated'
             cmNotificationSubscriptionCache.put(subscriptionId, [(dmiPluginName): cmSubscriptionCacheObject])
         then: 'the values are present in memory'

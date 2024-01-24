@@ -21,11 +21,13 @@
 package org.onap.cps.ncmp.api.impl.events.cmsubscription.model;
 
 import java.util.List;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@AllArgsConstructor
 public class DmiCmNotificationSubscriptionDetails {
 
     private List<DmiCmNotificationSubscriptionPredicate> dmiCmNotificationSubscriptionPredicates;
