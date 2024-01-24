@@ -81,10 +81,10 @@ class CmDataSubscriptionModelLoaderSpec extends Specification {
             1 * mockCpsDataService.saveData(NCMP_DATASPACE_NAME, 'cm-data-subscriptions', '{"datastores":{}}', _)
         and: 'the data service is called once to create datastore for Passthrough-operational'
             1 * mockCpsDataService.saveData(NCMP_DATASPACE_NAME, 'cm-data-subscriptions', '/datastores',
-                    '{"datastore":[{"name":"ncmp-datastores:passthrough-operational","cm-handles":{}}]}', _, _)
+                    '{"datastore":[{"name":"ncmp-datastore:passthrough-operational","cm-handles":{}}]}', _, _)
         and: 'the data service is called once to create datastore for Passthrough-running'
             1 * mockCpsDataService.saveData(NCMP_DATASPACE_NAME, 'cm-data-subscriptions', '/datastores',
-                    '{"datastore":[{"name":"ncmp-datastores:passthrough-running","cm-handles":{}}]}', _, _)
+                    '{"datastore":[{"name":"ncmp-datastore:passthrough-running","cm-handles":{}}]}', _, _)
     }
 
     def 'Create node for datastore with already defined exception.'() {
