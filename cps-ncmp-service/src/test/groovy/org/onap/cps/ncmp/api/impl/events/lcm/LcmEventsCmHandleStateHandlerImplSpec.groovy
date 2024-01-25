@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2022-2023 Nordix Foundation
+ * Copyright (C) 2022-2024 Nordix Foundation
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -55,7 +55,7 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
         then: 'state is saved using inventory persistence'
             expectedCallsToInventoryPersistence * mockInventoryPersistence.saveCmHandleState(cmHandleId, _)
         and: 'event service is called to publish event'
-            expectedCallsToEventService * mockLcmEventsService.publishLcmEvent(cmHandleId, _, _)
+            expectedCallsToEventService * mockLcmEventsService.publishLcmEvent(cmHandleId, _)
         where: 'state change parameters are provided'
             stateChange          | fromCmHandleState | toCmHandleState || expectedCallsToInventoryPersistence | expectedCallsToEventService
             'ADVISED to READY'   | ADVISED           | READY           || 1                                   | 1
@@ -74,7 +74,7 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
         then: 'state is saved using inventory persistence'
             1 * mockInventoryPersistence.saveCmHandle(yangModelCmHandle)
         and: 'event service is called to publish event'
-            1 * mockLcmEventsService.publishLcmEvent(cmHandleId, _, _)
+            1 * mockLcmEventsService.publishLcmEvent(cmHandleId, _)
     }
 
     def 'Update and Publish Events on State Change from LOCKED to ADVISED'() {
@@ -91,7 +91,7 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
                 }
             }
         and: 'event service is called to publish event'
-            1 * mockLcmEventsService.publishLcmEvent(cmHandleId, _, _)
+            1 * mockLcmEventsService.publishLcmEvent(cmHandleId, _)
     }
 
     def 'Update and Publish Events on State Change from DELETING to ADVISED'() {
@@ -102,7 +102,7 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
         then: 'the cm handle is saved using inventory persistence'
             1 * mockInventoryPersistence.saveCmHandle(yangModelCmHandle)
         and: 'event service is called to publish event'
-            1 * mockLcmEventsService.publishLcmEvent(cmHandleId, _, _)
+            1 * mockLcmEventsService.publishLcmEvent(cmHandleId, _)
     }
 
     def 'Update and Publish Events on State Change to READY'() {
@@ -123,7 +123,7 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
                 }
             }
         and: 'event service is called to publish event'
-            1 * mockLcmEventsService.publishLcmEvent(cmHandleId, _, _)
+            1 * mockLcmEventsService.publishLcmEvent(cmHandleId, _)
     }
 
     def 'Update cmHandle state to "DELETING"' (){
@@ -137,7 +137,7 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
         and: 'method to persist cm handle state is called once'
             1 * mockInventoryPersistence.saveCmHandleState(yangModelCmHandle.getId(), yangModelCmHandle.getCompositeState())
         and: 'the method to publish Lcm event is called once'
-            1 * mockLcmEventsService.publishLcmEvent(cmHandleId, _, _)
+            1 * mockLcmEventsService.publishLcmEvent(cmHandleId, _)
     }
 
     def 'Update cmHandle state to "DELETED"' (){
@@ -149,7 +149,7 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
         then: 'the cm handle state is as expected'
             yangModelCmHandle.getCompositeState().getCmHandleState() == DELETED
         and: 'the method to publish Lcm event is called once'
-            1 * mockLcmEventsService.publishLcmEvent(cmHandleId, _, _)
+            1 * mockLcmEventsService.publishLcmEvent(cmHandleId, _)
     }
 
     def 'No state change and no event to be published'() {
@@ -179,7 +179,7 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
                 }
             }
         and: 'event service is called to publish events'
-            2 * mockLcmEventsService.publishLcmEvent(_, _, _)
+            2 * mockLcmEventsService.publishLcmEvent(_, _)
     }
 
     def 'Batch of existing cm handles is updated'() {
@@ -194,7 +194,7 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
                 }
             }
         and: 'event service is called to publish events'
-            2 * mockLcmEventsService.publishLcmEvent(_, _, _)
+            2 * mockLcmEventsService.publishLcmEvent(_, _)
     }
 
     def 'Batch of existing cm handles is deleted'() {
@@ -209,7 +209,7 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
                 }
             }
         and: 'event service is called to publish events'
-            2 * mockLcmEventsService.publishLcmEvent(_, _, _)
+            2 * mockLcmEventsService.publishLcmEvent(_, _)
     }
 
     def setupBatch(type) {

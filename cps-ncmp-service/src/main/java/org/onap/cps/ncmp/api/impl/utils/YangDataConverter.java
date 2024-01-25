@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2023 Nordix Foundation
+ *  Copyright (C) 2022-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -54,6 +54,7 @@ public class YangDataConverter {
         final List<YangModelCmHandle.Property> publicProperties = yangModelCmHandle.getPublicProperties();
         ncmpServiceCmHandle.setCmHandleId(yangModelCmHandle.getId());
         ncmpServiceCmHandle.setCompositeState(yangModelCmHandle.getCompositeState());
+        ncmpServiceCmHandle.setAlternateId(yangModelCmHandle.getAlternateId());
         setDmiProperties(dmiProperties, ncmpServiceCmHandle);
         setPublicProperties(publicProperties, ncmpServiceCmHandle);
         return ncmpServiceCmHandle;
