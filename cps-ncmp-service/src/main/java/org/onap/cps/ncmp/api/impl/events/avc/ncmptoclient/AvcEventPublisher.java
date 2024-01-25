@@ -20,9 +20,10 @@
 
 package org.onap.cps.ncmp.api.impl.events.avc.ncmptoclient;
 
+import static org.onap.cps.ncmp.api.impl.events.NcmpCloudEventBuilder.createCloudEventExtension;
+
 import io.cloudevents.CloudEvent;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.events.EventsPublisher;
@@ -51,7 +52,7 @@ public class AvcEventPublisher {
                                 final String oldAttributeValue, final String newAttributeValue) {
         final AvcEvent avcEvent = buildAvcEvent(attributeName, oldAttributeValue, newAttributeValue);
 
-        final Map<String, String> extensions = createAvcEventExtensions(eventKey);
+        final Map<String, String> extensions = createCloudEventExtension("correlationid", eventKey);
         final CloudEvent avcCloudEvent =
             NcmpCloudEventBuilder.builder().type(AvcEvent.class.getTypeName())
             .event(avcEvent).extensions(extensions).setCloudEvent().build();
@@ -72,11 +73,5 @@ public class AvcEventPublisher {
         final AvcEvent avcEvent = new AvcEvent();
         avcEvent.setData(payload);
         return avcEvent;
-    }
-
-    private Map<String, String> createAvcEventExtensions(final String eventKey) {
-        final Map<String, String> extensions = new HashMap<>();
-        extensions.put("correlationid", eventKey);
-        return extensions;
     }
 }

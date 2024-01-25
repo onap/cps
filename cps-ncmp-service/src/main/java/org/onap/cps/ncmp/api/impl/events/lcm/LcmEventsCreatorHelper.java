@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2022-2023 Nordix Foundation
+ * Copyright (C) 2022-2024 Nordix Foundation
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,11 +30,12 @@ import com.google.common.collect.Maps;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
-import org.onap.cps.ncmp.events.lcm.v1.Values;
+import org.onap.cps.ncmp.events.lcm.v2.Values;
 
 /**
  * LcmEventsCreatorHelper has helper methods to create LcmEvent.
@@ -106,10 +107,13 @@ public class LcmEventsCreatorHelper {
         final boolean arePublicCmHandlePropertiesEqual =
                 arePublicCmHandlePropertiesEqual(targetNcmpServiceCmHandle.getPublicProperties(),
                         existingNcmpServiceCmHandle.getPublicProperties());
+        final boolean hasAlternateIdChanged =
+                hasAlternateIdChanged(targetNcmpServiceCmHandle, existingNcmpServiceCmHandle);
 
         final LcmEventsCreator.CmHandleValuesHolder cmHandleValuesHolder = new LcmEventsCreator.CmHandleValuesHolder();
 
-        if (hasDataSyncFlagEnabledChanged || hasCmHandleStateChanged || (!arePublicCmHandlePropertiesEqual)) {
+        if (hasDataSyncFlagEnabledChanged || hasCmHandleStateChanged || (!arePublicCmHandlePropertiesEqual)
+                || hasAlternateIdChanged) {
             cmHandleValuesHolder.setOldValues(new Values());
             cmHandleValuesHolder.setNewValues(new Values());
         } else {
@@ -127,6 +131,10 @@ public class LcmEventsCreatorHelper {
         if (!arePublicCmHandlePropertiesEqual) {
             setPublicCmHandlePropertiesChange(targetNcmpServiceCmHandle, existingNcmpServiceCmHandle,
                     cmHandleValuesHolder);
+        }
+
+        if (hasAlternateIdChanged) {
+            setAlternateIdChange(targetNcmpServiceCmHandle, existingNcmpServiceCmHandle, cmHandleValuesHolder);
         }
 
         return cmHandleValuesHolder;
@@ -165,6 +173,15 @@ public class LcmEventsCreatorHelper {
 
     }
 
+    private static void setAlternateIdChange(final NcmpServiceCmHandle targetNcmpServiceCmHandle,
+                                               final NcmpServiceCmHandle existingNcmpServiceCmHandle,
+                                               final LcmEventsCreator.CmHandleValuesHolder cmHandleValuesHolder) {
+        cmHandleValuesHolder.getOldValues()
+                .setAlternateId(existingNcmpServiceCmHandle.getAlternateId());
+        cmHandleValuesHolder.getNewValues()
+                .setAlternateId(targetNcmpServiceCmHandle.getAlternateId());
+    }
+
     private static Values.CmHandleState mapCmHandleStateToLcmEventCmHandleState(
             final NcmpServiceCmHandle ncmpServiceCmHandle) {
         return Values.CmHandleState.fromValue(ncmpServiceCmHandle.getCompositeState().getCmHandleState().name());
@@ -201,6 +218,12 @@ public class LcmEventsCreatorHelper {
         }
 
         return targetCmHandleProperties.equals(existingCmHandleProperties);
+    }
+
+    private static boolean hasAlternateIdChanged(final NcmpServiceCmHandle targetNcmpServiceCmHandle,
+                                                 final NcmpServiceCmHandle existingNcmpServiceCmHandle) {
+        return !Objects.equals(
+                targetNcmpServiceCmHandle.getAlternateId(), existingNcmpServiceCmHandle.getAlternateId());
     }
 
     private static Map<String, Map<String, String>> getPublicCmHandlePropertiesDifference(

@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023 Nordix Foundation
+ *  Copyright (C) 2023-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -23,6 +23,7 @@ package org.onap.cps.ncmp.api.impl.events;
 import io.cloudevents.CloudEvent;
 import io.cloudevents.core.builder.CloudEventBuilder;
 import java.net.URI;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 import lombok.Builder;
@@ -60,5 +61,18 @@ public class NcmpCloudEventBuilder {
                 .forEach(extensionEntry ->
                         cloudEventBuilder.withExtension(extensionEntry.getKey(), extensionEntry.getValue()));
         return cloudEventBuilder.build();
+    }
+
+    /**
+     * Creates an extension map for a cloud event with a single entry.
+     *
+     * @param key   the name of the extension
+     * @param value the value of the extension
+     * @return a map of extensions
+     */
+    public static Map<String, String> createCloudEventExtension(final String key, final String value) {
+        final Map<String, String> extensions = new HashMap<>();
+        extensions.put(key, value);
+        return extensions;
     }
 }

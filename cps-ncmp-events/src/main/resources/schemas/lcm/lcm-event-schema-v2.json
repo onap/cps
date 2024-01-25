@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "urn:cps:org.onap.ncmp.cmhandle.lcm-event:v2",
+  "$ref": "#/definitions/LcmEvent",
+  "definitions": {
+    "LcmEvent": {
+      "javaType" : "org.onap.cps.ncmp.events.lcm.v2.LcmEvent",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/Data"
+        }
+      },
+      "required": [
+        "data"
+      ],
+      "title": "LcmEvent"
+    },
+    "Data": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "cmHandleId": {
+          "description": "cmHandle id",
+          "type": "string"
+        },
+        "alternateId": {
+          "description": "alternative id for cmHandle (e.g. 3GPP FDN)",
+          "type": "string"
+        },
+        "oldValues": {
+          "$ref": "#/definitions/Values"
+        },
+        "newValues": {
+          "$ref": "#/definitions/Values"
+        }
+      },
+      "required": [
+        "cmHandleId",
+        "alternateId"
+      ],
+      "title": "Data"
+    },
+    "Values": {
+      "description": "Values that represents the state of a cmHandle",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "dataSyncEnabled":{
+          "description": "Whether data sync enabled",
+          "type": "boolean"
+        },
+        "cmHandleState": {
+          "description": "State of cmHandle",
+          "type": "string",
+          "enum": ["ADVISED", "READY", "LOCKED", "DELETING", "DELETED"]
+        },
+        "cmHandleProperties": {
+          "description": "cmHandle properties",
+          "type": "object",
+          "default": null,
+          "existingJavaType": "java.util.List<java.util.Map<String,String>>",
+          "additionalProperties": false
+        },
+        "alternateId": {
+          "description": "alternative id for cmHandle (e.g. 3GPP FDN)",
+          "type": "string"
+        }
+      },
+      "title": "Values"
+    }
+  }
+}

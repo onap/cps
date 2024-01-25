@@ -21,17 +21,12 @@
 package org.onap.cps.events;
 
 import io.cloudevents.CloudEvent;
-import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.kafka.clients.producer.ProducerRecord;
-import org.apache.kafka.common.header.Headers;
-import org.apache.kafka.common.header.internals.RecordHeaders;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Service;
-import org.springframework.util.SerializationUtils;
 
 /**
  * EventsPublisher to publish events.
@@ -85,36 +80,6 @@ public class EventsPublisher<T> {
         handleLegacyEventCallback(topicName, eventFuture);
     }
 
-    /**
-     * Generic Event Publisher with headers.
-     *
-     * @param topicName    valid topic name
-     * @param eventKey     message key
-     * @param eventHeaders event headers
-     * @param event        message payload
-     */
-    public void publishEvent(final String topicName, final String eventKey, final Headers eventHeaders, final T event) {
-
-        final ProducerRecord<String, T> producerRecord =
-                new ProducerRecord<>(topicName, null, eventKey, event, eventHeaders);
-        final CompletableFuture<SendResult<String, T>> eventFuture = legacyKafkaEventTemplate.send(producerRecord);
-        handleLegacyEventCallback(topicName, eventFuture);
-    }
-
-    /**
-     * Generic Event Publisher with headers.
-     *
-     * @param topicName    valid topic name
-     * @param eventKey     message key
-     * @param eventHeaders map of event headers
-     * @param event        message payload
-     */
-    public void publishEvent(final String topicName, final String eventKey, final Map<String, Object> eventHeaders,
-            final T event) {
-
-        publishEvent(topicName, eventKey, convertToKafkaHeaders(eventHeaders), event);
-    }
-
     private void handleLegacyEventCallback(final String topicName,
             final CompletableFuture<SendResult<String, T>> eventFuture) {
         eventFuture.whenComplete((result, e) -> {
@@ -125,12 +90,6 @@ public class EventsPublisher<T> {
                 log.error("Unable to publish event to topic : {} due to {}", topicName, e.getMessage());
             }
         });
-    }
-
-    private Headers convertToKafkaHeaders(final Map<String, Object> eventMessageHeaders) {
-        final Headers eventHeaders = new RecordHeaders();
-        eventMessageHeaders.forEach((key, value) -> eventHeaders.add(key, SerializationUtils.serialize(value)));
-        return eventHeaders;
     }
 
 }
