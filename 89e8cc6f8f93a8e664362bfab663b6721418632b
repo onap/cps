@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba936108_55751a0d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-25T08:40:11Z",
+      "side": 1,
+      "message": "nothing blocking but giving -1 because of tets failure. Still need to sort that",
+      "revId": "89e8cc6f8f93a8e664362bfab663b6721418632b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69b0ebd0_9130d1ad",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapperSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-25T08:40:11Z",
+      "side": 1,
+      "message": "NB: this value is also part of the fixed test so you could easily get a false positive. Maybe change the value in all test of this to \u0027my alternate id\u0027",
+      "range": {
+        "startLine": 79,
+        "startChar": 63,
+        "endLine": 79,
+        "endChar": 75
+      },
+      "revId": "89e8cc6f8f93a8e664362bfab663b6721418632b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
