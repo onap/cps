@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8eaeb515_393c3cb2",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/events/EventsPublisherSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-01-25T16:03:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "984da002_c72c9a67",
+      "range": {
+        "startLine": 50,
+        "startChar": 3,
+        "endLine": 50,
+        "endChar": 15
+      },
+      "revId": "777dd8d96d7b877b7bb0c6726ee9525630e5ea51",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d143fca1_48517bb9",
@@ -47,6 +71,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9bc8a44_feb24470",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/events/EventsPublisherSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-01-25T16:03:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d143fca1_48517bb9",
+      "range": {
+        "startLine": 58,
+        "startChar": 5,
+        "endLine": 58,
+        "endChar": 14
+      },
+      "revId": "777dd8d96d7b877b7bb0c6726ee9525630e5ea51",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6a1af794_cd88f454",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-01-25T15:39:37Z",
       "side": 1,
       "message": "NB (legacy issue): rename to cleanup",
+      "range": {
+        "startLine": 59,
+        "startChar": 9,
+        "endLine": 59,
+        "endChar": 17
+      },
+      "revId": "777dd8d96d7b877b7bb0c6726ee9525630e5ea51",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4f948c1_5f389221",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/events/EventsPublisherSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-01-25T16:03:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6a1af794_cd88f454",
       "range": {
         "startLine": 59,
         "startChar": 9,
