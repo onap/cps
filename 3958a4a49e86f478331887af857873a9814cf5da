@@ -1,0 +1,193 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdf60aa8_79a3526d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-01-25T15:27:25Z",
+      "side": 1,
+      "message": "few questions , few comments.\nwe can discuss if required.",
+      "revId": "3958a4a49e86f478331887af857873a9814cf5da",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf774bfb_b43bb974",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyCmHandleQueryServiceImpl.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-01-25T15:27:25Z",
+      "side": 1,
+      "message": "just the ordering change.",
+      "revId": "3958a4a49e86f478331887af857873a9814cf5da",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a84d2bd5_679fbbdb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-01-25T15:27:25Z",
+      "side": 1,
+      "message": "do we want to move this file after #128 ??\nwhat if the registration fails ?? do we still want to cache them ?",
+      "range": {
+        "startLine": 114,
+        "startChar": 8,
+        "endLine": 114,
+        "endChar": 75
+      },
+      "revId": "3958a4a49e86f478331887af857873a9814cf5da",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de0a8a4b_4f17e376",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/AlternateIdCacheConfig.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-01-25T15:27:25Z",
+      "side": 1,
+      "message": "if you are naming the bean as cmHandleIdPerAlternateId , then would it not make sense to call the map as cmHandlePerAlternateId ??\nits a little confusing for me here.",
+      "range": {
+        "startLine": 44,
+        "startChar": 31,
+        "endLine": 44,
+        "endChar": 55
+      },
+      "revId": "3958a4a49e86f478331887af857873a9814cf5da",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0322611d_f7947950",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/AlternateIdCacheConfig.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-01-25T15:27:25Z",
+      "side": 1,
+      "message": "opposite comment as above. 😊\nis it like the map names are been interchanged???",
+      "range": {
+        "startLine": 55,
+        "startChar": 31,
+        "endLine": 55,
+        "endChar": 55
+      },
+      "revId": "3958a4a49e86f478331887af857873a9814cf5da",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd43af9a_adf475fa",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapper.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-01-25T15:27:25Z",
+      "side": 1,
+      "message": "already had a discussion on this on the pros and cons of using this.",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 47
+      },
+      "revId": "3958a4a49e86f478331887af857873a9814cf5da",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "398c81eb_61d73135",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/AlternateIdCacheConfigSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-01-25T15:27:25Z",
+      "side": 1,
+      "message": "need to add the copyright as well..",
+      "revId": "3958a4a49e86f478331887af857873a9814cf5da",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f96b132a_00fa487d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapperSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-01-25T15:27:25Z",
+      "side": 1,
+      "message": "no slogan here? and same for below.",
+      "range": {
+        "startLine": 61,
+        "startChar": 8,
+        "endLine": 61,
+        "endChar": 15
+      },
+      "revId": "3958a4a49e86f478331887af857873a9814cf5da",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a50cbdd_d01c412d",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 19
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-01-25T15:27:25Z",
+      "side": 1,
+      "message": "need to update the use for both the cache.",
+      "range": {
+        "startLine": 338,
+        "startChar": 52,
+        "endLine": 338,
+        "endChar": 93
+      },
+      "revId": "3958a4a49e86f478331887af857873a9814cf5da",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
