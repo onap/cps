@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a39dc09_e9e85295",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/lcm/lcm-event-schema-v1.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-01-25T11:39:37Z",
+      "side": 1,
+      "message": "I didn\u0027t change the id or file name. Will change when needed or create a new file for v2",
+      "range": {
+        "startLine": 3,
+        "startChar": 2,
+        "endLine": 3,
+        "endChar": 55
+      },
+      "revId": "eeef9bdf9cf7eb19a4b94afb7f7be03ae9a554e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
