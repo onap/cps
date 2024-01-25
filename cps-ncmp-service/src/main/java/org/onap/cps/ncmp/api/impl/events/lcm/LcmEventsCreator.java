@@ -20,17 +20,14 @@
 
 package org.onap.cps.ncmp.api.impl.events.lcm;
 
-import java.util.UUID;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.ncmp.api.impl.utils.EventDateTimeFormatter;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
-import org.onap.cps.ncmp.events.lcm.v1.Event;
+import org.onap.cps.ncmp.events.lcm.v1.Data;
 import org.onap.cps.ncmp.events.lcm.v1.LcmEvent;
-import org.onap.cps.ncmp.events.lcm.v1.LcmEventHeader;
 import org.onap.cps.ncmp.events.lcm.v1.Values;
 import org.springframework.stereotype.Component;
 
@@ -42,8 +39,6 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class LcmEventsCreator {
-
-    private final LcmEventHeaderMapper lcmEventHeaderMapper;
 
     /**
      * Populate Lifecycle Management Event.
@@ -58,61 +53,29 @@ public class LcmEventsCreator {
         return createLcmEvent(cmHandleId, targetNcmpServiceCmHandle, existingNcmpServiceCmHandle);
     }
 
-    /**
-     * Populate Lifecycle Management Event Header.
-     *
-     * @param cmHandleId                  cm handle identifier
-     * @param targetNcmpServiceCmHandle   target ncmp service cmhandle
-     * @param existingNcmpServiceCmHandle existing ncmp service cmhandle
-     * @return Populated LcmEventHeader
-     */
-    public LcmEventHeader populateLcmEventHeader(final String cmHandleId,
-            final NcmpServiceCmHandle targetNcmpServiceCmHandle,
-            final NcmpServiceCmHandle existingNcmpServiceCmHandle) {
-        return createLcmEventHeader(cmHandleId, targetNcmpServiceCmHandle, existingNcmpServiceCmHandle);
-    }
-
     private LcmEvent createLcmEvent(final String cmHandleId, final NcmpServiceCmHandle targetNcmpServiceCmHandle,
             final NcmpServiceCmHandle existingNcmpServiceCmHandle) {
         final LcmEventType lcmEventType =
                 LcmEventsCreatorHelper.determineEventType(targetNcmpServiceCmHandle, existingNcmpServiceCmHandle);
-        final LcmEvent lcmEvent = lcmEventHeader(cmHandleId, lcmEventType);
-        lcmEvent.setEvent(
-                lcmEventPayload(cmHandleId, targetNcmpServiceCmHandle, existingNcmpServiceCmHandle, lcmEventType));
-        return lcmEvent;
+        return buildLcmEvent(
+                cmHandleId, targetNcmpServiceCmHandle, existingNcmpServiceCmHandle, lcmEventType);
     }
 
-    private LcmEventHeader createLcmEventHeader(final String cmHandleId,
-            final NcmpServiceCmHandle targetNcmpServiceCmHandle,
-            final NcmpServiceCmHandle existingNcmpServiceCmHandle) {
-        final LcmEventType lcmEventType =
-                LcmEventsCreatorHelper.determineEventType(targetNcmpServiceCmHandle, existingNcmpServiceCmHandle);
-        final LcmEvent lcmEventWithHeaderInformation = lcmEventHeader(cmHandleId, lcmEventType);
-        return lcmEventHeaderMapper.toLcmEventHeader(lcmEventWithHeaderInformation);
-    }
-
-    private Event lcmEventPayload(final String eventCorrelationId, final NcmpServiceCmHandle targetNcmpServiceCmHandle,
-            final NcmpServiceCmHandle existingNcmpServiceCmHandle, final LcmEventType lcmEventType) {
-        final Event event = new Event();
-        event.setCmHandleId(eventCorrelationId);
+    private LcmEvent buildLcmEvent(final String cmHandleId,
+                                   final NcmpServiceCmHandle targetNcmpServiceCmHandle,
+                                   final NcmpServiceCmHandle existingNcmpServiceCmHandle,
+                                   final LcmEventType lcmEventType) {
+        final Data payload = new Data();
+        payload.setCmHandleId(cmHandleId);
+        // waiting for alternateId cache to be merged
+        payload.setAlternateId(cmHandleId);
         final CmHandleValuesHolder cmHandleValuesHolder =
                 LcmEventsCreatorHelper.determineEventValues(targetNcmpServiceCmHandle, existingNcmpServiceCmHandle,
                         lcmEventType);
-        event.setOldValues(cmHandleValuesHolder.getOldValues());
-        event.setNewValues(cmHandleValuesHolder.getNewValues());
-
-        return event;
-    }
-
-    private LcmEvent lcmEventHeader(final String eventCorrelationId, final LcmEventType lcmEventType) {
+        payload.setOldValues(cmHandleValuesHolder.getOldValues());
+        payload.setNewValues(cmHandleValuesHolder.getNewValues());
         final LcmEvent lcmEvent = new LcmEvent();
-        lcmEvent.setEventId(UUID.randomUUID().toString());
-        lcmEvent.setEventCorrelationId(eventCorrelationId);
-        lcmEvent.setEventTime(EventDateTimeFormatter.getCurrentIsoFormattedDateTime());
-        lcmEvent.setEventSource("org.onap.ncmp");
-        lcmEvent.setEventType(lcmEventType.getEventType());
-        lcmEvent.setEventSchema("org.onap.ncmp:cmhandle-lcm-event");
-        lcmEvent.setEventSchemaVersion("1.0");
+        lcmEvent.setData(payload);
         return lcmEvent;
     }
 

@@ -1,15 +1,50 @@
 {
-
   "$schema": "https://json-schema.org/draft/2019-09/schema",
   "$id": "urn:cps:org.onap.ncmp.cmhandle.lcm-event:v1",
-
   "$ref": "#/definitions/LcmEvent",
-
   "definitions": {
-
+    "LcmEvent": {
+      "javaType" : "org.onap.cps.ncmp.events.lcm.v1.LcmEvent",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/Data"
+        }
+      },
+      "required": [
+        "data"
+      ],
+      "title": "LcmEvent"
+    },
+    "Data": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "cmHandleId": {
+          "description": "cmHandle id",
+          "type": "string"
+        },
+        "alternateId": {
+          "description": "alternative id for cmHandle (e.g. 3GPP FDN)",
+          "type": "string"
+        },
+        "oldValues": {
+          "$ref": "#/definitions/Values"
+        },
+        "newValues": {
+          "$ref": "#/definitions/Values"
+        }
+      },
+      "required": [
+        "event"
+      ],
+      "title": "Data"
+    },
     "Values": {
       "description": "Values that represents the state of a cmHandle",
       "type": "object",
+      "additionalProperties": false,
       "properties": {
         "dataSyncEnabled":{
           "description": "Whether data sync enabled",
@@ -28,79 +63,7 @@
           "additionalProperties": false
         }
       },
-      "additionalProperties": false
-    },
-
-    "Event": {
-      "description": "The Payload of an event",
-      "type": "object",
-      "properties": {
-        "cmHandleId": {
-          "description": "cmHandle id",
-          "type": "string"
-        },
-        "oldValues": {
-          "$ref": "#/definitions/Values"
-        },
-        "newValues": {
-          "$ref": "#/definitions/Values"
-        }
-      },
-      "required": [
-        "cmHandleId"
-      ],
-      "additionalProperties": false
-    },
-
-    "LcmEvent": {
-      "description": "The payload for LCM event",
-      "type": "object",
-      "javaType" : "org.onap.cps.ncmp.events.lcm.v1.LcmEvent",
-      "properties": {
-        "eventId": {
-          "description": "The unique id identifying the event",
-          "type": "string"
-        },
-        "eventCorrelationId": {
-          "description": "The id identifying the event",
-          "type": "string"
-        },
-        "eventTime": {
-          "description": "The timestamp when original event occurred",
-          "type": "string"
-        },
-        "eventSource": {
-          "description": "The source of the event",
-          "type": "string"
-        },
-        "eventType": {
-          "description": "The type of the event",
-          "type": "string"
-        },
-        "eventSchema": {
-          "description": "The schema that this event adheres to",
-          "type": "string"
-        },
-        "eventSchemaVersion": {
-          "description": "The version of the schema that this event adheres to",
-          "type": "string"
-        },
-        "event": {
-          "$ref": "#/definitions/Event"
-        }
-      },
-      "required": [
-        "eventId",
-        "eventCorrelationId",
-        "eventTime",
-        "eventSource",
-        "eventType",
-        "eventSchema",
-        "eventSchemaVersion",
-        "event"
-      ],
-      "additionalProperties": false
+      "title": "Values"
     }
-
   }
 }

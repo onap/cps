@@ -53,7 +53,7 @@ class LcmEventsPublisherSpec extends MessagingBaseSpec {
     @Autowired
     JsonObjectMapper jsonObjectMapper
 
-
+    // need to fix tests
     def 'Produce and Consume Lcm Event'() {
         given: 'event key and event data'
             def eventKey = 'lcm'

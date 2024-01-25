@@ -20,43 +20,44 @@
 
 package org.onap.cps.ncmp.api.impl.events.lcm
 
+import static org.onap.cps.ncmp.api.impl.events.mapper.CloudEventMapper.toTargetEvent
+
+import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.api.impl.events.EventsPublisher
+import org.onap.cps.ncmp.api.impl.utils.context.CpsApplicationContext
+import org.onap.cps.ncmp.events.lcm.v1.Data
 import org.onap.cps.ncmp.events.lcm.v1.LcmEvent
-import org.onap.cps.ncmp.events.lcm.v1.LcmEventHeader
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.kafka.KafkaException
+import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
 
+@ContextConfiguration(classes = [CpsApplicationContext, ObjectMapper, JsonObjectMapper])
 class LcmEventsServiceSpec extends Specification {
 
     def mockLcmEventsPublisher = Mock(EventsPublisher)
-    def mockJsonObjectMapper = Mock(JsonObjectMapper)
 
-    def objectUnderTest = new LcmEventsService(mockLcmEventsPublisher, mockJsonObjectMapper)
+    def objectUnderTest = new LcmEventsService(mockLcmEventsPublisher)
 
     def 'Create and Publish lcm event where events are #scenario'() {
-        given: 'a cm handle id, Lcm Event, and headers'
-            def cmHandleId = 'test-cm-handle-id'
-            def eventId = UUID.randomUUID().toString()
-            def lcmEvent = new LcmEvent(eventId: eventId, eventCorrelationId: cmHandleId)
-        and: 'we also have a lcm event header'
-            def lcmEventHeader = new LcmEventHeader(eventId: eventId, eventCorrelationId: cmHandleId)
+        given: 'an lcm event'
+            def payload = new Data(cmHandleId: 'someCmHandleId', alternateId: 'someAlternateId')
+            def lcmEvent = new LcmEvent(data: payload)
         and: 'notificationsEnabled is #notificationsEnabled and it will be true as default'
             objectUnderTest.notificationsEnabled = notificationsEnabled
-        and: 'lcm event header is transformed to headers map'
-            mockJsonObjectMapper.convertToValueType(lcmEventHeader, Map.class) >> ['eventId': eventId, 'eventCorrelationId': cmHandleId]
         when: 'service is called to publish lcm event'
-            objectUnderTest.publishLcmEvent('test-cm-handle-id', lcmEvent, lcmEventHeader)
+            objectUnderTest.publishLcmEvent('someCmHandleId', lcmEvent)
         then: 'publisher is called #expectedTimesMethodCalled times'
-            expectedTimesMethodCalled * mockLcmEventsPublisher.publishEvent(_, cmHandleId, _, lcmEvent) >> {
-                args -> {
-                    def eventHeaders = (args[2] as Map<String,Object>)
-                    assert eventHeaders.containsKey('eventId')
-                    assert eventHeaders.containsKey('eventCorrelationId')
-                    assert eventHeaders.get('eventId') == eventId
-                    assert eventHeaders.get('eventCorrelationId') == cmHandleId
-                }
-            }
+            expectedTimesMethodCalled * mockLcmEventsPublisher.publishCloudEvent(_, 'someCmHandleId',
+                cloudEvent -> {
+                    assert cloudEvent.extensions.containsKey('correlationid')
+                    assert cloudEvent.extensions.get('correlationid') == 'someCmHandleId'
+
+                    def actualLcmEventPayload= toTargetEvent(cloudEvent, LcmEvent.class).data
+                    def expectedLcmEventPayload = new Data(cmHandleId: 'someCmHandleId', alternateId: 'someAlternateId')
+                    assert [actualLcmEventPayload] == [expectedLcmEventPayload]
+
+                })
         where: 'the following values are used'
             scenario   | notificationsEnabled || expectedTimesMethodCalled
             'enabled'  | true                 || 1
@@ -66,14 +67,12 @@ class LcmEventsServiceSpec extends Specification {
     def 'Unable to send message'(){
         given: 'a cm handle id and Lcm Event and notification enabled'
             def cmHandleId = 'test-cm-handle-id'
-            def eventId = UUID.randomUUID().toString()
-            def lcmEvent = new LcmEvent(eventId: eventId, eventCorrelationId: cmHandleId)
-            def lcmEventHeader = new LcmEventHeader(eventId: eventId, eventCorrelationId: cmHandleId)
+            def lcmEvent = new LcmEvent()
             objectUnderTest.notificationsEnabled = true
         when: 'publisher set to throw an exception'
-            mockLcmEventsPublisher.publishEvent(_, _, _, _) >> { throw new KafkaException('publishing failed')}
-        and: 'an event is publised'
-            objectUnderTest.publishLcmEvent(cmHandleId, lcmEvent, lcmEventHeader)
+            mockLcmEventsPublisher.publishCloudEvent(_, _, _) >> { throw new KafkaException('publishing failed')}
+        and: 'an event is published'
+            objectUnderTest.publishLcmEvent(cmHandleId, lcmEvent)
         then: 'the exception is just logged and not bubbled up'
             noExceptionThrown()
     }

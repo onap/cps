@@ -26,7 +26,6 @@ import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.events.lcm.v1.LcmEvent;
-import org.onap.cps.ncmp.events.lcm.v1.LcmEventHeader;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -65,12 +64,9 @@ public class LcmEventsCmHandleStateHandlerAsyncHelper {
     private void publishLcmEvent(final NcmpServiceCmHandle targetNcmpServiceCmHandle,
                                  final NcmpServiceCmHandle existingNcmpServiceCmHandle) {
         final String cmHandleId = targetNcmpServiceCmHandle.getCmHandleId();
-        final LcmEventHeader lcmEventHeader =
-                lcmEventsCreator.populateLcmEventHeader(cmHandleId, targetNcmpServiceCmHandle,
-                        existingNcmpServiceCmHandle);
         final LcmEvent lcmEvent =
                 lcmEventsCreator.populateLcmEvent(cmHandleId, targetNcmpServiceCmHandle, existingNcmpServiceCmHandle);
-        lcmEventsService.publishLcmEvent(cmHandleId, lcmEvent, lcmEventHeader);
+        lcmEventsService.publishLcmEvent(cmHandleId, lcmEvent);
     }
 
     private static NcmpServiceCmHandle toNcmpServiceCmHandle(final YangModelCmHandle yangModelCmHandle) {
