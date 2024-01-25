@@ -18,6 +18,115 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf4969a2_f485f3e3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-25T09:23:15Z",
+      "side": 1,
+      "message": "need to improve update handling using the new class!\nIt also seems the CSIT tets fail on upgrade. I am not 100% sure where but you got a null somewhere. IT might be fixed automatically if you use the new class if not we can have a closer look...",
+      "revId": "89e8cc6f8f93a8e664362bfab663b6721418632b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3633a244_edd5e70e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-25T09:23:15Z",
+      "side": 1,
+      "message": "use  ne class here, woth use of boolean I suggested:\n\nif (addMapping(cmHnaldeId,newALternateId)) {\n___final YangModelCmHandle yangModelCmHandle \u003d\n                    YangDataConverter.convertCmHandleToYangModel(existingCmHandleDataNode,\n                                ncmpServiceCmHandle.getCmHandleId());\n___setAndUpdateAlternateId(yangModelCmHandle, newAlternateId);\n}",
+      "range": {
+        "startLine": 111,
+        "startChar": 8,
+        "endLine": 125,
+        "endChar": 9
+      },
+      "revId": "89e8cc6f8f93a8e664362bfab663b6721418632b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71e8d051_fe648ea7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapper.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-25T09:23:15Z",
+      "side": 1,
+      "message": "changes this to return a boolean indicating if mapping has been added i.e. it was a valid new mapping!",
+      "range": {
+        "startLine": 57,
+        "startChar": 12,
+        "endLine": 57,
+        "endChar": 17
+      },
+      "revId": "89e8cc6f8f93a8e664362bfab663b6721418632b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "807ba97b_b0a48ed7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapper.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-25T09:23:15Z",
+      "side": 1,
+      "message": "return false here !\n\n(no need for else statement anymore because of return statement",
+      "range": {
+        "startLine": 63,
+        "startChar": 10,
+        "endLine": 63,
+        "endChar": 16
+      },
+      "revId": "89e8cc6f8f93a8e664362bfab663b6721418632b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f24b0d13_04961f9c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapper.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-25T09:23:15Z",
+      "side": 1,
+      "message": "return true here",
+      "range": {
+        "startLine": 67,
+        "startChar": 4,
+        "endLine": 67,
+        "endChar": 5
+      },
+      "revId": "89e8cc6f8f93a8e664362bfab663b6721418632b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "69b0ebd0_9130d1ad",
