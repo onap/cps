@@ -27,7 +27,6 @@ Library               RequestsLibrary
 Suite Setup           Create Session      CPS_URL    http://${CPS_CORE_HOST}:${CPS_CORE_PORT}
 
 *** Variables ***
-${auth}              Basic Y3BzdXNlcjpjcHNyMGNrcyE=
 ${actuatorPath}      /actuator/health
 ${swaggerPath}       /swagger-ui/index.html
 
@@ -43,5 +42,4 @@ Test CPS Enhanced Healthcheck
 
 Test CPS Swagger UI
     [Documentation]       Runs health check for CPS Swagger UI. If the CPS Swagger URL is accessible, status should be 200.
-    ${headers}=           Create Dictionary   Authorization=${auth}
-    GET On Session        CPS_URL             ${swaggerPath}    headers=${headers}    expected_status=200
+    GET On Session        CPS_URL             ${swaggerPath}    expected_status=200
