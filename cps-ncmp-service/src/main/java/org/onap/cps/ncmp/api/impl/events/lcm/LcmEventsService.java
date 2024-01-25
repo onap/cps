@@ -20,14 +20,16 @@
 
 package org.onap.cps.ncmp.api.impl.events.lcm;
 
+import static org.onap.cps.ncmp.api.impl.events.NcmpCloudEventBuilder.createCloudEventExtension;
+
+import io.cloudevents.CloudEvent;
 import io.micrometer.core.annotation.Timed;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.events.EventsPublisher;
-import org.onap.cps.ncmp.events.lcm.v1.LcmEvent;
-import org.onap.cps.ncmp.events.lcm.v1.LcmEventHeader;
-import org.onap.cps.utils.JsonObjectMapper;
+import org.onap.cps.ncmp.api.impl.events.NcmpCloudEventBuilder;
+import org.onap.cps.ncmp.events.lcm.v2.LcmEvent;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.KafkaException;
 import org.springframework.stereotype.Service;
@@ -41,8 +43,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class LcmEventsService {
 
-    private final EventsPublisher<LcmEvent> eventsPublisher;
-    private final JsonObjectMapper jsonObjectMapper;
+    private final EventsPublisher<CloudEvent> eventsPublisher;
 
     @Value("${app.lcm.events.topic:ncmp-events}")
     private String topicName;
@@ -55,15 +56,16 @@ public class LcmEventsService {
      *
      * @param cmHandleId     Cm Handle Id
      * @param lcmEvent       Lcm Event
-     * @param lcmEventHeader Lcm Event Header
      */
     @Timed(value = "cps.ncmp.lcm.events.publish", description = "Time taken to publish a LCM event")
-    public void publishLcmEvent(final String cmHandleId, final LcmEvent lcmEvent, final LcmEventHeader lcmEventHeader) {
+    public void publishLcmEvent(final String cmHandleId, final LcmEvent lcmEvent) {
         if (notificationsEnabled) {
             try {
-                final Map<String, Object> lcmEventHeadersMap =
-                        jsonObjectMapper.convertToValueType(lcmEventHeader, Map.class);
-                eventsPublisher.publishEvent(topicName, cmHandleId, lcmEventHeadersMap, lcmEvent);
+                final Map<String, String> extensions = createCloudEventExtension("correlationid", cmHandleId);
+                final CloudEvent lcmCloudEvent =
+                        NcmpCloudEventBuilder.builder().type(LcmEvent.class.getTypeName())
+                                .event(lcmEvent).extensions(extensions).setCloudEvent().build();
+                eventsPublisher.publishCloudEvent(topicName, cmHandleId, lcmCloudEvent);
             } catch (final KafkaException e) {
                 log.error("Unable to publish message to topic : {} and cause : {}", topicName, e.getMessage());
             }
