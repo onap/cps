@@ -165,10 +165,11 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
                 sourceDataInDeltaReport.put(key, sourceLeaf);
                 targetDataInDeltaReport.put(key, targetLeaf);
             }
-        } else if (sourceLeaf != null) {
-            sourceDataInDeltaReport.put(key, sourceLeaf);
-        } else if (targetLeaf != null) {
+        } else if (sourceLeaf == null) {
             targetDataInDeltaReport.put(key, targetLeaf);
+
+        } else {
+            sourceDataInDeltaReport.put(key, sourceLeaf);
         }
     }
 

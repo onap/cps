@@ -43,7 +43,7 @@ Bug Fixes
 
 Features
 --------
-
+    - `CPS-1824 <https://jira.onap.org/browse/CPS-1824>`_ CPS Delta between 2 anchors.
 
 Version: 3.4.2
 ==============
