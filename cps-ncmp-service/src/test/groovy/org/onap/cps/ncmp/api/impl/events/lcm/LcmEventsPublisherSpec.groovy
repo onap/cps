@@ -24,20 +24,24 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import org.apache.kafka.clients.consumer.KafkaConsumer
 import org.apache.kafka.common.serialization.StringDeserializer
 import org.onap.cps.events.EventsPublisher
+import org.onap.cps.ncmp.api.impl.events.NcmpCloudEventBuilder
+import org.onap.cps.ncmp.api.impl.utils.context.CpsApplicationContext
 import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
-import org.onap.cps.ncmp.events.lcm.v1.Event
-import org.onap.cps.ncmp.events.lcm.v1.LcmEvent
-import org.onap.cps.ncmp.utils.TestUtils
+import org.onap.cps.ncmp.events.lcm.v2.Data
+import org.onap.cps.ncmp.events.lcm.v2.LcmEvent
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.annotation.DirtiesContext
-import org.springframework.util.SerializationUtils
+import org.springframework.test.context.ContextConfiguration
 import org.testcontainers.spock.Testcontainers
-
+import java.nio.charset.StandardCharsets
 import java.time.Duration
 
+import static org.onap.cps.ncmp.api.impl.events.NcmpCloudEventBuilder.createCloudEventExtension
+
+@ContextConfiguration(classes = [CpsApplicationContext, ObjectMapper, JsonObjectMapper])
 @SpringBootTest(classes = [ObjectMapper, JsonObjectMapper])
 @Testcontainers
 @DirtiesContext
@@ -53,39 +57,18 @@ class LcmEventsPublisherSpec extends MessagingBaseSpec {
     @Autowired
     JsonObjectMapper jsonObjectMapper
 
-
     def 'Produce and Consume Lcm Event'() {
         given: 'event key and event data'
-            def eventKey = 'lcm'
-            def eventId = 'test-uuid'
-            def eventCorrelationId = 'cmhandle-test'
-            def eventSource = 'org.onap.ncmp'
-            def eventTime = '2022-12-31T20:30:40.000+0000'
-            def eventType = 'org.onap.ncmp.cmhandle.lcm.event'
-            def eventSchema = 'org.onap.ncmp.cmhandle.lcm.event'
-            def eventSchemaVersion = 'v1'
-            def eventData = new LcmEvent(
-                eventId: eventId,
-                eventCorrelationId: eventCorrelationId,
-                eventSource: eventSource,
-                eventTime: eventTime,
-                eventType: eventType,
-                eventSchema: eventSchema,
-                eventSchemaVersion: eventSchemaVersion,
-                event: new Event(cmHandleId: 'cmhandle-test'))
-        and: 'we have a event header'
-            def eventHeader = [
-                eventId           : eventId,
-                eventCorrelationId: eventCorrelationId,
-                eventSource       : eventSource,
-                eventTime         : eventTime,
-                eventType         : eventType,
-                eventSchema       : eventSchema,
-                eventSchemaVersion: eventSchemaVersion]
+            def eventKey = 'someCmHandle'
+            def eventCorrelationId = 'someCmHandle'
+            def lcmEvent = new LcmEvent(data: new Data(cmHandleId: 'someCmHandle'))
+            def extensions = createCloudEventExtension("correlationid", eventKey);
+            def eventData = NcmpCloudEventBuilder.builder().type(LcmEvent.class.getTypeName())
+                .event(lcmEvent).extensions(extensions).setCloudEvent().build();
         and: 'consumer has a subscription'
             legacyEventKafkaConsumer.subscribe([testTopic] as List<String>)
         when: 'an event is published'
-            lcmEventsPublisher.publishEvent(testTopic, eventKey, eventHeader, eventData)
+            lcmEventsPublisher.publishCloudEvent(testTopic, eventKey, eventData)
         and: 'topic is polled'
             def records = legacyEventKafkaConsumer.poll(Duration.ofMillis(1500))
         then: 'poll returns one record'
@@ -94,11 +77,10 @@ class LcmEventsPublisherSpec extends MessagingBaseSpec {
             def record = records.iterator().next()
             assert eventKey == record.key
         and: 'record matches the expected event'
-            def expectedJsonString = TestUtils.getResourceFileContent('expectedLcmEvent.json')
+            def expectedJsonString = '{"data":{"cmHandleId":"someCmHandle"}}'
             def expectedLcmEvent = jsonObjectMapper.convertJsonString(expectedJsonString, LcmEvent.class)
             assert expectedLcmEvent == jsonObjectMapper.convertJsonString(record.value, LcmEvent.class)
         and: 'record header matches the expected parameters'
-            assert SerializationUtils.deserialize(record.headers().lastHeader('eventId').value()) == eventId
-            assert SerializationUtils.deserialize(record.headers().lastHeader('eventCorrelationId').value()) == eventCorrelationId
+            assert new String(record.headers().lastHeader("ce_correlationid").value(), StandardCharsets.UTF_8) == eventCorrelationId
     }
 }
