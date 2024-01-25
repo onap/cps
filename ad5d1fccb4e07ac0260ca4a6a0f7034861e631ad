@@ -22,6 +22,30 @@
       },
       "revId": "ad5d1fccb4e07ac0260ca4a6a0f7034861e631ad",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e96a83fe_1bce3081",
+        "filename": "csit/tests/actuator/actuator.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 3237
+      },
+      "writtenOn": "2024-01-25T13:11:11Z",
+      "side": 0,
+      "message": "Ack",
+      "parentUuid": "80020d57_c9b706c8",
+      "range": {
+        "startLine": 46,
+        "startChar": 3,
+        "endLine": 46,
+        "endChar": 67
+      },
+      "revId": "ad5d1fccb4e07ac0260ca4a6a0f7034861e631ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
