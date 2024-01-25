@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49cf930f_8267e243",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-01-25T12:57:02Z",
+      "side": 1,
+      "message": "For swagger-ui to load in a web browser without authorization, we need to use:\n\n    permit-uri: /actuator/**,/swagger-ui.html,/swagger-ui/**,/swagger-resources/**,/api-docs/**,/v3/api-docs/**\n    \nThis can be done in a separate patch",
+      "range": {
+        "startLine": 145,
+        "startChar": 4,
+        "endLine": 145,
+        "endChar": 78
+      },
+      "revId": "572e32fa810851b915ae01d45b730ae15504d9b8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
