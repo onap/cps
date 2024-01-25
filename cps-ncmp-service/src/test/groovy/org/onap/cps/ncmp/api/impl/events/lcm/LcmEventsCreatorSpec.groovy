@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2022-2023 Nordix Foundation
+ * Copyright (C) 2022-2024 Nordix Foundation
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,18 +24,15 @@ import static org.onap.cps.ncmp.api.impl.inventory.CmHandleState.ADVISED
 import static org.onap.cps.ncmp.api.impl.inventory.CmHandleState.DELETING
 import static org.onap.cps.ncmp.api.impl.inventory.CmHandleState.READY
 
-import org.mapstruct.factory.Mappers
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
 import org.onap.cps.ncmp.api.impl.inventory.CompositeState
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
-import org.onap.cps.ncmp.events.lcm.v1.Values
+import org.onap.cps.ncmp.events.lcm.v2.Values
 import spock.lang.Specification
 
 class LcmEventsCreatorSpec extends Specification {
 
-    LcmEventHeaderMapper lcmEventsHeaderMapper = Mappers.getMapper(LcmEventHeaderMapper)
-
-    def objectUnderTest = new LcmEventsCreator(lcmEventsHeaderMapper)
+    def objectUnderTest = new LcmEventsCreator()
     def cmHandleId = 'test-cm-handle'
 
     def 'Map the LcmEvent for #operation'() {
@@ -46,23 +43,19 @@ class LcmEventsCreatorSpec extends Specification {
                 publicProperties: targetPublicProperties)
         when: 'the event is populated'
             def result = objectUnderTest.populateLcmEvent(cmHandleId, targetNcmpServiceCmHandle, existingNcmpServiceCmHandle)
-        then: 'event header is mapped correctly'
-            assert result.eventSource == 'org.onap.ncmp'
-            assert result.eventCorrelationId == cmHandleId
-            assert result.eventType == LcmEventType.UPDATE.eventType
-        and: 'event payload is mapped correctly with correct cmhandle id'
-            assert result.event.cmHandleId == cmHandleId
+        then: 'event payload is mapped correctly with correct cmhandle id'
+            assert result.data.cmHandleId == cmHandleId
         and: 'it should have correct old state and properties'
-            assert result.event.oldValues.cmHandleState == expectedExistingCmHandleState
-            assert result.event.oldValues.cmHandleProperties == [expectedExistingPublicProperties]
+            assert result.data.oldValues.cmHandleState == expectedExistingCmHandleState
+            assert result.data.oldValues.cmHandleProperties == [expectedExistingPublicProperties]
         and: 'the correct new state and properties'
-            assert result.event.newValues.cmHandleProperties == [expectedTargetPublicProperties]
-            assert result.event.newValues.cmHandleState == expectedTargetCmHandleState
+            assert result.data.newValues.cmHandleProperties == [expectedTargetPublicProperties]
+            assert result.data.newValues.cmHandleState == expectedTargetCmHandleState
         where: 'following parameters are provided'
-            operation   | existingCmHandleState | targetCmHandleState | existingPublicProperties                                    | targetPublicProperties         || expectedExistingPublicProperties                            | expectedTargetPublicProperties  | expectedExistingCmHandleState | expectedTargetCmHandleState
-            'UPDATE'    | ADVISED               | READY               | ['publicProperty1': 'value1', 'publicProperty2': 'value2']  | ['publicProperty1': 'value11'] || ['publicProperty1': 'value1', 'publicProperty2': 'value2']  | ['publicProperty1': 'value11']  | Values.CmHandleState.ADVISED  | Values.CmHandleState.READY
-            'DELETING'  | READY                 | DELETING            | ['publicProperty1': 'value3', 'publicProperty2': 'value4']  | ['publicProperty1': 'value33'] || ['publicProperty1': 'value3', 'publicProperty2': 'value4']  | ['publicProperty1': 'value33']  | Values.CmHandleState.READY    | Values.CmHandleState.DELETING
-            'CHANGE'    | READY                 | READY               | ['publicProperty1': 'value3', 'publicProperty2': 'value4']  | ['publicProperty1': 'value33'] || ['publicProperty1': 'value3', 'publicProperty2': 'value4']  | ['publicProperty1': 'value33']  | null                          | null
+            operation  | existingCmHandleState | targetCmHandleState | existingPublicProperties                                   | targetPublicProperties         || expectedExistingPublicProperties                           | expectedTargetPublicProperties | expectedExistingCmHandleState | expectedTargetCmHandleState
+            'UPDATE'   | ADVISED               | READY               | ['publicProperty1': 'value1', 'publicProperty2': 'value2'] | ['publicProperty1': 'value11'] || ['publicProperty1': 'value1', 'publicProperty2': 'value2'] | ['publicProperty1': 'value11'] | Values.CmHandleState.ADVISED  | Values.CmHandleState.READY
+            'DELETING' | READY                 | DELETING            | ['publicProperty1': 'value3', 'publicProperty2': 'value4'] | ['publicProperty1': 'value33'] || ['publicProperty1': 'value3', 'publicProperty2': 'value4'] | ['publicProperty1': 'value33'] | Values.CmHandleState.READY    | Values.CmHandleState.DELETING
+            'CHANGE'   | READY                 | READY               | ['publicProperty1': 'value3', 'publicProperty2': 'value4'] | ['publicProperty1': 'value33'] || ['publicProperty1': 'value3', 'publicProperty2': 'value4'] | ['publicProperty1': 'value33'] | null                          | null
     }
 
     def 'Map the LcmEvent for all properties NO CHANGE'() {
@@ -75,8 +68,8 @@ class LcmEventsCreatorSpec extends Specification {
         when: 'the event is populated'
             def result = objectUnderTest.populateLcmEvent(cmHandleId, targetNcmpServiceCmHandle, existingNcmpServiceCmHandle)
         then: 'Properties are just the one which are same'
-            assert result.event.oldValues == null
-            assert result.event.newValues == null
+            assert result.data.oldValues == null
+            assert result.data.newValues == null
     }
 
     def 'Map the LcmEvent for operation CREATE'() {
@@ -86,17 +79,13 @@ class LcmEventsCreatorSpec extends Specification {
             def existingNcmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, publicProperties: ['publicProperty1': 'value1', 'publicProperty2': 'value2'])
         when: 'the event is populated'
             def result = objectUnderTest.populateLcmEvent(cmHandleId, targetNcmpServiceCmhandle, existingNcmpServiceCmHandle)
-        then: 'event header is mapped correctly'
-            assert result.eventSource == 'org.onap.ncmp'
-            assert result.eventCorrelationId == cmHandleId
-            assert result.eventType == LcmEventType.CREATE.eventType
-        and: 'event payload is mapped correctly'
-            assert result.event.cmHandleId == cmHandleId
-            assert result.event.newValues.cmHandleState == Values.CmHandleState.READY
-            assert result.event.newValues.dataSyncEnabled == false
-            assert result.event.newValues.cmHandleProperties == [['publicProperty1': 'value11', 'publicProperty2': 'value22']]
+        then: 'event payload is mapped correctly'
+            assert result.data.cmHandleId == cmHandleId
+            assert result.data.newValues.cmHandleState == Values.CmHandleState.READY
+            assert result.data.newValues.dataSyncEnabled == false
+            assert result.data.newValues.cmHandleProperties == [['publicProperty1': 'value11', 'publicProperty2': 'value22']]
         and: 'it should not have any old values'
-            assert result.event.oldValues == null
+            assert result.data.oldValues == null
     }
 
     def 'Map the LcmEvent for DELETE operation'() {
@@ -107,14 +96,10 @@ class LcmEventsCreatorSpec extends Specification {
                 publicProperties: ['publicProperty1': 'value1'])
         when: 'the event is populated'
             def result = objectUnderTest.populateLcmEvent(cmHandleId, targetNcmpServiceCmHandle, existingNcmpServiceCmHandle)
-        then: 'event header is mapped correctly'
-            assert result.eventSource == 'org.onap.ncmp'
-            assert result.eventCorrelationId == cmHandleId
-            assert result.eventType == LcmEventType.DELETE.eventType
-        and: 'event payload is mapped correctly '
-            assert result.event.cmHandleId == cmHandleId
-            assert result.event.oldValues == null
-            assert result.event.newValues == null
+        then: 'event payload is mapped correctly '
+            assert result.data.cmHandleId == cmHandleId
+            assert result.data.oldValues == null
+            assert result.data.newValues == null
     }
 
     def 'Map the LcmEvent for datasync flag transition from #operation'() {
@@ -123,18 +108,14 @@ class LcmEventsCreatorSpec extends Specification {
             def targetNcmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, compositeState: new CompositeState(dataSyncEnabled: targetDataSyncEnableFlag, cmHandleState: READY))
         when: 'the event is populated'
             def result = objectUnderTest.populateLcmEvent(cmHandleId, targetNcmpServiceCmHandle, existingNcmpServiceCmHandle)
-        then: 'event header is mapped correctly'
-            assert result.eventSource == 'org.onap.ncmp'
-            assert result.eventCorrelationId == cmHandleId
-            assert result.eventType == LcmEventType.UPDATE.eventType
-        and: 'event payload is mapped correctly with correct cmhandle id'
-            assert result.event.cmHandleId == cmHandleId
+        then: 'event payload is mapped correctly with correct cmhandle id'
+            assert result.data.cmHandleId == cmHandleId
         and: 'it should have correct old values'
-            assert result.event.oldValues.cmHandleState == Values.CmHandleState.ADVISED
-            assert result.event.oldValues.dataSyncEnabled == existingDataSyncEnableFlag
+            assert result.data.oldValues.cmHandleState == Values.CmHandleState.ADVISED
+            assert result.data.oldValues.dataSyncEnabled == existingDataSyncEnableFlag
         and: 'the correct new values'
-            assert result.event.newValues.cmHandleState == Values.CmHandleState.READY
-            assert result.event.newValues.dataSyncEnabled == targetDataSyncEnableFlag
+            assert result.data.newValues.cmHandleState == Values.CmHandleState.READY
+            assert result.data.newValues.dataSyncEnabled == targetDataSyncEnableFlag
         where: 'following parameters are provided'
             operation       | existingDataSyncEnableFlag | targetDataSyncEnableFlag
             'false to true' | false                      | true
@@ -153,8 +134,8 @@ class LcmEventsCreatorSpec extends Specification {
         when: 'the event is populated'
             def result = objectUnderTest.populateLcmEvent(cmHandleId, targetNcmpServiceCmHandle, existingNcmpServiceCmHandle)
         then: 'the data sync flag is not present in the event'
-            assert result.event.oldValues.dataSyncEnabled == null
-            assert result.event.newValues.dataSyncEnabled == null
+            assert result.data.oldValues.dataSyncEnabled == null
+            assert result.data.newValues.dataSyncEnabled == null
         where: 'following parameters are provided'
             operation        | existingDataSyncEnableFlag | targetDataSyncEnableFlag
             'false to false' | false                      | false
@@ -163,14 +144,26 @@ class LcmEventsCreatorSpec extends Specification {
 
     }
 
-    def 'Map the LcmEventHeader'() {
-        given: 'NCMP cm handle details with current and old details'
-            def existingNcmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, compositeState: new CompositeState(cmHandleState: ADVISED))
-            def targetNcmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, compositeState: new CompositeState(cmHandleState: READY))
-        when: 'the event header is populated'
-            def result = objectUnderTest.populateLcmEventHeader(cmHandleId, targetNcmpServiceCmHandle, existingNcmpServiceCmHandle)
-        then: 'the header has fields populated'
-            assert result.eventCorrelationId == cmHandleId
-            assert result.eventId != null
+    def 'Map the LcmEvent for alternateIds when #scenario'() {
+        given: 'NCMP cm handle details with current and old alternate IDs'
+            def existingNcmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, alternateId: existingAlternateId, compositeState: new CompositeState(dataSyncEnabled: false))
+            def targetNcmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, alternateId: targetAlternateId, compositeState: new CompositeState(dataSyncEnabled: false))
+        when: 'the event is populated'
+            def result = objectUnderTest.populateLcmEvent(cmHandleId, targetNcmpServiceCmHandle, existingNcmpServiceCmHandle)
+        then: 'the alternate ID is present or is an empty string in the payload'
+            assert result.data.alternateId == expectedPayloadAlternateId
+        and: 'the new and old alternate IDs are present or null'
+            if (result.data.newValues == null) {
+                assert result.data.oldValues == expectedExistingAlternateId
+                assert result.data.newValues == expectedTargetAlternateId
+            } else {
+                assert result.data.oldValues.alternateId == expectedExistingAlternateId
+                assert result.data.newValues.alternateId == expectedTargetAlternateId
+            }
+        where: 'the following alternate IDs are provided'
+            scenario                               | existingAlternateId | targetAlternateId || expectedExistingAlternateId | expectedTargetAlternateId | expectedPayloadAlternateId
+            'no new or old alternate ID'           | null                | null              || null                        | null                      | ''
+            'same new and old alternate ID'        | 'someAlternateId'   | 'someAlternateId' || null                        | null                      | 'someAlternateId'
+            'new alternate id no old alternate ID' | null                | 'someAlternateId' || ''                          | 'someAlternateId'         | 'someAlternateId'
     }
 }
