@@ -129,6 +129,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4fb1f346_826ebb90",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapper.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-25T10:16:09Z",
+      "side": 1,
+      "message": "- wrap this in a check that alternateId is NOT empty (using a util class that checks for null too)\n- add a test to attempt to AddMapping with null for alternate id",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 66
+      },
+      "revId": "89e8cc6f8f93a8e664362bfab663b6721418632b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f24b0d13_04961f9c",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapper.java",
         "patchSetId": 17
