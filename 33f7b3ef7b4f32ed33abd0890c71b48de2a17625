@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20a10744_3aaeba8e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-01-26T12:31:47Z",
+      "side": 1,
+      "message": "very minor comments",
+      "revId": "33f7b3ef7b4f32ed33abd0890c71b48de2a17625",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b9c1467_37bdc2f7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/FilterStrategiesIntegrationSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-01-26T12:31:47Z",
+      "side": 1,
+      "message": "NB: space needed?",
+      "revId": "33f7b3ef7b4f32ed33abd0890c71b48de2a17625",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1ba7695_407a9443",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/SerializationIntegrationSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-01-26T12:31:47Z",
+      "side": 1,
+      "message": "nb: same as before",
+      "revId": "33f7b3ef7b4f32ed33abd0890c71b48de2a17625",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38b7538c_3e3a54f1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiDataOperationsSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-01-26T12:31:47Z",
+      "side": 1,
+      "message": "same",
+      "revId": "33f7b3ef7b4f32ed33abd0890c71b48de2a17625",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
