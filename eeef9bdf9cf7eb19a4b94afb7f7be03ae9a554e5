@@ -48,6 +48,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "931f909d_21c52361",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/lcm/lcm-event-schema-v1.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-01-26T16:50:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4b247bc7_6d6e44c8",
+      "range": {
+        "startLine": 3,
+        "startChar": 2,
+        "endLine": 3,
+        "endChar": 55
+      },
+      "revId": "eeef9bdf9cf7eb19a4b94afb7f7be03ae9a554e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a1ed2eee_d365afc7",
@@ -61,6 +85,30 @@
       "writtenOn": "2024-01-25T14:24:36Z",
       "side": 1,
       "message": "v2 here as well",
+      "range": {
+        "startLine": 7,
+        "startChar": 49,
+        "endLine": 7,
+        "endChar": 51
+      },
+      "revId": "eeef9bdf9cf7eb19a4b94afb7f7be03ae9a554e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b020b74_c8fdaa87",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/lcm/lcm-event-schema-v1.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-01-26T16:50:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a1ed2eee_d365afc7",
       "range": {
         "startLine": 7,
         "startChar": 49,
@@ -94,6 +142,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e52ecdec_21df7a1a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/lcm/LcmEventsCreator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-01-26T16:50:07Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a9e707dc_9b23a57d",
+      "range": {
+        "startLine": 70,
+        "startChar": 8,
+        "endLine": 70,
+        "endChar": 53
+      },
+      "revId": "eeef9bdf9cf7eb19a4b94afb7f7be03ae9a554e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f91070a7_e9cea0e7",
@@ -117,6 +189,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "728a0d48_f6d9d999",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/lcm/LcmEventsService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-01-26T16:50:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f91070a7_e9cea0e7",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 5
+      },
+      "revId": "eeef9bdf9cf7eb19a4b94afb7f7be03ae9a554e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9db259d4_74c5f37d",
@@ -130,6 +226,30 @@
       "writtenOn": "2024-01-25T14:24:36Z",
       "side": 1,
       "message": "not sure if we need to test the header, if OK it can be removed from here",
+      "range": {
+        "startLine": 106,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 70
+      },
+      "revId": "eeef9bdf9cf7eb19a4b94afb7f7be03ae9a554e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe8b08d6_3492f71b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/lcm/LcmEventsCreatorSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-01-26T16:50:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9db259d4_74c5f37d",
       "range": {
         "startLine": 106,
         "startChar": 0,
