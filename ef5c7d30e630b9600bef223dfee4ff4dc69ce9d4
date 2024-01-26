@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "44b94757_e9b3b7ad",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 20
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-01-26T14:18:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f3a4ca08_869988f6",
+      "range": {
+        "startLine": 338,
+        "startChar": 54,
+        "endLine": 338,
+        "endChar": 96
+      },
+      "revId": "ef5c7d30e630b9600bef223dfee4ff4dc69ce9d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7e5c2798_6443acb9",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-01-26T12:46:42Z",
       "side": 1,
       "message": "same as above.",
+      "range": {
+        "startLine": 340,
+        "startChar": 54,
+        "endLine": 340,
+        "endChar": 96
+      },
+      "revId": "ef5c7d30e630b9600bef223dfee4ff4dc69ce9d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62e96ff6_0aeaa1d1",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 20
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-01-26T14:18:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e5c2798_6443acb9",
       "range": {
         "startLine": 340,
         "startChar": 54,
