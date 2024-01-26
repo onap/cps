@@ -35,6 +35,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c4e6b45_3e6af174",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionCacheHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-01-26T12:20:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4efe3068_cd452017",
+      "revId": "207c79d2d339963466ebcf503177c692a2da2311",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e04a30bf_fd7a07ca",
@@ -52,6 +70,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0cc1b739_32180687",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionCacheHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-01-26T12:20:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e04a30bf_fd7a07ca",
+      "revId": "207c79d2d339963466ebcf503177c692a2da2311",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8ee6806a_c32847f2",
@@ -65,6 +101,30 @@
       "writtenOn": "2024-01-25T15:36:00Z",
       "side": 1,
       "message": "not required as anyways beans are injected using constructor injection.",
+      "range": {
+        "startLine": 40,
+        "startChar": 4,
+        "endLine": 40,
+        "endChar": 14
+      },
+      "revId": "207c79d2d339963466ebcf503177c692a2da2311",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "19de5ee2_ad266e91",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionNcmpInEventConsumer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-01-26T12:20:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ee6806a_c32847f2",
       "range": {
         "startLine": 40,
         "startChar": 4,
