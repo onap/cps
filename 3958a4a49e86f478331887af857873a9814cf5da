@@ -141,6 +141,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "744286ec_2ccc9936",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-01-26T10:24:59Z",
+      "side": 1,
+      "message": "i will add this with the error message part. once if im into error handling, i think it makes more sense to do there.",
+      "parentUuid": "1f361873_c76e874a",
+      "range": {
+        "startLine": 114,
+        "startChar": 8,
+        "endLine": 114,
+        "endChar": 75
+      },
+      "revId": "3958a4a49e86f478331887af857873a9814cf5da",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "de0a8a4b_4f17e376",
