@@ -16,6 +16,535 @@
       "message": "recheck",
       "revId": "778828ceb6f4073d7a1288c3e40f6627d934afff",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2beb82c6_3e0d45f2",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 498,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-29T09:19:58Z",
+      "side": 1,
+      "message": "describe that this is optional.",
+      "range": {
+        "startLine": 498,
+        "startChar": 19,
+        "endLine": 498,
+        "endChar": 30
+      },
+      "revId": "778828ceb6f4073d7a1288c3e40f6627d934afff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f258da35_7ef9f9a8",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-29T09:19:58Z",
+      "side": 1,
+      "message": "Describe that this is optional and that it is ignored when no module-name is supplied",
+      "range": {
+        "startLine": 506,
+        "startChar": 19,
+        "endLine": 506,
+        "endChar": 27
+      },
+      "revId": "778828ceb6f4073d7a1288c3e40f6627d934afff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdbee324_9388a3f3",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-29T09:19:58Z",
+      "side": 1,
+      "message": "It a matter of opinion but I think the word \u0027Get\u0027 is more appropriated (to me an query would support more advanced search options like wild cards)\nAlso \u0027Get\u0027 is consistent with your methodname",
+      "range": {
+        "startLine": 296,
+        "startChar": 13,
+        "endLine": 296,
+        "endChar": 19
+      },
+      "revId": "778828ceb6f4073d7a1288c3e40f6627d934afff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a82c8aa_4481a5d3",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-29T09:19:58Z",
+      "side": 1,
+      "message": "Get",
+      "range": {
+        "startLine": 297,
+        "startChar": 17,
+        "endLine": 297,
+        "endChar": 23
+      },
+      "revId": "778828ceb6f4073d7a1288c3e40f6627d934afff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b081ca93_86fad0e8",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-29T09:19:58Z",
+      "side": 1,
+      "message": "for a cm handle (that is compulsary,correct?) with option to filter on module name and revision.",
+      "range": {
+        "startLine": 297,
+        "startChar": 84,
+        "endLine": 297,
+        "endChar": 118
+      },
+      "revId": "778828ceb6f4073d7a1288c3e40f6627d934afff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f7ec864_af944da4",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-29T09:19:58Z",
+      "side": 1,
+      "message": "too much and slight incorrect information!\n\"Ignoring revision filter as no module name is provided\"",
+      "range": {
+        "startLine": 341,
+        "startChar": 26,
+        "endLine": 341,
+        "endChar": 107
+      },
+      "revId": "778828ceb6f4073d7a1288c3e40f6627d934afff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cdc9494d_7732a175",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-29T09:19:58Z",
+      "side": 1,
+      "message": "What you imply here is incorrect!\nAnd I am pretty sure I never suggested an alternative logging here.\nIn this case you are returning all modules for the cm handle (which was teh legacy use-case, I fdont think any logging is needed)",
+      "range": {
+        "startLine": 343,
+        "startChar": 27,
+        "endLine": 343,
+        "endChar": 37
+      },
+      "revId": "778828ceb6f4073d7a1288c3e40f6627d934afff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71b8c2a5_80cba5ba",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-29T09:19:58Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 144,
+        "startChar": 4,
+        "endLine": 144,
+        "endChar": 15
+      },
+      "revId": "778828ceb6f4073d7a1288c3e40f6627d934afff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6168317c_1e5a5faa",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-29T09:19:58Z",
+      "side": 1,
+      "message": "not need as long as the method below has te right name for Spock: cleanup\n(see section Fixture Methdos on https://spockframework.org/spock/docs/2.3/spock_primer.html)",
+      "range": {
+        "startLine": 153,
+        "startChar": 4,
+        "endLine": 153,
+        "endChar": 14
+      },
+      "revId": "778828ceb6f4073d7a1288c3e40f6627d934afff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52cf5c55_7545c3a6",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-29T09:19:58Z",
+      "side": 1,
+      "message": "cleanup",
+      "range": {
+        "startLine": 154,
+        "startChar": 9,
+        "endLine": 154,
+        "endChar": 17
+      },
+      "revId": "778828ceb6f4073d7a1288c3e40f6627d934afff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e9c2e5d_cc1a6fed",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 537,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-29T09:19:58Z",
+      "side": 1,
+      "message": "Use standard english speak, not \u0027developer\u0027 \n\n... for a module",
+      "range": {
+        "startLine": 537,
+        "startChar": 41,
+        "endLine": 537,
+        "endChar": 68
+      },
+      "revId": "778828ceb6f4073d7a1288c3e40f6627d934afff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60784eb3_fa885247",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 552,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-29T09:19:58Z",
+      "side": 1,
+      "message": "filtering for revision",
+      "range": {
+        "startLine": 552,
+        "startChar": 36,
+        "endLine": 552,
+        "endChar": 66
+      },
+      "revId": "778828ceb6f4073d7a1288c3e40f6627d934afff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63f88ab9_37372f98",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 562,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-29T09:19:58Z",
+      "side": 1,
+      "message": "this is all mocked, No need to verify (so much detail)\nShould only verify invocation, this is a Delegate\u0027 type test!",
+      "range": {
+        "startLine": 561,
+        "startChar": 3,
+        "endLine": 562,
+        "endChar": 111
+      },
+      "revId": "778828ceb6f4073d7a1288c3e40f6627d934afff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20ce4839_23276535",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 568,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-29T09:19:58Z",
+      "side": 1,
+      "message": "you are ci(Correctly) using contains. Dont check the whole message (is brittle) but just for significant keyword/section. See suggestions below",
+      "range": {
+        "startLine": 568,
+        "startChar": 62,
+        "endLine": 568,
+        "endChar": 72
+      },
+      "revId": "778828ceb6f4073d7a1288c3e40f6627d934afff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9ea0f78_93904e78",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 571,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-29T09:19:58Z",
+      "side": 1,
+      "message": "just \u0027Ignore revision\u0027\n(See also comment on prod code)",
+      "range": {
+        "startLine": 571,
+        "startChar": 71,
+        "endLine": 571,
+        "endChar": 154
+      },
+      "revId": "778828ceb6f4073d7a1288c3e40f6627d934afff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7dd42a4_05d9e3fa",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 572,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-29T09:19:58Z",
+      "side": 1,
+      "message": "something is very wrong here, look at the scenario and the value of revision!\n(the problem  is in the prod code logging and what you THINK is happening)\nI think you test should have more scenarios I think ie. include module Name. JUST like in teh A/C table\n\n\nmoduleName | revision\nsome-Module | \u0027\u0027\nsome-Module | some-revision   (value shoudln\u0027t matter!)\n\u0027\u0027          | \u0027\u0027\n\u0027\u0027          | some-revision",
+      "range": {
+        "startLine": 572,
+        "startChar": 12,
+        "endLine": 572,
+        "endChar": 43
+      },
+      "revId": "778828ceb6f4073d7a1288c3e40f6627d934afff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d89e8aa_8e8a8a3e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistence.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-29T09:19:58Z",
+      "side": 1,
+      "message": "name",
+      "range": {
+        "startLine": 86,
+        "startChar": 39,
+        "endLine": 86,
+        "endChar": 49
+      },
+      "revId": "778828ceb6f4073d7a1288c3e40f6627d934afff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "debd7911_2cf69e72",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-29T09:19:58Z",
+      "side": 1,
+      "message": "by module",
+      "range": {
+        "startLine": 295,
+        "startChar": 36,
+        "endLine": 295,
+        "endChar": 52
+      },
+      "revId": "778828ceb6f4073d7a1288c3e40f6627d934afff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "034eef68_a42bddf5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-29T09:19:58Z",
+      "side": 1,
+      "message": "by",
+      "range": {
+        "startLine": 302,
+        "startChar": 36,
+        "endLine": 302,
+        "endChar": 41
+      },
+      "revId": "778828ceb6f4073d7a1288c3e40f6627d934afff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4e6d1f1_5f64914d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-29T09:19:58Z",
+      "side": 1,
+      "message": "NB: \"...by module\"\n(might also include revision but no need to be so specific in SLogan)",
+      "range": {
+        "startLine": 187,
+        "startChar": 36,
+        "endLine": 187,
+        "endChar": 52
+      },
+      "revId": "778828ceb6f4073d7a1288c3e40f6627d934afff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3cdab43_8cde8397",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-29T09:19:58Z",
+      "side": 1,
+      "message": "NB: for readability introduce private \u0027constant(s)\u0027 lik this\n\nNO_MODULE_FILTER \u003d null\n\nor\n\nNO_MODULE_NAME_FILTER \u003d null\nNO_MODULE_REVISION \u003d null",
+      "range": {
+        "startLine": 127,
+        "startChar": 20,
+        "endLine": 127,
+        "endChar": 30
+      },
+      "revId": "778828ceb6f4073d7a1288c3e40f6627d934afff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18cc1a0b_4bcc6683",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/YangResourceRepository.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-29T09:19:58Z",
+      "side": 1,
+      "message": "Much better then 2 separate queries!!!",
+      "range": {
+        "startLine": 87,
+        "startChar": 3,
+        "endLine": 88,
+        "endChar": 77
+      },
+      "revId": "778828ceb6f4073d7a1288c3e40f6627d934afff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66826981_432db0ef",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsModuleServiceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-29T09:19:58Z",
+      "side": 1,
+      "message": "good first attempt at integration tets but the problem is you have 2 different scenarios returning the SAME result which is n\u0027t great for test and or explaining what this method does.\n\nYou probably need to add some more data in the general (common) test set up. That might affect other test but that is OK. WE can lok at this together (also maybe as a separate commit)",
+      "range": {
+        "startLine": 161,
+        "startChar": 0,
+        "endLine": 163,
+        "endChar": 55
+      },
+      "revId": "778828ceb6f4073d7a1288c3e40f6627d934afff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
