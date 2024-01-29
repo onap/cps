@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24b2f9c0_5ca83558",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionCacheHandler.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-01-29T14:08:01Z",
+      "side": 1,
+      "message": "NB: Id",
+      "range": {
+        "startLine": 55,
+        "startChar": 40,
+        "endLine": 55,
+        "endChar": 42
+      },
+      "revId": "fc33cc7fbd8f212fbacfeef78498b9ac14d64963",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df711ab1_d05f41ac",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionCacheHandler.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-01-29T14:08:01Z",
+      "side": 1,
+      "message": "Can you check if this code work with the below.\nI have some doubts when you set the scope filter.\n\n{\n  \"data\": {\n    \"subscriptionId\": \"abc123\",\n    \"predicates\": [\n    {\n        “targetFilter” :  [\"ch1\",\"ch2\"],\n        \"scopeFilter\"  :  {\n           \"datastore\": “ncmp-datastore:passthrough-operational\",\n           \"xpath-filter\": [\"/x1/y1\",\"x2/y2\"]\n      }\n    },\n\t{\n        “targetFilter” :  [\"ch3\",\"ch4\"],\n        \"scopeFilter\"  :  {\n           \"datastore\": “ncmp-datastore:passthrough-operational\",\n           \"xpath-filter\": [\"/x3/y3\",\"x4/y4\"]\n      }\n    }\n    ]\n}",
+      "revId": "fc33cc7fbd8f212fbacfeef78498b9ac14d64963",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbabd304_95c11e2c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionCacheHandlerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-01-29T14:08:01Z",
+      "side": 1,
+      "message": "add explicit asserts wherever we are verifying.\napplies for all the tests.",
+      "revId": "fc33cc7fbd8f212fbacfeef78498b9ac14d64963",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
