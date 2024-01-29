@@ -1,7 +1,7 @@
 # ============LICENSE_START=======================================================
 # Copyright (c) 2020 Pantheon.tech.
 # Modifications Copyright (C) 2021 Bell Canada.
-# Modifications Copyright (C) 2022-2023 Nordix Foundation.
+# Modifications Copyright (C) 2022-2024 Nordix Foundation.
 # ================================================================================
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -31,6 +31,14 @@ services:
       POSTGRES_DB: cpsdb
       POSTGRES_USER: ${DB_USERNAME:-cps}
       POSTGRES_PASSWORD: ${DB_PASSWORD:-cps}
+    deploy:
+      resources:
+        reservations:
+          cpus: '1'
+          memory: 1G
+        limits:
+          cpus: '6'
+          memory: 3G
 
   cps-and-ncmp:
     container_name: cps-and-ncmp
@@ -55,6 +63,14 @@ services:
     restart: unless-stopped
     depends_on:
       - dbpostgresql
+    deploy:
+      resources:
+        reservations:
+          cpus: '2'
+          memory: 2G
+        limits:
+          cpus: '3'
+          memory: 3G
 
   ### if kafka is not required comment out zookeeper and kafka ###
   zookeeper:
