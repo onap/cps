@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8f52d3d_4ac29465",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/AlternateIdCacheConfig.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-01-29T11:26:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d31922e9_b8a481f2",
+      "range": {
+        "startLine": 41,
+        "startChar": 30,
+        "endLine": 41,
+        "endChar": 83
+      },
+      "revId": "44ba630a04d1198f1f57e850c5579384c736efdd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f47caece_176bcda1",
@@ -104,6 +128,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f29b8bf_964b7afa",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/AlternateIdCacheConfig.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-01-29T11:26:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a89a577_6f61b6c5",
+      "range": {
+        "startLine": 52,
+        "startChar": 15,
+        "endLine": 52,
+        "endChar": 83
+      },
+      "revId": "44ba630a04d1198f1f57e850c5579384c736efdd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e6fd8ab4_bda706a3",
@@ -117,6 +165,30 @@
       "writtenOn": "2024-01-29T09:41:24Z",
       "side": 1,
       "message": "legacy: cm handles",
+      "range": {
+        "startLine": 324,
+        "startChar": 83,
+        "endLine": 324,
+        "endChar": 92
+      },
+      "revId": "44ba630a04d1198f1f57e850c5579384c736efdd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00d815d6_beae0b53",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 21
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-01-29T11:26:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e6fd8ab4_bda706a3",
       "range": {
         "startLine": 324,
         "startChar": 83,
@@ -150,6 +222,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f6eb8d7_06fcf01c",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 21
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-01-29T11:26:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "feea0109_bf0736b4",
+      "range": {
+        "startLine": 330,
+        "startChar": 91,
+        "endLine": 330,
+        "endChar": 101
+      },
+      "revId": "44ba630a04d1198f1f57e850c5579384c736efdd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6d7bd270_22ddc398",
@@ -163,6 +259,30 @@
       "writtenOn": "2024-01-29T09:41:24Z",
       "side": 1,
       "message": "trust level",
+      "range": {
+        "startLine": 332,
+        "startChar": 65,
+        "endLine": 332,
+        "endChar": 76
+      },
+      "revId": "44ba630a04d1198f1f57e850c5579384c736efdd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f73bfa75_265aa252",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 21
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-01-29T11:26:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d7bd270_22ddc398",
       "range": {
         "startLine": 332,
         "startChar": 65,
@@ -196,6 +316,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1612bacd_c55545ef",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 21
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-01-29T11:26:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d8ea9040_cd4e7398",
+      "range": {
+        "startLine": 334,
+        "startChar": 65,
+        "endLine": 334,
+        "endChar": 81
+      },
+      "revId": "44ba630a04d1198f1f57e850c5579384c736efdd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "07b50970_45ad45fa",
@@ -219,6 +363,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7f2e85a_a1de528b",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 21
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-01-29T11:26:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "07b50970_45ad45fa",
+      "range": {
+        "startLine": 336,
+        "startChar": 72,
+        "endLine": 336,
+        "endChar": 95
+      },
+      "revId": "44ba630a04d1198f1f57e850c5579384c736efdd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aa014b73_c49a36fb",
@@ -232,6 +400,30 @@
       "writtenOn": "2024-01-29T09:41:24Z",
       "side": 1,
       "message": "although the word \u0027by\u0027 is ambiguous I stil interpret is as \u0027alternate id\u0027 PER cm handle ID and therefore therefore the are stil mixed up!.\n\nI think the best option now is to use the word \u0027per\u0027 everywhere also in eth config names to avoid all confusion, also the word \u0027cache\u0027 and \u0027config\u0027 are not need I think (follow the example of trustLevel)\n\nP.S finally. note the correct spelling and lower case of \u0027cm handle\u0027\n\n\nalternateIdPerCmHandleId | Stores the alternate id by cm handle id. \ncmHandleIdPerAlternateId | Stores the cm handle id per alternate id.",
+      "range": {
+        "startLine": 338,
+        "startChar": 17,
+        "endLine": 338,
+        "endChar": 96
+      },
+      "revId": "44ba630a04d1198f1f57e850c5579384c736efdd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b60879c8_6f8c37a9",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 21
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-01-29T11:26:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa014b73_c49a36fb",
       "range": {
         "startLine": 338,
         "startChar": 17,
