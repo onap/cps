@@ -30,6 +30,7 @@ import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsDataspaceService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.ncmp.api.impl.exception.NcmpStartUpException;
+import org.onap.cps.ncmp.api.impl.operations.DatastoreType;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -42,8 +43,6 @@ public class CmDataSubscriptionModelLoader extends AbstractModelLoader {
     private static final String SCHEMASET_NAME = "cm-data-subscriptions";
     private static final String ANCHOR_NAME = "cm-data-subscriptions";
     private static final String REGISTRY_DATANODE_NAME = "datastores";
-    private static final String DATASTORE_PASSTHROUGH_OPERATIONAL = "ncmp-datastores:passthrough-operational";
-    private static final String DATASTORE_PASSTHROUGH_RUNNING = "ncmp-datastores:passthrough-running";
 
     public CmDataSubscriptionModelLoader(final CpsDataspaceService cpsDataspaceService,
                                          final CpsModuleService cpsModuleService,
@@ -70,7 +69,8 @@ public class CmDataSubscriptionModelLoader extends AbstractModelLoader {
         createSchemaSet(NCMP_DATASPACE_NAME, SCHEMASET_NAME, MODEL_FILENAME);
         createAnchor(NCMP_DATASPACE_NAME, SCHEMASET_NAME, ANCHOR_NAME);
         createTopLevelDataNode(NCMP_DATASPACE_NAME, ANCHOR_NAME, REGISTRY_DATANODE_NAME);
-        createDatastore(DATASTORE_PASSTHROUGH_OPERATIONAL, DATASTORE_PASSTHROUGH_RUNNING);
+        createDatastore(DatastoreType.PASSTHROUGH_OPERATIONAL.getDatastoreName(),
+                DatastoreType.PASSTHROUGH_RUNNING.getDatastoreName());
     }
 
     private void createDatastore(final String... datastoreNames) {
