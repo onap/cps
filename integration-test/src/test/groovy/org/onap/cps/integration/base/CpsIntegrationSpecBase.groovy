@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023 Nordix Foundation
+ *  Copyright (C) 2023-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -89,8 +89,7 @@ class CpsIntegrationSpecBase extends Specification {
     def setup() {
         if (!initialized) {
             cpsDataspaceService.createDataspace(GENERAL_TEST_DATASPACE)
-            def bookstoreModelFileContent = readResourceDataFile('bookstore/bookstore.yang')
-            cpsModuleService.createSchemaSet(GENERAL_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET, [bookstore : bookstoreModelFileContent])
+            createStandardBookStoreSchemaSet(GENERAL_TEST_DATASPACE)
             initialized = true;
         }
     }
@@ -109,6 +108,20 @@ class CpsIntegrationSpecBase extends Specification {
 
     def static readResourceDataFile(filename) {
         return new File('src/test/resources/data/' + filename).text
+    }
+
+    def getBookstoreYangResourcesNameToContentMap() {
+        def bookstoreModelFileContent = readResourceDataFile('bookstore/bookstore.yang')
+        def bookstoreTypesFileContent = readResourceDataFile('bookstore/bookstore-types.yang')
+        return [bookstore: bookstoreModelFileContent, bookstoreTypes: bookstoreTypesFileContent]
+    }
+
+    def createStandardBookStoreSchemaSet(targetDataspace) {
+        cpsModuleService.createSchemaSet(targetDataspace, BOOKSTORE_SCHEMA_SET, getBookstoreYangResourcesNameToContentMap())
+    }
+
+    def createStandardBookStoreSchemaSet(targetDataspace, targetSchemaSet) {
+        cpsModuleService.createSchemaSet(targetDataspace, targetSchemaSet, getBookstoreYangResourcesNameToContentMap())
     }
 
     def dataspaceExists(dataspaceName) {
