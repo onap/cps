@@ -63,6 +63,14 @@ Querying
    xpath.rst
    cps-path.rst
 
+Additional information on CPS-Core Interfaces
+---------------------------------------------
+
+.. toctree::
+   :maxdepth: 1
+
+   cps-delta-feature.rst
+
 .. Below Label is used by documentation for other CPS components to link here, do not remove even if it gives a warning
 .. _cps_ncmp_modelling:
 
