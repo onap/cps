@@ -44,8 +44,10 @@ class CpsPerfTestBase extends PerfTestBase {
 
     def setupPerformanceInfraStructure() {
         cpsDataspaceService.createDataspace(CPS_PERFORMANCE_TEST_DATASPACE)
-        def modelAsString = readResourceDataFile('bookstore/bookstore.yang')
-        cpsModuleService.createSchemaSet(CPS_PERFORMANCE_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET, [bookstore: modelAsString])
+        def bookstoreYangModelAsString = readResourceDataFile('bookstore/bookstore.yang')
+        def bookstoreTypesYangModelAsString = readResourceDataFile('bookstore/bookstore-types.yang')
+        def yangResourcesNameToContentMap = [bookstore: bookstoreYangModelAsString, bookstoreTypes: bookstoreTypesYangModelAsString]
+        cpsModuleService.createSchemaSet(CPS_PERFORMANCE_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET, yangResourcesNameToContentMap)
     }
 
     def createInitialData() {

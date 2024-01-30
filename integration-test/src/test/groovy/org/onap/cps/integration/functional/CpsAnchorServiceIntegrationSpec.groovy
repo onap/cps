@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023 Nordix Foundation
+ *  Copyright (C) 2023-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -56,8 +56,7 @@ class CpsAnchorServiceIntegrationSpec extends CpsIntegrationSpecBase {
             objectUnderTest.createAnchor(GENERAL_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET, 'anchor1')
             objectUnderTest.createAnchor(GENERAL_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET, 'anchor2')
         and: '1 anchor with "other" schema set is created'
-            def bookstoreModelFileContent = readResourceDataFile('bookstore/bookstore.yang')
-            cpsModuleService.createSchemaSet(GENERAL_TEST_DATASPACE, 'otherSchemaSet', [someFileName: bookstoreModelFileContent])
+            cpsModuleService.createSchemaSet(GENERAL_TEST_DATASPACE, 'otherSchemaSet', getBookstoreYangResourcesNameToContentMap())
             objectUnderTest.createAnchor(GENERAL_TEST_DATASPACE, 'otherSchemaSet', 'anchor3')
         then: 'there are 3 anchors in the general test database'
             assert objectUnderTest.getAnchors(GENERAL_TEST_DATASPACE).size() == 3
@@ -69,7 +68,7 @@ class CpsAnchorServiceIntegrationSpec extends CpsIntegrationSpecBase {
 
     def 'Querying anchor(name)s (depends on previous test!).'() {
         expect: 'there are now 3 anchors using the "stores" module (both schema sets use the same modules) '
-            assert objectUnderTest.queryAnchorNames(GENERAL_TEST_DATASPACE, ['stores']).size() == 3
+            assert objectUnderTest.queryAnchorNames(GENERAL_TEST_DATASPACE, ['stores', 'bookstore-types']).size() == 3
         and: 'there are no anchors using both "stores" and a "unused-model"'
             assert objectUnderTest.queryAnchorNames(GENERAL_TEST_DATASPACE, ['stores', 'unused-model']).size() == 0
     }

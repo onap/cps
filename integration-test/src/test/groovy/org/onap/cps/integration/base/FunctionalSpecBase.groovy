@@ -54,10 +54,11 @@ class FunctionalSpecBase extends CpsIntegrationSpecBase {
         cpsDataspaceService.createDataspace(FUNCTIONAL_TEST_DATASPACE_2)
         cpsDataspaceService.createDataspace(FUNCTIONAL_TEST_DATASPACE_3)
         def bookstoreYangModelAsString = readResourceDataFile('bookstore/bookstore.yang')
-        cpsModuleService.createSchemaSet(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_SCHEMA_SET, [bookstore: bookstoreYangModelAsString])
-        cpsModuleService.createSchemaSet(FUNCTIONAL_TEST_DATASPACE_2, BOOKSTORE_SCHEMA_SET, [bookstore: bookstoreYangModelAsString])
-        cpsModuleService.createSchemaSet(FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_SCHEMA_SET, [bookstore: bookstoreYangModelAsString])
-
+        def bookstoreTypesYangModelAsString = readResourceDataFile('bookstore/bookstore-types.yang')
+        def yangResourcesNameToContentMap = [bookstore: bookstoreYangModelAsString, bookstoreTypes: bookstoreTypesYangModelAsString]
+        cpsModuleService.createSchemaSet(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_SCHEMA_SET, yangResourcesNameToContentMap)
+        cpsModuleService.createSchemaSet(FUNCTIONAL_TEST_DATASPACE_2, BOOKSTORE_SCHEMA_SET, yangResourcesNameToContentMap)
+        cpsModuleService.createSchemaSet(FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_SCHEMA_SET, yangResourcesNameToContentMap)
     }
 
     def addBookstoreData() {
