@@ -540,7 +540,7 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
             def expectedSourceDataInParentNode = ['name':'Children']
             def expectedTargetDataInParentNode = ['name':'Kids']
             def expectedSourceDataInChildNode = [['lang' : 'English'],['price':20, 'editions':[1988, 2000]]]
-            def expectedTargetDataInChildNode = [['lang':'English/German'], ['price':200, 'editions':[2023, 1988, 2000]]]
+            def expectedTargetDataInChildNode = [['lang':'English/German'], ['price':200, 'editions':[1988, 2000, 2023, 2025]]]
         when: 'attempt to get delta between leaves of existing data nodes'
             def result = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_ANCHOR_3, BOOKSTORE_ANCHOR_5, parentNodeXpath, INCLUDE_ALL_DESCENDANTS)
             def deltaReportEntities = getDeltaReportEntities(result)
