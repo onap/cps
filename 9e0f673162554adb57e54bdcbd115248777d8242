@@ -16,6 +16,29 @@
       "message": "recheck",
       "revId": "9e0f673162554adb57e54bdcbd115248777d8242",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1f6d021_03ee5b95",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-01-30T10:14:55Z",
+      "side": 1,
+      "message": "NB: where did we come up with this no. ? or this is the starting no. and we can experiment and build up on top of this ?\ndo we need to know that how many cores/processors are present in the target machine??",
+      "range": {
+        "startLine": 37,
+        "startChar": 17,
+        "endLine": 37,
+        "endChar": 18
+      },
+      "revId": "9e0f673162554adb57e54bdcbd115248777d8242",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
