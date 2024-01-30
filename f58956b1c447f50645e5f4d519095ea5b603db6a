@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a6e9181_a4d98bfb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-30T09:18:09Z",
+      "side": 1,
+      "message": "did you remove the code from the previous patch.? Very little changes in production code. I wonder was this what we discussed but I need to refresh my memory...",
+      "revId": "f58956b1c447f50645e5f4d519095ea5b603db6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5956bf86_ca8647c2",
@@ -26,6 +43,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "88bd2881_235b8b9b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-30T09:18:09Z",
+      "side": 1,
+      "message": "Q: will this print content of the collection, is that what you intended?",
+      "range": {
+        "startLine": 355,
+        "startChar": 56,
+        "endLine": 355,
+        "endChar": 69
+      },
+      "revId": "f58956b1c447f50645e5f4d519095ea5b603db6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2ccdf9fd_74d2830d",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleOperationsUtils.java",
         "patchSetId": 3
@@ -43,6 +83,177 @@
         "endLine": 3,
         "endChar": 28
       },
+      "revId": "f58956b1c447f50645e5f4d519095ea5b603db6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c2b0837_2e8233eb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleOperationsUtils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-30T09:18:09Z",
+      "side": 1,
+      "message": "cpsPath syntax! Please extract out using meaningful name for clarity",
+      "range": {
+        "startLine": 114,
+        "startChar": 16,
+        "endLine": 115,
+        "endChar": 65
+      },
+      "revId": "f58956b1c447f50645e5f4d519095ea5b603db6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34f29c1c_e79a9dd7",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/resources/module/bookStoreAModuleResourcesResponse.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-30T09:18:09Z",
+      "side": 1,
+      "message": "suggestion: bookstoreWithModules_M1_M2_ResourcesResponse.json",
+      "revId": "f58956b1c447f50645e5f4d519095ea5b603db6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8ac04c1_17f9e250",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/resources/module/bookStoreAModuleResponse.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-30T09:18:09Z",
+      "side": 1,
+      "message": "follow similar naming convention as on previous file\nbookStoreWithMOdules_M1_M2_ModulesResponses\n(note the \u0027s\u0027 in Modules)",
+      "revId": "f58956b1c447f50645e5f4d519095ea5b603db6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d02bb06_80b40a8f",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/resources/module/bookStoreAModuleResponse.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-30T09:18:09Z",
+      "side": 1,
+      "message": "NB: dont use tabs, onle spaces",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 1
+      },
+      "revId": "f58956b1c447f50645e5f4d519095ea5b603db6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a4690c3_badb1760",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/resources/module/bookStoreBModuleResourcesResponse.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-30T09:18:09Z",
+      "side": 1,
+      "message": "follow previous convention",
+      "revId": "f58956b1c447f50645e5f4d519095ea5b603db6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1998468d_eba17317",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/resources/module/bookStoreBModuleResponse.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-30T09:18:09Z",
+      "side": 1,
+      "message": "follow previous convention",
+      "revId": "f58956b1c447f50645e5f4d519095ea5b603db6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eac185d9_a4dfb58a",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/resources/module/bookStoreBModuleResponse.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-30T09:18:09Z",
+      "side": 1,
+      "message": "NB: no tabs",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 1
+      },
+      "revId": "f58956b1c447f50645e5f4d519095ea5b603db6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da935c9e_a50a6912",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/resources/module/bookStoreCModuleResourcesResponse.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-30T09:18:09Z",
+      "side": 1,
+      "message": "follow previous convention",
+      "revId": "f58956b1c447f50645e5f4d519095ea5b603db6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c72e9763_b770832e",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/resources/module/bookStoreCModuleResponse.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-01-30T09:18:09Z",
+      "side": 1,
+      "message": "follow previous convention",
       "revId": "f58956b1c447f50645e5f4d519095ea5b603db6a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
