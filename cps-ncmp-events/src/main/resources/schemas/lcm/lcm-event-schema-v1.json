@@ -39,6 +39,10 @@
           "description": "cmHandle id",
           "type": "string"
         },
+        "alternateId": {
+          "description": "alternative id for cmHandle (e.g. 3GPP FDN)",
+          "type": "string"
+        },
         "oldValues": {
           "$ref": "#/definitions/Values"
         },
