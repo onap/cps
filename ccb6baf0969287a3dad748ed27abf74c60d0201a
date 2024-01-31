@@ -18,6 +18,46 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0b2bcf0_bb73062d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-01-31T14:31:02Z",
+      "side": 1,
+      "message": "just minor comments.",
+      "revId": "ccb6baf0969287a3dad748ed27abf74c60d0201a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a593ec1a_c8ae83c0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-01-31T14:31:02Z",
+      "side": 1,
+      "message": "NB: need at info. level ? just checking.",
+      "range": {
+        "startLine": 355,
+        "startChar": 20,
+        "endLine": 355,
+        "endChar": 24
+      },
+      "revId": "ccb6baf0969287a3dad748ed27abf74c60d0201a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0572f208_187fc2c1",
@@ -37,6 +77,40 @@
         "endLine": 61,
         "endChar": 11
       },
+      "revId": "ccb6baf0969287a3dad748ed27abf74c60d0201a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b82a098f_151139c9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleOperationsUtils.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-01-31T14:31:02Z",
+      "side": 1,
+      "message": "NB: also can you group the static variables and instance variables separate.",
+      "revId": "ccb6baf0969287a3dad748ed27abf74c60d0201a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bcd85452_0ad3809a",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/resources/module/bookStoreAWithModules_M1_M2_ResourcesResponse.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-01-31T14:31:02Z",
+      "side": 1,
+      "message": "NB: maybe try to reformat it. may eliminate the tabs.",
       "revId": "ccb6baf0969287a3dad748ed27abf74c60d0201a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
