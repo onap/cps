@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "235ac4cc_52504859",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-01-31T09:04:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5956bf86_ca8647c2",
+      "range": {
+        "startLine": 4,
+        "startChar": 37,
+        "endLine": 4,
+        "endChar": 42
+      },
+      "revId": "f58956b1c447f50645e5f4d519095ea5b603db6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "88bd2881_235b8b9b",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-01-30T09:18:09Z",
       "side": 1,
       "message": "Q: will this print content of the collection, is that what you intended?",
+      "range": {
+        "startLine": 355,
+        "startChar": 56,
+        "endLine": 355,
+        "endChar": 69
+      },
+      "revId": "f58956b1c447f50645e5f4d519095ea5b603db6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f7be3be_909200e4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-01-31T09:04:19Z",
+      "side": 1,
+      "message": "yes",
+      "parentUuid": "88bd2881_235b8b9b",
       "range": {
         "startLine": 355,
         "startChar": 56,
@@ -89,6 +137,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "88c12e75_8c9fcb28",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleOperationsUtils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-01-31T09:04:19Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "2ccdf9fd_74d2830d",
+      "range": {
+        "startLine": 3,
+        "startChar": 23,
+        "endLine": 3,
+        "endChar": 28
+      },
+      "revId": "f58956b1c447f50645e5f4d519095ea5b603db6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9c2b0837_2e8233eb",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleOperationsUtils.java",
         "patchSetId": 3
@@ -100,6 +172,30 @@
       "writtenOn": "2024-01-30T09:18:09Z",
       "side": 1,
       "message": "cpsPath syntax! Please extract out using meaningful name for clarity",
+      "range": {
+        "startLine": 114,
+        "startChar": 16,
+        "endLine": 115,
+        "endChar": 65
+      },
+      "revId": "f58956b1c447f50645e5f4d519095ea5b603db6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6fe0fe36_6aaae59a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleOperationsUtils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-01-31T09:04:19Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "9c2b0837_2e8233eb",
       "range": {
         "startLine": 114,
         "startChar": 16,
@@ -127,6 +223,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "540732f8_bfd32267",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/resources/module/bookStoreAModuleResourcesResponse.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-01-31T09:04:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "34f29c1c_e79a9dd7",
+      "revId": "f58956b1c447f50645e5f4d519095ea5b603db6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a8ac04c1_17f9e250",
@@ -140,6 +254,24 @@
       "writtenOn": "2024-01-30T09:18:09Z",
       "side": 1,
       "message": "follow similar naming convention as on previous file\nbookStoreWithMOdules_M1_M2_ModulesResponses\n(note the \u0027s\u0027 in Modules)",
+      "revId": "f58956b1c447f50645e5f4d519095ea5b603db6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "61ce4395_5c5b00ab",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/resources/module/bookStoreAModuleResponse.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-01-31T09:04:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a8ac04c1_17f9e250",
       "revId": "f58956b1c447f50645e5f4d519095ea5b603db6a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -167,6 +299,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "48effb82_4e66ae19",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/resources/module/bookStoreAModuleResponse.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-01-31T09:04:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8d02bb06_80b40a8f",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 1
+      },
+      "revId": "f58956b1c447f50645e5f4d519095ea5b603db6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5a4690c3_badb1760",
@@ -184,6 +340,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf84a4eb_8bdabb9d",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/resources/module/bookStoreBModuleResourcesResponse.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-01-31T09:04:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5a4690c3_badb1760",
+      "revId": "f58956b1c447f50645e5f4d519095ea5b603db6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1998468d_eba17317",
@@ -197,6 +371,24 @@
       "writtenOn": "2024-01-30T09:18:09Z",
       "side": 1,
       "message": "follow previous convention",
+      "revId": "f58956b1c447f50645e5f4d519095ea5b603db6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "17da2d32_3181549b",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/resources/module/bookStoreBModuleResponse.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-01-31T09:04:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1998468d_eba17317",
       "revId": "f58956b1c447f50645e5f4d519095ea5b603db6a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -224,6 +416,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "19d461a1_a6bebefe",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/resources/module/bookStoreBModuleResponse.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-01-31T09:04:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "eac185d9_a4dfb58a",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 1
+      },
+      "revId": "f58956b1c447f50645e5f4d519095ea5b603db6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "da935c9e_a50a6912",
@@ -241,6 +457,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "05010ff0_1eb9699e",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/resources/module/bookStoreCModuleResourcesResponse.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-01-31T09:04:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "da935c9e_a50a6912",
+      "revId": "f58956b1c447f50645e5f4d519095ea5b603db6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c72e9763_b770832e",
@@ -254,6 +488,24 @@
       "writtenOn": "2024-01-30T09:18:09Z",
       "side": 1,
       "message": "follow previous convention",
+      "revId": "f58956b1c447f50645e5f4d519095ea5b603db6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "270381a4_b2c9ceaf",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/resources/module/bookStoreCModuleResponse.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-01-31T09:04:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c72e9763_b770832e",
       "revId": "f58956b1c447f50645e5f4d519095ea5b603db6a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
