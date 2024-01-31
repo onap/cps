@@ -40,3 +40,8 @@ app:
     ncmp:
         async-m2m:
             topic: ${NCMP_ASYNC_M2M_TOPIC:ncmp-async-m2m}
+
+delay:
+    module-references-delay: ${MODULE_REFERENCES_DELAY_MS:100}
+    module-resources-delay: ${MODULE_RESOURCES_DELAY_MS:1000}
+    data-for-cm-handle-delay: ${DATA_FOR_CM_HANDLE_DELAY_MS:2500}

@@ -129,6 +129,9 @@ services:
       KAFKA_BOOTSTRAP_SERVER: kafka:29092
       NCMP_CONSUMER_GROUP_ID: ncmp-group
       NCMP_ASYNC_M2M_TOPIC: ncmp-async-m2m
+      MODULE_REFERENCES_DELAY_MS: 0
+      MODULE_RESOURCES_DELAY_MS: 0
+      DATA_FOR_CM_HANDLE_DELAY_MS: 0
     restart: unless-stopped
     profiles:
       - dmi-stub

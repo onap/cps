@@ -69,6 +69,15 @@ public class DmiRestStubController {
     @Value("${app.ncmp.async-m2m.topic}")
     private String ncmpAsyncM2mTopic;
 
+    @Value("${delay.module-references-delay}")
+    private long moduleReferencesDelay;
+
+    @Value("${delay.module-resources-delay}")
+    private long moduleResourcesDelay;
+
+    @Value("${delay.data-for-cm-handle-delay}")
+    private long resourceDataForCmHandleDataOperationDelay;
+
     private String dataOperationEventType = "org.onap.cps.ncmp.events.async1_0_0.DataOperationEvent";
 
     /**
@@ -82,6 +91,7 @@ public class DmiRestStubController {
     @PostMapping("/v1/ch/{cmHandleId}/modules")
     public ResponseEntity<String> getModuleReferences(@PathVariable final String cmHandleId,
                                                       @RequestBody final Object moduleReferencesRequest) {
+        delay(moduleReferencesDelay);
         final String moduleResponseContent = getModuleResourceResponse(cmHandleId,
                 "ModuleResponse.json");
         log.info("cm handle: {} requested for modules", cmHandleId);
@@ -100,6 +110,7 @@ public class DmiRestStubController {
     public ResponseEntity<String> retrieveModuleResources(
             @PathVariable final String cmHandleId,
             @RequestBody final Object moduleResourcesReadRequest) {
+        delay(moduleResourcesDelay);
         final String moduleResourcesResponseContent = getModuleResourceResponse(cmHandleId,
                 "ModuleResourcesResponse.json");
         log.info("cm handle: {} requested for modules resources", cmHandleId);
@@ -121,6 +132,7 @@ public class DmiRestStubController {
                                                                         final String requestId,
                                                                         @RequestBody final DmiDataOperationRequest
                                                                                     dmiDataOperationRequest) {
+        delay(resourceDataForCmHandleDataOperationDelay);
         try {
             log.info("Request received from the NCMP to DMI Plugin: {}",
                     objectMapper.writeValueAsString(dmiDataOperationRequest));
@@ -198,5 +210,14 @@ public class DmiRestStubController {
         log.info("Using default node type: ietfYang");
         return ResourceFileReaderUtil.getResourceFileContent(applicationContext.getResource(
                 ResourceLoader.CLASSPATH_URL_PREFIX + "module/ietfYang" + moduleResponseType));
+    }
+
+    private void delay(final long milliseconds) {
+        try {
+            Thread.sleep(milliseconds);
+        } catch (final InterruptedException e) {
+            log.error("Thread sleep interrupted: {}", e.getMessage());
+            Thread.currentThread().interrupt();
+        }
     }
 }
