@@ -26,6 +26,10 @@
           "default": null,
           "existingJavaType": "java.util.List<java.util.Map<String,String>>",
           "additionalProperties": false
+        },
+        "alternateId": {
+          "description": "alternative id for cmHandle (e.g. 3GPP FDN)",
+          "type": "string"
         }
       },
       "additionalProperties": false
@@ -37,6 +41,11 @@
       "properties": {
         "cmHandleId": {
           "description": "cmHandle id",
+          "type": "string"
+        },
+        "alternateId": {
+          "description": "alternative id for cmHandle (e.g. 3GPP FDN)",
+          "default": "",
           "type": "string"
         },
         "oldValues": {

@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2022-2023 Nordix Foundation
+ * Copyright (C) 2022-2024 Nordix Foundation
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -172,5 +172,28 @@ class LcmEventsCreatorSpec extends Specification {
         then: 'the header has fields populated'
             assert result.eventCorrelationId == cmHandleId
             assert result.eventId != null
+    }
+
+    def 'Map the LcmEvent for alternateIds when #scenario'() {
+        given: 'NCMP cm handle details with current and old alternate IDs'
+            def existingNcmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, alternateId: existingAlternateId, compositeState: new CompositeState(dataSyncEnabled: false))
+            def targetNcmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, alternateId: targetAlternateId, compositeState: new CompositeState(dataSyncEnabled: false))
+        when: 'the event is populated'
+            def result = objectUnderTest.populateLcmEvent(cmHandleId, targetNcmpServiceCmHandle, existingNcmpServiceCmHandle)
+        then: 'the alternate ID is present or is an empty string in the payload'
+            assert result.event.alternateId == expectedPayloadAlternateId
+        and: 'the new and old alternate IDs are present or null'
+            if (result.event.newValues == null) {
+                assert result.event.oldValues == expectedExistingAlternateId
+                assert result.event.newValues == expectedTargetAlternateId
+            } else {
+                assert result.event.oldValues.alternateId == expectedExistingAlternateId
+                assert result.event.newValues.alternateId == expectedTargetAlternateId
+            }
+        where: 'the following alternate IDs are provided'
+            scenario                               | existingAlternateId | targetAlternateId || expectedExistingAlternateId | expectedTargetAlternateId | expectedPayloadAlternateId
+            'no new or old alternate ID'           | null                | null              || null                        | null                      | ''
+            'same new and old alternate ID'        | 'someAlternateId'   | 'someAlternateId' || null                        | null                      | 'someAlternateId'
+            'new alternate id no old alternate ID' | null                | 'someAlternateId' || ''                          | 'someAlternateId'         | 'someAlternateId'
     }
 }
