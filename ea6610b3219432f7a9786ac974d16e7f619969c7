@@ -175,6 +175,30 @@
       },
       "revId": "ea6610b3219432f7a9786ac974d16e7f619969c7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e36a0d6_834fb20e",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-01T15:46:48Z",
+      "side": 1,
+      "message": "Guys, after I removed null check, the build got failed. Please see the build logs.\n\n[ERROR]   Run 1: NetworkCmProxyControllerSpec.Getting module definitions filtering on #scenario:558 Condition not satisfied:\n\nCannot invoke \\\"java.util.Collection.iterator()\\\" because \\\"moduleDefinitions\\\" is null\"",
+      "parentUuid": "c4417972_1dca6a24",
+      "range": {
+        "startLine": 345,
+        "startChar": 8,
+        "endLine": 345,
+        "endChar": 40
+      },
+      "revId": "ea6610b3219432f7a9786ac974d16e7f619969c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

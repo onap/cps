@@ -16,6 +16,23 @@
       "message": "recheck",
       "revId": "9577b3e78da1ba9f74bab7657cdecf8599ad8dcc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6fdbb28_126c98fb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-01T15:46:48Z",
+      "side": 1,
+      "message": "Please find the report from build.",
+      "revId": "9577b3e78da1ba9f74bab7657cdecf8599ad8dcc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
