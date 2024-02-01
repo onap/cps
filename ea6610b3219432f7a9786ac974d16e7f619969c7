@@ -16,6 +16,52 @@
       "message": "recheck",
       "revId": "ea6610b3219432f7a9786ac974d16e7f619969c7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36691b39_2e4a654a",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-02-01T14:38:13Z",
+      "side": 1,
+      "message": "NB :Lack of input validation: The code does not validate the input parameter cmHandleId before using it in the method calls.",
+      "range": {
+        "startLine": 331,
+        "startChar": 75,
+        "endLine": 331,
+        "endChar": 98
+      },
+      "revId": "ea6610b3219432f7a9786ac974d16e7f619969c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e4c598c_e830d27c",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-02-01T14:38:13Z",
+      "side": 1,
+      "message": "NB: The null check on the moduleDefinitions variable is unnecessary since the getModuleDefinitionsByCmHandleId() method will always return a non-null value.",
+      "range": {
+        "startLine": 345,
+        "startChar": 8,
+        "endLine": 345,
+        "endChar": 40
+      },
+      "revId": "ea6610b3219432f7a9786ac974d16e7f619969c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
