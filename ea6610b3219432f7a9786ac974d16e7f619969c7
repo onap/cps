@@ -199,6 +199,30 @@
       },
       "revId": "ea6610b3219432f7a9786ac974d16e7f619969c7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6fd5d4c7_b54d8fa0",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-01T16:45:03Z",
+      "side": 1,
+      "message": "Many thanks for the call and clarifications. I\u0027ve updated the testwares accordingly.",
+      "parentUuid": "0e36a0d6_834fb20e",
+      "range": {
+        "startLine": 345,
+        "startChar": 8,
+        "endLine": 345,
+        "endChar": 40
+      },
+      "revId": "ea6610b3219432f7a9786ac974d16e7f619969c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
