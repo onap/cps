@@ -44,7 +44,7 @@ class NcmpDatastoreRequestHandlerSpec extends Specification {
     def 'Attempt to execute async get request with #scenario.'() {
         given: 'notification feature is turned on/off'
             objectUnderTest.notificationFeatureEnabled = notificationFeatureEnabled
-        and: ' a flag to track the network service call'
+        and: 'a flag to track the network service call'
             def networkServiceMethodCalled = false
         and: 'the (mocked) service will use the flag to indicate if it is called'
             mockNetworkCmProxyDataService.getResourceDataForCmHandle('ds', 'ch1', 'resource1', 'options', _, _) >> {
@@ -54,7 +54,7 @@ class NcmpDatastoreRequestHandlerSpec extends Specification {
             objectUnderTest.executeRequest('ds', 'ch1', 'resource1', 'options', topic, false)
         then: 'the task is executed in an async fashion or not'
             expectedCalls * spiedCpsNcmpTaskExecutor.executeTask(*_)
-        and: 'the service request is always invoked within 1 seconds'
+        and: 'the service request is invoked'
             new PollingConditions().within(1) {
                 assert networkServiceMethodCalled == true
             }
@@ -97,7 +97,7 @@ class NcmpDatastoreRequestHandlerSpec extends Specification {
             objectUnderTest.executeRequest('myTopic', dataOperationRequest)
         then: 'the task is executed in an async fashion'
             1 * spiedCpsNcmpTaskExecutor.executeTask(*_)
-        and: 'the network service is invoked within 1 seconds'
+        and: 'the network service is invoked'
             new PollingConditions().within(1) {
                 assert networkServiceMethodCalled == true
             }
