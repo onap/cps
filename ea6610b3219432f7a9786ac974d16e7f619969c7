@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0bfa1dda_e9310d2a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-01T14:42:43Z",
+      "side": 1,
+      "message": "Many thanks for your reviews, please see my comments.",
+      "revId": "ea6610b3219432f7a9786ac974d16e7f619969c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "36691b39_2e4a654a",
@@ -41,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "34c02cc5_3bf5288b",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-01T14:42:43Z",
+      "side": 1,
+      "message": "It will be verified in the service layer via CpsValidator class.",
+      "parentUuid": "36691b39_2e4a654a",
+      "range": {
+        "startLine": 331,
+        "startChar": 75,
+        "endLine": 331,
+        "endChar": 98
+      },
+      "revId": "ea6610b3219432f7a9786ac974d16e7f619969c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0e4c598c_e830d27c",
@@ -54,6 +95,30 @@
       "writtenOn": "2024-02-01T14:38:13Z",
       "side": 1,
       "message": "NB: The null check on the moduleDefinitions variable is unnecessary since the getModuleDefinitionsByCmHandleId() method will always return a non-null value.",
+      "range": {
+        "startLine": 345,
+        "startChar": 8,
+        "endLine": 345,
+        "endChar": 40
+      },
+      "revId": "ea6610b3219432f7a9786ac974d16e7f619969c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2918c154_b350b216",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-01T14:42:43Z",
+      "side": 1,
+      "message": "It is necessary since the line 346 would get NullPointerException if the service does not return module definition for the decleration on line 334.",
+      "parentUuid": "0e4c598c_e830d27c",
       "range": {
         "startLine": 345,
         "startChar": 8,
