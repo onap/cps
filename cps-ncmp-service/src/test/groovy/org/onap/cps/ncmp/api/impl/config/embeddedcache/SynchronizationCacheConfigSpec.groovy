@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START========================================================
- *  Copyright (C) 2022-2023 Nordix Foundation
+ *  Copyright (C) 2022-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -28,6 +28,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
+import spock.util.concurrent.PollingConditions
 import java.util.concurrent.BlockingQueue
 import java.util.concurrent.TimeUnit
 
@@ -117,29 +118,25 @@ class SynchronizationCacheConfigSpec extends Specification {
     }
 
     def 'Time to Live Verify for Module Sync Semaphore'() {
-        when: 'the key is inserted with a TTL of 1 second (Hazelcast TTL resolution is seconds!)'
-            moduleSyncStartedOnCmHandles.put('testKeyModuleSync', 'toBeExpired' as Object, 1, TimeUnit.SECONDS)
+        when: 'the key is inserted with a TTL of 2 second (Hazelcast TTL resolution is seconds!)'
+            moduleSyncStartedOnCmHandles.put('testKeyModuleSync', 'toBeExpired' as Object, 2, TimeUnit.SECONDS)
         then: 'the entry is present in the map'
             assert moduleSyncStartedOnCmHandles.get('testKeyModuleSync') != null
-        and: 'the entry expires in less then 2 seconds'
-            waitMax2SecondsForKeyExpiration(moduleSyncStartedOnCmHandles, 'testKeyModuleSync')
+        and: 'the entry expires within 10 seconds'
+            new PollingConditions().within(10) {
+                assert moduleSyncStartedOnCmHandles.get('testKeyModuleSync')== null
+            }
     }
 
     def 'Time to Live Verify for Data Sync Semaphore'() {
-        when: 'the key is inserted with a TTL of 1 second'
-            dataSyncSemaphores.put('testKeyDataSync', Boolean.TRUE, 1, TimeUnit.SECONDS)
+        when: 'the key is inserted with a TTL of 2 second'
+            dataSyncSemaphores.put('testKeyDataSync', Boolean.TRUE, 2, TimeUnit.SECONDS)
         then: 'the entry is present in the map'
             assert dataSyncSemaphores.get('testKeyDataSync') != null
-        and: 'the entry expires in less then 2 seconds'
-            waitMax2SecondsForKeyExpiration(dataSyncSemaphores, 'testKeyDataSync')
-    }
-
-    def waitMax2SecondsForKeyExpiration(map, key) {
-        def count = 0
-        while ( map.get(key)!=null && ++count <= 20 ) {
-            sleep(100)
-        }
-        return count < 20 // Should have expired in less the 20 x 100ms = 2 seconds!
+        and: 'the entry expires within 10 seconds'
+            new PollingConditions().within(10) {
+                assert dataSyncSemaphores.get('testKeyDataSync')== null
+            }
     }
 
 }

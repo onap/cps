@@ -44,7 +44,7 @@ class NcmpDatastoreRequestHandlerSpec extends Specification {
     def 'Attempt to execute async get request with #scenario.'() {
         given: 'notification feature is turned on/off'
             objectUnderTest.notificationFeatureEnabled = notificationFeatureEnabled
-        and: ' a flag to track the network service call'
+        and: 'a flag to track the network service call'
             def networkServiceMethodCalled = false
         and: 'the (mocked) service will use the flag to indicate if it is called'
             mockNetworkCmProxyDataService.getResourceDataForCmHandle('ds', 'ch1', 'resource1', 'options', _, _) >> {

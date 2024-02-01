@@ -21,8 +21,6 @@
 
 package org.onap.cps.ncmp.api.impl.operations
 
-import org.onap.cps.events.EventsPublisher
-
 import static org.onap.cps.ncmp.api.impl.events.mapper.CloudEventMapper.toTargetEvent
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_OPERATIONAL
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING
@@ -33,8 +31,8 @@ import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNABLE_TO_READ_RESOURCE_D
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.DMI_SERVICE_NOT_RESPONDING
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import org.onap.cps.events.EventsPublisher
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration
-
 import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException
 import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder
 import org.onap.cps.ncmp.api.impl.utils.context.CpsApplicationContext
@@ -49,6 +47,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.http.HttpStatus
 import spock.lang.Shared
+import spock.util.concurrent.PollingConditions
 import java.util.concurrent.TimeoutException
 
 @SpringBootTest
@@ -108,13 +107,20 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             def expectedBatchRequestAsJson = '{"operations":[{"operation":"read","operationId":"operational-14","datastore":"ncmp-datastore:passthrough-operational","options":"some option","resourceIdentifier":"some resource identifier","cmHandles":[{"id":"some-cm-handle","cmHandleProperties":{"prop1":"val1"}}]}]}'
             mockDmiRestClient.postOperationWithJsonData(expectedDmiBatchResourceDataUrl, _, READ.operationName) >> responseFromDmi
             dmiServiceUrlBuilder.getDataOperationRequestUrl(_, _) >> expectedDmiBatchResourceDataUrl
+        and: ' a flag to track the post operation call'
+            def postOperationWithJsonDataMethodCalled = false
+        and: 'the (mocked) dmi rest client will use the flag to indicate it is called and capture the request body'
+            mockDmiRestClient.postOperationWithJsonData(expectedDmiBatchResourceDataUrl, _, READ) >> { args ->
+                requestBodyAsJsonStringArg = args[1]
+                postOperationWithJsonDataMethodCalled = true
+            }
         when: 'get resource data for group of cm handles are invoked'
             objectUnderTest.requestResourceDataFromDmi('my-topic-name', dataOperationRequest, 'requestId')
-        then: 'wait a little to allow execution of service method by task executor (on separate thread)'
-            Thread.sleep(100)
-        then: 'validate ncmp generated dmi request body json args'
-            1 * mockDmiRestClient.postOperationWithJsonData(expectedDmiBatchResourceDataUrl, _, READ) >> { args -> requestBodyAsJsonStringArg = args[1] }
-            assert requestBodyAsJsonStringArg == expectedBatchRequestAsJson
+        then: 'validate the post operation was called and ncmp generated dmi request body json args within 1 second'
+            new PollingConditions().within(1) {
+                assert postOperationWithJsonDataMethodCalled == true
+                assert requestBodyAsJsonStringArg == expectedBatchRequestAsJson
+            }
     }
 
     def 'Execute (async) data operation from DMI service for #scenario.'() {
