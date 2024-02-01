@@ -36,7 +36,8 @@ public enum NcmpResponseStatus {
     SUBSCRIPTION_PENDING("106", "subscription pending for all cm handles"),
     UNKNOWN_ERROR("108", "Unknown error"),
     CM_HANDLE_ALREADY_EXIST("109", "cm-handle already exists"),
-    CM_HANDLE_INVALID_ID("110", "cm-handle has an invalid character(s) in id");
+    CM_HANDLE_INVALID_ID("110", "cm-handle has an invalid character(s) in id"),
+    ALTERNATE_ID_ALREADY_ASSOCIATED("111", "cm-handle id already associated with this alternate id");
 
     private final String code;
     private final String message;
