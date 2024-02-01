@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c794b63_7198eb48",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/FilterStrategiesIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-02-01T14:21:19Z",
+      "side": 1,
+      "message": "not sure about these test cases where we are checking if a method is NOT called since we could get a false positive. I added an initial delay to the start to try and mitigate it but I\u0027m not sure what the best practice is here",
+      "range": {
+        "startLine": 68,
+        "startChar": 8,
+        "endLine": 71,
+        "endChar": 13
+      },
+      "revId": "ffe394e2171c269b20ac43e6a6ad4e574725d200",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
