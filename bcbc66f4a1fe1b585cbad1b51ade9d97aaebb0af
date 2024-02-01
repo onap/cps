@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0aad8b38_eea47f8c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-01T16:07:51Z",
+      "side": 1,
+      "message": "can you add an update in the release notes (for the next delivery)",
+      "revId": "bcbc66f4a1fe1b585cbad1b51ade9d97aaebb0af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
