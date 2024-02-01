@@ -151,6 +151,30 @@
       },
       "revId": "ea6610b3219432f7a9786ac974d16e7f619969c7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4417972_1dca6a24",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-01T14:56:24Z",
+      "side": 1,
+      "message": "Ok as per reviews, I have removed the null check here.",
+      "parentUuid": "9e66fd9e_3c8352ab",
+      "range": {
+        "startLine": 345,
+        "startChar": 8,
+        "endLine": 345,
+        "endChar": 40
+      },
+      "revId": "ea6610b3219432f7a9786ac974d16e7f619969c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
