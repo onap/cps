@@ -35,6 +35,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f584e32_b473fdf2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-02-01T11:18:27Z",
+      "side": 1,
+      "message": "resolved comments",
+      "revId": "71dc0208f1f687ee3e823b72d80cc1fec0318b59",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1138d6e1_40270005",
@@ -48,6 +65,30 @@
       "writtenOn": "2024-02-01T10:38:58Z",
       "side": 1,
       "message": "I think you just need the below copyright.\n\nCopyright (C) 2024 TechMahindra Ltd.",
+      "range": {
+        "startLine": 3,
+        "startChar": 3,
+        "endLine": 4,
+        "endChar": 53
+      },
+      "revId": "71dc0208f1f687ee3e823b72d80cc1fec0318b59",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "770ff2cc_80c71c7f",
+        "filename": "docs/cps-delta-endpoints.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-02-01T11:18:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1138d6e1_40270005",
       "range": {
         "startLine": 3,
         "startChar": 3,
@@ -75,6 +116,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9dc437fe_a660c5da",
+        "filename": "docs/cps-delta-feature.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-02-01T11:18:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "562b68e5_9d8156ce",
+      "revId": "71dc0208f1f687ee3e823b72d80cc1fec0318b59",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bf0368c7_336a289f",
@@ -88,6 +147,30 @@
       "writtenOn": "2024-02-01T10:38:58Z",
       "side": 1,
       "message": "amm.. for future this is fine but I think we should document what we have delivered now. and when we deliver the remaining functionality we will update the docs.",
+      "range": {
+        "startLine": 18,
+        "startChar": 6,
+        "endLine": 18,
+        "endChar": 110
+      },
+      "revId": "71dc0208f1f687ee3e823b72d80cc1fec0318b59",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b463f09f_0ee7fe06",
+        "filename": "docs/cps-delta-feature.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-02-01T11:18:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bf0368c7_336a289f",
       "range": {
         "startLine": 18,
         "startChar": 6,
