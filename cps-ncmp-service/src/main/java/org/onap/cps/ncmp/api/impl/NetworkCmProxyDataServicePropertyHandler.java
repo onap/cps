@@ -22,6 +22,7 @@
 
 package org.onap.cps.ncmp.api.impl;
 
+import static org.onap.cps.ncmp.api.NcmpResponseStatus.ALTERNATE_ID_ALREADY_ASSOCIATED;
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLES_NOT_FOUND;
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLE_INVALID_ID;
 import static org.onap.cps.ncmp.api.impl.NetworkCmProxyDataServicePropertyHandler.PropertyType.DMI_PROPERTY;
@@ -81,11 +82,17 @@ public class NetworkCmProxyDataServicePropertyHandler {
         for (final NcmpServiceCmHandle ncmpServiceCmHandle : ncmpServiceCmHandles) {
             final String cmHandleId = ncmpServiceCmHandle.getCmHandleId();
             try {
-                final DataNode existingCmHandleDataNode = inventoryPersistence.getCmHandleDataNode(cmHandleId)
-                        .iterator().next();
-                updateAlternateId(existingCmHandleDataNode, ncmpServiceCmHandle);
-                processUpdates(existingCmHandleDataNode, ncmpServiceCmHandle);
-                cmHandleRegistrationResponses.add(CmHandleRegistrationResponse.createSuccessResponse(cmHandleId));
+                if (cmHandleIdMapper.isDuplicateId(ncmpServiceCmHandle.getCmHandleId(),
+                        ncmpServiceCmHandle.getAlternateId())) {
+                    cmHandleRegistrationResponses.add(CmHandleRegistrationResponse.createFailureResponse(cmHandleId,
+                            ALTERNATE_ID_ALREADY_ASSOCIATED));
+                } else {
+                    final DataNode existingCmHandleDataNode = inventoryPersistence.getCmHandleDataNode(cmHandleId)
+                            .iterator().next();
+                    updateAlternateId(existingCmHandleDataNode, ncmpServiceCmHandle);
+                    processUpdates(existingCmHandleDataNode, ncmpServiceCmHandle);
+                    cmHandleRegistrationResponses.add(CmHandleRegistrationResponse.createSuccessResponse(cmHandleId));
+                }
             } catch (final DataNodeNotFoundException e) {
                 log.error("Unable to find dataNode for cmHandleId : {} , caused by : {}", cmHandleId, e.getMessage());
                 cmHandleRegistrationResponses.add(

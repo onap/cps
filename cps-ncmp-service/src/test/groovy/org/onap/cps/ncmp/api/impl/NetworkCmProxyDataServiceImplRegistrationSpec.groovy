@@ -22,6 +22,11 @@
 package org.onap.cps.ncmp.api.impl
 
 import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.Status
+import org.onap.cps.ncmp.api.NcmpResponseStatus
+import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevelManager
+import org.onap.cps.ncmp.api.impl.utils.CmHandleIdMapper
+import org.onap.cps.ncmp.api.models.UpgradedCmHandles
+
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLES_NOT_FOUND
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLE_ALREADY_EXIST
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLE_INVALID_ID
@@ -439,6 +444,21 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'the new alternate id is added to the cache'
             1 * mockCmHandleIdMapper.addMapping('cmhandle1', 'my-alternate-id-1')
+    }
+
+    def 'Attempting to register a cmhandle with an already cached id.'() {
+        given: 'a registration of a cmhandle with an alternate id'
+            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server')
+            dmiPluginRegistration.createdCmHandles = [new NcmpServiceCmHandle(cmHandleId: 'ch-1', alternateId: 'my alternate id')]
+        and: 'one of the ids are duplicated'
+            mockCmHandleIdMapper.isDuplicateId('ch-1', 'my alternate id') >> true
+        when: 'registration is attempted'
+            def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+        then: 'a response is received'
+            assert response != null
+        and: 'the cmhandle has a failed state with the appropriate NCMP response status'
+            assert Status.FAILURE == response.createdCmHandles[0].status
+            assert NcmpResponseStatus.ALTERNATE_ID_ALREADY_ASSOCIATED == response.createdCmHandles[0].ncmpResponseStatus
     }
 
     def getObjectUnderTest() {
