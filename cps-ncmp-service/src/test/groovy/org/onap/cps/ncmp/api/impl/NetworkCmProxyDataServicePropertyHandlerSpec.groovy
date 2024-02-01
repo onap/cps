@@ -26,6 +26,7 @@ package org.onap.cps.ncmp.api.impl
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.api.impl.utils.CmHandleIdMapper
 
+import static org.onap.cps.ncmp.api.NcmpResponseStatus.ALTERNATE_ID_ALREADY_ASSOCIATED
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLES_NOT_FOUND
@@ -217,6 +218,24 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
             assert thrownException == originalException
         and: 'the mapping is removed from the cache'
             1 * mockCmHandleIdMapper.removeMapping(cmHandleId)
+    }
+
+    def 'Attempt to update a cmhandle with an already cached alternate id.'() {
+        given: 'cm handles request'
+            def cmHandleUpdateRequest = [new NcmpServiceCmHandle(cmHandleId: cmHandleId, alternateId: 'my alternate id')]
+        and: 'the id already added to the alternate id cache'
+            mockCmHandleIdMapper.isDuplicateId(cmHandleId, 'my alternate id') >> true
+        when: 'update data node leaves is called using correct parameters'
+            def response = objectUnderTest.updateCmHandleProperties(cmHandleUpdateRequest)
+        then: 'one failed registration response'
+            response.size() == 1
+        and: 'it has expected error details'
+            with(response.get(0)) {
+                assert it.status == Status.FAILURE
+                assert it.cmHandle == cmHandleId
+                assert it.ncmpResponseStatus == ALTERNATE_ID_ALREADY_ASSOCIATED
+                assert it.errorText.contains('cannot re-assign')
+            }
     }
 
     def convertToProperties(expectedPropertiesAfterUpdateAsMap) {
