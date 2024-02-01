@@ -16,6 +16,46 @@
       "message": "recheck",
       "revId": "7700f96ba32b1bbda40d4c85bcbfe3828b458b33",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c69b4185_f439c92d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-01T11:07:22Z",
+      "side": 1,
+      "message": "llosk good btu, awaiting verify now\nbut do need to fix teh import issue mentioend below",
+      "revId": "7700f96ba32b1bbda40d4c85bcbfe3828b458b33",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb82d507_524b7286",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-01T11:07:22Z",
+      "side": 1,
+      "message": "never use .* . Set you ID limit for using .* to 999",
+      "range": {
+        "startLine": 71,
+        "startChar": 66,
+        "endLine": 71,
+        "endChar": 67
+      },
+      "revId": "7700f96ba32b1bbda40d4c85bcbfe3828b458b33",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
