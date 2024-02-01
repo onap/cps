@@ -28,6 +28,7 @@ import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.slf4j.LoggerFactory
 import spock.lang.Specification
+import spock.util.concurrent.PollingConditions
 
 class CpsNcmpTaskExecutorSpec extends Specification {
 
@@ -49,11 +50,11 @@ class CpsNcmpTaskExecutorSpec extends Specification {
     def 'Execute successful task.'() {
         when: 'task is executed'
             objectUnderTest.executeTask(taskSupplier(), enoughTime)
-        and: 'wait a little for async execution completion'
-            Thread.sleep(10)
-        then: 'an event is logged with level INFO'
-            def loggingEvent = getLoggingEvent()
-            assert loggingEvent.level == Level.INFO
+        then: 'an event is logged with level INFO within 100 milliseconds'
+            new PollingConditions().within(0.1) {
+                def loggingEvent = getLoggingEvent()
+                assert loggingEvent.level == Level.INFO
+            }
         and: 'the log indicates the task completed successfully'
             assert loggingEvent.formattedMessage == 'Async task completed successfully.'
     }
@@ -61,11 +62,11 @@ class CpsNcmpTaskExecutorSpec extends Specification {
     def 'Execute failing task.'() {
         when: 'task is executed'
             objectUnderTest.executeTask(taskSupplierForFailingTask(), enoughTime)
-        and: 'wait a little for async execution completion'
-            Thread.sleep(10)
-        then: 'an event is logged with level ERROR'
-            def loggingEvent = getLoggingEvent()
-            assert loggingEvent.level == Level.ERROR
+        then: 'an event is logged with level ERROR within 100 milliseconds'
+            new PollingConditions().within(0.1) {
+                def loggingEvent = getLoggingEvent()
+                assert loggingEvent.level == Level.ERROR
+            }
         and: 'the original error message is logged'
             assert loggingEvent.formattedMessage.contains('original exception message')
     }

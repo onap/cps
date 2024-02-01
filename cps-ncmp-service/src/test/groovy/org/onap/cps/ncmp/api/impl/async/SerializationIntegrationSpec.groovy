@@ -38,6 +38,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.annotation.DirtiesContext
 import org.testcontainers.spock.Testcontainers
+import spock.util.concurrent.PollingConditions
 
 import java.util.concurrent.TimeUnit
 
@@ -64,12 +65,19 @@ class SerializationIntegrationSpec extends ConsumerBaseSpec {
     def 'Forwarding DataOperation Event Data.'() {
         given: 'a data operation cloud event'
             def cloudEvent = createCloudEvent()
+        and: 'a flag to track the publish cloud event call'
+            def publishCloudEventMethodCalled = false
+        and: 'the (mocked) events publisher will use the flag to indicate if it is called and will capture the cloud event'
+            mockEventsPublisher.publishCloudEvent('some client topic', 'some-correlation-id', _) >> { args -> {
+                capturedForwardedEvent = args[2]
+                publishCloudEventMethodCalled = true;
+            }}
         when: 'send the event'
             cloudEventKafkaTemplate.send(topic, cloudEvent)
-        and: 'wait a little for async processing of message'
-            TimeUnit.MILLISECONDS.sleep(300)
-        then: 'the event has been forwarded'
-            1 * mockEventsPublisher.publishCloudEvent('some client topic', 'some-correlation-id', _) >> { args -> { capturedForwardedEvent = args[2] } }
+        then: 'the event has been forwarded within 300 milliseconds'
+            new PollingConditions().within(0.3) {
+                publishCloudEventMethodCalled == true
+            }
         and: 'the forwarded event is identical to the event that was sent'
             assert capturedForwardedEvent == cloudEvent
     }
@@ -77,12 +85,19 @@ class SerializationIntegrationSpec extends ConsumerBaseSpec {
     def 'Forwarding AsyncRestRequestResponse Event Data.'() {
         given: 'async request response legacy event'
             def dmiAsyncRequestResponseEvent = new DmiAsyncRequestResponseEvent(eventId: 'my-event-id',eventTarget: 'some client topic')
+        and: 'a flag to track the publish event call'
+            def publishEventMethodCalled = false
+        and: 'the (mocked) events publisher will use the flag to indicate if it is called and will capture the event'
+            mockEventsPublisher.publishEvent('some client topic', 'my-event-id', _) >> { args -> {
+                capturedForwardedEvent = args[2]
+                publishEventMethodCalled = true;
+            }}
         when: 'send the event'
             legacyEventKafkaTemplate.send(topic, dmiAsyncRequestResponseEvent)
-        and: 'wait a little for async processing of message'
-            TimeUnit.MILLISECONDS.sleep(300)
-        then: 'the event has been forwarded'
-            1 * mockEventsPublisher.publishEvent('some client topic', 'my-event-id', _) >> { args -> { capturedForwardedEvent = args[2] } }
+        then: 'the event has been forwarded within 300 milliseconds'
+            new PollingConditions().within(0.3) {
+                publishEventMethodCalled == true
+            }
         and: 'the captured id and target of the forwarded event is same as the one that was sent'
             assert capturedForwardedEvent.eventId == dmiAsyncRequestResponseEvent.eventId
             assert capturedForwardedEvent.eventTarget == dmiAsyncRequestResponseEvent.eventTarget

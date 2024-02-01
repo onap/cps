@@ -28,6 +28,8 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
+import spock.util.concurrent.PollingConditions
+
 import java.util.concurrent.BlockingQueue
 import java.util.concurrent.TimeUnit
 
@@ -121,8 +123,10 @@ class SynchronizationCacheConfigSpec extends Specification {
             moduleSyncStartedOnCmHandles.put('testKeyModuleSync', 'toBeExpired' as Object, 1, TimeUnit.SECONDS)
         then: 'the entry is present in the map'
             assert moduleSyncStartedOnCmHandles.get('testKeyModuleSync') != null
-        and: 'the entry expires in less then 2 seconds'
-            waitMax2SecondsForKeyExpiration(moduleSyncStartedOnCmHandles, 'testKeyModuleSync')
+        and: 'the entry expires within 2 seconds'
+            new PollingConditions().within(2) {
+                assert moduleSyncStartedOnCmHandles.get('testKeyModuleSync')== null
+            }
     }
 
     def 'Time to Live Verify for Data Sync Semaphore'() {
@@ -130,16 +134,10 @@ class SynchronizationCacheConfigSpec extends Specification {
             dataSyncSemaphores.put('testKeyDataSync', Boolean.TRUE, 1, TimeUnit.SECONDS)
         then: 'the entry is present in the map'
             assert dataSyncSemaphores.get('testKeyDataSync') != null
-        and: 'the entry expires in less then 2 seconds'
-            waitMax2SecondsForKeyExpiration(dataSyncSemaphores, 'testKeyDataSync')
-    }
-
-    def waitMax2SecondsForKeyExpiration(map, key) {
-        def count = 0
-        while ( map.get(key)!=null && ++count <= 20 ) {
-            sleep(100)
-        }
-        return count < 20 // Should have expired in less the 20 x 100ms = 2 seconds!
+        and: 'the entry expires within 2 seconds'
+            new PollingConditions().within(2) {
+                assert dataSyncSemaphores.get('testKeyDataSync')== null
+            }
     }
 
 }

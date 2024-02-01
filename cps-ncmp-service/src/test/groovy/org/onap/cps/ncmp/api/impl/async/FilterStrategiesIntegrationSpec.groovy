@@ -32,6 +32,8 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.annotation.DirtiesContext
 import org.testcontainers.spock.Testcontainers
+import spock.util.concurrent.PollingConditions
+
 import java.util.concurrent.TimeUnit
 
 @SpringBootTest(classes =[DataOperationEventConsumer, AsyncRestRequestResponseEventConsumer, RecordFilterStrategies, KafkaConfig])
@@ -55,23 +57,35 @@ class FilterStrategiesIntegrationSpec extends ConsumerBaseSpec {
                 .withType('DataOperationEvent')
                 .withSource(URI.create('some-source'))
                 .build()
+        and: 'a flag to track the publish event call'
+            def publishEventMethodCalled = false
+        and: 'the (mocked) events publisher will use the flag to indicate if it is called'
+            mockEventsPublisher.publishEvent(*_) >> {
+                publishEventMethodCalled = true
+            }
         when: 'send the cloud event'
             cloudEventKafkaTemplate.send(topic, cloudEvent)
-        and: 'wait a little for async processing of message'
-            TimeUnit.MILLISECONDS.sleep(300)
-        then: 'event is not consumed'
-            0 * mockEventsPublisher.publishEvent(*_)
+        then: 'event is not consumed within 300 milliseconds'
+            new PollingConditions(initialDelay: 0.3).within(0.3) {
+                assert publishEventMethodCalled == false
+            }
     }
 
     def 'Legacy event consumer with valid legacy event.'() {
         given: 'a cloud event of type: #eventType'
             DmiAsyncRequestResponseEvent legacyEvent = new DmiAsyncRequestResponseEvent(eventId:'legacyEventId', eventTarget:'legacyEventTarget')
+        and: 'a flag to track the publish event call'
+            def publishEventMethodCalled = false
+        and: 'the (mocked) events publisher will use the flag to indicate if it is called'
+            mockEventsPublisher.publishEvent(*_) >> {
+                publishEventMethodCalled = true
+            }
         when: 'send the cloud event'
             legacyEventKafkaTemplate.send(topic, legacyEvent)
-        and: 'wait a little for async processing of message'
-            TimeUnit.MILLISECONDS.sleep(300)
-        then: 'the event is consumed by the (legacy) AsynRestRequest consumer'
-            1 * mockEventsPublisher.publishEvent(*_)
+        then: 'the event is consumed by the (legacy) AsynRestRequest consumer within 300 milliseconds'
+            new PollingConditions().within(0.3) {
+                assert publishEventMethodCalled == true
+            }
     }
 
     def 'Filtering Cloud Events on Type.'() {
@@ -80,28 +94,40 @@ class FilterStrategiesIntegrationSpec extends ConsumerBaseSpec {
                 .withType(eventType)
                 .withSource(URI.create('some-source'))
                 .build()
+        and: 'a flag to track the publish event call'
+            def publishEventMethodCalled = false
+        and: 'the (mocked) events publisher will use the flag to indicate if it is called'
+            mockEventsPublisher.publishCloudEvent(*_) >> {
+                publishEventMethodCalled = true
+            }
         when: 'send the cloud event'
             cloudEventKafkaTemplate.send(topic, cloudEvent)
-        and: 'wait a little for async processing of message'
-            TimeUnit.MILLISECONDS.sleep(300)
-        then: 'the event has only been forwarded for the correct type'
-            expectedNUmberOfCallsToPublishForwardedEvent * mockEventsPublisher.publishCloudEvent(*_)
+        then: 'the event has only been forwarded for the correct type within 300 milliseconds'
+            new PollingConditions(initialDelay: initialDelay).within(0.3) {
+                assert publishEventMethodCalled == expectedPublishCloudEventToBeCalled
+            }
         where: 'the following event types are used'
-            eventType                                        || expectedNUmberOfCallsToPublishForwardedEvent
-            'DataOperationEvent'                             || 1
-            'other type'                                     || 0
-            'any type contain the word "DataOperationEvent"' || 1
+            eventType                                        | initialDelay || expectedPublishCloudEventToBeCalled
+            'DataOperationEvent'                             | 0            || true
+            'other type'                                     | 0.3          || false
+            'any type contain the word "DataOperationEvent"' | 0            || true
     }
 
     //TODO Toine, add positive test with data to prove event is converted correctly (using correct factory)
 
     def 'Non cloud events on same Topic.'() {
+        given: 'a flag to track the publish event call'
+            def publishEventMethodCalled = false
+        and: 'the (mocked) events publisher will use the flag to indicate if it is called'
+            mockEventsPublisher.publishCloudEvent(*_) >> {
+                publishEventMethodCalled = true
+            }
         when: 'sending a non-cloud event on the same topic'
             legacyEventKafkaTemplate.send(topic, 'simple string event')
-        and: 'wait a little for async processing of message'
-            TimeUnit.MILLISECONDS.sleep(300)
         then: 'the event is not processed by this consumer'
-            0 * mockEventsPublisher.publishCloudEvent(*_)
+            new PollingConditions(initialDelay: 0.3).within(0.3) {
+                assert publishEventMethodCalled == false
+            }
     }
 
 }

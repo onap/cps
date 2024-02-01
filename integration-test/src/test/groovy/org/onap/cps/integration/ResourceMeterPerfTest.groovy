@@ -20,6 +20,8 @@
 
 package org.onap.cps.integration
 
+import spock.util.concurrent.PollingConditions
+
 import java.util.concurrent.TimeUnit
 import spock.lang.Specification
 
