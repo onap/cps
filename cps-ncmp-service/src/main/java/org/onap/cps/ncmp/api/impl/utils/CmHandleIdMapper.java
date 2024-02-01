@@ -55,12 +55,7 @@ public class CmHandleIdMapper {
 
 
     private boolean addMappingWithValidation(final String cmHandleId, final String alternateId) {
-        if (alternateIdPerCmHandleId.containsKey(cmHandleId)) {
-            final String originalAlternateId = alternateIdPerCmHandleId.get(cmHandleId);
-            if (!originalAlternateId.equals(alternateId)) {
-                log.warn("Alternate id update ignored, cannot update cm handle {}, already has an alternate id of {}",
-                        cmHandleId, originalAlternateId);
-            }
+        if (validateDuplication(cmHandleId, alternateId)) {
             return false;
         }
         if (StringUtils.isBlank(alternateId)) {
@@ -80,6 +75,22 @@ public class CmHandleIdMapper {
         if (alternateId != null) {
             cmHandleIdPerAlternateId.remove(alternateId);
         }
+    }
+
+    public boolean isDuplicateId(final String cmHandleId, final String alternateId) {
+        return validateDuplication(cmHandleId, alternateId);
+    }
+
+    private boolean validateDuplication(final String cmHandleId, final String alternateId) {
+        if (cmHandleIdPerAlternateId.get(alternateId) != null) {
+            log.warn("The given alternate id was added to the cache already: {}", alternateId);
+            return true;
+        }
+        if (alternateIdPerCmHandleId.get(cmHandleId) != null) {
+            log.warn("The given cmhandle id was added to the cache already: {}", cmHandleId);
+            return true;
+        }
+        return false;
     }
 
     private void initializeCache() {
