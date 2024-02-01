@@ -192,6 +192,13 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         return inventoryPersistence.getModuleDefinitionsByCmHandleId(cmHandleId);
     }
 
+    @Override
+    public Collection<ModuleDefinition> getModuleDefinitionsByCmHandleAndModule(final String cmHandleId,
+                                                                                final String moduleName,
+                                                                                final String moduleRevision) {
+        return inventoryPersistence.getModuleDefinitionsByCmHandleAndModule(cmHandleId, moduleName, moduleRevision);
+    }
+
     /**
      * Retrieve cm handles with details for the given query parameters.
      *

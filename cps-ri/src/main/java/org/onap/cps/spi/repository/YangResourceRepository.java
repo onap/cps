@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Pantheon.tech
- *  Modifications Copyright (C) 2021-2023 Nordix Foundation
+ *  Modifications Copyright (C) 2021-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -84,9 +84,12 @@ public interface YangResourceRepository extends JpaRepository<YangResourceEntity
             WHERE
                     dataspace.name = :dataspaceName
                 AND anchor.name = :anchorName
+                AND (:moduleName IS NULL OR yang_resource.module_name = :moduleName)
+                AND (:revision IS NULL OR yang_resource.revision = :revision)
             """, nativeQuery = true)
-    Set<YangResourceEntity> findAllModuleDefinitionsByDataspaceAndAnchor(
-            @Param("dataspaceName") String dataspaceName, @Param("anchorName") String anchorName);
+    Set<YangResourceEntity> findAllModuleDefinitionsByDataspaceAndAnchorAndModule(
+            @Param("dataspaceName") String dataspaceName, @Param("anchorName") String anchorName,
+            @Param("moduleName") String moduleName, @Param("revision") String revision);
 
     @Query(value = """
             SELECT DISTINCT
