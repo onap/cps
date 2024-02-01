@@ -55,15 +55,10 @@ public class CmHandleIdMapper {
 
 
     private boolean addMappingWithValidation(final String cmHandleId, final String alternateId) {
-        if (alternateIdPerCmHandleId.containsKey(cmHandleId)) {
-            final String originalAlternateId = alternateIdPerCmHandleId.get(cmHandleId);
-            if (!originalAlternateId.equals(alternateId)) {
-                log.warn("Alternate id update ignored, cannot update cm handle {}, already has an alternate id of {}",
-                        cmHandleId, originalAlternateId);
-            }
+        if (StringUtils.isBlank(alternateId)) {
             return false;
         }
-        if (StringUtils.isBlank(alternateId)) {
+        if (validateDuplication(cmHandleId, alternateId)) {
             return false;
         }
         alternateIdPerCmHandleId.put(cmHandleId, alternateId);
@@ -82,10 +77,29 @@ public class CmHandleIdMapper {
         }
     }
 
+    public boolean isDuplicateId(final String cmHandleId, final String alternateId) {
+        return validateDuplication(cmHandleId, alternateId);
+    }
+
+    private boolean validateDuplication(final String cmHandleId, final String alternateId) {
+        if (StringUtils.isBlank(alternateId)) {
+            return false;
+        }
+        if (cmHandleIdPerAlternateId.get(alternateId) != null) {
+            log.warn("The given alternate id was added to the cache already: {}", alternateId);
+            return true;
+        }
+        if (alternateIdPerCmHandleId.get(cmHandleId) != null) {
+            log.warn("The given cmhandle id was added to the cache already: {}", cmHandleId);
+            return true;
+        }
+        return false;
+    }
+
     private void initializeCache() {
         if (!cacheIsInitialized) {
             networkCmProxyCmHandleQueryService.getAllCmHandles().forEach(cmHandle ->
-                addMappingWithValidation(cmHandle.getCmHandleId(), cmHandle.getAlternateId())
+                    addMappingWithValidation(cmHandle.getCmHandleId(), cmHandle.getAlternateId())
             );
             log.info("Alternate ID cache initialized from DB with {} cm handle/alternate id pairs ",
                     alternateIdPerCmHandleId.size());
