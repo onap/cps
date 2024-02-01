@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4581869_bcccb553",
+        "filename": "docs/cps-delta-feature.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-01T11:53:10Z",
+      "side": 1,
+      "message": "NB: a new functionality",
+      "range": {
+        "startLine": 15,
+        "startChar": 27,
+        "endLine": 15,
+        "endChar": 53
+      },
+      "revId": "e51cd4808375781fcf8ca35dc1156bb9b1c8d3ea",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
