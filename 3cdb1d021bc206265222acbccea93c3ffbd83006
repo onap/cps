@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "308bd7ba_67cef5a7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-01T17:09:21Z",
+      "side": 1,
+      "message": "NB: do you really need to declare it as this type?!",
+      "range": {
+        "startLine": 78,
+        "startChar": 36,
+        "endLine": 78,
+        "endChar": 80
+      },
+      "revId": "3cdb1d021bc206265222acbccea93c3ffbd83006",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74adf99d_207b2779",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-01T17:09:21Z",
+      "side": 1,
+      "message": "NB: do you really need to declare it as this type?!",
+      "range": {
+        "startLine": 85,
+        "startChar": 36,
+        "endLine": 85,
+        "endChar": 80
+      },
+      "revId": "3cdb1d021bc206265222acbccea93c3ffbd83006",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c77f8e9_d5531ca0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleOperationsUtilsSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-01T17:09:21Z",
+      "side": 1,
+      "message": "NB: it would be OK to use teh production code constant here....",
+      "range": {
+        "startLine": 133,
+        "startChar": 64,
+        "endLine": 136,
+        "endChar": 63
+      },
+      "revId": "3cdb1d021bc206265222acbccea93c3ffbd83006",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

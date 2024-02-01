@@ -244,6 +244,30 @@
       },
       "revId": "ccb6baf0969287a3dad748ed27abf74c60d0201a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cadd5375_5b19ee05",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/resources/module/bookStoreAWithModules_M1_M2_Response.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-01T17:09:21Z",
+      "side": 1,
+      "message": "sorry, yes I forgot",
+      "parentUuid": "2f8cd9f7_237e4ad3",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 3
+      },
+      "revId": "ccb6baf0969287a3dad748ed27abf74c60d0201a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
