@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc99fd88_949a47b6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-02-01T11:41:39Z",
+      "side": 1,
+      "message": "debug",
+      "parentUuid": "a593ec1a_c8ae83c0",
+      "range": {
+        "startLine": 355,
+        "startChar": 20,
+        "endLine": 355,
+        "endChar": 24
+      },
+      "revId": "ccb6baf0969287a3dad748ed27abf74c60d0201a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0572f208_187fc2c1",
@@ -98,6 +122,48 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "45ffd191_4bbcc3b0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleOperationsUtils.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-02-01T11:41:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b82a098f_151139c9",
+      "revId": "ccb6baf0969287a3dad748ed27abf74c60d0201a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1d6f8b1_c1a45ec3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleOperationsUtils.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-02-01T11:41:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0572f208_187fc2c1",
+      "range": {
+        "startLine": 61,
+        "startChar": 4,
+        "endLine": 61,
+        "endChar": 11
+      },
+      "revId": "ccb6baf0969287a3dad748ed27abf74c60d0201a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bcd85452_0ad3809a",
@@ -115,6 +181,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b17ab7fd_229786cc",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/resources/module/bookStoreAWithModules_M1_M2_ResourcesResponse.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-02-01T11:41:39Z",
+      "side": 1,
+      "message": "There is an issue with gitview else it is correct.",
+      "parentUuid": "bcd85452_0ad3809a",
+      "revId": "ccb6baf0969287a3dad748ed27abf74c60d0201a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "627a5996_07e4cd79",
@@ -128,6 +212,30 @@
       "writtenOn": "2024-01-31T09:45:21Z",
       "side": 1,
       "message": "NB: stil have tabs?",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 3
+      },
+      "revId": "ccb6baf0969287a3dad748ed27abf74c60d0201a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f8cd9f7_237e4ad3",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/resources/module/bookStoreAWithModules_M1_M2_Response.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-02-01T11:41:39Z",
+      "side": 1,
+      "message": "there an issue with gitview else it is correct.",
+      "parentUuid": "627a5996_07e4cd79",
       "range": {
         "startLine": 2,
         "startChar": 0,
