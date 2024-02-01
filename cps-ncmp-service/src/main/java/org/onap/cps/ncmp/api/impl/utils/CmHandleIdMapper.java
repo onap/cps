@@ -82,6 +82,22 @@ public class CmHandleIdMapper {
         }
     }
 
+    public boolean isDuplicateId(final String cmHandleId, final String alternateId) {
+        return validateDuplication(cmHandleId, alternateId);
+    }
+
+    private boolean validateDuplication(final String cmHandleId, final String alternateId) {
+        if (alternateIdToCmHandleId(alternateId) != null) {
+            log.warn("The given alternate id was added to the cache already: {}", alternateId);
+            return true;
+        }
+        if (cmHandleIdToAlternateId(cmHandleId) != null) {
+            log.warn("The given cmhandle id was added to the cache already: {}", cmHandleId);
+            return true;
+        }
+        return false;
+    }
+
     private void initializeCache() {
         if (!cacheIsInitialized) {
             networkCmProxyCmHandleQueryService.getAllCmHandles().forEach(cmHandle ->
