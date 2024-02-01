@@ -127,6 +127,30 @@
       },
       "revId": "ea6610b3219432f7a9786ac974d16e7f619969c7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e66fd9e_3c8352ab",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-01T14:47:27Z",
+      "side": 1,
+      "message": "are you suer the service methods can return null??\nI agree with Sourabh w should NOT have redundant null checks\nif the service methods fails they should thrown an exception\nif there are NO definitions found an empty collection should be returned...\nfinaly: the original code did not have a null check eitehr!",
+      "parentUuid": "2918c154_b350b216",
+      "range": {
+        "startLine": 345,
+        "startChar": 8,
+        "endLine": 345,
+        "endChar": 40
+      },
+      "revId": "ea6610b3219432f7a9786ac974d16e7f619969c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
