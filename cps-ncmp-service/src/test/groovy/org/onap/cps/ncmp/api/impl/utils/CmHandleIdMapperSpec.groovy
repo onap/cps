@@ -114,4 +114,16 @@ class CmHandleIdMapperSpec extends Specification {
             'without alternate id'    | [new NcmpServiceCmHandle(cmHandleId: 'ch-1')]                       || null                | null
             'with blank alternate id' | [new NcmpServiceCmHandle(cmHandleId: 'ch-1', alternateId: ' ')]     || null                | null
     }
+
+    def 'Checking caches for duplicated values when: #scenario.'() {
+        when: 'the caches are checked for already registered values'
+            def result = objectUnderTest.isDuplicateId(cmHandleId, alternateId)
+        then: 'the expected value is returned'
+            assert result == expectedResult
+        where: 'the following values are given'
+            scenario                 | cmHandleId       | alternateId       || expectedResult
+            'values not cached'      | 'ch-1'           | 'alt-1'           || false
+            'cmhandle id is cached'  | 'my cmhandle id' | 'alt-1'           || true
+            'alternate id is cached' | 'ch-1'           | 'my alternate id' || true
+    }
 }
