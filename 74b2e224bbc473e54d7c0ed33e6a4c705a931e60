@@ -158,6 +158,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6172a53d_e7900ba4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationCacheConfigSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-02T15:55:01Z",
+      "side": 1,
+      "message": "Good point. FYI this is the test that randomly fails most often",
+      "parentUuid": "94c0ce13_134b9d81",
+      "range": {
+        "startLine": 121,
+        "startChar": 9,
+        "endLine": 121,
+        "endChar": 55
+      },
+      "revId": "74b2e224bbc473e54d7c0ed33e6a4c705a931e60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2b94b259_985e9f36",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationCacheConfigSpec.groovy",
         "patchSetId": 2
