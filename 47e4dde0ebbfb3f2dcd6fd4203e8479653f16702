@@ -47,6 +47,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2da25ab6_83e9f037",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmSubscriptionServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-02T11:12:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c41a0c0c_454fa042",
+      "range": {
+        "startLine": 46,
+        "startChar": 16,
+        "endLine": 47,
+        "endChar": 31
+      },
+      "revId": "47e4dde0ebbfb3f2dcd6fd4203e8479653f16702",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ad8397a2_5a8d9840",
@@ -60,6 +84,30 @@
       "writtenOn": "2024-02-02T10:24:53Z",
       "side": 1,
       "message": "Could add a leaf condition here to see if it still works\n\n    /cps/path/child[@param\u003d\u0027value\u0027]",
+      "range": {
+        "startLine": 37,
+        "startChar": 118,
+        "endLine": 37,
+        "endChar": 133
+      },
+      "revId": "47e4dde0ebbfb3f2dcd6fd4203e8479653f16702",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b5e13e94_21739369",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmSubscriptionServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-02T11:12:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad8397a2_5a8d9840",
       "range": {
         "startLine": 37,
         "startChar": 118,
