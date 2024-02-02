@@ -82,6 +82,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "420029f5_f58b2590",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/lcm/LcmEventsCreator.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-02T15:08:58Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e07c9351_8dbe0921",
+      "range": {
+        "startLine": 98,
+        "startChar": 8,
+        "endLine": 98,
+        "endChar": 65
+      },
+      "revId": "bcbc66f4a1fe1b585cbad1b51ade9d97aaebb0af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7a8c669e_f0bc83c2",
@@ -223,6 +247,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7806205b_d397d753",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/lcm/LcmEventsCreatorHelper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-02T15:08:58Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1c66e8a5_30480e89",
+      "range": {
+        "startLine": 178,
+        "startChar": 0,
+        "endLine": 179,
+        "endChar": 36
+      },
+      "revId": "bcbc66f4a1fe1b585cbad1b51ade9d97aaebb0af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2a3f53e7_4d0020b7",
@@ -236,6 +284,30 @@
       "writtenOn": "2024-02-02T10:57:14Z",
       "side": 1,
       "message": "You can also simply use !targetNcmpServiceCmHandle.getAlternateId().equals(existingNcmpServiceCmHandle.getAlternateId()) since alternateId will never be null.",
+      "range": {
+        "startLine": 224,
+        "startChar": 0,
+        "endLine": 225,
+        "endChar": 106
+      },
+      "revId": "bcbc66f4a1fe1b585cbad1b51ade9d97aaebb0af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c408b986_6ef0c183",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/lcm/LcmEventsCreatorHelper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-02T15:08:58Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2a3f53e7_4d0020b7",
       "range": {
         "startLine": 224,
         "startChar": 0,
