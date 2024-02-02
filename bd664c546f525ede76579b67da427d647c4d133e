@@ -22,6 +22,30 @@
       },
       "revId": "bd664c546f525ede76579b67da427d647c4d133e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68c04d85_ad4a187e",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/lcm/lcm-event-schema-v1.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-02-02T15:30:01Z",
+      "side": 1,
+      "message": "this alternateId is for the event. The one above is for the Values used on line 51 and 54 for the old and new values",
+      "parentUuid": "69d03f6b_747b4e12",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 10
+      },
+      "revId": "bd664c546f525ede76579b67da427d647c4d133e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
