@@ -16,6 +16,121 @@
       "message": "can you add an update in the release notes (for the next delivery)",
       "revId": "bcbc66f4a1fe1b585cbad1b51ade9d97aaebb0af",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4320693d_295ca5cb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/lcm/LcmEventsCreator.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-02T10:57:14Z",
+      "side": 1,
+      "message": "There is no need to null check, since the property will be returned as empty string instead of null during jackson deserialization",
+      "range": {
+        "startLine": 98,
+        "startChar": 8,
+        "endLine": 98,
+        "endChar": 65
+      },
+      "revId": "bcbc66f4a1fe1b585cbad1b51ade9d97aaebb0af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a8c669e_f0bc83c2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/lcm/LcmEventsCreatorHelper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-02T10:57:14Z",
+      "side": 1,
+      "message": "NB: This is for the delete case. and return purely empty set of old and new values. So for the delete case neither new nor old values will be populated in the payload, right?",
+      "range": {
+        "startLine": 84,
+        "startChar": 8,
+        "endLine": 84,
+        "endChar": 59
+      },
+      "revId": "bcbc66f4a1fe1b585cbad1b51ade9d97aaebb0af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "921c2e77_bcb31633",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/lcm/LcmEventsCreatorHelper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-02T10:57:14Z",
+      "side": 1,
+      "message": "NB: For the create case, you don\u0027t want to set alternateId to newValues?",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 118
+      },
+      "revId": "bcbc66f4a1fe1b585cbad1b51ade9d97aaebb0af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c35f316_1ed4e01f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/lcm/LcmEventsCreatorHelper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-02T10:57:14Z",
+      "side": 1,
+      "message": "if you set old value of the alternate id to empty string ( for the update case ) you lose the old value. I suggest you to pass existingNcmpServiceCmHandle to this method, and set the old value from that. E.g. old value from existingCmHandle the new value from targetCmHandle.",
+      "range": {
+        "startLine": 178,
+        "startChar": 0,
+        "endLine": 179,
+        "endChar": 36
+      },
+      "revId": "bcbc66f4a1fe1b585cbad1b51ade9d97aaebb0af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a3f53e7_4d0020b7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/lcm/LcmEventsCreatorHelper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-02T10:57:14Z",
+      "side": 1,
+      "message": "You can also simply use !targetNcmpServiceCmHandle.getAlternateId().equals(existingNcmpServiceCmHandle.getAlternateId()) since alternateId will never be null.",
+      "range": {
+        "startLine": 224,
+        "startChar": 0,
+        "endLine": 225,
+        "endChar": 106
+      },
+      "revId": "bcbc66f4a1fe1b585cbad1b51ade9d97aaebb0af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
