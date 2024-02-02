@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6d5d30e_399c945d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-02-02T15:02:38Z",
+      "side": 1,
+      "message": "Went through Halil\u0027s comments on call",
+      "revId": "bcbc66f4a1fe1b585cbad1b51ade9d97aaebb0af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4320693d_295ca5cb",
@@ -31,6 +48,30 @@
       "writtenOn": "2024-02-02T10:57:14Z",
       "side": 1,
       "message": "There is no need to null check, since the property will be returned as empty string instead of null during jackson deserialization",
+      "range": {
+        "startLine": 98,
+        "startChar": 8,
+        "endLine": 98,
+        "endChar": 65
+      },
+      "revId": "bcbc66f4a1fe1b585cbad1b51ade9d97aaebb0af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e07c9351_8dbe0921",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/lcm/LcmEventsCreator.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-02-02T15:02:38Z",
+      "side": 1,
+      "message": "in groovy test case the null isn\u0027t being converted to an empty string",
+      "parentUuid": "4320693d_295ca5cb",
       "range": {
         "startLine": 98,
         "startChar": 8,
@@ -64,6 +105,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "55673bcb_e920d4f8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/lcm/LcmEventsCreatorHelper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-02-02T15:02:38Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7a8c669e_f0bc83c2",
+      "range": {
+        "startLine": 84,
+        "startChar": 8,
+        "endLine": 84,
+        "endChar": 59
+      },
+      "revId": "bcbc66f4a1fe1b585cbad1b51ade9d97aaebb0af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "921c2e77_bcb31633",
@@ -77,6 +142,30 @@
       "writtenOn": "2024-02-02T10:57:14Z",
       "side": 1,
       "message": "NB: For the create case, you don\u0027t want to set alternateId to newValues?",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 118
+      },
+      "revId": "bcbc66f4a1fe1b585cbad1b51ade9d97aaebb0af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba2a8de7_1ea14e5d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/lcm/LcmEventsCreatorHelper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-02-02T15:02:38Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "921c2e77_bcb31633",
       "range": {
         "startLine": 91,
         "startChar": 0,
