@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99c75a66_550ecac2",
+        "filename": "integration-test/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-02T15:36:46Z",
+      "side": 1,
+      "message": "NB: want to keep the min and max limit the same?? just to keep the tests deterministic or some other reason ??",
+      "range": {
+        "startLine": 99,
+        "startChar": 29,
+        "endLine": 99,
+        "endChar": 46
+      },
+      "revId": "7a35d9243774715c93b7d7dc53ff80333b3855f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
