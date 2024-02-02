@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c723e495_f6885136",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-02T15:35:39Z",
+      "side": 1,
+      "message": "Some NB comments. Also the commit message can be Replace.",
+      "revId": "74b2e224bbc473e54d7c0ed33e6a4c705a931e60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "18707969_a0464b74",
@@ -19,6 +36,167 @@
         "startChar": 18,
         "endLine": 3,
         "endChar": 22
+      },
+      "revId": "74b2e224bbc473e54d7c0ed33e6a4c705a931e60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a90d9d6a_6a4b5696",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/FilterStrategiesIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-02T15:35:39Z",
+      "side": 1,
+      "message": "Does it used anymore?",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 36
+      },
+      "revId": "74b2e224bbc473e54d7c0ed33e6a4c705a931e60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e05c8950_ed10d834",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/FilterStrategiesIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-02T15:35:39Z",
+      "side": 1,
+      "message": "NB: better to use the type name instead of a hash",
+      "range": {
+        "startLine": 55,
+        "startChar": 39,
+        "endLine": 55,
+        "endChar": 49
+      },
+      "revId": "74b2e224bbc473e54d7c0ed33e6a4c705a931e60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a7c2084_4bd757df",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/FilterStrategiesIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-02T15:35:39Z",
+      "side": 1,
+      "message": "NB: Same as above",
+      "range": {
+        "startLine": 75,
+        "startChar": 39,
+        "endLine": 75,
+        "endChar": 49
+      },
+      "revId": "74b2e224bbc473e54d7c0ed33e6a4c705a931e60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8edcb1c9_d46a7d45",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/SerializationIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-02T15:35:39Z",
+      "side": 1,
+      "message": "Does it used anymore?",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 36
+      },
+      "revId": "74b2e224bbc473e54d7c0ed33e6a4c705a931e60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94c0ce13_134b9d81",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationCacheConfigSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-02T15:35:39Z",
+      "side": 1,
+      "message": "NB: Shall we really test a feature ( TTL ) of the Hazelcast map?",
+      "range": {
+        "startLine": 121,
+        "startChar": 9,
+        "endLine": 121,
+        "endChar": 55
+      },
+      "revId": "74b2e224bbc473e54d7c0ed33e6a4c705a931e60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b94b259_985e9f36",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationCacheConfigSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-02T15:35:39Z",
+      "side": 1,
+      "message": "NB:Same as above",
+      "range": {
+        "startLine": 132,
+        "startChar": 9,
+        "endLine": 132,
+        "endChar": 51
+      },
+      "revId": "74b2e224bbc473e54d7c0ed33e6a4c705a931e60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b5acf7f_d19fba4d",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/ResourceMeterPerfTest.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-02T15:35:39Z",
+      "side": 1,
+      "message": "Does it used in any place?",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 46
       },
       "revId": "74b2e224bbc473e54d7c0ed33e6a4c705a931e60",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
