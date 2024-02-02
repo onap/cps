@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c41a0c0c_454fa042",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmSubscriptionServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-02T10:24:53Z",
+      "side": 1,
+      "message": "We need to sanitize the input strings here. For example imagine if the xpath being subscribed to is /mynode[@myparam\u003d\u0027myvalue\u0027]\nNow IS_ONGOING_CM_SUBSCRIPTION_CPS_PATH_QUERY becomes\n\n    /datastores/.../filters/filter[@xpath\u003d\u0027/mynode[@myparam\u003d\u0027myvalue\u0027]\u0027]\n\nThis will lead to a CpsPathException.\n\nInstead we need to replace each single quote \u0027 by doubling them \u0027\u0027 so it becomes this:\n\n    /datastores/.../filters/filter[@xpath\u003d\u0027/mynode[@myparam\u003d\u0027\u0027myvalue\u0027\u0027]\u0027]\n\nThis will parse as intended. From CPS Path Query documentation:\n\n\u003e Quotations marks and apostrophes can be escaped by doubling them in their respective quotes, for example \u0027CPS \u0027\u0027Path\u0027\u0027 Query\u0027 -\u003e CPS \u0027Path\u0027 Query\n\nBasically we need a helper method:\n\n    private static String escapeQuotesByDoublingThem(final String value) {\n        return value.replace(\"\u0027\", \"\u0027\u0027\");\n    }",
+      "range": {
+        "startLine": 46,
+        "startChar": 16,
+        "endLine": 47,
+        "endChar": 31
+      },
+      "revId": "47e4dde0ebbfb3f2dcd6fd4203e8479653f16702",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad8397a2_5a8d9840",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmSubscriptionServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-02T10:24:53Z",
+      "side": 1,
+      "message": "Could add a leaf condition here to see if it still works\n\n    /cps/path/child[@param\u003d\u0027value\u0027]",
+      "range": {
+        "startLine": 37,
+        "startChar": 118,
+        "endLine": 37,
+        "endChar": 133
+      },
+      "revId": "47e4dde0ebbfb3f2dcd6fd4203e8479653f16702",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
