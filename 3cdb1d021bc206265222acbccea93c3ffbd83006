@@ -1,6 +1,69 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "86a63e01_0013a990",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-02T12:06:29Z",
+      "side": 1,
+      "message": "Some NB reviews...",
+      "revId": "3cdb1d021bc206265222acbccea93c3ffbd83006",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d5c96d3_5ab62eee",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-02T12:06:29Z",
+      "side": 1,
+      "message": "NB: 2024",
+      "range": {
+        "startLine": 3,
+        "startChar": 23,
+        "endLine": 3,
+        "endChar": 28
+      },
+      "revId": "3cdb1d021bc206265222acbccea93c3ffbd83006",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e735314_c532d594",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-02T12:06:29Z",
+      "side": 1,
+      "message": "NB: I think this annotation is not needed really.",
+      "range": {
+        "startLine": 61,
+        "startChar": 4,
+        "endLine": 61,
+        "endChar": 11
+      },
+      "revId": "3cdb1d021bc206265222acbccea93c3ffbd83006",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "308bd7ba_67cef5a7",
@@ -42,6 +105,52 @@
         "startChar": 36,
         "endLine": 85,
         "endChar": 80
+      },
+      "revId": "3cdb1d021bc206265222acbccea93c3ffbd83006",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "101f2c6c_e13ec500",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleOperationsUtilsSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-02T12:06:29Z",
+      "side": 1,
+      "message": "NB: 2024",
+      "range": {
+        "startLine": 3,
+        "startChar": 23,
+        "endLine": 3,
+        "endChar": 28
+      },
+      "revId": "3cdb1d021bc206265222acbccea93c3ffbd83006",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ebe1942_f1e6855f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleOperationsUtilsSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-02T12:06:29Z",
+      "side": 1,
+      "message": "NB: There is only one case so no need to have scenario hash ref.",
+      "range": {
+        "startLine": 131,
+        "startChar": 84,
+        "endLine": 131,
+        "endChar": 93
       },
       "revId": "3cdb1d021bc206265222acbccea93c3ffbd83006",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
