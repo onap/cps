@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "050ce55a_7b416e73",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmSubscriptionServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-02T15:53:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1f5cd6ff_f9ecb680",
+      "range": {
+        "startLine": 49,
+        "startChar": 32,
+        "endLine": 49,
+        "endChar": 46
+      },
+      "revId": "6ba5382b1b6d57d1170ae0ec562da4da6ada26f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ebeb8d64_884302a4",
@@ -47,6 +71,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "facb0be4_0b9c7877",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmSubscriptionServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-02T15:53:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ebeb8d64_884302a4",
+      "range": {
+        "startLine": 51,
+        "startChar": 17,
+        "endLine": 51,
+        "endChar": 112
+      },
+      "revId": "6ba5382b1b6d57d1170ae0ec562da4da6ada26f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9b3e4da0_78e9571d",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-02-02T11:48:16Z",
       "side": 1,
       "message": "I\u0027m not really happy with this test, I think it needs some redesign.\n\nFor one thing, given a cpsPathQuery:\n\n    /datastores/datastore[@name\u003d\u0027ncmp-datastore:passthrough-running\u0027]\n     /cm-handles/cm-handle[@id\u003d\u0027ch-1\u0027]/filters/filter[@xpath\u003d\u0027/\u0027]\n\nThe query can only return either 0 or 1 nodes exactly, not 2. Also, the xpath param of the mock datanode is (\u0027/cps/path\u0027) which does not match the one requested (\u0027/\u0027)\n\nIdeally we should have at least two tests:\n\n1) Happy path test. Call:\n\n    objectUnderTest.isOngoingCmSubscription(DatastoreType.PASSTHROUGH_RUNNING, \n                                            \u0027ch-1\u0027, \u0027/cps/path\u0027)\n\nwith this mock queryDataNodes response:\n\n    [new DataNode(xpath: \u0027/cps/path\u0027, leaves: [\u0027subscribers\u0027: \u0027sub-1\u0027])]\n\nassert response \u003d\u003d true\n\n2) No matching node:\n\n    objectUnderTest.isOngoingCmSubscription(DatastoreType.PASSTHROUGH_RUNNING, \n                                            \u0027ch-1\u0027, \u0027/non-existing/cps/path\u0027)\n\nwith mock response:\n\n    []\n\nassert response \u003d\u003d false",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 120
+      },
+      "revId": "6ba5382b1b6d57d1170ae0ec562da4da6ada26f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dee2bc2a_07d8d7cd",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmSubscriptionServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-02T15:53:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9b3e4da0_78e9571d",
       "range": {
         "startLine": 37,
         "startChar": 0,
