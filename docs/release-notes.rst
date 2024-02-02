@@ -44,6 +44,13 @@ Bug Fixes
 Features
 --------
     - `CPS-1824 <https://jira.onap.org/browse/CPS-1824>`_ CPS Delta between 2 anchors.
+    - `CPS-1974 <https://jira.onap.org/browse/CPS-1974>`_ Add maven classifier to Spring Boot JAR.
+
+Notes
+-----
+The maven build of cps-application has been changed so that the JAR produced by spring-boot-maven-plugin has a
+*-springboot* classifier (see `CPS-1974 <https://jira.onap.org/browse/CPS-1974>`_). This means that the filename
+of the Spring Boot JAR is *cps-application-3.4.3-springboot.jar*.
 
 Version: 3.4.2
 ==============
