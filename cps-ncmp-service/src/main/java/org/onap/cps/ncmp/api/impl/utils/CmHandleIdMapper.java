@@ -73,7 +73,9 @@ public class CmHandleIdMapper {
 
     public void removeMapping(final String cmHandleId) {
         final String alternateId = alternateIdPerCmHandleId.remove(cmHandleId);
-        cmHandleIdPerAlternateId.remove(alternateId);
+        if (alternateId != null) {
+            cmHandleIdPerAlternateId.remove(alternateId);
+        }
     }
 
     private void initializeCache() {
