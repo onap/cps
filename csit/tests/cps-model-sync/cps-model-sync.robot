@@ -34,8 +34,9 @@ ${auth}                   Basic Y3BzdXNlcjpjcHNyMGNrcyE=
 ${ncmpInventoryBasePath}  /ncmpInventory
 ${ncmpBasePath}           /ncmp
 ${dmiUrl}                 http://${DMI_HOST}:${DMI_PORT}
-${jsonDataCreate}         {"dmiPlugin":"${dmiUrl}","dmiDataPlugin":"","dmiModelPlugin":"","createdCmHandles":[{"cmHandle":"ietfYang-PNFDemo","cmHandleProperties":{"Book1":"Sci-Fi Book"},"publicCmHandleProperties":{"Contact":"storeemail@bookstore.com", "Contact2":"storeemail2@bookstore.com"}}]}
+${jsonDataCreate}         {"dmiPlugin":"${dmiUrl}","dmiDataPlugin":"","dmiModelPlugin":"","createdCmHandles":[{"cmHandle":"ietfYang-PNFDemo","cmHandleProperties":{"Book1":"Sci-Fi Book"},"publicCmHandleProperties":{"Contact":"storeemail@bookstore.com", "Contact2":"storeemail2@bookstore.com"}},{"cmHandle":"CmHandleForDelete"}]}
 ${jsonDataUpdate}         {"dmiPlugin":"${dmiUrl}","dmiDataPlugin":"","dmiModelPlugin":"","updatedCmHandles":[{"cmHandle":"ietfYang-PNFDemo","cmHandleProperties":{"Book1":"Romance Book"},"publicCmHandleProperties":{"Contact":"newemailforstore@bookstore.com"}}]}
+${jsonDataDelete}         {"dmiPlugin":"${dmiUrl}","dmiDataPlugin":"","dmiModelPlugin":"","removedCmHandles":["CmHandleForDelete"]}
 
 *** Test Cases ***
 Register data node and sync modules.
@@ -75,6 +76,18 @@ Get CM Handle details and confirm it has been updated.
                    Should Be Equal As Strings              "${item['Contact']}"  "newemailforstore@bookstore.com"
            END
     END
+
+Delete cm handle
+    ${uri}=              Set Variable       ${ncmpInventoryBasePath}/v1/ch
+    ${headers}=          Create Dictionary  Content-Type=application/json   Authorization=${auth}
+    ${response}=         POST On Session    CPS_URL   ${uri}   headers=${headers}   data=${jsonDataDelete}
+    Should Be Equal As Strings              ${response.status_code}   200
+
+Get cm handle details and confirm it has been deleted
+    ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/CmHandleForDelete
+    ${headers}=          Create Dictionary  Authorization=${auth}
+    ${response}=         GET On Session     CPS_URL   ${uri}   headers=${headers}
+    Should Be Equal As Strings              ${response.status_code}   404
 
 Get modules for registered data node
     ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/ietfYang-PNFDemo/modules
