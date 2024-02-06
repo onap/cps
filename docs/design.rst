@@ -72,6 +72,12 @@ CPS Path
 Several CPS APIs use the cps-path (or cpsPath in Java API) parameter.
 The CPS Path is described in detail in :doc:`cps-path`.
 
+CPS Delta
+=========
+
+CPS Delta feature provides the ability to find the delta/difference between two JSON configurations.
+The CPS Delta feature is described in detail in :doc:`cps-delta-feature`.
+
 NCMP CM Handle Querying
 =======================
 
