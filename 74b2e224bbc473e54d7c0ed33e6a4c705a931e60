@@ -112,6 +112,75 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5b98fe85_70600733",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/FilterStrategiesIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-06T08:48:46Z",
+      "side": 1,
+      "message": "if (expectCallToPublishEventMethod) {\n___new PollingConditions(initialDelay: initialDelay).within(0.3) {\n_______assert publishEventMethodCalled \n___}\n}",
+      "range": {
+        "startLine": 106,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 13
+      },
+      "revId": "74b2e224bbc473e54d7c0ed33e6a4c705a931e60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ff088fd_e61aca97",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/FilterStrategiesIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-06T08:48:46Z",
+      "side": 1,
+      "message": "wouldn\u0027t use a variable delay but use the Boolean in teh next column to conditionally check the polling on line #106",
+      "range": {
+        "startLine": 110,
+        "startChar": 63,
+        "endLine": 110,
+        "endChar": 76
+      },
+      "revId": "74b2e224bbc473e54d7c0ed33e6a4c705a931e60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97255af4_4dd60020",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/FilterStrategiesIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-06T08:48:46Z",
+      "side": 1,
+      "message": "this sounds like expected different \u0027events\u0027.\nsuggestion: expectCallToPublishEventMethod",
+      "range": {
+        "startLine": 110,
+        "startChar": 79,
+        "endLine": 110,
+        "endChar": 114
+      },
+      "revId": "74b2e224bbc473e54d7c0ed33e6a4c705a931e60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8edcb1c9_d46a7d45",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/SerializationIntegrationSpec.groovy",
         "patchSetId": 2
@@ -128,6 +197,52 @@
         "startChar": 0,
         "endLine": 43,
         "endChar": 36
+      },
+      "revId": "74b2e224bbc473e54d7c0ed33e6a4c705a931e60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c6cec0a_b8c83d47",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/SerializationIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-06T08:48:46Z",
+      "side": 1,
+      "message": "legacy issue: Just insert \u0027cloudevent\u0027 here. No need to capture it and check it later on line 79",
+      "range": {
+        "startLine": 71,
+        "startChar": 94,
+        "endLine": 71,
+        "endChar": 95
+      },
+      "revId": "74b2e224bbc473e54d7c0ed33e6a4c705a931e60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e414acfd_cc436317",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/SerializationIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-06T08:48:46Z",
+      "side": 1,
+      "message": "as above",
+      "range": {
+        "startLine": 91,
+        "startChar": 81,
+        "endLine": 91,
+        "endChar": 82
       },
       "revId": "74b2e224bbc473e54d7c0ed33e6a4c705a931e60",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
@@ -170,6 +285,30 @@
       "side": 1,
       "message": "Good point. FYI this is the test that randomly fails most often",
       "parentUuid": "94c0ce13_134b9d81",
+      "range": {
+        "startLine": 121,
+        "startChar": 9,
+        "endLine": 121,
+        "endChar": 55
+      },
+      "revId": "74b2e224bbc473e54d7c0ed33e6a4c705a931e60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72319148_169301a6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationCacheConfigSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-06T08:48:46Z",
+      "side": 1,
+      "message": "the reason we introduced this test was because the setup was wrong and TTL wasn\u0027t working.\nSO I think we need to leave the test but maybe extend the wait time",
+      "parentUuid": "6172a53d_e7900ba4",
       "range": {
         "startLine": 121,
         "startChar": 9,
