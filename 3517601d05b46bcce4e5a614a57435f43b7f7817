@@ -16,6 +16,29 @@
       "message": "I wonder if there wasn\u0027t a simpler solution, see my question below...",
       "revId": "3517601d05b46bcce4e5a614a57435f43b7f7817",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eeca0d8e_0dbb8482",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-06T17:18:40Z",
+      "side": 1,
+      "message": "shoudl we call cpsModuleService.deleteUnusedYangResourceModules(); here too?",
+      "range": {
+        "startLine": 480,
+        "startChar": 8,
+        "endLine": 480,
+        "endChar": 59
+      },
+      "revId": "3517601d05b46bcce4e5a614a57435f43b7f7817",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
