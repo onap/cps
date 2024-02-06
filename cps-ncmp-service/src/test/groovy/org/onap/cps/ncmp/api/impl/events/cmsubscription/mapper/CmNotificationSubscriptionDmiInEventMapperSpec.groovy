@@ -43,8 +43,8 @@ class CmNotificationSubscriptionDmiInEventMapperSpec extends Specification {
 
     def 'Check for Cm Notification Subscription DMI In Event mapping'() {
         given: 'a collection of cm subscription predicates'
-            def dmiCmNotificationSubscriptionPredicates = [new DmiCmNotificationSubscriptionPredicate(targetCmHandleIds: ['ch-1'], datastoreType: PASSTHROUGH_RUNNING, xpaths: ['/ch-1']),
-                                                           new DmiCmNotificationSubscriptionPredicate(targetCmHandleIds: ['ch-2'], datastoreType: PASSTHROUGH_OPERATIONAL, xpaths: ['/ch-2'])]
+            def dmiCmNotificationSubscriptionPredicates = [new DmiCmNotificationSubscriptionPredicate(['ch-1'].toSet(), PASSTHROUGH_RUNNING, ['/ch-1'].toSet()),
+                                                           new DmiCmNotificationSubscriptionPredicate(['ch-2'].toSet(), PASSTHROUGH_OPERATIONAL, ['/ch-2'].toSet())]
         when: 'we try to map the values'
             def result = objectUnderTest.toCmNotificationSubscriptionDmiInEvent(dmiCmNotificationSubscriptionPredicates)
         then: 'it contains correct cm notification subscription cmhandle object'
