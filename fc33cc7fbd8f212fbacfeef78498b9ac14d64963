@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "746a39b6_a8a7fad6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionCacheHandler.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-06T18:26:47Z",
+      "side": 1,
+      "message": "the class is already call CacheHandler so I dont think you need to use the word \u0027cache\u0027 in method names.\n\nAlso typically with cache one uses words like \u0027add\u0027 and \u0027remove\u0027. Finally, be clear WHAT you add to the cache, not the event!\n\n\nthis class shouldn\u0027t realy know about the event. that is just the current way of communicating subscr. details . I think you should only depend on the relevant two attributes of the subscription.\n\nsuggested name and parameters: \naddSubscriptionDetails(subscriptionId, predicates)",
+      "parentUuid": "24b2f9c0_5ca83558",
+      "range": {
+        "startLine": 55,
+        "startChar": 40,
+        "endLine": 55,
+        "endChar": 42
+      },
+      "revId": "fc33cc7fbd8f212fbacfeef78498b9ac14d64963",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "df711ab1_d05f41ac",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionCacheHandler.java",
         "patchSetId": 4

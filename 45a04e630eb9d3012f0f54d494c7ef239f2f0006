@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8317acdc_6d14c056",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-06T18:26:47Z",
+      "side": 1,
+      "message": "I am concerned about the complexity of this after just revieing the first file. Maybe we need to touch base and have a little chat about this epic again...",
+      "revId": "45a04e630eb9d3012f0f54d494c7ef239f2f0006",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c97054cc_e1573d46",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionCacheHandler.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-06T18:26:47Z",
+      "side": 1,
+      "message": "yu are ONYL using teh predicates so I think I woudl pass in only that",
+      "range": {
+        "startLine": 68,
+        "startChar": 18,
+        "endLine": 68,
+        "endChar": 44
+      },
+      "revId": "45a04e630eb9d3012f0f54d494c7ef239f2f0006",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "925313ad_e6adc49f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionCacheHandler.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-06T18:26:47Z",
+      "side": 1,
+      "message": "why sushc a long name, do we have otehr predicates ?!",
+      "range": {
+        "startLine": 70,
+        "startChar": 30,
+        "endLine": 70,
+        "endChar": 62
+      },
+      "revId": "45a04e630eb9d3012f0f54d494c7ef239f2f0006",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bac8c95_914714b2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionCacheHandler.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-06T18:26:47Z",
+      "side": 1,
+      "message": "what is the difference between a requestPredicate and a CmSubscrptionPredicate?!\nmaybe you need better name for teh latter?",
+      "range": {
+        "startLine": 79,
+        "startChar": 46,
+        "endLine": 80,
+        "endChar": 72
+      },
+      "revId": "45a04e630eb9d3012f0f54d494c7ef239f2f0006",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bca42f00_3b00debe",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionCacheHandler.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-06T18:26:47Z",
+      "side": 1,
+      "message": "Cache/Object/Map what is it?!",
+      "range": {
+        "startLine": 94,
+        "startChar": 34,
+        "endLine": 94,
+        "endChar": 48
+      },
+      "revId": "45a04e630eb9d3012f0f54d494c7ef239f2f0006",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ddea32af_a22edc75",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionCacheHandler.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-06T18:26:47Z",
+      "side": 1,
+      "message": "k ? not i, or mayeb it is not an iterator then use longer name.\nMaybe  is it needed at all ?",
+      "range": {
+        "startLine": 106,
+        "startChar": 77,
+        "endLine": 106,
+        "endChar": 81
+      },
+      "revId": "45a04e630eb9d3012f0f54d494c7ef239f2f0006",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "badc0a3c_06bdd453",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionCacheHandler.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-06T18:26:47Z",
+      "side": 1,
+      "message": "looks to me like you are storing the exact same data in a slightly different structure object, is it needed at all?",
+      "range": {
+        "startLine": 111,
+        "startChar": 3,
+        "endLine": 120,
+        "endChar": 39
+      },
+      "revId": "45a04e630eb9d3012f0f54d494c7ef239f2f0006",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
