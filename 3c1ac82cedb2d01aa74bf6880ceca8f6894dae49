@@ -89,6 +89,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "34016239_9bf8f323",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapper.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-02-06T09:45:23Z",
+      "side": 1,
+      "message": "i split this because of java docs :D",
+      "parentUuid": "fb2c0e7a_2d53241b",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 5
+      },
+      "revId": "3c1ac82cedb2d01aa74bf6880ceca8f6894dae49",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a9e4d098_628a65f8",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapperSpec.groovy",
         "patchSetId": 3
