@@ -78,6 +78,15 @@ class CmHandleIdMapperSpec extends Specification {
             assert objectUnderTest.cmHandleIdToAlternateId('my cmhandle id') == null
     }
 
+    def 'Attempt to remove a non-existing entry from the cache.'() {
+        when: 'removing an entry that is not cached'
+            objectUnderTest.removeMapping('non-cached cmhandle id')
+        then: 'delting from the cmhandle cache returns null'
+            assert alternateIdPerCmHandle.remove('non-cached cmhandle id') == null
+        and: 'removal from the alternate id cache is skipped'
+            0 * cmHandlePerAlternateId.remove(_)
+    }
+
     def 'Cannot update existing alternate id.'() {
         given: 'attempt to update an existing alternate id'
             objectUnderTest.addMapping('my cmhandle id', 'other id')
