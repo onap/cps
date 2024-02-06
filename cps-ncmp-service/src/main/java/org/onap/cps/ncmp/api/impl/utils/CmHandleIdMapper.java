@@ -72,14 +72,9 @@ public class CmHandleIdMapper {
     }
 
     public void removeMapping(final String cmHandleId) {
+        //TODO: changed for test purposes only, will be undo after the test verification.
         final String alternateId = alternateIdPerCmHandleId.remove(cmHandleId);
-        removeAlternateIdWithValidation(alternateId);
-    }
-
-    private void removeAlternateIdWithValidation(final String alternateId) {
-        if (alternateId != null) {
-            cmHandleIdPerAlternateId.remove(alternateId);
-        }
+        cmHandleIdPerAlternateId.remove(alternateId);
     }
 
     private void initializeCache() {
