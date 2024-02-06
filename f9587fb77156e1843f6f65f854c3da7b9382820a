@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cbbde2c_98a041a6",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/executor/CpsNcmpTaskExecutorSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-06T17:57:47Z",
+      "side": 1,
+      "message": "NB: 1 second\nremember the self review!\nDouble check your own changes in Nordix and focus un consistency, test updates especially descriptions etc. You should catch these kind of comments yourself at that stage :-)",
+      "range": {
+        "startLine": 53,
+        "startChar": 57,
+        "endLine": 53,
+        "endChar": 73
+      },
+      "revId": "f9587fb77156e1843f6f65f854c3da7b9382820a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf8eafbb_ab0a3733",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/executor/CpsNcmpTaskExecutorSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-06T17:57:47Z",
+      "side": 1,
+      "message": "1 second",
+      "range": {
+        "startLine": 65,
+        "startChar": 58,
+        "endLine": 65,
+        "endChar": 74
+      },
+      "revId": "f9587fb77156e1843f6f65f854c3da7b9382820a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26725b59_09caeaba",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/FilterStrategiesIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-06T17:57:47Z",
+      "side": 1,
+      "message": "no longer needed",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 13
+      },
+      "revId": "f9587fb77156e1843f6f65f854c3da7b9382820a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ada4f37_66ee031a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/FilterStrategiesIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-06T17:57:47Z",
+      "side": 1,
+      "message": "maybe we should eb more generic, to prevent arguing over this and allow for small changes in wait time\ne.g. within a short time.\nOr leave it out altogether the time-out is not so important when you are explaining the behavior of the test to a PO-like person (the event is sent, whether it is after a few nanoseconds or after 100 ms is not so relevant to them)",
+      "range": {
+        "startLine": 103,
+        "startChar": 69,
+        "endLine": 103,
+        "endChar": 85
+      },
+      "revId": "f9587fb77156e1843f6f65f854c3da7b9382820a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c52bd732_566e4f8e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/FilterStrategiesIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-06T17:57:47Z",
+      "side": 1,
+      "message": "this is like what I mean abovee no exact criteria just explaining it a a non-developer level",
+      "range": {
+        "startLine": 125,
+        "startChar": 15,
+        "endLine": 125,
+        "endChar": 29
+      },
+      "revId": "f9587fb77156e1843f6f65f854c3da7b9382820a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f295a1f_21f6c482",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationCacheConfigSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-06T17:57:47Z",
+      "side": 1,
+      "message": "why did you increase this?",
+      "range": {
+        "startLine": 121,
+        "startChar": 49,
+        "endLine": 121,
+        "endChar": 51
+      },
+      "revId": "f9587fb77156e1843f6f65f854c3da7b9382820a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
