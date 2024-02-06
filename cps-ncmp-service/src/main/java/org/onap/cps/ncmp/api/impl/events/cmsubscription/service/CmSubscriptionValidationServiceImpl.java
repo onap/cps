@@ -20,24 +20,41 @@
 
 package org.onap.cps.ncmp.api.impl.events.cmsubscription.service;
 
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME;
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_OPERATIONAL;
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING;
 
 import java.util.Arrays;
 import java.util.List;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.api.CpsQueryService;
+import org.onap.cps.spi.FetchDescendantsOption;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
+@RequiredArgsConstructor
 public class CmSubscriptionValidationServiceImpl implements CmSubscriptionValidationService {
 
+    private final CpsQueryService cpsQueryService;
+    private static final String SUBSCRIPTION_ANCHOR_NAME = "cm-data-subscriptions";
     private static final List<String> validDatastores =
             Arrays.asList(PASSTHROUGH_RUNNING.getDatastoreName(), PASSTHROUGH_OPERATIONAL.getDatastoreName());
+    private static final String IS_SUBSCRIPTION_ID_VALID_CPS_PATH_QUERY = """
+            //filter/subscribers[text()='%s']""";
 
+    @Override
+    public boolean isValidSubscriptionId(final String subscriptionId) {
+        final String isSubscriptionIdValidCpsPathQuery =
+                IS_SUBSCRIPTION_ID_VALID_CPS_PATH_QUERY.formatted(subscriptionId);
+
+        return cpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME,
+                isSubscriptionIdValidCpsPathQuery, FetchDescendantsOption.OMIT_DESCENDANTS).isEmpty();
+    }
 
     @Override
     public boolean isValidDataStore(final String incomingDatastore) {
         return validDatastores.contains(incomingDatastore);
     }
-
-
 }

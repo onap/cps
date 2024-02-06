@@ -20,11 +20,15 @@
 
 package org.onap.cps.ncmp.api.impl.events.cmsubscription.service
 
+import org.onap.cps.api.CpsQueryService
+import org.onap.cps.spi.FetchDescendantsOption
+import org.onap.cps.spi.model.DataNode
 import spock.lang.Specification
 
 class CmSubscriptionValidationServiceImplSpec extends Specification {
 
-    def objectUnderTest = new CmSubscriptionValidationServiceImpl()
+    def mockCpsQueryService = Mock(CpsQueryService)
+    def objectUnderTest = new CmSubscriptionValidationServiceImpl(mockCpsQueryService)
 
     def 'Validate datastore #datastore for Cm Subscription'() {
         when: 'we check against incoming datastore'
@@ -35,5 +39,21 @@ class CmSubscriptionValidationServiceImplSpec extends Specification {
             scenario            | datastore                            || isValid
             'Valid datastore'   | 'ncmp-datastore:passthrough-running' || true
             'Invalid datastore' | 'invalid-ds'                         || false
+    }
+
+    def 'Validate uniqueness of incoming subscription ID'() {
+        given: 'a valid cps path for querying'
+            def cpsPathQuery = "//filter/subscribers[text()='some-sub']"
+        and: 'relevant datanodes are returned'
+            1 * mockCpsQueryService.queryDataNodes('NCMP-Admin', 'cm-data-subscriptions', cpsPathQuery, FetchDescendantsOption.OMIT_DESCENDANTS) >>
+                    dataNodes
+        when: 'a subscription ID is validated'
+            def result = objectUnderTest.isValidSubscriptionId('some-sub')
+        then: 'result is as expected'
+            assert result == isValidSubscriptionId
+        where: 'following scenarios are used'
+            scenario                  | dataNodes           || isValidSubscriptionId
+            'datanodes present'       | [new DataNode()]    || false
+            'no datanodes present'    | []                  || true
     }
 }

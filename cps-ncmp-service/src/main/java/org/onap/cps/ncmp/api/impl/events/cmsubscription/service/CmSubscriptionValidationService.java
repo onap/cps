@@ -24,6 +24,14 @@ package org.onap.cps.ncmp.api.impl.events.cmsubscription.service;
 public interface CmSubscriptionValidationService {
 
     /**
+     * Validate subscription ID uniqueness against existing subscriptions.
+     *
+     * @param subscriptionId CM Subscription ID
+     * @return true if subscriptionId is not used in active subscriptions, otherwise false
+     */
+    boolean isValidSubscriptionId(final String subscriptionId);
+
+    /**
      * Validate against the allowed datastores.
      *
      * @param incomingDatastore Datastore from the incoming CmSubscription event from client
