@@ -1,18 +1,22 @@
 module stores {
     yang-version 1.1;
-    namespace "org:onap:ccsdk:sample";
+    namespace "org:onap:cps:sample";
 
     prefix book-store;
+
+    import bookstore-types {
+        prefix "types";
+        revision-date 2024-01-30;
+    }
+
+    revision "2024-01-30" {
+        description
+            "Extracted bookstore types";
+    }
 
     revision "2020-09-15" {
         description
         "Sample Model";
-    }
-
-    typedef year {
-        type uint16 {
-            range "1000..9999";
-        }
     }
 
     list bookstore-address {
@@ -106,7 +110,7 @@ module stores {
                     type string;
                 }
                 leaf-list editions {
-                    type year;
+                    type types:year;
                 }
                 leaf price {
                     type uint64;

@@ -1,0 +1,18 @@
+module bookstore-types {
+  yang-version 1.1;
+  namespace "org:onap:cps:types:sample";
+
+  prefix types;
+
+  revision "2024-01-30" {
+    description
+      "Sample Types";
+  }
+
+  typedef year {
+    type uint16 {
+      range "1000..9999";
+    }
+  }
+
+}

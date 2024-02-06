@@ -35,8 +35,11 @@ class CpsModuleServiceIntegrationSpec extends FunctionalSpecBase {
 
     CpsModuleService objectUnderTest
 
-    private static def originalNumberOfModuleReferences = 1
-    private static def existingModuleReference = new ModuleReference('stores','2020-09-15')
+    private static def originalNumberOfModuleReferences = 2 // bookstore has two modules
+    private static def bookStoreModuleReference = new ModuleReference('stores','2024-01-30')
+    private static def bookStoreModuleReferenceWithNamespace = new ModuleReference('stores','2024-01-30', 'org:onap:cps:sample')
+    private static def bookStoreTypesModuleReference = new ModuleReference('bookstore-types','2024-01-30')
+    private static def bookStoreTypesModuleReferenceWithNamespace = new ModuleReference('bookstore-types','2024-01-30', 'org:onap:cps:types:sample')
     static def NEW_RESOURCE_REVISION = '2023-05-10'
     static def NEW_RESOURCE_CONTENT = 'module test_module {\n' +
         '    yang-version 1.1;\n' +
@@ -53,6 +56,8 @@ class CpsModuleServiceIntegrationSpec extends FunctionalSpecBase {
     def newYangResourcesNameToContentMap = [:]
     def moduleReferences = []
     def noNewModules = [:]
+    def bookstoreModelFileContent = readResourceDataFile('bookstore/bookstore.yang')
+    def bookstoreTypesFileContent = readResourceDataFile('bookstore/bookstore-types.yang')
 
     def setup() {
         objectUnderTest = cpsModuleService
@@ -67,7 +72,7 @@ class CpsModuleServiceIntegrationSpec extends FunctionalSpecBase {
             populateNewYangResourcesNameToContentMapAndAllModuleReferences(numberOfNewModules)
         when: 'the new schema set is created'
             objectUnderTest.createSchemaSet(FUNCTIONAL_TEST_DATASPACE_1, 'newSchemaSet', newYangResourcesNameToContentMap)
-        then: 'the number of module references has increased by #expectedIncrease'
+        then: 'the number of module references has increased by #numberOfNewModules'
             def yangResourceModuleReferences = objectUnderTest.getYangResourceModuleReferences(FUNCTIONAL_TEST_DATASPACE_1)
             originalNumberOfModuleReferences + numberOfNewModules == yangResourceModuleReferences.size()
         cleanup:
@@ -106,9 +111,9 @@ class CpsModuleServiceIntegrationSpec extends FunctionalSpecBase {
         where: 'the following module references are provided'
             scenario                        | numberOfNewModules | existingModuleReferences                          || expectedNumberOfModulesForAnchor
             'empty schema set'              | 0                  | [ ]                                               || 0
-            'one existing module'           | 0                  | [ existingModuleReference ]                       || 1
+            'one existing module'           | 0                  | [bookStoreModuleReference ]                       || 1
             'two new modules'               | 2                  | [ ]                                               || 2
-            'two new modules, one existing' | 2                  | [ existingModuleReference ]                       || 3
+            'two new modules, one existing' | 2                  | [bookStoreModuleReference ]                       || 3
             'over max batch size #modules'  | 101                | [ ]                                               || 101
             'two valid, one invalid module' | 2                  | [ new ModuleReference('NOT EXIST','IRRELEVANT') ] || 2
     }
@@ -149,25 +154,34 @@ class CpsModuleServiceIntegrationSpec extends FunctionalSpecBase {
         when: 'the module definitions for an anchor are retrieved'
             def result = objectUnderTest.getModuleDefinitionsByAnchorName(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1)
         then: 'the correct module definitions are returned'
-            result == [new ModuleDefinition('stores','2020-09-15','')]
+            assert result.size() == 2
+            assert result.contains(new ModuleDefinition('stores','2024-01-30',bookstoreModelFileContent))
+            assert result.contains(new ModuleDefinition('bookstore-types','2024-01-30', bookstoreTypesFileContent))
     }
 
     def 'Retrieving module definitions: #scenarios'() {
         when: 'module definitions for module name are retrieved'
             def result = objectUnderTest.getModuleDefinitionsByAnchorAndModule(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, moduleName, moduleRevision)
         then: 'the correct module definitions are returned'
-            result == [new ModuleDefinition('stores','2020-09-15','')]
+            if (expectedNumberOfDefinitions > 0) {
+                assert result.size() == expectedNumberOfDefinitions
+                def expectedModuleDefinition = new ModuleDefinition('stores', '2024-01-30', bookstoreModelFileContent)
+                assert result[0] == expectedModuleDefinition
+            }
         where: 'following parameters are used'
-            scenarios               | moduleName | moduleRevision
-            'both specified'        | 'stores'   | '2020-09-15'
-            'module name specified' | 'stores'   | null
+            scenarios                          | moduleName | moduleRevision || expectedNumberOfDefinitions
+            'correct module name and revision' | 'stores'   | '2024-01-30'   || 1
+            'correct module name'              | 'stores'   | null           || 1
+            'incorrect module name'            | 'other'    | null           || 0
+            'incorrect revision'               | 'stores'   | '2025-11-22'   || 0
     }
 
     def 'Retrieving yang resource module references by anchor.'() {
         when: 'the yang resource module references for an anchor are retrieved'
             def result = objectUnderTest.getYangResourcesModuleReferences(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1)
         then: 'the correct module references are returned'
-            result == [ existingModuleReference ]
+            assert result.size() == 2
+            assert result.containsAll(bookStoreModuleReference, bookStoreTypesModuleReference)
     }
 
     def 'Identifying new module references with #scenario'() {
@@ -179,18 +193,19 @@ class CpsModuleServiceIntegrationSpec extends FunctionalSpecBase {
         where: 'the following data is used'
             scenario                                | moduleReferences                                                       || expectedResult
             'just new module references'            | [new ModuleReference('new1', 'r1'), new ModuleReference('new2', 'r1')] || [new ModuleReference('new1', 'r1'), new ModuleReference('new2', 'r1')]
-            'one new module,one existing reference' | [new ModuleReference('new1', 'r1'), existingModuleReference]           || [new ModuleReference('new1', 'r1')]
-            'no new module references'              | [existingModuleReference]                                              || []
+            'one new module,one existing reference' | [new ModuleReference('new1', 'r1'), bookStoreModuleReference]          || [new ModuleReference('new1', 'r1')]
+            'no new module references'              | [bookStoreModuleReference]                                             || []
             'no module references'                  | []                                                                     || []
             'module references collection is null'  | null                                                                   || []
     }
 
     def 'Retrieve schema set.'() {
-        when: 'a specific schema set is retreived'
+        when: 'a specific schema set is retrieved'
             def result = objectUnderTest.getSchemaSet(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_SCHEMA_SET)
         then: 'the result has the correct name and module(s)'
             assert result.name == 'bookstoreSchemaSet'
-            assert result.moduleReferences == [ new ModuleReference('stores', '2020-09-15', 'org:onap:ccsdk:sample') ]
+            assert result.moduleReferences.size() == 2
+            assert result.moduleReferences.containsAll(bookStoreModuleReferenceWithNamespace, bookStoreTypesModuleReferenceWithNamespace)
     }
 
     def 'Retrieve all schema sets.'() {
@@ -290,14 +305,14 @@ class CpsModuleServiceIntegrationSpec extends FunctionalSpecBase {
             def newModuleReferences = [new ModuleReference('new_0','2000-01-01'),new ModuleReference('new_1','2001-01-01')]
         and: 'a list of all module references (normally retrieved from node)'
             def allModuleReferences = []
-            allModuleReferences.add(existingModuleReference)
+            allModuleReferences.add(bookStoreModuleReference)
             allModuleReferences.addAll(newModuleReferences)
         when: 'the schema set is upgraded'
             objectUnderTest.upgradeSchemaSetFromModules(FUNCTIONAL_TEST_DATASPACE_1, 'targetSchema', newYangResourcesNameToContentMap, allModuleReferences)
         then: 'the new anchor has the correct new and existing modules'
             def yangResourceModuleReferencesAfterUpgrade = objectUnderTest.getYangResourcesModuleReferences(FUNCTIONAL_TEST_DATASPACE_1, 'targetAnchor')
             assert yangResourceModuleReferencesAfterUpgrade.size() == 3
-            assert yangResourceModuleReferencesAfterUpgrade.contains(existingModuleReference)
+            assert yangResourceModuleReferencesAfterUpgrade.contains(bookStoreModuleReference)
             assert yangResourceModuleReferencesAfterUpgrade.containsAll(newModuleReferences);
         cleanup:
             objectUnderTest.deleteSchemaSetsWithCascade(FUNCTIONAL_TEST_DATASPACE_1, ['targetSchema'])
