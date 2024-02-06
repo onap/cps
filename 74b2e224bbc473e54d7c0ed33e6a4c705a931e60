@@ -43,6 +43,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ab9ba29e_142a7f66",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/executor/CpsNcmpTaskExecutorSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-06T11:18:54Z",
+      "side": 1,
+      "message": "with polling we can allow 1 second",
+      "range": {
+        "startLine": 54,
+        "startChar": 43,
+        "endLine": 54,
+        "endChar": 46
+      },
+      "revId": "74b2e224bbc473e54d7c0ed33e6a4c705a931e60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a90d9d6a_6a4b5696",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/FilterStrategiesIntegrationSpec.groovy",
         "patchSetId": 2
@@ -123,6 +146,30 @@
       "writtenOn": "2024-02-06T08:48:46Z",
       "side": 1,
       "message": "if (expectCallToPublishEventMethod) {\n___new PollingConditions(initialDelay: initialDelay).within(0.3) {\n_______assert publishEventMethodCalled \n___}\n}",
+      "range": {
+        "startLine": 106,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 13
+      },
+      "revId": "74b2e224bbc473e54d7c0ed33e6a4c705a931e60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecee6f28_2fd40e1e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/FilterStrategiesIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-06T11:18:54Z",
+      "side": 1,
+      "message": "and \u0027wait a little to avoid false positives\u0027\ndelay 300\nand\u0027...\u0027\nif (expectCallToPublishEventMethod) {\npoll\n} else {\n 0 * .....\n}",
+      "parentUuid": "5b98fe85_70600733",
       "range": {
         "startLine": 106,
         "startChar": 0,
