@@ -21,6 +21,7 @@
 package org.onap.cps.ncmp.api.impl.config.kafka;
 
 import io.cloudevents.CloudEvent;
+import java.time.Duration;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.producer.ProducerConfig;
@@ -99,6 +100,7 @@ public class KafkaConfig<T> {
         final ConcurrentKafkaListenerContainerFactory<String, T> containerFactory =
                 new ConcurrentKafkaListenerContainerFactory<>();
         containerFactory.setConsumerFactory(legacyEventConsumerFactory());
+        containerFactory.getContainerProperties().setAuthExceptionRetryInterval(Duration.ofSeconds(10));
         return containerFactory;
     }
 
@@ -150,6 +152,7 @@ public class KafkaConfig<T> {
         final ConcurrentKafkaListenerContainerFactory<String, CloudEvent> containerFactory =
                 new ConcurrentKafkaListenerContainerFactory<>();
         containerFactory.setConsumerFactory(cloudEventConsumerFactory());
+        containerFactory.getContainerProperties().setAuthExceptionRetryInterval(Duration.ofSeconds(10));
         return containerFactory;
     }
 
