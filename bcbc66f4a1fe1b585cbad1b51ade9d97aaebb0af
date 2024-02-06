@@ -130,6 +130,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5234a54_f48ac448",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/lcm/LcmEventsCreator.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-06T11:45:05Z",
+      "side": 1,
+      "message": "after checking with Jeff we found  there are many way to create this object in the production code!\nWe agreed to test for both null and empty values!",
+      "parentUuid": "bc9d205b_42920800",
+      "range": {
+        "startLine": 98,
+        "startChar": 8,
+        "endLine": 98,
+        "endChar": 65
+      },
+      "revId": "bcbc66f4a1fe1b585cbad1b51ade9d97aaebb0af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7a8c669e_f0bc83c2",
