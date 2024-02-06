@@ -106,6 +106,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc9d205b_42920800",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/lcm/LcmEventsCreator.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-06T10:00:19Z",
+      "side": 1,
+      "message": "we should not have a groovy test (and code) to cover an non-existing scenario",
+      "parentUuid": "420029f5_f58b2590",
+      "range": {
+        "startLine": 98,
+        "startChar": 8,
+        "endLine": 98,
+        "endChar": 65
+      },
+      "revId": "bcbc66f4a1fe1b585cbad1b51ade9d97aaebb0af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7a8c669e_f0bc83c2",
@@ -200,6 +224,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a94f961_d25929a2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/lcm/LcmEventsCreatorHelper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-06T10:00:19Z",
+      "side": 1,
+      "message": "ie. you mean you SHOUDL add alternateID in this case?",
+      "parentUuid": "ba2a8de7_1ea14e5d",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 118
+      },
+      "revId": "bcbc66f4a1fe1b585cbad1b51ade9d97aaebb0af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4c35f316_1ed4e01f",
@@ -261,6 +309,30 @@
       "side": 1,
       "message": "Ack",
       "parentUuid": "1c66e8a5_30480e89",
+      "range": {
+        "startLine": 178,
+        "startChar": 0,
+        "endLine": 179,
+        "endChar": 36
+      },
+      "revId": "bcbc66f4a1fe1b585cbad1b51ade9d97aaebb0af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "40f67635_d59daeda",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/lcm/LcmEventsCreatorHelper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-06T10:00:19Z",
+      "side": 1,
+      "message": "still dont lik hardcoding it though, it should work automatically (also in the future maybe changes are allowed!)",
+      "parentUuid": "7806205b_d397d753",
       "range": {
         "startLine": 178,
         "startChar": 0,
