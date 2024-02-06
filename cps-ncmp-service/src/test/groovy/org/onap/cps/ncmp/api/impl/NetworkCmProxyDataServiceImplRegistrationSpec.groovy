@@ -21,16 +21,15 @@
 
 package org.onap.cps.ncmp.api.impl
 
-import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevelManager
-import org.onap.cps.ncmp.api.impl.utils.CmHandleIdMapper
-import org.onap.cps.ncmp.api.models.UpgradedCmHandles
-
+import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.Status
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLES_NOT_FOUND
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLE_ALREADY_EXIST
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLE_INVALID_ID
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNKNOWN_ERROR
-import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.Status
 
+import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevelManager
+import org.onap.cps.ncmp.api.impl.utils.CmHandleIdMapper
+import org.onap.cps.ncmp.api.models.UpgradedCmHandles
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.hazelcast.map.IMap
 import org.onap.cps.api.CpsDataService
@@ -52,14 +51,11 @@ import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.exceptions.SchemaSetNotFoundException
 import org.onap.cps.utils.JsonObjectMapper
-import spock.lang.Shared
 import spock.lang.Specification
 
 class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
 
-    @Shared
     def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: 'some-cm-handle-id')
-
     def mockCpsModuleService = Mock(CpsModuleService)
     def spiedJsonObjectMapper = Spy(new JsonObjectMapper(new ObjectMapper()))
     def mockDmiDataOperations = Mock(DmiDataOperations)
@@ -74,6 +70,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def mockTrustLevelManager = Mock(TrustLevelManager)
     def mockCmHandleIdMapper = Mock(CmHandleIdMapper)
     def objectUnderTest = getObjectUnderTest()
+    def mockModuleSetTagCache = [:]
 
     def 'DMI Registration: Create, Update, Delete & Upgrade operations are processed in the right order'() {
         given: 'a registration with operations of all types'
@@ -91,7 +88,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         then: 'cm-handles are removed first'
             1 * objectUnderTest.parseAndProcessDeletedCmHandlesInRegistration(*_)
         and: 'de-registered cm handle entry is removed from in progress map'
-            1 * mockModuleSyncStartedOnCmHandles.remove('cmhandle-2')
+            2 * mockModuleSyncStartedOnCmHandles.remove('cmhandle-2')
         then: 'cm-handles are created'
             1 * objectUnderTest.parseAndProcessCreatedCmHandlesInRegistration(*_)
         then: 'cm-handles are updated'
@@ -448,7 +445,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         return Spy(new NetworkCmProxyDataServiceImpl(spiedJsonObjectMapper, mockDmiDataOperations,
                 mockNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence, mockCmHandleQueries,
                 stubbedNetworkCmProxyCmHandlerQueryService, mockLcmEventsCmHandleStateHandler, mockCpsDataService,
-                mockModuleSyncStartedOnCmHandles, trustLevelPerDmiPlugin as Map<String, TrustLevel>, mockTrustLevelManager, mockCmHandleIdMapper))
+                mockModuleSyncStartedOnCmHandles, trustLevelPerDmiPlugin, mockTrustLevelManager, mockCmHandleIdMapper, mockModuleSetTagCache))
     }
 
     def addPersistedYangModelCmHandles(ids) {
