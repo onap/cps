@@ -71,9 +71,9 @@ public class CmNotificationSubscriptionDmiInEventMapper {
             final ScopeFilter scopeFilter = new ScopeFilter();
             scopeFilter.setDatastore(ScopeFilter.Datastore.fromValue(
                     dmiCmNotificationSubscriptionPredicate.getDatastoreType().getDatastoreName()));
-            scopeFilter.setXpathFilter(dmiCmNotificationSubscriptionPredicate.getXpaths());
+            scopeFilter.setXpathFilter(dmiCmNotificationSubscriptionPredicate.getXpaths().stream().toList());
             predicate.setScopeFilter(scopeFilter);
-            predicate.setTargetFilter(dmiCmNotificationSubscriptionPredicate.getTargetCmHandleIds());
+            predicate.setTargetFilter(dmiCmNotificationSubscriptionPredicate.getTargetCmHandleIds().stream().toList());
             predicates.add(predicate);
         });
 
