@@ -50,6 +50,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.onap.cps.api.CpsDataService;
+import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.ncmp.api.NcmpResponseStatus;
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandleQueryService;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
@@ -103,6 +104,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private final NetworkCmProxyCmHandleQueryService networkCmProxyCmHandleQueryService;
     private final LcmEventsCmHandleStateHandler lcmEventsCmHandleStateHandler;
     private final CpsDataService cpsDataService;
+    private final CpsModuleService cpsModuleService;
     private final IMap<String, Object> moduleSyncStartedOnCmHandles;
     private final Map<String, TrustLevel> trustLevelPerDmiPlugin;
     private final TrustLevelManager trustLevelManager;
@@ -481,6 +483,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private void batchDeleteCmHandlesFromDbAndModuleSyncMap(final Collection<String> tobeRemovedCmHandles) {
         inventoryPersistence.deleteSchemaSetsWithCascade(tobeRemovedCmHandles);
         inventoryPersistence.deleteDataNodes(mapCmHandleIdsToXpaths(tobeRemovedCmHandles));
+        cpsModuleService.deleteUnusedYangResourceModules();
         tobeRemovedCmHandles.forEach(this::removeDeletedCmHandleFromModuleSyncMap);
     }
 

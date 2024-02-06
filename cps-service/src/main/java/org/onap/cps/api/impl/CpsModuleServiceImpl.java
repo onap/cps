@@ -117,7 +117,6 @@ public class CpsModuleServiceImpl implements CpsModuleService {
         final Collection<String> anchorNames = cpsAnchorService.getAnchors(dataspaceName, schemaSetNames)
             .stream().map(Anchor::getName).collect(Collectors.toSet());
         cpsAnchorService.deleteAnchors(dataspaceName, anchorNames);
-        cpsModulePersistenceService.deleteUnusedYangResourceModules();
         cpsModulePersistenceService.deleteSchemaSets(dataspaceName, schemaSetNames);
         for (final String schemaSetName : schemaSetNames) {
             yangTextSchemaSourceSetCache.removeFromCache(dataspaceName, schemaSetName);
@@ -168,6 +167,11 @@ public class CpsModuleServiceImpl implements CpsModuleService {
     public Collection<ModuleReference> identifyNewModuleReferences(
         final Collection<ModuleReference> moduleReferencesToCheck) {
         return cpsModulePersistenceService.identifyNewModuleReferences(moduleReferencesToCheck);
+    }
+
+    @Override
+    public void deleteUnusedYangResourceModules() {
+        cpsModulePersistenceService.deleteUnusedYangResourceModules();
     }
 
     private boolean isCascadeDeleteProhibited(final CascadeDeleteAllowed cascadeDeleteAllowed) {

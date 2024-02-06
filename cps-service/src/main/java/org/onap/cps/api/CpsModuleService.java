@@ -125,6 +125,11 @@ public interface CpsModuleService {
     Collection<ModuleReference> getYangResourcesModuleReferences(String dataspaceName, String anchorName);
 
     /**
+     * Deletes unused Yang resource modules.
+     */
+    void deleteUnusedYangResourceModules();
+
+    /**
      * Retrieve module definitions for the given dataspace name and anchor name.
      *
      * @param dataspaceName dataspace name

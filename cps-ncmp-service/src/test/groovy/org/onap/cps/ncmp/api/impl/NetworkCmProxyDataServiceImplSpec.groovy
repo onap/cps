@@ -59,6 +59,7 @@ import java.util.stream.Collectors
 import org.onap.cps.utils.JsonObjectMapper
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.CpsDataService
+import org.onap.cps.api.CpsModuleService
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.model.DataNode
@@ -69,6 +70,7 @@ import spock.lang.Specification
 class NetworkCmProxyDataServiceImplSpec extends Specification {
 
     def mockCpsDataService = Mock(CpsDataService)
+    def mockCpsModuleService = Mock(CpsModuleService)
     def spiedJsonObjectMapper = Spy(new JsonObjectMapper(new ObjectMapper()))
     def mockDmiDataOperations = Mock(DmiDataOperations)
     def nullNetworkCmProxyDataServicePropertyHandler = null
@@ -99,6 +101,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             mockCpsCmHandlerQueryService,
             mockLcmEventsCmHandleStateHandler,
             mockCpsDataService,
+            mockCpsModuleService,
             stubModuleSyncStartedOnCmHandles,
             stubTrustLevelPerDmiPlugin,
             mockTrustLevelManager,
@@ -171,6 +174,13 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             objectUnderTest.getYangResourcesModuleReferences('some-cm-handle')
         then: 'CPS module services is invoked for the correct dataspace and cm handle'
             1 * mockInventoryPersistence.getYangResourcesModuleReferences('some-cm-handle')
+    }
+
+    def 'Delete unused yang resource modules.'() {
+            when: 'cm handles batch deletion is called'
+                objectUnderTest.batchDeleteCmHandlesFromDbAndModuleSyncMap(Collections.emptyList())
+            then: 'CPS module services is invoked for deletion of unused yang resource modules'
+                1 * mockCpsModuleService.deleteUnusedYangResourceModules()
     }
 
     def 'Get a cm handle.'() {
