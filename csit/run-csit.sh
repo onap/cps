@@ -213,7 +213,7 @@ python3 --version
 pip freeze
 python3 -m robot.run --version || :
 
-python3 -m robot.run -N ${TESTPLAN} -v WORKSPACE:/tmp ${ROBOT_VARIABLES} ${TESTOPTIONS} ${SUITES}
+python3 -m robot.run -N ${TESTPLAN} -v WORKSPACE:/tmp --legacy-output ${ROBOT_VARIABLES} ${TESTOPTIONS} ${SUITES}
 RESULT=$?
 load_set
 echo "RESULT: $RESULT"
