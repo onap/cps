@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "262c1a0e_1c4f87f5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-06T19:06:30Z",
+      "side": 1,
+      "message": "The more I think about the bug ticket, the less sense it makes.\nFirstly, it\u0027s of no consequence to the user when orphaned modules get cleaned up in the DB.\n\nMore importantly, removing orphaned modules is an implementation detail of CPS core, and has nothing to do with NCMP or CM-handles. The changes made here to \u0027fix\u0027 the issue create architectural problems where CPS-core no longer removes unused modules automatically! And makes NCMP responsible for this basic task. (Sorry Sourabh, I pointed you in this direction, but it\u0027s completely incorrect.)\n\nI think we should close the ticket as \u0027not a bug\u0027, and abandon the change as it won\u0027t lead to any improvements.\n\nSome more info:\nRegarding order of operations in NCMP handle deregistration: removing modules and cached data BEFORE removing cm-handles is the CORRECT behaviour, e.g. if an error occurs during module removal, the handle will remain (in DELETING state). If we had removed the cm-handle first, and an error occurred later, the handle would be gone, but the data/modules would be still in the system, leading to inconsistency. So current behaviour is correct.",
+      "parentUuid": "924c9f3f_12e19a90",
+      "revId": "3517601d05b46bcce4e5a614a57435f43b7f7817",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "eeca0d8e_0dbb8482",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
         "patchSetId": 1
