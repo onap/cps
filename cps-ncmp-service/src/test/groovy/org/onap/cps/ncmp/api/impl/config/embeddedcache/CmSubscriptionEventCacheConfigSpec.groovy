@@ -50,7 +50,7 @@ class CmSubscriptionEventCacheConfigSpec extends Specification {
         given: 'a cm subscription properties'
             def subscriptionId = 'sub123'
             def dmiPluginName = 'dummydmi'
-            def cmSubscriptionPredicate = new CmSubscriptionPredicate(targetFilter: ['cmhandle1', 'cmhandle2'], scopeFilter: new ScopeFilter(datastoreType: DatastoreType.PASSTHROUGH_RUNNING, xpathFilters: ['/a/b/c']))
+            def cmSubscriptionPredicate = new CmSubscriptionPredicate(['cmhandle1', 'cmhandle2'].toSet(), new ScopeFilter(DatastoreType.PASSTHROUGH_RUNNING, ['/a/b/c'].toSet()))
             def cmSubscriptionCacheObject = new CmSubscriptionCacheObject(cmSubscriptionPredicates: [cmSubscriptionPredicate] , cmSubscriptionStatus: CmSubscriptionStatus.PENDING)
         when: 'the cache is populated'
             cmSubscriptionEventCache.put(subscriptionId, [(dmiPluginName): cmSubscriptionCacheObject])

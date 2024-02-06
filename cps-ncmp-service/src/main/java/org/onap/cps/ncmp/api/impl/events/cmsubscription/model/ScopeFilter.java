@@ -20,15 +20,17 @@
 
 package org.onap.cps.ncmp.api.impl.events.cmsubscription.model;
 
-import java.util.List;
+import java.util.Set;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import org.onap.cps.ncmp.api.impl.operations.DatastoreType;
 
 @Getter
 @Setter
+@AllArgsConstructor
 public class ScopeFilter {
 
     private DatastoreType datastoreType;
-    private List<String> xpathFilters;
+    private Set<String> xpathFilters;
 }
