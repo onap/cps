@@ -41,6 +41,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "245bae0a_eebacf2a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionCacheHandler.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-02-06T14:45:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df711ab1_d05f41ac",
+      "revId": "fc33cc7fbd8f212fbacfeef78498b9ac14d64963",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cbabd304_95c11e2c",
@@ -54,6 +72,24 @@
       "writtenOn": "2024-01-29T14:08:01Z",
       "side": 1,
       "message": "add explicit asserts wherever we are verifying.\napplies for all the tests.",
+      "revId": "fc33cc7fbd8f212fbacfeef78498b9ac14d64963",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc52e8e4_aea3e885",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionCacheHandlerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-02-06T14:45:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cbabd304_95c11e2c",
       "revId": "fc33cc7fbd8f212fbacfeef78498b9ac14d64963",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
