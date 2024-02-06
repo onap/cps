@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "61aca58e_01b6eff3",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/executor/CpsNcmpTaskExecutorSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-02-06T21:41:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8cbbde2c_98a041a6",
+      "range": {
+        "startLine": 53,
+        "startChar": 57,
+        "endLine": 53,
+        "endChar": 73
+      },
+      "revId": "f9587fb77156e1843f6f65f854c3da7b9382820a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cf8eafbb_ab0a3733",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-02-06T17:57:47Z",
       "side": 1,
       "message": "1 second",
+      "range": {
+        "startLine": 65,
+        "startChar": 58,
+        "endLine": 65,
+        "endChar": 74
+      },
+      "revId": "f9587fb77156e1843f6f65f854c3da7b9382820a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98733b13_ed06253c",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/executor/CpsNcmpTaskExecutorSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-02-06T21:41:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cf8eafbb_ab0a3733",
       "range": {
         "startLine": 65,
         "startChar": 58,
@@ -70,6 +118,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8011f674_fc80d1c2",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/FilterStrategiesIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-02-06T21:41:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "26725b59_09caeaba",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 13
+      },
+      "revId": "f9587fb77156e1843f6f65f854c3da7b9382820a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0ada4f37_66ee031a",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-02-06T17:57:47Z",
       "side": 1,
       "message": "maybe we should eb more generic, to prevent arguing over this and allow for small changes in wait time\ne.g. within a short time.\nOr leave it out altogether the time-out is not so important when you are explaining the behavior of the test to a PO-like person (the event is sent, whether it is after a few nanoseconds or after 100 ms is not so relevant to them)",
+      "range": {
+        "startLine": 103,
+        "startChar": 69,
+        "endLine": 103,
+        "endChar": 85
+      },
+      "revId": "f9587fb77156e1843f6f65f854c3da7b9382820a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ff6db2f_724b0d8f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/FilterStrategiesIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-02-06T21:41:37Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0ada4f37_66ee031a",
       "range": {
         "startLine": 103,
         "startChar": 69,
@@ -129,6 +225,30 @@
       "writtenOn": "2024-02-06T17:57:47Z",
       "side": 1,
       "message": "why did you increase this?",
+      "range": {
+        "startLine": 121,
+        "startChar": 49,
+        "endLine": 121,
+        "endChar": 51
+      },
+      "revId": "f9587fb77156e1843f6f65f854c3da7b9382820a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8688b65e_7e482152",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/SynchronizationCacheConfigSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-02-06T21:41:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f295a1f_21f6c482",
       "range": {
         "startLine": 121,
         "startChar": 49,
