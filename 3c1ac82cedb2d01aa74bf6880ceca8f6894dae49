@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "363c71e1_9dd7a33e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NcmpResponseStatus.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-02-06T11:50:18Z",
+      "side": 1,
+      "message": "no i dod not :( which doc you refering to?",
+      "parentUuid": "12194902_238da753",
+      "range": {
+        "startLine": 40,
+        "startChar": 36,
+        "endLine": 40,
+        "endChar": 41
+      },
+      "revId": "3c1ac82cedb2d01aa74bf6880ceca8f6894dae49",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1a221ba4_c11791fe",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapper.java",
         "patchSetId": 3
@@ -180,6 +204,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b149489_924a54cc",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapperSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-02-06T11:50:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ec62acf_a7e20b2d",
+      "range": {
+        "startLine": 125,
+        "startChar": 40,
+        "endLine": 125,
+        "endChar": 45
+      },
+      "revId": "3c1ac82cedb2d01aa74bf6880ceca8f6894dae49",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8ed65a65_8ccdf852",
@@ -203,6 +251,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "49cab055_364e02e4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapperSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-02-06T11:50:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ed65a65_8ccdf852",
+      "range": {
+        "startLine": 126,
+        "startChar": 40,
+        "endLine": 126,
+        "endChar": 43
+      },
+      "revId": "3c1ac82cedb2d01aa74bf6880ceca8f6894dae49",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "056e861c_6031006c",
@@ -216,6 +288,30 @@
       "writtenOn": "2024-02-06T09:29:58Z",
       "side": 1,
       "message": "my cached",
+      "range": {
+        "startLine": 127,
+        "startChar": 59,
+        "endLine": 127,
+        "endChar": 74
+      },
+      "revId": "3c1ac82cedb2d01aa74bf6880ceca8f6894dae49",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5639b89b_f66a5eba",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapperSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-02-06T11:50:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "056e861c_6031006c",
       "range": {
         "startLine": 127,
         "startChar": 59,
