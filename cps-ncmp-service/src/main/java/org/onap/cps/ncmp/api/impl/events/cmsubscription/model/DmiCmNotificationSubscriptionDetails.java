@@ -18,17 +18,16 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.events.cmsubscription.service;
+package org.onap.cps.ncmp.api.impl.events.cmsubscription.model;
 
+import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
 
-public interface CmSubscriptionValidationService {
+@Getter
+@Setter
+public class DmiCmNotificationSubscriptionDetails {
 
-    /**
-     * Validate against the allowed datastores.
-     *
-     * @param incomingDatastore Datastore from the incoming CmSubscription event from client
-     * @return true if valid datastore , otherwise false
-     */
-    boolean isValidDataStore(final String incomingDatastore);
-
+    private List<DmiCmNotificationSubscriptionPredicate> dmiCmNotificationSubscriptionPredicates;
+    private CmSubscriptionStatus cmSubscriptionStatus;
 }
