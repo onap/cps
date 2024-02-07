@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2825231e_4b72172d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-07T07:23:56Z",
+      "side": 1,
+      "message": "Please find my answer on your suggestion and let me know about your opinion so that I can update the names.",
+      "revId": "6027dff3dcfedead26669e3338cb70997dc1fc50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d61dcc31_73b399d6",
@@ -31,6 +48,30 @@
       "writtenOn": "2024-02-06T18:38:18Z",
       "side": 1,
       "message": "Suggestion: just wondering abt the name. it is obviously json! could we give it more relevant context like\n\npostDataCreate or formDataCreate\n\nor different order:\n\ncreatePostData / createFormData  (I think I prefer this last one)",
+      "range": {
+        "startLine": 37,
+        "startChar": 2,
+        "endLine": 37,
+        "endChar": 16
+      },
+      "revId": "6027dff3dcfedead26669e3338cb70997dc1fc50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "056b8435_9096948c",
+        "filename": "csit/tests/cps-model-sync/cps-model-sync.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-07T07:23:56Z",
+      "side": 1,
+      "message": "well, good suggestion. I can update this patch set after I got your opinion on another naming convention like: createPayload, updatePayload and deletePayload since all is going to be payload in a Post request?",
+      "parentUuid": "d61dcc31_73b399d6",
       "range": {
         "startLine": 37,
         "startChar": 2,
