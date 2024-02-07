@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d15da00a_1cd4e871",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/model/CachedScopeFilter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-07T16:29:53Z",
+      "side": 1,
+      "message": "ok then we will have to wait for the proposal.",
+      "parentUuid": "1768cb91_fa60ac87",
+      "range": {
+        "startLine": 30,
+        "startChar": 13,
+        "endLine": 30,
+        "endChar": 31
+      },
+      "revId": "cc6b95ecb2db867aca72a60172bd756168707c52",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "68e09e8d_a77dcbfa",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmSubscriptionPersistenceService.java",
         "patchSetId": 2
@@ -37,6 +61,30 @@
       "writtenOn": "2024-02-07T16:21:23Z",
       "side": 1,
       "message": "this is NOT part of persistence . My suggestion was to keep persistence related method in ONE class. and I don\u0027t think we need a \u0027validation\u0027 service .\nHow often is this validation method used, can it be a simple Util (static) class?\n\nlooks like it is only used in test yet, correct ?!",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 1
+      },
+      "revId": "cc6b95ecb2db867aca72a60172bd756168707c52",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d45dcc06_28bdb102",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmSubscriptionPersistenceService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-07T16:29:53Z",
+      "side": 1,
+      "message": "yeah we are developing the bits and pieces which will be part of the larger picture. For now in the test.yup.\n\nCan be moved to a utility class , agree on that.",
+      "parentUuid": "68e09e8d_a77dcbfa",
       "range": {
         "startLine": 39,
         "startChar": 0,
