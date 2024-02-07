@@ -21,7 +21,7 @@ cps-admin
 cps-data
 cps-model-sync
 cps-data-sync
-cps-subscriptions
+#cps-subscriptions
 ncmp-passthrough
 cm-handle-query
 cps-data-operations
