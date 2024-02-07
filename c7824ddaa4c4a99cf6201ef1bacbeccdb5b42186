@@ -86,6 +86,30 @@
       },
       "revId": "c7824ddaa4c4a99cf6201ef1bacbeccdb5b42186",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "090f2fe2_7d7ded42",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmSubscriptionValidationServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-07T10:25:50Z",
+      "side": 1,
+      "message": "FYI we should validate _subscriptionId_ here or in another method, using:\n\n    cpsValidator.validateNameCharacters(subscriptionId);",
+      "parentUuid": "7baddfe5_d7b52f34",
+      "range": {
+        "startLine": 48,
+        "startChar": 19,
+        "endLine": 48,
+        "endChar": 40
+      },
+      "revId": "c7824ddaa4c4a99cf6201ef1bacbeccdb5b42186",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
