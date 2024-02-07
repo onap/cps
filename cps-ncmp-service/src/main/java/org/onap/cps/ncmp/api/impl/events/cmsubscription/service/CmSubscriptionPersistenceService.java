@@ -20,24 +20,28 @@
 
 package org.onap.cps.ncmp.api.impl.events.cmsubscription.service;
 
-import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_OPERATIONAL;
-import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING;
+import org.onap.cps.ncmp.api.impl.operations.DatastoreType;
 
-import java.util.Arrays;
-import java.util.List;
-import org.springframework.stereotype.Service;
+public interface CmSubscriptionPersistenceService {
 
-@Service
-public class CmSubscriptionValidationServiceImpl implements CmSubscriptionValidationService {
+    String NCMP_DATASPACE_NAME = "NCMP-Admin";
+    String CM_SUBSCRIPTIONS_ANCHOR_NAME = "cm-data-subscriptions";
 
-    private static final List<String> validDatastores =
-            Arrays.asList(PASSTHROUGH_RUNNING.getDatastoreName(), PASSTHROUGH_OPERATIONAL.getDatastoreName());
+    /**
+     * Check if we have an ongoing cm subscription based on the parameters.
+     *
+     * @param datastoreType valid datastore type
+     * @param cmHandleId    cmhandle id
+     * @param xpath         valid xpath
+     * @return true for ongoing cmsubscription , otherwise false
+     */
+    boolean isOngoingCmSubscription(final DatastoreType datastoreType, final String cmHandleId, final String xpath);
 
-
-    @Override
-    public boolean isValidDataStore(final String incomingDatastore) {
-        return validDatastores.contains(incomingDatastore);
-    }
-
-
+    /**
+     * Validate against the allowed datastores.
+     *
+     * @param incomingDatastore Datastore from the incoming CmSubscription event from client
+     * @return true if valid datastore , otherwise false
+     */
+    boolean isValidDataStore(final String incomingDatastore);
 }

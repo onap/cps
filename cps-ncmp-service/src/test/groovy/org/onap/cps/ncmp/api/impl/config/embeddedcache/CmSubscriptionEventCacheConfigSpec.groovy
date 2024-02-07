@@ -22,10 +22,10 @@ package org.onap.cps.ncmp.api.impl.config.embeddedcache
 
 import com.hazelcast.core.Hazelcast
 import com.hazelcast.map.IMap
-import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.CmSubscriptionCacheObject
-import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.CmSubscriptionPredicate
+import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.CachedCmSubscription
+import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.CachedCmSubscriptionPredicate
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.CmSubscriptionStatus
-import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.ScopeFilter
+import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.CachedScopeFilter
 import org.onap.cps.ncmp.api.impl.operations.DatastoreType
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -35,7 +35,7 @@ import spock.lang.Specification
 class CmSubscriptionEventCacheConfigSpec extends Specification {
 
     @Autowired
-    IMap<String, Map<String, CmSubscriptionCacheObject>> cmSubscriptionEventCache;
+    IMap<String, Map<String, CachedCmSubscription>> cmSubscriptionEventCache;
 
     def 'Embedded (hazelcast) cache for Cm Subscription Event Cache.'() {
         expect: 'system is able to create an instance of the Forwarded Subscription Event Cache'
@@ -50,8 +50,8 @@ class CmSubscriptionEventCacheConfigSpec extends Specification {
         given: 'a cm subscription properties'
             def subscriptionId = 'sub123'
             def dmiPluginName = 'dummydmi'
-            def cmSubscriptionPredicate = new CmSubscriptionPredicate(targetFilter: ['cmhandle1', 'cmhandle2'], scopeFilter: new ScopeFilter(datastoreType: DatastoreType.PASSTHROUGH_RUNNING, xpathFilters: ['/a/b/c']))
-            def cmSubscriptionCacheObject = new CmSubscriptionCacheObject(cmSubscriptionPredicates: [cmSubscriptionPredicate] , cmSubscriptionStatus: CmSubscriptionStatus.PENDING)
+            def cmSubscriptionPredicate = new CachedCmSubscriptionPredicate(targetFilter: ['cmhandle1', 'cmhandle2'], setCachedScopeFilter: new CachedScopeFilter(datastoreType: DatastoreType.PASSTHROUGH_RUNNING, xpathFilters: ['/a/b/c']))
+            def cmSubscriptionCacheObject = new CachedCmSubscription(setCachedCmSubscriptionPredicates: [cmSubscriptionPredicate] , cmSubscriptionStatus: CmSubscriptionStatus.PENDING)
         when: 'the cache is populated'
             cmSubscriptionEventCache.put(subscriptionId, [(dmiPluginName): cmSubscriptionCacheObject])
         then: 'the values are present in memory'
@@ -59,6 +59,6 @@ class CmSubscriptionEventCacheConfigSpec extends Specification {
         and: 'properties match'
             assert dmiPluginName == cmSubscriptionEventCache.get(subscriptionId).keySet()[0]
             assert cmSubscriptionCacheObject.cmSubscriptionStatus == cmSubscriptionEventCache.get(subscriptionId).values().cmSubscriptionStatus[0]
-            assert cmSubscriptionCacheObject.cmSubscriptionPredicates[0].targetFilter == cmSubscriptionEventCache.get(subscriptionId).values().cmSubscriptionPredicates[0].targetFilter[0]
+            assert cmSubscriptionCacheObject.cachedCmSubscriptionPredicates[0].targetFilter == cmSubscriptionEventCache.get(subscriptionId).values().cachedCmSubscriptionPredicates[0].targetFilter[0]
     }
 }

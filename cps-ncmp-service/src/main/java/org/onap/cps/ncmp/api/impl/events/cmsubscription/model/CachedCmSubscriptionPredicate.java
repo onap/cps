@@ -26,9 +26,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CmSubscriptionPredicate {
+public class CachedCmSubscriptionPredicate {
 
     private List<String> targetFilter;
-    private ScopeFilter scopeFilter;
+    private CachedScopeFilter cachedScopeFilter;
 
 }

@@ -20,7 +20,12 @@
 
 package org.onap.cps.ncmp.api.impl.events.cmsubscription.service;
 
+import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_OPERATIONAL;
+import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING;
+
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsDataService;
@@ -32,10 +37,12 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class CmSubscriptionServiceImpl implements CmSubscriptionService {
+public class CmSubscriptionPersistenceServiceImpl implements CmSubscriptionPersistenceService {
 
     private static final String IS_ONGOING_CM_SUBSCRIPTION_CPS_PATH_QUERY = """
             /datastores/datastore[@name='%s']/cm-handles/cm-handle[@id='%s']/filters/filter[@xpath='%s']""";
+    private static final List<String> validDatastores =
+            Arrays.asList(PASSTHROUGH_RUNNING.getDatastoreName(), PASSTHROUGH_OPERATIONAL.getDatastoreName());
 
     private final CpsDataService cpsDataService;
 
@@ -49,6 +56,11 @@ public class CmSubscriptionServiceImpl implements CmSubscriptionService {
                 cpsDataService.getDataNodes(NCMP_DATASPACE_NAME, CM_SUBSCRIPTIONS_ANCHOR_NAME,
                         isOngoingCmSubscriptionCpsPathQuery, FetchDescendantsOption.OMIT_DESCENDANTS);
         return !existingNodes.isEmpty();
+    }
+
+    @Override
+    public boolean isValidDataStore(final String incomingDatastore) {
+        return validDatastores.contains(incomingDatastore);
     }
 
     private static String escapeQuotesByDoublingThem(final String inputXpath) {

@@ -24,7 +24,7 @@ import com.hazelcast.config.MapConfig;
 import com.hazelcast.map.IMap;
 import java.util.Map;
 import org.onap.cps.cache.HazelcastCacheConfig;
-import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.CmSubscriptionCacheObject;
+import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.CachedCmSubscription;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -42,7 +42,7 @@ public class CmSubscriptionEventCacheConfig extends HazelcastCacheConfig {
      * @return configured map of subscription events.
      */
     @Bean
-    public IMap<String, Map<String, CmSubscriptionCacheObject>> cmSubscriptionEventCache() {
+    public IMap<String, Map<String, CachedCmSubscription>> cmSubscriptionEventCache() {
         return createHazelcastInstance("hazelCastInstanceCmSubscriptionEvents",
                 cmSubscriptionEventCacheMapConfig).getMap("cmSubscriptionEventCache");
     }
