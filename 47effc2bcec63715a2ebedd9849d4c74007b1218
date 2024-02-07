@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d8a471c_f95c7a64",
+        "filename": "cps-events/src/main/resources/schemas/cps-data-updated-event-schema-1.0.0.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-07T10:47:41Z",
+      "side": 1,
+      "message": "can you move this to a folder so that when we add other schemas then it would be easier to categorize.",
+      "revId": "47effc2bcec63715a2ebedd9849d4c74007b1218",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
