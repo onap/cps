@@ -22,6 +22,30 @@
       },
       "revId": "fd71c48a8949560ea174d2dbb52b406c902ce14a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab264a1f_e3ff0b1f",
+        "filename": "csit/tests/cps-model-sync/cps-model-sync.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-07T16:03:13Z",
+      "side": 1,
+      "message": "Definitely it is not necessary. Thus I removed it. Many thanks.",
+      "parentUuid": "28332897_9858721a",
+      "range": {
+        "startLine": 90,
+        "startChar": 4,
+        "endLine": 90,
+        "endChar": 74
+      },
+      "revId": "fd71c48a8949560ea174d2dbb52b406c902ce14a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
