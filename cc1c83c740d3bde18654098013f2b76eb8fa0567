@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4419578c_0c33b734",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/executor/CpsNcmpTaskExecutorSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-07T10:45:33Z",
+      "side": 1,
+      "message": "I wil create a patch  to udpate all tehse incorerct loggin setup.\n@ annotation are not need teardown() shoudl eb called cleanup in SPock()",
+      "range": {
+        "startLine": 39,
+        "startChar": 2,
+        "endLine": 48,
+        "endChar": 5
+      },
+      "revId": "cc1c83c740d3bde18654098013f2b76eb8fa0567",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
