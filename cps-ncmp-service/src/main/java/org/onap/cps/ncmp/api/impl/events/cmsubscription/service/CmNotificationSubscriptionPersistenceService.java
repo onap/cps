@@ -20,9 +20,10 @@
 
 package org.onap.cps.ncmp.api.impl.events.cmsubscription.service;
 
+import java.util.Collection;
 import org.onap.cps.ncmp.api.impl.operations.DatastoreType;
 
-public interface CmSubscriptionService {
+public interface CmNotificationSubscriptionPersistenceService {
 
     String NCMP_DATASPACE_NAME = "NCMP-Admin";
     String CM_SUBSCRIPTIONS_ANCHOR_NAME = "cm-data-subscriptions";
@@ -35,5 +36,17 @@ public interface CmSubscriptionService {
      * @param xpath         valid xpath
      * @return true for ongoing cmsubscription , otherwise false
      */
-    boolean isOngoingCmSubscription(final DatastoreType datastoreType, final String cmHandleId, final String xpath);
+    boolean isOngoingCmNotificationSubscription(final DatastoreType datastoreType, final String cmHandleId,
+            final String xpath);
+
+    /**
+     * Get all ongoing cm notification subscription based on the parameters.
+     *
+     * @param datastoreType valid datastore type
+     * @param cmHandleId    cmhandle id
+     * @param xpath         valid xpath
+     * @return collection of  ongoing cmnotificationsubscription
+     */
+    Collection<String> getOngoingCmNotificationSubscription(final DatastoreType datastoreType, final String cmHandleId,
+            final String xpath);
 }

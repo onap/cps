@@ -23,12 +23,14 @@ package org.onap.cps.ncmp.api.impl.events.cmsubscription.model;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
+import org.onap.cps.ncmp.api.impl.operations.DatastoreType;
 
 @Getter
 @Setter
-public class CmSubscriptionPredicate {
+public class DmiCmNotificationSubscriptionPredicate {
 
-    private List<String> targetFilter;
-    private ScopeFilter scopeFilter;
+    private List<String> targetCmHandleIds;
+    private DatastoreType datastoreType;
+    private List<String> xpaths;
 
 }

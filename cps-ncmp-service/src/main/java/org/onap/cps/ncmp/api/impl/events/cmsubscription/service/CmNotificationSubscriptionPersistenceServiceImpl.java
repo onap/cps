@@ -20,10 +20,11 @@
 
 package org.onap.cps.ncmp.api.impl.events.cmsubscription.service;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.api.CpsDataService;
+import org.onap.cps.api.CpsQueryService;
 import org.onap.cps.ncmp.api.impl.operations.DatastoreType;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
@@ -32,23 +33,33 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class CmSubscriptionServiceImpl implements CmSubscriptionService {
+public class CmNotificationSubscriptionPersistenceServiceImpl implements CmNotificationSubscriptionPersistenceService {
 
     private static final String IS_ONGOING_CM_SUBSCRIPTION_CPS_PATH_QUERY = """
             /datastores/datastore[@name='%s']/cm-handles/cm-handle[@id='%s']/filters/filter[@xpath='%s']""";
 
-    private final CpsDataService cpsDataService;
+    private final CpsQueryService cpsQueryService;
 
     @Override
-    public boolean isOngoingCmSubscription(final DatastoreType datastoreType, final String cmHandleId,
+    public boolean isOngoingCmNotificationSubscription(final DatastoreType datastoreType, final String cmHandleId,
             final String xpath) {
+        return !getOngoingCmNotificationSubscription(datastoreType, cmHandleId, xpath).isEmpty();
+    }
+
+    @Override
+    public Collection<String> getOngoingCmNotificationSubscription(final DatastoreType datastoreType,
+            final String cmHandleId, final String xpath) {
+
         final String isOngoingCmSubscriptionCpsPathQuery =
                 IS_ONGOING_CM_SUBSCRIPTION_CPS_PATH_QUERY.formatted(datastoreType.getDatastoreName(), cmHandleId,
                         escapeQuotesByDoublingThem(xpath));
         final Collection<DataNode> existingNodes =
-                cpsDataService.getDataNodes(NCMP_DATASPACE_NAME, CM_SUBSCRIPTIONS_ANCHOR_NAME,
+                cpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME, CM_SUBSCRIPTIONS_ANCHOR_NAME,
                         isOngoingCmSubscriptionCpsPathQuery, FetchDescendantsOption.OMIT_DESCENDANTS);
-        return !existingNodes.isEmpty();
+        final Collection<String> ongoingCmSubscriptionIds = new ArrayList<>(existingNodes.size());
+        existingNodes.forEach(
+                dataNode -> ongoingCmSubscriptionIds.add((String) dataNode.getLeaves().get("subscribers")));
+        return ongoingCmSubscriptionIds;
     }
 
     private static String escapeQuotesByDoublingThem(final String inputXpath) {
