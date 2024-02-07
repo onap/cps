@@ -20,15 +20,20 @@
 
 package org.onap.cps.ncmp.api.impl.events.cmsubscription.service;
 
+import org.onap.cps.ncmp.api.impl.operations.DatastoreType;
 
-public interface CmSubscriptionValidationService {
+public interface CmSubscriptionPersistenceService {
+
+    String NCMP_DATASPACE_NAME = "NCMP-Admin";
+    String CM_SUBSCRIPTIONS_ANCHOR_NAME = "cm-data-subscriptions";
 
     /**
-     * Validate against the allowed datastores.
+     * Check if we have an ongoing cm subscription based on the parameters.
      *
-     * @param incomingDatastore Datastore from the incoming CmSubscription event from client
-     * @return true if valid datastore , otherwise false
+     * @param datastoreType valid datastore type
+     * @param cmHandleId    cmhandle id
+     * @param xpath         valid xpath
+     * @return true for ongoing cmsubscription , otherwise false
      */
-    boolean isValidDataStore(final String incomingDatastore);
-
+    boolean isOngoingCmSubscription(final DatastoreType datastoreType, final String cmHandleId, final String xpath);
 }

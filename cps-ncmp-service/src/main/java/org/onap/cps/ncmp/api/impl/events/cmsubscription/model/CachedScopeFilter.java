@@ -18,26 +18,17 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.events.cmsubscription.service;
+package org.onap.cps.ncmp.api.impl.events.cmsubscription.model;
 
-import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_OPERATIONAL;
-import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING;
-
-import java.util.Arrays;
 import java.util.List;
-import org.springframework.stereotype.Service;
+import lombok.Getter;
+import lombok.Setter;
+import org.onap.cps.ncmp.api.impl.operations.DatastoreType;
 
-@Service
-public class CmSubscriptionValidationServiceImpl implements CmSubscriptionValidationService {
+@Getter
+@Setter
+public class CachedScopeFilter {
 
-    private static final List<String> validDatastores =
-            Arrays.asList(PASSTHROUGH_RUNNING.getDatastoreName(), PASSTHROUGH_OPERATIONAL.getDatastoreName());
-
-
-    @Override
-    public boolean isValidDataStore(final String incomingDatastore) {
-        return validDatastores.contains(incomingDatastore);
-    }
-
-
+    private DatastoreType datastoreType;
+    private List<String> xpathFilters;
 }

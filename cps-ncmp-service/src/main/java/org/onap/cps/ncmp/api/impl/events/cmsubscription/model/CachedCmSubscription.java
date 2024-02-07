@@ -26,8 +26,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CmSubscriptionCacheObject {
+public class CachedCmSubscription {
 
-    private List<CmSubscriptionPredicate> cmSubscriptionPredicates;
+    private List<CachedCmSubscriptionPredicate> cachedCmSubscriptionPredicates;
     private CmSubscriptionStatus cmSubscriptionStatus;
 }

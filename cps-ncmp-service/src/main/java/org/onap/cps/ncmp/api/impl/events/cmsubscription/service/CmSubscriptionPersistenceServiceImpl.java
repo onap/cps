@@ -23,7 +23,7 @@ package org.onap.cps.ncmp.api.impl.events.cmsubscription.service;
 import java.util.Collection;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.api.CpsDataService;
+import org.onap.cps.api.CpsQueryService;
 import org.onap.cps.ncmp.api.impl.operations.DatastoreType;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
@@ -32,12 +32,12 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class CmSubscriptionServiceImpl implements CmSubscriptionService {
+public class CmSubscriptionPersistenceServiceImpl implements CmSubscriptionPersistenceService {
 
     private static final String IS_ONGOING_CM_SUBSCRIPTION_CPS_PATH_QUERY = """
             /datastores/datastore[@name='%s']/cm-handles/cm-handle[@id='%s']/filters/filter[@xpath='%s']""";
 
-    private final CpsDataService cpsDataService;
+    private final CpsQueryService cpsQueryService;
 
     @Override
     public boolean isOngoingCmSubscription(final DatastoreType datastoreType, final String cmHandleId,
@@ -46,7 +46,7 @@ public class CmSubscriptionServiceImpl implements CmSubscriptionService {
                 IS_ONGOING_CM_SUBSCRIPTION_CPS_PATH_QUERY.formatted(datastoreType.getDatastoreName(), cmHandleId,
                         escapeQuotesByDoublingThem(xpath));
         final Collection<DataNode> existingNodes =
-                cpsDataService.getDataNodes(NCMP_DATASPACE_NAME, CM_SUBSCRIPTIONS_ANCHOR_NAME,
+                cpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME, CM_SUBSCRIPTIONS_ANCHOR_NAME,
                         isOngoingCmSubscriptionCpsPathQuery, FetchDescendantsOption.OMIT_DESCENDANTS);
         return !existingNodes.isEmpty();
     }
