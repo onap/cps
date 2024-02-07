@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cd7c18a4_2c5a88a0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmSubscriptionValidationServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-07T10:02:50Z",
+      "side": 1,
+      "message": "Constant should be inlined - it is short and only used once",
+      "range": {
+        "startLine": 44,
+        "startChar": 32,
+        "endLine": 45,
+        "endChar": 49
+      },
+      "revId": "c7824ddaa4c4a99cf6201ef1bacbeccdb5b42186",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "78752752_caca1ca6",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmSubscriptionValidationServiceImpl.java",
         "patchSetId": 1
@@ -31,6 +54,30 @@
       "writtenOn": "2024-02-06T18:08:32Z",
       "side": 1,
       "message": "this method is also test uniqueness, it is important to show that in the name\ne.g. isValidUniqueSubscriptionId\n\nBut to be honest I think test for valid naming (correct characters etc) should be separate from tets for UNIQUE you probably need to report different errors for each case!\nFinally I don\u0027t understand why you check the CPS Path heer, is the end user creating a CPS path or is it hardcoded in NCMP I would assume the latter and then you dont need to check the CPS Path (but only the ID itself, do we have any agreement/limitation on what the ID can be ?!)",
+      "range": {
+        "startLine": 48,
+        "startChar": 19,
+        "endLine": 48,
+        "endChar": 40
+      },
+      "revId": "c7824ddaa4c4a99cf6201ef1bacbeccdb5b42186",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7baddfe5_d7b52f34",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmSubscriptionValidationServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-07T10:02:50Z",
+      "side": 1,
+      "message": "This doesn\u0027t check for valid characters, it only checks for uniqueness (the string format is to format the path query). It could be written more simply as:\n\n    public boolean isUniqueSubscriptionId(final String subscriptionId) {\n        return cpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME,  SUBSCRIPTION_ANCHOR_NAME, \n                \"//filter/subscribers[text()\u003d\u0027\" + subscriptionId + \"\u0027]\",\n                FetchDescendantsOption.OMIT_DESCENDANTS).isEmpty();\n    }",
+      "parentUuid": "78752752_caca1ca6",
       "range": {
         "startLine": 48,
         "startChar": 19,
