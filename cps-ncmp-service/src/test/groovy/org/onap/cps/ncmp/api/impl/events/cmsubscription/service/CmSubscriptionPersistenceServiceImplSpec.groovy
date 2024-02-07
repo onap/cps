@@ -26,11 +26,11 @@ import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.model.DataNode
 import spock.lang.Specification
 
-class CmSubscriptionServiceImplSpec extends Specification {
+class CmSubscriptionPersistenceServiceImplSpec extends Specification {
 
     def mockCpsDataService = Mock(CpsDataService)
 
-    def objectUnderTest = new CmSubscriptionServiceImpl(mockCpsDataService)
+    def objectUnderTest = new CmSubscriptionPersistenceServiceImpl(mockCpsDataService)
 
     def 'Check ongoing cm subscription #scenario'() {
         given: 'a valid cm subscription query'
@@ -46,5 +46,16 @@ class CmSubscriptionServiceImplSpec extends Specification {
             scenario                  | dataNode                                                             || isOngoingCmSubscription
             'valid datanodes present' | [new DataNode(xpath: '/cps/path', leaves: ['subscribers': 'sub-1'])] || true
             'no datanodes present'    | []                                                                   || false
+    }
+
+    def 'Validate datastore #datastore for Cm Subscription'() {
+        when: 'we check against incoming datastore'
+            def result = objectUnderTest.isValidDataStore(datastore)
+        then: 'the datastores are validated for the use case'
+            assert result == isValid
+        where: 'following datastores are checked'
+            scenario            | datastore                            || isValid
+            'Valid datastore'   | 'ncmp-datastore:passthrough-running' || true
+            'Invalid datastore' | 'invalid-ds'                         || false
     }
 }
