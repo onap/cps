@@ -918,9 +918,9 @@ paths:
       - network-cm-proxy
   /v1/ch/{cm-handle}/modules/definitions:
     get:
-      description: "Fetch all module definitions (name, revision, yang resource) for\
-        \ a given cm handle"
-      operationId: getModuleDefinitionsByCmHandleId
+      description: "Get module definitions (module name, revision, yang resource)\
+        \ with options to filter on module name and revision"
+      operationId: getModuleDefinitions
       parameters:
       - description: "The identifier for a network function, network element, subnetwork\
           \ or any other cm object by managed Network CM Proxy"
@@ -929,6 +929,21 @@ paths:
         required: true
         schema:
           example: my-cm-handle
+          type: string
+      - description: Filter for a module name.This is an optional parameter
+        in: query
+        name: module-name
+        required: false
+        schema:
+          example: my-module
+          type: string
+      - description: Filter for a module revision.This is an optional parameter and
+          ignored when no module name is supplied
+        in: query
+        name: revision
+        required: false
+        schema:
+          example: 2024-01-22
           type: string
       responses:
         "200":
@@ -969,8 +984,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
           description: Internal Server Error
-      summary: "Fetch all module definitions (name, revision, yang resource) for a\
-        \ given cm handle"
+      summary: Get module definitions
       tags:
       - network-cm-proxy
   /v1/ch/searches:
@@ -1665,6 +1679,23 @@ components:
       required: false
       schema:
         default: /
+        type: string
+    moduleNameInQuery:
+      description: Filter for a module name.This is an optional parameter
+      in: query
+      name: module-name
+      required: false
+      schema:
+        example: my-module
+        type: string
+    revisionInQuery:
+      description: Filter for a module revision.This is an optional parameter and
+        ignored when no module name is supplied
+      in: query
+      name: revision
+      required: false
+      schema:
+        example: 2024-01-22
         type: string
     dataSyncEnabled:
       description: Is used to enable or disable the data synchronization flag

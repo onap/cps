@@ -39,7 +39,9 @@ Release Data
 Bug Fixes
 ---------
 3.4.3
-
+    - `CPS-2000 <https://jira.onap.org/browse/CPS-2000>`_ Fix for Schema object cache not being distributed.
+    - `CPS-2027 <https://jira.onap.org/browse/CPS-2027>`_ Fixes for upgrade yang modules using module set tag.
+    - `CPS-2070 <https://jira.onap.org/browse/CPS-2070>`_ Add retry interval for Kafka consumer.
 
 Features
 --------
