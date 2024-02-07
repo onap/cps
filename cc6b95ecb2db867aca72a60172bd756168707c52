@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1768cb91_fa60ac87",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/model/CachedScopeFilter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-07T16:21:23Z",
+      "side": 1,
+      "message": "this might be OK but the agreement was that Lee Anjella does a proposal in which we agree the final names....",
+      "range": {
+        "startLine": 30,
+        "startChar": 13,
+        "endLine": 30,
+        "endChar": 31
+      },
+      "revId": "cc6b95ecb2db867aca72a60172bd756168707c52",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68e09e8d_a77dcbfa",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmSubscriptionPersistenceService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-07T16:21:23Z",
+      "side": 1,
+      "message": "this is NOT part of persistence . My suggestion was to keep persistence related method in ONE class. and I don\u0027t think we need a \u0027validation\u0027 service .\nHow often is this validation method used, can it be a simple Util (static) class?\n\nlooks like it is only used in test yet, correct ?!",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 1
+      },
+      "revId": "cc6b95ecb2db867aca72a60172bd756168707c52",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60f7af36_f0204683",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-07T16:21:23Z",
+      "side": 1,
+      "message": "the persistence service should return an array of objects. (you probabyy need that soon anyway)\nCheck the size of it as needed when you are \u0027validating\u0027 a new subscription\nanother method (you prposed name is good) here that wraps that and returns a a boolean  is OK too",
+      "range": {
+        "startLine": 50,
+        "startChar": 11,
+        "endLine": 50,
+        "endChar": 19
+      },
+      "revId": "cc6b95ecb2db867aca72a60172bd756168707c52",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07778a5a_8756ce9f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-07T16:21:23Z",
+      "side": 1,
+      "message": "as before, wrong place, i woulf even consider putting this in teh controller!",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 5
+      },
+      "revId": "cc6b95ecb2db867aca72a60172bd756168707c52",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
