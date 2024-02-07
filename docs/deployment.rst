@@ -333,7 +333,7 @@ Below are the list of distributed datastructures that we have.
 +--------------+------------------------------------+-----------------------------------------------------------+
 | cps-ncmp     | moduleSetTagCacheMapConfig         | Stores the module set tags for cm handles.                |
 +--------------+------------------------------------+-----------------------------------------------------------+
-| cps-ncmp     | cmSubscriptionEventCache           | Stores and tracks cm notification subscription requests.  |
+| cps-ncmp     | cmNotificationSubscriptionCache    | Stores and tracks cm notification subscription requests.  |
 +--------------+------------------------------------+-----------------------------------------------------------+
 | cps-ncmp     | alternateIdPerCmHandleId           | Stores the alternate id for each cm handle id.            |
 +--------------+------------------------------------+-----------------------------------------------------------+

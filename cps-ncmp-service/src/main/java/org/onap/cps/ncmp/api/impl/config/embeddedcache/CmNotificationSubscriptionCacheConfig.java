@@ -24,26 +24,26 @@ import com.hazelcast.config.MapConfig;
 import com.hazelcast.map.IMap;
 import java.util.Map;
 import org.onap.cps.cache.HazelcastCacheConfig;
-import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.CmSubscriptionCacheObject;
+import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.DmiCmNotificationSubscriptionDetails;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class CmSubscriptionEventCacheConfig extends HazelcastCacheConfig {
+public class CmNotificationSubscriptionCacheConfig extends HazelcastCacheConfig {
 
-    private static final MapConfig cmSubscriptionEventCacheMapConfig =
-            createMapConfig("cmSubscriptionEventCacheMapConfig");
+    private static final MapConfig cmNotificationSubscriptionCacheMapConfig =
+            createMapConfig("cmNotificationSubscriptionCacheMapConfig");
 
     /**
-     * Distributed instance of cm subscription information
+     * Distributed instance of cm notification subscription information
      * cache that contains subscription id as key
      * and incoming event data processed per dmi plugin.
      *
      * @return configured map of subscription events.
      */
     @Bean
-    public IMap<String, Map<String, CmSubscriptionCacheObject>> cmSubscriptionEventCache() {
-        return createHazelcastInstance("hazelCastInstanceCmSubscriptionEvents",
-                cmSubscriptionEventCacheMapConfig).getMap("cmSubscriptionEventCache");
+    public IMap<String, Map<String, DmiCmNotificationSubscriptionDetails>> cmNotificationSubscriptionCache() {
+        return createHazelcastInstance("hazelCastInstanceCmNotificationSubscription",
+                cmNotificationSubscriptionCacheMapConfig).getMap("cmNotificationSubscriptionCache");
     }
 }

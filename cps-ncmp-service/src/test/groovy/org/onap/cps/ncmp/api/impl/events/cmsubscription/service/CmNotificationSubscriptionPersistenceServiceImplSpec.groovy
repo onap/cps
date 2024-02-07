@@ -20,31 +20,32 @@
 
 package org.onap.cps.ncmp.api.impl.events.cmsubscription.service
 
-import org.onap.cps.api.CpsDataService
+
+import org.onap.cps.api.CpsQueryService
 import org.onap.cps.ncmp.api.impl.operations.DatastoreType
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.model.DataNode
 import spock.lang.Specification
 
-class CmSubscriptionServiceImplSpec extends Specification {
+class CmNotificationSubscriptionPersistenceServiceImplSpec extends Specification {
 
-    def mockCpsDataService = Mock(CpsDataService)
+    def mockCpsQueryService = Mock(CpsQueryService)
 
-    def objectUnderTest = new CmSubscriptionServiceImpl(mockCpsDataService)
+    def objectUnderTest = new CmNotificationSubscriptionPersistenceServiceImpl(mockCpsQueryService)
 
     def 'Check ongoing cm subscription #scenario'() {
         given: 'a valid cm subscription query'
             def cpsPathQuery = "/datastores/datastore[@name='ncmp-datastore:passthrough-running']/cm-handles/cm-handle[@id='ch-1']/filters/filter[@xpath='/cps/path']";
         and: 'datanodes optionally returned'
-            1 * mockCpsDataService.getDataNodes('NCMP-Admin', 'cm-data-subscriptions',
+            1 * mockCpsQueryService.queryDataNodes('NCMP-Admin', 'cm-data-subscriptions',
                 cpsPathQuery, FetchDescendantsOption.OMIT_DESCENDANTS) >> dataNode
         when: 'we check for an ongoing cm subscription'
-            def response = objectUnderTest.isOngoingCmSubscription(DatastoreType.PASSTHROUGH_RUNNING, 'ch-1', '/cps/path')
+            def response = objectUnderTest.isOngoingCmNotificationSubscription(DatastoreType.PASSTHROUGH_RUNNING, 'ch-1', '/cps/path')
         then: 'we get expected response'
             assert response == isOngoingCmSubscription
         where: 'following scenarios are used'
-            scenario                  | dataNode                                                             || isOngoingCmSubscription
-            'valid datanodes present' | [new DataNode(xpath: '/cps/path', leaves: ['subscribers': 'sub-1'])] || true
-            'no datanodes present'    | []                                                                   || false
+            scenario                  | dataNode                                                                        || isOngoingCmSubscription
+            'valid datanodes present' | [new DataNode(xpath: '/cps/path', leaves: ['subscribers': ['sub-1', 'sub-2']])] || true
+            'no datanodes present'    | []                                                                              || false
     }
 }
