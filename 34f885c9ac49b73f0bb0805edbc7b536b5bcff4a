@@ -376,6 +376,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d8d6854_b30d115a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapperSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-02-07T18:31:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "52f858aa_baf8ec96",
+      "range": {
+        "startLine": 124,
+        "startChar": 12,
+        "endLine": 124,
+        "endChar": 37
+      },
+      "revId": "34f885c9ac49b73f0bb0805edbc7b536b5bcff4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4f8c6d4f_2eef0d76",
@@ -448,6 +472,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3d6e1cfe_2afd7f1d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapperSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-02-07T18:31:22Z",
+      "side": 1,
+      "message": "lets discuss this tomorrow morning! Do you mean like this?:\n\n\u0027cm handle with already assigned same alternate id\u0027  | \u0027ch-1\u0027   | \u0027ch-1\u0027 || false",
+      "parentUuid": "0277f42c_31fef489",
+      "range": {
+        "startLine": 126,
+        "startChar": 13,
+        "endLine": 126,
+        "endChar": 34
+      },
+      "revId": "34f885c9ac49b73f0bb0805edbc7b536b5bcff4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4cc88321_4ddb5c2f",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapperSpec.groovy",
         "patchSetId": 11
@@ -459,6 +507,30 @@
       "writtenOn": "2024-02-07T16:47:37Z",
       "side": 1,
       "message": "alternat id already assigned to other cm handle",
+      "range": {
+        "startLine": 127,
+        "startChar": 13,
+        "endLine": 127,
+        "endChar": 35
+      },
+      "revId": "34f885c9ac49b73f0bb0805edbc7b536b5bcff4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d5ed221_be8094ed",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapperSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-02-07T18:31:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4cc88321_4ddb5c2f",
       "range": {
         "startLine": 127,
         "startChar": 13,
@@ -482,6 +554,30 @@
       "writtenOn": "2024-02-07T16:47:37Z",
       "side": 1,
       "message": "no alternate id provided",
+      "range": {
+        "startLine": 128,
+        "startChar": 13,
+        "endLine": 128,
+        "endChar": 33
+      },
+      "revId": "34f885c9ac49b73f0bb0805edbc7b536b5bcff4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2890240_8f9a1d2a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapperSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-02-07T18:31:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a2ed289a_37fbc3aa",
       "range": {
         "startLine": 128,
         "startChar": 13,
