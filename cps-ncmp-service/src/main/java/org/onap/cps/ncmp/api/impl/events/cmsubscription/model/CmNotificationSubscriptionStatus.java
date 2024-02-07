@@ -20,14 +20,13 @@
 
 package org.onap.cps.ncmp.api.impl.events.cmsubscription.model;
 
-import java.util.List;
-import lombok.Getter;
-import lombok.Setter;
+public enum CmNotificationSubscriptionStatus {
 
-@Getter
-@Setter
-public class CmSubscriptionCacheObject {
+    ACCEPTED("ACCEPTED"), REJECTED("REJECTED"), PENDING("PENDING");
 
-    private List<CmSubscriptionPredicate> cmSubscriptionPredicates;
-    private CmSubscriptionStatus cmSubscriptionStatus;
+    private final String cmNotificationSubscriptionStatusValue;
+
+    CmNotificationSubscriptionStatus(final String cmNotificationSubscriptionStatusValue) {
+        this.cmNotificationSubscriptionStatusValue = cmNotificationSubscriptionStatusValue;
+    }
 }
