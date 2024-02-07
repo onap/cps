@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "47da54ce_e1e9ed45",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-02-07T10:32:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b0965d0_819f7bec",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 7
+      },
+      "revId": "fbad94c33a5db60ad54d33ff537405126428d96a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "43647fa6_0841577f",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 4
@@ -64,6 +88,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f1e19df_9ca97054",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/SerializationIntegrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-02-07T10:32:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "137d91ed_69607c91",
+      "range": {
+        "startLine": 60,
+        "startChar": 4,
+        "endLine": 60,
+        "endChar": 30
+      },
+      "revId": "fbad94c33a5db60ad54d33ff537405126428d96a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "df785bf0_471d2af0",
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3587c30f_71151a73",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/SerializationIntegrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-02-07T10:32:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df785bf0_471d2af0",
+      "range": {
+        "startLine": 75,
+        "startChar": 16,
+        "endLine": 75,
+        "endChar": 53
+      },
+      "revId": "fbad94c33a5db60ad54d33ff537405126428d96a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d60fb0e2_1ee972a1",
@@ -100,6 +172,30 @@
       "writtenOn": "2024-02-07T10:18:59Z",
       "side": 1,
       "message": "use assert",
+      "range": {
+        "startLine": 92,
+        "startChar": 16,
+        "endLine": 92,
+        "endChar": 48
+      },
+      "revId": "fbad94c33a5db60ad54d33ff537405126428d96a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd8ffc2b_e7ac60fc",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/SerializationIntegrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-02-07T10:32:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d60fb0e2_1ee972a1",
       "range": {
         "startLine": 92,
         "startChar": 16,
