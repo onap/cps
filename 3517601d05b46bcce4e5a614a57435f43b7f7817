@@ -54,6 +54,41 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6bf79506_2614680a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-02-07T10:32:37Z",
+      "side": 1,
+      "message": "ACK",
+      "parentUuid": "77bb5127_86977a72",
+      "revId": "3517601d05b46bcce4e5a614a57435f43b7f7817",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30771fb7_94a4f9d7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-02-07T10:32:37Z",
+      "side": 1,
+      "message": "Abandon as we have new commit : 137151: Orphaned modules are removed from the DB before cmhandle removal | https://gerrit.onap.org/r/c/cps/+/137151",
+      "revId": "3517601d05b46bcce4e5a614a57435f43b7f7817",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eeca0d8e_0dbb8482",
