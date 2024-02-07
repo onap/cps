@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023 Nordix Foundation
+ *  Copyright (C) 2023-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -24,8 +24,6 @@ import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
 import ch.qos.logback.classic.spi.ILoggingEvent
 import ch.qos.logback.core.read.ListAppender
-import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.BeforeEach
 import org.slf4j.LoggerFactory
 import spock.lang.Specification
 
@@ -35,15 +33,13 @@ class CpsNcmpTaskExecutorSpec extends Specification {
     def logger = Spy(ListAppender<ILoggingEvent>)
     def enoughTime = 100
 
-    @BeforeEach
     void setup() {
-        ((Logger) LoggerFactory.getLogger(CpsNcmpTaskExecutor.class)).addAppender(logger);
-        logger.start();
+        ((Logger) LoggerFactory.getLogger(CpsNcmpTaskExecutor.class)).addAppender(logger)
+        logger.start()
     }
 
-    @AfterEach
-    void teardown() {
-        ((Logger) LoggerFactory.getLogger(CpsNcmpTaskExecutor.class)).detachAndStopAllAppenders();
+    void cleanup() {
+        ((Logger) LoggerFactory.getLogger(CpsNcmpTaskExecutor.class)).detachAndStopAllAppenders()
     }
 
     def 'Execute successful task.'() {

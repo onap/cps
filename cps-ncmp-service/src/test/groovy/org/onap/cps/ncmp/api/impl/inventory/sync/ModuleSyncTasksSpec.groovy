@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2023 Nordix Foundation
+ *  Copyright (C) 2022-2024 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,7 +21,6 @@
 
 package org.onap.cps.ncmp.api.impl.inventory.sync
 
-
 import static org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory.MODULE_SYNC_FAILED
 import static org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory.MODULE_UPGRADE_FAILED
 
@@ -32,8 +31,6 @@ import ch.qos.logback.core.read.ListAppender
 import com.hazelcast.config.Config
 import com.hazelcast.instance.impl.HazelcastInstanceFactory
 import com.hazelcast.map.IMap
-import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.BeforeEach
 import org.onap.cps.ncmp.api.impl.events.lcm.LcmEventsCmHandleStateHandler
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
@@ -50,15 +47,13 @@ class ModuleSyncTasksSpec extends Specification {
 
     def logger = Spy(ListAppender<ILoggingEvent>)
 
-    @BeforeEach
     void setup() {
-        ((Logger) LoggerFactory.getLogger(ModuleSyncTasks.class)).addAppender(logger);
-        logger.start();
+        ((Logger) LoggerFactory.getLogger(ModuleSyncTasks.class)).addAppender(logger)
+        logger.start()
     }
 
-    @AfterEach
-    void teardown() {
-        ((Logger) LoggerFactory.getLogger(ModuleSyncTasks.class)).detachAndStopAllAppenders();
+    void cleanup() {
+        ((Logger) LoggerFactory.getLogger(ModuleSyncTasks.class)).detachAndStopAllAppenders()
     }
 
     def mockInventoryPersistence = Mock(InventoryPersistence)

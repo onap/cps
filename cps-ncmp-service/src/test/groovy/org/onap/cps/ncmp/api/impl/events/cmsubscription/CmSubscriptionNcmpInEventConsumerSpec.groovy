@@ -28,8 +28,6 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import io.cloudevents.CloudEvent
 import io.cloudevents.core.builder.CloudEventBuilder
 import org.apache.kafka.clients.consumer.ConsumerRecord
-import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.BeforeEach
 import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
 import org.onap.cps.ncmp.events.cmsubscription_merge1_0_0.client_to_ncmp.CmSubscriptionNcmpInEvent
 import org.onap.cps.ncmp.utils.TestUtils
@@ -50,15 +48,13 @@ class CmSubscriptionNcmpInEventConsumerSpec extends MessagingBaseSpec {
     @Autowired
     ObjectMapper objectMapper
 
-    @BeforeEach
     void setup() {
-        ((Logger) LoggerFactory.getLogger(CmSubscriptionNcmpInEventConsumer.class)).addAppender(logger);
-        logger.start();
+        ((Logger) LoggerFactory.getLogger(CmSubscriptionNcmpInEventConsumer.class)).addAppender(logger)
+        logger.start()
     }
 
-    @AfterEach
-    void teardown() {
-        ((Logger) LoggerFactory.getLogger(CmSubscriptionNcmpInEventConsumer.class)).detachAndStopAllAppenders();
+    void cleanup() {
+        ((Logger) LoggerFactory.getLogger(CmSubscriptionNcmpInEventConsumer.class)).detachAndStopAllAppenders()
     }
 
 
