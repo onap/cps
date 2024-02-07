@@ -22,6 +22,30 @@
       },
       "revId": "627e9cb5f6bf7ea66bba15a376bbbfc134e588d9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d923072e_3c965eae",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-07T09:27:14Z",
+      "side": 0,
+      "message": "Agreed. Reverting other changes and swapping lines 120 and 121 is a good solution:\n\n    cpsModulePersistenceService.deleteSchemaSets(dataspaceName, schemaSetNames);\n    cpsModulePersistenceService.deleteUnusedYangResourceModules();",
+      "parentUuid": "7d41e308_992e1677",
+      "range": {
+        "startLine": 120,
+        "startChar": 8,
+        "endLine": 120,
+        "endChar": 70
+      },
+      "revId": "627e9cb5f6bf7ea66bba15a376bbbfc134e588d9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
