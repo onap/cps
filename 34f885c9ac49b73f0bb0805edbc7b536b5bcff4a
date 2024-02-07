@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cab8c158_99237f91",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NcmpResponseStatus.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-02-07T18:22:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "afd80aab_afc87b9a",
+      "range": {
+        "startLine": 40,
+        "startChar": 44,
+        "endLine": 40,
+        "endChar": 98
+      },
+      "revId": "34f885c9ac49b73f0bb0805edbc7b536b5bcff4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "50aae4a4_fa81ff2b",
@@ -47,6 +71,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1f4221d_3aeb0527",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 505,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-02-07T18:22:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "50aae4a4_fa81ff2b",
+      "range": {
+        "startLine": 505,
+        "startChar": 49,
+        "endLine": 505,
+        "endChar": 69
+      },
+      "revId": "34f885c9ac49b73f0bb0805edbc7b536b5bcff4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e7cdb695_711f67b8",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-02-07T16:47:37Z",
       "side": 1,
       "message": "extract this out in local var to improve readability",
+      "range": {
+        "startLine": 521,
+        "startChar": 52,
+        "endLine": 522,
+        "endChar": 64
+      },
+      "revId": "34f885c9ac49b73f0bb0805edbc7b536b5bcff4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76fc262c_871f595c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 522,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-02-07T18:22:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e7cdb695_711f67b8",
       "range": {
         "startLine": 521,
         "startChar": 52,
@@ -118,6 +190,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2b2ff5e9_e3186ada",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapper.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-02-07T18:22:16Z",
+      "side": 1,
+      "message": "i split this into 2 methods for the same reason we split the addMapping method.\nif the public method is 3+ lines then we have to add javadoc :(",
+      "parentUuid": "9da52a65_657eb248",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 92
+      },
+      "revId": "34f885c9ac49b73f0bb0805edbc7b536b5bcff4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5f41bc60_308e8cf4",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandlerSpec.groovy",
         "patchSetId": 11
@@ -129,6 +225,30 @@
       "writtenOn": "2024-02-07T16:47:37Z",
       "side": 1,
       "message": "please not new proposed message e but also\nuse contains with just one or 2 keyword e.g. errorText.contains(\u0027cannot re-assign\u0027)",
+      "range": {
+        "startLine": 237,
+        "startChar": 26,
+        "endLine": 237,
+        "endChar": 95
+      },
+      "revId": "34f885c9ac49b73f0bb0805edbc7b536b5bcff4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5681883a_b32637fb",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandlerSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-02-07T18:22:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f41bc60_308e8cf4",
       "range": {
         "startLine": 237,
         "startChar": 26,
@@ -152,6 +272,30 @@
       "writtenOn": "2024-02-07T16:47:37Z",
       "side": 1,
       "message": "simplify to:\nexpect: \u0027duplicate checks works as intended\u0027\n   assert objectUnderTest.isDuplicateId(cmHandleId, alternateId) \u003d\u003d expectDuplicate",
+      "range": {
+        "startLine": 120,
+        "startChar": 0,
+        "endLine": 122,
+        "endChar": 43
+      },
+      "revId": "34f885c9ac49b73f0bb0805edbc7b536b5bcff4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f4a82e3_5a1a2556",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapperSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-02-07T18:22:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d7e5d6c9_89055d14",
       "range": {
         "startLine": 120,
         "startChar": 0,
@@ -208,6 +352,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8cc483ed_f191767b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapperSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-02-07T18:22:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c2ec23b5_94e55ebe",
+      "range": {
+        "startLine": 124,
+        "startChar": 87,
+        "endLine": 124,
+        "endChar": 101
+      },
+      "revId": "34f885c9ac49b73f0bb0805edbc7b536b5bcff4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4f8c6d4f_2eef0d76",
@@ -221,6 +389,30 @@
       "writtenOn": "2024-02-07T16:47:37Z",
       "side": 1,
       "message": "new cm handle",
+      "range": {
+        "startLine": 125,
+        "startChar": 13,
+        "endLine": 125,
+        "endChar": 30
+      },
+      "revId": "34f885c9ac49b73f0bb0805edbc7b536b5bcff4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7802e48c_af5a7685",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapperSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-02-07T18:22:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4f8c6d4f_2eef0d76",
       "range": {
         "startLine": 125,
         "startChar": 13,
