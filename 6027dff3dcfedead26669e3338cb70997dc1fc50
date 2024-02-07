@@ -153,6 +153,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ead09cb3_73c0a69a",
+        "filename": "csit/tests/cps-model-sync/cps-model-sync.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-07T16:12:00Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "da417924_7820fdfa",
+      "range": {
+        "startLine": 38,
+        "startChar": 2,
+        "endLine": 38,
+        "endChar": 16
+      },
+      "revId": "6027dff3dcfedead26669e3338cb70997dc1fc50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "845509fb_2864bcb8",
@@ -166,6 +190,30 @@
       "writtenOn": "2024-02-06T18:38:18Z",
       "side": 1,
       "message": "deleteFormData",
+      "range": {
+        "startLine": 39,
+        "startChar": 2,
+        "endLine": 39,
+        "endChar": 16
+      },
+      "revId": "6027dff3dcfedead26669e3338cb70997dc1fc50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa9d50f7_9d7543c0",
+        "filename": "csit/tests/cps-model-sync/cps-model-sync.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-07T16:12:00Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "845509fb_2864bcb8",
       "range": {
         "startLine": 39,
         "startChar": 2,
