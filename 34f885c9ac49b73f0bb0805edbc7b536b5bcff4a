@@ -1,0 +1,303 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afd80aab_afc87b9a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NcmpResponseStatus.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-07T16:47:37Z",
+      "side": 1,
+      "message": "wording is not 100%, it could cover 2 cases\n1) cm handle has already a different alternate id OR\n2) another cm handle has same alternate ID...\n\nhard to catch in one generic (short) message. let me try:\n\u0027cannot re-assign alternat id\u0027",
+      "range": {
+        "startLine": 40,
+        "startChar": 44,
+        "endLine": 40,
+        "endChar": 98
+      },
+      "revId": "34f885c9ac49b73f0bb0805edbc7b536b5bcff4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50aae4a4_fa81ff2b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 505,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-07T16:47:37Z",
+      "side": 1,
+      "message": "just call this failureResponses and use it on lines #511\nalso on line 524, 525 you can simply use addAll. no need for separate method:\n\nfinal List\u003cCmHandleRegistrationResponse\u003e alreadyDefinedResponses \u003d CmHandleRegistrationResponse.createFailureResponses(                    alreadyDefinedException.getAlreadyDefinedObjectNames(), CM_HANDLE_ALREADY_EXIST);\nfailureResponses.addAll(alreadyDefinedResponses)\nreturn failureResponses;",
+      "range": {
+        "startLine": 505,
+        "startChar": 49,
+        "endLine": 505,
+        "endChar": 69
+      },
+      "revId": "34f885c9ac49b73f0bb0805edbc7b536b5bcff4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7cdb695_711f67b8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 522,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-07T16:47:37Z",
+      "side": 1,
+      "message": "extract this out in local var to improve readability",
+      "range": {
+        "startLine": 521,
+        "startChar": 52,
+        "endLine": 522,
+        "endChar": 64
+      },
+      "revId": "34f885c9ac49b73f0bb0805edbc7b536b5bcff4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff999c36_8bd003c5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 581,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-07T16:47:37Z",
+      "side": 1,
+      "message": "addAll is all you need :-)",
+      "range": {
+        "startLine": 578,
+        "startChar": 0,
+        "endLine": 581,
+        "endChar": 95
+      },
+      "revId": "34f885c9ac49b73f0bb0805edbc7b536b5bcff4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9da52a65_657eb248",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapper.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-07T16:47:37Z",
+      "side": 1,
+      "message": "why split into 2 methods ?!",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 92
+      },
+      "revId": "34f885c9ac49b73f0bb0805edbc7b536b5bcff4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f41bc60_308e8cf4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandlerSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-07T16:47:37Z",
+      "side": 1,
+      "message": "please not new proposed message e but also\nuse contains with just one or 2 keyword e.g. errorText.contains(\u0027cannot re-assign\u0027)",
+      "range": {
+        "startLine": 237,
+        "startChar": 26,
+        "endLine": 237,
+        "endChar": 95
+      },
+      "revId": "34f885c9ac49b73f0bb0805edbc7b536b5bcff4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7e5d6c9_89055d14",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapperSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-07T16:47:37Z",
+      "side": 1,
+      "message": "simplify to:\nexpect: \u0027duplicate checks works as intended\u0027\n   assert objectUnderTest.isDuplicateId(cmHandleId, alternateId) \u003d\u003d expectDuplicate",
+      "range": {
+        "startLine": 120,
+        "startChar": 0,
+        "endLine": 122,
+        "endChar": 43
+      },
+      "revId": "34f885c9ac49b73f0bb0805edbc7b536b5bcff4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2ec23b5_94e55ebe",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapperSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-07T16:47:37Z",
+      "side": 1,
+      "message": "expectDuplicate",
+      "range": {
+        "startLine": 124,
+        "startChar": 87,
+        "endLine": 124,
+        "endChar": 101
+      },
+      "revId": "34f885c9ac49b73f0bb0805edbc7b536b5bcff4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52f858aa_baf8ec96",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapperSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-07T16:47:37Z",
+      "side": 1,
+      "message": "need better descriptions for the scenario, they focus too much on hte HOW (developer view) of the sultion instead of the WHAT from a client Point of view\n\nso use avoid words like \u0027cache\u0027 and \u0027null\u0027 where possible.\nI prosed new descriptions for each and you also need o add one more test",
+      "range": {
+        "startLine": 124,
+        "startChar": 12,
+        "endLine": 124,
+        "endChar": 37
+      },
+      "revId": "34f885c9ac49b73f0bb0805edbc7b536b5bcff4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f8c6d4f_2eef0d76",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapperSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-07T16:47:37Z",
+      "side": 1,
+      "message": "new cm handle",
+      "range": {
+        "startLine": 125,
+        "startChar": 13,
+        "endLine": 125,
+        "endChar": 30
+      },
+      "revId": "34f885c9ac49b73f0bb0805edbc7b536b5bcff4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0277f42c_31fef489",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapperSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-07T16:47:37Z",
+      "side": 1,
+      "message": "cm handle with already assigned other alternate id\n\nALO add one more test case:\ncm handle with already assigned same alternate id  (expectDuplicate \u003d false!)",
+      "range": {
+        "startLine": 126,
+        "startChar": 13,
+        "endLine": 126,
+        "endChar": 34
+      },
+      "revId": "34f885c9ac49b73f0bb0805edbc7b536b5bcff4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4cc88321_4ddb5c2f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapperSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-07T16:47:37Z",
+      "side": 1,
+      "message": "alternat id already assigned to other cm handle",
+      "range": {
+        "startLine": 127,
+        "startChar": 13,
+        "endLine": 127,
+        "endChar": 35
+      },
+      "revId": "34f885c9ac49b73f0bb0805edbc7b536b5bcff4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2ed289a_37fbc3aa",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapperSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-07T16:47:37Z",
+      "side": 1,
+      "message": "no alternate id provided",
+      "range": {
+        "startLine": 128,
+        "startChar": 13,
+        "endLine": 128,
+        "endChar": 33
+      },
+      "revId": "34f885c9ac49b73f0bb0805edbc7b536b5bcff4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

@@ -91,6 +91,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bebe2a39_1220dcfa",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NcmpResponseStatus.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-07T16:47:37Z",
+      "side": 1,
+      "message": "see docs/cps-ncmp-message-status-codes.rst",
+      "parentUuid": "3abb88c0_831233e7",
+      "range": {
+        "startLine": 40,
+        "startChar": 36,
+        "endLine": 40,
+        "endChar": 41
+      },
+      "revId": "3c1ac82cedb2d01aa74bf6880ceca8f6894dae49",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1a221ba4_c11791fe",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapper.java",
         "patchSetId": 3
