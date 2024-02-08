@@ -50,6 +50,24 @@
       "message": "i think should be \u0027alternate id\u0027. (since we should not use variable names in slogans)",
       "revId": "2fdec9dcf065f9eee91edaf7ca216476b8990dc8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0cad9cdb_1579d5db",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/lcm/LcmEventsCreatorSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-02-08T10:20:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bc239465_2e2b7bc6",
+      "revId": "2fdec9dcf065f9eee91edaf7ca216476b8990dc8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
