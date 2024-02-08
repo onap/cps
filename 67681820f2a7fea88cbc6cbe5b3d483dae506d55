@@ -291,6 +291,30 @@
       },
       "revId": "67681820f2a7fea88cbc6cbe5b3d483dae506d55",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5595e30c_8a0e21e1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapperSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-02-08T13:43:22Z",
+      "side": 1,
+      "message": "each scenario will create a different instance of the caches. so just because it was assigned in a different scenario it will not be persisted in the cache for this scenario. i hope that answers the question.",
+      "parentUuid": "a9c07eed_8d83bd05",
+      "range": {
+        "startLine": 127,
+        "startChar": 13,
+        "endLine": 127,
+        "endChar": 62
+      },
+      "revId": "67681820f2a7fea88cbc6cbe5b3d483dae506d55",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
