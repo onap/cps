@@ -116,12 +116,12 @@ class ModuleSyncServiceSpec extends Specification {
         and: 'create schema set from module is invoked for the upgraded cm handle'
             expectedCallsToCeateSchemaSet * mockCpsModuleService.createSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'upgraded-ch', [:], moduleReferences)
         and: 'No anchor is created for the upgraded cm handle'
-            0 * mockCpsAnchorService.createAnchor(*_)
+            expectedCallsToCeateSchemaSet * mockCpsAnchorService.createAnchor(*_)
         where: 'the following parameters are used'
-            scenario      | populateCache | existingCmHandlesWithSameTag || expectedCallsToUpgradeSchemaSet | expectedCallsToCeateSchemaSet
-            'new'         | false         | []                           || 0                               | 1
-            'in cache'    | true          | []                           || 1                               | 0
-            'in database' | false         | [cmHandleWithModuleSetTag]   || 1                               | 0
+            scenario      | populateCache | existingCmHandlesWithSameTag || expectedCallsToUpgradeSchemaSet | expectedCallsToCeateSchemaSet | expectedCallsToCreateAnchor
+            'new'         | false         | []                           || 0                               | 1                             | 1
+            'in cache'    | true          | []                           || 1                               | 0                             | 0
+            'in database' | false         | [cmHandleWithModuleSetTag]   || 1                               | 0                             | 0
     }
 
     def 'upgrade model for a existing cm handle'() {
@@ -142,6 +142,23 @@ class ModuleSyncServiceSpec extends Specification {
             objectUnderTest.syncAndCreateOrUpgradeSchemaSetAndAnchor(yangModelCmHandle)
         then: 'the upgrade is delegated to the module service (with the correct parameters)'
             1 * mockCpsModuleService.upgradeSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'cmHandleId-1', Collections.emptyMap(), moduleReferences)
+    }
+
+    def 'Register cm handle with existing module set tag'() {
+        given: 'a new cm handle'
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle()
+            ncmpServiceCmHandle.setCompositeState(new CompositeStateBuilder().build())
+            ncmpServiceCmHandle.setCmHandleId('cmHandleId-1')
+            def yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle('some service name', '', '', ncmpServiceCmHandle, 'targetModuleSetTag', '')
+        and: 'the cache returns some module references'
+            def moduleReferences = [new ModuleReference('module1', '1'), new ModuleReference('module2', '2')]
+            mockModuleSetTagCache.put('targetModuleSetTag', moduleReferences)
+        and: 'all of these module references are new'
+            mockCpsModuleService.identifyNewModuleReferences(moduleReferences) >> [moduleReferences]
+        when: 'module sync is triggered'
+            objectUnderTest.syncAndCreateOrUpgradeSchemaSetAndAnchor(yangModelCmHandle)
+        then: 'the sync is delegated to the module service for creation (with the correct parameters)'
+            1 * mockCpsModuleService.createSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'cmHandleId-1', null, moduleReferences)
     }
 
     def 'Delete Schema Set for CmHandle'() {

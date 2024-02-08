@@ -23,6 +23,8 @@
 
 package org.onap.cps.ncmp.api.impl
 
+import org.onap.cps.ncmp.api.models.UpgradedCmHandles
+
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
@@ -89,7 +91,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def OPTIONS_PARAM = '(a=1,b=2)'
     @Shared
     def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: 'test-cm-handle-id')
-
+    def yangModelCmHandle = new YangModelCmHandle()
     def objectUnderTest = new NetworkCmProxyDataServiceImpl(
             spiedJsonObjectMapper,
             mockDmiDataOperations,
@@ -280,7 +282,26 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
                     }
             }
     }
-    
+
+    def 'Verify if un-used module set tag is removed from cache.'() {
+        given: 'cm handle id need to be removed'
+            def tobeRemovedCmHandles = ['cm-handle-id-1']
+        and: 'populate yang model cm handle object with given cm handle'
+            populateYangModelCmHandle('cm-handle-id-1')
+        and: 'cache contains module set tag'
+            mockModuleSetTagCache.put(yangModelCmHandle.moduleSetTag, 'no-module-set')
+        and: 'cm handle is in READY state'
+            mockCmHandleQueries.cmHandleHasState('cm-handle-id-1', CmHandleState.READY) >> true
+            mockInventoryPersistence.getYangModelCmHandles(_) >> [yangModelCmHandle]
+        and: 'system does not contains cm handles with tag'
+            1 * mockCmHandleQueries.queryNcmpRegistryByCpsPath("//cm-handles[@module-set-tag='some-module-set-tag']",
+                FetchDescendantsOption.OMIT_DESCENDANTS) >> []
+        when: 'de-register cm handle'
+            objectUnderTest.parseAndProcessDeletedCmHandlesInRegistration(tobeRemovedCmHandles)
+        then: 'module set tag is removed from cache'
+            assert mockModuleSetTagCache.get(yangModelCmHandle.moduleSetTag) == null
+    }
+
     def 'Execute cm handle id search'() {
         given: 'valid CmHandleQueryApiParameters input'
             def cmHandleQueryApiParameters = new CmHandleQueryApiParameters()
@@ -408,5 +429,10 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         targetIds.add("some-cm-handle")
         dataOperationDefinition.setCmHandleIds(targetIds)
         return dataOperationDefinition
+    }
+
+    def populateYangModelCmHandle(cmHandleId) {
+        yangModelCmHandle.id = cmHandleId
+        yangModelCmHandle.moduleSetTag='some-module-set-tag'
     }
 }

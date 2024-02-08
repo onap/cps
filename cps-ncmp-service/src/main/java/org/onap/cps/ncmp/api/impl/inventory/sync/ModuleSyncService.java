@@ -77,37 +77,43 @@ public class ModuleSyncService {
         final CompositeState compositeState = yangModelCmHandle.getCompositeState();
         final boolean inUpgrade = ModuleOperationsUtils.isInUpgradeOrUpgradeFailed(compositeState);
         final String moduleSetTag = getModuleSetTag(yangModelCmHandle, compositeState, inUpgrade);
+        boolean needToCreateAnAnchor = false;
 
         final Collection<ModuleReference> moduleReferencesFromCache = moduleSetTagCache.get(moduleSetTag);
 
         if (moduleReferencesFromCache == null) {
+            needToCreateAnAnchor = true;
             final Optional<DataNode> existingCmHandleWithSameModuleSetTag
                     = getFirstReadyDataNodeWithModuleSetTag(moduleSetTag);
 
             if (existingCmHandleWithSameModuleSetTag.isPresent()) {
-                final String existingAnchorName = existingCmHandleWithSameModuleSetTag.get().getAnchorName();
+                final String otherAnchorWithSameModuleSetTag = existingCmHandleWithSameModuleSetTag.get().getAnchorName();
                 final Collection<ModuleReference> moduleReferencesFromExistingCmHandle =
                         upgradeOrCreateSchemaSetUsingModuleSetTag(yangModelCmHandle.getId(), moduleSetTag,
-                                existingAnchorName, inUpgrade);
+                                otherAnchorWithSameModuleSetTag, inUpgrade);
                 updateModuleSetTagCache(moduleSetTag, moduleReferencesFromExistingCmHandle);
             } else {
                 if (inUpgrade) {
-                    deleteSchemaSetIfExists(cmHandleId);
+                    deleteSchemaSetIfExists(cmHandleId); // This will delete anchor as well.
                 }
                 final Collection<ModuleReference> allModuleReferencesFromCmHandle
                         = syncAndCreateSchemaSet(yangModelCmHandle);
                 updateModuleSetTagCache(moduleSetTag, allModuleReferencesFromCmHandle);
             }
         } else {
+            final Map<String, String> newModuleNameToContentMap
+                    = getNewModuleNameToContentMap(yangModelCmHandle, moduleReferencesFromCache);
             if (inUpgrade) {
+                // In this case anchor will not be deleted.
                 cpsModuleService.upgradeSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId,
-                        NO_NEW_MODULES, moduleReferencesFromCache);
+                        newModuleNameToContentMap, moduleReferencesFromCache);
             } else {
+                needToCreateAnAnchor = true;
                 cpsModuleService.createSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME,
-                        cmHandleId, NO_NEW_MODULES, moduleReferencesFromCache);
+                        cmHandleId, newModuleNameToContentMap, moduleReferencesFromCache);
             }
         }
-        if (!inUpgrade) {
+        if (needToCreateAnAnchor) {
             cpsAnchorService.createAnchor(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId, cmHandleId);
         }
         setCmHandleModuleSetTag(yangModelCmHandle, moduleSetTag);
@@ -115,6 +121,7 @@ public class ModuleSyncService {
 
     /**
      * Deletes the SchemaSet for schema set id if the SchemaSet Exists.
+     * This would also delete associated anchor and data.
      *
      * @param schemaSetId the schema set id to be deleted
      */
@@ -151,15 +158,8 @@ public class ModuleSyncService {
     private Collection<ModuleReference> syncAndCreateSchemaSet(final YangModelCmHandle yangModelCmHandle) {
         final Collection<ModuleReference> allModuleReferencesFromCmHandle =
                 dmiModelOperations.getModuleReferences(yangModelCmHandle);
-        final Collection<ModuleReference> identifiedNewModuleReferencesFromCmHandle = cpsModuleService
-                .identifyNewModuleReferences(allModuleReferencesFromCmHandle);
-        final Map<String, String> newModuleNameToContentMap;
-        if (identifiedNewModuleReferencesFromCmHandle.isEmpty()) {
-            newModuleNameToContentMap = NO_NEW_MODULES;
-        } else {
-            newModuleNameToContentMap = dmiModelOperations.getNewYangResourcesFromDmi(yangModelCmHandle,
-                    identifiedNewModuleReferencesFromCmHandle);
-        }
+        final Map<String, String> newModuleNameToContentMap
+                = getNewModuleNameToContentMap(yangModelCmHandle, allModuleReferencesFromCmHandle);
         cpsModuleService.createSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME,
                 yangModelCmHandle.getId(), newModuleNameToContentMap, allModuleReferencesFromCmHandle);
         return allModuleReferencesFromCmHandle;
@@ -198,6 +198,20 @@ public class ModuleSyncService {
         if (StringUtils.isNotBlank(moduleSetTag)) {
             moduleSetTagCache.putIfAbsent(moduleSetTag, allModuleReferencesFromCmHandle);
         }
+    }
+
+    private Map<String, String> getNewModuleNameToContentMap(final YangModelCmHandle yangModelCmHandle,
+                                                             final Collection<ModuleReference> moduleReferences) {
+        final Collection<ModuleReference> identifiedNewModuleReferencesFromCache = cpsModuleService
+                .identifyNewModuleReferences(moduleReferences);
+        final Map<String, String> newModuleNameToContentMap;
+        if (identifiedNewModuleReferencesFromCache.isEmpty()) {
+            newModuleNameToContentMap = NO_NEW_MODULES;
+        } else {
+            newModuleNameToContentMap = dmiModelOperations.getNewYangResourcesFromDmi(yangModelCmHandle,
+                    identifiedNewModuleReferencesFromCache);
+        }
+        return newModuleNameToContentMap;
     }
 
 }
