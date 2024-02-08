@@ -88,7 +88,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         then: 'cm-handles are removed first'
             1 * objectUnderTest.parseAndProcessDeletedCmHandlesInRegistration(*_)
         and: 'de-registered cm handle entry is removed from in progress map'
-            2 * mockModuleSyncStartedOnCmHandles.remove('cmhandle-2')
+            1 * mockModuleSyncStartedOnCmHandles.remove('cmhandle-2')
         then: 'cm-handles are created'
             1 * objectUnderTest.parseAndProcessCreatedCmHandlesInRegistration(*_)
         then: 'cm-handles are updated'
