@@ -16,6 +16,23 @@
       "message": "The openapi.yaml files have already been updated and merged in this commit:\n\nhttps://gerrit.onap.org/r/c/cps/+/137176\n\nSo no need to copy again openapi.yaml",
       "revId": "cf0c931b7c649bdccca95f5cc1590b923aa656a9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb2d2100_4d728cad",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-08T18:24:32Z",
+      "side": 1,
+      "message": "I see no update of the Yaml file in the doc folder?\nIs that because it was already updated yesterday?",
+      "revId": "cf0c931b7c649bdccca95f5cc1590b923aa656a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
