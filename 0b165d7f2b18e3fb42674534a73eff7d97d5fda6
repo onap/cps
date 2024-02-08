@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "94e7db8c_69101260",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/model/CachedCmSubscriptionPredicate.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-08T11:52:11Z",
+      "side": 1,
+      "message": "targetFilter is coming from the incoming event , but since this is what we are making for our internal use , We can call it whatever suits us.\nwill rename it to \"targetCmHandleIds\"",
+      "parentUuid": "3eb9aa66_65a230ec",
+      "range": {
+        "startLine": 31,
+        "startChar": 25,
+        "endLine": 31,
+        "endChar": 37
+      },
+      "revId": "0b165d7f2b18e3fb42674534a73eff7d97d5fda6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dbc8aa61_c4f40e4f",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/model/CachedCmSubscriptionPredicate.java",
         "patchSetId": 3
