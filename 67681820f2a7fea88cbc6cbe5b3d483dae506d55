@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5cd6841b_d4d388a9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-08T13:10:30Z",
+      "side": 1,
+      "message": "I would  like to have Sourabh to have a good look as well.\nThe logic with duplicate cm handles and duplicate alternate ids logic is hard to see and hard to test while we dont have semi-integartion test for Rgeistartion in Groovy (Daniel is working on this)\n\nI recommend to merge if SOurabh is OK this and do some \u0027exploratory\u0027 e2e testing",
+      "revId": "67681820f2a7fea88cbc6cbe5b3d483dae506d55",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "147c227e_a5d77586",
@@ -66,6 +83,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b40fc9a1_00aa0f1a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-08T13:10:30Z",
+      "side": 1,
+      "message": "not suer what you are asking Halil\nin any case the intention is that cm handle should NOT be updated if the alternate ID is already in used",
+      "parentUuid": "0e2a8f74_2f0b741b",
+      "range": {
+        "startLine": 85,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 24
+      },
+      "revId": "67681820f2a7fea88cbc6cbe5b3d483dae506d55",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0cacb1cf_8410dacc",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
         "patchSetId": 16
@@ -100,6 +141,30 @@
       "writtenOn": "2024-02-08T12:52:06Z",
       "side": 1,
       "message": "NB: redundant assert check I believe",
+      "range": {
+        "startLine": 57,
+        "startChar": 12,
+        "endLine": 57,
+        "endChar": 19
+      },
+      "revId": "67681820f2a7fea88cbc6cbe5b3d483dae506d55",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "046068fc_1c84ea29",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapperSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-08T13:10:30Z",
+      "side": 1,
+      "message": "not redundant it is testing a different method!",
+      "parentUuid": "499e64fe_74a1c2f2",
       "range": {
         "startLine": 57,
         "startChar": 12,
