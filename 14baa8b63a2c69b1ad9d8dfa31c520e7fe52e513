@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f77f558_95f40bc3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-08T11:04:54Z",
+      "side": 1,
+      "message": "Some minor optimizations",
+      "revId": "14baa8b63a2c69b1ad9d8dfa31c520e7fe52e513",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea0d8c8d_b673da99",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/sync/config/WatchdogSchedulingConfigurerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-08T11:04:54Z",
+      "side": 1,
+      "message": "Not needed",
+      "range": {
+        "startLine": 30,
+        "startChar": 33,
+        "endLine": 30,
+        "endChar": 63
+      },
+      "revId": "14baa8b63a2c69b1ad9d8dfa31c520e7fe52e513",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9be00f99_2f74f1c5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/sync/config/WatchdogSchedulingConfigurerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-08T11:04:54Z",
+      "side": 1,
+      "message": "Not needed",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 53
+      },
+      "revId": "14baa8b63a2c69b1ad9d8dfa31c520e7fe52e513",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff66d690_eaa92107",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/sync/config/WatchdogSchedulingConfigurerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-08T11:04:54Z",
+      "side": 1,
+      "message": "you could autowire this other than instantiating the application context\n\n    @Autowired\n    WatchdogSchedulingConfigurer watchdogSchedulingConfigurer",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 36
+      },
+      "revId": "14baa8b63a2c69b1ad9d8dfa31c520e7fe52e513",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb5b76d6_49e86d12",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/sync/config/WatchdogSchedulingConfigurerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-08T11:04:54Z",
+      "side": 1,
+      "message": "Not needed",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 128
+      },
+      "revId": "14baa8b63a2c69b1ad9d8dfa31c520e7fe52e513",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
