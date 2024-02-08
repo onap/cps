@@ -39,11 +39,13 @@ import java.text.MessageFormat;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -83,6 +85,7 @@ import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.exceptions.CpsException;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataValidationException;
+import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.ModuleDefinition;
 import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.utils.JsonObjectMapper;
@@ -362,8 +365,10 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         for (final List<String> tobeRemovedCmHandleBatch : Lists.partition(tobeRemovedCmHandles, DELETE_BATCH_SIZE)) {
             try {
                 batchDeleteCmHandlesFromDbAndModuleSyncMap(tobeRemovedCmHandleBatch);
-                moduleSetTags.forEach(moduleSetTagCache::remove);
-                log.debug("Removed module set tags: {}", moduleSetTags);
+                moduleSetTags.stream().filter(this::isModuleSetTagInUse).forEach(moduleSetTag -> {
+                    moduleSetTagCache.remove(moduleSetTag);
+                    log.debug("Removed module set tag: {}", moduleSetTag);
+                });
                 tobeRemovedCmHandleBatch.forEach(cmHandleId ->
                     cmHandleRegistrationResponses.add(CmHandleRegistrationResponse.createSuccessResponse(cmHandleId)));
 
@@ -555,6 +560,12 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                 cmHandleIdMapper.addMapping(ncmpServiceCmHandle.getCmHandleId(), ncmpServiceCmHandle.getAlternateId());
             }
         }
+    }
+
+    private boolean isModuleSetTagInUse(final String moduleSetTag) {
+        return !((StringUtils.isNotBlank(moduleSetTag) ? cmHandleQueries
+                .queryNcmpRegistryByCpsPath("//cm-handles[@module-set-tag='" + moduleSetTag + "']",
+                        FetchDescendantsOption.OMIT_DESCENDANTS) : Collections.emptyList()).isEmpty());
     }
 
 }
