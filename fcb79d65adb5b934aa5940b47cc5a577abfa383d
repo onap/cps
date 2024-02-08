@@ -93,6 +93,30 @@
       },
       "revId": "fcb79d65adb5b934aa5940b47cc5a577abfa383d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9993afc9_64fb9777",
+        "filename": "csit/tests/cps-data/cps-data.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-08T11:15:48Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a96c2294_6d8fa206",
+      "range": {
+        "startLine": 60,
+        "startChar": 71,
+        "endLine": 60,
+        "endChar": 100
+      },
+      "revId": "fcb79d65adb5b934aa5940b47cc5a577abfa383d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ],
   "submitRequirementResults": [
