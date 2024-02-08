@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "161ff7d1_28f27d8c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-02-08T11:41:42Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "25bd2af1_3bd9f43c",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 26
+      },
+      "revId": "5ac178998498f65f529ede2f11630539a1eecb4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "da305eb8_1eb70bc0",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-02-08T10:35:44Z",
       "side": 1,
       "message": "If this is a fix, it should be in a different commit",
+      "range": {
+        "startLine": 368,
+        "startChar": 0,
+        "endLine": 371,
+        "endChar": 19
+      },
+      "revId": "5ac178998498f65f529ede2f11630539a1eecb4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0ea774a_34048a66",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-02-08T11:41:42Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "da305eb8_1eb70bc0",
       "range": {
         "startLine": 368,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "adf03737_27d24c1e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 569,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-02-08T11:41:42Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c3bed8d4_646129f7",
+      "range": {
+        "startLine": 564,
+        "startChar": 0,
+        "endLine": 569,
+        "endChar": 5
+      },
+      "revId": "5ac178998498f65f529ede2f11630539a1eecb4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "903b410e_4a18f24a",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-02-08T10:39:49Z",
       "side": 1,
       "message": "1) why do you add entries in the map. when there is NO tag the cm handle is is simply NOT in the map...\nYou can use the default option below on line 214",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 0
+      },
+      "revId": "5ac178998498f65f529ede2f11630539a1eecb4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce4332cf_24a2987e",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-02-08T11:41:42Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "903b410e_4a18f24a",
       "range": {
         "startLine": 74,
         "startChar": 0,
@@ -129,6 +225,54 @@
       "writtenOn": "2024-02-08T10:39:49Z",
       "side": 1,
       "message": "call this moduleSetTag for consistency",
+      "range": {
+        "startLine": 214,
+        "startChar": 21,
+        "endLine": 214,
+        "endChar": 30
+      },
+      "revId": "5ac178998498f65f529ede2f11630539a1eecb4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e26575a_642c81c1",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-02-08T11:41:42Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8b1615f7_d05a4af0",
+      "range": {
+        "startLine": 214,
+        "startChar": 83,
+        "endLine": 214,
+        "endChar": 92
+      },
+      "revId": "5ac178998498f65f529ede2f11630539a1eecb4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a384831_65060df1",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-02-08T11:41:42Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d258b2af_56965653",
       "range": {
         "startLine": 214,
         "startChar": 21,
@@ -202,6 +346,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3262b6cd_d21f9594",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/resources/module/bookStore-ModuleResourcesResponse.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-02-08T11:41:42Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a41f64e4_a49f9010",
+      "revId": "5ac178998498f65f529ede2f11630539a1eecb4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e233d3f5_a8d96fe0",
@@ -215,6 +377,24 @@
       "writtenOn": "2024-02-08T10:39:49Z",
       "side": 1,
       "message": "when is this one used?!\nI think never and it might could be removed?!",
+      "revId": "5ac178998498f65f529ede2f11630539a1eecb4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "637e273c_58ebff60",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/resources/module/bookStore-ModuleResponse.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-02-08T11:41:42Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e233d3f5_a8d96fe0",
       "revId": "5ac178998498f65f529ede2f11630539a1eecb4a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
