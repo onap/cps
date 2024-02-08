@@ -141,6 +141,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "40bc50e9_bcf842a3",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-08T10:48:04Z",
+      "side": 1,
+      "message": "I think this logic should be changed to throw exception if the resource file is not found, rather than serving the ietf model.",
+      "range": {
+        "startLine": 217,
+        "startChar": 78,
+        "endLine": 218,
+        "endChar": 46
+      },
+      "revId": "5ac178998498f65f529ede2f11630539a1eecb4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb4acaac_0dc9017d",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-08T10:48:04Z",
+      "side": 1,
+      "message": "This can be removed. This code should never be reached because of getOrDefault on line 214, assuming the resource files exist",
+      "range": {
+        "startLine": 221,
+        "startChar": 9,
+        "endLine": 224,
+        "endChar": 95
+      },
+      "revId": "5ac178998498f65f529ede2f11630539a1eecb4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a41f64e4_a49f9010",
         "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/resources/module/bookStore-ModuleResourcesResponse.json",
         "patchSetId": 1
