@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "839ad73a_bbe01a55",
+        "filename": "csit/plans/cps/testplan.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2024-02-08T10:21:36Z",
+      "side": 1,
+      "message": "Why are we commenting this out an not just deleting it?",
+      "revId": "fcb79d65adb5b934aa5940b47cc5a577abfa383d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
