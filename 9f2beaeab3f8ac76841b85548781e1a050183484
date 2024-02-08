@@ -129,6 +129,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7df491aa_f4591988",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapper.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-02-08T11:59:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae4cf24a_ddf3f46b",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 92
+      },
+      "revId": "9f2beaeab3f8ac76841b85548781e1a050183484",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d549b7b0_75a2edf6",
@@ -142,6 +166,30 @@
       "writtenOn": "2024-02-08T11:24:53Z",
       "side": 1,
       "message": "NB: non static imports should be grouped together",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 47
+      },
+      "revId": "9f2beaeab3f8ac76841b85548781e1a050183484",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "65b2730e_91e8dd40",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-02-08T11:59:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d549b7b0_75a2edf6",
       "range": {
         "startLine": 25,
         "startChar": 0,
@@ -175,6 +223,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f286edc_2a5948e8",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-02-08T11:59:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "90957c7b_6867e264",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 53
+      },
+      "revId": "9f2beaeab3f8ac76841b85548781e1a050183484",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c412099e_e858159d",
@@ -188,6 +260,30 @@
       "writtenOn": "2024-02-08T10:47:32Z",
       "side": 1,
       "message": "use the same message as in the error in java:\n\u0027cannot re-assign alternate id\u0027",
+      "range": {
+        "startLine": 41,
+        "startChar": 24,
+        "endLine": 41,
+        "endChar": 68
+      },
+      "revId": "9f2beaeab3f8ac76841b85548781e1a050183484",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "350164c4_48d87651",
+        "filename": "docs/cps-ncmp-message-status-codes.rst",
+        "patchSetId": 14
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-02-08T11:59:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c412099e_e858159d",
       "range": {
         "startLine": 41,
         "startChar": 24,
