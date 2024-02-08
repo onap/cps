@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "590c7ff4_a67571bc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-08T12:02:15Z",
+      "side": 1,
+      "message": "NB: newline not required",
+      "revId": "28643c1cb2d9394c67e1534adb671b4b183ebf39",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "e15f17f9_591d03ab",
@@ -14,6 +31,29 @@
       "writtenOn": "2024-02-08T07:18:14Z",
       "side": 1,
       "message": "Addressed review comments",
+      "revId": "28643c1cb2d9394c67e1534adb671b4b183ebf39",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c74d8113_4859093e",
+        "filename": "cps-events/src/main/resources/schemas/updatenode/cps-data-updated-event-schema-1.0.0.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-08T12:02:15Z",
+      "side": 1,
+      "message": "false",
+      "range": {
+        "startLine": 52,
+        "startChar": 34,
+        "endLine": 52,
+        "endChar": 38
+      },
       "revId": "28643c1cb2d9394c67e1534adb671b4b183ebf39",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
