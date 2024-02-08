@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbc8aa61_c4f40e4f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/model/CachedCmSubscriptionPredicate.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-08T11:41:09Z",
+      "side": 1,
+      "message": "I think \u0027cached\u0027 here is redundant since the outer class is called \u0027Cached\u0027.\nSo it would be cachedCmSubscriptionPredicate.getCachedScopedFilter()\n\nOne option is to nest the classes since ScopeFilter is only used here:\n\n    @Getter\n    @Setter\n    public class CachedCmSubscriptionPredicate {\n        private List\u003cString\u003e targetFilter;\n        private ScopeFilter scopeFilter;\n\n        @Getter\n        @Setter\n        public static class ScopeFilter {\n            private DatastoreType datastoreType;\n            private List\u003cString\u003e xpathFilters;\n        }\n    }",
+      "range": {
+        "startLine": 32,
+        "startChar": 30,
+        "endLine": 32,
+        "endChar": 36
+      },
+      "revId": "0b165d7f2b18e3fb42674534a73eff7d97d5fda6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
