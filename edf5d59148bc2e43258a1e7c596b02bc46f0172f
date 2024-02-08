@@ -46,6 +46,30 @@
       },
       "revId": "edf5d59148bc2e43258a1e7c596b02bc46f0172f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28748376_a1c897f1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapperSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-08T10:48:17Z",
+      "side": 1,
+      "message": "checking that something is NOT called we always use wildcards to prevent false positives if an argument is wrong...",
+      "parentUuid": "1c56c669_9d94b077",
+      "range": {
+        "startLine": 87,
+        "startChar": 46,
+        "endLine": 87,
+        "endChar": 47
+      },
+      "revId": "edf5d59148bc2e43258a1e7c596b02bc46f0172f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
