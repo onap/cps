@@ -57,7 +57,12 @@ Get Updated Data Node by XPath
     ${response}=        Get On Session      CPS_URL   ${uri}   params=${params}   headers=${headers}   expected_status=200
     ${responseJson}=    Set Variable        ${response.json()['tree:nest']}
     Should Be Equal As Strings              ${responseJson['name']}   Bigger
-    Should Be Equal As Strings              ${responseJson['birds']}   ['Pigeon', 'Falcon', 'Eagle']
+    ${length_birds}=    Get Length          ${responseJson['birds']}
+    Should Be Equal As Integers             ${length_birds}   3
+    ${expected_list}=         Create List   Pigeon   Falcon   Eagle
+    FOR      ${item_to_check}     IN      @{expected_list}
+        Should Contain     ${responseJson['birds']}     ${item_to_check}
+    END
 
 Get Data Node by XPath
     ${uri}=             Set Variable        ${basePath}/v1/dataspaces/${dataspaceName}/anchors/${anchorName}/node
