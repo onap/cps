@@ -36,8 +36,8 @@ class CpsModuleServiceIntegrationSpec extends FunctionalSpecBase {
     CpsModuleService objectUnderTest
 
     private static def originalNumberOfModuleReferences = 2 // bookstore has two modules
-    private static def bookStoreModuleReference = new ModuleReference('stores','2024-01-30')
-    private static def bookStoreModuleReferenceWithNamespace = new ModuleReference('stores','2024-01-30', 'org:onap:cps:sample')
+    private static def bookStoreModuleReference = new ModuleReference('stores','2024-02-08')
+    private static def bookStoreModuleReferenceWithNamespace = new ModuleReference('stores','2024-02-08', 'org:onap:cps:sample')
     private static def bookStoreTypesModuleReference = new ModuleReference('bookstore-types','2024-01-30')
     private static def bookStoreTypesModuleReferenceWithNamespace = new ModuleReference('bookstore-types','2024-01-30', 'org:onap:cps:types:sample')
     static def NEW_RESOURCE_REVISION = '2023-05-10'
@@ -155,7 +155,7 @@ class CpsModuleServiceIntegrationSpec extends FunctionalSpecBase {
             def result = objectUnderTest.getModuleDefinitionsByAnchorName(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1)
         then: 'the correct module definitions are returned'
             assert result.size() == 2
-            assert result.contains(new ModuleDefinition('stores','2024-01-30',bookstoreModelFileContent))
+            assert result.contains(new ModuleDefinition('stores','2024-02-08',bookstoreModelFileContent))
             assert result.contains(new ModuleDefinition('bookstore-types','2024-01-30', bookstoreTypesFileContent))
     }
 
@@ -165,12 +165,12 @@ class CpsModuleServiceIntegrationSpec extends FunctionalSpecBase {
         then: 'the correct module definitions are returned'
             if (expectedNumberOfDefinitions > 0) {
                 assert result.size() == expectedNumberOfDefinitions
-                def expectedModuleDefinition = new ModuleDefinition('stores', '2024-01-30', bookstoreModelFileContent)
+                def expectedModuleDefinition = new ModuleDefinition('stores', '2024-02-08', bookstoreModelFileContent)
                 assert result[0] == expectedModuleDefinition
             }
         where: 'following parameters are used'
             scenarios                          | moduleName | moduleRevision || expectedNumberOfDefinitions
-            'correct module name and revision' | 'stores'   | '2024-01-30'   || 1
+            'correct module name and revision' | 'stores'   | '2024-02-08'   || 1
             'correct module name'              | 'stores'   | null           || 1
             'incorrect module name'            | 'other'    | null           || 0
             'incorrect revision'               | 'stores'   | '2025-11-22'   || 0
