@@ -34,6 +34,24 @@
       "parentUuid": "839ad73a_bbe01a55",
       "revId": "fcb79d65adb5b934aa5940b47cc5a577abfa383d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70d6287f_8529cea0",
+        "filename": "csit/plans/cps/testplan.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-08T10:34:51Z",
+      "side": 1,
+      "message": "can delete it as well. \nIf I delete it then I can also remove the code corresponding to it as well.\nBut its not worth it I guess as its for the montreal release.\nHope its fine.",
+      "parentUuid": "839ad73a_bbe01a55",
+      "revId": "fcb79d65adb5b934aa5940b47cc5a577abfa383d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
