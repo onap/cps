@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de56edb0_12620d04",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-08T12:52:06Z",
+      "side": 1,
+      "message": "I have a doubt, asked there below. (just not sure about the it)",
+      "revId": "67681820f2a7fea88cbc6cbe5b3d483dae506d55",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "147c227e_a5d77586",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NcmpResponseStatus.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-08T12:52:06Z",
+      "side": 1,
+      "message": "NB: copyright update",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 23
+      },
+      "revId": "67681820f2a7fea88cbc6cbe5b3d483dae506d55",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e2a8f74_2f0b741b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-08T12:52:06Z",
+      "side": 1,
+      "message": "This block of the code called to update cm handles (from NetworkCmProxyDataServiceImpl.java line 134). I believe then cm handle id will already existed in cmHandleIdPerAlternateId cache and the isDuplicate method will return true, consequently will skip updating the cm hanlde, doesnt it? However it should update the cm handle for the update request?",
+      "range": {
+        "startLine": 85,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 24
+      },
+      "revId": "67681820f2a7fea88cbc6cbe5b3d483dae506d55",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0cacb1cf_8410dacc",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 452,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-08T12:52:06Z",
+      "side": 1,
+      "message": "So as I mentioned above, you would ending up not updating cm handle if either keys (cm hanlde id or alternate id) in the cache. But, as is code does the update without checking the new caches. Is that the new bussiness decided within this story?",
+      "range": {
+        "startLine": 452,
+        "startChar": 12,
+        "endLine": 452,
+        "endChar": 100
+      },
+      "revId": "67681820f2a7fea88cbc6cbe5b3d483dae506d55",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "499e64fe_74a1c2f2",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapperSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-08T12:52:06Z",
+      "side": 1,
+      "message": "NB: redundant assert check I believe",
+      "range": {
+        "startLine": 57,
+        "startChar": 12,
+        "endLine": 57,
+        "endChar": 19
+      },
+      "revId": "67681820f2a7fea88cbc6cbe5b3d483dae506d55",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02869dc6_3c353159",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapperSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-08T12:52:06Z",
+      "side": 1,
+      "message": "Does it really required since the keys in the caches has already started with cached. so you may simply provide ch-1, dont you?",
+      "range": {
+        "startLine": 123,
+        "startChar": 68,
+        "endLine": 123,
+        "endChar": 72
+      },
+      "revId": "67681820f2a7fea88cbc6cbe5b3d483dae506d55",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9c07eed_8d83bd05",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapperSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-08T12:52:06Z",
+      "side": 1,
+      "message": "confusing a bit. expected should not be then true?",
+      "range": {
+        "startLine": 127,
+        "startChar": 13,
+        "endLine": 127,
+        "endChar": 62
+      },
+      "revId": "67681820f2a7fea88cbc6cbe5b3d483dae506d55",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
