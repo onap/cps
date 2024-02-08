@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aca0f467_f0d0b3eb",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsDataServiceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-08T15:11:23Z",
+      "side": 1,
+      "message": "Note I have changed the order here to match what is in the bookstore json file",
+      "range": {
+        "startLine": 556,
+        "startChar": 102,
+        "endLine": 556,
+        "endChar": 118
+      },
+      "revId": "cf3eaeb467e2d5595527e4573e57e36f24e0be51",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
