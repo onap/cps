@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25bd2af1_3bd9f43c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-08T10:35:44Z",
+      "side": 1,
+      "message": "unused",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 26
+      },
+      "revId": "5ac178998498f65f529ede2f11630539a1eecb4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da305eb8_1eb70bc0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-08T10:35:44Z",
+      "side": 1,
+      "message": "If this is a fix, it should be in a different commit",
+      "range": {
+        "startLine": 368,
+        "startChar": 0,
+        "endLine": 371,
+        "endChar": 19
+      },
+      "revId": "5ac178998498f65f529ede2f11630539a1eecb4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3bed8d4_646129f7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 569,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-08T10:35:44Z",
+      "side": 1,
+      "message": "I\u0027d prefer if this was refactored, it\u0027s a bit confusing with the ! outside. Maybe like this:\n\n    private boolean isModuleSetTagInUse(final String moduleSetTag) {\n        if (StringUtils.isBlank(moduleSetTag)) {\n            return false;\n        }\n        final List\u003cDataNode\u003e cmHandlesWithModuleSetTag \u003d cmHandleQueries.queryNcmpRegistryByCpsPath(\n                \"//cm-handles[@module-set-tag\u003d\u0027\" + moduleSetTag + \"\u0027]\", FetchDescendantsOption.OMIT_DESCENDANTS);\n        return !cmHandlesWithModuleSetTag.isEmpty();\n    }",
+      "range": {
+        "startLine": 564,
+        "startChar": 0,
+        "endLine": 569,
+        "endChar": 5
+      },
+      "revId": "5ac178998498f65f529ede2f11630539a1eecb4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
