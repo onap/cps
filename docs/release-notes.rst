@@ -42,6 +42,7 @@ Bug Fixes
 
 Features
 --------
+    - `CPS-1135 <https://jira.onap.org/browse/CPS-1135>`_ Extend CPS Module API to allow retrieval single module definition.
 
 
 Version: 3.4.3
