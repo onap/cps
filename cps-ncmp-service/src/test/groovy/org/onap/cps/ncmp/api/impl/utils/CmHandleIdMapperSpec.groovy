@@ -43,7 +43,7 @@ class CmHandleIdMapperSpec extends Specification {
         ((Logger) LoggerFactory.getLogger(CmHandleIdMapper.class)).addAppender(logger)
         logger.start()
         mockCpsCmHandlerQueryService.getAllCmHandles() >> []
-        assert objectUnderTest.addMapping('cached cmhandle id', 'cached alternate id')
+        assert objectUnderTest.addMapping('my cmhandle id', 'my alternate id')
     }
 
     void cleanup() {
@@ -52,9 +52,9 @@ class CmHandleIdMapperSpec extends Specification {
 
     def 'Checking entries in the cache.'() {
         expect: 'the alternate id can be converted to cmhandle id'
-            assert objectUnderTest.alternateIdToCmHandleId('cached alternate id') == 'cached cmhandle id'
+            assert objectUnderTest.alternateIdToCmHandleId('my alternate id') == 'my cmhandle id'
         and: 'the cmhandle id can be converted to alternate id'
-            assert objectUnderTest.cmHandleIdToAlternateId('cached cmhandle id') == 'cached alternate id'
+            assert objectUnderTest.cmHandleIdToAlternateId('my cmhandle id') == 'my alternate id'
     }
 
     def 'Attempt adding #scenario alternate id.'() {
@@ -71,11 +71,11 @@ class CmHandleIdMapperSpec extends Specification {
 
     def 'Remove an entry from the cache.'() {
         when: 'removing an entry'
-            objectUnderTest.removeMapping('cached cmhandle id')
+            objectUnderTest.removeMapping('my cmhandle id')
         then: 'converting alternate id returns null'
-            assert objectUnderTest.alternateIdToCmHandleId('cached alternate id') == null
+            assert objectUnderTest.alternateIdToCmHandleId('my alternate id') == null
         and: 'converting cmhandle id returns null'
-            assert objectUnderTest.cmHandleIdToAlternateId('cached cmhandle id') == null
+            assert objectUnderTest.cmHandleIdToAlternateId('my cmhandle id') == null
     }
 
     def 'Attempt to remove a non-existing entry from the cache.'() {
@@ -89,22 +89,22 @@ class CmHandleIdMapperSpec extends Specification {
 
     def 'Cannot update existing alternate id.'() {
         given: 'attempt to update an existing alternate id'
-            objectUnderTest.addMapping('cached cmhandle id', 'other id')
+            objectUnderTest.addMapping('my cmhandle id', 'other id')
         expect: 'still returns the original alternate id'
-            assert objectUnderTest.cmHandleIdToAlternateId('cached cmhandle id') == 'cached alternate id'
+            assert objectUnderTest.cmHandleIdToAlternateId('my cmhandle id') == 'my alternate id'
         and: 'converting other alternate id returns null'
             assert objectUnderTest.alternateIdToCmHandleId('other id') == null
         and: 'a warning is logged with the original alternate id'
             def lastLoggingEvent = logger.list[1]
             assert lastLoggingEvent.level == Level.WARN
-            assert lastLoggingEvent.formattedMessage.contains('id was added to the cache already')
+            assert lastLoggingEvent.formattedMessage.contains('my alternate id')
     }
 
     def 'Update existing alternate id with the same value.'() {
         expect: 'update an existing alternate id with the same value returns false (no update)'
-            assert objectUnderTest.addMapping('cached cmhandle id', 'cached alternate id') == false
+            assert objectUnderTest.addMapping('my cmhandle id', 'my alternate id') == false
         and: 'conversion still returns the original alternate id'
-            assert objectUnderTest.cmHandleIdToAlternateId('cached cmhandle id') == 'cached alternate id'
+            assert objectUnderTest.cmHandleIdToAlternateId('my cmhandle id') == 'my alternate id'
     }
 
     def 'Initializing cache #scenario.'() {
@@ -122,17 +122,5 @@ class CmHandleIdMapperSpec extends Specification {
             'with alternate id'       | [new NcmpServiceCmHandle(cmHandleId: 'ch-1', alternateId: 'alt-1')] || 'alt-1'             | 'ch-1'
             'without alternate id'    | [new NcmpServiceCmHandle(cmHandleId: 'ch-1')]                       || null                | null
             'with blank alternate id' | [new NcmpServiceCmHandle(cmHandleId: 'ch-1', alternateId: ' ')]     || null                | null
-    }
-
-    def 'Checking caches for duplicated values when: #scenario.'() {
-        expect: 'duplicate checks works as intended'
-            assert objectUnderTest.isDuplicateId(cmHandleId, alternateId) == expectDuplicate
-        where: 'the following values are given'
-            scenario                                             | cmHandleId           | alternateId           || expectDuplicate
-            'new cm handle'                                      | 'new ch-1'           | 'alt-1'               || false
-            'cm handle with already assigned other alternate id' | 'cached cmhandle id' | 'alt-1'               || true
-            'alternate id already assigned to other cm handle'   | 'ch-1'               | 'cached alternate id' || true
-            'no alternate id provided'                           | 'ch-1'               | null                  || false
-            'cm handle with already assigned same alternate id'  | 'ch-1'               | 'alt-1'               || false
     }
 }

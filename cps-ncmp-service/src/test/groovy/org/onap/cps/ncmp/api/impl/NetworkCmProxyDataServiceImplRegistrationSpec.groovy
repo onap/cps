@@ -21,38 +21,37 @@
 
 package org.onap.cps.ncmp.api.impl
 
+import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.Status
+import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLES_NOT_FOUND
+import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLE_ALREADY_EXIST
+import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLE_INVALID_ID
+import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNKNOWN_ERROR
+
+import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevelManager
+import org.onap.cps.ncmp.api.impl.utils.CmHandleIdMapper
+import org.onap.cps.ncmp.api.models.UpgradedCmHandles
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.hazelcast.map.IMap
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
-import org.onap.cps.ncmp.api.NcmpResponseStatus
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandleQueryService
 import org.onap.cps.ncmp.api.impl.events.lcm.LcmEventsCmHandleStateHandler
 import org.onap.cps.ncmp.api.impl.exception.DmiRequestException
+import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations
+import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel
+import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueries
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
 import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence
-import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations
-import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel
-import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevelManager
-import org.onap.cps.ncmp.api.impl.utils.CmHandleIdMapper
-import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
-import org.onap.cps.ncmp.api.models.UpgradedCmHandles
 import org.onap.cps.spi.exceptions.AlreadyDefinedException
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.exceptions.SchemaSetNotFoundException
 import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Specification
-
-import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLES_NOT_FOUND
-import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLE_ALREADY_EXIST
-import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLE_INVALID_ID
-import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNKNOWN_ERROR
-import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.Status
 
 class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
 
@@ -440,21 +439,6 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'the new alternate id is added to the cache'
             1 * mockCmHandleIdMapper.addMapping('cmhandle1', 'my-alternate-id-1')
-    }
-
-    def 'Attempting to register a cmhandle with an already cached id.'() {
-        given: 'a registration of a cmhandle with an alternate id'
-            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server')
-            dmiPluginRegistration.createdCmHandles = [new NcmpServiceCmHandle(cmHandleId: 'ch-1', alternateId: 'my alternate id')]
-        and: 'one of the ids are duplicated'
-            mockCmHandleIdMapper.isDuplicateId('ch-1', 'my alternate id') >> true
-        when: 'registration is attempted'
-            def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
-        then: 'a response is received'
-            assert response != null
-        and: 'the cmhandle has a failed state with the appropriate NCMP response status'
-            assert Status.FAILURE == response.createdCmHandles[0].status
-            assert NcmpResponseStatus.ALTERNATE_ID_ALREADY_ASSOCIATED == response.createdCmHandles[0].ncmpResponseStatus
     }
 
     def getObjectUnderTest() {
