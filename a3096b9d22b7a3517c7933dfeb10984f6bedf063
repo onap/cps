@@ -34,6 +34,24 @@
       "parentUuid": "ed7456d3_bdd34ad3",
       "revId": "a3096b9d22b7a3517c7933dfeb10984f6bedf063",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd781291_6ec94edc",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/sync/config/WatchdogSchedulingConfigurerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-08T11:30:45Z",
+      "side": 0,
+      "message": "there is only one method in the test so no need to clean up explicitly... (afte each test)",
+      "parentUuid": "5db674b6_115288c2",
+      "revId": "a3096b9d22b7a3517c7933dfeb10984f6bedf063",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
