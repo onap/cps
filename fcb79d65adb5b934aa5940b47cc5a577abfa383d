@@ -70,6 +70,29 @@
       "parentUuid": "70d6287f_8529cea0",
       "revId": "fcb79d65adb5b934aa5940b47cc5a577abfa383d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a96c2294_6d8fa206",
+        "filename": "csit/tests/cps-data/cps-data.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-08T11:14:06Z",
+      "side": 1,
+      "message": "this could cause trouble in the future if it fails again change the logic to use contains (in any order) I think we did something similar somewhere else",
+      "range": {
+        "startLine": 60,
+        "startChar": 71,
+        "endLine": 60,
+        "endChar": 100
+      },
+      "revId": "fcb79d65adb5b934aa5940b47cc5a577abfa383d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
