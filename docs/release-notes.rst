@@ -75,6 +75,7 @@ Features
 --------
     - `CPS-1824 <https://jira.onap.org/browse/CPS-1824>`_ CPS Delta between 2 anchors.
     - `CPS-2072 <https://jira.onap.org/browse/CPS-2072>`_ Add maven classifier to Spring Boot JAR.
+    - `CPS-1135 <https://jira.onap.org/browse/CPS-1135>`_ Extend CPS Module API to allow retrieval single module definition.
 
 Notes
 -----
