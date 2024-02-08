@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "889e7171_26c37256",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/lcm/LcmEventsCreatorSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-08T10:42:18Z",
+      "side": 1,
+      "message": "NB: No need for this column as you always expect the target alternateId",
+      "range": {
+        "startLine": 186,
+        "startChar": 99,
+        "endLine": 186,
+        "endChar": 127
+      },
+      "revId": "5defc2d9ceb8e5f029b009d517a3491e42e283dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
