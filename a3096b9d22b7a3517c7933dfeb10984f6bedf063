@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed7456d3_bdd34ad3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/sync/config/WatchdogSchedulingConfigurerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-02-08T10:15:29Z",
+      "side": 0,
+      "message": "why don\u0027t we need to close the context in the new patch?",
+      "revId": "a3096b9d22b7a3517c7933dfeb10984f6bedf063",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
