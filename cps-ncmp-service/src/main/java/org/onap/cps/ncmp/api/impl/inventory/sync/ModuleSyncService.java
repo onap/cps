@@ -97,18 +97,17 @@ public class ModuleSyncService {
                 final Collection<ModuleReference> allModuleReferencesFromCmHandle
                         = syncAndCreateSchemaSet(yangModelCmHandle);
                 updateModuleSetTagCache(moduleSetTag, allModuleReferencesFromCmHandle);
+                cpsAnchorService.createAnchor(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId, cmHandleId);
             }
         } else {
             if (inUpgrade) {
                 cpsModuleService.upgradeSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId,
                         NO_NEW_MODULES, moduleReferencesFromCache);
             } else {
-                cpsModuleService.createSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME,
-                        cmHandleId, NO_NEW_MODULES, moduleReferencesFromCache);
+                cpsModuleService.createSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId,
+                        NO_NEW_MODULES, moduleReferencesFromCache);
+                cpsAnchorService.createAnchor(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId, cmHandleId);
             }
-        }
-        if (!inUpgrade) {
-            cpsAnchorService.createAnchor(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId, cmHandleId);
         }
         setCmHandleModuleSetTag(yangModelCmHandle, moduleSetTag);
     }
