@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a00218e5_78669257",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-08T12:21:15Z",
+      "side": 1,
+      "message": "The openapi.yaml files have already been updated and merged in this commit:\n\nhttps://gerrit.onap.org/r/c/cps/+/137176\n\nSo no need to copy again openapi.yaml",
+      "revId": "cf0c931b7c649bdccca95f5cc1590b923aa656a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
