@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7fed7855_10eacbde",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmSubscriptionPersistenceService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-08T11:12:27Z",
+      "side": 1,
+      "message": "Utility class will be added as a separate patch now where it is used.\nCant cover in the code for now.",
+      "parentUuid": "d45dcc06_28bdb102",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 1
+      },
+      "revId": "cc6b95ecb2db867aca72a60172bd756168707c52",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "60f7af36_f0204683",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmSubscriptionPersistenceServiceImpl.java",
         "patchSetId": 2
@@ -144,6 +168,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4626e355_91a623f2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-08T11:12:27Z",
+      "side": 1,
+      "message": "will use the queryDataNodes instead.",
+      "parentUuid": "248c2b73_1406e3c6",
+      "range": {
+        "startLine": 50,
+        "startChar": 11,
+        "endLine": 50,
+        "endChar": 19
+      },
+      "revId": "cc6b95ecb2db867aca72a60172bd756168707c52",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7331418d_666f0a8e",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmSubscriptionPersistenceServiceImpl.java",
         "patchSetId": 2
@@ -155,6 +203,30 @@
       "writtenOn": "2024-02-08T09:50:47Z",
       "side": 1,
       "message": "BUG! getDataNodes will throw a DataNodeFoundException (versus queryDataNodes which would return empty collection). Add try/catch, or use queryDataNodes instead.\n\nWe really need to get NCMP covered under integration tests.",
+      "range": {
+        "startLine": 56,
+        "startChar": 31,
+        "endLine": 56,
+        "endChar": 43
+      },
+      "revId": "cc6b95ecb2db867aca72a60172bd756168707c52",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e25d3c0a_21db5601",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-08T11:12:27Z",
+      "side": 1,
+      "message": "Agreed.",
+      "parentUuid": "7331418d_666f0a8e",
       "range": {
         "startLine": 56,
         "startChar": 31,
