@@ -28,7 +28,9 @@ import io.cloudevents.CloudEvent;
 import io.cloudevents.core.builder.CloudEventBuilder;
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -49,8 +51,11 @@ import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -62,23 +67,70 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class DmiRestStubController {
 
+    private static final String NO_TAG = "tagD";
     private final KafkaTemplate<String, CloudEvent> cloudEventKafkaTemplate;
     private final ObjectMapper objectMapper;
     private final ApplicationContext applicationContext;
-
     @Value("${app.ncmp.async-m2m.topic}")
     private String ncmpAsyncM2mTopic;
-
     @Value("${delay.module-references-delay-ms}")
     private long moduleReferencesDelayMs;
-
     @Value("${delay.module-resources-delay-ms}")
     private long moduleResourcesDelayMs;
-
     @Value("${delay.data-for-cm-handle-delay-ms}")
     private long dataForCmHandleDelayMs;
-
     private String dataOperationEventType = "org.onap.cps.ncmp.events.async1_0_0.DataOperationEvent";
+    private static final Map<String, String> moduleSetTagPerCmHandleId = new HashMap<>();
+
+
+    /**
+     * This code defines a GET endpoint ("/v1/ch/entry/getAll") that returns a ResponseEntity object containing a Map of
+     * @return The map represents the module set tag map for a CM handle ID.
+     */
+    @GetMapping("/v1/ch/entry")
+    public ResponseEntity<Map<String, String>> getModuleSetTagMap() {
+        return ResponseEntity.ok(moduleSetTagPerCmHandleId);
+    }
+
+    /**
+     * This code defines a REST API endpoint for updating the module set tag map. The endpoint receives the
+     * cmHandleId and moduleSetTag as path variables and updates the moduleSetTagPerCmHandleId map with the provided
+     * values.
+     *
+     * @param moduleSetTag requested module set tag
+     * @param cmHandleId   associated cm handle id
+     * @return a ResponseEntity object containing the updated moduleSetTagPerCmHandleId map as the response body
+     */
+    @PutMapping("/v1/ch/entry/{cmHandleId}/{moduleSetTag}/update")
+    public ResponseEntity<Map<String, String>> updateModuleSetTagMap(@PathVariable final String cmHandleId,
+                                                                     @PathVariable final String moduleSetTag) {
+        moduleSetTagPerCmHandleId.put(cmHandleId, moduleSetTag);
+        return ResponseEntity.ok(moduleSetTagPerCmHandleId);
+    }
+
+    /**
+     * This code defines a method named "resetModuleSetTagMap" which is used
+     * to reset the "moduleSetTagPerCmHandleId" map.
+     * The map is cleared and an empty map is returned as a response.
+     *
+     * @return A ResponseEntity object containing an empty map.
+     */
+    @PutMapping("/v1/ch/entry/reset")
+    public ResponseEntity<Map<String, String>> resetModuleSetTagMap() {
+        moduleSetTagPerCmHandleId.clear();
+        return ResponseEntity.ok(moduleSetTagPerCmHandleId);
+    }
+
+    /**
+     * It contains a method to delete an entry from the moduleSetTagPerCmHandleId map.
+     * The method takes a cmHandleId as a parameter and removes the corresponding entry from the map.
+     * @return a ResponseEntity containing the updated map.
+     */
+    @DeleteMapping("/v1/ch/entry/delete/{cmHandleId}")
+    public ResponseEntity<Map<String, String>> deleteEntryModuleSetTagMap(@PathVariable final String cmHandleId) {
+        moduleSetTagPerCmHandleId.remove(cmHandleId);
+        return ResponseEntity.ok(moduleSetTagPerCmHandleId);
+    }
 
     /**
      * Get all modules for given cm handle.
@@ -199,17 +251,17 @@ public class DmiRestStubController {
     }
 
     private String getModuleResourceResponse(final String cmHandleId, final String moduleResponseType) {
-        final String nodeType = cmHandleId.split("-")[0];
-        final String moduleResponseFilePath = String.format("module/%s%s", nodeType, moduleResponseType);
+        if (moduleSetTagPerCmHandleId.isEmpty()) {
+            log.info("Using module responses of type ietfYang");
+            return ResourceFileReaderUtil.getResourceFileContent(applicationContext.getResource(
+                    ResourceLoader.CLASSPATH_URL_PREFIX + "module/ietfYang-" + moduleResponseType));
+        }
+        final String moduleSetTag = moduleSetTagPerCmHandleId.getOrDefault(cmHandleId, NO_TAG);
+        final String moduleResponseFilePath = String.format("module/%s-%s", moduleSetTag, moduleResponseType);
         final Resource moduleResponseResource = applicationContext.getResource(
                 ResourceLoader.CLASSPATH_URL_PREFIX + moduleResponseFilePath);
-        if (moduleResponseResource.exists()) {
-            log.info("Using requested node type: {}", nodeType);
-            return ResourceFileReaderUtil.getResourceFileContent(moduleResponseResource);
-        }
-        log.info("Using default node type: ietfYang");
-        return ResourceFileReaderUtil.getResourceFileContent(applicationContext.getResource(
-                ResourceLoader.CLASSPATH_URL_PREFIX + "module/ietfYang" + moduleResponseType));
+        log.info("Using module responses from : {}", moduleResponseFilePath);
+        return ResourceFileReaderUtil.getResourceFileContent(moduleResponseResource);
     }
 
     private void delay(final long milliseconds) {

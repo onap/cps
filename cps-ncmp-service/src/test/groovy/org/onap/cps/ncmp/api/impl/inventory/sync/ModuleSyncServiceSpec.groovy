@@ -116,12 +116,12 @@ class ModuleSyncServiceSpec extends Specification {
         and: 'create schema set from module is invoked for the upgraded cm handle'
             expectedCallsToCeateSchemaSet * mockCpsModuleService.createSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'upgraded-ch', [:], moduleReferences)
         and: 'No anchor is created for the upgraded cm handle'
-            0 * mockCpsAnchorService.createAnchor(*_)
+            expectedCallsToCeateSchemaSet * mockCpsAnchorService.createAnchor(*_)
         where: 'the following parameters are used'
-            scenario      | populateCache | existingCmHandlesWithSameTag || expectedCallsToUpgradeSchemaSet | expectedCallsToCeateSchemaSet
-            'new'         | false         | []                           || 0                               | 1
-            'in cache'    | true          | []                           || 1                               | 0
-            'in database' | false         | [cmHandleWithModuleSetTag]   || 1                               | 0
+            scenario      | populateCache | existingCmHandlesWithSameTag || expectedCallsToUpgradeSchemaSet | expectedCallsToCeateSchemaSet | expectedCallsToCreateAnchor
+            'new'         | false         | []                           || 0                               | 1                             | 1
+            'in cache'    | true          | []                           || 1                               | 0                             | 0
+            'in database' | false         | [cmHandleWithModuleSetTag]   || 1                               | 0                             | 0
     }
 
     def 'upgrade model for a existing cm handle'() {
