@@ -236,6 +236,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e99fe0d_d3b2b926",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapper.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-02-08T10:16:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b2ff5e9_e3186ada",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 92
+      },
+      "revId": "34f885c9ac49b73f0bb0805edbc7b536b5bcff4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5f41bc60_308e8cf4",
@@ -508,6 +532,30 @@
       "side": 1,
       "message": "lets discuss this tomorrow morning! Do you mean like this?:\n\n\u0027cm handle with already assigned same alternate id\u0027  | \u0027ch-1\u0027   | \u0027ch-1\u0027 || false",
       "parentUuid": "0277f42c_31fef489",
+      "range": {
+        "startLine": 126,
+        "startChar": 13,
+        "endLine": 126,
+        "endChar": 34
+      },
+      "revId": "34f885c9ac49b73f0bb0805edbc7b536b5bcff4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "94aa03b6_3f97cdd1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapperSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-02-08T10:16:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3d6e1cfe_2afd7f1d",
       "range": {
         "startLine": 126,
         "startChar": 13,
