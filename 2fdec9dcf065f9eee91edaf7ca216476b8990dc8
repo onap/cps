@@ -3,6 +3,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "2b868124_f83da8a8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-02-08T10:13:25Z",
+      "side": 1,
+      "message": "nice job, just a small fix needs to be done",
+      "revId": "2fdec9dcf065f9eee91edaf7ca216476b8990dc8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "495357ed_29fd0cf8",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/yangmodels/YangModelCmHandle.java",
         "patchSetId": 3
@@ -14,6 +31,23 @@
       "writtenOn": "2024-02-08T09:58:33Z",
       "side": 1,
       "message": "nice",
+      "revId": "2fdec9dcf065f9eee91edaf7ca216476b8990dc8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc239465_2e2b7bc6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/lcm/LcmEventsCreatorSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-02-08T10:13:25Z",
+      "side": 1,
+      "message": "i think should be \u0027alternate id\u0027. (since we should not use variable names in slogans)",
       "revId": "2fdec9dcf065f9eee91edaf7ca216476b8990dc8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
