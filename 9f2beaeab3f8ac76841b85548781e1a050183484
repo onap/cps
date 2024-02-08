@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "80801bbd_bb128066",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-02-08T11:24:53Z",
+      "side": 1,
+      "message": "looks good just a couple of non blockers",
+      "revId": "9f2beaeab3f8ac76841b85548781e1a050183484",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d841829a_f2478fca",
@@ -59,6 +76,52 @@
         "startChar": 0,
         "endLine": 84,
         "endChar": 92
+      },
+      "revId": "9f2beaeab3f8ac76841b85548781e1a050183484",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d549b7b0_75a2edf6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-02-08T11:24:53Z",
+      "side": 1,
+      "message": "NB: non static imports should be grouped together",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 47
+      },
+      "revId": "9f2beaeab3f8ac76841b85548781e1a050183484",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90957c7b_6867e264",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-02-08T11:24:53Z",
+      "side": 1,
+      "message": "NB: not needed",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 53
       },
       "revId": "9f2beaeab3f8ac76841b85548781e1a050183484",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
