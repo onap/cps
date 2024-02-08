@@ -35,6 +35,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "925f8d4a_89262f34",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-08T13:58:21Z",
+      "side": 1,
+      "message": "Now I m clear about updating a cm handle based on the comment ( if cm hanlde id in use, cm hanlde should not be updated ) made be Levente, then providing +1.",
+      "revId": "67681820f2a7fea88cbc6cbe5b3d483dae506d55",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "147c227e_a5d77586",
@@ -129,6 +146,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7b8eb08_022e7dba",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-08T13:58:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "78b0bffd_eaf2a927",
+      "range": {
+        "startLine": 85,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 24
+      },
+      "revId": "67681820f2a7fea88cbc6cbe5b3d483dae506d55",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0cacb1cf_8410dacc",
@@ -166,6 +207,30 @@
       "side": 1,
       "message": "im not sure what are you refering to. the checking of the caches is mocked on line 450.\nthis tests validates what failure response we get if any of the ids duplicated",
       "parentUuid": "0cacb1cf_8410dacc",
+      "range": {
+        "startLine": 452,
+        "startChar": 12,
+        "endLine": 452,
+        "endChar": 100
+      },
+      "revId": "67681820f2a7fea88cbc6cbe5b3d483dae506d55",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6184133e_754f18b7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 452,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-08T13:58:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "07c91134_e6af7e1c",
       "range": {
         "startLine": 452,
         "startChar": 12,
@@ -223,6 +288,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3135e182_7ecfe677",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapperSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-08T13:58:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "046068fc_1c84ea29",
+      "range": {
+        "startLine": 57,
+        "startChar": 12,
+        "endLine": 57,
+        "endChar": 19
+      },
+      "revId": "67681820f2a7fea88cbc6cbe5b3d483dae506d55",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "02869dc6_3c353159",
@@ -270,6 +359,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f927bede_53d0ec24",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapperSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-08T13:58:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "64abe683_b16e572a",
+      "range": {
+        "startLine": 123,
+        "startChar": 68,
+        "endLine": 123,
+        "endChar": 72
+      },
+      "revId": "67681820f2a7fea88cbc6cbe5b3d483dae506d55",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a9c07eed_8d83bd05",
@@ -307,6 +420,30 @@
       "side": 1,
       "message": "each scenario will create a different instance of the caches. so just because it was assigned in a different scenario it will not be persisted in the cache for this scenario. i hope that answers the question.",
       "parentUuid": "a9c07eed_8d83bd05",
+      "range": {
+        "startLine": 127,
+        "startChar": 13,
+        "endLine": 127,
+        "endChar": 62
+      },
+      "revId": "67681820f2a7fea88cbc6cbe5b3d483dae506d55",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e18fb16_823c1df4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapperSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-08T13:58:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5595e30c_8a0e21e1",
       "range": {
         "startLine": 127,
         "startChar": 13,
