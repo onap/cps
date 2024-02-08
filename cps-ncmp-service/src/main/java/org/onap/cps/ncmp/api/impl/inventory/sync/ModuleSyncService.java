@@ -77,6 +77,7 @@ public class ModuleSyncService {
         final CompositeState compositeState = yangModelCmHandle.getCompositeState();
         final boolean inUpgrade = ModuleOperationsUtils.isInUpgradeOrUpgradeFailed(compositeState);
         final String moduleSetTag = getModuleSetTag(yangModelCmHandle, compositeState, inUpgrade);
+        boolean isNewModuleSetTagForUpgradeOrCreate = false;
 
         final Collection<ModuleReference> moduleReferencesFromCache = moduleSetTagCache.get(moduleSetTag);
 
@@ -97,17 +98,21 @@ public class ModuleSyncService {
                 final Collection<ModuleReference> allModuleReferencesFromCmHandle
                         = syncAndCreateSchemaSet(yangModelCmHandle);
                 updateModuleSetTagCache(moduleSetTag, allModuleReferencesFromCmHandle);
+                isNewModuleSetTagForUpgradeOrCreate = true;
             }
         } else {
             if (inUpgrade) {
                 cpsModuleService.upgradeSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId,
                         NO_NEW_MODULES, moduleReferencesFromCache);
             } else {
+                final Map<String, String> newModuleNameToContentMap
+                        = getNewModuleNameToContentMap(yangModelCmHandle, moduleReferencesFromCache);
                 cpsModuleService.createSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME,
-                        cmHandleId, NO_NEW_MODULES, moduleReferencesFromCache);
+                        cmHandleId, newModuleNameToContentMap, moduleReferencesFromCache);
+                isNewModuleSetTagForUpgradeOrCreate = true;
             }
         }
-        if (!inUpgrade) {
+        if (isNewModuleSetTagForUpgradeOrCreate) {
             cpsAnchorService.createAnchor(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId, cmHandleId);
         }
         setCmHandleModuleSetTag(yangModelCmHandle, moduleSetTag);
@@ -151,15 +156,8 @@ public class ModuleSyncService {
     private Collection<ModuleReference> syncAndCreateSchemaSet(final YangModelCmHandle yangModelCmHandle) {
         final Collection<ModuleReference> allModuleReferencesFromCmHandle =
                 dmiModelOperations.getModuleReferences(yangModelCmHandle);
-        final Collection<ModuleReference> identifiedNewModuleReferencesFromCmHandle = cpsModuleService
-                .identifyNewModuleReferences(allModuleReferencesFromCmHandle);
-        final Map<String, String> newModuleNameToContentMap;
-        if (identifiedNewModuleReferencesFromCmHandle.isEmpty()) {
-            newModuleNameToContentMap = NO_NEW_MODULES;
-        } else {
-            newModuleNameToContentMap = dmiModelOperations.getNewYangResourcesFromDmi(yangModelCmHandle,
-                    identifiedNewModuleReferencesFromCmHandle);
-        }
+        final Map<String, String> newModuleNameToContentMap
+                = getNewModuleNameToContentMap(yangModelCmHandle, allModuleReferencesFromCmHandle);
         cpsModuleService.createSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME,
                 yangModelCmHandle.getId(), newModuleNameToContentMap, allModuleReferencesFromCmHandle);
         return allModuleReferencesFromCmHandle;
@@ -198,6 +196,20 @@ public class ModuleSyncService {
         if (StringUtils.isNotBlank(moduleSetTag)) {
             moduleSetTagCache.putIfAbsent(moduleSetTag, allModuleReferencesFromCmHandle);
         }
+    }
+
+    private Map<String, String> getNewModuleNameToContentMap(final YangModelCmHandle yangModelCmHandle,
+                                                             final Collection<ModuleReference> moduleReferences) {
+        final Collection<ModuleReference> identifiedNewModuleReferencesFromCache = cpsModuleService
+                .identifyNewModuleReferences(moduleReferences);
+        final Map<String, String> newModuleNameToContentMap;
+        if (identifiedNewModuleReferencesFromCache.isEmpty()) {
+            newModuleNameToContentMap = NO_NEW_MODULES;
+        } else {
+            newModuleNameToContentMap = dmiModelOperations.getNewYangResourcesFromDmi(yangModelCmHandle,
+                    identifiedNewModuleReferencesFromCache);
+        }
+        return newModuleNameToContentMap;
     }
 
 }
