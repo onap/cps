@@ -107,6 +107,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "78b0bffd_eaf2a927",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-02-08T13:38:55Z",
+      "side": 1,
+      "message": "indeed. we should not update the cm handle if the provided alternate id already exists in the system. so the incoming object will be flagged as a failure",
+      "parentUuid": "b40fc9a1_00aa0f1a",
+      "range": {
+        "startLine": 85,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 24
+      },
+      "revId": "67681820f2a7fea88cbc6cbe5b3d483dae506d55",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0cacb1cf_8410dacc",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
         "patchSetId": 16
@@ -118,6 +142,30 @@
       "writtenOn": "2024-02-08T12:52:06Z",
       "side": 1,
       "message": "So as I mentioned above, you would ending up not updating cm handle if either keys (cm hanlde id or alternate id) in the cache. But, as is code does the update without checking the new caches. Is that the new bussiness decided within this story?",
+      "range": {
+        "startLine": 452,
+        "startChar": 12,
+        "endLine": 452,
+        "endChar": 100
+      },
+      "revId": "67681820f2a7fea88cbc6cbe5b3d483dae506d55",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07c91134_e6af7e1c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 452,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-02-08T13:38:55Z",
+      "side": 1,
+      "message": "im not sure what are you refering to. the checking of the caches is mocked on line 450.\nthis tests validates what failure response we get if any of the ids duplicated",
+      "parentUuid": "0cacb1cf_8410dacc",
       "range": {
         "startLine": 452,
         "startChar": 12,
@@ -188,6 +236,30 @@
       "writtenOn": "2024-02-08T12:52:06Z",
       "side": 1,
       "message": "Does it really required since the keys in the caches has already started with cached. so you may simply provide ch-1, dont you?",
+      "range": {
+        "startLine": 123,
+        "startChar": 68,
+        "endLine": 123,
+        "endChar": 72
+      },
+      "revId": "67681820f2a7fea88cbc6cbe5b3d483dae506d55",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64abe683_b16e572a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapperSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-02-08T13:38:55Z",
+      "side": 1,
+      "message": "its just more telling. could be simply \u0027ch-1\u0027. its just more telling in my opinion",
+      "parentUuid": "02869dc6_3c353159",
       "range": {
         "startLine": 123,
         "startChar": 68,
