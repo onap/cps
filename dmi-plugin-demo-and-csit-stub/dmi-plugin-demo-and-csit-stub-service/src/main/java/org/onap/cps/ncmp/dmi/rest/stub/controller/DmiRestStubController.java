@@ -28,7 +28,9 @@ import io.cloudevents.CloudEvent;
 import io.cloudevents.core.builder.CloudEventBuilder;
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -62,14 +64,30 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class DmiRestStubController {
 
+    private static final String NO_TAG = "tagD";
     private final KafkaTemplate<String, CloudEvent> cloudEventKafkaTemplate;
     private final ObjectMapper objectMapper;
     private final ApplicationContext applicationContext;
-
     @Value("${app.ncmp.async-m2m.topic}")
     private String ncmpAsyncM2mTopic;
-
     private String dataOperationEventType = "org.onap.cps.ncmp.events.async1_0_0.DataOperationEvent";
+    private static final Map<String, String> moduleSetTagPerCmHandleId = new HashMap<>();
+
+    /**
+     * This code defines a REST API endpoint for updating the module set tag map. The endpoint receives the
+     * cmHandleId and moduleSetTag as path variables and updates the moduleSetTagPerCmHandleId map with the provided
+     * values.
+     *
+     * @param moduleSetTag requested module set tag
+     * @param cmHandleId   associated cm handle id
+     * @return a ResponseEntity object containing the updated moduleSetTagPerCmHandleId map as the response body
+     */
+    @PostMapping("/v1/ch/entry/{cmHandleId}/{moduleSetTag}/update")
+    public ResponseEntity<Map<String, String>> updateModuleSetTagMap(@PathVariable final String cmHandleId,
+                                                                     @PathVariable final String moduleSetTag) {
+        moduleSetTagPerCmHandleId.put(cmHandleId, moduleSetTag);
+        return ResponseEntity.ok(moduleSetTagPerCmHandleId);
+    }
 
     /**
      * Get all modules for given cm handle.
@@ -187,16 +205,16 @@ public class DmiRestStubController {
     }
 
     private String getModuleResourceResponse(final String cmHandleId, final String moduleResponseType) {
-        final String nodeType = cmHandleId.split("-")[0];
-        final String moduleResponseFilePath = String.format("module/%s%s", nodeType, moduleResponseType);
+        if (moduleSetTagPerCmHandleId.isEmpty()) {
+            log.info("Using module responses of type ietfYang");
+            return ResourceFileReaderUtil.getResourceFileContent(applicationContext.getResource(
+                    ResourceLoader.CLASSPATH_URL_PREFIX + "module/ietfYang-" + moduleResponseType));
+        }
+        final String moduleSetTag = moduleSetTagPerCmHandleId.getOrDefault(cmHandleId, NO_TAG);
+        final String moduleResponseFilePath = String.format("module/%s-%s", moduleSetTag, moduleResponseType);
         final Resource moduleResponseResource = applicationContext.getResource(
                 ResourceLoader.CLASSPATH_URL_PREFIX + moduleResponseFilePath);
-        if (moduleResponseResource.exists()) {
-            log.info("Using requested node type: {}", nodeType);
-            return ResourceFileReaderUtil.getResourceFileContent(moduleResponseResource);
-        }
-        log.info("Using default node type: ietfYang");
-        return ResourceFileReaderUtil.getResourceFileContent(applicationContext.getResource(
-                ResourceLoader.CLASSPATH_URL_PREFIX + "module/ietfYang" + moduleResponseType));
+        log.info("Using module responses from : {}", moduleResponseFilePath);
+        return ResourceFileReaderUtil.getResourceFileContent(moduleResponseResource);
     }
 }
