@@ -423,8 +423,21 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
         then: 'the updated data nodes are retrieved'
             def result = cpsDataService.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_2, "/bookstore/categories[@code=1]/books[@title='Matilda']", INCLUDE_ALL_DESCENDANTS)
         and: 'the leaf values are updated as expected'
-            assert result.leaves['lang'] == ['English/French']
-            assert result.leaves['price'] == [100]
+            assert result[0].leaves['lang'] == 'English/French'
+            assert result[0].leaves['price'] == 100
+        cleanup:
+            restoreBookstoreDataAnchor(2)
+    }
+
+    def 'Order of leaf-list elements is preserved when "ordered-by user" is set in the YANG model.'() {
+        given: 'Updated json for bookstore data'
+            def jsonData =  "{'book-store:books':{'title':'Matilda', 'editions': [2011, 1988, 2001, 2022, 2025]}}"
+        when: 'update is performed for leaves'
+            objectUnderTest.updateNodeLeaves(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_2, "/bookstore/categories[@code='1']", jsonData, now)
+        and: 'the updated data nodes are retrieved'
+            def result = cpsDataService.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_2, "/bookstore/categories[@code=1]/books[@title='Matilda']", INCLUDE_ALL_DESCENDANTS)
+        then: 'the leaf-list values have expected order'
+            assert result[0].leaves['editions'] == [2011, 1988, 2001, 2022, 2025]
         cleanup:
             restoreBookstoreDataAnchor(2)
     }
@@ -540,7 +553,7 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
             def expectedSourceDataInParentNode = ['name':'Children']
             def expectedTargetDataInParentNode = ['name':'Kids']
             def expectedSourceDataInChildNode = [['lang' : 'English'],['price':20, 'editions':[1988, 2000]]]
-            def expectedTargetDataInChildNode = [['lang':'English/German'], ['price':200, 'editions':[2023, 1988, 2000]]]
+            def expectedTargetDataInChildNode = [['lang':'English/German'], ['price':200, 'editions':[1988, 2000, 2023]]]
         when: 'attempt to get delta between leaves of existing data nodes'
             def result = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_ANCHOR_3, BOOKSTORE_ANCHOR_5, parentNodeXpath, INCLUDE_ALL_DESCENDANTS)
             def deltaReportEntities = getDeltaReportEntities(result)
@@ -555,7 +568,7 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
             assert deltaReportEntities.get('xpaths').containsAll(["/bookstore/categories[@code='1']/books[@title='The Gruffalo']", "/bookstore/categories[@code='1']/books[@title='Matilda']"])
         and: 'the delta report also has expected source and target data of child nodes'
             assert deltaReportEntities.get('sourcePayload').containsAll(expectedSourceDataInChildNode)
-            //assert deltaReportEntities.get('targetPayload').containsAll(expectedTargetDataInChildNode) CPS-2057
+            assert deltaReportEntities.get('targetPayload').containsAll(expectedTargetDataInChildNode)
     }
 
     def getDeltaReportEntities(List<DeltaReport> deltaReport) {
