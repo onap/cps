@@ -24,7 +24,6 @@
 
 package org.onap.cps.ncmp.api.impl;
 
-import static org.onap.cps.ncmp.api.NcmpResponseStatus.ALTERNATE_ID_ALREADY_ASSOCIATED;
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLES_NOT_FOUND;
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLES_NOT_READY;
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLE_ALREADY_EXIST;
@@ -501,35 +500,16 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private List<CmHandleRegistrationResponse> registerNewCmHandles(final List<YangModelCmHandle> yangModelCmHandles,
                                                                     final Map<String, TrustLevel>
                                                                             initialTrustLevelPerCmHandleId) {
-        final List<CmHandleRegistrationResponse> failureResponses = new ArrayList<>();
-        final List<YangModelCmHandle> acceptedYangModelCmHandles = new ArrayList<>(yangModelCmHandles.size());
-        final Set<String> acceptedCmHandleIds = new HashSet<>(yangModelCmHandles.size());
-        for (final YangModelCmHandle yangModelCmHandle : yangModelCmHandles) {
-            if (cmHandleIdMapper.isDuplicateId(yangModelCmHandle.getId(), yangModelCmHandle.getAlternateId())) {
-                initialTrustLevelPerCmHandleId.remove(yangModelCmHandle.getId());
-                failureResponses.add(CmHandleRegistrationResponse.createFailureResponse(
-                        yangModelCmHandle.getId(), ALTERNATE_ID_ALREADY_ASSOCIATED));
-            } else {
-                acceptedCmHandleIds.add(yangModelCmHandle.getId());
-                acceptedYangModelCmHandles.add(yangModelCmHandle);
-            }
-        }
+        final Set<String> cmHandleIds = initialTrustLevelPerCmHandleId.keySet();
         try {
-            lcmEventsCmHandleStateHandler.initiateStateAdvised(acceptedYangModelCmHandles);
+            lcmEventsCmHandleStateHandler.initiateStateAdvised(yangModelCmHandles);
             trustLevelManager.handleInitialRegistrationOfTrustLevels(initialTrustLevelPerCmHandleId);
-            final List<CmHandleRegistrationResponse> cmHandleRegistrationResponses = CmHandleRegistrationResponse
-                    .createSuccessResponses(acceptedCmHandleIds);
-            cmHandleRegistrationResponses.addAll(failureResponses);
-            return cmHandleRegistrationResponses;
+            return CmHandleRegistrationResponse.createSuccessResponses(cmHandleIds);
         } catch (final AlreadyDefinedException alreadyDefinedException) {
-            final List<CmHandleRegistrationResponse> alreadyDefinedResponses = CmHandleRegistrationResponse
-                    .createFailureResponses(
+            return CmHandleRegistrationResponse.createFailureResponses(
                     alreadyDefinedException.getAlreadyDefinedObjectNames(), CM_HANDLE_ALREADY_EXIST);
-            failureResponses.addAll(alreadyDefinedResponses);
-            return failureResponses;
         } catch (final Exception exception) {
-            return CmHandleRegistrationResponse
-                    .createFailureResponses(initialTrustLevelPerCmHandleId.keySet(), exception);
+            return CmHandleRegistrationResponse.createFailureResponses(cmHandleIds, exception);
         }
     }
 
@@ -576,4 +556,5 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             }
         }
     }
+
 }
