@@ -2,7 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Bell Canada. All rights reserved.
  *  Modifications Copyright (C) 2021 Pantheon.tech
- *  Modifications Copyright (C) 2022-2023 Nordix Foundation.
+ *  Modifications Copyright (C) 2022-2024 Nordix Foundation.
  *  Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -34,6 +34,7 @@ import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.utils.YangUtils;
+import org.opendaylight.yangtools.yang.common.Ordering;
 import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier;
 import org.opendaylight.yangtools.yang.data.api.schema.ChoiceNode;
 import org.opendaylight.yangtools.yang.data.api.schema.ContainerNode;
@@ -242,10 +243,14 @@ public class DataNodeBuilder {
 
     private static void addYangLeafList(final DataNode currentDataNode, final LeafSetNode<?> leafSetNode) {
         final String leafListName = leafSetNode.getIdentifier().getNodeType().getLocalName();
-        final List<?> leafListValues = ((Collection<? extends NormalizedNode>) leafSetNode.body())
+        List<?> leafListValues = ((Collection<? extends NormalizedNode>) leafSetNode.body())
                 .stream()
-                .map(normalizedNode -> (normalizedNode).body())
-                .collect(Collectors.toUnmodifiableList());
+                .map(NormalizedNode::body)
+                .collect(Collectors.toList());
+        if (leafSetNode.ordering() == Ordering.SYSTEM) {
+            leafListValues.sort(null);
+        }
+        leafListValues = Collections.unmodifiableList(leafListValues);
         addYangLeaf(currentDataNode, leafListName, (Serializable) leafListValues);
     }
 
