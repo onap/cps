@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6638a5d9_0a1f0204",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/model/DmiCmNotificationSubscriptionPredicate.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-09T15:16:12Z",
+      "side": 1,
+      "message": "Looks good!",
+      "revId": "acbaf80e5d1667fd31fe68ec6b316ad229c17a7c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ee9e62ef_c8638d60",
@@ -62,6 +79,30 @@
       "side": 1,
       "message": "ok that sounds fair",
       "parentUuid": "83315421_a80bbeb5",
+      "range": {
+        "startLine": 25,
+        "startChar": 16,
+        "endLine": 25,
+        "endChar": 32
+      },
+      "revId": "acbaf80e5d1667fd31fe68ec6b316ad229c17a7c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34163dce_68aa3f9f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmSubscriptionPersistenceService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-09T15:16:12Z",
+      "side": 1,
+      "message": "I\u0027d prefer consistent naming, but I\u0027m happy either way",
+      "parentUuid": "ec7210bb_e107fbf0",
       "range": {
         "startLine": 25,
         "startChar": 16,

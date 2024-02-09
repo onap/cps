@@ -240,6 +240,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "93723ded_e3e2284d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-09T15:16:12Z",
+      "side": 1,
+      "message": "What about Toine\u0027s suggestion of returning the list of existing subscriptions? We will need that for adding new a subscription.\n\n    boolean isOngoingCmSubscriptions(datastoreType, cmHandleId, xpath) {\n        var existingSubscriptions \u003d getOngoingCmSubscriptions(datastoreType, cmHandleId, xpath);\n        return !existingSubscriptions.isEmpty();\n    }\n\n    Collection\u003cString\u003e getOngoingCmSubscriptions(datastoreType, cmHandleId, xpath) {\n        var existingNodes \u003d cpsQueryService.queryDataNodes(...);\n        if (existingNodes.isEmpty()) {\n            return Collections.emptyList();\n        }\n        return existingNodes.iterator().next().getLeaves().get(\"subscribers\");\n    }",
+      "parentUuid": "4626e355_91a623f2",
+      "range": {
+        "startLine": 50,
+        "startChar": 11,
+        "endLine": 50,
+        "endChar": 19
+      },
+      "revId": "cc6b95ecb2db867aca72a60172bd756168707c52",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7331418d_666f0a8e",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmSubscriptionPersistenceServiceImpl.java",
         "patchSetId": 2
