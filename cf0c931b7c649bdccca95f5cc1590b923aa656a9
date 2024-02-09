@@ -33,6 +33,24 @@
       "message": "I see no update of the Yaml file in the doc folder?\nIs that because it was already updated yesterday?",
       "revId": "cf0c931b7c649bdccca95f5cc1590b923aa656a9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8465621c_4e2779af",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-09T09:55:48Z",
+      "side": 1,
+      "message": "Yes, openapi.yaml files has already been included in the release of 3.4.3 \n\nhttps://gerrit.onap.org/r/c/cps/+/137176",
+      "parentUuid": "cb2d2100_4d728cad",
+      "revId": "cf0c931b7c649bdccca95f5cc1590b923aa656a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
