@@ -4,9 +4,9 @@ info:
   title: NCMP Inventory API
   version: "1.0"
 servers:
-- url: /ncmpInventory
+  - url: /ncmpInventory
 security:
-- basicAuth: []
+  - basicAuth: []
 paths:
   /v1/ch:
     post:
@@ -57,35 +57,35 @@ paths:
             application/json:
               example:
                 failedCreatedCmHandles:
-                - cmHandle: my-cm-handle-01
-                  errorCode: "00"
-                  errorText: Unknown error. <error-details>
-                - cmHandle: my-cm-handle-02
-                  errorCode: "01"
-                  errorText: cm-handle already exists
-                - cmHandle: my-cm-handle-03
-                  errorCode: "03"
-                  errorText: cm-handle has an invalid character(s) in id
+                  - cmHandle: my-cm-handle-01
+                    errorCode: "00"
+                    errorText: Unknown error. <error-details>
+                  - cmHandle: my-cm-handle-02
+                    errorCode: "01"
+                    errorText: cm-handle already exists
+                  - cmHandle: my-cm-handle-03
+                    errorCode: "03"
+                    errorText: cm-handle has an invalid character(s) in id
                 failedUpdatedCmHandles:
-                - cmHandle: my-cm-handle-01
-                  errorCode: "00"
-                  errorText: Unknown error. <error-details>
-                - cmHandle: my-cm-handle-02
-                  errorCode: "02"
-                  errorText: cm-handle does not exist
-                - cmHandle: my-cm-handle-03
-                  errorCode: "03"
-                  errorText: cm-handle has an invalid character(s) in id
+                  - cmHandle: my-cm-handle-01
+                    errorCode: "00"
+                    errorText: Unknown error. <error-details>
+                  - cmHandle: my-cm-handle-02
+                    errorCode: "02"
+                    errorText: cm-handle does not exist
+                  - cmHandle: my-cm-handle-03
+                    errorCode: "03"
+                    errorText: cm-handle has an invalid character(s) in id
                 failedRemovedCmHandles:
-                - cmHandle: my-cm-handle-01
-                  errorCode: "00"
-                  errorText: Unknown error. <error-details>
-                - cmHandle: my-cm-handle-02
-                  errorCode: "02"
-                  errorText: cm-handle does not exists
-                - cmHandle: my-cm-handle-03
-                  errorCode: "03"
-                  errorText: cm-handle has an invalid character(s) in id
+                  - cmHandle: my-cm-handle-01
+                    errorCode: "00"
+                    errorText: Unknown error. <error-details>
+                  - cmHandle: my-cm-handle-02
+                    errorCode: "02"
+                    errorText: cm-handle does not exists
+                  - cmHandle: my-cm-handle-03
+                    errorCode: "03"
+                    errorText: cm-handle has an invalid character(s) in id
               schema:
                 $ref: '#/components/schemas/DmiPluginRegistrationErrorResponse'
           description: Partial or Complete failure. The error details are provided
@@ -93,19 +93,19 @@ paths:
             example.
       summary: DMI notifies NCMP of new CM Handles
       tags:
-      - network-cm-proxy-inventory
+        - network-cm-proxy-inventory
   /v1/ch/cmHandles:
     get:
       description: Get all cm handle IDs for a registered DMI plugin
       operationId: getAllCmHandleIdsForRegisteredDmi
       parameters:
-      - description: dmi-plugin-identifier
-        in: query
-        name: dmi-plugin-identifier
-        required: true
-        schema:
-          example: my-dmi-plugin
-          type: string
+        - description: dmi-plugin-identifier
+          in: query
+          name: dmi-plugin-identifier
+          required: true
+          schema:
+            example: my-dmi-plugin
+            type: string
       responses:
         "200":
           content:
@@ -148,7 +148,7 @@ paths:
       summary: "Get all cm handle IDs for a registered DMI plugin (DMI plugin, DMI\
         \ data plugin, DMI model plugin)"
       tags:
-      - network-cm-proxy-inventory
+        - network-cm-proxy-inventory
   /v1/ch/searches:
     post:
       description: "Query and get CMHandleIds for additional properties, public properties\
@@ -201,7 +201,7 @@ paths:
           description: Internal Server Error
       summary: Query for CM Handle IDs
       tags:
-      - network-cm-proxy-inventory
+        - network-cm-proxy-inventory
 components:
   parameters:
     dmiPluginIdentifierInQuery:
@@ -260,48 +260,48 @@ components:
     RestDmiPluginRegistration:
       example:
         updatedCmHandles:
-        - cmHandle: my-cm-handle
-          publicCmHandleProperties:
-            key: my-property
-          cmHandleProperties:
-            key: my-property
-          moduleSetTag: my-module-set-tag
-          trustLevel: COMPLETE
-        - cmHandle: my-cm-handle
-          publicCmHandleProperties:
-            key: my-property
-          cmHandleProperties:
-            key: my-property
-          moduleSetTag: my-module-set-tag
-          trustLevel: COMPLETE
+          - cmHandle: my-cm-handle
+            publicCmHandleProperties:
+              key: my-property
+            cmHandleProperties:
+              key: my-property
+            moduleSetTag: my-module-set-tag
+            trustLevel: COMPLETE
+          - cmHandle: my-cm-handle
+            publicCmHandleProperties:
+              key: my-property
+            cmHandleProperties:
+              key: my-property
+            moduleSetTag: my-module-set-tag
+            trustLevel: COMPLETE
         createdCmHandles:
-        - cmHandle: my-cm-handle
-          publicCmHandleProperties:
-            key: my-property
-          cmHandleProperties:
-            key: my-property
-          moduleSetTag: my-module-set-tag
-          trustLevel: COMPLETE
-        - cmHandle: my-cm-handle
-          publicCmHandleProperties:
-            key: my-property
-          cmHandleProperties:
-            key: my-property
-          moduleSetTag: my-module-set-tag
-          trustLevel: COMPLETE
+          - cmHandle: my-cm-handle
+            publicCmHandleProperties:
+              key: my-property
+            cmHandleProperties:
+              key: my-property
+            moduleSetTag: my-module-set-tag
+            trustLevel: COMPLETE
+          - cmHandle: my-cm-handle
+            publicCmHandleProperties:
+              key: my-property
+            cmHandleProperties:
+              key: my-property
+            moduleSetTag: my-module-set-tag
+            trustLevel: COMPLETE
         dmiPlugin: my-dmi-plugin
         dmiModelPlugin: my-dmi-model-plugin
         upgradedCmHandles:
           cmHandles:
-          - my-cm-handle1
-          - my-cm-handle2
-          - my-cm-handle3
+            - my-cm-handle1
+            - my-cm-handle2
+            - my-cm-handle3
           moduleSetTag: my-module-set-tag
         dmiDataPlugin: my-dmi-data-plugin
         removedCmHandles:
-        - my-cm-handle1
-        - my-cm-handle2
-        - my-cm-handle3
+          - my-cm-handle1
+          - my-cm-handle2
+          - my-cm-handle3
       properties:
         dmiPlugin:
           default: ""
@@ -325,9 +325,9 @@ components:
           type: array
         removedCmHandles:
           example:
-          - my-cm-handle1
-          - my-cm-handle2
-          - my-cm-handle3
+            - my-cm-handle1
+            - my-cm-handle2
+            - my-cm-handle3
           items:
             type: string
           type: array
@@ -362,12 +362,12 @@ components:
           type: string
         trustLevel:
           enum:
-          - COMPLETE
-          - NONE
+            - COMPLETE
+            - NONE
           example: COMPLETE
           type: string
       required:
-      - cmHandle
+        - cmHandle
       type: object
     RestCmHandleProperties:
       additionalProperties:
@@ -377,16 +377,16 @@ components:
     UpgradedCmHandles:
       example:
         cmHandles:
-        - my-cm-handle1
-        - my-cm-handle2
-        - my-cm-handle3
+          - my-cm-handle1
+          - my-cm-handle2
+          - my-cm-handle3
         moduleSetTag: my-module-set-tag
       properties:
         cmHandles:
           example:
-          - my-cm-handle1
-          - my-cm-handle2
-          - my-cm-handle3
+            - my-cm-handle1
+            - my-cm-handle2
+            - my-cm-handle3
           items:
             type: string
           type: array
@@ -394,7 +394,7 @@ components:
           example: my-module-set-tag
           type: string
       required:
-      - cmHandles
+        - cmHandles
       type: object
     ErrorMessage:
       properties:
@@ -440,23 +440,23 @@ components:
     CmHandleQueryParameters:
       example:
         cmHandleQueryParameters:
-        - conditionParameters:
-          - key: conditionParameters
-          - key: conditionParameters
-          conditionName: conditionName
-        - conditionParameters:
-          - key: conditionParameters
-          - key: conditionParameters
-          conditionName: conditionName
+          - conditionParameters:
+              - key: conditionParameters
+              - key: conditionParameters
+            conditionName: conditionName
+          - conditionParameters:
+              - key: conditionParameters
+              - key: conditionParameters
+            conditionName: conditionName
         conditions:
-        - name: name
-          conditionParameters:
-          - moduleName: my-module
-          - moduleName: my-module
-        - name: name
-          conditionParameters:
-          - moduleName: my-module
-          - moduleName: my-module
+          - name: name
+            conditionParameters:
+              - moduleName: my-module
+              - moduleName: my-module
+          - name: name
+            conditionParameters:
+              - moduleName: my-module
+              - moduleName: my-module
       properties:
         cmHandleQueryParameters:
           items:
@@ -473,8 +473,8 @@ components:
     ConditionProperties:
       example:
         conditionParameters:
-        - key: conditionParameters
-        - key: conditionParameters
+          - key: conditionParameters
+          - key: conditionParameters
         conditionName: conditionName
       properties:
         conditionName:
@@ -490,8 +490,8 @@ components:
       example:
         name: name
         conditionParameters:
-        - moduleName: my-module
-        - moduleName: my-module
+          - moduleName: my-module
+          - moduleName: my-module
       properties:
         name:
           type: string
