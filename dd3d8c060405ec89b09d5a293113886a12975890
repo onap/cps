@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14fa37a0_ae7b9a65",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-09T10:00:17Z",
+      "side": 1,
+      "message": "day off but had a quick look because I was curious... :-)",
+      "revId": "dd3d8c060405ec89b09d5a293113886a12975890",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3fe2e50_ef3b5f02",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsDataServiceIntegrationSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-09T10:00:17Z",
+      "side": 1,
+      "message": "looks good just fix indentation",
+      "range": {
+        "startLine": 445,
+        "startChar": 1,
+        "endLine": 456,
+        "endChar": 5
+      },
+      "revId": "dd3d8c060405ec89b09d5a293113886a12975890",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
