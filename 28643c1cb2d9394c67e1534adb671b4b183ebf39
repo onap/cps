@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "008c1dc1_1f3bc0f7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2024-02-09T05:58:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "590c7ff4_a67571bc",
+      "revId": "28643c1cb2d9394c67e1534adb671b4b183ebf39",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "e15f17f9_591d03ab",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 2
@@ -48,6 +66,30 @@
       "writtenOn": "2024-02-08T12:02:15Z",
       "side": 1,
       "message": "false",
+      "range": {
+        "startLine": 52,
+        "startChar": 34,
+        "endLine": 52,
+        "endChar": 38
+      },
+      "revId": "28643c1cb2d9394c67e1534adb671b4b183ebf39",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "013c501e_968b949b",
+        "filename": "cps-events/src/main/resources/schemas/updatenode/cps-data-updated-event-schema-1.0.0.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2024-02-09T05:58:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c74d8113_4859093e",
       "range": {
         "startLine": 52,
         "startChar": 34,
