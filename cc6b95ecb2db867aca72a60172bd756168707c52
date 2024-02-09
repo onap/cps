@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4899cbb0_959de9b0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/model/CachedScopeFilter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-02-09T11:38:38Z",
+      "side": 1,
+      "message": "DmiCmNotificationScopeFilter",
+      "parentUuid": "d15da00a_1cd4e871",
+      "range": {
+        "startLine": 30,
+        "startChar": 13,
+        "endLine": 30,
+        "endChar": 31
+      },
+      "revId": "cc6b95ecb2db867aca72a60172bd756168707c52",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "68e09e8d_a77dcbfa",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmSubscriptionPersistenceService.java",
         "patchSetId": 2
