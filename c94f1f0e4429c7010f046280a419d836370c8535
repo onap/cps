@@ -97,6 +97,30 @@
       },
       "revId": "c94f1f0e4429c7010f046280a419d836370c8535",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfaf4215_b56256c4",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-02-09T15:17:41Z",
+      "side": 1,
+      "message": "I added the realistic delays here that I got from Csaba and added them as environment variables to the docker-compose.yml with default of 0",
+      "parentUuid": "0c1285ba_fad77903",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 64
+      },
+      "revId": "c94f1f0e4429c7010f046280a419d836370c8535",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
