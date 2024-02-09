@@ -121,6 +121,30 @@
       },
       "revId": "c94f1f0e4429c7010f046280a419d836370c8535",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d15cab22_21d0f87c",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-09T18:49:29Z",
+      "side": 1,
+      "message": "Ack. I did a manual test of CM-handle registration with DMI delay of 500ms. It\u0027s a LOT slower with DMI delay, so it works :D",
+      "parentUuid": "dfaf4215_b56256c4",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 64
+      },
+      "revId": "c94f1f0e4429c7010f046280a419d836370c8535",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
