@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b627ae7c_8edd4c9e",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-09T19:01:08Z",
+      "side": 1,
+      "message": "It would be good to have realistic values here by default, even it slows CSITs a bit. Let\u0027s wait for some other opinions from team",
+      "range": {
+        "startLine": 131,
+        "startChar": 42,
+        "endLine": 134,
+        "endChar": 36
+      },
+      "revId": "86991fb854e6dcb9b764f254fbd9f5fcc74e3630",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
