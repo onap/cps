@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d1cb8cf_26a6a6e0",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-02-09T09:37:53Z",
+      "side": 1,
+      "message": "default delay is 500 milliseconds not sure if this is accurate or not",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 64
+      },
+      "revId": "c94f1f0e4429c7010f046280a419d836370c8535",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
