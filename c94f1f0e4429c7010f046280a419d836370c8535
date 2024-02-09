@@ -73,6 +73,30 @@
       },
       "revId": "c94f1f0e4429c7010f046280a419d836370c8535",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c1285ba_fad77903",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-09T13:01:00Z",
+      "side": 1,
+      "message": "No delay by default is best (0 or 1 ms), so that it does not slow down CSITs.\n\nCan you also add these environment variables to the docker-compose.yml?\n\n    ncmp-dmi-plugin-demo-and-csit-stub:\n        environment:\n            MODULE_REFERENCES_DELAY_MS: 1\n            etc.\n\nThis will it easier to configure delays.",
+      "parentUuid": "6d1cb8cf_26a6a6e0",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 64
+      },
+      "revId": "c94f1f0e4429c7010f046280a419d836370c8535",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
