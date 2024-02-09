@@ -21,7 +21,6 @@
 package org.onap.cps.integration.performance.base
 
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
-import org.springframework.util.StopWatch
 
 abstract class PerfTestBase extends CpsIntegrationSpecBase {
 
