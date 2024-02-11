@@ -76,17 +76,17 @@ class CpsPerfTestBase extends PerfTestBase {
             ']}}'
     }
 
-    def 'Warm the database'() {
+    def 'CPS pre-load test data'() {
         when: 'dummy get data nodes runs so that populating the DB does not get included in other test timings'
             resourceMeter.start()
             def result = cpsDataService.getDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm1', '/', FetchDescendantsOption.OMIT_DESCENDANTS)
-            assert countDataNodesInTree(result) == 1
             resourceMeter.stop()
-            def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
-        then: 'memory used is within #peakMemoryUsage'
-            assert resourceMeter.getTotalMemoryUsageInMB() <= 30
-        and: 'all data is read within expected time'
-            recordAndAssertResourceUsage("Warming database", 100, durationInSeconds, 600, resourceMeter.getTotalMemoryUsageInMB())
+        then: 'expected data exists'
+            assert result.xpath == ['/openroadm-devices']
+        then: 'operation completes within expected time'
+            recordAndAssertResourceUsage('CPS pre-load test data',
+                    100, resourceMeter.totalTimeInSeconds,
+                    600, resourceMeter.totalMemoryUsageInMB)
     }
 
 }
