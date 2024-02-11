@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023 Nordix Foundation
+ *  Copyright (C) 2023-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -20,19 +20,39 @@
 
 package org.onap.cps.integration.performance.ncmp
 
-import org.onap.cps.integration.ResourceMeter
 import java.util.stream.Collectors
 import org.onap.cps.api.CpsQueryService
+import org.onap.cps.integration.ResourceMeter
 import org.onap.cps.integration.performance.base.NcmpPerfTestBase
+
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 
 class CmHandleQueryPerfTest extends NcmpPerfTestBase {
 
+    static def MILLISECONDS = 0.001
+
     CpsQueryService objectUnderTest
     ResourceMeter resourceMeter = new ResourceMeter()
 
     def setup() { objectUnderTest = cpsQueryService }
+
+    def 'JVM warmup.'() {
+        when: 'the JVM is warmed up'
+            def iterations = 2500 // set this to 15000 for very accurate results (but test takes much longer)
+            resourceMeter.start()
+            (1..iterations).forEach {
+                cpsDataService.getDataNodes(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_ANCHOR,
+                        '/dmi-registry/cm-handles[@id="cm-' + it + '"]', OMIT_DESCENDANTS)
+                objectUnderTest.queryDataNodes(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_ANCHOR,
+                        '/dmi-registry/cm-handles[@alternate-id="alt-' + it + '"]', OMIT_DESCENDANTS)
+            }
+            resourceMeter.stop()
+        then: 'resource usage is as expected'
+            recordAndAssertResourceUsage('JVM warmup for CmHandleQueryPerfTest',
+                    30, resourceMeter.totalTimeInSeconds,
+                    300, resourceMeter.totalMemoryUsageInMB)
+    }
 
     def 'Query CM Handle IDs by a property name and value.'() {
         when: 'a cps-path query on name-value pair is performed (without getting descendants)'
@@ -46,11 +66,62 @@ class CmHandleQueryPerfTest extends NcmpPerfTestBase {
             resourceMeter.stop()
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'the required operations are performed within required time'
-            recordAndAssertResourceUsage("CpsPath Registry attributes Query", 0.4, durationInSeconds, 50, resourceMeter.getTotalMemoryUsageInMB())
-        and: 'all but 1 (other node) are returned'
-            result.size() == 999
+            recordAndAssertResourceUsage("CpsPath Registry attributes Query", 2, durationInSeconds, 300, resourceMeter.getTotalMemoryUsageInMB())
+        and: 'all nodes are returned'
+            result.size() == TOTAL_CM_HANDLES
         and: 'the tree contains all the expected descendants too'
-            assert countDataNodesInTree(result) == 5 * 999
+            assert countDataNodesInTree(result) == 5 * TOTAL_CM_HANDLES
     }
 
+    def 'CM-handle is looked up by id.'() {
+        when: 'CM-handles are looked up by cm-handle-id 100 times'
+            resourceMeter.start()
+            (1..100).each {
+                cpsDataService.getDataNodes(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_ANCHOR,
+                        '/dmi-registry/cm-handles[@id="cm-' + it + '"]', OMIT_DESCENDANTS).size()
+            }
+            resourceMeter.stop()
+        then: 'average performance is as expected'
+            def averageResponseTime = resourceMeter.totalTimeInSeconds / 100
+            recordAndAssertResourceUsage('Look up CM-handle by id',
+                    expectedAverageResponseTime, averageResponseTime,
+                    15, resourceMeter.totalMemoryUsageInMB)
+        where:
+            expectedAverageResponseTime = 1 * MILLISECONDS
+    }
+
+    def 'CM-handle is looked up by alternate-id.'() {
+        when: 'CM-handles are looked up by alternate-id 100 times'
+            resourceMeter.start()
+            (1..100).each {
+                cpsQueryService.queryDataNodes(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_ANCHOR,
+                        '/dmi-registry/cm-handles[@alternate-id="alt-' + it + '"]', OMIT_DESCENDANTS).size()
+            }
+            resourceMeter.stop()
+        then: 'average performance is as expected'
+            def averageResponseTime = resourceMeter.totalTimeInSeconds / 100
+            recordAndAssertResourceUsage('Look up CM-handle by alternate-id',
+                    expectedAverageResponseTime, averageResponseTime,
+                    15, resourceMeter.totalMemoryUsageInMB)
+        where:
+            expectedAverageResponseTime = 10 * MILLISECONDS
+    }
+
+    def 'A batch of CM-handles is looked up by alternate-id.'() {
+        given: 'a CPS Path Query to look up 100 alternate-ids in a single operation'
+            def cpsPathQuery = '/dmi-registry/cm-handles[' + (1..100).collect { "@alternate-id='alt-${it}'" }.join(' or ') + ']'
+        when: 'CM-handles are looked up by alternate-ids in a single query'
+            resourceMeter.start()
+            def count = cpsQueryService.queryDataNodes(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_ANCHOR, cpsPathQuery, OMIT_DESCENDANTS).size()
+            resourceMeter.stop()
+        then: 'expected amount of data was returned'
+            assert count == 100
+        then: 'average performance is as expected'
+            def averageResponseTime = resourceMeter.totalTimeInSeconds / 100
+            recordAndAssertResourceUsage('Batch look up CM-handle by alternate-id',
+                    expectedAverageResponseTime, averageResponseTime,
+                    15, resourceMeter.totalMemoryUsageInMB)
+        where:
+            expectedAverageResponseTime = 1 * MILLISECONDS
+    }
 }

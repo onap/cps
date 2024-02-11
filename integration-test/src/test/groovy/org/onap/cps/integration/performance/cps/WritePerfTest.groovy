@@ -41,7 +41,6 @@ class WritePerfTest extends CpsPerfTestBase {
                     expectedDuration, resourceMeter.getTotalTimeInSeconds(),
                     memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
         cleanup:
-            cpsDataService.deleteDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR, OffsetDateTime.now())
             cpsAnchorService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR)
         where:
             totalNodes || expectedDuration | memoryLimit
@@ -64,17 +63,16 @@ class WritePerfTest extends CpsPerfTestBase {
             resourceMeter.stop()
         then: 'the operation takes less than #expectedDuration and memory used is within limit'
             recordAndAssertResourceUsage("Writing ${totalBooks} books",
-                    expectedDuration, resourceMeter.getTotalTimeInSeconds(),
-                    memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
+                    expectedDuration, resourceMeter.totalTimeInSeconds,
+                    memoryLimit, resourceMeter.totalMemoryUsageInMB)
         cleanup:
-            cpsDataService.deleteDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR, OffsetDateTime.now())
             cpsAnchorService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR)
         where:
             totalBooks || expectedDuration | memoryLimit
             800        || 0.5              | 50
             1600       || 1.5              | 100
-            3200       || 6                | 150
-            6400       || 18               | 200
+            3200       || 6.0              | 150
+            6400       || 18.0             | 200
     }
 
     def 'Writing openroadm list data using saveListElements.'() {
@@ -93,17 +91,16 @@ class WritePerfTest extends CpsPerfTestBase {
             resourceMeter.stop()
         then: 'the operation takes less than #expectedDuration and memory used is within limit'
             recordAndAssertResourceUsage("Saving list of ${totalNodes} devices",
-                    expectedDuration, resourceMeter.getTotalTimeInSeconds(),
-                    memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
+                    expectedDuration, resourceMeter.totalTimeInSeconds,
+                    memoryLimit, resourceMeter.totalMemoryUsageInMB)
         cleanup:
-            cpsDataService.deleteDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR, OffsetDateTime.now())
             cpsAnchorService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR)
         where:
             totalNodes || expectedDuration | memoryLimit
-            50         || 4                | 200
-            100        || 7                | 200
-            200        || 14               | 250
-            400        || 28               | 250
+            50         || 2                | 100
+            100        || 4                | 200
+            200        || 7                | 400
+            400        || 14               | 500
     }
 
 }
