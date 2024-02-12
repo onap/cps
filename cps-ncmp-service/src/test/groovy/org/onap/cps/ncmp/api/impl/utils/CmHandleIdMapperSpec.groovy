@@ -20,107 +20,93 @@
 
 package org.onap.cps.ncmp.api.impl.utils
 
-import ch.qos.logback.classic.Level
-import ch.qos.logback.classic.Logger
-import ch.qos.logback.classic.spi.ILoggingEvent
-import ch.qos.logback.core.read.ListAppender
-import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
-import org.slf4j.LoggerFactory
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandleQueryService
+import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence
+import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
+import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
+import org.onap.cps.spi.exceptions.DataNodeNotFoundException
+import org.onap.cps.spi.model.DataNodeBuilder
 import spock.lang.Specification
 
 class CmHandleIdMapperSpec extends Specification {
 
-    def alternateIdPerCmHandle = new HashMap<String, String>()
-    def cmHandlePerAlternateId = new HashMap<String, String>()
+    def alternateIdPerCmHandle = [:]
+    def cmHandlePerAlternateId = [:]
     def mockCpsCmHandlerQueryService = Mock(NetworkCmProxyCmHandleQueryService)
+    def mockInventoryPersistenceService = Mock(InventoryPersistence)
+    def someDataNode = new DataNodeBuilder().build()
+    def dataNodeFoundException = new DataNodeNotFoundException('', '')
 
-    def objectUnderTest = new CmHandleIdMapper(alternateIdPerCmHandle, cmHandlePerAlternateId, mockCpsCmHandlerQueryService)
+    def objectUnderTest = new CmHandleIdMapper(alternateIdPerCmHandle, cmHandlePerAlternateId, mockCpsCmHandlerQueryService, mockInventoryPersistenceService)
 
-    def logger = Spy(ListAppender<ILoggingEvent>)
-
-    def setup() {
-        ((Logger) LoggerFactory.getLogger(CmHandleIdMapper.class)).addAppender(logger)
-        logger.start()
-        mockCpsCmHandlerQueryService.getAllCmHandles() >> []
-        assert objectUnderTest.addMapping('my cmhandle id', 'my alternate id')
+    def 'Checking entries in the cache'() {
+        given: 'cache has been initialized'
+            objectUnderTest.cacheIsInitialized = true
+        and: 'cache knows about alternate id'
+            alternateIdPerCmHandle.put('ch 1', 'alternate id')
+            cmHandlePerAlternateId.put('alternate id', 'ch 1')
+        expect: 'the alternate id mapped to cm handle id'
+            assert objectUnderTest.alternateIdToCmHandleId('alternate id') == 'ch 1'
+        and: 'the cm handle id mapped alternate id'
+            assert objectUnderTest.cmHandleIdToAlternateId('ch 1') == 'alternate id'
     }
 
-    void cleanup() {
-        ((Logger) LoggerFactory.getLogger(CmHandleIdMapper.class)).detachAndStopAllAppenders()
+    def 'Add mapping for new cm handle with new alternate id'() {
+        given: 'inventory persistence can not find cm handle id'
+            mockInventoryPersistenceService.getYangModelCmHandle('ch 1') >> {throw dataNodeFoundException}
+        and: 'inventory persistence can not find alternate id'
+            mockInventoryPersistenceService.getCmHandleDataNodeByAlternateId('alternate id') >> {throw dataNodeFoundException}
+        expect: 'mapping can be added'
+             assert objectUnderTest.addMapping('ch 1', 'alternate id')
     }
 
-    def 'Checking entries in the cache.'() {
-        expect: 'the alternate id can be converted to cmhandle id'
-            assert objectUnderTest.alternateIdToCmHandleId('my alternate id') == 'my cmhandle id'
-        and: 'the cmhandle id can be converted to alternate id'
-            assert objectUnderTest.cmHandleIdToAlternateId('my cmhandle id') == 'my alternate id'
+    def 'Add mapping for new cm handle with used alternate id'() {
+        given: 'inventory persistence can not find cm handle id'
+            mockInventoryPersistenceService.getYangModelCmHandle('ch 1') >> {throw dataNodeFoundException}
+        and: 'inventory persistence can find alternate id'
+            mockInventoryPersistenceService.getCmHandleDataNodeByAlternateId('alternate id') >> { someDataNode }
+        expect: 'mapping can not be added'
+            assert objectUnderTest.addMapping('ch 1', 'alternate id') == false
     }
 
-    def 'Attempt adding #scenario alternate id.'() {
-        expect: 'cmhandle id - alternate id mapping fails'
-            assert objectUnderTest.addMapping('ch-1', alternateId) == false
-        and: 'alternate id looked up by cmhandle id unsuccessfully'
-            assert objectUnderTest.cmHandleIdToAlternateId('ch-1') == null
-        where: 'alternate id has an invalid value'
-            scenario | alternateId
-            'empty'  | ''
-            'blank'  | '  '
-            'null'   | null
+    def 'Add mapping for cm handle with #currentAlternateId'() {
+        given: 'a cm handle with the #currentAlternateId'
+            def yangModelCmHandle = new YangModelCmHandle(alternateId: currentAlternateId)
+        and: 'inventory service finds the cm handle'
+            mockInventoryPersistenceService.getYangModelCmHandle('my cm handle') >> yangModelCmHandle
+        expect: 'add mapping returns expected result'
+            assert canAdd == objectUnderTest.addMapping('my cm handle', 'same alternate id')
+        where: 'following alternate ids is used'
+            currentAlternateId   ||  canAdd
+            'same alternate id'  ||  true
+            'other alternate id' ||  false
     }
 
-    def 'Remove an entry from the cache.'() {
-        when: 'removing an entry'
-            objectUnderTest.removeMapping('my cmhandle id')
-        then: 'converting alternate id returns null'
-            assert objectUnderTest.alternateIdToCmHandleId('my alternate id') == null
-        and: 'converting cmhandle id returns null'
-            assert objectUnderTest.cmHandleIdToAlternateId('my cmhandle id') == null
-    }
-
-    def 'Attempt to remove a non-existing entry from the cache.'() {
-        when: 'removing an entry that is not cached'
-            objectUnderTest.removeMapping('non-cached cmhandle id')
-        then: 'deleting from the cmhandle cache returns null'
-            assert alternateIdPerCmHandle.remove('non-cached cmhandle id') == null
-        and: 'removal from the alternate id cache is skipped'
-            0 * cmHandlePerAlternateId.remove(_)
-    }
-
-    def 'Cannot update existing alternate id.'() {
-        given: 'attempt to update an existing alternate id'
-            objectUnderTest.addMapping('my cmhandle id', 'other id')
-        expect: 'still returns the original alternate id'
-            assert objectUnderTest.cmHandleIdToAlternateId('my cmhandle id') == 'my alternate id'
-        and: 'converting other alternate id returns null'
-            assert objectUnderTest.alternateIdToCmHandleId('other id') == null
-        and: 'a warning is logged with the original alternate id'
-            def lastLoggingEvent = logger.list[1]
-            assert lastLoggingEvent.level == Level.WARN
-            assert lastLoggingEvent.formattedMessage.contains('my alternate id')
-    }
-
-    def 'Update existing alternate id with the same value.'() {
-        expect: 'update an existing alternate id with the same value returns false (no update)'
-            assert objectUnderTest.addMapping('my cmhandle id', 'my alternate id') == false
-        and: 'conversion still returns the original alternate id'
-            assert objectUnderTest.cmHandleIdToAlternateId('my cmhandle id') == 'my alternate id'
-    }
-
-    def 'Initializing cache #scenario.'() {
-        when: 'the cache is (re-)initialized'
+    def 'Initializing the cache'() {
+        given: 'cache is not initialized'
             objectUnderTest.cacheIsInitialized = false
+        and: 'query service finds all cm handles'
+            mockCpsCmHandlerQueryService.getAllCmHandles() >> [new NcmpServiceCmHandle(cmHandleId: 'ch-1', alternateId: 'alt-1')]
+        and: 'inventory service finds the cm handle'
+            mockInventoryPersistenceService.getYangModelCmHandle('ch-1') >> new YangModelCmHandle()
+        when: 'the cache is initialized'
             objectUnderTest.initializeCache()
-        then: 'the alternate id can be converted to cmhandle id'
-            assert objectUnderTest.alternateIdToCmHandleId('alt-1') == convertedCmHandleId
-        and: 'the cm handle id can be converted to alternate id'
-            assert objectUnderTest.cmHandleIdToAlternateId('ch-1') == convertedAlternatId
-        and: 'the query service is called to get the initial data'
-            1 * mockCpsCmHandlerQueryService.getAllCmHandles() >> persistedCmHandles
-        where: 'the initial data has a cm handle #scenario'
-            scenario                  | persistedCmHandles                                                  || convertedAlternatId | convertedCmHandleId
-            'with alternate id'       | [new NcmpServiceCmHandle(cmHandleId: 'ch-1', alternateId: 'alt-1')] || 'alt-1'             | 'ch-1'
-            'without alternate id'    | [new NcmpServiceCmHandle(cmHandleId: 'ch-1')]                       || null                | null
-            'with blank alternate id' | [new NcmpServiceCmHandle(cmHandleId: 'ch-1', alternateId: ' ')]     || null                | null
+        then: 'cache initialized'
+            assert objectUnderTest.cacheIsInitialized == true
     }
+
+    def 'Remove an entry from the cache'() {
+        given: 'cache has been initialized'
+            objectUnderTest.cacheIsInitialized = true
+        and: 'cache knows about alternate id'
+            alternateIdPerCmHandle.put('ch 1', 'alternate id')
+            cmHandlePerAlternateId.put('alternate id', 'ch 1')
+        when: 'removing an entry'
+            objectUnderTest.removeMapping('ch 1')
+        then: 'alternate id mapping returns null'
+            assert objectUnderTest.alternateIdToCmHandleId('alternate id') == null
+        and: 'cm handle id mapping returns null'
+            assert objectUnderTest.cmHandleIdToAlternateId('ch 1') == null
+    }
+
 }
