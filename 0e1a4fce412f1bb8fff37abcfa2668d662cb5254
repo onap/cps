@@ -50,6 +50,42 @@
       "message": "The more I think about it i think we should NBOT do this.\nWe need to have clear functional test taht are easier to troublshoot it something taht can only be tested in INtegartion fails....\nwe can discuss with a few membr of the team to get agreement...",
       "revId": "0e1a4fce412f1bb8fff37abcfa2668d662cb5254",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d32a66d4_638186e5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-12T09:36:11Z",
+      "side": 1,
+      "message": "Performance tests are excluded from coverage - see inline comments for explanation",
+      "parentUuid": "188f1c4e_67800366",
+      "revId": "0e1a4fce412f1bb8fff37abcfa2668d662cb5254",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e68ecbbd_4524c154",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-12T09:36:11Z",
+      "side": 1,
+      "message": "No, to clarify: functional integration tests are not included in jacoco and sonar reports, due to a recent pom change. \nThis commit restores coverage for functional integration tests, but excludes performance tests.",
+      "parentUuid": "85bb3387_b39e478c",
+      "revId": "0e1a4fce412f1bb8fff37abcfa2668d662cb5254",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

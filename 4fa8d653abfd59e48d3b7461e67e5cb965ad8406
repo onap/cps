@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79616ec9_14bec693",
+        "filename": "integration-test/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-12T09:36:11Z",
+      "side": 0,
+      "message": "This configuration overwrites argLine from oparent which enabled Jacoco!",
+      "range": {
+        "startLine": 106,
+        "startChar": 20,
+        "endLine": 106,
+        "endChar": 56
+      },
+      "revId": "4fa8d653abfd59e48d3b7461e67e5cb965ad8406",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
