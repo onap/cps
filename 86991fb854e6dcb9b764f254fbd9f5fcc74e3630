@@ -66,6 +66,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "268db4de_b8b41ca3",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/resources/application.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-12T08:31:21Z",
+      "side": 1,
+      "message": "decide on your preferred name (I dont mind either but all should be simialr)\n\nmodule-references-delay-ms: ${MODULE_REFERENCES_DELAY_MS\nOR\nmodule-references-delay-in-ms: ${MODULE_REFERENCES_DELAY_IN_MS\n\n(probably dont need to word \u0027in\u0027)",
+      "range": {
+        "startLine": 45,
+        "startChar": 4,
+        "endLine": 45,
+        "endChar": 62
+      },
+      "revId": "86991fb854e6dcb9b764f254fbd9f5fcc74e3630",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b627ae7c_8edd4c9e",
         "filename": "docker-compose/docker-compose.yml",
         "patchSetId": 2
@@ -77,6 +100,30 @@
       "writtenOn": "2024-02-09T19:01:08Z",
       "side": 1,
       "message": "It would be good to have realistic values here by default, even it slows CSITs a bit. Let\u0027s wait for some other opinions from team",
+      "range": {
+        "startLine": 131,
+        "startChar": 42,
+        "endLine": 134,
+        "endChar": 36
+      },
+      "revId": "86991fb854e6dcb9b764f254fbd9f5fcc74e3630",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8385b030_05d393e1",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-12T08:31:21Z",
+      "side": 1,
+      "message": "I think we could start with something like \u002710ms\u0027\nCsaba Kocis or Csaba Eder should be consulted for this",
+      "parentUuid": "b627ae7c_8edd4c9e",
       "range": {
         "startLine": 131,
         "startChar": 42,
