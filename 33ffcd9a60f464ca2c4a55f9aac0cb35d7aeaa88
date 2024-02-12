@@ -22,6 +22,30 @@
       },
       "revId": "33ffcd9a60f464ca2c4a55f9aac0cb35d7aeaa88",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7caa6deb_3da54c69",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-12T18:48:53Z",
+      "side": 1,
+      "message": "agreed: I dont think teh triple \"\"\" adn .trim() ar needed",
+      "parentUuid": "21dca1b0_fa43ac6f",
+      "range": {
+        "startLine": 41,
+        "startChar": 11,
+        "endLine": 41,
+        "endChar": 23
+      },
+      "revId": "33ffcd9a60f464ca2c4a55f9aac0cb35d7aeaa88",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
