@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "261b5ff9_a5c02c53",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-12T12:26:42Z",
+      "side": 1,
+      "message": "Nb: collection of subscription IDs of ongoing cm notification subscriptions",
+      "range": {
+        "startLine": 48,
+        "startChar": 29,
+        "endLine": 48,
+        "endChar": 64
+      },
+      "revId": "542307f6dd36bdefaa92a16690c98f71a2df3dac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5be6f16_81a1105a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-12T12:26:42Z",
+      "side": 1,
+      "message": "This is not correct. Given the cps path query, it can only return 0 or 1 matching DataNodes. This path can only match at most 1 node:\n\n    /datastores/.../filter[@xpath\u003d\u0027/xpath1\u0027]\n\nThen we want simply return the \u0027subscribers\u0027 leaf-list (though we should convert it to a Set\u003cString\u003e):\n\n    if (existingDataNodes.isEmpty()) {\n        return Collections.emptySet();\n    }\n    final List\u003cString\u003e existingSubscribers \u003d existingNodes.iterator().next().getLeaves().get(\"subscribers\");\n    return new HashSet\u003cString\u003e(existingSubscribers);\n    \nNote I may look at adding queryDataNode variant returning only 1, since we see this pattern \u0027.iterator().next()\u0027 all over NCMP codebase.",
+      "range": {
+        "startLine": 58,
+        "startChar": 102,
+        "endLine": 61,
+        "endChar": 108
+      },
+      "revId": "542307f6dd36bdefaa92a16690c98f71a2df3dac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
