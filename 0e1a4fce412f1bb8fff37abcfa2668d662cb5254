@@ -16,6 +16,23 @@
       "message": "recheck",
       "revId": "0e1a4fce412f1bb8fff37abcfa2668d662cb5254",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85bb3387_b39e478c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-12T08:09:39Z",
+      "side": 1,
+      "message": "I think we were aware at the time this was introduce and argued that all functionality should be covered in normal units or functional integration test...\n\nProbably OK to add coverage but I stil think we should NOT rely on performance test for functional coverage...",
+      "revId": "0e1a4fce412f1bb8fff37abcfa2668d662cb5254",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
