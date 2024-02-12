@@ -37,7 +37,8 @@ import org.springframework.stereotype.Service;
 public class CmNotificationSubscriptionPersistenceServiceImpl implements CmNotificationSubscriptionPersistenceService {
 
     private static final String IS_ONGOING_CM_SUBSCRIPTION_CPS_PATH_QUERY = """
-            /datastores/datastore[@name='%s']/cm-handles/cm-handle[@id='%s']/filters/filter[@xpath='%s']""";
+            /datastores/datastore[@name='%s']/cm-handles/cm-handle[@id='%s']/filters/filter[@xpath='%s']
+            """.trim();
 
     private final CpsQueryService cpsQueryService;
 
@@ -60,7 +61,7 @@ public class CmNotificationSubscriptionPersistenceServiceImpl implements CmNotif
         if (existingNodes.isEmpty()) {
             return Collections.emptyList();
         }
-        return (List<String>) existingNodes.iterator().next().getLeaves().get("subscribers");
+        return (List<String>) existingNodes.iterator().next().getLeaves().get("subscriptionIds");
     }
 
     private static String escapeQuotesByDoublingThem(final String inputXpath) {
