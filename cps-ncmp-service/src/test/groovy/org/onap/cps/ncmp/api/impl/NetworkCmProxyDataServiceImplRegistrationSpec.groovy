@@ -21,6 +21,8 @@
 
 package org.onap.cps.ncmp.api.impl
 
+import java.util.stream.Collectors
+
 import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.Status
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLES_NOT_FOUND
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLE_ALREADY_EXIST
@@ -28,7 +30,7 @@ import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLE_INVALID_ID
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNKNOWN_ERROR
 
 import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevelManager
-import org.onap.cps.ncmp.api.impl.utils.CmHandleIdMapper
+import org.onap.cps.ncmp.api.impl.utils.AlternateIdChecker
 import org.onap.cps.ncmp.api.models.UpgradedCmHandles
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.hazelcast.map.IMap
@@ -68,9 +70,15 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def mockModuleSyncStartedOnCmHandles = Mock(IMap<String, Object>)
     def trustLevelPerDmiPlugin = [:]
     def mockTrustLevelManager = Mock(TrustLevelManager)
-    def mockCmHandleIdMapper = Mock(CmHandleIdMapper)
+    def mockAlternateIdChecker = Mock(AlternateIdChecker)
     def objectUnderTest = getObjectUnderTest()
     def mockModuleSetTagCache = [:]
+
+    def setup() {
+        // always accept all cm handles
+        mockAlternateIdChecker.getIdsOfCmHandlesWithAcceptableAlternateId(_) >>
+            { args -> args[0].stream().map(it -> it.cmHandleId).collect(Collectors.toList()) }
+    }
 
     def 'DMI Registration: Create, Update, Delete & Upgrade operations are processed in the right order'() {
         given: 'a registration with operations of all types'
@@ -160,7 +168,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         when: 'update registration and sync module is called with correct DMI plugin information'
             objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'create cm handles registration and sync modules is called with the correct plugin information'
-            1 * objectUnderTest.parseAndProcessCreatedCmHandlesInRegistration(dmiPluginRegistration)
+            1 * objectUnderTest.parseAndProcessCreatedCmHandlesInRegistration(dmiPluginRegistration, _)
         and: 'dmi is added to the dmi trustLevel map'
             assert trustLevelPerDmiPlugin.size() == 1
             assert trustLevelPerDmiPlugin.containsKey(expectedDmiPluginRegisteredName)
@@ -433,19 +441,19 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
 
     def 'Adding data to alternate id caches.'() {
         given: 'a registration with three CM Handles to be created'
-            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server',
-                    createdCmHandles: [new NcmpServiceCmHandle(cmHandleId: 'cmhandle1', alternateId: 'my-alternate-id-1')])
+            def ncmpServiceCmHandles = [new NcmpServiceCmHandle(cmHandleId: 'cmhandle1', alternateId: 'my-alternate-id-1')]
+            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server', createdCmHandles: ncmpServiceCmHandles)
         when: 'the DMI plugin registration happens'
             objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'the new alternate id is added to the cache'
-            1 * mockCmHandleIdMapper.addMapping('cmhandle1', 'my-alternate-id-1')
+            1 * mockAlternateIdChecker.getIdsOfCmHandlesWithAcceptableAlternateId(ncmpServiceCmHandles) >> ['cmhandle1']
     }
 
     def getObjectUnderTest() {
         return Spy(new NetworkCmProxyDataServiceImpl(spiedJsonObjectMapper, mockDmiDataOperations,
                 mockNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence, mockCmHandleQueries,
                 stubbedNetworkCmProxyCmHandlerQueryService, mockLcmEventsCmHandleStateHandler, mockCpsDataService,
-                mockModuleSyncStartedOnCmHandles, trustLevelPerDmiPlugin, mockTrustLevelManager, mockCmHandleIdMapper, mockModuleSetTagCache))
+                mockModuleSyncStartedOnCmHandles, trustLevelPerDmiPlugin, mockTrustLevelManager, mockAlternateIdChecker, mockModuleSetTagCache))
     }
 
     def addPersistedYangModelCmHandles(ids) {
