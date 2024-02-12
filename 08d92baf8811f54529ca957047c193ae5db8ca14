@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3136eb6_55fded7a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-12T15:06:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b60bf839_bb4752bb",
+      "range": {
+        "startLine": 50,
+        "startChar": 16,
+        "endLine": 50,
+        "endChar": 52
+      },
+      "revId": "08d92baf8811f54529ca957047c193ae5db8ca14",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "57755f17_8c8a0892",
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6b6136aa_6daa9747",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-12T15:06:42Z",
+      "side": 1,
+      "message": "yup.. this will be as part of the next patchset after this is merged.",
+      "parentUuid": "57755f17_8c8a0892",
+      "range": {
+        "startLine": 66,
+        "startChar": 80,
+        "endLine": 66,
+        "endChar": 91
+      },
+      "revId": "08d92baf8811f54529ca957047c193ae5db8ca14",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3668074b_eb3ab37a",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImplSpec.groovy",
         "patchSetId": 7
@@ -60,6 +108,30 @@
       "writtenOn": "2024-02-12T14:58:03Z",
       "side": 1,
       "message": "no need to test \u0027backing\u0027 method separetly",
+      "range": {
+        "startLine": 52,
+        "startChar": 4,
+        "endLine": 66,
+        "endChar": 5
+      },
+      "revId": "08d92baf8811f54529ca957047c193ae5db8ca14",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90fbaf07_7a4c0810",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImplSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-12T15:06:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3668074b_eb3ab37a",
       "range": {
         "startLine": 52,
         "startChar": 4,
