@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "990c04d1_e14f4b00",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-02-12T11:28:43Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "97ab3e3d_16ac197e",
+      "range": {
+        "startLine": 72,
+        "startChar": 14,
+        "endLine": 72,
+        "endChar": 43
+      },
+      "revId": "86991fb854e6dcb9b764f254fbd9f5fcc74e3630",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b4c35277_75723a55",
@@ -64,6 +88,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c0a476e_9b7177fd",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-02-12T11:28:43Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b4c35277_75723a55",
+      "range": {
+        "startLine": 73,
+        "startChar": 17,
+        "endLine": 73,
+        "endChar": 38
+      },
+      "revId": "86991fb854e6dcb9b764f254fbd9f5fcc74e3630",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "268db4de_b8b41ca3",
@@ -77,6 +125,30 @@
       "writtenOn": "2024-02-12T08:31:21Z",
       "side": 1,
       "message": "decide on your preferred name (I dont mind either but all should be simialr)\n\nmodule-references-delay-ms: ${MODULE_REFERENCES_DELAY_MS\nOR\nmodule-references-delay-in-ms: ${MODULE_REFERENCES_DELAY_IN_MS\n\n(probably dont need to word \u0027in\u0027)",
+      "range": {
+        "startLine": 45,
+        "startChar": 4,
+        "endLine": 45,
+        "endChar": 62
+      },
+      "revId": "86991fb854e6dcb9b764f254fbd9f5fcc74e3630",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "439bab0e_6e0b2adf",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/resources/application.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-02-12T11:28:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "268db4de_b8b41ca3",
       "range": {
         "startLine": 45,
         "startChar": 4,
@@ -124,6 +196,30 @@
       "side": 1,
       "message": "I think we could start with something like \u002710ms\u0027\nCsaba Kocis or Csaba Eder should be consulted for this",
       "parentUuid": "b627ae7c_8edd4c9e",
+      "range": {
+        "startLine": 131,
+        "startChar": 42,
+        "endLine": 134,
+        "endChar": 36
+      },
+      "revId": "86991fb854e6dcb9b764f254fbd9f5fcc74e3630",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "236da7de_471f3986",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-02-12T11:28:43Z",
+      "side": 1,
+      "message": "I emailed Csaba Eder and he gave me realistic delays. I have included these in the jira and are currently present in the application.yml. I had the default here at zero to not slow the CSITs but if that isn\u0027t a concern I will add them here as well",
+      "parentUuid": "8385b030_05d393e1",
       "range": {
         "startLine": 131,
         "startChar": 42,
