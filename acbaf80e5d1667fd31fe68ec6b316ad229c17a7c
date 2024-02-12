@@ -3,6 +3,46 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "eb865248_119f92f5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-12T08:19:28Z",
+      "side": 1,
+      "message": "still  see some inconsistency in naming. As per my comment below\n I think we agreed on CmNotifactionSubscription I can live with just CmSubscriptions as long as we apply it everywhere!\n\nfor the DMI (subset) we can use DmiCmSubscription(details)",
+      "revId": "acbaf80e5d1667fd31fe68ec6b316ad229c17a7c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b53f4037_d736abff",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/model/DmiCmNotificationSubscriptionDetails.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-12T08:19:28Z",
+      "side": 1,
+      "message": "CmNotificationSubscriptionStatus",
+      "range": {
+        "startLine": 32,
+        "startChar": 12,
+        "endLine": 32,
+        "endChar": 33
+      },
+      "revId": "acbaf80e5d1667fd31fe68ec6b316ad229c17a7c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "6638a5d9_0a1f0204",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/model/DmiCmNotificationSubscriptionPredicate.java",
         "patchSetId": 5
@@ -103,6 +143,30 @@
       "side": 1,
       "message": "I\u0027d prefer consistent naming, but I\u0027m happy either way",
       "parentUuid": "ec7210bb_e107fbf0",
+      "range": {
+        "startLine": 25,
+        "startChar": 16,
+        "endLine": 25,
+        "endChar": 32
+      },
+      "revId": "acbaf80e5d1667fd31fe68ec6b316ad229c17a7c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75223b05_7bbc59c7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmSubscriptionPersistenceService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-12T08:19:28Z",
+      "side": 1,
+      "message": "we need to be consistent in our names. I think we agreed on CmNotifactionSubscription I can live with just CmSubscriptions as long as we apply it everywhere!\n\n\nfor the DMI version we can use DmiCmSubscription(details)",
+      "parentUuid": "34163dce_68aa3f9f",
       "range": {
         "startLine": 25,
         "startChar": 16,
