@@ -252,6 +252,30 @@
       },
       "revId": "86991fb854e6dcb9b764f254fbd9f5fcc74e3630",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37fb95cb_a9f67b0e",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-12T15:27:53Z",
+      "side": 1,
+      "message": "CSIT test only execute small (affecting 1 or 2 cm handles) functional tests of course, I would only expect these delays to significantly affect E2E test for performance like the manuel tests you used to do...",
+      "parentUuid": "2d0bb3bc_4db3d68e",
+      "range": {
+        "startLine": 131,
+        "startChar": 42,
+        "endLine": 134,
+        "endChar": 36
+      },
+      "revId": "86991fb854e6dcb9b764f254fbd9f5fcc74e3630",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
