@@ -95,6 +95,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ceff79a5_15c9c6f8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-12T11:05:41Z",
+      "side": 1,
+      "message": "yes, I am a bit confused about this too...\nit OK to submit it with this patch but then make sure the commit message and possible the Jira ref gets update accordingly.\nThis commit could be a fix + testware improvements for that fix...",
+      "parentUuid": "f0ea774a_34048a66",
+      "range": {
+        "startLine": 368,
+        "startChar": 0,
+        "endLine": 371,
+        "endChar": 19
+      },
+      "revId": "5ac178998498f65f529ede2f11630539a1eecb4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c3bed8d4_646129f7",
