@@ -22,16 +22,8 @@
 
 package org.onap.cps.ncmp.api.impl.inventory
 
-import org.onap.cps.api.CpsAnchorService
-
-import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
-import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
-import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
-import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT
-import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NO_TIMESTAMP
-import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
-
 import com.fasterxml.jackson.databind.ObjectMapper
+import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
@@ -40,13 +32,21 @@ import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.ModuleDefinition
 import org.onap.cps.spi.model.ModuleReference
-import org.onap.cps.utils.JsonObjectMapper
 import org.onap.cps.spi.utils.CpsValidator
+import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Shared
 import spock.lang.Specification
+
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
+
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NO_TIMESTAMP
+import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 
 class InventoryPersistenceImplSpec extends Specification {
 
@@ -60,8 +60,10 @@ class InventoryPersistenceImplSpec extends Specification {
 
     def mockCpsValidator = Mock(CpsValidator)
 
+    def mockCmHandleQueries = Mock(CmHandleQueries)
+
     def objectUnderTest = new InventoryPersistenceImpl(spiedJsonObjectMapper, mockCpsDataService, mockCpsModuleService,
-            mockCpsValidator, mockCpsAnchorService)
+            mockCpsValidator, mockCpsAnchorService, mockCmHandleQueries)
 
     def formattedDateAndTime = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
             .format(OffsetDateTime.of(2022, 12, 31, 20, 30, 40, 1, ZoneOffset.UTC))
@@ -285,7 +287,7 @@ class InventoryPersistenceImplSpec extends Specification {
         given: 'expected xPath to get cmHandle data node'
             def expectedXPath = '/dmi-registry/cm-handles[@id=\'sample cmHandleId\']';
         when: 'the method to get data nodes is called'
-            objectUnderTest.getCmHandleDataNode('sample cmHandleId')
+            objectUnderTest.getCmHandleDataNodeByCmHandleId('sample cmHandleId')
         then: 'the data persistence service method to get cmHandle data node is invoked once with expected xPath'
             1 * mockCpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, expectedXPath, INCLUDE_ALL_DESCENDANTS)
     }

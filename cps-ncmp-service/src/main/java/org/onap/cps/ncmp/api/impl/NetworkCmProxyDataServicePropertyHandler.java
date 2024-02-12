@@ -81,8 +81,8 @@ public class NetworkCmProxyDataServicePropertyHandler {
         for (final NcmpServiceCmHandle ncmpServiceCmHandle : ncmpServiceCmHandles) {
             final String cmHandleId = ncmpServiceCmHandle.getCmHandleId();
             try {
-                final DataNode existingCmHandleDataNode = inventoryPersistence.getCmHandleDataNode(cmHandleId)
-                        .iterator().next();
+                final DataNode existingCmHandleDataNode = inventoryPersistence
+                    .getCmHandleDataNodeByCmHandleId(cmHandleId).iterator().next();
                 updateAlternateId(existingCmHandleDataNode, ncmpServiceCmHandle);
                 processUpdates(existingCmHandleDataNode, ncmpServiceCmHandle);
                 cmHandleRegistrationResponses.add(CmHandleRegistrationResponse.createSuccessResponse(cmHandleId));
@@ -105,12 +105,13 @@ public class NetworkCmProxyDataServicePropertyHandler {
 
     private void updateAlternateId(final DataNode existingCmHandleDataNode,
                                    final NcmpServiceCmHandle ncmpServiceCmHandle) {
+        final YangModelCmHandle yangModelCmHandle =
+            YangDataConverter.convertCmHandleToYangModel(existingCmHandleDataNode,
+                ncmpServiceCmHandle.getCmHandleId());
+        final String currentAlternateId = yangModelCmHandle.getAlternateId();
         final String newAlternateId = ncmpServiceCmHandle.getAlternateId();
-        if (cmHandleIdMapper.addMapping(ncmpServiceCmHandle.getCmHandleId(), newAlternateId)) {
+        if (cmHandleIdMapper.addMapping(ncmpServiceCmHandle.getCmHandleId(), currentAlternateId, newAlternateId)) {
             try {
-                final YangModelCmHandle yangModelCmHandle =
-                        YangDataConverter.convertCmHandleToYangModel(existingCmHandleDataNode,
-                                ncmpServiceCmHandle.getCmHandleId());
                 setAndUpdateAlternateId(yangModelCmHandle, newAlternateId);
             } catch (final Exception e) {
                 cmHandleIdMapper.removeMapping(ncmpServiceCmHandle.getCmHandleId());
