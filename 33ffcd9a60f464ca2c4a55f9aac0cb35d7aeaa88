@@ -46,6 +46,30 @@
       },
       "revId": "33ffcd9a60f464ca2c4a55f9aac0cb35d7aeaa88",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2d1bcea_89587823",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-12T21:54:25Z",
+      "side": 1,
+      "message": "aye..\nthere are other ways to do this as well.\n1. concat ( + )\n2. String.format can also be used\n3. triple \"\"\" \n\nSonar was complaining abt it hence have to use 3 lines and the trim.",
+      "parentUuid": "7caa6deb_3da54c69",
+      "range": {
+        "startLine": 41,
+        "startChar": 11,
+        "endLine": 41,
+        "endChar": 23
+      },
+      "revId": "33ffcd9a60f464ca2c4a55f9aac0cb35d7aeaa88",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
