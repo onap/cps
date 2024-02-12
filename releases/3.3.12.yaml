@@ -1,0 +1,4 @@
+distribution_type: maven
+log_dir: cps-maven-stage-montreal/3/
+project: cps
+version: 3.3.12
