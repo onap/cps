@@ -32,7 +32,7 @@ import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RU
 import static org.onap.cps.ncmp.api.impl.operations.OperationType.CREATE
 import static org.onap.cps.ncmp.api.impl.operations.OperationType.UPDATE
 
-import org.onap.cps.ncmp.api.impl.utils.CmHandleIdMapper
+import org.onap.cps.ncmp.api.impl.utils.AlternateIdChecker
 import com.hazelcast.map.IMap
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandleQueryService
 import org.onap.cps.ncmp.api.impl.events.lcm.LcmEventsCmHandleStateHandler
@@ -80,14 +80,12 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def stubModuleSyncStartedOnCmHandles = Stub(IMap<String, Object>)
     def stubTrustLevelPerDmiPlugin = Stub(Map<String, TrustLevel>)
     def mockTrustLevelManager = Mock(TrustLevelManager)
-    def mockCmHandleIdMapper = Mock(CmHandleIdMapper)
+    def mockCmHandleIdMapper = Mock(AlternateIdChecker)
     def mockModuleSetTagCache = [:]
 
     def NO_TOPIC = null
     def NO_REQUEST_ID = null
-    @Shared
     def OPTIONS_PARAM = '(a=1,b=2)'
-    @Shared
     def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: 'test-cm-handle-id')
 
     def objectUnderTest = new NetworkCmProxyDataServiceImpl(
@@ -269,7 +267,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             dmiPluginRegistration.createdCmHandles = [ncmpServiceCmHandle]
             mockDmiPluginRegistration.getCreatedCmHandles() >> [ncmpServiceCmHandle]
         when: 'parse and create cm handle in dmi registration then sync module'
-            objectUnderTest.parseAndProcessCreatedCmHandlesInRegistration(mockDmiPluginRegistration)
+            objectUnderTest.parseAndProcessCreatedCmHandlesInRegistration(mockDmiPluginRegistration, ['test-cm-handle-id'])
         then: 'system persists the cm handle state'
             1 * mockLcmEventsCmHandleStateHandler.initiateStateAdvised(_) >> {
                 args -> {
@@ -280,7 +278,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
                     }
             }
     }
-    
+
     def 'Execute cm handle id search'() {
         given: 'valid CmHandleQueryApiParameters input'
             def cmHandleQueryApiParameters = new CmHandleQueryApiParameters()

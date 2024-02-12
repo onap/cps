@@ -114,12 +114,20 @@ public interface InventoryPersistence extends NcmpPersistence {
     void saveCmHandleBatch(List<YangModelCmHandle> yangModelCmHandles);
 
     /**
-     * Get data node of given cm handle.
+     * Get data node with the given cm handle id.
      *
      * @param cmHandleId cmHandle ID
      * @return data node
      */
-    Collection<DataNode> getCmHandleDataNode(String cmHandleId);
+    Collection<DataNode> getCmHandleDataNodeByCmHandleId(String cmHandleId);
+
+    /**
+     * Get data node with the given alternate id.
+     *
+     * @param alternateId alternate ID
+     * @return data node
+     */
+    DataNode getCmHandleDataNodeByAlternateId(String alternateId);
 
     /**
      * Get collection of data nodes of given cm handles.

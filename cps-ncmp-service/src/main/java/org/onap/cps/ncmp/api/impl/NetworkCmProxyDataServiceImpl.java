@@ -48,7 +48,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.ncmp.api.NcmpResponseStatus;
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandleQueryService;
@@ -66,7 +65,7 @@ import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations;
 import org.onap.cps.ncmp.api.impl.operations.OperationType;
 import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel;
 import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevelManager;
-import org.onap.cps.ncmp.api.impl.utils.CmHandleIdMapper;
+import org.onap.cps.ncmp.api.impl.utils.AlternateIdChecker;
 import org.onap.cps.ncmp.api.impl.utils.CmHandleQueryConditions;
 import org.onap.cps.ncmp.api.impl.utils.InventoryQueryConditions;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
@@ -106,37 +105,25 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private final IMap<String, Object> moduleSyncStartedOnCmHandles;
     private final Map<String, TrustLevel> trustLevelPerDmiPlugin;
     private final TrustLevelManager trustLevelManager;
-    private final CmHandleIdMapper cmHandleIdMapper;
+    private final AlternateIdChecker cmHandleIdMapper;
     private final Map<String, Collection<ModuleReference>> moduleSetTagCache;
 
     @Override
     public DmiPluginRegistrationResponse updateDmiRegistrationAndSyncModule(
         final DmiPluginRegistration dmiPluginRegistration) {
-        cacheAlternateIds(dmiPluginRegistration.getCreatedCmHandles());
+
         dmiPluginRegistration.validateDmiPluginRegistration();
         final DmiPluginRegistrationResponse dmiPluginRegistrationResponse = new DmiPluginRegistrationResponse();
 
         setTrustLevelPerDmiPlugin(dmiPluginRegistration);
 
-        if (!dmiPluginRegistration.getRemovedCmHandles().isEmpty()) {
-            dmiPluginRegistrationResponse.setRemovedCmHandles(
-                parseAndProcessDeletedCmHandlesInRegistration(dmiPluginRegistration.getRemovedCmHandles()));
-        }
+        processRemovedCmHandles(dmiPluginRegistration, dmiPluginRegistrationResponse);
 
-        if (!dmiPluginRegistration.getCreatedCmHandles().isEmpty()) {
-            dmiPluginRegistrationResponse.setCreatedCmHandles(
-                parseAndProcessCreatedCmHandlesInRegistration(dmiPluginRegistration));
-        }
-        if (!dmiPluginRegistration.getUpdatedCmHandles().isEmpty()) {
-            dmiPluginRegistrationResponse.setUpdatedCmHandles(
-                networkCmProxyDataServicePropertyHandler
-                    .updateCmHandleProperties(dmiPluginRegistration.getUpdatedCmHandles()));
-        }
-        if (dmiPluginRegistration.getUpgradedCmHandles() != null
-            && !dmiPluginRegistration.getUpgradedCmHandles().getCmHandles().isEmpty()) {
-            dmiPluginRegistrationResponse.setUpgradedCmHandles(
-                parseAndProcessUpgradedCmHandlesInRegistration(dmiPluginRegistration));
-        }
+        processCreatedCmHandles(dmiPluginRegistration, dmiPluginRegistrationResponse);
+
+        processUpdatedCmHandles(dmiPluginRegistration, dmiPluginRegistrationResponse);
+
+        processUpgradedCmHandles(dmiPluginRegistration, dmiPluginRegistrationResponse);
 
         return dmiPluginRegistrationResponse;
     }
@@ -329,21 +316,24 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
      * @return cm-handle registration response for create cm-handle requests.
      */
     public List<CmHandleRegistrationResponse> parseAndProcessCreatedCmHandlesInRegistration(
-        final DmiPluginRegistration dmiPluginRegistration) {
+        final DmiPluginRegistration dmiPluginRegistration, final Collection<String> acceptedCmHandleIds) {
         final List<NcmpServiceCmHandle> cmHandlesToBeCreated = dmiPluginRegistration.getCreatedCmHandles();
         final Map<String, TrustLevel> initialTrustLevelPerCmHandleId = new HashMap<>(cmHandlesToBeCreated.size());
         final List<YangModelCmHandle> yangModelCmHandles = new ArrayList<>(cmHandlesToBeCreated.size());
         cmHandlesToBeCreated
                 .forEach(cmHandle -> {
-                    final YangModelCmHandle yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle(
-                            dmiPluginRegistration.getDmiPlugin(),
-                            dmiPluginRegistration.getDmiDataPlugin(),
-                            dmiPluginRegistration.getDmiModelPlugin(),
-                            cmHandle,
-                            cmHandle.getModuleSetTag(),
-                            cmHandle.getAlternateId());
-                    yangModelCmHandles.add(yangModelCmHandle);
-                    initialTrustLevelPerCmHandleId.put(cmHandle.getCmHandleId(), cmHandle.getRegistrationTrustLevel());
+                    if (acceptedCmHandleIds.contains(cmHandle.getCmHandleId())) {
+                        final YangModelCmHandle yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle(
+                                dmiPluginRegistration.getDmiPlugin(),
+                                dmiPluginRegistration.getDmiDataPlugin(),
+                                dmiPluginRegistration.getDmiModelPlugin(),
+                                cmHandle,
+                                cmHandle.getModuleSetTag(),
+                                cmHandle.getAlternateId());
+                        yangModelCmHandles.add(yangModelCmHandle);
+                        initialTrustLevelPerCmHandleId.put(cmHandle.getCmHandleId(),
+                            cmHandle.getRegistrationTrustLevel());
+                    }
                 });
         return registerNewCmHandles(yangModelCmHandles, initialTrustLevelPerCmHandleId);
     }
@@ -382,16 +372,46 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
 
         yangModelCmHandles.removeIf(yangModelCmHandle -> notDeletedCmHandles.contains(yangModelCmHandle.getId()));
         updateCmHandleStateBatch(yangModelCmHandles, CmHandleState.DELETED);
-        removeEntriesFromAlternateIdCache(yangModelCmHandles);
 
         return cmHandleRegistrationResponses;
     }
 
-    private void removeEntriesFromAlternateIdCache(final Collection<YangModelCmHandle> yangModelCmHandles) {
-        for (final YangModelCmHandle yangModelCmHandle : yangModelCmHandles) {
-            cmHandleIdMapper.removeMapping(yangModelCmHandle.getId());
+    private void processRemovedCmHandles(final DmiPluginRegistration dmiPluginRegistration,
+                                         final DmiPluginRegistrationResponse dmiPluginRegistrationResponse) {
+        if (!dmiPluginRegistration.getRemovedCmHandles().isEmpty()) {
+            dmiPluginRegistrationResponse.setRemovedCmHandles(
+                parseAndProcessDeletedCmHandlesInRegistration(dmiPluginRegistration.getRemovedCmHandles()));
         }
     }
+
+    private void processCreatedCmHandles(final DmiPluginRegistration dmiPluginRegistration,
+                                         final DmiPluginRegistrationResponse dmiPluginRegistrationResponse) {
+        final Collection<String> acceptedCmHandleIds
+            = cmHandleIdMapper.getIdsOfCmHandlesWithAcceptableAlternateId(dmiPluginRegistration.getCreatedCmHandles());
+        if (!acceptedCmHandleIds.isEmpty()) {
+            dmiPluginRegistrationResponse.setCreatedCmHandles(
+                parseAndProcessCreatedCmHandlesInRegistration(dmiPluginRegistration, acceptedCmHandleIds));
+        }
+    }
+
+    private void processUpdatedCmHandles(final DmiPluginRegistration dmiPluginRegistration,
+                                         final DmiPluginRegistrationResponse dmiPluginRegistrationResponse) {
+        if (!dmiPluginRegistration.getUpdatedCmHandles().isEmpty()) {
+            dmiPluginRegistrationResponse.setUpdatedCmHandles(
+                networkCmProxyDataServicePropertyHandler
+                    .updateCmHandleProperties(dmiPluginRegistration.getUpdatedCmHandles()));
+        }
+    }
+
+    private void processUpgradedCmHandles(final DmiPluginRegistration dmiPluginRegistration,
+                                          final DmiPluginRegistrationResponse dmiPluginRegistrationResponse) {
+        if (dmiPluginRegistration.getUpgradedCmHandles() != null
+            && !dmiPluginRegistration.getUpgradedCmHandles().getCmHandles().isEmpty()) {
+            dmiPluginRegistrationResponse.setUpgradedCmHandles(
+                parseAndProcessUpgradedCmHandlesInRegistration(dmiPluginRegistration));
+        }
+    }
+
 
     protected List<CmHandleRegistrationResponse> parseAndProcessUpgradedCmHandlesInRegistration(
         final DmiPluginRegistration dmiPluginRegistration) {
@@ -549,12 +569,6 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         }
     }
 
-    private void cacheAlternateIds(final Collection<NcmpServiceCmHandle> ncmpServiceCmHandles) {
-        for (final NcmpServiceCmHandle ncmpServiceCmHandle : ncmpServiceCmHandles) {
-            if (!StringUtils.isEmpty(ncmpServiceCmHandle.getAlternateId())) {
-                cmHandleIdMapper.addMapping(ncmpServiceCmHandle.getCmHandleId(), ncmpServiceCmHandle.getAlternateId());
-            }
-        }
-    }
+
 
 }

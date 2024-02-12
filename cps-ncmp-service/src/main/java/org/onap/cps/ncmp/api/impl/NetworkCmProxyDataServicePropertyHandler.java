@@ -45,7 +45,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence;
-import org.onap.cps.ncmp.api.impl.utils.CmHandleIdMapper;
+import org.onap.cps.ncmp.api.impl.utils.AlternateIdChecker;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse;
@@ -67,7 +67,7 @@ public class NetworkCmProxyDataServicePropertyHandler {
     private final InventoryPersistence inventoryPersistence;
     private final CpsDataService cpsDataService;
     private final JsonObjectMapper jsonObjectMapper;
-    private final CmHandleIdMapper cmHandleIdMapper;
+    private final AlternateIdChecker cmHandleIdMapper;
 
     /**
      * Iterates over incoming ncmpServiceCmHandles and update the dataNodes based on the updated attributes.
@@ -81,8 +81,8 @@ public class NetworkCmProxyDataServicePropertyHandler {
         for (final NcmpServiceCmHandle ncmpServiceCmHandle : ncmpServiceCmHandles) {
             final String cmHandleId = ncmpServiceCmHandle.getCmHandleId();
             try {
-                final DataNode existingCmHandleDataNode = inventoryPersistence.getCmHandleDataNode(cmHandleId)
-                        .iterator().next();
+                final DataNode existingCmHandleDataNode = inventoryPersistence
+                    .getCmHandleDataNodeByCmHandleId(cmHandleId).iterator().next();
                 updateAlternateId(existingCmHandleDataNode, ncmpServiceCmHandle);
                 processUpdates(existingCmHandleDataNode, ncmpServiceCmHandle);
                 cmHandleRegistrationResponses.add(CmHandleRegistrationResponse.createSuccessResponse(cmHandleId));
@@ -105,17 +105,14 @@ public class NetworkCmProxyDataServicePropertyHandler {
 
     private void updateAlternateId(final DataNode existingCmHandleDataNode,
                                    final NcmpServiceCmHandle ncmpServiceCmHandle) {
+        final YangModelCmHandle yangModelCmHandle =
+            YangDataConverter.convertCmHandleToYangModel(existingCmHandleDataNode,
+                ncmpServiceCmHandle.getCmHandleId());
+        final String currentAlternateId = yangModelCmHandle.getAlternateId();
         final String newAlternateId = ncmpServiceCmHandle.getAlternateId();
-        if (cmHandleIdMapper.addMapping(ncmpServiceCmHandle.getCmHandleId(), newAlternateId)) {
-            try {
-                final YangModelCmHandle yangModelCmHandle =
-                        YangDataConverter.convertCmHandleToYangModel(existingCmHandleDataNode,
-                                ncmpServiceCmHandle.getCmHandleId());
-                setAndUpdateAlternateId(yangModelCmHandle, newAlternateId);
-            } catch (final Exception e) {
-                cmHandleIdMapper.removeMapping(ncmpServiceCmHandle.getCmHandleId());
-                throw e;
-            }
+        if (cmHandleIdMapper.canApplyAlternateId(ncmpServiceCmHandle.getCmHandleId(),
+            currentAlternateId, newAlternateId)) {
+            setAndUpdateAlternateId(yangModelCmHandle, newAlternateId);
         }
     }
 
