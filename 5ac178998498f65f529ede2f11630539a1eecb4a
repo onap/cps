@@ -308,6 +308,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c4c0f3c9_65bffd2c",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-02-12T08:28:47Z",
+      "side": 1,
+      "message": "It is used by existing CSIT",
+      "parentUuid": "40bc50e9_bcf842a3",
+      "range": {
+        "startLine": 217,
+        "startChar": 78,
+        "endLine": 218,
+        "endChar": 46
+      },
+      "revId": "5ac178998498f65f529ede2f11630539a1eecb4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fb4acaac_0dc9017d",
         "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
         "patchSetId": 1
@@ -319,6 +343,30 @@
       "writtenOn": "2024-02-08T10:48:04Z",
       "side": 1,
       "message": "This can be removed. This code should never be reached because of getOrDefault on line 214, assuming the resource files exist",
+      "range": {
+        "startLine": 221,
+        "startChar": 9,
+        "endLine": 224,
+        "endChar": 95
+      },
+      "revId": "5ac178998498f65f529ede2f11630539a1eecb4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5403596f_c86f9aea",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-02-12T08:28:47Z",
+      "side": 1,
+      "message": "bookStore is removed from it into latest commit default is now ietfYang",
+      "parentUuid": "fb4acaac_0dc9017d",
       "range": {
         "startLine": 221,
         "startChar": 9,
@@ -412,6 +460,24 @@
       "writtenOn": "2024-02-08T10:39:49Z",
       "side": 1,
       "message": "when it this one used?\nI don\u0027t think at the moment but maybe you want it for some (CSIT) test?\n\nmaybe create a tag \u0027ietYang\u0027 and add one cm handle with this tag by default in the stub for CSIT testing?!",
+      "revId": "5ac178998498f65f529ede2f11630539a1eecb4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a7f507e_333857f6",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/resources/module/ietfYang-ModuleResourcesResponse.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-02-12T08:28:47Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "91ed3b8f_96c76bf8",
       "revId": "5ac178998498f65f529ede2f11630539a1eecb4a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
