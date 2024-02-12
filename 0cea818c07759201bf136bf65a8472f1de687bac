@@ -33,6 +33,69 @@
       "message": "looks fine to me.",
       "revId": "0cea818c07759201bf136bf65a8472f1de687bac",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55dd1703_a894009c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-12T18:42:35Z",
+      "side": 1,
+      "message": "looks good, just 2 small suggestions",
+      "revId": "0cea818c07759201bf136bf65a8472f1de687bac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18805678_a0748edf",
+        "filename": "cps-events/src/main/resources/schemas/updatenode/cps-data-updated-event-schema-1.0.0.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-12T18:42:35Z",
+      "side": 1,
+      "message": "NB: use a more non zero example. also for timezone",
+      "range": {
+        "startLine": 15,
+        "startChar": 146,
+        "endLine": 15,
+        "endChar": 163
+      },
+      "revId": "0cea818c07759201bf136bf65a8472f1de687bac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14df9eb1_293e959f",
+        "filename": "cps-events/src/main/resources/schemas/updatenode/cps-data-updated-event-schema-1.0.0.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-12T18:42:35Z",
+      "side": 1,
+      "message": "NB: use a less ambiguous example so it is clear which si date and which month\nie 2024-01-29",
+      "range": {
+        "startLine": 15,
+        "startChar": 135,
+        "endLine": 15,
+        "endChar": 145
+      },
+      "revId": "0cea818c07759201bf136bf65a8472f1de687bac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
