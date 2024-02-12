@@ -25,6 +25,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandleQueryService;
+import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence;
+import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
+import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -35,6 +38,7 @@ public class CmHandleIdMapper {
     private final Map<String, String> alternateIdPerCmHandleId;
     private final Map<String, String> cmHandleIdPerAlternateId;
     private final NetworkCmProxyCmHandleQueryService networkCmProxyCmHandleQueryService;
+    private final InventoryPersistence inventoryPersistence;
 
     private boolean cacheIsInitialized = false;
 
@@ -48,26 +52,55 @@ public class CmHandleIdMapper {
         return cmHandleIdPerAlternateId.get(alternateId);
     }
 
-    public boolean addMapping(final String cmHandleId, final String alternateId) {
-        initializeCache();
-        return addMappingWithValidation(cmHandleId, alternateId);
+    /**
+     *  A method that decides to add mapping for alternate id by searching for the current alternate id in the database.
+     *
+     * @param cmHandleId cm handle id
+     * @param newAlternateId new alternate id
+     * @return true if the new alternate id not in use or equal to current alternate id, false otherwise
+     */
+    public boolean addMapping(final String cmHandleId, final String newAlternateId) {
+        String currentAlternateId = "";
+        try {
+            final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(cmHandleId);
+            currentAlternateId = yangModelCmHandle.getAlternateId();
+        } catch (final DataNodeNotFoundException dataNodeNotFoundException) {
+            // work with blank current alternate id
+        }
+        return addMapping(cmHandleId, currentAlternateId, newAlternateId);
     }
 
-
-    private boolean addMappingWithValidation(final String cmHandleId, final String alternateId) {
-        if (alternateIdPerCmHandleId.containsKey(cmHandleId)) {
-            final String originalAlternateId = alternateIdPerCmHandleId.get(cmHandleId);
-            if (!originalAlternateId.equals(alternateId)) {
-                log.warn("Alternate id update ignored, cannot update cm handle {}, already has an alternate id of {}",
-                        cmHandleId, originalAlternateId);
+    /**
+     *  A method that decides to add mapping for alternate id.
+     *
+     * @param cmHandleId   cm handle id
+     * @param currentAlternateId current alternate id
+     * @param newAlternateId new alternate id
+     * @return true if the new alternate id not in use or equal to current alternate id, false otherwise
+     */
+    public boolean addMapping(final String cmHandleId, final String currentAlternateId, final String newAlternateId) {
+        if (StringUtils.isBlank(currentAlternateId)) {
+            if (alternateIdInUse(newAlternateId)) {
+                log.warn("Alternate id update ignored, cannot update cm handle {}, alternate id is already "
+                    + "assigned to a different cm handle", cmHandleId);
+                return false;
             }
+            return true;
+        }
+        if (currentAlternateId.equals(newAlternateId)) {
+            return true;
+        }
+        log.warn("Alternate id update ignored, cannot update cm handle {}, already has an alternate id of {}",
+            cmHandleId, currentAlternateId);
+        return false;
+    }
+
+    private boolean alternateIdInUse(final String alternateId) {
+        try {
+            inventoryPersistence.getCmHandleDataNodeByAlternateId(alternateId);
+        } catch (final DataNodeNotFoundException dataNodeNotFoundException) {
             return false;
         }
-        if (StringUtils.isBlank(alternateId)) {
-            return false;
-        }
-        alternateIdPerCmHandleId.put(cmHandleId, alternateId);
-        cmHandleIdPerAlternateId.put(alternateId, cmHandleId);
         return true;
     }
 
@@ -85,7 +118,7 @@ public class CmHandleIdMapper {
     private void initializeCache() {
         if (!cacheIsInitialized) {
             networkCmProxyCmHandleQueryService.getAllCmHandles().forEach(cmHandle ->
-                addMappingWithValidation(cmHandle.getCmHandleId(), cmHandle.getAlternateId())
+                addMapping(cmHandle.getCmHandleId(), cmHandle.getAlternateId())
             );
             log.info("Alternate ID cache initialized from DB with {} cm handle/alternate id pairs ",
                     alternateIdPerCmHandleId.size());
