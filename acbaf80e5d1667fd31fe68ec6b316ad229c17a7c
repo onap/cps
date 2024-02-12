@@ -43,6 +43,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "ea5ea02f_6e13c7bc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/model/DmiCmNotificationSubscriptionDetails.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-12T11:32:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b53f4037_d736abff",
+      "range": {
+        "startLine": 32,
+        "startChar": 12,
+        "endLine": 32,
+        "endChar": 33
+      },
+      "revId": "acbaf80e5d1667fd31fe68ec6b316ad229c17a7c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "6638a5d9_0a1f0204",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/model/DmiCmNotificationSubscriptionPredicate.java",
         "patchSetId": 5
@@ -167,6 +191,30 @@
       "side": 1,
       "message": "we need to be consistent in our names. I think we agreed on CmNotifactionSubscription I can live with just CmSubscriptions as long as we apply it everywhere!\n\n\nfor the DMI version we can use DmiCmSubscription(details)",
       "parentUuid": "34163dce_68aa3f9f",
+      "range": {
+        "startLine": 25,
+        "startChar": 16,
+        "endLine": 25,
+        "endChar": 32
+      },
+      "revId": "acbaf80e5d1667fd31fe68ec6b316ad229c17a7c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1bfe9044_05ab6bea",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmSubscriptionPersistenceService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-12T11:32:00Z",
+      "side": 1,
+      "message": "CmNotifactionSubscriptionPersistenceService",
+      "parentUuid": "75223b05_7bbc59c7",
       "range": {
         "startLine": 25,
         "startChar": 16,
