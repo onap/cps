@@ -60,7 +60,7 @@ public class CmNotificationSubscriptionPersistenceServiceImpl implements CmNotif
         if (existingNodes.isEmpty()) {
             return Collections.emptyList();
         }
-        return (List<String>) existingNodes.iterator().next().getLeaves().get("subscribers");
+        return (List<String>) existingNodes.iterator().next().getLeaves().get("subscriptionIds");
     }
 
     private static String escapeQuotesByDoublingThem(final String inputXpath) {
