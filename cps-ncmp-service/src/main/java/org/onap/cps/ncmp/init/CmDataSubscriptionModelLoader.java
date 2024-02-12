@@ -39,7 +39,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class CmDataSubscriptionModelLoader extends AbstractModelLoader {
 
-    private static final String MODEL_FILENAME = "cm-data-subscriptions@2023-11-13.yang";
+    private static final String MODEL_FILENAME = "cm-data-subscriptions@2024-02-12.yang";
     private static final String SCHEMASET_NAME = "cm-data-subscriptions";
     private static final String ANCHOR_NAME = "cm-data-subscriptions";
     private static final String REGISTRY_DATANODE_NAME = "datastores";

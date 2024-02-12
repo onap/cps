@@ -4,7 +4,7 @@ module cm-data-subscriptions {
 
   prefix cmds;
 
-  revision "2023-11-13" {
+  revision "2024-02-12" {
     description
       "First release of cm data (notification) subscriptions model";
   }
@@ -36,7 +36,7 @@ module cm-data-subscriptions {
                 type string;
               }
 
-              leaf-list subscribers {
+              leaf-list subscriptionIds {
                 type string;
               }
 
