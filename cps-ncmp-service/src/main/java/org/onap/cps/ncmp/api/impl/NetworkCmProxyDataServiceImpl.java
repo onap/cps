@@ -123,10 +123,13 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                 parseAndProcessDeletedCmHandlesInRegistration(dmiPluginRegistration.getRemovedCmHandles()));
         }
 
+        // create
         if (!dmiPluginRegistration.getCreatedCmHandles().isEmpty()) {
             dmiPluginRegistrationResponse.setCreatedCmHandles(
                 parseAndProcessCreatedCmHandlesInRegistration(dmiPluginRegistration));
         }
+
+        // update
         if (!dmiPluginRegistration.getUpdatedCmHandles().isEmpty()) {
             dmiPluginRegistrationResponse.setUpdatedCmHandles(
                 networkCmProxyDataServicePropertyHandler

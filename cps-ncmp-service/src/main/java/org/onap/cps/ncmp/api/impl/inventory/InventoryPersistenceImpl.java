@@ -22,6 +22,8 @@
 
 package org.onap.cps.ncmp.api.impl.inventory;
 
+import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS;
+
 import com.google.common.collect.Lists;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
@@ -37,6 +39,7 @@ import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.spi.FetchDescendantsOption;
+import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.ModuleDefinition;
@@ -54,6 +57,7 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
     private final CpsModuleService cpsModuleService;
     private final CpsAnchorService cpsAnchorService;
     private final CpsValidator cpsValidator;
+    private final CmHandleQueries cmHandleQueries;
 
     /**
      * initialize an inventory persistence object.
@@ -66,18 +70,19 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
      */
     public InventoryPersistenceImpl(final JsonObjectMapper jsonObjectMapper, final CpsDataService cpsDataService,
                                     final CpsModuleService cpsModuleService, final CpsValidator cpsValidator,
-                                    final CpsAnchorService cpsAnchorService) {
+                                    final CpsAnchorService cpsAnchorService, final CmHandleQueries cmHandleQueries) {
         super(jsonObjectMapper, cpsDataService, cpsModuleService, cpsValidator);
         this.cpsModuleService = cpsModuleService;
         this.cpsAnchorService = cpsAnchorService;
         this.cpsValidator = cpsValidator;
+        this.cmHandleQueries = cmHandleQueries;
     }
 
 
     @Override
     public CompositeState getCmHandleState(final String cmHandleId) {
         final DataNode stateAsDataNode = cpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                        createCmHandleXPath(cmHandleId) + "/state", FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+                        getXPathForCmHandleById(cmHandleId) + "/state", FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
                 .iterator().next();
         cpsValidator.validateNameCharacters(cmHandleId);
         return new CompositeStateBuilder().fromDataNode(stateAsDataNode).build();
@@ -87,14 +92,14 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
     public void saveCmHandleState(final String cmHandleId, final CompositeState compositeState) {
         final String cmHandleJsonData = createStateJsonData(jsonObjectMapper.asJsonString(compositeState));
         cpsDataService.updateDataNodeAndDescendants(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                createCmHandleXPath(cmHandleId), cmHandleJsonData, OffsetDateTime.now());
+                getXPathForCmHandleById(cmHandleId), cmHandleJsonData, OffsetDateTime.now());
     }
 
     @Override
     public void saveCmHandleStateBatch(final Map<String, CompositeState> cmHandleStatePerCmHandleId) {
         final Map<String, String> cmHandlesJsonDataMap = new HashMap<>();
         cmHandleStatePerCmHandleId.forEach((cmHandleId, compositeState) -> cmHandlesJsonDataMap.put(
-                createCmHandleXPath(cmHandleId),
+                getXPathForCmHandleById(cmHandleId),
                 createStateJsonData(jsonObjectMapper.asJsonString(compositeState))));
         cpsDataService.updateDataNodesAndDescendants(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
                 cmHandlesJsonDataMap, OffsetDateTime.now());
@@ -103,7 +108,7 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
     @Override
     public YangModelCmHandle getYangModelCmHandle(final String cmHandleId) {
         cpsValidator.validateNameCharacters(cmHandleId);
-        final DataNode dataNode = getCmHandleDataNode(cmHandleId).iterator().next();
+        final DataNode dataNode = getCmHandleDataNodeByCmHandleId(cmHandleId).iterator().next();
         return YangDataConverter.convertCmHandleToYangModel(dataNode, cmHandleId);
     }
 
@@ -158,14 +163,26 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
     }
 
     @Override
-    public Collection<DataNode> getCmHandleDataNode(final String cmHandleId) {
-        return this.getDataNode(createCmHandleXPath(cmHandleId));
+    public Collection<DataNode> getCmHandleDataNodeByCmHandleId(final String cmHandleId) {
+        return this.getDataNode(getXPathForCmHandleById(cmHandleId));
+    }
+
+    @Override
+    public DataNode getCmHandleDataNodeByAlternateId(final String alternateId) {
+        final String xPathForCmHandleByAlternateId = getXPathForCmHandleByAlternateId(alternateId);
+        final Collection<DataNode> dataNodes = cmHandleQueries
+            .queryNcmpRegistryByCpsPath(xPathForCmHandleByAlternateId, OMIT_DESCENDANTS);
+        if (dataNodes.isEmpty()) {
+            throw new DataNodeNotFoundException(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+                xPathForCmHandleByAlternateId);
+        }
+        return dataNodes.iterator().next();
     }
 
     @Override
     public Collection<DataNode> getCmHandleDataNodes(final Collection<String> cmHandleIds) {
         final Collection<String> xpaths = new ArrayList<>(cmHandleIds.size());
-        cmHandleIds.forEach(cmHandleId -> xpaths.add(createCmHandleXPath(cmHandleId)));
+        cmHandleIds.forEach(cmHandleId -> xpaths.add(getXPathForCmHandleById(cmHandleId)));
         return this.getDataNodes(xpaths);
     }
 
@@ -174,8 +191,12 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
         return cpsAnchorService.queryAnchorNames(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, moduleNamesForQuery);
     }
 
-    private static String createCmHandleXPath(final String cmHandleId) {
+    private static String getXPathForCmHandleById(final String cmHandleId) {
         return NCMP_DMI_REGISTRY_PARENT + "/cm-handles[@id='" + cmHandleId + "']";
+    }
+
+    private static String getXPathForCmHandleByAlternateId(final String alternateId) {
+        return NCMP_DMI_REGISTRY_PARENT + "/cm-handles[@alternate-id='" + alternateId + "']";
     }
 
     private static String createStateJsonData(final String state) {
