@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b60bf839_bb4752bb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-12T14:58:03Z",
+      "side": 1,
+      "message": "2 things:\n1) what exactly are you getting here, looking at the next class it seems to be \u0027subscribers\u0027 but now you told these are subscirptionIds\n2) its plural, so add an \u0027s\u0027\nSO add idS",
+      "range": {
+        "startLine": 50,
+        "startChar": 16,
+        "endLine": 50,
+        "endChar": 52
+      },
+      "revId": "08d92baf8811f54529ca957047c193ae5db8ca14",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57755f17_8c8a0892",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-12T14:58:03Z",
+      "side": 1,
+      "message": "rename model to subscriptionIds (in a separate commit)",
+      "range": {
+        "startLine": 66,
+        "startChar": 80,
+        "endLine": 66,
+        "endChar": 91
+      },
+      "revId": "08d92baf8811f54529ca957047c193ae5db8ca14",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3668074b_eb3ab37a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImplSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-12T14:58:03Z",
+      "side": 1,
+      "message": "no need to test \u0027backing\u0027 method separetly",
+      "range": {
+        "startLine": 52,
+        "startChar": 4,
+        "endLine": 66,
+        "endChar": 5
+      },
+      "revId": "08d92baf8811f54529ca957047c193ae5db8ca14",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
