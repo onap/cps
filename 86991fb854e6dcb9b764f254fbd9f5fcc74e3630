@@ -228,6 +228,30 @@
       },
       "revId": "86991fb854e6dcb9b764f254fbd9f5fcc74e3630",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d0bb3bc_4db3d68e",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-12T14:54:24Z",
+      "side": 1,
+      "message": "I can see from https://jenkins.onap.org/job/cps-review-verification-maven-master/6100/, the verification job running CSITs is not slower than before (8 minutes before and after this change). In that case, we should keep these realistic delays.",
+      "parentUuid": "236da7de_471f3986",
+      "range": {
+        "startLine": 131,
+        "startChar": 42,
+        "endLine": 134,
+        "endChar": 36
+      },
+      "revId": "86991fb854e6dcb9b764f254fbd9f5fcc74e3630",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
