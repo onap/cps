@@ -95,6 +95,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "46818f69_3eeabe1b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-12T15:19:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6b6136aa_6daa9747",
+      "range": {
+        "startLine": 66,
+        "startChar": 80,
+        "endLine": 66,
+        "endChar": 91
+      },
+      "revId": "08d92baf8811f54529ca957047c193ae5db8ca14",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3668074b_eb3ab37a",
