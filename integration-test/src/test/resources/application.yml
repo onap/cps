@@ -37,3 +37,10 @@ spring:
 
   liquibase:
     change-log: classpath:liquibase/test-changelog.yaml
+
+hazelcast:
+  cluster-name: "cps-and-ncmp-test-caches"
+  mode:
+    kubernetes:
+      enabled: false
+      service-name: "cps-and-ncmp-service"
