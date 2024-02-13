@@ -36,4 +36,4 @@ spring:
     initialization-mode: always
 
   liquibase:
-    change-log: classpath:liquibase/test-changelog.yaml
+    change-log: classpath:changelog/changelog-master.yaml
