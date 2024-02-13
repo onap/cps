@@ -51,6 +51,29 @@
       "parentUuid": "cb2d2100_4d728cad",
       "revId": "cf0c931b7c649bdccca95f5cc1590b923aa656a9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc301631_9a5ccfcb",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-13T09:39:22Z",
+      "side": 1,
+      "message": "Since this feature was already released in 3.4.3, should we put these notes in 3.4.3 release? (Apologies for missing it when I did release notes!)",
+      "range": {
+        "startLine": 45,
+        "startChar": 6,
+        "endLine": 45,
+        "endChar": 124
+      },
+      "revId": "cf0c931b7c649bdccca95f5cc1590b923aa656a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
