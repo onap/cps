@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "urn:cps:org.onap.cps:data-updated-event-schema:1.0.0",
+  "$ref": "#/definitions/CpsDataUpdatedEvent",
+  "definitions": {
+    "CpsDataUpdatedEvent": {
+      "description": "The payload for CPS data updated event.",
+      "type": "object",
+      "javaType": "org.onap.cps.events.model.CpsDataUpdatedEvent",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "observedTimestamp": {
+              "description": "The timestamp when the data has been observed. The expected format is 'yyyy-MM-dd'T'HH:mm:ss.SSSZ'. Ex: '2020-12-01T00:00:00.000+0000'  ",
+              "type": "string"
+            },
+            "dataspaceName": {
+              "description": "The name of CPS Core dataspace the data belongs to.",
+              "type": "string"
+            },
+            "schemaSetName": {
+              "description": "The name of CPS Core schema set the data adheres to.",
+              "type": "string"
+            },
+            "anchorName": {
+              "description": "The name of CPS Core anchor the data is attached to.",
+              "type": "string"
+            },
+            "operation": {
+              "description": "The operation on the data",
+              "type": "string",
+              "enum": [
+                "CREATE",
+                "UPDATE",
+                "DELETE"
+              ]
+            },
+            "xpath": {
+              "description": "xpath of the updated content",
+              "type": "string"
+            }
+          },
+          "required": [
+            "observedTimestamp",
+            "dataspaceName",
+            "schemaSetName",
+            "anchorName",
+            "operation",
+            "xpath"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "data"
+      ]
+    }
+  }
+}
