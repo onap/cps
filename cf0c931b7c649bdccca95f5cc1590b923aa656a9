@@ -74,6 +74,30 @@
       },
       "revId": "cf0c931b7c649bdccca95f5cc1590b923aa656a9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8f15ece_3c7f2a17",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-13T10:07:40Z",
+      "side": 1,
+      "message": "agreed mvoe it to teh correct release please",
+      "parentUuid": "bc301631_9a5ccfcb",
+      "range": {
+        "startLine": 45,
+        "startChar": 6,
+        "endLine": 45,
+        "endChar": 124
+      },
+      "revId": "cf0c931b7c649bdccca95f5cc1590b923aa656a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
