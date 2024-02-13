@@ -1,12 +1,12 @@
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "urn:cps:org.onap.cps.ncmp.events:cm-subscription-dmi-in-event-schema:1.0.0",
-  "$ref": "#/definitions/CmSubscriptionDmiInEvent",
+  "$id": "urn:cps:org.onap.cps.ncmp.events:cm-notification-subscription-dmi-in-event-schema:1.0.0",
+  "$ref": "#/definitions/CmNotificationSubscriptionDmiInEvent",
   "definitions": {
-    "CmSubscriptionDmiInEvent": {
-      "description": "The payload for cm subscription merge event incoming message from NCMP.",
+    "CmNotificationSubscriptionDmiInEvent": {
+      "description": "The payload for cm notification subscription event incoming message from NCMP.",
       "type": "object",
-      "javaType": "org.onap.cps.ncmp.events.cmsubscription_merge1_0_0.ncmp_to_dmi.CmSubscriptionDmiInEvent",
+      "javaType": "org.onap.cps.ncmp.events.cmnotificationsubscription_merge1_0_0.ncmp_to_dmi.CmNotificationSubscriptionDmiInEvent",
       "additionalProperties": false,
       "properties": {
         "data": {

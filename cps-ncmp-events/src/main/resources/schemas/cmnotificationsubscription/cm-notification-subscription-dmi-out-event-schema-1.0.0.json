@@ -1,13 +1,13 @@
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "urn:cps:org.onap.cps.ncmp.events:cm-subscription-dmi-out-event-schema:1.0.0",
-  "$ref": "#/definitions/CmSubscriptionDmiOutEvent",
+  "$id": "urn:cps:org.onap.cps.ncmp.events:cm-notification-subscription-dmi-out-event-schema:1.0.0",
+  "$ref": "#/definitions/CmNotificationSubscriptionDmiOutEvent",
   "definitions": {
-    "CmSubscriptionDmiOutEvent": {
-      "description": "The payload for cm subscription merge event coming out from DMI Plugin.",
+    "CmNotificationSubscriptionDmiOutEvent": {
+      "description": "The payload for cm notification subscription merge event coming out from DMI Plugin.",
       "type": "object",
       "additionalProperties": false,
-      "javaType": "org.onap.cps.ncmp.events.cmsubscription_merge1_0_0.dmi_to_ncmp.CmSubscriptionDmiOutEvent",
+      "javaType": "org.onap.cps.ncmp.events.cmnotificationsubscription_merge1_0_0.dmi_to_ncmp.CmNotificationSubscriptionDmiOutEvent",
       "properties": {
         "data": {
           "$ref": "#/definitions/Data"
@@ -16,7 +16,7 @@
       "required": [
         "data"
       ],
-      "title": "CmSubscriptionDmiOutEvent"
+      "title": "CmNotificationSubscriptionDmiOutEvent"
     },
     "Data": {
       "type": "object",

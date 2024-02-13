@@ -1,12 +1,12 @@
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "urn:cps:org.onap.cps.ncmp.events:cm-subscription-ncmp-out-event-schema:1.0.0",
-  "$ref": "#/definitions/CmSubscriptionNcmpOutEvent",
+  "$id": "urn:cps:org.onap.cps.ncmp.events:cm-notification-subscription-ncmp-out-event-schema:1.0.0",
+  "$ref": "#/definitions/CmNotificationSubscriptionNcmpOutEvent",
   "definitions": {
-    "CmSubscriptionNcmpOutEvent": {
+    "CmNotificationSubscriptionNcmpOutEvent": {
       "type": "object",
       "description": "The payload applied cm subscription merge event coming out from NCMP.",
-      "javaType": "org.onap.cps.ncmp.events.cmsubscription_merge1_0_0.ncmp_to_client.CmSubscriptionNcmpOutEvent",
+      "javaType": "org.onap.cps.ncmp.events.cmsubscription_merge1_0_0.ncmp_to_client.CmNotificationSubscriptionNcmpOutEvent",
       "additionalProperties": false,
       "properties": {
         "data": {
@@ -16,7 +16,7 @@
       "required": [
         "data"
       ],
-      "title": "CmSubscriptionNcmpOutEvent"
+      "title": "CmNotificationSubscriptionNcmpOutEvent"
     },
     "Data": {
       "type": "object",

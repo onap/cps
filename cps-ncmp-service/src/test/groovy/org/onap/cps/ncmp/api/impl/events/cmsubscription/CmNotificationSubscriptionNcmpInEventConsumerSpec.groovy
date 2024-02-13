@@ -29,7 +29,7 @@ import io.cloudevents.CloudEvent
 import io.cloudevents.core.builder.CloudEventBuilder
 import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
-import org.onap.cps.ncmp.events.cmsubscription_merge1_0_0.client_to_ncmp.CmSubscriptionNcmpInEvent
+import org.onap.cps.ncmp.events.cmnotificationsubscription_merge1_0_0.client_to_ncmp.CmNotificationSubscriptionNcmpInEvent
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.utils.JsonObjectMapper
 import org.slf4j.LoggerFactory
@@ -37,9 +37,9 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest(classes = [ObjectMapper, JsonObjectMapper])
-class CmSubscriptionNcmpInEventConsumerSpec extends MessagingBaseSpec {
+class CmNotificationSubscriptionNcmpInEventConsumerSpec extends MessagingBaseSpec {
 
-    def objectUnderTest = new CmSubscriptionNcmpInEventConsumer()
+    def objectUnderTest = new CmNotificationSubscriptionNcmpInEventConsumer()
     def logger = Spy(ListAppender<ILoggingEvent>)
 
     @Autowired
@@ -49,19 +49,19 @@ class CmSubscriptionNcmpInEventConsumerSpec extends MessagingBaseSpec {
     ObjectMapper objectMapper
 
     void setup() {
-        ((Logger) LoggerFactory.getLogger(CmSubscriptionNcmpInEventConsumer.class)).addAppender(logger)
+        ((Logger) LoggerFactory.getLogger(CmNotificationSubscriptionNcmpInEventConsumer.class)).addAppender(logger)
         logger.start()
     }
 
     void cleanup() {
-        ((Logger) LoggerFactory.getLogger(CmSubscriptionNcmpInEventConsumer.class)).detachAndStopAllAppenders()
+        ((Logger) LoggerFactory.getLogger(CmNotificationSubscriptionNcmpInEventConsumer.class)).detachAndStopAllAppenders()
     }
 
 
     def 'Consume valid CMSubscription create message'() {
         given: 'a cmsubscription event'
             def jsonData = TestUtils.getResourceFileContent('cmSubscription/cmSubscriptionNcmpInEvent.json')
-            def testEventSent = jsonObjectMapper.convertJsonString(jsonData, CmSubscriptionNcmpInEvent.class)
+            def testEventSent = jsonObjectMapper.convertJsonString(jsonData, CmNotificationSubscriptionNcmpInEvent.class)
             def testCloudEventSent = CloudEventBuilder.v1()
                 .withData(objectMapper.writeValueAsBytes(testEventSent))
                 .withId('subscriptionCreated')
