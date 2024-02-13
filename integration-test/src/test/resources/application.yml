@@ -15,14 +15,24 @@
 #  SPDX-License-Identifier: Apache-2.0
 #  ============LICENSE_END=========================================================
 
+rest:
+  api:
+    cps-base-path: /cps/api
+    ncmp-base-path: /ncmp
+    ncmp-inventory-base-path: /ncmpInventory
+
 spring:
+  main:
+    banner-mode: off
+
+  application:
+    name: cps-integration-test
+
   jpa:
-    ddl-auto: create
-    show-sql: false
     properties:
       hibernate.enable_lazy_load_no_trans: true
       hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
-      hibernate.format_sql: true
+      hibernate.format_sql: false
       hibernate.show_sql: false
       # Please ensure these values match those used in cps-application/src/main/resources/application.yml
       hibernate.id.new_generator_mappings: true
@@ -34,6 +44,84 @@ spring:
     password: ${DB_PASSWORD}
     driverClassName: org.postgresql.Driver
     initialization-mode: always
+    hikari:
+      minimumIdle: 5
+      maximumPoolSize: 80
+      idleTimeout: 60000
+      connectionTimeout: 120000
+      leakDetectionThreshold: 30000
+      pool-name: CpsDatabasePool
+
+  cache:
+    type: caffeine
+    cache-names: yangSchema
+    caffeine:
+      spec: maximumSize=10000,expireAfterAccess=10m
 
   liquibase:
     change-log: classpath:changelog/changelog-master.yaml
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 100MB
+      max-request-size: 100MB
+
+  jackson:
+    default-property-inclusion: NON_NULL
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
+
+  sql:
+    init:
+      mode: ALWAYS
+
+notification:
+  enabled: false
+
+springdoc:
+  swagger-ui:
+    disable-swagger-default-url: true
+    urlsPrimaryName: cps-core
+    urls:
+      - name: cps-core
+        url: /api-docs/cps-core/openapi.yaml
+      - name: cps-ncmp
+        url: /api-docs/cps-ncmp/openapi.yaml
+      - name: cps-ncmp-inventory
+        url: /api-docs/cps-ncmp/openapi-inventory.yaml
+
+security:
+  # comma-separated uri patterns which do not require authorization
+  permit-uri: /actuator/**,/swagger-ui.html,/swagger-ui/**,/swagger-resources/**,/api-docs/**,/v3/api-docs/**
+  auth:
+    username: cps
+    password: cpsr0cks!
+
+# Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info,health,loggers,prometheus
+  endpoint:
+    health:
+      show-details: always
+      # kubernetes probes: liveness and readiness
+      probes:
+        enabled: false
+
+logging:
+  format: text
+  level:
+    org:
+      springframework: INFO
+      onap:
+        cps: INFO
+
+hazelcast:
+  cluster-name: cps-and-ncmp-test-caches
+  mode:
+    kubernetes:
+      enabled: false
+      service-name: cps-and-ncmp-service

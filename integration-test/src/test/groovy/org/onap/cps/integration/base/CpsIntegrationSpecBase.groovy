@@ -20,64 +20,54 @@
 
 package org.onap.cps.integration.base
 
+import java.time.OffsetDateTime
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsDataspaceService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.integration.DatabaseTestContainer
-import org.onap.cps.spi.config.CpsSessionFactory
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.repository.DataspaceRepository
-import org.onap.cps.spi.impl.utils.CpsValidatorImpl
 import org.onap.cps.spi.utils.SessionManager
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.boot.autoconfigure.domain.EntityScan
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.context.annotation.ComponentScan
-import org.springframework.context.annotation.Lazy
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 import org.testcontainers.spock.Testcontainers
 import spock.lang.Shared
 import spock.lang.Specification
 
-import java.time.OffsetDateTime
-
-@SpringBootTest(classes = [TestConfig, CpsValidatorImpl, SessionManager, CpsSessionFactory])
+@SpringBootTest(classes = [CpsDataspaceService])
 @Testcontainers
 @EnableAutoConfiguration
 @EnableJpaRepositories(basePackageClasses = [DataspaceRepository])
-@ComponentScan(basePackages = ['org.onap.cps.api', 'org.onap.cps.spi.repository'])
+@ComponentScan(basePackages = ['org.onap.cps'])
 @EntityScan('org.onap.cps.spi.entities')
-class CpsIntegrationSpecBase extends Specification {
+abstract class CpsIntegrationSpecBase extends Specification {
 
     @Shared
     DatabaseTestContainer databaseTestContainer = DatabaseTestContainer.getInstance()
 
     @Autowired
-    @Lazy
     CpsDataspaceService cpsDataspaceService
 
     @Autowired
-    @Lazy
     CpsAnchorService cpsAnchorService
 
     @Autowired
-    @Lazy
     CpsDataService cpsDataService
 
     @Autowired
-    @Lazy
     CpsModuleService cpsModuleService
 
     @Autowired
-    @Lazy
     CpsQueryService cpsQueryService
 
     @Autowired
-    @Lazy
     SessionManager sessionManager
 
     def static GENERAL_TEST_DATASPACE = 'generalTestDataspace'
@@ -90,7 +80,7 @@ class CpsIntegrationSpecBase extends Specification {
         if (!initialized) {
             cpsDataspaceService.createDataspace(GENERAL_TEST_DATASPACE)
             createStandardBookStoreSchemaSet(GENERAL_TEST_DATASPACE)
-            initialized = true;
+            initialized = true
         }
     }
 
@@ -127,7 +117,7 @@ class CpsIntegrationSpecBase extends Specification {
     def dataspaceExists(dataspaceName) {
         try {
             cpsDataspaceService.getDataspace(dataspaceName)
-        } catch (DataspaceNotFoundException dataspaceNotFoundException) {
+        } catch (DataspaceNotFoundException ignored) {
             return false
         }
         return true
@@ -141,29 +131,15 @@ class CpsIntegrationSpecBase extends Specification {
     }
 
     def createJsonArray(name, numberOfElements, keyName, keyValuePrefix, dataPerKey) {
-        def json = '{"' + name + '":['
-        (1..numberOfElements).each {
-            json += '{"' + keyName + '":"' + keyValuePrefix + '-' + it + '"'
-            if (!dataPerKey.isEmpty()) {
-                json += ',' + dataPerKey
-            }
-            json += '}'
-            if (it < numberOfElements) {
-                json += ','
-            }
-        }
-        json += ']}'
+        def innerJson = (1..numberOfElements).collect {
+            '{"' + keyName + '":"' + keyValuePrefix + '-' + it + '"' + (dataPerKey.empty? '': ',' + dataPerKey) + '}'
+        }.join(',')
+        return '{"' + name + '":[' + innerJson + ']}'
     }
 
     def createLeafList(name, numberOfElements, valuePrefix) {
-        def json = '"' + name + '":['
-        (1..numberOfElements).each {
-            json += '"' + valuePrefix + '-' + it + '"'
-            if (it < numberOfElements) {
-                json += ','
-            }
-        }
-        json += ']'
+        def innerJson = (1..numberOfElements).collect {'"' + valuePrefix + '-' + it + '"'}.join(',')
+        return '"' + name + '":[' + innerJson + ']'
     }
 
 }
