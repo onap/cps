@@ -59,10 +59,7 @@ Get Updated Data Node by XPath
     Should Be Equal As Strings              ${responseJson['name']}   Bigger
     ${length_birds}=    Get Length          ${responseJson['birds']}
     Should Be Equal As Integers             ${length_birds}   3
-    ${expected_list}=         Create List   Pigeon   Falcon   Eagle
-    FOR      ${item_to_check}     IN      @{expected_list}
-        Should Contain     ${responseJson['birds']}     ${item_to_check}
-    END
+    Should Be Equal As Strings              ${responseJson['birds']}   ['Eagle', 'Falcon', 'Pigeon']
 
 Get Data Node by XPath
     ${uri}=             Set Variable        ${basePath}/v1/dataspaces/${dataspaceName}/anchors/${anchorName}/node
