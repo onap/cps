@@ -44,8 +44,8 @@ class CmNotificationSubscriptionPersistenceServiceImplSpec extends Specification
         then: 'we get expected response'
             assert response == isOngoingCmSubscription
         where: 'following scenarios are used'
-            scenario                  | dataNode                                                                        || isOngoingCmSubscription
-            'valid datanodes present' | [new DataNode(xpath: '/cps/path', leaves: ['subscribers': ['sub-1', 'sub-2']])] || true
-            'no datanodes present'    | []                                                                              || false
+            scenario                  | dataNode                                                                            || isOngoingCmSubscription
+            'valid datanodes present' | [new DataNode(xpath: '/cps/path', leaves: ['subscriptionIds': ['sub-1', 'sub-2']])] || true
+            'no datanodes present'    | []                                                                                  || false
     }
 }
