@@ -96,6 +96,54 @@
       },
       "revId": "0cea818c07759201bf136bf65a8472f1de687bac",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07135752_12ee12a0",
+        "filename": "cps-events/src/main/resources/schemas/updatenode/cps-data-updated-event-schema-1.0.0.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-13T09:24:09Z",
+      "side": 1,
+      "message": "next patch from rajesh.",
+      "parentUuid": "18805678_a0748edf",
+      "range": {
+        "startLine": 15,
+        "startChar": 146,
+        "endLine": 15,
+        "endChar": 163
+      },
+      "revId": "0cea818c07759201bf136bf65a8472f1de687bac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4000440_8c3e16cf",
+        "filename": "cps-events/src/main/resources/schemas/updatenode/cps-data-updated-event-schema-1.0.0.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-13T09:24:09Z",
+      "side": 1,
+      "message": "to be handled in the next patch.",
+      "parentUuid": "14df9eb1_293e959f",
+      "range": {
+        "startLine": 15,
+        "startChar": 135,
+        "endLine": 15,
+        "endChar": 145
+      },
+      "revId": "0cea818c07759201bf136bf65a8472f1de687bac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ],
   "submitRequirementResults": [
