@@ -67,6 +67,22 @@ spring:
       max-file-size: 100MB
       max-request-size: 100MB
 
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVER:localhost:9092}
+    security:
+      protocol: PLAINTEXT
+    producer:
+      value-serializer: io.cloudevents.kafka.CloudEventSerializer
+      client-id: cps-core
+    consumer:
+      group-id: ${NCMP_CONSUMER_GROUP_ID:ncmp-group}
+      key-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      properties:
+        spring.deserializer.key.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
+        spring.deserializer.value.delegate.class: io.cloudevents.kafka.CloudEventDeserializer
+        spring.json.use.type.headers: false
+
   jackson:
     default-property-inclusion: NON_NULL
     serialization:
@@ -76,8 +92,35 @@ spring:
     init:
       mode: ALWAYS
 
+app:
+  ncmp:
+    async-m2m:
+      topic: ${NCMP_ASYNC_M2M_TOPIC:ncmp-async-m2m}
+    avc:
+      subscription-topic: ${NCMP_CM_AVC_SUBSCRIPTION:subscription}
+      subscription-forward-topic-prefix: ${NCMP_FORWARD_CM_AVC_SUBSCRIPTION:ncmp-dmi-cm-avc-subscription-}
+      subscription-response-topic: ${NCMP_RESPONSE_CM_AVC_SUBSCRIPTION:dmi-ncmp-cm-avc-subscription}
+      subscription-outcome-topic: ${NCMP_OUTCOME_CM_AVC_SUBSCRIPTION:subscription-response}
+      cm-events-topic: ${NCMP_CM_EVENTS_TOPIC:cm-events}
+  lcm:
+    events:
+      topic: ${LCM_EVENTS_TOPIC:ncmp-events}
+  dmi:
+    cm-events:
+      topic: ${DMI_CM_EVENTS_TOPIC:dmi-cm-events}
+    device-heartbeat:
+      topic: ${DMI_DEVICE_HEARTBEAT_TOPIC:dmi-device-heartbeat}
+
 notification:
   enabled: false
+  async:
+    executor:
+      core-pool-size: 2
+      max-pool-size: 10
+      queue-capacity: 500
+      wait-for-tasks-to-complete-on-shutdown: true
+      thread-name-prefix: Async-
+      time-out-value-in-ms: 2000
 
 springdoc:
   swagger-ui:
@@ -118,6 +161,57 @@ logging:
       springframework: INFO
       onap:
         cps: INFO
+
+ncmp:
+  dmi:
+    httpclient:
+      connectionTimeoutInSeconds: 180
+      maximumConnectionsPerRoute: 50
+      maximumConnectionsTotal: 100
+      idleConnectionEvictionThresholdInSeconds: 5
+    auth:
+      username: dmi
+      password: dmi
+      enabled: false
+    api:
+      base-path: dmi
+
+  timers:
+    advised-modules-sync:
+      sleep-time-ms: 100000
+    locked-modules-sync:
+      sleep-time-ms: 300000
+    cm-handle-data-sync:
+      sleep-time-ms: 30000
+    subscription-forwarding:
+      dmi-response-timeout-ms: 30000
+    model-loader:
+      retry-time-ms: 1000
+    trust-level:
+      dmi-availability-watchdog-ms: 30000
+
+  modules-sync-watchdog:
+    async-executor:
+      parallelism-level: 1
+
+  model-loader:
+    subscription: true
+    maximum-attempt-count: 20
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 100MB
+      max-request-size: 100MB
+
+  jackson:
+    default-property-inclusion: NON_NULL
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
+
+  sql:
+    init:
+      mode: ALWAYS
 
 hazelcast:
   cluster-name: cps-and-ncmp-test-caches
