@@ -16,6 +16,46 @@
       "message": "recheck",
       "revId": "ad1e9187b6d48beedeab79e68726b66e973ce195",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "548c776c_44ce84e7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapper.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-13T18:00:36Z",
+      "side": 1,
+      "message": "when we decide to NOT use cacheing we need to rename this class and these methods but we wont do that now",
+      "range": {
+        "startLine": 62,
+        "startChar": 19,
+        "endLine": 62,
+        "endChar": 29
+      },
+      "revId": "ad1e9187b6d48beedeab79e68726b66e973ce195",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04b1a351_53109f15",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/CmHandleIdMapperSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-13T18:00:36Z",
+      "side": 1,
+      "message": "the mapper wil change if we decide not to use cache so i wont review this for now!",
+      "revId": "ad1e9187b6d48beedeab79e68726b66e973ce195",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
