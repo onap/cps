@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1438757c_c78d7bd3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-02-13T13:04:36Z",
+      "side": 1,
+      "message": "-1 til after prefix updated",
+      "revId": "582e05644f79fa52dfb571422c31006433633ab3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a44a699c_e41b31ed",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/mapper/CmNotificationSubscriptionDmiInEventMapper.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-02-13T13:04:36Z",
+      "side": 1,
+      "message": "CmNotification",
+      "range": {
+        "startLine": 32,
+        "startChar": 71,
+        "endLine": 32,
+        "endChar": 90
+      },
+      "revId": "582e05644f79fa52dfb571422c31006433633ab3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
