@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8acc2f95_f2fda64e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/mapper/CmNotificationSubscriptionDmiInEventMapper.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-13T09:33:11Z",
+      "side": 1,
+      "message": "Nb plural Handles",
+      "range": {
+        "startLine": 85,
+        "startChar": 29,
+        "endLine": 85,
+        "endChar": 51
+      },
+      "revId": "9367503a27dcf3cfbf6ebe16efacbad809ac4709",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "448e6d4a_75a676b7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/mapper/CmNotificationSubscriptionDmiInEventMapperSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-13T09:33:11Z",
+      "side": 1,
+      "message": "Nb null check not needed",
+      "range": {
+        "startLine": 51,
+        "startChar": 12,
+        "endLine": 51,
+        "endChar": 33
+      },
+      "revId": "9367503a27dcf3cfbf6ebe16efacbad809ac4709",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
