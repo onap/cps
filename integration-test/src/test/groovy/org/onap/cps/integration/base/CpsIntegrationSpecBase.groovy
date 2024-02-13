@@ -27,6 +27,9 @@ import org.onap.cps.api.CpsDataspaceService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.integration.DatabaseTestContainer
+import org.onap.cps.ncmp.api.NetworkCmProxyCmHandleQueryService
+import org.onap.cps.ncmp.api.NetworkCmProxyDataService
+import org.onap.cps.ncmp.api.NetworkCmProxyQueryService
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.repository.DataspaceRepository
@@ -37,6 +40,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories
+import org.springframework.web.client.RestTemplate
 import org.testcontainers.spock.Testcontainers
 import spock.lang.Shared
 import spock.lang.Specification
@@ -69,6 +73,18 @@ abstract class CpsIntegrationSpecBase extends Specification {
 
     @Autowired
     SessionManager sessionManager
+
+    @Autowired
+    RestTemplate restTemplate
+
+    @Autowired
+    NetworkCmProxyCmHandleQueryService networkCmProxyCmHandleQueryService
+
+    @Autowired
+    NetworkCmProxyDataService networkCmProxyDataService
+
+    @Autowired
+    NetworkCmProxyQueryService networkCmProxyQueryService
 
     def static GENERAL_TEST_DATASPACE = 'generalTestDataspace'
     def static BOOKSTORE_SCHEMA_SET = 'bookstoreSchemaSet'
