@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23360a6c_7ecb82cb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-13T11:33:18Z",
+      "side": 1,
+      "message": "the main changelog file and the test one are the same.\nWas it just a copy paste for the test ??",
+      "revId": "a7b63399e35c874db4fd269d221aeb9caed1b295",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
