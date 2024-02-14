@@ -16,6 +16,69 @@
       "message": "run-sonar",
       "revId": "160b8a7afd7291dcc2f3e6f66892909235df8996",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4830dff4_6faa1a97",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-14T17:51:02Z",
+      "side": 1,
+      "message": "some first observations",
+      "revId": "160b8a7afd7291dcc2f3e6f66892909235df8996",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6dbcd5e5_2f0a2364",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpCmHandleRegistrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-14T17:51:02Z",
+      "side": 1,
+      "message": "should we extract this out and give it a meaningful name\ne.g MokcDMIServerApi(prefix)",
+      "range": {
+        "startLine": 66,
+        "startChar": 44,
+        "endLine": 66,
+        "endChar": 73
+      },
+      "revId": "160b8a7afd7291dcc2f3e6f66892909235df8996",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2630aad5_8b5bcd41",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpCmHandleRegistrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-14T17:51:02Z",
+      "side": 1,
+      "message": "what does this do exactly?",
+      "range": {
+        "startLine": 89,
+        "startChar": 25,
+        "endLine": 89,
+        "endChar": 34
+      },
+      "revId": "160b8a7afd7291dcc2f3e6f66892909235df8996",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
