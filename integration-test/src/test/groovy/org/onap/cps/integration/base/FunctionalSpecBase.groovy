@@ -23,7 +23,7 @@ package org.onap.cps.integration.base
 
 import java.time.OffsetDateTime
 
-class FunctionalSpecBase extends CpsIntegrationSpecBase {
+abstract class FunctionalSpecBase extends CpsIntegrationSpecBase {
 
     def static FUNCTIONAL_TEST_DATASPACE_1 = 'functionalTestDataspace1'
     def static FUNCTIONAL_TEST_DATASPACE_2 = 'functionalTestDataspace2'
