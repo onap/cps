@@ -39,6 +39,30 @@
       },
       "revId": "99788b942d0774a4c7ca1426ce2639fd051c6396",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0159ae83_db8e0cc4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionDelta.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-02-14T10:26:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "39d27ef4_9ca870b4",
+      "range": {
+        "startLine": 35,
+        "startChar": 13,
+        "endLine": 35,
+        "endChar": 32
+      },
+      "revId": "99788b942d0774a4c7ca1426ce2639fd051c6396",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
