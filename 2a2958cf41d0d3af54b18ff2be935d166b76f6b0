@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4886eac7_9d7901ec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-14T10:16:53Z",
+      "side": 1,
+      "message": "quick view only, looks good",
+      "revId": "2a2958cf41d0d3af54b18ff2be935d166b76f6b0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30cf5631_77698282",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-14T10:16:53Z",
+      "side": 1,
+      "message": "nice idea!",
+      "range": {
+        "startLine": 120,
+        "startChar": 44,
+        "endLine": 120,
+        "endChar": 51
+      },
+      "revId": "2a2958cf41d0d3af54b18ff2be935d166b76f6b0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1f0af28_360e7112",
+        "filename": "integration-test/src/test/resources/application.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-14T10:16:53Z",
+      "side": 1,
+      "message": "These are important updates of course!\nWE nee do get into the habit of keeping the test yaml in step with the application one. No easy way to enforce it I suppose, just think of it durign reviews...",
+      "revId": "2a2958cf41d0d3af54b18ff2be935d166b76f6b0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
