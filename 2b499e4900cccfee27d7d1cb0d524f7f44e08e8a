@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "590e9583_31af4ffb",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-14T10:37:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f934cfcf_c868b7c1",
+      "range": {
+        "startLine": 152,
+        "startChar": 24,
+        "endLine": 152,
+        "endChar": 38
+      },
+      "revId": "2b499e4900cccfee27d7d1cb0d524f7f44e08e8a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "92a4ebef_0321d8b3",
@@ -71,6 +95,30 @@
       "writtenOn": "2024-02-14T08:39:45Z",
       "side": 1,
       "message": "NB: could extract this out in a constant and give meaning and make this part easier to read",
+      "range": {
+        "startLine": 161,
+        "startChar": 50,
+        "endLine": 161,
+        "endChar": 115
+      },
+      "revId": "2b499e4900cccfee27d7d1cb0d524f7f44e08e8a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "38fa06ce_9a9e3412",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-14T10:37:48Z",
+      "side": 1,
+      "message": "I\u0027m not gonna do handle this now (all the SQL in this module is inline like this).\nI\u0027ve created a tech debt ticket CPS-2093 to tidy up this class",
+      "parentUuid": "92a4ebef_0321d8b3",
       "range": {
         "startLine": 161,
         "startChar": 50,
