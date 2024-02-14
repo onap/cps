@@ -16,6 +16,69 @@
       "message": "recheck",
       "revId": "2b499e4900cccfee27d7d1cb0d524f7f44e08e8a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac06bc0f_f7c5bbd3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-14T08:39:45Z",
+      "side": 1,
+      "message": "looks good, 2 minor sugegstions",
+      "revId": "2b499e4900cccfee27d7d1cb0d524f7f44e08e8a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f934cfcf_c868b7c1",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-14T08:39:45Z",
+      "side": 1,
+      "message": "suggestion: addConditionOnAbsoluteParent\nor: addConditionOnAbsoluteParentIfPresent",
+      "range": {
+        "startLine": 152,
+        "startChar": 24,
+        "endLine": 152,
+        "endChar": 38
+      },
+      "revId": "2b499e4900cccfee27d7d1cb0d524f7f44e08e8a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92a4ebef_0321d8b3",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-14T08:39:45Z",
+      "side": 1,
+      "message": "NB: could extract this out in a constant and give meaning and make this part easier to read",
+      "range": {
+        "startLine": 161,
+        "startChar": 50,
+        "endLine": 161,
+        "endChar": 115
+      },
+      "revId": "2b499e4900cccfee27d7d1cb0d524f7f44e08e8a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
