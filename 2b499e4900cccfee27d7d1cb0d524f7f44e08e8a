@@ -127,6 +127,30 @@
       },
       "revId": "2b499e4900cccfee27d7d1cb0d524f7f44e08e8a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2d6754f_ae051dc8",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-14T10:48:11Z",
+      "side": 1,
+      "message": "ok, was only a minor suggestion anyway",
+      "parentUuid": "38fa06ce_9a9e3412",
+      "range": {
+        "startLine": 161,
+        "startChar": 50,
+        "endLine": 161,
+        "endChar": 115
+      },
+      "revId": "2b499e4900cccfee27d7d1cb0d524f7f44e08e8a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
