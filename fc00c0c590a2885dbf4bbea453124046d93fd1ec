@@ -3,6 +3,98 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4be38799_48d318fa",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpCmHandleRegistrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-15T17:06:01Z",
+      "side": 1,
+      "message": "def",
+      "range": {
+        "startLine": 47,
+        "startChar": 11,
+        "endLine": 47,
+        "endChar": 17
+      },
+      "revId": "fc00c0c590a2885dbf4bbea453124046d93fd1ec",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15a08a3f_3785a8d9",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpCmHandleRegistrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-15T17:06:01Z",
+      "side": 1,
+      "message": "probbaly not needed",
+      "range": {
+        "startLine": 47,
+        "startChar": 4,
+        "endLine": 47,
+        "endChar": 11
+      },
+      "revId": "fc00c0c590a2885dbf4bbea453124046d93fd1ec",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6fd6ef9b_24f4595a",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpCmHandleRegistrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-15T17:06:01Z",
+      "side": 1,
+      "message": "probably not needed",
+      "range": {
+        "startLine": 132,
+        "startChar": 12,
+        "endLine": 132,
+        "endChar": 65
+      },
+      "revId": "fc00c0c590a2885dbf4bbea453124046d93fd1ec",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc921dbb_cf3b6600",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpCmHandleRegistrationSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-15T17:06:01Z",
+      "side": 1,
+      "message": "For negatives I prefer: assert condition \u003d\u003d false",
+      "range": {
+        "startLine": 138,
+        "startChar": 19,
+        "endLine": 138,
+        "endChar": 20
+      },
+      "revId": "fc00c0c590a2885dbf4bbea453124046d93fd1ec",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7e3749c8_7109af95",
         "filename": "integration-test/src/test/resources/data/mock-dmi-responses/ietfYangModuleResourcesResponse.json",
         "patchSetId": 4
