@@ -33,6 +33,92 @@
       "message": "recheck",
       "revId": "4eafe7a8db6a6700b9c3b367407266b54812d0e9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b77fac58_eb28e8fc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-15T10:07:42Z",
+      "side": 1,
+      "message": "only review the first file and want to discuss before we continue...",
+      "revId": "4eafe7a8db6a6700b9c3b367407266b54812d0e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32539446_afbc3636",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-15T10:07:42Z",
+      "side": 1,
+      "message": "Dont think tou need the \"For...\" bit, it cant be for anything else!",
+      "range": {
+        "startLine": 80,
+        "startChar": 33,
+        "endLine": 80,
+        "endChar": 51
+      },
+      "revId": "4eafe7a8db6a6700b9c3b367407266b54812d0e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c085a774_2eaa257d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-15T10:07:42Z",
+      "side": 1,
+      "message": "I woudl move this to line #85",
+      "range": {
+        "startLine": 101,
+        "startChar": 16,
+        "endLine": 101,
+        "endChar": 59
+      },
+      "revId": "4eafe7a8db6a6700b9c3b367407266b54812d0e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25c49351_d227003a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-15T10:07:42Z",
+      "side": 1,
+      "message": "I dont understand why this is true now!\nI think the issue is the name of the boolean. WE proably need a small discusion\n\n\nMaybe it should be: \"needToCreateAnAnchor\" ?",
+      "range": {
+        "startLine": 112,
+        "startChar": 16,
+        "endLine": 112,
+        "endChar": 59
+      },
+      "revId": "4eafe7a8db6a6700b9c3b367407266b54812d0e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
