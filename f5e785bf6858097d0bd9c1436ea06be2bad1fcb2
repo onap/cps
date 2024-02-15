@@ -16,6 +16,142 @@
       "message": "recheck",
       "revId": "f5e785bf6858097d0bd9c1436ea06be2bad1fcb2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e6cff82_ecf4f0b1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-02-15T13:59:33Z",
+      "side": 1,
+      "message": "these comments are related to reporting",
+      "revId": "f5e785bf6858097d0bd9c1436ea06be2bad1fcb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e073382a_6719123c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 389,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-02-15T13:59:33Z",
+      "side": 1,
+      "message": "rename to rejectedCmHandleIds",
+      "revId": "f5e785bf6858097d0bd9c1436ea06be2bad1fcb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdcad119_6d7bbdd7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-02-15T13:59:33Z",
+      "side": 1,
+      "message": "ignore the rejected ids",
+      "revId": "f5e785bf6858097d0bd9c1436ea06be2bad1fcb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91e259fe_0eb13fbe",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-02-15T13:59:33Z",
+      "side": 1,
+      "message": "add a catch block here\nadd the rejected cmhandles to the duplicated cmhandleids. catch the AlreadyDefinedException then throw the combines list up\nif the rejected cmhandles ids list not empty throw a new exception if it was not thrown before",
+      "revId": "f5e785bf6858097d0bd9c1436ea06be2bad1fcb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62e315dd_c38b4aa1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/AlternateIdChecker.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-02-15T13:59:33Z",
+      "side": 1,
+      "message": "void",
+      "revId": "f5e785bf6858097d0bd9c1436ea06be2bad1fcb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f1aaefe_fc176bf8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/AlternateIdChecker.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-02-15T13:59:33Z",
+      "side": 1,
+      "message": "collection of rejected cmhandleids instead of this",
+      "revId": "f5e785bf6858097d0bd9c1436ea06be2bad1fcb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eabeb35b_53f45072",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/AlternateIdChecker.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-02-15T13:59:33Z",
+      "side": 1,
+      "message": "add to the rejected cmhandleids in the else block",
+      "revId": "f5e785bf6858097d0bd9c1436ea06be2bad1fcb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f034603_7f42928e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/AlternateIdChecker.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-02-15T13:59:33Z",
+      "side": 1,
+      "message": "return the rejected ones!",
+      "revId": "f5e785bf6858097d0bd9c1436ea06be2bad1fcb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
