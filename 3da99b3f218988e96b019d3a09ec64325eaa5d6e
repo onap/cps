@@ -35,6 +35,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c8059e1_110b42db",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-15T19:38:43Z",
+      "side": 1,
+      "message": "Please store the postman collection directly as json files. That way, we can see future changes to them in text without needing to download the commit.\n\nIn general, you should avoid storing binary files like ZIP in git, as it isn\u0027t optimized for binary, only text. (I had issues on another project with git repo running out of space because of binary files)",
+      "revId": "3da99b3f218988e96b019d3a09ec64325eaa5d6e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aeb30028_5e7066ec",
