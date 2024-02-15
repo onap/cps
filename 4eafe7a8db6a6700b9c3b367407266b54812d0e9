@@ -52,6 +52,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e204c908_ee80bdc8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-15T11:45:38Z",
+      "side": 1,
+      "message": "some NB reviews...",
+      "revId": "4eafe7a8db6a6700b9c3b367407266b54812d0e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "32539446_afbc3636",
@@ -116,6 +133,236 @@
         "startChar": 16,
         "endLine": 112,
         "endChar": 59
+      },
+      "revId": "4eafe7a8db6a6700b9c3b367407266b54812d0e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ded7dc4a_d0f18088",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-15T11:45:38Z",
+      "side": 1,
+      "message": "NB: Are they really comes from the caches or db?",
+      "range": {
+        "startLine": 203,
+        "startChar": 71,
+        "endLine": 203,
+        "endChar": 80
+      },
+      "revId": "4eafe7a8db6a6700b9c3b367407266b54812d0e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64f88154_d11423ac",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-15T11:45:38Z",
+      "side": 1,
+      "message": "Does it used in any place?",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 53
+      },
+      "revId": "4eafe7a8db6a6700b9c3b367407266b54812d0e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2231a1b5_d525364f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-15T11:45:38Z",
+      "side": 1,
+      "message": "NB:maybe to short to extract a method, can be inline?",
+      "range": {
+        "startLine": 434,
+        "startChar": 1,
+        "endLine": 437,
+        "endChar": 5
+      },
+      "revId": "4eafe7a8db6a6700b9c3b367407266b54812d0e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19bec147_daebc9d4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncServiceSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-15T11:45:38Z",
+      "side": 1,
+      "message": "NB: updating copyright",
+      "range": {
+        "startLine": 3,
+        "startChar": 23,
+        "endLine": 3,
+        "endChar": 28
+      },
+      "revId": "4eafe7a8db6a6700b9c3b367407266b54812d0e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96f78abc_0431aff9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncServiceSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-15T11:45:38Z",
+      "side": 1,
+      "message": "NB: does these parentheses are really needed?",
+      "range": {
+        "startLine": 160,
+        "startChar": 72,
+        "endLine": 160,
+        "endChar": 101
+      },
+      "revId": "4eafe7a8db6a6700b9c3b367407266b54812d0e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2befe68f_14fa9c55",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-15T11:45:38Z",
+      "side": 1,
+      "message": "NB: Redundant",
+      "range": {
+        "startLine": 87,
+        "startChar": 7,
+        "endLine": 87,
+        "endChar": 26
+      },
+      "revId": "4eafe7a8db6a6700b9c3b367407266b54812d0e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "261c81b4_cda9c586",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-15T11:45:38Z",
+      "side": 1,
+      "message": "NB: Redundant",
+      "range": {
+        "startLine": 96,
+        "startChar": 7,
+        "endLine": 96,
+        "endChar": 50
+      },
+      "revId": "4eafe7a8db6a6700b9c3b367407266b54812d0e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c7a3d14_22b6984f",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-15T11:45:38Z",
+      "side": 1,
+      "message": "NB: Redundant",
+      "range": {
+        "startLine": 112,
+        "startChar": 7,
+        "endLine": 112,
+        "endChar": 62
+      },
+      "revId": "4eafe7a8db6a6700b9c3b367407266b54812d0e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99dda50f_2316eb1e",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-15T11:45:38Z",
+      "side": 1,
+      "message": "NB: Summary can be shortned.",
+      "range": {
+        "startLine": 125,
+        "startChar": 7,
+        "endLine": 125,
+        "endChar": 86
+      },
+      "revId": "4eafe7a8db6a6700b9c3b367407266b54812d0e9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8b5dd85_336c4589",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-15T11:45:38Z",
+      "side": 1,
+      "message": "NB: can be mentioned with @param annotation",
+      "range": {
+        "startLine": 126,
+        "startChar": 26,
+        "endLine": 126,
+        "endChar": 51
       },
       "revId": "4eafe7a8db6a6700b9c3b367407266b54812d0e9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
