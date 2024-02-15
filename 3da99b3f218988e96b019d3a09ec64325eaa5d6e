@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "044e1526_cf974c3d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-15T17:31:25Z",
+      "side": 1,
+      "message": "Just wondering about the ZIP file, maybe discuss with Daniel and Halil:\n\nZip is ding all eth content changes would just lead to a new ZIP file with no visibility what had changes. IS it hard to explode the zip files and store (and re-use) the content directly?",
+      "revId": "3da99b3f218988e96b019d3a09ec64325eaa5d6e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aeb30028_5e7066ec",
