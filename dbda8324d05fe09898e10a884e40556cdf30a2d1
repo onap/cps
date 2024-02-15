@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f8e6891_cb981af2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-15T09:10:54Z",
+      "side": 1,
+      "message": "loosk good, a few minor suggestions",
+      "revId": "dbda8324d05fe09898e10a884e40556cdf30a2d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc8276e4_c45ab166",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/base/NcmpPerfTestBase.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-15T09:10:54Z",
+      "side": 1,
+      "message": "NB: TOTAL_CM_HANDLES",
+      "range": {
+        "startLine": 33,
+        "startChar": 21,
+        "endLine": 33,
+        "endChar": 29
+      },
+      "revId": "dbda8324d05fe09898e10a884e40556cdf30a2d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e23e876_eea0c7d5",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/base/NcmpPerfTestBase.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-15T09:10:54Z",
+      "side": 1,
+      "message": "just wondering. YOu are pre-populating DB here with 20K nodes.\nCan we still do a test to ADD anoterh 20K Nodes (in batch of 300) as done IN Ericsson ?",
+      "range": {
+        "startLine": 73,
+        "startChar": 8,
+        "endLine": 73,
+        "endChar": 23
+      },
+      "revId": "dbda8324d05fe09898e10a884e40556cdf30a2d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66b9ccc9_762c28b5",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/CmHandleQueryPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-15T09:10:54Z",
+      "side": 1,
+      "message": "why adding ths limit?",
+      "range": {
+        "startLine": 61,
+        "startChar": 44,
+        "endLine": 61,
+        "endChar": 54
+      },
+      "revId": "dbda8324d05fe09898e10a884e40556cdf30a2d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6af790d7_0148c712",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/CmHandleQueryPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-15T09:10:54Z",
+      "side": 1,
+      "message": "NB: Probably change this into 1 bloick and mention average below (ee next comment)\ngiven: \u0027a 100 db look ups\u0027",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 46
+      },
+      "revId": "dbda8324d05fe09898e10a884e40556cdf30a2d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c72c574_826005ee",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/CmHandleQueryPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-15T09:10:54Z",
+      "side": 1,
+      "message": "average performcne is as expected",
+      "range": {
+        "startLine": 87,
+        "startChar": 14,
+        "endLine": 87,
+        "endChar": 40
+      },
+      "revId": "dbda8324d05fe09898e10a884e40556cdf30a2d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18a82afb_0c4ab3d2",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/CmHandleQueryPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-15T09:10:54Z",
+      "side": 1,
+      "message": "extract out for better readability:\nexpectedAverageResponsTime \u003d TimeUnit.MILLISECONDS.toSeconds(2);",
+      "range": {
+        "startLine": 89,
+        "startChar": 20,
+        "endLine": 89,
+        "endChar": 25
+      },
+      "revId": "dbda8324d05fe09898e10a884e40556cdf30a2d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97091454_099b3736",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/CmHandleQueryPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-15T09:10:54Z",
+      "side": 1,
+      "message": "similar comments as prev test",
+      "range": {
+        "startLine": 93,
+        "startChar": 4,
+        "endLine": 93,
+        "endChar": 51
+      },
+      "revId": "dbda8324d05fe09898e10a884e40556cdf30a2d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
