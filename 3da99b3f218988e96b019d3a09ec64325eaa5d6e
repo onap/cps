@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec5466ac_e1ea9d47",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-15T16:38:12Z",
+      "side": 1,
+      "message": "initial observations has been shared NB",
+      "revId": "3da99b3f218988e96b019d3a09ec64325eaa5d6e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aeb30028_5e7066ec",
+        "filename": "postman-collections/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-15T16:38:12Z",
+      "side": 1,
+      "message": "Overall NB: maybe better to have steps to import the postman collection for those who sporadically use the postman like:\n1. unzip \"cps-postman-collections.zip\" to its own folder\n2. Create a Workspace\n3. Drag and drop the \"cps-postman-collections\" folder into the import pop-up.\n\nand so on...",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 196
+      },
+      "revId": "3da99b3f218988e96b019d3a09ec64325eaa5d6e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
