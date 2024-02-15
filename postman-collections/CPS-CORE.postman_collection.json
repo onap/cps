@@ -1,0 +1,781 @@
+{
+    "info": {
+        "_postman_id": "e86df76f-6b33-4648-ba66-ea9d3129c052",
+        "name": "CPS-CORE",
+        "description": "A collection of the endpoints in CPS-CORE. This is not an exhaustive collection but captures the main functionality.\n\nTo perform this functionality execute the API calls in order to create a dataspace, schema set (file is provided), anchor, and data node. Then GET the nodes to retrieve the information. The APIs in CPS-ADMIN can be used after initial POST requests.\n\nbookstore-model.yang can be found at cps/postman-collections/bookstore-model.yang",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "_exporter_id": "17907116"
+    },
+    "item": [
+        {
+            "name": "CPS-ADMIN",
+            "item": [
+                {
+                    "name": "Get all dataspaces",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/admin/dataspaces",
+                            "protocol": "http",
+                            "host": [
+                                "{{CPS_HOST}}"
+                            ],
+                            "port": "{{CPS_PORT}}",
+                            "path": [
+                                "cps",
+                                "api",
+                                "v2",
+                                "admin",
+                                "dataspaces"
+                            ]
+                        },
+                        "description": "Read all dataspaces"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get a dataspace",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/admin/dataspaces/my-store",
+                            "protocol": "http",
+                            "host": [
+                                "{{CPS_HOST}}"
+                            ],
+                            "port": "{{CPS_PORT}}",
+                            "path": [
+                                "cps",
+                                "api",
+                                "v2",
+                                "admin",
+                                "dataspaces",
+                                "my-store"
+                            ]
+                        },
+                        "description": "Read a dataspace given a dataspace name"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get anchors",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors",
+                            "protocol": "http",
+                            "host": [
+                                "{{CPS_HOST}}"
+                            ],
+                            "port": "{{CPS_PORT}}",
+                            "path": [
+                                "cps",
+                                "api",
+                                "v2",
+                                "dataspaces",
+                                "my-store",
+                                "anchors"
+                            ]
+                        },
+                        "description": "Read all anchors, given a dataspace"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get an anchor",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor",
+                            "protocol": "http",
+                            "host": [
+                                "{{CPS_HOST}}"
+                            ],
+                            "port": "{{CPS_PORT}}",
+                            "path": [
+                                "cps",
+                                "api",
+                                "v2",
+                                "dataspaces",
+                                "my-store",
+                                "anchors",
+                                "bookstore-anchor"
+                            ]
+                        },
+                        "description": "Read all anchors, given a dataspace"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get schema sets",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/schema-sets",
+                            "protocol": "http",
+                            "host": [
+                                "{{CPS_HOST}}"
+                            ],
+                            "port": "{{CPS_PORT}}",
+                            "path": [
+                                "cps",
+                                "api",
+                                "v2",
+                                "dataspaces",
+                                "my-store",
+                                "schema-sets"
+                            ]
+                        },
+                        "description": "Read all schema sets, given a dataspace"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get a schema set",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/schema-sets/stores-module",
+                            "protocol": "http",
+                            "host": [
+                                "{{CPS_HOST}}"
+                            ],
+                            "port": "{{CPS_PORT}}",
+                            "path": [
+                                "cps",
+                                "api",
+                                "v2",
+                                "dataspaces",
+                                "my-store",
+                                "schema-sets",
+                                "stores-module"
+                            ]
+                        },
+                        "description": "Read a schema set given a schema set name and a dataspace"
+                    },
+                    "response": []
+                }
+            ],
+            "description": "Some endpoints of CPS-ADMIN not mentioed in the CPS-CORE folder"
+        },
+        {
+            "name": "Create Dataspace",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces?dataspace-name=my-store",
+                    "protocol": "http",
+                    "host": [
+                        "{{CPS_HOST}}"
+                    ],
+                    "port": "{{CPS_PORT}}",
+                    "path": [
+                        "cps",
+                        "api",
+                        "v2",
+                        "dataspaces"
+                    ],
+                    "query": [
+                        {
+                            "key": "dataspace-name",
+                            "value": "my-store"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Create Schema Set",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data",
+                        "type": "text",
+                        "disabled": true
+                    }
+                ],
+                "body": {
+                    "mode": "formdata",
+                    "formdata": [
+                        {
+                            "key": "file",
+                            "type": "file",
+                            "src": "cps/postman-collections/bookstore.zip"
+                        }
+                    ]
+                },
+                "url": {
+                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/schema-sets?schema-set-name=stores-module",
+                    "protocol": "http",
+                    "host": [
+                        "{{CPS_HOST}}"
+                    ],
+                    "port": "{{CPS_PORT}}",
+                    "path": [
+                        "cps",
+                        "api",
+                        "v2",
+                        "dataspaces",
+                        "my-store",
+                        "schema-sets"
+                    ],
+                    "query": [
+                        {
+                            "key": "schema-set-name",
+                            "value": "stores-module"
+                        }
+                    ]
+                },
+                "description": "Make sure in the body there is form data. key = file and value will be the zip/yang file."
+            },
+            "response": []
+        },
+        {
+            "name": "Create Anchor",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors?schema-set-name=stores-module&anchor-name=bookstore-anchor",
+                    "protocol": "http",
+                    "host": [
+                        "{{CPS_HOST}}"
+                    ],
+                    "port": "{{CPS_PORT}}",
+                    "path": [
+                        "cps",
+                        "api",
+                        "v2",
+                        "dataspaces",
+                        "my-store",
+                        "anchors"
+                    ],
+                    "query": [
+                        {
+                            "key": "schema-set-name",
+                            "value": "stores-module"
+                        },
+                        {
+                            "key": "anchor-name",
+                            "value": "bookstore-anchor"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Create DataNodes",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"bookstore-address\": [\n        {\n            \"bookstore-name\": \"Easons\",\n            \"address\": \"Dublin,Ireland\",\n            \"postal-code\": \"D02HA21\"\n        }\n    ],\n    \"bookstore\": {\n        \"bookstore-name\": \"Easons\",\n        \"premises\": {\n            \"addresses\": [\n                {\n                    \"house-number\": 2,\n                    \"street\": \"Main Street\",\n                    \"town\": \"Maynooth\",\n                    \"county\": \"Kildare\"\n                },\n                {\n                    \"house-number\": 24,\n                    \"street\": \"Grafton Street\",\n                    \"town\": \"Dublin\",\n                    \"county\": \"Dublin\"\n                }\n            ]\n        },\n        \"categories\": [\n            {\n                \"code\": 1,\n                \"name\": \"Children\",\n                \"books\": [\n                    {\n                        \"title\": \"Matilda\",\n                        \"lang\": \"English\",\n                        \"authors\": [\n                            \"Roald Dahl\"\n                        ],\n                        \"editions\": [\n                            1988,\n                            2000\n                        ],\n                        \"price\": 20\n                    },\n                    {\n                        \"title\": \"The Gruffalo\",\n                        \"lang\": \"English\",\n                        \"authors\": [\n                            \"Julia Donaldson\"\n                        ],\n                        \"editions\": [\n                            1999\n                        ],\n                        \"price\": 15\n                    }\n                ]\n            },\n            {\n                \"code\": 2,\n                \"name\": \"Thriller\",\n                \"books\": [\n                    {\n                        \"title\": \"Annihilation\",\n                        \"lang\": \"English\",\n                        \"authors\": [\n                            \"Jeff VanderMeer\"\n                        ],\n                        \"editions\": [\n                            2014\n                        ],\n                        \"price\": 15\n                    }\n                ]\n            },\n            {\n                \"code\": 3,\n                \"name\": \"Comedy\",\n                \"books\": [\n                    {\n                        \"title\": \"Good Omens\",\n                        \"lang\": \"English\",\n                        \"authors\": [\n                            \"Neil Gaiman\",\n                            \"Terry Pratchett\"\n                        ],\n                        \"editions\": [\n                            2006\n                        ],\n                        \"price\": 13\n                    },\n                    {\n                        \"title\": \"The Colour of Magic\",\n                        \"lang\": \"English\",\n                        \"authors\": [\n                            \"Terry Pratchett\"\n                        ],\n                        \"editions\": [\n                            1983\n                        ],\n                        \"price\": 12\n                    },\n                    {\n                        \"title\": \"The Light Fantastic\",\n                        \"lang\": \"English\",\n                        \"authors\": [\n                            \"Terry Pratchett\"\n                        ],\n                        \"editions\": [\n                            1986\n                        ],\n                        \"price\": 14\n                    },\n                    {\n                        \"title\": \"A Book with No Language\",\n                        \"lang\": \"\",\n                        \"authors\": [\n                            \"Joe Bloggs\"\n                        ],\n                        \"editions\": [\n                            2023\n                        ],\n                        \"price\": 20\n                    }\n                ]\n            },\n            {\n                \"code\": 4,\n                \"name\": \"Computing\",\n                \"books\": [\n                    {\n                        \"title\": \"Debian GNU/Linux\",\n                        \"lang\": \"German\",\n                        \"authors\": [\n                            \"Peter H. Ganten\",\n                            \"Wulf Alex\"\n                        ],\n                        \"editions\": [\n                            2007,\n                            2013,\n                            2021\n                        ],\n                        \"price\": 39\n                    },\n                    {\n                        \"title\": \"Logarithm tables\",\n                        \"lang\": \"N/A\",\n                        \"authors\": [\n                            \"Joe Bloggs\"\n                        ],\n                        \"editions\": [\n                            2009\n                        ],\n                        \"price\": 11\n                    }\n                ]\n            },\n            {\n                \"code\": 5,\n                \"name\": \"Discount books\",\n                \"books\": [\n                    {\n                        \"title\": \"Book 1\",\n                        \"lang\": \"blah\",\n                        \"authors\": [],\n                        \"editions\": [],\n                        \"price\": 1\n                    },\n                    {\n                        \"title\": \"Book 2\",\n                        \"lang\": \"blah\",\n                        \"authors\": [],\n                        \"editions\": [],\n                        \"price\": 2\n                    },\n                    {\n                        \"title\": \"Book 3\",\n                        \"lang\": \"blah\",\n                        \"authors\": [],\n                        \"editions\": [],\n                        \"price\": 3\n                    },\n                    {\n                        \"title\": \"Book 4\",\n                        \"lang\": \"blah\",\n                        \"authors\": [],\n                        \"editions\": [],\n                        \"price\": 4\n                    },\n                    {\n                        \"title\": \"Book 5\",\n                        \"lang\": \"blah\",\n                        \"authors\": [],\n                        \"editions\": [],\n                        \"price\": 5\n                    },\n                    {\n                        \"title\": \"Book 6\",\n                        \"lang\": \"blah\",\n                        \"authors\": [],\n                        \"editions\": [],\n                        \"price\": 6\n                    },\n                    {\n                        \"title\": \"Book 7\",\n                        \"lang\": \"blah\",\n                        \"authors\": [],\n                        \"editions\": [],\n                        \"price\": 7\n                    },\n                    {\n                        \"title\": \"Book 8\",\n                        \"lang\": \"blah\",\n                        \"authors\": [],\n                        \"editions\": [],\n                        \"price\": 8\n                    },\n                    {\n                        \"title\": \"Book 9\",\n                        \"lang\": \"blah\",\n                        \"authors\": [],\n                        \"editions\": [],\n                        \"price\": 9\n                    },\n                    {\n                        \"title\": \"Book 10\",\n                        \"lang\": \"blah\",\n                        \"authors\": [],\n                        \"editions\": [],\n                        \"price\": 10\n                    }\n                ]\n            }\n        ]\n    }\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor/nodes",
+                    "protocol": "http",
+                    "host": [
+                        "{{CPS_HOST}}"
+                    ],
+                    "port": "{{CPS_PORT}}",
+                    "path": [
+                        "cps",
+                        "api",
+                        "v2",
+                        "dataspaces",
+                        "my-store",
+                        "anchors",
+                        "bookstore-anchor",
+                        "nodes"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Get Root Node All Descendants",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor/node?xpath=/&descendants=all",
+                    "protocol": "http",
+                    "host": [
+                        "{{CPS_HOST}}"
+                    ],
+                    "port": "{{CPS_PORT}}",
+                    "path": [
+                        "cps",
+                        "api",
+                        "v2",
+                        "dataspaces",
+                        "my-store",
+                        "anchors",
+                        "bookstore-anchor",
+                        "node"
+                    ],
+                    "query": [
+                        {
+                            "key": "xpath",
+                            "value": "/"
+                        },
+                        {
+                            "key": "descendants",
+                            "value": "all"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Get Node Staff No Descendants",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor/node?xpath=/bookstore/staff&descendants=none",
+                    "protocol": "http",
+                    "host": [
+                        "{{CPS_HOST}}"
+                    ],
+                    "port": "{{CPS_PORT}}",
+                    "path": [
+                        "cps",
+                        "api",
+                        "v2",
+                        "dataspaces",
+                        "my-store",
+                        "anchors",
+                        "bookstore-anchor",
+                        "node"
+                    ],
+                    "query": [
+                        {
+                            "key": "xpath",
+                            "value": "/bookstore/staff"
+                        },
+                        {
+                            "key": "descendants",
+                            "value": "none"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Get Node Inventory All Descendants",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor/node?xpath=/bookstore/inventory&descendants=all",
+                    "protocol": "http",
+                    "host": [
+                        "{{CPS_HOST}}"
+                    ],
+                    "port": "{{CPS_PORT}}",
+                    "path": [
+                        "cps",
+                        "api",
+                        "v2",
+                        "dataspaces",
+                        "my-store",
+                        "anchors",
+                        "bookstore-anchor",
+                        "node"
+                    ],
+                    "query": [
+                        {
+                            "key": "xpath",
+                            "value": "/bookstore/inventory"
+                        },
+                        {
+                            "key": "descendants",
+                            "value": "all"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Get Node Inventory Categories Direct Descendants",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor/node?xpath=/bookstore/inventory/categories[@code='2']&descendants=direct",
+                    "protocol": "http",
+                    "host": [
+                        "{{CPS_HOST}}"
+                    ],
+                    "port": "{{CPS_PORT}}",
+                    "path": [
+                        "cps",
+                        "api",
+                        "v2",
+                        "dataspaces",
+                        "my-store",
+                        "anchors",
+                        "bookstore-anchor",
+                        "node"
+                    ],
+                    "query": [
+                        {
+                            "key": "xpath",
+                            "value": "/bookstore/inventory/categories[@code='2']"
+                        },
+                        {
+                            "key": "descendants",
+                            "value": "direct"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Query Path Leaf Condition All Descendants",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor/nodes/query?cps-path=/bookstore/inventory/categories[@numberOfBooks=1]&descendants=-1",
+                    "protocol": "http",
+                    "host": [
+                        "{{CPS_HOST}}"
+                    ],
+                    "port": "{{CPS_PORT}}",
+                    "path": [
+                        "cps",
+                        "api",
+                        "v2",
+                        "dataspaces",
+                        "my-store",
+                        "anchors",
+                        "bookstore-anchor",
+                        "nodes",
+                        "query"
+                    ],
+                    "query": [
+                        {
+                            "key": "cps-path",
+                            "value": "/bookstore/inventory/categories[@numberOfBooks=1]"
+                        },
+                        {
+                            "key": "descendants",
+                            "value": "-1"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Query Path Ancestor No Descendants",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor/nodes/query?cps-path=//categories[@code=1]/ancestor::inventory&descendants=0",
+                    "protocol": "http",
+                    "host": [
+                        "{{CPS_HOST}}"
+                    ],
+                    "port": "{{CPS_PORT}}",
+                    "path": [
+                        "cps",
+                        "api",
+                        "v2",
+                        "dataspaces",
+                        "my-store",
+                        "anchors",
+                        "bookstore-anchor",
+                        "nodes",
+                        "query"
+                    ],
+                    "query": [
+                        {
+                            "key": "cps-path",
+                            "value": "//categories[@code=1]/ancestor::inventory"
+                        },
+                        {
+                            "key": "descendants",
+                            "value": "0"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Patch Nodes",
+            "request": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n    \"staff\": {\r\n        \"manager\": \"Jane Doe\",\r\n        \"members\": [\r\n            {\"name\": \"Some Guy\"},\r\n            {\"name\": \"Another Person\"}\r\n        ]\r\n    }\r\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor/nodes?xpath=/bookstore",
+                    "protocol": "http",
+                    "host": [
+                        "{{CPS_HOST}}"
+                    ],
+                    "port": "{{CPS_PORT}}",
+                    "path": [
+                        "cps",
+                        "api",
+                        "v2",
+                        "dataspaces",
+                        "my-store",
+                        "anchors",
+                        "bookstore-anchor",
+                        "nodes"
+                    ],
+                    "query": [
+                        {
+                            "key": "xpath",
+                            "value": "/bookstore"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Get Node Staff Direct Descendants",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor/node?xpath=/bookstore/staff&descendants=1",
+                    "protocol": "http",
+                    "host": [
+                        "{{CPS_HOST}}"
+                    ],
+                    "port": "{{CPS_PORT}}",
+                    "path": [
+                        "cps",
+                        "api",
+                        "v2",
+                        "dataspaces",
+                        "my-store",
+                        "anchors",
+                        "bookstore-anchor",
+                        "node"
+                    ],
+                    "query": [
+                        {
+                            "key": "xpath",
+                            "value": "/bookstore/staff"
+                        },
+                        {
+                            "key": "descendants",
+                            "value": "1"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Delete DataNodes",
+            "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor/nodes?xpath=/",
+                    "protocol": "http",
+                    "host": [
+                        "{{CPS_HOST}}"
+                    ],
+                    "port": "{{CPS_PORT}}",
+                    "path": [
+                        "cps",
+                        "api",
+                        "v2",
+                        "dataspaces",
+                        "my-store",
+                        "anchors",
+                        "bookstore-anchor",
+                        "nodes"
+                    ],
+                    "query": [
+                        {
+                            "key": "xpath",
+                            "value": "/"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Delete Anchor",
+            "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor",
+                    "protocol": "http",
+                    "host": [
+                        "{{CPS_HOST}}"
+                    ],
+                    "port": "{{CPS_PORT}}",
+                    "path": [
+                        "cps",
+                        "api",
+                        "v2",
+                        "dataspaces",
+                        "my-store",
+                        "anchors",
+                        "bookstore-anchor"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Delete Schema Set",
+            "request": {
+                "method": "DELETE",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data",
+                        "type": "text",
+                        "disabled": true
+                    }
+                ],
+                "body": {
+                    "mode": "formdata",
+                    "formdata": [
+                        {
+                            "key": "file",
+                            "type": "file",
+                            "src": "/home/jeff/Downloads/bookstore-model.yang"
+                        }
+                    ]
+                },
+                "url": {
+                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/schema-sets/stores-module",
+                    "protocol": "http",
+                    "host": [
+                        "{{CPS_HOST}}"
+                    ],
+                    "port": "{{CPS_PORT}}",
+                    "path": [
+                        "cps",
+                        "api",
+                        "v2",
+                        "dataspaces",
+                        "my-store",
+                        "schema-sets",
+                        "stores-module"
+                    ]
+                },
+                "description": "Make sure in the body there is form data. key = file and value will be the zip/yang file."
+            },
+            "response": []
+        },
+        {
+            "name": "Delete Dataspace",
+            "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces?dataspace-name=my-store",
+                    "protocol": "http",
+                    "host": [
+                        "{{CPS_HOST}}"
+                    ],
+                    "port": "{{CPS_PORT}}",
+                    "path": [
+                        "cps",
+                        "api",
+                        "v2",
+                        "dataspaces"
+                    ],
+                    "query": [
+                        {
+                            "key": "dataspace-name",
+                            "value": "my-store"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        }
+    ],
+    "auth": {
+        "type": "basic",
+        "basic": [
+            {
+                "key": "password",
+                "value": "cpsr0cks!",
+                "type": "string"
+            },
+            {
+                "key": "username",
+                "value": "cpsuser",
+                "type": "string"
+            }
+        ]
+    }
+}
