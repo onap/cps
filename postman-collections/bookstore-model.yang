@@ -1,0 +1,66 @@
+module stores {
+    yang-version 1.1;
+    namespace "org:onap:ccsdk:sample";
+
+    prefix book-store;
+
+    revision "2020-09-15" {
+        description
+          "Sample Model";
+    }
+    container bookstore {
+        leaf bookstore-name {
+            type string;
+        }
+        container staff {
+            leaf manager {
+                type string;
+            }
+
+            list members {
+                key name;
+
+                leaf name {
+                    type string;
+                }
+            }
+        }
+        container inventory {
+
+            list categories {
+
+                key "code";
+
+                leaf code {
+                    type uint16;
+                }
+
+                leaf name {
+                    type string;
+                }
+
+                leaf numberOfBooks {
+                    type uint16;
+                }
+
+                list books {
+                    key title;
+
+                    leaf title {
+                        type string;
+                    }
+                    leaf price {
+                        type uint16;
+                    }
+                    leaf-list label {
+                        type string;
+                    }
+                    leaf-list edition {
+                        type string;
+                    }
+
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,649 @@
+{
+    "info": {
+        "_postman_id": "ca8a8c26-8297-49d1-a282-e646138e07b6",
+        "name": "NCMP Register CmHandle and Query",
+        "description": "A collection to register a cmHandle then query. There are \"Valid Queries\" and \"Invalid Queries\" sub-folders containing examples. These are by no means exhaustive.",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "_exporter_id": "17907116"
+    },
+    "item": [
+        {
+            "name": "Valid Queries",
+            "item": [
+                {
+                    "name": "search cmHandles without conditions",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/searches",
+                            "protocol": "http",
+                            "host": [
+                                "{{CPS_HOST}}"
+                            ],
+                            "port": "{{CPS_PORT}}",
+                            "path": [
+                                "ncmp",
+                                "v1",
+                                "ch",
+                                "searches"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "search cmHandles with modules query",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"cmHandleQueryParameters\": [\n        {\n            \"conditionName\": \"hasAllModules\",\n            \"conditionParameters\": [ {\"moduleName\": \"notifications\"} ]\n        }\n    ]\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/searches",
+                            "protocol": "http",
+                            "host": [
+                                "{{CPS_HOST}}"
+                            ],
+                            "port": "{{CPS_PORT}}",
+                            "path": [
+                                "ncmp",
+                                "v1",
+                                "ch",
+                                "searches"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "search cmHandles with public properties",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"cmHandleQueryParameters\": [\n        {\n            \"conditionName\": \"hasAllProperties\",\n            \"conditionParameters\": [ {\"Color\": \"yellow\"} ]\n        }\n    ]\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/searches",
+                            "protocol": "http",
+                            "host": [
+                                "{{CPS_HOST}}"
+                            ],
+                            "port": "{{CPS_PORT}}",
+                            "path": [
+                                "ncmp",
+                                "v1",
+                                "ch",
+                                "searches"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "search cmHandles with multiple public properties",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"cmHandleQueryParameters\": [\n        {\n            \"conditionName\": \"hasAllProperties\",\n            \"conditionParameters\": [ {\"Color\": \"yellow\"}, {\"Size\": \"small\"} ]\n        }\n    ]\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/searches",
+                            "protocol": "http",
+                            "host": [
+                                "{{CPS_HOST}}"
+                            ],
+                            "port": "{{CPS_PORT}}",
+                            "path": [
+                                "ncmp",
+                                "v1",
+                                "ch",
+                                "searches"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "search cmHandles with modules & pubprop query",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"cmHandleQueryParameters\": [\n        {\n            \"conditionName\": \"hasAllModules\",\n            \"conditionParameters\": [ {\"moduleName\": \"notifications\"} ]\n        },\n        {\n            \"conditionName\": \"hasAllProperties\",\n            \"conditionParameters\": [ {\"Color\": \"yellow\"} ]\n        }\n    ]\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/searches",
+                            "protocol": "http",
+                            "host": [
+                                "{{CPS_HOST}}"
+                            ],
+                            "port": "{{CPS_PORT}}",
+                            "path": [
+                                "ncmp",
+                                "v1",
+                                "ch",
+                                "searches"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Invalid Queries",
+            "item": [
+                {
+                    "name": "get cmHandles with wrong condition name",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"cmHandleQueryParameters\": [\n        {\n            \"conditionName\": \"wrong\",\n            \"conditionParameters\": [ {\"Color\": \"yellow\"} ]\n        }\n    ]\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/searches",
+                            "protocol": "http",
+                            "host": [
+                                "{{CPS_HOST}}"
+                            ],
+                            "port": "{{CPS_PORT}}",
+                            "path": [
+                                "ncmp",
+                                "v1",
+                                "ch",
+                                "searches"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "get cmHandles with empty condition name",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"cmHandleQueryParameters\": [\n        {\n            \"conditionName\": \"\",\n            \"conditionParameters\": [ {\"Color\": \"yellow\"} ]\n        }\n    ]\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/searches",
+                            "protocol": "http",
+                            "host": [
+                                "{{CPS_HOST}}"
+                            ],
+                            "port": "{{CPS_PORT}}",
+                            "path": [
+                                "ncmp",
+                                "v1",
+                                "ch",
+                                "searches"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "get cmHandles with null condition name",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"cmHandleQueryParameters\": [\n        {\n            \"conditionParameters\": [ {\"Color\": \"yellow\"} ]\n        }\n    ]\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/searches",
+                            "protocol": "http",
+                            "host": [
+                                "{{CPS_HOST}}"
+                            ],
+                            "port": "{{CPS_PORT}}",
+                            "path": [
+                                "ncmp",
+                                "v1",
+                                "ch",
+                                "searches"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "get cmHandles with empty key",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"cmHandleQueryParameters\": [\n        {\n            \"conditionName\": \"hasAllProperties\",\n            \"conditionParameters\": [ {\"\": \"yellow\"} ]\n        }\n    ]\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/searches",
+                            "protocol": "http",
+                            "host": [
+                                "{{CPS_HOST}}"
+                            ],
+                            "port": "{{CPS_PORT}}",
+                            "path": [
+                                "ncmp",
+                                "v1",
+                                "ch",
+                                "searches"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "get cmHandles with empty condition",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"cmHandleQueryParameters\": [\n        {\n            \"conditionName\": \"hasAllProperties\",\n            \"conditionParameters\": [ {} ]\n        }\n    ]\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/searches",
+                            "protocol": "http",
+                            "host": [
+                                "{{CPS_HOST}}"
+                            ],
+                            "port": "{{CPS_PORT}}",
+                            "path": [
+                                "ncmp",
+                                "v1",
+                                "ch",
+                                "searches"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "get cmHandles with empty condition list",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"cmHandleQueryParameters\": [\n        {\n            \"conditionName\": \"hasAllProperties\",\n            \"conditionParameters\": [ ]\n        }\n    ]\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/searches",
+                            "protocol": "http",
+                            "host": [
+                                "{{CPS_HOST}}"
+                            ],
+                            "port": "{{CPS_PORT}}",
+                            "path": [
+                                "ncmp",
+                                "v1",
+                                "ch",
+                                "searches"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "get cmHandles with null condition list",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"cmHandleQueryParameters\": [\n        {\n            \"conditionName\": \"hasAllProperties\"\n        }\n    ]\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/searches",
+                            "protocol": "http",
+                            "host": [
+                                "{{CPS_HOST}}"
+                            ],
+                            "port": "{{CPS_PORT}}",
+                            "path": [
+                                "ncmp",
+                                "v1",
+                                "ch",
+                                "searches"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "get cmHandles with empty module value",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"cmHandleQueryParameters\": [\n        {\n            \"conditionName\": \"hasAllModules\",\n            \"conditionParameters\": [ {\"moduleName\": \"\"} ]\n        }\n    ]\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/searches",
+                            "protocol": "http",
+                            "host": [
+                                "{{CPS_HOST}}"
+                            ],
+                            "port": "{{CPS_PORT}}",
+                            "path": [
+                                "ncmp",
+                                "v1",
+                                "ch",
+                                "searches"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "get cmHandles with wrong module name",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"cmHandleQueryParameters\": [\n        {\n            \"conditionName\": \"hasAllModules\",\n            \"conditionParameters\": [ {\"moduleName2\": \"mudule-1\"} ]\n        }\n    ]\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/searches",
+                            "protocol": "http",
+                            "host": [
+                                "{{CPS_HOST}}"
+                            ],
+                            "port": "{{CPS_PORT}}",
+                            "path": [
+                                "ncmp",
+                                "v1",
+                                "ch",
+                                "searches"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Register cmHandle for Node",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"dmiPlugin\": \"http://{{DMI_STUB_HOST}}:{{DMI_STUB_PORT}}\",\n    \"createdCmHandles\": [\n        {\n            \"cmHandle\": \"CmHandle0\",\n            \"cmHandleProperties\": {\n                \"Books\": \"Sci-Fi Book\"\n            },\n            \"publicCmHandleProperties\": {\n                \"Color\": \"yellow\",\n                \"Size\": \"small\",\n                \"Shape\": \"cube\"\n            }\n        }\n    ]\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmpInventory/v1/ch",
+                    "protocol": "http",
+                    "host": [
+                        "{{CPS_HOST}}"
+                    ],
+                    "port": "{{CPS_PORT}}",
+                    "path": [
+                        "ncmpInventory",
+                        "v1",
+                        "ch"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "get cmHandle",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/CmHandle0",
+                    "protocol": "http",
+                    "host": [
+                        "{{CPS_HOST}}"
+                    ],
+                    "port": "{{CPS_PORT}}",
+                    "path": [
+                        "ncmp",
+                        "v1",
+                        "ch",
+                        "CmHandle0"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "get modules for cmHandle",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/CmHandle0/modules",
+                    "protocol": "http",
+                    "host": [
+                        "{{CPS_HOST}}"
+                    ],
+                    "port": "{{CPS_PORT}}",
+                    "path": [
+                        "ncmp",
+                        "v1",
+                        "ch",
+                        "CmHandle0",
+                        "modules"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Update cmHandle for Node",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"dmiPlugin\": \"http://{{DMI_STUB_HOST}}:{{DMI_STUB_PORT}}\",\n    \"updatedCmHandles\": [\n        {\n            \"cmHandle\": \"CmHandle0\",\n            \"cmHandleProperties\": {\n                \"Books\": \"Sci-Fi Book\",\n                \"Some property\": \"Some value\"\n            },\n            \"publicCmHandleProperties\": {\n                \"Color\": \"yellow\",\n                \"Size\": \"small\",\n                \"Shape\": \"cube\",\n                \"Some public property\": \"Some public value\"\n            }\n        }\n    ]\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmpInventory/v1/ch",
+                    "protocol": "http",
+                    "host": [
+                        "{{CPS_HOST}}"
+                    ],
+                    "port": "{{CPS_PORT}}",
+                    "path": [
+                        "ncmpInventory",
+                        "v1",
+                        "ch"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "De-register cmHandle for Node",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"dmiPlugin\": \"http://{{DMI_STUB_HOST}}:{{DMI_STUB_PORT}}\",\n    \"removedCmHandles\": [\n        \"CmHandle0\"\n    ]\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmpInventory/v1/ch",
+                    "protocol": "http",
+                    "host": [
+                        "{{CPS_HOST}}"
+                    ],
+                    "port": "{{CPS_PORT}}",
+                    "path": [
+                        "ncmpInventory",
+                        "v1",
+                        "ch"
+                    ]
+                }
+            },
+            "response": []
+        }
+    ],
+    "auth": {
+        "type": "basic",
+        "basic": [
+            {
+                "key": "password",
+                "value": "cpsr0cks!",
+                "type": "string"
+            },
+            {
+                "key": "username",
+                "value": "cpsuser",
+                "type": "string"
+            }
+        ]
+    },
+    "event": [
+        {
+            "listen": "prerequest",
+            "script": {
+                "type": "text/javascript",
+                "exec": [
+                    ""
+                ]
+            }
+        },
+        {
+            "listen": "test",
+            "script": {
+                "type": "text/javascript",
+                "exec": [
+                    ""
+                ]
+            }
+        }
+    ]
+}

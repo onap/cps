@@ -1,0 +1,801 @@
+{
+    "info": {
+        "_postman_id": "186037af-487e-472c-98de-f0210318d75a",
+        "name": "CPS-CORE",
+        "description": "A collection of the endpoints in CPS-CORE. This is not an exhaustive collection but captures the main functionality.\n\nTo perform this functionality execute the API calls in order to create a dataspace, schema set (file is provided), anchor, and data node. Then GET the nodes to retrieve the information. The APIs in CPS-ADMIN can be used after initial POST requests.\n\nbookstore-model.yang can be found at cps/postman-collections/bookstore-model.yang",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "_exporter_id": "17907116"
+    },
+    "item": [
+        {
+            "name": "CPS-ADMIN",
+            "item": [
+                {
+                    "name": "Get all dataspaces",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/admin/dataspaces",
+                            "protocol": "http",
+                            "host": [
+                                "{{CPS_HOST}}"
+                            ],
+                            "port": "{{CPS_PORT}}",
+                            "path": [
+                                "cps",
+                                "api",
+                                "v2",
+                                "admin",
+                                "dataspaces"
+                            ]
+                        },
+                        "description": "Read all dataspaces"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get a dataspace",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/admin/dataspaces/my-store",
+                            "protocol": "http",
+                            "host": [
+                                "{{CPS_HOST}}"
+                            ],
+                            "port": "{{CPS_PORT}}",
+                            "path": [
+                                "cps",
+                                "api",
+                                "v2",
+                                "admin",
+                                "dataspaces",
+                                "my-store"
+                            ]
+                        },
+                        "description": "Read a dataspace given a dataspace name"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get anchors",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors",
+                            "protocol": "http",
+                            "host": [
+                                "{{CPS_HOST}}"
+                            ],
+                            "port": "{{CPS_PORT}}",
+                            "path": [
+                                "cps",
+                                "api",
+                                "v2",
+                                "dataspaces",
+                                "my-store",
+                                "anchors"
+                            ]
+                        },
+                        "description": "Read all anchors, given a dataspace"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get an anchor",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor",
+                            "protocol": "http",
+                            "host": [
+                                "{{CPS_HOST}}"
+                            ],
+                            "port": "{{CPS_PORT}}",
+                            "path": [
+                                "cps",
+                                "api",
+                                "v2",
+                                "dataspaces",
+                                "my-store",
+                                "anchors",
+                                "bookstore-anchor"
+                            ]
+                        },
+                        "description": "Read all anchors, given a dataspace"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get schema sets",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/schema-sets",
+                            "protocol": "http",
+                            "host": [
+                                "{{CPS_HOST}}"
+                            ],
+                            "port": "{{CPS_PORT}}",
+                            "path": [
+                                "cps",
+                                "api",
+                                "v2",
+                                "dataspaces",
+                                "my-store",
+                                "schema-sets"
+                            ]
+                        },
+                        "description": "Read all schema sets, given a dataspace"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get a schema set",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/schema-sets/stores-module",
+                            "protocol": "http",
+                            "host": [
+                                "{{CPS_HOST}}"
+                            ],
+                            "port": "{{CPS_PORT}}",
+                            "path": [
+                                "cps",
+                                "api",
+                                "v2",
+                                "dataspaces",
+                                "my-store",
+                                "schema-sets",
+                                "stores-module"
+                            ]
+                        },
+                        "description": "Read a schema set given a schema set name and a dataspace"
+                    },
+                    "response": []
+                }
+            ],
+            "description": "Some endpoints of CPS-ADMIN not mentioed in the CPS-CORE folder"
+        },
+        {
+            "name": "Create Dataspace",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces?dataspace-name=my-store",
+                    "protocol": "http",
+                    "host": [
+                        "{{CPS_HOST}}"
+                    ],
+                    "port": "{{CPS_PORT}}",
+                    "path": [
+                        "cps",
+                        "api",
+                        "v2",
+                        "dataspaces"
+                    ],
+                    "query": [
+                        {
+                            "key": "dataspace-name",
+                            "value": "my-store"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Create Schema Set",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data",
+                        "type": "text",
+                        "disabled": true
+                    }
+                ],
+                "body": {
+                    "mode": "formdata",
+                    "formdata": [
+                        {
+                            "key": "file",
+                            "type": "file",
+                            "src": "postman-cloud:///1eecbf08-1b49-4870-b598-d106f827f737"
+                        }
+                    ]
+                },
+                "url": {
+                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/schema-sets?schema-set-name=stores-module",
+                    "protocol": "http",
+                    "host": [
+                        "{{CPS_HOST}}"
+                    ],
+                    "port": "{{CPS_PORT}}",
+                    "path": [
+                        "cps",
+                        "api",
+                        "v2",
+                        "dataspaces",
+                        "my-store",
+                        "schema-sets"
+                    ],
+                    "query": [
+                        {
+                            "key": "schema-set-name",
+                            "value": "stores-module"
+                        }
+                    ]
+                },
+                "description": "Make sure in the body there is form data. key = file and value will be the zip/yang file."
+            },
+            "response": []
+        },
+        {
+            "name": "Create Anchor",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors?schema-set-name=stores-module&anchor-name=bookstore-anchor",
+                    "protocol": "http",
+                    "host": [
+                        "{{CPS_HOST}}"
+                    ],
+                    "port": "{{CPS_PORT}}",
+                    "path": [
+                        "cps",
+                        "api",
+                        "v2",
+                        "dataspaces",
+                        "my-store",
+                        "anchors"
+                    ],
+                    "query": [
+                        {
+                            "key": "schema-set-name",
+                            "value": "stores-module"
+                        },
+                        {
+                            "key": "anchor-name",
+                            "value": "bookstore-anchor"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Create DataNodes",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"bookstore\": {\n        \"bookstore-name\": \"Easons\",\n\n        \"staff\": {\n            \"manager\": \"John Smith\",\n            \"members\": [\n                {\"name\": \"Some Guy\"},\n                {\"name\": \"Another Person\"}\n            ]\n        },\n\n        \"inventory\": {\n            \"categories\": [\n                {\n                    \"code\": 1,\n                    \"name\": \"SciFi\",\n                    \"numberOfBooks\": 2,\n                    \"books\": [\n                        {\n                            \"title\": \"2001: A Space Odyssey\",\n                            \"price\": 5,\n                            \"label\": [\"sale\", \"classic\"],\n                            \"edition\": [\"1968\", \"2018\"]\n                        },\n                        {\n                            \"title\": \"Dune\",\n                            \"price\": 5,\n                            \"label\": [\"classic\"],\n                            \"edition\": [\"1965\"]\n                        }\n                    ]\n                },\n                {\n                    \"code\": 2,\n                    \"name\": \"Kids\",\n                    \"numberOfBooks\": 1,\n                    \"books\": [\n                        {\n                            \"title\": \"Matilda\"\n                        }\n                    ]\n                \n                }\n            ]\n        }\n    }\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor/nodes",
+                    "protocol": "http",
+                    "host": [
+                        "{{CPS_HOST}}"
+                    ],
+                    "port": "{{CPS_PORT}}",
+                    "path": [
+                        "cps",
+                        "api",
+                        "v2",
+                        "dataspaces",
+                        "my-store",
+                        "anchors",
+                        "bookstore-anchor",
+                        "nodes"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Get Root Node All Descendants",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor/node?xpath=/&descendants=all",
+                    "protocol": "http",
+                    "host": [
+                        "{{CPS_HOST}}"
+                    ],
+                    "port": "{{CPS_PORT}}",
+                    "path": [
+                        "cps",
+                        "api",
+                        "v2",
+                        "dataspaces",
+                        "my-store",
+                        "anchors",
+                        "bookstore-anchor",
+                        "node"
+                    ],
+                    "query": [
+                        {
+                            "key": "xpath",
+                            "value": "/"
+                        },
+                        {
+                            "key": "descendants",
+                            "value": "all"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Get Node Staff No Descendants",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor/node?xpath=/bookstore/staff&descendants=none",
+                    "protocol": "http",
+                    "host": [
+                        "{{CPS_HOST}}"
+                    ],
+                    "port": "{{CPS_PORT}}",
+                    "path": [
+                        "cps",
+                        "api",
+                        "v2",
+                        "dataspaces",
+                        "my-store",
+                        "anchors",
+                        "bookstore-anchor",
+                        "node"
+                    ],
+                    "query": [
+                        {
+                            "key": "xpath",
+                            "value": "/bookstore/staff"
+                        },
+                        {
+                            "key": "descendants",
+                            "value": "none"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Get Node Inventory All Descendants",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor/node?xpath=/bookstore/inventory&descendants=all",
+                    "protocol": "http",
+                    "host": [
+                        "{{CPS_HOST}}"
+                    ],
+                    "port": "{{CPS_PORT}}",
+                    "path": [
+                        "cps",
+                        "api",
+                        "v2",
+                        "dataspaces",
+                        "my-store",
+                        "anchors",
+                        "bookstore-anchor",
+                        "node"
+                    ],
+                    "query": [
+                        {
+                            "key": "xpath",
+                            "value": "/bookstore/inventory"
+                        },
+                        {
+                            "key": "descendants",
+                            "value": "all"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Get Node Inventory Categories Direct Descendants",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor/node?xpath=/bookstore/inventory/categories[@code='2']&descendants=direct",
+                    "protocol": "http",
+                    "host": [
+                        "{{CPS_HOST}}"
+                    ],
+                    "port": "{{CPS_PORT}}",
+                    "path": [
+                        "cps",
+                        "api",
+                        "v2",
+                        "dataspaces",
+                        "my-store",
+                        "anchors",
+                        "bookstore-anchor",
+                        "node"
+                    ],
+                    "query": [
+                        {
+                            "key": "xpath",
+                            "value": "/bookstore/inventory/categories[@code='2']"
+                        },
+                        {
+                            "key": "descendants",
+                            "value": "direct"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Query Path Leaf Condition All Descendants",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor/nodes/query?cps-path=/bookstore/inventory/categories[@numberOfBooks=1]&descendants=-1",
+                    "protocol": "http",
+                    "host": [
+                        "{{CPS_HOST}}"
+                    ],
+                    "port": "{{CPS_PORT}}",
+                    "path": [
+                        "cps",
+                        "api",
+                        "v2",
+                        "dataspaces",
+                        "my-store",
+                        "anchors",
+                        "bookstore-anchor",
+                        "nodes",
+                        "query"
+                    ],
+                    "query": [
+                        {
+                            "key": "cps-path",
+                            "value": "/bookstore/inventory/categories[@numberOfBooks=1]"
+                        },
+                        {
+                            "key": "descendants",
+                            "value": "-1"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Query Path Ancestor No Descendants",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor/nodes/query?cps-path=//categories[@code=1]/ancestor::inventory&descendants=0",
+                    "protocol": "http",
+                    "host": [
+                        "{{CPS_HOST}}"
+                    ],
+                    "port": "{{CPS_PORT}}",
+                    "path": [
+                        "cps",
+                        "api",
+                        "v2",
+                        "dataspaces",
+                        "my-store",
+                        "anchors",
+                        "bookstore-anchor",
+                        "nodes",
+                        "query"
+                    ],
+                    "query": [
+                        {
+                            "key": "cps-path",
+                            "value": "//categories[@code=1]/ancestor::inventory"
+                        },
+                        {
+                            "key": "descendants",
+                            "value": "0"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Patch Nodes",
+            "request": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n    \"staff\": {\r\n        \"manager\": \"Jane Doe\",\r\n        \"members\": [\r\n            {\"name\": \"Some Guy\"},\r\n            {\"name\": \"Another Person\"}\r\n        ]\r\n    }\r\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor/nodes?xpath=/bookstore",
+                    "protocol": "http",
+                    "host": [
+                        "{{CPS_HOST}}"
+                    ],
+                    "port": "{{CPS_PORT}}",
+                    "path": [
+                        "cps",
+                        "api",
+                        "v2",
+                        "dataspaces",
+                        "my-store",
+                        "anchors",
+                        "bookstore-anchor",
+                        "nodes"
+                    ],
+                    "query": [
+                        {
+                            "key": "xpath",
+                            "value": "/bookstore"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Get Node Staff Direct Descendants",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor/node?xpath=/bookstore/staff&descendants=1",
+                    "protocol": "http",
+                    "host": [
+                        "{{CPS_HOST}}"
+                    ],
+                    "port": "{{CPS_PORT}}",
+                    "path": [
+                        "cps",
+                        "api",
+                        "v2",
+                        "dataspaces",
+                        "my-store",
+                        "anchors",
+                        "bookstore-anchor",
+                        "node"
+                    ],
+                    "query": [
+                        {
+                            "key": "xpath",
+                            "value": "/bookstore/staff"
+                        },
+                        {
+                            "key": "descendants",
+                            "value": "1"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Delete DataNodes",
+            "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor/nodes?xpath=/",
+                    "protocol": "http",
+                    "host": [
+                        "{{CPS_HOST}}"
+                    ],
+                    "port": "{{CPS_PORT}}",
+                    "path": [
+                        "cps",
+                        "api",
+                        "v2",
+                        "dataspaces",
+                        "my-store",
+                        "anchors",
+                        "bookstore-anchor",
+                        "nodes"
+                    ],
+                    "query": [
+                        {
+                            "key": "xpath",
+                            "value": "/"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Delete Anchor",
+            "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor",
+                    "protocol": "http",
+                    "host": [
+                        "{{CPS_HOST}}"
+                    ],
+                    "port": "{{CPS_PORT}}",
+                    "path": [
+                        "cps",
+                        "api",
+                        "v2",
+                        "dataspaces",
+                        "my-store",
+                        "anchors",
+                        "bookstore-anchor"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Delete Schema Set",
+            "request": {
+                "method": "DELETE",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data",
+                        "type": "text",
+                        "disabled": true
+                    }
+                ],
+                "body": {
+                    "mode": "formdata",
+                    "formdata": [
+                        {
+                            "key": "file",
+                            "type": "file",
+                            "src": "/home/jeff/Downloads/bookstore-model.yang"
+                        }
+                    ]
+                },
+                "url": {
+                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/schema-sets/stores-module",
+                    "protocol": "http",
+                    "host": [
+                        "{{CPS_HOST}}"
+                    ],
+                    "port": "{{CPS_PORT}}",
+                    "path": [
+                        "cps",
+                        "api",
+                        "v2",
+                        "dataspaces",
+                        "my-store",
+                        "schema-sets",
+                        "stores-module"
+                    ]
+                },
+                "description": "Make sure in the body there is form data. key = file and value will be the zip/yang file."
+            },
+            "response": []
+        },
+        {
+            "name": "Delete Dataspace",
+            "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces?dataspace-name=my-store",
+                    "protocol": "http",
+                    "host": [
+                        "{{CPS_HOST}}"
+                    ],
+                    "port": "{{CPS_PORT}}",
+                    "path": [
+                        "cps",
+                        "api",
+                        "v2",
+                        "dataspaces"
+                    ],
+                    "query": [
+                        {
+                            "key": "dataspace-name",
+                            "value": "my-store"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        }
+    ],
+    "auth": {
+        "type": "basic",
+        "basic": [
+            {
+                "key": "password",
+                "value": "cpsr0cks!",
+                "type": "string"
+            },
+            {
+                "key": "username",
+                "value": "cpsuser",
+                "type": "string"
+            }
+        ]
+    },
+    "event": [
+        {
+            "listen": "prerequest",
+            "script": {
+                "type": "text/javascript",
+                "exec": [
+                    ""
+                ]
+            }
+        },
+        {
+            "listen": "test",
+            "script": {
+                "type": "text/javascript",
+                "exec": [
+                    ""
+                ]
+            }
+        }
+    ]
+}

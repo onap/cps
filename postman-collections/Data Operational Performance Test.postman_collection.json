@@ -1,0 +1,339 @@
+{
+    "info": {
+        "_postman_id": "23a07cf3-5e20-48d5-8af3-8aa65c6a681f",
+        "name": "Data Operational Performance Test",
+        "description": "A collection to test performance of registering and getting cmHandles (20000 is the default)",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "_exporter_id": "17907116"
+    },
+    "item": [
+        {
+            "name": "Register CM Handles",
+            "event": [
+                {
+                    "listen": "prerequest",
+                    "script": {
+                        "exec": [
+                            "const uuid = require(\"uuid\");",
+                            "",
+                            "const TOTAL_CMHANDLES = Number(pm.collectionVariables.get(\"TOTAL_CMHANDLES\"));",
+                            "",
+                            "var cmHandleIds = [];",
+                            "var createdCmHandles = []",
+                            "",
+                            "for (i = 0; i < TOTAL_CMHANDLES; i++) {",
+                            "    let cmHandleId = uuid.v4().replace(/-/g, \"\");",
+                            "    cmHandleIds.push(cmHandleId);",
+                            "    createdCmHandles.push({",
+                            "        \"cmHandle\": cmHandleId,",
+                            "        \"cmHandleProperties\": { \"neType\": \"RadioNode\" },",
+                            "            \"publicCmHandleProperties\": {",
+                            "                \"Book\": \"Harry Potter\",",
+                            "                \"Author\": \"JK Rowling\"",
+                            "            }",
+                            "    });",
+                            "}",
+                            "",
+                            "pm.collectionVariables.set(\"createdCmHandleIds\", JSON.stringify(cmHandleIds));",
+                            "pm.collectionVariables.set(\"createdCmHandles\", JSON.stringify(createdCmHandles));",
+                            "pm.collectionVariables.set(\"targetIds\", cmHandleIds);"
+                        ],
+                        "type": "text/javascript"
+                    }
+                },
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "pm.test(\"HTTP Status is 200\", function () {\r",
+                            "    pm.response.to.be.ok;\r",
+                            "});"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ],
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n    \"dmiPlugin\": \"http://{{DMI_STUB_HOST}}:{{DMI_STUB_PORT}}\",\r\n    \"createdCmHandles\": {{createdCmHandles}}\r\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmpInventory/v1/ch",
+                    "protocol": "http",
+                    "host": [
+                        "{{CPS_HOST}}"
+                    ],
+                    "port": "{{CPS_PORT}}",
+                    "path": [
+                        "ncmpInventory",
+                        "v1",
+                        "ch"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Get All Cm Handle IDs",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "// Convert the response body to a JSON object\r",
+                            "var responseBodyAsJsonArray  = JSON.parse(responseBody);\r",
+                            "\r",
+                            "var cmHandleInReadyState = [];\r",
+                            "var cmHandleInNonReadyState = [];\r",
+                            "\r",
+                            "function countCmHandleStateInReady() {\r",
+                            "for(var index = 0; index < responseBodyAsJsonArray.length; index++) {\r",
+                            "    if(typeof responseBodyAsJsonArray[index].state.cmHandleState !== 'undefined'\r",
+                            "    && responseBodyAsJsonArray[index].state.cmHandleState == 'READY') {\r",
+                            "        cmHandleInReadyState.push(responseBodyAsJsonArray[index].state.cmHandleState);\r",
+                            "    }else{\r",
+                            "         cmHandleInNonReadyState.push(responseBodyAsJsonArray[index].state.cmHandleState);\r",
+                            "    }\r",
+                            "}\r",
+                            "}\r",
+                            "\r",
+                            "countCmHandleStateInReady();\r",
+                            "\r",
+                            "pm.collectionVariables.set(\"numberOfCmHandlesInReadyState\", cmHandleInReadyState.length);\r",
+                            "pm.collectionVariables.set(\"numberOfCmHandlesInNonReadyState\", cmHandleInNonReadyState.length);\r",
+                            "\r",
+                            "pm.test(\"HTTP Status is 200 with valid JSON response\", function () {\r",
+                            "    pm.response.to.be.ok;\r",
+                            "    pm.response.to.be.withBody;\r",
+                            "    pm.response.to.be.json;\r",
+                            "});\r",
+                            "\r",
+                            "pm.test(\"20000 cm handles are in Ready state\", function () {\r",
+                            "    pm.expect(cmHandleInReadyState.length).to.eql(20000);\r",
+                            "});\r",
+                            ""
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ],
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n  \"conditions\": [\r\n    {\r\n      \"name\": \"hasAllModules\"\r\n    }\r\n  ]\r\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/searches",
+                    "protocol": "http",
+                    "host": [
+                        "{{CPS_HOST}}"
+                    ],
+                    "port": "{{CPS_PORT}}",
+                    "path": [
+                        "ncmp",
+                        "v1",
+                        "ch",
+                        "searches"
+                    ],
+                    "query": [
+                        {
+                            "key": "resourceIdentifier",
+                            "value": "stores:bookstore",
+                            "disabled": true
+                        },
+                        {
+                            "key": "options",
+                            "value": "(fields=schemas/schema/location,depth=5)",
+                            "disabled": true
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "ReadResourceDataForCmHandles",
+            "event": [
+                {
+                    "listen": "prerequest",
+                    "script": {
+                        "exec": [
+                            "const cmHandleIds = pm.collectionVariables.get(\"targetIds\"); \r",
+                            "\r",
+                            "var dataOperationRequest = []\r",
+                            "var targetIds = [];\r",
+                            "\r",
+                            "for (index = 0; index < cmHandleIds.length ; index++) {\r",
+                            "\r",
+                            "    targetIds.push(cmHandleIds[index]);\r",
+                            "    var dataOperationTargetIds = [];\r",
+                            "    if (targetIds.length == 5){\r",
+                            "        dataOperationTargetIds = targetIds;\r",
+                            "         dataOperationRequest.push({\r",
+                            "            \"operation\": \"read\",\r",
+                            "            \"operationId\": \"operational-\"+index,\r",
+                            "            \"datastore\": \"ncmp-datastore:passthrough-running\",\r",
+                            "            \"resourceIdentifier\": \"parent/child\",\r",
+                            "            \"targetIds\": dataOperationTargetIds\r",
+                            "        });\r",
+                            "\r",
+                            "        pm.collectionVariables.unset(\"dataOperationTargetIds\");\r",
+                            "        // pm.globals.unset(\"variable_key\");\r",
+                            "        // pm.environment.unset(\"variable_key\");\r",
+                            "        // pm.collectionVariables.set(\"variable_key\", \"variable_value\");\r",
+                            "        // pm.sendRequest(\"https://postman-echo.com/get\", function (err, response) {\r",
+                            "        //     console.log(response.json());\r",
+                            "        // });\r",
+                            "        // for (index = 0; index < dataOperationTargetIds.length ; index++) {\r",
+                            "        //         targetIds.pop(dataOperationTargetIds[index]);\r",
+                            "        // }\r",
+                            "    }\r",
+                            "}\r",
+                            "\r",
+                            " pm.collectionVariables.set(\"dataOperationRequest\", JSON.stringify(dataOperationRequest));"
+                        ],
+                        "type": "text/javascript"
+                    }
+                },
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "pm.test(\"HTTP Status is 200 with valid JSON response\", function () {\r",
+                            "    pm.response.to.be.ok;\r",
+                            "    pm.response.to.be.withBody;\r",
+                            "    pm.response.to.be.json;\r",
+                            "});"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ],
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "topic",
+                        "value": "client-topic",
+                        "type": "default",
+                        "disabled": true
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n    \"operations\":\r\n       {{dataOperationRequest}}\r\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/data?topic=my-client-topic",
+                    "protocol": "http",
+                    "host": [
+                        "{{CPS_HOST}}"
+                    ],
+                    "port": "{{CPS_PORT}}",
+                    "path": [
+                        "ncmp",
+                        "v1",
+                        "data"
+                    ],
+                    "query": [
+                        {
+                            "key": "topic",
+                            "value": "my-client-topic"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        }
+    ],
+    "auth": {
+        "type": "basic",
+        "basic": [
+            {
+                "key": "password",
+                "value": "cpsr0cks!",
+                "type": "string"
+            },
+            {
+                "key": "username",
+                "value": "cpsuser",
+                "type": "string"
+            }
+        ]
+    },
+    "event": [
+        {
+            "listen": "prerequest",
+            "script": {
+                "type": "text/javascript",
+                "exec": [
+                    ""
+                ]
+            }
+        },
+        {
+            "listen": "test",
+            "script": {
+                "type": "text/javascript",
+                "exec": [
+                    ""
+                ]
+            }
+        }
+    ],
+    "variable": [
+        {
+            "key": "createdCmHandleIds",
+            "value": ""
+        },
+        {
+            "key": "createdCmHandles",
+            "value": ""
+        },
+        {
+            "key": "TOTAL_CMHANDLES",
+            "value": "20000",
+            "type": "default"
+        },
+        {
+            "key": "numberOfCmHandlesInReadyState",
+            "value": "",
+            "type": "default"
+        },
+        {
+            "key": "numberOfCmHandlesInNonReadyState",
+            "value": "",
+            "type": "default"
+        },
+        {
+            "key": "dataOperationRequest",
+            "value": "",
+            "type": "default"
+        },
+        {
+            "key": "targetIds",
+            "value": "",
+            "type": "default"
+        }
+    ]
+}
