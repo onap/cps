@@ -16,6 +16,24 @@
       "message": "this is the shortest version possible?",
       "revId": "fc00c0c590a2885dbf4bbea453124046d93fd1ec",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b06328eb_bc558bde",
+        "filename": "integration-test/src/test/resources/data/mock-dmi-responses/ietfYangModuleResourcesResponse.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-15T13:21:35Z",
+      "side": 1,
+      "message": "No, it\u0027s a copy-paste from the DMI-stub. Will clean up the module responses during the tests of module upgrade feature",
+      "parentUuid": "7e3749c8_7109af95",
+      "revId": "fc00c0c590a2885dbf4bbea453124046d93fd1ec",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
