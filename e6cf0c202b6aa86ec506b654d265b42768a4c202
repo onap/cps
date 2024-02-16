@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f363f3a4_d12cea8b",
+        "filename": "postman-collections/CPS Environment.postman_environment.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-16T13:42:38Z",
+      "side": 1,
+      "message": "On second thought, don\u0027t change the ports or we\u0027ll have change ports in CSIT!\n\nBut we should still only have DMI_HOST and DMI_PORT here, using dmi stub host/port as default. User can change the variables if they are running a different DMI.",
+      "parentUuid": "8ab1ae91_e328bac0",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 10
+      },
+      "revId": "e6cf0c202b6aa86ec506b654d265b42768a4c202",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "860825b2_590042c7",
         "filename": "postman-collections/CPS-CORE.postman_collection.json",
         "patchSetId": 2
