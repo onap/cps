@@ -22,6 +22,10 @@
 
 package org.onap.cps.ncmp.api.impl
 
+import ch.qos.logback.classic.Level
+import ch.qos.logback.classic.Logger
+import ch.qos.logback.classic.spi.ILoggingEvent
+import ch.qos.logback.core.read.ListAppender
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence
@@ -32,6 +36,7 @@ import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
 import org.onap.cps.utils.JsonObjectMapper
+import org.slf4j.LoggerFactory
 import spock.lang.Specification
 
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLES_NOT_FOUND
@@ -49,10 +54,17 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
     def mockAlternateIdChecker = Mock(AlternateIdChecker)
 
     def objectUnderTest = new NetworkCmProxyDataServicePropertyHandler(mockInventoryPersistence, mockCpsDataService, jsonObjectMapper, mockAlternateIdChecker)
+    def logger = Spy(ListAppender<ILoggingEvent>)
 
-    def setup() {
+    void setup() {
+        ((Logger) LoggerFactory.getLogger(NetworkCmProxyDataServicePropertyHandler.class)).addAppender(logger)
+        logger.start()
         // Always accept all alternate IDs
         mockAlternateIdChecker.getIdsOfCmHandlesWithRejectedAlternateId(*_) >> []
+    }
+
+    void cleanup() {
+        ((Logger) LoggerFactory.getLogger(NetworkCmProxyDataServicePropertyHandler.class)).detachAndStopAllAppenders()
     }
 
     def static cmHandleId = 'myHandle1'
@@ -221,6 +233,42 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
         and: 'the response shows a failure for the given cm handle id'
             assert response[0].status == Status.FAILURE
             assert response[0].cmHandle == cmHandleId
+    }
+
+    def 'Update CM Handle data producer identifier from #scenario'() {
+        given: 'an existing cm handle with no data producer identifier'
+            DataNode existingCmHandleDataNode = new DataNode(xpath: cmHandleXpath, leaves: ['id': 'cmHandleId','data-producer-identifier': oldDataProducerIdentifier])
+        and: 'an update request with a new data producer identifier'
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, dataProducerIdentifier: 'someDataProducerIdentifier')
+        when: 'data producer identifier updated'
+            objectUnderTest.updateDataProducerIdentifier(existingCmHandleDataNode, ncmpServiceCmHandle)
+        then: 'the update node leaves method is invoked once'
+            1 * mockCpsDataService.updateNodeLeaves('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry', _, _) >> { args ->
+                assert args[3].contains('someDataProducerIdentifier')
+            }
+        and: 'correct information is logged'
+            def lastLoggingEvent = logger.list[0]
+            assert lastLoggingEvent.level == Level.INFO
+            assert lastLoggingEvent.formattedMessage.contains('Updating data-producer-identifier')
+        where: 'the following scenarios are attempted'
+            scenario             | oldDataProducerIdentifier
+            'null to something'  | null
+            'blank to something' | ''
+    }
+
+    def 'Update CM Handle data producer identifier from some data producer identifier to another data producer identifier'() {
+        given: 'an existing cm handle with a data producer identifier'
+            DataNode existingCmHandleDataNode = new DataNode(xpath: cmHandleXpath, leaves: ['id': 'cmHandleId', 'data-producer-identifier': 'someDataProducerIdentifier'])
+        and: 'an update request with a new data producer identifier'
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, dataProducerIdentifier: 'someNewDataProducerIdentifier')
+        when: 'update data producer identifier is called with the update request'
+            objectUnderTest.updateDataProducerIdentifier(existingCmHandleDataNode, ncmpServiceCmHandle)
+        then: 'the update node leaves method is not invoked'
+            0 * mockCpsDataService.updateNodeLeaves('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry', _, _)
+        and: 'correct information is logged'
+            def lastLoggingEvent = logger.list[0]
+            assert lastLoggingEvent.level == Level.WARN
+            assert lastLoggingEvent.formattedMessage.contains('Unable to update dataProducerIdentifier')
     }
 
     def convertToProperties(expectedPropertiesAfterUpdateAsMap) {
