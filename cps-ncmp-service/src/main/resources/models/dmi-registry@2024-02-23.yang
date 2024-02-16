@@ -8,6 +8,11 @@ module dmi-registry {
 
   contact "toine.siebelink@est.tech";
 
+  revision "2024-02-23" {
+      description
+      "Added data-producer-identifier";
+    }
+
   revision "2023-11-27" {
     description
     "Added alternate-id";
@@ -89,6 +94,9 @@ module dmi-registry {
         type string;
       }
       leaf alternate-id {
+        type string;
+      }
+      leaf data-producer-identifier {
         type string;
       }
 

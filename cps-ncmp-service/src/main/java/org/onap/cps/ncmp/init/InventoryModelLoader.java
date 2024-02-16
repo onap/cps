@@ -34,8 +34,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class InventoryModelLoader extends AbstractModelLoader {
 
-    private static final String NEW_MODEL_FILE_NAME = "dmi-registry@2023-11-27.yang";
-    private static final String NEW_SCHEMA_SET_NAME = "dmi-registry-2023-11-27";
+    private static final String NEW_MODEL_FILE_NAME = "dmi-registry@2024-02-23.yang";
+    private static final String NEW_SCHEMA_SET_NAME = "dmi-registry-2024-02-23";
 
     public InventoryModelLoader(final CpsDataspaceService cpsDataspaceService,
                                 final CpsModuleService cpsModuleService,

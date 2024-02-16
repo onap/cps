@@ -64,7 +64,7 @@ class ModuleSyncServiceSpec extends Specification {
             def ncmpServiceCmHandle = new NcmpServiceCmHandle()
             ncmpServiceCmHandle.setCompositeState(new CompositeStateBuilder().withCmHandleState(CmHandleState.ADVISED).build())
             ncmpServiceCmHandle.cmHandleId = 'ch-1'
-            def yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle('some service name', '', '', ncmpServiceCmHandle, moduleSetTag, '')
+            def yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle('some service name', '', '', ncmpServiceCmHandle, moduleSetTag, '', '')
         and: 'DMI operations returns some module references'
             def moduleReferences =  [ new ModuleReference('module1','1'), new ModuleReference('module2','2') ]
             mockDmiModelOperations.getModuleReferences(yangModelCmHandle) >> moduleReferences
@@ -93,7 +93,7 @@ class ModuleSyncServiceSpec extends Specification {
             ncmpServiceCmHandle.setCompositeState(new CompositeStateBuilder().withLockReason(MODULE_UPGRADE, 'Upgrade to ModuleSetTag: tag-1').build())
             def dmiServiceName = 'some service name'
             ncmpServiceCmHandle.cmHandleId = 'upgraded-ch'
-            def yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle(dmiServiceName, '', '', ncmpServiceCmHandle,'tag-1', '')
+            def yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle(dmiServiceName, '', '', ncmpServiceCmHandle,'tag-1', '', '')
         and: 'some module references'
             def moduleReferences =  [ new ModuleReference('module1','1') ]
         and: 'DMI operations returns some module references for upgraded cm handle'
@@ -127,7 +127,7 @@ class ModuleSyncServiceSpec extends Specification {
             ncmpServiceCmHandle.setCompositeState(new CompositeStateBuilder()
                 .withLockReason(MODULE_UPGRADE, 'Upgrade to ModuleSetTag: targetModuleSetTag').build())
             ncmpServiceCmHandle.setCmHandleId('cmHandleId-1')
-            def yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle('some service name', '', '', ncmpServiceCmHandle, 'targetModuleSetTag', '')
+            def yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle('some service name', '', '', ncmpServiceCmHandle, 'targetModuleSetTag', '', '')
             mockCmHandleQueries.cmHandleHasState('cmHandleId-1', CmHandleState.READY) >> true
         and: 'the module service returns some module references'
             def moduleReferences = [new ModuleReference('module1', '1'), new ModuleReference('module2', '2')]
