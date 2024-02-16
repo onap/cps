@@ -133,6 +133,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f2feb04_e3e06d4e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 389,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-16T15:43:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e073382a_6719123c",
+      "revId": "f5e785bf6858097d0bd9c1436ea06be2bad1fcb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bdcad119_6d7bbdd7",
@@ -146,6 +164,24 @@
       "writtenOn": "2024-02-15T13:59:33Z",
       "side": 1,
       "message": "ignore the rejected ids",
+      "revId": "f5e785bf6858097d0bd9c1436ea06be2bad1fcb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa0a801d_7e6c9768",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-16T15:43:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bdcad119_6d7bbdd7",
       "revId": "f5e785bf6858097d0bd9c1436ea06be2bad1fcb2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -231,6 +267,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0266e6c_f7fa5f0a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/AlternateIdChecker.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-16T15:43:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "62e315dd_c38b4aa1",
+      "revId": "f5e785bf6858097d0bd9c1436ea06be2bad1fcb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5f1aaefe_fc176bf8",
@@ -244,6 +298,24 @@
       "writtenOn": "2024-02-15T13:59:33Z",
       "side": 1,
       "message": "collection of rejected cmhandleids instead of this",
+      "revId": "f5e785bf6858097d0bd9c1436ea06be2bad1fcb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d704ea2b_652fdd6a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/AlternateIdChecker.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-16T15:43:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f1aaefe_fc176bf8",
       "revId": "f5e785bf6858097d0bd9c1436ea06be2bad1fcb2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -265,6 +337,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "06bd4443_cb4e0b2d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/AlternateIdChecker.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-16T15:43:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eabeb35b_53f45072",
+      "revId": "f5e785bf6858097d0bd9c1436ea06be2bad1fcb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2f034603_7f42928e",
@@ -278,6 +368,24 @@
       "writtenOn": "2024-02-15T13:59:33Z",
       "side": 1,
       "message": "return the rejected ones!",
+      "revId": "f5e785bf6858097d0bd9c1436ea06be2bad1fcb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98e2c4cc_e1b07d25",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/AlternateIdChecker.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-16T15:43:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f034603_7f42928e",
       "revId": "f5e785bf6858097d0bd9c1436ea06be2bad1fcb2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
