@@ -143,6 +143,9 @@ components:
         alternateId:
           type: string
           example: "my-alternate-id"
+        dataProducerIdentifier:
+          type: string
+          example: "my-data-producer-identifier"
     RestCmHandleProperties:
       type: object
       additionalProperties:

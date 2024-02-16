@@ -56,6 +56,7 @@ import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.DataNodeBuilder;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 @Slf4j
 @Service
@@ -83,6 +84,7 @@ public class NetworkCmProxyDataServicePropertyHandler {
             try {
                 final DataNode existingCmHandleDataNode = inventoryPersistence
                     .getCmHandleDataNodeByCmHandleId(cmHandleId).iterator().next();
+                updateDataProducerIdentifier(existingCmHandleDataNode, ncmpServiceCmHandle);
                 updateAlternateId(existingCmHandleDataNode, ncmpServiceCmHandle);
                 processUpdates(existingCmHandleDataNode, ncmpServiceCmHandle);
                 cmHandleRegistrationResponses.add(CmHandleRegistrationResponse.createSuccessResponse(cmHandleId));
@@ -113,6 +115,27 @@ public class NetworkCmProxyDataServicePropertyHandler {
         if (alternateIdChecker.canApplyAlternateId(ncmpServiceCmHandle.getCmHandleId(),
             currentAlternateId, newAlternateId)) {
             setAndUpdateAlternateId(yangModelCmHandle, newAlternateId);
+        }
+    }
+
+    private void updateDataProducerIdentifier(final DataNode existingCmHandleDataNode,
+                                              final NcmpServiceCmHandle ncmpServiceCmHandle) {
+        final String newDataProducerIdentifier = ncmpServiceCmHandle.getDataProducerIdentifier();
+        if (StringUtils.hasText(newDataProducerIdentifier)) {
+            final String existingDataProducerIdentifier =
+                    (String) existingCmHandleDataNode.getLeaves().get("data-producer-identifier");
+            if (StringUtils.hasText(existingDataProducerIdentifier)) {
+                if (!existingDataProducerIdentifier.equals(newDataProducerIdentifier)) {
+                    log.warn("Unable to update dataProducerIdentifier for cmHandle {}. "
+                                    + "Value for dataProducerIdentifier has been set previously.",
+                            ncmpServiceCmHandle.getCmHandleId());
+                }
+            } else {
+                final YangModelCmHandle yangModelCmHandle =
+                        YangDataConverter.convertCmHandleToYangModel(existingCmHandleDataNode,
+                                ncmpServiceCmHandle.getCmHandleId());
+                setAndUpdateDataProducerIdentifier(yangModelCmHandle, newDataProducerIdentifier);
+            }
         }
     }
 
@@ -201,6 +224,19 @@ public class NetworkCmProxyDataServicePropertyHandler {
         cpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
                 jsonObjectMapper.asJsonString(dmiRegistryProperties), OffsetDateTime.now());
         log.info("Updating alternateId for cmHandle {} with value : {})", upgradedCmHandle.getId(), alternateId);
+    }
+
+    private void setAndUpdateDataProducerIdentifier(final YangModelCmHandle upgradedCmHandle,
+                                                    final String newDataProducerIdentifier) {
+        final Map<String, Map<String, String>> dmiRegistryProperties = new HashMap<>(1);
+        final Map<String, String> cmHandleProperties = new HashMap<>(2);
+        cmHandleProperties.put("id", upgradedCmHandle.getId());
+        cmHandleProperties.put("data-producer-identifier", newDataProducerIdentifier);
+        dmiRegistryProperties.put("cm-handles", cmHandleProperties);
+        cpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
+                jsonObjectMapper.asJsonString(dmiRegistryProperties), OffsetDateTime.now());
+        log.info("Updating dataProducerIdentifier for cmHandle {} with value : {})",
+                upgradedCmHandle.getId(), newDataProducerIdentifier);
     }
 
     enum PropertyType {

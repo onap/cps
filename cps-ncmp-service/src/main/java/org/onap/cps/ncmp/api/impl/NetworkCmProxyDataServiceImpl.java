@@ -326,7 +326,8 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                                 dmiPluginRegistration.getDmiModelPlugin(),
                                 cmHandle,
                                 cmHandle.getModuleSetTag(),
-                                cmHandle.getAlternateId());
+                                cmHandle.getAlternateId(),
+                                cmHandle.getDataProducerIdentifier());
                         yangModelCmHandles.add(yangModelCmHandle);
                         initialTrustLevelPerCmHandleId.put(cmHandle.getCmHandleId(),
                             cmHandle.getRegistrationTrustLevel());
