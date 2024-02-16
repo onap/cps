@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2023 Nordix Foundation
+ *  Copyright (C) 2021-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -47,12 +47,13 @@ class YangModelCmHandleSpec extends Specification {
                 .withOperationalDataStores(DataStoreSyncState.SYNCHRONIZED, 'some-sync-time').build()
             ncmpServiceCmHandle.setCompositeState(compositeState)
         when: 'it is converted to a yang model cm handle'
-            def objectUnderTest = YangModelCmHandle.toYangModelCmHandle('', '', '', ncmpServiceCmHandle,'my-module-set-tag', 'my-alternate-id')
+            def objectUnderTest = YangModelCmHandle.toYangModelCmHandle('', '', '', ncmpServiceCmHandle,'my-module-set-tag', 'my-alternate-id', 'my-data-producer-identifier')
         then: 'the result has the right size'
             assert objectUnderTest.dmiProperties.size() == 1
-        and: 'the result has the correct values for module set tag and alternate ID'
+        and: 'the result has the correct values for module set tag, alternate ID, and data producer identifier'
             assert objectUnderTest.moduleSetTag == 'my-module-set-tag'
             assert objectUnderTest.alternateId == 'my-alternate-id'
+            assert objectUnderTest.dataProducerIdentifier == 'my-data-producer-identifier'
         and: 'the DMI property in the result has the correct name and value'
             assert objectUnderTest.dmiProperties[0].name == 'myDmiProperty'
             assert objectUnderTest.dmiProperties[0].value == 'value1'
@@ -67,7 +68,7 @@ class YangModelCmHandleSpec extends Specification {
     def 'Resolve DMI service name: #scenario and #requiredService service require.'() {
         given: 'a yang model cm handle'
             def objectUnderTest = YangModelCmHandle.toYangModelCmHandle(dmiServiceName, dmiDataServiceName,
-                    dmiModelServiceName, new NcmpServiceCmHandle(cmHandleId: 'cm-handle-id-1'),'', '')
+                    dmiModelServiceName, new NcmpServiceCmHandle(cmHandleId: 'cm-handle-id-1'),'', '', '')
         expect:
             assert objectUnderTest.resolveDmiServiceName(requiredService) == expectedService
         where:
