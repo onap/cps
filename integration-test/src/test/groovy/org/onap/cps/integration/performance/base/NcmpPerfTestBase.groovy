@@ -72,7 +72,7 @@ class NcmpPerfTestBase extends PerfTestBase {
     }
 
     def createRegistrySchemaSet() {
-        def modelAsString = readResourceDataFile('ncmp-registry/dmi-registry@2023-11-27.yang')
+        def modelAsString = readResourceDataFile('ncmp-registry/dmi-registry@2024-02-23.yang')
         cpsModuleService.createSchemaSet(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_SCHEMA_SET, [registry: modelAsString])
     }
 
