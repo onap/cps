@@ -103,10 +103,10 @@ public class AlternateIdChecker {
      * @param newNcmpServiceCmHandles the proposed new cm handles
      * @return collection of cm handles ids which are acceptable
      */
-    public Collection<String> getIdsOfCmHandlesWithAcceptableAlternateId(
+    public Collection<String> getIdsOfCmHandlesWithRejectedAlternateId(
                                     final Collection<NcmpServiceCmHandle> newNcmpServiceCmHandles) {
         final Set<String> acceptedAlternateIds = new HashSet<>(newNcmpServiceCmHandles.size());
-        final Collection<String> acceptedCmHandleIds = new ArrayList<>(newNcmpServiceCmHandles.size());
+        final Collection<String> rejectedCmHandleIds = new ArrayList<>(newNcmpServiceCmHandles.size());
         for (final NcmpServiceCmHandle ncmpServiceCmHandle : newNcmpServiceCmHandles) {
             final String cmHandleId = ncmpServiceCmHandle.getCmHandleId();
             final String proposedAlternateId = ncmpServiceCmHandle.getAlternateId();
@@ -124,10 +124,11 @@ public class AlternateIdChecker {
             }
             if (isAcceptable) {
                 acceptedAlternateIds.add(proposedAlternateId);
-                acceptedCmHandleIds.add(cmHandleId);
+            } else {
+                rejectedCmHandleIds.add(cmHandleId);
             }
         }
-        return acceptedCmHandleIds;
+        return rejectedCmHandleIds;
     }
 
     private boolean alternateIdAlreadyInDb(final String alternateId) {

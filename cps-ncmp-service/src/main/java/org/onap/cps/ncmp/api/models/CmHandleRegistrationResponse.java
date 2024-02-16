@@ -88,8 +88,8 @@ public class CmHandleRegistrationResponse {
         for (final String xpath : failedXpaths) {
             try {
                 final String cmHandleId = YangDataConverter.extractCmHandleIdFromXpath(xpath);
-                cmHandleRegistrationResponses.add(
-                        CmHandleRegistrationResponse.createFailureResponse(cmHandleId, ncmpResponseStatus));
+                cmHandleRegistrationResponses
+                    .add(CmHandleRegistrationResponse.createFailureResponse(cmHandleId, ncmpResponseStatus));
             } catch (IllegalArgumentException | IllegalStateException e) {
                 log.warn("Unexpected xpath {}", xpath);
             }

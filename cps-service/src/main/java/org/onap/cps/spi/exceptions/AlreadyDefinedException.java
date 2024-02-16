@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2023 Nordix Foundation
+ *  Copyright (C) 2021-2024 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -73,5 +73,10 @@ public class AlreadyDefinedException extends CpsAdminException {
 
     public static AlreadyDefinedException forDataNodes(final Collection<String> xpaths, final String contextName) {
         return new AlreadyDefinedException("data node(s)", xpaths, contextName);
+    }
+
+    public static AlreadyDefinedException forRejectedCmHandleIds(final Collection<String> alternateIds,
+                                                             final String contextName) {
+        return new AlreadyDefinedException("alternate id(s)", alternateIds, contextName);
     }
 }
