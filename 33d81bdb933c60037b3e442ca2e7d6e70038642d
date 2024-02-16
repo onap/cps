@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "62342ffd_b245af15",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionDelta.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-16T13:11:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "32212e50_cdc95c08",
+      "range": {
+        "startLine": 42,
+        "startChar": 14,
+        "endLine": 42,
+        "endChar": 50
+      },
+      "revId": "33d81bdb933c60037b3e442ca2e7d6e70038642d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8c4eeef2_63a15f16",
@@ -64,6 +88,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca4a8a01_72d4cc06",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionDelta.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-16T13:11:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8c4eeef2_63a15f16",
+      "range": {
+        "startLine": 49,
+        "startChar": 58,
+        "endLine": 49,
+        "endChar": 93
+      },
+      "revId": "33d81bdb933c60037b3e442ca2e7d6e70038642d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b3a2d146_be2de8e9",
@@ -77,6 +125,30 @@
       "writtenOn": "2024-02-14T15:27:25Z",
       "side": 1,
       "message": "put this in \u0027and\u0027 \n\nie. and: .....is returned as ongoing \n\nand .... is retuned as not \n\nsomething like that",
+      "range": {
+        "startLine": 35,
+        "startChar": 10,
+        "endLine": 38,
+        "endChar": 110
+      },
+      "revId": "33d81bdb933c60037b3e442ca2e7d6e70038642d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c8441b0_778f5f2f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionDeltaSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-16T13:11:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b3a2d146_be2de8e9",
       "range": {
         "startLine": 35,
         "startChar": 10,
