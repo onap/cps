@@ -56,6 +56,7 @@ import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.DataNodeBuilder;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 @Slf4j
 @Service
@@ -84,8 +85,9 @@ public class NetworkCmProxyDataServicePropertyHandler {
             try {
                 final DataNode existingCmHandleDataNode = inventoryPersistence
                     .getCmHandleDataNodeByCmHandleId(cmHandleId).iterator().next();
+                updateDataProducerIdentifier(existingCmHandleDataNode, ncmpServiceCmHandle);
                 updateAlternateId(existingCmHandleDataNode, ncmpServiceCmHandle);
-                processUpdates(existingCmHandleDataNode, ncmpServiceCmHandle);
+                updateUserDefinedProperties(existingCmHandleDataNode, ncmpServiceCmHandle);
                 cmHandleRegistrationResponses.add(CmHandleRegistrationResponse.createSuccessResponse(cmHandleId));
             } catch (final DataNodeNotFoundException e) {
                 log.error("Unable to find dataNode for cmHandleId : {} , caused by : {}", cmHandleId, e.getMessage());
@@ -112,11 +114,32 @@ public class NetworkCmProxyDataServicePropertyHandler {
         final String newAlternateId = ncmpServiceCmHandle.getAlternateId();
         if (alternateIdChecker.canApplyAlternateId(ncmpServiceCmHandle.getCmHandleId(),
             currentAlternateId, newAlternateId)) {
-            setAndUpdateAlternateId(yangModelCmHandle, newAlternateId);
+            setAndUpdateCmHandleField(yangModelCmHandle, "alternate-id", newAlternateId);
         }
     }
 
-    private void processUpdates(final DataNode existingCmHandleDataNode, final NcmpServiceCmHandle incomingCmHandle) {
+    private void updateDataProducerIdentifier(final DataNode cmHandleDataNode,
+                                              final NcmpServiceCmHandle ncmpServiceCmHandle) {
+        final String newDataProducerIdentifier = ncmpServiceCmHandle.getDataProducerIdentifier();
+        if (StringUtils.hasText(newDataProducerIdentifier)) {
+            final String existingDataProducerIdentifier =
+                    (String) cmHandleDataNode.getLeaves().get("data-producer-identifier");
+            if (StringUtils.hasText(existingDataProducerIdentifier)) {
+                if (!existingDataProducerIdentifier.equals(newDataProducerIdentifier)) {
+                    log.warn("Unable to update dataProducerIdentifier for cmHandle {}. "
+                                    + "Value for dataProducerIdentifier has been set previously.",
+                            ncmpServiceCmHandle.getCmHandleId());
+                }
+            } else {
+                final YangModelCmHandle yangModelCmHandle =
+                        YangDataConverter.convertCmHandleToYangModel(cmHandleDataNode);
+                setAndUpdateCmHandleField(yangModelCmHandle, "data-producer-identifier", newDataProducerIdentifier);
+            }
+        }
+    }
+
+    private void updateUserDefinedProperties(final DataNode existingCmHandleDataNode,
+                                             final NcmpServiceCmHandle incomingCmHandle) {
         if (!incomingCmHandle.getPublicProperties().isEmpty()) {
             updateProperties(existingCmHandleDataNode, PUBLIC_PROPERTY, incomingCmHandle.getPublicProperties());
         }
@@ -192,15 +215,16 @@ public class NetworkCmProxyDataServicePropertyHandler {
         return new DataNodeBuilder().withXpath(xpath).withLeaves(ImmutableMap.copyOf(updatedLeaves)).build();
     }
 
-    private void setAndUpdateAlternateId(final YangModelCmHandle upgradedCmHandle, final String alternateId) {
-        final Map<String, Map<String, String>> dmiRegistryProperties = new HashMap<>(1);
-        final Map<String, String> cmHandleProperties = new HashMap<>(2);
-        cmHandleProperties.put("id", upgradedCmHandle.getId());
-        cmHandleProperties.put("alternate-id", alternateId);
-        dmiRegistryProperties.put("cm-handles", cmHandleProperties);
+    private void setAndUpdateCmHandleField(final YangModelCmHandle upgradedCmHandle, final String fieldName,
+                                           final String newFieldValue) {
+        final Map<String, Map<String, String>> dmiRegistryData = new HashMap<>(1);
+        final Map<String, String> cmHandleData = new HashMap<>(2);
+        cmHandleData.put("id", upgradedCmHandle.getId());
+        cmHandleData.put(fieldName, newFieldValue);
+        dmiRegistryData.put("cm-handles", cmHandleData);
         cpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
-                jsonObjectMapper.asJsonString(dmiRegistryProperties), OffsetDateTime.now());
-        log.info("Updating alternateId for cmHandle {} with value : {})", upgradedCmHandle.getId(), alternateId);
+                jsonObjectMapper.asJsonString(dmiRegistryData), OffsetDateTime.now());
+        log.info("Updating {} for cmHandle {} with value : {})", fieldName, upgradedCmHandle.getId(), newFieldValue);
     }
 
     enum PropertyType {

@@ -70,6 +70,9 @@ public class YangModelCmHandle {
     @JsonProperty("alternate-id")
     private String alternateId;
 
+    @JsonProperty("data-producer-identifier")
+    private String dataProducerIdentifier;
+
     @JsonProperty("additional-properties")
     private List<Property> dmiProperties;
 
@@ -95,6 +98,7 @@ public class YangModelCmHandle {
                 original.getPublicProperties() == null ? null : new ArrayList<>(original.getPublicProperties());
         copy.moduleSetTag = original.getModuleSetTag();
         copy.alternateId = original.getAlternateId();
+        copy.dataProducerIdentifier = original.getDataProducerIdentifier();
         return copy;
     }
 
@@ -112,7 +116,8 @@ public class YangModelCmHandle {
                                                         final String dmiModelServiceName,
                                                         final NcmpServiceCmHandle ncmpServiceCmHandle,
                                                         final String moduleSetTag,
-                                                        final String alternateId) {
+                                                        final String alternateId,
+                                                        final String dataProducerIdentifier) {
         final YangModelCmHandle yangModelCmHandle = new YangModelCmHandle();
         yangModelCmHandle.setId(ncmpServiceCmHandle.getCmHandleId());
         yangModelCmHandle.setDmiServiceName(dmiServiceName);
@@ -120,6 +125,7 @@ public class YangModelCmHandle {
         yangModelCmHandle.setDmiModelServiceName(dmiModelServiceName);
         yangModelCmHandle.setModuleSetTag(moduleSetTag == null ? StringUtils.EMPTY : moduleSetTag);
         yangModelCmHandle.setAlternateId(alternateId == null ? StringUtils.EMPTY : alternateId);
+        yangModelCmHandle.setDataProducerIdentifier(dataProducerIdentifier);
         yangModelCmHandle.setDmiProperties(asYangModelCmHandleProperties(ncmpServiceCmHandle.getDmiProperties()));
         yangModelCmHandle.setPublicProperties(asYangModelCmHandleProperties(
                 ncmpServiceCmHandle.getPublicProperties()));

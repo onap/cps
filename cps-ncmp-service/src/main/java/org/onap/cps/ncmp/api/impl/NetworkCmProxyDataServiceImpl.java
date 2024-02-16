@@ -455,7 +455,8 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             dmiPluginRegistration.getDmiModelPlugin(),
             ncmpServiceCmHandle,
             ncmpServiceCmHandle.getModuleSetTag(),
-            ncmpServiceCmHandle.getAlternateId());
+            ncmpServiceCmHandle.getAlternateId(),
+            ncmpServiceCmHandle.getDataProducerIdentifier());
     }
 
     private void processTrustLevels(final Collection<NcmpServiceCmHandle> cmHandlesToBeCreated,
