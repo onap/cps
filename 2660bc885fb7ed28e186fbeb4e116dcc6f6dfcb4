@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e69419d4_f1bdaf2a",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/NcmpIntegrationSpecBase.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-16T16:57:05Z",
+      "side": 1,
+      "message": "Wrong base class!",
+      "range": {
+        "startLine": 35,
+        "startChar": 47,
+        "endLine": 35,
+        "endChar": 69
+      },
+      "revId": "2660bc885fb7ed28e186fbeb4e116dcc6f6dfcb4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
