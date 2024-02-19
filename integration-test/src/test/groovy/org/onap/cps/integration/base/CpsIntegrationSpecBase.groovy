@@ -30,6 +30,10 @@ import org.onap.cps.integration.DatabaseTestContainer
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandleQueryService
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService
 import org.onap.cps.ncmp.api.NetworkCmProxyQueryService
+import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
+import org.onap.cps.ncmp.api.impl.inventory.sync.ModuleSyncWatchdog
+import org.onap.cps.ncmp.api.models.DmiPluginRegistration
+import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.repository.DataspaceRepository
@@ -40,10 +44,17 @@ import org.springframework.boot.autoconfigure.domain.EntityScan
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories
+import org.springframework.http.HttpStatus
+import org.springframework.http.MediaType
+import org.springframework.test.web.client.MockRestServiceServer
 import org.springframework.web.client.RestTemplate
 import org.testcontainers.spock.Testcontainers
 import spock.lang.Shared
 import spock.lang.Specification
+import spock.util.concurrent.PollingConditions
+
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo
+import static org.springframework.test.web.client.response.MockRestResponseCreators.withStatus
 
 @SpringBootTest(classes = [CpsDataspaceService])
 @Testcontainers
@@ -75,9 +86,6 @@ abstract class CpsIntegrationSpecBase extends Specification {
     SessionManager sessionManager
 
     @Autowired
-    RestTemplate restTemplate
-
-    @Autowired
     NetworkCmProxyCmHandleQueryService networkCmProxyCmHandleQueryService
 
     @Autowired
@@ -85,6 +93,16 @@ abstract class CpsIntegrationSpecBase extends Specification {
 
     @Autowired
     NetworkCmProxyQueryService networkCmProxyQueryService
+
+    @Autowired
+    RestTemplate restTemplate
+
+    @Autowired
+    ModuleSyncWatchdog moduleSyncWatchdog
+
+    MockRestServiceServer mockDmiServer = null
+
+    static final DMI_URL = 'http://mock-dmi-server'
 
     def static GENERAL_TEST_DATASPACE = 'generalTestDataspace'
     def static BOOKSTORE_SCHEMA_SET = 'bookstoreSchemaSet'
@@ -98,6 +116,11 @@ abstract class CpsIntegrationSpecBase extends Specification {
             createStandardBookStoreSchemaSet(GENERAL_TEST_DATASPACE)
             initialized = true
         }
+        mockDmiServer = MockRestServiceServer.createServer(restTemplate)
+    }
+
+    def cleanup() {
+        mockDmiServer.reset()
     }
 
     def static countDataNodesInTree(DataNode dataNode) {
@@ -158,4 +181,48 @@ abstract class CpsIntegrationSpecBase extends Specification {
         return '"' + name + '":[' + innerJson + ']'
     }
 
+    // *** NCMP Test Utilities ***
+
+    protected def registerCmHandle(dmiPlugin, cmHandleId, moduleSetTag, dmiModuleReferencesResponse, dmiModuleResourcesResponse) {
+        // given: a CM-handle to register
+        def cmHandlesToCreate = [new NcmpServiceCmHandle(cmHandleId: cmHandleId, moduleSetTag: moduleSetTag)]
+        def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: dmiPlugin, createdCmHandles: cmHandlesToCreate)
+
+        // and: given DMI responses
+        mockDmiResponsesForRegistration(dmiPlugin, cmHandleId, dmiModuleReferencesResponse, dmiModuleResourcesResponse)
+
+        // when: NCMP is instructed to register the handle
+        networkCmProxyDataService.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+        moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
+
+        // then: CM-handle goes to READY state
+        new PollingConditions().within(5, () -> {
+            assert CmHandleState.READY == networkCmProxyDataService.getCmHandleCompositeState(cmHandleId).cmHandleState
+        })
+
+        // and: DMI received expected requests
+        mockDmiServer.verify()
+
+        // cleanup: reset mock DMI counters
+        mockDmiServer.reset()
+    }
+
+    def deregisterCmHandle(dmiPlugin, cmHandleId) {
+        deregisterCmHandles(dmiPlugin, [cmHandleId])
+    }
+
+    def deregisterCmHandles(dmiPlugin, cmHandleIds) {
+        networkCmProxyDataService.updateDmiRegistrationAndSyncModule(new DmiPluginRegistration(dmiPlugin: dmiPlugin, removedCmHandles: cmHandleIds))
+    }
+
+    protected def mockDmiResponsesForRegistration(dmiPlugin, cmHandleId, dmiModuleReferencesResponse, dmiModuleResourcesResponse) {
+        if (dmiModuleReferencesResponse != null) {
+            mockDmiServer.expect(requestTo("${dmiPlugin}/dmi/v1/ch/${cmHandleId}/modules"))
+                    .andRespond(withStatus(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(dmiModuleReferencesResponse))
+        }
+        if (dmiModuleResourcesResponse != null) {
+            mockDmiServer.expect(requestTo("${dmiPlugin}/dmi/v1/ch/${cmHandleId}/moduleResources"))
+                    .andRespond(withStatus(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(dmiModuleResourcesResponse))
+        }
+    }
 }

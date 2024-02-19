@@ -23,58 +23,41 @@ package org.onap.cps.integration.functional
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
-import org.onap.cps.ncmp.api.impl.inventory.sync.ModuleSyncWatchdog
+import org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory
+import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
-import org.onap.cps.spi.exceptions.DataNodeNotFoundException
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
-import org.springframework.http.MediaType
-import org.springframework.test.web.client.MockRestServiceServer
 import spock.util.concurrent.PollingConditions
 
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.anything
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withStatus
 
 class NcmpCmHandleRegistrationSpec extends CpsIntegrationSpecBase {
 
     NetworkCmProxyDataService objectUnderTest
 
-    @Autowired
-    ModuleSyncWatchdog moduleSyncWatchdog
-
-    static final DMI_URL = 'http://mock-dmi-server'
-    def mockDmiServer
-    def moduleReferencesResponse
-    def moduleResourcesResponse
+    static final MODULE_REFERENCES_RESPONSE_A = readResourceDataFile('mock-dmi-responses/bookStoreAWithModules_M1_M2_Response.json')
+    static final MODULE_RESOURCES_RESPONSE_A = readResourceDataFile('mock-dmi-responses/bookStoreAWithModules_M1_M2_ResourcesResponse.json')
+    static final MODULE_REFERENCES_RESPONSE_B = readResourceDataFile('mock-dmi-responses/bookStoreBWithModules_M1_M3_Response.json')
+    static final MODULE_RESOURCES_RESPONSE_B = readResourceDataFile('mock-dmi-responses/bookStoreBWithModules_M1_M3_ResourcesResponse.json')
 
     def setup() {
         objectUnderTest = networkCmProxyDataService
-        mockDmiServer = MockRestServiceServer.createServer(restTemplate)
-        moduleReferencesResponse = readResourceDataFile('mock-dmi-responses/ietfYangModuleResponse.json')
-        moduleResourcesResponse = readResourceDataFile('mock-dmi-responses/ietfYangModuleResourcesResponse.json')
     }
 
-    def 'CM Handle is READY when Registration is successful.'() {
+    def 'CM Handle registration is successful.'() {
         given: 'a CM handle to create'
-            def cmHandlesToCreate = [new NcmpServiceCmHandle(cmHandleId: 'cm-1')]
+            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: DMI_URL, createdCmHandles: [new NcmpServiceCmHandle(cmHandleId: 'cm-1')])
 
-        and: 'DMI registration params'
-            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: DMI_URL, createdCmHandles: cmHandlesToCreate)
-            dmiPluginRegistration.validateDmiPluginRegistration()
-
-        and: 'DMI returns modules'
-            mockDmiServer.expect(requestTo("${DMI_URL}/dmi/v1/ch/cm-1/modules"))
-                    .andRespond(withStatus(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(moduleReferencesResponse))
-            mockDmiServer.expect(requestTo("${DMI_URL}/dmi/v1/ch/cm-1/moduleResources"))
-                    .andRespond(withStatus(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(moduleResourcesResponse))
+        and: 'DMI will return modules'
+            mockDmiResponsesForRegistration(DMI_URL, 'cm-1', MODULE_REFERENCES_RESPONSE_A, MODULE_RESOURCES_RESPONSE_A)
 
         when: 'a CM-handle is registered'
-            def dmiPluginRegistrationResponse = networkCmProxyDataService.updateDmiRegistrationAndSyncModule(dmiPluginRegistration);
+            def dmiPluginRegistrationResponse = networkCmProxyDataService.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
 
-        then: 'registration gives expected response'
-            assert dmiPluginRegistrationResponse.createdCmHandles.size() == 1
+        then: 'registration gives successful response'
+            assert dmiPluginRegistrationResponse.createdCmHandles == [CmHandleRegistrationResponse.createSuccessResponse('cm-1')]
 
         and: 'CM-handle is initially in ADVISED state'
             assert CmHandleState.ADVISED == objectUnderTest.getCmHandleCompositeState('cm-1').cmHandleState
@@ -87,55 +70,67 @@ class NcmpCmHandleRegistrationSpec extends CpsIntegrationSpecBase {
                 assert CmHandleState.READY == objectUnderTest.getCmHandleCompositeState('cm-1').cmHandleState
             })
 
+        and: 'the CM-handle has expected modules'
+            assert ['M1', 'M2'] == objectUnderTest.getYangResourcesModuleReferences('cm-1').moduleName.sort()
+
         and: 'DMI received expected requests'
             mockDmiServer.verify()
+
+        cleanup: 'deregister CM handle'
+            deregisterCmHandle(DMI_URL, 'cm-1')
     }
 
     def 'CM Handle goes to LOCKED state when DMI gives error during module sync.'() {
         given: 'a CM handle to create'
-            def cmHandlesToCreate = [new NcmpServiceCmHandle(cmHandleId: 'cm-2')]
-
-        and: 'DMI registration params'
-            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: DMI_URL, createdCmHandles: cmHandlesToCreate)
-            dmiPluginRegistration.validateDmiPluginRegistration()
+            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: DMI_URL, createdCmHandles: [new NcmpServiceCmHandle(cmHandleId: 'cm-1')])
 
         and: 'DMI returns error code'
             mockDmiServer.expect(anything()).andRespond(withStatus(HttpStatus.SERVICE_UNAVAILABLE))
 
         when: 'a CM-handle is registered'
-            def dmiPluginRegistrationResponse = networkCmProxyDataService.updateDmiRegistrationAndSyncModule(dmiPluginRegistration);
+            networkCmProxyDataService.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
 
-        then: 'registration gives expected response'
-            assert dmiPluginRegistrationResponse.createdCmHandles.size() == 1
-
-        and: 'CM-handle is initially in ADVISED state'
-            assert CmHandleState.ADVISED == objectUnderTest.getCmHandleCompositeState('cm-2').cmHandleState
-
-        when: 'module sync runs'
+        and: 'module sync runs'
             moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
 
-        then: 'CM-handle goes to LOCKED state'
+        then: 'CM-handle goes to LOCKED state with reason MODULE_SYNC_FAILED'
             new PollingConditions().within(3, () -> {
-                assert CmHandleState.LOCKED == objectUnderTest.getCmHandleCompositeState('cm-2').cmHandleState
+                def cmHandleCompositeState = objectUnderTest.getCmHandleCompositeState('cm-1')
+                assert cmHandleCompositeState.cmHandleState == CmHandleState.LOCKED
+                assert cmHandleCompositeState.lockReason.lockReasonCategory == LockReasonCategory.MODULE_SYNC_FAILED
             })
 
-        and: 'DMI received expected requests'
-            mockDmiServer.verify()
+        and: 'CM-handle has no modules'
+            assert objectUnderTest.getYangResourcesModuleReferences('cm-1').empty
+
+        cleanup: 'deregister CM handle'
+            deregisterCmHandle(DMI_URL, 'cm-1')
     }
 
-    def 'Deregister CM-handles.'() {
-        given: 'a list of CM handles to remove'
-            def cmHandlesToRemove = ['cm-1', 'cm-2']
+    def 'Create a CM-handle with existing moduleSetTag.'() {
+        given: "an existing CM-handle cm-1 with moduleSetTag 'A'"
+            registerCmHandle(DMI_URL, 'cm-1', 'A', MODULE_REFERENCES_RESPONSE_A, MODULE_RESOURCES_RESPONSE_A)
+            assert ['M1', 'M2'] == objectUnderTest.getYangResourcesModuleReferences('cm-1').moduleName.sort()
 
-        and: 'DMI registration parameters are set'
-            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: DMI_URL, removedCmHandles: cmHandlesToRemove)
-            dmiPluginRegistration.validateDmiPluginRegistration()
+        and: "an existing CM-handle cm-2 with moduleSetTag 'B'"
+            registerCmHandle(DMI_URL, 'cm-2', 'B', MODULE_REFERENCES_RESPONSE_B, MODULE_RESOURCES_RESPONSE_B)
+            assert ['M1', 'M3'] == objectUnderTest.getYangResourcesModuleReferences('cm-2').moduleName.sort()
 
-        when: 'the CM-handles are deregistered'
-            networkCmProxyDataService.updateDmiRegistrationAndSyncModule(dmiPluginRegistration);
+        when: "a CM-handle cm-3 is created with moduleSetTag 'B'"
+            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: DMI_URL,
+                    createdCmHandles: [new NcmpServiceCmHandle(cmHandleId: 'cm-3', moduleSetTag: 'B')])
+            networkCmProxyDataService.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
 
-        then: 'the CM-handles no longer exists'
-            assert !objectUnderTest.getAllCmHandleIdsByDmiPluginIdentifier(DMI_URL).contains('cm-1')
-            assert !objectUnderTest.getAllCmHandleIdsByDmiPluginIdentifier(DMI_URL).contains('cm-2')
+        then: 'the CM-handle goes to READY state after module sync'
+            moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
+            new PollingConditions().within(3, () -> {
+                assert CmHandleState.READY == objectUnderTest.getCmHandleCompositeState('cm-3').cmHandleState
+            })
+
+        and: 'the CM-handle has expected modules: M1 and M3'
+            ['M1', 'M3'] == objectUnderTest.getYangResourcesModuleReferences('cm-3').moduleName.sort()
+
+        cleanup: 'deregister CM handles'
+            deregisterCmHandles(DMI_URL, ['cm-1', 'cm-2', 'cm-3'])
     }
 }
