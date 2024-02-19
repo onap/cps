@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52e49811_d99a0a59",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-19T09:03:58Z",
+      "side": 1,
+      "message": "looks 10 times simpler!\n\nNot so sure about the triple: for readability I think we shoudl introduce a simple POJO class that holds the required details...",
+      "revId": "60e1ca17656722ddbc6e8f583327447f8e53fe5e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c89c890d_0b214363",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-19T09:03:58Z",
+      "side": 1,
+      "message": "I have been thinking about this since we discussed last week. Although we agreed on 2 separate methods. The retreiving of module information is identical and can be combined which I think is what we have done now....",
+      "range": {
+        "startLine": 75,
+        "startChar": 22,
+        "endLine": 75,
+        "endChar": 31
+      },
+      "revId": "60e1ca17656722ddbc6e8f583327447f8e53fe5e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ebdb826_3a11e07a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-19T09:03:58Z",
+      "side": 1,
+      "message": "is this like two maps combined into one?\nI was thinking about this last week too and maybe we should consider a class to combine \u0027left\u0027 and \u0027right\u0027; \u0027ModuleSetDetails\u0027 or similar...",
+      "range": {
+        "startLine": 113,
+        "startChar": 11,
+        "endLine": 113,
+        "endChar": 85
+      },
+      "revId": "60e1ca17656722ddbc6e8f583327447f8e53fe5e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ed5d7c5_7805aae9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-19T09:03:58Z",
+      "side": 1,
+      "message": "I think this can be made final by moving the initialization with empty in the first if block (line 124)",
+      "range": {
+        "startLine": 119,
+        "startChar": 7,
+        "endLine": 119,
+        "endChar": 70
+      },
+      "revId": "60e1ca17656722ddbc6e8f583327447f8e53fe5e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43aad337_ef936f25",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-19T09:03:58Z",
+      "side": 1,
+      "message": "need to add a test that will call \u0027create\u0027 (I ddi oen last week, I proably can put it in again)\n(note typo in this var)",
+      "range": {
+        "startLine": 116,
+        "startChar": 94,
+        "endLine": 116,
+        "endChar": 123
+      },
+      "revId": "60e1ca17656722ddbc6e8f583327447f8e53fe5e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
