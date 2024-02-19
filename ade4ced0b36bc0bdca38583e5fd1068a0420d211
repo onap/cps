@@ -18,6 +18,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae498d2d_1068c32b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-19T11:59:04Z",
+      "side": 1,
+      "message": "ok, agreed now that \u0027rejecting\u0027 IS PART of error handling ie this commit",
+      "parentUuid": "a6f67983_9fbb8ba2",
+      "revId": "ade4ced0b36bc0bdca38583e5fd1068a0420d211",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "497cc5d2_193b5257",
@@ -36,6 +54,53 @@
         "startChar": 85,
         "endLine": 322,
         "endChar": 112
+      },
+      "revId": "ade4ced0b36bc0bdca38583e5fd1068a0420d211",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54cbd53a_d625d711",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-19T11:59:04Z",
+      "side": 1,
+      "message": "sorry wrong place, please ignore",
+      "parentUuid": "497cc5d2_193b5257",
+      "range": {
+        "startLine": 322,
+        "startChar": 85,
+        "endLine": 322,
+        "endChar": 112
+      },
+      "revId": "ade4ced0b36bc0bdca38583e5fd1068a0420d211",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68f1bcd5_76b66407",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-19T11:59:04Z",
+      "side": 1,
+      "message": "Need to revisit the split of methods:\n\n1) processCreatedCmHandles  -\u003e\n2) parseAndProcessCreatedCmHandlesInRegistration -\u003e 3  (long method with 2)\n3) registerNewCmHandles (only 2 lines)\n\nSame problem (partly) for\nupdate\nupgrade\nremove",
+      "range": {
+        "startLine": 379,
+        "startChar": 17,
+        "endLine": 379,
+        "endChar": 40
       },
       "revId": "ade4ced0b36bc0bdca38583e5fd1068a0420d211",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
