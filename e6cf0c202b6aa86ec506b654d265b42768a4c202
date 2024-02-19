@@ -65,6 +65,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "467ecd5e_3138ca8f",
+        "filename": "postman-collections/CPS Environment.postman_environment.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-02-19T11:47:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f363f3a4_d12cea8b",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 10
+      },
+      "revId": "e6cf0c202b6aa86ec506b654d265b42768a4c202",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "860825b2_590042c7",
@@ -78,6 +102,30 @@
       "writtenOn": "2024-02-16T12:53:10Z",
       "side": 1,
       "message": "I wonder if it\u0027s possible to use the bookstore.yang file on the local filesystem?",
+      "range": {
+        "startLine": 243,
+        "startChar": 36,
+        "endLine": 243,
+        "endChar": 89
+      },
+      "revId": "e6cf0c202b6aa86ec506b654d265b42768a4c202",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6442ad1_7c00dc1d",
+        "filename": "postman-collections/CPS-CORE.postman_collection.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-02-19T11:47:23Z",
+      "side": 1,
+      "message": "I can change it so it\u0027s not a cloud object but I don\u0027t think there is any way to set a default file",
+      "parentUuid": "860825b2_590042c7",
       "range": {
         "startLine": 243,
         "startChar": 36,
@@ -119,6 +167,24 @@
       "side": 1,
       "message": "agreed, but teh idea was for JEFTT to start this and for any (regular) user of these post man collections to update as needed. This is a grey lien of course if Jeff want to doa  few first updates that\u0027s fine of course if he is comfortable with that",
       "parentUuid": "e378f03b_00c6d33f",
+      "revId": "e6cf0c202b6aa86ec506b654d265b42768a4c202",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d63d9c87_99e8f613",
+        "filename": "postman-collections/bookstore-model.yang",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-02-19T11:47:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "804ea52c_1da15574",
       "revId": "e6cf0c202b6aa86ec506b654d265b42768a4c202",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
