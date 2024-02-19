@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "94f609f7_7c74bde4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-19T16:52:26Z",
+      "side": 1,
+      "message": "minor comments.\notherwise looks fine to me.",
+      "revId": "48716d684b665e0e6c4013f8a3fd60e82cf6d19c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9451c50d_48e95874",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-19T16:52:26Z",
+      "side": 1,
+      "message": "NB: Id",
+      "range": {
+        "startLine": 43,
+        "startChar": 33,
+        "endLine": 43,
+        "endChar": 35
+      },
+      "revId": "48716d684b665e0e6c4013f8a3fd60e82cf6d19c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cdeca037_9ca1d483",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-19T16:52:26Z",
+      "side": 1,
+      "message": "Id",
+      "range": {
+        "startLine": 45,
+        "startChar": 42,
+        "endLine": 45,
+        "endChar": 44
+      },
+      "revId": "48716d684b665e0e6c4013f8a3fd60e82cf6d19c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f547faa7_c548b9ba",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-19T16:52:26Z",
+      "side": 1,
+      "message": "Id",
+      "range": {
+        "startLine": 53,
+        "startChar": 47,
+        "endLine": 53,
+        "endChar": 49
+      },
+      "revId": "48716d684b665e0e6c4013f8a3fd60e82cf6d19c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d85d8a9a_cb4fce28",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-19T16:52:26Z",
+      "side": 1,
+      "message": "Id",
+      "range": {
+        "startLine": 58,
+        "startChar": 30,
+        "endLine": 58,
+        "endChar": 32
+      },
+      "revId": "48716d684b665e0e6c4013f8a3fd60e82cf6d19c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
