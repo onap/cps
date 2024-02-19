@@ -67,7 +67,7 @@ public class ModuleSyncTasks {
                 final YangModelCmHandle yangModelCmHandle =
                         YangDataConverter.convertCmHandleToYangModel(cmHandleAsDataNode, cmHandleId);
                 final CompositeState compositeState = inventoryPersistence.getCmHandleState(cmHandleId);
-                final boolean inUpgrade = ModuleOperationsUtils.isInUpgradeOrUpgradeFailed(compositeState);
+                final boolean inUpgrade = ModuleOperationsUtils.inUpgradeOrUpgradeFailed(compositeState);
                 try {
                     if (!inUpgrade) {
                         moduleSyncService.deleteSchemaSetIfExists(cmHandleId);

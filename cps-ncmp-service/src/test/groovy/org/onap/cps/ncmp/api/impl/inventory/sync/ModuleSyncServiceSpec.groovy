@@ -50,10 +50,9 @@ class ModuleSyncServiceSpec extends Specification {
     def mockCmHandleQueries = Mock(CmHandleQueries)
     def mockCpsDataService = Mock(CpsDataService)
     def mockJsonObjectMapper = Mock(JsonObjectMapper)
-    def mockModuleSetTagCache = [:]
 
     def objectUnderTest = new ModuleSyncService(mockDmiModelOperations, mockCpsModuleService,
-            mockCmHandleQueries, mockCpsDataService, mockCpsAnchorService, mockJsonObjectMapper, mockModuleSetTagCache)
+            mockCmHandleQueries, mockCpsDataService, mockCpsAnchorService, mockJsonObjectMapper)
 
     def expectedDataspaceName = NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
     def static cmHandleWithModuleSetTag = new DataNodeBuilder().withXpath("//cm-handles[@module-set-tag='tag-1'][@id='otherId']").withAnchor('otherId').build()
@@ -96,11 +95,7 @@ class ModuleSyncServiceSpec extends Specification {
         and: 'some module references'
             def moduleReferences =  [ new ModuleReference('module1','1') ]
         and: 'cache or DMI operations returns some module references for upgraded cm handle'
-            if (populateCache) {
-                mockModuleSetTagCache.put('tag-1', moduleReferences)
-            } else {
-                mockDmiModelOperations.getModuleReferences(yangModelCmHandle) >> moduleReferences
-            }
+            mockDmiModelOperations.getModuleReferences(yangModelCmHandle) >> moduleReferences
         and: 'none of these module references are new (unknown to the system)'
             mockCpsModuleService.identifyNewModuleReferences(moduleReferences) >> []
         and: 'CPS-Core returns list of existing module resources for TBD'
@@ -118,10 +113,9 @@ class ModuleSyncServiceSpec extends Specification {
         and: 'No anchor is created for the upgraded cm handle'
             0 * mockCpsAnchorService.createAnchor(*_)
         where: 'the following parameters are used'
-            scenario      | populateCache | existingCmHandlesWithSameTag || expectedCallsToUpgradeSchemaSet | expectedCallsToCeateSchemaSet
-            'new'         | false         | []                           || 0                               | 1
-            'in cache'    | true          | []                           || 1                               | 0
-            'in database' | false         | [cmHandleWithModuleSetTag]   || 1                               | 0
+            scenario      | existingCmHandlesWithSameTag || expectedCallsToUpgradeSchemaSet | expectedCallsToCeateSchemaSet
+            'new'         | []                           || 1                               | 0
+            'in database' | [cmHandleWithModuleSetTag]   || 1                               | 0
     }
 
     def 'upgrade model for a existing cm handle'() {
