@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "90706c91_6275202d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-19T19:18:56Z",
+      "side": 1,
+      "message": "Hi SOurabh, Daniel and I had a chat about this rest interface, I think we only need to add te minimal required for a CSIT (or manual) test. Also we need a bit of better namign and correct use of methods and resource.\nAfter a few attemts I decided upon : \u0027tagMapping\u0027\n\nPOST/PUT /v1/tagMapping \nfor creating/updating one and have the details in the body: cmHandleId, Tag\n\n(I dont think we need to differentiate between create and update, no validation needed either, lets keep it simple) and put wathever ever data is submitted in the map (as you do now)\n\nGET /v1/tagMapping/ch/{cmHandleId} for retrieving one\n\nDELETE /v1/tagMapping/ch/{cmHandleId} remove a mapping\n\nRESET (Delete all) should not really be needed for testing purposes\n\nI noticed curerntly all methods return the WHOLE map, again, I can see why that was convenient when you were troubleshootigng but I think we can now use a more standard REST approach so only the GET method needs o return a (single) entry",
+      "revId": "515b4e84dd3854667e59dc6337cde55f55c689d2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a38c2976_3af5486f",
