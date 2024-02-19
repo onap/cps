@@ -77,7 +77,8 @@ public class NetworkCmProxyDataServicePropertyHandler {
      */
     public List<CmHandleRegistrationResponse> updateCmHandleProperties(
         final Collection<NcmpServiceCmHandle> ncmpServiceCmHandles) {
-        final List<CmHandleRegistrationResponse> cmHandleRegistrationResponses = new ArrayList<>();
+        final List<CmHandleRegistrationResponse> cmHandleRegistrationResponses
+            = new ArrayList<>(ncmpServiceCmHandles.size());
         for (final NcmpServiceCmHandle ncmpServiceCmHandle : ncmpServiceCmHandles) {
             final String cmHandleId = ncmpServiceCmHandle.getCmHandleId();
             try {
