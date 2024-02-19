@@ -103,6 +103,24 @@
       "message": "This is okay, but it would be nicer if we used the latest bookstore model from integration-test/src/test/resources/data/bookstore/\nIt has two modules: bookstore.yang and bookstore-types.yang",
       "revId": "e6cf0c202b6aa86ec506b654d265b42768a4c202",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "804ea52c_1da15574",
+        "filename": "postman-collections/bookstore-model.yang",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-19T09:19:29Z",
+      "side": 1,
+      "message": "agreed, but teh idea was for JEFTT to start this and for any (regular) user of these post man collections to update as needed. This is a grey lien of course if Jeff want to doa  few first updates that\u0027s fine of course if he is comfortable with that",
+      "parentUuid": "e378f03b_00c6d33f",
+      "revId": "e6cf0c202b6aa86ec506b654d265b42768a4c202",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
