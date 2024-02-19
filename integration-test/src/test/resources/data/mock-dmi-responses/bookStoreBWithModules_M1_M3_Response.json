@@ -1,0 +1,12 @@
+{
+	"schemas": [
+		{
+			"moduleName": "M1",
+			"revision": "2024-01-01"
+		},
+		{
+			"moduleName": "M3",
+			"revision": "2024-01-03"
+		}
+	]
+}
