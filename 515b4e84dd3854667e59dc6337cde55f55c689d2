@@ -1,0 +1,153 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f369d14_97405b8f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-19T08:51:41Z",
+      "side": 1,
+      "message": "seems OK but we do need to improve\n1) REST Interface\n2) Combine Modules responses automatically instead of hardcoding\n\n1) should be done shortly (possibly as a separate commit)\n2) can be considered technical debt",
+      "revId": "515b4e84dd3854667e59dc6337cde55f55c689d2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a38c2976_3af5486f",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-19T08:51:41Z",
+      "side": 1,
+      "message": "not sure if \u0027entry\u0027 is the best prefix for these new URLs\nsuggestion: \u0027modulesettag\u0027",
+      "range": {
+        "startLine": 90,
+        "startChar": 24,
+        "endLine": 90,
+        "endChar": 30
+      },
+      "revId": "515b4e84dd3854667e59dc6337cde55f55c689d2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af00c0ea_d62ff853",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-19T08:51:41Z",
+      "side": 1,
+      "message": "NB: remove the word Map",
+      "range": {
+        "startLine": 91,
+        "startChar": 62,
+        "endLine": 91,
+        "endChar": 65
+      },
+      "revId": "515b4e84dd3854667e59dc6337cde55f55c689d2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0ed27df_489d55c8",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-19T08:51:41Z",
+      "side": 1,
+      "message": "/v1/ch/{cmHanldeId}/modulesettag\n\nuse PUT for uupdating",
+      "range": {
+        "startLine": 104,
+        "startChar": 17,
+        "endLine": 104,
+        "endChar": 64
+      },
+      "revId": "515b4e84dd3854667e59dc6337cde55f55c689d2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb2ad49e_64bc7ea7",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-19T08:51:41Z",
+      "side": 1,
+      "message": "shoudl this return the whoel MAP?!\nI though typcially an update method just returns teh udpated object?",
+      "range": {
+        "startLine": 108,
+        "startChar": 33,
+        "endLine": 108,
+        "endChar": 58
+      },
+      "revId": "515b4e84dd3854667e59dc6337cde55f55c689d2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88f300fa_0745710e",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-19T08:51:41Z",
+      "side": 1,
+      "message": "overall I think we need to clean up this interface a bit to make it a proper REST interface. Can be done in separate commit though...",
+      "range": {
+        "startLine": 129,
+        "startChar": 4,
+        "endLine": 129,
+        "endChar": 54
+      },
+      "revId": "515b4e84dd3854667e59dc6337cde55f55c689d2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05fe2d54_c4136547",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/resources/module/tagA-ModuleResponse.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-19T08:51:41Z",
+      "side": 1,
+      "message": "SUggestions for future improvements\nWE should be able to just have response for M1-M4 and combine them on the fly based on current tag",
+      "revId": "515b4e84dd3854667e59dc6337cde55f55c689d2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
