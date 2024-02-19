@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f52ad6cd_345027d2",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-19T11:39:55Z",
+      "side": 1,
+      "message": "No. This is not a test, just a utility method",
+      "parentUuid": "58374b0b_f6126733",
+      "range": {
+        "startLine": 199,
+        "startChar": 0,
+        "endLine": 204,
+        "endChar": 30
+      },
+      "revId": "b19bb2694b7894f719a119a229b6afcbe66bb97e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0c610202_975a4a7e",
@@ -41,6 +65,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d44ea408_81892e26",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpCmHandleRegistrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-19T11:39:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c610202_975a4a7e",
+      "revId": "b19bb2694b7894f719a119a229b6afcbe66bb97e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8c2a986d_395fdafd",
@@ -54,6 +96,30 @@
       "writtenOn": "2024-02-19T10:56:56Z",
       "side": 1,
       "message": "use ch as short for CmHandle",
+      "range": {
+        "startLine": 134,
+        "startChar": 43,
+        "endLine": 134,
+        "endChar": 45
+      },
+      "revId": "b19bb2694b7894f719a119a229b6afcbe66bb97e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0398806_50288ea6",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpCmHandleRegistrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-19T11:39:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8c2a986d_395fdafd",
       "range": {
         "startLine": 134,
         "startChar": 43,

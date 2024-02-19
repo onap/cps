@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e312ffe8_b3ab365c",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-19T11:39:55Z",
+      "side": 1,
+      "message": "As part of CPS-2033 (main JIRA for NCMP integration tests), I will split this class into CpsIntegrationSpecBase and NcmpIntegrationSpecBase.\nFor now, I\u0027m just commenting which parts are used for CPS tests and which for NCMP.",
+      "range": {
+        "startLine": 130,
+        "startChar": 4,
+        "endLine": 130,
+        "endChar": 45
+      },
+      "revId": "0fb4ac94a17741b5418416a4f1e1c6e97d94a804",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
