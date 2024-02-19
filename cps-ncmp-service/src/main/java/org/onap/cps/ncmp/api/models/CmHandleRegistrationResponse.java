@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Bell Canada
- *  Modifications Copyright (C) 2022-2023 Nordix Foundation
+ *  Modifications Copyright (C) 2022-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -82,17 +82,35 @@ public class CmHandleRegistrationResponse {
      * @param ncmpResponseStatus enum describing the type of registration error
      * @return CmHandleRegistrationResponse
      */
-    public static List<CmHandleRegistrationResponse> createFailureResponses(final Collection<String> failedXpaths,
-            final NcmpResponseStatus ncmpResponseStatus) {
+    public static List<CmHandleRegistrationResponse> createFailureResponsesFromXpaths(
+        final Collection<String> failedXpaths, final NcmpResponseStatus ncmpResponseStatus) {
         final List<CmHandleRegistrationResponse> cmHandleRegistrationResponses = new ArrayList<>(failedXpaths.size());
         for (final String xpath : failedXpaths) {
             try {
                 final String cmHandleId = YangDataConverter.extractCmHandleIdFromXpath(xpath);
-                cmHandleRegistrationResponses.add(
-                        CmHandleRegistrationResponse.createFailureResponse(cmHandleId, ncmpResponseStatus));
+                cmHandleRegistrationResponses
+                    .add(CmHandleRegistrationResponse.createFailureResponse(cmHandleId, ncmpResponseStatus));
             } catch (IllegalArgumentException | IllegalStateException e) {
                 log.warn("Unexpected xpath {}", xpath);
             }
+        }
+        return cmHandleRegistrationResponses;
+    }
+
+    /**
+     * Creates a failure response based on registration error.
+     *
+     * @param failedCmHandleIds       list of failed Cm Handle Ids
+     * @param ncmpResponseStatus enum describing the type of registration error
+     * @return CmHandleRegistrationResponse
+     */
+    public static List<CmHandleRegistrationResponse> createFailureResponsesFromCmHandleIds(
+            final Collection<String> failedCmHandleIds, final NcmpResponseStatus ncmpResponseStatus) {
+        final List<CmHandleRegistrationResponse> cmHandleRegistrationResponses =
+            new ArrayList<>(failedCmHandleIds.size());
+        for (final String failedCmHandleId : failedCmHandleIds) {
+            cmHandleRegistrationResponses.add(
+                CmHandleRegistrationResponse.createFailureResponse(failedCmHandleId, ncmpResponseStatus));
         }
         return cmHandleRegistrationResponses;
     }

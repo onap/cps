@@ -71,7 +71,7 @@ class CmHandleRegistrationResponseSpec extends Specification {
     def 'Failed cm-handle Registration with multiple responses.'() {
         when: 'cm-handle failure response is created for 2 xpaths'
             def cmHandleRegistrationResponses =
-                CmHandleRegistrationResponse.createFailureResponses(["somePathWithId[@id='123']","somePathWithId[@id='456']"], CM_HANDLE_ALREADY_EXIST)
+                CmHandleRegistrationResponse.createFailureResponsesFromXpaths(["somePathWithId[@id='123']", "somePathWithId[@id='456']"], CM_HANDLE_ALREADY_EXIST)
         then: 'the response has the correct cm handle ids'
             assert cmHandleRegistrationResponses.size() == 2
             assert cmHandleRegistrationResponses.stream().map(it -> it.cmHandle).collect(Collectors.toList())
@@ -81,7 +81,7 @@ class CmHandleRegistrationResponseSpec extends Specification {
     def 'Failed cm-handle Registration with multiple responses with an unexpected xpath.'() {
         when: 'cm-handle failure response is created for one valid and one unexpected xpath'
             def cmHandleRegistrationResponses =
-                CmHandleRegistrationResponse.createFailureResponses(["somePathWithId[@id='123']","valid/xpath/without-id[@key='123']"], CM_HANDLE_ALREADY_EXIST)
+                CmHandleRegistrationResponse.createFailureResponsesFromXpaths(["somePathWithId[@id='123']", "valid/xpath/without-id[@key='123']"], CM_HANDLE_ALREADY_EXIST)
         then: 'the response has only one entry'
             assert cmHandleRegistrationResponses.size() == 1
     }
