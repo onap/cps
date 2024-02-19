@@ -76,7 +76,7 @@ class AlternateIdCheckerSpec extends Specification {
             mockInventoryPersistenceService.getCmHandleDataNodeByAlternateId(_) >>
                 {  args -> altAlreadyInDb.contains(args[0]) ? new DataNode() : throwDataNodeNotFoundException() }
         when: 'the batch of new cm handles is checked'
-            def result = objectUnderTest.getIdsOfCmHandlesWithAcceptableAlternateId(batch)
+            def result = objectUnderTest.getIdsOfCmHandlesWithRejectedAlternateId(batch)
         then: 'the result only contains the ids of the acceptable cm handles'
             assert result.contains('ch-1') == acceptCh1
             assert result.contains('ch-2') == acceptCh2

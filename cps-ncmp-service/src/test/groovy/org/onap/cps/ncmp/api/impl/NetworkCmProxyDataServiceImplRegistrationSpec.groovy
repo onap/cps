@@ -76,7 +76,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
 
     def setup() {
         // always accept all cm handles
-        mockAlternateIdChecker.getIdsOfCmHandlesWithAcceptableAlternateId(_) >>
+        mockAlternateIdChecker.getIdsOfCmHandlesWithRejectedAlternateId(_) >>
             { args -> args[0].stream().map(it -> it.cmHandleId).collect(Collectors.toList()) }
     }
 
@@ -446,7 +446,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         when: 'the DMI plugin registration happens'
             objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'the new alternate id is added to the cache'
-            1 * mockAlternateIdChecker.getIdsOfCmHandlesWithAcceptableAlternateId(ncmpServiceCmHandles) >> ['cmhandle1']
+            1 * mockAlternateIdChecker.getIdsOfCmHandlesWithRejectedAlternateId(ncmpServiceCmHandles) >> ['cmhandle1']
     }
 
     def getObjectUnderTest() {
