@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Bell Canada
- *  Modifications Copyright (C) 2022-2023 Nordix Foundation
+ *  Modifications Copyright (C) 2022-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -76,23 +76,43 @@ public class CmHandleRegistrationResponse {
     }
 
     /**
-     * Creates a failure response based on registration error.
+     * Create a failure response of cm handle registration based on xpath and registration error.
+     * Conditions:
+     * - the xpath should be valid according to the cps path, otherwise xpath is not included in the response.
      *
-     * @param failedXpaths       list of failed Xpaths
-     * @param ncmpResponseStatus enum describing the type of registration error
-     * @return CmHandleRegistrationResponse
+     * @param failedXpaths the failed xpaths
+     * @param ncmpResponseStatus type of the registration error
+     * @return collection of cm handle registration response
      */
-    public static List<CmHandleRegistrationResponse> createFailureResponses(final Collection<String> failedXpaths,
-            final NcmpResponseStatus ncmpResponseStatus) {
+    public static List<CmHandleRegistrationResponse> createFailureResponsesFromXpaths(
+        final Collection<String> failedXpaths, final NcmpResponseStatus ncmpResponseStatus) {
         final List<CmHandleRegistrationResponse> cmHandleRegistrationResponses = new ArrayList<>(failedXpaths.size());
         for (final String xpath : failedXpaths) {
             try {
                 final String cmHandleId = YangDataConverter.extractCmHandleIdFromXpath(xpath);
-                cmHandleRegistrationResponses.add(
-                        CmHandleRegistrationResponse.createFailureResponse(cmHandleId, ncmpResponseStatus));
+                cmHandleRegistrationResponses
+                    .add(CmHandleRegistrationResponse.createFailureResponse(cmHandleId, ncmpResponseStatus));
             } catch (IllegalArgumentException | IllegalStateException e) {
                 log.warn("Unexpected xpath {}", xpath);
             }
+        }
+        return cmHandleRegistrationResponses;
+    }
+
+    /**
+     * Create a failure response of cm handle registration based on cm handle id and registration error.
+     *
+     * @param failedCmHandleIds the failed cm handle ids
+     * @param ncmpResponseStatus type of the registration error
+     * @return collection of cm handle registration response
+     */
+    public static List<CmHandleRegistrationResponse> createFailureResponses(
+            final Collection<String> failedCmHandleIds, final NcmpResponseStatus ncmpResponseStatus) {
+        final List<CmHandleRegistrationResponse> cmHandleRegistrationResponses =
+            new ArrayList<>(failedCmHandleIds.size());
+        for (final String failedCmHandleId : failedCmHandleIds) {
+            cmHandleRegistrationResponses.add(
+                CmHandleRegistrationResponse.createFailureResponse(failedCmHandleId, ncmpResponseStatus));
         }
         return cmHandleRegistrationResponses;
     }

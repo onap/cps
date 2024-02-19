@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023 Nordix Foundation
+ *  Copyright (C) 2023-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -36,7 +36,8 @@ public enum NcmpResponseStatus {
     SUBSCRIPTION_PENDING("106", "subscription pending for all cm handles"),
     UNKNOWN_ERROR("108", "Unknown error"),
     CM_HANDLE_ALREADY_EXIST("109", "cm-handle already exists"),
-    CM_HANDLE_INVALID_ID("110", "cm-handle has an invalid character(s) in id");
+    CM_HANDLE_INVALID_ID("110", "cm-handle has an invalid character(s) in id"),
+    ALTERNATE_ID_ALREADY_ASSOCIATED("111", "alternate id already associated");
 
     private final String code;
     private final String message;
