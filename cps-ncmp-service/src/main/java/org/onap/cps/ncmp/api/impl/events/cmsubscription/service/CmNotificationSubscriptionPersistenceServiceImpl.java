@@ -36,8 +36,12 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class CmNotificationSubscriptionPersistenceServiceImpl implements CmNotificationSubscriptionPersistenceService {
 
+    private static final String SUBSCRIPTION_ANCHOR_NAME = "cm-data-subscriptions";
     private static final String IS_ONGOING_CM_SUBSCRIPTION_CPS_PATH_QUERY = """
             /datastores/datastore[@name='%s']/cm-handles/cm-handle[@id='%s']/filters/filter[@xpath='%s']
+            """.trim();
+    private static final String SUBSCRIPTION_IDS_CPS_PATH_QUERY = """
+            //filter/subscriptionIds[text()='%s']
             """.trim();
 
     private final CpsQueryService cpsQueryService;
@@ -46,6 +50,13 @@ public class CmNotificationSubscriptionPersistenceServiceImpl implements CmNotif
     public boolean isOngoingCmNotificationSubscription(final DatastoreType datastoreType, final String cmHandleId,
             final String xpath) {
         return !getOngoingCmNotificationSubscriptionIds(datastoreType, cmHandleId, xpath).isEmpty();
+    }
+
+    @Override
+    public boolean isUniqueSubscriptionId(final String subscriptionId) {
+        return cpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME,
+                SUBSCRIPTION_IDS_CPS_PATH_QUERY.formatted(subscriptionId),
+                FetchDescendantsOption.OMIT_DESCENDANTS).isEmpty();
     }
 
     @Override

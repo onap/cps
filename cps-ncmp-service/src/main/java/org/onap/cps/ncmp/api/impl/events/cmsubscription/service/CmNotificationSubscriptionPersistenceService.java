@@ -40,6 +40,14 @@ public interface CmNotificationSubscriptionPersistenceService {
             final String xpath);
 
     /**
+     * Check if the subscription ID is unique against ongoing subscriptions.
+     *
+     * @param subscriptionId subscription ID
+     * @return true if subscriptionId is not used in active subscriptions, otherwise false
+     */
+    boolean isUniqueSubscriptionId(final String subscriptionId);
+
+    /**
      * Get all ongoing cm notification subscription based on the parameters.
      *
      * @param datastoreType valid datastore type
