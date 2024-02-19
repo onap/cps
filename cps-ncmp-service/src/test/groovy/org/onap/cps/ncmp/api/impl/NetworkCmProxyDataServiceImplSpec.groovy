@@ -23,6 +23,8 @@
 
 package org.onap.cps.ncmp.api.impl
 
+import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse
+
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
@@ -270,8 +272,11 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
                     dmiDataPlugin: 'service2')
             dmiPluginRegistration.createdCmHandles = [ncmpServiceCmHandle]
             mockDmiPluginRegistration.getCreatedCmHandles() >> [ncmpServiceCmHandle]
+        and: 'no rejected cm handles because of alternate ids'
+            mockAlternateIdChecker.getIdsOfCmHandlesWithRejectedAlternateId(_) >> []
         when: 'parse and create cm handle in dmi registration then sync module'
-            objectUnderTest.parseAndProcessCreatedCmHandlesInRegistration(mockDmiPluginRegistration, ['test-cm-handle-id'])
+            mockDmiPluginRegistration.createdCmHandles = ['test-cm-handle-id']
+            objectUnderTest.processCreatedCmHandles(mockDmiPluginRegistration, new DmiPluginRegistrationResponse())
         then: 'system persists the cm handle state'
             1 * mockLcmEventsCmHandleStateHandler.initiateStateAdvised(_) >> {
                 args -> {
