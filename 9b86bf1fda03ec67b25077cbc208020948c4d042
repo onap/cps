@@ -16,6 +16,23 @@
       "message": "recheck",
       "revId": "9b86bf1fda03ec67b25077cbc208020948c4d042",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2bb5f086_028efaa9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-19T09:15:08Z",
+      "side": 1,
+      "message": "I do NOT see any changes to use \u0027rejected\u0027 despite comments about taht has bene \u0027Done\u0027 ?!",
+      "revId": "9b86bf1fda03ec67b25077cbc208020948c4d042",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
