@@ -24,7 +24,6 @@ package org.onap.cps.ncmp.api.impl.yangmodels;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.Strings;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -94,6 +93,7 @@ public class YangModelCmHandle {
         copy.dmiProperties = original.getDmiProperties() == null ? null : new ArrayList<>(original.getDmiProperties());
         copy.publicProperties =
                 original.getPublicProperties() == null ? null : new ArrayList<>(original.getPublicProperties());
+        copy.moduleSetTag = original.getModuleSetTag();
         copy.alternateId = original.getAlternateId();
         return copy;
     }
@@ -134,7 +134,7 @@ public class YangModelCmHandle {
      * @return dmi service name
      */
     public String resolveDmiServiceName(final RequiredDmiService requiredService) {
-        if (isNullEmptyOrBlank(dmiServiceName)) {
+        if (StringUtils.isBlank(dmiServiceName)) {
             if (RequiredDmiService.DATA.equals(requiredService)) {
                 return dmiDataServiceName;
             }
@@ -149,10 +149,6 @@ public class YangModelCmHandle {
             yangModelCmHandleProperties.add(new YangModelCmHandle.Property(entry.getKey(), entry.getValue()));
         }
         return yangModelCmHandleProperties;
-    }
-
-    private static boolean isNullEmptyOrBlank(final String serviceName) {
-        return Strings.isNullOrEmpty(serviceName) || serviceName.isBlank();
     }
 
     @AllArgsConstructor

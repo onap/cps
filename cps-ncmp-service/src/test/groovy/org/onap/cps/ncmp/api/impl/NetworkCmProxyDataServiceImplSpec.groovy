@@ -175,14 +175,17 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         given: 'the system returns a yang modelled cm handle'
             def dmiServiceName = 'some service name'
             def compositeState = new CompositeState(cmHandleState: CmHandleState.ADVISED,
-                lockReason: CompositeState.LockReason.builder().lockReasonCategory(LockReasonCategory.MODULE_SYNC_FAILED).details("lock details").build(),
-                lastUpdateTime: 'some-timestamp',
-                dataSyncEnabled: false,
-                dataStores: dataStores())
+                    lockReason: CompositeState.LockReason.builder().lockReasonCategory(LockReasonCategory.MODULE_SYNC_FAILED).details("lock details").build(),
+                    lastUpdateTime: 'some-timestamp',
+                    dataSyncEnabled: false,
+                    dataStores: dataStores())
             def dmiProperties = [new YangModelCmHandle.Property('Book', 'Romance Novel')]
             def publicProperties = [new YangModelCmHandle.Property('Public Book', 'Public Romance Novel')]
+            def moduleSetTag = 'some-module-set-tag'
+            def alternateId = 'some-alternate-id'
             def yangModelCmHandle = new YangModelCmHandle(id: 'some-cm-handle', dmiServiceName: dmiServiceName,
-                dmiProperties: dmiProperties, publicProperties: publicProperties, compositeState: compositeState)
+                    dmiProperties: dmiProperties, publicProperties: publicProperties, compositeState: compositeState,
+                    moduleSetTag: moduleSetTag, alternateId: alternateId)
             1 * mockInventoryPersistence.getYangModelCmHandle('some-cm-handle') >> yangModelCmHandle
         when: 'getting cm handle details for a given cm handle id from ncmp service'
             def result = objectUnderTest.getNcmpServiceCmHandle('some-cm-handle')
@@ -190,13 +193,16 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             result.class == NcmpServiceCmHandle.class
         and: 'the cm handle contains the cm handle id'
             result.cmHandleId == 'some-cm-handle'
+        and: 'the cm handle contains the alternate id'
+            result.alternateId == 'some-alternate-id'
+        and: 'the cm handle contains the module-set-tag'
+            result.moduleSetTag == 'some-module-set-tag'
         and: 'the cm handle contains the DMI Properties'
             result.dmiProperties ==[ Book:'Romance Novel' ]
         and: 'the cm handle contains the public Properties'
             result.publicProperties == [ "Public Book":'Public Romance Novel' ]
         and: 'the cm handle contains the cm handle composite state'
             result.compositeState == compositeState
-
     }
 
     def 'Get cm handle public properties'() {
