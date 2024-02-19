@@ -122,8 +122,11 @@ class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
                 assert CmHandleState.READY == objectUnderTest.getCmHandleCompositeState('ch-3').cmHandleState
             })
 
+        and: 'the CM-handle has expected moduleSetTag'
+            assert objectUnderTest.getNcmpServiceCmHandle('ch-3').moduleSetTag == 'B'
+
         and: 'the CM-handle has expected modules from module set "B": M1 and M3'
-            ['M1', 'M3'] == objectUnderTest.getYangResourcesModuleReferences('ch-3').moduleName.sort()
+            assert ['M1', 'M3'] == objectUnderTest.getYangResourcesModuleReferences('ch-3').moduleName.sort()
 
         cleanup: 'deregister CM handles'
             deregisterCmHandles(DMI_URL, ['ch-1', 'ch-2', 'ch-3'])
