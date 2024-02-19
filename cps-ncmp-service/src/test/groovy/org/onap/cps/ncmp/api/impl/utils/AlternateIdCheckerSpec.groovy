@@ -76,17 +76,17 @@ class AlternateIdCheckerSpec extends Specification {
             mockInventoryPersistenceService.getCmHandleDataNodeByAlternateId(_) >>
                 {  args -> altAlreadyInDb.contains(args[0]) ? new DataNode() : throwDataNodeNotFoundException() }
         when: 'the batch of new cm handles is checked'
-            def result = objectUnderTest.getIdsOfCmHandlesWithAcceptableAlternateId(batch)
+            def result = objectUnderTest.getIdsOfCmHandlesWithRejectedAlternateId(batch)
         then: 'the result only contains the ids of the acceptable cm handles'
-            assert result.contains('ch-1') == acceptCh1
-            assert result.contains('ch-2') == acceptCh2
+            assert result.contains('ch-1') == rejectCh1
+            assert result.contains('ch-2') == rejectCh2
         where: 'the following alternate ids are used'
-            scenario                          | alt1   | alt2   | altAlreadyInDb  || acceptCh1 | acceptCh2
-            'no alternate ids'                | ''     | ''     | ['dont matter'] || true      | true
-            'new alternate ids'               | 'fdn1' | 'fdn2' | ['other fdn']   || true      | true
-            'one already used alternate id'   | 'fdn1' | 'fdn2' | ['fdn1']        || false     | true
-            'two already used alternate ids'  | 'fdn1' | 'fdn2' | ['fdn1','fdn2'] || false     | false
-            'duplicate alternate id in batch' | 'fdn1' | 'fdn1' | ['dont matter'] || true      | false
+            scenario                          | alt1   | alt2   | altAlreadyInDb  || rejectCh1 | rejectCh2
+            'no alternate ids'                | ''     | ''     | ['dont matter'] || false      | false
+            'new alternate ids'               | 'fdn1' | 'fdn2' | ['other fdn']   || false      | false
+            'one already used alternate id'   | 'fdn1' | 'fdn2' | ['fdn1']        || true       | false
+            'two already used alternate ids'  | 'fdn1' | 'fdn2' | ['fdn1','fdn2'] || true       | true
+            'duplicate alternate id in batch' | 'fdn1' | 'fdn1' | ['dont matter'] || false      | true
     }
 
     def throwDataNodeNotFoundException() {
