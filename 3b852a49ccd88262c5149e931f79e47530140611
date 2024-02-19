@@ -1,0 +1,199 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "54a5d9ea_f266808b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-19T13:33:35Z",
+      "side": 1,
+      "message": "some minor comments.",
+      "revId": "3b852a49ccd88262c5149e931f79e47530140611",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b64b7200_88d06ece",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/DmiCmNotificationSubscriptionCacheHandler.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-19T13:33:35Z",
+      "side": 1,
+      "message": "NB: Id",
+      "range": {
+        "startLine": 50,
+        "startChar": 45,
+        "endLine": 50,
+        "endChar": 47
+      },
+      "revId": "3b852a49ccd88262c5149e931f79e47530140611",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e010690_9b0ce579",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/DmiCmNotificationSubscriptionCacheHandler.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-19T13:33:35Z",
+      "side": 1,
+      "message": "I understand what you are doing but this method is looking bulky ??\ncan you think to break it down to multiple methods to improve readability ???",
+      "revId": "3b852a49ccd88262c5149e931f79e47530140611",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a155d2a1_ef096d49",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/DmiCmNotificationSubscriptionCacheHandler.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-19T13:33:35Z",
+      "side": 1,
+      "message": "NB: targetFilters OR targetCmHandleIds ..\nI think we decided to call it targetCmHandleIds at this level.. right ??",
+      "range": {
+        "startLine": 70,
+        "startChar": 31,
+        "endLine": 70,
+        "endChar": 43
+      },
+      "revId": "3b852a49ccd88262c5149e931f79e47530140611",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac10f4c8_c17c1867",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/DmiCmNotificationSubscriptionCacheHandler.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-19T13:33:35Z",
+      "side": 1,
+      "message": "NB: need to be protected??",
+      "range": {
+        "startLine": 100,
+        "startChar": 4,
+        "endLine": 100,
+        "endChar": 14
+      },
+      "revId": "3b852a49ccd88262c5149e931f79e47530140611",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e41f5f8f_92b46752",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/DmiCmNotificationSubscriptionCacheHandlerSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-19T13:33:35Z",
+      "side": 1,
+      "message": "y like this ??\nSpy(new ObjectMapper()) ??",
+      "range": {
+        "startLine": 42,
+        "startChar": 33,
+        "endLine": 42,
+        "endChar": 68
+      },
+      "revId": "3b852a49ccd88262c5149e931f79e47530140611",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "acb7a281_dc237f50",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/DmiCmNotificationSubscriptionCacheHandlerSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-19T13:33:35Z",
+      "side": 1,
+      "message": "try to use some test instance of the map and not the real one.",
+      "range": {
+        "startLine": 47,
+        "startChar": 21,
+        "endLine": 47,
+        "endChar": 52
+      },
+      "revId": "3b852a49ccd88262c5149e931f79e47530140611",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2eb0cf4_386993d0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/DmiCmNotificationSubscriptionCacheHandlerSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-19T13:33:35Z",
+      "side": 1,
+      "message": "NB: Id or id for the testware.",
+      "range": {
+        "startLine": 91,
+        "startChar": 48,
+        "endLine": 91,
+        "endChar": 50
+      },
+      "revId": "3b852a49ccd88262c5149e931f79e47530140611",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13ec90bf_3e3aab90",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/DmiCmNotificationSubscriptionCacheHandlerSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-19T13:33:35Z",
+      "side": 1,
+      "message": "NB: subscriptionId",
+      "range": {
+        "startLine": 92,
+        "startChar": 16,
+        "endLine": 92,
+        "endChar": 30
+      },
+      "revId": "3b852a49ccd88262c5149e931f79e47530140611",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
