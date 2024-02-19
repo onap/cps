@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6f67983_9fbb8ba2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-19T09:26:27Z",
+      "side": 1,
+      "message": "REJECTING of cmhandle IDs should have been done in the previous commit (I think we agreed but we can discuus)",
+      "revId": "ade4ced0b36bc0bdca38583e5fd1068a0420d211",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "497cc5d2_193b5257",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-19T09:26:27Z",
+      "side": 1,
+      "message": "shouldn\u0027t get to this size! dont use any predefined size as rejected shoudl be small, Java defautl is good enough",
+      "range": {
+        "startLine": 322,
+        "startChar": 85,
+        "endLine": 322,
+        "endChar": 112
+      },
+      "revId": "ade4ced0b36bc0bdca38583e5fd1068a0420d211",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "226f73b8_dfba0002",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-19T09:26:27Z",
+      "side": 1,
+      "message": "why is all the erro handling add here now ?!",
+      "range": {
+        "startLine": 391,
+        "startChar": 0,
+        "endLine": 404,
+        "endChar": 5
+      },
+      "revId": "ade4ced0b36bc0bdca38583e5fd1068a0420d211",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdf3e1dd_c8b13124",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/AlternateIdChecker.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-19T09:26:27Z",
+      "side": 1,
+      "message": "remove size setting",
+      "range": {
+        "startLine": 109,
+        "startChar": 71,
+        "endLine": 109,
+        "endChar": 101
+      },
+      "revId": "ade4ced0b36bc0bdca38583e5fd1068a0420d211",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
