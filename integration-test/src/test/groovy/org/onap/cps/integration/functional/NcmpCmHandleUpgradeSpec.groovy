@@ -55,7 +55,7 @@ class NcmpCmHandleUpgradeSpec extends CpsIntegrationSpecBase {
             assert ['M1', 'M2'] == objectUnderTest.getYangResourcesModuleReferences(CM_HANDLE_ID).moduleName.sort()
 
         and: 'DMI returns different modules for upgrade'
-            mockDmiResponsesForRegistration(DMI_URL, CM_HANDLE_ID, UPDATED_MODULE_REFERENCES_RESPONSE, UPDATED_MODULE_RESOURCES_RESPONSE)
+            mockDmiResponsesForModuleSync(DMI_URL, CM_HANDLE_ID, UPDATED_MODULE_REFERENCES_RESPONSE, UPDATED_MODULE_RESOURCES_RESPONSE)
 
         when: "CM-handle is upgraded with given moduleSetTag '${updatedModuleSetTag}'"
             def cmHandlesToUpgrade = new UpgradedCmHandles(cmHandles: [CM_HANDLE_ID], moduleSetTag: updatedModuleSetTag)
