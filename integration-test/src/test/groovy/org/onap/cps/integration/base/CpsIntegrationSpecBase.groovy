@@ -53,8 +53,13 @@ import spock.lang.Shared
 import spock.lang.Specification
 import spock.util.concurrent.PollingConditions
 
+import java.time.format.DateTimeFormatter
+
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withStatus
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME;
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR;
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT;
 
 @SpringBootTest(classes = [CpsDataspaceService])
 @Testcontainers
@@ -116,7 +121,7 @@ abstract class CpsIntegrationSpecBase extends Specification {
             createStandardBookStoreSchemaSet(GENERAL_TEST_DATASPACE)
             initialized = true
         }
-        mockDmiServer = MockRestServiceServer.createServer(restTemplate)
+        mockDmiServer = MockRestServiceServer.bindTo(restTemplate).ignoreExpectOrder(true).build()
     }
 
     def cleanup() {
@@ -188,7 +193,7 @@ abstract class CpsIntegrationSpecBase extends Specification {
     def registerCmHandle(dmiPlugin, cmHandleId, moduleSetTag, dmiModuleReferencesResponse, dmiModuleResourcesResponse) {
         def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: cmHandleId, moduleSetTag: moduleSetTag)
         networkCmProxyDataService.updateDmiRegistrationAndSyncModule(new DmiPluginRegistration(dmiPlugin: dmiPlugin, createdCmHandles: [cmHandleToCreate]))
-        mockDmiResponsesForRegistration(dmiPlugin, cmHandleId, dmiModuleReferencesResponse, dmiModuleResourcesResponse)
+        mockDmiResponsesForModuleSync(dmiPlugin, cmHandleId, dmiModuleReferencesResponse, dmiModuleResourcesResponse)
         moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
         new PollingConditions().within(3, () -> {
             CmHandleState.READY == networkCmProxyDataService.getCmHandleCompositeState(cmHandleId).cmHandleState
@@ -204,14 +209,23 @@ abstract class CpsIntegrationSpecBase extends Specification {
         networkCmProxyDataService.updateDmiRegistrationAndSyncModule(new DmiPluginRegistration(dmiPlugin: dmiPlugin, removedCmHandles: cmHandleIds))
     }
 
-    def mockDmiResponsesForRegistration(dmiPlugin, cmHandleId, dmiModuleReferencesResponse, dmiModuleResourcesResponse) {
-        if (dmiModuleReferencesResponse != null) {
-            mockDmiServer.expect(requestTo("${dmiPlugin}/dmi/v1/ch/${cmHandleId}/modules"))
-                    .andRespond(withStatus(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(dmiModuleReferencesResponse))
-        }
-        if (dmiModuleResourcesResponse != null) {
-            mockDmiServer.expect(requestTo("${dmiPlugin}/dmi/v1/ch/${cmHandleId}/moduleResources"))
-                    .andRespond(withStatus(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(dmiModuleResourcesResponse))
-        }
+    def mockDmiResponsesForModuleSync(dmiPlugin, cmHandleId, dmiModuleReferencesResponse, dmiModuleResourcesResponse) {
+        mockDmiServer.expect(requestTo("${dmiPlugin}/dmi/v1/ch/${cmHandleId}/modules"))
+                .andRespond(withStatus(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(dmiModuleReferencesResponse))
+        mockDmiServer.expect(requestTo("${dmiPlugin}/dmi/v1/ch/${cmHandleId}/moduleResources"))
+                .andRespond(withStatus(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(dmiModuleResourcesResponse))
+    }
+
+    def mockDmiIsNotAvailableForModuleSync(dmiPlugin, cmHandleId) {
+        mockDmiServer.expect(requestTo("${dmiPlugin}/dmi/v1/ch/${cmHandleId}/modules"))
+                .andRespond(withStatus(HttpStatus.SERVICE_UNAVAILABLE))
+    }
+
+    def overrideCmHandleLastUpdateTime(cmHandleId, newUpdateTime) {
+        String ISO_TIMESTAMP_PATTERN = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
+        DateTimeFormatter ISO_TIMESTAMP_FORMATTER = DateTimeFormatter.ofPattern(ISO_TIMESTAMP_PATTERN);
+        def jsonForUpdate = '{ "state": { "last-update-time": "%s" } }'.formatted(ISO_TIMESTAMP_FORMATTER.format(newUpdateTime))
+        cpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+                NCMP_DMI_REGISTRY_PARENT + "/cm-handles[@id='${cmHandleId}']", jsonForUpdate, now)
     }
 }
