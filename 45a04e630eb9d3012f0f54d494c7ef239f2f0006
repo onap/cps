@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a153cc06_b7e6615d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionCacheHandler.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-02-20T14:31:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c97054cc_e1573d46",
+      "range": {
+        "startLine": 68,
+        "startChar": 18,
+        "endLine": 68,
+        "endChar": 44
+      },
+      "revId": "45a04e630eb9d3012f0f54d494c7ef239f2f0006",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "925313ad_e6adc49f",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-02-06T18:26:47Z",
       "side": 1,
       "message": "why sushc a long name, do we have otehr predicates ?!",
+      "range": {
+        "startLine": 70,
+        "startChar": 30,
+        "endLine": 70,
+        "endChar": 62
+      },
+      "revId": "45a04e630eb9d3012f0f54d494c7ef239f2f0006",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0bad29cc_8f11db6d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionCacheHandler.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-02-20T14:31:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "925313ad_e6adc49f",
       "range": {
         "startLine": 70,
         "startChar": 30,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "35c36328_7cf21044",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionCacheHandler.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-02-20T14:31:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7bac8c95_914714b2",
+      "range": {
+        "startLine": 79,
+        "startChar": 46,
+        "endLine": 80,
+        "endChar": 72
+      },
+      "revId": "45a04e630eb9d3012f0f54d494c7ef239f2f0006",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bca42f00_3b00debe",
@@ -100,6 +172,30 @@
       "writtenOn": "2024-02-06T18:26:47Z",
       "side": 1,
       "message": "Cache/Object/Map what is it?!",
+      "range": {
+        "startLine": 94,
+        "startChar": 34,
+        "endLine": 94,
+        "endChar": 48
+      },
+      "revId": "45a04e630eb9d3012f0f54d494c7ef239f2f0006",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4e705e8_7cc140e1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionCacheHandler.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-02-20T14:31:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bca42f00_3b00debe",
       "range": {
         "startLine": 94,
         "startChar": 34,
@@ -133,6 +229,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "62b17bac_e841d305",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionCacheHandler.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-02-20T14:31:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ddea32af_a22edc75",
+      "range": {
+        "startLine": 106,
+        "startChar": 77,
+        "endLine": 106,
+        "endChar": 81
+      },
+      "revId": "45a04e630eb9d3012f0f54d494c7ef239f2f0006",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "badc0a3c_06bdd453",
@@ -146,6 +266,30 @@
       "writtenOn": "2024-02-06T18:26:47Z",
       "side": 1,
       "message": "looks to me like you are storing the exact same data in a slightly different structure object, is it needed at all?",
+      "range": {
+        "startLine": 111,
+        "startChar": 3,
+        "endLine": 120,
+        "endChar": 39
+      },
+      "revId": "45a04e630eb9d3012f0f54d494c7ef239f2f0006",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fce05d10_7d95ba3e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmSubscriptionCacheHandler.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-02-20T14:31:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "badc0a3c_06bdd453",
       "range": {
         "startLine": 111,
         "startChar": 3,
