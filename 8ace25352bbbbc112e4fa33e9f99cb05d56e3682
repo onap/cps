@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "168c0b2f_ea62f465",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionDelta.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-20T09:06:04Z",
+      "side": 1,
+      "message": "targetCmHandleIds\nLets be consistent 😊",
+      "range": {
+        "startLine": 52,
+        "startChar": 30,
+        "endLine": 52,
+        "endChar": 43
+      },
+      "revId": "8ace25352bbbbc112e4fa33e9f99cb05d56e3682",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0c52527_6b701595",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionDelta.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-20T09:06:04Z",
+      "side": 1,
+      "message": "xpaths",
+      "range": {
+        "startLine": 53,
+        "startChar": 30,
+        "endLine": 53,
+        "endChar": 42
+      },
+      "revId": "8ace25352bbbbc112e4fa33e9f99cb05d56e3682",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45dc4550_36747e8b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/CmNotificationSubscriptionCacheConfigSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-20T09:06:04Z",
+      "side": 1,
+      "message": "NB: maybe the old groovy way was fine.\nnew DmiCmNotificationSubscriptionPredicate(targetCmHandleIds: [\u0027cmhandle1\u0027, \u0027cmhandle2\u0027] as Set, datastoreType: DatastoreType.PASSTHROUGH_RUNNING, xpaths: [\u0027/a/b/c\u0027] as Set)",
+      "revId": "8ace25352bbbbc112e4fa33e9f99cb05d56e3682",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3c2ff92_c79351ad",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionDeltaSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-20T09:06:04Z",
+      "side": 1,
+      "message": "CmNotificationSubscriptionDeltaSpec",
+      "range": {
+        "startLine": 27,
+        "startChar": 6,
+        "endLine": 27,
+        "endChar": 29
+      },
+      "revId": "8ace25352bbbbc112e4fa33e9f99cb05d56e3682",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "030d7a18_b0c24c13",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionDeltaSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-20T09:06:04Z",
+      "side": 1,
+      "message": "do this the groovy way.",
+      "revId": "8ace25352bbbbc112e4fa33e9f99cb05d56e3682",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
