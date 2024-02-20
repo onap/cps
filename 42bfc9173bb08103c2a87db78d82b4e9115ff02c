@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2001cdf6_fcb64c55",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-20T15:57:17Z",
+      "side": 1,
+      "message": "Need to remove from RTD as well",
+      "revId": "42bfc9173bb08103c2a87db78d82b4e9115ff02c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
