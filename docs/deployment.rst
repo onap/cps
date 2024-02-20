@@ -335,9 +335,5 @@ Below are the list of distributed datastructures that we have.
 +--------------+------------------------------------+-----------------------------------------------------------+
 | cps-ncmp     | cmNotificationSubscriptionCache    | Stores and tracks cm notification subscription requests.  |
 +--------------+------------------------------------+-----------------------------------------------------------+
-| cps-ncmp     | alternateIdPerCmHandleId           | Stores the alternate id for each cm handle id.            |
-+--------------+------------------------------------+-----------------------------------------------------------+
-| cps-ncmp     | cmHandleIdPerAlternateId           | Stores the cm handle id for each alternate id.            |
-+--------------+------------------------------------+-----------------------------------------------------------+
 
-Total number of caches : 10
+Total number of caches : 8
