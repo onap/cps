@@ -48,6 +48,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "031f78d2_5792d685",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionDmiOutEventConsumer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-02-20T14:29:26Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "97cc5b05_1d3a26bf",
+      "range": {
+        "startLine": 55,
+        "startChar": 17,
+        "endLine": 55,
+        "endChar": 43
+      },
+      "revId": "eebdf298aae279284c193fdae4693ab5e2f5723b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "59750e7b_8028af52",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "nope.\nfor 1 message , there will be only one dmi plugin information..\nMultiple dmi-plugin will be producing to same topic , but each message will be from a unique dmi-plugin.\nHope it clarifies.",
       "parentUuid": "59750e7b_8028af52",
+      "range": {
+        "startLine": 59,
+        "startChar": 17,
+        "endLine": 59,
+        "endChar": 75
+      },
+      "revId": "eebdf298aae279284c193fdae4693ab5e2f5723b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f52d4a54_f805eae8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionDmiOutEventConsumer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-02-20T14:29:26Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b89ff237_163b283f",
       "range": {
         "startLine": 59,
         "startChar": 17,
