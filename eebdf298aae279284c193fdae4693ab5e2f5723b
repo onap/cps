@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "97cc5b05_1d3a26bf",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionDmiOutEventConsumer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-20T14:25:57Z",
+      "side": 1,
+      "message": "yup. there will be more in the method.\ncurrently i am just logging the relevant information.\n\nsimilarly we might have a method handleCmSubscriptionDelete in the later patches.",
+      "parentUuid": "007ffa9d_788cc3f9",
+      "range": {
+        "startLine": 55,
+        "startChar": 17,
+        "endLine": 55,
+        "endChar": 43
+      },
+      "revId": "eebdf298aae279284c193fdae4693ab5e2f5723b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "59750e7b_8028af52",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionDmiOutEventConsumer.java",
         "patchSetId": 1
@@ -37,6 +61,30 @@
       "writtenOn": "2024-02-20T13:55:54Z",
       "side": 1,
       "message": "NB: then there will be multiple of these? since itll be differernt dmi plugin right?",
+      "range": {
+        "startLine": 59,
+        "startChar": 17,
+        "endLine": 59,
+        "endChar": 75
+      },
+      "revId": "eebdf298aae279284c193fdae4693ab5e2f5723b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b89ff237_163b283f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionDmiOutEventConsumer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-20T14:25:57Z",
+      "side": 1,
+      "message": "nope.\nfor 1 message , there will be only one dmi plugin information..\nMultiple dmi-plugin will be producing to same topic , but each message will be from a unique dmi-plugin.\nHope it clarifies.",
+      "parentUuid": "59750e7b_8028af52",
       "range": {
         "startLine": 59,
         "startChar": 17,
