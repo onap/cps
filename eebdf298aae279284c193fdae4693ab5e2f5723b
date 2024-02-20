@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "007ffa9d_788cc3f9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionDmiOutEventConsumer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-02-20T13:55:54Z",
+      "side": 1,
+      "message": "not clear method anme, im assuming there\u0027ll be more in this method in next commmits? if not then method name can be changed",
+      "range": {
+        "startLine": 55,
+        "startChar": 17,
+        "endLine": 55,
+        "endChar": 43
+      },
+      "revId": "eebdf298aae279284c193fdae4693ab5e2f5723b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59750e7b_8028af52",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionDmiOutEventConsumer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-02-20T13:55:54Z",
+      "side": 1,
+      "message": "NB: then there will be multiple of these? since itll be differernt dmi plugin right?",
+      "range": {
+        "startLine": 59,
+        "startChar": 17,
+        "endLine": 59,
+        "endChar": 75
+      },
+      "revId": "eebdf298aae279284c193fdae4693ab5e2f5723b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
