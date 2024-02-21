@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "96db04bc_c446ea50",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionNcmpInEventConsumer.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-21T15:19:34Z",
+      "side": 1,
+      "message": "to be discussed with other team members and based on decision we will take action.",
+      "parentUuid": "d7a7b2f9_66e11f98",
+      "range": {
+        "startLine": 61,
+        "startChar": 16,
+        "endLine": 61,
+        "endChar": 46
+      },
+      "revId": "06c9b9c9938a4c0eba6c099de6ca2e2f5191707f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "77572859_14052cab",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/DmiCmNotificationSubscriptionCacheHandler.java",
         "patchSetId": 10
