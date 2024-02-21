@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23960710_3daed4a8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-21T12:21:08Z",
+      "side": 1,
+      "message": "looks good to me!",
+      "revId": "cbd20a33ea2414a02a3a3fba79ddc734f51e77ac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4681ce2d_051de53a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-21T12:21:08Z",
+      "side": 1,
+      "message": "Does this affect the get cm handle use ie. what Jeff brough up in the meeting with Tony an Kieran. I assume so. Maybe get him inolved in this review too so he knows what is already done (and maybe can do quick an e2e test on this)",
+      "range": {
+        "startLine": 196,
+        "startChar": 0,
+        "endLine": 199,
+        "endChar": 56
+      },
+      "revId": "cbd20a33ea2414a02a3a3fba79ddc734f51e77ac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
