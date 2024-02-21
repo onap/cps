@@ -38,7 +38,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueries;
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleState;
 import org.onap.cps.ncmp.api.impl.inventory.CompositeState;
@@ -62,7 +61,7 @@ public class ModuleOperationsUtils {
     private final DmiDataOperations dmiDataOperations;
     private final JsonObjectMapper jsonObjectMapper;
     private static final String RETRY_ATTEMPT_KEY = "attempt";
-    public static final String MODULE_SET_TAG_KEY = "moduleSetTag";
+    private static final String MODULE_SET_TAG_KEY = "moduleSetTag";
     public static final String MODULE_SET_TAG_MESSAGE_FORMAT = "Upgrade to ModuleSetTag: {0}";
     private static final String UPGRADE_FORMAT = "Upgrade to ModuleSetTag: %s";
     private static final String LOCK_REASON_DETAILS_MSG_FORMAT = UPGRADE_FORMAT + " Attempt #%d failed: %s";
@@ -134,10 +133,10 @@ public class ModuleOperationsUtils {
         if (!compositeStateDetails.isEmpty() && compositeStateDetails.containsKey(RETRY_ATTEMPT_KEY)) {
             attempt = 1 + Integer.parseInt(compositeStateDetails.get(RETRY_ATTEMPT_KEY));
         }
-        final String moduleSetTag = compositeStateDetails.get(MODULE_SET_TAG_KEY);
+        final String moduleSetTag = compositeStateDetails.getOrDefault(MODULE_SET_TAG_KEY, "");
         compositeState.setLockReason(CompositeState.LockReason.builder()
-                .details(String.format(LOCK_REASON_DETAILS_MSG_FORMAT, StringUtils.isNotBlank(moduleSetTag)
-                        ? moduleSetTag : "not-specified", attempt, errorMessage)).lockReasonCategory(lockReasonCategory)
+                .details(String.format(LOCK_REASON_DETAILS_MSG_FORMAT, moduleSetTag, attempt, errorMessage))
+                .lockReasonCategory(lockReasonCategory)
                 .build());
     }
 
@@ -226,6 +225,10 @@ public class ModuleOperationsUtils {
                 && (LockReasonCategory.MODULE_UPGRADE.equals(compositeState.getLockReason().getLockReasonCategory())
                 || LockReasonCategory.MODULE_UPGRADE_FAILED.equals(compositeState.getLockReason()
                 .getLockReasonCategory()));
+    }
+
+    public static String getUpgradedModuleSetTagFromLockReason(final CompositeState.LockReason lockReason) {
+        return getLockedCompositeStateDetails(lockReason).getOrDefault(MODULE_SET_TAG_KEY, "");
     }
 
     private String getFirstResource(final Object responseBody) {

@@ -187,8 +187,7 @@ public class ModuleSyncService {
                                    final CompositeState compositeState,
                                    final boolean inUpgrade) {
         if (inUpgrade) {
-            return ModuleOperationsUtils.getLockedCompositeStateDetails(compositeState.getLockReason())
-                    .get(ModuleOperationsUtils.MODULE_SET_TAG_KEY);
+            return ModuleOperationsUtils.getUpgradedModuleSetTagFromLockReason(compositeState.getLockReason());
         }
         return yangModelCmHandle.getModuleSetTag();
     }

@@ -125,7 +125,7 @@ class ModuleOperationsUtilsSpec extends Specification{
         where:
             scenario               | moduleSetTag       || expectedDetails
             'a module set tag'     | 'someModuleSetTag' || 'someModuleSetTag'
-            'empty module set tag' | ''                 || 'not-specified'
+            'empty module set tag' | ''                 || ''
     }
 
     def 'Get all locked cm-Handles where lock reasons are model sync failed or upgrade'() {
