@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2023 Nordix Foundation
+ *  Copyright (C) 2022-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -69,10 +69,12 @@ public class ModuleSyncTasks {
                 final CompositeState compositeState = inventoryPersistence.getCmHandleState(cmHandleId);
                 final boolean inUpgrade = ModuleOperationsUtils.inUpgradeOrUpgradeFailed(compositeState);
                 try {
-                    if (!inUpgrade) {
+                    if (inUpgrade) {
+                        moduleSyncService.syncAndUpgradeSchemaSet(yangModelCmHandle);
+                    } else {
                         moduleSyncService.deleteSchemaSetIfExists(cmHandleId);
+                        moduleSyncService.syncAndCreateSchemaSetAndAnchor(yangModelCmHandle);
                     }
-                    moduleSyncService.syncAndCreateOrUpgradeSchemaSetAndAnchor(yangModelCmHandle);
                     yangModelCmHandle.getCompositeState().setLockReason(null);
                     cmHandelStatePerCmHandle.put(yangModelCmHandle, CmHandleState.READY);
                 } catch (final Exception e) {
