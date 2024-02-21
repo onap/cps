@@ -38,7 +38,7 @@ class CmNotificationSubscriptionPersistenceServiceImplSpec extends Specification
             def cpsPathQuery = "/datastores/datastore[@name='ncmp-datastore:passthrough-running']/cm-handles/cm-handle[@id='ch-1']/filters/filter[@xpath='/cps/path']";
         and: 'datanodes optionally returned'
             1 * mockCpsQueryService.queryDataNodes('NCMP-Admin', 'cm-data-subscriptions',
-                cpsPathQuery, FetchDescendantsOption.OMIT_DESCENDANTS) >> dataNode
+                    cpsPathQuery, FetchDescendantsOption.OMIT_DESCENDANTS) >> dataNode
         when: 'we check for an ongoing cm subscription'
             def response = objectUnderTest.isOngoingCmNotificationSubscription(DatastoreType.PASSTHROUGH_RUNNING, 'ch-1', '/cps/path')
         then: 'we get expected response'
@@ -47,5 +47,21 @@ class CmNotificationSubscriptionPersistenceServiceImplSpec extends Specification
             scenario                  | dataNode                                                                            || isOngoingCmSubscription
             'valid datanodes present' | [new DataNode(xpath: '/cps/path', leaves: ['subscriptionIds': ['sub-1', 'sub-2']])] || true
             'no datanodes present'    | []                                                                                  || false
+    }
+
+    def 'Checking uniqueness of incoming subscription ID'() {
+        given: 'a cps path with a subscription ID for querying'
+            def cpsPathQuery = objectUnderTest.SUBSCRIPTION_IDS_CPS_PATH_QUERY.formatted('some-sub')
+        and: 'relevant datanodes are returned'
+            1 * mockCpsQueryService.queryDataNodes('NCMP-Admin', 'cm-data-subscriptions', cpsPathQuery, FetchDescendantsOption.OMIT_DESCENDANTS) >>
+                    dataNodes
+        when: 'a subscription ID is tested for uniqueness'
+            def result = objectUnderTest.isUniqueSubscriptionId('some-sub')
+        then: 'result is as expected'
+            assert result == isValidSubscriptionId
+        where: 'following scenarios are used'
+            scenario               | dataNodes        || isValidSubscriptionId
+            'datanodes present'    | [new DataNode()] || false
+            'no datanodes present' | []               || true
     }
 }
