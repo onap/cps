@@ -22,6 +22,7 @@ package org.onap.cps.ncmp.init;
 
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME;
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR;
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME;
 
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAnchorService;
@@ -34,8 +35,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class InventoryModelLoader extends AbstractModelLoader {
 
+    private static final String CPS_MODEL_FILE_NAME = "cps-ran-schema-model@2021-05-19.yang";
     private static final String NEW_MODEL_FILE_NAME = "dmi-registry@2023-11-27.yang";
     private static final String NEW_SCHEMA_SET_NAME = "dmi-registry-2023-11-27";
+    private static final String CPS_SCHEMA_SET_NAME = "cps-ran-schema-model";
+    private static final String REGISTRY_DATANODE_NAME = "dmi-registry";
+    private static final String CPS_ANCHOR = "ran-network-simulation";
+    private static final String CPS_DATANODE_NAME = "cps-ran-schema";
+
+
 
     public InventoryModelLoader(final CpsDataspaceService cpsDataspaceService,
                                 final CpsModuleService cpsModuleService,
@@ -46,20 +54,27 @@ public class InventoryModelLoader extends AbstractModelLoader {
 
     @Override
     public void onboardOrUpgradeModel() {
-        waitUntilDataspaceIsAvailable(NCMP_DATASPACE_NAME);
         updateInventoryModel();
         log.info("Inventory Model updated successfully");
     }
 
     private void updateInventoryModel() {
+        createDataspace(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME);
+        createSchemaSet(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, CPS_SCHEMA_SET_NAME, CPS_MODEL_FILE_NAME);
+        updateAnchorSchemaSet(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, CPS_ANCHOR, CPS_SCHEMA_SET_NAME);
+        createTopLevelDataNode(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, CPS_ANCHOR, CPS_DATANODE_NAME);
+
+        createDataspace(NCMP_DATASPACE_NAME);
         createSchemaSet(NCMP_DATASPACE_NAME, NEW_SCHEMA_SET_NAME, NEW_MODEL_FILE_NAME);
         updateAnchorSchemaSet(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NEW_SCHEMA_SET_NAME);
+        createTopLevelDataNode(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, REGISTRY_DATANODE_NAME);
         deleteOldButNotThePreviousSchemaSets();
     }
 
     private void deleteOldButNotThePreviousSchemaSets() {
         //No schema sets passed in yet, but wil be required for future updates
         deleteUnusedSchemaSets(NCMP_DATASPACE_NAME);
+        deleteUnusedSchemaSets(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME);
     }
 
 }
