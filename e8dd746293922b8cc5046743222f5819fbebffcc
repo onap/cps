@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d42e1b5d_52e0b251",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/CmHandleQueriesImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 3237
+      },
+      "writtenOn": "2024-02-21T16:49:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8ac1a988_a7853fb1",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 69
+      },
+      "revId": "e8dd746293922b8cc5046743222f5819fbebffcc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "769a7ada_8cf20abf",
@@ -71,6 +95,30 @@
       "writtenOn": "2024-02-21T11:55:02Z",
       "side": 1,
       "message": "can you mention this in the commit message too please",
+      "range": {
+        "startLine": 74,
+        "startChar": 24,
+        "endLine": 74,
+        "endChar": 56
+      },
+      "revId": "e8dd746293922b8cc5046743222f5819fbebffcc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3b0fcbb_8e03af60",
+        "filename": "cps-ri/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 3237
+      },
+      "writtenOn": "2024-02-21T16:49:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "769a7ada_8cf20abf",
       "range": {
         "startLine": 74,
         "startChar": 24,
