@@ -46,12 +46,12 @@ public class InventoryModelLoader extends AbstractModelLoader {
 
     @Override
     public void onboardOrUpgradeModel() {
-        waitUntilDataspaceIsAvailable(NCMP_DATASPACE_NAME);
         updateInventoryModel();
         log.info("Inventory Model updated successfully");
     }
 
     private void updateInventoryModel() {
+        createDataspace(NCMP_DATASPACE_NAME);
         createSchemaSet(NCMP_DATASPACE_NAME, NEW_SCHEMA_SET_NAME, NEW_MODEL_FILE_NAME);
         updateAnchorSchemaSet(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NEW_SCHEMA_SET_NAME);
         deleteOldButNotThePreviousSchemaSets();
