@@ -157,14 +157,7 @@ public class ModuleSyncService {
                                                              final Collection<ModuleReference> moduleReferences) {
         final Collection<ModuleReference> identifiedNewModuleReferences = cpsModuleService
                 .identifyNewModuleReferences(moduleReferences);
-        final Map<String, String> newModuleNameToContentMap;
-        if (identifiedNewModuleReferences.isEmpty()) {
-            newModuleNameToContentMap = NO_NEW_MODULES;
-        } else {
-            newModuleNameToContentMap = dmiModelOperations.getNewYangResourcesFromDmi(yangModelCmHandle,
-                    identifiedNewModuleReferences);
-        }
-        return newModuleNameToContentMap;
+        return dmiModelOperations.getNewYangResourcesFromDmi(yangModelCmHandle, identifiedNewModuleReferences);
     }
 
     private String getModuleSetTag(final YangModelCmHandle yangModelCmHandle, final boolean inUpgrade) {
