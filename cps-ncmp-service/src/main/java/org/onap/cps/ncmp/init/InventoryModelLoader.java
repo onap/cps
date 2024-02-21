@@ -36,6 +36,7 @@ public class InventoryModelLoader extends AbstractModelLoader {
 
     private static final String NEW_MODEL_FILE_NAME = "dmi-registry@2023-11-27.yang";
     private static final String NEW_SCHEMA_SET_NAME = "dmi-registry-2023-11-27";
+    private static final String REGISTRY_DATANODE_NAME = "dmi-registry";
 
     public InventoryModelLoader(final CpsDataspaceService cpsDataspaceService,
                                 final CpsModuleService cpsModuleService,
@@ -46,14 +47,15 @@ public class InventoryModelLoader extends AbstractModelLoader {
 
     @Override
     public void onboardOrUpgradeModel() {
-        waitUntilDataspaceIsAvailable(NCMP_DATASPACE_NAME);
         updateInventoryModel();
         log.info("Inventory Model updated successfully");
     }
 
     private void updateInventoryModel() {
+        createDataspace(NCMP_DATASPACE_NAME);
         createSchemaSet(NCMP_DATASPACE_NAME, NEW_SCHEMA_SET_NAME, NEW_MODEL_FILE_NAME);
         updateAnchorSchemaSet(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NEW_SCHEMA_SET_NAME);
+        createTopLevelDataNode(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, REGISTRY_DATANODE_NAME);
         deleteOldButNotThePreviousSchemaSets();
     }
 
