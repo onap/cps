@@ -28,7 +28,6 @@ import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.models.UpgradedCmHandles
 import org.springframework.http.HttpStatus
-import spock.lang.Ignore
 import spock.util.concurrent.PollingConditions
 
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.anything
@@ -50,7 +49,6 @@ class NcmpCmHandleUpgradeSpec extends CpsIntegrationSpecBase {
         objectUnderTest = networkCmProxyDataService
     }
 
-    @Ignore
     def 'Upgrade CM-handle with new moduleSetTag or no moduleSetTag.'() {
         given: 'an existing CM-handle with expected initial modules: M1 and M2'
             registerCmHandle(DMI_URL, CM_HANDLE_ID, initialModuleSetTag, INITIAL_MODULE_REFERENCES_RESPONSE, INITIAL_MODULE_RESOURCES_RESPONSE)
@@ -142,7 +140,6 @@ class NcmpCmHandleUpgradeSpec extends CpsIntegrationSpecBase {
             'moduleSet1'        | 'moduleSet2'
     }
 
-    @Ignore
     def 'Skip upgrade of CM-handle with same moduleSetTag as before.'() {
         given: 'an existing CM-handle with expected initial modules: M1 and M2'
             registerCmHandle(DMI_URL, CM_HANDLE_ID, 'same', INITIAL_MODULE_REFERENCES_RESPONSE, INITIAL_MODULE_RESOURCES_RESPONSE)

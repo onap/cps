@@ -81,7 +81,6 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def stubTrustLevelPerDmiPlugin = Stub(Map<String, TrustLevel>)
     def mockTrustLevelManager = Mock(TrustLevelManager)
     def mockAlternateIdChecker = Mock(AlternateIdChecker)
-    def mockModuleSetTagCache = [:]
 
     def NO_TOPIC = null
     def NO_REQUEST_ID = null
@@ -100,8 +99,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             stubModuleSyncStartedOnCmHandles,
             stubTrustLevelPerDmiPlugin,
             mockTrustLevelManager,
-            mockAlternateIdChecker,
-            mockModuleSetTagCache)
+            mockAlternateIdChecker)
 
     def cmHandleXPath = "/dmi-registry/cm-handles[@id='testCmHandle']"
 

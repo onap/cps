@@ -35,11 +35,9 @@ import static org.onap.cps.ncmp.api.impl.utils.RestQueryParametersValidator.vali
 
 import com.google.common.collect.Lists;
 import com.hazelcast.map.IMap;
-import java.text.MessageFormat;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -48,8 +46,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.onap.cps.api.CpsDataService;
-import org.onap.cps.ncmp.api.NcmpResponseStatus;
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandleQueryService;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.api.impl.events.lcm.LcmEventsCmHandleStateHandler;
@@ -106,7 +104,6 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private final Map<String, TrustLevel> trustLevelPerDmiPlugin;
     private final TrustLevelManager trustLevelManager;
     private final AlternateIdChecker alternateIdChecker;
-    private final Map<String, Collection<ModuleReference>> moduleSetTagCache;
 
     @Override
     public DmiPluginRegistrationResponse updateDmiRegistrationAndSyncModule(
@@ -344,16 +341,12 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
             new ArrayList<>(tobeRemovedCmHandles.size());
         final Collection<YangModelCmHandle> yangModelCmHandles =
             inventoryPersistence.getYangModelCmHandles(tobeRemovedCmHandles);
-        final Set<String> moduleSetTags = yangModelCmHandles.stream().map(YangModelCmHandle::getModuleSetTag)
-                .collect(Collectors.toSet());
         updateCmHandleStateBatch(yangModelCmHandles, CmHandleState.DELETING);
 
         final Set<String> notDeletedCmHandles = new HashSet<>();
         for (final List<String> tobeRemovedCmHandleBatch : Lists.partition(tobeRemovedCmHandles, DELETE_BATCH_SIZE)) {
             try {
                 batchDeleteCmHandlesFromDbAndModuleSyncMap(tobeRemovedCmHandleBatch);
-                moduleSetTags.forEach(moduleSetTagCache::remove);
-                log.debug("Removed module set tags: {}", moduleSetTags);
                 tobeRemovedCmHandleBatch.forEach(cmHandleId ->
                     cmHandleRegistrationResponses.add(CmHandleRegistrationResponse.createSuccessResponse(cmHandleId)));
 
@@ -417,53 +410,55 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         final DmiPluginRegistration dmiPluginRegistration) {
 
         final List<String> upgradedCmHandleIds = dmiPluginRegistration.getUpgradedCmHandles().getCmHandles();
-
+        final String upgradedModuleSetTag = dmiPluginRegistration.getUpgradedCmHandles().getModuleSetTag();
         final Map<YangModelCmHandle, CmHandleState> acceptedCmHandleStatePerCmHandle
                 = new HashMap<>(upgradedCmHandleIds.size());
+        final List<CmHandleRegistrationResponse> cmHandleUpgradeResponses = new ArrayList<>(upgradedCmHandleIds.size());
 
-        final Map<NcmpResponseStatus, List<String>> failedCmHandlesPerResponseStatus
-                = new EnumMap<>(NcmpResponseStatus.class);
-        final List<String> nonExistingCmHandleIds = new ArrayList<>();
-        final List<String> nonReadyCmHandleIds = new ArrayList<>();
-        final List<String> invalidCmHandleIds = new ArrayList<>();
-
-        upgradedCmHandleIds.forEach(cmHandleId -> {
+        for (final String cmHandleId : upgradedCmHandleIds) {
             try {
-                if (cmHandleQueries.cmHandleHasState(cmHandleId, CmHandleState.READY)) {
-                    final YangModelCmHandle yangModelCmHandleWithUpgradeDetails
-                            = createYangModelCmHandle(dmiPluginRegistration, cmHandleId);
-                    acceptedCmHandleStatePerCmHandle.put(yangModelCmHandleWithUpgradeDetails, CmHandleState.LOCKED);
+                final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(cmHandleId);
+                if (yangModelCmHandle.getCompositeState().getCmHandleState() == CmHandleState.READY) {
+                    if (moduleUpgradeCanBeSkipped(yangModelCmHandle, upgradedModuleSetTag)) {
+                        cmHandleUpgradeResponses.add(CmHandleRegistrationResponse.createSuccessResponse(cmHandleId));
+                    } else {
+                        updateYangModelCmHandleForUpgrade(yangModelCmHandle, upgradedModuleSetTag);
+                        acceptedCmHandleStatePerCmHandle.put(yangModelCmHandle, CmHandleState.LOCKED);
+                    }
                 } else {
-                    nonReadyCmHandleIds.add(cmHandleId);
+                    cmHandleUpgradeResponses.add(
+                            CmHandleRegistrationResponse.createFailureResponse(cmHandleId, CM_HANDLES_NOT_READY));
                 }
             } catch (final DataNodeNotFoundException dataNodeNotFoundException) {
                 log.error("Unable to find data node for cm handle id : {} , caused by : {}",
                         cmHandleId, dataNodeNotFoundException.getMessage());
-                nonExistingCmHandleIds.add(cmHandleId);
+                cmHandleUpgradeResponses.add(
+                        CmHandleRegistrationResponse.createFailureResponse(cmHandleId, CM_HANDLES_NOT_FOUND));
             } catch (final DataValidationException dataValidationException) {
                 log.error("Unable to upgrade cm handle id: {}, caused by : {}",
                         cmHandleId, dataValidationException.getMessage());
-                invalidCmHandleIds.add(cmHandleId);
+                cmHandleUpgradeResponses.add(
+                        CmHandleRegistrationResponse.createFailureResponse(cmHandleId, CM_HANDLE_INVALID_ID));
             }
-        });
-        failedCmHandlesPerResponseStatus.put(CM_HANDLES_NOT_READY, nonReadyCmHandleIds);
-        failedCmHandlesPerResponseStatus.put(CM_HANDLES_NOT_FOUND, nonExistingCmHandleIds);
-        failedCmHandlesPerResponseStatus.put(CM_HANDLE_INVALID_ID, invalidCmHandleIds);
-        return mergeAllCmHandleResponses(acceptedCmHandleStatePerCmHandle, failedCmHandlesPerResponseStatus);
+        }
+        cmHandleUpgradeResponses.addAll(upgradeCmHandles(acceptedCmHandleStatePerCmHandle));
+        return cmHandleUpgradeResponses;
     }
 
-    private static YangModelCmHandle createYangModelCmHandle(final DmiPluginRegistration dmiPluginRegistration,
-                                                             final String cmHandleId) {
-        final NcmpServiceCmHandle ncmpServiceCmHandle = new NcmpServiceCmHandle();
-        ncmpServiceCmHandle.setCmHandleId(cmHandleId);
-        final String moduleSetTag = dmiPluginRegistration.getUpgradedCmHandles().getModuleSetTag();
-        final String lockReasonWithModuleSetTag = MessageFormat.format(
-                ModuleOperationsUtils.MODULE_SET_TAG_MESSAGE_FORMAT, moduleSetTag);
-        ncmpServiceCmHandle.setCompositeState(new CompositeStateBuilder().withCmHandleState(CmHandleState.READY)
+    private static boolean moduleUpgradeCanBeSkipped(final YangModelCmHandle yangModelCmHandle,
+                                                     final String upgradedModuleSetTag) {
+        if (StringUtils.isBlank(upgradedModuleSetTag)) {
+            return false;
+        }
+        return yangModelCmHandle.getModuleSetTag().equals(upgradedModuleSetTag);
+    }
+
+    private static void updateYangModelCmHandleForUpgrade(final YangModelCmHandle yangModelCmHandle,
+                                                          final String upgradedModuleSetTag) {
+        final String lockReasonWithModuleSetTag = String.format(ModuleOperationsUtils.MODULE_SET_TAG_MESSAGE_FORMAT,
+                upgradedModuleSetTag);
+        yangModelCmHandle.setCompositeState(new CompositeStateBuilder().withCmHandleState(CmHandleState.READY)
                 .withLockReason(MODULE_UPGRADE, lockReasonWithModuleSetTag).build());
-        return YangModelCmHandle.toYangModelCmHandle(dmiPluginRegistration.getDmiPlugin(),
-                dmiPluginRegistration.getDmiDataPlugin(), dmiPluginRegistration.getDmiModelPlugin(),
-                ncmpServiceCmHandle, moduleSetTag, ncmpServiceCmHandle.getAlternateId());
     }
 
     private CmHandleRegistrationResponse deleteCmHandleAndGetCmHandleRegistrationResponse(final String cmHandleId) {
@@ -531,17 +526,6 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         } catch (final Exception exception) {
             return CmHandleRegistrationResponse.createFailureResponses(cmHandleIds, exception);
         }
-    }
-
-    private List<CmHandleRegistrationResponse> mergeAllCmHandleResponses(
-            final Map<YangModelCmHandle, CmHandleState> acceptedCmHandleStatePerCmHandle,
-            final Map<NcmpResponseStatus, List<String>> failedCmHandlesPerResponseStatus) {
-        final List<CmHandleRegistrationResponse> cmHandleUpgradeResponses
-                = upgradeCmHandles(acceptedCmHandleStatePerCmHandle);
-        failedCmHandlesPerResponseStatus.forEach((ncmpResponseStatus, cmHandleIds) ->
-            cmHandleIds.forEach(cmHandleId -> cmHandleUpgradeResponses.add(CmHandleRegistrationResponse
-                .createFailureResponse(cmHandleId, ncmpResponseStatus))));
-        return cmHandleUpgradeResponses;
     }
 
     private List<CmHandleRegistrationResponse> upgradeCmHandles(final Map<YangModelCmHandle, CmHandleState>

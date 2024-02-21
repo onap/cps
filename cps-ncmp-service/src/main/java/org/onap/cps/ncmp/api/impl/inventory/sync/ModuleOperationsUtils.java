@@ -62,9 +62,9 @@ public class ModuleOperationsUtils {
     private final JsonObjectMapper jsonObjectMapper;
     private static final String RETRY_ATTEMPT_KEY = "attempt";
     private static final String MODULE_SET_TAG_KEY = "moduleSetTag";
-    public static final String MODULE_SET_TAG_MESSAGE_FORMAT = "Upgrade to ModuleSetTag: {0}";
-    private static final String UPGRADE_FORMAT = "Upgrade to ModuleSetTag: %s";
-    private static final String LOCK_REASON_DETAILS_MSG_FORMAT = UPGRADE_FORMAT + " Attempt #%d failed: %s";
+    public static final String MODULE_SET_TAG_MESSAGE_FORMAT = "Upgrade to ModuleSetTag: %s";
+    private static final String LOCK_REASON_DETAILS_MSG_FORMAT =
+            MODULE_SET_TAG_MESSAGE_FORMAT + " Attempt #%d failed: %s";
     private static final Pattern retryAttemptPattern = Pattern.compile("Attempt #(\\d+) failed:.+");
     private static final Pattern moduleSetTagPattern = Pattern.compile("Upgrade to ModuleSetTag: (\\S+)");
     private static final String CPS_PATH_CM_HANDLES_MODEL_SYNC_FAILED_OR_UPGRADE = """
@@ -220,7 +220,7 @@ public class ModuleOperationsUtils {
      * @param compositeState current lock reason of  cm handle
      * @return true or false based on lock reason category
      */
-    public static boolean isInUpgradeOrUpgradeFailed(final CompositeState compositeState) {
+    public static boolean inUpgradeOrUpgradeFailed(final CompositeState compositeState) {
         return compositeState.getLockReason() != null
                 && (LockReasonCategory.MODULE_UPGRADE.equals(compositeState.getLockReason().getLockReasonCategory())
                 || LockReasonCategory.MODULE_UPGRADE_FAILED.equals(compositeState.getLockReason()

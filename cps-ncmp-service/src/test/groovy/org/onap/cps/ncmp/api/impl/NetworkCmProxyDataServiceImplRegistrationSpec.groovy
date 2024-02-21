@@ -21,14 +21,14 @@
 
 package org.onap.cps.ncmp.api.impl
 
-import java.util.stream.Collectors
-
 import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.Status
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLES_NOT_FOUND
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLE_ALREADY_EXIST
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLE_INVALID_ID
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNKNOWN_ERROR
 
+import java.util.stream.Collectors
+import org.onap.cps.ncmp.api.impl.inventory.CompositeState
 import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevelManager
 import org.onap.cps.ncmp.api.impl.utils.AlternateIdChecker
 import org.onap.cps.ncmp.api.models.UpgradedCmHandles
@@ -72,7 +72,6 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def mockTrustLevelManager = Mock(TrustLevelManager)
     def mockAlternateIdChecker = Mock(AlternateIdChecker)
     def objectUnderTest = getObjectUnderTest()
-    def mockModuleSetTagCache = [:]
 
     def setup() {
         // always accept all cm handles
@@ -89,6 +88,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             dmiRegistration.setUpgradedCmHandles(new UpgradedCmHandles(cmHandles: ['cmhandle-3'], moduleSetTag: 'some-module-set-tag'))
         and: 'cm handles are persisted'
             mockInventoryPersistence.getYangModelCmHandles(['cmhandle-2']) >> [new YangModelCmHandle()]
+            mockInventoryPersistence.getYangModelCmHandle('cmhandle-3') >> new YangModelCmHandle(id: 'cmhandle-3', moduleSetTag: '', compositeState: new CompositeState(cmHandleState: CmHandleState.READY))
         and: 'cm handle is in READY state'
             mockCmHandleQueries.cmHandleHasState('cmhandle-3', CmHandleState.READY) >> true
         when: 'registration is processed'
@@ -96,7 +96,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         then: 'cm-handles are removed first'
             1 * objectUnderTest.parseAndProcessDeletedCmHandlesInRegistration(*_)
         and: 'de-registered cm handle entry is removed from in progress map'
-            2 * mockModuleSyncStartedOnCmHandles.remove('cmhandle-2')
+            1 * mockModuleSyncStartedOnCmHandles.remove('cmhandle-2')
         then: 'cm-handles are created'
             1 * objectUnderTest.parseAndProcessCreatedCmHandlesInRegistration(*_)
         then: 'cm-handles are updated'
@@ -110,15 +110,15 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             def dmiRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server')
             dmiRegistration.setUpgradedCmHandles(new UpgradedCmHandles(cmHandles: ['cmhandle-3'], moduleSetTag: 'some-module-set-tag'))
         and: 'exception while checking cm handle state'
-            mockCmHandleQueries.cmHandleHasState('cmhandle-3', CmHandleState.READY) >> isReady
+            mockInventoryPersistence.getYangModelCmHandle('cmhandle-3') >> new YangModelCmHandle(id: 'cmhandle-3', moduleSetTag: '', compositeState: new CompositeState(cmHandleState: cmHandleState))
         when: 'registration is processed'
             def result = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiRegistration)
         then: 'upgrade operation contains expected error code'
-            assert result.upgradedCmHandles.status[0] == expectedResponseStatus
+            assert result.upgradedCmHandles[0].status == expectedResponseStatus
         where: 'the following parameters are used'
-            scenario    | isReady || expectedResponseStatus
-            'READY'     | true    || Status.SUCCESS
-            'Not READY' | false   || Status.FAILURE
+            scenario    | cmHandleState        || expectedResponseStatus
+            'READY'     | CmHandleState.READY  || Status.SUCCESS
+            'Not READY' | CmHandleState.LOCKED || Status.FAILURE
     }
 
     def 'DMI Registration upgrade with exception #scenario'() {
@@ -126,7 +126,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
             def dmiRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server')
             dmiRegistration.setUpgradedCmHandles(new UpgradedCmHandles(cmHandles: ['cmhandle-3'], moduleSetTag: 'some-module-set-tag'))
         and: 'exception while checking cm handle state'
-            mockCmHandleQueries.cmHandleHasState('cmhandle-3', CmHandleState.READY) >> { throw exception }
+            mockInventoryPersistence.getYangModelCmHandle('cmhandle-3') >> { throw exception }
         when: 'registration is processed'
             def result = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiRegistration)
         then: 'upgrade operation contains expected error code'
@@ -453,7 +453,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         return Spy(new NetworkCmProxyDataServiceImpl(spiedJsonObjectMapper, mockDmiDataOperations,
                 mockNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence, mockCmHandleQueries,
                 stubbedNetworkCmProxyCmHandlerQueryService, mockLcmEventsCmHandleStateHandler, mockCpsDataService,
-                mockModuleSyncStartedOnCmHandles, trustLevelPerDmiPlugin, mockTrustLevelManager, mockAlternateIdChecker, mockModuleSetTagCache))
+                mockModuleSyncStartedOnCmHandles, trustLevelPerDmiPlugin, mockTrustLevelManager, mockAlternateIdChecker))
     }
 
     def addPersistedYangModelCmHandles(ids) {
