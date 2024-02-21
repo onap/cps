@@ -33,6 +33,46 @@
       "message": "recheck",
       "revId": "18316c037509c4fddf382d8512c6af620019c7b8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "171d0428_0f1d2f17",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-21T12:27:19Z",
+      "side": 1,
+      "message": "NB suggestion below",
+      "revId": "18316c037509c4fddf382d8512c6af620019c7b8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8534206b_43236790",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleOperationsUtilsSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-21T12:27:19Z",
+      "side": 1,
+      "message": "Can we change the production code so the message becomes somethign like \n\"Upgrade to ModuleSetTag: \u003cNOT SPECIFIED\u003e\"\n\nother (unless this break the regex matching)\n\"Upgrade withouth use of ModuleSetTag\"",
+      "range": {
+        "startLine": 128,
+        "startChar": 59,
+        "endLine": 128,
+        "endChar": 61
+      },
+      "revId": "18316c037509c4fddf382d8512c6af620019c7b8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
