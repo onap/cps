@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fbaa6a9_c19c6e6b",
+        "filename": "postman-collections/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-21T16:24:54Z",
+      "side": 1,
+      "message": "NB suggestion: These files need to be combined into one zip-file to be abel to add them to the request",
+      "range": {
+        "startLine": 31,
+        "startChar": 225,
+        "endLine": 31,
+        "endChar": 285
+      },
+      "revId": "861a8ccbd7ec30322220c46a670976dcf8247c03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
