@@ -65,6 +65,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5f278ef_454536bc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionNcmpInEventConsumer.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-02-21T15:45:30Z",
+      "side": 1,
+      "message": "seperate commit for this",
+      "parentUuid": "d7a7b2f9_66e11f98",
+      "range": {
+        "startLine": 61,
+        "startChar": 16,
+        "endLine": 61,
+        "endChar": 46
+      },
+      "revId": "06c9b9c9938a4c0eba6c099de6ca2e2f5191707f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "77572859_14052cab",
@@ -78,6 +102,30 @@
       "writtenOn": "2024-02-21T09:35:57Z",
       "side": 1,
       "message": "NB: can also call the method here.\nmethod name to me is descriptive enough.",
+      "range": {
+        "startLine": 56,
+        "startChar": 60,
+        "endLine": 56,
+        "endChar": 102
+      },
+      "revId": "06c9b9c9938a4c0eba6c099de6ca2e2f5191707f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5210c9d8_c0fa50a4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/DmiCmNotificationSubscriptionCacheHandler.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-02-21T15:45:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "77572859_14052cab",
       "range": {
         "startLine": 56,
         "startChar": 60,
@@ -111,6 +159,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0a63024_f2f01b44",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/DmiCmNotificationSubscriptionCacheHandler.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-02-21T15:45:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7f771480_258f00b1",
+      "range": {
+        "startLine": 75,
+        "startChar": 12,
+        "endLine": 75,
+        "endChar": 15
+      },
+      "revId": "06c9b9c9938a4c0eba6c099de6ca2e2f5191707f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "41ab0ce5_a37f1f3e",
@@ -124,6 +196,30 @@
       "writtenOn": "2024-02-21T09:35:57Z",
       "side": 1,
       "message": "NB: want to use the real instance here ??",
+      "range": {
+        "startLine": 57,
+        "startChar": 26,
+        "endLine": 57,
+        "endChar": 29
+      },
+      "revId": "06c9b9c9938a4c0eba6c099de6ca2e2f5191707f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e269bb4e_8ae7a25c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/DmiCmNotificationSubscriptionCacheHandlerSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-02-21T15:45:30Z",
+      "side": 1,
+      "message": "moved to real instance",
+      "parentUuid": "41ab0ce5_a37f1f3e",
       "range": {
         "startLine": 57,
         "startChar": 26,
