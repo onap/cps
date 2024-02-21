@@ -43,6 +43,8 @@ Bug Fixes
 
 Features
 --------
+3.4.7
+    - `CPS-2061 <https://jira.onap.org/browse/CPS-2061>`_ Liquibase Steps Condensing and Cleanup.
 
 Version: 3.4.6
 ==============
