@@ -109,7 +109,7 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
     public YangModelCmHandle getYangModelCmHandle(final String cmHandleId) {
         cpsValidator.validateNameCharacters(cmHandleId);
         final DataNode dataNode = getCmHandleDataNodeByCmHandleId(cmHandleId).iterator().next();
-        return YangDataConverter.convertCmHandleToYangModel(dataNode, cmHandleId);
+        return YangDataConverter.convertCmHandleToYangModel(dataNode);
     }
 
     @Override

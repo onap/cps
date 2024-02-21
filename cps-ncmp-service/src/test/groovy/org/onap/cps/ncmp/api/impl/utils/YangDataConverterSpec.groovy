@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START========================================================
- *  Copyright (C) 2022-2023 Nordix Foundation
+ *  Copyright (C) 2022-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -31,9 +31,10 @@ class YangDataConverterSpec extends Specification{
                     leaves: ['name': 'dmiProp1', 'value': 'dmiValue1'])
             def dataNodePublicProperties = new DataNode(xpath:'/public-properties[@name="pubProp1"]',
                     leaves: ['name': 'pubProp1', 'value': 'pubValue1'])
-            def dataNodeCmHandle = new DataNode(childDataNodes:[dataNodeAdditionalProperties, dataNodePublicProperties])
+            def dataNodeCmHandle = new DataNode(leaves:['id':'sample-id'], childDataNodes:[dataNodeAdditionalProperties, dataNodePublicProperties])
         when: 'the dataNode is converted'
-            def yangModelCmHandle = YangDataConverter.convertCmHandleToYangModel(dataNodeCmHandle,'sample-id')
+            def yangModelCmHandle =
+                    YangDataConverter.convertCmHandleToYangModel(dataNodeCmHandle)
         then: 'the converted object has the correct id'
             assert yangModelCmHandle.id == 'sample-id'
         and: 'the additional (dmi, private) properties are included'
@@ -46,8 +47,8 @@ class YangDataConverterSpec extends Specification{
 
     def 'Convert multiple cm handle data nodes'(){
         given: 'two data nodes in a collection'
-            def dataNodes = [new DataNode(xpath:'/dmi-registry/cm-handles[@id=\'some-cm-handle\']'),
-                             new DataNode(xpath:'/dmi-registry/cm-handles[@id=\'another-cm-handle\']')]
+            def dataNodes = [new DataNode(xpath:'/dmi-registry/cm-handles[@id=\'some-cm-handle\']', leaves: ['id':'some-cm-handle']),
+                             new DataNode(xpath:'/dmi-registry/cm-handles[@id=\'another-cm-handle\']', leaves: ['id':'another-cm-handle'])]
         when: 'the data nodes are converted'
             def yangModelCmHandles = YangDataConverter.convertDataNodesToYangModelCmHandles(dataNodes)
         then: 'verify both have returned and CmHandleIds are correct'

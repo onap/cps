@@ -241,8 +241,7 @@ public class NetworkCmProxyCmHandleQueryServiceImpl implements NetworkCmProxyCmH
     }
 
     private NcmpServiceCmHandle createNcmpServiceCmHandle(final DataNode dataNode) {
-        return convertYangModelCmHandleToNcmpServiceCmHandle(YangDataConverter
-                .convertCmHandleToYangModel(dataNode, dataNode.getLeaves().get("id").toString()));
+        return convertYangModelCmHandleToNcmpServiceCmHandle(YangDataConverter.convertCmHandleToYangModel(dataNode));
     }
 
     private Collection<String> executeQueries(final CmHandleQueryServiceParameters cmHandleQueryServiceParameters,

@@ -71,7 +71,7 @@ class InventoryPersistenceImplSpec extends Specification {
             .format(OffsetDateTime.of(2022, 12, 31, 20, 30, 40, 1, ZoneOffset.UTC))
 
     def cmHandleId = 'some-cm-handle'
-    def leaves = ["dmi-service-name":"common service name","dmi-data-service-name":"data service name","dmi-model-service-name":"model service name"]
+    def leaves = ["id":cmHandleId,"dmi-service-name":"common service name","dmi-data-service-name":"data service name","dmi-model-service-name":"model service name"]
     def xpath = "/dmi-registry/cm-handles[@id='some-cm-handle']"
 
     def cmHandleId2 = 'another-cm-handle'
@@ -119,7 +119,7 @@ class InventoryPersistenceImplSpec extends Specification {
 
     def "Handling missing service names as null."() {
         given: 'the cps data service returns a data node from the DMI registry with empty child and leaf attributes'
-            def dataNode = new DataNode(childDataNodes:[], leaves: [:])
+            def dataNode = new DataNode(childDataNodes:[], leaves: ['id':cmHandleId])
             mockCpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, xpath, INCLUDE_ALL_DESCENDANTS) >> [dataNode]
         when: 'retrieving the yang modelled cm handle'
             def result = objectUnderTest.getYangModelCmHandle(cmHandleId)
@@ -133,7 +133,7 @@ class InventoryPersistenceImplSpec extends Specification {
 
     def "Retrieve multiple YangModelCmHandles"() {
         given: 'the cps data service returns 2 data nodes from the DMI registry'
-            def dataNodes = [new DataNode(xpath: xpath), new DataNode(xpath: xpath2)]
+            def dataNodes = [new DataNode(xpath: xpath, leaves: ['id': cmHandleId]), new DataNode(xpath: xpath2, leaves: ['id': cmHandleId2])]
             mockCpsDataService.getDataNodesForMultipleXpaths(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, [xpath, xpath2] , INCLUDE_ALL_DESCENDANTS) >> dataNodes
         when: 'retrieving the yang modelled cm handle'
             def results = objectUnderTest.getYangModelCmHandles([cmHandleId, cmHandleId2])

@@ -20,13 +20,13 @@
 
 package org.onap.cps.ncmp.api.impl.utils;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -76,12 +76,11 @@ public class YangDataConverter {
     /**
      * This method convert cm handle data node to yang model cm handle.
      * @param cmHandleDataNode the datanode of the cm handle
-     * @param cmHandleId the id of the cm handle
      * @return yang model cm handle
      */
-    public static YangModelCmHandle convertCmHandleToYangModel(final DataNode cmHandleDataNode,
-                                                               final String cmHandleId) {
+    public static YangModelCmHandle convertCmHandleToYangModel(final DataNode cmHandleDataNode) {
         final NcmpServiceCmHandle ncmpServiceCmHandle = new NcmpServiceCmHandle();
+        final String cmHandleId = cmHandleDataNode.getLeaves().get("id").toString();
         ncmpServiceCmHandle.setCmHandleId(cmHandleId);
         populateCmHandleDetails(cmHandleDataNode, ncmpServiceCmHandle);
         return YangModelCmHandle.toYangModelCmHandle(
@@ -101,12 +100,8 @@ public class YangDataConverter {
      */
     public static Collection<YangModelCmHandle> convertDataNodesToYangModelCmHandles(
             final Collection<DataNode> cmHandleDataNodes) {
-        final Collection<YangModelCmHandle> yangModelCmHandles = new ArrayList<>(cmHandleDataNodes.size());
-        cmHandleDataNodes.forEach(dataNode -> {
-            final String cmHandleId = extractCmHandleIdFromXpath(dataNode.getXpath());
-            yangModelCmHandles.add(convertCmHandleToYangModel(dataNode, cmHandleId));
-        });
-        return yangModelCmHandles;
+        return cmHandleDataNodes.stream().map(YangDataConverter::convertCmHandleToYangModel)
+                .collect(Collectors.toList());
     }
 
     /**
