@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b3bf840_915ca01d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-21T11:55:02Z",
+      "side": 1,
+      "message": "looks good to me (as far as I understand it :-) \nJust looking for a bit more details in the commit message",
+      "revId": "e8dd746293922b8cc5046743222f5819fbebffcc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ac1a988_a7853fb1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/CmHandleQueriesImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-21T11:55:02Z",
+      "side": 1,
+      "message": "can you mention in the commit message something like:\n\nIntroduced @Qualifier annotations for conflicting? caches\nOR (more generic)\nIntroduced @Qualifier annotations where needed\nOR whatever you can think of to describe it better :-)",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 69
+      },
+      "revId": "e8dd746293922b8cc5046743222f5819fbebffcc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "769a7ada_8cf20abf",
+        "filename": "cps-ri/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-21T11:55:02Z",
+      "side": 1,
+      "message": "can you mention this in the commit message too please",
+      "range": {
+        "startLine": 74,
+        "startChar": 24,
+        "endLine": 74,
+        "endChar": 56
+      },
+      "revId": "e8dd746293922b8cc5046743222f5819fbebffcc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
