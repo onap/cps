@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d433c7c8_32b548d9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-21T10:08:10Z",
+      "side": 1,
+      "message": "this test was not a proper unit test and hard to recreate after the cleanup. It wil be replace by proper integration testing a separate commit (if not already done by Daniel)",
+      "range": {
+        "startLine": 140,
+        "startChar": 0,
+        "endLine": 161,
+        "endChar": 5
+      },
+      "revId": "de70f75708076268d5f1e85b34ec963c60c0856d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a81af58_c21e2c81",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplRegistrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 462,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-21T10:08:10Z",
+      "side": 1,
+      "message": "replace by a more simple method for all scenarios in setup",
+      "range": {
+        "startLine": 459,
+        "startChar": 0,
+        "endLine": 462,
+        "endChar": 5
+      },
+      "revId": "de70f75708076268d5f1e85b34ec963c60c0856d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
