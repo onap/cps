@@ -83,6 +83,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ba1671c5_5a0bdf06",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/embeddedcache/CmNotificationSubscriptionCacheConfigSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-02-21T10:25:34Z",
+      "side": 1,
+      "message": "Class has @AllArgsConstructor which causes issues when initializing the groovy way",
+      "parentUuid": "45dc4550_36747e8b",
+      "revId": "8ace25352bbbbc112e4fa33e9f99cb05d56e3682",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b3c2ff92_c79351ad",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionDeltaSpec.groovy",
         "patchSetId": 7
