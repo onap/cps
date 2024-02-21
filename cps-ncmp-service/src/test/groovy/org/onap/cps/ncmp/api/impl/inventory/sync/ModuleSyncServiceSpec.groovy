@@ -26,7 +26,6 @@ import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NFP_OPE
 import static org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory.MODULE_UPGRADE
 
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
-import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
@@ -55,7 +54,10 @@ class ModuleSyncServiceSpec extends Specification {
             mockCmHandleQueries, mockCpsDataService, mockCpsAnchorService, mockJsonObjectMapper)
 
     def expectedDataspaceName = NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
-    def static cmHandleWithModuleSetTag = new DataNodeBuilder().withXpath("//cm-handles[@module-set-tag='tag-1'][@id='otherId']").withAnchor('otherId').build()
+    def static cmHandleWithModuleSetTag = new DataNodeBuilder()
+            .withXpath("/dmi-registry/cm-handles[@id='otherId']")
+            .withLeaves(['id': 'otherId', 'module-set-tag': 'tag-1'])
+            .withAnchor('otherId').build()
 
     def 'Sync model for a NEW cm handle using module set tags: #scenario.'() {
         given: 'a cm handle state to be synced'
@@ -102,7 +104,7 @@ class ModuleSyncServiceSpec extends Specification {
         and: 'CPS-Core returns list of existing module resources for TBD'
             mockCpsModuleService.getYangResourcesModuleReferences(*_) >> [ new ModuleReference('module1','1') ]
         and: 'system contains #existingCmHandlesWithSameTag.size() cm handles with same tag'
-            mockCmHandleQueries.queryNcmpRegistryByCpsPath("//cm-handles[@module-set-tag='tag-1']", FetchDescendantsOption.OMIT_DESCENDANTS) >> existingCmHandlesWithSameTag
+            mockCmHandleQueries.queryNcmpRegistryByCpsPath(*_) >> existingCmHandlesWithSameTag
         and: 'the other cm handle is a state ready'
             mockCmHandleQueries.cmHandleHasState('otherId', CmHandleState.READY) >> true
         when: 'module sync is triggered'
@@ -131,8 +133,8 @@ class ModuleSyncServiceSpec extends Specification {
             def moduleReferences = [new ModuleReference('module1', '1'), new ModuleReference('module2', '2')]
             mockCpsModuleService.getYangResourcesModuleReferences(*_)>> moduleReferences
         and: 'a cm handle with the same moduleSetTag can be found in the registry'
-            mockCmHandleQueries.queryNcmpRegistryByCpsPath("//cm-handles[@module-set-tag='targetModuleSetTag']",
-                FetchDescendantsOption.OMIT_DESCENDANTS) >> [new DataNode(xpath: '/dmi-registry/cm-handles[@id=\'cmHandleId-1\']', leaves: ['id': 'cmHandleId-1', 'cm-handle-state': 'READY'])]
+            mockCmHandleQueries.queryNcmpRegistryByCpsPath(*_) >> [new DataNode(xpath: '/dmi-registry/cm-handles[@id=\'cmHandleId-1\']', leaves: ['id': 'cmHandleId-1'],
+                    childDataNodes: [new DataNode(xpath: '/dmi-registry/cm-handles[@id=\'cmHandleId-1\']/state', leaves: ['cm-handle-state': 'READY'])])]
         when: 'module upgrade is triggered'
             objectUnderTest.syncAndCreateOrUpgradeSchemaSetAndAnchor(yangModelCmHandle)
         then: 'the upgrade is delegated to the module service (with the correct parameters)'

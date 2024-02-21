@@ -31,7 +31,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -113,34 +112,34 @@ public class ModuleSyncService {
     private ImmutableTriple<String, Map<String, String>, Collection<ModuleReference>>
         getAllModuleReferencesAndNewYangResourcesByModuleSetTag(final YangModelCmHandle yangModelCmHandle,
                                                                 final boolean inUpgrade) {
-
         final String moduleSetTag = getModuleSetTag(yangModelCmHandle, inUpgrade);
         final Collection<ModuleReference> allModuleReferences;
-        Map<String, String> newYangResources = Collections.emptyMap();
+        final Map<String, String> newYangResources;
 
-        final Optional<DataNode> optionalDataNode = getFirstReadyDataNodeByModuleSetTagProvidedInDb(moduleSetTag);
-
-        if (optionalDataNode.isPresent()) {
-            log.info("Found other cm handle having same module set tag: {}", moduleSetTag);
-            final String otherAnchorWithSameModuleSetTag
-                    = YangDataConverter.extractCmHandleIdFromXpath(optionalDataNode.get().getXpath());
-            allModuleReferences = cpsModuleService.getYangResourcesModuleReferences(
-                    NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, otherAnchorWithSameModuleSetTag);
-        } else {
+        final YangModelCmHandle cmHandleWithSameModuleSetTag = getAnyReadyCmHandleByModuleSetTag(moduleSetTag);
+        if (cmHandleWithSameModuleSetTag == null) {
             allModuleReferences = dmiModelOperations.getModuleReferences(yangModelCmHandle);
             newYangResources = getNewModuleNameToContentMap(yangModelCmHandle, allModuleReferences);
+        } else {
+            log.info("Found other cm handle having same module set tag: {}", moduleSetTag);
+            allModuleReferences = cpsModuleService.getYangResourcesModuleReferences(
+                    NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleWithSameModuleSetTag.getId());
+            newYangResources = NO_NEW_MODULES;
         }
         return ImmutableTriple.of(moduleSetTag, newYangResources, allModuleReferences);
     }
 
-    private Optional<DataNode> getFirstReadyDataNodeByModuleSetTagProvidedInDb(final String moduleSetTag) {
-        final List<DataNode> dataNodes = StringUtils.isNotBlank(moduleSetTag) ? cmHandleQueries
-                .queryNcmpRegistryByCpsPath("//cm-handles[@module-set-tag='" + moduleSetTag + "']",
-                        FetchDescendantsOption.OMIT_DESCENDANTS) : Collections.emptyList();
-        return dataNodes.stream().filter(dataNode -> {
-            final String cmHandleId = YangDataConverter.extractCmHandleIdFromXpath(dataNode.getXpath());
-            return cmHandleQueries.cmHandleHasState(cmHandleId, CmHandleState.READY);
-        }).findFirst();
+    private YangModelCmHandle getAnyReadyCmHandleByModuleSetTag(final String moduleSetTag) {
+        if (StringUtils.isBlank(moduleSetTag)) {
+            return null;
+        }
+        final String escapedModuleSetTag = moduleSetTag.replace("'", "''");
+        final List<DataNode> dataNodes = cmHandleQueries.queryNcmpRegistryByCpsPath(
+                NCMP_DMI_REGISTRY_PARENT + "/cm-handles[@module-set-tag='" + escapedModuleSetTag + "']",
+                FetchDescendantsOption.DIRECT_CHILDREN_ONLY);
+        return dataNodes.stream().map(YangDataConverter::convertCmHandleToYangModel)
+                .filter(cmHandle -> cmHandle.getCompositeState().getCmHandleState() == CmHandleState.READY)
+                .findFirst().orElse(null);
     }
 
     private void setCmHandleModuleSetTag(final YangModelCmHandle upgradedCmHandle, final String moduleSetTag) {
