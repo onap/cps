@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e5bd16f_3893d326",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-21T09:35:57Z",
+      "side": 1,
+      "message": "more comments and suggestions.",
+      "revId": "06c9b9c9938a4c0eba6c099de6ca2e2f5191707f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7a7b2f9_66e11f98",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionNcmpInEventConsumer.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-21T09:35:57Z",
+      "side": 1,
+      "message": "Legacy : do you think now we should get rid of this ??\nI guess we introduced when the model loader framework was not stable.\nWhat do you think ??\nAlso we can take this as a separate patch as well. Not necessary to be part of this.",
+      "range": {
+        "startLine": 61,
+        "startChar": 16,
+        "endLine": 61,
+        "endChar": 46
+      },
+      "revId": "06c9b9c9938a4c0eba6c099de6ca2e2f5191707f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77572859_14052cab",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/DmiCmNotificationSubscriptionCacheHandler.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-21T09:35:57Z",
+      "side": 1,
+      "message": "NB: can also call the method here.\nmethod name to me is descriptive enough.",
+      "range": {
+        "startLine": 56,
+        "startChar": 60,
+        "endLine": 56,
+        "endChar": 102
+      },
+      "revId": "06c9b9c9938a4c0eba6c099de6ca2e2f5191707f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f771480_258f00b1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/DmiCmNotificationSubscriptionCacheHandler.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-21T09:35:57Z",
+      "side": 1,
+      "message": "I think this loop is to populate dmiCmNotificationSubscriptionDetailsPerDmi , so maybe we can extract this bit of code to a private method.\nMy suggestion : populateDmiCmNotificationSubscriptionDetailsPerDmi 😊\nYou can always come up with a better name.",
+      "range": {
+        "startLine": 75,
+        "startChar": 12,
+        "endLine": 75,
+        "endChar": 15
+      },
+      "revId": "06c9b9c9938a4c0eba6c099de6ca2e2f5191707f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41ab0ce5_a37f1f3e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/DmiCmNotificationSubscriptionCacheHandlerSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-21T09:35:57Z",
+      "side": 1,
+      "message": "NB: want to use the real instance here ??",
+      "range": {
+        "startLine": 57,
+        "startChar": 26,
+        "endLine": 57,
+        "endChar": 29
+      },
+      "revId": "06c9b9c9938a4c0eba6c099de6ca2e2f5191707f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
