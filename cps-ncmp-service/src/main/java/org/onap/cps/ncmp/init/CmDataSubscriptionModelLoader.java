@@ -51,12 +51,12 @@ public class CmDataSubscriptionModelLoader extends AbstractModelLoader {
 
     @Override
     public void onboardOrUpgradeModel() {
-        waitUntilDataspaceIsAvailable(NCMP_DATASPACE_NAME);
         onboardSubscriptionModels();
         log.info("Subscription Models onboarded successfully");
     }
 
     private void onboardSubscriptionModels() {
+        createDataspace(NCMP_DATASPACE_NAME);
         createSchemaSet(NCMP_DATASPACE_NAME, SCHEMASET_NAME, MODEL_FILENAME);
         createAnchor(NCMP_DATASPACE_NAME, SCHEMASET_NAME, ANCHOR_NAME);
         createTopLevelDataNode(NCMP_DATASPACE_NAME, ANCHOR_NAME, REGISTRY_DATANODE_NAME);
