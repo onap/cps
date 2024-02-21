@@ -16,6 +16,52 @@
       "message": "recheck",
       "revId": "f01510423139cb1dbc3fdddf7feb9ad12be0994e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32ee3290_c2c75d37",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionDelta.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-02-21T14:13:31Z",
+      "side": 1,
+      "message": "use \u0027DMI\u0027 prefix or describe as the cache object predicate because just cmSubscriptionPredicates can also mean the event predicates not the cache object",
+      "range": {
+        "startLine": 42,
+        "startChar": 62,
+        "endLine": 42,
+        "endChar": 86
+      },
+      "revId": "f01510423139cb1dbc3fdddf7feb9ad12be0994e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d44fa60_edcd3e14",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionDelta.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-02-21T14:13:31Z",
+      "side": 1,
+      "message": "same here",
+      "range": {
+        "startLine": 43,
+        "startChar": 29,
+        "endLine": 43,
+        "endChar": 53
+      },
+      "revId": "f01510423139cb1dbc3fdddf7feb9ad12be0994e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
