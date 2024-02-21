@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2023 Nordix Foundation
+ *  Copyright (C) 2022-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -57,10 +57,10 @@ class ModuleSyncServiceSpec extends Specification {
     def expectedDataspaceName = NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
     def static cmHandleWithModuleSetTag = new DataNodeBuilder().withXpath("//cm-handles[@module-set-tag='tag-1'][@id='otherId']").withAnchor('otherId').build()
 
-    def 'Sync model for a NEW cm handle without cache with #scenario'() {
-        given: 'a cm handle having some state'
+    def 'Upgrading model sets using module set tags: #scenario.'() {
+        given: 'a ready cm handle'
             def ncmpServiceCmHandle = new NcmpServiceCmHandle()
-            ncmpServiceCmHandle.setCompositeState(new CompositeStateBuilder().withCmHandleState(CmHandleState.ADVISED).build())
+            ncmpServiceCmHandle.setCompositeState(new CompositeStateBuilder().withCmHandleState(CmHandleState.READY).build())
             ncmpServiceCmHandle.cmHandleId = 'ch-1'
             def yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle('some service name', '', '', ncmpServiceCmHandle, moduleSetTag, '')
         and: 'DMI operations returns some module references'
@@ -70,22 +70,23 @@ class ModuleSyncServiceSpec extends Specification {
             mockDmiModelOperations.getNewYangResourcesFromDmi(yangModelCmHandle, [new ModuleReference('module1', '1')]) >> newModuleNameContentToMap
         and: 'the module service identifies #identifiedNewModuleReferences.size() new modules'
             mockCpsModuleService.identifyNewModuleReferences(moduleReferences) >> toModuleReferences(identifiedNewModuleReferences)
-        and: 'system contains #existingCmHandlesWithSameTag.size() cm handles with same tag'
-            mockCmHandleQueries.queryNcmpRegistryByCpsPath("//cm-handles[@module-set-tag='new-tag-1']",
-                    FetchDescendantsOption.OMIT_DESCENDANTS) >> []
+        and: 'system contains other cm handle with "same tag" (that is READY)'
+            mockCmHandleQueries.queryNcmpRegistryByCpsPath(*_) >> existingCmHandlesWithSameTag
+            mockCmHandleQueries.cmHandleHasState('otherId', CmHandleState.READY) >> true
         when: 'module sync is triggered'
             objectUnderTest.syncAndCreateOrUpgradeSchemaSetAndAnchor(yangModelCmHandle)
-        then: 'create schema set from module is invoked with correct parameters'
-            1 * mockCpsModuleService.createSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'ch-1', newModuleNameContentToMap, moduleReferences)
+        then: 'create schema set from modules is only invoked when the model changes'
+            expectedCallsToCreateSchemaSet * mockCpsModuleService.createSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'ch-1', newModuleNameContentToMap, moduleReferences)
         and: 'anchor is created with the correct parameters'
             1 * mockCpsAnchorService.createAnchor(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'ch-1', 'ch-1')
         where: 'the following parameters are used'
-            scenario         | existingModuleResourcesInCps         | identifiedNewModuleReferences | newModuleNameContentToMap     | moduleSetTag
-            'one new module' | [['module2': '2'], ['module3': '3']] | [['module1': '1']]            | [module1: 'some yang source'] | ''
-            'no new module'  | [['module1': '1'], ['module2': '2']] | []                            | [:]                           | 'new-tag-1'
+            scenario                  | existingModuleResourcesInCps         | identifiedNewModuleReferences | newModuleNameContentToMap     | moduleSetTag | existingCmHandlesWithSameTag || expectedCallsToCreateSchemaSet
+            'one new module, new tag' | [['module2': '2'], ['module3': '3']] | [['module1': '1']]            | [module1: 'some yang source'] | ''           | []                           || 1
+            'no new module, new tag'  | [['module1': '1'], ['module2': '2']] | []                            | [:]                           | 'new-tag-1'  | []                           || 1
+            'same tag'                | [['module1': '1'], ['module2': '2']] | []                            | [:]                           | 'same-tag'   | [cmHandleWithModuleSetTag]   || 0
     }
 
-    def 'Upgrade model for an existing cm handle with Module Set Tag where the modules are #scenario'() {
+    def 'Upgrade model for an existing cm handle with Module Set Tag where the modules are #scenario.'() {
         given: 'a cm handle being upgraded to module set tag: tag-1'
             def ncmpServiceCmHandle = new NcmpServiceCmHandle()
             ncmpServiceCmHandle.setCompositeState(new CompositeStateBuilder().withLockReason(MODULE_UPGRADE, 'Upgrade to ModuleSetTag: tag-1').build())
