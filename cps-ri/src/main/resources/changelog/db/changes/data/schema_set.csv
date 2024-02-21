@@ -1,2 +1,0 @@
-name|dataspace_id
-cps-ran-schema-model|(select id from dataspace where name='NFP-Operational')
