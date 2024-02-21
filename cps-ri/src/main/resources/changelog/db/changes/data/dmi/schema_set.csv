@@ -1,2 +1,0 @@
-name|dataspace_id
-ncmp-dmi-registry-model|(select id from dataspace where name='NCMP-Admin')
