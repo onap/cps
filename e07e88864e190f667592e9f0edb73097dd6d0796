@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "063c8288_9f50e3c0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-21T16:53:04Z",
+      "side": 1,
+      "message": "suggestion: targetModuleSetTag",
+      "range": {
+        "startLine": 113,
+        "startChar": 95,
+        "endLine": 113,
+        "endChar": 107
+      },
+      "revId": "e07e88864e190f667592e9f0edb73097dd6d0796",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3411e3b5_d086c3e1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-21T16:53:04Z",
+      "side": 1,
+      "message": "swap if-else blocks\nyou might also be able to return (twice) without the need for else statement ?!",
+      "range": {
+        "startLine": 116,
+        "startChar": 40,
+        "endLine": 116,
+        "endChar": 43
+      },
+      "revId": "e07e88864e190f667592e9f0edb73097dd6d0796",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10f6f69e_a596e6a0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-21T16:53:04Z",
+      "side": 1,
+      "message": "Q: do you not get null anyway if there is no first ?!",
+      "range": {
+        "startLine": 138,
+        "startChar": 23,
+        "endLine": 138,
+        "endChar": 36
+      },
+      "revId": "e07e88864e190f667592e9f0edb73097dd6d0796",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7557401_5562dbbc",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-21T16:53:04Z",
+      "side": 1,
+      "message": "NB: you can explain to me later why you prefer NOT to have the more strict definitions of mock behavior...",
+      "range": {
+        "startLine": 72,
+        "startChar": 61,
+        "endLine": 72,
+        "endChar": 62
+      },
+      "revId": "e07e88864e190f667592e9f0edb73097dd6d0796",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
