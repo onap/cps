@@ -83,6 +83,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "22cdbd0c_bdf5d4fc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-21T11:28:26Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "54cbd53a_d625d711",
+      "range": {
+        "startLine": 322,
+        "startChar": 85,
+        "endLine": 322,
+        "endChar": 112
+      },
+      "revId": "ade4ced0b36bc0bdca38583e5fd1068a0420d211",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "68f1bcd5_76b66407",
@@ -96,6 +120,30 @@
       "writtenOn": "2024-02-19T11:59:04Z",
       "side": 1,
       "message": "Need to revisit the split of methods:\n\n1) processCreatedCmHandles  -\u003e\n2) parseAndProcessCreatedCmHandlesInRegistration -\u003e 3  (long method with 2)\n3) registerNewCmHandles (only 2 lines)\n\nSame problem (partly) for\nupdate\nupgrade\nremove",
+      "range": {
+        "startLine": 379,
+        "startChar": 17,
+        "endLine": 379,
+        "endChar": 40
+      },
+      "revId": "ade4ced0b36bc0bdca38583e5fd1068a0420d211",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2247ccc_11de5e88",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-21T11:28:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "68f1bcd5_76b66407",
       "range": {
         "startLine": 379,
         "startChar": 17,
@@ -129,6 +177,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9922062d_6847b330",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-21T11:28:26Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "226f73b8_dfba0002",
+      "range": {
+        "startLine": 391,
+        "startChar": 0,
+        "endLine": 404,
+        "endChar": 5
+      },
+      "revId": "ade4ced0b36bc0bdca38583e5fd1068a0420d211",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bdf3e1dd_c8b13124",
@@ -142,6 +214,30 @@
       "writtenOn": "2024-02-19T09:26:27Z",
       "side": 1,
       "message": "remove size setting",
+      "range": {
+        "startLine": 109,
+        "startChar": 71,
+        "endLine": 109,
+        "endChar": 101
+      },
+      "revId": "ade4ced0b36bc0bdca38583e5fd1068a0420d211",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "51dbafd1_aee9d0b8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/AlternateIdChecker.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-21T11:28:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bdf3e1dd_c8b13124",
       "range": {
         "startLine": 109,
         "startChar": 71,
