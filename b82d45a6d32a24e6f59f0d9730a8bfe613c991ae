@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "251eca9a_7489c574",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-21T09:00:46Z",
+      "side": 1,
+      "message": "Deleting code only, no need for more reviewers",
+      "revId": "b82d45a6d32a24e6f59f0d9730a8bfe613c991ae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
