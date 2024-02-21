@@ -66,6 +66,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "809349c7_53d66e29",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-21T12:40:59Z",
+      "side": 1,
+      "message": "Will take this in a separate commit today",
+      "parentUuid": "8ebdb826_3a11e07a",
+      "range": {
+        "startLine": 113,
+        "startChar": 11,
+        "endLine": 113,
+        "endChar": 85
+      },
+      "revId": "60e1ca17656722ddbc6e8f583327447f8e53fe5e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1ed5d7c5_7805aae9",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncService.java",
         "patchSetId": 1
@@ -89,6 +113,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2920c9ce_2e42adbc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-21T12:40:59Z",
+      "side": 1,
+      "message": "Will take this in a separate commit today",
+      "parentUuid": "1ed5d7c5_7805aae9",
+      "range": {
+        "startLine": 119,
+        "startChar": 7,
+        "endLine": 119,
+        "endChar": 70
+      },
+      "revId": "60e1ca17656722ddbc6e8f583327447f8e53fe5e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "43aad337_ef936f25",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncServiceSpec.groovy",
         "patchSetId": 1
@@ -100,6 +148,30 @@
       "writtenOn": "2024-02-19T09:03:58Z",
       "side": 1,
       "message": "need to add a test that will call \u0027create\u0027 (I ddi oen last week, I proably can put it in again)\n(note typo in this var)",
+      "range": {
+        "startLine": 116,
+        "startChar": 94,
+        "endLine": 116,
+        "endChar": 123
+      },
+      "revId": "60e1ca17656722ddbc6e8f583327447f8e53fe5e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "983a5889_aa9ddd3c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-21T12:40:59Z",
+      "side": 1,
+      "message": "I will clean this in a separate commit",
+      "parentUuid": "43aad337_ef936f25",
       "range": {
         "startLine": 116,
         "startChar": 94,
