@@ -89,7 +89,7 @@ public class DmiRestStubController {
      * @return ResponseEntity response entity having module response as json string.
      */
     @PostMapping("/v1/ch/{cmHandleId}/modules")
-    public ResponseEntity<String> getModuleReferences(@PathVariable final String cmHandleId,
+    public ResponseEntity<String> getModuleReferences(@PathVariable("cmHandleId") final String cmHandleId,
                                                       @RequestBody final Object moduleReferencesRequest) {
         delay(moduleReferencesDelayMs);
         final String moduleResponseContent = getModuleResourceResponse(cmHandleId,
@@ -108,7 +108,7 @@ public class DmiRestStubController {
      */
     @PostMapping("/v1/ch/{cmHandleId}/moduleResources")
     public ResponseEntity<String> retrieveModuleResources(
-            @PathVariable final String cmHandleId,
+            @PathVariable("cmHandleId") final String cmHandleId,
             @RequestBody final Object moduleResourcesReadRequest) {
         delay(moduleResourcesDelayMs);
         final String moduleResourcesResponseContent = getModuleResourceResponse(cmHandleId,
