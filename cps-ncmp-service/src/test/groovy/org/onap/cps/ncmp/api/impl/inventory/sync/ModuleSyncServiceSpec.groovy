@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2023 Nordix Foundation
+ *  Copyright (C) 2022-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -75,7 +75,7 @@ class ModuleSyncServiceSpec extends Specification {
         and: 'system contains other cm handle with "same tag" (that is READY)'
             mockCmHandleQueries.queryNcmpRegistryByCpsPath(*_) >> existingCmHandlesWithSameTag
         when: 'module sync is triggered'
-            objectUnderTest.syncAndCreateOrUpgradeSchemaSetAndAnchor(yangModelCmHandle)
+            objectUnderTest.syncAndCreateSchemaSetAndAnchor(yangModelCmHandle)
         then: 'create schema set from module is invoked with correct parameters'
             1 * mockCpsModuleService.createSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'ch-1', newModuleNameContentToMap, moduleReferences)
         and: 'anchor is created with the correct parameters'
@@ -108,17 +108,17 @@ class ModuleSyncServiceSpec extends Specification {
         and: 'the other cm handle is a state ready'
             mockCmHandleQueries.cmHandleHasState('otherId', CmHandleState.READY) >> true
         when: 'module sync is triggered'
-            objectUnderTest.syncAndCreateOrUpgradeSchemaSetAndAnchor(yangModelCmHandle)
+            objectUnderTest.syncAndUpgradeSchemaSet(yangModelCmHandle)
         then: 'update schema set from module is invoked for the upgraded cm handle'
-            expectedCallsToUpgradeSchemaSet * mockCpsModuleService.upgradeSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'upgraded-ch', [:], moduleReferences)
-        and: 'create schema set from module is invoked for the upgraded cm handle'
-            expectedCallsToCeateSchemaSet * mockCpsModuleService.createSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'upgraded-ch', [:], moduleReferences)
+            1 * mockCpsModuleService.upgradeSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'upgraded-ch', [:], moduleReferences)
+        and: 'create schema set from module is not invoked for the upgraded cm handle'
+            0 * mockCpsModuleService.createSchemaSetFromModules(*_)
         and: 'No anchor is created for the upgraded cm handle'
             0 * mockCpsAnchorService.createAnchor(*_)
         where: 'the following parameters are used'
-            scenario      | existingCmHandlesWithSameTag || expectedCallsToUpgradeSchemaSet | expectedCallsToCeateSchemaSet
-            'new'         | []                           || 1                               | 0
-            'in database' | [cmHandleWithModuleSetTag]   || 1                               | 0
+            scenario      | existingCmHandlesWithSameTag
+            'new'         | []
+            'in database' | [cmHandleWithModuleSetTag]
     }
 
     def 'upgrade model for a existing cm handle'() {
@@ -136,7 +136,7 @@ class ModuleSyncServiceSpec extends Specification {
             mockCmHandleQueries.queryNcmpRegistryByCpsPath(*_) >> [new DataNode(xpath: '/dmi-registry/cm-handles[@id=\'cmHandleId-1\']', leaves: ['id': 'cmHandleId-1'],
                     childDataNodes: [new DataNode(xpath: '/dmi-registry/cm-handles[@id=\'cmHandleId-1\']/state', leaves: ['cm-handle-state': 'READY'])])]
         when: 'module upgrade is triggered'
-            objectUnderTest.syncAndCreateOrUpgradeSchemaSetAndAnchor(yangModelCmHandle)
+            objectUnderTest.syncAndUpgradeSchemaSet(yangModelCmHandle)
         then: 'the upgrade is delegated to the module service (with the correct parameters)'
             1 * mockCpsModuleService.upgradeSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'cmHandleId-1', Collections.emptyMap(), moduleReferences)
     }
