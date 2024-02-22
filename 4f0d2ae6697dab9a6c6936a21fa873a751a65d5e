@@ -50,6 +50,75 @@
       "message": "recheck",
       "revId": "4f0d2ae6697dab9a6c6936a21fa873a751a65d5e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04e1fc4d_f155c1ee",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionDelta.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-22T14:09:55Z",
+      "side": 1,
+      "message": "This should be indented one more level",
+      "range": {
+        "startLine": 59,
+        "startChar": 20,
+        "endLine": 59,
+        "endChar": 24
+      },
+      "revId": "4f0d2ae6697dab9a6c6936a21fa873a751a65d5e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aadc842b_2d23dc77",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionDelta.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-22T14:09:55Z",
+      "side": 1,
+      "message": "This could be moved to the outer loop",
+      "range": {
+        "startLine": 60,
+        "startChar": 42,
+        "endLine": 61,
+        "endChar": 58
+      },
+      "revId": "4f0d2ae6697dab9a6c6936a21fa873a751a65d5e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bd88971_510341fc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/mapper/CmNotificationSubscriptionDmiInEventMapper.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-22T14:09:55Z",
+      "side": 1,
+      "message": "I wonder if we could change ScopeFilter to use Set\u003cString\u003e. List is the wrong structure if we don\u0027t allow duplicates",
+      "range": {
+        "startLine": 74,
+        "startChar": 89,
+        "endLine": 74,
+        "endChar": 107
+      },
+      "revId": "4f0d2ae6697dab9a6c6936a21fa873a751a65d5e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
