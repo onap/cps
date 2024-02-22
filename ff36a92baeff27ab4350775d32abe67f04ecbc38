@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a9c37f66_34d64d5a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-02-22T09:09:39Z",
+      "side": 1,
+      "message": "I did it this way because you could have a newId as a null and the oldId as something, so the warning should still be logged. You would still need the oldId in the first else to check for that",
+      "parentUuid": "18976725_7c83ab08",
+      "range": {
+        "startLine": 133,
+        "startChar": 12,
+        "endLine": 133,
+        "endChar": 62
+      },
+      "revId": "ff36a92baeff27ab4350775d32abe67f04ecbc38",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2df19371_3442e41e",
         "filename": "cps-ncmp-service/src/main/resources/models/dmi-registry@2023-11-27.yang",
         "patchSetId": 1
