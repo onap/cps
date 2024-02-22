@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "48196e20_8f27d687",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-22T09:22:34Z",
+      "side": 1,
+      "message": "we don\u0027t need a warning in that case. \nWhen the new entry is NUkkl or Blank the user is NOT trying to set it...",
+      "parentUuid": "a9c37f66_34d64d5a",
+      "range": {
+        "startLine": 133,
+        "startChar": 12,
+        "endLine": 133,
+        "endChar": 62
+      },
+      "revId": "ff36a92baeff27ab4350775d32abe67f04ecbc38",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2df19371_3442e41e",
         "filename": "cps-ncmp-service/src/main/resources/models/dmi-registry@2023-11-27.yang",
         "patchSetId": 1
