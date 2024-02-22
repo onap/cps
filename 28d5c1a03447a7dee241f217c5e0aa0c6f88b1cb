@@ -56,6 +56,30 @@
       },
       "revId": "28d5c1a03447a7dee241f217c5e0aa0c6f88b1cb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "67a891e8_ab3ffbe5",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-22T17:08:23Z",
+      "side": 1,
+      "message": "This will enable the old not-recommended way of bean name resolution. The cause of the failures was discovered to be an issue in the DMI-stub, and should be fixed there",
+      "parentUuid": "1311d22d_cbe39cef",
+      "range": {
+        "startLine": 232,
+        "startChar": 17,
+        "endLine": 237,
+        "endChar": 21
+      },
+      "revId": "28d5c1a03447a7dee241f217c5e0aa0c6f88b1cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
