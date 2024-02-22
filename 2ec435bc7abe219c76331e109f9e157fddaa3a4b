@@ -16,6 +16,75 @@
       "message": "recheck",
       "revId": "2ec435bc7abe219c76331e109f9e157fddaa3a4b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "873fa864_16b52e3f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-22T12:07:46Z",
+      "side": 1,
+      "message": "NB Suggestion: ... creates a cm handle (anchor in CPS) ...",
+      "range": {
+        "startLine": 73,
+        "startChar": 29,
+        "endLine": 73,
+        "endChar": 39
+      },
+      "revId": "2ec435bc7abe219c76331e109f9e157fddaa3a4b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d25b3443_dbb0924b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-22T12:07:46Z",
+      "side": 1,
+      "message": "NB suggestion: since the metho name includes \u0027fromLockReason\u0027 shoulf we pass the whole cm Handle (or state object) instead of just the lockreason ?",
+      "range": {
+        "startLine": 92,
+        "startChar": 16,
+        "endLine": 92,
+        "endChar": 69
+      },
+      "revId": "2ec435bc7abe219c76331e109f9e157fddaa3a4b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75b0727f_e8d44ee9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncTasksSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-22T12:07:46Z",
+      "side": 1,
+      "message": "NB: reword (I took me 2 minuets to find out why)\nsuggestion: \u0027Both sync and upgrade will trigger an exception in module service\u0027",
+      "range": {
+        "startLine": 125,
+        "startChar": 14,
+        "endLine": 125,
+        "endChar": 97
+      },
+      "revId": "2ec435bc7abe219c76331e109f9e157fddaa3a4b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
