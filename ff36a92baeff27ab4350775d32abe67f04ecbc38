@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "94104543_6225c53d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-02-22T13:17:59Z",
+      "side": 1,
+      "message": "Still need to write tests",
+      "revId": "ff36a92baeff27ab4350775d32abe67f04ecbc38",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "18976725_7c83ab08",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
         "patchSetId": 1
@@ -85,6 +102,30 @@
       "writtenOn": "2024-02-21T17:10:00Z",
       "side": 1,
       "message": "sorry, I should have spotted earlier (during meetign today!)\nwe use just \u0027id\u0027 for all other identifiers. this seems inconsistent, maybe  worth a quick check (mail, ping) with Kieran  ?!\n( I just tried to ping him already)\nFYI we also have \u0027resourceIdentifier\u0027 in our RETS API but that seems to be the only other use of long word \u0027identifier\u0027",
+      "range": {
+        "startLine": 13,
+        "startChar": 27,
+        "endLine": 13,
+        "endChar": 37
+      },
+      "revId": "ff36a92baeff27ab4350775d32abe67f04ecbc38",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f959ee1_bd42924b",
+        "filename": "cps-ncmp-service/src/main/resources/models/dmi-registry@2023-11-27.yang",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-02-22T13:17:59Z",
+      "side": 1,
+      "message": "dataProducerIdentifier agreed between Toine and Kieran",
+      "parentUuid": "2df19371_3442e41e",
       "range": {
         "startLine": 13,
         "startChar": 27,
