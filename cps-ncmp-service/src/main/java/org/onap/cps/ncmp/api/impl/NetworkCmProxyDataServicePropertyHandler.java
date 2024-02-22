@@ -106,8 +106,7 @@ public class NetworkCmProxyDataServicePropertyHandler {
     private void updateAlternateId(final DataNode existingCmHandleDataNode,
                                    final NcmpServiceCmHandle ncmpServiceCmHandle) {
         final YangModelCmHandle yangModelCmHandle =
-            YangDataConverter.convertCmHandleToYangModel(existingCmHandleDataNode,
-                ncmpServiceCmHandle.getCmHandleId());
+            YangDataConverter.convertCmHandleToYangModel(existingCmHandleDataNode);
         final String currentAlternateId = yangModelCmHandle.getAlternateId();
         final String newAlternateId = ncmpServiceCmHandle.getAlternateId();
         if (alternateIdChecker.canApplyAlternateId(ncmpServiceCmHandle.getCmHandleId(),

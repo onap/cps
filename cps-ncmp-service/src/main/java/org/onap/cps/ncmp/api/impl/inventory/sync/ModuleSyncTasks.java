@@ -65,7 +65,7 @@ public class ModuleSyncTasks {
             for (final DataNode cmHandleAsDataNode : cmHandlesAsDataNodes) {
                 final String cmHandleId = String.valueOf(cmHandleAsDataNode.getLeaves().get("id"));
                 final YangModelCmHandle yangModelCmHandle =
-                        YangDataConverter.convertCmHandleToYangModel(cmHandleAsDataNode, cmHandleId);
+                        YangDataConverter.convertCmHandleToYangModel(cmHandleAsDataNode);
                 final CompositeState compositeState = inventoryPersistence.getCmHandleState(cmHandleId);
                 final boolean inUpgrade = ModuleOperationsUtils.inUpgradeOrUpgradeFailed(compositeState);
                 try {

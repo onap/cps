@@ -56,7 +56,7 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
                                     new DataNodeBuilder().withXpath("/dmi-registry/cm-handles[@id='${cmHandleId}']/additional-properties[@name='additionalProp2']").withLeaves(['name': 'additionalProp2', 'value': 'additionalValue2']).build(),
                                     new DataNodeBuilder().withXpath("/dmi-registry/cm-handles[@id='${cmHandleId}']/public-properties[@name='publicProp3']").withLeaves(['name': 'publicProp3', 'value': 'publicValue3']).build(),
                                     new DataNodeBuilder().withXpath("/dmi-registry/cm-handles[@id='${cmHandleId}']/public-properties[@name='publicProp4']").withLeaves(['name': 'publicProp4', 'value': 'publicValue4']).build()]
-    def static cmHandleDataNodeAsCollection = [new DataNode(xpath: cmHandleXpath, childDataNodes: propertyDataNodes)]
+    def static cmHandleDataNodeAsCollection = [new DataNode(xpath: cmHandleXpath, childDataNodes: propertyDataNodes, leaves: ['id': cmHandleId])]
 
     def 'Update CM Handle Public Properties: #scenario'() {
         given: 'the CPS service return a CM handle'
@@ -105,7 +105,7 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
 
     def 'Update CM Handle Properties, remove all properties: #scenario'() {
         given: 'the CPS service return a CM handle'
-            def cmHandleDataNode = new DataNode(xpath: cmHandleXpath, childDataNodes: originalPropertyDataNodes)
+            def cmHandleDataNode = new DataNode(xpath: cmHandleXpath, leaves: ['id': cmHandleId], childDataNodes: originalPropertyDataNodes)
             mockInventoryPersistence.getCmHandleDataNodeByCmHandleId(cmHandleId) >> [cmHandleDataNode]
         and: 'an update cm handle request that removes all public properties(existing and non-existing)'
             def cmHandleUpdateRequest = [new NcmpServiceCmHandle(cmHandleId: cmHandleId, publicProperties: ['publicProp3': null, 'publicProp4': null])]
@@ -182,9 +182,9 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
 
     def 'Update CM Handle Alternate ID with #scenario'() {
         given: 'an existing cm handle'
-            DataNode existingCmHandleDataNode = new DataNode(xpath: cmHandleXpath)
+            DataNode existingCmHandleDataNode = new DataNode(xpath: cmHandleXpath, leaves: ['id': cmHandleId])
         and: 'an update request with an alternate id'
-            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, alternateId: 'alt-1' )
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, alternateId: 'alt-1')
         when: 'update alternate id method is called with the update request'
             objectUnderTest.updateAlternateId(existingCmHandleDataNode, ncmpServiceCmHandle)
         then: 'the update node leaves method is invoked as many times as expected'
@@ -202,7 +202,7 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
     def 'Alternate ID removed from cache when persisting fails.'() {
         given: 'an existing data node and an update request with an alternate id'
             def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, alternateId: 'alt-1')
-            DataNode existingCmHandleDataNode = new DataNode(xpath: cmHandleXpath, leaves: ['alternate-id': null])
+            DataNode existingCmHandleDataNode = new DataNode(xpath: cmHandleXpath, leaves: ['id': cmHandleId, 'alternate-id': null])
         and: 'an applicable alternate id for the cm handle'
             mockAlternateIdChecker.canApplyAlternateId(cmHandleId, '','alt-1') >> true
         and: 'but an exception occurs while saving'

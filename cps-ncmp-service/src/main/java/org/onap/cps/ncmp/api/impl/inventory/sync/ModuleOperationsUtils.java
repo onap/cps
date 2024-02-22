@@ -241,9 +241,7 @@ public class ModuleOperationsUtils {
 
     private List<YangModelCmHandle> convertCmHandlesDataNodesToYangModelCmHandles(
             final List<DataNode> cmHandlesAsDataNodeList) {
-        return cmHandlesAsDataNodeList.stream()
-                .map(cmHandle -> YangDataConverter.convertCmHandleToYangModel(cmHandle,
-                        cmHandle.getLeaves().get("id").toString())).toList();
+        return cmHandlesAsDataNodeList.stream().map(YangDataConverter::convertCmHandleToYangModel).toList();
     }
 
     private boolean isRetryDue(final CompositeState.LockReason compositeStateLockReason, final OffsetDateTime time) {
