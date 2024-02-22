@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "69d5747f_96498fbb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-02-22T16:02:38Z",
+      "side": 1,
+      "message": "NB : (ncmpServiceCmHandles.size())",
+      "range": {
+        "startLine": 346,
+        "startChar": 102,
+        "endLine": 346,
+        "endChar": 104
+      },
+      "revId": "9e40777d645c1f937b8670f034619f7f56f67e48",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "ee332907_e6b1d459",
