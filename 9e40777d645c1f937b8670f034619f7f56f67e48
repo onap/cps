@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e77205df_800aea16",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-22T16:49:25Z",
+      "side": 1,
+      "message": "Please find my comments if you are ok with those I would update the patchset",
+      "revId": "9e40777d645c1f937b8670f034619f7f56f67e48",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "69d5747f_96498fbb",
@@ -14,6 +31,30 @@
       "writtenOn": "2024-02-22T16:02:38Z",
       "side": 1,
       "message": "NB : (ncmpServiceCmHandles.size())",
+      "range": {
+        "startLine": 346,
+        "startChar": 102,
+        "endLine": 346,
+        "endChar": 104
+      },
+      "revId": "9e40777d645c1f937b8670f034619f7f56f67e48",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e742243_3be303c8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-22T16:49:25Z",
+      "side": 1,
+      "message": "As I got a review recently from Toine says that if the size of the collection is not too high, like in this case the failed cm hanldes would not be to much unless it is an exceptional case that make batch registration fails completely. No need to initialize the collection with the size. Please find the link below.\n\nhttps://gerrit.onap.org/r/c/cps/+/137239/1..6/cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java#b322",
+      "parentUuid": "69d5747f_96498fbb",
       "range": {
         "startLine": 346,
         "startChar": 102,
@@ -132,6 +173,30 @@
       "side": 1,
       "message": "ah I see, yeah we just wanted the name to reflect the difference with the previous method that used the xPaths...",
       "parentUuid": "f44729e0_1c81c423",
+      "range": {
+        "startLine": 109,
+        "startChar": 75,
+        "endLine": 109,
+        "endChar": 90
+      },
+      "revId": "9e40777d645c1f937b8670f034619f7f56f67e48",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30240e76_be47df8e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/CmHandleRegistrationResponse.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-22T16:49:25Z",
+      "side": 1,
+      "message": "if everyone agree on the removal of the FromCmHandleIds (postfix) I would update the patch set.",
+      "parentUuid": "ac33ee07_96d9dd0f",
       "range": {
         "startLine": 109,
         "startChar": 75,
