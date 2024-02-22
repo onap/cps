@@ -45,6 +45,30 @@
       },
       "revId": "9e40777d645c1f937b8670f034619f7f56f67e48",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6805c022_4b866789",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/CmHandleRegistrationResponse.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-02-22T15:30:02Z",
+      "side": 1,
+      "message": "we do need it for the cm handles that are rejected because of their alternatId. The xPaths are NOT relevant in that case and the only thing we CA report is their (standard) id",
+      "parentUuid": "ce7224ae_49952e94",
+      "range": {
+        "startLine": 109,
+        "startChar": 75,
+        "endLine": 109,
+        "endChar": 90
+      },
+      "revId": "9e40777d645c1f937b8670f034619f7f56f67e48",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
