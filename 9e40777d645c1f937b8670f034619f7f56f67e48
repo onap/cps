@@ -67,6 +67,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "23dbd3d4_9788efd2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-02-22T16:58:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5e742243_3be303c8",
+      "range": {
+        "startLine": 346,
+        "startChar": 102,
+        "endLine": 346,
+        "endChar": 104
+      },
+      "revId": "9e40777d645c1f937b8670f034619f7f56f67e48",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "ee332907_e6b1d459",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/CmHandleRegistrationResponse.java",
         "patchSetId": 6
@@ -197,6 +221,30 @@
       "side": 1,
       "message": "if everyone agree on the removal of the FromCmHandleIds (postfix) I would update the patch set.",
       "parentUuid": "ac33ee07_96d9dd0f",
+      "range": {
+        "startLine": 109,
+        "startChar": 75,
+        "endLine": 109,
+        "endChar": 90
+      },
+      "revId": "9e40777d645c1f937b8670f034619f7f56f67e48",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4cdafc24_04cbd169",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/CmHandleRegistrationResponse.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-02-22T16:58:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "30240e76_be47df8e",
       "range": {
         "startLine": 109,
         "startChar": 75,
