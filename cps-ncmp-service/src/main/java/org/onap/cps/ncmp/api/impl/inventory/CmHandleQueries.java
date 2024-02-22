@@ -66,8 +66,7 @@ public interface CmHandleQueries {
      * @param cpsPath cps path for which the cmHandle is requested
      * @return a list of data nodes representing the cm handles.
      */
-    List<DataNode> queryCmHandleAncestorsByCpsPath(String cpsPath,
-                                                   FetchDescendantsOption fetchDescendantsOption);
+    List<DataNode> queryCmHandleAncestorsByCpsPath(String cpsPath, FetchDescendantsOption fetchDescendantsOption);
 
     /**
      * Method to return data nodes representing the cm handles.

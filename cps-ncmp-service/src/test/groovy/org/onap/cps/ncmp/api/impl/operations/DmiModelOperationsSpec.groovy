@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2023 Nordix Foundation
+ *  Copyright (C) 2021-2024 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -50,12 +50,6 @@ class DmiModelOperationsSpec extends DmiOperationsBaseSpec {
 
     @SpringBean
     JsonObjectMapper spiedJsonObjectMapper = Spy(new JsonObjectMapper(new ObjectMapper()))
-
-    @SpringBean
-    TaskExecutor stubbedTaskExecutor = Stub()
-
-    @SpringBean
-    DmiServiceNameOrganizer stubbedDmiServiceNameOrganizer = Stub()
 
     def 'Retrieving module references.'() {
         given: 'a cm handle'
@@ -148,23 +142,33 @@ class DmiModelOperationsSpec extends DmiOperationsBaseSpec {
         and: 'a positive response from DMI service when it is called with the expected parameters'
             def responseFromDmi = new ResponseEntity<>([[moduleName: 'mod1', revision: 'A', yangSource: 'some yang source']], HttpStatus.OK)
             mockDmiRestClient.postOperationWithJsonData("${dmiServiceName}/dmi/v1/ch/${cmHandleId}/moduleResources",
-                    '{"data":{"modules":[' + expectedModuleReferencesInRequest + ']},"cmHandleProperties":' + expectedAdditionalPropertiesInRequest + '}', READ) >> responseFromDmi
+                    '{"data":{"modules":[{"name":"mod1","revision":"A"},{"name":"mod2","revision":"X"}]},"cmHandleProperties":' + expectedAdditionalPropertiesInRequest + '}', READ) >> responseFromDmi
         when: 'get new yang resources from DMI service'
-            def result = objectUnderTest.getNewYangResourcesFromDmi(yangModelCmHandle, unknownModuleReferences)
+            def result = objectUnderTest.getNewYangResourcesFromDmi(yangModelCmHandle, newModuleReferences)
         then: 'the result is the response from DMI service'
             assert result == [mod1:'some yang source']
         where: 'the following DMI properties are used'
-            scenario                                | dmiProperties               | unknownModuleReferences || expectedAdditionalPropertiesInRequest | expectedModuleReferencesInRequest
-            'with module references and properties' | [yangModelCmHandleProperty] | newModuleReferences     || '{"prop1":"val1"}'                    | '{"name":"mod1","revision":"A"},{"name":"mod2","revision":"X"}'
-            'without module references'             | [yangModelCmHandleProperty] | []                      || '{"prop1":"val1"}'                    | ''
-            'without properties'                    | []                          | newModuleReferences     || '{}'                                  | '{"name":"mod1","revision":"A"},{"name":"mod2","revision":"X"}'
+            scenario                                | dmiProperties               || expectedAdditionalPropertiesInRequest
+            'with module references and properties' | [yangModelCmHandleProperty] || '{"prop1":"val1"}'
+            'without properties'                    | []                          || '{}'
+    }
+
+    def 'Retrieving yang resources from DMI with no module references.'() {
+        given: 'a cm handle'
+            mockYangModelCmHandleRetrieval([])
+        when: 'a get new yang resources from DMI is called with no module references'
+            def result = objectUnderTest.getNewYangResourcesFromDmi(yangModelCmHandle, [])
+        then: 'no resources are returned'
+            assert result == [:]
+        and: 'no request is sent to DMI'
+            0 * mockDmiRestClient.postOperationWithJsonData(*_)
     }
 
     def 'Retrieving yang resources from DMI with null DMI properties.'() {
         given: 'a cm handle'
             mockYangModelCmHandleRetrieval(null)
         when: 'a get new yang resources from DMI is called'
-            objectUnderTest.getNewYangResourcesFromDmi(yangModelCmHandle, [])
+            objectUnderTest.getNewYangResourcesFromDmi(yangModelCmHandle, [new ModuleReference('mod1', 'A')])
         then: 'a null pointer is thrown (we might need to address this later)'
             thrown(NullPointerException)
     }
