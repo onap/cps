@@ -69,6 +69,30 @@
       },
       "revId": "9e40777d645c1f937b8670f034619f7f56f67e48",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f44729e0_1c81c423",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/CmHandleRegistrationResponse.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-22T15:43:40Z",
+      "side": 1,
+      "message": "I understand. I mean this method could be called \u0027createFailureResponses\u0027 to be consistent with the other methods that take cmHandleIds, like createFailureResponses on line 127. Minor thing",
+      "parentUuid": "6805c022_4b866789",
+      "range": {
+        "startLine": 109,
+        "startChar": 75,
+        "endLine": 109,
+        "endChar": 90
+      },
+      "revId": "9e40777d645c1f937b8670f034619f7f56f67e48",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
