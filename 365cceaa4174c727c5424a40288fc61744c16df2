@@ -60,6 +60,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e49b3bf3_dcefa2a2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionNcmpInEventConsumer.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-22T06:56:33Z",
+      "side": 1,
+      "message": "this one I can handle Toine , I already commented regarding this.\nI introduced this toggle switch when we newly introduced ModelLoader functionality and we were having issues around it.\nSo ericsson team was having some deployment issues coz of this. So this was the quickest solution at that time. But now since functionality around model loader seems to be stable. Now is a good time to get rid of this.\nI will create a ticket and will post here to handle it.",
+      "parentUuid": "3dbea9be_afa9ed98",
+      "range": {
+        "startLine": 61,
+        "startChar": 16,
+        "endLine": 61,
+        "endChar": 46
+      },
+      "revId": "365cceaa4174c727c5424a40288fc61744c16df2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "78fc970e_c5967784",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/DmiCmNotificationSubscriptionCacheHandler.java",
         "patchSetId": 11
