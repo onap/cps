@@ -73,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e42e4c4d_6363daf8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-22T11:02:50Z",
+      "side": 1,
+      "message": "I swapped if-else, but the logic is more obvious with the else",
+      "parentUuid": "3411e3b5_d086c3e1",
+      "range": {
+        "startLine": 116,
+        "startChar": 40,
+        "endLine": 116,
+        "endChar": 43
+      },
+      "revId": "e07e88864e190f667592e9f0edb73097dd6d0796",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "10f6f69e_a596e6a0",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncService.java",
         "patchSetId": 1
