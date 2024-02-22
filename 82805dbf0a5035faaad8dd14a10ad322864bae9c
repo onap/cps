@@ -46,6 +46,30 @@
       },
       "revId": "82805dbf0a5035faaad8dd14a10ad322864bae9c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1500ce0f_4fcc460e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-02-22T11:02:26Z",
+      "side": 1,
+      "message": "findFirst() method is a stream terminal operation that returns an Optional containing the first element of a stream that matches a specified condition. If no elements match the condition, an empty Optional is returned",
+      "parentUuid": "2a2bfb4d_bb561193",
+      "range": {
+        "startLine": 142,
+        "startChar": 28,
+        "endLine": 142,
+        "endChar": 41
+      },
+      "revId": "82805dbf0a5035faaad8dd14a10ad322864bae9c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
