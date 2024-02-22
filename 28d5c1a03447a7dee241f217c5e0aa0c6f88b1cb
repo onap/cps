@@ -33,6 +33,29 @@
       "message": "recheck",
       "revId": "28d5c1a03447a7dee241f217c5e0aa0c6f88b1cb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1311d22d_cbe39cef",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-22T16:39:21Z",
+      "side": 1,
+      "message": "This will fix the patch\n\n    \u003cplugin\u003e\n        \u003cgroupId\u003eorg.apache.maven.plugins\u003c/groupId\u003e\n        \u003cartifactId\u003emaven-compiler-plugin\u003c/artifactId\u003e\n        \u003cversion\u003e3.11.0\u003c/version\u003e\n        \u003cconfiguration\u003e\n            \u003ccompilerArgument\u003e-parameters\u003c/compilerArgument\u003e\n        \u003c/configuration\u003e\n    \u003c/plugin\u003e",
+      "range": {
+        "startLine": 232,
+        "startChar": 17,
+        "endLine": 237,
+        "endChar": 21
+      },
+      "revId": "28d5c1a03447a7dee241f217c5e0aa0c6f88b1cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
