@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e4e8106_d7747fc0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-22T15:24:46Z",
+      "side": 1,
+      "message": "One blocking issue regarding default DMI_PORT",
+      "revId": "861a8ccbd7ec30322220c46a670976dcf8247c03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2fbaa6a9_c19c6e6b",

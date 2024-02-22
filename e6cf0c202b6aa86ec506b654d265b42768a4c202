@@ -91,6 +91,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1403161e_68112e96",
+        "filename": "postman-collections/CPS Environment.postman_environment.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-22T15:24:46Z",
+      "side": 1,
+      "message": "Now the collection doesn\u0027t work out of the box.\n\nSorry for the confusion. What I mean is, delete DMI_STUB_HOST and DMI_STUB_PORT above. Then change DMI_PORT to 8784",
+      "parentUuid": "467ecd5e_3138ca8f",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 10
+      },
+      "revId": "e6cf0c202b6aa86ec506b654d265b42768a4c202",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "860825b2_590042c7",
         "filename": "postman-collections/CPS-CORE.postman_collection.json",
         "patchSetId": 2
@@ -126,6 +150,30 @@
       "side": 1,
       "message": "I can change it so it\u0027s not a cloud object but I don\u0027t think there is any way to set a default file",
       "parentUuid": "860825b2_590042c7",
+      "range": {
+        "startLine": 243,
+        "startChar": 36,
+        "endLine": 243,
+        "endChar": 89
+      },
+      "revId": "e6cf0c202b6aa86ec506b654d265b42768a4c202",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "12577349_61646e06",
+        "filename": "postman-collections/CPS-CORE.postman_collection.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-22T15:24:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e6442ad1_7c00dc1d",
       "range": {
         "startLine": 243,
         "startChar": 36,
