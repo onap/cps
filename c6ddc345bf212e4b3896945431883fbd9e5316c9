@@ -22,6 +22,30 @@
       },
       "revId": "c6ddc345bf212e4b3896945431883fbd9e5316c9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aec481d2_5d4d9a0d",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-23T12:12:43Z",
+      "side": 1,
+      "message": "Yes. From https://jira.onap.org/browse/CPS-1968 using k8s deployment, it says \"24 threads were chosen as the subsystem in question has the theoretical performance of 3 request per executor and the system has 8 of them\". So that\u0027s 24. Plus 1 for DMI health check.",
+      "parentUuid": "50b0ff5f_59dee66f",
+      "range": {
+        "startLine": 135,
+        "startChar": 6,
+        "endLine": 135,
+        "endChar": 34
+      },
+      "revId": "c6ddc345bf212e4b3896945431883fbd9e5316c9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
