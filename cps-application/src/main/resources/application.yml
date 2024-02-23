@@ -117,6 +117,8 @@ app:
 
 notification:
     enabled: true
+    data-updated:
+        topic: ${CPS_CHANGE_EVENT_TOPIC:cps.data-updated-events}
     async:
         executor:
             core-pool-size: 2
