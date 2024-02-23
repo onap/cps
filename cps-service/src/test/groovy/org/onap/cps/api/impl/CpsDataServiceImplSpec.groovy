@@ -3,7 +3,7 @@
  *  Copyright (C) 2021-2024 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
- *  Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2022-2024 TechMahindra Ltd.
  *  Modifications Copyright (C) 2022 Deutsche Telekom AG
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -26,6 +26,7 @@ package org.onap.cps.api.impl
 import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDeltaService
+import org.onap.cps.events.DataUpdateEventsService
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.exceptions.ConcurrencyException
@@ -52,8 +53,9 @@ class CpsDataServiceImplSpec extends Specification {
     def mockCpsValidator = Mock(CpsValidator)
     def yangParser = new YangParser(new YangParserHelper(), mockYangTextSchemaSourceSetCache)
     def mockCpsDeltaService = Mock(CpsDeltaService);
+    def mockDataUpdateEventsService = Mock(DataUpdateEventsService)
 
-    def objectUnderTest = new CpsDataServiceImpl(mockCpsDataPersistenceService, mockCpsAnchorService, mockCpsValidator, yangParser, mockCpsDeltaService)
+    def objectUnderTest = new CpsDataServiceImpl(mockCpsDataPersistenceService, mockCpsAnchorService, mockCpsValidator, yangParser, mockCpsDeltaService, mockDataUpdateEventsService)
 
     def setup() {
         mockCpsAnchorService.getAnchor(dataspaceName, anchorName) >> anchor
@@ -459,6 +461,16 @@ class CpsDataServiceImplSpec extends Specification {
             1 * mockCpsDataPersistenceService.lockAnchor('some-sessionId', 'some-dataspaceName', 'some-anchorName', 250L)
     }
 
+    def 'Exception is thrown while publishing the notification.'(){
+        given: 'schema set for given anchor and dataspace references test-tree model'
+            setupSchemaSetMocks('test-tree.yang')
+        when: 'publisher set to throw an exception'
+            mockDataUpdateEventsService.publishDataUpdateEvent(_, _, _, _) >> { throw new Exception("publishing failed")}
+        and: 'an update event is performed'
+            objectUnderTest.updateNodeLeaves(dataspaceName, anchorName, '/', '{"test-tree": {"branch": []}}', observedTimestamp)
+        then: 'the exception is just logged and not bubbled up'
+            noExceptionThrown()
+    }
     def setupSchemaSetMocks(String... yangResources) {
         def mockYangTextSchemaSourceSet = Mock(YangTextSchemaSourceSet)
         mockYangTextSchemaSourceSetCache.get(dataspaceName, schemaSetName) >> mockYangTextSchemaSourceSet
