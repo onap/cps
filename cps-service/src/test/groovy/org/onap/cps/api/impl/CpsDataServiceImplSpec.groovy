@@ -3,7 +3,7 @@
  *  Copyright (C) 2021-2024 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
- *  Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2022-2024 TechMahindra Ltd.
  *  Modifications Copyright (C) 2022 Deutsche Telekom AG
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -23,9 +23,13 @@
 
 package org.onap.cps.api.impl
 
+import ch.qos.logback.classic.Level
+import ch.qos.logback.classic.Logger
+import ch.qos.logback.core.read.ListAppender
 import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDeltaService
+import org.onap.cps.events.CpsDataUpdateEventsService
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.exceptions.ConcurrencyException
@@ -41,6 +45,8 @@ import org.onap.cps.utils.YangParser
 import org.onap.cps.utils.YangParserHelper
 import org.onap.cps.yang.YangTextSchemaSourceSet
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
+import org.slf4j.LoggerFactory
+import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import spock.lang.Shared
 import spock.lang.Specification
 import java.time.OffsetDateTime
@@ -52,13 +58,28 @@ class CpsDataServiceImplSpec extends Specification {
     def mockCpsValidator = Mock(CpsValidator)
     def yangParser = new YangParser(new YangParserHelper(), mockYangTextSchemaSourceSetCache)
     def mockCpsDeltaService = Mock(CpsDeltaService);
+    def mockDataUpdateEventsService = Mock(CpsDataUpdateEventsService)
 
-    def objectUnderTest = new CpsDataServiceImpl(mockCpsDataPersistenceService, mockCpsAnchorService, mockCpsValidator, yangParser, mockCpsDeltaService)
+    def objectUnderTest = new CpsDataServiceImpl(mockCpsDataPersistenceService, mockCpsAnchorService, mockCpsValidator, yangParser, mockCpsDeltaService, mockDataUpdateEventsService)
+
+    def logger = (Logger) LoggerFactory.getLogger(objectUnderTest.class)
+    def loggingListAppender
+    def applicationContext = new AnnotationConfigApplicationContext()
 
     def setup() {
         mockCpsAnchorService.getAnchor(dataspaceName, anchorName) >> anchor
         mockCpsAnchorService.getAnchor(dataspaceName, ANCHOR_NAME_1) >> anchor1
         mockCpsAnchorService.getAnchor(dataspaceName, ANCHOR_NAME_2) >> anchor2
+        logger.setLevel(Level.DEBUG)
+        loggingListAppender = new ListAppender()
+        logger.addAppender(loggingListAppender)
+        loggingListAppender.start()
+        applicationContext.refresh()
+    }
+
+    void cleanup() {
+        ((Logger) LoggerFactory.getLogger(CpsDataServiceImpl.class)).detachAndStopAllAppenders()
+        applicationContext.close()
     }
 
     @Shared
@@ -459,6 +480,19 @@ class CpsDataServiceImplSpec extends Specification {
             1 * mockCpsDataPersistenceService.lockAnchor('some-sessionId', 'some-dataspaceName', 'some-anchorName', 250L)
     }
 
+    def 'Exception is thrown while publishing the notification.'(){
+        given: 'schema set for given anchor and dataspace references test-tree model'
+            setupSchemaSetMocks('test-tree.yang')
+        when: 'publisher set to throw an exception'
+            mockDataUpdateEventsService.publishCpsDataUpdateEvent(_, _, _, _) >> { throw new Exception("publishing failed")}
+        and: 'an update event is performed'
+            objectUnderTest.updateNodeLeaves(dataspaceName, anchorName, '/', '{"test-tree": {"branch": []}}', observedTimestamp)
+        then: 'the exception is just logged and not bubbled up'
+            noExceptionThrown()
+        and: "the exception message is logged"
+        def logs = loggingListAppender.list.toString()
+        assert logs.contains('Failed to send message to notification service')
+    }
     def setupSchemaSetMocks(String... yangResources) {
         def mockYangTextSchemaSourceSet = Mock(YangTextSchemaSourceSet)
         mockYangTextSchemaSourceSetCache.get(dataspaceName, schemaSetName) >> mockYangTextSchemaSourceSet
