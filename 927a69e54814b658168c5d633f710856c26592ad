@@ -16,6 +16,46 @@
       "message": "recheck",
       "revId": "927a69e54814b658168c5d633f710856c26592ad",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc510c59_d218e664",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-02-23T12:00:29Z",
+      "side": 1,
+      "message": "+1 after build passes",
+      "revId": "927a69e54814b658168c5d633f710856c26592ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94b757d4_ed673957",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/CmDataSubscriptionModelLoader.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-02-23T12:00:29Z",
+      "side": 1,
+      "message": "NB: just Model now, not plural",
+      "range": {
+        "startLine": 59,
+        "startChar": 41,
+        "endLine": 59,
+        "endChar": 42
+      },
+      "revId": "927a69e54814b658168c5d633f710856c26592ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
