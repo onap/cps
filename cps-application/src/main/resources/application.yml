@@ -117,6 +117,8 @@ app:
 
 notification:
     enabled: true
+    data-updated:
+        topic: ${CPS_CHANGE_EVENT_TOPIC:cps.data-updated-events}
     async:
         executor:
             core-pool-size: 2
@@ -137,8 +139,6 @@ springdoc:
               url: /api-docs/cps-ncmp/openapi.yaml
             - name: cps-ncmp-inventory
               url: /api-docs/cps-ncmp/openapi-inventory.yaml
-
-
 
 security:
     # comma-separated uri patterns which do not require authorization
