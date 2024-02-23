@@ -132,6 +132,7 @@ services:
       MODULE_REFERENCES_DELAY_MS: 100
       MODULE_RESOURCES_DELAY_MS: 1000
       DATA_FOR_CM_HANDLE_DELAY_MS: 2500
+      SERVER_JETTY_THREADS_MAX: 25
     restart: unless-stopped
     profiles:
       - dmi-stub
