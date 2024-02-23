@@ -113,6 +113,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b7b63dd_d3b0452d",
+        "filename": "postman-collections/CPS Environment.postman_environment.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-02-23T13:14:53Z",
+      "side": 1,
+      "message": "Oops my bad. Thought I had deleted DMI_STUB_HOST and DMI_STUB_PORT and changed DMI_PORT to 8784. Must have forgotten to export the environment. Done now!",
+      "parentUuid": "1403161e_68112e96",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 10
+      },
+      "revId": "e6cf0c202b6aa86ec506b654d265b42768a4c202",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "860825b2_590042c7",
