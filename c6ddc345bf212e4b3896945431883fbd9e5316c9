@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50b0ff5f_59dee66f",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-02-23T12:04:12Z",
+      "side": 1,
+      "message": "NB : Any specific reason to override default with same value \"25\"",
+      "range": {
+        "startLine": 135,
+        "startChar": 6,
+        "endLine": 135,
+        "endChar": 34
+      },
+      "revId": "c6ddc345bf212e4b3896945431883fbd9e5316c9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
