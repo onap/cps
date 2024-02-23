@@ -35,6 +35,42 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "17594d8f_3c626800",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-02-23T16:41:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "90706c91_6275202d",
+      "revId": "515b4e84dd3854667e59dc6337cde55f55c689d2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cdc36784_644c7394",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-02-23T16:41:44Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "6f369d14_97405b8f",
+      "revId": "515b4e84dd3854667e59dc6337cde55f55c689d2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a38c2976_3af5486f",
@@ -48,6 +84,30 @@
       "writtenOn": "2024-02-19T08:51:41Z",
       "side": 1,
       "message": "not sure if \u0027entry\u0027 is the best prefix for these new URLs\nsuggestion: \u0027modulesettag\u0027",
+      "range": {
+        "startLine": 90,
+        "startChar": 24,
+        "endLine": 90,
+        "endChar": 30
+      },
+      "revId": "515b4e84dd3854667e59dc6337cde55f55c689d2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b65fe20_dcdf11ed",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-02-23T16:41:44Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "a38c2976_3af5486f",
       "range": {
         "startLine": 90,
         "startChar": 24,
@@ -81,6 +141,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fbb13e0c_60f099fb",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-02-23T16:41:44Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "af00c0ea_d62ff853",
+      "range": {
+        "startLine": 91,
+        "startChar": 62,
+        "endLine": 91,
+        "endChar": 65
+      },
+      "revId": "515b4e84dd3854667e59dc6337cde55f55c689d2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b0ed27df_489d55c8",
@@ -94,6 +178,30 @@
       "writtenOn": "2024-02-19T08:51:41Z",
       "side": 1,
       "message": "/v1/ch/{cmHanldeId}/modulesettag\n\nuse PUT for uupdating",
+      "range": {
+        "startLine": 104,
+        "startChar": 17,
+        "endLine": 104,
+        "endChar": 64
+      },
+      "revId": "515b4e84dd3854667e59dc6337cde55f55c689d2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e62d3af1_6d15e222",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-02-23T16:41:44Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "b0ed27df_489d55c8",
       "range": {
         "startLine": 104,
         "startChar": 17,
@@ -127,6 +235,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ecc16424_429f227b",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-02-23T16:41:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "cb2ad49e_64bc7ea7",
+      "range": {
+        "startLine": 108,
+        "startChar": 33,
+        "endLine": 108,
+        "endChar": 58
+      },
+      "revId": "515b4e84dd3854667e59dc6337cde55f55c689d2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "88f300fa_0745710e",
@@ -150,6 +282,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "591a3776_73aa2e94",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-02-23T16:41:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "88f300fa_0745710e",
+      "range": {
+        "startLine": 129,
+        "startChar": 4,
+        "endLine": 129,
+        "endChar": 54
+      },
+      "revId": "515b4e84dd3854667e59dc6337cde55f55c689d2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "05fe2d54_c4136547",
@@ -163,6 +319,24 @@
       "writtenOn": "2024-02-19T08:51:41Z",
       "side": 1,
       "message": "SUggestions for future improvements\nWE should be able to just have response for M1-M4 and combine them on the fly based on current tag",
+      "revId": "515b4e84dd3854667e59dc6337cde55f55c689d2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63ac11cf_c01337a4",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/resources/module/tagA-ModuleResponse.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-02-23T16:41:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "05fe2d54_c4136547",
       "revId": "515b4e84dd3854667e59dc6337cde55f55c689d2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
