@@ -50,8 +50,6 @@ ncmp:
         async-executor:
             parallelism-level: 3
 
-    model-loader:
-        subscription: true
 
 # Custom Hazelcast Config.
 hazelcast:

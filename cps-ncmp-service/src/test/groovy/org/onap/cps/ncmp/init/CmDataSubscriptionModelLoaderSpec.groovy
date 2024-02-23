@@ -20,23 +20,22 @@
 
 package org.onap.cps.ncmp.init
 
-import org.onap.cps.api.CpsAnchorService
-import org.onap.cps.ncmp.api.impl.exception.NcmpStartUpException
-import org.onap.cps.spi.exceptions.AlreadyDefinedException
-
-import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
-
 import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
 import ch.qos.logback.core.read.ListAppender
-import org.onap.cps.api.CpsDataspaceService
+import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
+import org.onap.cps.api.CpsDataspaceService
 import org.onap.cps.api.CpsModuleService
+import org.onap.cps.ncmp.api.impl.exception.NcmpStartUpException
+import org.onap.cps.spi.exceptions.AlreadyDefinedException
 import org.onap.cps.spi.model.Dataspace
 import org.slf4j.LoggerFactory
 import org.springframework.boot.context.event.ApplicationReadyEvent
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import spock.lang.Specification
+
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
 
 class CmDataSubscriptionModelLoaderSpec extends Specification {
 
@@ -67,9 +66,7 @@ class CmDataSubscriptionModelLoaderSpec extends Specification {
     }
 
     def 'Onboard subscription model via application ready event.'() {
-        given:'model loader is enabled'
-            objectUnderTest.subscriptionModelLoaderEnabled = true
-        and: 'dataspace is ready for use'
+        given: 'dataspace is ready for use'
             mockCpsDataspaceService.getDataspace(NCMP_DATASPACE_NAME) >> new Dataspace('')
         when: 'the application is ready'
             objectUnderTest.onApplicationEvent(Mock(ApplicationReadyEvent))
@@ -81,14 +78,14 @@ class CmDataSubscriptionModelLoaderSpec extends Specification {
             1 * mockCpsDataService.saveData(NCMP_DATASPACE_NAME, 'cm-data-subscriptions', '{"datastores":{}}', _)
         and: 'the data service is called once to create datastore for Passthrough-operational'
             1 * mockCpsDataService.saveData(NCMP_DATASPACE_NAME, 'cm-data-subscriptions', '/datastores',
-                    '{"datastore":[{"name":"ncmp-datastore:passthrough-operational","cm-handles":{}}]}', _, _)
+                '{"datastore":[{"name":"ncmp-datastore:passthrough-operational","cm-handles":{}}]}', _, _)
         and: 'the data service is called once to create datastore for Passthrough-running'
             1 * mockCpsDataService.saveData(NCMP_DATASPACE_NAME, 'cm-data-subscriptions', '/datastores',
-                    '{"datastore":[{"name":"ncmp-datastore:passthrough-running","cm-handles":{}}]}', _, _)
+                '{"datastore":[{"name":"ncmp-datastore:passthrough-running","cm-handles":{}}]}', _, _)
     }
 
     def 'Create node for datastore with already defined exception.'() {
-        given:'the data service throws an Already Defined exception'
+        given: 'the data service throws an Already Defined exception'
             mockCpsDataService.saveData(*_) >> { throw AlreadyDefinedException.forDataNodes([], 'some context') }
         when: 'attempt to create datastore'
             objectUnderTest.createDatastore('some datastore')
@@ -108,18 +105,6 @@ class CmDataSubscriptionModelLoaderSpec extends Specification {
             def thrown = thrown(NcmpStartUpException)
             assert thrown.message.contains('Creating data node failed')
             assert thrown.details.contains('test message')
-    }
-
-    def 'Subscription model loader disabled.' () {
-        given: 'model loader is disabled'
-            objectUnderTest.subscriptionModelLoaderEnabled = false
-        when: 'application is ready'
-            objectUnderTest.onApplicationEvent(Mock(ApplicationReadyEvent))
-        then: 'no interaction with admin service'
-            0 * mockCpsDataspaceService.getDataspace(_)
-        then: 'a message is logged that the function is disabled'
-            def logs = loggingListAppender.list.toString()
-            assert logs.contains('Subscription Model Loader is disabled')
     }
 
 }
