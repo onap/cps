@@ -37,6 +37,10 @@
 
   <dependencies>
     <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-messaging</artifactId>
     </dependency>
@@ -73,6 +77,18 @@
     <dependency>
       <groupId>io.micrometer</groupId>
       <artifactId>micrometer-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.cloudevents</groupId>
+      <artifactId>cloudevents-json-jackson</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.cloudevents</groupId>
+      <artifactId>cloudevents-kafka</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.cloudevents</groupId>
+      <artifactId>cloudevents-spring</artifactId>
     </dependency>
     <dependency>
       <groupId>jakarta.validation</groupId>
@@ -190,6 +206,10 @@
       <groupId>org.aspectj</groupId>
       <artifactId>aspectjrt</artifactId>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
     </dependency>
   </dependencies>
 </project>
