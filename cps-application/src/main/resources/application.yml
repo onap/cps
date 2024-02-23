@@ -105,6 +105,9 @@ app:
             subscription-response-topic: ${NCMP_RESPONSE_CM_AVC_SUBSCRIPTION:dmi-ncmp-cm-avc-subscription}
             subscription-outcome-topic: ${NCMP_OUTCOME_CM_AVC_SUBSCRIPTION:subscription-response}
             cm-events-topic: ${NCMP_CM_EVENTS_TOPIC:cm-events}
+    core:
+        events:
+            topic: ${CPS_CORE_EVENTS_TOPIC:core-events}
     lcm:
         events:
             topic: ${LCM_EVENTS_TOPIC:ncmp-events}
