@@ -3,7 +3,7 @@
  *  Copyright (C) 2021-2024 Nordix Foundation
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
- *  Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2022-2024 TechMahindra Ltd.
  *  Modifications Copyright (C) 2022 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -39,6 +39,8 @@ import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsDeltaService;
 import org.onap.cps.cpspath.parser.CpsPathUtil;
+import org.onap.cps.events.CpsDataUpdateEventsService;
+import org.onap.cps.events.model.Data.Operation;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.exceptions.DataValidationException;
@@ -61,7 +63,9 @@ public class CpsDataServiceImpl implements CpsDataService {
     private static final long DEFAULT_LOCK_TIMEOUT_IN_MILLISECONDS = 300L;
 
     private final CpsDataPersistenceService cpsDataPersistenceService;
+    private final CpsDataUpdateEventsService cpsDataUpdateEventsService;
     private final CpsAnchorService cpsAnchorService;
+
     private final CpsValidator cpsValidator;
     private final YangParser yangParser;
     private final CpsDeltaService cpsDeltaService;
@@ -81,6 +85,7 @@ public class CpsDataServiceImpl implements CpsDataService {
         final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
         final Collection<DataNode> dataNodes = buildDataNodes(anchor, ROOT_NODE_XPATH, nodeData, contentType);
         cpsDataPersistenceService.storeDataNodes(dataspaceName, anchorName, dataNodes);
+        sendDataUpdatedEvent(anchor, ROOT_NODE_XPATH, Operation.CREATE, observedTimestamp);
     }
 
     @Override
@@ -99,6 +104,7 @@ public class CpsDataServiceImpl implements CpsDataService {
         final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
         final Collection<DataNode> dataNodes = buildDataNodes(anchor, parentNodeXpath, nodeData, contentType);
         cpsDataPersistenceService.addChildDataNodes(dataspaceName, anchorName, parentNodeXpath, dataNodes);
+        sendDataUpdatedEvent(anchor, parentNodeXpath, Operation.CREATE, observedTimestamp);
     }
 
     @Override
@@ -116,6 +122,7 @@ public class CpsDataServiceImpl implements CpsDataService {
             cpsDataPersistenceService.addListElements(dataspaceName, anchorName, parentNodeXpath,
                                                       listElementDataNodeCollection);
         }
+        sendDataUpdatedEvent(anchor, parentNodeXpath, Operation.UPDATE, observedTimestamp);
     }
 
     @Override
@@ -151,6 +158,7 @@ public class CpsDataServiceImpl implements CpsDataService {
         final Map<String, Map<String, Serializable>> xpathToUpdatedLeaves = dataNodesInPatch.stream()
                 .collect(Collectors.toMap(DataNode::getXpath, DataNode::getLeaves));
         cpsDataPersistenceService.batchUpdateDataLeaves(dataspaceName, anchorName, xpathToUpdatedLeaves);
+        sendDataUpdatedEvent(anchor, parentNodeXpath, Operation.UPDATE, observedTimestamp);
     }
 
     @Override
@@ -167,6 +175,7 @@ public class CpsDataServiceImpl implements CpsDataService {
         for (final DataNode dataNodeUpdate : dataNodeUpdates) {
             processDataNodeUpdate(anchor, dataNodeUpdate);
         }
+        sendDataUpdatedEvent(anchor, parentNodeXpath, Operation.UPDATE, observedTimestamp);
     }
 
     @Override
@@ -216,6 +225,7 @@ public class CpsDataServiceImpl implements CpsDataService {
         final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
         final Collection<DataNode> dataNodes = buildDataNodes(anchor, parentNodeXpath, jsonData, ContentType.JSON);
         cpsDataPersistenceService.updateDataNodesAndDescendants(dataspaceName, anchorName, dataNodes);
+        sendDataUpdatedEvent(anchor, parentNodeXpath, Operation.UPDATE, observedTimestamp);
     }
 
     @Override
@@ -228,6 +238,8 @@ public class CpsDataServiceImpl implements CpsDataService {
         final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
         final Collection<DataNode> dataNodes = buildDataNodes(anchor, nodesJsonData);
         cpsDataPersistenceService.updateDataNodesAndDescendants(dataspaceName, anchorName, dataNodes);
+        nodesJsonData.keySet().forEach(nodeXpath ->
+                sendDataUpdatedEvent(anchor, nodeXpath, Operation.UPDATE, observedTimestamp));
     }
 
     @Override
@@ -248,7 +260,9 @@ public class CpsDataServiceImpl implements CpsDataService {
     public void replaceListContent(final String dataspaceName, final String anchorName, final String parentNodeXpath,
             final Collection<DataNode> dataNodes, final OffsetDateTime observedTimestamp) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
         cpsDataPersistenceService.replaceListContent(dataspaceName, anchorName, parentNodeXpath, dataNodes);
+        sendDataUpdatedEvent(anchor, parentNodeXpath, Operation.UPDATE, observedTimestamp);
     }
 
     @Override
@@ -258,6 +272,8 @@ public class CpsDataServiceImpl implements CpsDataService {
                                final OffsetDateTime observedTimestamp) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         cpsDataPersistenceService.deleteDataNode(dataspaceName, anchorName, dataNodeXpath);
+        final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
+        sendDataUpdatedEvent(anchor, dataNodeXpath, Operation.DELETE, observedTimestamp);
     }
 
     @Override
@@ -267,7 +283,11 @@ public class CpsDataServiceImpl implements CpsDataService {
                                 final Collection<String> dataNodeXpaths, final OffsetDateTime observedTimestamp) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         cpsDataPersistenceService.deleteDataNodes(dataspaceName, anchorName, dataNodeXpaths);
+        final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
+        dataNodeXpaths.forEach(dataNodeXpath ->
+                sendDataUpdatedEvent(anchor, dataNodeXpath, Operation.DELETE, observedTimestamp));
     }
+
 
     @Override
     @Timed(value = "cps.data.service.datanode.delete.anchor",
@@ -276,6 +296,8 @@ public class CpsDataServiceImpl implements CpsDataService {
                                 final OffsetDateTime observedTimestamp) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         cpsDataPersistenceService.deleteDataNodes(dataspaceName, anchorName);
+        final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
+        sendDataUpdatedEvent(anchor, ROOT_NODE_XPATH, Operation.DELETE, observedTimestamp);
     }
 
     @Override
@@ -286,6 +308,9 @@ public class CpsDataServiceImpl implements CpsDataService {
         cpsValidator.validateNameCharacters(dataspaceName);
         cpsValidator.validateNameCharacters(anchorNames);
         cpsDataPersistenceService.deleteDataNodes(dataspaceName, anchorNames);
+        for (final Anchor anchor : cpsAnchorService.getAnchors(dataspaceName, anchorNames)) {
+            sendDataUpdatedEvent(anchor, ROOT_NODE_XPATH, Operation.DELETE, observedTimestamp);
+        }
     }
 
     @Override
@@ -295,6 +320,8 @@ public class CpsDataServiceImpl implements CpsDataService {
         final OffsetDateTime observedTimestamp) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         cpsDataPersistenceService.deleteListDataNode(dataspaceName, anchorName, listNodeXpath);
+        final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
+        sendDataUpdatedEvent(anchor, listNodeXpath, Operation.DELETE, observedTimestamp);
     }
 
     private Collection<DataNode> buildDataNodes(final Anchor anchor, final Map<String, String> nodesJsonData) {
@@ -345,4 +372,12 @@ public class CpsDataServiceImpl implements CpsDataService {
         }
     }
 
+    private void sendDataUpdatedEvent(final Anchor anchor, final String xpath,
+                                      final Operation operation, final OffsetDateTime observedTimestamp) {
+        try {
+            cpsDataUpdateEventsService.publishCpsDataUpdateEvent(anchor, xpath, operation, observedTimestamp);
+        } catch (final Exception exception) {
+            log.error("Failed to send message to notification service", exception);
+        }
+    }
 }
