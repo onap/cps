@@ -3,7 +3,7 @@
  * Copyright (C) 2021-2024 Nordix Foundation.
  * Modifications Copyright (C) 2021-2022 Bell Canada.
  * Modifications Copyright (C) 2021 Pantheon.tech
- * Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
+ * Modifications Copyright (C) 2022-2024 TechMahindra Ltd.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,7 @@ package org.onap.cps.api.impl
 import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDeltaService
+import org.onap.cps.events.CpsDataUpdateEventsService
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.CpsModulePersistenceService
 import org.onap.cps.spi.model.Anchor
@@ -50,7 +51,8 @@ class E2ENetworkSliceSpec extends Specification {
     def cpsModuleServiceImpl = new CpsModuleServiceImpl(mockModuleStoreService,
             mockYangTextSchemaSourceSetCache, mockCpsAnchorService, mockCpsValidator,timedYangTextSchemaSourceSetBuilder)
 
-    def cpsDataServiceImpl = new CpsDataServiceImpl(mockDataStoreService, mockCpsAnchorService, mockCpsValidator, yangParser, mockCpsDeltaService)
+    def mockDataUpdateEventsService = Mock(CpsDataUpdateEventsService)
+    def cpsDataServiceImpl = new CpsDataServiceImpl(mockDataStoreService, mockCpsAnchorService, mockCpsValidator, yangParser, mockCpsDeltaService, mockDataUpdateEventsService)
 
     def dataspaceName = 'someDataspace'
     def anchorName = 'someAnchor'
