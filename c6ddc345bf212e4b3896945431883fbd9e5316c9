@@ -46,6 +46,30 @@
       },
       "revId": "c6ddc345bf212e4b3896945431883fbd9e5316c9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c399647_86297e3e",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-02-23T12:21:37Z",
+      "side": 1,
+      "message": "I meant as we already have                                                   server:\n    port: 8092\n    jetty:\n        threads:\n            max: 25 (into dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/resources/application.yml)\n            \nDo we need to override it into \"docker-compose/docker-compose.yml\" again ?",
+      "parentUuid": "aec481d2_5d4d9a0d",
+      "range": {
+        "startLine": 135,
+        "startChar": 6,
+        "endLine": 135,
+        "endChar": 34
+      },
+      "revId": "c6ddc345bf212e4b3896945431883fbd9e5316c9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
