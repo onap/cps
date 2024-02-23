@@ -39,9 +39,12 @@ Release Data
 Bug Fixes
 ---------
 3.4.4
+    - `CPS-2027 <https://jira.onap.org/browse/CPS-2027>`_ Upgrade Yang modules using module set tag functionalities fix
 
 Features
 --------
+    - `CPS-2057 <https://jira.onap.org/browse/CPS-2057>`_ Leaf lists are sorted by default if Yang model does not specify order.
+    - `CPS-2087 <https://jira.onap.org/browse/CPS-2087>`_ Performance improvement of CPS Path Queries.
 
 
 Version: 3.4.3
