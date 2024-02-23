@@ -32,7 +32,6 @@ import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.ncmp.api.impl.exception.NcmpStartUpException;
 import org.onap.cps.ncmp.api.impl.operations.DatastoreType;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -45,24 +44,16 @@ public class CmDataSubscriptionModelLoader extends AbstractModelLoader {
     private static final String REGISTRY_DATANODE_NAME = "datastores";
 
     public CmDataSubscriptionModelLoader(final CpsDataspaceService cpsDataspaceService,
-                                         final CpsModuleService cpsModuleService,
-                                         final CpsAnchorService cpsAnchorService,
-                                         final CpsDataService cpsDataService) {
+            final CpsModuleService cpsModuleService, final CpsAnchorService cpsAnchorService,
+            final CpsDataService cpsDataService) {
         super(cpsDataspaceService, cpsModuleService, cpsAnchorService, cpsDataService);
     }
 
-    @Value("${ncmp.model-loader.subscription:true}")
-    private boolean subscriptionModelLoaderEnabled;
-
     @Override
     public void onboardOrUpgradeModel() {
-        if (subscriptionModelLoaderEnabled) {
-            waitUntilDataspaceIsAvailable(NCMP_DATASPACE_NAME);
-            onboardSubscriptionModels();
-            log.info("Subscription Models onboarded successfully");
-        } else {
-            log.info("Subscription Model Loader is disabled");
-        }
+        waitUntilDataspaceIsAvailable(NCMP_DATASPACE_NAME);
+        onboardSubscriptionModels();
+        log.info("Subscription Models onboarded successfully");
     }
 
     private void onboardSubscriptionModels() {

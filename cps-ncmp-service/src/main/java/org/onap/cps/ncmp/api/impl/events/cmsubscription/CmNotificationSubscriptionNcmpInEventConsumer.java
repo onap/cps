@@ -37,9 +37,6 @@ public class CmNotificationSubscriptionNcmpInEventConsumer {
     @Value("${notification.enabled:true}")
     private boolean notificationFeatureEnabled;
 
-    @Value("${ncmp.model-loader.subscription:false}")
-    private boolean subscriptionModelLoaderEnabled;
-
     /**
      * Consume the specified event.
      *
@@ -51,10 +48,8 @@ public class CmNotificationSubscriptionNcmpInEventConsumer {
         final CloudEvent cloudEvent = subscriptionEventConsumerRecord.value();
         final CmNotificationSubscriptionNcmpInEvent cmNotificationSubscriptionNcmpInEvent =
                 toTargetEvent(cloudEvent, CmNotificationSubscriptionNcmpInEvent.class);
-        if (subscriptionModelLoaderEnabled) {
-            log.info("Subscription with name {} to be mapped to hazelcast object...",
-                    cmNotificationSubscriptionNcmpInEvent.getData().getSubscriptionId());
-        }
+        log.info("Subscription with name {} to be mapped to hazelcast object...",
+                cmNotificationSubscriptionNcmpInEvent.getData().getSubscriptionId());
         if ("subscriptionCreated".equals(cloudEvent.getType()) && cmNotificationSubscriptionNcmpInEvent != null) {
             log.info("Subscription for ClientID {} with name {} ...", cloudEvent.getSource(),
                     cmNotificationSubscriptionNcmpInEvent.getData().getSubscriptionId());
