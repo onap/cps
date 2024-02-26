@@ -56,6 +56,7 @@ public class YangDataConverter {
         ncmpServiceCmHandle.setCompositeState(yangModelCmHandle.getCompositeState());
         ncmpServiceCmHandle.setModuleSetTag(yangModelCmHandle.getModuleSetTag());
         ncmpServiceCmHandle.setAlternateId(yangModelCmHandle.getAlternateId());
+        ncmpServiceCmHandle.setDataProducerIdentifier(yangModelCmHandle.getDataProducerIdentifier());
         setDmiProperties(dmiProperties, ncmpServiceCmHandle);
         setPublicProperties(publicProperties, ncmpServiceCmHandle);
         return ncmpServiceCmHandle;
