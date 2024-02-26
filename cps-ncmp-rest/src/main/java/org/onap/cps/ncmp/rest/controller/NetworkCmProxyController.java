@@ -398,6 +398,9 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         if (cmHandleCurrentTrustLevel != null) {
             restOutputCmHandle.setTrustLevel(cmHandleCurrentTrustLevel.toString());
         }
+        restOutputCmHandle.setModuleSetTag(ncmpServiceCmHandle.getModuleSetTag());
+        restOutputCmHandle.setAlternateId(ncmpServiceCmHandle.getAlternateId());
+        restOutputCmHandle.setDataProducerIdentifier(ncmpServiceCmHandle.getDataProducerIdentifier());
         return restOutputCmHandle;
     }
 
