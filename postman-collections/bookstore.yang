@@ -1,0 +1,127 @@
+module stores {
+    yang-version 1.1;
+    namespace "org:onap:cps:sample";
+
+    prefix book-store;
+
+    import bookstore-types {
+        prefix "types";
+        revision-date 2024-01-30;
+    }
+
+    revision "2024-02-08" {
+        description
+            "Order of book authors is preserved";
+    }
+
+    revision "2024-01-30" {
+        description
+            "Extracted bookstore types";
+    }
+
+    revision "2020-09-15" {
+        description
+        "Sample Model";
+    }
+
+    list bookstore-address {
+        key "bookstore-name";
+        leaf bookstore-name {
+            type string;
+            description
+            "Name of bookstore. Example: My Bookstore";
+        }
+        leaf address {
+            type string;
+            description
+            "Address of store";
+        }
+        leaf postal-code {
+            type string;
+            description
+            "Postal code of store";
+        }
+    }
+
+    container bookstore {
+
+        leaf bookstore-name {
+            type string;
+        }
+
+        container webinfo {
+            leaf domain-name {
+                type string;
+            }
+            leaf contact-email {
+                type string;
+            }
+        }
+
+        container support-info {
+                    leaf support-office {
+                        type string;
+                    }
+                    container contact-emails {
+                        leaf email {
+                            type string;
+                        }
+                    }
+                }
+
+        container container-without-leaves { }
+
+        container premises {
+            list addresses {
+                key "house-number street";
+
+                leaf house-number {
+                    type uint16;
+                }
+                leaf street {
+                    type string;
+                }
+                leaf town {
+                    type string;
+                }
+                leaf county {
+                    type string;
+                }
+            }
+        }
+
+        list categories {
+
+            key "code";
+
+            leaf code {
+                type string;
+            }
+
+            leaf name {
+                type string;
+            }
+
+            list books {
+                key title;
+
+                leaf title {
+                    type string;
+                }
+                leaf lang {
+                    type string;
+                }
+                leaf-list authors {
+                    ordered-by user;
+                    type string;
+                }
+                leaf-list editions {
+                    type types:year;
+                }
+                leaf price {
+                    type uint64;
+                }
+            }
+        }
+    }
+}
