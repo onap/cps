@@ -357,9 +357,11 @@ class NetworkCmProxyControllerSpec extends Specification {
             def cmHandle2 = new NcmpServiceCmHandle()
             cmHandle2.cmHandleId = 'ch-2'
             cmHandle2.publicProperties = [color: 'green']
+            cmHandle2.alternateId = 'someAlternateId'
+            cmHandle2.moduleSetTag = 'someModuleSetTag'
+            cmHandle2.dataProducerIdentifier = 'someDataProducerIdentifier'
             mockNetworkCmProxyDataService.executeCmHandleSearch(_) >> [cmHandle1, cmHandle2]
         and: 'map for trust level per cmHandle has value for only one cm handle'
-//            trustLevelPerCmHandle.get('') >> { TrustLevel.NONE }
               trustLevelPerCmHandle.put('ch-1', TrustLevel.NONE)
         when: 'the searches api is invoked'
             def response = mvc.perform(post(searchesEndpoint)
@@ -368,7 +370,7 @@ class NetworkCmProxyControllerSpec extends Specification {
         then: 'response status returns OK'
             response.status == HttpStatus.OK.value()
         and: 'the expected response content is returned'
-            response.contentAsString == '[{"cmHandle":"ch-1","publicCmHandleProperties":[{"color":"yellow"}],"state":null,"trustLevel":"NONE"},{"cmHandle":"ch-2","publicCmHandleProperties":[{"color":"green"}],"state":null,"trustLevel":null}]'
+            response.contentAsString == '[{"cmHandle":"ch-1","publicCmHandleProperties":[{"color":"yellow"}],"state":null,"trustLevel":"NONE","moduleSetTag":null,"alternateId":null,"dataProducerIdentifier":null},{"cmHandle":"ch-2","publicCmHandleProperties":[{"color":"green"}],"state":null,"trustLevel":null,"moduleSetTag":"someModuleSetTag","alternateId":"someAlternateId","dataProducerIdentifier":"someDataProducerIdentifier"}]'
     }
 
     def 'Get complete Cm Handle details by Cm Handle id.'() {
@@ -452,7 +454,7 @@ class NetworkCmProxyControllerSpec extends Specification {
                             .contentType(MediaType.APPLICATION_JSON)
                             .content(jsonString)).andReturn().response
         then: 'an empty cm handle identifier is returned'
-            response.contentAsString == '[{"cmHandle":"ch-1","publicCmHandleProperties":[{"color":"yellow"}],"state":null,"trustLevel":"COMPLETE"},{"cmHandle":"ch-2","publicCmHandleProperties":[{"color":"green"}],"state":null,"trustLevel":"NONE"}]'
+            response.contentAsString == '[{"cmHandle":"ch-1","publicCmHandleProperties":[{"color":"yellow"}],"state":null,"trustLevel":"COMPLETE","moduleSetTag":null,"alternateId":null,"dataProducerIdentifier":null},{"cmHandle":"ch-2","publicCmHandleProperties":[{"color":"green"}],"state":null,"trustLevel":"NONE","moduleSetTag":null,"alternateId":null,"dataProducerIdentifier":null}]'
     }
 
     def 'Query for cm handles matching query parameters'() {

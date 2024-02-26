@@ -1871,6 +1871,8 @@ components:
     RestOutputCmHandle:
       example:
         cmHandle: my-cm-handle1
+        alternateId: my-alternate-id
+        dataProducerIdentifier: my-data-producer-identifier
         publicCmHandleProperties:
         - key: Book Type
         - key: Book Type
@@ -1889,6 +1891,7 @@ components:
             details: locked due to failure in module sync
           lastUpdateTime: 2022-12-31T20:30:40.000+0000
         trustLevel: COMPLETE
+        moduleSetTag: my-module-set-tag
       properties:
         cmHandle:
           example: my-cm-handle1
@@ -1905,6 +1908,15 @@ components:
         trustLevel:
           description: Current trust level of the relevant CM handle ID.
           example: COMPLETE
+          type: string
+        moduleSetTag:
+          example: my-module-set-tag
+          type: string
+        alternateId:
+          example: my-alternate-id
+          type: string
+        dataProducerIdentifier:
+          example: my-data-producer-identifier
           type: string
       title: CM handle Details
       type: object

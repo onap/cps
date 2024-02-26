@@ -222,6 +222,7 @@ components:
         updatedCmHandles:
         - cmHandle: my-cm-handle
           alternateId: my-alternate-id
+          dataProducerIdentifier: my-data-producer-identifier
           publicCmHandleProperties:
             key: my-property
           cmHandleProperties:
@@ -230,6 +231,7 @@ components:
           trustLevel: COMPLETE
         - cmHandle: my-cm-handle
           alternateId: my-alternate-id
+          dataProducerIdentifier: my-data-producer-identifier
           publicCmHandleProperties:
             key: my-property
           cmHandleProperties:
@@ -239,6 +241,7 @@ components:
         createdCmHandles:
         - cmHandle: my-cm-handle
           alternateId: my-alternate-id
+          dataProducerIdentifier: my-data-producer-identifier
           publicCmHandleProperties:
             key: my-property
           cmHandleProperties:
@@ -247,6 +250,7 @@ components:
           trustLevel: COMPLETE
         - cmHandle: my-cm-handle
           alternateId: my-alternate-id
+          dataProducerIdentifier: my-data-producer-identifier
           publicCmHandleProperties:
             key: my-property
           cmHandleProperties:
@@ -302,6 +306,7 @@ components:
       example:
         cmHandle: my-cm-handle
         alternateId: my-alternate-id
+        dataProducerIdentifier: my-data-producer-identifier
         publicCmHandleProperties:
           key: my-property
         cmHandleProperties:
@@ -333,6 +338,9 @@ components:
           type: string
         alternateId:
           example: my-alternate-id
+          type: string
+        dataProducerIdentifier:
+          example: my-data-producer-identifier
           type: string
       required:
       - cmHandle
