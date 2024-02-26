@@ -255,6 +255,15 @@ components:
           $ref: '#/components/schemas/CmHandleCompositeState'
         trustLevel:
           $ref: '#/components/schemas/CmHandleTrustLevel'
+        moduleSetTag:
+          type: string
+          example: my-module-set-tag
+        alternateId:
+          type: string
+          example: my-alternate-id
+        dataProducerIdentifier:
+          type: string
+          example: my-data-producer-identifier
     CmHandlePublicProperties:
       type: object
       items:
