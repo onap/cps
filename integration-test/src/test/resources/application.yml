@@ -195,7 +195,6 @@ ncmp:
       parallelism-level: 1
 
   model-loader:
-    subscription: true
     maximum-attempt-count: 20
 
   servlet:

@@ -200,7 +200,6 @@ ncmp:
             parallelism-level: 10
 
     model-loader:
-        subscription: true
         maximum-attempt-count: 20
 
 # Custom Hazelcast Config.
