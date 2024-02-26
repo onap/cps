@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "790b600e_d9d7ade9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/DmiCmNotificationSubscriptionCacheHandler.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-26T13:19:53Z",
+      "side": 1,
+      "message": "do you need this to be injected by Spring ??  I dont think so.\nand there is no bean already defined for this as far as I see.\n\nbetter to pass the reference from the method itself from where its called.",
+      "range": {
+        "startLine": 45,
+        "startChar": 4,
+        "endLine": 45,
+        "endChar": 111
+      },
+      "revId": "42e269798700780e47643afc58dad77465550e17",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
