@@ -58,6 +58,10 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
                                     new DataNodeBuilder().withXpath("/dmi-registry/cm-handles[@id='${cmHandleId}']/public-properties[@name='publicProp4']").withLeaves(['name': 'publicProp4', 'value': 'publicValue4']).build()]
     def static cmHandleDataNodeAsCollection = [new DataNode(xpath: cmHandleXpath, childDataNodes: propertyDataNodes, leaves: ['id': cmHandleId])]
 
+    def setup() {
+        mockAlternateIdChecker.getIdsOfCmHandlesForUpdateRejected(_) >> []
+    }
+
     def 'Update CM Handle Public Properties: #scenario'() {
         given: 'the CPS service return a CM handle'
             mockInventoryPersistence.getCmHandleDataNodeByCmHandleId(cmHandleId) >> cmHandleDataNodeAsCollection
@@ -178,41 +182,6 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
             }
         then: 'the replace list method is called twice'
             2 * mockInventoryPersistence.replaceListContent(cmHandleXpath,_)
-    }
-
-    def 'Update CM Handle Alternate ID with #scenario'() {
-        given: 'an existing cm handle'
-            DataNode existingCmHandleDataNode = new DataNode(xpath: cmHandleXpath, leaves: ['id': cmHandleId])
-        and: 'an update request with an alternate id'
-            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, alternateId: 'alt-1')
-        when: 'update alternate id method is called with the update request'
-            objectUnderTest.updateAlternateId(existingCmHandleDataNode, ncmpServiceCmHandle)
-        then: 'the update node leaves method is invoked as many times as expected'
-            callsToDataService * mockCpsDataService.updateNodeLeaves('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry', _, _) >>
-                    { args ->
-                        assert args[3].contains('alt-1')
-                    }
-            mockAlternateIdChecker.canApplyAlternateId(cmHandleId, '','alt-1') >> isNewMapping
-        where: 'following updates are attempted'
-            scenario                | isNewMapping || callsToDataService
-            'new alternate id   '   | true         || 1
-            'existing alternate id' | false        || 0
-    }
-
-    def 'Alternate ID removed from cache when persisting fails.'() {
-        given: 'an existing data node and an update request with an alternate id'
-            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, alternateId: 'alt-1')
-            DataNode existingCmHandleDataNode = new DataNode(xpath: cmHandleXpath, leaves: ['id': cmHandleId, 'alternate-id': null])
-        and: 'an applicable alternate id for the cm handle'
-            mockAlternateIdChecker.canApplyAlternateId(cmHandleId, '','alt-1') >> true
-        and: 'but an exception occurs while saving'
-            def originalException = new NullPointerException('some exception')
-            mockCpsDataService.updateNodeLeaves(*_) >> { throw originalException }
-        when: 'updating of alternate id called'
-            objectUnderTest.updateAlternateId(existingCmHandleDataNode, ncmpServiceCmHandle)
-        then: 'the original exception is thrown up'
-            def thrownException = thrown(NullPointerException)
-            assert thrownException == originalException
     }
 
     def convertToProperties(expectedPropertiesAfterUpdateAsMap) {
