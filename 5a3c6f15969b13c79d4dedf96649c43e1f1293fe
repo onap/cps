@@ -33,6 +33,23 @@
       "message": "The URL here from the tocx.ini was returning a 404:\n-chttps://raw.githubusercontent.com/openstack/requirements/stable/yoga/upper-constraints.txt",
       "revId": "5a3c6f15969b13c79d4dedf96649c43e1f1293fe",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6bdeece_65f58a1d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-27T12:00:18Z",
+      "side": 1,
+      "message": "recheck",
+      "revId": "5a3c6f15969b13c79d4dedf96649c43e1f1293fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
