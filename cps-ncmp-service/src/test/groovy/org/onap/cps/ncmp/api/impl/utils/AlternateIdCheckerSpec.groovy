@@ -89,6 +89,25 @@ class AlternateIdCheckerSpec extends Specification {
             'duplicate alternate id in batch' | 'fdn1' | 'fdn1' | ['dont matter'] || false      | true
     }
 
+    def 'Check a batch of existing cmhandles with #scenario.'() {
+        given: 'a batch of 1 existing cm handle alternate id #proposeAlt'
+            def batch = [new NcmpServiceCmHandle(cmHandleId: 'ch-1', alternateId: proposeAlt)]
+        and: 'the database already contains cm handle(s) with these alternate ids: #altAlreadyInDb'
+            mockInventoryPersistenceService.getCmHandleDataNodeByAlternateId(_) >>
+                    {  args -> altAlreadyInDb.contains(args[0]) ? new DataNode() : throwDataNodeNotFoundException() }
+        and: 'the database already contain alternate id'
+            mockInventoryPersistenceService.getYangModelCmHandle(_) >> new YangModelCmHandle(alternateId: altAlreadyInDb[0])
+        when: 'the batch of new cm handles is checked'
+            def result = objectUnderTest.getRejectedCmHandleIdsForUpdate(batch)
+        then: 'the result only contains the ids of the rejected cm handles to update'
+            assert result.contains('ch-1') == rejectCh1
+        where: 'the following parameters are used'
+            scenario                      | proposeAlt | altAlreadyInDb || rejectCh1
+            'no alternate id'             | 'fdn1'     | ['']           || false
+            'used the same alternate id'  | 'fdn1'     | ['fdn1']       || false
+            'used different alternate id' | 'fdn2'     | ['fdn1']       || true
+    }
+
     def throwDataNodeNotFoundException() {
         // cannot 'return' an exception in conditional stub behavior, so hence a method call that will always throw this exception
         throw dataNodeFoundException
