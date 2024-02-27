@@ -131,6 +131,32 @@ public class AlternateIdChecker {
         return rejectedCmHandleIds;
     }
 
+    /**
+     * Check all alternate ids of a batch of EXISTING cm handles.
+     * This method can only be used for updating existing ones
+     *
+     * @param newNcmpServiceCmHandles the proposed new cm handles
+     * @return collection of cm handles ids which are rejected to update
+     */
+    public Collection<String> getIdsOfCmHandlesForUpdateRejected(
+            final Collection<NcmpServiceCmHandle> newNcmpServiceCmHandles) {
+        final Collection<String> rejectedCmHandleIds = new ArrayList<>();
+        for (final NcmpServiceCmHandle ncmpServiceCmHandle : newNcmpServiceCmHandles) {
+            final String cmHandleId = ncmpServiceCmHandle.getCmHandleId();
+            final String proposedAlternateId = ncmpServiceCmHandle.getAlternateId();
+            final boolean isAcceptable;
+            if (StringUtils.isEmpty(proposedAlternateId)) {
+                isAcceptable = true;
+            } else {
+                isAcceptable = canApplyAlternateId(cmHandleId, proposedAlternateId);
+            }
+            if (!isAcceptable) {
+                rejectedCmHandleIds.add(cmHandleId);
+            }
+        }
+        return rejectedCmHandleIds;
+    }
+
     private boolean alternateIdAlreadyInDb(final String alternateId) {
         try {
             inventoryPersistence.getCmHandleDataNodeByAlternateId(alternateId);
