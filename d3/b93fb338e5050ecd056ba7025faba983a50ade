@@ -1,0 +1,8 @@
+Verified+1: ONAP Required GHA <releng+onap.required.gha@linuxfoundation.org>
+Verified+1: ONAP Jobbuilder <onap-jobbuilder@jenkins.onap.org>
+Code-Review+2: Lee Anjella Macabuhay <lee.anjella.macabuhay@est.tech>
+Submitted-by: Lee Anjella Macabuhay <lee.anjella.macabuhay@est.tech>
+Submitted-at: Tue, 27 Feb 2024 13:59:16 +0000
+Reviewed-on: https://gerrit.onap.org/r/c/cps/+/137428
+Project: cps
+Branch: refs/heads/master
