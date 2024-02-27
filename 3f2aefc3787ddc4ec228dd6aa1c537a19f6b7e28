@@ -33,6 +33,115 @@
       "message": "recheck",
       "revId": "3f2aefc3787ddc4ec228dd6aa1c537a19f6b7e28",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "954b5205_563620f4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-27T10:53:23Z",
+      "side": 1,
+      "message": "I\u0027ve given some non-blocking reviews...",
+      "revId": "3f2aefc3787ddc4ec228dd6aa1c537a19f6b7e28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f71d8a68_e8e8d436",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-27T10:53:23Z",
+      "side": 1,
+      "message": "presume this is a constant, then static final and moved to top of the class.",
+      "range": {
+        "startLine": 82,
+        "startChar": 4,
+        "endLine": 82,
+        "endChar": 101
+      },
+      "revId": "3f2aefc3787ddc4ec228dd6aa1c537a19f6b7e28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52d987df_d08d1c48",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-27T10:53:23Z",
+      "side": 1,
+      "message": "NB: Shall we use java variable names in java doc?",
+      "range": {
+        "startLine": 88,
+        "startChar": 64,
+        "endLine": 88,
+        "endChar": 90
+      },
+      "revId": "3f2aefc3787ddc4ec228dd6aa1c537a19f6b7e28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0249d454_380f2059",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-27T10:53:23Z",
+      "side": 1,
+      "message": "NB: same as above",
+      "range": {
+        "startLine": 91,
+        "startChar": 33,
+        "endLine": 91,
+        "endChar": 44
+      },
+      "revId": "3f2aefc3787ddc4ec228dd6aa1c537a19f6b7e28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f18cb43e_940c9a7b",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-27T10:53:23Z",
+      "side": 1,
+      "message": "NB: Same as above",
+      "range": {
+        "startLine": 136,
+        "startChar": 56,
+        "endLine": 136,
+        "endChar": 82
+      },
+      "revId": "3f2aefc3787ddc4ec228dd6aa1c537a19f6b7e28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
