@@ -77,6 +77,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "bee17f6f_f202beac",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-02-27T13:59:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "918f51e4_4cb755c8",
+      "range": {
+        "startLine": 75,
+        "startChar": 14,
+        "endLine": 75,
+        "endChar": 37
+      },
+      "revId": "60bbf9813a9118edd7a0280bdcf35016a0164152",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "c8ed8c0e_96a17a70",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/AlternateIdChecker.java",
         "patchSetId": 2
