@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "749e1924_115a77db",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-27T17:47:22Z",
+      "side": 1,
+      "message": "NB: better to have a debug level log for the case if 20K cm handle being updated. 20k info log being written? what do you think?",
+      "range": {
+        "startLine": 138,
+        "startChar": 12,
+        "endLine": 138,
+        "endChar": 16
+      },
+      "revId": "25d75e468864df8ba85b5af8c13ac974ec192868",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b23af657_386594c8",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/AlternateIdCheckerSpec.groovy",
         "patchSetId": 4
