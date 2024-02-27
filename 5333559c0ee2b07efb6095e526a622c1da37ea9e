@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbc2c164_688822b0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandlerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-27T17:44:23Z",
+      "side": 0,
+      "message": "To test the delegation to mockCpsDataService.updateNodeLeaves you can revisit this test to fix, or could have another test instead.",
+      "range": {
+        "startLine": 189,
+        "startChar": 12,
+        "endLine": 189,
+        "endChar": 92
+      },
+      "revId": "5333559c0ee2b07efb6095e526a622c1da37ea9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

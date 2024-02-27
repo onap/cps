@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "505e8189_83c4d38f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-27T17:44:23Z",
+      "side": 1,
+      "message": "A few review on testware.\nYou can try to rebase this on your local as well.",
+      "revId": "25d75e468864df8ba85b5af8c13ac974ec192868",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b23af657_386594c8",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/AlternateIdCheckerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-27T17:44:23Z",
+      "side": 1,
+      "message": "alternate id",
+      "range": {
+        "startLine": 98,
+        "startChar": 43,
+        "endLine": 98,
+        "endChar": 52
+      },
+      "revId": "25d75e468864df8ba85b5af8c13ac974ec192868",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f738ee21_1bbec707",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/AlternateIdCheckerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-27T17:44:23Z",
+      "side": 1,
+      "message": "parameters\n\n(since not only the proposed but also the alt in db)",
+      "range": {
+        "startLine": 104,
+        "startChar": 30,
+        "endLine": 104,
+        "endChar": 52
+      },
+      "revId": "25d75e468864df8ba85b5af8c13ac974ec192868",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
