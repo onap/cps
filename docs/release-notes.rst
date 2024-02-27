@@ -43,6 +43,7 @@ Bug Fixes
 
 Features
 --------
+    - `CPS-2101 <https://jira.onap.org/browse/CPS-2101>`_ Uplift Spring Boot version to 3.2.2
 
 
 Version: 3.4.4
