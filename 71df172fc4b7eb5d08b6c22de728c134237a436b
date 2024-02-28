@@ -22,6 +22,30 @@
       },
       "revId": "71df172fc4b7eb5d08b6c22de728c134237a436b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4dadc32_8ad89246",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/config/NcmpRequestLoggingConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-28T10:42:55Z",
+      "side": 1,
+      "message": "Yes, the intention is to log the authorization token, which will contain username. This is one of the proposed solutions that was requested. We won\u0027t merge yet until we have confirmation",
+      "parentUuid": "7127eb88_ea060b0a",
+      "range": {
+        "startLine": 37,
+        "startChar": 7,
+        "endLine": 40,
+        "endChar": 62
+      },
+      "revId": "71df172fc4b7eb5d08b6c22de728c134237a436b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
