@@ -164,7 +164,10 @@ logging:
     format: json
     level:
         org:
-            springframework: INFO
+            springframework:
+                web:
+                    filter:
+                        CommonsRequestLoggingFilter: DEBUG
             onap:
                 cps: INFO
 ncmp:
