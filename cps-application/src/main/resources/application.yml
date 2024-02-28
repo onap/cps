@@ -64,7 +64,7 @@ spring:
 
     liquibase:
         change-log: classpath:changelog/changelog-master.yaml
-        label-filter: ${LIQUIBASE_LABELS}
+        labels: ${LIQUIBASE_LABELS}
 
     servlet:
         multipart:

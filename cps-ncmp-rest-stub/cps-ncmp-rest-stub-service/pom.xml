@@ -46,6 +46,14 @@
             <groupId>org.onap.cps</groupId>
             <artifactId>cps-ncmp-rest</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-server</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+        </dependency>
         <!-- T E S T - D E P E N D E N C I E S -->
         <dependency>
             <groupId>org.spockframework</groupId>

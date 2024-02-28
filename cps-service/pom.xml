@@ -142,6 +142,11 @@
     </dependency>
     <!-- T E S T   D E P E N D E N C I E S -->
     <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
       <groupId>org.codehaus.groovy</groupId>
       <artifactId>groovy</artifactId>
       <scope>test</scope>
