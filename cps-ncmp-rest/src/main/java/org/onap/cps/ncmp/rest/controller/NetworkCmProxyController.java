@@ -63,7 +63,6 @@ import org.onap.cps.ncmp.rest.model.RestOutputCmHandlePublicProperties;
 import org.onap.cps.ncmp.rest.util.DeprecationHelper;
 import org.onap.cps.spi.model.ModuleDefinition;
 import org.onap.cps.utils.JsonObjectMapper;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
@@ -85,7 +84,6 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     private final NcmpCachedResourceRequestHandler ncmpCachedResourceRequestHandler;
     private final NcmpPassthroughResourceRequestHandler ncmpPassthroughResourceRequestHandler;
     private final DataOperationRequestMapper dataOperationRequestMapper;
-    @Qualifier(TrustLevelCacheConfig.TRUST_LEVEL_PER_CM_HANDLE_BEAN_NAME)
     private final Map<String, TrustLevel> trustLevelPerCmHandle;
 
     /**

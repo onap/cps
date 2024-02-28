@@ -69,7 +69,6 @@ import org.opendaylight.yangtools.yang.model.repo.api.YangTextSchemaSource;
 import org.opendaylight.yangtools.yang.parser.api.YangSyntaxErrorException;
 import org.opendaylight.yangtools.yang.parser.rfc7950.repo.YangModelDependencyInfo;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.retry.RetryContext;
 import org.springframework.retry.annotation.Backoff;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.retry.support.RetrySynchronizationManager;
@@ -278,8 +277,8 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
                                 dataIntegrityViolationException, newYangResourceEntities);
                 convertedException.ifPresent(
                         e -> {
-                            final RetryContext context = RetrySynchronizationManager.getContext();
-                            int retryCount = context == null ? 0 : context.getRetryCount();
+                            int retryCount = RetrySynchronizationManager.getContext() == null ? 0
+                                                     : RetrySynchronizationManager.getContext().getRetryCount();
                             log.warn("Cannot persist duplicated yang resource. System will attempt this method "
                                     + "up to 5 times. Current retry count : {}", ++retryCount, e);
                         });
