@@ -161,10 +161,13 @@ management:
                 enabled: true
 
 logging:
-    format: json
+    format: text
     level:
         org:
-            springframework: INFO
+            springframework:
+                web:
+                    filter:
+                        CommonsRequestLoggingFilter: DEBUG
             onap:
                 cps: INFO
 ncmp:
