@@ -66,7 +66,8 @@ public interface NetworkCmProxyDataService {
                                       String resourceIdentifier,
                                       String optionsParamInQuery,
                                       String topicParamInQuery,
-                                      String requestId);
+                                      String requestId,
+                                      String authorization);
 
     /**
      * Get resource data for operational.
@@ -107,7 +108,8 @@ public interface NetworkCmProxyDataService {
                                                         String resourceIdentifier,
                                                         OperationType operationType,
                                                         String requestBody,
-                                                        String contentType);
+                                                        String contentType,
+                                                        String authorization);
 
     /**
      * Retrieve module references for the given cm handle.

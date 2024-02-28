@@ -89,7 +89,8 @@ public class DmiDataOperations extends DmiOperations {
                                                          final String resourceId,
                                                          final String optionsParamInQuery,
                                                          final String topicParamInQuery,
-                                                         final String requestId) {
+                                                         final String requestId,
+                                                         final String authorization) {
         final YangModelCmHandle yangModelCmHandle = getYangModelCmHandle(cmHandleId);
         final CmHandleState cmHandleState = yangModelCmHandle.getCompositeState().getCmHandleState();
         validateIfCmHandleStateReady(yangModelCmHandle, cmHandleState);
@@ -97,7 +98,7 @@ public class DmiDataOperations extends DmiOperations {
                 yangModelCmHandle);
         final String dmiResourceDataUrl = getDmiRequestUrl(dataStoreName, cmHandleId, resourceId, optionsParamInQuery,
                 topicParamInQuery, yangModelCmHandle.resolveDmiServiceName(RequiredDmiService.DATA));
-        return dmiRestClient.postOperationWithJsonData(dmiResourceDataUrl, jsonRequestBody, READ);
+        return dmiRestClient.postOperationWithJsonData(dmiResourceDataUrl, jsonRequestBody, READ, authorization);
     }
 
     /**
@@ -120,7 +121,7 @@ public class DmiDataOperations extends DmiOperations {
                 yangModelCmHandle.resolveDmiServiceName(RequiredDmiService.DATA));
         final CmHandleState cmHandleState = yangModelCmHandle.getCompositeState().getCmHandleState();
         validateIfCmHandleStateReady(yangModelCmHandle, cmHandleState);
-        return dmiRestClient.postOperationWithJsonData(dmiResourceDataUrl, jsonRequestBody, READ);
+        return dmiRestClient.postOperationWithJsonData(dmiResourceDataUrl, jsonRequestBody, READ, null);
     }
 
     /**
@@ -163,7 +164,8 @@ public class DmiDataOperations extends DmiOperations {
                                                                              final String resourceId,
                                                                              final OperationType operationType,
                                                                              final String requestData,
-                                                                             final String dataType) {
+                                                                             final String dataType,
+                                                                             final String authorization) {
         final YangModelCmHandle yangModelCmHandle = getYangModelCmHandle(cmHandleId);
         final String jsonRequestBody = getDmiRequestBody(operationType, null, requestData, dataType,
                 yangModelCmHandle);
@@ -172,7 +174,7 @@ public class DmiDataOperations extends DmiOperations {
                 yangModelCmHandle.resolveDmiServiceName(RequiredDmiService.DATA));
         final CmHandleState cmHandleState = yangModelCmHandle.getCompositeState().getCmHandleState();
         validateIfCmHandleStateReady(yangModelCmHandle, cmHandleState);
-        return dmiRestClient.postOperationWithJsonData(dmiUrl, jsonRequestBody, operationType);
+        return dmiRestClient.postOperationWithJsonData(dmiUrl, jsonRequestBody, operationType, authorization);
     }
 
     private YangModelCmHandle getYangModelCmHandle(final String cmHandleId) {
@@ -250,7 +252,7 @@ public class DmiDataOperations extends DmiOperations {
         final String dmiDataOperationRequestAsJsonString =
                 jsonObjectMapper.asJsonString(dmiDataOperationRequest);
         TaskExecutor.executeTask(() -> dmiRestClient.postOperationWithJsonData(dataOperationResourceUrl,
-                                dmiDataOperationRequestAsJsonString, READ),
+                                dmiDataOperationRequestAsJsonString, READ, null),
                         DEFAULT_ASYNC_TASK_EXECUTOR_TIMEOUT_IN_MILLISECONDS)
                 .whenCompleteAsync((response, throwable) -> handleTaskCompletionException(throwable,
                         dataOperationResourceUrl, dmiDataOperationRequestBodies));

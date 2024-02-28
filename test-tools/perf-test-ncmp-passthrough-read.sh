@@ -67,7 +67,7 @@ function measureAverageResponseTimeInMillis() {
     --output /dev/null --write-out '%{time_total}\n' \
     --parallel --parallel-max $PARALLEL_REQUESTS --parallel-immediate \
     --user "$CPS_USERNAME:$CPS_PASSWORD" --basic \
-    --request POST "http://$CPS_HOST:$CPS_PORT/ncmp/v1/ch/ch-[1-$totalRequests]/data/ds/ncmp-datastore%3Apassthrough-operational?resourceIdentifier=x&include-descendants=true" |
+    --request GET "http://$CPS_HOST:$CPS_PORT/ncmp/v1/ch/ch-[1-$totalRequests]/data/ds/ncmp-datastore%3Apassthrough-operational?resourceIdentifier=x&include-descendants=true" |
     awk '{ sum += $1; n++ } END { if (n > 0) print (sum / n) * 1000; }'
 }
 

@@ -135,6 +135,7 @@ class NetworkCmProxyControllerSpec extends Specification {
     @Shared
     def NO_TOPIC = null
     def NO_REQUEST_ID = null
+    def NO_AUTH_HEADER = null
     def TIMOUT_FOR_TEST = 1234
 
     def logger = Spy(ListAppender<ILoggingEvent>)
@@ -162,7 +163,7 @@ class NetworkCmProxyControllerSpec extends Specification {
             ).andReturn().response
         then: 'the NCMP data service is called with getResourceDataOperationalForCmHandle'
             1 * mockNetworkCmProxyDataService.getResourceDataForCmHandle(PASSTHROUGH_OPERATIONAL.datastoreName, 'testCmHandle',
-                    'parent/child','(a=1,b=2)', NO_TOPIC, NO_REQUEST_ID)
+                    'parent/child','(a=1,b=2)', NO_TOPIC, NO_REQUEST_ID, NO_AUTH_HEADER)
         and: 'response status is Ok'
             response.status == HttpStatus.OK.value()
     }
@@ -279,7 +280,7 @@ class NetworkCmProxyControllerSpec extends Specification {
                     "?resourceIdentifier=" + resourceIdentifier + "&options=(a=1,b=2)"
         and: 'ncmp service returns json object'
             mockNetworkCmProxyDataService.getResourceDataForCmHandle(PASSTHROUGH_RUNNING.datastoreName, 'testCmHandle',
-                    resourceIdentifier,'(a=1,b=2)', NO_TOPIC, NO_REQUEST_ID) >> '{valid-json}'
+                    resourceIdentifier,'(a=1,b=2)', NO_TOPIC, NO_REQUEST_ID, NO_AUTH_HEADER) >> '{valid-json}'
         when: 'get data resource request is performed'
             def response = mvc.perform(
                     get(getUrl)
@@ -310,7 +311,7 @@ class NetworkCmProxyControllerSpec extends Specification {
             ).andReturn().response
         then: 'ncmp service method to update resource is called'
             1 * mockNetworkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle('testCmHandle',
-                    'parent/child', UPDATE, requestBody, 'application/json;charset=UTF-8')
+                    'parent/child', UPDATE, requestBody, 'application/json;charset=UTF-8', NO_AUTH_HEADER)
         and: 'the response status is OK'
             response.status == HttpStatus.OK.value()
     }
@@ -326,7 +327,7 @@ class NetworkCmProxyControllerSpec extends Specification {
             ).andReturn().response
         then: 'ncmp service method to create resource called'
             1 * mockNetworkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle('testCmHandle',
-                    'parent/child', CREATE, requestBody, 'application/json;charset=UTF-8')
+                    'parent/child', CREATE, requestBody, 'application/json;charset=UTF-8', NO_AUTH_HEADER)
         and: 'resource is created'
             response.status == HttpStatus.CREATED.value()
     }
@@ -492,7 +493,7 @@ class NetworkCmProxyControllerSpec extends Specification {
             ).andReturn().response
         then: 'ncmp service method to update resource is called'
             1 * mockNetworkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle('testCmHandle',
-                    'parent/child', PATCH, requestBody, 'application/json;charset=UTF-8')
+                    'parent/child', PATCH, requestBody, 'application/json;charset=UTF-8', NO_AUTH_HEADER)
         and: 'the response status is OK'
             response.status == HttpStatus.OK.value()
     }
@@ -507,7 +508,7 @@ class NetworkCmProxyControllerSpec extends Specification {
                             .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)).andReturn().response
         then: 'the ncmp service method to delete resource is called (with null as body)'
             1 * mockNetworkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle('testCmHandle',
-                    'parent/child', DELETE, null, 'application/json;charset=UTF-8')
+                    'parent/child', DELETE, null, 'application/json;charset=UTF-8', NO_AUTH_HEADER)
         and: 'the response is No Content'
             response.status == HttpStatus.NO_CONTENT.value()
     }
