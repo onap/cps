@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d63389b7_adf4b645",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandlerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-28T15:24:41Z",
+      "side": 1,
+      "message": "NB: cm handle properties is updated\n\nno need to say correct parameters since we are the only one who trigger with our input",
+      "range": {
+        "startLine": 196,
+        "startChar": 15,
+        "endLine": 196,
+        "endChar": 73
+      },
+      "revId": "0e5fb7a33f699315de539bf700b59f81b23358c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f8df8bc_02aa0924",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandlerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-28T15:24:41Z",
+      "side": 1,
+      "message": "NB: the update is delegated to cps data service with correct parameters",
+      "range": {
+        "startLine": 198,
+        "startChar": 15,
+        "endLine": 198,
+        "endChar": 55
+      },
+      "revId": "0e5fb7a33f699315de539bf700b59f81b23358c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ba97390_54623e81",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandlerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-02-28T15:24:41Z",
+      "side": 1,
+      "message": "NB: since only one response, can be used like below as well:\nassert response[0].status \u003d\u003d Status.SUCCESS\nassert response[0].cmHandle \u003d\u003d cmHandleId",
+      "range": {
+        "startLine": 206,
+        "startChar": 12,
+        "endLine": 206,
+        "endChar": 35
+      },
+      "revId": "0e5fb7a33f699315de539bf700b59f81b23358c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
