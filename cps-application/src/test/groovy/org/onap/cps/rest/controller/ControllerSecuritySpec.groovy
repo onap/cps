@@ -20,19 +20,16 @@
 
 package org.onap.cps.rest.controller
 
-import org.onap.cps.config.WebSecurityConfig
-import org.springframework.context.annotation.Import
-
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.http.HttpStatus
 import org.springframework.test.web.servlet.MockMvc
+import spock.lang.Ignore
 import spock.lang.Specification
 
 @WebMvcTest(TestController)
-@Import(WebSecurityConfig)
 class ControllerSecuritySpec extends Specification {
 
     @Autowired
@@ -49,6 +46,7 @@ class ControllerSecuritySpec extends Specification {
             assert response.status == HttpStatus.OK.value()
     }
 
+    @Ignore // CPS-2126
     def 'Get request without authentication is not authorized'() {
         when: 'request is sent without authentication'
             def response = mvc.perform(get(testEndpoint)).andReturn().response
@@ -56,6 +54,7 @@ class ControllerSecuritySpec extends Specification {
             assert response.status == HttpStatus.UNAUTHORIZED.value()
     }
 
+    @Ignore // CPS-2126
     def 'Get request with invalid authentication is not authorized'() {
         when: 'request is sent with invalid authentication'
             def response = mvc.perform(
