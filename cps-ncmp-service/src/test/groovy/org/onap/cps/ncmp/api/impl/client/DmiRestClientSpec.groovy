@@ -48,6 +48,10 @@ import static org.onap.cps.ncmp.api.impl.operations.OperationType.CREATE
 @ContextConfiguration(classes = [DmiProperties, DmiRestClient, ObjectMapper])
 class DmiRestClientSpec extends Specification {
 
+    static final NO_AUTH_HEADER = null
+    static final BASIC_AUTH_HEADER = 'Basic c29tZS11c2VyOnNvbWUtcGFzc3dvcmQ='
+    static final BEARER_AUTH_HEADER = 'Bearer my-bearer-token'
+
     @SpringBean
     RestTemplate mockRestTemplate = Mock(RestTemplate)
 
@@ -66,7 +70,7 @@ class DmiRestClientSpec extends Specification {
         given: 'the rest template returns a valid response entity for the expected parameters'
             mockRestTemplate.postForEntity('my url', _ as HttpEntity, Object.class) >> responseFromRestTemplate
         when: 'POST operation is invoked'
-            def result = objectUnderTest.postOperationWithJsonData('my url', 'some json', READ)
+            def result = objectUnderTest.postOperationWithJsonData('my url', 'some json', READ, null)
         then: 'the output of the method is equal to the output from the test template'
             result == responseFromRestTemplate
     }
@@ -77,7 +81,7 @@ class DmiRestClientSpec extends Specification {
             def httpServerErrorException = new HttpServerErrorException(HttpStatus.FORBIDDEN, 'status text', serverResponse, null)
             mockRestTemplate.postForEntity(*_) >> { throw httpServerErrorException }
         when: 'POST operation is invoked'
-            def result = objectUnderTest.postOperationWithJsonData('some url', 'some json', operation)
+            def result = objectUnderTest.postOperationWithJsonData('some url', 'some json', operation, null)
         then: 'a Http Client Exception is thrown'
             def thrown = thrown(HttpClientRequestException)
         and: 'the exception has the relevant details from the error response'
@@ -113,15 +117,20 @@ class DmiRestClientSpec extends Specification {
             'exception' | {throw new Exception()}
     }
 
-    def 'Basic auth header #scenario'() {
+    def 'DMI auth header #scenario'() {
         when: 'Specific dmi properties are provided'
             dmiProperties.dmiBasicAuthEnabled = authEnabled
         then: 'http headers to conditionally have Authorization header'
-            assert (objectUnderTest.configureHttpHeaders(new HttpHeaders()).get('Authorization') != null) == isPresentInHttpHeader
+            def authHeaderValues = objectUnderTest.configureHttpHeaders(new HttpHeaders(), ncmpAuthHeader).getOrEmpty('Authorization')
+            def outputAuthHeader = (authHeaderValues == null ? null : authHeaderValues[0])
+            assert outputAuthHeader == expectedAuthHeader
         where: 'the following configurations are used'
-            scenario        | authEnabled || isPresentInHttpHeader
-            'auth enabled'  | true        || true
-            'auth disabled' | false       || false
+            scenario                                          | authEnabled | ncmpAuthHeader     || expectedAuthHeader
+            'DMI basic auth enabled, no NCMP bearer token'    | true        | NO_AUTH_HEADER     || BASIC_AUTH_HEADER
+            'DMI basic auth enabled, with NCMP bearer token'  | true        | BEARER_AUTH_HEADER || BASIC_AUTH_HEADER
+            'DMI basic auth disabled, no NCMP bearer token'   | false       | NO_AUTH_HEADER     || NO_AUTH_HEADER
+            'DMI basic auth disabled, with NCMP bearer token' | false       | BEARER_AUTH_HEADER || BEARER_AUTH_HEADER
+            'DMI basic auth disabled, with NCMP basic auth'   | false       | BASIC_AUTH_HEADER  || NO_AUTH_HEADER
     }
 
 }

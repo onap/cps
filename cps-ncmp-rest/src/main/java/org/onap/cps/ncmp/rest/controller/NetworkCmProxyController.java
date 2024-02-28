@@ -94,6 +94,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      * @param optionsParamInQuery  options query parameter
      * @param topicParamInQuery    topic query parameter
      * @param includeDescendants   whether to include descendants or not
+     * @param authorization        contents of Authorization header, or null if not present
      * @return {@code ResponseEntity} response from dmi plugin
      */
     @Override
@@ -103,16 +104,17 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                              final String resourceIdentifier,
                                                              final String optionsParamInQuery,
                                                              final String topicParamInQuery,
-                                                             final Boolean includeDescendants) {
+                                                             final Boolean includeDescendants,
+                                                             final String authorization) {
         final NcmpDatastoreRequestHandler ncmpDatastoreRequestHandler = getNcmpDatastoreRequestHandler(datastoreName);
         return ncmpDatastoreRequestHandler.executeRequest(datastoreName, cmHandle, resourceIdentifier,
-                optionsParamInQuery, topicParamInQuery, includeDescendants);
+                optionsParamInQuery, topicParamInQuery, includeDescendants, authorization);
     }
 
     @Override
     public ResponseEntity<Object> executeDataOperationForCmHandles(final String topicParamInQuery,
-                                                                  final DataOperationRequest
-                                                                          dataOperationRequest) {
+                                                                   final DataOperationRequest dataOperationRequest,
+                                                                   final String authorization) {
         return ncmpPassthroughResourceRequestHandler.executeRequest(topicParamInQuery,
                 dataOperationRequestMapper.toDataOperationRequest(dataOperationRequest));
     }
@@ -148,6 +150,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      * @param resourceIdentifier resource identifier
      * @param requestBody        the request body
      * @param contentType        content type of body
+     * @param authorization      contents of Authorization header, or null if not present
      * @return {@code ResponseEntity} response from dmi plugin
      */
 
@@ -156,14 +159,15 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                                       final String cmHandle,
                                                                       final String resourceIdentifier,
                                                                       final Object requestBody,
-                                                                      final String contentType) {
+                                                                      final String contentType,
+                                                                      final String authorization) {
 
         validateDataStore(PASSTHROUGH_RUNNING, datastoreName);
 
         final Object responseObject = networkCmProxyDataService
                 .writeResourceDataPassThroughRunningForCmHandle(
                         cmHandle, resourceIdentifier, PATCH,
-                        jsonObjectMapper.asJsonString(requestBody), contentType);
+                        jsonObjectMapper.asJsonString(requestBody), contentType, authorization);
         return ResponseEntity.ok(responseObject);
     }
 
@@ -175,6 +179,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      * @param resourceIdentifier resource identifier
      * @param requestBody        the request body
      * @param contentType        content type of body
+     * @param authorization      contents of Authorization header, or null if not present
      * @return {@code ResponseEntity} response from dmi plugin
      */
     @Override
@@ -182,12 +187,12 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                                      final String cmHandle,
                                                                      final String resourceIdentifier,
                                                                      final Object requestBody,
-                                                                     final String contentType) {
-
+                                                                     final String contentType,
+                                                                     final String authorization) {
         validateDataStore(PASSTHROUGH_RUNNING, datastoreName);
 
         networkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle(cmHandle,
-                resourceIdentifier, CREATE, jsonObjectMapper.asJsonString(requestBody), contentType);
+                resourceIdentifier, CREATE, jsonObjectMapper.asJsonString(requestBody), contentType, authorization);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -199,6 +204,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      * @param resourceIdentifier resource identifier
      * @param requestBody        the request body
      * @param contentType        content type of the body
+     * @param authorization      contents of Authorization header, or null if not present
      * @return response entity
      */
 
@@ -207,11 +213,12 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                                        final String cmHandle,
                                                                        final String resourceIdentifier,
                                                                        final Object requestBody,
-                                                                       final String contentType) {
+                                                                       final String contentType,
+                                                                       final String authorization) {
         validateDataStore(PASSTHROUGH_RUNNING, datastoreName);
 
         networkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle(cmHandle,
-                resourceIdentifier, UPDATE, jsonObjectMapper.asJsonString(requestBody), contentType);
+                resourceIdentifier, UPDATE, jsonObjectMapper.asJsonString(requestBody), contentType, authorization);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -222,18 +229,20 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      * @param cmHandle           cm handle identifier
      * @param resourceIdentifier resource identifier
      * @param contentType        content type of the body
+     * @param authorization      contents of Authorization header, or null if not present
      * @return response entity no content if request is successful
      */
     @Override
     public ResponseEntity<Void> deleteResourceDataRunningForCmHandle(final String datastoreName,
                                                                      final String cmHandle,
                                                                      final String resourceIdentifier,
-                                                                     final String contentType) {
+                                                                     final String contentType,
+                                                                     final String authorization) {
 
         validateDataStore(PASSTHROUGH_RUNNING, datastoreName);
 
         networkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle(cmHandle,
-                resourceIdentifier, DELETE, NO_BODY, contentType);
+                resourceIdentifier, DELETE, NO_BODY, contentType, authorization);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 

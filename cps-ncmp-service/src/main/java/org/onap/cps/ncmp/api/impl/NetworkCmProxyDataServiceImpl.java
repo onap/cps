@@ -132,12 +132,14 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                                              final String resourceIdentifier,
                                              final String optionsParamInQuery,
                                              final String topicParamInQuery,
-                                             final String requestId) {
+                                             final String requestId,
+                                             final String authorization) {
         final ResponseEntity<?> responseEntity = dmiDataOperations.getResourceDataFromDmi(datastoreName, cmHandleId,
             resourceIdentifier,
             optionsParamInQuery,
             topicParamInQuery,
-            requestId);
+            requestId,
+            authorization);
         return responseEntity.getBody();
     }
 
@@ -163,9 +165,10 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                                                                  final String resourceIdentifier,
                                                                  final OperationType operationType,
                                                                  final String requestData,
-                                                                 final String dataType) {
+                                                                 final String dataType,
+                                                                 final String authorization) {
         return dmiDataOperations.writeResourceDataPassThroughRunningFromDmi(cmHandleId, resourceIdentifier,
-            operationType, requestData, dataType);
+            operationType, requestData, dataType, authorization);
     }
 
     @Override

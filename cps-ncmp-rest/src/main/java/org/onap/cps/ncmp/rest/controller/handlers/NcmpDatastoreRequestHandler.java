@@ -56,6 +56,7 @@ public abstract class NcmpDatastoreRequestHandler {
      * @param optionsParamInQuery the options param in query
      * @param topicParamInQuery   the topic param in query
      * @param includeDescendants  whether include descendants
+     * @param authorization       contents of Authorization header, or null if not present
      * @return the response entity
      */
     public ResponseEntity<Object> executeRequest(final String datastoreName,
@@ -63,12 +64,13 @@ public abstract class NcmpDatastoreRequestHandler {
                                                  final String resourceIdentifier,
                                                  final String optionsParamInQuery,
                                                  final String topicParamInQuery,
-                                                 final boolean includeDescendants) {
+                                                 final boolean includeDescendants,
+                                                 final String authorization) {
 
         final boolean asyncResponseRequested = topicParamInQuery != null;
         if (asyncResponseRequested && notificationFeatureEnabled) {
             return executeAsyncTaskAndGetResponseEntity(datastoreName, cmHandleId, resourceIdentifier,
-                optionsParamInQuery, topicParamInQuery, includeDescendants);
+                optionsParamInQuery, topicParamInQuery, includeDescendants, authorization);
         }
 
         if (asyncResponseRequested) {
@@ -76,7 +78,7 @@ public abstract class NcmpDatastoreRequestHandler {
                     + "will use synchronous operation.");
         }
         final Supplier<Object> taskSupplier = getTaskSupplierForGetRequest(datastoreName, cmHandleId,
-                resourceIdentifier, optionsParamInQuery, NO_TOPIC, NO_REQUEST_ID, includeDescendants);
+                resourceIdentifier, optionsParamInQuery, NO_TOPIC, NO_REQUEST_ID, includeDescendants, authorization);
         return executeTaskSync(taskSupplier);
     }
 
@@ -99,10 +101,12 @@ public abstract class NcmpDatastoreRequestHandler {
                                                                         final String resourceIdentifier,
                                                                         final String optionsParamInQuery,
                                                                         final String topicParamInQuery,
-                                                                        final boolean includeDescendants) {
+                                                                        final boolean includeDescendants,
+                                                                        final String authorization) {
         final String requestId = UUID.randomUUID().toString();
         final Supplier<Object> taskSupplier = getTaskSupplierForGetRequest(datastoreName, cmHandleId,
-                resourceIdentifier, optionsParamInQuery, topicParamInQuery, requestId, includeDescendants);
+                resourceIdentifier, optionsParamInQuery, topicParamInQuery, requestId, includeDescendants,
+                authorization);
         return executeTaskAsync(topicParamInQuery, requestId, taskSupplier);
     }
 
@@ -112,6 +116,7 @@ public abstract class NcmpDatastoreRequestHandler {
                                                   final String optionsParamInQuery,
                                                   final String topicParamInQuery,
                                                   final String requestId,
-                                                  final boolean includeDescendant);
+                                                  final boolean includeDescendant,
+                                                  final String authorization);
 
 }

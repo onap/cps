@@ -22,6 +22,7 @@
 package org.onap.cps.ncmp.api.impl.client;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import java.util.Locale;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration.DmiProperties;
@@ -51,12 +52,15 @@ public class DmiRestClient {
      * @param dmiResourceUrl          dmi resource url
      * @param requestBodyAsJsonString json data body
      * @param operationType           the type of operation being executed (for error reporting only)
+     * @param authorization           contents of Authorization header, or null if not present
      * @return response entity of type String
      */
     public ResponseEntity<Object> postOperationWithJsonData(final String dmiResourceUrl,
                                                             final String requestBodyAsJsonString,
-                                                            final OperationType operationType) {
-        final var httpEntity = new HttpEntity<>(requestBodyAsJsonString, configureHttpHeaders(new HttpHeaders()));
+                                                            final OperationType operationType,
+                                                            final String authorization) {
+        final var httpEntity = new HttpEntity<>(requestBodyAsJsonString, configureHttpHeaders(new HttpHeaders(),
+                authorization));
         try {
             return restTemplate.postForEntity(dmiResourceUrl, httpEntity, Object.class);
         } catch (final HttpStatusCodeException httpStatusCodeException) {
@@ -73,7 +77,7 @@ public class DmiRestClient {
      * @return      plugin health status ("UP" is all OK, "" (not-specified) in case of any exception)
      */
     public String getDmiHealthStatus(final String dmiPluginBaseUrl) {
-        final HttpEntity<Object> httpHeaders = new HttpEntity<>(configureHttpHeaders(new HttpHeaders()));
+        final HttpEntity<Object> httpHeaders = new HttpEntity<>(configureHttpHeaders(new HttpHeaders(), null));
         try {
             final JsonNode responseHealthStatus =
                 restTemplate.getForObject(dmiPluginBaseUrl + HEALTH_CHECK_URL_EXTENSION,
@@ -86,9 +90,11 @@ public class DmiRestClient {
         }
     }
 
-    private HttpHeaders configureHttpHeaders(final HttpHeaders httpHeaders) {
+    private HttpHeaders configureHttpHeaders(final HttpHeaders httpHeaders, final String authorization) {
         if (dmiProperties.isDmiBasicAuthEnabled()) {
             httpHeaders.setBasicAuth(dmiProperties.getAuthUsername(), dmiProperties.getAuthPassword());
+        } else if (authorization != null && authorization.toLowerCase(Locale.getDefault()).startsWith("bearer ")) {
+            httpHeaders.add(HttpHeaders.AUTHORIZATION, authorization);
         }
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         return httpHeaders;

@@ -59,6 +59,7 @@ public interface NetworkCmProxyDataService {
      * @param optionsParamInQuery options query
      * @param topicParamInQuery   topic name for (triggering) async responses
      * @param requestId           unique requestId for async request
+     * @param authorization       contents of Authorization header, or null if not present
      * @return {@code Object} resource data
      */
     Object getResourceDataForCmHandle(String datastoreName,
@@ -66,7 +67,8 @@ public interface NetworkCmProxyDataService {
                                       String resourceIdentifier,
                                       String optionsParamInQuery,
                                       String topicParamInQuery,
-                                      String requestId);
+                                      String requestId,
+                                      String authorization);
 
     /**
      * Get resource data for operational.
@@ -101,13 +103,15 @@ public interface NetworkCmProxyDataService {
      * @param operationType      required operation type
      * @param requestBody        request body to create resource
      * @param contentType        content type in body
+     * @param authorization       contents of Authorization header, or null if not present
      * @return {@code Object} return data
      */
     Object writeResourceDataPassThroughRunningForCmHandle(String cmHandleId,
                                                         String resourceIdentifier,
                                                         OperationType operationType,
                                                         String requestBody,
-                                                        String contentType);
+                                                        String contentType,
+                                                        String authorization);
 
     /**
      * Retrieve module references for the given cm handle.

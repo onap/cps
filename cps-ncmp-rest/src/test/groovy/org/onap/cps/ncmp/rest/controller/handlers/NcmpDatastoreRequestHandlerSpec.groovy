@@ -37,6 +37,8 @@ class NcmpDatastoreRequestHandlerSpec extends Specification {
 
     def objectUnderTest = new NcmpPassthroughResourceRequestHandler(spiedCpsNcmpTaskExecutor, mockNetworkCmProxyDataService)
 
+    def NO_AUTH_HEADER = null
+
     def setup() {
         objectUnderTest.timeOutInMilliSeconds = 100
     }
@@ -47,11 +49,11 @@ class NcmpDatastoreRequestHandlerSpec extends Specification {
         and: 'a flag to track the network service call'
             def networkServiceMethodCalled = false
         and: 'the (mocked) service will use the flag to indicate if it is called'
-            mockNetworkCmProxyDataService.getResourceDataForCmHandle('ds', 'ch1', 'resource1', 'options', _, _) >> {
+            mockNetworkCmProxyDataService.getResourceDataForCmHandle('ds', 'ch1', 'resource1', 'options', _, _, NO_AUTH_HEADER) >> {
                 networkServiceMethodCalled = true
             }
         when: 'get request is executed with topic = #topic'
-            objectUnderTest.executeRequest('ds', 'ch1', 'resource1', 'options', topic, false)
+            objectUnderTest.executeRequest('ds', 'ch1', 'resource1', 'options', topic, false, NO_AUTH_HEADER)
         then: 'the task is executed in an async fashion or not'
             expectedCalls * spiedCpsNcmpTaskExecutor.executeTask(*_)
         and: 'the service request is invoked'

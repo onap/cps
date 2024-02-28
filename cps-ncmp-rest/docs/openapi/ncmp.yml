@@ -32,6 +32,7 @@ resourceDataForCmHandle:
       - $ref: 'components.yaml#/components/parameters/optionsParamInQuery'
       - $ref: 'components.yaml#/components/parameters/topicParamInQuery'
       - $ref: 'components.yaml#/components/parameters/includeDescendantsOptionInQuery'
+      - $ref: 'components.yaml#/components/parameters/authorizationParamInHeader'
     responses:
       200:
         description: OK
@@ -62,6 +63,7 @@ resourceDataForCmHandle:
       - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
       - $ref: 'components.yaml#/components/parameters/resourceIdentifierInQuery'
       - $ref: 'components.yaml#/components/parameters/contentParamInHeader'
+      - $ref: 'components.yaml#/components/parameters/authorizationParamInHeader'
     requestBody:
       required: true
       content:
@@ -100,6 +102,7 @@ resourceDataForCmHandle:
       - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
       - $ref: 'components.yaml#/components/parameters/resourceIdentifierInQuery'
       - $ref: 'components.yaml#/components/parameters/contentParamInHeader'
+      - $ref: 'components.yaml#/components/parameters/authorizationParamInHeader'
     requestBody:
       required: true
       content:
@@ -138,6 +141,7 @@ resourceDataForCmHandle:
       - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
       - $ref: 'components.yaml#/components/parameters/resourceIdentifierInQuery'
       - $ref: 'components.yaml#/components/parameters/contentParamInHeader'
+      - $ref: 'components.yaml#/components/parameters/authorizationParamInHeader'
     requestBody:
       required: true
       content:
@@ -170,6 +174,7 @@ resourceDataForCmHandle:
       - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
       - $ref: 'components.yaml#/components/parameters/resourceIdentifierInQuery'
       - $ref: 'components.yaml#/components/parameters/contentParamInHeader'
+      - $ref: 'components.yaml#/components/parameters/authorizationParamInHeader'
     responses:
       204:
         $ref: 'components.yaml#/components/responses/NoContent'
@@ -193,6 +198,7 @@ dataOperationForCmHandle:
     operationId: executeDataOperationForCmHandles
     parameters:
       - $ref: 'components.yaml#/components/parameters/requiredTopicParamInQuery'
+      - $ref: 'components.yaml#/components/parameters/authorizationParamInHeader'
     requestBody:
       required: true
       content:
