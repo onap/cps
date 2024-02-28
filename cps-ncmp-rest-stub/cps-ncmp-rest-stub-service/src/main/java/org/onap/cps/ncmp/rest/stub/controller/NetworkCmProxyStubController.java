@@ -69,7 +69,8 @@ public class NetworkCmProxyStubController implements NetworkCmProxyApi {
                                                              final String resourceIdentifier,
                                                              final String optionsParamInQuery,
                                                              final String topicParamInQuery,
-                                                             final Boolean includeDescendants) {
+                                                             final Boolean includeDescendants,
+                                                             final String authorization) {
         if (DatastoreType.PASSTHROUGH_OPERATIONAL == DatastoreType.fromDatastoreName(datastoreName)) {
             final ResponseEntity<Map<String, Object>> asyncResponse = populateAsyncResponse(topicParamInQuery);
             final Map<String, Object> asyncResponseData = asyncResponse.getBody();
@@ -142,16 +143,18 @@ public class NetworkCmProxyStubController implements NetworkCmProxyApi {
 
     @Override
     public ResponseEntity<Void> createResourceDataRunningForCmHandle(final String datastoreName, final String cmHandle,
-                                                                     @NotNull @Valid final String resourceIdentifier, 
-                                                                     @Valid final Object body, 
-                                                                     final String contentType) {
+                                                                     @NotNull @Valid final String resourceIdentifier,
+                                                                     @Valid final Object body,
+                                                                     final String contentType,
+                                                                     final String authorization) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
-    
+
     @Override
     public ResponseEntity<Void> deleteResourceDataRunningForCmHandle(final String datastoreName, final String cmHandle,
                                                                      @NotNull @Valid final String resourceIdentifier,
-                                                                     final String contentType) {
+                                                                     final String contentType,
+                                                                     final String authorization) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
@@ -180,7 +183,8 @@ public class NetworkCmProxyStubController implements NetworkCmProxyApi {
 
     @Override
     public ResponseEntity<Object> executeDataOperationForCmHandles(final String topicParamInQuery,
-                                                                   final DataOperationRequest dataOperationRequest) {
+                                                                   final DataOperationRequest dataOperationRequest,
+                                                                   final String authorization) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
@@ -188,10 +192,11 @@ public class NetworkCmProxyStubController implements NetworkCmProxyApi {
     public ResponseEntity<Object> patchResourceDataRunningForCmHandle(final String datastoreName, final String cmHandle,
                                                                       @NotNull @Valid final String resourceIdentifier, 
                                                                       @Valid final Object body, 
-                                                                      final String contentType) {
+                                                                      final String contentType,
+                                                                      final String authorization) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
-    
+
     @Override
     public ResponseEntity<Object> queryResourceDataForCmHandle(final String datastoreName, final String cmHandle,
                                                                @Valid final String cpsPath, @Valid final String options,
@@ -224,7 +229,8 @@ public class NetworkCmProxyStubController implements NetworkCmProxyApi {
                                                                        final String cmHandle, 
                                                                        @NotNull @Valid final String resourceIdentifier, 
                                                                        @Valid final Object body,
-                                                                       final String contentType) {
+                                                                       final String contentType,
+                                                                       final String authorization) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }

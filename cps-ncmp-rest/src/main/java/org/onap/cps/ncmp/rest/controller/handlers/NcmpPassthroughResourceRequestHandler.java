@@ -81,10 +81,12 @@ public class NcmpPassthroughResourceRequestHandler extends NcmpDatastoreRequestH
                                                             final String optionsParamInQuery,
                                                             final String topicParamInQuery,
                                                             final String requestId,
-                                                            final boolean includeDescendants) {
+                                                            final boolean includeDescendants,
+                                                            final String authorization) {
 
         return () -> networkCmProxyDataService.getResourceDataForCmHandle(
-            datastoreName, cmHandleId, resourceIdentifier, optionsParamInQuery, topicParamInQuery, requestId);
+            datastoreName, cmHandleId, resourceIdentifier, optionsParamInQuery, topicParamInQuery, requestId,
+            authorization);
     }
 
     private ResponseEntity<Object> getRequestIdAndSendDataOperationRequestToDmiService(final String topicParamInQuery,
