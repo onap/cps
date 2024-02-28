@@ -629,6 +629,13 @@ components:
         type: string
         default: application/json
         example: application/yang-data+json
+    authorizationParamInHeader:
+      name: Authorization
+      in: header
+      required: false
+      description: Authorization parameter for request.
+      schema:
+        type: string
     datastoreName:
       name: datastore-name
       in: path

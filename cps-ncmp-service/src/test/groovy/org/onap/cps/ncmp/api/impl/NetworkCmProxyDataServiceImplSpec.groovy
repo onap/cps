@@ -86,6 +86,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
 
     def NO_TOPIC = null
     def NO_REQUEST_ID = null
+    def NO_AUTH_HEADER = null
     def OPTIONS_PARAM = '(a=1,b=2)'
     def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: 'test-cm-handle-id')
 
@@ -113,10 +114,10 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         when: 'write resource data is called'
             objectUnderTest.writeResourceDataPassThroughRunningForCmHandle('testCmHandle',
                 'testResourceId', CREATE,
-                '{some-json}', 'application/json')
+                '{some-json}', 'application/json', null)
         then: 'DMI called with correct data'
             1 * mockDmiDataOperations.writeResourceDataPassThroughRunningFromDmi('testCmHandle', 'testResourceId',
-                    CREATE, '{some-json}', 'application/json')
+                    CREATE, '{some-json}', 'application/json', null)
                 >> { new ResponseEntity<>(HttpStatus.CREATED) }
     }
 
@@ -124,10 +125,10 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         given: 'cpsDataService returns valid data node'
             mockDataNode()
         and: 'get resource data from DMI is called'
-            mockDmiDataOperations.getResourceDataFromDmi(PASSTHROUGH_OPERATIONAL.datastoreName,'testCmHandle', 'testResourceId', OPTIONS_PARAM, NO_TOPIC, NO_REQUEST_ID) >>
+            mockDmiDataOperations.getResourceDataFromDmi(PASSTHROUGH_OPERATIONAL.datastoreName,'testCmHandle', 'testResourceId', OPTIONS_PARAM, NO_TOPIC, NO_REQUEST_ID, NO_AUTH_HEADER) >>
                     new ResponseEntity<>('dmi-response', HttpStatus.OK)
         when: 'get resource data operational for cm-handle is called'
-            def response = objectUnderTest.getResourceDataForCmHandle(PASSTHROUGH_OPERATIONAL.datastoreName, 'testCmHandle', 'testResourceId', OPTIONS_PARAM, NO_TOPIC, NO_REQUEST_ID)
+            def response = objectUnderTest.getResourceDataForCmHandle(PASSTHROUGH_OPERATIONAL.datastoreName, 'testCmHandle', 'testResourceId', OPTIONS_PARAM, NO_TOPIC, NO_REQUEST_ID, NO_AUTH_HEADER)
         then: 'DMI returns a json response'
             assert response == 'dmi-response'
     }
@@ -136,10 +137,10 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         given: 'cpsDataService returns valid data node'
             mockDataNode()
         and: 'DMI returns valid response and data'
-            mockDmiDataOperations.getResourceDataFromDmi(PASSTHROUGH_RUNNING.datastoreName, 'testCmHandle', 'testResourceId', OPTIONS_PARAM, NO_TOPIC, NO_REQUEST_ID) >>
+            mockDmiDataOperations.getResourceDataFromDmi(PASSTHROUGH_RUNNING.datastoreName, 'testCmHandle', 'testResourceId', OPTIONS_PARAM, NO_TOPIC, NO_REQUEST_ID, NO_AUTH_HEADER) >>
                     new ResponseEntity<>('{dmi-response}', HttpStatus.OK)
         when: 'get resource data is called'
-            def response = objectUnderTest.getResourceDataForCmHandle(PASSTHROUGH_RUNNING.datastoreName, 'testCmHandle', 'testResourceId', OPTIONS_PARAM, NO_TOPIC, NO_REQUEST_ID)
+            def response = objectUnderTest.getResourceDataForCmHandle(PASSTHROUGH_RUNNING.datastoreName, 'testCmHandle', 'testResourceId', OPTIONS_PARAM, NO_TOPIC, NO_REQUEST_ID, NO_AUTH_HEADER)
         then: 'get resource data returns expected response'
             assert response == '{dmi-response}'
     }
@@ -259,10 +260,10 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         when: 'get resource data is called'
             objectUnderTest.writeResourceDataPassThroughRunningForCmHandle('testCmHandle',
                 'testResourceId', UPDATE,
-                '{some-json}', 'application/json')
+                '{some-json}', 'application/json', NO_AUTH_HEADER)
         then: 'DMI called with correct data'
             1 * mockDmiDataOperations.writeResourceDataPassThroughRunningFromDmi('testCmHandle', 'testResourceId',
-                    UPDATE, '{some-json}', 'application/json')
+                    UPDATE, '{some-json}', 'application/json', NO_AUTH_HEADER)
                 >> { new ResponseEntity<>(HttpStatus.OK) }
     }
 
