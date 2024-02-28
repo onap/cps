@@ -59,6 +59,7 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
     def dmiServiceBaseUrl = "${dmiServiceName}/dmi/v1/ch/${cmHandleId}/data/ds/ncmp-datastore:"
     def NO_TOPIC = null
     def NO_REQUEST_ID = null
+    def NO_AUTH_HEADER = null
     @Shared
     def OPTIONS_PARAM = '(a=1,b=2)'
 
@@ -77,11 +78,11 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
         and: 'a positive response from DMI service when it is called with the expected parameters'
             def responseFromDmi = new ResponseEntity<Object>(HttpStatus.OK)
             def expectedUrl = dmiServiceBaseUrl + "${expectedDatastoreInUrl}?resourceIdentifier=${resourceIdentifier}${expectedOptionsInUrl}"
-            mockDmiRestClient.postOperationWithJsonData(expectedUrl, expectedJson, READ) >> responseFromDmi
+            mockDmiRestClient.postOperationWithJsonData(expectedUrl, expectedJson, READ, NO_AUTH_HEADER) >> responseFromDmi
             dmiServiceUrlBuilder.getDmiDatastoreUrl(_, _) >> expectedUrl
         when: 'get resource data is invoked'
             def result = objectUnderTest.getResourceDataFromDmi(dataStore.datastoreName, cmHandleId, resourceIdentifier,
-                    options, NO_TOPIC, NO_REQUEST_ID)
+                    options, NO_TOPIC, NO_REQUEST_ID, NO_AUTH_HEADER)
         then: 'the result is the response from the DMI service'
             assert result == responseFromDmi
         where: 'the following parameters are used'
@@ -104,12 +105,12 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             def responseFromDmi = new ResponseEntity<Object>(HttpStatus.ACCEPTED)
             def expectedDmiBatchResourceDataUrl = "ncmp/v1/data/topic=my-topic-name"
             def expectedBatchRequestAsJson = '{"operations":[{"operation":"read","operationId":"operational-14","datastore":"ncmp-datastore:passthrough-operational","options":"some option","resourceIdentifier":"some resource identifier","cmHandles":[{"id":"some-cm-handle","cmHandleProperties":{"prop1":"val1"}}]}]}'
-            mockDmiRestClient.postOperationWithJsonData(expectedDmiBatchResourceDataUrl, _, READ.operationName) >> responseFromDmi
+            mockDmiRestClient.postOperationWithJsonData(expectedDmiBatchResourceDataUrl, _, READ.operationName, NO_AUTH_HEADER) >> responseFromDmi
             dmiServiceUrlBuilder.getDataOperationRequestUrl(_, _) >> expectedDmiBatchResourceDataUrl
         and: ' a flag to track the post operation call'
             def postOperationWithJsonDataMethodCalled = false
         and: 'the (mocked) dmi rest client will use the flag to indicate it is called and capture the request body'
-            mockDmiRestClient.postOperationWithJsonData(expectedDmiBatchResourceDataUrl, expectedBatchRequestAsJson, READ) >> {
+            mockDmiRestClient.postOperationWithJsonData(expectedDmiBatchResourceDataUrl, expectedBatchRequestAsJson, READ, null) >> {
                 postOperationWithJsonDataMethodCalled = true
             }
         when: 'get resource data for group of cm handles are invoked'
@@ -148,7 +149,7 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
         and: 'a positive response from DMI service when it is called with the expected parameters'
             def responseFromDmi = new ResponseEntity<Object>(HttpStatus.OK)
             def expectedUrl = dmiServiceBaseUrl + "passthrough-operational?resourceIdentifier=/"
-            mockDmiRestClient.postOperationWithJsonData(expectedUrl, '{"operation":"read","cmHandleProperties":{"prop1":"val1"}}', READ) >> responseFromDmi
+            mockDmiRestClient.postOperationWithJsonData(expectedUrl, '{"operation":"read","cmHandleProperties":{"prop1":"val1"}}', READ, null) >> responseFromDmi
             dmiServiceUrlBuilder.getDmiDatastoreUrl(_, _) >> expectedUrl
         when: 'get resource data is invoked'
             def result = objectUnderTest.getResourceDataFromDmi( PASSTHROUGH_OPERATIONAL.datastoreName, cmHandleId, NO_REQUEST_ID)
@@ -164,9 +165,9 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             def expectedJson = '{"operation":"' + expectedOperationInUrl + '","dataType":"some data type","data":"requestData","cmHandleProperties":{"prop1":"val1"}}'
             def responseFromDmi = new ResponseEntity<Object>(HttpStatus.OK)
             dmiServiceUrlBuilder.getDmiDatastoreUrl(_, _) >> expectedUrl
-            mockDmiRestClient.postOperationWithJsonData(expectedUrl, expectedJson, operation) >> responseFromDmi
+            mockDmiRestClient.postOperationWithJsonData(expectedUrl, expectedJson, operation, NO_AUTH_HEADER) >> responseFromDmi
         when: 'write resource method is invoked'
-            def result = objectUnderTest.writeResourceDataPassThroughRunningFromDmi(cmHandleId, 'parent/child', operation, 'requestData', 'some data type')
+            def result = objectUnderTest.writeResourceDataPassThroughRunningFromDmi(cmHandleId, 'parent/child', operation, 'requestData', 'some data type', NO_AUTH_HEADER)
         then: 'the result is the response from the DMI service'
             assert result == responseFromDmi
         where: 'the following operation is performed'

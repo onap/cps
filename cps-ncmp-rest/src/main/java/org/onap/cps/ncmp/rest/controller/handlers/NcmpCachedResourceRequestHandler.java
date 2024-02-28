@@ -74,7 +74,8 @@ public class NcmpCachedResourceRequestHandler extends NcmpDatastoreRequestHandle
                                                   final String optionsParamInQuery,
                                                   final String topicParamInQuery,
                                                   final String requestId,
-                                                  final boolean includeDescendants) {
+                                                  final boolean includeDescendants,
+                                                  final String authorization) {
 
         final FetchDescendantsOption fetchDescendantsOption = getFetchDescendantsOption(includeDescendants);
 

@@ -1,7 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  * Copyright (C) 2020 Pantheon.tech
- * Modifications Copyright (C) 2023 Nordix Foundation
+ * Modifications Copyright (C) 2023-2024 Nordix Foundation
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,9 +20,6 @@
 
 package org.onap.cps.rest.controller
 
-import org.onap.cps.config.WebSecurityConfig
-import org.springframework.context.annotation.Import
-
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 
 import org.springframework.beans.factory.annotation.Autowired
@@ -32,7 +29,6 @@ import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Specification
 
 @WebMvcTest(TestController)
-@Import(WebSecurityConfig)
 class ControllerSecuritySpec extends Specification {
 
     @Autowired
@@ -49,19 +45,19 @@ class ControllerSecuritySpec extends Specification {
             assert response.status == HttpStatus.OK.value()
     }
 
-    def 'Get request without authentication is not authorized'() {
+    def 'Get request without authentication is authorized (NO authentication)'() {
         when: 'request is sent without authentication'
             def response = mvc.perform(get(testEndpoint)).andReturn().response
-        then: 'HTTP Unauthorized status code is returned'
-            assert response.status == HttpStatus.UNAUTHORIZED.value()
-    }
+        then: 'HTTP OK status code is returned'
+            assert response.status == HttpStatus.OK.value()
+        }
 
-    def 'Get request with invalid authentication is not authorized'() {
+    def 'Get request with invalid authentication is authorized (NO authentication)'() {
         when: 'request is sent with invalid authentication'
             def response = mvc.perform(
                     get(testEndpoint).header("Authorization", 'Basic invalid auth')
             ).andReturn().response
-        then: 'HTTP Unauthorized status code is returned'
-            assert response.status == HttpStatus.UNAUTHORIZED.value()
+        then: 'HTTP OK status code is returned'
+            assert response.status == HttpStatus.OK.value()
     }
 }
