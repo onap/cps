@@ -64,6 +64,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5978673_b98e5b9e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/AlternateIdCheckerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-02-28T14:51:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b23af657_386594c8",
+      "range": {
+        "startLine": 98,
+        "startChar": 43,
+        "endLine": 98,
+        "endChar": 52
+      },
+      "revId": "25d75e468864df8ba85b5af8c13ac974ec192868",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f738ee21_1bbec707",
@@ -77,6 +101,30 @@
       "writtenOn": "2024-02-27T17:44:23Z",
       "side": 1,
       "message": "parameters\n\n(since not only the proposed but also the alt in db)",
+      "range": {
+        "startLine": 104,
+        "startChar": 30,
+        "endLine": 104,
+        "endChar": 52
+      },
+      "revId": "25d75e468864df8ba85b5af8c13ac974ec192868",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "12dc7e83_f61ac26d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/AlternateIdCheckerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-02-28T14:51:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f738ee21_1bbec707",
       "range": {
         "startLine": 104,
         "startChar": 30,
