@@ -44,8 +44,6 @@ resourceDataForCmHandle:
                 $ref: 'components.yaml#/components/examples/dataSampleResponse'
       400:
         $ref: 'components.yaml#/components/responses/BadRequest'
-      401:
-        $ref: 'components.yaml#/components/responses/Unauthorized'
       403:
         $ref: 'components.yaml#/components/responses/Forbidden'
       500:
@@ -84,8 +82,6 @@ resourceDataForCmHandle:
         $ref: 'components.yaml#/components/responses/Created'
       400:
         $ref: 'components.yaml#/components/responses/BadRequest'
-      401:
-        $ref: 'components.yaml#/components/responses/Unauthorized'
       403:
         $ref: 'components.yaml#/components/responses/Forbidden'
       500:
@@ -124,8 +120,6 @@ resourceDataForCmHandle:
         $ref: 'components.yaml#/components/responses/Ok'
       400:
         $ref: 'components.yaml#/components/responses/BadRequest'
-      401:
-        $ref: 'components.yaml#/components/responses/Unauthorized'
       403:
         $ref: 'components.yaml#/components/responses/Forbidden'
       500:
@@ -158,8 +152,6 @@ resourceDataForCmHandle:
         $ref: 'components.yaml#/components/responses/Ok'
       400:
         $ref: 'components.yaml#/components/responses/BadRequest'
-      401:
-        $ref: 'components.yaml#/components/responses/Unauthorized'
       403:
         $ref: 'components.yaml#/components/responses/Forbidden'
       500:
@@ -183,8 +175,6 @@ resourceDataForCmHandle:
         $ref: 'components.yaml#/components/responses/NoContent'
       400:
         $ref: 'components.yaml#/components/responses/BadRequest'
-      401:
-        $ref: 'components.yaml#/components/responses/Unauthorized'
       403:
         $ref: 'components.yaml#/components/responses/Forbidden'
       404:
@@ -218,8 +208,6 @@ dataOperationForCmHandle:
               type: object
       400:
         $ref: 'components.yaml#/components/responses/BadRequest'
-      401:
-        $ref: 'components.yaml#/components/responses/Unauthorized'
       403:
         $ref: 'components.yaml#/components/responses/Forbidden'
       500:
@@ -253,8 +241,6 @@ queryResourceDataForCmHandle:
                 $ref: 'components.yaml#/components/examples/dataSampleResponse'
       400:
         $ref: 'components.yaml#/components/responses/BadRequest'
-      401:
-        $ref: 'components.yaml#/components/responses/Unauthorized'
       403:
         $ref: 'components.yaml#/components/responses/Forbidden'
       500:
@@ -282,8 +268,6 @@ fetchModuleReferencesByCmHandle:
                 $ref: 'components.yaml#/components/schemas/RestModuleReference'
       400:
         $ref: 'components.yaml#/components/responses/BadRequest'
-      401:
-        $ref: 'components.yaml#/components/responses/Unauthorized'
       403:
         $ref: 'components.yaml#/components/responses/Forbidden'
       500:
@@ -309,8 +293,6 @@ getModuleDefinitions:
               type: array
               items:
                 $ref: 'components.yaml#/components/schemas/RestModuleDefinition'
-      401:
-        $ref: 'components.yaml#/components/responses/Unauthorized'
       403:
         $ref: 'components.yaml#/components/responses/Forbidden'
       500:
@@ -351,8 +333,6 @@ searchCmHandles:
                 $ref: 'components.yaml#/components/schemas/RestOutputCmHandle'
       400:
         $ref: 'components.yaml#/components/responses/BadRequest'
-      401:
-        $ref: 'components.yaml#/components/responses/Unauthorized'
       403:
         $ref: 'components.yaml#/components/responses/Forbidden'
       500:
@@ -376,8 +356,6 @@ retrieveCmHandleDetailsById:
               $ref: 'components.yaml#/components/schemas/RestOutputCmHandle'
       400:
         $ref: 'components.yaml#/components/responses/BadRequest'
-      401:
-        $ref: 'components.yaml#/components/responses/Unauthorized'
       404:
         $ref: 'components.yaml#/components/responses/NotFound'
       500:
@@ -401,8 +379,6 @@ getCmHandlePropertiesById:
               $ref: 'components.yaml#/components/schemas/RestOutputCmHandlePublicProperties'
       400:
         $ref: 'components.yaml#/components/responses/BadRequest'
-      401:
-        $ref: 'components.yaml#/components/responses/Unauthorized'
       404:
         $ref: 'components.yaml#/components/responses/NotFound'
       500:
@@ -426,8 +402,6 @@ getCmHandleStateById:
               $ref: 'components.yaml#/components/schemas/RestOutputCmHandleCompositeState'
       400:
         $ref: 'components.yaml#/components/responses/BadRequest'
-      401:
-        $ref: 'components.yaml#/components/responses/Unauthorized'
       404:
         $ref: 'components.yaml#/components/responses/NotFound'
       500:
@@ -468,8 +442,6 @@ searchCmHandleIds:
                 type: string
       400:
         $ref: 'components.yaml#/components/responses/BadRequest'
-      401:
-        $ref: 'components.yaml#/components/responses/Unauthorized'
       403:
         $ref: 'components.yaml#/components/responses/Forbidden'
       404:
@@ -492,8 +464,6 @@ setDataSyncEnabledFlag:
         $ref: 'components.yaml#/components/responses/Ok'
       400:
         $ref: 'components.yaml#/components/responses/BadRequest'
-      401:
-        $ref: 'components.yaml#/components/responses/Unauthorized'
       403:
         $ref: 'components.yaml#/components/responses/Forbidden'
       500:

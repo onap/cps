@@ -41,8 +41,6 @@ nodeByDataspaceAndAnchor:
                 $ref: 'components.yml#/components/examples/dataSample'
       '400':
         $ref: 'components.yml#/components/responses/BadRequest'
-      '401':
-        $ref: 'components.yml#/components/responses/Unauthorized'
       '403':
         $ref: 'components.yml#/components/responses/Forbidden'
       '500':
@@ -67,8 +65,6 @@ listElementByDataspaceAndAnchor:
         $ref: 'components.yml#/components/responses/NoContent'
       '400':
         $ref: 'components.yml#/components/responses/BadRequest'
-      '401':
-        $ref: 'components.yml#/components/responses/Unauthorized'
       '403':
         $ref: 'components.yml#/components/responses/Forbidden'
       '500':

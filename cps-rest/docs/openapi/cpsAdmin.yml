@@ -33,8 +33,6 @@ dataspaces:
         $ref: 'components.yml#/components/responses/NoContent'
       '400':
         $ref: 'components.yml#/components/responses/BadRequest'
-      '401':
-        $ref: 'components.yml#/components/responses/Unauthorized'
       '403':
         $ref: 'components.yml#/components/responses/Forbidden'
       '409':
@@ -63,8 +61,6 @@ schemaSet:
                 $ref: 'components.yml#/components/schemas/SchemaSetDetails'
       '400':
         $ref: 'components.yml#/components/responses/BadRequest'
-      '401':
-        $ref: 'components.yml#/components/responses/Unauthorized'
       '403':
         $ref: 'components.yml#/components/responses/Forbidden'
       '500':
@@ -90,8 +86,6 @@ schemaSetBySchemaSetName:
               $ref: 'components.yml#/components/schemas/SchemaSetDetails'
       '400':
         $ref: 'components.yml#/components/responses/BadRequest'
-      '401':
-        $ref: 'components.yml#/components/responses/Unauthorized'
       '403':
         $ref: 'components.yml#/components/responses/Forbidden'
       '500':
@@ -111,8 +105,6 @@ schemaSetBySchemaSetName:
         $ref: 'components.yml#/components/responses/NoContent'
       '400':
         $ref: 'components.yml#/components/responses/BadRequest'
-      '401':
-        $ref: 'components.yml#/components/responses/Unauthorized'
       '403':
         $ref: 'components.yml#/components/responses/Forbidden'
       '409':
@@ -141,8 +133,6 @@ anchorsByDataspace:
                 $ref: 'components.yml#/components/schemas/AnchorDetails'
       '400':
         $ref: 'components.yml#/components/responses/BadRequest'
-      '401':
-        $ref: 'components.yml#/components/responses/Unauthorized'
       '403':
         $ref: 'components.yml#/components/responses/Forbidden'
       '500':
@@ -168,8 +158,6 @@ anchorByDataspaceAndAnchorName:
               $ref: 'components.yml#/components/schemas/AnchorDetails'
       '400':
         $ref: 'components.yml#/components/responses/BadRequest'
-      '401':
-        $ref: 'components.yml#/components/responses/Unauthorized'
       '403':
         $ref: 'components.yml#/components/responses/Forbidden'
       '500':
@@ -189,8 +177,6 @@ anchorByDataspaceAndAnchorName:
         $ref: 'components.yml#/components/responses/NoContent'
       '400':
         $ref: 'components.yml#/components/responses/BadRequest'
-      '401':
-        $ref: 'components.yml#/components/responses/Unauthorized'
       '403':
         $ref: 'components.yml#/components/responses/Forbidden'
       '500':
@@ -216,8 +202,6 @@ adminDataspaces:
                $ref: 'components.yml#/components/schemas/DataspaceDetails'
      '400':
        $ref: 'components.yml#/components/responses/BadRequest'
-     '401':
-       $ref: 'components.yml#/components/responses/Unauthorized'
      '403':
        $ref: 'components.yml#/components/responses/Forbidden'
      '500':
@@ -242,8 +226,6 @@ adminDataspace:
              $ref: 'components.yml#/components/schemas/DataspaceDetails'
      '400':
        $ref: 'components.yml#/components/responses/BadRequest'
-     '401':
-       $ref: 'components.yml#/components/responses/Unauthorized'
      '403':
        $ref: 'components.yml#/components/responses/Forbidden'
      '500':

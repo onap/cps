@@ -40,8 +40,6 @@ nodesByDataspaceAndAnchorAndCpsPath:
                 $ref: 'components.yml#/components/examples/dataSample'
       '400':
         $ref: 'components.yml#/components/responses/BadRequest'
-      '401':
-        $ref: 'components.yml#/components/responses/Unauthorized'
       '403':
         $ref: 'components.yml#/components/responses/Forbidden'
       '500':
@@ -73,8 +71,6 @@ nodesByDataspaceAndCpsPath:
                 $ref: 'components.yml#/components/examples/dataSampleAcrossAnchors'
       '400':
         $ref: 'components.yml#/components/responses/BadRequest'
-      '401':
-        $ref: 'components.yml#/components/responses/Unauthorized'
       '403':
         $ref: 'components.yml#/components/responses/Forbidden'
       '500':
