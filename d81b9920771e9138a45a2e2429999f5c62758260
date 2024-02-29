@@ -174,6 +174,24 @@
       "parentUuid": "b27df455_170b5559",
       "revId": "d81b9920771e9138a45a2e2429999f5c62758260",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e33766dd_0c152529",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiModelOperations.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-29T12:30:34Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e79889e6_71fa1a64",
+      "revId": "d81b9920771e9138a45a2e2429999f5c62758260",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

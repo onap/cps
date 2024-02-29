@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e660265_413fb22f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-29T12:30:34Z",
+      "side": 1,
+      "message": "looking fine to me.\nalready reviewed before at nordix level as well.",
+      "revId": "c5222a72ef11bd440f5c2bd017e820922ff6735a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
