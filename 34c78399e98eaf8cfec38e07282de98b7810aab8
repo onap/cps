@@ -26,6 +26,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e27d1301_c74ca083",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 632,
+      "author": {
+        "id": 3237
+      },
+      "writtenOn": "2024-02-29T11:45:47Z",
+      "side": 1,
+      "message": "You may use https://swagger.io/docs/specification/authentication/bearer-authentication/ this instead of defining your own header. but i assume this is should be okay for now",
+      "range": {
+        "startLine": 632,
+        "startChar": 4,
+        "endLine": 632,
+        "endChar": 30
+      },
+      "revId": "34c78399e98eaf8cfec38e07282de98b7810aab8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c9db405e_a6264dd7",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
         "patchSetId": 4
