@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3221de5f_d3e05318",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-29T14:57:22Z",
+      "side": 1,
+      "message": "NCMP will propagate a bearer token to DMI conditionally.",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 200
+      },
+      "revId": "c7ce2d8db8edfe0cce1faf8819c27cfad57e6bd8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
