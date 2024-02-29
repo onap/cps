@@ -93,6 +93,30 @@
       },
       "revId": "661f0e0fb6bcce87bc15cc77a1fe1347f7e495d4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8cbf98d5_37b6b923",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-29T18:18:48Z",
+      "side": 1,
+      "message": "😊 this extra day of the year is to be remembered.",
+      "parentUuid": "2d38147f_a01fea1f",
+      "range": {
+        "startLine": 62,
+        "startChar": 55,
+        "endLine": 62,
+        "endChar": 57
+      },
+      "revId": "661f0e0fb6bcce87bc15cc77a1fe1347f7e495d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
