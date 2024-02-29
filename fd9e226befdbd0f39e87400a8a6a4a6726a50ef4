@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ec6e3f09_466f796e",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/rest/controller/ControllerSecuritySpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-02-29T09:31:19Z",
+      "side": 1,
+      "message": "Should not we @Ignore for now?",
+      "range": {
+        "startLine": 48,
+        "startChar": 3,
+        "endLine": 62,
+        "endChar": 5
+      },
+      "revId": "fd9e226befdbd0f39e87400a8a6a4a6726a50ef4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5255520d_db6efd25",
         "filename": "cps-ncmp-rest-stub/cps-ncmp-rest-stub-service/src/main/java/org/onap/cps/ncmp/rest/stub/controller/NetworkCmProxyStubController.java",
         "patchSetId": 1
