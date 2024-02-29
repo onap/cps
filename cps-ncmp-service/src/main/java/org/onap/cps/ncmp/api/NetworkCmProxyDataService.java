@@ -89,10 +89,13 @@ public interface NetworkCmProxyDataService {
      *
      * @param topicParamInQuery        topic name for (triggering) async responses
      * @param dataOperationRequest     contains a list of operation definitions(multiple operations)
+     * @param requestId                request ID
+     * @param authorization            contents of Authorization header, or null if not present
      */
     void executeDataOperationForCmHandles(String topicParamInQuery,
                                           DataOperationRequest dataOperationRequest,
-                                          String requestId);
+                                          String requestId,
+                                          String authorization);
 
 
     /**

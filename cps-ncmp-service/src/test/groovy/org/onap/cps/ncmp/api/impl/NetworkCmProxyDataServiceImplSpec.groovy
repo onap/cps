@@ -158,9 +158,9 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         given: 'cpsDataService returns valid data node'
             def dataOperationRequest = getDataOperationRequest(datastoreName)
         when: 'request resource data for data operation is called'
-            objectUnderTest.executeDataOperationForCmHandles('some topic', dataOperationRequest, 'requestId')
+            objectUnderTest.executeDataOperationForCmHandles('some topic', dataOperationRequest, 'requestId', NO_AUTH_HEADER)
         then: 'request resource data for data operation returns expected response'
-            1 * mockDmiDataOperations.requestResourceDataFromDmi('some topic', dataOperationRequest, 'requestId')
+            1 * mockDmiDataOperations.requestResourceDataFromDmi('some topic', dataOperationRequest, 'requestId', NO_AUTH_HEADER)
         where: 'the following data stores are used'
             datastoreName << [PASSTHROUGH_RUNNING.datastoreName, PASSTHROUGH_OPERATIONAL.datastoreName]
     }

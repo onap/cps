@@ -116,7 +116,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                                    final DataOperationRequest dataOperationRequest,
                                                                    final String authorization) {
         return ncmpPassthroughResourceRequestHandler.executeRequest(topicParamInQuery,
-                dataOperationRequestMapper.toDataOperationRequest(dataOperationRequest));
+                dataOperationRequestMapper.toDataOperationRequest(dataOperationRequest), authorization);
     }
 
     /**

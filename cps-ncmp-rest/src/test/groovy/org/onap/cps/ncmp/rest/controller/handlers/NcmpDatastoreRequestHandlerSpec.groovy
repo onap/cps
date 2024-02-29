@@ -74,7 +74,7 @@ class NcmpDatastoreRequestHandlerSpec extends Specification {
         and: 'notification feature is turned on/off'
             objectUnderTest.notificationFeatureEnabled = notificationFeatureEnabled
         when: 'data operation request is executed'
-            objectUnderTest.executeRequest('someTopic', new DataOperationRequest())
+            objectUnderTest.executeRequest('someTopic', new DataOperationRequest(), NO_AUTH_HEADER)
         then: 'the task is executed in an async fashion or not'
             expectedCalls * spiedCpsNcmpTaskExecutor.executeTask(*_)
         where: 'the following parameters are used'
@@ -92,11 +92,11 @@ class NcmpDatastoreRequestHandlerSpec extends Specification {
         and: ' a flag to track the network service call'
             def networkServiceMethodCalled = false
         and: 'the (mocked) service will use the flag to indicate it is called'
-            mockNetworkCmProxyDataService.executeDataOperationForCmHandles('myTopic', dataOperationRequest, _) >> {
+            mockNetworkCmProxyDataService.executeDataOperationForCmHandles('myTopic', dataOperationRequest, _, NO_AUTH_HEADER) >> {
                 networkServiceMethodCalled = true
             }
         when: 'data operation request is executed'
-            objectUnderTest.executeRequest('myTopic', dataOperationRequest)
+            objectUnderTest.executeRequest('myTopic', dataOperationRequest, NO_AUTH_HEADER)
         then: 'the task is executed in an async fashion'
             1 * spiedCpsNcmpTaskExecutor.executeTask(*_)
         and: 'the network service is invoked'
@@ -114,7 +114,7 @@ class NcmpDatastoreRequestHandlerSpec extends Specification {
             def dataOperationDefinition = new DataOperationDefinition(operation: 'read', datastore: datastore)
         when: 'data operation request is executed'
             def dataOperationRequest = new DataOperationRequest(dataOperationDefinitions: [dataOperationDefinition])
-            objectUnderTest.executeRequest('myTopic', dataOperationRequest)
+            objectUnderTest.executeRequest('myTopic', dataOperationRequest, NO_AUTH_HEADER)
         then: 'the correct error is thrown'
             def thrown = thrown(InvalidDatastoreException)
             assert thrown.message.contains(expectedErrorMessage)
@@ -130,7 +130,7 @@ class NcmpDatastoreRequestHandlerSpec extends Specification {
         and: 'a data operation definition with operation: #operation'
             def dataOperationDefinition = new DataOperationDefinition(operation: operation, datastore: 'ncmp-datastore:passthrough-running')
         when: 'bulk request is executed'
-            objectUnderTest.executeRequest('someTopic', new DataOperationRequest(dataOperationDefinitions:[dataOperationDefinition]))
+            objectUnderTest.executeRequest('someTopic', new DataOperationRequest(dataOperationDefinitions:[dataOperationDefinition]), NO_AUTH_HEADER)
         then: 'the expected type of exception is thrown'
             thrown(expectedException)
         where: 'the following operations are used'

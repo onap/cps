@@ -114,7 +114,7 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
                 postOperationWithJsonDataMethodCalled = true
             }
         when: 'get resource data for group of cm handles are invoked'
-            objectUnderTest.requestResourceDataFromDmi('my-topic-name', dataOperationRequest, 'requestId')
+            objectUnderTest.requestResourceDataFromDmi('my-topic-name', dataOperationRequest, 'requestId', NO_AUTH_HEADER)
         then: 'validate the post operation was called and ncmp generated dmi request body json args'
             new PollingConditions().within(1) {
                 assert postOperationWithJsonDataMethodCalled == true

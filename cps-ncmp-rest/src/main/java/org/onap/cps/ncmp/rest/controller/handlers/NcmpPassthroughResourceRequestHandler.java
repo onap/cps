@@ -61,17 +61,19 @@ public class NcmpPassthroughResourceRequestHandler extends NcmpDatastoreRequestH
      *
      * @param topicParamInQuery        the topic param in query
      * @param dataOperationRequest     data operation request details for resource data
+     * @param authorization            contents of Authorization header, or null if not present
      * @return the response entity
      */
     public ResponseEntity<Object> executeRequest(final String topicParamInQuery,
-                                                 final DataOperationRequest
-                                                     dataOperationRequest) {
+                                                 final DataOperationRequest dataOperationRequest,
+                                                 final String authorization) {
         validateDataOperationRequest(topicParamInQuery, dataOperationRequest);
         if (!notificationFeatureEnabled) {
             return ResponseEntity.ok(Map.of("status",
                 "Asynchronous request is unavailable as notification feature is currently disabled."));
         }
-        return getRequestIdAndSendDataOperationRequestToDmiService(topicParamInQuery, dataOperationRequest);
+        return getRequestIdAndSendDataOperationRequestToDmiService(topicParamInQuery, dataOperationRequest,
+                authorization);
     }
 
     @Override
@@ -89,12 +91,13 @@ public class NcmpPassthroughResourceRequestHandler extends NcmpDatastoreRequestH
             authorization);
     }
 
-    private ResponseEntity<Object> getRequestIdAndSendDataOperationRequestToDmiService(final String topicParamInQuery,
-                                                                                       final DataOperationRequest
-                                                                                           dataOperationRequest) {
+    private ResponseEntity<Object> getRequestIdAndSendDataOperationRequestToDmiService(
+            final String topicParamInQuery,
+            final DataOperationRequest dataOperationRequest,
+            final String authorization) {
         final String requestId = UUID.randomUUID().toString();
         cpsNcmpTaskExecutor.executeTask(
-            getTaskSupplierForDataOperationRequest(topicParamInQuery, dataOperationRequest, requestId),
+            getTaskSupplierForDataOperationRequest(topicParamInQuery, dataOperationRequest, requestId, authorization),
             timeOutInMilliSeconds);
         return ResponseEntity.ok(Map.of("requestId", requestId));
     }
@@ -116,11 +119,13 @@ public class NcmpPassthroughResourceRequestHandler extends NcmpDatastoreRequestH
 
     private Supplier<Object> getTaskSupplierForDataOperationRequest(final String topicParamInQuery,
                                                                     final DataOperationRequest dataOperationRequest,
-                                                                    final String requestId) {
+                                                                    final String requestId,
+                                                                    final String authorization) {
         return () -> {
             networkCmProxyDataService.executeDataOperationForCmHandles(topicParamInQuery,
                 dataOperationRequest,
-                requestId);
+                requestId,
+                authorization);
             return noReturn;
         };
     }

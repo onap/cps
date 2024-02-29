@@ -132,10 +132,12 @@ public class DmiDataOperations extends DmiOperations {
      * @param topicParamInQuery        topic name for (triggering) async responses
      * @param dataOperationRequest     data operation request to execute operations
      * @param requestId                requestId for as a response
+     * @param authorization            contents of Authorization header, or null if not present
      */
     public void requestResourceDataFromDmi(final String topicParamInQuery,
                                            final DataOperationRequest dataOperationRequest,
-                                           final String requestId)  {
+                                           final String requestId,
+                                           final String authorization)  {
 
         final Set<String> cmHandlesIds
                 = getDistinctCmHandleIdsFromDataOperationRequest(dataOperationRequest);
@@ -147,7 +149,8 @@ public class DmiDataOperations extends DmiOperations {
                 = ResourceDataOperationRequestUtils.processPerDefinitionInDataOperationsRequest(topicParamInQuery,
                 requestId, dataOperationRequest, yangModelCmHandles);
 
-        buildDataOperationRequestUrlAndSendToDmiService(topicParamInQuery, requestId, operationsOutPerDmiServiceName);
+        buildDataOperationRequestUrlAndSendToDmiService(topicParamInQuery, requestId, operationsOutPerDmiServiceName,
+                authorization);
     }
 
     /**
@@ -238,23 +241,26 @@ public class DmiDataOperations extends DmiOperations {
     private void buildDataOperationRequestUrlAndSendToDmiService(final String topicParamInQuery,
                                                                  final String requestId,
                                                                  final Map<String, List<DmiDataOperation>>
-                                                                groupsOutPerDmiServiceName) {
+                                                                groupsOutPerDmiServiceName,
+                                                                 final String authorization) {
 
         groupsOutPerDmiServiceName.forEach((dmiServiceName, dmiDataOperationRequestBodies) -> {
             final String dmiDataOperationResourceUrl =
                     getDmiServiceDataOperationRequestUrl(dmiServiceName, topicParamInQuery, requestId);
-            sendDataOperationRequestToDmiService(dmiDataOperationResourceUrl, dmiDataOperationRequestBodies);
+            sendDataOperationRequestToDmiService(dmiDataOperationResourceUrl, dmiDataOperationRequestBodies,
+                    authorization);
         });
     }
 
     private void sendDataOperationRequestToDmiService(final String dataOperationResourceUrl,
-                                                      final List<DmiDataOperation> dmiDataOperationRequestBodies) {
+                                                      final List<DmiDataOperation> dmiDataOperationRequestBodies,
+                                                      final String authorization) {
         final DmiDataOperationRequest dmiDataOperationRequest = DmiDataOperationRequest.builder()
                 .operations(dmiDataOperationRequestBodies).build();
         final String dmiDataOperationRequestAsJsonString =
                 jsonObjectMapper.asJsonString(dmiDataOperationRequest);
         TaskExecutor.executeTask(() -> dmiRestClient.postOperationWithJsonData(dataOperationResourceUrl,
-                                dmiDataOperationRequestAsJsonString, READ, null),
+                                dmiDataOperationRequestAsJsonString, READ, authorization),
                         DEFAULT_ASYNC_TASK_EXECUTOR_TIMEOUT_IN_MILLISECONDS)
                 .whenCompleteAsync((response, throwable) -> handleTaskCompletionException(throwable,
                         dataOperationResourceUrl, dmiDataOperationRequestBodies));
