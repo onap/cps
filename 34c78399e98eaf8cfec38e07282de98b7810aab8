@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "17ed4459_600c242c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-29T12:01:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d128d841_1c089036",
+      "range": {
+        "startLine": 13,
+        "startChar": 10,
+        "endLine": 13,
+        "endChar": 18
+      },
+      "revId": "34c78399e98eaf8cfec38e07282de98b7810aab8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e27d1301_c74ca083",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-02-29T11:45:47Z",
       "side": 1,
       "message": "You may use https://swagger.io/docs/specification/authentication/bearer-authentication/ this instead of defining your own header. but i assume this is should be okay for now",
+      "range": {
+        "startLine": 632,
+        "startChar": 4,
+        "endLine": 632,
+        "endChar": 30
+      },
+      "revId": "34c78399e98eaf8cfec38e07282de98b7810aab8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "634db3cd_c9173051",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 632,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-29T12:01:41Z",
+      "side": 1,
+      "message": "We can\u0027t do this yet. We need to support:\n- no auth\n- basic auth\n- bearer auth",
+      "parentUuid": "e27d1301_c74ca083",
       "range": {
         "startLine": 632,
         "startChar": 4,
@@ -64,6 +112,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "43f2c2d0_d28fda16",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-29T12:01:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c9db405e_a6264dd7",
+      "revId": "34c78399e98eaf8cfec38e07282de98b7810aab8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bae4a027_86802e96",
@@ -77,6 +143,30 @@
       "writtenOn": "2024-02-29T11:43:42Z",
       "side": 1,
       "message": "NB: see if this is in use or not.",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 24
+      },
+      "revId": "34c78399e98eaf8cfec38e07282de98b7810aab8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2389065_abd32431",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/client/DmiRestClientSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-29T12:01:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bae4a027_86802e96",
       "range": {
         "startLine": 41,
         "startChar": 0,
