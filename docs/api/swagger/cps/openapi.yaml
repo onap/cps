@@ -55,16 +55,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
           description: Bad Request
-        "401":
-          content:
-            application/json:
-              example:
-                status: 401
-                message: Unauthorized request
-                details: This request is unauthorized
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Unauthorized
         "403":
           content:
             application/json:
@@ -134,16 +124,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
           description: Bad Request
-        "401":
-          content:
-            application/json:
-              example:
-                status: 401
-                message: Unauthorized request
-                details: This request is unauthorized
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Unauthorized
         "403":
           content:
             application/json:
@@ -202,16 +182,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
           description: Bad Request
-        "401":
-          content:
-            application/json:
-              example:
-                status: 401
-                message: Unauthorized request
-                details: This request is unauthorized
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Unauthorized
         "403":
           content:
             application/json:
@@ -279,16 +249,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
           description: Bad Request
-        "401":
-          content:
-            application/json:
-              example:
-                status: 401
-                message: Unauthorized request
-                details: This request is unauthorized
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Unauthorized
         "403":
           content:
             application/json:
@@ -351,16 +311,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
           description: Bad Request
-        "401":
-          content:
-            application/json:
-              example:
-                status: 401
-                message: Unauthorized request
-                details: This request is unauthorized
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Unauthorized
         "403":
           content:
             application/json:
@@ -429,16 +379,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
           description: Bad Request
-        "401":
-          content:
-            application/json:
-              example:
-                status: 401
-                message: Unauthorized request
-                details: This request is unauthorized
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Unauthorized
         "403":
           content:
             application/json:
@@ -511,16 +451,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
           description: Bad Request
-        "401":
-          content:
-            application/json:
-              example:
-                status: 401
-                message: Unauthorized request
-                details: This request is unauthorized
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Unauthorized
         "403":
           content:
             application/json:
@@ -595,16 +525,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
           description: Bad Request
-        "401":
-          content:
-            application/json:
-              example:
-                status: 401
-                message: Unauthorized request
-                details: This request is unauthorized
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Unauthorized
         "403":
           content:
             application/json:
@@ -671,16 +591,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
           description: Bad Request
-        "401":
-          content:
-            application/json:
-              example:
-                status: 401
-                message: Unauthorized request
-                details: This request is unauthorized
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Unauthorized
         "403":
           content:
             application/json:
@@ -749,16 +659,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
           description: Bad Request
-        "401":
-          content:
-            application/json:
-              example:
-                status: 401
-                message: Unauthorized request
-                details: This request is unauthorized
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Unauthorized
         "403":
           content:
             application/json:
@@ -826,16 +726,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
           description: Bad Request
-        "401":
-          content:
-            application/json:
-              example:
-                status: 401
-                message: Unauthorized request
-                details: This request is unauthorized
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Unauthorized
         "403":
           content:
             application/json:
@@ -907,16 +797,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
           description: Bad Request
-        "401":
-          content:
-            application/json:
-              example:
-                status: 401
-                message: Unauthorized request
-                details: This request is unauthorized
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Unauthorized
         "403":
           content:
             application/json:
@@ -991,16 +871,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
           description: Bad Request
-        "401":
-          content:
-            application/json:
-              example:
-                status: 401
-                message: Unauthorized request
-                details: This request is unauthorized
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Unauthorized
         "403":
           content:
             application/json:
@@ -1067,16 +937,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
           description: Bad Request
-        "401":
-          content:
-            application/json:
-              example:
-                status: 401
-                message: Unauthorized request
-                details: This request is unauthorized
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Unauthorized
         "403":
           content:
             application/json:
@@ -1155,16 +1015,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
           description: Bad Request
-        "401":
-          content:
-            application/json:
-              example:
-                status: 401
-                message: Unauthorized request
-                details: This request is unauthorized
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Unauthorized
         "403":
           content:
             application/json:
@@ -1250,16 +1100,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
           description: Bad Request
-        "401":
-          content:
-            application/json:
-              example:
-                status: 401
-                message: Unauthorized request
-                details: This request is unauthorized
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Unauthorized
         "403":
           content:
             application/json:
@@ -1347,16 +1187,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
           description: Bad Request
-        "401":
-          content:
-            application/json:
-              example:
-                status: 401
-                message: Unauthorized request
-                details: This request is unauthorized
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Unauthorized
         "403":
           content:
             application/json:
@@ -1444,16 +1274,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
           description: Bad Request
-        "401":
-          content:
-            application/json:
-              example:
-                status: 401
-                message: Unauthorized request
-                details: This request is unauthorized
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Unauthorized
         "403":
           content:
             application/json:
@@ -1556,16 +1376,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
           description: Bad Request
-        "401":
-          content:
-            application/json:
-              example:
-                status: 401
-                message: Unauthorized request
-                details: This request is unauthorized
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Unauthorized
         "403":
           content:
             application/json:
@@ -1680,16 +1490,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
           description: Bad Request
-        "401":
-          content:
-            application/json:
-              example:
-                status: 401
-                message: Unauthorized request
-                details: This request is unauthorized
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Unauthorized
         "403":
           content:
             application/json:
@@ -1801,16 +1601,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
           description: Bad Request
-        "401":
-          content:
-            application/json:
-              example:
-                status: 401
-                message: Unauthorized request
-                details: This request is unauthorized
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Unauthorized
         "403":
           content:
             application/json:
@@ -1886,16 +1676,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
           description: Bad Request
-        "401":
-          content:
-            application/json:
-              example:
-                status: 401
-                message: Unauthorized request
-                details: This request is unauthorized
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Unauthorized
         "403":
           content:
             application/json:
@@ -1994,16 +1774,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
           description: Bad Request
-        "401":
-          content:
-            application/json:
-              example:
-                status: 401
-                message: Unauthorized request
-                details: This request is unauthorized
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Unauthorized
         "403":
           content:
             application/json:
@@ -2103,16 +1873,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
           description: Bad Request
-        "401":
-          content:
-            application/json:
-              example:
-                status: 401
-                message: Unauthorized request
-                details: This request is unauthorized
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Unauthorized
         "403":
           content:
             application/json:
@@ -2205,16 +1965,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
           description: Bad Request
-        "401":
-          content:
-            application/json:
-              example:
-                status: 401
-                message: Unauthorized request
-                details: This request is unauthorized
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Unauthorized
         "403":
           content:
             application/json:
@@ -2300,16 +2050,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
           description: Bad Request
-        "401":
-          content:
-            application/json:
-              example:
-                status: 401
-                message: Unauthorized request
-                details: This request is unauthorized
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Unauthorized
         "403":
           content:
             application/json:
@@ -2396,16 +2136,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
           description: Bad Request
-        "401":
-          content:
-            application/json:
-              example:
-                status: 401
-                message: Unauthorized request
-                details: This request is unauthorized
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Unauthorized
         "403":
           content:
             application/json:
@@ -2502,16 +2232,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
           description: Bad Request
-        "401":
-          content:
-            application/json:
-              example:
-                status: 401
-                message: Unauthorized request
-                details: This request is unauthorized
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Unauthorized
         "403":
           content:
             application/json:
@@ -2766,16 +2486,6 @@ components:
           schema:
             $ref: '#/components/schemas/ErrorMessage'
       description: Bad Request
-    Unauthorized:
-      content:
-        application/json:
-          example:
-            status: 401
-            message: Unauthorized request
-            details: This request is unauthorized
-          schema:
-            $ref: '#/components/schemas/ErrorMessage'
-      description: Unauthorized
     Forbidden:
       content:
         application/json:
