@@ -18,6 +18,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e74ba65_c5a8e853",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreRequestHandler.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-29T12:24:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1f324f9b_887262dc",
+      "revId": "d81b9920771e9138a45a2e2429999f5c62758260",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "da024a54_7ec5930e",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-02-29T12:08:39Z",
       "side": 1,
       "message": "javadoc for authorization at all places",
+      "revId": "d81b9920771e9138a45a2e2429999f5c62758260",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c11322c7_7c9ad598",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NetworkCmProxyDataService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-29T12:24:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da024a54_7ec5930e",
       "revId": "d81b9920771e9138a45a2e2429999f5c62758260",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -52,6 +88,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e8628dc_aa30b984",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/client/DmiRestClient.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-29T12:24:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b7ea0304_37c6701b",
+      "revId": "d81b9920771e9138a45a2e2429999f5c62758260",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "99afa71b_3983759e",
@@ -69,6 +123,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c271bde1_419101cc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-29T12:24:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "99afa71b_3983759e",
+      "revId": "d81b9920771e9138a45a2e2429999f5c62758260",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b27df455_170b5559",
@@ -82,6 +154,24 @@
       "writtenOn": "2024-02-29T12:08:39Z",
       "side": 1,
       "message": "javadoc for authorization",
+      "revId": "d81b9920771e9138a45a2e2429999f5c62758260",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e79889e6_71fa1a64",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiModelOperations.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-29T12:24:05Z",
+      "side": 1,
+      "message": "No authorization header passed here. We\u0027re only changing DMI Data passthrough, not Model or Inventory!",
+      "parentUuid": "b27df455_170b5559",
       "revId": "d81b9920771e9138a45a2e2429999f5c62758260",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
