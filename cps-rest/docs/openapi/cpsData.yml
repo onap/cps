@@ -46,8 +46,6 @@ listElementByDataspaceAndAnchor:
         $ref: 'components.yml#/components/responses/Created'
       '400':
         $ref: 'components.yml#/components/responses/BadRequest'
-      '401':
-        $ref: 'components.yml#/components/responses/Unauthorized'
       '403':
         $ref: 'components.yml#/components/responses/Forbidden'
       '500':
@@ -78,8 +76,6 @@ listElementByDataspaceAndAnchor:
         $ref: 'components.yml#/components/responses/Ok'
       '400':
         $ref: 'components.yml#/components/responses/BadRequest'
-      '401':
-        $ref: 'components.yml#/components/responses/Unauthorized'
       '403':
         $ref: 'components.yml#/components/responses/Forbidden'
       '500':
@@ -122,8 +118,6 @@ nodesByDataspaceAndAnchor:
         $ref: 'components.yml#/components/responses/Created'
       '400':
         $ref: 'components.yml#/components/responses/BadRequest'
-      '401':
-        $ref: 'components.yml#/components/responses/Unauthorized'
       '403':
         $ref: 'components.yml#/components/responses/Forbidden'
       '409':
@@ -157,8 +151,6 @@ nodesByDataspaceAndAnchor:
         $ref: 'components.yml#/components/responses/Ok'
       '400':
         $ref: 'components.yml#/components/responses/BadRequest'
-      '401':
-        $ref: 'components.yml#/components/responses/Unauthorized'
       '403':
         $ref: 'components.yml#/components/responses/Forbidden'
       '500':
@@ -180,8 +172,6 @@ nodesByDataspaceAndAnchor:
         $ref: 'components.yml#/components/responses/NoContent'
       '400':
         $ref: 'components.yml#/components/responses/BadRequest'
-      '401':
-        $ref: 'components.yml#/components/responses/Unauthorized'
       '403':
         $ref: 'components.yml#/components/responses/Forbidden'
       '500':
@@ -212,8 +202,6 @@ nodesByDataspaceAndAnchor:
         $ref: 'components.yml#/components/responses/Ok'
       '400':
         $ref: 'components.yml#/components/responses/BadRequest'
-      '401':
-        $ref: 'components.yml#/components/responses/Unauthorized'
       '403':
         $ref: 'components.yml#/components/responses/Forbidden'
       '500':
