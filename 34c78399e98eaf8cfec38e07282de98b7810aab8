@@ -39,6 +39,29 @@
       "message": "ahh.. we missed to update the javadocs everywhere 😊",
       "revId": "34c78399e98eaf8cfec38e07282de98b7810aab8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bae4a027_86802e96",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/client/DmiRestClientSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-29T11:43:42Z",
+      "side": 1,
+      "message": "NB: see if this is in use or not.",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 24
+      },
+      "revId": "34c78399e98eaf8cfec38e07282de98b7810aab8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
