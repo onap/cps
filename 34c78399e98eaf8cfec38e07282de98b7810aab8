@@ -22,6 +22,23 @@
       },
       "revId": "34c78399e98eaf8cfec38e07282de98b7810aab8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9db405e_a6264dd7",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-29T11:39:51Z",
+      "side": 1,
+      "message": "ahh.. we missed to update the javadocs everywhere 😊",
+      "revId": "34c78399e98eaf8cfec38e07282de98b7810aab8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
