@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36330cd3_ce90b654",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-29T09:55:53Z",
+      "side": 1,
+      "message": "I have intentionally not removed the part from components.yaml which defines how Unauthorized looks like. Hope thats fine.",
+      "revId": "3c66a390952832aabd1f6492b0628a917d71044f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
