@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5255520d_db6efd25",
+        "filename": "cps-ncmp-rest-stub/cps-ncmp-rest-stub-service/src/main/java/org/onap/cps/ncmp/rest/stub/controller/NetworkCmProxyStubController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-29T08:18:53Z",
+      "side": 1,
+      "message": "NB: other whitespaces as well.",
+      "range": {
+        "startLine": 193,
+        "startChar": 118,
+        "endLine": 193,
+        "endChar": 119
+      },
+      "revId": "fd9e226befdbd0f39e87400a8a6a4a6726a50ef4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cdd282a0_7793bd86",
+        "filename": "cps-ncmp-rest-stub/cps-ncmp-rest-stub-service/src/main/java/org/onap/cps/ncmp/rest/stub/controller/NetworkCmProxyStubController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-29T08:18:53Z",
+      "side": 1,
+      "message": "whitespace",
+      "range": {
+        "startLine": 194,
+        "startChar": 95,
+        "endLine": 194,
+        "endChar": 96
+      },
+      "revId": "fd9e226befdbd0f39e87400a8a6a4a6726a50ef4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12c1816c_1b502096",
+        "filename": "cps-ncmp-rest-stub/cps-ncmp-rest-stub-service/src/main/java/org/onap/cps/ncmp/rest/stub/controller/NetworkCmProxyStubController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-29T08:18:53Z",
+      "side": 1,
+      "message": "whitespace",
+      "range": {
+        "startLine": 228,
+        "startChar": 98,
+        "endLine": 228,
+        "endChar": 99
+      },
+      "revId": "fd9e226befdbd0f39e87400a8a6a4a6726a50ef4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f71582d_6357d20a",
+        "filename": "cps-ncmp-rest-stub/cps-ncmp-rest-stub-service/src/main/java/org/onap/cps/ncmp/rest/stub/controller/NetworkCmProxyStubController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-29T08:18:53Z",
+      "side": 1,
+      "message": "whitespace",
+      "range": {
+        "startLine": 229,
+        "startChar": 93,
+        "endLine": 229,
+        "endChar": 94
+      },
+      "revId": "fd9e226befdbd0f39e87400a8a6a4a6726a50ef4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cca53ed9_f95ee927",
+        "filename": "cps-ncmp-rest-stub/cps-ncmp-rest-stub-service/src/main/java/org/onap/cps/ncmp/rest/stub/controller/NetworkCmProxyStubController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-29T08:18:53Z",
+      "side": 1,
+      "message": "whitespace",
+      "range": {
+        "startLine": 230,
+        "startChar": 119,
+        "endLine": 230,
+        "endChar": 120
+      },
+      "revId": "fd9e226befdbd0f39e87400a8a6a4a6726a50ef4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efa4ec84_b455cfa7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-02-29T08:18:53Z",
+      "side": 1,
+      "message": "reminder to remove after we validate",
+      "range": {
+        "startLine": 124,
+        "startChar": 8,
+        "endLine": 124,
+        "endChar": 28
+      },
+      "revId": "fd9e226befdbd0f39e87400a8a6a4a6726a50ef4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
