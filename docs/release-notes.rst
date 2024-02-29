@@ -39,10 +39,20 @@ Release Data
 Bug Fixes
 ---------
 3.4.6
+    - `CPS-2126 <https://jira.onap.org/browse/CPS-2126>`_ Passing HTTP Authorization Bearer Token to DMI Plugins.
 
 
 Features
 --------
+    - `CPS-2133 <https://jira.onap.org/browse/CPS-2133>`_ Revert Uplift of Spring Boot version from 3.2.2 to 3.1.2
+
+Notes
+-----
+This release brings improvements to compatibility with Service Mesh and for that below measures are been taken.
+
+Basic authorization provided using Spring security is been removed from CPS-Core and NCMP and hence authorization is no longer enforced.(basic auth header will be ignored, but is still allowed).
+CPS application will accept any kind of authorization token like Basic-Auth, Bearer token or None (No-Auth) and propagate it conditionally from NCMP passthrough to DMI without any check or validation.
+401 Unauthorized will not be returned. Best effort has been made to ensure backwards compatibility.
 
 Version: 3.4.5
 ==============
