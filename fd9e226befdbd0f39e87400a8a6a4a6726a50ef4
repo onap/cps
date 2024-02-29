@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aca3637f_ba789b1e",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/rest/controller/ControllerSecuritySpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-02-29T12:25:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec6e3f09_466f796e",
+      "range": {
+        "startLine": 48,
+        "startChar": 3,
+        "endLine": 62,
+        "endChar": 5
+      },
+      "revId": "fd9e226befdbd0f39e87400a8a6a4a6726a50ef4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5255520d_db6efd25",
