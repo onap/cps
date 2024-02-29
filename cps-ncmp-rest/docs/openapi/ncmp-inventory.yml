@@ -35,8 +35,6 @@ updateDmiRegistration:
         $ref: 'components.yaml#/components/responses/NoContent'
       400:
         $ref: 'components.yaml#/components/responses/BadRequest'
-      401:
-        $ref: 'components.yaml#/components/responses/Unauthorized'
       403:
         $ref: 'components.yaml#/components/responses/Forbidden'
       500:
@@ -116,8 +114,6 @@ getAllCmHandleIdsForRegisteredDmi:
               type: array
               items:
                 type: string
-      401:
-        $ref: 'components.yaml#/components/responses/Unauthorized'
       403:
         $ref: 'components.yaml#/components/responses/Forbidden'
       500:
@@ -145,8 +141,6 @@ searchCmHandleIds:
               type: array
               items:
                 type: string
-      401:
-        $ref: 'components.yaml#/components/responses/Unauthorized'
       403:
         $ref: 'components.yaml#/components/responses/Forbidden'
       500:
