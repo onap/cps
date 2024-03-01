@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba9f2fc5_04f847cc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-03-01T16:10:39Z",
+      "side": 1,
+      "message": "overall idea looks good.\ndo u also have to test when the DMI_AUTH_ENABLED env variable is set to true/false ??",
+      "revId": "a4f9a6a36bece118b41631c6a113187bb05b7c40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7c398baa_a926b8b9",
