@@ -112,7 +112,7 @@ app:
       topic: ${DMI_DEVICE_HEARTBEAT_TOPIC:dmi-device-heartbeat}
 
 notification:
-  enabled: false
+  enabled: true
   async:
     executor:
       core-pool-size: 2
