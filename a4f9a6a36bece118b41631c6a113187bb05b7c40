@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eae41c68_82f2559b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-03-01T15:17:14Z",
+      "side": 1,
+      "message": "Minor comment, but I think other than that, it looks good.",
+      "revId": "a4f9a6a36bece118b41631c6a113187bb05b7c40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c398baa_a926b8b9",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpBearerTokenPassthroughSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-03-01T15:17:14Z",
+      "side": 1,
+      "message": "Think all imports are mean to be explicit.",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 51
+      },
+      "revId": "a4f9a6a36bece118b41631c6a113187bb05b7c40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
