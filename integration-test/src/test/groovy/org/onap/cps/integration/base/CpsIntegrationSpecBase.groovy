@@ -41,12 +41,14 @@ import org.onap.cps.spi.utils.SessionManager
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.boot.autoconfigure.domain.EntityScan
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.test.web.client.MockRestServiceServer
+import org.springframework.test.web.servlet.MockMvc
 import org.springframework.web.client.RestTemplate
 import org.testcontainers.spock.Testcontainers
 import spock.lang.Shared
@@ -56,9 +58,10 @@ import spock.util.concurrent.PollingConditions
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withStatus
 
-@SpringBootTest(classes = [CpsDataspaceService])
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK, classes = [CpsDataspaceService])
 @Testcontainers
 @EnableAutoConfiguration
+@AutoConfigureMockMvc
 @EnableJpaRepositories(basePackageClasses = [DataspaceRepository])
 @ComponentScan(basePackages = ['org.onap.cps'])
 @EntityScan('org.onap.cps.spi.entities')
@@ -66,6 +69,9 @@ abstract class CpsIntegrationSpecBase extends Specification {
 
     @Shared
     DatabaseTestContainer databaseTestContainer = DatabaseTestContainer.getInstance()
+
+    @Autowired
+    MockMvc mvc;
 
     @Autowired
     CpsDataspaceService cpsDataspaceService
