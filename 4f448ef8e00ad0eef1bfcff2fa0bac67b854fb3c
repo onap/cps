@@ -18,6 +18,46 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "16b99448_de34f83c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-03-04T17:02:33Z",
+      "side": 1,
+      "message": "some suggestions and a question",
+      "revId": "4f448ef8e00ad0eef1bfcff2fa0bac67b854fb3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1a60c10_03ce8496",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpBearerTokenPassthroughSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-03-04T17:02:33Z",
+      "side": 1,
+      "message": "add \u0027all http operations are applied\u0027 (or somethign like that)",
+      "range": {
+        "startLine": 72,
+        "startChar": 1,
+        "endLine": 72,
+        "endChar": 14
+      },
+      "revId": "4f448ef8e00ad0eef1bfcff2fa0bac67b854fb3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f5d9ac91_a2f08ed2",
@@ -67,6 +107,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4e30d401_426d8633",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpBearerTokenPassthroughSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-03-04T17:02:33Z",
+      "side": 1,
+      "message": "NB: maybe extract out somethign like def targetUrl \u003d ... for each test",
+      "range": {
+        "startLine": 78,
+        "startChar": 44,
+        "endLine": 78,
+        "endChar": 145
+      },
+      "revId": "4f448ef8e00ad0eef1bfcff2fa0bac67b854fb3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a4d7945_fb1cedb7",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpBearerTokenPassthroughSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-03-04T17:02:33Z",
+      "side": 1,
+      "message": "add \u0027all http operations are applied\u0027 (or somethign like that)",
+      "range": {
+        "startLine": 93,
+        "startChar": 8,
+        "endLine": 93,
+        "endChar": 14
+      },
+      "revId": "4f448ef8e00ad0eef1bfcff2fa0bac67b854fb3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f9742ae5_cdb2e948",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpBearerTokenPassthroughSpec.groovy",
         "patchSetId": 3
@@ -107,6 +193,75 @@
         "startChar": 26,
         "endLine": 99,
         "endChar": 46
+      },
+      "revId": "4f448ef8e00ad0eef1bfcff2fa0bac67b854fb3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd1859eb_b40f80ea",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpBearerTokenPassthroughSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-03-04T17:02:33Z",
+      "side": 1,
+      "message": "only one variation of request body so no need for where block",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 115,
+        "endChar": 29
+      },
+      "revId": "4f448ef8e00ad0eef1bfcff2fa0bac67b854fb3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88506d0f_6eb134be",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpBearerTokenPassthroughSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-03-04T17:02:33Z",
+      "side": 1,
+      "message": "NB: I prefer a more compact notation\nie lines 115-118 can be on one line\nlie 124-1228 could be on line line",
+      "range": {
+        "startLine": 116,
+        "startChar": 0,
+        "endLine": 126,
+        "endChar": 17
+      },
+      "revId": "4f448ef8e00ad0eef1bfcff2fa0bac67b854fb3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f81c079d_44bf6e94",
+        "filename": "integration-test/src/test/resources/application.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-03-04T17:02:33Z",
+      "side": 1,
+      "message": "is this relevant to this patch?!",
+      "range": {
+        "startLine": 115,
+        "startChar": 11,
+        "endLine": 115,
+        "endChar": 15
       },
       "revId": "4f448ef8e00ad0eef1bfcff2fa0bac67b854fb3c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
