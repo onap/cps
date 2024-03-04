@@ -56,6 +56,30 @@
       },
       "revId": "a4f9a6a36bece118b41631c6a113187bb05b7c40",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f058c977_55a60cf3",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpBearerTokenPassthroughSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-03-04T09:51:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c398baa_a926b8b9",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 51
+      },
+      "revId": "a4f9a6a36bece118b41631c6a113187bb05b7c40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
