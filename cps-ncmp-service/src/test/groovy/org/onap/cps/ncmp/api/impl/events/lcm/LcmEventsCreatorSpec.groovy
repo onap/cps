@@ -174,18 +174,20 @@ class LcmEventsCreatorSpec extends Specification {
             assert result.eventId != null
     }
 
-    def 'Map the LcmEvent for alternate IDs when #scenario'() {
-        given: 'NCMP cm handle details with current and old alternate IDs'
-            def existingNcmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, alternateId: existingAlternateId, compositeState: new CompositeState(dataSyncEnabled: false))
-            def targetNcmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, alternateId: targetAlternateId, compositeState: new CompositeState(dataSyncEnabled: false))
+    def 'Map the LcmEvent for alternate ID, data producer identifier, and module set tag when they contain #scenario'() {
+        given: 'NCMP cm handle details with current and old values for alternate ID, module set tag, and data producer identifier'
+            def existingNcmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, alternateId: existingAlternateId, moduleSetTag: existingModuleSetTag, dataProducerIdentifier: existingDataProducerIdentifier, compositeState: new CompositeState(dataSyncEnabled: false))
+            def targetNcmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, alternateId: targetAlternateId, moduleSetTag: targetModuleSetTag, dataProducerIdentifier: targetDataProducerIdentifier, compositeState: new CompositeState(dataSyncEnabled: false))
         when: 'the event is populated'
             def result = objectUnderTest.populateLcmEvent(cmHandleId, targetNcmpServiceCmHandle, existingNcmpServiceCmHandle)
-        then: 'the alternate ID is present or is an empty string in the payload'
-            assert result.event.alternateId == expectedEventAlternateId
-        where: 'the following alternate IDs are provided'
-            scenario                                      | existingAlternateId | targetAlternateId || expectedEventAlternateId
-            'same new and old alternate ID'               | 'someAlternateId'   | 'someAlternateId' || 'someAlternateId'
-            'blank new and old alternate ID'              | ''                  | ''                || ''
-            'new alternate id and blank old alternate ID' | ''                  | 'someAlternateId' || 'someAlternateId'
+        then: 'the alternate ID, module set tag, and data producer identifier are present or are an empty string in the payload'
+            assert result.event.alternateId == targetAlternateId
+            assert result.event.moduleSetTag == targetModuleSetTag
+            assert result.event.dataProducerIdentifier == targetDataProducerIdentifier
+        where: 'the following values are provided for the alternate ID, module set tag, and data producer identifier'
+            scenario                                     | existingAlternateId | targetAlternateId | existingModuleSetTag | targetModuleSetTag | existingDataProducerIdentifier | targetDataProducerIdentifier
+            'same target and existing values'            | 'someAlternateId'   | 'someAlternateId' | 'someModuleSetTag'   | 'someModuleSetTag' | 'someDataProducerIdentifier'   | 'someDataProducerIdentifier'
+            'blank target and existing values'           | ''                  | ''                | ''                   | ''                 | ''                             | ''
+            'new target value and blank existing values' | ''                  | 'someAlternateId' | ''                   | 'someAlternateId'  | ''                             | 'someDataProducerIdentifier'
     }
 }
