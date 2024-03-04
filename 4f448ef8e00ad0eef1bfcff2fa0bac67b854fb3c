@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2a411901_c8a682ad",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpBearerTokenPassthroughSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-03-04T16:32:29Z",
+      "side": 1,
+      "message": "I don\u0027t think we need it right now. Not sure if anyone in the world is using DMI basic auth. Also I had to turn off DMI basic auth in the test application.yml to be able to test this. (There\u0027s ways of testing with with different configs, but it\u0027s a lot of hassle for a feature that might be removed.)",
+      "parentUuid": "f5d9ac91_a2f08ed2",
+      "range": {
+        "startLine": 76,
+        "startChar": 4,
+        "endLine": 76,
+        "endChar": 7
+      },
+      "revId": "4f448ef8e00ad0eef1bfcff2fa0bac67b854fb3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f9742ae5_cdb2e948",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpBearerTokenPassthroughSpec.groovy",
         "patchSetId": 3
