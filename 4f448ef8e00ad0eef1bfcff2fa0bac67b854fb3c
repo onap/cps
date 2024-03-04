@@ -22,6 +22,30 @@
       },
       "revId": "4f448ef8e00ad0eef1bfcff2fa0bac67b854fb3c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a84d709_2dda5cbd",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpBearerTokenPassthroughSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-03-04T09:59:30Z",
+      "side": 1,
+      "message": "Yeah, that\u0027s a difficult one. Good call I think on just checking for a POST. Not sure what else you can do",
+      "parentUuid": "f9742ae5_cdb2e948",
+      "range": {
+        "startLine": 99,
+        "startChar": 26,
+        "endLine": 99,
+        "endChar": 46
+      },
+      "revId": "4f448ef8e00ad0eef1bfcff2fa0bac67b854fb3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
