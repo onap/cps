@@ -1,6 +1,46 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab685b52_281677e6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-03-04T15:41:36Z",
+      "side": 1,
+      "message": "apart from my comment , the testware looks fine to me.",
+      "revId": "4f448ef8e00ad0eef1bfcff2fa0bac67b854fb3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5d9ac91_a2f08ed2",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpBearerTokenPassthroughSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-03-04T15:41:36Z",
+      "side": 1,
+      "message": "do we also want to have a condition when that DMI_AUTH_ENABLED is set to true ??\nI mean a separate test or a where condition to support it ?",
+      "range": {
+        "startLine": 76,
+        "startChar": 4,
+        "endLine": 76,
+        "endChar": 7
+      },
+      "revId": "4f448ef8e00ad0eef1bfcff2fa0bac67b854fb3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f9742ae5_cdb2e948",
