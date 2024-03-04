@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ec3f23e_9777e0f5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-03-04T14:48:39Z",
+      "side": 1,
+      "message": "As of now, giving some NB reviews, and suggested to get one more review on extracting string into a constant.",
+      "revId": "19181da2e59db1f0a1c737f7684ab9eedf4c539e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b9dd9c4_739968a4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-03-04T14:48:39Z",
+      "side": 1,
+      "message": "NB: Usually we prefer to have commit message structure e.g. \nthe content may be indented and starts with a dash (-) for\neach new line\n\na sample may be here: https://gerrit.onap.org/r/c/cps/+/137239",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 40
+      },
+      "revId": "f12b287ab59683abae4a54364f030664c4d31dfa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29feb5be_92c58e7e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-03-04T14:48:39Z",
+      "side": 1,
+      "message": "NB: Im not sure exactly shall we extract this into a final variable, thus suggesting to get more review on this matter.",
+      "range": {
+        "startLine": 117,
+        "startChar": 57,
+        "endLine": 117,
+        "endChar": 71
+      },
+      "revId": "f12b287ab59683abae4a54364f030664c4d31dfa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ff1e8ed_af503790",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-03-04T14:48:39Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 135,
+        "startChar": 62,
+        "endLine": 135,
+        "endChar": 87
+      },
+      "revId": "f12b287ab59683abae4a54364f030664c4d31dfa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4e66a2e_269494c2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-03-04T14:48:39Z",
+      "side": 1,
+      "message": "I think this parameter name should be updatedCmHandle, right? since it is kind of update but not upgrade.",
+      "range": {
+        "startLine": 217,
+        "startChar": 67,
+        "endLine": 217,
+        "endChar": 83
+      },
+      "revId": "f12b287ab59683abae4a54364f030664c4d31dfa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
