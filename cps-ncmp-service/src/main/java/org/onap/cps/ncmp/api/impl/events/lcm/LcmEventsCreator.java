@@ -96,6 +96,8 @@ public class LcmEventsCreator {
         final Event event = new Event();
         event.setCmHandleId(eventCorrelationId);
         event.setAlternateId(targetNcmpServiceCmHandle.getAlternateId());
+        event.setModuleSetTag(targetNcmpServiceCmHandle.getAlternateId());
+        event.setDataProducerIdentifier(targetNcmpServiceCmHandle.getAlternateId());
         final CmHandleValuesHolder cmHandleValuesHolder =
                 LcmEventsCreatorHelper.determineEventValues(targetNcmpServiceCmHandle, existingNcmpServiceCmHandle,
                         lcmEventType);
