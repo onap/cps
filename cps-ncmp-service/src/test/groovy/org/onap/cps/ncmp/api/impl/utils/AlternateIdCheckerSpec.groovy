@@ -20,7 +20,6 @@
 
 package org.onap.cps.ncmp.api.impl.utils
 
-
 import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
@@ -68,25 +67,41 @@ class AlternateIdCheckerSpec extends Specification {
             'other alternate id' || false
     }
 
-    def 'Check a batch of NEW cm handles with #scenario.'() {
+    def 'Check a batch of created cm handles with #scenario.'() {
         given: 'a batch of 2 new cm handles alternate id ids #alt1 and #alt2'
             def batch = [new NcmpServiceCmHandle(cmHandleId: 'ch-1', alternateId: alt1),
                          new NcmpServiceCmHandle(cmHandleId: 'ch-2', alternateId: alt2)]
-        and: 'the database already contains cm handle(s) with these alternate ids: #alreadyinDb'
+        and: 'the database already contains cm handle(s) with these alternate ids: #altAlreadyInDb'
             mockInventoryPersistenceService.getCmHandleDataNodeByAlternateId(_) >>
                 {  args -> altAlreadyInDb.contains(args[0]) ? new DataNode() : throwDataNodeNotFoundException() }
         when: 'the batch of new cm handles is checked'
-            def result = objectUnderTest.getIdsOfCmHandlesWithRejectedAlternateId(batch)
-        then: 'the result only contains the ids of the acceptable cm handles'
-            assert result.contains('ch-1') == rejectCh1
-            assert result.contains('ch-2') == rejectCh2
+            def result = objectUnderTest.getIdsOfCmHandlesWithRejectedAlternateId(batch, AlternateIdChecker.Operation.CREATE)
+        then: 'the result contains ids of the rejected cm handles'
+            assert result == expectedRejectedCmHandleIds
         where: 'the following alternate ids are used'
-            scenario                          | alt1   | alt2   | altAlreadyInDb  || rejectCh1 | rejectCh2
-            'no alternate ids'                | ''     | ''     | ['dont matter'] || false      | false
-            'new alternate ids'               | 'fdn1' | 'fdn2' | ['other fdn']   || false      | false
-            'one already used alternate id'   | 'fdn1' | 'fdn2' | ['fdn1']        || true       | false
-            'two already used alternate ids'  | 'fdn1' | 'fdn2' | ['fdn1','fdn2'] || true       | true
-            'duplicate alternate id in batch' | 'fdn1' | 'fdn1' | ['dont matter'] || false      | true
+            scenario                          | alt1   | alt2   | altAlreadyInDb  || expectedRejectedCmHandleIds
+            'no alternate ids'                | ''     | ''     | ['dont matter'] || []
+            'new alternate ids'               | 'fdn1' | 'fdn2' | ['other fdn']   || []
+            'one already used alternate id'   | 'fdn1' | 'fdn2' | ['fdn1']        || ['ch-1']
+            'duplicate alternate id in batch' | 'fdn1' | 'fdn1' | ['dont matter'] || ['ch-2']
+    }
+
+    def 'Check a batch of updates to existing cm handles with #scenario.'() {
+        given: 'a batch of 1 existing cm handle update alternate id to #proposedAlt'
+            def batch = [new NcmpServiceCmHandle(cmHandleId: 'ch-1', alternateId: proposedAlt)]
+        and: 'the database already contains a cm handle with alternate id: #altAlreadyInDb'
+            mockInventoryPersistenceService.getCmHandleDataNodeByAlternateId(_) >>
+                    {  args -> altAlreadyInDb.equals(args[0]) ? new DataNode() : throwDataNodeNotFoundException() }
+            mockInventoryPersistenceService.getYangModelCmHandle(_) >> new YangModelCmHandle(alternateId: altAlreadyInDb)
+        when: 'the batch of cm handle updates is checked'
+            def result = objectUnderTest.getIdsOfCmHandlesWithRejectedAlternateId(batch, AlternateIdChecker.Operation.UPDATE)
+        then: 'the result contains ids of the rejected cm handles'
+            assert result == expectedRejectedCmHandleIds
+        where: 'the following parameters are used'
+            scenario                      | proposedAlt | altAlreadyInDb || expectedRejectedCmHandleIds
+            'no alternate id'             | 'fdn1'      | ''             || []
+            'used the same alternate id'  | 'fdn1'      | 'fdn1'         || []
+            'used different alternate id' | 'otherFdn'  | 'fdn1'         || ['ch-1']
     }
 
     def throwDataNodeNotFoundException() {
