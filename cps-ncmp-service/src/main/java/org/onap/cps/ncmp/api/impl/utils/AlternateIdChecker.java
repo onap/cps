@@ -96,15 +96,17 @@ public class AlternateIdChecker {
     }
 
     /**
-     * Check all alternate ids of a batch of NEW cm handles.
+     * Check all alternate ids of a batch of cm handles.
      * Includes cross-checks in the batch itself for duplicates. Only the first entry encountered wil be accepted.
-     * This method can only be used for NEW cm handle registrations NOT for updating existing ones
+     * This method can be used for both NEW cm handle registrations and updating existing ones
      *
      * @param newNcmpServiceCmHandles the proposed new cm handles
+     * @param lookupExisting true for updating existing cm handles, false otherwise
      * @return collection of cm handles ids which are acceptable
      */
     public Collection<String> getIdsOfCmHandlesWithRejectedAlternateId(
-                                    final Collection<NcmpServiceCmHandle> newNcmpServiceCmHandles) {
+                                    final Collection<NcmpServiceCmHandle> newNcmpServiceCmHandles,
+                                    final boolean lookupExisting) {
         final Set<String> acceptedAlternateIds = new HashSet<>(newNcmpServiceCmHandles.size());
         final Collection<String> rejectedCmHandleIds = new ArrayList<>();
         for (final NcmpServiceCmHandle ncmpServiceCmHandle : newNcmpServiceCmHandles) {
@@ -119,7 +121,11 @@ public class AlternateIdChecker {
                     log.warn("Alternate id update ignored, cannot update cm handle {}, alternate id is already "
                         + "assigned to a different cm handle (in this batch)", cmHandleId);
                 } else {
-                    isAcceptable = canApplyAlternateId(cmHandleId, NO_CURRENT_ALTERNATE_ID, proposedAlternateId);
+                    if (lookupExisting) {
+                        isAcceptable = canApplyAlternateId(cmHandleId, proposedAlternateId);
+                    } else {
+                        isAcceptable = canApplyAlternateId(cmHandleId, NO_CURRENT_ALTERNATE_ID, proposedAlternateId);
+                    }
                 }
             }
             if (isAcceptable) {

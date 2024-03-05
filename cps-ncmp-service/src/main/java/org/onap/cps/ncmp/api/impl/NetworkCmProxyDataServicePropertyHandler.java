@@ -22,6 +22,7 @@
 
 package org.onap.cps.ncmp.api.impl;
 
+import static org.onap.cps.ncmp.api.NcmpResponseStatus.ALTERNATE_ID_ALREADY_ASSOCIATED;
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLES_NOT_FOUND;
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLE_INVALID_ID;
 import static org.onap.cps.ncmp.api.impl.NetworkCmProxyDataServicePropertyHandler.PropertyType.DMI_PROPERTY;
@@ -46,8 +47,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.impl.utils.AlternateIdChecker;
-import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
-import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
@@ -70,67 +69,83 @@ public class NetworkCmProxyDataServicePropertyHandler {
     private final AlternateIdChecker alternateIdChecker;
 
     /**
-     * Iterates over incoming ncmpServiceCmHandles and update the dataNodes based on the updated attributes.
+     * Iterates over incoming udpatedNcmpServiceCmHandles and update the dataNodes based on the updated attributes.
      * The attributes which are not passed will remain as is.
      *
-     * @param ncmpServiceCmHandles collection of ncmpServiceCmHandles
+     * @param udpatedNcmpServiceCmHandles collection of CmHandles
      */
     public List<CmHandleRegistrationResponse> updateCmHandleProperties(
-        final Collection<NcmpServiceCmHandle> ncmpServiceCmHandles) {
-        final List<CmHandleRegistrationResponse> cmHandleRegistrationResponses
-            = new ArrayList<>(ncmpServiceCmHandles.size());
-        for (final NcmpServiceCmHandle ncmpServiceCmHandle : ncmpServiceCmHandles) {
-            final String cmHandleId = ncmpServiceCmHandle.getCmHandleId();
-            try {
-                final DataNode existingCmHandleDataNode = inventoryPersistence
-                    .getCmHandleDataNodeByCmHandleId(cmHandleId).iterator().next();
-                updateAlternateId(existingCmHandleDataNode, ncmpServiceCmHandle);
-                processUpdates(existingCmHandleDataNode, ncmpServiceCmHandle);
-                cmHandleRegistrationResponses.add(CmHandleRegistrationResponse.createSuccessResponse(cmHandleId));
-            } catch (final DataNodeNotFoundException e) {
-                log.error("Unable to find dataNode for cmHandleId : {} , caused by : {}", cmHandleId, e.getMessage());
-                cmHandleRegistrationResponses.add(
-                    CmHandleRegistrationResponse.createFailureResponse(cmHandleId, CM_HANDLES_NOT_FOUND));
-            } catch (final DataValidationException e) {
-                log.error("Unable to update cm handle : {}, caused by : {}", cmHandleId, e.getMessage());
-                cmHandleRegistrationResponses.add(
-                    CmHandleRegistrationResponse.createFailureResponse(cmHandleId, CM_HANDLE_INVALID_ID));
-            } catch (final Exception exception) {
-                log.error("Unable to update cmHandle : {} , caused by : {}", cmHandleId, exception.getMessage());
-                cmHandleRegistrationResponses.add(
-                    CmHandleRegistrationResponse.createFailureResponse(cmHandleId, exception));
+            final Collection<NcmpServiceCmHandle> udpatedNcmpServiceCmHandles) {
+        final List<CmHandleRegistrationResponse> cmHandleRegistrationResponses = new ArrayList<>();
+        final Collection<String> rejectedCmHandleIds = checkAlternateIds(udpatedNcmpServiceCmHandles,
+                cmHandleRegistrationResponses);
+        for (final NcmpServiceCmHandle updatedNcmpServiceCmHandle : udpatedNcmpServiceCmHandles) {
+            final String cmHandleId = updatedNcmpServiceCmHandle.getCmHandleId();
+            if (!rejectedCmHandleIds.contains(cmHandleId)) {
+                try {
+                    final DataNode existingCmHandleDataNode = inventoryPersistence
+                            .getCmHandleDataNodeByCmHandleId(cmHandleId).iterator().next();
+                    processUpdates(existingCmHandleDataNode, updatedNcmpServiceCmHandle);
+                    cmHandleRegistrationResponses.add(CmHandleRegistrationResponse.createSuccessResponse(cmHandleId));
+                } catch (final DataNodeNotFoundException e) {
+                    log.error("Unable to find dataNode for cmHandleId : {} , caused by : {}", cmHandleId,
+                            e.getMessage());
+                    cmHandleRegistrationResponses.add(
+                            CmHandleRegistrationResponse.createFailureResponse(cmHandleId, CM_HANDLES_NOT_FOUND));
+                } catch (final DataValidationException e) {
+                    log.error("Unable to update cm handle : {}, caused by : {}", cmHandleId, e.getMessage());
+                    cmHandleRegistrationResponses.add(
+                            CmHandleRegistrationResponse.createFailureResponse(cmHandleId, CM_HANDLE_INVALID_ID));
+                } catch (final Exception exception) {
+                    log.error("Unable to update cmHandle : {} , caused by : {}", cmHandleId, exception.getMessage());
+                    cmHandleRegistrationResponses.add(
+                            CmHandleRegistrationResponse.createFailureResponse(cmHandleId, exception));
+                }
             }
         }
         return cmHandleRegistrationResponses;
     }
 
-    private void updateAlternateId(final DataNode existingCmHandleDataNode,
-                                   final NcmpServiceCmHandle ncmpServiceCmHandle) {
-        final YangModelCmHandle yangModelCmHandle =
-            YangDataConverter.convertCmHandleToYangModel(existingCmHandleDataNode);
-        final String currentAlternateId = yangModelCmHandle.getAlternateId();
-        final String newAlternateId = ncmpServiceCmHandle.getAlternateId();
-        if (alternateIdChecker.canApplyAlternateId(ncmpServiceCmHandle.getCmHandleId(),
-            currentAlternateId, newAlternateId)) {
-            setAndUpdateAlternateId(yangModelCmHandle, newAlternateId);
+    private Collection<String> checkAlternateIds(final Collection<NcmpServiceCmHandle> cmHandlesToBeUpdated,
+                                             final List<CmHandleRegistrationResponse> cmHandleRegistrationResponses) {
+        final Collection<String> rejectedCmHandleIds = alternateIdChecker
+                .getIdsOfCmHandlesWithRejectedAlternateId(cmHandlesToBeUpdated, true);
+        cmHandleRegistrationResponses.addAll(CmHandleRegistrationResponse.createFailureResponses(
+                rejectedCmHandleIds, ALTERNATE_ID_ALREADY_ASSOCIATED));
+        return rejectedCmHandleIds;
+    }
+
+    private void processUpdates(final DataNode existingCmHandleDataNode,
+                                final NcmpServiceCmHandle updatedNcmpServiceCmHandle) {
+        updateAlternateId(updatedNcmpServiceCmHandle);
+        if (!updatedNcmpServiceCmHandle.getPublicProperties().isEmpty()) {
+            updateProperties(existingCmHandleDataNode, PUBLIC_PROPERTY,
+                updatedNcmpServiceCmHandle.getPublicProperties());
+        }
+        if (!updatedNcmpServiceCmHandle.getDmiProperties().isEmpty()) {
+            updateProperties(existingCmHandleDataNode, DMI_PROPERTY, updatedNcmpServiceCmHandle.getDmiProperties());
         }
     }
 
-    private void processUpdates(final DataNode existingCmHandleDataNode, final NcmpServiceCmHandle incomingCmHandle) {
-        if (!incomingCmHandle.getPublicProperties().isEmpty()) {
-            updateProperties(existingCmHandleDataNode, PUBLIC_PROPERTY, incomingCmHandle.getPublicProperties());
-        }
-        if (!incomingCmHandle.getDmiProperties().isEmpty()) {
-            updateProperties(existingCmHandleDataNode, DMI_PROPERTY, incomingCmHandle.getDmiProperties());
-        }
+    private void updateAlternateId(final NcmpServiceCmHandle updatedNcmpServiceCmHandle) {
+        final String updatedAlternateId = updatedNcmpServiceCmHandle.getAlternateId();
+        final String cmHandleId = updatedNcmpServiceCmHandle.getCmHandleId();
+        final Map<String, String> cmHandleProperties = new HashMap<>(2);
+        cmHandleProperties.put("id", cmHandleId);
+        cmHandleProperties.put("alternate-id", updatedAlternateId);
+        final Map<String, Map<String, String>> dmiRegistryProperties = new HashMap<>(1);
+        dmiRegistryProperties.put("cm-handles", cmHandleProperties);
+        cpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
+                jsonObjectMapper.asJsonString(dmiRegistryProperties), OffsetDateTime.now());
+        log.debug("Updating alternateId for cmHandle {} with value : {})", cmHandleId, updatedAlternateId);
     }
 
     private void updateProperties(final DataNode existingCmHandleDataNode, final PropertyType propertyType,
-            final Map<String, String> incomingProperties) {
+                                  final Map<String, String> updatedProperties) {
         final Collection<DataNode> replacementPropertyDataNodes =
-                getReplacementDataNodes(existingCmHandleDataNode, propertyType, incomingProperties);
+                getReplacementDataNodes(existingCmHandleDataNode, propertyType, updatedProperties);
         replacementPropertyDataNodes.addAll(
-                getUnchangedPropertyDataNodes(existingCmHandleDataNode, propertyType, incomingProperties));
+                getUnchangedPropertyDataNodes(existingCmHandleDataNode, propertyType, updatedProperties));
         if (replacementPropertyDataNodes.isEmpty()) {
             removeAllProperties(existingCmHandleDataNode, propertyType);
         } else {
@@ -149,13 +164,14 @@ public class NetworkCmProxyDataServicePropertyHandler {
     }
 
     private Collection<DataNode> getUnchangedPropertyDataNodes(final DataNode existingCmHandleDataNode,
-            final PropertyType propertyType, final Map<String, String> incomingProperties) {
+                                                               final PropertyType propertyType,
+                                                               final Map<String, String> updatedProperties) {
         final Collection<DataNode> unchangedPropertyDataNodes = new HashSet<>();
         for (final DataNode existingPropertyDataNode : existingCmHandleDataNode.getChildDataNodes()) {
             final Matcher matcher = propertyType.propertyXpathPattern.matcher(existingPropertyDataNode.getXpath());
             if (matcher.find()) {
                 final String keyName = matcher.group(2);
-                if (!incomingProperties.containsKey(keyName)) {
+                if (!updatedProperties.containsKey(keyName)) {
                     unchangedPropertyDataNodes.add(existingPropertyDataNode);
                 }
             }
@@ -164,9 +180,10 @@ public class NetworkCmProxyDataServicePropertyHandler {
     }
 
     private Collection<DataNode> getReplacementDataNodes(final DataNode existingCmHandleDataNode,
-            final PropertyType propertyType, final Map<String, String> incomingProperties) {
+                                                         final PropertyType propertyType,
+                                                         final Map<String, String> updatedProperties) {
         final Collection<DataNode> replacementPropertyDataNodes = new HashSet<>();
-        incomingProperties.forEach((updatedAttributeKey, updatedAttributeValue) -> {
+        updatedProperties.forEach((updatedAttributeKey, updatedAttributeValue) -> {
             final String propertyXpath = getAttributeXpath(existingCmHandleDataNode, propertyType, updatedAttributeKey);
             if (updatedAttributeValue != null) {
                 log.info("Creating a new DataNode with xpath {} , key : {} and value : {}", propertyXpath,
@@ -179,7 +196,7 @@ public class NetworkCmProxyDataServicePropertyHandler {
     }
 
     private String getAttributeXpath(final DataNode cmHandle, final PropertyType propertyType,
-            final String attributeKey) {
+                                     final String attributeKey) {
         return cmHandle.getXpath() + "/" + propertyType.xpathPrefix + String.format("[@name='%s']", attributeKey);
     }
 
@@ -190,17 +207,6 @@ public class NetworkCmProxyDataServicePropertyHandler {
         log.debug("Building a new node with xpath {} with leaves (name : {} , value : {})", xpath, attributeKey,
                 attributeValue);
         return new DataNodeBuilder().withXpath(xpath).withLeaves(ImmutableMap.copyOf(updatedLeaves)).build();
-    }
-
-    private void setAndUpdateAlternateId(final YangModelCmHandle upgradedCmHandle, final String alternateId) {
-        final Map<String, Map<String, String>> dmiRegistryProperties = new HashMap<>(1);
-        final Map<String, String> cmHandleProperties = new HashMap<>(2);
-        cmHandleProperties.put("id", upgradedCmHandle.getId());
-        cmHandleProperties.put("alternate-id", alternateId);
-        dmiRegistryProperties.put("cm-handles", cmHandleProperties);
-        cpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
-                jsonObjectMapper.asJsonString(dmiRegistryProperties), OffsetDateTime.now());
-        log.info("Updating alternateId for cmHandle {} with value : {})", upgradedCmHandle.getId(), alternateId);
     }
 
     enum PropertyType {

@@ -78,7 +78,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
 
     def setup() {
         // always accept all cm handles
-        mockAlternateIdChecker.getIdsOfCmHandlesWithRejectedAlternateId(_) >> []
+        mockAlternateIdChecker.getIdsOfCmHandlesWithRejectedAlternateId(*_) >> []
 
         // always can find all cm handles in DB
         mockInventoryPersistence.getYangModelCmHandles(_) >> { args -> args[0].collect { new YangModelCmHandle(id:it) } }
@@ -425,7 +425,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         when: 'the DMI plugin registration happens'
             objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'the new alternate id is added to the cache'
-            1 * mockAlternateIdChecker.getIdsOfCmHandlesWithRejectedAlternateId(ncmpServiceCmHandles) >> ['cmhandle1']
+            1 * mockAlternateIdChecker.getIdsOfCmHandlesWithRejectedAlternateId(ncmpServiceCmHandles, false) >> ['cmhandle1']
     }
 
 }

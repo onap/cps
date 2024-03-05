@@ -68,7 +68,7 @@ class AlternateIdCheckerSpec extends Specification {
             'other alternate id' || false
     }
 
-    def 'Check a batch of NEW cm handles with #scenario.'() {
+    def 'Check a batch of cm handles with #scenario.'() {
         given: 'a batch of 2 new cm handles alternate id ids #alt1 and #alt2'
             def batch = [new NcmpServiceCmHandle(cmHandleId: 'ch-1', alternateId: alt1),
                          new NcmpServiceCmHandle(cmHandleId: 'ch-2', alternateId: alt2)]
@@ -76,7 +76,7 @@ class AlternateIdCheckerSpec extends Specification {
             mockInventoryPersistenceService.getCmHandleDataNodeByAlternateId(_) >>
                 {  args -> altAlreadyInDb.contains(args[0]) ? new DataNode() : throwDataNodeNotFoundException() }
         when: 'the batch of new cm handles is checked'
-            def result = objectUnderTest.getIdsOfCmHandlesWithRejectedAlternateId(batch)
+            def result = objectUnderTest.getIdsOfCmHandlesWithRejectedAlternateId(batch, false)
         then: 'the result only contains the ids of the acceptable cm handles'
             assert result.contains('ch-1') == rejectCh1
             assert result.contains('ch-2') == rejectCh2
@@ -87,6 +87,25 @@ class AlternateIdCheckerSpec extends Specification {
             'one already used alternate id'   | 'fdn1' | 'fdn2' | ['fdn1']        || true       | false
             'two already used alternate ids'  | 'fdn1' | 'fdn2' | ['fdn1','fdn2'] || true       | true
             'duplicate alternate id in batch' | 'fdn1' | 'fdn1' | ['dont matter'] || false      | true
+    }
+
+    def 'Check a batch of update to existing cm handles with #scenario.'() {
+        given: 'a batch of 1 existing cm handle alternate id #proposedAlt'
+            def batch = [new NcmpServiceCmHandle(cmHandleId: 'ch-1', alternateId: proposedAlt)]
+        and: 'the database already contains cm handle(s) with these alternate ids: #altAlreadyInDb'
+            mockInventoryPersistenceService.getCmHandleDataNodeByAlternateId(_) >>
+                    {  args -> altAlreadyInDb.contains(args[0]) ? new DataNode() : throwDataNodeNotFoundException() }
+        and: 'the database already contains cm handle(s) with these alternate ids: #alreadyinDb'
+            mockInventoryPersistenceService.getYangModelCmHandle(_) >> new YangModelCmHandle(alternateId: altAlreadyInDb[0])
+        when: 'the batch of new cm handles is checked'
+            def result = objectUnderTest.getIdsOfCmHandlesWithRejectedAlternateId(batch, true)
+        then: 'the result only contains the ids of the rejected cm handles to update'
+            assert result.contains('ch-1') == rejectCh1
+        where: 'the following parameters are used'
+            scenario                      | proposedAlt | altAlreadyInDb || rejectCh1
+            'no alternate id'             | 'fdn1'      | ['']           || false
+            'used the same alternate id'  | 'fdn1'      | ['fdn1']       || false
+            'used different alternate id' | 'fdn2'      | ['fdn1']       || true
     }
 
     def throwDataNodeNotFoundException() {
