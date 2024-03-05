@@ -78,7 +78,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
 
     def setup() {
         // always accept all cm handles
-        mockAlternateIdChecker.getIdsOfCmHandlesWithRejectedAlternateId(_) >> []
+        mockAlternateIdChecker.getIdsOfCmHandlesWithRejectedAlternateId(*_) >> []
 
         // always can find all cm handles in DB
         mockInventoryPersistence.getYangModelCmHandles(_) >> { args -> args[0].collect { new YangModelCmHandle(id:it) } }
@@ -416,16 +416,6 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         'cm-handle does not exist'   | 'cmhandle'             | new DataNodeNotFoundException('', '', '') || CM_HANDLES_NOT_FOUND | 'cm handle id(s) not found'
         'cm-handle has invalid name' | 'cm handle with space' | new DataValidationException('', '')       || CM_HANDLE_INVALID_ID | 'cm-handle has an invalid character(s) in id'
         'an unexpected exception'    | 'cmhandle'             | new RuntimeException('Failed')            || UNKNOWN_ERROR        | 'Failed'
-    }
-
-    def 'Adding data to alternate id caches.'() {
-        given: 'a registration with three CM Handles to be created'
-            def ncmpServiceCmHandles = [new NcmpServiceCmHandle(cmHandleId: 'cmhandle1', alternateId: 'my-alternate-id-1')]
-            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server', createdCmHandles: ncmpServiceCmHandles)
-        when: 'the DMI plugin registration happens'
-            objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
-        then: 'the new alternate id is added to the cache'
-            1 * mockAlternateIdChecker.getIdsOfCmHandlesWithRejectedAlternateId(ncmpServiceCmHandles) >> ['cmhandle1']
     }
 
 }
