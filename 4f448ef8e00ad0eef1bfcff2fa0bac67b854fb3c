@@ -60,6 +60,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "327c58f1_7d89620f",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpBearerTokenPassthroughSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-03-05T09:23:43Z",
+      "side": 1,
+      "message": "Ack, will push another patch shortly",
+      "parentUuid": "f1a60c10_03ce8496",
+      "range": {
+        "startLine": 72,
+        "startChar": 1,
+        "endLine": 72,
+        "endChar": 14
+      },
+      "revId": "4f448ef8e00ad0eef1bfcff2fa0bac67b854fb3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f5d9ac91_a2f08ed2",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpBearerTokenPassthroughSpec.groovy",
         "patchSetId": 3
