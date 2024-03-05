@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7bec4346_901e4b1d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-03-05T16:26:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b9dd9c4_739968a4",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 40
+      },
+      "revId": "f12b287ab59683abae4a54364f030664c4d31dfa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "29feb5be_92c58e7e",
@@ -107,6 +131,30 @@
       "side": 1,
       "message": "Or just simply \"updateCmHandle\", as oppose to \"updated\"?\n\"Updated\" might suggest it was already updated",
       "parentUuid": "d4e66a2e_269494c2",
+      "range": {
+        "startLine": 217,
+        "startChar": 67,
+        "endLine": 217,
+        "endChar": 83
+      },
+      "revId": "f12b287ab59683abae4a54364f030664c4d31dfa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57d5b9b4_6c4f0e88",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandler.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 6708
+      },
+      "writtenOn": "2024-03-05T16:26:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5897c89c_28ed739a",
       "range": {
         "startLine": 217,
         "startChar": 67,
