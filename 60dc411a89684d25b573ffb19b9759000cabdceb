@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "65e40256_a27ca49b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-03-05T09:58:11Z",
+      "side": 1,
+      "message": "logically all makes sense.\njust need to confirm on one of the explaination.",
+      "revId": "60dc411a89684d25b573ffb19b9759000cabdceb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9830e0c_1bede1b2",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpCmHandleCreateSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-03-05T09:58:11Z",
+      "side": 1,
+      "message": "NB: can u explain this 3 minutes.\nHopefully coming from the retry logic we have. Exponentially we update the timing based on the retry count. right ?",
+      "range": {
+        "startLine": 153,
+        "startChar": 72,
+        "endLine": 153,
+        "endChar": 87
+      },
+      "revId": "60dc411a89684d25b573ffb19b9759000cabdceb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
