@@ -433,6 +433,30 @@
       },
       "revId": "4f448ef8e00ad0eef1bfcff2fa0bac67b854fb3c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60e96bf5_8a6b095f",
+        "filename": "integration-test/src/test/resources/application.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-03-05T10:14:41Z",
+      "side": 1,
+      "message": "Yes, it\u0027s needed for the async passthrough request, POST /ncmp/v1/data\nTest wouldn\u0027t work without it, see NcmpPassthroughResourceRequestHandler.java:71\n\n        if (!notificationFeatureEnabled) {\n            return ResponseEntity.ok(Map.of(\"status\",\n                \"Asynchronous request is unavailable as notification feature is currently disabled.\"));\n        }",
+      "parentUuid": "f81c079d_44bf6e94",
+      "range": {
+        "startLine": 115,
+        "startChar": 11,
+        "endLine": 115,
+        "endChar": 15
+      },
+      "revId": "4f448ef8e00ad0eef1bfcff2fa0bac67b854fb3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
