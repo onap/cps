@@ -153,6 +153,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4dfdb351_96b5913a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/AlternateIdCheckerSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-03-05T17:18:33Z",
+      "side": 1,
+      "message": "the word \u0027new\u0027 is correct in the create use case the cm handles are \u0027new\u0027 even if the alternate ID is not...",
+      "parentUuid": "213b41ff_bb6bd5db",
+      "range": {
+        "startLine": 72,
+        "startChar": 29,
+        "endLine": 72,
+        "endChar": 32
+      },
+      "revId": "c31c49067686f1e20bdf71cb199cb489ac9da66d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "90711ea4_fcc10d8c",
@@ -166,6 +190,30 @@
       "writtenOn": "2024-03-05T13:35:20Z",
       "side": 1,
       "message": "NB: Should this be altAlreadyInDb?",
+      "range": {
+        "startLine": 75,
+        "startChar": 84,
+        "endLine": 75,
+        "endChar": 95
+      },
+      "revId": "c31c49067686f1e20bdf71cb199cb489ac9da66d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5561031_fa1ae7d9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/AlternateIdCheckerSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-03-05T17:18:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "90711ea4_fcc10d8c",
       "range": {
         "startLine": 75,
         "startChar": 84,
@@ -199,6 +247,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b899ecc_e1a8f0fc",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/AlternateIdCheckerSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-03-05T17:18:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f2f42b2_8184df5a",
+      "range": {
+        "startLine": 98,
+        "startChar": 84,
+        "endLine": 98,
+        "endChar": 95
+      },
+      "revId": "c31c49067686f1e20bdf71cb199cb489ac9da66d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "df71898c_5419fb9c",
@@ -212,6 +284,30 @@
       "writtenOn": "2024-03-05T13:35:20Z",
       "side": 1,
       "message": "Are both these needed? they look very similar",
+      "range": {
+        "startLine": 95,
+        "startChar": 8,
+        "endLine": 99,
+        "endChar": 124
+      },
+      "revId": "c31c49067686f1e20bdf71cb199cb489ac9da66d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71f6c00b_450f090e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/AlternateIdCheckerSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-03-05T17:18:33Z",
+      "side": 1,
+      "message": "labeling wasn\u0027t great have updated this test accordingly",
+      "parentUuid": "df71898c_5419fb9c",
       "range": {
         "startLine": 95,
         "startChar": 8,
