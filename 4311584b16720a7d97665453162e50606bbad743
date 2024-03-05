@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9a5e450_39478bcb",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-03-05T10:15:13Z",
+      "side": 1,
+      "message": "NB: we can agree with everybody about the topic name.",
+      "range": {
+        "startLine": 110,
+        "startChar": 43,
+        "endLine": 110,
+        "endChar": 54
+      },
+      "revId": "4311584b16720a7d97665453162e50606bbad743",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a49291c2_21c81456",
+        "filename": "cps-service/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-03-05T10:15:13Z",
+      "side": 1,
+      "message": "duplicate.. already added before.",
+      "range": {
+        "startLine": 210,
+        "startChar": 4,
+        "endLine": 213,
+        "endChar": 17
+      },
+      "revId": "4311584b16720a7d97665453162e50606bbad743",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
