@@ -20,6 +20,7 @@
 
 package org.onap.cps.integration.functional
 
+import java.time.OffsetDateTime
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
@@ -27,11 +28,7 @@ import org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
-import org.springframework.http.HttpStatus
 import spock.util.concurrent.PollingConditions
-
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.anything
-import static org.springframework.test.web.client.response.MockRestResponseCreators.withStatus
 
 class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
 
@@ -48,7 +45,7 @@ class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
 
     def 'CM Handle registration is successful.'() {
         given: 'DMI will return modules when requested'
-            mockDmiResponsesForRegistration(DMI_URL, 'ch-1', MODULE_REFERENCES_RESPONSE_A, MODULE_RESOURCES_RESPONSE_A)
+            mockDmiResponsesForModuleSync(DMI_URL, 'ch-1', MODULE_REFERENCES_RESPONSE_A, MODULE_RESOURCES_RESPONSE_A)
 
         when: 'a CM-handle is registered for creation'
             def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: 'ch-1')
@@ -81,7 +78,7 @@ class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
 
     def 'CM Handle goes to LOCKED state when DMI gives error during module sync.'() {
         given: 'DMI is not available to handle requests'
-            mockDmiServer.expect(anything()).andRespond(withStatus(HttpStatus.SERVICE_UNAVAILABLE))
+            mockDmiIsNotAvailableForModuleSync(DMI_URL, 'ch-1')
 
         when: 'a CM-handle is registered for creation'
             def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: 'ch-1')
@@ -130,5 +127,54 @@ class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
 
         cleanup: 'deregister CM handles'
             deregisterCmHandles(DMI_URL, ['ch-1', 'ch-2', 'ch-3'])
+    }
+
+    def 'CM Handle retry after failed module sync.'() {
+        given: 'DMI is not initially available to handle requests'
+            mockDmiIsNotAvailableForModuleSync(DMI_URL, 'ch-1')
+            mockDmiIsNotAvailableForModuleSync(DMI_URL, 'ch-2')
+        and: 'DMI will be available for retry'
+            mockDmiResponsesForModuleSync(DMI_URL, 'ch-1', MODULE_REFERENCES_RESPONSE_A, MODULE_RESOURCES_RESPONSE_A)
+            mockDmiResponsesForModuleSync(DMI_URL, 'ch-2', MODULE_REFERENCES_RESPONSE_B, MODULE_RESOURCES_RESPONSE_B)
+
+        when: 'CM-handles are registered for creation'
+            def cmHandlesToCreate = [new NcmpServiceCmHandle(cmHandleId: 'ch-1'), new NcmpServiceCmHandle(cmHandleId: 'ch-2')]
+            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: DMI_URL, createdCmHandles: cmHandlesToCreate)
+            networkCmProxyDataService.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+        and: 'module sync runs'
+            moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
+        then: 'CM-handles go to LOCKED state'
+            new PollingConditions().within(3, () -> {
+                assert objectUnderTest.getCmHandleCompositeState('ch-1').cmHandleState == CmHandleState.LOCKED
+                assert objectUnderTest.getCmHandleCompositeState('ch-2').cmHandleState == CmHandleState.LOCKED
+            })
+
+        when: 'we wait for LOCKED CM handle retry time (actually just subtract 3 minutes from handles lastUpdateTime)'
+            overrideCmHandleLastUpdateTime('ch-1', OffsetDateTime.now().minusMinutes(3))
+            overrideCmHandleLastUpdateTime('ch-2', OffsetDateTime.now().minusMinutes(3))
+        and: 'failed CM handles are reset'
+            moduleSyncWatchdog.resetPreviouslyFailedCmHandles()
+        then: 'CM-handles are ADVISED state'
+            assert objectUnderTest.getCmHandleCompositeState('ch-1').cmHandleState == CmHandleState.ADVISED
+            assert objectUnderTest.getCmHandleCompositeState('ch-2').cmHandleState == CmHandleState.ADVISED
+
+        when: 'module sync runs'
+            moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
+        then: 'CM-handles go to READY state'
+            new PollingConditions().within(3, () -> {
+                assert objectUnderTest.getCmHandleCompositeState('ch-1').cmHandleState == CmHandleState.READY
+                assert objectUnderTest.getCmHandleCompositeState('ch-2').cmHandleState == CmHandleState.READY
+            })
+        and: 'CM-handles have expected modules'
+            assert ['M1', 'M2'] == objectUnderTest.getYangResourcesModuleReferences('ch-1').moduleName.sort()
+            assert ['M1', 'M3'] == objectUnderTest.getYangResourcesModuleReferences('ch-2').moduleName.sort()
+        and: 'CM-handles have expected module set tags (blank)'
+            assert objectUnderTest.getNcmpServiceCmHandle('ch-1').moduleSetTag == ''
+            assert objectUnderTest.getNcmpServiceCmHandle('ch-2').moduleSetTag == ''
+        and: 'DMI received expected requests'
+            mockDmiServer.verify()
+
+        cleanup: 'deregister CM handle'
+            deregisterCmHandles(DMI_URL, ['ch-1', 'ch-2'])
     }
 }
