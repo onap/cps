@@ -1,6 +1,6 @@
 {
     "info": {
-        "_postman_id": "e86df76f-6b33-4648-ba66-ea9d3129c052",
+        "_postman_id": "e864733f-4781-45b6-8ea2-0b841a703dae",
         "name": "CPS-CORE",
         "description": "A collection of the endpoints in CPS-CORE. This is not an exhaustive collection but captures the main functionality.\n\nTo perform this functionality execute the API calls in order to create a dataspace, schema set (file is provided), anchor, and data node. Then GET the nodes to retrieve the information. The APIs in CPS-ADMIN can be used after initial POST requests.\n\nbookstore-model.yang can be found at cps/postman-collections/bookstore-model.yang",
         "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
@@ -311,7 +311,7 @@
                 "header": [],
                 "body": {
                     "mode": "raw",
-                    "raw": "{\n    \"bookstore-address\": [\n        {\n            \"bookstore-name\": \"Easons\",\n            \"address\": \"Dublin,Ireland\",\n            \"postal-code\": \"D02HA21\"\n        }\n    ],\n    \"bookstore\": {\n        \"bookstore-name\": \"Easons\",\n        \"premises\": {\n            \"addresses\": [\n                {\n                    \"house-number\": 2,\n                    \"street\": \"Main Street\",\n                    \"town\": \"Maynooth\",\n                    \"county\": \"Kildare\"\n                },\n                {\n                    \"house-number\": 24,\n                    \"street\": \"Grafton Street\",\n                    \"town\": \"Dublin\",\n                    \"county\": \"Dublin\"\n                }\n            ]\n        },\n        \"categories\": [\n            {\n                \"code\": 1,\n                \"name\": \"Children\",\n                \"books\": [\n                    {\n                        \"title\": \"Matilda\",\n                        \"lang\": \"English\",\n                        \"authors\": [\n                            \"Roald Dahl\"\n                        ],\n                        \"editions\": [\n                            1988,\n                            2000\n                        ],\n                        \"price\": 20\n                    },\n                    {\n                        \"title\": \"The Gruffalo\",\n                        \"lang\": \"English\",\n                        \"authors\": [\n                            \"Julia Donaldson\"\n                        ],\n                        \"editions\": [\n                            1999\n                        ],\n                        \"price\": 15\n                    }\n                ]\n            },\n            {\n                \"code\": 2,\n                \"name\": \"Thriller\",\n                \"books\": [\n                    {\n                        \"title\": \"Annihilation\",\n                        \"lang\": \"English\",\n                        \"authors\": [\n                            \"Jeff VanderMeer\"\n                        ],\n                        \"editions\": [\n                            2014\n                        ],\n                        \"price\": 15\n                    }\n                ]\n            },\n            {\n                \"code\": 3,\n                \"name\": \"Comedy\",\n                \"books\": [\n                    {\n                        \"title\": \"Good Omens\",\n                        \"lang\": \"English\",\n                        \"authors\": [\n                            \"Neil Gaiman\",\n                            \"Terry Pratchett\"\n                        ],\n                        \"editions\": [\n                            2006\n                        ],\n                        \"price\": 13\n                    },\n                    {\n                        \"title\": \"The Colour of Magic\",\n                        \"lang\": \"English\",\n                        \"authors\": [\n                            \"Terry Pratchett\"\n                        ],\n                        \"editions\": [\n                            1983\n                        ],\n                        \"price\": 12\n                    },\n                    {\n                        \"title\": \"The Light Fantastic\",\n                        \"lang\": \"English\",\n                        \"authors\": [\n                            \"Terry Pratchett\"\n                        ],\n                        \"editions\": [\n                            1986\n                        ],\n                        \"price\": 14\n                    },\n                    {\n                        \"title\": \"A Book with No Language\",\n                        \"lang\": \"\",\n                        \"authors\": [\n                            \"Joe Bloggs\"\n                        ],\n                        \"editions\": [\n                            2023\n                        ],\n                        \"price\": 20\n                    }\n                ]\n            },\n            {\n                \"code\": 4,\n                \"name\": \"Computing\",\n                \"books\": [\n                    {\n                        \"title\": \"Debian GNU/Linux\",\n                        \"lang\": \"German\",\n                        \"authors\": [\n                            \"Peter H. Ganten\",\n                            \"Wulf Alex\"\n                        ],\n                        \"editions\": [\n                            2007,\n                            2013,\n                            2021\n                        ],\n                        \"price\": 39\n                    },\n                    {\n                        \"title\": \"Logarithm tables\",\n                        \"lang\": \"N/A\",\n                        \"authors\": [\n                            \"Joe Bloggs\"\n                        ],\n                        \"editions\": [\n                            2009\n                        ],\n                        \"price\": 11\n                    }\n                ]\n            },\n            {\n                \"code\": 5,\n                \"name\": \"Discount books\",\n                \"books\": [\n                    {\n                        \"title\": \"Book 1\",\n                        \"lang\": \"blah\",\n                        \"authors\": [],\n                        \"editions\": [],\n                        \"price\": 1\n                    },\n                    {\n                        \"title\": \"Book 2\",\n                        \"lang\": \"blah\",\n                        \"authors\": [],\n                        \"editions\": [],\n                        \"price\": 2\n                    },\n                    {\n                        \"title\": \"Book 3\",\n                        \"lang\": \"blah\",\n                        \"authors\": [],\n                        \"editions\": [],\n                        \"price\": 3\n                    },\n                    {\n                        \"title\": \"Book 4\",\n                        \"lang\": \"blah\",\n                        \"authors\": [],\n                        \"editions\": [],\n                        \"price\": 4\n                    },\n                    {\n                        \"title\": \"Book 5\",\n                        \"lang\": \"blah\",\n                        \"authors\": [],\n                        \"editions\": [],\n                        \"price\": 5\n                    },\n                    {\n                        \"title\": \"Book 6\",\n                        \"lang\": \"blah\",\n                        \"authors\": [],\n                        \"editions\": [],\n                        \"price\": 6\n                    },\n                    {\n                        \"title\": \"Book 7\",\n                        \"lang\": \"blah\",\n                        \"authors\": [],\n                        \"editions\": [],\n                        \"price\": 7\n                    },\n                    {\n                        \"title\": \"Book 8\",\n                        \"lang\": \"blah\",\n                        \"authors\": [],\n                        \"editions\": [],\n                        \"price\": 8\n                    },\n                    {\n                        \"title\": \"Book 9\",\n                        \"lang\": \"blah\",\n                        \"authors\": [],\n                        \"editions\": [],\n                        \"price\": 9\n                    },\n                    {\n                        \"title\": \"Book 10\",\n                        \"lang\": \"blah\",\n                        \"authors\": [],\n                        \"editions\": [],\n                        \"price\": 10\n                    }\n                ]\n            }\n        ]\n    }\n}",
+                    "raw": "{\n  \"bookstore-address\": [\n    {\n      \"bookstore-name\": \"Easons\",\n      \"address\": \"Dublin,Ireland\",\n      \"postal-code\": \"D02HA21\"\n    }\n  ],\n  \"bookstore\": {\n    \"bookstore-name\": \"Easons\",\n    \"premises\": {\n      \"addresses\": [\n        {\n          \"house-number\": 2,\n          \"street\": \"Main Street\",\n          \"town\": \"Maynooth\",\n          \"county\": \"Kildare\"\n        },\n        {\n          \"house-number\": 24,\n          \"street\": \"Grafton Street\",\n          \"town\": \"Dublin\",\n          \"county\": \"Dublin\"\n        }\n      ]\n    },\n    \"categories\": [\n      {\n        \"code\": 1,\n        \"name\": \"Children\",\n        \"books\" : [\n          {\n            \"title\": \"Matilda\",\n            \"lang\": \"English\",\n            \"authors\": [\"Roald Dahl\"],\n            \"editions\": [1988, 2000],\n            \"price\": 20\n          },\n          {\n            \"title\": \"The Gruffalo\",\n            \"lang\": \"English\",\n            \"authors\": [\"Julia Donaldson\"],\n            \"editions\": [1999],\n            \"price\": 15\n          }\n        ]\n      },\n      {\n        \"code\": 2,\n        \"name\": \"Thriller\",\n        \"books\" : [\n          {\n            \"title\": \"Annihilation\",\n            \"lang\": \"English\",\n            \"authors\": [\"Jeff VanderMeer\"],\n            \"editions\": [2014],\n            \"price\": 15\n          }\n        ]\n      },\n      {\n        \"code\": 3,\n        \"name\": \"Comedy\",\n        \"books\" : [\n          {\n            \"title\": \"Good Omens\",\n            \"lang\": \"English\",\n            \"authors\": [\"Neil Gaiman\", \"Terry Pratchett\"],\n            \"editions\": [2006],\n            \"price\": 13\n          },\n          {\n            \"title\": \"The Colour of Magic\",\n            \"lang\": \"English\",\n            \"authors\": [\"Terry Pratchett\"],\n            \"editions\": [1983],\n            \"price\": 12\n          },\n          {\n            \"title\": \"The Light Fantastic\",\n            \"lang\": \"English\",\n            \"authors\": [\"Terry Pratchett\"],\n            \"editions\": [1986],\n            \"price\": 14\n          },\n          {\n            \"title\": \"A Book with No Language\",\n            \"lang\": \"\",\n            \"authors\": [\"Joe Bloggs\"],\n            \"editions\": [2023],\n            \"price\": 20\n          }\n        ]\n      },\n      {\n        \"code\": 4,\n        \"name\": \"Computing\",\n        \"books\" : [\n          {\n            \"title\": \"Debian GNU/Linux\",\n            \"lang\": \"German\",\n            \"authors\": [\"Peter H. Ganten\", \"Wulf Alex\"],\n            \"editions\": [2007, 2013, 2021],\n            \"price\": 39\n          },\n          {\n            \"title\": \"Logarithm tables\",\n            \"lang\": \"N/A\",\n            \"authors\": [\"Joe Bloggs\"],\n            \"editions\": [2009],\n            \"price\": 11\n          }\n        ]\n      },\n      {\n        \"code\": 5,\n        \"name\": \"Discount books\",\n        \"books\" : [\n          {\n            \"title\": \"Book 1\",\n            \"lang\": \"blah\",\n            \"authors\": [],\n            \"editions\": [],\n            \"price\": 1\n          },\n          {\n            \"title\": \"Book 2\",\n            \"lang\": \"blah\",\n            \"authors\": [],\n            \"editions\": [],\n            \"price\": 2\n          },\n          {\n            \"title\": \"Book 3\",\n            \"lang\": \"blah\",\n            \"authors\": [],\n            \"editions\": [],\n            \"price\": 3\n          },\n          {\n            \"title\": \"Book 4\",\n            \"lang\": \"blah\",\n            \"authors\": [],\n            \"editions\": [],\n            \"price\": 4\n          },\n          {\n            \"title\": \"Book 5\",\n            \"lang\": \"blah\",\n            \"authors\": [],\n            \"editions\": [],\n            \"price\": 5\n          },\n          {\n            \"title\": \"Book 6\",\n            \"lang\": \"blah\",\n            \"authors\": [],\n            \"editions\": [],\n            \"price\": 6\n          },\n          {\n            \"title\": \"Book 7\",\n            \"lang\": \"blah\",\n            \"authors\": [],\n            \"editions\": [],\n            \"price\": 7\n          },\n          {\n            \"title\": \"Book 8\",\n            \"lang\": \"blah\",\n            \"authors\": [],\n            \"editions\": [],\n            \"price\": 8\n          },\n          {\n            \"title\": \"Book 9\",\n            \"lang\": \"blah\",\n            \"authors\": [],\n            \"editions\": [],\n            \"price\": 9\n          },\n          {\n            \"title\": \"Book 10\",\n            \"lang\": \"blah\",\n            \"authors\": [],\n            \"editions\": [],\n            \"price\": 10\n          }\n        ]\n      }\n    ]\n  }\n}\n",
                     "options": {
                         "raw": {
                             "language": "json"
@@ -376,12 +376,12 @@
             "response": []
         },
         {
-            "name": "Get Node Staff No Descendants",
+            "name": "Get Node Categories No Descendants",
             "request": {
                 "method": "GET",
                 "header": [],
                 "url": {
-                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor/node?xpath=/bookstore/staff&descendants=none",
+                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor/node?xpath=/bookstore/categories&descendants=none",
                     "protocol": "http",
                     "host": [
                         "{{CPS_HOST}}"
@@ -400,7 +400,7 @@
                     "query": [
                         {
                             "key": "xpath",
-                            "value": "/bookstore/staff"
+                            "value": "/bookstore/categories"
                         },
                         {
                             "key": "descendants",
@@ -412,12 +412,12 @@
             "response": []
         },
         {
-            "name": "Get Node Inventory All Descendants",
+            "name": "Get Node Premises All Descendants",
             "request": {
                 "method": "GET",
                 "header": [],
                 "url": {
-                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor/node?xpath=/bookstore/inventory&descendants=all",
+                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor/node?xpath=/bookstore/premises&descendants=all",
                     "protocol": "http",
                     "host": [
                         "{{CPS_HOST}}"
@@ -436,7 +436,7 @@
                     "query": [
                         {
                             "key": "xpath",
-                            "value": "/bookstore/inventory"
+                            "value": "/bookstore/premises"
                         },
                         {
                             "key": "descendants",
@@ -448,12 +448,12 @@
             "response": []
         },
         {
-            "name": "Get Node Inventory Categories Direct Descendants",
+            "name": "Get Node Categories with code 2 Direct Descendants",
             "request": {
                 "method": "GET",
                 "header": [],
                 "url": {
-                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor/node?xpath=/bookstore/inventory/categories[@code='2']&descendants=direct",
+                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor/node?xpath=/bookstore/categories[@code='2']&descendants=direct",
                     "protocol": "http",
                     "host": [
                         "{{CPS_HOST}}"
@@ -472,7 +472,7 @@
                     "query": [
                         {
                             "key": "xpath",
-                            "value": "/bookstore/inventory/categories[@code='2']"
+                            "value": "/bookstore/categories[@code='2']"
                         },
                         {
                             "key": "descendants",
@@ -489,7 +489,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor/nodes/query?cps-path=/bookstore/inventory/categories[@numberOfBooks=1]&descendants=-1",
+                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor/nodes/query?cps-path=/bookstore/categories[@name=\"Discount books\"]&descendants=-1",
                     "protocol": "http",
                     "host": [
                         "{{CPS_HOST}}"
@@ -509,7 +509,7 @@
                     "query": [
                         {
                             "key": "cps-path",
-                            "value": "/bookstore/inventory/categories[@numberOfBooks=1]"
+                            "value": "/bookstore/categories[@name=\"Discount books\"]"
                         },
                         {
                             "key": "descendants",
@@ -526,7 +526,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor/nodes/query?cps-path=//categories[@code=1]/ancestor::inventory&descendants=0",
+                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor/nodes/query?cps-path=//books[@lang=\"German\"]/ancestor::categories&descendants=0",
                     "protocol": "http",
                     "host": [
                         "{{CPS_HOST}}"
@@ -546,7 +546,7 @@
                     "query": [
                         {
                             "key": "cps-path",
-                            "value": "//categories[@code=1]/ancestor::inventory"
+                            "value": "//books[@lang=\"German\"]/ancestor::categories"
                         },
                         {
                             "key": "descendants",
@@ -564,7 +564,48 @@
                 "header": [],
                 "body": {
                     "mode": "raw",
-                    "raw": "{\r\n    \"staff\": {\r\n        \"manager\": \"Jane Doe\",\r\n        \"members\": [\r\n            {\"name\": \"Some Guy\"},\r\n            {\"name\": \"Another Person\"}\r\n        ]\r\n    }\r\n}",
+                    "raw": "{\r\n    \"bookstore\": {\r\n        \"bookstore-name\": \"Chapters\"\r\n    }\r\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor/nodes?xpath=/",
+                    "protocol": "http",
+                    "host": [
+                        "{{CPS_HOST}}"
+                    ],
+                    "port": "{{CPS_PORT}}",
+                    "path": [
+                        "cps",
+                        "api",
+                        "v2",
+                        "dataspaces",
+                        "my-store",
+                        "anchors",
+                        "bookstore-anchor",
+                        "nodes"
+                    ],
+                    "query": [
+                        {
+                            "key": "xpath",
+                            "value": "/"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Put Nodes",
+            "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "\r\n    {\r\n        \"premises\": {\r\n            \"addresses\": [\r\n                {\r\n                    \"town\": \"Maynooth\",\r\n                    \"county\": \"Kildare\",\r\n                    \"street\": \"Main Street\",\r\n                    \"house-number\": 2\r\n                },\r\n                {\r\n                    \"town\": \"Dublin\",\r\n                    \"county\": \"Dublin\",\r\n                    \"street\": \"Grafton Street\",\r\n                    \"house-number\": 24\r\n                },\r\n                {\r\n                    \"house-number\": 13,\r\n                    \"street\": \"Church Street\",\r\n                    \"town\": \"Athlone\",\r\n                    \"county\": \"Westmeath\"\r\n                }\r\n            ]\r\n        }\r\n    }\r\n",
                     "options": {
                         "raw": {
                             "language": "json"
@@ -599,12 +640,12 @@
             "response": []
         },
         {
-            "name": "Get Node Staff Direct Descendants",
+            "name": "Get Node Premises Direct Descendants",
             "request": {
                 "method": "GET",
                 "header": [],
                 "url": {
-                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor/node?xpath=/bookstore/staff&descendants=1",
+                    "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor/node?xpath=/bookstore/premises&descendants=1",
                     "protocol": "http",
                     "host": [
                         "{{CPS_HOST}}"
@@ -623,7 +664,7 @@
                     "query": [
                         {
                             "key": "xpath",
-                            "value": "/bookstore/staff"
+                            "value": "/bookstore/premises"
                         },
                         {
                             "key": "descendants",
