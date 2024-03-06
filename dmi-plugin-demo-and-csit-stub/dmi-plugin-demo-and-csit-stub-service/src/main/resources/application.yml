@@ -54,3 +54,11 @@ delay:
     module-references-delay-ms: ${MODULE_REFERENCES_DELAY_MS:100}
     module-resources-delay-ms: ${MODULE_RESOURCES_DELAY_MS:1000}
     data-for-cm-handle-delay-ms: ${DATA_FOR_CM_HANDLE_DELAY_MS:2500}
+
+logging:
+    level:
+        org:
+            springframework:
+                web:
+                    filter:
+                        CommonsRequestLoggingFilter: DEBUG
