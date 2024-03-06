@@ -20,6 +20,8 @@
 
 package org.onap.cps.integration.functional
 
+import org.onap.cps.utils.ContentType
+
 import java.time.OffsetDateTime
 
 import org.onap.cps.api.CpsAnchorService
@@ -114,9 +116,9 @@ class CpsAnchorServiceIntegrationSpec extends CpsIntegrationSpecBase {
             objectUnderTest.updateAnchorSchemaSet(GENERAL_TEST_DATASPACE, 'anchor4', 'anotherTreeSchemaSet')
         when: 'updated tree data node with new leaves'
             def updatedTreeJsonData = readResourceDataFile('tree/updated-test-tree.json')
-            cpsDataService.updateNodeLeaves(GENERAL_TEST_DATASPACE, "anchor4", "/test-tree/branch[@name='left']", updatedTreeJsonData, OffsetDateTime.now())
+            cpsDataService.updateNodeLeaves(GENERAL_TEST_DATASPACE, "anchor4", "/test-tree/branch[@name='left']", updatedTreeJsonData, OffsetDateTime.now(), ContentType.JSON)
         then: 'updated tree data node can be retrieved by its normalized xpath'
-            def birdsName = cpsDataService.getDataNodes(GENERAL_TEST_DATASPACE, 'anchor4',"/test-tree/branch[@name='left']/nest", FetchDescendantsOption.DIRECT_CHILDREN_ONLY)[0].leaves['birds'] as List
+            def birdsName = cpsDataService.getDataNodes(GENERAL_TEST_DATASPACE, 'anchor4', "/test-tree/branch[@name='left']/nest", FetchDescendantsOption.DIRECT_CHILDREN_ONLY)[0].leaves['birds'] as List
             assert birdsName.size() == 3
             assert birdsName.containsAll('Night Owl', 'Raven', 'Crow')
     }
