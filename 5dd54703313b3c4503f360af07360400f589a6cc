@@ -16,6 +16,23 @@
       "message": "since its for the stub.",
       "revId": "5dd54703313b3c4503f360af07360400f589a6cc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81f3c02f_d95bf019",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-03-06T09:35:53Z",
+      "side": 1,
+      "message": "It looks good to me but\nBlocking because of feedback on excessive logging by Csaba Eder..",
+      "revId": "5dd54703313b3c4503f360af07360400f589a6cc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
