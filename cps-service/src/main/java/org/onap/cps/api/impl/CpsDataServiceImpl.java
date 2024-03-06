@@ -141,13 +141,14 @@ public class CpsDataServiceImpl implements CpsDataService {
 
     @Override
     @Timed(value = "cps.data.service.datanode.leaves.update",
-        description = "Time taken to update a batch of leaf data nodes")
-    public void updateNodeLeaves(final String dataspaceName, final String anchorName, final String parentNodeXpath,
-        final String jsonData, final OffsetDateTime observedTimestamp) {
+            description = "Time taken to update a batch of leaf data nodes")
+    public void updateNodeLeaves(final String dataspaceName, final String anchorName, final String nodeData,
+                                 final String parentNodeXpath, final OffsetDateTime observedTimestamp,
+                                 final ContentType contentType) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
-        final Collection<DataNode> dataNodesInPatch = buildDataNodes(anchor, parentNodeXpath, jsonData,
-                ContentType.JSON);
+        final Collection<DataNode> dataNodesInPatch = buildDataNodes(anchor, parentNodeXpath, nodeData,
+                contentType);
         final Map<String, Map<String, Serializable>> xpathToUpdatedLeaves = dataNodesInPatch.stream()
                 .collect(Collectors.toMap(DataNode::getXpath, DataNode::getLeaves));
         cpsDataPersistenceService.batchUpdateDataLeaves(dataspaceName, anchorName, xpathToUpdatedLeaves);

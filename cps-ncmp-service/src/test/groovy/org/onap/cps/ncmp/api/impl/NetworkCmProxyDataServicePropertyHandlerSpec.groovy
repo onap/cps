@@ -31,6 +31,7 @@ import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
+import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Specification
 
@@ -188,7 +189,7 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
         when: 'update alternate id method is called with the update request'
             objectUnderTest.updateAlternateId(existingCmHandleDataNode, ncmpServiceCmHandle)
         then: 'the update node leaves method is invoked as many times as expected'
-            callsToDataService * mockCpsDataService.updateNodeLeaves('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry', _, _) >>
+            callsToDataService * mockCpsDataService.updateNodeLeaves('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry', _, _, ContentType.JSON) >>
                     { args ->
                         assert args[3].contains('alt-1')
                     }

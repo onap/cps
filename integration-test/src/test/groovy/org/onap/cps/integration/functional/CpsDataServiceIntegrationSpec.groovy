@@ -33,6 +33,7 @@ import org.onap.cps.spi.exceptions.DataNodeNotFoundExceptionBatch
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException
 import org.onap.cps.spi.model.DeltaReport
+import org.onap.cps.utils.ContentType
 
 import static org.onap.cps.spi.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
@@ -363,10 +364,10 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
     def 'Update data node leaves for node that has no leaves (yet).'() {
         given: 'new (webinfo) datanode without leaves'
             def json = '{"webinfo": {} }'
-            objectUnderTest.saveData(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1 , '/bookstore', json, now)
+            objectUnderTest.saveData(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore', json, now)
         when: 'update is performed to add a leaf'
             def updatedJson = '{"webinfo": {"domain-name":"new leaf data"}}'
-            objectUnderTest.updateNodeLeaves(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, "/bookstore", updatedJson, now)
+            objectUnderTest.updateNodeLeaves(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, "/bookstore", updatedJson, now, ContentType.JSON)
         then: 'the updated data nodes are retrieved'
             def result = cpsDataService.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, "/bookstore/webinfo", INCLUDE_ALL_DESCENDANTS)
         and: 'the leaf value is updated as expected'
@@ -377,7 +378,7 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Update multiple data leaves error scenario: #scenario.'() {
         when: 'attempt to update data node for #scenario'
-            objectUnderTest.updateNodeLeaves(dataspaceName, anchorName, xpath, 'irrelevant json data', now)
+            objectUnderTest.updateNodeLeaves(dataspaceName, anchorName, xpath, 'irrelevant json data', now, ContentType.JSON)
         then: 'a #expectedException is thrown'
             thrown(expectedException)
         where: 'the following data is used'
@@ -419,7 +420,7 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
         given: 'Updated json for bookstore data'
             def jsonData =  "{'book-store:books':{'lang':'English/French','price':100,'title':'Matilda'}}"
         when: 'update is performed for leaves'
-            objectUnderTest.updateNodeLeaves(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_2, "/bookstore/categories[@code='1']", jsonData, now)
+            objectUnderTest.updateNodeLeaves(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_2, "/bookstore/categories[@code='1']", jsonData, now, ContentType.JSON)
         then: 'the updated data nodes are retrieved'
             def result = cpsDataService.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_2, "/bookstore/categories[@code=1]/books[@title='Matilda']", INCLUDE_ALL_DESCENDANTS)
         and: 'the leaf values are updated as expected'
@@ -433,7 +434,7 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
         given: 'Updated json for bookstore data'
             def jsonData =  "{'book-store:books':{'title':'Matilda', 'authors': ['beta', 'alpha', 'gamma', 'delta']}}"
         when: 'update is performed for leaves'
-            objectUnderTest.updateNodeLeaves(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_2, "/bookstore/categories[@code='1']", jsonData, now)
+            objectUnderTest.updateNodeLeaves(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_2, "/bookstore/categories[@code='1']", jsonData, now, ContentType.JSON)
         and: 'the updated data nodes are retrieved'
             def result = cpsDataService.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_2, "/bookstore/categories[@code=1]/books[@title='Matilda']", INCLUDE_ALL_DESCENDANTS)
         then: 'the leaf-list values have expected order'
@@ -446,7 +447,7 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
         given: 'Updated json for bookstore data'
             def jsonData =  "{'book-store:books':{'title':'Matilda', 'editions': [2011, 1988, 2001, 2022, 2025]}}"
         when: 'update is performed for leaves'
-            objectUnderTest.updateNodeLeaves(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_2, "/bookstore/categories[@code='1']", jsonData, now)
+            objectUnderTest.updateNodeLeaves(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_2, "/bookstore/categories[@code='1']", jsonData, now, ContentType.JSON)
         and: 'the updated data nodes are retrieved'
             def result = cpsDataService.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_2, "/bookstore/categories[@code=1]/books[@title='Matilda']", INCLUDE_ALL_DESCENDANTS)
         then: 'the leaf-list values have natural order'
