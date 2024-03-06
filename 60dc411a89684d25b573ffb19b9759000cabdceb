@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9742281_e72f819c",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-03-06T16:21:31Z",
+      "side": 1,
+      "message": "Mock Rest Service Server by default will require that Rest requests arrive in the same order they are expected. This allows them to come out of order. \nThis is needed since our Module Sync Service is multi-threaded - we have no idea what order DMI module requests will be received in.",
+      "parentUuid": "6c3a03f4_28f5d528",
+      "range": {
+        "startLine": 124,
+        "startChar": 67,
+        "endLine": 124,
+        "endChar": 98
+      },
+      "revId": "60dc411a89684d25b573ffb19b9759000cabdceb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c9830e0c_1bede1b2",
@@ -95,6 +119,30 @@
       "side": 1,
       "message": "ok so as discussed yesterday , u are subtracting 3 minutes just for the test to not wait and just mimic the behaviour of the retry logic",
       "parentUuid": "c9830e0c_1bede1b2",
+      "range": {
+        "startLine": 153,
+        "startChar": 72,
+        "endLine": 153,
+        "endChar": 87
+      },
+      "revId": "60dc411a89684d25b573ffb19b9759000cabdceb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56b64bdc_3cc16714",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpCmHandleCreateSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-03-06T16:21:31Z",
+      "side": 1,
+      "message": "Exactly, yes.",
+      "parentUuid": "088e0635_506cd5ac",
       "range": {
         "startLine": 153,
         "startChar": 72,
