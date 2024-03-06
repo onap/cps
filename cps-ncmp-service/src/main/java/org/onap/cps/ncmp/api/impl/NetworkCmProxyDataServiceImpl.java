@@ -424,7 +424,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         final List<NcmpServiceCmHandle> cmHandlesToBeCreated,
         final List<CmHandleRegistrationResponse> cmHandleRegistrationResponses) {
         final Collection<String> rejectedCmHandleIds = alternateIdChecker
-            .getIdsOfCmHandlesWithRejectedAlternateId(cmHandlesToBeCreated);
+            .getIdsOfCmHandlesWithRejectedAlternateId(cmHandlesToBeCreated, AlternateIdChecker.Operation.CREATE);
         cmHandleRegistrationResponses.addAll(CmHandleRegistrationResponse.createFailureResponses(
             rejectedCmHandleIds, ALTERNATE_ID_ALREADY_ASSOCIATED));
         return rejectedCmHandleIds;

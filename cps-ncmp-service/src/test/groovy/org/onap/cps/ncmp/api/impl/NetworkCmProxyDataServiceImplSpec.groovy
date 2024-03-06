@@ -274,7 +274,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             dmiPluginRegistration.createdCmHandles = [ncmpServiceCmHandle]
             mockDmiPluginRegistration.getCreatedCmHandles() >> [ncmpServiceCmHandle]
         and: 'no rejected cm handles because of alternate ids'
-            mockAlternateIdChecker.getIdsOfCmHandlesWithRejectedAlternateId(_) >> []
+            mockAlternateIdChecker.getIdsOfCmHandlesWithRejectedAlternateId(*_) >> []
         when: 'parse and create cm handle in dmi registration then sync module'
             mockDmiPluginRegistration.createdCmHandles = ['test-cm-handle-id']
             objectUnderTest.processCreatedCmHandles(mockDmiPluginRegistration, new DmiPluginRegistrationResponse())

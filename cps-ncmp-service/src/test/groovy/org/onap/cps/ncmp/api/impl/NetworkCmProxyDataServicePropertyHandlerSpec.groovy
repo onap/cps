@@ -49,6 +49,12 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
     def mockAlternateIdChecker = Mock(AlternateIdChecker)
 
     def objectUnderTest = new NetworkCmProxyDataServicePropertyHandler(mockInventoryPersistence, mockCpsDataService, jsonObjectMapper, mockAlternateIdChecker)
+
+    def setup() {
+        // Always accept all alternate IDs
+        mockAlternateIdChecker.getIdsOfCmHandlesWithRejectedAlternateId(*_) >> []
+    }
+
     def static cmHandleId = 'myHandle1'
     def static cmHandleXpath = "/dmi-registry/cm-handles[@id='${cmHandleId}']"
 
@@ -66,7 +72,7 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
         when: 'update data node leaves is called with the update request'
             objectUnderTest.updateCmHandleProperties(cmHandleUpdateRequest)
         then: 'the replace list method is called with correct params'
-            1 * mockInventoryPersistence.replaceListContent(cmHandleXpath,_) >> { args ->
+            1 * mockInventoryPersistence.replaceListContent(cmHandleXpath, _) >> { args ->
                 {
                     assert args[1].leaves.size() == expectedPropertiesAfterUpdate.size()
                     assert args[1].leaves.containsAll(convertToProperties(expectedPropertiesAfterUpdate))
@@ -142,10 +148,10 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
                 assert it.errorText == expectedErrorText
             }
         where:
-        scenario                   | cmHandleId               | exception                                                                                           || expectedError        | expectedErrorText
-        'Cm Handle does not exist' | 'cmHandleId'             | new DataNodeNotFoundException(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR)                        || CM_HANDLES_NOT_FOUND | 'cm handle id(s) not found'
-        'Unknown'                  | 'cmHandleId'             | new RuntimeException('Failed')                                                                      || UNKNOWN_ERROR        | 'Failed'
-        'Invalid cm handle id'     | 'cmHandleId with spaces' | new DataValidationException('Name Validation Error.', cmHandleId + 'contains an invalid character') || CM_HANDLE_INVALID_ID | 'cm-handle has an invalid character(s) in id'
+            scenario                   | cmHandleId               | exception                                                                                           || expectedError        | expectedErrorText
+            'Cm Handle does not exist' | 'cmHandleId'             | new DataNodeNotFoundException(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR)                        || CM_HANDLES_NOT_FOUND | 'cm handle id(s) not found'
+            'Unknown'                  | 'cmHandleId'             | new RuntimeException('Failed')                                                                      || UNKNOWN_ERROR        | 'Failed'
+            'Invalid cm handle id'     | 'cmHandleId with spaces' | new DataValidationException('Name Validation Error.', cmHandleId + 'contains an invalid character') || CM_HANDLE_INVALID_ID | 'cm-handle has an invalid character(s) in id'
     }
 
     def 'Multiple update operations in a single request'() {
@@ -177,42 +183,44 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
                 assert it.errorText == 'cm handle id(s) not found'
             }
         then: 'the replace list method is called twice'
-            2 * mockInventoryPersistence.replaceListContent(cmHandleXpath,_)
+            2 * mockInventoryPersistence.replaceListContent(cmHandleXpath, _)
     }
 
-    def 'Update CM Handle Alternate ID with #scenario'() {
-        given: 'an existing cm handle'
-            DataNode existingCmHandleDataNode = new DataNode(xpath: cmHandleXpath, leaves: ['id': cmHandleId])
-        and: 'an update request with an alternate id'
-            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, alternateId: 'alt-1')
-        when: 'update alternate id method is called with the update request'
-            objectUnderTest.updateAlternateId(existingCmHandleDataNode, ncmpServiceCmHandle)
-        then: 'the update node leaves method is invoked as many times as expected'
-            callsToDataService * mockCpsDataService.updateNodeLeaves('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry', _, _) >>
+    def 'Update alternate id of existing CM Handle.'() {
+        given: 'cm handles request'
+            def cmHandleUpdateRequest = [new NcmpServiceCmHandle(cmHandleId: cmHandleId, alternateId: 'alt-1')]
+        and: 'a data node found'
+            def dataNode = new DataNode(xpath: cmHandleXpath, leaves: ['id': cmHandleId, 'alternate-id': 'alt-1'])
+            mockInventoryPersistence.getCmHandleDataNodeByCmHandleId(cmHandleId) >> [dataNode]
+        when: 'cm handle properties is updated'
+            def response = objectUnderTest.updateCmHandleProperties(cmHandleUpdateRequest)
+        then: 'the update is delegated to cps data service with correct parameters'
+            1 * mockCpsDataService.updateNodeLeaves('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry', _, _) >>
                     { args ->
                         assert args[3].contains('alt-1')
                     }
-            mockAlternateIdChecker.canApplyAlternateId(cmHandleId, '','alt-1') >> isNewMapping
-        where: 'following updates are attempted'
-            scenario                | isNewMapping || callsToDataService
-            'new alternate id   '   | true         || 1
-            'existing alternate id' | false        || 0
+        and: 'one successful registration response'
+            response.size() == 1
+        and: 'the response shows success for the given cm handle id'
+                assert response[0].status == Status.SUCCESS
+                assert response[0].cmHandle == cmHandleId
     }
 
-    def 'Alternate ID removed from cache when persisting fails.'() {
-        given: 'an existing data node and an update request with an alternate id'
-            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, alternateId: 'alt-1')
-            DataNode existingCmHandleDataNode = new DataNode(xpath: cmHandleXpath, leaves: ['id': cmHandleId, 'alternate-id': null])
-        and: 'an applicable alternate id for the cm handle'
-            mockAlternateIdChecker.canApplyAlternateId(cmHandleId, '','alt-1') >> true
-        and: 'but an exception occurs while saving'
-            def originalException = new NullPointerException('some exception')
-            mockCpsDataService.updateNodeLeaves(*_) >> { throw originalException }
-        when: 'updating of alternate id called'
-            objectUnderTest.updateAlternateId(existingCmHandleDataNode, ncmpServiceCmHandle)
-        then: 'the original exception is thrown up'
-            def thrownException = thrown(NullPointerException)
-            assert thrownException == originalException
+    def 'Update with rejected alternate id.'() {
+        given: 'cm handles request'
+            def updatedNcmpServiceCmHandles = [new NcmpServiceCmHandle(cmHandleId: cmHandleId, alternateId: 'alt-1')]
+        and: 'a data node found'
+            def dataNode = new DataNode(xpath: cmHandleXpath, leaves: ['id': cmHandleId, 'alternate-id': 'alt-1'])
+            mockInventoryPersistence.getCmHandleDataNodeByCmHandleId(cmHandleId) >> [dataNode]
+        when: 'attempt to update the cm handle'
+            def response = objectUnderTest.updateCmHandleProperties(updatedNcmpServiceCmHandles)
+        then: 'the update is NOT delegated to cps data service'
+            0 * mockCpsDataService.updateNodeLeaves(*_)
+        and:  'the alternate id checker rejects the given cm handle (override default setup behavior)'
+            mockAlternateIdChecker.getIdsOfCmHandlesWithRejectedAlternateId(*_) >> [cmHandleId]
+        and: 'the response shows a failure for the given cm handle id'
+            assert response[0].status == Status.FAILURE
+            assert response[0].cmHandle == cmHandleId
     }
 
     def convertToProperties(expectedPropertiesAfterUpdateAsMap) {
