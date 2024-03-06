@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "e97e6556_a0a6898a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-03-06T10:02:33Z",
+      "side": 1,
+      "message": "NB: maybe add in the commit message itself that it is for dmi stub and not production code.",
+      "revId": "5dd54703313b3c4503f360af07360400f589a6cc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "148b10e0_b7099023",
