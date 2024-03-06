@@ -39,6 +39,30 @@
       },
       "revId": "60dc411a89684d25b573ffb19b9759000cabdceb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "088e0635_506cd5ac",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpCmHandleCreateSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-03-06T09:05:26Z",
+      "side": 1,
+      "message": "ok so as discussed yesterday , u are subtracting 3 minutes just for the test to not wait and just mimic the behaviour of the retry logic",
+      "parentUuid": "c9830e0c_1bede1b2",
+      "range": {
+        "startLine": 153,
+        "startChar": 72,
+        "endLine": 153,
+        "endChar": 87
+      },
+      "revId": "60dc411a89684d25b573ffb19b9759000cabdceb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
