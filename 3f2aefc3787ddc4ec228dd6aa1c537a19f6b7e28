@@ -116,6 +116,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b302242b_948c458b",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-03-06T14:39:08Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4246501e_e8518604",
+      "range": {
+        "startLine": 82,
+        "startChar": 4,
+        "endLine": 82,
+        "endChar": 101
+      },
+      "revId": "3f2aefc3787ddc4ec228dd6aa1c537a19f6b7e28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "52d987df_d08d1c48",
@@ -223,6 +247,30 @@
       "writtenOn": "2024-03-06T10:22:24Z",
       "side": 1,
       "message": "I dont think /ch is needed here since this endpoint gets ALL cm handles, correct ?",
+      "range": {
+        "startLine": 105,
+        "startChar": 31,
+        "endLine": 105,
+        "endChar": 34
+      },
+      "revId": "3f2aefc3787ddc4ec228dd6aa1c537a19f6b7e28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "023ba126_a40c82fb",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-03-06T14:39:08Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "5b0d60e6_3e98444e",
       "range": {
         "startLine": 105,
         "startChar": 31,
