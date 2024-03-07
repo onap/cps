@@ -16,6 +16,52 @@
       "message": "Looks good but Priyank might have a better idea if anything else is needed here",
       "revId": "68f8a6a40703afb59c8b9492f22f17ac96594ed4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b301bebe_542f5c66",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/lcm/LcmEventsCreator.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-03-07T18:03:12Z",
+      "side": 1,
+      "message": "there suppose to get the relevant fields, but all set to Alternate Id.",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 84
+      },
+      "revId": "68f8a6a40703afb59c8b9492f22f17ac96594ed4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10f09325_6c3b8d7b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/lcm/LcmEventsCreatorSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-03-07T18:03:12Z",
+      "side": 1,
+      "message": "I am not sure what do you want to test here. Lets have a call on this tomorrow.",
+      "range": {
+        "startLine": 188,
+        "startChar": 0,
+        "endLine": 191,
+        "endChar": 73
+      },
+      "revId": "68f8a6a40703afb59c8b9492f22f17ac96594ed4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
