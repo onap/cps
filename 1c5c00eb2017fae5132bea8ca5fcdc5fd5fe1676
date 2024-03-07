@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f920f26b_4ccf924f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/mapper/CmNotificationSubscriptionNcmpOutEventMapper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-03-07T11:08:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "12312c50_4d1fb2f4",
+      "range": {
+        "startLine": 58,
+        "startChar": 17,
+        "endLine": 58,
+        "endChar": 58
+      },
+      "revId": "1c5c00eb2017fae5132bea8ca5fcdc5fd5fe1676",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e4d04bae_bfc9e506",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-06T17:58:16Z",
       "side": 1,
       "message": "consider switch-statement for better readability\n  \n    switch (cmNotificationSubscriptionStatus) {\n        case ACCEPTED:",
+      "range": {
+        "startLine": 72,
+        "startChar": 12,
+        "endLine": 72,
+        "endChar": 96
+      },
+      "revId": "1c5c00eb2017fae5132bea8ca5fcdc5fd5fe1676",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a73e80e_84d7ce98",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/mapper/CmNotificationSubscriptionNcmpOutEventMapper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-03-07T11:08:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e4d04bae_bfc9e506",
       "range": {
         "startLine": 72,
         "startChar": 12,
