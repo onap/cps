@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2023 Nordix Foundation
+ *  Copyright (C) 2022-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -39,7 +39,7 @@ public abstract class NcmpDatastoreRequestHandler {
     private static final String NO_REQUEST_ID = null;
     private static final String NO_TOPIC = null;
 
-    @Value("${notification.async.executor.time-out-value-in-ms:2000}")
+    @Value("${notification.async.executor.time-out-value-in-ms:30000}")
     protected int timeOutInMilliSeconds;
 
     @Value("${notification.enabled:true}")

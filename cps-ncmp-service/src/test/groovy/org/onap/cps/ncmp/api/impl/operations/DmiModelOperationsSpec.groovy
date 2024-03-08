@@ -24,8 +24,6 @@ package org.onap.cps.ncmp.api.impl.operations
 import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration
-import org.onap.cps.ncmp.api.impl.executor.TaskExecutor
-import org.onap.cps.ncmp.api.impl.utils.DmiServiceNameOrganizer
 import org.onap.cps.spi.model.ModuleReference
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
@@ -36,7 +34,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.test.context.ContextConfiguration
 import spock.lang.Shared
 
-import static  org.onap.cps.ncmp.api.impl.operations.OperationType.READ
+import static org.onap.cps.ncmp.api.impl.operations.OperationType.READ
 
 @SpringBootTest
 @ContextConfiguration(classes = [NcmpConfiguration.DmiProperties, DmiModelOperations])
