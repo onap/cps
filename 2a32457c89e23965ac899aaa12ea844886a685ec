@@ -51,6 +51,24 @@
       "message": "Should these condensed steps be re-numbered, to continue in the \"1-38\", \"1-39\" format?",
       "revId": "2a32457c89e23965ac899aaa12ea844886a685ec",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f8f809a_a9825dae",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/01-createCPSTables.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 564,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-03-08T12:38:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "becbaad7_5145631d",
+      "revId": "2a32457c89e23965ac899aaa12ea844886a685ec",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
