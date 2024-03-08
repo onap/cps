@@ -36,9 +36,7 @@ import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration
 import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException
 import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder
 import org.onap.cps.ncmp.api.impl.utils.context.CpsApplicationContext
-import org.onap.cps.ncmp.api.models.DataOperationRequest
 import org.onap.cps.ncmp.events.async1_0_0.DataOperationEvent
-import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
@@ -93,32 +91,6 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             'empty options'                        | [yangModelCmHandleProperty] | PASSTHROUGH_OPERATIONAL | ''            || '{"operation":"read","cmHandleProperties":{"prop1":"val1"}}' | 'passthrough-operational' | ''
             'datastore running without properties' | []                          | PASSTHROUGH_RUNNING     | OPTIONS_PARAM || '{"operation":"read","cmHandleProperties":{}}'               | 'passthrough-running'     | '&options=(a=1,b=2)'
             'datastore running with properties'    | [yangModelCmHandleProperty] | PASSTHROUGH_RUNNING     | OPTIONS_PARAM || '{"operation":"read","cmHandleProperties":{"prop1":"val1"}}' | 'passthrough-running'     | '&options=(a=1,b=2)'
-    }
-
-    def 'Execute (async) data operation from DMI service.'() {
-        given: 'collection of yang model cm Handles and data operation request'
-            mockYangModelCmHandleCollectionRetrieval([yangModelCmHandleProperty])
-            def dataOperationBatchRequestJsonData = TestUtils.getResourceFileContent('dataOperationRequest.json')
-            def dataOperationRequest = spiedJsonObjectMapper.convertJsonString(dataOperationBatchRequestJsonData, DataOperationRequest.class)
-            dataOperationRequest.dataOperationDefinitions[0].cmHandleIds = [cmHandleId]
-        and: 'a positive response from DMI service when it is called with valid request parameters'
-            def responseFromDmi = new ResponseEntity<Object>(HttpStatus.ACCEPTED)
-            def expectedDmiBatchResourceDataUrl = "ncmp/v1/data/topic=my-topic-name"
-            def expectedBatchRequestAsJson = '{"operations":[{"operation":"read","operationId":"operational-14","datastore":"ncmp-datastore:passthrough-operational","options":"some option","resourceIdentifier":"some resource identifier","cmHandles":[{"id":"some-cm-handle","cmHandleProperties":{"prop1":"val1"}}]}]}'
-            mockDmiRestClient.postOperationWithJsonData(expectedDmiBatchResourceDataUrl, _, READ.operationName, NO_AUTH_HEADER) >> responseFromDmi
-            dmiServiceUrlBuilder.getDataOperationRequestUrl(_, _) >> expectedDmiBatchResourceDataUrl
-        and: ' a flag to track the post operation call'
-            def postOperationWithJsonDataMethodCalled = false
-        and: 'the (mocked) dmi rest client will use the flag to indicate it is called and capture the request body'
-            mockDmiRestClient.postOperationWithJsonData(expectedDmiBatchResourceDataUrl, expectedBatchRequestAsJson, READ, null) >> {
-                postOperationWithJsonDataMethodCalled = true
-            }
-        when: 'get resource data for group of cm handles are invoked'
-            objectUnderTest.requestResourceDataFromDmi('my-topic-name', dataOperationRequest, 'requestId', NO_AUTH_HEADER)
-        then: 'validate the post operation was called and ncmp generated dmi request body json args'
-            new PollingConditions().within(1) {
-                assert postOperationWithJsonDataMethodCalled == true
-            }
     }
 
     def 'Execute (async) data operation from DMI service for #scenario.'() {
