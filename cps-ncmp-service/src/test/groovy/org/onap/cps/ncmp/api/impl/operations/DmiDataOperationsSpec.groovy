@@ -21,15 +21,6 @@
 
 package org.onap.cps.ncmp.api.impl.operations
 
-import static org.onap.cps.ncmp.api.impl.events.mapper.CloudEventMapper.toTargetEvent
-import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_OPERATIONAL
-import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING
-import static org.onap.cps.ncmp.api.impl.operations.OperationType.CREATE
-import static org.onap.cps.ncmp.api.impl.operations.OperationType.READ
-import static org.onap.cps.ncmp.api.impl.operations.OperationType.UPDATE
-import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNABLE_TO_READ_RESOURCE_DATA
-import static org.onap.cps.ncmp.api.NcmpResponseStatus.DMI_SERVICE_NOT_RESPONDING
-
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.events.EventsPublisher
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration
@@ -43,12 +34,21 @@ import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.test.context.ContextConfiguration
-import org.springframework.http.HttpStatus
 import spock.lang.Shared
-import spock.util.concurrent.PollingConditions
+
 import java.util.concurrent.TimeoutException
+
+import static org.onap.cps.ncmp.api.NcmpResponseStatus.DMI_SERVICE_NOT_RESPONDING
+import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNABLE_TO_READ_RESOURCE_DATA
+import static org.onap.cps.ncmp.api.impl.events.mapper.CloudEventMapper.toTargetEvent
+import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_OPERATIONAL
+import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING
+import static org.onap.cps.ncmp.api.impl.operations.OperationType.CREATE
+import static org.onap.cps.ncmp.api.impl.operations.OperationType.READ
+import static org.onap.cps.ncmp.api.impl.operations.OperationType.UPDATE
 
 @SpringBootTest
 @ContextConfiguration(classes = [EventsPublisher, CpsApplicationContext, NcmpConfiguration.DmiProperties, DmiDataOperations])
@@ -107,18 +107,10 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             def expectedBatchRequestAsJson = '{"operations":[{"operation":"read","operationId":"operational-14","datastore":"ncmp-datastore:passthrough-operational","options":"some option","resourceIdentifier":"some resource identifier","cmHandles":[{"id":"some-cm-handle","cmHandleProperties":{"prop1":"val1"}}]}]}'
             mockDmiRestClient.postOperationWithJsonData(expectedDmiBatchResourceDataUrl, _, READ.operationName, NO_AUTH_HEADER) >> responseFromDmi
             dmiServiceUrlBuilder.getDataOperationRequestUrl(_, _) >> expectedDmiBatchResourceDataUrl
-        and: ' a flag to track the post operation call'
-            def postOperationWithJsonDataMethodCalled = false
-        and: 'the (mocked) dmi rest client will use the flag to indicate it is called and capture the request body'
-            mockDmiRestClient.postOperationWithJsonData(expectedDmiBatchResourceDataUrl, expectedBatchRequestAsJson, READ, null) >> {
-                postOperationWithJsonDataMethodCalled = true
-            }
         when: 'get resource data for group of cm handles are invoked'
             objectUnderTest.requestResourceDataFromDmi('my-topic-name', dataOperationRequest, 'requestId', NO_AUTH_HEADER)
-        then: 'validate the post operation was called and ncmp generated dmi request body json args'
-            new PollingConditions().within(1) {
-                assert postOperationWithJsonDataMethodCalled == true
-            }
+        then: 'the post operation was called and ncmp generated dmi request body json args'
+            1 * mockDmiRestClient.postOperationWithJsonData(expectedDmiBatchResourceDataUrl, expectedBatchRequestAsJson, READ, NO_AUTH_HEADER)
     }
 
     def 'Execute (async) data operation from DMI service for #scenario.'() {
