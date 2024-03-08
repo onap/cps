@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9af075cb_95a014bb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-03-08T13:57:23Z",
+      "side": 1,
+      "message": "NB Heads Up: During my review, I\u0027ve realized that all the DB schema has been preserved as in the past. However, the primary keys of the data have been of course changed, but that does not break up any code since, the rest of the relations have been set up well/correctly according to the new PKs.\n\nBesides that, a good clean up has been made in \u0027fragment\u0027 table by removing data from cps-ran-schema (node).",
+      "revId": "f4bf07f90ec8707966167ecf3952e67f35b38ad1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "513faf51_dd0863fd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-03-08T13:57:23Z",
+      "side": 1,
+      "message": "NB: As the cps-ncmp-service architecture allow to have multiple loaders for multiple models and schema-sets, you could have another loader for cps-ran-schema-model... and ran-network-simulation anchor, cps-ran-schema similar to CmDataSubscriptionModelLoader, if you wish.\n\nOtherwise, in this class you have already loaded two different module and anchors...",
+      "range": {
+        "startLine": 36,
+        "startChar": 13,
+        "endLine": 36,
+        "endChar": 34
+      },
+      "revId": "f4bf07f90ec8707966167ecf3952e67f35b38ad1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1b2f307_a0352d59",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-03-08T13:57:23Z",
+      "side": 1,
+      "message": "NB: For the series of cps-ran-... related model, schema-set, anchor I would have included the \u0027RAN\u0027 keyword specifically. E.g. CPS_RAN_MODEL_FILENAME, and CPS_RAN_ANCHOR... \n\nYou could have looked at more reviews on this naming conventions...",
+      "range": {
+        "startLine": 38,
+        "startChar": 32,
+        "endLine": 38,
+        "endChar": 52
+      },
+      "revId": "f4bf07f90ec8707966167ecf3952e67f35b38ad1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
