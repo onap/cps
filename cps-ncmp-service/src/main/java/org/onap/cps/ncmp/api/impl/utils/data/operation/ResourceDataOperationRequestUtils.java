@@ -123,7 +123,7 @@ public class ResourceDataOperationRequestUtils {
      * @param requestId                                unique identifier per request
      * @param cmHandleIdsPerResponseCodesPerOperation list of cm handle ids per operation with response code
      */
-    @Async
+    @Async("notificationExecutor")
     public static void publishErrorMessageToClientTopic(final String clientTopic,
                                                          final String requestId,
                                                          final MultiValueMap<DmiDataOperation,

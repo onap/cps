@@ -39,6 +39,7 @@ Release Data
 Bug Fixes
 ---------
 3.4.7
+    - `CPS-2150 <https://jira.onap.org/browse/CPS-2150>`_ Fix for Async task execution failed by TimeoutException.
 
 Features
 --------

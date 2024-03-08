@@ -124,7 +124,7 @@ notification:
             queue-capacity: 500
             wait-for-tasks-to-complete-on-shutdown: true
             thread-name-prefix: Async-
-            time-out-value-in-ms: 2000
+            time-out-value-in-ms: 60000
 
 springdoc:
     swagger-ui:
