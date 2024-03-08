@@ -255,6 +255,10 @@ Any spring supported property can be configured by providing in ``config.additio
 | notification.async.executor.              |                                                                                                         |                               |
 | thread-name-prefix                        |                                                                                                         |                               |
 +-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+| config.additional.                        | Maximum time allowed by the thread pool executor for execution of one of the threads in milliseconds.   | ``60000``                     |
+| notification.async.executor.              |                                                                                                         |                               |
+| time-out-value-in-ms                      |                                                                                                         |                               |
++-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
 | config.additional.                        | Specifies number of database connections between database and application.                              | ``10``                        |
 | spring.datasource.hikari.                 | This property controls the maximum size that the pool is allowed to reach,                              |                               |
 | maximumPoolSize                           | including both idle and in-use connections.                                                             |                               |
