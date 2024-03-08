@@ -16,6 +16,24 @@
       "message": "Keep the test, but remove the async PollingConditions stuff. Test will pass like this:\n\n\n    def \u0027Execute (async) data operation from DMI service.\u0027() {\n        given: \u0027collection of yang model cm Handles and data operation request\u0027\n            mockYangModelCmHandleCollectionRetrieval([yangModelCmHandleProperty])\n            def dataOperationBatchRequestJsonData \u003d TestUtils.getResourceFileContent(\u0027dataOperationRequest.json\u0027)\n            def dataOperationRequest \u003d spiedJsonObjectMapper.convertJsonString(dataOperationBatchRequestJsonData, DataOperationRequest.class)\n            dataOperationRequest.dataOperationDefinitions[0].cmHandleIds \u003d [cmHandleId]\n        and: \u0027a positive response from DMI service when it is called with valid request parameters\u0027\n            def responseFromDmi \u003d new ResponseEntity\u003cObject\u003e(HttpStatus.ACCEPTED)\n            def expectedDmiBatchResourceDataUrl \u003d \"ncmp/v1/data/topic\u003dmy-topic-name\"\n            def expectedBatchRequestAsJson \u003d \u0027{\"operations\":[{\"operation\":\"read\",\"operationId\":\"operational-14\",\"datastore\":\"ncmp-datastore:passthrough-operational\",\"options\":\"some option\",\"resourceIdentifier\":\"some resource identifier\",\"cmHandles\":[{\"id\":\"some-cm-handle\",\"cmHandleProperties\":{\"prop1\":\"val1\"}}]}]}\u0027\n            mockDmiRestClient.postOperationWithJsonData(expectedDmiBatchResourceDataUrl, _, READ.operationName, NO_AUTH_HEADER) \u003e\u003e responseFromDmi\n            dmiServiceUrlBuilder.getDataOperationRequestUrl(_, _) \u003e\u003e expectedDmiBatchResourceDataUrl\n        when: \u0027get resource data for group of cm handles are invoked\u0027\n            objectUnderTest.requestResourceDataFromDmi(\u0027my-topic-name\u0027, dataOperationRequest, \u0027requestId\u0027, NO_AUTH_HEADER)\n        then: \u0027the post operation was called and ncmp generated dmi request body json args\u0027\n            1 * mockDmiRestClient.postOperationWithJsonData(expectedDmiBatchResourceDataUrl, expectedBatchRequestAsJson, READ, NO_AUTH_HEADER)\n    }",
       "revId": "b35ac1b58882edfa60d67e7e32668261286a1992",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1186cd19_30c8d706",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiDataOperationsSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-03-08T13:56:49Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "7b738db6_fa90c61e",
+      "revId": "b35ac1b58882edfa60d67e7e32668261286a1992",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
