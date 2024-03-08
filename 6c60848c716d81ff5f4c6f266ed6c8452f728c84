@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b884978b_a3e6294e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-03-08T13:29:16Z",
+      "side": 1,
+      "message": "Has upgrade/rollback for last change been tested?",
+      "revId": "6c60848c716d81ff5f4c6f266ed6c8452f728c84",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "332e5f71_9cc95b6f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/AbstractModelLoader.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-03-08T13:29:16Z",
+      "side": 1,
+      "message": "Since it\u0027s normal for the dataspace to already exist, I would make this log.debug",
+      "range": {
+        "startLine": 89,
+        "startChar": 16,
+        "endLine": 89,
+        "endChar": 20
+      },
+      "revId": "6c60848c716d81ff5f4c6f266ed6c8452f728c84",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bad572fc_c8541ae8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-03-08T13:29:16Z",
+      "side": 1,
+      "message": "As discussed in demo, we can likely remove this by updating CSIT. I think a follow up Tech Debt Jira task should be made for this",
+      "range": {
+        "startLine": 44,
+        "startChar": 32,
+        "endLine": 44,
+        "endChar": 49
+      },
+      "revId": "6c60848c716d81ff5f4c6f266ed6c8452f728c84",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10afad08_26008633",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/01-createCPSTables.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-03-08T13:29:16Z",
+      "side": 1,
+      "message": "Can this be done while creating the \u0027yang_resource\u0027 table in \u00271-6\u0027?\nOr will it mess up checksums?",
+      "range": {
+        "startLine": 562,
+        "startChar": 26,
+        "endLine": 582,
+        "endChar": 28
+      },
+      "revId": "6c60848c716d81ff5f4c6f266ed6c8452f728c84",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
