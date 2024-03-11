@@ -20,7 +20,10 @@
 
 package org.onap.cps.integration.functional
 
-import java.time.OffsetDateTime
+
+import org.apache.kafka.common.TopicPartition
+import org.apache.kafka.common.serialization.StringDeserializer
+import org.onap.cps.integration.KafkaTestContainer
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
@@ -30,9 +33,14 @@ import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import spock.util.concurrent.PollingConditions
 
+import java.time.Duration
+import java.time.OffsetDateTime
+
 class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
 
     NetworkCmProxyDataService objectUnderTest
+
+    def kafkaConsumer = KafkaTestContainer.getConsumer("ncmp-group", StringDeserializer.class);
 
     static final MODULE_REFERENCES_RESPONSE_A = readResourceDataFile('mock-dmi-responses/bookStoreAWithModules_M1_M2_Response.json')
     static final MODULE_RESOURCES_RESPONSE_A = readResourceDataFile('mock-dmi-responses/bookStoreAWithModules_M1_M2_ResourcesResponse.json')
@@ -46,6 +54,9 @@ class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
     def 'CM Handle registration is successful.'() {
         given: 'DMI will return modules when requested'
             mockDmiResponsesForModuleSync(DMI_URL, 'ch-1', MODULE_REFERENCES_RESPONSE_A, MODULE_RESOURCES_RESPONSE_A)
+
+        and: 'consumer subscribed to topic'
+            kafkaConsumer.subscribe(['ncmp-events'])
 
         when: 'a CM-handle is registered for creation'
             def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: 'ch-1')
@@ -65,6 +76,13 @@ class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
             new PollingConditions().within(3, () -> {
                 assert CmHandleState.READY == objectUnderTest.getCmHandleCompositeState('ch-1').cmHandleState
             })
+
+        and: 'the messages is polled'
+            def message = kafkaConsumer.poll(Duration.ofMillis(10000))
+            def records = message.records(new TopicPartition('ncmp-events', 0))
+
+        and: 'the newest lcm event notification is received with READY state'
+            records.last().value().toString().contains('"cmHandleState":"READY"')
 
         and: 'the CM-handle has expected modules'
             assert ['M1', 'M2'] == objectUnderTest.getYangResourcesModuleReferences('ch-1').moduleName.sort()
