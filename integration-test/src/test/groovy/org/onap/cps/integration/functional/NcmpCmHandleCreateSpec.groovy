@@ -20,7 +20,10 @@
 
 package org.onap.cps.integration.functional
 
-import java.time.OffsetDateTime
+
+import org.apache.kafka.common.TopicPartition
+import org.apache.kafka.common.serialization.StringDeserializer
+import org.onap.cps.integration.KafkaTestContainer
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
@@ -30,9 +33,14 @@ import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import spock.util.concurrent.PollingConditions
 
+import java.time.Duration
+import java.time.OffsetDateTime
+
 class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
 
     NetworkCmProxyDataService objectUnderTest
+
+    def kafkaConsumer = KafkaTestContainer.getConsumer("ncmp-group", StringDeserializer.class);
 
     static final MODULE_REFERENCES_RESPONSE_A = readResourceDataFile('mock-dmi-responses/bookStoreAWithModules_M1_M2_Response.json')
     static final MODULE_RESOURCES_RESPONSE_A = readResourceDataFile('mock-dmi-responses/bookStoreAWithModules_M1_M2_ResourcesResponse.json')
@@ -65,6 +73,16 @@ class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
             new PollingConditions().within(3, () -> {
                 assert CmHandleState.READY == objectUnderTest.getCmHandleCompositeState('ch-1').cmHandleState
             })
+
+        and: 'consumer subscribed to topic'
+            kafkaConsumer.subscribe(['ncmp-events'])
+
+        and: 'the messages is polled'
+            def message= kafkaConsumer.poll(Duration.ofMillis(3000))
+            def records = message.records(new TopicPartition('ncmp-events', 0))
+
+        and: 'the newest lcm event notification is received with READY state'
+            records[1].value().toString().contains('"cmHandleState":"READY"')
 
         and: 'the CM-handle has expected modules'
             assert ['M1', 'M2'] == objectUnderTest.getYangResourcesModuleReferences('ch-1').moduleName.sort()
