@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e05f754_6466dedf",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/kafka/ConsumerBaseSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-03-11T14:37:44Z",
+      "side": 0,
+      "message": "No need to have two-level inheritance just for a method (that activates listeners!)\n\nThat could have been handled in a setup() method where relevant.",
+      "range": {
+        "startLine": 29,
+        "startChar": 6,
+        "endLine": 29,
+        "endChar": 23
+      },
+      "revId": "b35ac1b58882edfa60d67e7e32668261286a1992",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
