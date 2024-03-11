@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7dc9be85_97f9ed3d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-03-11T10:36:58Z",
+      "side": 1,
+      "message": "Need to think about the backward compatibility as well.\nNow that content type is a new parameter and also a mandatory one. The clients already using it will have issues around it.\nA discussion is required around this.\n\nOtherwise the changes are fine , similar to the one we did for Create Node API which is great and also easy to review now.",
+      "revId": "a0b889def17666ee1133aa943532ab9e55284a1b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7ab47af_2b37e97f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-03-11T10:36:58Z",
+      "side": 1,
+      "message": "add in the condition for XML case as well here.",
+      "range": {
+        "startLine": 240,
+        "startChar": 4,
+        "endLine": 240,
+        "endChar": 5
+      },
+      "revId": "a0b889def17666ee1133aa943532ab9e55284a1b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c6472bd_dc954221",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-03-11T10:36:58Z",
+      "side": 1,
+      "message": "NB: check if similar scenario need to be checked for XML.\nMaybe add a new test case if we cant accomodate in this one.",
+      "range": {
+        "startLine": 249,
+        "startChar": 125,
+        "endLine": 249,
+        "endChar": 142
+      },
+      "revId": "a0b889def17666ee1133aa943532ab9e55284a1b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
