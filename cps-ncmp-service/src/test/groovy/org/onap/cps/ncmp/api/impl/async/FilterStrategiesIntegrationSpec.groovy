@@ -23,22 +23,28 @@ package org.onap.cps.ncmp.api.impl.async
 import io.cloudevents.core.builder.CloudEventBuilder
 import org.onap.cps.events.EventsPublisher
 import org.onap.cps.ncmp.api.impl.config.kafka.KafkaConfig
-import org.onap.cps.ncmp.api.kafka.ConsumerBaseSpec
+import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
 import org.onap.cps.ncmp.event.model.DmiAsyncRequestResponseEvent
 import org.spockframework.spring.SpringBean
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.kafka.config.KafkaListenerEndpointRegistry
+import org.springframework.kafka.test.utils.ContainerTestUtils
 import org.springframework.test.annotation.DirtiesContext
 import org.testcontainers.spock.Testcontainers
 import spock.util.concurrent.PollingConditions
 import java.util.concurrent.TimeUnit
 
-@SpringBootTest(classes =[DataOperationEventConsumer, AsyncRestRequestResponseEventConsumer, RecordFilterStrategies, KafkaConfig])
+@SpringBootTest(classes =[KafkaListenerEndpointRegistry, DataOperationEventConsumer, AsyncRestRequestResponseEventConsumer, RecordFilterStrategies, KafkaConfig])
 @DirtiesContext
 @Testcontainers
 @EnableAutoConfiguration
-class FilterStrategiesIntegrationSpec extends ConsumerBaseSpec {
+class FilterStrategiesIntegrationSpec extends MessagingBaseSpec {
+
+    @Autowired
+    private KafkaListenerEndpointRegistry kafkaListenerEndpointRegistry
 
     @SpringBean
     EventsPublisher mockEventsPublisher = Mock()
@@ -48,6 +54,12 @@ class FilterStrategiesIntegrationSpec extends ConsumerBaseSpec {
 
     @Value('${app.ncmp.async-m2m.topic}')
     def topic
+
+    def setup() {
+        kafkaListenerEndpointRegistry.getListenerContainers().forEach(
+                messageListenerContainer -> { ContainerTestUtils.waitForAssignment(messageListenerContainer, 1) }
+        )
+    }
 
     def 'Legacy event consumer with cloud event.'() {
         given: 'a data operation cloud event type'

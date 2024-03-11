@@ -52,7 +52,6 @@ import org.springframework.test.web.servlet.MockMvc
 import org.springframework.web.client.RestTemplate
 import org.testcontainers.spock.Testcontainers
 import spock.lang.Shared
-import spock.lang.Specification
 import spock.util.concurrent.PollingConditions
 
 import java.time.format.DateTimeFormatter
@@ -70,7 +69,7 @@ import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DM
 @EnableJpaRepositories(basePackageClasses = [DataspaceRepository])
 @ComponentScan(basePackages = ['org.onap.cps'])
 @EntityScan('org.onap.cps.spi.entities')
-abstract class CpsIntegrationSpecBase extends Specification {
+abstract class CpsIntegrationSpecBase extends KafkaMessagingBase {
 
     @Shared
     DatabaseTestContainer databaseTestContainer = DatabaseTestContainer.getInstance()
