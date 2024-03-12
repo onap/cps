@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8662a4f_2f018c09",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-03-12T13:32:07Z",
+      "side": 1,
+      "message": "apart from my old comments these are some additional comments.",
+      "revId": "8768686b86c9535a121049495adf9b30c0d2e78a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "679adc80_d80dd670",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-03-12T13:32:07Z",
+      "side": 1,
+      "message": "NB: extra DB call just to get the anchor and then later we are fetching dataspace name and anchor name which is readily available.\nCheck if we can have an overloaded version of your method.\nOr a different method that readily accepts the relevant params like anchorname , dataspacename etc.",
+      "range": {
+        "startLine": 264,
+        "startChar": 8,
+        "endLine": 264,
+        "endChar": 84
+      },
+      "revId": "8768686b86c9535a121049495adf9b30c0d2e78a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b38c6ed7_d0d759bc",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/CloudEventBuilder.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-03-12T13:32:07Z",
+      "side": 1,
+      "message": "NB: similar class in NCMP as well.\nBut I can understand its needed here.\nNeed to think abt some common code in cps-service layer to be used by both CPS-Core and NCMP.",
+      "range": {
+        "startLine": 34,
+        "startChar": 13,
+        "endLine": 34,
+        "endChar": 30
+      },
+      "revId": "8768686b86c9535a121049495adf9b30c0d2e78a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42e9a2cd_26f20079",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/DataUpdateEventsService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-03-12T13:32:07Z",
+      "side": 1,
+      "message": "NB: exception or kafkaException",
+      "range": {
+        "startLine": 74,
+        "startChar": 43,
+        "endLine": 74,
+        "endChar": 44
+      },
+      "revId": "8768686b86c9535a121049495adf9b30c0d2e78a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae13a9e8_0367f6be",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/DataUpdateEventsService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-03-12T13:32:07Z",
+      "side": 1,
+      "message": "careful here. have seen observedTimestamp passed as Null in production code as well.",
+      "range": {
+        "startLine": 87,
+        "startChar": 46,
+        "endLine": 87,
+        "endChar": 73
+      },
+      "revId": "8768686b86c9535a121049495adf9b30c0d2e78a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32e301a5_4c4516cf",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/DataUpdateEventsService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-03-12T13:32:07Z",
+      "side": 1,
+      "message": "not in use???",
+      "range": {
+        "startLine": 97,
+        "startChar": 32,
+        "endLine": 97,
+        "endChar": 59
+      },
+      "revId": "8768686b86c9535a121049495adf9b30c0d2e78a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ccf32abb_e91220db",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/DataUpdateEventsService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-03-12T13:32:07Z",
+      "side": 1,
+      "message": "NB: maybe introduce it when needed.\nYou can add in the commit message abt the functionality as part of this patch. and what is pending.\n\nOtherwise with this TODO , sonar will complain.",
+      "range": {
+        "startLine": 110,
+        "startChar": 21,
+        "endLine": 110,
+        "endChar": 67
+      },
+      "revId": "8768686b86c9535a121049495adf9b30c0d2e78a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
