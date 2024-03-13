@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b0a5e25_25219ed1",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-03-13T10:30:05Z",
+      "side": 1,
+      "message": "make suer to update the docs version of the yaml files too!\n(see CPS release process instructions)",
+      "revId": "c3f8019846dbcce0d3d57318e4ca6405c9c9c23c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c74e8391_ef716e17",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandlerSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-03-13T10:30:05Z",
+      "side": 1,
+      "message": "when check something is NOT called be very lenient with the parameters ie use *_",
+      "range": {
+        "startLine": 269,
+        "startChar": 52,
+        "endLine": 269,
+        "endChar": 108
+      },
+      "revId": "c3f8019846dbcce0d3d57318e4ca6405c9c9c23c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
