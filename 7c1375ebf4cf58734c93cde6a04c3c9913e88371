@@ -16,6 +16,23 @@
       "message": "Nothing objectionable there",
       "revId": "7c1375ebf4cf58734c93cde6a04c3c9913e88371",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c35b391_85389c4d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-03-13T10:03:04Z",
+      "side": 1,
+      "message": "I will block it for a while.\nThe person who raised the bug want to do one more test and then we will get confirmation on the timeout timing to be set.\nIdeally I am thinking to keep it as 60secs or more.\nAnyways we have provided a configurable parameter , so the team doing testing shall be able to tune it for themselves.",
+      "revId": "7c1375ebf4cf58734c93cde6a04c3c9913e88371",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
