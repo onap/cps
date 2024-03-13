@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd310703_576716dc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-03-13T14:04:04Z",
+      "side": 1,
+      "message": "no longer the case. I will  update it when I raise the next patch with the updated timing.",
+      "range": {
+        "startLine": 13,
+        "startChar": 2,
+        "endLine": 14,
+        "endChar": 23
+      },
+      "revId": "7c1375ebf4cf58734c93cde6a04c3c9913e88371",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "4938b2c5_cde41270",
@@ -31,6 +54,23 @@
       "writtenOn": "2024-03-13T10:03:04Z",
       "side": 1,
       "message": "I will block it for a while.\nThe person who raised the bug want to do one more test and then we will get confirmation on the timeout timing to be set.\nIdeally I am thinking to keep it as 60secs or more.\nAnyways we have provided a configurable parameter , so the team doing testing shall be able to tune it for themselves.",
+      "revId": "7c1375ebf4cf58734c93cde6a04c3c9913e88371",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc1fc8c8_c4a137b6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-03-13T14:04:04Z",
+      "side": 1,
+      "message": "Will set the parameter for notification.async.executor.time-out-value-in-ms to something appropriate after confirmation.",
       "revId": "7c1375ebf4cf58734c93cde6a04c3c9913e88371",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
