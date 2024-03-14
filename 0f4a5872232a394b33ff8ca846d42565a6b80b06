@@ -16,6 +16,46 @@
       "message": "Looks fine",
       "revId": "0f4a5872232a394b33ff8ca846d42565a6b80b06",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d1b0186_65d354e3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-03-14T08:32:09Z",
+      "side": 1,
+      "message": "one small copy\u0026paste error",
+      "revId": "0f4a5872232a394b33ff8ca846d42565a6b80b06",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a165f35a_0ce0b6b9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/lcm/LcmEventsCreatorSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-03-14T08:32:09Z",
+      "side": 1,
+      "message": "Module",
+      "range": {
+        "startLine": 191,
+        "startChar": 129,
+        "endLine": 191,
+        "endChar": 136
+      },
+      "revId": "0f4a5872232a394b33ff8ca846d42565a6b80b06",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
