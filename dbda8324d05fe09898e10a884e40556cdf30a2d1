@@ -112,6 +112,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ddd11214_a3cbfcef",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/base/NcmpPerfTestBase.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-03-14T15:16:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f63b2d81_cff789e0",
+      "range": {
+        "startLine": 73,
+        "startChar": 8,
+        "endLine": 73,
+        "endChar": 23
+      },
+      "revId": "dbda8324d05fe09898e10a884e40556cdf30a2d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "66b9ccc9_762c28b5",
@@ -290,6 +314,30 @@
       "side": 1,
       "message": "We can\u0027t use TimeUnit.MILLISECONDS.toSeconds(2) because it returns Long (causing test failure due to limit being rounded to zero).\nI have opted to use a constant MILLISECONDS \u003d 0.001 instead",
       "parentUuid": "18a82afb_0c4ab3d2",
+      "range": {
+        "startLine": 89,
+        "startChar": 20,
+        "endLine": 89,
+        "endChar": 25
+      },
+      "revId": "dbda8324d05fe09898e10a884e40556cdf30a2d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b686d8cb_e38b4cdf",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/CmHandleQueryPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-03-14T15:16:21Z",
+      "side": 1,
+      "message": "ah, I see...",
+      "parentUuid": "d952643e_d1edfc40",
       "range": {
         "startLine": 89,
         "startChar": 20,
