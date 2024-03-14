@@ -189,6 +189,30 @@
       },
       "revId": "5c2b29d35b14af7736a87395ac7fda5a0a6b08af",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81fe6725_904b8ca2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/data/operation/ResourceDataOperationRequestUtils.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-03-14T14:11:46Z",
+      "side": 1,
+      "message": "@Async annotation was already there.\nBut I thought it should use the correct thread pool , but later we noticed its on the static method which is not managed by spring hence no use of annotation here.",
+      "parentUuid": "a4743b4e_24e4800b",
+      "range": {
+        "startLine": 126,
+        "startChar": 12,
+        "endLine": 126,
+        "endChar": 32
+      },
+      "revId": "5c2b29d35b14af7736a87395ac7fda5a0a6b08af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
