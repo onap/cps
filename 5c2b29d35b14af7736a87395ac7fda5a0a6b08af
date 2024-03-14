@@ -117,6 +117,30 @@
       },
       "revId": "5c2b29d35b14af7736a87395ac7fda5a0a6b08af",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65bb7603_3f110bb0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/data/operation/ResourceDataOperationRequestUtils.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-03-14T13:30:49Z",
+      "side": 1,
+      "message": "I\u0027m very skeptical that this @Async even works in most places we use it.\n\nI ask Copilot, it says:\n\u003e No, the @Async annotation in Spring does not work for static methods. It is specifically designed for non-static methods within Spring beans.\n\nFrom what I read previously, it has serious limitations due to the Spring Proxy-based mechanisms (Spring has to intercept the call to see the @Async at runtime), e.g.\n- it only works on public instance methods of Spring-managed beans\n- self-invocation doesn\u0027t work - i.e. if you call from the same class, call won\u0027t be proxied and hence won\u0027t be async",
+      "parentUuid": "fc84a92c_b8982097",
+      "range": {
+        "startLine": 126,
+        "startChar": 12,
+        "endLine": 126,
+        "endChar": 32
+      },
+      "revId": "5c2b29d35b14af7736a87395ac7fda5a0a6b08af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
