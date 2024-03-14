@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6e98ae2_6d6ae0c2",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreRequestHandler.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-03-14T11:00:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61cef1c8_ed0bc72e",
+      "range": {
+        "startLine": 42,
+        "startChar": 62,
+        "endLine": 42,
+        "endChar": 65
+      },
+      "revId": "5c2b29d35b14af7736a87395ac7fda5a0a6b08af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "164cb99b_fbf03bcf",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-14T10:56:31Z",
       "side": 1,
       "message": "q: what does tshi qualifier do?",
+      "range": {
+        "startLine": 126,
+        "startChar": 12,
+        "endLine": 126,
+        "endChar": 32
+      },
+      "revId": "5c2b29d35b14af7736a87395ac7fda5a0a6b08af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc84a92c_b8982097",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/data/operation/ResourceDataOperationRequestUtils.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-03-14T11:00:52Z",
+      "side": 1,
+      "message": "Without the qualifier the threads are been picked from the common thread pools utilized by other operations as well which makes it non-deterministic.\nNow we are explicitly marking here to use a dedicated thread pool we have to publish the events. Brings finer control to us.",
+      "parentUuid": "164cb99b_fbf03bcf",
       "range": {
         "startLine": 126,
         "startChar": 12,
