@@ -60,6 +60,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "07ee3480_d75d3b6a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/SerializationIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-03-14T15:09:51Z",
+      "side": 1,
+      "message": "This change was meant to clean up on cps-ncmp-service module, which was irrelevant to scope of the jira. Thus, I decided to revert this change to original version of it.",
+      "parentUuid": "4d74d9fc_071af2b5",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 71
+      },
+      "revId": "e87151b0060890253b1a1994a26ad45e690f12db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5d983492_0ad35ed1",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/SerializationIntegrationSpec.groovy",
         "patchSetId": 1
@@ -107,6 +131,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ff52ed19_9fa3e600",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/SerializationIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-03-14T15:09:51Z",
+      "side": 1,
+      "message": "This change was meant to clean up on cps-ncmp-service module, which was irrelevant to scope of the jira. Thus, I decided to revert this change to original version of it.",
+      "parentUuid": "5d983492_0ad35ed1",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 48
+      },
+      "revId": "e87151b0060890253b1a1994a26ad45e690f12db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c3cd80f0_05c42faf",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/SerializationIntegrationSpec.groovy",
         "patchSetId": 1
@@ -118,6 +166,30 @@
       "writtenOn": "2024-03-14T10:21:25Z",
       "side": 1,
       "message": "should this not belong in the messagingBaseSpec ?",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 5
+      },
+      "revId": "e87151b0060890253b1a1994a26ad45e690f12db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4247a7d_487d0c5a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/SerializationIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-03-14T15:09:51Z",
+      "side": 1,
+      "message": "This change was meant to clean up on cps-ncmp-service module, which was irrelevant to scope of the jira. Thus, I decided to revert this change to original version of it.",
+      "parentUuid": "c3cd80f0_05c42faf",
       "range": {
         "startLine": 65,
         "startChar": 0,
@@ -165,6 +237,30 @@
       "side": 1,
       "message": "Agreed. KafkaMessagingBase should inherit CpsIntegrationSpecBase",
       "parentUuid": "9d344b37_a804331f",
+      "range": {
+        "startLine": 72,
+        "startChar": 15,
+        "endLine": 72,
+        "endChar": 64
+      },
+      "revId": "e87151b0060890253b1a1994a26ad45e690f12db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc8a947e_2d5ab9db",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-03-14T15:09:51Z",
+      "side": 1,
+      "message": "Will continue on this review to achieve good functionality as suggested.",
+      "parentUuid": "af5d2777_4e03ec61",
       "range": {
         "startLine": 72,
         "startChar": 15,
