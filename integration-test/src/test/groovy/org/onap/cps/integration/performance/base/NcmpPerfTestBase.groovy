@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023 Nordix Foundation
+ *  Copyright (C) 2023-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -20,14 +20,15 @@
 
 package org.onap.cps.integration.performance.base
 
-import java.time.OffsetDateTime
 import org.onap.cps.integration.ResourceMeter
+import org.onap.cps.spi.FetchDescendantsOption
 
 class NcmpPerfTestBase extends PerfTestBase {
 
     def static NCMP_PERFORMANCE_TEST_DATASPACE = 'ncmpPerformance'
     def static REGISTRY_ANCHOR = 'ncmp-registry'
     def static REGISTRY_SCHEMA_SET = 'registrySchemaSet'
+    def static TOTAL_CM_HANDLES = 20_000
     def static CM_DATA_SUBSCRIPTIONS_ANCHOR = 'cm-data-subscriptions'
     def static CM_DATA_SUBSCRIPTIONS_SCHEMA_SET = 'cmDataSubscriptionsSchemaSet'
 
@@ -39,13 +40,6 @@ class NcmpPerfTestBase extends PerfTestBase {
 
     ResourceMeter resourceMeter = new ResourceMeter()
 
-// SHORT versions for easier debugging
-//    def subscriberIdPrefix = 'sub'
-//    def xpathPrefix = 'f'
-//    def cmHandlePrefix = 'ch'
-
-
-// LONG versions for performance testing
     def subscriberIdPrefix = 'some really long subscriber id to see if this makes any difference to the performance'
     def xpathPrefix = 'some really long xpath/with/loads/of/children/grandchildren/and/whatever/else/I/can/think/of to see if this makes any difference to the performance'
     def cmHandlePrefix = 'some really long cm handle id to see if this makes any difference to the performance'
@@ -62,18 +56,27 @@ class NcmpPerfTestBase extends PerfTestBase {
         cpsDataspaceService.createDataspace(NCMP_PERFORMANCE_TEST_DATASPACE)
         createRegistrySchemaSet()
         createCmDataSubscriptionsSchemaSet()
-        addCmSubscriptionData()
     }
 
     def createInitialData() {
-        cpsAnchorService.createAnchor(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_SCHEMA_SET, REGISTRY_ANCHOR)
-        def data = readResourceDataFile('ncmp-registry/1000-cmhandles.json')
-        cpsDataService.saveData(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_ANCHOR, data, OffsetDateTime.now())
+        addRegistryData()
+        addCmSubscriptionData()
     }
 
     def createRegistrySchemaSet() {
         def modelAsString = readResourceDataFile('ncmp-registry/dmi-registry@2024-02-23.yang')
         cpsModuleService.createSchemaSet(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_SCHEMA_SET, [registry: modelAsString])
+    }
+
+    def addRegistryData() {
+        cpsAnchorService.createAnchor(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_SCHEMA_SET, REGISTRY_ANCHOR)
+        cpsDataService.saveData(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_ANCHOR, '{"dmi-registry": []}', now)
+        def innerNodeJsonTemplate = readResourceDataFile('ncmp-registry/innerNode.json')
+        def batchSize = 100
+        for (def i = 0; i < TOTAL_CM_HANDLES; i += batchSize) {
+            def data = '{ "cm-handles": [' + (1..batchSize).collect { innerNodeJsonTemplate.replace('CMHANDLE_ID_HERE', (it + i).toString()) }.join(',') + ']}'
+            cpsDataService.saveListElements(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_ANCHOR, '/dmi-registry', data, now)
+        }
     }
 
     def createCmDataSubscriptionsSchemaSet() {
@@ -89,4 +92,18 @@ class NcmpPerfTestBase extends PerfTestBase {
         def cmHandles = createJsonArray('cm-handle',numberOfCmHandlesPerCmDataSubscription,'id',cmHandlePrefix, filters)
         cpsDataService.saveData(NCMP_PERFORMANCE_TEST_DATASPACE, CM_DATA_SUBSCRIPTIONS_ANCHOR, xPathForDataStore1CmHandles, cmHandles, now)
     }
+
+    def 'NCMP pre-load test data'() {
+        when: 'dummy get data nodes runs so that populating the DB does not get included in other test timings'
+            resourceMeter.start()
+            def result = cpsDataService.getDataNodes(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_ANCHOR, '/', FetchDescendantsOption.OMIT_DESCENDANTS)
+            resourceMeter.stop()
+        then: 'expected data exists'
+            assert result.xpath == ['/dmi-registry']
+        and: 'operation completes within expected time'
+            recordAndAssertResourceUsage('NCMP pre-load test data',
+                    15, resourceMeter.totalTimeInSeconds,
+                    600, resourceMeter.totalMemoryUsageInMB)
+    }
+
 }
