@@ -141,6 +141,30 @@
       },
       "revId": "5c2b29d35b14af7736a87395ac7fda5a0a6b08af",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95b0fe1c_b932e266",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/data/operation/ResourceDataOperationRequestUtils.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-03-14T13:54:20Z",
+      "side": 1,
+      "message": "yeah.. didnt noticed its a static method.\nalso its not managed by spring.\nso no use of @Async annotation thr.",
+      "parentUuid": "65bb7603_3f110bb0",
+      "range": {
+        "startLine": 126,
+        "startChar": 12,
+        "endLine": 126,
+        "endChar": 32
+      },
+      "revId": "5c2b29d35b14af7736a87395ac7fda5a0a6b08af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
