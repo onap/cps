@@ -22,6 +22,30 @@
       },
       "revId": "b35ac1b58882edfa60d67e7e32668261286a1992",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "214cf872_cd667acf",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/kafka/ConsumerBaseSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-03-14T15:10:58Z",
+      "side": 0,
+      "message": "Please ignore this review since it was irrelevant to jira content further.",
+      "parentUuid": "8e05f754_6466dedf",
+      "range": {
+        "startLine": 29,
+        "startChar": 6,
+        "endLine": 29,
+        "endChar": 23
+      },
+      "revId": "b35ac1b58882edfa60d67e7e32668261286a1992",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

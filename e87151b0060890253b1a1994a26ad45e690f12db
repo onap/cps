@@ -82,6 +82,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b512faf5_693d58a3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/SerializationIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-03-14T15:10:58Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "07ee3480_d75d3b6a",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 71
+      },
+      "revId": "e87151b0060890253b1a1994a26ad45e690f12db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5d983492_0ad35ed1",
@@ -190,6 +214,30 @@
       "side": 1,
       "message": "This change was meant to clean up on cps-ncmp-service module, which was irrelevant to scope of the jira. Thus, I decided to revert this change to original version of it.",
       "parentUuid": "c3cd80f0_05c42faf",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 5
+      },
+      "revId": "e87151b0060890253b1a1994a26ad45e690f12db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e66a9f4_f2c30440",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/SerializationIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-03-14T15:10:58Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a4247a7d_487d0c5a",
       "range": {
         "startLine": 65,
         "startChar": 0,
