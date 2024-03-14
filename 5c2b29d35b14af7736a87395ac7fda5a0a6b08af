@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61cef1c8_ed0bc72e",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreRequestHandler.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-03-14T10:56:31Z",
+      "side": 1,
+      "message": "NB: should this not be the same default as in the Yaml ie 60,000 ?",
+      "range": {
+        "startLine": 42,
+        "startChar": 62,
+        "endLine": 42,
+        "endChar": 65
+      },
+      "revId": "5c2b29d35b14af7736a87395ac7fda5a0a6b08af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "164cb99b_fbf03bcf",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/data/operation/ResourceDataOperationRequestUtils.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-03-14T10:56:31Z",
+      "side": 1,
+      "message": "q: what does tshi qualifier do?",
+      "range": {
+        "startLine": 126,
+        "startChar": 12,
+        "endLine": 126,
+        "endChar": 32
+      },
+      "revId": "5c2b29d35b14af7736a87395ac7fda5a0a6b08af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
