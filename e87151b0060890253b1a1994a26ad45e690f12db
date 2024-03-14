@@ -60,6 +60,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5d983492_0ad35ed1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/SerializationIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-03-14T14:28:02Z",
+      "side": 1,
+      "message": "Hmmm, I didn\u0027t think of this before, that this would introduce mocks.\nI was hoping to avoid the use of Mocks and Stubs in the integration-tests module. It would be nice to have a real acceptance test, e.g. getting an LCM event notification when a CM handle is READY.\n\nI guess this is okay for now, since we are only setting up the test infrastructure.",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 48
+      },
+      "revId": "e87151b0060890253b1a1994a26ad45e690f12db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c3cd80f0_05c42faf",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/SerializationIntegrationSpec.groovy",
         "patchSetId": 1
@@ -94,6 +117,30 @@
       "writtenOn": "2024-03-14T10:21:25Z",
       "side": 1,
       "message": "Does every test (needs to) support kafka test?\nthis should be the other way around also \u0027Integration base should be at the bottom. KafkaMessaging should be an extension of that.  But I think it should only be used as needed...",
+      "range": {
+        "startLine": 72,
+        "startChar": 15,
+        "endLine": 72,
+        "endChar": 64
+      },
+      "revId": "e87151b0060890253b1a1994a26ad45e690f12db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af5d2777_4e03ec61",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-03-14T14:28:02Z",
+      "side": 1,
+      "message": "Agreed. KafkaMessagingBase should inherit CpsIntegrationSpecBase",
+      "parentUuid": "9d344b37_a804331f",
       "range": {
         "startLine": 72,
         "startChar": 15,
