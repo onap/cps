@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START========================================================
- *  Copyright (C) 2023 Nordix Foundation
+ *  Copyright (C) 2023-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -72,22 +72,22 @@ public class HazelcastCacheConfig {
 
     protected static MapConfig createMapConfig(final String configName) {
         final MapConfig mapConfig = new MapConfig(configName);
-        mapConfig.setBackupCount(3);
-        mapConfig.setAsyncBackupCount(3);
+        mapConfig.setBackupCount(1);
+        mapConfig.setAsyncBackupCount(0);
         return mapConfig;
     }
 
     protected static QueueConfig createQueueConfig(final String configName) {
         final QueueConfig commonQueueConfig = new QueueConfig(configName);
-        commonQueueConfig.setBackupCount(3);
-        commonQueueConfig.setAsyncBackupCount(3);
+        commonQueueConfig.setBackupCount(1);
+        commonQueueConfig.setAsyncBackupCount(0);
         return commonQueueConfig;
     }
 
     protected static SetConfig createSetConfig(final String configName) {
         final SetConfig commonSetConfig = new SetConfig(configName);
         commonSetConfig.setBackupCount(1);
-        commonSetConfig.setAsyncBackupCount(1);
+        commonSetConfig.setAsyncBackupCount(0);
         return commonSetConfig;
     }
 
