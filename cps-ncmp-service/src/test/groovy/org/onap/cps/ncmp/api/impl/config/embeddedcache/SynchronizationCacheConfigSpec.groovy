@@ -69,14 +69,14 @@ class SynchronizationCacheConfigSpec extends Specification {
             def dataSyncSemaphoresConfig =  Hazelcast.getHazelcastInstanceByName('dataSyncSemaphores').config
             def dataSyncSemaphoresMapConfig =  dataSyncSemaphoresConfig.mapConfigs.get('dataSyncSemaphoresConfig')
         expect: 'system created instance with correct config of Module Sync Work Queue'
-            assert moduleSyncDefaultWorkQueueConfig.backupCount == 3
-            assert moduleSyncDefaultWorkQueueConfig.asyncBackupCount == 3
+            assert moduleSyncDefaultWorkQueueConfig.backupCount == 1
+            assert moduleSyncDefaultWorkQueueConfig.asyncBackupCount == 0
         and: 'Module Sync Started Cm Handle Map has the correct settings'
-            assert moduleSyncStartedOnCmHandlesMapConfig.backupCount == 3
-            assert moduleSyncStartedOnCmHandlesMapConfig.asyncBackupCount == 3
+            assert moduleSyncStartedOnCmHandlesMapConfig.backupCount == 1
+            assert moduleSyncStartedOnCmHandlesMapConfig.asyncBackupCount == 0
         and: 'Data Sync Semaphore Map has the correct settings'
-            assert dataSyncSemaphoresMapConfig.backupCount == 3
-            assert dataSyncSemaphoresMapConfig.asyncBackupCount == 3
+            assert dataSyncSemaphoresMapConfig.backupCount == 1
+            assert dataSyncSemaphoresMapConfig.asyncBackupCount == 0
         and: 'all instances are part of same cluster'
             def testClusterName = 'cps-and-ncmp-test-caches'
             assert moduleSyncWorkQueueConfig.clusterName == testClusterName

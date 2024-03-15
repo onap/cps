@@ -62,8 +62,8 @@ class TrustLevelCacheConfigSpec extends Specification {
         when: 'retrieving the map config for trustLevel'
             def mapConfig = cacheConfig.mapConfigs.get(hazelcastMapConfigName)
         then: 'the map config has the correct backup counts'
-            assert mapConfig.backupCount == 3
-            assert mapConfig.asyncBackupCount == 3
+            assert mapConfig.backupCount == 1
+            assert mapConfig.asyncBackupCount == 0
         where: 'the following caches are used'
             scenario         | hazelcastInstanceName                        | hazelcastMapConfigName
             'cmhandle map'   | 'hazelcastInstanceTrustLevelPerCmHandleMap'  | 'trustLevelPerCmHandleCacheConfig'

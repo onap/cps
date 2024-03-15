@@ -50,8 +50,8 @@ class AnchorDataCacheConfigSpec extends Specification {
             def anchorDataCacheMapConfig =  anchorDataCacheConfig.mapConfigs.get('anchorDataCacheMapConfig')
         expect: 'system created instance with correct config'
             assert anchorDataCacheConfig.clusterName == 'cps-and-ncmp-test-caches'
-            assert anchorDataCacheMapConfig.backupCount == 3
-            assert anchorDataCacheMapConfig.asyncBackupCount == 3
+            assert anchorDataCacheMapConfig.backupCount == 1
+            assert anchorDataCacheMapConfig.asyncBackupCount == 0
     }
 
     def 'Verify deployment network configs for Distributed Caches'() {
