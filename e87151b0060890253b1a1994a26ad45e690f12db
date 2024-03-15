@@ -177,6 +177,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ea3000b_bc37463a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/async/SerializationIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-03-15T12:24:23Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ff52ed19_9fa3e600",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 48
+      },
+      "revId": "e87151b0060890253b1a1994a26ad45e690f12db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c3cd80f0_05c42faf",
@@ -309,6 +333,30 @@
       "side": 1,
       "message": "Will continue on this review to achieve good functionality as suggested.",
       "parentUuid": "af5d2777_4e03ec61",
+      "range": {
+        "startLine": 72,
+        "startChar": 15,
+        "endLine": 72,
+        "endChar": 64
+      },
+      "revId": "e87151b0060890253b1a1994a26ad45e690f12db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b14c2ca_f1f1fb01",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-03-15T12:24:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bc8a947e_2d5ab9db",
       "range": {
         "startLine": 72,
         "startChar": 15,
