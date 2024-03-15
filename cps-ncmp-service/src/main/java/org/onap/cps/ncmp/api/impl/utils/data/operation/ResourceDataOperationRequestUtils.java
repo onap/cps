@@ -45,7 +45,6 @@ import org.onap.cps.ncmp.api.impl.utils.context.CpsApplicationContext;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.models.DataOperationDefinition;
 import org.onap.cps.ncmp.api.models.DataOperationRequest;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
@@ -123,7 +122,6 @@ public class ResourceDataOperationRequestUtils {
      * @param requestId                                unique identifier per request
      * @param cmHandleIdsPerResponseCodesPerOperation list of cm handle ids per operation with response code
      */
-    @Async
     public static void publishErrorMessageToClientTopic(final String clientTopic,
                                                          final String requestId,
                                                          final MultiValueMap<DmiDataOperation,

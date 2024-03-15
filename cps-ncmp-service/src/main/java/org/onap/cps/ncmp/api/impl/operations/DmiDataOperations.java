@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2023 Nordix Foundation
+ *  Copyright (C) 2021-2024 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -37,7 +37,6 @@ import org.onap.cps.ncmp.api.NcmpResponseStatus;
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
 import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
 import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException;
-import org.onap.cps.ncmp.api.impl.executor.TaskExecutor;
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleState;
 import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder;
@@ -58,8 +57,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 @Component
 @Slf4j
 public class DmiDataOperations extends DmiOperations {
-
-    private static final long DEFAULT_ASYNC_TASK_EXECUTOR_TIMEOUT_IN_MILLISECONDS = 30000L;
 
     public DmiDataOperations(final InventoryPersistence inventoryPersistence,
                              final JsonObjectMapper jsonObjectMapper,
@@ -259,11 +256,12 @@ public class DmiDataOperations extends DmiOperations {
                 .operations(dmiDataOperationRequestBodies).build();
         final String dmiDataOperationRequestAsJsonString =
                 jsonObjectMapper.asJsonString(dmiDataOperationRequest);
-        TaskExecutor.executeTask(() -> dmiRestClient.postOperationWithJsonData(dataOperationResourceUrl,
-                                dmiDataOperationRequestAsJsonString, READ, authorization),
-                        DEFAULT_ASYNC_TASK_EXECUTOR_TIMEOUT_IN_MILLISECONDS)
-                .whenCompleteAsync((response, throwable) -> handleTaskCompletionException(throwable,
-                        dataOperationResourceUrl, dmiDataOperationRequestBodies));
+        try {
+            dmiRestClient.postOperationWithJsonData(dataOperationResourceUrl, dmiDataOperationRequestAsJsonString, READ,
+                    authorization);
+        } catch (final Exception exception) {
+            handleTaskCompletionException(exception, dataOperationResourceUrl, dmiDataOperationRequestBodies);
+        }
     }
 
     private void handleTaskCompletionException(final Throwable throwable,
