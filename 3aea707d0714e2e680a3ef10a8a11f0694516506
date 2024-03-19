@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f39462d_5b449837",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-03-19T11:34:49Z",
+      "side": 1,
+      "message": "Build failure due to long line",
+      "revId": "3aea707d0714e2e680a3ef10a8a11f0694516506",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8af6a02d_56e30873",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/AlternateIdChecker.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-03-19T11:34:49Z",
+      "side": 1,
+      "message": "Line is longer than 120 characters (found 129).",
+      "range": {
+        "startLine": 122,
+        "startChar": 16,
+        "endLine": 122,
+        "endChar": 129
+      },
+      "revId": "3aea707d0714e2e680a3ef10a8a11f0694516506",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb5b2a73_a40ebd34",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/RequestTarget.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-03-19T11:34:49Z",
+      "side": 1,
+      "message": "Given this is only used in pass-through data operations like getResourceDataForCmHandle, maybe give it a more descriptive name like ResourceDataIdentifier",
+      "range": {
+        "startLine": 23,
+        "startChar": 14,
+        "endLine": 23,
+        "endChar": 27
+      },
+      "revId": "3aea707d0714e2e680a3ef10a8a11f0694516506",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
