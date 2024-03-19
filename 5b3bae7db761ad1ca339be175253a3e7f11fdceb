@@ -94,6 +94,30 @@
       },
       "revId": "5b3bae7db761ad1ca339be175253a3e7f11fdceb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8475ad6_9748d60b",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpCmHandleCreateSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-03-19T14:58:36Z",
+      "side": 1,
+      "message": "As per discussion, I have increased the poll duration to 10 seconds and get rid of the index of array with last() method.",
+      "parentUuid": "57c72d44_605fddd5",
+      "range": {
+        "startLine": 85,
+        "startChar": 12,
+        "endLine": 85,
+        "endChar": 22
+      },
+      "revId": "5b3bae7db761ad1ca339be175253a3e7f11fdceb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
