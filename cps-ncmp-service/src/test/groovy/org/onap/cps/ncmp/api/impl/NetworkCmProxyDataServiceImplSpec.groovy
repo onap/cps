@@ -24,6 +24,7 @@
 package org.onap.cps.ncmp.api.impl
 
 import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse
+import org.onap.cps.ncmp.api.models.RequestTarget
 
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
@@ -121,35 +122,27 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
                 >> { new ResponseEntity<>(HttpStatus.CREATED) }
     }
 
-    def 'Get resource data for pass-through operational from DMI.'() {
+    def 'Get resource data for from DMI.'() {
         given: 'cpsDataService returns valid data node'
             mockDataNode()
+        and: 'some request target'
+            def requestTarget = new RequestTarget('some datastore','some CM Handle', 'some resource Id')
         and: 'get resource data from DMI is called'
-            mockDmiDataOperations.getResourceDataFromDmi(PASSTHROUGH_OPERATIONAL.datastoreName,'testCmHandle', 'testResourceId', OPTIONS_PARAM, NO_TOPIC, NO_REQUEST_ID, NO_AUTH_HEADER) >>
+            mockDmiDataOperations.getResourceDataFromDmi(requestTarget, OPTIONS_PARAM, NO_TOPIC, NO_REQUEST_ID, NO_AUTH_HEADER) >>
                     new ResponseEntity<>('dmi-response', HttpStatus.OK)
-        when: 'get resource data operational for cm-handle is called'
-            def response = objectUnderTest.getResourceDataForCmHandle(PASSTHROUGH_OPERATIONAL.datastoreName, 'testCmHandle', 'testResourceId', OPTIONS_PARAM, NO_TOPIC, NO_REQUEST_ID, NO_AUTH_HEADER)
+        when: 'get resource data operational for the given request target is called'
+            def response = objectUnderTest.getResourceDataForCmHandle(requestTarget, OPTIONS_PARAM, NO_TOPIC, NO_REQUEST_ID, NO_AUTH_HEADER)
         then: 'DMI returns a json response'
             assert response == 'dmi-response'
-    }
-
-    def 'Get resource data for pass-through running from DMI.'() {
-        given: 'cpsDataService returns valid data node'
-            mockDataNode()
-        and: 'DMI returns valid response and data'
-            mockDmiDataOperations.getResourceDataFromDmi(PASSTHROUGH_RUNNING.datastoreName, 'testCmHandle', 'testResourceId', OPTIONS_PARAM, NO_TOPIC, NO_REQUEST_ID, NO_AUTH_HEADER) >>
-                    new ResponseEntity<>('{dmi-response}', HttpStatus.OK)
-        when: 'get resource data is called'
-            def response = objectUnderTest.getResourceDataForCmHandle(PASSTHROUGH_RUNNING.datastoreName, 'testCmHandle', 'testResourceId', OPTIONS_PARAM, NO_TOPIC, NO_REQUEST_ID, NO_AUTH_HEADER)
-        then: 'get resource data returns expected response'
-            assert response == '{dmi-response}'
     }
 
     def 'Get resource data for operational (cached) data.'() {
         given: 'CPS Data service returns some object(s)'
             mockCpsDataService.getDataNodes(OPERATIONAL.datastoreName, 'testCmHandle', 'testResourceId', FetchDescendantsOption.OMIT_DESCENDANTS) >> ['First Object', 'other Object']
+        and: 'a request target for the same datastore, cm handle and resource id'
+            def requestTarget = new RequestTarget(OPERATIONAL.datastoreName, 'testCmHandle', 'testResourceId')
         when: 'get resource data is called'
-            def response = objectUnderTest.getResourceDataForCmHandle(OPERATIONAL.datastoreName, 'testCmHandle', 'testResourceId', FetchDescendantsOption.OMIT_DESCENDANTS)
+            def response = objectUnderTest.getResourceDataForCmHandle(requestTarget, FetchDescendantsOption.OMIT_DESCENDANTS)
         then: 'get resource data returns teh first object from the data service'
             assert response == 'First Object'
     }

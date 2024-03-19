@@ -25,6 +25,7 @@ import java.util.UUID;
 import java.util.function.Supplier;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.ncmp.api.models.RequestTarget;
 import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor;
 import org.onap.cps.ncmp.rest.util.TopicValidator;
 import org.springframework.beans.factory.annotation.Value;
@@ -68,17 +69,18 @@ public abstract class NcmpDatastoreRequestHandler {
                                                  final String authorization) {
 
         final boolean asyncResponseRequested = topicParamInQuery != null;
+        final RequestTarget requestTarget = new RequestTarget(datastoreName, cmHandleId, resourceIdentifier);
         if (asyncResponseRequested && notificationFeatureEnabled) {
-            return executeAsyncTaskAndGetResponseEntity(datastoreName, cmHandleId, resourceIdentifier,
-                optionsParamInQuery, topicParamInQuery, includeDescendants, authorization);
+            return executeAsyncTaskAndGetResponseEntity(requestTarget, optionsParamInQuery, topicParamInQuery,
+                includeDescendants, authorization);
         }
 
         if (asyncResponseRequested) {
             log.warn("Asynchronous request is unavailable as notification feature is currently disabled, "
                     + "will use synchronous operation.");
         }
-        final Supplier<Object> taskSupplier = getTaskSupplierForGetRequest(datastoreName, cmHandleId,
-                resourceIdentifier, optionsParamInQuery, NO_TOPIC, NO_REQUEST_ID, includeDescendants, authorization);
+        final Supplier<Object> taskSupplier = getTaskSupplierForGetRequest(requestTarget, optionsParamInQuery,
+            NO_TOPIC, NO_REQUEST_ID, includeDescendants, authorization);
         return executeTaskSync(taskSupplier);
     }
 
@@ -96,23 +98,18 @@ public abstract class NcmpDatastoreRequestHandler {
         return ResponseEntity.ok(taskSupplier.get());
     }
 
-    private ResponseEntity<Object> executeAsyncTaskAndGetResponseEntity(final String datastoreName,
-                                                                        final String cmHandleId,
-                                                                        final String resourceIdentifier,
+    private ResponseEntity<Object> executeAsyncTaskAndGetResponseEntity(final RequestTarget requestTarget,
                                                                         final String optionsParamInQuery,
                                                                         final String topicParamInQuery,
                                                                         final boolean includeDescendants,
                                                                         final String authorization) {
         final String requestId = UUID.randomUUID().toString();
-        final Supplier<Object> taskSupplier = getTaskSupplierForGetRequest(datastoreName, cmHandleId,
-                resourceIdentifier, optionsParamInQuery, topicParamInQuery, requestId, includeDescendants,
-                authorization);
+        final Supplier<Object> taskSupplier = getTaskSupplierForGetRequest(requestTarget,
+            optionsParamInQuery, topicParamInQuery, requestId, includeDescendants, authorization);
         return executeTaskAsync(topicParamInQuery, requestId, taskSupplier);
     }
 
-    protected abstract Supplier<Object> getTaskSupplierForGetRequest(final String datastoreName,
-                                                  final String cmHandleId,
-                                                  final String resourceIdentifier,
+    protected abstract Supplier<Object> getTaskSupplierForGetRequest(final RequestTarget requestTarget,
                                                   final String optionsParamInQuery,
                                                   final String topicParamInQuery,
                                                   final String requestId,

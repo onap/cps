@@ -43,6 +43,7 @@ import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder;
 import org.onap.cps.ncmp.api.impl.utils.data.operation.ResourceDataOperationRequestUtils;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.models.DataOperationRequest;
+import org.onap.cps.ncmp.api.models.RequestTarget;
 import org.onap.cps.spi.exceptions.CpsException;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.ResponseEntity;
@@ -70,9 +71,7 @@ public class DmiDataOperations extends DmiOperations {
      * This method fetches the resource data from operational data store for given cm handle
      * identifier on given resource using dmi client.
      *
-     * @param dataStoreName       name of data store
-     * @param cmHandleId          network resource identifier
-     * @param resourceId          resource identifier
+     * @param requestTarget       target datastore, cm handle and resource identifier
      * @param optionsParamInQuery options query
      * @param topicParamInQuery   topic name for (triggering) async responses
      * @param requestId           requestId for async responses
@@ -82,19 +81,17 @@ public class DmiDataOperations extends DmiOperations {
     @Timed(value = "cps.ncmp.dmi.get",
             description = "Time taken to fetch the resource data from operational data store for given cm handle "
                     + "identifier on given resource using dmi client")
-    public ResponseEntity<Object> getResourceDataFromDmi(final String dataStoreName,
-                                                         final String cmHandleId,
-                                                         final String resourceId,
+    public ResponseEntity<Object> getResourceDataFromDmi(final RequestTarget requestTarget,
                                                          final String optionsParamInQuery,
                                                          final String topicParamInQuery,
                                                          final String requestId,
                                                          final String authorization) {
-        final YangModelCmHandle yangModelCmHandle = getYangModelCmHandle(cmHandleId);
+        final YangModelCmHandle yangModelCmHandle = getYangModelCmHandle(requestTarget.cmHandleId());
         final CmHandleState cmHandleState = yangModelCmHandle.getCompositeState().getCmHandleState();
         validateIfCmHandleStateReady(yangModelCmHandle, cmHandleState);
-        final String jsonRequestBody = getDmiRequestBody(READ, requestId, null, null,
-                yangModelCmHandle);
-        final String dmiResourceDataUrl = getDmiRequestUrl(dataStoreName, cmHandleId, resourceId, optionsParamInQuery,
+        final String jsonRequestBody = getDmiRequestBody(READ, requestId, null, null, yangModelCmHandle);
+        final String dmiResourceDataUrl = getDmiRequestUrl(requestTarget.datastoreName(),
+            requestTarget.cmHandleId(), requestTarget.resourceIdentifier(), optionsParamInQuery,
                 topicParamInQuery, yangModelCmHandle.resolveDmiServiceName(RequiredDmiService.DATA));
         return dmiRestClient.postOperationWithJsonData(dmiResourceDataUrl, jsonRequestBody, READ, authorization);
     }

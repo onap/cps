@@ -25,6 +25,7 @@ import org.onap.cps.ncmp.api.impl.exception.InvalidDatastoreException
 import org.onap.cps.ncmp.api.impl.exception.InvalidOperationException
 import org.onap.cps.ncmp.api.models.DataOperationDefinition
 import org.onap.cps.ncmp.api.models.DataOperationRequest
+import org.onap.cps.ncmp.api.models.RequestTarget
 import org.onap.cps.ncmp.rest.exceptions.OperationNotSupportedException
 import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor
 import spock.lang.Specification
@@ -49,9 +50,8 @@ class NcmpDatastoreRequestHandlerSpec extends Specification {
         and: 'a flag to track the network service call'
             def networkServiceMethodCalled = false
         and: 'the (mocked) service will use the flag to indicate if it is called'
-            mockNetworkCmProxyDataService.getResourceDataForCmHandle('ds', 'ch1', 'resource1', 'options', _, _, NO_AUTH_HEADER) >> {
-                networkServiceMethodCalled = true
-            }
+            mockNetworkCmProxyDataService.getResourceDataForCmHandle(new RequestTarget('ds', 'ch1', 'resource1'), 'options', _, _, NO_AUTH_HEADER) >>
+                { networkServiceMethodCalled = true }
         when: 'get request is executed with topic = #topic'
             objectUnderTest.executeRequest('ds', 'ch1', 'resource1', 'options', topic, false, NO_AUTH_HEADER)
         then: 'the task is executed in an async fashion or not'

@@ -28,6 +28,7 @@ import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException
 import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder
 import org.onap.cps.ncmp.api.impl.utils.context.CpsApplicationContext
 import org.onap.cps.ncmp.api.models.DataOperationRequest
+import org.onap.cps.ncmp.api.models.RequestTarget
 import org.onap.cps.ncmp.events.async1_0_0.DataOperationEvent
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.utils.JsonObjectMapper
@@ -81,8 +82,8 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             mockDmiRestClient.postOperationWithJsonData(expectedUrl, expectedJson, READ, NO_AUTH_HEADER) >> responseFromDmi
             dmiServiceUrlBuilder.getDmiDatastoreUrl(_, _) >> expectedUrl
         when: 'get resource data is invoked'
-            def result = objectUnderTest.getResourceDataFromDmi(dataStore.datastoreName, cmHandleId, resourceIdentifier,
-                    options, NO_TOPIC, NO_REQUEST_ID, NO_AUTH_HEADER)
+            def requestTarget = new RequestTarget(dataStore.datastoreName, cmHandleId, resourceIdentifier)
+            def result = objectUnderTest.getResourceDataFromDmi(requestTarget, options, NO_TOPIC, NO_REQUEST_ID, NO_AUTH_HEADER)
         then: 'the result is the response from the DMI service'
             assert result == responseFromDmi
         where: 'the following parameters are used'

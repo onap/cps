@@ -76,6 +76,7 @@ import org.onap.cps.ncmp.api.models.DataOperationRequest;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
+import org.onap.cps.ncmp.api.models.RequestTarget;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.exceptions.CpsException;
@@ -127,15 +128,12 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     }
 
     @Override
-    public Object getResourceDataForCmHandle(final String datastoreName,
-                                             final String cmHandleId,
-                                             final String resourceIdentifier,
+    public Object getResourceDataForCmHandle(final RequestTarget requestTarget,
                                              final String optionsParamInQuery,
                                              final String topicParamInQuery,
                                              final String requestId,
                                              final String authorization) {
-        final ResponseEntity<?> responseEntity = dmiDataOperations.getResourceDataFromDmi(datastoreName, cmHandleId,
-            resourceIdentifier,
+        final ResponseEntity<?> responseEntity = dmiDataOperations.getResourceDataFromDmi(requestTarget,
             optionsParamInQuery,
             topicParamInQuery,
             requestId,
@@ -144,12 +142,12 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     }
 
     @Override
-    public Object getResourceDataForCmHandle(final String datastoreName,
-                                             final String cmHandleId,
-                                             final String resourceIdentifier,
+    public Object getResourceDataForCmHandle(final RequestTarget requestTarget,
                                              final FetchDescendantsOption fetchDescendantsOption) {
-        return cpsDataService.getDataNodes(datastoreName, cmHandleId, resourceIdentifier,
-            fetchDescendantsOption).iterator().next();
+        return cpsDataService.getDataNodes(requestTarget.datastoreName(),
+                                           requestTarget.cmHandleId(),
+                                           requestTarget.resourceIdentifier(),
+                                           fetchDescendantsOption).iterator().next();
     }
 
     @Override

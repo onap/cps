@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2023 Nordix Foundation
+ *  Copyright (C) 2022-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -23,6 +23,7 @@ package org.onap.cps.ncmp.rest.controller.handlers;
 import java.util.function.Supplier;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.api.NetworkCmProxyQueryService;
+import org.onap.cps.ncmp.api.models.RequestTarget;
 import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.springframework.http.ResponseEntity;
@@ -68,9 +69,7 @@ public class NcmpCachedResourceRequestHandler extends NcmpDatastoreRequestHandle
     }
 
     @Override
-    protected Supplier<Object> getTaskSupplierForGetRequest(final String datastoreName,
-                                                  final String cmHandleId,
-                                                  final String resourceIdentifier,
+    protected Supplier<Object> getTaskSupplierForGetRequest(final RequestTarget requestTarget,
                                                   final String optionsParamInQuery,
                                                   final String topicParamInQuery,
                                                   final String requestId,
@@ -79,8 +78,7 @@ public class NcmpCachedResourceRequestHandler extends NcmpDatastoreRequestHandle
 
         final FetchDescendantsOption fetchDescendantsOption = getFetchDescendantsOption(includeDescendants);
 
-        return () -> networkCmProxyDataService.getResourceDataForCmHandle(datastoreName, cmHandleId, resourceIdentifier,
-            fetchDescendantsOption);
+        return () -> networkCmProxyDataService.getResourceDataForCmHandle(requestTarget, fetchDescendantsOption);
     }
 
     private Supplier<Object> getTaskSupplierForQueryRequest(final String cmHandleId,
