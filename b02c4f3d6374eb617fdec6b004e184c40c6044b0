@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "357c720b_b2d531dd",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpCmHandleCreateSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-03-19T12:06:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f6e69c0c_baf94d99",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 52
+      },
+      "revId": "b02c4f3d6374eb617fdec6b004e184c40c6044b0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5fbd8de7_e7fa0654",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-19T11:48:50Z",
       "side": 1,
       "message": "Nb spacing",
+      "range": {
+        "startLine": 81,
+        "startChar": 16,
+        "endLine": 81,
+        "endChar": 24
+      },
+      "revId": "b02c4f3d6374eb617fdec6b004e184c40c6044b0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "764c589b_057b0f82",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpCmHandleCreateSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-03-19T12:06:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5fbd8de7_e7fa0654",
       "range": {
         "startLine": 81,
         "startChar": 16,
