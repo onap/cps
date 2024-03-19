@@ -12,6 +12,13 @@ CPS Deployment
 .. contents::
     :depth: 2
 
+Database configuration
+======================
+CPS uses PostgreSQL database. As per the `PostgreSQL documentation on resource consumption
+<https://www.postgresql.org/docs/current/runtime-config-resource.html#GUC-SHARED-BUFFERS>`_, the *shared_buffers*
+parameter should be set between 25% and 40% of total memory. It has a default value of 128 megabytes, so this should be
+set appropriately. For example, given a database with 2GB of memory, 512MB is a recommended value.
+
 CPS OOM Charts
 ==============
 The CPS kubernetes chart is located in the `OOM repository <https://github.com/onap/oom/tree/master/kubernetes/cps>`_.
