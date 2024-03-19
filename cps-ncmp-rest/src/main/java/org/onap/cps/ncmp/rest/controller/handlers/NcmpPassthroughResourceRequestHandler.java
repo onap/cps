@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2023 Nordix Foundation
+ *  Copyright (C) 2022-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -30,6 +30,7 @@ import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.api.impl.exception.InvalidDatastoreException;
 import org.onap.cps.ncmp.api.impl.operations.DatastoreType;
 import org.onap.cps.ncmp.api.impl.operations.OperationType;
+import org.onap.cps.ncmp.api.models.CmResourceAddress;
 import org.onap.cps.ncmp.api.models.DataOperationRequest;
 import org.onap.cps.ncmp.rest.exceptions.OperationNotSupportedException;
 import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor;
@@ -77,18 +78,15 @@ public class NcmpPassthroughResourceRequestHandler extends NcmpDatastoreRequestH
     }
 
     @Override
-    protected Supplier<Object> getTaskSupplierForGetRequest(final String datastoreName,
-                                                            final String cmHandleId,
-                                                            final String resourceIdentifier,
+    protected Supplier<Object> getTaskSupplierForGetRequest(final CmResourceAddress cmResourceAddress,
                                                             final String optionsParamInQuery,
                                                             final String topicParamInQuery,
                                                             final String requestId,
                                                             final boolean includeDescendants,
                                                             final String authorization) {
 
-        return () -> networkCmProxyDataService.getResourceDataForCmHandle(
-            datastoreName, cmHandleId, resourceIdentifier, optionsParamInQuery, topicParamInQuery, requestId,
-            authorization);
+        return () -> networkCmProxyDataService.getResourceDataForCmHandle(cmResourceAddress, optionsParamInQuery,
+            topicParamInQuery, requestId, authorization);
     }
 
     private ResponseEntity<Object> getRequestIdAndSendDataOperationRequestToDmiService(
