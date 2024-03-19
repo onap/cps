@@ -27,6 +27,7 @@ import org.onap.cps.api.CpsDataspaceService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.integration.DatabaseTestContainer
+import org.onap.cps.integration.KafkaTestContainer
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandleQueryService
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService
 import org.onap.cps.ncmp.api.NetworkCmProxyQueryService
@@ -59,9 +60,9 @@ import java.time.format.DateTimeFormatter
 
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withStatus
-import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME;
-import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR;
-import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT;
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK, classes = [CpsDataspaceService])
 @Testcontainers
@@ -74,6 +75,9 @@ abstract class CpsIntegrationSpecBase extends Specification {
 
     @Shared
     DatabaseTestContainer databaseTestContainer = DatabaseTestContainer.getInstance()
+
+    @Shared
+    KafkaTestContainer kafkaTestContainer = KafkaTestContainer.getInstance();
 
     @Autowired
     MockMvc mvc;
