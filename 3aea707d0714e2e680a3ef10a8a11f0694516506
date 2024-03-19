@@ -62,6 +62,30 @@
       },
       "revId": "3aea707d0714e2e680a3ef10a8a11f0694516506",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfd2c0da_e5d9d065",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/RequestTarget.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-03-19T11:43:22Z",
+      "side": 1,
+      "message": "Also shoudnt it be in the rest layer???\nI mean in the openapi specs?\n\nAlso do we have plans to remove lombok and convert our POJO/models to Java records ??",
+      "parentUuid": "cb5b2a73_a40ebd34",
+      "range": {
+        "startLine": 23,
+        "startChar": 14,
+        "endLine": 23,
+        "endChar": 27
+      },
+      "revId": "3aea707d0714e2e680a3ef10a8a11f0694516506",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
