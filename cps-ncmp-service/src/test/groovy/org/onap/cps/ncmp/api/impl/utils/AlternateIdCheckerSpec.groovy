@@ -80,7 +80,8 @@ class AlternateIdCheckerSpec extends Specification {
             assert result == expectedRejectedCmHandleIds
         where: 'the following alternate ids are used'
             scenario                          | alt1   | alt2   | altAlreadyInDb  || expectedRejectedCmHandleIds
-            'no alternate ids'                | ''     | ''     | ['dont matter'] || []
+            'blank alternate ids'             | ''     | ''     | ['dont matter'] || []
+            'null alternate ids'              | null   | null   | ['dont matter'] || []
             'new alternate ids'               | 'fdn1' | 'fdn2' | ['other fdn']   || []
             'one already used alternate id'   | 'fdn1' | 'fdn2' | ['fdn1']        || ['ch-1']
             'duplicate alternate id in batch' | 'fdn1' | 'fdn1' | ['dont matter'] || ['ch-2']
