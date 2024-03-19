@@ -119,17 +119,8 @@ public class AlternateIdChecker {
             if (StringUtils.isEmpty(proposedAlternateId)) {
                 isAcceptable = true;
             } else {
-                if (acceptedAlternateIds.contains(proposedAlternateId)) {
-                    isAcceptable = false;
-                    log.warn("Alternate id update ignored, cannot update cm handle {}, alternate id is already "
-                        + "assigned to a different cm handle (in this batch)", cmHandleId);
-                } else {
-                    if (Operation.CREATE.equals(operation)) {
-                        isAcceptable = canApplyAlternateId(cmHandleId, NO_CURRENT_ALTERNATE_ID, proposedAlternateId);
-                    } else {
-                        isAcceptable = canApplyAlternateId(cmHandleId, proposedAlternateId);
-                    }
-                }
+                isAcceptable = isProposedAlternateIdAcceptable(operation,
+                    acceptedAlternateIds, cmHandleId, proposedAlternateId);
             }
             if (isAcceptable) {
                 acceptedAlternateIds.add(proposedAlternateId);
@@ -138,6 +129,19 @@ public class AlternateIdChecker {
             }
         }
         return rejectedCmHandleIds;
+    }
+
+    private boolean isProposedAlternateIdAcceptable(final Operation operation, final Set<String> acceptedAlternateIds,
+                                                    final String cmHandleId, final String proposedAlternateId) {
+        if (acceptedAlternateIds.contains(proposedAlternateId)) {
+            log.warn("Alternate id update ignored, cannot update cm handle {}, alternate id is already "
+                + "assigned to a different cm handle (in this batch)", cmHandleId);
+            return false;
+        }
+        if (Operation.CREATE.equals(operation)) {
+            return canApplyAlternateId(cmHandleId, NO_CURRENT_ALTERNATE_ID, proposedAlternateId);
+        }
+        return canApplyAlternateId(cmHandleId, proposedAlternateId);
     }
 
     private boolean alternateIdAlreadyInDb(final String alternateId) {

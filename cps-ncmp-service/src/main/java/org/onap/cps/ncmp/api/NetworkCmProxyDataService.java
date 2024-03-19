@@ -29,6 +29,7 @@ import org.onap.cps.ncmp.api.impl.inventory.CompositeState;
 import org.onap.cps.ncmp.api.impl.operations.OperationType;
 import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters;
 import org.onap.cps.ncmp.api.models.CmHandleQueryServiceParameters;
+import org.onap.cps.ncmp.api.models.CmResourceAddress;
 import org.onap.cps.ncmp.api.models.DataOperationRequest;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse;
@@ -53,18 +54,14 @@ public interface NetworkCmProxyDataService {
     /**
      * Get resource data for given data store using dmi.
      *
-     * @param datastoreName       datastore name
-     * @param cmHandleId          cm handle identifier
-     * @param resourceIdentifier  resource identifier
+     * @param cmResourceAddress   target datastore, cm handle and resource identifier
      * @param optionsParamInQuery options query
      * @param topicParamInQuery   topic name for (triggering) async responses
      * @param requestId           unique requestId for async request
      * @param authorization       contents of Authorization header, or null if not present
      * @return {@code Object} resource data
      */
-    Object getResourceDataForCmHandle(String datastoreName,
-                                      String cmHandleId,
-                                      String resourceIdentifier,
+    Object getResourceDataForCmHandle(CmResourceAddress cmResourceAddress,
                                       String optionsParamInQuery,
                                       String topicParamInQuery,
                                       String requestId,
@@ -73,15 +70,11 @@ public interface NetworkCmProxyDataService {
     /**
      * Get resource data for operational.
      *
-     * @param datastoreName      datastore name
-     * @param cmHandleId         cm handle identifier
-     * @param resourceIdentifier resource identifier
+     * @param cmResourceAddress     target datastore, cm handle and resource identifier
      * @Link FetchDescendantsOption fetch descendants option
      * @return {@code Object} resource data
      */
-    Object getResourceDataForCmHandle(String datastoreName,
-                                      String cmHandleId,
-                                      String resourceIdentifier,
+    Object getResourceDataForCmHandle(CmResourceAddress cmResourceAddress,
                                       FetchDescendantsOption fetchDescendantsOption);
 
     /**
@@ -110,11 +103,11 @@ public interface NetworkCmProxyDataService {
      * @return {@code Object} return data
      */
     Object writeResourceDataPassThroughRunningForCmHandle(String cmHandleId,
-                                                        String resourceIdentifier,
-                                                        OperationType operationType,
-                                                        String requestBody,
-                                                        String contentType,
-                                                        String authorization);
+                                                          String resourceIdentifier,
+                                                          OperationType operationType,
+                                                          String requestBody,
+                                                          String contentType,
+                                                          String authorization);
 
     /**
      * Retrieve module references for the given cm handle.

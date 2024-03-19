@@ -2,7 +2,7 @@
 <!--
   ============LICENSE_START=======================================================
   Copyright (c) 2021 Linux Foundation.
-  Modifications Copyright (C) 2020-2023 Nordix Foundation
+  Modifications Copyright (C) 2020-2024 Nordix Foundation
   Modifications Copyright (C) 2022 Bell Canada.
   ================================================================================
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -130,7 +130,7 @@
             <dependency>
                 <groupId>com.github.spotbugs</groupId>
                 <artifactId>spotbugs</artifactId>
-                <version>4.2.0</version>
+                <version>4.2.3</version>
             </dependency>
             <dependency>
                 <groupId>com.google.code.gson</groupId>
