@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "891852f7_cc383df5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/AlternateIdChecker.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-03-19T13:19:21Z",
+      "side": 1,
+      "message": "oops, should have run another clean install after the last quick refactor :-(",
+      "parentUuid": "8af6a02d_56e30873",
+      "range": {
+        "startLine": 122,
+        "startChar": 16,
+        "endLine": 122,
+        "endChar": 129
+      },
+      "revId": "3aea707d0714e2e680a3ef10a8a11f0694516506",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cb5b2a73_a40ebd34",
@@ -101,6 +125,30 @@
       "writtenOn": "2024-03-19T12:36:44Z",
       "side": 1,
       "message": "As discussed over call. We can ignore this comment as I oversaw it modifying the APIs we are exposing but that is not the case.\n\nAnd for java records we will do it on need basis.",
+      "parentUuid": "dfd2c0da_e5d9d065",
+      "range": {
+        "startLine": 23,
+        "startChar": 14,
+        "endLine": 23,
+        "endChar": 27
+      },
+      "revId": "3aea707d0714e2e680a3ef10a8a11f0694516506",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd0ca9e8_06063aa2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/RequestTarget.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-03-19T13:19:21Z",
+      "side": 1,
+      "message": "I had it is the rest layer forst but that caused a dependency issue. as REST depends on service and not the other way around...",
       "parentUuid": "dfd2c0da_e5d9d065",
       "range": {
         "startLine": 23,
