@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5506912c_ec467c71",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionNcmpOutEventProducer.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-03-19T15:55:59Z",
+      "side": 1,
+      "message": "this method will be called from other handler method when we are publishing the final request to the dmi-plugin.\nWhen that happens we need to schedule a thread to send out an event after a max delay of 30secs ( configurable ). This will happen when we dont receive any response within 30 secs time.\n\nIf we receive the event within the configured time , then we will cancel the scheduled task and publish the event on demand. ( the code will be part of separate patch )",
+      "range": {
+        "startLine": 70,
+        "startChar": 16,
+        "endLine": 70,
+        "endChar": 61
+      },
+      "revId": "c69e34f0f244b6c604b61b8d1b8af3bae639e44e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
