@@ -22,6 +22,30 @@
       },
       "revId": "5b3bae7db761ad1ca339be175253a3e7f11fdceb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "655c44e9_bc5e711d",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpCmHandleCreateSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-03-19T13:05:20Z",
+      "side": 1,
+      "message": "I think the order of this method is so important. Since the beginning there were no message pushed into the topic, thus subscribe doesn\u0027t work as expected. I suggest to subscribe the topic when the messages available to consume. if that is ok for you?",
+      "parentUuid": "381c6b86_19005701",
+      "range": {
+        "startLine": 85,
+        "startChar": 12,
+        "endLine": 85,
+        "endChar": 22
+      },
+      "revId": "5b3bae7db761ad1ca339be175253a3e7f11fdceb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
