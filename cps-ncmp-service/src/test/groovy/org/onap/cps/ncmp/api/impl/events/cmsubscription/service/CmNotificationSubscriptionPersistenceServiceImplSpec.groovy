@@ -20,18 +20,22 @@
 
 package org.onap.cps.ncmp.api.impl.events.cmsubscription.service
 
-
+import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.ncmp.api.impl.operations.DatastoreType
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.model.DataNode
+import org.onap.cps.utils.JsonObjectMapper
+import com.fasterxml.jackson.databind.ObjectMapper
 import spock.lang.Specification
 
 class CmNotificationSubscriptionPersistenceServiceImplSpec extends Specification {
 
+    def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
     def mockCpsQueryService = Mock(CpsQueryService)
+    def mockCpsDataService = Mock(CpsDataService)
 
-    def objectUnderTest = new CmNotificationSubscriptionPersistenceServiceImpl(mockCpsQueryService)
+    def objectUnderTest = new CmNotificationSubscriptionPersistenceServiceImpl(jsonObjectMapper, mockCpsQueryService, mockCpsDataService)
 
     def 'Check ongoing cm subscription #scenario'() {
         given: 'a valid cm subscription query'
@@ -63,5 +67,44 @@ class CmNotificationSubscriptionPersistenceServiceImplSpec extends Specification
             scenario               | dataNodes        || isValidSubscriptionId
             'datanodes present'    | [new DataNode()] || false
             'no datanodes present' | []               || true
+    }
+
+    def 'Add new subscriber to a cm notification subscription'() {
+        given: 'a valid cm subscription path query'
+            def cpsPathQuery = objectUnderTest.CM_SUBSCRIPTION_CPS_PATH_QUERY.formatted('ncmp-datastore:passthrough-running', 'ch-1', '/x/y');
+        and: 'a dataNode exists for the given cps path query'
+             mockCpsQueryService.queryDataNodes('NCMP-Admin', 'cm-data-subscriptions',
+                cpsPathQuery, FetchDescendantsOption.OMIT_DESCENDANTS) >> [new DataNode(xpath: cpsPathQuery, leaves: ['xpath': '/x/y','subscriptionIds': ['sub-1']])]
+        when: 'the method to add/update cm notification subscription is called'
+            objectUnderTest.addOrUpdateCmNotificationSubscription(DatastoreType.PASSTHROUGH_RUNNING, 'ch-1','/x/y', 'newSubId')
+        then: 'data service method to update list of subscribers is called once'
+            1 * mockCpsDataService.updateNodeLeaves(
+                'NCMP-Admin',
+                'cm-data-subscriptions',
+                '/datastores/datastore[@name=\'ncmp-datastore:passthrough-running\']/cm-handles/cm-handle[@id=\'ch-1\']/filters',
+                '{"filter":[{"xpath":"/x/y","subscriptionIds":["sub-1","newSubId"]}]}', _)
+    }
+
+    def 'Add new cm notification subscription for #datastoreType'() {
+        given: 'a valid cm subscription path query'
+            def cpsPathQuery = objectUnderTest.CM_SUBSCRIPTION_CPS_PATH_QUERY.formatted(datastoreName, 'ch-1', '/x/y')
+        and: 'a parent node xpath for given path above'
+            def parentNodeXpath = '/datastores/datastore[@name=\'%s\']/cm-handles'
+        and: 'a datanode does not exist for the given cps path query'
+            mockCpsQueryService.queryDataNodes('NCMP-Admin', 'cm-data-subscriptions',
+                cpsPathQuery.formatted(datastoreName),
+                FetchDescendantsOption.OMIT_DESCENDANTS) >> []
+        when: 'the method to add/update cm notification subscription is called'
+            objectUnderTest.addOrUpdateCmNotificationSubscription(datastoreType, 'ch-1','/x/y', 'newSubId')
+        then: 'data service method to update list of subscribers is called once with the correct parameters'
+            1 * mockCpsDataService.updateNodeLeaves(
+                'NCMP-Admin',
+                'cm-data-subscriptions',
+                parentNodeXpath.formatted(datastoreName),
+                '{"cm-handle": [{"id": "\'ch-1\'","filters": {"filter":[{"xpath": "\'/x/y\'","subscriptionIds": \'[newSubId]\'}]}}]}', _)
+        where:
+            scenario                  | datastoreType                          || datastoreName
+            'passthrough_running'     | DatastoreType.PASSTHROUGH_RUNNING      || "ncmp-datastore:passthrough-running"
+            'passthrough_operational' | DatastoreType.PASSTHROUGH_OPERATIONAL  || "ncmp-datastore:passthrough-operational"
     }
 }
