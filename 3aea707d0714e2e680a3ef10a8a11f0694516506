@@ -86,6 +86,30 @@
       },
       "revId": "3aea707d0714e2e680a3ef10a8a11f0694516506",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "404bb2a4_c49e90ba",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/RequestTarget.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-03-19T12:36:44Z",
+      "side": 1,
+      "message": "As discussed over call. We can ignore this comment as I oversaw it modifying the APIs we are exposing but that is not the case.\n\nAnd for java records we will do it on need basis.",
+      "parentUuid": "dfd2c0da_e5d9d065",
+      "range": {
+        "startLine": 23,
+        "startChar": 14,
+        "endLine": 23,
+        "endChar": 27
+      },
+      "revId": "3aea707d0714e2e680a3ef10a8a11f0694516506",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
