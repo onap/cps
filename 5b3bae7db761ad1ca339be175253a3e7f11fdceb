@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "381c6b86_19005701",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpCmHandleCreateSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-03-19T12:37:58Z",
+      "side": 1,
+      "message": "I see it\u0027s failing now.\nMaybe try records[-1], groovy uses -1 for last element",
+      "range": {
+        "startLine": 85,
+        "startChar": 12,
+        "endLine": 85,
+        "endChar": 22
+      },
+      "revId": "5b3bae7db761ad1ca339be175253a3e7f11fdceb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
