@@ -118,6 +118,30 @@
       },
       "revId": "5b3bae7db761ad1ca339be175253a3e7f11fdceb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0213e138_25db09b1",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpCmHandleCreateSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-03-19T16:07:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d8475ad6_9748d60b",
+      "range": {
+        "startLine": 85,
+        "startChar": 12,
+        "endLine": 85,
+        "endChar": 22
+      },
+      "revId": "5b3bae7db761ad1ca339be175253a3e7f11fdceb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
