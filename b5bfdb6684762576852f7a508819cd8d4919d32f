@@ -16,6 +16,75 @@
       "message": "recheck",
       "revId": "b5bfdb6684762576852f7a508819cd8d4919d32f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "196c8505_4c959baf",
+        "filename": "cps-service/src/main/java/org/onap/cps/cache/HazelcastCacheConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-03-19T09:05:17Z",
+      "side": 1,
+      "message": "NB: The default setting for the async-backup-count property in Hazelcast is zero asynchronous backups.  No need to set it explicitly.",
+      "range": {
+        "startLine": 76,
+        "startChar": 8,
+        "endLine": 76,
+        "endChar": 41
+      },
+      "revId": "b5bfdb6684762576852f7a508819cd8d4919d32f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af1d6506_55347fbf",
+        "filename": "cps-service/src/main/java/org/onap/cps/cache/HazelcastCacheConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-03-19T09:05:17Z",
+      "side": 1,
+      "message": "NB: same as above.",
+      "range": {
+        "startLine": 83,
+        "startChar": 7,
+        "endLine": 83,
+        "endChar": 49
+      },
+      "revId": "b5bfdb6684762576852f7a508819cd8d4919d32f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c02b8edc_2b42ceb8",
+        "filename": "cps-service/src/main/java/org/onap/cps/cache/HazelcastCacheConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-03-19T09:05:17Z",
+      "side": 1,
+      "message": "NB : same as above.",
+      "range": {
+        "startLine": 90,
+        "startChar": 8,
+        "endLine": 90,
+        "endChar": 46
+      },
+      "revId": "b5bfdb6684762576852f7a508819cd8d4919d32f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
