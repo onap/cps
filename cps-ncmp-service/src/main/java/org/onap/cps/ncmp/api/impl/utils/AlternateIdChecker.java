@@ -115,29 +115,29 @@ public class AlternateIdChecker {
         for (final NcmpServiceCmHandle ncmpServiceCmHandle : newNcmpServiceCmHandles) {
             final String cmHandleId = ncmpServiceCmHandle.getCmHandleId();
             final String proposedAlternateId = ncmpServiceCmHandle.getAlternateId();
-            final boolean isAcceptable;
-            if (StringUtils.isEmpty(proposedAlternateId)) {
-                isAcceptable = true;
-            } else {
-                if (acceptedAlternateIds.contains(proposedAlternateId)) {
-                    isAcceptable = false;
-                    log.warn("Alternate id update ignored, cannot update cm handle {}, alternate id is already "
-                        + "assigned to a different cm handle (in this batch)", cmHandleId);
-                } else {
-                    if (Operation.CREATE.equals(operation)) {
-                        isAcceptable = canApplyAlternateId(cmHandleId, NO_CURRENT_ALTERNATE_ID, proposedAlternateId);
-                    } else {
-                        isAcceptable = canApplyAlternateId(cmHandleId, proposedAlternateId);
-                    }
-                }
-            }
-            if (isAcceptable) {
+            if (isProposedAlternateIdAcceptable(proposedAlternateId, operation, acceptedAlternateIds, cmHandleId)) {
                 acceptedAlternateIds.add(proposedAlternateId);
             } else {
                 rejectedCmHandleIds.add(cmHandleId);
             }
         }
         return rejectedCmHandleIds;
+    }
+
+    private boolean isProposedAlternateIdAcceptable(final String proposedAlternateId, final Operation operation,
+                                                    final Set<String> acceptedAlternateIds, final String cmHandleId) {
+        if (proposedAlternateId.isEmpty()) {
+            return true;
+        }
+        if (acceptedAlternateIds.contains(proposedAlternateId)) {
+            log.warn("Alternate id update ignored, cannot update cm handle {}, alternate id is already "
+                + "assigned to a different cm handle (in this batch)", cmHandleId);
+            return false;
+        }
+        if (Operation.CREATE.equals(operation)) {
+            return canApplyAlternateId(cmHandleId, NO_CURRENT_ALTERNATE_ID, proposedAlternateId);
+        }
+        return canApplyAlternateId(cmHandleId, proposedAlternateId);
     }
 
     private boolean alternateIdAlreadyInDb(final String alternateId) {

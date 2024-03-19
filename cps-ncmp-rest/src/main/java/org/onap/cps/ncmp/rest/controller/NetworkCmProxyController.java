@@ -44,6 +44,7 @@ import org.onap.cps.ncmp.api.impl.inventory.CompositeState;
 import org.onap.cps.ncmp.api.impl.operations.DatastoreType;
 import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel;
 import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters;
+import org.onap.cps.ncmp.api.models.CmResourceAddress;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.rest.api.NetworkCmProxyApi;
 import org.onap.cps.ncmp.rest.controller.handlers.NcmpCachedResourceRequestHandler;
@@ -107,8 +108,9 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                              final Boolean includeDescendants,
                                                              final String authorization) {
         final NcmpDatastoreRequestHandler ncmpDatastoreRequestHandler = getNcmpDatastoreRequestHandler(datastoreName);
-        return ncmpDatastoreRequestHandler.executeRequest(datastoreName, cmHandle, resourceIdentifier,
-                optionsParamInQuery, topicParamInQuery, includeDescendants, authorization);
+        final CmResourceAddress cmResourceAddress = new CmResourceAddress(datastoreName, cmHandle, resourceIdentifier);
+        return ncmpDatastoreRequestHandler.executeRequest(cmResourceAddress, optionsParamInQuery, topicParamInQuery,
+            includeDescendants, authorization);
     }
 
     @Override

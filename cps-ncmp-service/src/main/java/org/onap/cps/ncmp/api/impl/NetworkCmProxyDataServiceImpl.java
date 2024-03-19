@@ -72,6 +72,7 @@ import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters;
 import org.onap.cps.ncmp.api.models.CmHandleQueryServiceParameters;
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse;
+import org.onap.cps.ncmp.api.models.CmResourceAddress;
 import org.onap.cps.ncmp.api.models.DataOperationRequest;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse;
@@ -127,15 +128,12 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     }
 
     @Override
-    public Object getResourceDataForCmHandle(final String datastoreName,
-                                             final String cmHandleId,
-                                             final String resourceIdentifier,
+    public Object getResourceDataForCmHandle(final CmResourceAddress cmResourceAddress,
                                              final String optionsParamInQuery,
                                              final String topicParamInQuery,
                                              final String requestId,
                                              final String authorization) {
-        final ResponseEntity<?> responseEntity = dmiDataOperations.getResourceDataFromDmi(datastoreName, cmHandleId,
-            resourceIdentifier,
+        final ResponseEntity<?> responseEntity = dmiDataOperations.getResourceDataFromDmi(cmResourceAddress,
             optionsParamInQuery,
             topicParamInQuery,
             requestId,
@@ -144,12 +142,12 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     }
 
     @Override
-    public Object getResourceDataForCmHandle(final String datastoreName,
-                                             final String cmHandleId,
-                                             final String resourceIdentifier,
+    public Object getResourceDataForCmHandle(final CmResourceAddress cmResourceAddress,
                                              final FetchDescendantsOption fetchDescendantsOption) {
-        return cpsDataService.getDataNodes(datastoreName, cmHandleId, resourceIdentifier,
-            fetchDescendantsOption).iterator().next();
+        return cpsDataService.getDataNodes(cmResourceAddress.datastoreName(),
+                                           cmResourceAddress.cmHandleId(),
+                                           cmResourceAddress.resourceIdentifier(),
+                                           fetchDescendantsOption).iterator().next();
     }
 
     @Override
