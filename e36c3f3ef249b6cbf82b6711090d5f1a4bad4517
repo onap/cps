@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "41b86ff7_0ffea6cd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-03-19T10:54:46Z",
+      "side": 1,
+      "message": "seen.\n\nhave some questions maybe we can do a call with sean, this only runs once? shouldnt it be scheduled at fixed rate for next responses?",
+      "revId": "e36c3f3ef249b6cbf82b6711090d5f1a4bad4517",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c1392ad_2115ef50",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionNcmpOutEventProducer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-03-19T10:54:46Z",
+      "side": 1,
+      "message": "include boolean scheduledEvent",
+      "range": {
+        "startLine": 68,
+        "startChar": 4,
+        "endLine": 69,
+        "endChar": 7
+      },
+      "revId": "e36c3f3ef249b6cbf82b6711090d5f1a4bad4517",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
