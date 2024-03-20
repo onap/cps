@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "99c3b5e3_ea20fe1c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionNcmpOutEventProducer.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-03-20T09:50:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "624fe021_d3c08f6d",
+      "range": {
+        "startLine": 68,
+        "startChar": 5,
+        "endLine": 69,
+        "endChar": 7
+      },
+      "revId": "c69e34f0f244b6c604b61b8d1b8af3bae639e44e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5506912c_ec467c71",
@@ -84,6 +108,30 @@
       "writtenOn": "2024-03-20T09:35:00Z",
       "side": 1,
       "message": "necessary to have two of this ?",
+      "range": {
+        "startLine": 65,
+        "startChar": 23,
+        "endLine": 65,
+        "endChar": 28
+      },
+      "revId": "c69e34f0f244b6c604b61b8d1b8af3bae639e44e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "356505b5_30f4b8ef",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionNcmpOutEventPublishingTask.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-03-20T09:50:40Z",
+      "side": 1,
+      "message": "made the event as package protected to be used at both places.",
+      "parentUuid": "925b0d9f_b5110835",
       "range": {
         "startLine": 65,
         "startChar": 23,
