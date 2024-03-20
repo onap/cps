@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9157efc_5e030035",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-03-20T10:20:26Z",
+      "side": 1,
+      "message": "looks good. \n\nCan you put brief summary on how youre cancelling the scheduled task?",
+      "revId": "d99e0cc1567d3e4b133bdef85c27d2b8a76fce84",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
