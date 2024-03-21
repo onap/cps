@@ -23,6 +23,7 @@ package org.onap.cps.integration.performance.ncmp
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.integration.performance.base.NcmpPerfTestBase
 import org.onap.cps.spi.model.DataNode
+import org.onap.cps.utils.ContentType
 
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 
@@ -86,7 +87,7 @@ class CmDataSubscriptionsPerfTest extends NcmpPerfTestBase {
                 // Around 8.5 seconds for long strings, 4.8 with short strings
                 // cpsDataService.updateDataNodeAndDescendants(NCMP_PERFORMANCE_TEST_DATASPACE, CM_DATA_SUBSCRIPTIONS_ANCHOR, parentPath, json, now)
                 // Around 6.5 seconds for long strings, 3.3 seconds with short strings
-                cpsDataService.updateNodeLeaves(NCMP_PERFORMANCE_TEST_DATASPACE, CM_DATA_SUBSCRIPTIONS_ANCHOR, parentPath, json, now)
+                cpsDataService.updateNodeLeaves(NCMP_PERFORMANCE_TEST_DATASPACE, CM_DATA_SUBSCRIPTIONS_ANCHOR, parentPath, json, now, ContentType.JSON)
             }
 
             resourceMeter.stop()

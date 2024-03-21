@@ -209,7 +209,7 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
         when: 'cm handle properties is updated'
             def response = objectUnderTest.updateCmHandleProperties(cmHandleUpdateRequest)
         then: 'the update is delegated to cps data service with correct parameters'
-            1 * mockCpsDataService.updateNodeLeaves('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry', _, _) >>
+            1 * mockCpsDataService.updateNodeLeaves('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry', _, _,_) >>
                     { args ->
                         assert args[3].contains('alt-1')
                     }
@@ -245,7 +245,7 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
         when: 'data producer identifier updated'
             objectUnderTest.updateDataProducerIdentifier(existingCmHandleDataNode, ncmpServiceCmHandle)
         then: 'the update node leaves method is invoked once'
-            1 * mockCpsDataService.updateNodeLeaves('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry', _, _) >> { args ->
+            1 * mockCpsDataService.updateNodeLeaves('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry', _, _, _) >> { args ->
                 assert args[3].contains('someDataProducerIdentifier')
             }
         and: 'correct information is logged'
