@@ -37,6 +37,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1e5f9535_c6ce410d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-03-21T16:31:58Z",
+      "side": 1,
+      "message": "There\u0027s a few issues here around quotes, e.g. id value is both single and double-quoted (note Json does not support single-quotes). I think Java 17 multi-line strings make quotes much easier to handle, something like this:\n\n    updatedJson \u003d \"\"\"\n        {\"cm-handle\":[{\"id\":\"%s\",\"filters\":{\"filter\":[\n          {\"xpath\": \"%s\",\"subscriptionIds\": [\"%s\"]}]}}]}\n        \"\"\".formatted(cmHandleId, xpath, newSubscriptionId);",
+      "range": {
+        "startLine": 120,
+        "startChar": 0,
+        "endLine": 123,
+        "endChar": 118
+      },
+      "revId": "1cd9bb5b39e210bd2abf80fa1875fb1387ea494c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "99da53d4_2053798a",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImplSpec.groovy",
         "patchSetId": 1
