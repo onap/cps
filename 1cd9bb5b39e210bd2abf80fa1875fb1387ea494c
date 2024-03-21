@@ -60,6 +60,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6a32bd1e_bda5316c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-03-21T16:36:52Z",
+      "side": 1,
+      "message": "Alternatively, if you prefer structures, can do something like - I prefer this to raw strings because it automatically takes care of escaping special characters like \":\n\n    updatedJson \u003d jsonObjectMapper.asJsonString(\n        Map.of(\"cm-handle\", Map.of(\"id\", cmHandleId, \n            \"filters\", Map.of(\"filter\", Map.of(\"xpath\", xpath, \n                \"subscriptionIds\", List.of(newSubscriptionId))))));",
+      "parentUuid": "1e5f9535_c6ce410d",
+      "range": {
+        "startLine": 120,
+        "startChar": 0,
+        "endLine": 123,
+        "endChar": 118
+      },
+      "revId": "1cd9bb5b39e210bd2abf80fa1875fb1387ea494c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "99da53d4_2053798a",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImplSpec.groovy",
         "patchSetId": 1
