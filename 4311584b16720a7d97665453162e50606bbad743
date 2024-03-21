@@ -145,6 +145,24 @@
       "parentUuid": "63c68096_d61b6889",
       "revId": "4311584b16720a7d97665453162e50606bbad743",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a027349_7a59149a",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/utils/EventDateTimeFormatter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-03-21T10:40:08Z",
+      "side": 1,
+      "message": "maybe for now remove this class from here.\nand skip using the time in the cloud event.\nwhen we move this class from cps-ncmp-service to cps-service layer then we can later populate the same.",
+      "parentUuid": "6ecf3cf7_d7966866",
+      "revId": "4311584b16720a7d97665453162e50606bbad743",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
