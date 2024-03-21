@@ -16,6 +16,46 @@
       "message": "recheck",
       "revId": "1cd9bb5b39e210bd2abf80fa1875fb1387ea494c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79b69f2b_bff9a66c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-03-21T11:21:28Z",
+      "side": 1,
+      "message": "if I understand it correctly then it solves the basic purpose of saving new subscription and also if its an ongoing subscription then add it to the list of subscribers.",
+      "revId": "1cd9bb5b39e210bd2abf80fa1875fb1387ea494c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99da53d4_2053798a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-03-21T11:21:28Z",
+      "side": 1,
+      "message": "NB: an ongoing",
+      "range": {
+        "startLine": 72,
+        "startChar": 31,
+        "endLine": 72,
+        "endChar": 32
+      },
+      "revId": "1cd9bb5b39e210bd2abf80fa1875fb1387ea494c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
