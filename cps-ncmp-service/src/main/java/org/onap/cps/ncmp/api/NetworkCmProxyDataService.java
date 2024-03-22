@@ -34,6 +34,8 @@ import org.onap.cps.ncmp.api.models.DataOperationRequest;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
+import org.onap.cps.ncmp.api.models.datajob.DataJobRequest;
+import org.onap.cps.ncmp.api.models.datajob.Response;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.ModuleDefinition;
 import org.onap.cps.spi.model.ModuleReference;
@@ -201,4 +203,13 @@ public interface NetworkCmProxyDataService {
      */
     Collection<String> executeCmHandleIdSearchForInventory(CmHandleQueryServiceParameters
                                                                cmHandleQueryServiceParameters);
+
+    /**
+     * process read or write data job.
+     *
+     * @param dataJobId      Unique identifier of the job within the request
+     * @param dataJobRequest read or write data job request
+     * @return job current status
+     */
+    Response processDataJob(String dataJobId, DataJobRequest dataJobRequest);
 }
