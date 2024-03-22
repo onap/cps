@@ -92,6 +92,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f9c330a_5b9cc5f3",
+        "filename": "integration-test/pom.xml",
+        "patchSetId": 11
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-03-22T11:51:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5e0a6385_6d300f07",
+      "range": {
+        "startLine": 90,
+        "startChar": 7,
+        "endLine": 100,
+        "endChar": 20
+      },
+      "revId": "93dd1b4fb6b6abdcabadbf9dcca0dc5043588274",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "861a743e_2a42b26a",
@@ -105,6 +129,30 @@
       "writtenOn": "2024-03-19T18:02:35Z",
       "side": 1,
       "message": "We can remove it",
+      "range": {
+        "startLine": 80,
+        "startChar": 76,
+        "endLine": 80,
+        "endChar": 77
+      },
+      "revId": "93dd1b4fb6b6abdcabadbf9dcca0dc5043588274",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a632b79_1235fd16",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-03-22T11:51:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "861a743e_2a42b26a",
       "range": {
         "startLine": 80,
         "startChar": 76,
@@ -132,6 +180,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "428984a5_b1f3b33a",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpCmHandleCreateSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-03-22T11:51:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb3f9c22_5e8e7775",
+      "revId": "93dd1b4fb6b6abdcabadbf9dcca0dc5043588274",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c0c94722_53d06d16",
@@ -155,6 +221,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f752ee24_98482d9c",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpCmHandleCreateSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-03-22T11:51:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c0c94722_53d06d16",
+      "range": {
+        "startLine": 43,
+        "startChar": 55,
+        "endLine": 43,
+        "endChar": 67
+      },
+      "revId": "93dd1b4fb6b6abdcabadbf9dcca0dc5043588274",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f0a07cf2_1ba182fd",
@@ -168,6 +258,30 @@
       "writtenOn": "2024-03-19T18:02:35Z",
       "side": 1,
       "message": "Try like below :\n\ndef notificationMessage\u003djsonObjectMapper.convertJsonString(records.last().value(), Map)\nassert notificationMessage[\u0027cmHandleState\u0027]\u003d\u0027READY\u0027",
+      "range": {
+        "startLine": 85,
+        "startChar": 12,
+        "endLine": 85,
+        "endChar": 88
+      },
+      "revId": "93dd1b4fb6b6abdcabadbf9dcca0dc5043588274",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eda11143_91ce1365",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpCmHandleCreateSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-03-22T11:51:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f0a07cf2_1ba182fd",
       "range": {
         "startLine": 85,
         "startChar": 12,
