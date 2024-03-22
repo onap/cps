@@ -21,6 +21,7 @@
 package org.onap.cps.integration.base
 
 import java.time.OffsetDateTime
+import java.time.format.DateTimeFormatter
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsDataspaceService
@@ -39,6 +40,7 @@ import org.onap.cps.spi.exceptions.DataspaceNotFoundException
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.repository.DataspaceRepository
 import org.onap.cps.spi.utils.SessionManager
+import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.boot.autoconfigure.domain.EntityScan
@@ -56,13 +58,11 @@ import spock.lang.Shared
 import spock.lang.Specification
 import spock.util.concurrent.PollingConditions
 
-import java.time.format.DateTimeFormatter
-
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo
-import static org.springframework.test.web.client.response.MockRestResponseCreators.withStatus
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo
+import static org.springframework.test.web.client.response.MockRestResponseCreators.withStatus
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK, classes = [CpsDataspaceService])
 @Testcontainers
@@ -77,10 +77,10 @@ abstract class CpsIntegrationSpecBase extends Specification {
     DatabaseTestContainer databaseTestContainer = DatabaseTestContainer.getInstance()
 
     @Shared
-    KafkaTestContainer kafkaTestContainer = KafkaTestContainer.getInstance();
+    KafkaTestContainer kafkaTestContainer = KafkaTestContainer.getInstance()
 
     @Autowired
-    MockMvc mvc;
+    MockMvc mvc
 
     @Autowired
     CpsDataspaceService cpsDataspaceService
@@ -114,6 +114,9 @@ abstract class CpsIntegrationSpecBase extends Specification {
 
     @Autowired
     ModuleSyncWatchdog moduleSyncWatchdog
+
+    @Autowired
+    JsonObjectMapper jsonObjectMapper
 
     MockRestServiceServer mockDmiServer = null
 

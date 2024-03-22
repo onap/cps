@@ -20,7 +20,8 @@
 
 package org.onap.cps.integration.functional
 
-
+import java.time.Duration
+import java.time.OffsetDateTime
 import org.apache.kafka.common.TopicPartition
 import org.apache.kafka.common.serialization.StringDeserializer
 import org.onap.cps.integration.KafkaTestContainer
@@ -31,16 +32,14 @@ import org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
+import org.onap.cps.ncmp.events.lcm.v1.LcmEvent
 import spock.util.concurrent.PollingConditions
-
-import java.time.Duration
-import java.time.OffsetDateTime
 
 class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
 
     NetworkCmProxyDataService objectUnderTest
 
-    def kafkaConsumer = KafkaTestContainer.getConsumer("ncmp-group", StringDeserializer.class);
+    def kafkaConsumer = KafkaTestContainer.getConsumer('ncmp-group', StringDeserializer.class)
 
     static final MODULE_REFERENCES_RESPONSE_A = readResourceDataFile('mock-dmi-responses/bookStoreAWithModules_M1_M2_Response.json')
     static final MODULE_RESOURCES_RESPONSE_A = readResourceDataFile('mock-dmi-responses/bookStoreAWithModules_M1_M2_ResourcesResponse.json')
@@ -82,7 +81,8 @@ class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
             def records = message.records(new TopicPartition('ncmp-events', 0))
 
         and: 'the newest lcm event notification is received with READY state'
-            assert records.last().value().toString().contains('"cmHandleState":"READY"')
+            def notificationMessage = jsonObjectMapper.convertJsonString(records.last().value().toString(), LcmEvent)
+            assert notificationMessage.event.newValues.cmHandleState.value() == 'READY'
 
         and: 'the CM-handle has expected modules'
             assert ['M1', 'M2'] == objectUnderTest.getYangResourcesModuleReferences('ch-1').moduleName.sort()
