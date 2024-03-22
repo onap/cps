@@ -77,6 +77,10 @@ import org.onap.cps.ncmp.api.models.DataOperationRequest;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
+import org.onap.cps.ncmp.api.models.datajob.DataJobRequest;
+import org.onap.cps.ncmp.api.models.datajob.Response;
+import org.onap.cps.ncmp.api.models.datajob.RestProtocolParameters;
+import org.onap.cps.ncmp.api.models.datajob.Status;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.exceptions.CpsException;
@@ -269,6 +273,15 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         final CmHandleQueryServiceParameters cmHandleQueryServiceParameters) {
         validateCmHandleQueryParameters(cmHandleQueryServiceParameters, InventoryQueryConditions.ALL_CONDITION_NAMES);
         return networkCmProxyCmHandleQueryService.queryCmHandleIdsForInventory(cmHandleQueryServiceParameters);
+    }
+
+    @Override
+    public Response processDataJob(final RestProtocolParameters restProtocolParameters,
+                                   final String dataJobId, final DataJobRequest dataJobRequest) {
+        final Response response = new Response();
+        response.setJobId(dataJobId);
+        response.setStatus(Status.RUNNING);
+        return response;
     }
 
     /**

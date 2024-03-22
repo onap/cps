@@ -25,6 +25,11 @@ package org.onap.cps.ncmp.api.impl
 
 import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse
 import org.onap.cps.ncmp.api.models.CmResourceAddress
+import org.onap.cps.ncmp.api.models.datajob.DataJobRequest
+import org.onap.cps.ncmp.api.models.datajob.ReadOperation
+import org.onap.cps.ncmp.api.models.datajob.RestProtocolParameters
+import org.onap.cps.ncmp.api.models.datajob.ScopeType
+import org.onap.cps.ncmp.api.models.datajob.WriteOperation
 
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
@@ -381,6 +386,19 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             assert result.containsAll('cm-handle-1','cm-handle-2')
     }
 
+    def 'process data job #operation  request.'() {
+        given: 'list of read/write operations'
+            def restProtocolParameters = new RestProtocolParameters(destination: 'client-topic', dataAcceptType: ' application/vnd.3gpp.object-tree-hierarchical+json', dataContentType: 'application/3gpp-json-patch+json')
+            def dataJobRequest = new DataJobRequest()
+            dataJobRequest.setData(List.of(getWriteOrReadOperationRequest(operation)))
+        when: 'data job request is processed'
+            def response = objectUnderTest.processDataJob(restProtocolParameters, operation + '_some-job-id', dataJobRequest)
+        then: 'the job id is correctly populated for response'
+            assert response.jobId == operation+'_some-job-id'
+        where: 'the following operation are used'
+            operation << ['write', 'read']
+    }
+
     def dataStores() {
         CompositeState.DataStores.builder()
             .operationalDataStore(CompositeState.Operational.builder()
@@ -409,5 +427,12 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
         targetIds.add("some-cm-handle")
         dataOperationDefinition.setCmHandleIds(targetIds)
         return dataOperationDefinition
+    }
+
+    def getWriteOrReadOperationRequest(operation) {
+        if (operation == 'write') {
+            return new WriteOperation(path: 'some/write/path', op: 'add', operationId: 1, value: 'some-value')
+        }
+        return new ReadOperation(path: 'some/read/path', op: 'read', operationId: 2, attributes: ['some-attrib-1', 'some-attrib-2'], fields: ['some-field-1', 'some-field-2'], scopeType: ScopeType.BASE_NTH_LEVEL, scopeLevel: 4)
     }
 }
