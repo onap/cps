@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2023 Nordix Foundation
+ *  Copyright (C) 2023-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -26,8 +26,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
+import org.onap.cps.ncmp.api.impl.config.embeddedcache.TrustLevelCacheConfig;
 import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel;
 import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevelManager;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -39,6 +41,8 @@ public class DmiPluginWatchDog {
     private final DmiRestClient dmiRestClient;
     private final NetworkCmProxyDataService networkCmProxyDataService;
     private final TrustLevelManager trustLevelManager;
+
+    @Qualifier(TrustLevelCacheConfig.TRUST_LEVEL_PER_DMI_PLUGIN_BEAN_NAME)
     private final Map<String, TrustLevel> trustLevelPerDmiPlugin;
 
     /**
