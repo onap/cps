@@ -153,7 +153,7 @@ public class DmiRestStubController {
      * @return ResponseEntity response entity having module response as json string.
      */
     @PostMapping("/v1/ch/{cmHandleId}/modules")
-    public ResponseEntity<String> getModuleReferences(@PathVariable final String cmHandleId,
+    public ResponseEntity<String> getModuleReferences(@PathVariable("cmHandleId") final String cmHandleId,
                                                       @RequestBody final Object moduleReferencesRequest) {
         delay(moduleReferencesDelayMs);
         final String moduleResponseContent = getModuleResourceResponse(cmHandleId,
@@ -172,7 +172,7 @@ public class DmiRestStubController {
      */
     @PostMapping("/v1/ch/{cmHandleId}/moduleResources")
     public ResponseEntity<String> retrieveModuleResources(
-            @PathVariable final String cmHandleId,
+            @PathVariable("cmHandleId") final String cmHandleId,
             @RequestBody final Object moduleResourcesReadRequest) {
         delay(moduleResourcesDelayMs);
         final String moduleResourcesResponseContent = getModuleResourceResponse(cmHandleId,
@@ -194,11 +194,11 @@ public class DmiRestStubController {
      */
     @PostMapping("/v1/ch/{cmHandleId}/data/ds/{datastoreName}")
     public ResponseEntity<String> getResourceDataForCmHandle(
-            @PathVariable("cmHandleId") final String cmHandleId,
-            @PathVariable("datastoreName") final String datastoreName,
-            @RequestParam(value = "resourceIdentifier") final String resourceIdentifier,
-            @RequestParam(value = "options", required = false) final String options,
-            @RequestParam(value = "topic", required = false) final String topic,
+            @PathVariable final String cmHandleId,
+            @PathVariable final String datastoreName,
+            @RequestParam final String resourceIdentifier,
+            @RequestParam(required = false) final String options,
+            @RequestParam(required = false) final String topic,
             @RequestHeader(value = "Authorization", required = false) final String authorization) {
         log.info("DMI AUTH HEADER: {}", authorization);
         delay(dataForCmHandleDelayMs);
@@ -217,8 +217,8 @@ public class DmiRestStubController {
      */
     @PostMapping("/v1/data")
     public ResponseEntity<Void> getResourceDataForCmHandleDataOperation(
-            @RequestParam(value = "topic") final String topic,
-            @RequestParam(value = "requestId") final String requestId,
+            @RequestParam final String topic,
+            @RequestParam final String requestId,
             @RequestBody final DmiDataOperationRequest dmiDataOperationRequest) {
         delay(dataForCmHandleDelayMs);
         try {
