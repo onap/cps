@@ -3,7 +3,7 @@
   ============LICENSE_START=======================================================
   Copyright (C) 2020-2021 Pantheon.tech
   Modifications Copyright (C) 2020-2021 Bell Canada
-  Modifications Copyright (C) 2020-2023 Nordix Foundation
+  Modifications Copyright (C) 2020-2024 Nordix Foundation
   ================================================================================
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -71,7 +71,7 @@
         <!-- Add Hibernate support for Postgres datatype JSONB and Postgres arrays -->
         <dependency>
             <groupId>io.hypersistence</groupId>
-            <artifactId>hypersistence-utils-hibernate-60</artifactId>
+            <artifactId>hypersistence-utils-hibernate-63</artifactId>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -118,12 +118,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.junit.vintage</groupId>
-                    <artifactId>junit-vintage-engine</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
     </dependencies>
 

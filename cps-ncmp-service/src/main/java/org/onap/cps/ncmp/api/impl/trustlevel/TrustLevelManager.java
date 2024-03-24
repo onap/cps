@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2023 Nordix Foundation
+ *  Copyright (C) 2023-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -24,10 +24,12 @@ import java.util.Collection;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.ncmp.api.impl.config.embeddedcache.TrustLevelCacheConfig;
 import org.onap.cps.ncmp.api.impl.events.avc.ncmptoclient.AvcEventPublisher;
 import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.impl.operations.RequiredDmiService;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -35,8 +37,12 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class TrustLevelManager {
 
+    @Qualifier(TrustLevelCacheConfig.TRUST_LEVEL_PER_CM_HANDLE)
     private final Map<String, TrustLevel> trustLevelPerCmHandle;
+
+    @Qualifier(TrustLevelCacheConfig.TRUST_LEVEL_PER_DMI_PLUGIN)
     private final Map<String, TrustLevel> trustLevelPerDmiPlugin;
+
     private final InventoryPersistence inventoryPersistence;
     private final AvcEventPublisher avcEventPublisher;
     private static final String AVC_CHANGED_ATTRIBUTE_NAME = "trustLevel";
