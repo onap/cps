@@ -34,12 +34,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
+import org.onap.cps.ncmp.api.impl.config.embeddedcache.TrustLevelCacheConfig;
 import org.onap.cps.ncmp.api.impl.inventory.enums.PropertyType;
 import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.utils.CpsValidator;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
@@ -49,8 +51,13 @@ public class CmHandleQueriesImpl implements CmHandleQueries {
     private static final String DESCENDANT_PATH = "//";
     private static final String ANCESTOR_CM_HANDLES = "/ancestor::cm-handles";
     private final CpsDataPersistenceService cpsDataPersistenceService;
+
+    @Qualifier(TrustLevelCacheConfig.TRUST_LEVEL_PER_DMI_PLUGIN_BEAN_NAME)
     private final Map<String, TrustLevel> trustLevelPerDmiPlugin;
+
+    @Qualifier(TrustLevelCacheConfig.TRUST_LEVEL_PER_CM_HANDLE_BEAN_NAME)
     private final Map<String, TrustLevel> trustLevelPerCmHandle;
+
     private final CpsValidator cpsValidator;
 
     @Override
