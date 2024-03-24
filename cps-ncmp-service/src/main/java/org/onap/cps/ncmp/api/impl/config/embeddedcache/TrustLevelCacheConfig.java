@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START========================================================
- *  Copyright (C) 2023 Nordix Foundation
+ *  Copyright (C) 2023-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -30,6 +30,9 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class TrustLevelCacheConfig extends HazelcastCacheConfig {
 
+    public static final String TRUST_LEVEL_PER_DMI_PLUGIN_BEAN_NAME = "trustLevelPerDmiPlugin";
+
+    public static final String TRUST_LEVEL_PER_CM_HANDLE_BEAN_NAME = "trustLevelPerCmHandle";
     private static final MapConfig trustLevelPerCmHandleCacheConfig =
             createMapConfig("trustLevelPerCmHandleCacheConfig");
 
@@ -41,7 +44,7 @@ public class TrustLevelCacheConfig extends HazelcastCacheConfig {
      *
      * @return configured map of cm handle name as keys to trust-level for values.
      */
-    @Bean
+    @Bean(TRUST_LEVEL_PER_CM_HANDLE_BEAN_NAME)
     public Map<String, TrustLevel> trustLevelPerCmHandle() {
         return createHazelcastInstance("hazelcastInstanceTrustLevelPerCmHandleMap",
                 trustLevelPerCmHandleCacheConfig).getMap("trustLevelPerCmHandle");
@@ -52,7 +55,7 @@ public class TrustLevelCacheConfig extends HazelcastCacheConfig {
      *
      * @return configured map of dmi-plugin name as keys to trust-level for values.
      */
-    @Bean
+    @Bean(TRUST_LEVEL_PER_DMI_PLUGIN_BEAN_NAME)
     public Map<String, TrustLevel> trustLevelPerDmiPlugin() {
         return createHazelcastInstance("hazelcastInstanceTrustLevelPerDmiPluginMap",
                 trustLevelPerDmiPluginCacheConfig).getMap("trustLevelPerDmiPlugin");

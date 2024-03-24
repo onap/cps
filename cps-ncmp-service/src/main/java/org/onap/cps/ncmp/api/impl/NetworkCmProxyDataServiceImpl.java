@@ -51,6 +51,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandleQueryService;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
+import org.onap.cps.ncmp.api.impl.config.embeddedcache.TrustLevelCacheConfig;
 import org.onap.cps.ncmp.api.impl.events.lcm.LcmEventsCmHandleStateHandler;
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueries;
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleState;
@@ -85,6 +86,7 @@ import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.model.ModuleDefinition;
 import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.utils.JsonObjectMapper;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -103,7 +105,10 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     private final LcmEventsCmHandleStateHandler lcmEventsCmHandleStateHandler;
     private final CpsDataService cpsDataService;
     private final IMap<String, Object> moduleSyncStartedOnCmHandles;
+
+    @Qualifier(TrustLevelCacheConfig.TRUST_LEVEL_PER_DMI_PLUGIN_BEAN_NAME)
     private final Map<String, TrustLevel> trustLevelPerDmiPlugin;
+
     private final TrustLevelManager trustLevelManager;
     private final AlternateIdChecker alternateIdChecker;
 
