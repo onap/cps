@@ -75,6 +75,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6319750_c70ca910",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-03-25T13:26:55Z",
+      "side": 1,
+      "message": "cps-ran-schema-model and ran-netowrk-simulation now removed.",
+      "parentUuid": "513faf51_dd0863fd",
+      "range": {
+        "startLine": 36,
+        "startChar": 13,
+        "endLine": 36,
+        "endChar": 34
+      },
+      "revId": "f4bf07f90ec8707966167ecf3952e67f35b38ad1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b1b2f307_a0352d59",
@@ -88,6 +112,30 @@
       "writtenOn": "2024-03-08T13:57:23Z",
       "side": 1,
       "message": "NB: For the series of cps-ran-... related model, schema-set, anchor I would have included the \u0027RAN\u0027 keyword specifically. E.g. CPS_RAN_MODEL_FILENAME, and CPS_RAN_ANCHOR... \n\nYou could have looked at more reviews on this naming conventions...",
+      "range": {
+        "startLine": 38,
+        "startChar": 32,
+        "endLine": 38,
+        "endChar": 52
+      },
+      "revId": "f4bf07f90ec8707966167ecf3952e67f35b38ad1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c5d02cd_f4dccc98",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-03-25T13:26:55Z",
+      "side": 1,
+      "message": "Section now removed.",
+      "parentUuid": "b1b2f307_a0352d59",
       "range": {
         "startLine": 38,
         "startChar": 32,
