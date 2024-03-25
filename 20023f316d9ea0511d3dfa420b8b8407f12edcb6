@@ -33,6 +33,40 @@
       "message": "recheck",
       "revId": "20023f316d9ea0511d3dfa420b8b8407f12edcb6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8932f01d_48902680",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-03-25T12:52:16Z",
+      "side": 1,
+      "message": "looked at , can clarify more on call later",
+      "revId": "20023f316d9ea0511d3dfa420b8b8407f12edcb6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71e04c85_dd49496a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionNcmpOutEventProducer.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-03-25T12:52:16Z",
+      "side": 1,
+      "message": "i think this may be unnecessary ?",
+      "revId": "20023f316d9ea0511d3dfa420b8b8407f12edcb6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
