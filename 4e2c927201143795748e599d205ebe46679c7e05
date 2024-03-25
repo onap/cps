@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ecc0d73_3995b300",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionNcmpOutEventProducer.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-03-25T13:48:23Z",
+      "side": 0,
+      "message": "sugg: as we talked about earlier \nmaybe to add a static map that has subscriptionId:publishedManually(boolean)\n\n1. publish method schedules task with delay and sets the flag to \u0027false\u0027\n2. publishNow method changes the flag to \u0027true\u0027 and publishes\n3. scheduled task checks if flag is true for publishedManually and cancels, else publishes as scheduled",
+      "revId": "4e2c927201143795748e599d205ebe46679c7e05",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
