@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "916493b8_e71b0c23",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-03-25T10:53:57Z",
+      "side": 1,
+      "message": "I also agree with you, we should have dedicated interface \"DataJobService.java\" here. @Toine I want your opinion here.",
+      "parentUuid": "8d9f6228_fe5d570c",
+      "revId": "85ffe00aecb4a24a67508b4765032b8df687421b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "985228db_1021319e",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/datajob/Operation.java",
         "patchSetId": 1
@@ -55,6 +73,30 @@
       "side": 1,
       "message": "Right. It should be added here as an attribute.\n\nprivate RestProtocolParameter restProtocolParameter;",
       "parentUuid": "985228db_1021319e",
+      "range": {
+        "startLine": 28,
+        "startChar": 23,
+        "endLine": 28,
+        "endChar": 52
+      },
+      "revId": "85ffe00aecb4a24a67508b4765032b8df687421b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90b1cb9b_97cc2948",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/datajob/Operation.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-03-25T10:53:57Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "bcfd7122_689cd35f",
       "range": {
         "startLine": 28,
         "startChar": 23,
