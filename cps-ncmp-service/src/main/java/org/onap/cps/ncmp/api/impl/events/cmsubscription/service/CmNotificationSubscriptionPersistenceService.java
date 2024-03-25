@@ -57,4 +57,15 @@ public interface CmNotificationSubscriptionPersistenceService {
      */
     Collection<String> getOngoingCmNotificationSubscriptionIds(final DatastoreType datastoreType,
             final String cmHandleId, final String xpath);
+
+    /**
+     * Add or update cm notification subscription.
+     *
+     * @param datastoreType valid datastore type
+     * @param cmHandle cmhandle id
+     * @param xpath valid xpath
+     * @param newSubscriptionId subscription Id to be added
+     */
+    void addOrUpdateCmNotificationSubscription(final DatastoreType datastoreType, final String cmHandle,
+                                               final String xpath, final String newSubscriptionId);
 }
