@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e0a62fb_34cf9c78",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-03-25T11:50:56Z",
+      "side": 1,
+      "message": "the changes are fine by me.\nLooks similar to the first API we introduced to accept XML as Content Type.\n\nYou also need to add this to the release-notes.rst file as well.\n\nAlso since the controllers are updated , we need to copy the documentation to the relevant folder.\n\nWill help u on the same.",
+      "revId": "f09d08b16c33c63adc12261eaaeb0b458b9119cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "92cde89b_bf4218e0",
