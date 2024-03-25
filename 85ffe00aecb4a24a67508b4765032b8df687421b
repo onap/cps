@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8d9f6228_fe5d570c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2024-03-25T10:17:50Z",
+      "side": 1,
+      "message": "Do we want to tie this in with the data service or have a dedicated datajob service?",
+      "revId": "85ffe00aecb4a24a67508b4765032b8df687421b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "985228db_1021319e",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/datajob/Operation.java",
         "patchSetId": 1
