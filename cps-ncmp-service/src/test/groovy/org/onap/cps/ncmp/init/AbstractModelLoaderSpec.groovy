@@ -81,14 +81,6 @@ class AbstractModelLoaderSpec extends Specification {
             assert logs.contains('test message')
     }
 
-    def 'Wait for non-existing dataspace'() {
-        when: 'wait for the dataspace'
-            objectUnderTest.waitUntilDataspaceIsAvailable('some dataspace')
-        then: 'a startup exception is thrown'
-            def thrown = thrown(NcmpStartUpException)
-            assert thrown.message.contains('Retrieval of NCMP dataspace failed')
-    }
-
     def 'Create schema set.'() {
         when: 'creating a schema set'
             objectUnderTest.createSchemaSet('some dataspace','new name','cm-data-subscriptions@2024-02-12.yang')

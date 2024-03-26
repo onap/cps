@@ -22,6 +22,7 @@ package org.onap.cps.ncmp.init;
 
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME;
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR;
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME;
 
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAnchorService;
@@ -33,9 +34,9 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 public class InventoryModelLoader extends AbstractModelLoader {
-
     private static final String NEW_MODEL_FILE_NAME = "dmi-registry@2024-02-23.yang";
     private static final String NEW_SCHEMA_SET_NAME = "dmi-registry-2024-02-23";
+    private static final String REGISTRY_DATANODE_NAME = "dmi-registry";
 
     public InventoryModelLoader(final CpsDataspaceService cpsDataspaceService,
                                 final CpsModuleService cpsModuleService,
@@ -46,20 +47,24 @@ public class InventoryModelLoader extends AbstractModelLoader {
 
     @Override
     public void onboardOrUpgradeModel() {
-        waitUntilDataspaceIsAvailable(NCMP_DATASPACE_NAME);
         updateInventoryModel();
         log.info("Inventory Model updated successfully");
     }
 
     private void updateInventoryModel() {
+        createDataspace(NCMP_DATASPACE_NAME);
+        createDataspace(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME);
         createSchemaSet(NCMP_DATASPACE_NAME, NEW_SCHEMA_SET_NAME, NEW_MODEL_FILE_NAME);
+        createAnchor(NCMP_DATASPACE_NAME, NEW_SCHEMA_SET_NAME, NCMP_DMI_REGISTRY_ANCHOR);
         updateAnchorSchemaSet(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NEW_SCHEMA_SET_NAME);
+        createTopLevelDataNode(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, REGISTRY_DATANODE_NAME);
         deleteOldButNotThePreviousSchemaSets();
     }
 
     private void deleteOldButNotThePreviousSchemaSets() {
         //No schema sets passed in yet, but wil be required for future updates
         deleteUnusedSchemaSets(NCMP_DATASPACE_NAME);
+        deleteUnusedSchemaSets(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME);
     }
 
 }

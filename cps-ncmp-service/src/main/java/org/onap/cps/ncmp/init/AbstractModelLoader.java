@@ -70,24 +70,6 @@ abstract class AbstractModelLoader implements ModelLoader {
         }
     }
 
-    void waitUntilDataspaceIsAvailable(final String dataspaceName) {
-        log.info("Model Loader start-up, waiting for database to be ready");
-        int attemptCount = 0;
-        while (cpsDataspaceService.getDataspace(dataspaceName) == null) {
-            if (attemptCount < maximumAttemptCount) {
-                try {
-                    Thread.sleep(attemptCount * retryTimeMs);
-                    log.info("Retrieving dataspace {} ... {} attempt(s) ", dataspaceName, ++attemptCount);
-                } catch (final InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                }
-            } else {
-                throw new NcmpStartUpException("Retrieval of NCMP dataspace failed",
-                    dataspaceName + " not available (yet)");
-            }
-        }
-    }
-
     void createSchemaSet(final String dataspaceName, final String schemaSetName, final String... resourceNames) {
         try {
             final Map<String, String> yangResourcesContentMap = createYangResourcesToContentMap(resourceNames);
@@ -97,6 +79,17 @@ abstract class AbstractModelLoader implements ModelLoader {
         } catch (final Exception exception) {
             log.error("Creating schema set failed: {} ", exception.getMessage());
             throw new NcmpStartUpException("Creating schema set failed", exception.getMessage());
+        }
+    }
+
+    void createDataspace(final String dataspaceName) {
+        try {
+            cpsDataspaceService.createDataspace(dataspaceName);
+        } catch (final AlreadyDefinedException alreadyDefinedException) {
+            log.debug("Dataspace already exists");
+        } catch (final Exception exception) {
+            log.error("Creating dataspace failed: {} ", exception.getMessage());
+            throw new NcmpStartUpException("Creating dataspace failed", exception.getMessage());
         }
     }
 
