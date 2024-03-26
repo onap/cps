@@ -50,6 +50,7 @@ import org.springframework.context.annotation.ComponentScan
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
+import org.springframework.test.web.client.ExpectedCount
 import org.springframework.test.web.client.MockRestServiceServer
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.web.client.RestTemplate
@@ -120,10 +121,10 @@ abstract class CpsIntegrationSpecBase extends Specification {
 
     MockRestServiceServer mockDmiServer = null
 
-    static final DMI_URL = 'http://mock-dmi-server'
-
-    def static GENERAL_TEST_DATASPACE = 'generalTestDataspace'
-    def static BOOKSTORE_SCHEMA_SET = 'bookstoreSchemaSet'
+    static DMI_URL = 'http://mock-dmi-server'
+    static NO_MODULE_SET_TAG = ''
+    static GENERAL_TEST_DATASPACE = 'generalTestDataspace'
+    static BOOKSTORE_SCHEMA_SET = 'bookstoreSchemaSet'
 
     def static initialized = false
     def now = OffsetDateTime.now()
@@ -135,10 +136,6 @@ abstract class CpsIntegrationSpecBase extends Specification {
             initialized = true
         }
         mockDmiServer = MockRestServiceServer.bindTo(restTemplate).ignoreExpectOrder(true).build()
-    }
-
-    def cleanup() {
-        mockDmiServer.reset()
     }
 
     def static readResourceDataFile(filename) {
@@ -203,15 +200,13 @@ abstract class CpsIntegrationSpecBase extends Specification {
 
     // *** NCMP Integration Test Utilities ***
 
-    def registerCmHandle(dmiPlugin, cmHandleId, moduleSetTag, dmiModuleReferencesResponse, dmiModuleResourcesResponse) {
+    def registerCmHandle(dmiPlugin, cmHandleId, moduleSetTag) {
         def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: cmHandleId, moduleSetTag: moduleSetTag)
         networkCmProxyDataService.updateDmiRegistrationAndSyncModule(new DmiPluginRegistration(dmiPlugin: dmiPlugin, createdCmHandles: [cmHandleToCreate]))
-        mockDmiResponsesForModuleSync(dmiPlugin, cmHandleId, dmiModuleReferencesResponse, dmiModuleResourcesResponse)
         moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
         new PollingConditions().within(3, () -> {
             CmHandleState.READY == networkCmProxyDataService.getCmHandleCompositeState(cmHandleId).cmHandleState
         })
-        mockDmiServer.reset()
     }
 
     def deregisterCmHandle(dmiPlugin, cmHandleId) {
@@ -232,6 +227,11 @@ abstract class CpsIntegrationSpecBase extends Specification {
     def mockDmiIsNotAvailableForModuleSync(dmiPlugin, cmHandleId) {
         mockDmiServer.expect(requestTo("${dmiPlugin}/dmi/v1/ch/${cmHandleId}/modules"))
                 .andRespond(withStatus(HttpStatus.SERVICE_UNAVAILABLE))
+    }
+
+    def mockDmiWillRespondToHealthChecks(dmiPlugin) {
+        mockDmiServer.expect(ExpectedCount.between(0, Integer.MAX_VALUE), requestTo("${dmiPlugin}/actuator/health"))
+                .andRespond(withStatus(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body('{"status":"UP"}'))
     }
 
     def overrideCmHandleLastUpdateTime(cmHandleId, newUpdateTime) {
