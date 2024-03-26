@@ -16,6 +16,184 @@
       "message": "looks fine to me.",
       "revId": "9fac84492f4bdd937f9592e471d1e24dddeeb7ce",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77836eb7_23fc7059",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-03-26T10:53:59Z",
+      "side": 1,
+      "message": "Since more than 6 NB comments needs to be fixed by updating copyright years.",
+      "revId": "9fac84492f4bdd937f9592e471d1e24dddeeb7ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8adeab18_69e03bdf",
+        "filename": "cps-ncmp-rest/lombok.config",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-03-26T10:53:59Z",
+      "side": 1,
+      "message": "NB: copyright\u0027s year update outdated",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 22
+      },
+      "revId": "9fac84492f4bdd937f9592e471d1e24dddeeb7ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f89fc0c6_efd5811a",
+        "filename": "cps-ncmp-service/lombok.config",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-03-26T10:53:59Z",
+      "side": 1,
+      "message": "NB: Same as above",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 26
+      },
+      "revId": "9fac84492f4bdd937f9592e471d1e24dddeeb7ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d02eee01_041228f1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/TrustLevelCacheConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-03-26T10:53:59Z",
+      "side": 1,
+      "message": "NB: Same as above",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 23
+      },
+      "revId": "9fac84492f4bdd937f9592e471d1e24dddeeb7ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba445bae_10cf0d37",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/TrustLevelCacheConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-03-26T10:53:59Z",
+      "side": 1,
+      "message": "NB: To my understanding, does these identifiers really required? if yes, can you please briefly let me know.",
+      "range": {
+        "startLine": 47,
+        "startChar": 4,
+        "endLine": 47,
+        "endChar": 46
+      },
+      "revId": "9fac84492f4bdd937f9592e471d1e24dddeeb7ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "871c31f2_17795176",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/CmHandleQueriesImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-03-26T10:53:59Z",
+      "side": 1,
+      "message": "NB: Same as above",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 27
+      },
+      "revId": "9fac84492f4bdd937f9592e471d1e24dddeeb7ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3537f2da_d6915809",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-03-26T10:53:59Z",
+      "side": 1,
+      "message": "NB: Same as above",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 23
+      },
+      "revId": "9fac84492f4bdd937f9592e471d1e24dddeeb7ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a879bd9_e18bd196",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-03-26T10:53:59Z",
+      "side": 1,
+      "message": "dublicatedYangResourceException is more descriptive",
+      "range": {
+        "startLine": 276,
+        "startChar": 64,
+        "endLine": 276,
+        "endChar": 83
+      },
+      "revId": "9fac84492f4bdd937f9592e471d1e24dddeeb7ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
