@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac03763a_0e033065",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/AbstractModelLoader.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-03-26T15:23:07Z",
+      "side": 1,
+      "message": "Done, as I have now moved the \"createAnchor\" call up a level (see other comment)",
+      "parentUuid": "2fd3c3c6_e81b8dd3",
+      "range": {
+        "startLine": 130,
+        "startChar": 9,
+        "endLine": 130,
+        "endChar": 30
+      },
+      "revId": "ce2ebdb49e45c870a62d34374c2a7603c67f519b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ed3078cc_a85db1d7",
@@ -81,6 +105,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d9ebc6b_67bca536",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-03-26T15:23:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ed3078cc_a85db1d7",
+      "range": {
+        "startLine": 58,
+        "startChar": 8,
+        "endLine": 58,
+        "endChar": 29
+      },
+      "revId": "ce2ebdb49e45c870a62d34374c2a7603c67f519b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d1dd53b7_0ee2cec0",
@@ -94,6 +142,30 @@
       "writtenOn": "2024-03-26T13:47:49Z",
       "side": 1,
       "message": "could we add a comment/note at the top of this file. That for legacy reasons step 1 now include previously separate steps 6,11,15,17-21",
+      "range": {
+        "startLine": 578,
+        "startChar": 6,
+        "endLine": 578,
+        "endChar": 11
+      },
+      "revId": "ce2ebdb49e45c870a62d34374c2a7603c67f519b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6960912f_04c27b3e",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/01-createCPSTables.yaml",
+        "patchSetId": 12
+      },
+      "lineNbr": 578,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-03-26T15:23:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d1dd53b7_0ee2cec0",
       "range": {
         "startLine": 578,
         "startChar": 6,
