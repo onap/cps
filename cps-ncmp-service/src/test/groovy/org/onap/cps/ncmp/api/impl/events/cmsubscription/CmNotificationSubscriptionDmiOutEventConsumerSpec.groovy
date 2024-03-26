@@ -30,23 +30,28 @@ import io.cloudevents.core.builder.CloudEventBuilder
 import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
 import org.onap.cps.ncmp.events.cmnotificationsubscription_merge1_0_0.dmi_to_ncmp.CmNotificationSubscriptionDmiOutEvent
+import org.onap.cps.ncmp.events.cmnotificationsubscription_merge1_0_0.dmi_to_ncmp.Data
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.utils.JsonObjectMapper
 import org.slf4j.LoggerFactory
+import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest(classes = [ObjectMapper, JsonObjectMapper])
 class CmNotificationSubscriptionDmiOutEventConsumerSpec extends MessagingBaseSpec {
 
-    def objectUnderTest = new CmNotificationSubscriptionDmiOutEventConsumer()
-    def logger = Spy(ListAppender<ILoggingEvent>)
-
     @Autowired
     JsonObjectMapper jsonObjectMapper
 
     @Autowired
     ObjectMapper objectMapper
+
+    @SpringBean
+    DmiCmNotificationSubscriptionCacheHandler mockDmiCmNotificationSubscriptionCacheHandler = Mock(DmiCmNotificationSubscriptionCacheHandler)
+
+    def objectUnderTest = new CmNotificationSubscriptionDmiOutEventConsumer(mockDmiCmNotificationSubscriptionCacheHandler)
+    def logger = Spy(ListAppender<ILoggingEvent>)
 
     void setup() {
         ((Logger) LoggerFactory.getLogger(CmNotificationSubscriptionDmiOutEventConsumer.class)).addAppender(logger)
@@ -76,6 +81,28 @@ class CmNotificationSubscriptionDmiOutEventConsumerSpec extends MessagingBaseSpe
             assert loggingEvent.level == Level.INFO
         and: 'the log indicates the task completed successfully'
             assert loggingEvent.formattedMessage == 'Cm Subscription with id : sub-1 handled by the dmi-plugin : test-dmi-plugin-name has the status : accepted'
+    }
+
+    def 'Consume a valid CM Notification Subscription Event and perform correct actions base on status'() {
+        given: 'a cmNotificationSubscription event'
+            def dmiOutEventData = new Data(statusCode: statusCode, statusMessage: subscriptionStatus)
+            def cmNotificationSubscriptionDmiOutEvent = new CmNotificationSubscriptionDmiOutEvent().withData(dmiOutEventData)
+            def testCloudEventSent = CloudEventBuilder.v1()
+                .withData(objectMapper.writeValueAsBytes(cmNotificationSubscriptionDmiOutEvent))
+                .withId('random-uuid')
+                .withType('subscriptionCreateResponse')
+                .withSource(URI.create('test-dmi-plugin-name'))
+                .withExtension('correlationid', 'sub-1#test-dmi-plugin-name').build()
+            def consumerRecord = new ConsumerRecord<String, CloudEvent>('topic-name', 0, 0, 'event-key', testCloudEventSent)
+        when: 'the event is consumed'
+            objectUnderTest.consumeCmNotificationSubscriptionDmiOutEvent(consumerRecord)
+        then: 'verify correct methods have been called'
+            expectedCacheCalls * mockDmiCmNotificationSubscriptionCacheHandler.updateDmiCmNotificationSubscriptionCacheStatusPerDmi(_,_,_)
+            expectedPersistenceCalls * mockDmiCmNotificationSubscriptionCacheHandler.persistCacheIntoDatabasePerDmi(_,_)
+        where: 'the following parameters are used'
+            scenario            | subscriptionStatus | statusCode || expectedCacheCalls | expectedPersistenceCalls
+            'Accepted Status'   | 'ACCEPTED'         | '1'        || 1                  | 1
+            'Rejected Status'   | 'REJECTED'         | '2'        || 1                  | 0
     }
 
     def getLoggingEvent() {

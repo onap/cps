@@ -25,6 +25,7 @@ import static org.onap.cps.ncmp.api.impl.events.mapper.CloudEventMapper.toTarget
 import io.cloudevents.CloudEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.CmNotificationSubscriptionStatus;
 import org.onap.cps.ncmp.events.cmnotificationsubscription_merge1_0_0.dmi_to_ncmp.CmNotificationSubscriptionDmiOutEvent;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
@@ -32,6 +33,8 @@ import org.springframework.stereotype.Component;
 @Component
 @Slf4j
 public class CmNotificationSubscriptionDmiOutEventConsumer {
+
+    private DmiCmNotificationSubscriptionCacheHandler dmiCmNotificationSubscriptionCacheHandler;
 
     /**
      * Consume the Cm Notification Subscription event from the dmi-plugin.
@@ -56,6 +59,18 @@ public class CmNotificationSubscriptionDmiOutEventConsumer {
             final CmNotificationSubscriptionDmiOutEvent cmNotificationSubscriptionDmiOutEvent) {
         final String subscriptionId = correlationId.split("#")[0];
         final String dmiPluginName = correlationId.split("#")[1];
+
+        if ("ACCEPTED".equals(cmNotificationSubscriptionDmiOutEvent.getData().getStatusMessage())) {
+            dmiCmNotificationSubscriptionCacheHandler.updateDmiCmNotificationSubscriptionCacheStatusPerDmi(
+                subscriptionId, dmiPluginName, CmNotificationSubscriptionStatus.ACCEPTED);
+            dmiCmNotificationSubscriptionCacheHandler.persistCacheIntoDatabasePerDmi(subscriptionId, dmiPluginName);
+        }
+
+        if ("REJECTED".equals(cmNotificationSubscriptionDmiOutEvent.getData().getStatusMessage())) {
+            dmiCmNotificationSubscriptionCacheHandler.updateDmiCmNotificationSubscriptionCacheStatusPerDmi(
+                subscriptionId, dmiPluginName, CmNotificationSubscriptionStatus.REJECTED);
+        }
+
         log.info("Cm Subscription with id : {} handled by the dmi-plugin : {} has the status : {}", subscriptionId,
                 dmiPluginName, cmNotificationSubscriptionDmiOutEvent.getData().getStatusMessage());
     }
