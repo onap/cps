@@ -58,6 +58,8 @@ class NcmpBearerTokenPassthroughSpec extends CpsIntegrationSpecBase {
             mockDmiServer.expect(requestTo(targetDmiUrl))
                     .andExpect(MockRestRequestMatchers.header(HttpHeaders.AUTHORIZATION, 'Bearer some-bearer-token'))
                     .andRespond(withStatus(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON))
+        and: 'DMI will respond to health checks'
+            mockDmiWillRespondToHealthChecks(DMI_URL)
 
         when: 'a pass-through data request is sent to NCMP with a bearer token'
             mvc.perform(request(httpMethod, '/ncmp/v1/ch/ch-1/data/ds/ncmp-datastore:passthrough-running')
@@ -80,6 +82,8 @@ class NcmpBearerTokenPassthroughSpec extends CpsIntegrationSpecBase {
             mockDmiServer.expect(requestTo(targetDmiUrl))
                     .andExpect(MockRestRequestMatchers.headerDoesNotExist(HttpHeaders.AUTHORIZATION))
                     .andRespond(withStatus(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON))
+        and: 'DMI will respond to health checks'
+            mockDmiWillRespondToHealthChecks(DMI_URL)
 
         when: 'a pass-through data request is sent to NCMP with basic authentication'
             mvc.perform(request(httpMethod, '/ncmp/v1/ch/ch-1/data/ds/ncmp-datastore:passthrough-running')
@@ -101,6 +105,8 @@ class NcmpBearerTokenPassthroughSpec extends CpsIntegrationSpecBase {
             mockDmiServer.expect(method(POST))
                     .andExpect(MockRestRequestMatchers.header(HttpHeaders.AUTHORIZATION, 'Bearer some-bearer-token'))
                     .andRespond(withStatus(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON))
+        and: 'DMI will respond to health checks'
+            mockDmiWillRespondToHealthChecks(DMI_URL)
 
         when: 'a pass-through async data request is sent to NCMP with a bearer token'
             def requestBody = """{"operations": [{

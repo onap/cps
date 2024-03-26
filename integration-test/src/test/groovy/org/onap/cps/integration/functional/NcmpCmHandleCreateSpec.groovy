@@ -53,6 +53,8 @@ class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
     def 'CM Handle registration is successful.'() {
         given: 'DMI will return modules when requested'
             mockDmiResponsesForModuleSync(DMI_URL, 'ch-1', MODULE_REFERENCES_RESPONSE_A, MODULE_RESOURCES_RESPONSE_A)
+        and: 'DMI will respond to health checks'
+            mockDmiWillRespondToHealthChecks(DMI_URL)
 
         and: 'consumer subscribed to topic'
             kafkaConsumer.subscribe(['ncmp-events'])
@@ -97,6 +99,8 @@ class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
     def 'CM Handle goes to LOCKED state when DMI gives error during module sync.'() {
         given: 'DMI is not available to handle requests'
             mockDmiIsNotAvailableForModuleSync(DMI_URL, 'ch-1')
+        and: 'DMI will respond to health checks'
+            mockDmiWillRespondToHealthChecks(DMI_URL)
 
         when: 'a CM-handle is registered for creation'
             def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: 'ch-1')
@@ -126,6 +130,8 @@ class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
             registerCmHandle(DMI_URL, 'ch-2', 'B', MODULE_REFERENCES_RESPONSE_B, MODULE_RESOURCES_RESPONSE_B)
             assert ['M1', 'M2'] == objectUnderTest.getYangResourcesModuleReferences('ch-1').moduleName.sort()
             assert ['M1', 'M3'] == objectUnderTest.getYangResourcesModuleReferences('ch-2').moduleName.sort()
+        and: 'DMI will respond to health checks'
+            mockDmiWillRespondToHealthChecks(DMI_URL)
 
         when: 'a CM-handle is registered for creation with moduleSetTag "B"'
             def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: 'ch-3', moduleSetTag: 'B')
@@ -154,6 +160,8 @@ class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
         and: 'DMI will be available for retry'
             mockDmiResponsesForModuleSync(DMI_URL, 'ch-1', MODULE_REFERENCES_RESPONSE_A, MODULE_RESOURCES_RESPONSE_A)
             mockDmiResponsesForModuleSync(DMI_URL, 'ch-2', MODULE_REFERENCES_RESPONSE_B, MODULE_RESOURCES_RESPONSE_B)
+        and: 'DMI will respond to health checks'
+            mockDmiWillRespondToHealthChecks(DMI_URL)
 
         when: 'CM-handles are registered for creation'
             def cmHandlesToCreate = [new NcmpServiceCmHandle(cmHandleId: 'ch-1'), new NcmpServiceCmHandle(cmHandleId: 'ch-2')]

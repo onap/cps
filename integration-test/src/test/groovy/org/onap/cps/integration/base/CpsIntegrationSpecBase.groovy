@@ -50,6 +50,7 @@ import org.springframework.context.annotation.ComponentScan
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
+import org.springframework.test.web.client.ExpectedCount
 import org.springframework.test.web.client.MockRestServiceServer
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.web.client.RestTemplate
@@ -232,6 +233,11 @@ abstract class CpsIntegrationSpecBase extends Specification {
     def mockDmiIsNotAvailableForModuleSync(dmiPlugin, cmHandleId) {
         mockDmiServer.expect(requestTo("${dmiPlugin}/dmi/v1/ch/${cmHandleId}/modules"))
                 .andRespond(withStatus(HttpStatus.SERVICE_UNAVAILABLE))
+    }
+
+    def mockDmiWillRespondToHealthChecks(dmiPlugin) {
+        mockDmiServer.expect(ExpectedCount.between(0, Integer.MAX_VALUE), requestTo("${dmiPlugin}/actuator/health"))
+                .andRespond(withStatus(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body('{"status":"UP"}'))
     }
 
     def overrideCmHandleLastUpdateTime(cmHandleId, newUpdateTime) {

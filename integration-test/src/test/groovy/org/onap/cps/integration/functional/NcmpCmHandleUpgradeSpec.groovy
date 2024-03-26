@@ -53,6 +53,8 @@ class NcmpCmHandleUpgradeSpec extends CpsIntegrationSpecBase {
         given: 'an existing CM-handle with expected initial modules: M1 and M2'
             registerCmHandle(DMI_URL, CM_HANDLE_ID, initialModuleSetTag, INITIAL_MODULE_REFERENCES_RESPONSE, INITIAL_MODULE_RESOURCES_RESPONSE)
             assert ['M1', 'M2'] == objectUnderTest.getYangResourcesModuleReferences(CM_HANDLE_ID).moduleName.sort()
+        and: 'DMI will respond to health checks'
+            mockDmiWillRespondToHealthChecks(DMI_URL)
 
         and: 'DMI returns different modules for upgrade'
             mockDmiResponsesForModuleSync(DMI_URL, CM_HANDLE_ID, UPDATED_MODULE_REFERENCES_RESPONSE, UPDATED_MODULE_RESOURCES_RESPONSE)
@@ -107,6 +109,8 @@ class NcmpCmHandleUpgradeSpec extends CpsIntegrationSpecBase {
         and: "a CM-handle with moduleSetTag '${initialModuleSetTag}' which will be upgraded"
             registerCmHandle(DMI_URL, CM_HANDLE_ID, initialModuleSetTag, INITIAL_MODULE_REFERENCES_RESPONSE, INITIAL_MODULE_RESOURCES_RESPONSE)
             assert ['M1', 'M2'] == objectUnderTest.getYangResourcesModuleReferences(CM_HANDLE_ID).moduleName.sort()
+        and: 'DMI will respond to health checks'
+            mockDmiWillRespondToHealthChecks(DMI_URL)
 
         when: "CM-handle is upgraded to moduleSetTag '${updatedModuleSetTag}'"
             def cmHandlesToUpgrade = new UpgradedCmHandles(cmHandles: [CM_HANDLE_ID], moduleSetTag: updatedModuleSetTag)
@@ -144,6 +148,8 @@ class NcmpCmHandleUpgradeSpec extends CpsIntegrationSpecBase {
         given: 'an existing CM-handle with expected initial modules: M1 and M2'
             registerCmHandle(DMI_URL, CM_HANDLE_ID, 'same', INITIAL_MODULE_REFERENCES_RESPONSE, INITIAL_MODULE_RESOURCES_RESPONSE)
             assert ['M1', 'M2'] == objectUnderTest.getYangResourcesModuleReferences(CM_HANDLE_ID).moduleName.sort()
+        and: 'DMI will respond to health checks'
+            mockDmiWillRespondToHealthChecks(DMI_URL)
 
         when: 'CM-handle is upgraded with the same moduleSetTag'
             def cmHandlesToUpgrade = new UpgradedCmHandles(cmHandles: [CM_HANDLE_ID], moduleSetTag: 'same')
@@ -166,6 +172,8 @@ class NcmpCmHandleUpgradeSpec extends CpsIntegrationSpecBase {
     def 'Upgrade of CM-handle fails due to DMI error.'() {
         given: 'an existing CM-handle'
             registerCmHandle(DMI_URL, CM_HANDLE_ID, 'oldTag', INITIAL_MODULE_REFERENCES_RESPONSE, INITIAL_MODULE_RESOURCES_RESPONSE)
+        and: 'DMI will respond to health checks'
+            mockDmiWillRespondToHealthChecks(DMI_URL)
 
         and: 'DMI returns error code'
             mockDmiServer.expect(anything()).andRespond(withStatus(HttpStatus.SERVICE_UNAVAILABLE))
