@@ -24,6 +24,8 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import io.cloudevents.CloudEvent
 import io.cloudevents.core.builder.CloudEventBuilder
 import org.apache.kafka.clients.consumer.ConsumerRecord
+import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.CmNotificationSubscriptionStatus
+import org.onap.cps.ncmp.api.impl.events.cmsubscription.service.CmNotificationSubscriptionPersistenceService
 import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
@@ -45,9 +47,11 @@ class DmiCmNotificationSubscriptionCacheHandlerSpec extends MessagingBaseSpec {
     ObjectMapper objectMapper
     @SpringBean
     InventoryPersistence mockInventoryPersistence = Mock(InventoryPersistence)
+    @SpringBean
+    CmNotificationSubscriptionPersistenceService mockCmNotificationSubscriptionPersistenceService = Mock(CmNotificationSubscriptionPersistenceService)
 
     def testCache = [:]
-    def objectUnderTest = new DmiCmNotificationSubscriptionCacheHandler(testCache, mockInventoryPersistence)
+    def objectUnderTest = new DmiCmNotificationSubscriptionCacheHandler(mockCmNotificationSubscriptionPersistenceService, testCache, mockInventoryPersistence)
 
     CmNotificationSubscriptionNcmpInEvent cmNotificationSubscriptionNcmpInEvent
     def yangModelCmHandle1 = new YangModelCmHandle(id:'ch1',dmiServiceName:'dmi-1')
@@ -62,9 +66,9 @@ class DmiCmNotificationSubscriptionCacheHandlerSpec extends MessagingBaseSpec {
 
     def 'Load CM subscription event to cache'() {
         given: 'a valid subscription event with Id'
-            def subscriptionId = cmNotificationSubscriptionNcmpInEvent.getData().getSubscriptionId();
+            def subscriptionId = cmNotificationSubscriptionNcmpInEvent.getData().getSubscriptionId()
         and: 'list of predicates'
-            def predicates = cmNotificationSubscriptionNcmpInEvent.getData().getPredicates();
+            def predicates = cmNotificationSubscriptionNcmpInEvent.getData().getPredicates()
         when: 'a valid event object loaded in cache'
             objectUnderTest.add(subscriptionId, predicates)
         then: 'the cache contains the correct entry with #subscriptionId subscription ID'
@@ -113,6 +117,29 @@ class DmiCmNotificationSubscriptionCacheHandlerSpec extends MessagingBaseSpec {
         and: 'the values in the map is as expected'
             assert mapOfCMHandleIDsByDmi.get('dmi-1') == ['ch1'].toSet()
             assert mapOfCMHandleIDsByDmi.get('dmi-2') == ['ch2'].toSet()
+    }
+
+    def 'Update subscription status in cache per DMI service name'() {
+        given: 'populated cache'
+            def predicates = cmNotificationSubscriptionNcmpInEvent.getData().getPredicates()
+            def subscriptionId = cmNotificationSubscriptionNcmpInEvent.getData().getSubscriptionId()
+            objectUnderTest.add(subscriptionId, predicates)
+        when: 'subscription status per dmi is updated in cache'
+            objectUnderTest.updateDmiCmNotificationSubscriptionStatusPerDmi(subscriptionId,'dmi-1', CmNotificationSubscriptionStatus.ACCEPTED)
+        then: 'verify status has been updated in cache'
+            def predicate = testCache.get(subscriptionId)
+            assert predicate.get('dmi-1').cmNotificationSubscriptionStatus == CmNotificationSubscriptionStatus.ACCEPTED
+    }
+
+    def 'Persist Cache into database per dmi'() {
+        given: 'populate cache'
+            def predicates = cmNotificationSubscriptionNcmpInEvent.getData().getPredicates()
+            def subscriptionId = cmNotificationSubscriptionNcmpInEvent.getData().getSubscriptionId()
+            objectUnderTest.add(subscriptionId, predicates)
+        when: 'subscription is persisted in database'
+            objectUnderTest.persistIntoDatabasePerDmi(subscriptionId,'dmi-1')
+        then: 'persistence service is called the correct number of times per dmi'
+            4 * mockCmNotificationSubscriptionPersistenceService.addOrUpdateCmNotificationSubscription(_,_,_,_)
     }
 
     def setUpTestEvent(){
