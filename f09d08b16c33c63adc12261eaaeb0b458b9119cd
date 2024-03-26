@@ -56,6 +56,29 @@
       },
       "revId": "f09d08b16c33c63adc12261eaaeb0b458b9119cd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6de3179_6382bdf6",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsDataServiceIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-03-26T18:28:08Z",
+      "side": 1,
+      "message": "Non-blocking: This column is not needed, since contentType is always ContentType.JSON",
+      "range": {
+        "startLine": 385,
+        "startChar": 142,
+        "endLine": 385,
+        "endChar": 153
+      },
+      "revId": "f09d08b16c33c63adc12261eaaeb0b458b9119cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
