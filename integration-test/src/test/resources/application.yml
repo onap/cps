@@ -188,7 +188,7 @@ ncmp:
     model-loader:
       retry-time-ms: 1000
     trust-level:
-      dmi-availability-watchdog-ms: 30000
+      dmi-availability-watchdog-ms: 10000000 # large value to prevent this running during test execution; see CPS-2167
 
   modules-sync-watchdog:
     async-executor:
