@@ -33,6 +33,46 @@
       "message": "recheck",
       "revId": "fbdd06f2ea55ddb0168c3c552d6aa694a0ea34cf",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c87f351b_11beb993",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-03-27T12:26:22Z",
+      "side": 1,
+      "message": "also there are some outstanding comments so giving -1 \nMy votes got overridden.",
+      "revId": "fbdd06f2ea55ddb0168c3c552d6aa694a0ea34cf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70fab91f_b173c76d",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/utils/context/CpsCoreApplicationContext.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-03-27T12:26:22Z",
+      "side": 1,
+      "message": "not in favor of using a separate ApplicationContext.\nAnyways u are just using it to get event publisher , and we already have other ways to get that.",
+      "range": {
+        "startLine": 28,
+        "startChar": 13,
+        "endLine": 28,
+        "endChar": 38
+      },
+      "revId": "fbdd06f2ea55ddb0168c3c552d6aa694a0ea34cf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
