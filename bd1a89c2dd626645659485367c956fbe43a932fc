@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "88ed66c6_e54aeff4",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpBearerTokenPassthroughSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-03-27T16:34:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e2bce9e1_bf37b691",
+      "range": {
+        "startLine": 61,
+        "startChar": 1,
+        "endLine": 63,
+        "endChar": 0
+      },
+      "revId": "bd1a89c2dd626645659485367c956fbe43a932fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f724335e_116b5531",
@@ -71,6 +95,30 @@
       "writtenOn": "2024-03-27T14:01:51Z",
       "side": 1,
       "message": "move to setup?",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 53
+      },
+      "revId": "bd1a89c2dd626645659485367c956fbe43a932fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97a9ad86_e3f351b1",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpCmHandleCreateSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-03-27T16:34:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f724335e_116b5531",
       "range": {
         "startLine": 56,
         "startChar": 0,
