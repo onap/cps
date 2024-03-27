@@ -59,13 +59,25 @@ public interface CmNotificationSubscriptionPersistenceService {
             final String cmHandleId, final String xpath);
 
     /**
-     * Add or update cm notification subscription.
+     * Add cm notification subscription.
      *
      * @param datastoreType valid datastore type
-     * @param cmHandle cmhandle id
+     * @param cmHandleId cmhandle id
      * @param xpath valid xpath
-     * @param newSubscriptionId subscription Id to be added
+     * @param newSubscriptionId subscription id to be added
      */
-    void addOrUpdateCmNotificationSubscription(final DatastoreType datastoreType, final String cmHandle,
-                                               final String xpath, final String newSubscriptionId);
+    void addCmNotificationSubscription(final DatastoreType datastoreType, final String cmHandleId,
+                                       final String xpath, final String newSubscriptionId);
+
+    /**
+     * Remove cm notification Subscription.
+     *
+     * @param datastoreType valid datastore type
+     * @param cmHandleId cmhandle id
+     * @param xpath valid xpath
+     * @param subscriptionId subscription id to remove
+     */
+    void removeCmNotificationSubscription(final DatastoreType datastoreType, final String cmHandleId,
+                                          final String xpath, final String subscriptionId);
+
 }

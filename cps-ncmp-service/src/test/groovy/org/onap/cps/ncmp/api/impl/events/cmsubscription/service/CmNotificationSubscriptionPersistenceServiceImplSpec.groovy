@@ -76,7 +76,7 @@ class CmNotificationSubscriptionPersistenceServiceImplSpec extends Specification
              mockCpsQueryService.queryDataNodes('NCMP-Admin', 'cm-data-subscriptions',
                 cpsPathQuery, FetchDescendantsOption.OMIT_DESCENDANTS) >> [new DataNode(xpath: cpsPathQuery, leaves: ['xpath': '/x/y','subscriptionIds': ['sub-1']])]
         when: 'the method to add/update cm notification subscription is called'
-            objectUnderTest.addOrUpdateCmNotificationSubscription(DatastoreType.PASSTHROUGH_RUNNING, 'ch-1','/x/y', 'newSubId')
+            objectUnderTest.addCmNotificationSubscription(DatastoreType.PASSTHROUGH_RUNNING, 'ch-1','/x/y', 'newSubId')
         then: 'data service method to update list of subscribers is called once'
             1 * mockCpsDataService.updateNodeLeaves(
                 'NCMP-Admin',
@@ -95,7 +95,7 @@ class CmNotificationSubscriptionPersistenceServiceImplSpec extends Specification
                 cpsPathQuery.formatted(datastoreName),
                 FetchDescendantsOption.OMIT_DESCENDANTS) >> []
         when: 'the method to add/update cm notification subscription is called'
-            objectUnderTest.addOrUpdateCmNotificationSubscription(datastoreType, 'ch-1','/x/y', 'newSubId')
+            objectUnderTest.addCmNotificationSubscription(datastoreType, 'ch-1','/x/y', 'newSubId')
         then: 'data service method to update list of subscribers is called once with the correct parameters'
             1 * mockCpsDataService.saveData(
                 'NCMP-Admin',
