@@ -37,6 +37,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e72646fb_e0750621",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandlerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-03-27T14:17:15Z",
+      "side": 1,
+      "message": "NB: Could be stricter ie. expect JSON",
+      "range": {
+        "startLine": 212,
+        "startChar": 109,
+        "endLine": 212,
+        "endChar": 110
+      },
+      "revId": "f09d08b16c33c63adc12261eaaeb0b458b9119cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "415756a9_353e41a2",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandlerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-03-27T14:17:15Z",
+      "side": 1,
+      "message": "NB: Could be stricter ie. expect JSON",
+      "range": {
+        "startLine": 248,
+        "startChar": 109,
+        "endLine": 248,
+        "endChar": 111
+      },
+      "revId": "f09d08b16c33c63adc12261eaaeb0b458b9119cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "92cde89b_bf4218e0",
         "filename": "cps-rest/docs/openapi/cpsData.yml",
         "patchSetId": 3
@@ -53,6 +99,53 @@
         "startChar": 18,
         "endLine": 146,
         "endChar": 24
+      },
+      "revId": "f09d08b16c33c63adc12261eaaeb0b458b9119cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1faa5c6_eb7aa47b",
+        "filename": "cps-rest/docs/openapi/cpsData.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-03-27T14:17:15Z",
+      "side": 1,
+      "message": "I agreed, we had major debate about this in the past. Also would like to get Sourabh\u0027s opinion, he was involved in those discussion.",
+      "parentUuid": "92cde89b_bf4218e0",
+      "range": {
+        "startLine": 146,
+        "startChar": 18,
+        "endLine": 146,
+        "endChar": 24
+      },
+      "revId": "f09d08b16c33c63adc12261eaaeb0b458b9119cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "817c4dbd_9131e816",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-03-27T14:17:15Z",
+      "side": 1,
+      "message": "is the annotation needed here? Already done in the interface definition instead!\n(I know there is a similar legacy annotation in a different interface but I think that can be removed too)",
+      "range": {
+        "startLine": 136,
+        "startChar": 75,
+        "endLine": 136,
+        "endChar": 114
       },
       "revId": "f09d08b16c33c63adc12261eaaeb0b458b9119cd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
