@@ -1,0 +1,10 @@
+Code-Review+2: Lee Anjella Macabuhay <lee.anjella.macabuhay@est.tech>
+Code-Review+1: Daniel Hanrahan <daniel.hanrahan@est.tech>
+Verified+1: ONAP Required GHA <releng+onap.required.gha@linuxfoundation.org>
+Code-Review+1: Sean Beirne <sean.beirne@est.tech>
+Verified+1: ONAP Jobbuilder <onap-jobbuilder@jenkins.onap.org>
+Submitted-by: Lee Anjella Macabuhay <lee.anjella.macabuhay@est.tech>
+Submitted-at: Wed, 27 Mar 2024 16:26:42 +0000
+Reviewed-on: https://gerrit.onap.org/r/c/cps/+/137516
+Project: cps
+Branch: refs/heads/master
