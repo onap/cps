@@ -109,14 +109,8 @@ public class CmNotificationSubscriptionPersistenceServiceImpl implements CmNotif
 
     private void addNewSubscriptionViaDatastore(final DatastoreType datastoreType, final String cmHandleId,
                                                 final String xpath, final String newSubscriptionId) {
-        final String parentXpathFormat = "/datastores/datastore[@name='%s']/cm-handles";
-        String parentXpath = "";
-        if (datastoreType == PASSTHROUGH_RUNNING) {
-            parentXpath = parentXpathFormat.formatted("ncmp-datastore:passthrough-running");
-        } else {
-            parentXpath = parentXpathFormat.formatted("ncmp-datastore:passthrough-operational");
-        }
-
+        final String parentXpath = "/datastores/datastore[@name='%s']/cm-handles"
+                .formatted(datastoreType.getDatastoreName());
         final String updatedJson = String.format("{\"cm-handle\":[{\"id\":\"%s\",\"filters\":{\"filter\":"
                 + "[{\"xpath\":\"%s\",\"subscriptionIds\":[\"%s\"]}]}}]}", cmHandleId, xpath, newSubscriptionId);
         cpsDataService.saveData(NCMP_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME, parentXpath, updatedJson,
