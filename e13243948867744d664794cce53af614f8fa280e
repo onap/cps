@@ -39,6 +39,30 @@
       },
       "revId": "e13243948867744d664794cce53af614f8fa280e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "529ca164_20274d6a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionNcmpOutEventProducerSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-03-27T12:12:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b0c56235_833d6900",
+      "range": {
+        "startLine": 50,
+        "startChar": 76,
+        "endLine": 50,
+        "endChar": 108
+      },
+      "revId": "e13243948867744d664794cce53af614f8fa280e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
