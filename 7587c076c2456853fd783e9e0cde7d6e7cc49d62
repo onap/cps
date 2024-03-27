@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "857ac673_ad732e5a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-03-27T11:16:44Z",
+      "side": 1,
+      "message": "Provide solution that will allow future tests of Trust Level feature, by making mock DMI respond to health check rest requests.",
+      "revId": "7587c076c2456853fd783e9e0cde7d6e7cc49d62",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
