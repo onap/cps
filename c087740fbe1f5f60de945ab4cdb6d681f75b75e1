@@ -93,6 +93,47 @@
       },
       "revId": "c087740fbe1f5f60de945ab4cdb6d681f75b75e1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ded5576_4da1f52b",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpBearerTokenPassthroughSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-03-27T16:35:58Z",
+      "side": 1,
+      "message": "yes, why twice?",
+      "parentUuid": "00ff83ba_dfb1dc1e",
+      "range": {
+        "startLine": 51,
+        "startChar": 8,
+        "endLine": 51,
+        "endChar": 49
+      },
+      "revId": "c087740fbe1f5f60de945ab4cdb6d681f75b75e1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65245bb8_aecae599",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpCmHandleUpgradeSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-03-27T16:35:58Z",
+      "side": 1,
+      "message": "there seems to be a lot of updates to this file unrelated to the original problem.\nBut unclear what they are about, can you at least mention in the commit message please",
+      "revId": "c087740fbe1f5f60de945ab4cdb6d681f75b75e1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
