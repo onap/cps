@@ -18,7 +18,7 @@ class NcmpCmNotificationSubscriptionSpec extends CpsIntegrationSpecBase {
             assert cmNotificationSubscriptionPersistenceService.
                 getOngoingCmNotificationSubscriptionIds(datastoreType,cmHandleId,xpath).size() == 0
         when: 'we add a new cm notification subscription'
-            cmNotificationSubscriptionPersistenceService.addOrUpdateCmNotificationSubscription(datastoreType,cmHandleId,xpath,
+            cmNotificationSubscriptionPersistenceService.addCmNotificationSubscription(datastoreType,cmHandleId,xpath,
                 'subId-1')
         then: 'there is an ongoing cm subscription for that CM handle and xpath'
             assert cmNotificationSubscriptionPersistenceService.isOngoingCmNotificationSubscription(datastoreType,cmHandleId,xpath)
@@ -32,10 +32,10 @@ class NcmpCmNotificationSubscriptionSpec extends CpsIntegrationSpecBase {
             def datastoreType = PASSTHROUGH_RUNNING
             def cmHandleId = 'ch-1'
             def xpath = '/x/y'
-            cmNotificationSubscriptionPersistenceService.addOrUpdateCmNotificationSubscription(datastoreType,cmHandleId,xpath,
+            cmNotificationSubscriptionPersistenceService.addCmNotificationSubscription(datastoreType,cmHandleId,xpath,
                 'subId-1')
         when: 'a new cm notification subscription is made for the SAME CM handle and xpath'
-            cmNotificationSubscriptionPersistenceService.addOrUpdateCmNotificationSubscription(datastoreType,cmHandleId,xpath,
+            cmNotificationSubscriptionPersistenceService.addCmNotificationSubscription(datastoreType,cmHandleId,xpath,
                 'subId-2')
         then: 'it is added to the ongoing list of subscription ids'
             def subscriptionIds = cmNotificationSubscriptionPersistenceService.getOngoingCmNotificationSubscriptionIds(datastoreType,cmHandleId,xpath)
