@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "712b0ceb_4d109041",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionNcmpOutEventProducer.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-03-27T15:51:47Z",
+      "side": 1,
+      "message": "these are purely in memory datastructure.\nIf the server shuts down then its all cleared.\nBut yes the calling code will invoke this code whenever there is a new event to NCMP.\n\nIdea is to have the below flow.\n- Clients sends us the subscription request ( we read it , save it in HZ etc )\n- Now we want to schedule the event in hope that we want to send the response back to the client reading from HZ ( whatever the state be )\n- if the DMI responds WITHIN the configured time then we cancel the scheduled task and publish the response event on demand.\n- if the DMI doesnt responds back then the scheduled job will anyways do what its scheduled to do.",
+      "parentUuid": "4f82b88c_8b6e7a00",
+      "range": {
+        "startLine": 61,
+        "startChar": 4,
+        "endLine": 61,
+        "endChar": 117
+      },
+      "revId": "2b7a3d4eb23ab62da84e2fdded6fd0f48698573d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "22ff0892_dfb9c1c8",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionNcmpOutEventProducerSpec.groovy",
         "patchSetId": 13
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-27T15:42:42Z",
       "side": 1,
       "message": "Why is the sleep needed? Just to simulate DMI delay?",
+      "range": {
+        "startLine": 65,
+        "startChar": 146,
+        "endLine": 67,
+        "endChar": 28
+      },
+      "revId": "2b7a3d4eb23ab62da84e2fdded6fd0f48698573d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a673211_78e3f802",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionNcmpOutEventProducerSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-03-27T15:51:47Z",
+      "side": 1,
+      "message": "yeah.. Receiving the event from DMI.",
+      "parentUuid": "22ff0892_dfb9c1c8",
       "range": {
         "startLine": 65,
         "startChar": 146,
