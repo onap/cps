@@ -16,6 +16,29 @@
       "message": "Nice one",
       "revId": "25acf49eeca3af4127c6a2114f44330450c7f45d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca2e38b9_5b9a78f3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-03-27T15:49:42Z",
+      "side": 1,
+      "message": "i think this can be made final as it ias assigned in both if and else block",
+      "range": {
+        "startLine": 112,
+        "startChar": 8,
+        "endLine": 112,
+        "endChar": 28
+      },
+      "revId": "25acf49eeca3af4127c6a2114f44330450c7f45d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
