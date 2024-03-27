@@ -31,9 +31,9 @@ public interface CmNotificationSubscriptionPersistenceService {
     /**
      * Check if we have an ongoing cm subscription based on the parameters.
      *
-     * @param datastoreType valid datastore type
-     * @param cmHandleId    cmhandle id
-     * @param xpath         valid xpath
+     * @param datastoreType the susbcription target datastore type
+     * @param cmHandleId the id of the cm handle for the susbcription
+     * @param xpath the target xpath
      * @return true for ongoing cmsubscription , otherwise false
      */
     boolean isOngoingCmNotificationSubscription(final DatastoreType datastoreType, final String cmHandleId,
@@ -50,22 +50,35 @@ public interface CmNotificationSubscriptionPersistenceService {
     /**
      * Get all ongoing cm notification subscription based on the parameters.
      *
-     * @param datastoreType valid datastore type
-     * @param cmHandleId    cmhandle id
-     * @param xpath         valid xpath
+     * @param datastoreType the susbcription target datastore type
+     * @param cmHandleId the id of the cm handle for the susbcription
+     * @param xpath the target xpath
      * @return collection of subscription ids of ongoing cm notification subscription
      */
     Collection<String> getOngoingCmNotificationSubscriptionIds(final DatastoreType datastoreType,
             final String cmHandleId, final String xpath);
 
     /**
-     * Add or update cm notification subscription.
+     * Add cm notification subscription.
      *
-     * @param datastoreType valid datastore type
-     * @param cmHandle cmhandle id
-     * @param xpath valid xpath
-     * @param newSubscriptionId subscription Id to be added
+     * @param datastoreType the susbcription target datastore type
+     * @param cmHandleId the id of the cm handle for the susbcription
+     * @param xpath the target xpath
+     * @param newSubscriptionId subscription id to be added
      */
-    void addOrUpdateCmNotificationSubscription(final DatastoreType datastoreType, final String cmHandle,
-                                               final String xpath, final String newSubscriptionId);
+    void addCmNotificationSubscription(final DatastoreType datastoreType, final String cmHandleId,
+                                       final String xpath, final String newSubscriptionId);
+
+    /**
+     * Remove cm notification Subscription.
+     *
+     * @param datastoreType the susbcription target datastore type
+     * @param cmHandleId the id of the cm handle for the susbcription
+     * @param xpath the target xpath
+     * @param subscriptionId subscription id to remove
+     */
+    void removeCmNotificationSubscription(final DatastoreType datastoreType, final String cmHandleId,
+                                          final String xpath, final String subscriptionId);
+
 }
+
