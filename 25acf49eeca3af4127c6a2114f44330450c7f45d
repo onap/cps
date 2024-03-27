@@ -87,6 +87,30 @@
       },
       "revId": "25acf49eeca3af4127c6a2114f44330450c7f45d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04b956fd_eefdb20f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-03-27T16:11:38Z",
+      "side": 1,
+      "message": "very good, I forgot...",
+      "parentUuid": "7ad7b268_ab3baa80",
+      "range": {
+        "startLine": 112,
+        "startChar": 8,
+        "endLine": 112,
+        "endChar": 28
+      },
+      "revId": "25acf49eeca3af4127c6a2114f44330450c7f45d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
