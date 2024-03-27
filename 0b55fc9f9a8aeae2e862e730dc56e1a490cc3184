@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e77f07c_74a89d42",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-03-27T12:48:03Z",
+      "side": 1,
+      "message": "overall idea looks good.. I just had a glimpse of it.\nDetailed comments to follow when you tell me its ready to be reviewed 😊",
+      "revId": "0b55fc9f9a8aeae2e862e730dc56e1a490cc3184",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d145643_50a18c64",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionDmiOutEventConsumer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-03-27T12:48:03Z",
+      "side": 1,
+      "message": "private final.\n\nThis way the bean wont be injected using constructor injection.\n\nWe use @RequiredArgsConstructor and final instance variables hand in hand so that the correct constructor is generated using Lombok.",
+      "range": {
+        "startLine": 37,
+        "startChar": 4,
+        "endLine": 37,
+        "endChar": 11
+      },
+      "revId": "0b55fc9f9a8aeae2e862e730dc56e1a490cc3184",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
