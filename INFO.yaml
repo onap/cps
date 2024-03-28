@@ -1,5 +1,5 @@
 # ============LICENSE_START=======================================================
-# Copyright (C) 2021-2022 Nordix Foundation.
+# Copyright (C) 2021-2024 Nordix Foundation.
 # ================================================================================
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -66,6 +66,11 @@ committers:
       email: 'lee.anjella.macabuhay@est.tech'
       company: 'Ericsson Software Technology'
       id: 'emaclee'
+      timezone: 'Europe/Dublin'
+    - name: 'Daniel Hanrahan'
+      email: 'daniel.hanrahan@est.tech'
+      company: 'Ericsson Software Technology'
+      id: 'danielhanrahan'
       timezone: 'Europe/Dublin'
 repositories:
     - cps
