@@ -23,7 +23,7 @@ package org.onap.cps.ncmp.api.impl.operations;
 
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
-import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
+import org.onap.cps.ncmp.api.impl.config.WebClientConfiguration;
 import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder;
 import org.onap.cps.utils.JsonObjectMapper;
@@ -35,7 +35,7 @@ public class DmiOperations {
 
     protected final InventoryPersistence inventoryPersistence;
     protected final JsonObjectMapper jsonObjectMapper;
-    protected final NcmpConfiguration.DmiProperties dmiProperties;
+    protected final WebClientConfiguration.DmiProperties dmiProperties;
     protected final DmiRestClient dmiRestClient;
     protected final DmiServiceUrlBuilder dmiServiceUrlBuilder;
 

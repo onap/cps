@@ -24,20 +24,19 @@ package org.onap.cps.ncmp.api.impl.client
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.node.ObjectNode
-import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration
-import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration.DmiProperties;
+import org.onap.cps.ncmp.api.impl.config.WebClientConfiguration;
 import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException
 import org.onap.cps.ncmp.utils.TestUtils
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.http.HttpEntity
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.web.client.HttpServerErrorException
-import org.springframework.web.client.RestTemplate
+import org.springframework.web.reactive.function.client.WebClient
+import reactor.core.publisher.Mono
 import spock.lang.Specification
 
 import static org.onap.cps.ncmp.api.impl.operations.OperationType.READ
@@ -45,43 +44,52 @@ import static org.onap.cps.ncmp.api.impl.operations.OperationType.PATCH
 import static org.onap.cps.ncmp.api.impl.operations.OperationType.CREATE
 
 @SpringBootTest
-@ContextConfiguration(classes = [DmiProperties, DmiRestClient, ObjectMapper])
+@ContextConfiguration(classes = [WebClientConfiguration, DmiRestClient, ObjectMapper])
 class DmiRestClientSpec extends Specification {
 
     static final NO_AUTH_HEADER = null
     static final BASIC_AUTH_HEADER = 'Basic c29tZS11c2VyOnNvbWUtcGFzc3dvcmQ='
     static final BEARER_AUTH_HEADER = 'Bearer my-bearer-token'
 
-    @SpringBean
-    RestTemplate mockRestTemplate = Mock(RestTemplate)
-
     @Autowired
-    NcmpConfiguration.DmiProperties dmiProperties
+    WebClientConfiguration.DmiProperties dmiProperties
 
     @Autowired
     DmiRestClient objectUnderTest
 
+    @SpringBean
+    WebClient mockWebClient = Mock(WebClient);
+
     @Autowired
     ObjectMapper objectMapper
 
-    def responseFromRestTemplate = Mock(ResponseEntity)
+    def mockRequestBodyUriSpec = Mock(WebClient.RequestBodyUriSpec)
+    def mockResponseSpec = Mock(WebClient.ResponseSpec)
+    def mockResponseEntity = Mock(ResponseEntity)
+    def monoSpec = Mono.just(mockResponseEntity)
 
     def 'DMI POST operation with JSON.'() {
-        given: 'the rest template returns a valid response entity for the expected parameters'
-            mockRestTemplate.postForEntity('my url', _ as HttpEntity, Object.class) >> responseFromRestTemplate
+        given: 'the web client returns a valid response entity for the expected parameters'
+            mockWebClient.post() >> mockRequestBodyUriSpec
+            mockRequestBodyUriSpec.body(_) >> mockRequestBodyUriSpec
+            mockRequestBodyUriSpec.uri(_) >> mockRequestBodyUriSpec
+            mockRequestBodyUriSpec.headers(_) >> mockRequestBodyUriSpec
+            mockRequestBodyUriSpec.retrieve() >> mockResponseSpec
+            mockResponseSpec.toEntity(Object.class) >> monoSpec
+            monoSpec.block() >> mockResponseEntity
         when: 'POST operation is invoked'
-            def result = objectUnderTest.postOperationWithJsonData('my url', 'some json', READ, null)
+            def result = objectUnderTest.postOperationWithJsonData('/my/url', 'some json', READ, null)
         then: 'the output of the method is equal to the output from the test template'
-            result == responseFromRestTemplate
+            result == mockResponseEntity
     }
 
     def 'Failing DMI POST operation.'() {
         given: 'the rest template returns a valid response entity'
             def serverResponse = 'server response'.getBytes()
             def httpServerErrorException = new HttpServerErrorException(HttpStatus.FORBIDDEN, 'status text', serverResponse, null)
-            mockRestTemplate.postForEntity(*_) >> { throw httpServerErrorException }
+            mockWebClient.post() >> { throw httpServerErrorException }
         when: 'POST operation is invoked'
-            def result = objectUnderTest.postOperationWithJsonData('some url', 'some json', operation, null)
+            def result = objectUnderTest.postOperationWithJsonData('/some', 'some json', operation, null)
         then: 'a Http Client Exception is thrown'
             def thrown = thrown(HttpClientRequestException)
         and: 'the exception has the relevant details from the error response'
@@ -97,16 +105,22 @@ class DmiRestClientSpec extends Specification {
             def dmiPluginHealthCheckResponseJsonData = TestUtils.getResourceFileContent('dmiPluginHealthCheckResponse.json')
             def jsonNode = objectMapper.readValue(dmiPluginHealthCheckResponseJsonData, JsonNode.class)
             ((ObjectNode) jsonNode).put('status', 'my status')
-            mockRestTemplate.getForObject(*_) >> {jsonNode}
+            def monoResponse = Mono.just(jsonNode)
+            mockWebClient.get() >> mockRequestBodyUriSpec
+            mockRequestBodyUriSpec.uri(_) >> mockRequestBodyUriSpec
+            mockRequestBodyUriSpec.headers(_) >> mockRequestBodyUriSpec
+            mockRequestBodyUriSpec.retrieve() >> mockResponseSpec
+            mockResponseSpec.bodyToMono(_) >> monoResponse
+            monoResponse.block() >> jsonNode
         when: 'get trust level of the dmi plugin'
-            def result = objectUnderTest.getDmiHealthStatus('some url')
+            def result = objectUnderTest.getDmiHealthStatus('some/url')
         then: 'the status value from the json is return'
             assert result == 'my status'
     }
 
     def 'Failing to get dmi plugin health status #scenario'() {
         given: 'rest template with #scenario'
-            mockRestTemplate.getForObject(*_) >> healthStatusResponse
+            mockWebClient.get() >> healthStatusResponse
         when: 'attempt to get health status of the dmi plugin'
             def result = objectUnderTest.getDmiHealthStatus('some url')
         then: 'result will be empty'

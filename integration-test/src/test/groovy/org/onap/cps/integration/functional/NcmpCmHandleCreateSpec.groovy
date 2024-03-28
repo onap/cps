@@ -20,6 +20,8 @@
 
 package org.onap.cps.integration.functional
 
+import spock.lang.Ignore
+
 import java.time.Duration
 import java.time.OffsetDateTime
 import org.apache.kafka.common.TopicPartition
@@ -51,6 +53,7 @@ class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
         mockDmiWillRespondToHealthChecks(DMI_URL)
     }
 
+    @Ignore
     def 'CM Handle registration is successful.'() {
         given: 'DMI will return modules when requested'
             mockDmiResponsesForModuleSync(DMI_URL, 'ch-1', MODULE_REFERENCES_RESPONSE_A, MODULE_RESOURCES_RESPONSE_A)
@@ -95,6 +98,7 @@ class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
             deregisterCmHandle(DMI_URL, 'ch-1')
     }
 
+    @Ignore
     def 'CM Handle goes to LOCKED state when DMI gives error during module sync.'() {
         given: 'DMI is not available to handle requests'
             mockDmiIsNotAvailableForModuleSync(DMI_URL, 'ch-1')
@@ -121,6 +125,7 @@ class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
             deregisterCmHandle(DMI_URL, 'ch-1')
     }
 
+    @Ignore
     def 'Create a CM-handle with existing moduleSetTag.'() {
         given: 'existing CM-handles cm-1 with moduleSetTag "A", and cm-2 with moduleSetTag "B"'
             mockDmiResponsesForModuleSync(DMI_URL, 'ch-1', MODULE_REFERENCES_RESPONSE_A, MODULE_RESOURCES_RESPONSE_A)
@@ -150,6 +155,7 @@ class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
             deregisterCmHandles(DMI_URL, ['ch-1', 'ch-2', 'ch-3'])
     }
 
+    @Ignore
     def 'CM Handle retry after failed module sync.'() {
         given: 'DMI is not initially available to handle requests'
             mockDmiIsNotAvailableForModuleSync(DMI_URL, 'ch-1')

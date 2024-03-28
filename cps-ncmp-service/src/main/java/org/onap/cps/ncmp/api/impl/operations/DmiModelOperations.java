@@ -32,7 +32,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
-import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
+import org.onap.cps.ncmp.api.impl.config.WebClientConfiguration;
 import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
@@ -55,7 +55,7 @@ public class DmiModelOperations extends DmiOperations {
      */
     public DmiModelOperations(final InventoryPersistence inventoryPersistence,
                               final JsonObjectMapper jsonObjectMapper,
-                              final NcmpConfiguration.DmiProperties dmiProperties,
+                              final WebClientConfiguration.DmiProperties dmiProperties,
                               final DmiRestClient dmiRestClient, final DmiServiceUrlBuilder dmiServiceUrlBuilder) {
         super(inventoryPersistence, jsonObjectMapper, dmiProperties, dmiRestClient, dmiServiceUrlBuilder);
     }
@@ -112,8 +112,8 @@ public class DmiModelOperations extends DmiOperations {
                                                                   final String cmHandle,
                                                                   final String resourceName) {
         final String dmiResourceDataUrl = getDmiResourceUrl(dmiServiceName, cmHandle, resourceName);
-        return dmiRestClient.postOperationWithJsonData(dmiResourceDataUrl, jsonRequestBody,
-                OperationType.READ, null);
+        return dmiRestClient.postOperationWithJsonData(dmiResourceDataUrl,
+                jsonRequestBody, OperationType.READ, null);
     }
 
     private static String getRequestBodyToFetchYangResources(final Collection<ModuleReference> newModuleReferences,

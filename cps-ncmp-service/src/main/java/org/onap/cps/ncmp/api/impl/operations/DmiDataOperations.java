@@ -35,7 +35,7 @@ import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.NcmpResponseStatus;
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
-import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
+import org.onap.cps.ncmp.api.impl.config.WebClientConfiguration;
 import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException;
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleState;
 import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence;
@@ -61,7 +61,7 @@ public class DmiDataOperations extends DmiOperations {
 
     public DmiDataOperations(final InventoryPersistence inventoryPersistence,
                              final JsonObjectMapper jsonObjectMapper,
-                             final NcmpConfiguration.DmiProperties dmiProperties,
+                             final WebClientConfiguration.DmiProperties dmiProperties,
                              final DmiRestClient dmiRestClient,
                              final DmiServiceUrlBuilder dmiServiceUrlBuilder) {
         super(inventoryPersistence, jsonObjectMapper, dmiProperties, dmiRestClient, dmiServiceUrlBuilder);

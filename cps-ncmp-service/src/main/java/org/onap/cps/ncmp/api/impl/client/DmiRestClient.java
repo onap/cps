@@ -22,19 +22,20 @@
 package org.onap.cps.ncmp.api.impl.client;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Locale;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration.DmiProperties;
+import org.onap.cps.ncmp.api.impl.config.WebClientConfiguration.DmiProperties;
 import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException;
 import org.onap.cps.ncmp.api.impl.operations.OperationType;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpStatusCodeException;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.BodyInserters;
+import org.springframework.web.reactive.function.client.WebClient;
 
 @Component
 @RequiredArgsConstructor
@@ -43,7 +44,7 @@ public class DmiRestClient {
 
     private static final String HEALTH_CHECK_URL_EXTENSION = "/actuator/health";
     private static final String NOT_SPECIFIED = "";
-    private final RestTemplate restTemplate;
+    private final WebClient webClient;
     private final DmiProperties dmiProperties;
 
     /**
@@ -59,14 +60,20 @@ public class DmiRestClient {
                                                             final String requestBodyAsJsonString,
                                                             final OperationType operationType,
                                                             final String authorization) {
-        final var httpEntity = new HttpEntity<>(requestBodyAsJsonString, configureHttpHeaders(new HttpHeaders(),
-                authorization));
         try {
-            return restTemplate.postForEntity(dmiResourceUrl, httpEntity, Object.class);
+            // create an async version of this call
+            return webClient.post().uri(new URI(dmiResourceUrl))
+                    .headers(httpHeaders -> configureHttpHeaders(httpHeaders, authorization))
+                    .body(BodyInserters.fromValue(requestBodyAsJsonString))
+                    .retrieve()
+                    .toEntity(Object.class)
+                    .block();
         } catch (final HttpStatusCodeException httpStatusCodeException) {
             final String exceptionMessage = "Unable to " + operationType.toString() + " resource data.";
             throw new HttpClientRequestException(exceptionMessage, httpStatusCodeException.getResponseBodyAsString(),
                 httpStatusCodeException.getStatusCode().value());
+        } catch (final URISyntaxException ex) {
+            throw new RuntimeException(ex);
         }
     }
 
@@ -77,13 +84,15 @@ public class DmiRestClient {
      * @return      plugin health status ("UP" is all OK, "" (not-specified) in case of any exception)
      */
     public String getDmiHealthStatus(final String dmiPluginBaseUrl) {
-        final HttpEntity<Object> httpHeaders = new HttpEntity<>(configureHttpHeaders(new HttpHeaders(), null));
         try {
-            final JsonNode responseHealthStatus =
-                restTemplate.getForObject(dmiPluginBaseUrl + HEALTH_CHECK_URL_EXTENSION,
-                    JsonNode.class, httpHeaders);
+            final JsonNode responseHealthStatus = webClient.get()
+                    .uri(new URI(dmiPluginBaseUrl + HEALTH_CHECK_URL_EXTENSION))
+                    .headers(httpHeaders -> configureHttpHeaders(httpHeaders, null))
+                    .retrieve()
+                    .bodyToMono(JsonNode.class).block();
+
             return responseHealthStatus == null ? NOT_SPECIFIED :
-                responseHealthStatus.get("status").asText();
+                    responseHealthStatus.get("status").asText();
         } catch (final Exception e) {
             log.warn("Failed to retrieve health status from {}. Error Message: {}", dmiPluginBaseUrl, e.getMessage());
             return NOT_SPECIFIED;
@@ -96,7 +105,6 @@ public class DmiRestClient {
         } else if (authorization != null && authorization.toLowerCase(Locale.getDefault()).startsWith("bearer ")) {
             httpHeaders.add(HttpHeaders.AUTHORIZATION, authorization);
         }
-        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         return httpHeaders;
     }
 }

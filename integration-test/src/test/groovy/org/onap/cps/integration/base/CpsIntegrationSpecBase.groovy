@@ -20,6 +20,12 @@
 
 package org.onap.cps.integration.base
 
+import okhttp3.mockwebserver.MockWebServer
+import org.springframework.test.web.reactive.server.WebTestClient
+import org.springframework.web.client.RestClient
+import org.springframework.web.client.RestTemplate
+import org.springframework.web.reactive.function.client.WebClient
+
 import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
 import org.onap.cps.api.CpsAnchorService
@@ -53,7 +59,6 @@ import org.springframework.http.MediaType
 import org.springframework.test.web.client.ExpectedCount
 import org.springframework.test.web.client.MockRestServiceServer
 import org.springframework.test.web.servlet.MockMvc
-import org.springframework.web.client.RestTemplate
 import org.testcontainers.spock.Testcontainers
 import spock.lang.Shared
 import spock.lang.Specification
