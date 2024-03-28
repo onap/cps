@@ -34,6 +34,9 @@ import org.onap.cps.ncmp.api.models.DataOperationRequest;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
+import org.onap.cps.ncmp.api.models.datajob.DataJobRequest;
+import org.onap.cps.ncmp.api.models.datajob.Response;
+import org.onap.cps.ncmp.api.models.datajob.RestProtocolParameters;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.ModuleDefinition;
 import org.onap.cps.spi.model.ModuleReference;
@@ -70,9 +73,9 @@ public interface NetworkCmProxyDataService {
     /**
      * Get resource data for operational.
      *
-     * @param cmResourceAddress     target datastore, cm handle and resource identifier
-     * @Link FetchDescendantsOption fetch descendants option
+     * @param cmResourceAddress target datastore, cm handle and resource identifier
      * @return {@code Object} resource data
+     * @Link FetchDescendantsOption fetch descendants option
      */
     Object getResourceDataForCmHandle(CmResourceAddress cmResourceAddress,
                                       FetchDescendantsOption fetchDescendantsOption);
@@ -80,10 +83,10 @@ public interface NetworkCmProxyDataService {
     /**
      * Execute (async) data operation for group of cm handles using dmi.
      *
-     * @param topicParamInQuery        topic name for (triggering) async responses
-     * @param dataOperationRequest     contains a list of operation definitions(multiple operations)
-     * @param requestId                request ID
-     * @param authorization            contents of Authorization header, or null if not present
+     * @param topicParamInQuery    topic name for (triggering) async responses
+     * @param dataOperationRequest contains a list of operation definitions(multiple operations)
+     * @param requestId            request ID
+     * @param authorization        contents of Authorization header, or null if not present
      */
     void executeDataOperationForCmHandles(String topicParamInQuery,
                                           DataOperationRequest dataOperationRequest,
@@ -99,7 +102,7 @@ public interface NetworkCmProxyDataService {
      * @param operationType      required operation type
      * @param requestBody        request body to create resource
      * @param contentType        content type in body
-     * @param authorization       contents of Authorization header, or null if not present
+     * @param authorization      contents of Authorization header, or null if not present
      * @return {@code Object} return data
      */
     Object writeResourceDataPassThroughRunningForCmHandle(String cmHandleId,
@@ -128,9 +131,9 @@ public interface NetworkCmProxyDataService {
     /**
      * Get module definitions for the given parameters.
      *
-     * @param cmHandleId        cm-handle identifier
-     * @param moduleName        module name
-     * @param moduleRevision    the revision of the module
+     * @param cmHandleId     cm-handle identifier
+     * @param moduleName     module name
+     * @param moduleRevision the revision of the module
      * @return list of module definitions (module name, revision, yang resource content)
      */
     Collection<ModuleDefinition> getModuleDefinitionsByCmHandleAndModule(String cmHandleId,
@@ -180,7 +183,7 @@ public interface NetworkCmProxyDataService {
     /**
      * Set the data sync enabled flag, along with the data sync state to true or false based on the cm handle id.
      *
-     * @param cmHandleId cm handle id
+     * @param cmHandleId      cm handle id
      * @param dataSyncEnabled data sync enabled flag
      */
     void setDataSyncEnabled(String cmHandleId, Boolean dataSyncEnabled);
@@ -202,3 +205,5 @@ public interface NetworkCmProxyDataService {
     Collection<String> executeCmHandleIdSearchForInventory(CmHandleQueryServiceParameters
                                                                cmHandleQueryServiceParameters);
 }
+
+
