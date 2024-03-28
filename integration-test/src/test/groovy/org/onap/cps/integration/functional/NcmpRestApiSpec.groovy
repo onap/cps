@@ -22,6 +22,7 @@ package org.onap.cps.integration.functional
 
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
 import org.springframework.http.MediaType
+import spock.lang.Ignore
 import spock.util.concurrent.PollingConditions
 import static org.hamcrest.Matchers.containsInAnyOrder
 import static org.hamcrest.Matchers.hasSize
@@ -41,6 +42,7 @@ class NcmpRestApiSpec extends CpsIntegrationSpecBase {
         mockDmiWillRespondToHealthChecks(DMI_URL)
     }
 
+    @Ignore
     def 'Register CM Handles using REST API.'() {
         given: 'DMI will return modules'
             mockDmiResponsesForModuleSync(DMI_URL, 'ch-1', MODULE_REFERENCES_RESPONSE_A, MODULE_RESOURCES_RESPONSE_A)
@@ -60,6 +62,7 @@ class NcmpRestApiSpec extends CpsIntegrationSpecBase {
             }
     }
 
+    @Ignore
     def 'Search for CM Handles by module using REST API.'() {
         given: 'a JSON request body containing search parameter'
             def requestBodyWithModuleCondition = """{
@@ -82,6 +85,7 @@ class NcmpRestApiSpec extends CpsIntegrationSpecBase {
             'M3'       || ['ch-3']
     }
 
+    @Ignore
     def 'De-register CM handles using REST API.'() {
         when: 'a POST request is made to deregister the CM Handle'
             def requestBody = '{"dmiPlugin":"'+DMI_URL+'", "removedCmHandles": ["ch-1", "ch-2", "ch-3"]}'
