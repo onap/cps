@@ -16,6 +16,52 @@
       "message": "recheck",
       "revId": "b3779fd53172737a81fc02c9a8e1bf9cdf6b045d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff783e5f_76c7ed55",
+        "filename": "cps-path-parser/pom.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-03-28T12:36:21Z",
+      "side": 1,
+      "message": "NB: probably can be removed",
+      "range": {
+        "startLine": 4,
+        "startChar": 2,
+        "endLine": 4,
+        "endChar": 38
+      },
+      "revId": "b3779fd53172737a81fc02c9a8e1bf9cdf6b045d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b23de336_059efb04",
+        "filename": "cps-rest/pom.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-03-28T12:36:21Z",
+      "side": 1,
+      "message": "NB: probably can be removed",
+      "range": {
+        "startLine": 4,
+        "startChar": 2,
+        "endLine": 4,
+        "endChar": 38
+      },
+      "revId": "b3779fd53172737a81fc02c9a8e1bf9cdf6b045d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

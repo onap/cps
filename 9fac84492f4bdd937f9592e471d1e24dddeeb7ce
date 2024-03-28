@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b51afab_e6a3b575",
+        "filename": "cps-ncmp-rest/lombok.config",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-03-28T12:36:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8adeab18_69e03bdf",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 22
+      },
+      "revId": "9fac84492f4bdd937f9592e471d1e24dddeeb7ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f89fc0c6_efd5811a",
@@ -81,6 +105,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf3cf7cb_89d02f81",
+        "filename": "cps-ncmp-service/lombok.config",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-03-28T12:36:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f89fc0c6_efd5811a",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 26
+      },
+      "revId": "9fac84492f4bdd937f9592e471d1e24dddeeb7ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d02eee01_041228f1",
@@ -94,6 +142,30 @@
       "writtenOn": "2024-03-26T10:53:59Z",
       "side": 1,
       "message": "NB: Same as above",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 23
+      },
+      "revId": "9fac84492f4bdd937f9592e471d1e24dddeeb7ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "67b73468_1a2100dc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/embeddedcache/TrustLevelCacheConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-03-28T12:36:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d02eee01_041228f1",
       "range": {
         "startLine": 3,
         "startChar": 18,
@@ -198,6 +270,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "844ef254_912c3a99",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/CmHandleQueriesImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-03-28T12:36:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "871c31f2_17795176",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 27
+      },
+      "revId": "9fac84492f4bdd937f9592e471d1e24dddeeb7ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3537f2da_d6915809",
@@ -221,6 +317,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "073268ba_abecbe20",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/trustlevel/TrustLevelManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-03-28T12:36:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3537f2da_d6915809",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 23
+      },
+      "revId": "9fac84492f4bdd937f9592e471d1e24dddeeb7ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1a879bd9_e18bd196",
@@ -234,6 +354,30 @@
       "writtenOn": "2024-03-26T10:53:59Z",
       "side": 1,
       "message": "dublicatedYangResourceException is more descriptive",
+      "range": {
+        "startLine": 276,
+        "startChar": 64,
+        "endLine": 276,
+        "endChar": 83
+      },
+      "revId": "9fac84492f4bdd937f9592e471d1e24dddeeb7ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "371edb34_e179d084",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-03-28T12:36:21Z",
+      "side": 1,
+      "message": "NB: is legacy issue.\nLets focus on teh changed stuff",
+      "parentUuid": "1a879bd9_e18bd196",
       "range": {
         "startLine": 276,
         "startChar": 64,
