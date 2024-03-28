@@ -35,6 +35,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2625fa9_b1941987",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-03-28T12:26:58Z",
+      "side": 1,
+      "message": "plugin did the same redundant dependencies cleaning yes",
+      "parentUuid": "a7ff9ae5_871bd746",
+      "revId": "6a960eb41a3d9255ba1fae664b6499724807c344",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "52562364_a942eef5",
@@ -48,6 +66,30 @@
       "writtenOn": "2024-03-28T09:12:57Z",
       "side": 1,
       "message": "Q: what does this do exactly?",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 84
+      },
+      "revId": "6a960eb41a3d9255ba1fae664b6499724807c344",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4de631c0_a899fe95",
+        "filename": "cps-ncmp-rest/lombok.config",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-03-28T12:26:58Z",
+      "side": 1,
+      "message": "this was added for the @Qualifier since spring uses @Qualifier now to choose beans too,this will tell Lombok to copy @Qualifier info to constructors so that Spring gets the right bean.",
+      "parentUuid": "52562364_a942eef5",
       "range": {
         "startLine": 21,
         "startChar": 0,
@@ -81,6 +123,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f2345d0_5e36bc6e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-03-28T12:26:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd8541e0_e36b9a58",
+      "range": {
+        "startLine": 281,
+        "startChar": 47,
+        "endLine": 281,
+        "endChar": 55
+      },
+      "revId": "6a960eb41a3d9255ba1fae664b6499724807c344",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "56bf5c9b_4a1ac624",
@@ -94,6 +160,30 @@
       "writtenOn": "2024-03-28T09:12:57Z",
       "side": 1,
       "message": "Q: why is this needed?",
+      "range": {
+        "startLine": 156,
+        "startChar": 67,
+        "endLine": 156,
+        "endChar": 81
+      },
+      "revId": "6a960eb41a3d9255ba1fae664b6499724807c344",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac7b8d53_1da836b9",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-03-28T12:26:58Z",
+      "side": 1,
+      "message": "not needed",
+      "parentUuid": "56bf5c9b_4a1ac624",
       "range": {
         "startLine": 156,
         "startChar": 67,
