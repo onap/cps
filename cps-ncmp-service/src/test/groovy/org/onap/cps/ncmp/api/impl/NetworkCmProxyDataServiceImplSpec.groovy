@@ -25,6 +25,11 @@ package org.onap.cps.ncmp.api.impl
 
 import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse
 import org.onap.cps.ncmp.api.models.CmResourceAddress
+import org.onap.cps.ncmp.api.models.datajob.DataJobRequest
+import org.onap.cps.ncmp.api.models.datajob.ReadOperation
+import org.onap.cps.ncmp.api.models.datajob.OutputParameters
+import org.onap.cps.ncmp.api.models.datajob.ScopeType
+import org.onap.cps.ncmp.api.models.datajob.WriteOperation
 
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
