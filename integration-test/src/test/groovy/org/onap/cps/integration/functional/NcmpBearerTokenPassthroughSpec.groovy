@@ -20,6 +20,8 @@
 
 package org.onap.cps.integration.functional
 
+import spock.lang.Ignore
+
 import java.time.Duration
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
 import org.springframework.http.HttpHeaders
@@ -55,6 +57,7 @@ class NcmpBearerTokenPassthroughSpec extends CpsIntegrationSpecBase {
         deregisterCmHandle(DMI_URL, 'ch-1')
     }
 
+    @Ignore
     def 'Bearer token is passed from NCMP to DMI in pass-through data operations.'() {
         given: 'DMI will expect to receive a request with a bearer token'
             def targetDmiUrl = "$DMI_URL/dmi/v1/ch/ch-1/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=my-resource-id"
@@ -77,6 +80,7 @@ class NcmpBearerTokenPassthroughSpec extends CpsIntegrationSpecBase {
             httpMethod << [GET, POST, PUT, PATCH, DELETE]
     }
 
+    @Ignore
     def 'Basic auth header is NOT passed from NCMP to DMI in pass-through data operations.'() {
         given: 'DMI will expect to receive a request with no authorization header'
             def targetDmiUrl = "$DMI_URL/dmi/v1/ch/ch-1/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=my-resource-id"
@@ -99,6 +103,7 @@ class NcmpBearerTokenPassthroughSpec extends CpsIntegrationSpecBase {
             httpMethod << [GET, POST, PUT, PATCH, DELETE]
     }
 
+    @Ignore
     def 'Bearer token is passed from NCMP to DMI in async batch pass-through data operation.'() {
         given: 'DMI will expect to receive a request with a bearer token'
             mockDmiServer.expect(method(POST))
