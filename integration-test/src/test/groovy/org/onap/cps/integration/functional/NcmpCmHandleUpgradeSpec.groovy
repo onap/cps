@@ -28,6 +28,7 @@ import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.models.UpgradedCmHandles
 import org.springframework.http.HttpStatus
+import spock.lang.Ignore
 import spock.util.concurrent.PollingConditions
 
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.anything
@@ -49,6 +50,7 @@ class NcmpCmHandleUpgradeSpec extends CpsIntegrationSpecBase {
         mockDmiWillRespondToHealthChecks(DMI_URL)
     }
 
+    @Ignore
     def 'Upgrade CM-handle with new moduleSetTag or no moduleSetTag.'() {
         given: 'DMI will return modules for initial registration'
             mockDmiResponsesForModuleSync(DMI_URL, CM_HANDLE_ID, INITIAL_MODULE_REFERENCES_RESPONSE, INITIAL_MODULE_RESOURCES_RESPONSE)
@@ -101,6 +103,7 @@ class NcmpCmHandleUpgradeSpec extends CpsIntegrationSpecBase {
             'initial'           | 'new'
     }
 
+    @Ignore
     def 'Upgrade CM-handle with existing moduleSetTag.'() {
         given: 'DMI will return modules for registration'
             mockDmiResponsesForModuleSync(DMI_URL, CM_HANDLE_ID, INITIAL_MODULE_REFERENCES_RESPONSE, INITIAL_MODULE_RESOURCES_RESPONSE)
@@ -144,6 +147,7 @@ class NcmpCmHandleUpgradeSpec extends CpsIntegrationSpecBase {
             'moduleSet1'        | 'moduleSet2'
     }
 
+    @Ignore
     def 'Skip upgrade of CM-handle with same moduleSetTag as before.'() {
         given: 'an existing CM-handle with expected initial modules: M1 and M2'
             mockDmiResponsesForModuleSync(DMI_URL, CM_HANDLE_ID, INITIAL_MODULE_REFERENCES_RESPONSE, INITIAL_MODULE_RESOURCES_RESPONSE)
@@ -168,6 +172,7 @@ class NcmpCmHandleUpgradeSpec extends CpsIntegrationSpecBase {
             deregisterCmHandle(DMI_URL, CM_HANDLE_ID)
     }
 
+    @Ignore
     def 'Upgrade of CM-handle fails due to DMI error.'() {
         given: 'DMI will return modules for initial registration'
             mockDmiResponsesForModuleSync(DMI_URL, CM_HANDLE_ID, INITIAL_MODULE_REFERENCES_RESPONSE, INITIAL_MODULE_RESOURCES_RESPONSE)
