@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fffca772_caead1ea",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-app/pom.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-03-28T13:22:22Z",
+      "side": 1,
+      "message": "specifically added on use of 6.0.0 for this \u003e\nhttps://gerrit.onap.org/r/c/cps/+/136002/3/dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-app/pom.xml",
+      "revId": "61fced58754a2d32a9c133ae30188edb5228ed10",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
