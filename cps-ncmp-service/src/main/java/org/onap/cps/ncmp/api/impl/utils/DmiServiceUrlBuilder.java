@@ -25,7 +25,7 @@ import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.apache.logging.log4j.util.Strings;
 import org.apache.logging.log4j.util.TriConsumer;
-import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
+import org.onap.cps.ncmp.api.impl.config.DmiWebClientConfiguration.DmiProperties;
 import org.onap.cps.spi.utils.CpsValidator;
 import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
@@ -36,7 +36,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RequiredArgsConstructor
 public class DmiServiceUrlBuilder {
 
-    private final NcmpConfiguration.DmiProperties dmiProperties;
+    private final DmiProperties dmiProperties;
     private final CpsValidator cpsValidator;
 
     /**
