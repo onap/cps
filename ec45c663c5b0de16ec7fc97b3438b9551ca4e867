@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0c6ba00_f90b8f32",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/ProcessReadDataJobs.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-03-28T12:17:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5dc35abe_ae87869d",
+      "range": {
+        "startLine": 28,
+        "startChar": 17,
+        "endLine": 28,
+        "endChar": 37
+      },
+      "revId": "ec45c663c5b0de16ec7fc97b3438b9551ca4e867",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3ae9262a_5bbb68bd",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-28T10:58:59Z",
       "side": 1,
       "message": "combine into 1 interface",
+      "range": {
+        "startLine": 27,
+        "startChar": 17,
+        "endLine": 27,
+        "endChar": 38
+      },
+      "revId": "ec45c663c5b0de16ec7fc97b3438b9551ca4e867",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "721ef088_bf8ff27b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/ProcessWriteDataJobs.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-03-28T12:17:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ae9262a_5bbb68bd",
       "range": {
         "startLine": 27,
         "startChar": 17,
@@ -72,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d5ac5ec0_72320d00",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/datajob/Operation.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-03-28T12:17:36Z",
+      "side": 1,
+      "message": "Issue with this one. ReadOperation and WriteOperation extend Operation.\nRecords don\u0027t play nice with inheritance, so you cannot extend a record.\nCan use polymorphism, so will look to see if there is a cleaner way to implement this.",
+      "parentUuid": "413a8f7b_dc4d4d3c",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 7
+      },
+      "revId": "ec45c663c5b0de16ec7fc97b3438b9551ca4e867",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9c012587_265610d4",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/datajob/ReadOperation.java",
         "patchSetId": 6
@@ -83,6 +155,30 @@
       "writtenOn": "2024-03-28T10:58:59Z",
       "side": 1,
       "message": "use record",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 7
+      },
+      "revId": "ec45c663c5b0de16ec7fc97b3438b9551ca4e867",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d48f4464_53305af5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/datajob/ReadOperation.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-03-28T12:17:36Z",
+      "side": 1,
+      "message": "Same issue as comment in \"Operation\".",
+      "parentUuid": "9c012587_265610d4",
       "range": {
         "startLine": 27,
         "startChar": 0,
