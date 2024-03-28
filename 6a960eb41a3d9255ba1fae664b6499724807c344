@@ -16,6 +16,92 @@
       "message": "recheck",
       "revId": "6a960eb41a3d9255ba1fae664b6499724807c344",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7ff9ae5_871bd746",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-03-28T09:12:57Z",
+      "side": 1,
+      "message": "Looks pretty good, I really liek the cleanup of redendant stuff n the poms, were they suggestions from that plugin?\n\nIO do have a few questions, mayeb teh comit messag needs some more info to answer them",
+      "revId": "6a960eb41a3d9255ba1fae664b6499724807c344",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52562364_a942eef5",
+        "filename": "cps-ncmp-rest/lombok.config",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-03-28T09:12:57Z",
+      "side": 1,
+      "message": "Q: what does this do exactly?",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 84
+      },
+      "revId": "6a960eb41a3d9255ba1fae664b6499724807c344",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd8541e0_e36b9a58",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-03-28T09:12:57Z",
+      "side": 1,
+      "message": "nb: retryContext",
+      "range": {
+        "startLine": 281,
+        "startChar": 47,
+        "endLine": 281,
+        "endChar": 55
+      },
+      "revId": "6a960eb41a3d9255ba1fae664b6499724807c344",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56bf5c9b_4a1ac624",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-03-28T09:12:57Z",
+      "side": 1,
+      "message": "Q: why is this needed?",
+      "range": {
+        "startLine": 156,
+        "startChar": 67,
+        "endLine": 156,
+        "endChar": 81
+      },
+      "revId": "6a960eb41a3d9255ba1fae664b6499724807c344",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
