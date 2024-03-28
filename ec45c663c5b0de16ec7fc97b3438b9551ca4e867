@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5dc35abe_ae87869d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/ProcessReadDataJobs.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-03-28T10:58:59Z",
+      "side": 1,
+      "message": "oen common interface DataJobService  (and DataJobServiceImpl)",
+      "range": {
+        "startLine": 28,
+        "startChar": 17,
+        "endLine": 28,
+        "endChar": 37
+      },
+      "revId": "ec45c663c5b0de16ec7fc97b3438b9551ca4e867",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ae9262a_5bbb68bd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/ProcessWriteDataJobs.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-03-28T10:58:59Z",
+      "side": 1,
+      "message": "combine into 1 interface",
+      "range": {
+        "startLine": 27,
+        "startChar": 17,
+        "endLine": 27,
+        "endChar": 38
+      },
+      "revId": "ec45c663c5b0de16ec7fc97b3438b9551ca4e867",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "413a8f7b_dc4d4d3c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/datajob/Operation.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-03-28T10:58:59Z",
+      "side": 1,
+      "message": "use record",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 7
+      },
+      "revId": "ec45c663c5b0de16ec7fc97b3438b9551ca4e867",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c012587_265610d4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/datajob/ReadOperation.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-03-28T10:58:59Z",
+      "side": 1,
+      "message": "use record",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 7
+      },
+      "revId": "ec45c663c5b0de16ec7fc97b3438b9551ca4e867",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
