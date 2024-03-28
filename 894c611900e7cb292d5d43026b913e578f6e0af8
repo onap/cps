@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2837bedd_3bc5995c",
+        "filename": "INFO.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-03-28T22:34:10Z",
+      "side": 1,
+      "message": "nb: needs to be removed",
+      "range": {
+        "startLine": 55,
+        "startChar": 4,
+        "endLine": 58,
+        "endChar": 23
+      },
+      "revId": "894c611900e7cb292d5d43026b913e578f6e0af8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
