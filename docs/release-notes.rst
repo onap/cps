@@ -45,6 +45,7 @@ Features
 --------
 3.4.7
     - `CPS-2061 <https://jira.onap.org/browse/CPS-2061>`_ Liquibase Steps Condensing and Cleanup.
+    - `CPS-2101 <https://jira.onap.org/browse/CPS-2101>`_ Uplift Spring Boot to 3.2.4 version.
 
 Version: 3.4.6
 ==============
