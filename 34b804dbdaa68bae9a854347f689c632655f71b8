@@ -16,6 +16,29 @@
       "message": "recheck",
       "revId": "34b804dbdaa68bae9a854347f689c632655f71b8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85901ad8_62bf32de",
+        "filename": "cps-ri/pom.xml",
+        "patchSetId": 9
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-03-29T09:08:45Z",
+      "side": 1,
+      "message": "NB: openrewrite was suggesting 62 for this.\nbut since using a higher version.. should be fine.",
+      "range": {
+        "startLine": 74,
+        "startChar": 55,
+        "endLine": 74,
+        "endChar": 56
+      },
+      "revId": "34b804dbdaa68bae9a854347f689c632655f71b8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
