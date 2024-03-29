@@ -73,6 +73,30 @@
       },
       "revId": "fbdd06f2ea55ddb0168c3c552d6aa694a0ea34cf",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b27a0e17_af48ccb7",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/utils/context/CpsCoreApplicationContext.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2024-03-29T12:18:38Z",
+      "side": 1,
+      "message": "Removed the File",
+      "parentUuid": "70fab91f_b173c76d",
+      "range": {
+        "startLine": 28,
+        "startChar": 13,
+        "endLine": 28,
+        "endChar": 38
+      },
+      "revId": "fbdd06f2ea55ddb0168c3c552d6aa694a0ea34cf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

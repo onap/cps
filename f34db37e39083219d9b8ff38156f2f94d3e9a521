@@ -16,6 +16,24 @@
       "message": "I think we should not have a separate Application Context.\nYou can still use an alternate to create the Cloud Builder.\nThere are examples in the NCMP code that doesnt use the Application Context to fetch the bean.\n\nIf we introduce one more application context that will eventually bring in additional complexity for all of us.",
       "revId": "f34db37e39083219d9b8ff38156f2f94d3e9a521",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e508f80a_5742424e",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/utils/context/CpsApplicationContext.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2024-03-29T12:18:38Z",
+      "side": 1,
+      "message": "Addresses in latest patch",
+      "parentUuid": "7f2b8594_1a0fee90",
+      "revId": "f34db37e39083219d9b8ff38156f2f94d3e9a521",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

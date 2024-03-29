@@ -65,6 +65,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "514bb229_c84d0eaa",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2024-03-29T12:18:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d9f94e5_28cc2ebb",
+      "range": {
+        "startLine": 110,
+        "startChar": 43,
+        "endLine": 110,
+        "endChar": 54
+      },
+      "revId": "4311584b16720a7d97665453162e50606bbad743",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a49291c2_21c81456",
@@ -102,6 +126,30 @@
       "side": 1,
       "message": "Yes . removed now",
       "parentUuid": "a49291c2_21c81456",
+      "range": {
+        "startLine": 210,
+        "startChar": 4,
+        "endLine": 213,
+        "endChar": 17
+      },
+      "revId": "4311584b16720a7d97665453162e50606bbad743",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7399ba3f_91fdc2ae",
+        "filename": "cps-service/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2024-03-29T12:18:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0554cb1c_34dc7582",
       "range": {
         "startLine": 210,
         "startChar": 4,
@@ -161,6 +209,24 @@
       "side": 1,
       "message": "maybe for now remove this class from here.\nand skip using the time in the cloud event.\nwhen we move this class from cps-ncmp-service to cps-service layer then we can later populate the same.",
       "parentUuid": "6ecf3cf7_d7966866",
+      "revId": "4311584b16720a7d97665453162e50606bbad743",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b2d769d_9305eceb",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/utils/EventDateTimeFormatter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2024-03-29T12:18:38Z",
+      "side": 1,
+      "message": "removed for now",
+      "parentUuid": "7a027349_7a59149a",
       "revId": "4311584b16720a7d97665453162e50606bbad743",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
