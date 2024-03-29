@@ -283,6 +283,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1077992b_830ecace",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/datajob/ScopeType.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-03-29T11:17:29Z",
+      "side": 1,
+      "message": "Ack - Dependent on Stakeholders\u0027 response",
+      "parentUuid": "2656beff_f6a2dd5d",
+      "range": {
+        "startLine": 23,
+        "startChar": 12,
+        "endLine": 23,
+        "endChar": 22
+      },
+      "revId": "6fd1187cbb0163d4adbea98a23061b200da36faf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4ee3f7ff_13e4a1f9",
@@ -296,6 +320,30 @@
       "writtenOn": "2024-03-26T11:26:52Z",
       "side": 1,
       "message": "separate open issue consider String for future fliexibility!",
+      "range": {
+        "startLine": 23,
+        "startChar": 12,
+        "endLine": 23,
+        "endChar": 19
+      },
+      "revId": "6fd1187cbb0163d4adbea98a23061b200da36faf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "decf4a7f_7cf91206",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/datajob/Status.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-03-29T11:17:29Z",
+      "side": 1,
+      "message": "Ack - Dependent on Stakeholders\u0027 response",
+      "parentUuid": "4ee3f7ff_13e4a1f9",
       "range": {
         "startLine": 23,
         "startChar": 12,
