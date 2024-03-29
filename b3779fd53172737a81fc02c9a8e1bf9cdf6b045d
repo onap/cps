@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d47b6ad_81efc180",
+        "filename": "cps-path-parser/pom.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-03-29T10:22:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff783e5f_76c7ed55",
+      "range": {
+        "startLine": 4,
+        "startChar": 2,
+        "endLine": 4,
+        "endChar": 38
+      },
+      "revId": "b3779fd53172737a81fc02c9a8e1bf9cdf6b045d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b23de336_059efb04",
@@ -71,6 +95,54 @@
       "writtenOn": "2024-03-28T12:36:21Z",
       "side": 1,
       "message": "NB: probably can be removed",
+      "range": {
+        "startLine": 4,
+        "startChar": 2,
+        "endLine": 4,
+        "endChar": 38
+      },
+      "revId": "b3779fd53172737a81fc02c9a8e1bf9cdf6b045d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30ad9e02_35a5d77e",
+        "filename": "cps-rest/pom.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-03-29T10:22:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b23de336_059efb04",
+      "range": {
+        "startLine": 4,
+        "startChar": 2,
+        "endLine": 4,
+        "endChar": 38
+      },
+      "revId": "b3779fd53172737a81fc02c9a8e1bf9cdf6b045d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "96a088c8_f59a8cf7",
+        "filename": "cps-rest/pom.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-03-29T10:22:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b23de336_059efb04",
       "range": {
         "startLine": 4,
         "startChar": 2,
