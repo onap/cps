@@ -66,8 +66,9 @@ public class DmiModelOperations extends DmiOperations {
      * @param yangModelCmHandle the yang model cm handle
      * @return module references
      */
-    public List<ModuleReference> getModuleReferences(final YangModelCmHandle yangModelCmHandle) {
-        final DmiRequestBody dmiRequestBody = DmiRequestBody.builder().build();
+    public List<ModuleReference> getModuleReferences(final YangModelCmHandle yangModelCmHandle) { // check if the module set tag is present
+        final DmiRequestBody dmiRequestBody = DmiRequestBody.builder()
+                .moduleSetTag(yangModelCmHandle.getModuleSetTag()).build();
         dmiRequestBody.asDmiProperties(yangModelCmHandle.getDmiProperties());
         final ResponseEntity<Object> dmiFetchModulesResponseEntity = getResourceFromDmiWithJsonData(
             yangModelCmHandle.resolveDmiServiceName(MODEL),

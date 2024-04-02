@@ -43,6 +43,7 @@ public class DmiRequestBody {
     @JsonProperty("cmHandleProperties")
     private Map<String, String> dmiProperties;
     private String requestId;
+    private String moduleSetTag;
 
     /**
      * Set DMI Properties by converting a list of YangModelCmHandle.Property objects.

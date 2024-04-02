@@ -36,6 +36,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.onap.cps.ncmp.api.impl.operations.DmiRequestBody;
 import org.onap.cps.ncmp.api.impl.utils.EventDateTimeFormatter;
 import org.onap.cps.ncmp.dmi.rest.stub.model.data.operational.CmHandle;
 import org.onap.cps.ncmp.dmi.rest.stub.model.data.operational.DataOperationRequest;
@@ -175,6 +176,8 @@ public class DmiRestStubController {
             @PathVariable("cmHandleId") final String cmHandleId,
             @RequestBody final Object moduleResourcesReadRequest) {
         delay(moduleResourcesDelayMs);
+        DmiRequestBody dmiRequestBody = objectMapper.convertValue(moduleResourcesReadRequest, DmiRequestBody.class);
+        log.info("ModuleSetTag value of the DmiRequestBody: {}", dmiRequestBody.getModuleSetTag());
         final String moduleResourcesResponseContent = getModuleResourceResponse(cmHandleId,
                 "ModuleResourcesResponse.json");
         log.info("cm handle: {} requested for modules resources", cmHandleId);
