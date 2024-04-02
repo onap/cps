@@ -23,9 +23,6 @@
 
 package org.onap.cps.ncmp.api.impl
 
-import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse
-import org.onap.cps.ncmp.api.models.CmResourceAddress
-
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
@@ -35,6 +32,8 @@ import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RU
 import static org.onap.cps.ncmp.api.impl.operations.OperationType.CREATE
 import static org.onap.cps.ncmp.api.impl.operations.OperationType.UPDATE
 
+import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse
+import org.onap.cps.ncmp.api.models.CmResourceAddress
 import org.onap.cps.ncmp.api.impl.utils.AlternateIdChecker
 import com.hazelcast.map.IMap
 import org.onap.cps.ncmp.api.NetworkCmProxyCmHandleQueryService
@@ -57,7 +56,6 @@ import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.api.models.DataOperationRequest
 import org.onap.cps.spi.exceptions.CpsException
 import org.onap.cps.spi.model.ConditionProperties
-
 import java.util.stream.Collectors
 import org.onap.cps.utils.JsonObjectMapper
 import com.fasterxml.jackson.databind.ObjectMapper
