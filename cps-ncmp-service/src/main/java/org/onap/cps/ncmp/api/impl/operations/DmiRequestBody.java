@@ -33,7 +33,7 @@ import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Getter
 @Builder
-@JsonPropertyOrder({"operation", "dataType", "data", "cmHandleProperties", "requestId"})
+@JsonPropertyOrder({"operation", "dataType", "data", "cmHandleProperties", "requestId", "moduleSetTag"})
 public class DmiRequestBody {
 
     @JsonProperty("operation")
@@ -43,6 +43,7 @@ public class DmiRequestBody {
     @JsonProperty("cmHandleProperties")
     private Map<String, String> dmiProperties;
     private String requestId;
+    private String moduleSetTag;
 
     /**
      * Set DMI Properties by converting a list of YangModelCmHandle.Property objects.
