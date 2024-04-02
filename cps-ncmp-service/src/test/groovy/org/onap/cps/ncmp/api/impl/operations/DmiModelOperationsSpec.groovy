@@ -58,7 +58,7 @@ class DmiModelOperationsSpec extends DmiOperationsBaseSpec {
             def moduleReferencesAsLisOfMaps = [[moduleName: 'mod1', revision: 'A'], [moduleName: 'mod2', revision: 'X']]
             def expectedUrl = "${dmiServiceName}/dmi/v1/ch/${cmHandleId}/modules"
             def responseFromDmi = new ResponseEntity([schemas: moduleReferencesAsLisOfMaps], HttpStatus.OK)
-            mockDmiRestClient.postOperationWithJsonData(expectedUrl, '{"cmHandleProperties":{}}', READ, NO_AUTH_HEADER)
+            mockDmiRestClient.postOperationWithJsonData(expectedUrl, '{"cmHandleProperties":{},"moduleSetTag":"tag1"}', READ, NO_AUTH_HEADER)
                     >> responseFromDmi
         when: 'get module references is called'
             def result = objectUnderTest.getModuleReferences(yangModelCmHandle)
@@ -91,7 +91,7 @@ class DmiModelOperationsSpec extends DmiOperationsBaseSpec {
         and: 'a positive response from DMI service when it is called with tha expected parameters'
             def responseFromDmi = new ResponseEntity<String>(HttpStatus.OK)
             mockDmiRestClient.postOperationWithJsonData("${dmiServiceName}/dmi/v1/ch/${cmHandleId}/modules",
-                    '{"cmHandleProperties":' + expectedAdditionalPropertiesInRequest + '}', READ, NO_AUTH_HEADER) >> responseFromDmi
+                    '{"cmHandleProperties":' + expectedAdditionalPropertiesInRequest + ',"moduleSetTag":"tag1"}', READ, NO_AUTH_HEADER) >> responseFromDmi
         when: 'a get module references is called'
             def result = objectUnderTest.getModuleReferences(yangModelCmHandle)
         then: 'the result is the response from DMI service'

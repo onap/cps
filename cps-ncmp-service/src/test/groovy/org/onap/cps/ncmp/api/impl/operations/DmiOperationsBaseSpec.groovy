@@ -74,5 +74,6 @@ abstract class DmiOperationsBaseSpec extends Specification {
         yangModelCmHandle.id = cmHandleId
         yangModelCmHandle.compositeState = new CompositeState()
         yangModelCmHandle.compositeState.cmHandleState = CmHandleState.READY
+        yangModelCmHandle.moduleSetTag = 'tag1'
     }
 }
