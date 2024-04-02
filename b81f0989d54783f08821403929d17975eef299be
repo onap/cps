@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6c36bf1_bf8342e3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiRequestBody.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-02T13:09:33Z",
+      "side": 1,
+      "message": "include moduleSetTag here for consistency",
+      "range": {
+        "startLine": 36,
+        "startChar": 86,
+        "endLine": 36,
+        "endChar": 87
+      },
+      "revId": "b81f0989d54783f08821403929d17975eef299be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
