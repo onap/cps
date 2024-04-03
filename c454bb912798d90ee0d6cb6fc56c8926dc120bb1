@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "977d8c50_5c73b323",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-04-03T12:32:04Z",
+      "side": 1,
+      "message": "NB: How does it sound if this block could have been placed under the setup() method? Since, we don\u0027t know when the DmiPluginWatchDog will run (e.g. every 30 seconds).",
+      "range": {
+        "startLine": 233,
+        "startChar": 0,
+        "endLine": 234,
+        "endChar": 118
+      },
+      "revId": "c454bb912798d90ee0d6cb6fc56c8926dc120bb1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
