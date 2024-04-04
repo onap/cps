@@ -48,6 +48,7 @@ class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
 
     def setup() {
         objectUnderTest = networkCmProxyDataService
+        mockDmiWillRespondToHealthChecks(DMI_URL)
     }
 
     def 'CM Handle registration is successful.'() {
@@ -122,8 +123,10 @@ class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
 
     def 'Create a CM-handle with existing moduleSetTag.'() {
         given: 'existing CM-handles cm-1 with moduleSetTag "A", and cm-2 with moduleSetTag "B"'
-            registerCmHandle(DMI_URL, 'ch-1', 'A', MODULE_REFERENCES_RESPONSE_A, MODULE_RESOURCES_RESPONSE_A)
-            registerCmHandle(DMI_URL, 'ch-2', 'B', MODULE_REFERENCES_RESPONSE_B, MODULE_RESOURCES_RESPONSE_B)
+            mockDmiResponsesForModuleSync(DMI_URL, 'ch-1', MODULE_REFERENCES_RESPONSE_A, MODULE_RESOURCES_RESPONSE_A)
+            mockDmiResponsesForModuleSync(DMI_URL, 'ch-2', MODULE_REFERENCES_RESPONSE_B, MODULE_RESOURCES_RESPONSE_B)
+            registerCmHandle(DMI_URL, 'ch-1', 'A')
+            registerCmHandle(DMI_URL, 'ch-2', 'B')
             assert ['M1', 'M2'] == objectUnderTest.getYangResourcesModuleReferences('ch-1').moduleName.sort()
             assert ['M1', 'M3'] == objectUnderTest.getYangResourcesModuleReferences('ch-2').moduleName.sort()
 

@@ -40,12 +40,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 class NcmpBearerTokenPassthroughSpec extends CpsIntegrationSpecBase {
 
-    static final NO_MODULE_SET_TAG = ''
     static final MODULE_REFERENCES_RESPONSE = readResourceDataFile('mock-dmi-responses/bookStoreAWithModules_M1_M2_Response.json')
     static final MODULE_RESOURCES_RESPONSE = readResourceDataFile('mock-dmi-responses/bookStoreAWithModules_M1_M2_ResourcesResponse.json')
 
     def setup() {
-        registerCmHandle(DMI_URL, 'ch-1', NO_MODULE_SET_TAG, MODULE_REFERENCES_RESPONSE, MODULE_RESOURCES_RESPONSE)
+        mockDmiWillRespondToHealthChecks(DMI_URL)
+        mockDmiResponsesForModuleSync(DMI_URL, 'ch-1', MODULE_REFERENCES_RESPONSE, MODULE_RESOURCES_RESPONSE)
+        registerCmHandle(DMI_URL, 'ch-1', NO_MODULE_SET_TAG)
+        mockDmiServer.reset()
+        mockDmiWillRespondToHealthChecks(DMI_URL)
     }
 
     def cleanup() {
