@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d65a6709_8f3248f8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 30
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-04T14:00:12Z",
+      "side": 1,
+      "message": "very high level comment.\ngot the idea.\nwill look in detail when I have more time.",
+      "revId": "ac034e6cfc0e9069ea6390afa1b1a30df74730de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0417d08_8f061bd6",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-04T14:00:12Z",
+      "side": 1,
+      "message": "2 methods logic looks very similar.\nsee if you can extract the common part and dont duplicate the code.",
+      "revId": "ac034e6cfc0e9069ea6390afa1b1a30df74730de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "836c7c26_61fabc9a",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 30
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-04T14:00:12Z",
+      "side": 1,
+      "message": "this is not mocking",
+      "range": {
+        "startLine": 60,
+        "startChar": 31,
+        "endLine": 60,
+        "endChar": 71
+      },
+      "revId": "ac034e6cfc0e9069ea6390afa1b1a30df74730de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "038bc2e2_08e035ac",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/E2ENetworkSliceSpec.groovy",
+        "patchSetId": 30
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-04T14:00:12Z",
+      "side": 1,
+      "message": "not mocking",
+      "range": {
+        "startLine": 52,
+        "startChar": 31,
+        "endLine": 52,
+        "endChar": 71
+      },
+      "revId": "ac034e6cfc0e9069ea6390afa1b1a30df74730de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
