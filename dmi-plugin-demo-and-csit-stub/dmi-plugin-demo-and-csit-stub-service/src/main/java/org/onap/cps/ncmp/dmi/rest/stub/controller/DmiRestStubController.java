@@ -156,6 +156,12 @@ public class DmiRestStubController {
     public ResponseEntity<String> getModuleReferences(@PathVariable("cmHandleId") final String cmHandleId,
                                                       @RequestBody final Object moduleReferencesRequest) {
         delay(moduleReferencesDelayMs);
+        try {
+            log.info("Incoming DMI request body: {}",
+                    objectMapper.writeValueAsString(moduleReferencesRequest));
+        } catch (final JsonProcessingException jsonProcessingException) {
+            log.info("Unable to parse dmi data operation request to json string");
+        }
         final String moduleResponseContent = getModuleResourceResponse(cmHandleId,
                 "ModuleResponse.json");
         log.info("cm handle: {} requested for modules", cmHandleId);
