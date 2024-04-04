@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7b1abf7d_49015fa2",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-04T07:56:59Z",
+      "side": 1,
+      "message": "NB: nothing is async here.\ncan remove this .\nsendDataUpdatedEvent should be fine.",
+      "range": {
+        "startLine": 376,
+        "startChar": 37,
+        "endLine": 376,
+        "endChar": 42
+      },
+      "revId": "4ef37e8ac8ec8cb0a609a70815a9fb45e7a920e3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7dd0430a_1dfff2db",
         "filename": "cps-service/src/main/java/org/onap/cps/events/CloudEventBuilder.java",
         "patchSetId": 12
@@ -36,6 +59,52 @@
         "startChar": 14,
         "endLine": 49,
         "endChar": 42
+      },
+      "revId": "4ef37e8ac8ec8cb0a609a70815a9fb45e7a920e3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ddc049b_3d9083c7",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/DataUpdateEventsService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-04T07:56:59Z",
+      "side": 1,
+      "message": "NB: how about CpsDataUpdateEventsService ??",
+      "range": {
+        "startLine": 41,
+        "startChar": 13,
+        "endLine": 41,
+        "endChar": 36
+      },
+      "revId": "4ef37e8ac8ec8cb0a609a70815a9fb45e7a920e3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "716ea7aa_281440d4",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/DataUpdateEventsService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-04T07:56:59Z",
+      "side": 1,
+      "message": "NB: publishCpsDataUpdateEvent",
+      "range": {
+        "startLine": 62,
+        "startChar": 16,
+        "endLine": 62,
+        "endChar": 38
       },
       "revId": "4ef37e8ac8ec8cb0a609a70815a9fb45e7a920e3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
