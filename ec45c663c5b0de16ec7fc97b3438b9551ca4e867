@@ -168,6 +168,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "212ba47c_3cefe776",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/datajob/Operation.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-04T08:15:48Z",
+      "side": 1,
+      "message": "Daniel and I agreed to just duplcaiet this in Read and Write Record, no need to extend a common class (which then cannot be a record)",
+      "parentUuid": "9af9e911_63e6fd11",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 7
+      },
+      "revId": "ec45c663c5b0de16ec7fc97b3438b9551ca4e867",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9c012587_265610d4",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/datajob/ReadOperation.java",
         "patchSetId": 6
