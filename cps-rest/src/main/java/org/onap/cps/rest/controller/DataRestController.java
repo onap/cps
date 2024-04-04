@@ -24,14 +24,15 @@
 
 package org.onap.cps.rest.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import io.micrometer.core.annotation.Timed;
 import jakarta.validation.ValidationException;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.onap.cps.api.CpsDataService;
@@ -103,11 +104,14 @@ public class DataRestController implements CpsDataApi {
     @Timed(value = "cps.data.controller.datanode.get.v1",
             description = "Time taken to get data node")
     public ResponseEntity<Object> getNodeByDataspaceAndAnchor(final String dataspaceName,
-        final String anchorName, final String xpath, final Boolean includeDescendants) {
+        final String anchorName, @RequestHeader(value = "Content-Type") final String contentTypeHeader,
+                                                              final String xpath, final Boolean includeDescendants) {
+        final ContentType contentType = contentTypeHeader.contains(MediaType.APPLICATION_XML_VALUE) ? ContentType.XML
+                : ContentType.JSON;
         final FetchDescendantsOption fetchDescendantsOption = Boolean.TRUE.equals(includeDescendants)
             ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS : FetchDescendantsOption.OMIT_DESCENDANTS;
         final DataNode dataNode = cpsDataService.getDataNodes(dataspaceName, anchorName, xpath,
-            fetchDescendantsOption).iterator().next();
+            fetchDescendantsOption, contentType).iterator().next();
         final String prefix = prefixResolver.getPrefix(dataspaceName, anchorName, dataNode.getXpath());
         return new ResponseEntity<>(DataMapUtils.toDataMapWithIdentifier(dataNode, prefix), HttpStatus.OK);
     }
@@ -116,19 +120,43 @@ public class DataRestController implements CpsDataApi {
     @Timed(value = "cps.data.controller.datanode.get.v2",
             description = "Time taken to get data node")
     public ResponseEntity<Object> getNodeByDataspaceAndAnchorV2(final String dataspaceName, final String anchorName,
+                                                                @RequestHeader(value = "Content-Type") final String contentTypeHeader,
                                                                 final String xpath,
                                                                 final String fetchDescendantsOptionAsString) {
+        final ContentType contentType = contentTypeHeader.contains(MediaType.APPLICATION_XML_VALUE) ? ContentType.XML
+                : ContentType.JSON;
         final FetchDescendantsOption fetchDescendantsOption =
                 FetchDescendantsOption.getFetchDescendantsOption(fetchDescendantsOptionAsString);
         final Collection<DataNode> dataNodes = cpsDataService.getDataNodes(dataspaceName, anchorName, xpath,
-                fetchDescendantsOption);
-        final List<Map<String, Object>> dataMaps = new ArrayList<>(dataNodes.size());
-        for (final DataNode dataNode: dataNodes) {
-            final String prefix = prefixResolver.getPrefix(dataspaceName, anchorName, dataNode.getXpath());
-            final Map<String, Object> dataMap = DataMapUtils.toDataMapWithIdentifier(dataNode, prefix);
-            dataMaps.add(dataMap);
+                fetchDescendantsOption, contentType);
+        if (dataNodes.isEmpty()) {
+            return new ResponseEntity<>(Collections.emptyMap(), HttpStatus.OK);
         }
-        return new ResponseEntity<>(jsonObjectMapper.asJsonString(dataMaps), HttpStatus.OK);
+        final DataNode dataNode = dataNodes.iterator().next();
+        final String prefix = prefixResolver.getPrefix(dataspaceName, anchorName, dataNode.getXpath());
+        final Map<String, Object> dataMap = DataMapUtils.toDataMapWithIdentifier(dataNode, prefix);
+        final XmlMapper xmlMapper = new XmlMapper();
+        xmlMapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
+        List<Map<String, Object>> dataMaps = new ArrayList<>(dataNodes.size());
+        if (contentType == ContentType.XML) {
+            try {
+                final String xmlContent;
+                if (dataNodes.size() == 1) {
+                    xmlContent = xmlMapper.writeValueAsString(dataMap);
+                } else {
+                    for (DataNode node : dataNodes) {
+                        dataMaps.add(DataMapUtils.toDataMapWithIdentifier(node, prefix));
+                    }
+                    xmlContent = xmlMapper.writeValueAsString(dataMaps);
+                }
+                final String processedXml = xmlContent.replaceFirst("<SingletonImmutableBiMap>", "").replace("</SingletonImmutableBiMap>", "");
+                return new ResponseEntity<>(processedXml, HttpStatus.OK);
+            } catch (JsonProcessingException e) {
+                throw new RuntimeException("Failed to convert response to XML", e);
+            }
+        } else {
+            return new ResponseEntity<>(jsonObjectMapper.asJsonString(dataMaps), HttpStatus.OK);
+        }
     }
 
     @Override

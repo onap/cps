@@ -85,6 +85,7 @@ import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.model.ModuleDefinition;
 import org.onap.cps.spi.model.ModuleReference;
+import org.onap.cps.utils.ContentType;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
@@ -152,7 +153,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
         return cpsDataService.getDataNodes(cmResourceAddress.datastoreName(),
                                            cmResourceAddress.cmHandleId(),
                                            cmResourceAddress.resourceIdentifier(),
-                                           fetchDescendantsOption).iterator().next();
+                                           fetchDescendantsOption, ContentType.JSON).iterator().next();
     }
 
     @Override
