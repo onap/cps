@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "20c88673_c5f80e4a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/DataJobService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-05T12:55:30Z",
+      "side": 1,
+      "message": "Can be handled internaly",
+      "parentUuid": "8a54c654_eaa03390",
+      "range": {
+        "startLine": 41,
+        "startChar": 74,
+        "endLine": 41,
+        "endChar": 99
+      },
+      "revId": "e482308b82afb07a445445886f22dca8fa4b2ba6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b2624576_249c611c",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-04-04T08:15:48Z",
       "side": 1,
       "message": "I dotn think we should trhow these up, I think we can catch ourself and just log. I dont think they can really happen (not because of user iput anyway)",
+      "range": {
+        "startLine": 37,
+        "startChar": 93,
+        "endLine": 37,
+        "endChar": 118
+      },
+      "revId": "e482308b82afb07a445445886f22dca8fa4b2ba6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0864658_274b1b3e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/DataJobServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-05T12:55:30Z",
+      "side": 1,
+      "message": "logged it here itself",
+      "parentUuid": "b2624576_249c611c",
       "range": {
         "startLine": 37,
         "startChar": 93,
@@ -70,6 +118,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b842985f_298cd6e3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/datajob/Operation.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-05T12:55:30Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "71873a05_70ef5590",
+      "range": {
+        "startLine": 28,
+        "startChar": 13,
+        "endLine": 28,
+        "endChar": 23
+      },
+      "revId": "e482308b82afb07a445445886f22dca8fa4b2ba6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "873b1127_d196d569",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-04-04T08:15:48Z",
       "side": 1,
       "message": "use record",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 7
+      },
+      "revId": "e482308b82afb07a445445886f22dca8fa4b2ba6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "337d93ff_4e517a44",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/datajob/OutputParameters.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-05T12:55:30Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "873b1127_d196d569",
       "range": {
         "startLine": 26,
         "startChar": 0,
@@ -116,6 +212,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "85405ca4_77e1d681",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/datajob/ReadOperation.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-05T12:55:30Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "767305dc_d1d6a03d",
+      "range": {
+        "startLine": 29,
+        "startChar": 27,
+        "endLine": 29,
+        "endChar": 45
+      },
+      "revId": "e482308b82afb07a445445886f22dca8fa4b2ba6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6f5fb2e2_140d762b",
@@ -129,6 +249,30 @@
       "writtenOn": "2024-04-04T08:15:48Z",
       "side": 1,
       "message": "fix indentation first, I find it hard to review without that :-(",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 29
+      },
+      "revId": "e482308b82afb07a445445886f22dca8fa4b2ba6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "acbae310_dd1f8f73",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/DataJobServiceImplSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-05T12:55:30Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6f5fb2e2_140d762b",
       "range": {
         "startLine": 35,
         "startChar": 0,
