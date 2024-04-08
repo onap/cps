@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d3960ea3_fe560642",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-08T13:55:52Z",
+      "side": 1,
+      "message": "NB: is it unused import??",
+      "revId": "1b58f895c04bf80ca37f07faa7c765f80fdeb5b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9ba2fd35_e9e0f38b",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
         "patchSetId": 3
