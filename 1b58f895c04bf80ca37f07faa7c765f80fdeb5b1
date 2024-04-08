@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "64f4d314_626472ef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-08T13:55:22Z",
+      "side": 1,
+      "message": "looks fine to me I guess..\nwas not sure to have 2 very similar methods.",
+      "revId": "1b58f895c04bf80ca37f07faa7c765f80fdeb5b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ba2fd35_e9e0f38b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-08T13:55:22Z",
+      "side": 1,
+      "message": "NB: can also call !isOngoingCmNotificationSubscription(...)",
+      "range": {
+        "startLine": 116,
+        "startChar": 12,
+        "endLine": 116,
+        "endChar": 95
+      },
+      "revId": "1b58f895c04bf80ca37f07faa7c765f80fdeb5b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee41d74c_03b801b5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-08T13:55:22Z",
+      "side": 1,
+      "message": "NB: lets consistently use .formatted() i guess.",
+      "range": {
+        "startLine": 156,
+        "startChar": 21,
+        "endLine": 156,
+        "endChar": 32
+      },
+      "revId": "1b58f895c04bf80ca37f07faa7c765f80fdeb5b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

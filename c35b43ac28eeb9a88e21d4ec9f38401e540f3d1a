@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff2aa686_76362ffa",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-08T13:55:22Z",
+      "side": 0,
+      "message": "NB: i think the logic in this method here was fine..\nwhy u moved to addOrRemoveCmNotificationSubscription ?? \nalso u can queryDataNodes in this method as well or somewhr more relevant.",
+      "range": {
+        "startLine": 119,
+        "startChar": 17,
+        "endLine": 119,
+        "endChar": 40
+      },
+      "revId": "c35b43ac28eeb9a88e21d4ec9f38401e540f3d1a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
