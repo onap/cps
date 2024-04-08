@@ -225,6 +225,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "370bc5cd_963eb296",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/DataJobServiceImplSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-08T13:07:57Z",
+      "side": 1,
+      "message": "in progress",
+      "parentUuid": "130432d3_a08cd18d",
+      "revId": "9d8030eee0d44747e3291fdf08fe99dc952af9a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d850c031_c6c76493",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/DataJobServiceImplSpec.groovy",
         "patchSetId": 12
@@ -236,6 +254,30 @@
       "writtenOn": "2024-04-08T13:07:36Z",
       "side": 1,
       "message": "Hi Toine \nI need help here as it failing to create ReadOperation object.",
+      "range": {
+        "startLine": 58,
+        "startChar": 7,
+        "endLine": 58,
+        "endChar": 138
+      },
+      "revId": "9d8030eee0d44747e3291fdf08fe99dc952af9a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90e5beac_afccb6b5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/DataJobServiceImplSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-08T13:07:57Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d850c031_c6c76493",
       "range": {
         "startLine": 58,
         "startChar": 7,
