@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f50150ce_2ab9ef8d",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-04-08T09:32:35Z",
+      "side": 1,
+      "message": "yes the logic is similar as these are helper methods to determine parent node xpath. After which they call the respective buildDataNodes method. But they have different parameters. One works with Anchor while the other works with Yang Resource map.",
+      "parentUuid": "e0417d08_8f061bd6",
+      "revId": "ac034e6cfc0e9069ea6390afa1b1a30df74730de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "836c7c26_61fabc9a",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
         "patchSetId": 30
@@ -48,6 +66,30 @@
       "writtenOn": "2024-04-04T14:00:12Z",
       "side": 1,
       "message": "this is not mocking",
+      "range": {
+        "startLine": 60,
+        "startChar": 31,
+        "endLine": 60,
+        "endChar": 71
+      },
+      "revId": "ac034e6cfc0e9069ea6390afa1b1a30df74730de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "10676c7e_fb3e137b",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 30
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-04-08T09:32:35Z",
+      "side": 1,
+      "message": "renamed to jsonObjectMapper",
+      "parentUuid": "836c7c26_61fabc9a",
       "range": {
         "startLine": 60,
         "startChar": 31,
@@ -71,6 +113,30 @@
       "writtenOn": "2024-04-04T14:00:12Z",
       "side": 1,
       "message": "not mocking",
+      "range": {
+        "startLine": 52,
+        "startChar": 31,
+        "endLine": 52,
+        "endChar": 71
+      },
+      "revId": "ac034e6cfc0e9069ea6390afa1b1a30df74730de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f925c94_ef7b7b37",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/E2ENetworkSliceSpec.groovy",
+        "patchSetId": 30
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-04-08T09:32:35Z",
+      "side": 1,
+      "message": "renamed to jsonObjectMapper",
+      "parentUuid": "038bc2e2_08e035ac",
       "range": {
         "startLine": 52,
         "startChar": 31,
