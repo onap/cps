@@ -37,6 +37,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6ff723d2_fd73a629",
+        "filename": "cps-events/src/main/resources/schemas/updatenode/cps-data-updated-event-schema-1.0.0.json",
+        "patchSetId": 12
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-04-08T10:45:51Z",
+      "side": 1,
+      "message": "Minor issue: +0002 is a timezone offset of 2 minutes, which is a bit unrealistic. Real TZ offsets are usually in 30 minute increments at least, like -0100 or +0530",
+      "range": {
+        "startLine": 15,
+        "startChar": 158,
+        "endLine": 15,
+        "endChar": 163
+      },
+      "revId": "4ef37e8ac8ec8cb0a609a70815a9fb45e7a920e3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7b1abf7d_49015fa2",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 12
@@ -48,6 +71,30 @@
       "writtenOn": "2024-04-04T07:56:59Z",
       "side": 1,
       "message": "NB: nothing is async here.\ncan remove this .\nsendDataUpdatedEvent should be fine.",
+      "range": {
+        "startLine": 376,
+        "startChar": 37,
+        "endLine": 376,
+        "endChar": 42
+      },
+      "revId": "4ef37e8ac8ec8cb0a609a70815a9fb45e7a920e3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3432eaaf_75c90b63",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-04-08T10:45:51Z",
+      "side": 1,
+      "message": "Agreed, rename to sendDataUpdatedEvent",
+      "parentUuid": "7b1abf7d_49015fa2",
       "range": {
         "startLine": 376,
         "startChar": 37,
@@ -122,6 +169,29 @@
         "startChar": 16,
         "endLine": 62,
         "endChar": 38
+      },
+      "revId": "4ef37e8ac8ec8cb0a609a70815a9fb45e7a920e3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdb4a963_3f52e239",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/DataUpdateEventsService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-04-08T10:45:51Z",
+      "side": 1,
+      "message": "Can you confirm if this is the expected behaviour?\nThat it returns UPDATE if it NOT root xpath?",
+      "range": {
+        "startLine": 100,
+        "startChar": 8,
+        "endLine": 100,
+        "endChar": 100
       },
       "revId": "4ef37e8ac8ec8cb0a609a70815a9fb45e7a920e3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
