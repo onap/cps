@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a008e283_9e9af2d8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2024-04-08T14:42:04Z",
+      "side": 1,
+      "message": "Checkstyle violation\n\n[WARNING] src/main/java/org/onap/cps/ncmp/api/impl/DataJobServiceImpl.java:[54,30] (coding) FinalLocalVariable: Variable \u0027dataJobResponseUri\u0027 should be declared final.",
+      "revId": "4fd66e64c9050ea18356f3675126e0854d9655f9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
