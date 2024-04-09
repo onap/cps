@@ -194,7 +194,7 @@ dataOperationForCmHandle:
     tags:
       - network-cm-proxy
     summary: Execute a data operation for group of cm handle ids
-    description: This request will be handled asynchronously using messaging to the supplied topic. The rest response will be an acknowledge with a requestId to identify the relevant messages.
+    description: This request will be handled asynchronously using messaging to the supplied topic. The rest response will be an acknowledge with a requestId to identify the relevant messages. A maximum of 50 cm handles per operation is supported.
     operationId: executeDataOperationForCmHandles
     parameters:
       - $ref: 'components.yaml#/components/parameters/requiredTopicParamInQuery'
@@ -216,6 +216,8 @@ dataOperationForCmHandle:
         $ref: 'components.yaml#/components/responses/BadRequest'
       403:
         $ref: 'components.yaml#/components/responses/Forbidden'
+      413:
+        $ref: 'components.yaml#/components/responses/PayloadTooLarge'
       500:
         $ref: 'components.yaml#/components/responses/InternalServerError'
       502:

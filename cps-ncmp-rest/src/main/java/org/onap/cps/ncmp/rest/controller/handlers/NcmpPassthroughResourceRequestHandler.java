@@ -33,6 +33,7 @@ import org.onap.cps.ncmp.api.impl.operations.OperationType;
 import org.onap.cps.ncmp.api.models.CmResourceAddress;
 import org.onap.cps.ncmp.api.models.DataOperationRequest;
 import org.onap.cps.ncmp.rest.exceptions.OperationNotSupportedException;
+import org.onap.cps.ncmp.rest.exceptions.PayloadTooLargeException;
 import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor;
 import org.onap.cps.ncmp.rest.util.TopicValidator;
 import org.springframework.http.ResponseEntity;
@@ -44,6 +45,8 @@ public class NcmpPassthroughResourceRequestHandler extends NcmpDatastoreRequestH
     private final NetworkCmProxyDataService networkCmProxyDataService;
 
     private static final Object noReturn = null;
+
+    private static final int MAXIMUM_CM_HANDLES_PER_OPERATION = 50;
 
     /**
      * Constructor.
@@ -101,16 +104,19 @@ public class NcmpPassthroughResourceRequestHandler extends NcmpDatastoreRequestH
     }
 
     private void validateDataOperationRequest(final String topicParamInQuery,
-                                              final DataOperationRequest
-                                                  dataOperationRequest) {
+                                              final DataOperationRequest dataOperationRequest) {
         TopicValidator.validateTopicName(topicParamInQuery);
         dataOperationRequest.getDataOperationDefinitions().forEach(dataOperationDetail -> {
             if (OperationType.fromOperationName(dataOperationDetail.getOperation()) != READ) {
                 throw new OperationNotSupportedException(
                     dataOperationDetail.getOperation() + " operation not yet supported");
-            } else if (DatastoreType.fromDatastoreName(dataOperationDetail.getDatastore()) == OPERATIONAL) {
+            }
+            if (DatastoreType.fromDatastoreName(dataOperationDetail.getDatastore()) == OPERATIONAL) {
                 throw new InvalidDatastoreException(dataOperationDetail.getDatastore()
                     + " datastore is not supported");
+            }
+            if (dataOperationDetail.getCmHandleIds().size() > MAXIMUM_CM_HANDLES_PER_OPERATION) {
+                throw new PayloadTooLargeException(dataOperationDetail.getCmHandleIds().size());
             }
         });
     }
