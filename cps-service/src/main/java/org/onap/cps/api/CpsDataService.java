@@ -132,11 +132,11 @@ public interface CpsDataService {
      * @param dataspaceName   dataspace name
      * @param anchorName      anchor name
      * @param parentNodeXpath xpath to parent node
-     * @param jsonData        json data
+     * @param nodeData        node data
      * @param observedTimestamp observedTimestamp
      */
-    void updateNodeLeaves(String dataspaceName, String anchorName, String parentNodeXpath, String jsonData,
-        OffsetDateTime observedTimestamp);
+    void updateNodeLeaves(String dataspaceName, String anchorName, String parentNodeXpath, String nodeData,
+        OffsetDateTime observedTimestamp, ContentType contentType);
 
     /**
      * Replaces an existing data node's content including descendants.

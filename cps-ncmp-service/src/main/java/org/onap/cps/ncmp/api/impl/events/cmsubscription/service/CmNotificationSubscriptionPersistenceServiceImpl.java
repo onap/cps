@@ -126,7 +126,7 @@ public class CmNotificationSubscriptionPersistenceServiceImpl implements CmNotif
         updatedLeaves.put("subscriptionIds", (Serializable) updatedSubscribers);
         final String updatedJson = "{\"filter\":[" + jsonObjectMapper.asJsonString(updatedLeaves) + "]}";
         cpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME, parentXpath, updatedJson,
-                OffsetDateTime.now());
+                OffsetDateTime.now(), ContentType.JSON);
     }
 
     private static String escapeQuotesByDoublingThem(final String inputXpath) {
