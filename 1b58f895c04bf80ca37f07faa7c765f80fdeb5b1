@@ -35,6 +35,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a07d959_7ca7237f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-04-09T12:35:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d3960ea3_fe560642",
+      "revId": "1b58f895c04bf80ca37f07faa7c765f80fdeb5b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9ba2fd35_e9e0f38b",
@@ -48,6 +66,30 @@
       "writtenOn": "2024-04-08T13:55:22Z",
       "side": 1,
       "message": "NB: can also call !isOngoingCmNotificationSubscription(...)",
+      "range": {
+        "startLine": 116,
+        "startChar": 12,
+        "endLine": 116,
+        "endChar": 95
+      },
+      "revId": "1b58f895c04bf80ca37f07faa7c765f80fdeb5b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db6158d4_a2144ffc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-04-09T12:35:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9ba2fd35_e9e0f38b",
       "range": {
         "startLine": 116,
         "startChar": 12,
