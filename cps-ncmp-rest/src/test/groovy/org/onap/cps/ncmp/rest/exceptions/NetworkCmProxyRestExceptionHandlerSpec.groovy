@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 highstreet technologies GmbH
- *  Modifications Copyright (C) 2021-2023 Nordix Foundation
+ *  Modifications Copyright (C) 2021-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -23,9 +23,10 @@ package org.onap.cps.ncmp.rest.exceptions
 
 import static org.springframework.http.HttpStatus.BAD_GATEWAY
 import static org.springframework.http.HttpStatus.BAD_REQUEST
+import static org.springframework.http.HttpStatus.CONFLICT
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
 import static org.springframework.http.HttpStatus.NOT_FOUND
-import static org.springframework.http.HttpStatus.CONFLICT
+import static org.springframework.http.HttpStatus.PAYLOAD_TOO_LARGE
 import static org.onap.cps.ncmp.rest.exceptions.NetworkCmProxyRestExceptionHandlerSpec.ApiType.NCMP
 import static org.onap.cps.ncmp.rest.exceptions.NetworkCmProxyRestExceptionHandlerSpec.ApiType.NCMPINVENTORY
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
@@ -111,22 +112,23 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
         dataNodeBaseEndpointNcmpInventory = "$basePathNcmpInventory/v1"
     }
 
-    def 'Get request with generic #scenario exception returns correct HTTP Status with #scenario'() {
+    def 'Get request with #scenario exception returns correct HTTP Status with #scenario'() {
         when: 'an exception is thrown by the service'
             setupTestException(exception, NCMP)
             def response = performTestRequest(NCMP)
         then: 'an HTTP response is returned with correct message and details'
             assertTestResponse(response, expectedErrorCode, expectedErrorMessage, expectedErrorDetails)
         where:
-            scenario              | exception                                                        || expectedErrorDetails           | expectedErrorMessage        | expectedErrorCode
-            'CPS'                 | new CpsException(sampleErrorMessage, sampleErrorDetails)         || sampleErrorDetails             | sampleErrorMessage          | INTERNAL_SERVER_ERROR
-            'NCMP-server'         | new ServerNcmpException(sampleErrorMessage, sampleErrorDetails)  || null                           | sampleErrorMessage          | INTERNAL_SERVER_ERROR
-            'NCMP-client'         | new DmiRequestException(sampleErrorMessage, sampleErrorDetails)  || null                           | sampleErrorMessage          | BAD_REQUEST
-            'DataNode Validation' | new DataNodeNotFoundException('myDataspaceName', 'myAnchorName') || null                           | 'DataNode not found'        | NOT_FOUND
-            'other'               | new IllegalStateException(sampleErrorMessage)                    || null                           | sampleErrorMessage          | INTERNAL_SERVER_ERROR
-            'Data Node Not Found' | new DataNodeNotFoundException('myDataspaceName', 'myAnchorName') || 'DataNode not found'           | 'DataNode not found'        | NOT_FOUND
-            'Existing entry'      | new AlreadyDefinedException('name',null)                         || 'name already exists'          | 'Already defined exception' | CONFLICT
-            'Existing entries'    | AlreadyDefinedException.forDataNodes(['A', 'B'], 'myAnchorName') || '2 data node(s) already exist' | 'Already defined exception' | CONFLICT
+            scenario              | exception                                                        || expectedErrorCode     | expectedErrorMessage        | expectedErrorDetails
+            'CPS'                 | new CpsException(sampleErrorMessage, sampleErrorDetails)         || INTERNAL_SERVER_ERROR | sampleErrorMessage          | sampleErrorDetails
+            'NCMP-server'         | new ServerNcmpException(sampleErrorMessage, sampleErrorDetails)  || INTERNAL_SERVER_ERROR | sampleErrorMessage          | null
+            'NCMP-client'         | new DmiRequestException(sampleErrorMessage, sampleErrorDetails)  || BAD_REQUEST           | sampleErrorMessage          | null
+            'DataNode Validation' | new DataNodeNotFoundException('myDataspaceName', 'myAnchorName') || NOT_FOUND             | 'DataNode not found'        | null
+            'other'               | new IllegalStateException(sampleErrorMessage)                    || INTERNAL_SERVER_ERROR | sampleErrorMessage          | null
+            'Data Node Not Found' | new DataNodeNotFoundException('myDataspaceName', 'myAnchorName') || NOT_FOUND             | 'DataNode not found'        | 'DataNode not found'
+            'Existing entry'      | new AlreadyDefinedException('name',null)                         || CONFLICT              | 'Already defined exception' | 'name already exists'
+            'Existing entries'    | AlreadyDefinedException.forDataNodes(['A', 'B'], 'myAnchorName') || CONFLICT              | 'Already defined exception' | '2 data node(s) already exist'
+            'Operation too large' | new PayloadTooLargeException(sampleErrorMessage)                 || PAYLOAD_TOO_LARGE     | sampleErrorMessage          | 'Check logs'
     }
 
     def 'Post request with exception returns correct HTTP Status.'() {

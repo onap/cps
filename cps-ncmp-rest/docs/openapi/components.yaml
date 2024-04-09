@@ -366,6 +366,7 @@ components:
           type: array
           items:
             type: string
+            description: targeted cm handles, maximum of 50 supported. If this limit is exceeded the request wil be refused.
             example: [ "da310eecdb8d44c2acc0ddaae01174b1","c748c58f8e0b438f9fd1f28370b17d47" ]
 
   examples:
@@ -695,7 +696,7 @@ components:
           schema:
             $ref: '#/components/schemas/ErrorMessage'
           example:
-            status: 400 BAD_REQUEST
+            status: 400
             message: Bad request error message
             details: Bad request error details
     Conflict:
@@ -705,9 +706,19 @@ components:
           schema:
             $ref: '#/components/schemas/ErrorMessage'
           example:
-            status: 409 CONFLICT
+            status: 409
             message: Conflict error message
             details: Conflict error details
+    PayloadTooLarge:
+      description: The request is larger than the server is willing or able to process
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+          example:
+            status: 413
+            message: Payload Too Large error message
+            details: Payload Too Large error details
     NotImplemented:
       description: The given path has not been implemented
       content:
