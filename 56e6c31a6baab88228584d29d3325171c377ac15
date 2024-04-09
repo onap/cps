@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "962865c8_6409f893",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionDmiOutEventConsumer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-09T15:19:04Z",
+      "side": 1,
+      "message": "private void handleCmSubscriptionCreate(final String correlationId,\n            final CmNotificationSubscriptionDmiOutEvent cmNotificationSubscriptionDmiOutEvent) {\n        final String subscriptionId \u003d correlationId.split(\"#\")[0];\n        final String dmiPluginName \u003d correlationId.split(\"#\")[1];\n\n        if (\"ACCEPTED\".equals(cmNotificationSubscriptionDmiOutEvent.getData().getStatusMessage())) {\n            handleCacheStatusPerDmi(subscriptionId, dmiPluginName, CmNotificationSubscriptionStatus.ACCEPTED);\n            dmiCmNotificationSubscriptionCacheHandler.persistCacheIntoDatabasePerDmi(subscriptionId, dmiPluginName);\n        }\n\n        if (\"REJECTED\".equals(cmNotificationSubscriptionDmiOutEvent.getData().getStatusMessage())) {\n            handleCacheStatusPerDmi(subscriptionId, dmiPluginName, CmNotificationSubscriptionStatus.REJECTED);\n        }\n\n        log.info(\"Cm Subscription with id : {} handled by the dmi-plugin : {} has the status : {}\", subscriptionId,\n                dmiPluginName, cmNotificationSubscriptionDmiOutEvent.getData().getStatusMessage());\n    }\n\n    private void handleCacheStatusPerDmi(String subscriptionId, String dmiPluginName,\n            CmNotificationSubscriptionStatus cmNotificationSubscriptionStatus) {\n        dmiCmNotificationSubscriptionCacheHandler.updateDmiCmNotificationSubscriptionCacheStatusPerDmi(subscriptionId,\n                dmiPluginName, cmNotificationSubscriptionStatus);\n    }",
+      "parentUuid": "56ebb96e_7a1f5d47",
+      "range": {
+        "startLine": 65,
+        "startChar": 8,
+        "endLine": 74,
+        "endChar": 9
+      },
+      "revId": "56e6c31a6baab88228584d29d3325171c377ac15",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2611961d_5e675bc4",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/DmiCmNotificationSubscriptionCacheHandler.java",
         "patchSetId": 2
