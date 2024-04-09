@@ -27,6 +27,7 @@ import ch.qos.logback.classic.Logger
 import ch.qos.logback.classic.spi.ILoggingEvent
 import ch.qos.logback.core.read.ListAppender
 import com.fasterxml.jackson.databind.ObjectMapper
+import org.onap.cps.utils.ContentType;
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence
 import org.onap.cps.ncmp.api.impl.utils.AlternateIdChecker
@@ -209,7 +210,7 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
         when: 'cm handle properties is updated'
             def response = objectUnderTest.updateCmHandleProperties(cmHandleUpdateRequest)
         then: 'the update is delegated to cps data service with correct parameters'
-            1 * mockCpsDataService.updateNodeLeaves('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry', _, _) >>
+            1 * mockCpsDataService.updateNodeLeaves('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry', _, _, ContentType.JSON) >>
                     { args ->
                         assert args[3].contains('alt-1')
                     }
@@ -245,7 +246,7 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
         when: 'data producer identifier updated'
             objectUnderTest.updateDataProducerIdentifier(existingCmHandleDataNode, ncmpServiceCmHandle)
         then: 'the update node leaves method is invoked once'
-            1 * mockCpsDataService.updateNodeLeaves('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry', _, _) >> { args ->
+            1 * mockCpsDataService.updateNodeLeaves('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry', _, _, ContentType.JSON) >> { args ->
                 assert args[3].contains('someDataProducerIdentifier')
             }
         and: 'correct information is logged'
