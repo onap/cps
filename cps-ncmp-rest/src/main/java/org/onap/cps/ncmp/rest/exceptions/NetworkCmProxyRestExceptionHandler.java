@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Pantheon.tech
- *  Modifications Copyright (C) 2021-2023 Nordix Foundation
+ *  Modifications Copyright (C) 2021-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -60,8 +60,7 @@ public class NetworkCmProxyRestExceptionHandler {
      * @return response with response code 500.
      */
     @ExceptionHandler
-    public static ResponseEntity<Object> handleInternalServerErrorExceptions(
-            final Exception exception) {
+    public static ResponseEntity<Object> handleInternalServerErrorExceptions(final Exception exception) {
         return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception);
     }
 
@@ -73,7 +72,7 @@ public class NetworkCmProxyRestExceptionHandler {
     @ExceptionHandler({HttpClientRequestException.class})
     public static ResponseEntity<Object> handleClientRequestExceptions(
             final HttpClientRequestException httpClientRequestException) {
-        return wrapDmiErrorResponse(HttpStatus.BAD_GATEWAY, httpClientRequestException);
+        return wrapDmiErrorResponse(httpClientRequestException);
     }
 
     @ExceptionHandler({DmiRequestException.class, DataValidationException.class, OperationNotSupportedException.class,
@@ -88,8 +87,13 @@ public class NetworkCmProxyRestExceptionHandler {
     }
 
     @ExceptionHandler({DataNodeNotFoundException.class})
-    public static ResponseEntity<Object> handleNotFoundExceptions(final CpsException exception) {
+    public static ResponseEntity<Object> handleNotFoundExceptions(final Exception exception) {
         return buildErrorResponse(HttpStatus.NOT_FOUND, exception);
+    }
+
+    @ExceptionHandler({OperationTooLargeException.class})
+    public static ResponseEntity<Object> handleOperationTooLargeExceptions(final Exception exception) {
+        return buildErrorResponse(HttpStatus.PAYLOAD_TOO_LARGE, exception);
     }
 
     private static ResponseEntity<Object> buildErrorResponse(final HttpStatus status, final Exception exception) {
@@ -111,15 +115,14 @@ public class NetworkCmProxyRestExceptionHandler {
         return new ResponseEntity<>(errorMessage, status);
     }
 
-    private static ResponseEntity<Object> wrapDmiErrorResponse(
-            final HttpStatus httpStatus,
-            final HttpClientRequestException httpClientRequestException) {
+    private static ResponseEntity<Object> wrapDmiErrorResponse(final HttpClientRequestException
+                                                                     httpClientRequestException) {
         final var dmiErrorMessage = new DmiErrorMessage();
         final var dmiErrorResponse = new DmiErrorMessageDmiResponse();
         dmiErrorResponse.setHttpCode(httpClientRequestException.getHttpStatus());
         dmiErrorResponse.setBody(httpClientRequestException.getDetails());
         dmiErrorMessage.setMessage(httpClientRequestException.getMessage());
         dmiErrorMessage.setDmiResponse(dmiErrorResponse);
-        return new ResponseEntity<>(dmiErrorMessage, httpStatus);
+        return new ResponseEntity<>(dmiErrorMessage, HttpStatus.BAD_GATEWAY);
     }
 }

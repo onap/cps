@@ -27,6 +27,7 @@ import org.onap.cps.ncmp.api.models.DataOperationDefinition
 import org.onap.cps.ncmp.api.models.DataOperationRequest
 import org.onap.cps.ncmp.api.models.CmResourceAddress
 import org.onap.cps.ncmp.rest.exceptions.OperationNotSupportedException
+import org.onap.cps.ncmp.rest.exceptions.OperationTooLargeException
 import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor
 import spock.lang.Specification
 import spock.util.concurrent.PollingConditions
@@ -110,9 +111,7 @@ class NcmpDatastoreRequestHandlerSpec extends Specification {
     }
 
     def 'Attempt to execute async data operation request with error #scenario'() {
-        given: 'notification feature is turned on'
-            objectUnderTest.notificationFeatureEnabled = true
-        and: 'a data operation definition with datastore: #datastore'
+        given: 'a data operation definition with datastore: #datastore'
             def dataOperationDefinition = new DataOperationDefinition(operation: 'read', datastore: datastore)
         when: 'data operation request is executed'
             def dataOperationRequest = new DataOperationRequest(dataOperationDefinitions: [dataOperationDefinition])
@@ -127,11 +126,9 @@ class NcmpDatastoreRequestHandlerSpec extends Specification {
     }
 
     def 'Attempt to execute async data operation request with #scenario operation: #operation.'() {
-        given: 'notification feature is turned on'
-            objectUnderTest.notificationFeatureEnabled = true
-        and: 'a data operation definition with operation: #operation'
+        given: 'a data operation definition with operation: #operation'
             def dataOperationDefinition = new DataOperationDefinition(operation: operation, datastore: 'ncmp-datastore:passthrough-running')
-        when: 'bulk request is executed'
+        when: 'data operation request is executed'
             objectUnderTest.executeRequest('someTopic', new DataOperationRequest(dataOperationDefinitions:[dataOperationDefinition]), NO_AUTH_HEADER)
         then: 'the expected type of exception is thrown'
             thrown(expectedException)
@@ -142,6 +139,16 @@ class NcmpDatastoreRequestHandlerSpec extends Specification {
             'unsupported' | 'update'  || OperationNotSupportedException
             'unsupported' | 'patch'   || OperationNotSupportedException
             'unsupported' | 'delete'  || OperationNotSupportedException
+    }
+
+    def 'Attempt to execute async data operation request with too many cm handles.'() {
+        given: 'a data operation definition with too many cm handles'
+            def cmHandleIds = new String[51]
+            def dataOperationDefinition = new DataOperationDefinition(operation: 'read', datastore: 'ncmp-datastore:passthrough-running', cmHandleIds: cmHandleIds)
+        when: 'data operation request is executed'
+            objectUnderTest.executeRequest('someTopic', new DataOperationRequest(dataOperationDefinitions:[dataOperationDefinition]), NO_AUTH_HEADER)
+        then: 'an operation too large exception is thrown'
+            thrown(OperationTooLargeException)
     }
 
 }
