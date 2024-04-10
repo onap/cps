@@ -259,6 +259,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "61e6536d_d7d04cb4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/DataJobServiceImplSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-10T14:38:38Z",
+      "side": 1,
+      "message": "No more valid. this code is removed.",
+      "parentUuid": "28771d01_f8f29667",
+      "revId": "9d8030eee0d44747e3291fdf08fe99dc952af9a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d850c031_c6c76493",
