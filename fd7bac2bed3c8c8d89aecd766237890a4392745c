@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "47d426b5_9fd56f67",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpPassthroughResourceRequestHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-10T09:48:50Z",
+      "side": 1,
+      "message": "Decided to go for just PayloadTooLarge (without \u0027operation\u0027) so we can use it fir other similar request too in future (we can adjust message/templae when time comes)",
+      "parentUuid": "7aab0954_1f5283eb",
+      "range": {
+        "startLine": 36,
+        "startChar": 41,
+        "endLine": 36,
+        "endChar": 67
+      },
+      "revId": "fd7bac2bed3c8c8d89aecd766237890a4392745c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9e7abdd1_0ec2188b",
@@ -70,6 +94,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a99ea5ef_db6fb79e",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpPassthroughResourceRequestHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-10T09:48:50Z",
+      "side": 1,
+      "message": "good idea",
+      "parentUuid": "de89679a_637ecd12",
+      "range": {
+        "startLine": 119,
+        "startChar": 52,
+        "endLine": 119,
+        "endChar": 54
+      },
+      "revId": "fd7bac2bed3c8c8d89aecd766237890a4392745c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4056477_56cbedce",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpPassthroughResourceRequestHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-10T09:48:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e7abdd1_0ec2188b",
+      "range": {
+        "startLine": 119,
+        "startChar": 26,
+        "endLine": 119,
+        "endChar": 52
+      },
+      "revId": "fd7bac2bed3c8c8d89aecd766237890a4392745c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fa6b37f5_22a313c2",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-04-10T09:07:06Z",
       "side": 1,
       "message": "NB: OperationTooLargeException(int totalRequestedCmHandles)\nIf we can log in total number of requested cm handles.",
+      "range": {
+        "startLine": 29,
+        "startChar": 11,
+        "endLine": 30,
+        "endChar": 94
+      },
+      "revId": "fd7bac2bed3c8c8d89aecd766237890a4392745c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d49b845_d0b9a9a8",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/exceptions/OperationTooLargeException.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-10T09:48:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa6b37f5_22a313c2",
       "range": {
         "startLine": 29,
         "startChar": 11,
