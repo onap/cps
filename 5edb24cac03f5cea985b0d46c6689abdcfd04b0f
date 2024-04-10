@@ -60,6 +60,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c6b52224_38f97d16",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-10T14:27:01Z",
+      "side": 1,
+      "message": "if (isOngoing) {\n   log(info, \"have other subscriptions left\")\n} else {\n   log(info, \"last subscription remove whole list (datanode) from db\")\n   deleteListOfSubscriptionsFor(dataStoreType, cmHandleId, xpath)\n}",
+      "range": {
+        "startLine": 109,
+        "startChar": 10,
+        "endLine": 109,
+        "endChar": 88
+      },
+      "revId": "5edb24cac03f5cea985b0d46c6689abdcfd04b0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b459b0b_ee935241",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-10T14:27:01Z",
+      "side": 1,
+      "message": "extract out into onto private method (you will need it twice)\n\nDataNode getSubscriptionAsDataNode(dataStoreType, cmHandleId, xpath)\n\nsubscriptionAsDataNode \u003d ....\nsubscriptionDetailsAsMap \u003d subscriptionDataislAsDataNode.getLeaves()",
+      "range": {
+        "startLine": 126,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 60
+      },
+      "revId": "5edb24cac03f5cea985b0d46c6689abdcfd04b0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "368bee04_fbfd0afc",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
         "patchSetId": 5
@@ -99,6 +145,75 @@
         "startChar": 8,
         "endLine": 140,
         "endChar": 80
+      },
+      "revId": "5edb24cac03f5cea985b0d46c6689abdcfd04b0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1582c72f_076672d5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-10T14:27:01Z",
+      "side": 1,
+      "message": "susbcriptionDetailsAsMap",
+      "range": {
+        "startLine": 140,
+        "startChar": 8,
+        "endLine": 140,
+        "endChar": 21
+      },
+      "revId": "5edb24cac03f5cea985b0d46c6689abdcfd04b0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4123577_1b684bb5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-10T14:27:01Z",
+      "side": 1,
+      "message": "saveSubscriptionDetails(DataNode subscriptionDetailsAsDataNode)",
+      "range": {
+        "startLine": 155,
+        "startChar": 17,
+        "endLine": 155,
+        "endChar": 48
+      },
+      "revId": "5edb24cac03f5cea985b0d46c6689abdcfd04b0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6c30f75_26a20e86",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-10T14:27:01Z",
+      "side": 1,
+      "message": "subscriptionDetailsAsJson",
+      "range": {
+        "startLine": 158,
+        "startChar": 21,
+        "endLine": 158,
+        "endChar": 33
       },
       "revId": "5edb24cac03f5cea985b0d46c6689abdcfd04b0f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
