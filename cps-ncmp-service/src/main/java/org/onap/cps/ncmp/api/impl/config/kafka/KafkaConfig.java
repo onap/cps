@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2023 Nordix Foundation
+ * Copyright (C) 2023-2024 Nordix Foundation
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,7 @@ import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
+import org.springframework.boot.ssl.SslBundles;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -51,6 +52,8 @@ public class KafkaConfig<T> {
 
     private final KafkaProperties kafkaProperties;
 
+    private static final SslBundles NO_SSL = null;
+
     /**
      * This sets the strategy for creating legacy Kafka producer instance from kafka properties defined into
      * application.yml and replaces value-serializer by JsonSerializer.
@@ -59,7 +62,7 @@ public class KafkaConfig<T> {
      */
     @Bean
     public ProducerFactory<String, T> legacyEventProducerFactory() {
-        final Map<String, Object> producerConfigProperties = kafkaProperties.buildProducerProperties();
+        final Map<String, Object> producerConfigProperties = kafkaProperties.buildProducerProperties(NO_SSL);
         producerConfigProperties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
         return new DefaultKafkaProducerFactory<>(producerConfigProperties);
     }
@@ -72,7 +75,7 @@ public class KafkaConfig<T> {
      */
     @Bean
     public ConsumerFactory<String, T> legacyEventConsumerFactory() {
-        final Map<String, Object> consumerConfigProperties = kafkaProperties.buildConsumerProperties();
+        final Map<String, Object> consumerConfigProperties = kafkaProperties.buildConsumerProperties(NO_SSL);
         consumerConfigProperties.put("spring.deserializer.value.delegate.class", JsonDeserializer.class);
         return new DefaultKafkaConsumerFactory<>(consumerConfigProperties);
     }
@@ -112,7 +115,7 @@ public class KafkaConfig<T> {
      */
     @Bean
     public ProducerFactory<String, CloudEvent> cloudEventProducerFactory() {
-        final Map<String, Object> producerConfigProperties = kafkaProperties.buildProducerProperties();
+        final Map<String, Object> producerConfigProperties = kafkaProperties.buildProducerProperties(NO_SSL);
         return new DefaultKafkaProducerFactory<>(producerConfigProperties);
     }
 
@@ -124,7 +127,7 @@ public class KafkaConfig<T> {
      */
     @Bean
     public ConsumerFactory<String, CloudEvent> cloudEventConsumerFactory() {
-        final Map<String, Object> consumerConfigProperties = kafkaProperties.buildConsumerProperties();
+        final Map<String, Object> consumerConfigProperties = kafkaProperties.buildConsumerProperties(NO_SSL);
         return new DefaultKafkaConsumerFactory<>(consumerConfigProperties);
     }
 
@@ -136,7 +139,8 @@ public class KafkaConfig<T> {
      */
     @Bean
     public KafkaTemplate<String, CloudEvent> cloudEventKafkaTemplate() {
-        final KafkaTemplate<String, CloudEvent> kafkaTemplate = new KafkaTemplate<>(cloudEventProducerFactory());
+        final KafkaTemplate<String, CloudEvent> kafkaTemplate =
+            new KafkaTemplate<>(cloudEventProducerFactory());
         kafkaTemplate.setConsumerFactory(cloudEventConsumerFactory());
         return kafkaTemplate;
     }
