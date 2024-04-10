@@ -50,6 +50,24 @@
       "message": "I thought the Read didn\u0027t have the meta included, just the Write? Though this may have changed since.",
       "revId": "e33a3c09f747ccabae31db4dfe7b3461c0530aa9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a5abb2f_05709ea4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/DataJobServiceImpl.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-10T15:19:49Z",
+      "side": 1,
+      "message": "Nope, both read and write data have metadata",
+      "parentUuid": "fc416157_5ff3824c",
+      "revId": "e33a3c09f747ccabae31db4dfe7b3461c0530aa9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
