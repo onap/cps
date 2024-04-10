@@ -16,6 +16,40 @@
       "message": "Not seeing anything on an initial look. Try to get a full review before COB today.",
       "revId": "e33a3c09f747ccabae31db4dfe7b3461c0530aa9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa03d782_83414409",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-04-10T15:09:40Z",
+      "side": 1,
+      "message": "Just one query more than anything.\nGreat javadocs aswell!",
+      "revId": "e33a3c09f747ccabae31db4dfe7b3461c0530aa9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc416157_5ff3824c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/DataJobServiceImpl.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-04-10T15:09:40Z",
+      "side": 1,
+      "message": "I thought the Read didn\u0027t have the meta included, just the Write? Though this may have changed since.",
+      "revId": "e33a3c09f747ccabae31db4dfe7b3461c0530aa9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
