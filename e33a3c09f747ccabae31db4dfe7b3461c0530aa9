@@ -35,6 +35,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0b5fcb7_035028e2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-10T16:25:50Z",
+      "side": 1,
+      "message": "Mainly need to discuss with stakehodler teh BAD names from REST interface...",
+      "revId": "e33a3c09f747ccabae31db4dfe7b3461c0530aa9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fc416157_5ff3824c",
@@ -84,6 +101,75 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "4a5abb2f_05709ea4",
+      "revId": "e33a3c09f747ccabae31db4dfe7b3461c0530aa9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3ebbe50_cd1f07e8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/datajob/DataJobReadRequest.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-10T16:25:50Z",
+      "side": 1,
+      "message": "not suer, I guess we are trying to follow 3GPP names here but \u0027data\u0027 is SO generic. \nMaybe we need to agree that the JavaInterface can use better names then the REST INterface and the mapping from one to the other is done on the border ie as early as possible in the REST layer\nThis would required discussion with Stakeholders, minly Csaba...",
+      "range": {
+        "startLine": 30,
+        "startChar": 53,
+        "endLine": 30,
+        "endChar": 57
+      },
+      "revId": "e33a3c09f747ccabae31db4dfe7b3461c0530aa9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64ee0733_e3613659",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/datajob/ReadOperation.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-10T16:25:50Z",
+      "side": 1,
+      "message": "if we DO agree to have better names in java this should become \u0027operation\u0027",
+      "range": {
+        "startLine": 31,
+        "startChar": 10,
+        "endLine": 31,
+        "endChar": 22
+      },
+      "revId": "e33a3c09f747ccabae31db4dfe7b3461c0530aa9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0966acfb_c661c83e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/DataJobServiceImplSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-10T16:25:50Z",
+      "side": 1,
+      "message": "since this is only a dummy implementation for now I dont think we shoudl assert logging\n\nCoverage wil be OK anway whether you assert the logging or not",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 120
+      },
       "revId": "e33a3c09f747ccabae31db4dfe7b3461c0530aa9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
