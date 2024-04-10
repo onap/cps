@@ -16,6 +16,247 @@
       "message": "recheck",
       "revId": "5edb24cac03f5cea985b0d46c6689abdcfd04b0f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f66a1e6_d334970d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-10T12:53:31Z",
+      "side": 1,
+      "message": "It is all there and probably will work but I think the production code for remove is needless complicated and might have a performance issue now. it might be betert if we have a quick chat when you have a few minutes.",
+      "revId": "5edb24cac03f5cea985b0d46c6689abdcfd04b0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad50e4a9_f34da498",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-10T12:53:31Z",
+      "side": 1,
+      "message": "why are we checking if it exists? Remove operations are usually done without checking, even if the underlying system thrown an error we can swallow that...\nAnd if you dont check you probably only need 1 paarmeter for this method: teh subscrption id...",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 45
+      },
+      "revId": "5edb24cac03f5cea985b0d46c6689abdcfd04b0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "368bee04_fbfd0afc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-10T12:53:31Z",
+      "side": 1,
+      "message": "this is not very readable (mainly teh parmaterr when you call it \u0027false\u0027 is not intuitively interpreted as \u0027remvoe\u0027\n\n\n a simple private enum (operation) in this class would make it  more readable",
+      "range": {
+        "startLine": 134,
+        "startChar": 1,
+        "endLine": 138,
+        "endChar": 9
+      },
+      "revId": "5edb24cac03f5cea985b0d46c6689abdcfd04b0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "184f2574_b50d1ac8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-10T12:53:31Z",
+      "side": 1,
+      "message": "why would this line be needed when you are removing a subscription?!\n\nI think you are better of having a separate method for remove (even if teher is some duplication), then you also dont need that enum I mentioned earlier",
+      "range": {
+        "startLine": 140,
+        "startChar": 8,
+        "endLine": 140,
+        "endChar": 80
+      },
+      "revId": "5edb24cac03f5cea985b0d46c6689abdcfd04b0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2469e629_b03adafc",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImplSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-10T12:53:31Z",
+      "side": 1,
+      "message": "i wont review thsi until we discussed the prod code changes",
+      "revId": "5edb24cac03f5cea985b0d46c6689abdcfd04b0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a72e072a_71b93a1b",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpCmNotificationSubscriptionSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-10T12:53:31Z",
+      "side": 1,
+      "message": "originalNumberOfScubscribers",
+      "range": {
+        "startLine": 51,
+        "startChar": 16,
+        "endLine": 51,
+        "endChar": 36
+      },
+      "revId": "5edb24cac03f5cea985b0d46c6689abdcfd04b0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6d5755b_e35bc498",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpCmNotificationSubscriptionSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-10T12:53:31Z",
+      "side": 1,
+      "message": "you (cannot) assert thsi directly it is only implied.\nI would write it like this\nthen :\u0027the number of subscribers is reduced by 1\u0027",
+      "range": {
+        "startLine": 55,
+        "startChar": 15,
+        "endLine": 55,
+        "endChar": 28
+      },
+      "revId": "5edb24cac03f5cea985b0d46c6689abdcfd04b0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c67dcd0b_69edf0bd",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpCmNotificationSubscriptionSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-10T12:53:31Z",
+      "side": 1,
+      "message": "not really needed, see suggestion below",
+      "range": {
+        "startLine": 56,
+        "startChar": 12,
+        "endLine": 56,
+        "endChar": 67
+      },
+      "revId": "5edb24cac03f5cea985b0d46c6689abdcfd04b0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7eaddf88_0fd61b15",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpCmNotificationSubscriptionSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-10T12:53:31Z",
+      "side": 1,
+      "message": "originalNumberOfScubscribers - 1",
+      "range": {
+        "startLine": 59,
+        "startChar": 49,
+        "endLine": 59,
+        "endChar": 76
+      },
+      "revId": "5edb24cac03f5cea985b0d46c6689abdcfd04b0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ae1023b_63524e40",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpCmNotificationSubscriptionSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-10T12:53:31Z",
+      "side": 1,
+      "message": "LAST\nand add context: ..for a given cm handle, datastore and path",
+      "range": {
+        "startLine": 62,
+        "startChar": 22,
+        "endLine": 62,
+        "endChar": 27
+      },
+      "revId": "5edb24cac03f5cea985b0d46c6689abdcfd04b0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14d592b6_1ab7370c",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpCmNotificationSubscriptionSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-10T12:53:31Z",
+      "side": 1,
+      "message": "again you are only assert 1 thing, so I am not suer what \u0027it\u0027 refer to.\nI think the message should just read\n\u0027there are no longer any  subscriptions for that cm handle, datastore and path\u0027",
+      "range": {
+        "startLine": 72,
+        "startChar": 16,
+        "endLine": 72,
+        "endChar": 74
+      },
+      "revId": "5edb24cac03f5cea985b0d46c6689abdcfd04b0f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
