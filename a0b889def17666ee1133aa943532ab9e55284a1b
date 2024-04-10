@@ -76,6 +76,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a5eb20e_c360a8db",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-04-10T07:34:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d7ab47af_2b37e97f",
+      "range": {
+        "startLine": 240,
+        "startChar": 4,
+        "endLine": 240,
+        "endChar": 5
+      },
+      "revId": "a0b889def17666ee1133aa943532ab9e55284a1b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7c6472bd_dc954221",
@@ -89,6 +113,30 @@
       "writtenOn": "2024-03-11T10:36:58Z",
       "side": 1,
       "message": "NB: check if similar scenario need to be checked for XML.\nMaybe add a new test case if we cant accomodate in this one.",
+      "range": {
+        "startLine": 249,
+        "startChar": 125,
+        "endLine": 249,
+        "endChar": 142
+      },
+      "revId": "a0b889def17666ee1133aa943532ab9e55284a1b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "612cc024_3234e51d",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-04-10T07:34:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c6472bd_dc954221",
       "range": {
         "startLine": 249,
         "startChar": 125,

@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "dab98f4c_26d1cf49",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-04-10T07:34:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f2d003a2_83192b38",
+      "revId": "f09d08b16c33c63adc12261eaaeb0b458b9119cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "0e0a62fb_34cf9c78",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 3
@@ -58,6 +76,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d81cb386_3aa3d0db",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandlerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-04-10T07:34:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e72646fb_e0750621",
+      "range": {
+        "startLine": 212,
+        "startChar": 109,
+        "endLine": 212,
+        "endChar": 110
+      },
+      "revId": "f09d08b16c33c63adc12261eaaeb0b458b9119cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "415756a9_353e41a2",
@@ -71,6 +113,30 @@
       "writtenOn": "2024-03-27T14:17:15Z",
       "side": 1,
       "message": "NB: Could be stricter ie. expect JSON",
+      "range": {
+        "startLine": 248,
+        "startChar": 109,
+        "endLine": 248,
+        "endChar": 111
+      },
+      "revId": "f09d08b16c33c63adc12261eaaeb0b458b9119cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f765f6ff_d9927f01",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServicePropertyHandlerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-04-10T07:34:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "415756a9_353e41a2",
       "range": {
         "startLine": 248,
         "startChar": 109,
@@ -128,6 +194,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6184fbbc_c08598b3",
+        "filename": "cps-rest/docs/openapi/cpsData.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-04-10T07:34:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f1faa5c6_eb7aa47b",
+      "range": {
+        "startLine": 146,
+        "startChar": 18,
+        "endLine": 146,
+        "endChar": 24
+      },
+      "revId": "f09d08b16c33c63adc12261eaaeb0b458b9119cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "817c4dbd_9131e816",
@@ -151,6 +241,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7b3a559_356d72ab",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-04-10T07:34:52Z",
+      "side": 1,
+      "message": "Depending upon ContentType BuildDataNodes are parsing the yang module",
+      "parentUuid": "817c4dbd_9131e816",
+      "range": {
+        "startLine": 136,
+        "startChar": 75,
+        "endLine": 136,
+        "endChar": 114
+      },
+      "revId": "f09d08b16c33c63adc12261eaaeb0b458b9119cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d6de3179_6382bdf6",
@@ -164,6 +278,30 @@
       "writtenOn": "2024-03-26T18:28:08Z",
       "side": 1,
       "message": "Non-blocking: This column is not needed, since contentType is always ContentType.JSON",
+      "range": {
+        "startLine": 385,
+        "startChar": 142,
+        "endLine": 385,
+        "endChar": 153
+      },
+      "revId": "f09d08b16c33c63adc12261eaaeb0b458b9119cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09a50bd5_ac67ea7c",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsDataServiceIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-04-10T07:34:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6de3179_6382bdf6",
       "range": {
         "startLine": 385,
         "startChar": 142,
