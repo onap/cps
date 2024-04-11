@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b088bcec_5bfc304e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-11T10:31:01Z",
+      "side": 1,
+      "message": "still some outstanding comments needed to be addressed in the patchset.",
+      "revId": "19d2f273c0d696e11ec825efb14519700a439893",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a320a5b8_344ec7c1",
