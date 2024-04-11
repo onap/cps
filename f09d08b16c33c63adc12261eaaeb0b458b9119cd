@@ -265,6 +265,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "89e40eab_ddf436a0",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-11T10:28:26Z",
+      "side": 1,
+      "message": "The annotation is already part of the generated java files from the openapi specs file.\nSo this is no longer needed here.",
+      "parentUuid": "d7b3a559_356d72ab",
+      "range": {
+        "startLine": 136,
+        "startChar": 75,
+        "endLine": 136,
+        "endChar": 114
+      },
+      "revId": "f09d08b16c33c63adc12261eaaeb0b458b9119cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d6de3179_6382bdf6",

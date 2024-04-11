@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a320a5b8_344ec7c1",
+        "filename": "cps-rest/docs/openapi/cpsData.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-11T10:28:26Z",
+      "side": 1,
+      "message": "y it is still string here??\nit has to be \"object\" right ???",
+      "range": {
+        "startLine": 146,
+        "startChar": 18,
+        "endLine": 146,
+        "endChar": 24
+      },
+      "revId": "19d2f273c0d696e11ec825efb14519700a439893",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
