@@ -128,6 +128,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f620283_ca30b7cc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/datajob/DataJobReadRequest.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-11T09:23:46Z",
+      "side": 1,
+      "message": "after to Sourabh now and we think because we would need to transform it twice ingoing and outgoing we can \u0027live with\u0027 the bad names (\u0027data\u0027 and \u0027op\u0027)",
+      "parentUuid": "a3ebbe50_cd1f07e8",
+      "range": {
+        "startLine": 30,
+        "startChar": 53,
+        "endLine": 30,
+        "endChar": 57
+      },
+      "revId": "e33a3c09f747ccabae31db4dfe7b3461c0530aa9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "64ee0733_e3613659",
