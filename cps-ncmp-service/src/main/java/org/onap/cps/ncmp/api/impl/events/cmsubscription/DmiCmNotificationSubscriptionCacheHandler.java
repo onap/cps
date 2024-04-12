@@ -30,8 +30,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
+import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.CmNotificationSubscriptionStatus;
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.DmiCmNotificationSubscriptionDetails;
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.DmiCmNotificationSubscriptionPredicate;
+import org.onap.cps.ncmp.api.impl.events.cmsubscription.service.CmNotificationSubscriptionPersistenceService;
 import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.impl.operations.DatastoreType;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
@@ -42,6 +44,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class DmiCmNotificationSubscriptionCacheHandler {
 
+    private final CmNotificationSubscriptionPersistenceService cmNotificationSubscriptionPersistenceService;
     private final Map<String, Map<String, DmiCmNotificationSubscriptionDetails>> cmNotificationSubscriptionCache;
     private final InventoryPersistence inventoryPersistence;
 
@@ -81,6 +84,46 @@ public class DmiCmNotificationSubscriptionCacheHandler {
             }
         }
         return dmiCmNotificationSubscriptionDetailsPerDmi;
+    }
+
+    /**
+     *  Update status in map of subscription details per DMI.
+     *
+     * @param subscriptionId    String of subscription Id
+     * @param dmiServiceName    String of dmiServiceName
+     * @param status            String of status
+     *
+     */
+    public void updateDmiCmNotificationSubscriptionStatusPerDmi(
+        final String subscriptionId, final String dmiServiceName, final CmNotificationSubscriptionStatus status) {
+        cmNotificationSubscriptionCache.get(subscriptionId).get(dmiServiceName)
+            .setCmNotificationSubscriptionStatus(status);
+    }
+
+    /**
+     *  Persist map of subscription details per DMI.
+     *
+     * @param subscriptionId    String of subscription Id
+     * @param dmiServiceName    String of dmiServiceName
+     *
+     */
+    public void persistIntoDatabasePerDmi(final String subscriptionId, final String dmiServiceName) {
+        final List<DmiCmNotificationSubscriptionPredicate> dmiCmNotificationSubscriptionPredicateList =
+            cmNotificationSubscriptionCache.get(subscriptionId).get(dmiServiceName)
+            .getDmiCmNotificationSubscriptionPredicates();
+        for (final DmiCmNotificationSubscriptionPredicate dmiCmNotificationSubscriptionPredicate:
+            dmiCmNotificationSubscriptionPredicateList) {
+            final DatastoreType datastoreType = dmiCmNotificationSubscriptionPredicate.getDatastoreType();
+            final Set<String> cmHandles = dmiCmNotificationSubscriptionPredicate.getTargetCmHandleIds();
+            final Set<String> xpaths = dmiCmNotificationSubscriptionPredicate.getXpaths();
+
+            for (final String cmHandle: cmHandles) {
+                for (final String xpath: xpaths) {
+                    cmNotificationSubscriptionPersistenceService.addOrUpdateCmNotificationSubscription(datastoreType,
+                        cmHandle, xpath, subscriptionId);
+                }
+            }
+        }
     }
 
     private void updateDmiCmNotificationSubscriptionDetailsPerDmi(
