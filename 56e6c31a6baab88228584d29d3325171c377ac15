@@ -105,6 +105,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "94f0a7f5_5a64d164",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/DmiCmNotificationSubscriptionCacheHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-04-12T10:03:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2611961d_5e675bc4",
+      "range": {
+        "startLine": 90,
+        "startChar": 7,
+        "endLine": 90,
+        "endChar": 51
+      },
+      "revId": "56e6c31a6baab88228584d29d3325171c377ac15",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "69da502f_e99003f8",
@@ -122,6 +146,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "42d58cab_7dd36f9e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/DmiCmNotificationSubscriptionCacheHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-04-12T10:03:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "69da502f_e99003f8",
+      "revId": "56e6c31a6baab88228584d29d3325171c377ac15",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6da60825_cbb1b8c6",
@@ -135,6 +177,30 @@
       "writtenOn": "2024-04-08T08:59:43Z",
       "side": 1,
       "message": "because the class is already cache handler,i think better to just do persistIntoDatabase or something more straightforward",
+      "range": {
+        "startLine": 110,
+        "startChar": 22,
+        "endLine": 110,
+        "endChar": 30
+      },
+      "revId": "56e6c31a6baab88228584d29d3325171c377ac15",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f06ea30_ba0d8ad6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/DmiCmNotificationSubscriptionCacheHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-04-12T10:03:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6da60825_cbb1b8c6",
       "range": {
         "startLine": 110,
         "startChar": 22,
@@ -168,6 +234,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3d8f8ad_42ea306d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionDmiOutEventConsumerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-04-12T10:03:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad965f86_c2ee8cac",
+      "range": {
+        "startLine": 99,
+        "startChar": 15,
+        "endLine": 99,
+        "endChar": 21
+      },
+      "revId": "56e6c31a6baab88228584d29d3325171c377ac15",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "774054a3_9faba7bf",
@@ -191,6 +281,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "221d2ea2_e9b0210f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/DmiCmNotificationSubscriptionCacheHandlerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-04-12T10:03:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "774054a3_9faba7bf",
+      "range": {
+        "startLine": 123,
+        "startChar": 23,
+        "endLine": 123,
+        "endChar": 24
+      },
+      "revId": "56e6c31a6baab88228584d29d3325171c377ac15",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6150bb03_9041e660",
@@ -204,6 +318,30 @@
       "writtenOn": "2024-04-08T08:59:43Z",
       "side": 1,
       "message": "dmi",
+      "range": {
+        "startLine": 127,
+        "startChar": 39,
+        "endLine": 127,
+        "endChar": 42
+      },
+      "revId": "56e6c31a6baab88228584d29d3325171c377ac15",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a208ce70_2f3cdcde",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/DmiCmNotificationSubscriptionCacheHandlerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-04-12T10:03:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6150bb03_9041e660",
       "range": {
         "startLine": 127,
         "startChar": 39,
