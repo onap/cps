@@ -186,7 +186,7 @@ class DataRestControllerSpec extends Specification {
         when: 'list-node endpoint is invoked with post (create) operation'
             def postRequestBuilder = post("$dataNodeBaseEndpointV1/anchors/$anchorName/list-nodes")
                 .contentType(MediaType.APPLICATION_JSON)
-                .param('xpath', rootNodeXpath )
+                .param('xpath', rootNodeXpath)
                 .content(requestBodyJson)
             if (observedTimestamp != null)
                 postRequestBuilder.param('observed-timestamp', observedTimestamp)
@@ -318,8 +318,11 @@ class DataRestControllerSpec extends Specification {
         given: 'the service returns data node'
             def xpath = 'some xPath'
             def endpoint = "$dataNodeBaseEndpointV2/anchors/$anchorName/node"
-            mockCpsDataService.getDataNodes(dataspaceName, anchorName, xpath, { descendantsOption -> {
-                assert descendantsOption.depth == 2}} as FetchDescendantsOption) >> [dataNodeWithChild]
+            mockCpsDataService.getDataNodes(dataspaceName, anchorName, xpath, { descendantsOption ->
+                {
+                    assert descendantsOption.depth == 2
+                }
+            } as FetchDescendantsOption) >> [dataNodeWithChild]
         when: 'get request is performed through REST API'
             def response =
                 mvc.perform(
@@ -360,19 +363,22 @@ class DataRestControllerSpec extends Specification {
             def response =
                 mvc.perform(
                     patch(endpoint)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(requestBodyJson)
+                        .contentType(contentType)
+                        .content(requestBody)
                         .param('xpath', inputXpath)
                 ).andReturn().response
         then: 'the service method is invoked with expected parameters'
-            1 * mockCpsDataService.updateNodeLeaves(dataspaceName, anchorName, xpathServiceParameter, expectedJsonData, null)
+            1 * mockCpsDataService.updateNodeLeaves(dataspaceName, anchorName, xpathServiceParameter, expectedData, null)
         and: 'response status indicates success'
             response.status == HttpStatus.OK.value()
         where:
-            scenario               | inputXpath    || xpathServiceParameter
-            'root node by default' | ''            || '/'
-            'root node by choice'  | '/'           || '/'
-            'some xpath by parent' | '/some/xpath' || '/some/xpath'
+            scenario                             | inputXpath    | contentType                || xpathServiceParameter | requestBody     | expectedData
+            'JSON content: root node by default' | ''            | MediaType.APPLICATION_JSON || '/'                   | requestBodyJson | expectedJsonData
+            'JSON content: root node by choice'  | '/'           | MediaType.APPLICATION_JSON || '/'                   | requestBodyJson | expectedJsonData
+            'JSON content: some xpath by parent' | '/some/xpath' | MediaType.APPLICATION_JSON || '/some/xpath'         | requestBodyJson | expectedJsonData
+            'XML content: root node by default'  | ''            | MediaType.APPLICATION_XML  || '/'                   | requestBodyXml  | expectedXmlData
+            'XML content: root node by choice'   | '/'           | MediaType.APPLICATION_XML  || '/'                   | requestBodyXml  | expectedXmlData
+            'XML content: some xpath by parent'  | '/some/xpath' | MediaType.APPLICATION_XML  || '/some/xpath'         | requestBodyXml  | expectedXmlData
     }
 
     def 'Update data node leaves with observedTimestamp'() {
@@ -382,20 +388,22 @@ class DataRestControllerSpec extends Specification {
             def response =
                 mvc.perform(
                     patch(endpoint)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(requestBodyJson)
+                        .contentType(contentType)
+                        .content(requestBody)
                         .param('xpath', '/')
                         .param('observed-timestamp', observedTimestamp)
                 ).andReturn().response
         then: 'the service method is invoked with expected parameters'
-            expectedApiCount * mockCpsDataService.updateNodeLeaves(dataspaceName, anchorName, '/', expectedJsonData,
+            expectedApiCount * mockCpsDataService.updateNodeLeaves(dataspaceName, anchorName, '/', expectedData,
                 { it == DateTimeUtility.toOffsetDateTime(observedTimestamp) })
         and: 'response status indicates success'
             response.status == expectedHttpStatus.value()
         where:
-            scenario                          | observedTimestamp              || expectedApiCount | expectedHttpStatus
-            'with observed-timestamp'         | '2021-03-03T23:59:59.999-0400' || 1                | HttpStatus.OK
-            'with invalid observed-timestamp' | 'invalid'                      || 0                | HttpStatus.BAD_REQUEST
+            scenario                                        | contentType                | requestBody     | observedTimestamp              || expectedApiCount | expectedHttpStatus     | expectedData
+            'JSON content: with observed-timestamp'         | MediaType.APPLICATION_JSON | requestBodyJson | '2021-03-03T23:59:59.999-0400' || 1                | HttpStatus.OK          | expectedJsonData
+            'JSON content: with invalid observed-timestamp' | MediaType.APPLICATION_JSON | requestBodyJson | 'invalid'                      || 0                | HttpStatus.BAD_REQUEST | expectedJsonData
+            'XML content: with observed-timestamp'          | MediaType.APPLICATION_XML  | requestBodyXml  | '2021-03-03T23:59:59.999-0400' || 1                | HttpStatus.OK          | expectedXmlData
+            'XML content: with invalid observed-timestamp'  | MediaType.APPLICATION_XML  | requestBodyXml  | 'invalid'                      || 0                | HttpStatus.BAD_REQUEST | expectedXmlData
     }
 
     def 'Replace data node tree: #scenario.'() {
@@ -487,7 +495,7 @@ class DataRestControllerSpec extends Specification {
         given: 'data node xpath'
             def dataNodeXpath = '/dataNodeXpath'
         when: 'delete data node endpoint is invoked'
-            def deleteDataNodeRequest = delete( "$dataNodeBaseEndpointV1/anchors/$anchorName/nodes")
+            def deleteDataNodeRequest = delete("$dataNodeBaseEndpointV1/anchors/$anchorName/nodes")
                 .param('xpath', dataNodeXpath)
         and: 'observed timestamp is added to the parameters'
             if (observedTimestamp != null)
@@ -499,9 +507,9 @@ class DataRestControllerSpec extends Specification {
             expectedApiCount * mockCpsDataService.deleteDataNode(dataspaceName, anchorName, dataNodeXpath,
                 { it == DateTimeUtility.toOffsetDateTime(observedTimestamp) })
         where:
-            scenario                            | observedTimestamp                 || expectedApiCount | expectedHttpStatus
-            'with observed timestamp'           | '2021-03-03T23:59:59.999-0400'    || 1                | HttpStatus.NO_CONTENT
-            'without observed timestamp'        | null                              || 1                | HttpStatus.NO_CONTENT
-            'with invalid observed timestamp'   | 'invalid'                         || 0                | HttpStatus.BAD_REQUEST
+            scenario                          | observedTimestamp              || expectedApiCount | expectedHttpStatus
+            'with observed timestamp'         | '2021-03-03T23:59:59.999-0400' || 1                | HttpStatus.NO_CONTENT
+            'without observed timestamp'      | null                           || 1                | HttpStatus.NO_CONTENT
+            'with invalid observed timestamp' | 'invalid'                      || 0                | HttpStatus.BAD_REQUEST
     }
 }

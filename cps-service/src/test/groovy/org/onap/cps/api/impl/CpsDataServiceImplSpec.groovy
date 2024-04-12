@@ -212,30 +212,32 @@ class CpsDataServiceImplSpec extends Specification {
     def 'Update data node leaves: #scenario.'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')
-        when: 'update data method is invoked with json data #jsonData and parent node xpath #parentNodeXpath'
-            objectUnderTest.updateNodeLeaves(dataspaceName, anchorName, parentNodeXpath, jsonData, observedTimestamp)
+        when: 'update data method is invoked with node data #nodeData and parent node xpath #parentNodeXpath'
+            objectUnderTest.updateNodeLeaves(dataspaceName, anchorName, parentNodeXpath, nodeData, observedTimestamp)
         then: 'the persistence service method is invoked with correct parameters'
             1 * mockCpsDataPersistenceService.batchUpdateDataLeaves(dataspaceName, anchorName, {dataNode -> dataNode.keySet()[0] == expectedNodeXpath})
         and: 'the CpsValidator is called on the dataspaceName and AnchorName'
             1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
         where: 'following parameters were used'
-            scenario         | parentNodeXpath | jsonData                        || expectedNodeXpath
-            'top level node' | '/'             | '{"test-tree": {"branch": []}}' || '/test-tree'
-            'level 2 node'   | '/test-tree'    | '{"branch": [{"name":"Name"}]}' || '/test-tree/branch[@name=\'Name\']'
+            scenario                       | parentNodeXpath | nodeData                             || expectedNodeXpath
+            'JSON content: top level node' | '/'             | '{"test-tree": {"branch": []}}'      || '/test-tree'
+            'JSON content: level 2 node'   | '/test-tree'    | '{"branch": [{"name":"Name"}]}'      || '/test-tree/branch[@name=\'Name\']'
+            'XML  content: level 2 node'   | '/test-tree'    | '<branch><name>Name</name></branch>' || '/test-tree/branch[@name=\'Name\']'
     }
 
     def 'Update list-element data node with : #scenario.'() {
         given: 'schema set for given anchor and dataspace references bookstore model'
             setupSchemaSetMocks('bookstore.yang')
-        when: 'update data method is invoked with json data #jsonData and parent node xpath'
+        when: 'update data method is invoked with node data #nodeData and parent node xpath'
             objectUnderTest.updateNodeLeaves(dataspaceName, anchorName, '/bookstore/categories[@code=2]',
-                jsonData, observedTimestamp)
+                nodeData, observedTimestamp)
         then: 'the persistence service method is invoked with correct parameters'
             thrown(DataValidationException)
         where: 'following parameters were used'
-            scenario                  | jsonData
-            'multiple expectedLeaves' | '{"code": "01","name": "some-name"}'
-            'one leaf'                | '{"name": "some-name"}'
+            scenario                                | nodeData
+            'JSON content: multiple expectedLeaves' | '{"code": "03","name": "some-name"}'
+            'JSON content: one leaf'                | '{"name": "some-name"}'
+            'XML content: multiple expectedLeaves'  | '<code>1</code><name>some-name</name>'
     }
 
     def 'Update data nodes in different containers.' () {

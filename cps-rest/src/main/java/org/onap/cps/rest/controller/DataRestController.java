@@ -133,9 +133,9 @@ public class DataRestController implements CpsDataApi {
 
     @Override
     public ResponseEntity<Object> updateNodeLeaves(final String apiVersion, final String dataspaceName,
-        final String anchorName, final Object jsonData, final String parentNodeXpath, final String observedTimestamp) {
+        final String anchorName, final String nodeData, final String parentNodeXpath, final String observedTimestamp) {
         cpsDataService.updateNodeLeaves(dataspaceName, anchorName, parentNodeXpath,
-                jsonObjectMapper.asJsonString(jsonData), toOffsetDateTime(observedTimestamp));
+                nodeData, toOffsetDateTime(observedTimestamp));
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
