@@ -58,6 +58,29 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c578e870_876448a4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionDmiOutEventConsumerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-04-12T10:17:35Z",
+      "side": 1,
+      "message": "Nice clear test :)",
+      "range": {
+        "startLine": 103,
+        "startChar": 114,
+        "endLine": 105,
+        "endChar": 91
+      },
+      "revId": "5bc8981d419a50f19105bd721f10753bb2fd08cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "106af301_48bfa8b6",
