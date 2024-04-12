@@ -16,6 +16,52 @@
       "message": "Addressed review comments",
       "revId": "822b88d5bf216cb212642e8dfbf9b17c63a7d814",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc574dd0_8493dcc4",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-12T15:34:55Z",
+      "side": 1,
+      "message": "NB: cpsDataUpdateEventsService",
+      "range": {
+        "startLine": 72,
+        "startChar": 45,
+        "endLine": 72,
+        "endChar": 68
+      },
+      "revId": "822b88d5bf216cb212642e8dfbf9b17c63a7d814",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "614d65c3_dc1537b6",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/events/DataUpdateEventsServiceSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-12T15:34:55Z",
+      "side": 1,
+      "message": "NB: def",
+      "range": {
+        "startLine": 42,
+        "startChar": 4,
+        "endLine": 42,
+        "endChar": 16
+      },
+      "revId": "822b88d5bf216cb212642e8dfbf9b17c63a7d814",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

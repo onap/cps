@@ -219,6 +219,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2f749571_c644d0f7",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/CloudEventBuilder.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-12T15:34:55Z",
+      "side": 1,
+      "message": "call the class as CpsCloudEventBuilder",
+      "parentUuid": "3cc3ad60_43074796",
+      "range": {
+        "startLine": 49,
+        "startChar": 14,
+        "endLine": 49,
+        "endChar": 42
+      },
+      "revId": "4ef37e8ac8ec8cb0a609a70815a9fb45e7a920e3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0ddc049b_3d9083c7",
         "filename": "cps-service/src/main/java/org/onap/cps/events/DataUpdateEventsService.java",
         "patchSetId": 12
