@@ -99,6 +99,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc3d6cdf_8ed3d89f",
+        "filename": "cps-events/src/main/resources/schemas/updatenode/cps-data-updated-event-schema-1.0.0.json",
+        "patchSetId": 12
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2024-04-15T09:31:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b9d2565_0f985610",
+      "range": {
+        "startLine": 15,
+        "startChar": 158,
+        "endLine": 15,
+        "endChar": 163
+      },
+      "revId": "4ef37e8ac8ec8cb0a609a70815a9fb45e7a920e3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7b1abf7d_49015fa2",
@@ -160,6 +184,30 @@
       "side": 1,
       "message": "Ok.renamed.",
       "parentUuid": "3432eaaf_75c90b63",
+      "range": {
+        "startLine": 376,
+        "startChar": 37,
+        "endLine": 376,
+        "endChar": 42
+      },
+      "revId": "4ef37e8ac8ec8cb0a609a70815a9fb45e7a920e3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5cc9afa0_735ef419",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2024-04-15T09:31:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f0f945b_ee044463",
       "range": {
         "startLine": 376,
         "startChar": 37,
@@ -241,6 +289,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0802a65b_0a2b08eb",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/CloudEventBuilder.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2024-04-15T09:31:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f749571_c644d0f7",
+      "range": {
+        "startLine": 49,
+        "startChar": 14,
+        "endLine": 49,
+        "endChar": 42
+      },
+      "revId": "4ef37e8ac8ec8cb0a609a70815a9fb45e7a920e3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0ddc049b_3d9083c7",
@@ -288,6 +360,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cec5cb5a_d2dcf0fe",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/DataUpdateEventsService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2024-04-15T09:31:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8376095e_1badf1c5",
+      "range": {
+        "startLine": 41,
+        "startChar": 13,
+        "endLine": 41,
+        "endChar": 36
+      },
+      "revId": "4ef37e8ac8ec8cb0a609a70815a9fb45e7a920e3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "716ea7aa_281440d4",
@@ -325,6 +421,30 @@
       "side": 1,
       "message": "renamed",
       "parentUuid": "716ea7aa_281440d4",
+      "range": {
+        "startLine": 62,
+        "startChar": 16,
+        "endLine": 62,
+        "endChar": 38
+      },
+      "revId": "4ef37e8ac8ec8cb0a609a70815a9fb45e7a920e3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc4a8a9e_91837771",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/DataUpdateEventsService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2024-04-15T09:31:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a1efab0_ff5b0395",
       "range": {
         "startLine": 62,
         "startChar": 16,
@@ -396,6 +516,30 @@
       "side": 1,
       "message": "Added Test cases",
       "parentUuid": "399d71f6_fc94883a",
+      "range": {
+        "startLine": 100,
+        "startChar": 8,
+        "endLine": 100,
+        "endChar": 100
+      },
+      "revId": "4ef37e8ac8ec8cb0a609a70815a9fb45e7a920e3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdad8e45_b4dcb06f",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/DataUpdateEventsService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2024-04-15T09:31:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f5f1846f_c3b3ac5c",
       "range": {
         "startLine": 100,
         "startChar": 8,
