@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2023 Nordix Foundation
+ *  Copyright (C) 2022-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -23,6 +23,7 @@ package org.onap.cps.ncmp.rest.executor;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 import java.util.concurrent.CompletableFuture;
+import java.util.function.BiConsumer;
 import java.util.function.Supplier;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -34,13 +35,26 @@ public class CpsNcmpTaskExecutor {
     /**
      * Execute a task asynchronously.
      *
-     * @param taskSupplier functional method is get() task need to executed asynchronously
+     * @param taskSupplier functional method is get() task needed to be executed asynchronously
+     * @param taskCompletionHandler the action to perform on task completion
+     * @param timeOutInMillis the time-out value in milliseconds
+     */
+    public void executeTask(final Supplier<Object> taskSupplier,
+                            final BiConsumer<Object, Throwable> taskCompletionHandler,
+                            final long timeOutInMillis) {
+        CompletableFuture.supplyAsync(taskSupplier)
+                .orTimeout(timeOutInMillis, MILLISECONDS)
+                .whenCompleteAsync(taskCompletionHandler);
+    }
+
+    /**
+     * Execute a task asynchronously.
+     *
+     * @param taskSupplier functional method is get() task needed to be executed asynchronously
      * @param timeOutInMillis the time-out value in milliseconds
      */
     public void executeTask(final Supplier<Object> taskSupplier, final long timeOutInMillis) {
-        CompletableFuture.supplyAsync(taskSupplier::get)
-            .orTimeout(timeOutInMillis, MILLISECONDS)
-            .whenCompleteAsync((taskResult, throwable) -> handleTaskCompletion(throwable));
+        executeTask(taskSupplier, (taskResult, throwable) -> handleTaskCompletion(throwable), timeOutInMillis);
     }
 
     private void handleTaskCompletion(final Throwable throwable) {

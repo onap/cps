@@ -58,7 +58,7 @@ class NcmpDatastoreRequestHandlerSpec extends Specification {
         when: 'get request is executed with topic = #topic'
             objectUnderTest.executeRequest(cmResourceAddress, 'options', topic, false, NO_AUTH_HEADER)
         then: 'the task is executed in an async fashion or not'
-            expectedCalls * spiedCpsNcmpTaskExecutor.executeTask(*_)
+            expectedCalls * spiedCpsNcmpTaskExecutor.executeTask(_,_,_)
         and: 'the service request is invoked'
             new PollingConditions().within(1) {
                 assert networkServiceMethodCalled == true
