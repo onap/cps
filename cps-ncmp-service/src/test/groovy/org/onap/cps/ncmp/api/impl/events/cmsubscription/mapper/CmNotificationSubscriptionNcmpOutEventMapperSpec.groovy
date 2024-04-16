@@ -52,4 +52,13 @@ class CmNotificationSubscriptionNcmpOutEventMapperSpec extends Specification {
             result.data.acceptedTargets == ['ch-B']
             result.data.rejectedTargets == ['ch-C']
     }
+
+    def 'Check for Cm Notification Rejected Subscription Outgoing event mapping'() {
+        when: 'we try to map the event to send it to client'
+            def result = objectUnderTest.toCmNotificationSubscriptionNcmpOutEventForRejectedRequest('test-subscription', ['ch-1', 'ch-2'])
+        then: 'event is mapped correctly for the subscription id'
+            result.data.subscriptionId == 'test-subscription'
+        and: 'the cm handle ids are part of correct list'
+            result.data.withRejectedTargets(['ch-1', 'ch-2'])
+    }
 }
