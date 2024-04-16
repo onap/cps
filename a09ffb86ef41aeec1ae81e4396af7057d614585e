@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25c64106_3122c0c4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-16T12:31:17Z",
+      "side": 1,
+      "message": "loosk much better, a few small sugegstions",
+      "revId": "a09ffb86ef41aeec1ae81e4396af7057d614585e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71efce04_1f890d82",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-16T12:31:17Z",
+      "side": 1,
+      "message": "legacy issue. \u0027valid\u0027 is not a term we should use in Javadoc (of course it should be valid). instead a bit of contact\ndatastoreType  the susbcription target datastore type\ncmHandleId     the id of the cm handle for the susbcription\nxpath          the target xpath \n\nor somethign similar....",
+      "range": {
+        "startLine": 66,
+        "startChar": 20,
+        "endLine": 66,
+        "endChar": 31
+      },
+      "revId": "a09ffb86ef41aeec1ae81e4396af7057d614585e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "616ec6e8_ac9bc623",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-16T12:31:17Z",
+      "side": 1,
+      "message": "much more readable now, thanks!",
+      "revId": "a09ffb86ef41aeec1ae81e4396af7057d614585e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25857fb4_eaac23e2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-16T12:31:17Z",
+      "side": 1,
+      "message": "this bit looks identical to lines 99-102.\nprobably can be done in the already existing method saveSubscrptionDetails and ssntead of the map, pass  down xpath and subscrptiotionIds",
+      "range": {
+        "startLine": 115,
+        "startChar": 0,
+        "endLine": 118,
+        "endChar": 82
+      },
+      "revId": "a09ffb86ef41aeec1ae81e4396af7057d614585e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49cff6bc_d94c97c9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImplSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-16T12:31:17Z",
+      "side": 1,
+      "message": "sicne this is a delegation test, do we need a real value here or would \u0027ds1\u0027 work to here and make it more readable?",
+      "range": {
+        "startLine": 113,
+        "startChar": 89,
+        "endLine": 113,
+        "endChar": 123
+      },
+      "revId": "a09ffb86ef41aeec1ae81e4396af7057d614585e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
