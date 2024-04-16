@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "14cc240b_a091fe35",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 32
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-04-16T11:11:18Z",
+      "side": 1,
+      "message": "keeping the naming consistent with first delta api",
+      "parentUuid": "8109b532_39ac543f",
+      "range": {
+        "startLine": 176,
+        "startChar": 83,
+        "endLine": 176,
+        "endChar": 99
+      },
+      "revId": "a2360f3bf0893b28e2b265f0595336f2948d07ae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ce8fb122_4749d108",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
         "patchSetId": 32
@@ -54,6 +78,30 @@
       "writtenOn": "2024-04-16T10:03:51Z",
       "side": 1,
       "message": "suggestion: yang model file",
+      "range": {
+        "startLine": 359,
+        "startChar": 59,
+        "endLine": 359,
+        "endChar": 68
+      },
+      "revId": "a2360f3bf0893b28e2b265f0595336f2948d07ae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "798ae71e_b2225620",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 32
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-04-16T11:11:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce8fb122_4749d108",
       "range": {
         "startLine": 359,
         "startChar": 59,
@@ -77,6 +125,30 @@
       "writtenOn": "2024-04-16T10:03:51Z",
       "side": 1,
       "message": "nb: service layer",
+      "range": {
+        "startLine": 366,
+        "startChar": 18,
+        "endLine": 366,
+        "endChar": 26
+      },
+      "revId": "a2360f3bf0893b28e2b265f0595336f2948d07ae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "348e874f_a858270d",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 32
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-04-16T11:11:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "647f451c_d8f33f3b",
       "range": {
         "startLine": 366,
         "startChar": 18,
