@@ -198,7 +198,7 @@ class NetworkCmProxyControllerSpec extends Specification {
         and: 'async request id is generated'
             assert response.contentAsString.contains('requestId')
         then: 'the request is handled asynchronously'
-            1 * mockCpsTaskExecutor.executeTask(*_)
+            1 * mockCpsTaskExecutor.executeTaskWithErrorHandling(*_)
         where: 'the following data stores are used'
             datastore << [PASSTHROUGH_RUNNING, PASSTHROUGH_OPERATIONAL]
     }

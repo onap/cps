@@ -25,11 +25,13 @@ import static org.onap.cps.ncmp.api.impl.operations.OperationType.READ;
 
 import java.util.Map;
 import java.util.UUID;
+import java.util.function.BiConsumer;
 import java.util.function.Supplier;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.api.impl.exception.InvalidDatastoreException;
 import org.onap.cps.ncmp.api.impl.operations.DatastoreType;
 import org.onap.cps.ncmp.api.impl.operations.OperationType;
+import org.onap.cps.ncmp.api.impl.utils.data.operation.ResourceDataOperationRequestUtils;
 import org.onap.cps.ncmp.api.models.CmResourceAddress;
 import org.onap.cps.ncmp.api.models.DataOperationRequest;
 import org.onap.cps.ncmp.rest.exceptions.OperationNotSupportedException;
@@ -99,8 +101,9 @@ public class NcmpPassthroughResourceRequestHandler extends NcmpDatastoreRequestH
             final DataOperationRequest dataOperationRequest,
             final String authorization) {
         final String requestId = UUID.randomUUID().toString();
-        cpsNcmpTaskExecutor.executeTask(
+        cpsNcmpTaskExecutor.executeTaskWithErrorHandling(
             getTaskSupplierForDataOperationRequest(topicParamInQuery, dataOperationRequest, requestId, authorization),
+            getTaskCompletionHandlerForDataOperationRequest(topicParamInQuery, dataOperationRequest, requestId),
             timeOutInMilliSeconds);
         return ResponseEntity.ok(Map.of("requestId", requestId));
     }
@@ -137,6 +140,15 @@ public class NcmpPassthroughResourceRequestHandler extends NcmpDatastoreRequestH
                 authorization);
             return noReturn;
         };
+    }
+
+    private static BiConsumer<Object, Throwable> getTaskCompletionHandlerForDataOperationRequest(
+            final String topicParamInQuery,
+            final DataOperationRequest dataOperationRequest,
+            final String requestId) {
+        return (result, throwable) ->
+                ResourceDataOperationRequestUtils.handleAsyncTaskCompletionForDataOperationsRequest(topicParamInQuery,
+                        requestId, dataOperationRequest, throwable);
     }
 
 }

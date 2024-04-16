@@ -79,7 +79,7 @@ class NcmpDatastoreRequestHandlerSpec extends Specification {
         when: 'data operation request is executed'
             objectUnderTest.executeRequest('someTopic', new DataOperationRequest(), NO_AUTH_HEADER)
         then: 'the task is executed in an async fashion or not'
-            expectedCalls * spiedCpsNcmpTaskExecutor.executeTask(*_)
+            expectedCalls * spiedCpsNcmpTaskExecutor.executeTaskWithErrorHandling(*_)
         where: 'the following parameters are used'
             scenario | notificationFeatureEnabled || expectedCalls
             'on'     | true                       || 1
@@ -101,7 +101,7 @@ class NcmpDatastoreRequestHandlerSpec extends Specification {
         when: 'data operation request is executed'
             objectUnderTest.executeRequest('myTopic', dataOperationRequest, NO_AUTH_HEADER)
         then: 'the task is executed in an async fashion'
-            1 * spiedCpsNcmpTaskExecutor.executeTask(*_)
+            1 * spiedCpsNcmpTaskExecutor.executeTaskWithErrorHandling(*_)
         and: 'the network service is invoked'
             new PollingConditions().within(1) {
                 assert networkServiceMethodCalled == true

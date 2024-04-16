@@ -33,6 +33,7 @@ class CpsNcmpTaskExecutorSpec extends Specification {
     def objectUnderTest = new CpsNcmpTaskExecutor()
     def logger = Spy(ListAppender<ILoggingEvent>)
     def enoughTime = 100
+    def notEnoughTime = 10
 
     void setup() {
         ((Logger) LoggerFactory.getLogger(CpsNcmpTaskExecutor.class)).addAppender(logger)
@@ -67,12 +68,28 @@ class CpsNcmpTaskExecutorSpec extends Specification {
             assert loggingEvent.formattedMessage.contains('original exception message')
     }
 
+    def 'Task times out.'() {
+        when: 'task is executed without enough time to complete'
+            objectUnderTest.executeTask(taskSupplierForLongRunningTask(), notEnoughTime)
+        then: 'an event is logged with level ERROR'
+            new PollingConditions().within(1) {
+                def loggingEvent = getLoggingEvent()
+                assert loggingEvent.level == Level.ERROR
+            }
+        and: 'a timeout error message is logged'
+            assert loggingEvent.formattedMessage.contains('java.util.concurrent.TimeoutException')
+    }
+
     def taskSupplier() {
         return () -> 'hello world'
     }
 
     def taskSupplierForFailingTask() {
         return () -> { throw new RuntimeException('original exception message') }
+    }
+
+    def taskSupplierForLongRunningTask() {
+        return () -> { sleep(enoughTime) }
     }
 
     def getLoggingEvent() {
