@@ -23,12 +23,11 @@ package org.onap.cps.ncmp.api.impl.events.cmsubscription;
 import static org.onap.cps.ncmp.api.impl.events.mapper.CloudEventMapper.toTargetEvent;
 
 import io.cloudevents.CloudEvent;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.onap.cps.ncmp.api.impl.events.cmsubscription.service.CmNotificationSubscriptionHandlerService;
 import org.onap.cps.ncmp.events.cmnotificationsubscription_merge1_0_0.client_to_ncmp.CmNotificationSubscriptionNcmpInEvent;
-import org.onap.cps.ncmp.events.cmnotificationsubscription_merge1_0_0.client_to_ncmp.Predicate;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
@@ -38,7 +37,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class CmNotificationSubscriptionNcmpInEventConsumer {
 
-    private final DmiCmNotificationSubscriptionCacheHandler dmiCmNotificationSubscriptionCacheHandler;
+    private final CmNotificationSubscriptionHandlerService cmNotificationSubscriptionHandlerService;
 
     @Value("${notification.enabled:true}")
     private boolean notificationFeatureEnabled;
@@ -56,12 +55,12 @@ public class CmNotificationSubscriptionNcmpInEventConsumer {
                 toTargetEvent(cloudEvent, CmNotificationSubscriptionNcmpInEvent.class);
         log.info("Subscription with name {} to be mapped to hazelcast object...",
                 cmNotificationSubscriptionNcmpInEvent.getData().getSubscriptionId());
+
         final String subscriptionId = cmNotificationSubscriptionNcmpInEvent.getData().getSubscriptionId();
-        final List<Predicate> predicates = cmNotificationSubscriptionNcmpInEvent.getData().getPredicates();
-        dmiCmNotificationSubscriptionCacheHandler.add(subscriptionId, predicates);
-        if ("subscriptionCreated".equals(cloudEvent.getType()) && cmNotificationSubscriptionNcmpInEvent != null) {
-            log.info("Subscription for ClientID {} with name {} ...", cloudEvent.getSource(),
-                    cmNotificationSubscriptionNcmpInEvent.getData().getSubscriptionId());
+        if ("subscriptionCreateRequest".equals(cloudEvent.getType()) && cmNotificationSubscriptionNcmpInEvent != null) {
+            log.info("Subscription for ClientID {} with name {} ...", cloudEvent.getSource(), subscriptionId);
+            cmNotificationSubscriptionHandlerService.processSubscriptionCreateRequest(
+                cmNotificationSubscriptionNcmpInEvent);
         }
     }
 }

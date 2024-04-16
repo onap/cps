@@ -56,6 +56,24 @@ public class CmNotificationSubscriptionNcmpOutEventMapper {
         return cmNotificationSubscriptionNcmpOutEvent;
     }
 
+    /**
+     * Mapper to form a rejected response for the client for the Cm Notification Subscription Request.
+     *
+     * @param subscriptionId subscription id
+     * @param rejectedTargetFilters list of rejected target filters for the subscription request
+     * @return to sent back to the client
+     */
+    public CmNotificationSubscriptionNcmpOutEvent toCmNotificationSubscriptionNcmpOutEventForRejectedRequest(
+            final String subscriptionId, final List<String> rejectedTargetFilters) {
+        final CmNotificationSubscriptionNcmpOutEvent cmNotificationSubscriptionNcmpOutEvent =
+                new CmNotificationSubscriptionNcmpOutEvent();
+        final Data cmSubscriptionData = new Data();
+        cmSubscriptionData.setSubscriptionId(subscriptionId);
+        cmSubscriptionData.setRejectedTargets(rejectedTargetFilters);
+        cmNotificationSubscriptionNcmpOutEvent.setData(cmSubscriptionData);
+        return cmNotificationSubscriptionNcmpOutEvent;
+    }
+
     private void populateCmNotificationSubscriptionNcmpOutEventWithCmHandleIds(
             final Map<String, DmiCmNotificationSubscriptionDetails> dmiCmNotificationSubscriptionDetailsMap,
             final Data cmSubscriptionData) {

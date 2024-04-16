@@ -28,6 +28,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import io.cloudevents.CloudEvent
 import io.cloudevents.core.builder.CloudEventBuilder
 import org.apache.kafka.clients.consumer.ConsumerRecord
+import org.onap.cps.ncmp.api.impl.events.cmsubscription.service.CmNotificationSubscriptionHandlerService
 import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
 import org.onap.cps.ncmp.events.cmnotificationsubscription_merge1_0_0.client_to_ncmp.CmNotificationSubscriptionNcmpInEvent
 import org.onap.cps.ncmp.utils.TestUtils
@@ -39,8 +40,8 @@ import org.springframework.boot.test.context.SpringBootTest
 @SpringBootTest(classes = [ObjectMapper, JsonObjectMapper])
 class CmNotificationSubscriptionNcmpInEventConsumerSpec extends MessagingBaseSpec {
 
-    def mockDmiCmNotificationSubscriptionCacheHandler = Mock(DmiCmNotificationSubscriptionCacheHandler)
-    def objectUnderTest = new CmNotificationSubscriptionNcmpInEventConsumer(mockDmiCmNotificationSubscriptionCacheHandler)
+    def mockCmNotificationSubscriptionHandlerService = Mock(CmNotificationSubscriptionHandlerService)
+    def objectUnderTest = new CmNotificationSubscriptionNcmpInEventConsumer(mockCmNotificationSubscriptionHandlerService)
     def logger = Spy(ListAppender<ILoggingEvent>)
 
     @Autowired
@@ -59,14 +60,14 @@ class CmNotificationSubscriptionNcmpInEventConsumerSpec extends MessagingBaseSpe
     }
 
 
-    def 'Consume valid CMSubscription create message'() {
-        given: 'a cmsubscription event'
+    def 'Consume valid CmNotificationSubscription create message'() {
+        given: 'a cmNotificationSubscription event'
             def jsonData = TestUtils.getResourceFileContent('cmSubscription/cmNotificationSubscriptionNcmpInEvent.json')
             def testEventSent = jsonObjectMapper.convertJsonString(jsonData, CmNotificationSubscriptionNcmpInEvent.class)
             def testCloudEventSent = CloudEventBuilder.v1()
                 .withData(objectMapper.writeValueAsBytes(testEventSent))
                 .withId('subscriptionCreated')
-                .withType('subscriptionCreated')
+                .withType('subscriptionCreateRequest')
                 .withSource(URI.create('some-resource'))
                 .withExtension('correlationid', 'test-cmhandle1').build()
             def consumerRecord = new ConsumerRecord<String, CloudEvent>('topic-name', 0, 0, 'event-key', testCloudEventSent)
@@ -78,13 +79,13 @@ class CmNotificationSubscriptionNcmpInEventConsumerSpec extends MessagingBaseSpe
             def loggingEvent = getLoggingEvent()
             assert loggingEvent.level == Level.INFO
         and: 'the log indicates the task completed successfully'
-            assert loggingEvent.formattedMessage == 'Subscription with name cm-subscription-001 to be mapped to hazelcast object...'
-        and: 'the cache handler method is called once'
-            1 * mockDmiCmNotificationSubscriptionCacheHandler.add('cm-subscription-001',_)
+            assert loggingEvent.formattedMessage == 'Subscription for ClientID some-resource with name cm-subscription-001 ...'
+        and: 'the subscription handler service is called once'
+            1 * mockCmNotificationSubscriptionHandlerService.processSubscriptionCreateRequest(_)
     }
 
     def getLoggingEvent() {
-        return logger.list[0]
+        return logger.list[1]
     }
 
 }
