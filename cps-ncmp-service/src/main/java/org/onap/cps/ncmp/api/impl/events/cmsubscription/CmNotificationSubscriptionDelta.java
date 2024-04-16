@@ -59,7 +59,6 @@ public class CmNotificationSubscriptionDelta {
                             cmHandleId, xpath)) {
                         xpaths.add(xpath);
                         targetCmHandleIds.add(cmHandleId);
-
                     }
                 }
             }
