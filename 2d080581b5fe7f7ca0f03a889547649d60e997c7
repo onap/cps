@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34501d7b_30d4e83d",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 33
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-04-16T10:03:51Z",
+      "side": 1,
+      "message": "changing rebuildDatanodes to get dataNodesAsJson and calling build dataNodes with xpath directly...\n \n if (sourceDataNodes !\u003d null) {\n           jsonPayload \u003d getDataNodesAsJson(...)\n            sourceDataNodesRebuilt.addAll(buildDataNodesWithXpath(..., jsonPayload...));",
+      "range": {
+        "startLine": 231,
+        "startChar": 6,
+        "endLine": 232,
+        "endChar": 98
+      },
+      "revId": "2d080581b5fe7f7ca0f03a889547649d60e997c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82ddcb34_18a09fc8",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 33
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-04-16T10:03:51Z",
+      "side": 1,
+      "message": "i think this can be just a method \u0027getDataNodesAsJsonString\u0027 and you can call buildDataNodesWithXpath directly",
+      "range": {
+        "startLine": 397,
+        "startChar": 0,
+        "endLine": 411,
+        "endChar": 9
+      },
+      "revId": "2d080581b5fe7f7ca0f03a889547649d60e997c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "421b7bf7_bc81a39d",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsDataServiceIntegrationSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 592,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-04-16T10:03:51Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 592,
+        "startChar": 11,
+        "endLine": 592,
+        "endChar": 25
+      },
+      "revId": "2d080581b5fe7f7ca0f03a889547649d60e997c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
