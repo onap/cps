@@ -20,12 +20,13 @@
 
 package org.onap.cps.ncmp.api.impl.utils
 
+import org.onap.cps.ncmp.api.impl.config.DmiWebClientConfiguration
+
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING
 
 import org.onap.cps.ncmp.api.impl.operations.RequiredDmiService
 import org.onap.cps.spi.utils.CpsValidator
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
-import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import spock.lang.Specification
 
@@ -34,7 +35,7 @@ class DmiServiceUrlBuilderSpec extends Specification {
     static YangModelCmHandle yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle('dmiServiceName',
         'dmiDataServiceName', 'dmiModuleServiceName', new NcmpServiceCmHandle(cmHandleId: 'some-cm-handle-id'),'my-module-set-tag', 'my-alternate-id', 'my-data-producer-identifier')
 
-    NcmpConfiguration.DmiProperties dmiProperties = new NcmpConfiguration.DmiProperties()
+    DmiWebClientConfiguration.DmiProperties dmiProperties = new DmiWebClientConfiguration.DmiProperties()
 
     def mockCpsValidator = Mock(CpsValidator)
 
