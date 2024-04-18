@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "066c2fe7_baf197aa",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/DmiServiceUrlBuilder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-04-18T15:18:11Z",
+      "side": 1,
+      "message": "We need to URL encode each of the 3 query parameters here, e.g.\n\n    URLEncoder.encode(resourceId, \"UTF-8\")\n\nSee https://stackoverflow.com/a/21259193",
+      "range": {
+        "startLine": 144,
+        "startChar": 16,
+        "endLine": 144,
+        "endChar": 26
+      },
+      "revId": "07d1f4b2dd9951efbe18ba4b2d106ff8a6e5ab66",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
