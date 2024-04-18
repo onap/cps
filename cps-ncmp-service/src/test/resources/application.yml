@@ -36,6 +36,8 @@ app:
 
 ncmp:
     dmi:
+        httpclient:
+            connectionTimeoutInSeconds: 180
         auth:
             username: some-user
             password: some-password
