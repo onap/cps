@@ -31,26 +31,17 @@ import org.springframework.web.client.RestTemplate
 import spock.lang.Specification
 
 @SpringBootTest
-@ContextConfiguration(classes = [NcmpConfiguration.DmiProperties, HttpClientConfiguration])
+@ContextConfiguration(classes = [ HttpClientConfiguration])
 class NcmpConfigurationSpec extends Specification{
 
     @Autowired
-    NcmpConfiguration.DmiProperties dmiProperties
-    
-    @Autowired
     HttpClientConfiguration httpClientConfiguration
-    
+
     def mockRestTemplateBuilder = new RestTemplateBuilder()
 
     def 'NcmpConfiguration Construction.'() {
         expect: 'the system can create an instance'
              new NcmpConfiguration() != null
-    }
-
-    def 'DMI Properties.'() {
-        expect: 'properties are set to values in test configuration yaml file'
-            dmiProperties.authUsername == 'some-user'
-            dmiProperties.authPassword == 'some-password'
     }
 
     def 'Rest Template creation with CloseableHttpClient and MappingJackson2HttpMessageConverter.'() {

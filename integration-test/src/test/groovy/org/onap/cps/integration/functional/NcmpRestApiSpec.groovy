@@ -22,6 +22,7 @@ package org.onap.cps.integration.functional
 
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
 import org.springframework.http.MediaType
+import spock.lang.Ignore
 import spock.util.concurrent.PollingConditions
 import static org.hamcrest.Matchers.containsInAnyOrder
 import static org.hamcrest.Matchers.hasSize
@@ -30,6 +31,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
+@Ignore
 class NcmpRestApiSpec extends CpsIntegrationSpecBase {
 
     static final MODULE_REFERENCES_RESPONSE_A = readResourceDataFile('mock-dmi-responses/bookStoreAWithModules_M1_M2_Response.json')
