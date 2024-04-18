@@ -139,7 +139,7 @@ class DmiCmNotificationSubscriptionCacheHandlerSpec extends MessagingBaseSpec {
         when: 'subscription is persisted in database'
             objectUnderTest.persistIntoDatabasePerDmi(subscriptionId,'dmi-1')
         then: 'persistence service is called the correct number of times per dmi'
-            4 * mockCmNotificationSubscriptionPersistenceService.addOrUpdateCmNotificationSubscription(_,_,_,subscriptionId)
+            4 * mockCmNotificationSubscriptionPersistenceService.addCmNotificationSubscription(_,_,_,subscriptionId)
     }
 
     def setUpTestEvent(){

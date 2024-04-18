@@ -119,8 +119,8 @@ public class DmiCmNotificationSubscriptionCacheHandler {
 
             for (final String cmHandle: cmHandles) {
                 for (final String xpath: xpaths) {
-                    cmNotificationSubscriptionPersistenceService.addOrUpdateCmNotificationSubscription(datastoreType,
-                        cmHandle, xpath, subscriptionId);
+                    cmNotificationSubscriptionPersistenceService.addCmNotificationSubscription(datastoreType, cmHandle,
+                            xpath, subscriptionId);
                 }
             }
         }
