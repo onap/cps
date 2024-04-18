@@ -35,7 +35,7 @@ import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.NcmpResponseStatus;
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
-import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
+import org.onap.cps.ncmp.api.impl.config.DmiWebClientConfiguration.DmiProperties;
 import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException;
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleState;
 import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence;
@@ -61,7 +61,7 @@ public class DmiDataOperations extends DmiOperations {
 
     public DmiDataOperations(final InventoryPersistence inventoryPersistence,
                              final JsonObjectMapper jsonObjectMapper,
-                             final NcmpConfiguration.DmiProperties dmiProperties,
+                             final DmiProperties dmiProperties,
                              final DmiRestClient dmiRestClient,
                              final DmiServiceUrlBuilder dmiServiceUrlBuilder) {
         super(inventoryPersistence, jsonObjectMapper, dmiProperties, dmiRestClient, dmiServiceUrlBuilder);
@@ -226,7 +226,7 @@ public class DmiDataOperations extends DmiOperations {
     }
 
     private static Set<String> getDistinctCmHandleIdsFromDataOperationRequest(final DataOperationRequest
-                                                                              dataOperationRequest) {
+                                                                                      dataOperationRequest) {
         return dataOperationRequest.getDataOperationDefinitions().stream()
                 .flatMap(dataOperationDefinition ->
                         dataOperationDefinition.getCmHandleIds().stream()).collect(Collectors.toSet());
@@ -235,7 +235,7 @@ public class DmiDataOperations extends DmiOperations {
     private void buildDataOperationRequestUrlAndSendToDmiService(final String topicParamInQuery,
                                                                  final String requestId,
                                                                  final Map<String, List<DmiDataOperation>>
-                                                                groupsOutPerDmiServiceName,
+                                                                         groupsOutPerDmiServiceName,
                                                                  final String authorization) {
 
         groupsOutPerDmiServiceName.forEach((dmiServiceName, dmiDataOperationRequestBodies) -> {
