@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "622ff990_e238fd31",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/DmiWebClientConfiguration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-04-18T15:16:27Z",
+      "side": 1,
+      "message": "Timeout is very small (and not configurable).\n\nNote our application.yml has values like\n\n    ncmp:\n      dmi:\n        httpclient:\n          connectionTimeoutInSeconds: 180",
+      "range": {
+        "startLine": 46,
+        "startChar": 38,
+        "endLine": 46,
+        "endChar": 42
+      },
+      "revId": "19e9bd22b762a3c53d6ea94a32ab7d9ba546aafb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
