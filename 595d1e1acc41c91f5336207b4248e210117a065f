@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e11bf5d1_17dd193b",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 14
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-18T12:46:26Z",
+      "side": 1,
+      "message": "NB: would be better to define the topics at a single place.\n\napp.cps.data-updated.topic\u003d ${CPS_CHANGE_EVENT_TOPIC:cps-data-updated-events}\n\ncan look to use this hierarchy maybe.",
+      "range": {
+        "startLine": 121,
+        "startChar": 4,
+        "endLine": 122,
+        "endChar": 64
+      },
+      "revId": "595d1e1acc41c91f5336207b4248e210117a065f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
