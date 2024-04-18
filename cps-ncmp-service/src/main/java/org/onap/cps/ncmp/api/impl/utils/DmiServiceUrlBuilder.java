@@ -20,12 +20,14 @@
 
 package org.onap.cps.ncmp.api.impl.utils;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.apache.logging.log4j.util.Strings;
 import org.apache.logging.log4j.util.TriConsumer;
-import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
+import org.onap.cps.ncmp.api.impl.config.DmiWebClientConfiguration.DmiProperties;
 import org.onap.cps.spi.utils.CpsValidator;
 import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
@@ -35,8 +37,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 @Component
 @RequiredArgsConstructor
 public class DmiServiceUrlBuilder {
-
-    private final NcmpConfiguration.DmiProperties dmiProperties;
+    private final DmiProperties dmiProperties;
     private final CpsValidator cpsValidator;
 
     /**
@@ -97,7 +98,7 @@ public class DmiServiceUrlBuilder {
     /**
      * This method populates uri variables.
      *
-     * @param dataStoreName data store name 
+     * @param dataStoreName data store name
      * @param dmiServiceName dmi service name
      * @param cmHandleId        cm handle id for dmi registration
      * @return {@code String} dmi service url as string
@@ -142,10 +143,12 @@ public class DmiServiceUrlBuilder {
                                                              final String topicParamInQuery) {
         final MultiValueMap<String, String> queryParams = new LinkedMultiValueMap<>();
         getQueryParamConsumer().accept("resourceIdentifier",
-                resourceId, queryParams);
-        getQueryParamConsumer().accept("options", optionsParamInQuery, queryParams);
+                URLEncoder.encode(resourceId, StandardCharsets.UTF_8), queryParams);
+        getQueryParamConsumer()
+                .accept("options", URLEncoder.encode(optionsParamInQuery, StandardCharsets.UTF_8), queryParams);
         if (Strings.isNotEmpty(topicParamInQuery)) {
-            getQueryParamConsumer().accept("topic", topicParamInQuery, queryParams);
+            getQueryParamConsumer()
+                    .accept("topic", URLEncoder.encode(topicParamInQuery, StandardCharsets.UTF_8), queryParams);
         }
         return queryParams;
     }
@@ -168,7 +171,7 @@ public class DmiServiceUrlBuilder {
     private TriConsumer<String, String, MultiValueMap<String, String>> getQueryParamConsumer() {
         return (paramName, paramValue, paramMap) -> {
             if (Strings.isNotEmpty(paramValue)) {
-                paramMap.add(paramName, paramValue);
+                paramMap.add(paramName, URLEncoder.encode(paramValue, StandardCharsets.UTF_8));
             }
         };
     }
