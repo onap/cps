@@ -143,14 +143,15 @@ class NcmpDatastoreRequestHandlerSpec extends Specification {
 
     def 'Attempt to execute async data operation request with too many cm handles.'() {
         given: 'a data operation definition with too many cm handles'
-            def cmHandleIds = new String[51]
+            def tooMany = objectUnderTest.MAXIMUM_CM_HANDLES_PER_OPERATION+1
+            def cmHandleIds = new String[tooMany]
             def dataOperationDefinition = new DataOperationDefinition(operationId: 'abc', operation: 'read', datastore: 'ncmp-datastore:passthrough-running', cmHandleIds: cmHandleIds)
         when: 'data operation request is executed'
             objectUnderTest.executeRequest('someTopic', new DataOperationRequest(dataOperationDefinitions:[dataOperationDefinition]), NO_AUTH_HEADER)
         then: 'a payload too large exception is thrown'
             def exceptionThrown = thrown(PayloadTooLargeException)
         and: 'the error message contains the offending number of cm handles'
-            assert exceptionThrown.message == "Operation 'abc' affects too many (51) cm handles"
+            assert exceptionThrown.message == "Operation 'abc' affects too many (${tooMany}) cm handles"
     }
 
 }

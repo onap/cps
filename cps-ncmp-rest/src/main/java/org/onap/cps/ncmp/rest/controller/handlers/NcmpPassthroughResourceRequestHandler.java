@@ -46,7 +46,7 @@ public class NcmpPassthroughResourceRequestHandler extends NcmpDatastoreRequestH
 
     private static final Object noReturn = null;
 
-    private static final int MAXIMUM_CM_HANDLES_PER_OPERATION = 50;
+    private static final int MAXIMUM_CM_HANDLES_PER_OPERATION = 50000;
 
     private static final String PAYLOAD_TOO_LARGE_TEMPLATE = "Operation '%s' affects too many (%d) cm handles";
 
