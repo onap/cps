@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "52a66176_59f183d5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 39
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-04-19T11:54:12Z",
+      "side": 1,
+      "message": "replied to comments",
+      "revId": "4e806c9dd6fac9fe69548f1dd02b301fb26641bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "76eed9eb_58ca6978",
@@ -37,6 +54,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5525180e_b404cbab",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 39
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-04-19T11:54:12Z",
+      "side": 1,
+      "message": "yes, I have explained this in the documentation as well. The reason being, that we cannot be sure if all or any descendents have been provided as part of the JSON payload, so the best option here is to get all the descendents from the anchor and compare them to the JSON payload. By doing so we can ensure if descendents were added, removed or updated.\nFor instance, if I select OMIT_DESCENDANTS then the anchor data will only contain the parent data nodes and let\u0027s say the JSON payload has all the descendents included. Then the delta report would show that some new descendents have been added. But in reality, the data is already there under the anchor, just omitted in this case. \nThis can be considered as a discrepancy in the delta generated vs the data in the database.\n\nNote: this is a restriction only of this API. The API for delta between anchors does provide the fetch descendents option",
+      "parentUuid": "76eed9eb_58ca6978",
+      "revId": "4e806c9dd6fac9fe69548f1dd02b301fb26641bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2e37a390_b8cc0c43",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 39
@@ -48,6 +83,24 @@
       "writtenOn": "2024-04-19T10:19:07Z",
       "side": 1,
       "message": "can you break it down into atleast 2 methods.\nI think the first one could  be abt the root node xpath and the other one is general.\nlooks like 2 separate things been done in one method.",
+      "revId": "4e806c9dd6fac9fe69548f1dd02b301fb26641bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35dc29e3_6129a04d",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 39
+      },
+      "lineNbr": 372,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-04-19T11:54:12Z",
+      "side": 1,
+      "message": "it is similar to buildDataNodes at line 346. This uses yang Resource instead of anchor name.\nAnd if the xpath is root node then it parses json to data nodes and returns them else in other case it does the same thing but with a particular xpath and returns data nodes after parsing a json. So, it does the same thing that is parse json and return data nodes specific to a xpath where root node is a special case.",
+      "parentUuid": "2e37a390_b8cc0c43",
       "revId": "4e806c9dd6fac9fe69548f1dd02b301fb26641bc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -77,6 +130,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "18725f48_26064b1b",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 39
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-04-19T11:54:12Z",
+      "side": 1,
+      "message": "I see this being used in multiple places in existing code as well. Should I change them as well. We can include more detailed message informing under which xpath the nodes are not found",
+      "parentUuid": "bdc1cbc9_fa08844c",
+      "range": {
+        "startLine": 383,
+        "startChar": 50,
+        "endLine": 383,
+        "endChar": 92
+      },
+      "revId": "4e806c9dd6fac9fe69548f1dd02b301fb26641bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "67c78b91_887e1678",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 39
@@ -88,6 +165,24 @@
       "writtenOn": "2024-04-19T10:19:07Z",
       "side": 1,
       "message": "Nb: also bring this method before of after the buildDataNodes**** methods just to logically group 😊",
+      "revId": "4e806c9dd6fac9fe69548f1dd02b301fb26641bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03ad6f1d_3010f8e0",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 39
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-04-19T11:54:12Z",
+      "side": 1,
+      "message": "moved before",
+      "parentUuid": "67c78b91_887e1678",
       "revId": "4e806c9dd6fac9fe69548f1dd02b301fb26641bc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -105,6 +200,30 @@
       "writtenOn": "2024-04-19T10:19:07Z",
       "side": 1,
       "message": "we can validate it inplace as well. Good to know 😊 , I used ( _ , _ ) and then validate it.",
+      "range": {
+        "startLine": 231,
+        "startChar": 52,
+        "endLine": 231,
+        "endChar": 200
+      },
+      "revId": "4e806c9dd6fac9fe69548f1dd02b301fb26641bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1f46ae9_29b7883b",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 39
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-04-19T11:54:12Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "64dcb4bf_538385e2",
       "range": {
         "startLine": 231,
         "startChar": 52,
@@ -140,6 +259,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1c443706_3a21c4aa",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 39
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-04-19T11:54:12Z",
+      "side": 1,
+      "message": "no, over here I am creating a data node with parent node name bookstore. I cannot explicitly create a data node with \u0027/\u0027 as this would mean trying to create a data node without any parent nodes, basically meaning no data at all.",
+      "parentUuid": "12938773_71718687",
+      "range": {
+        "startLine": 234,
+        "startChar": 107,
+        "endLine": 234,
+        "endChar": 117
+      },
+      "revId": "4e806c9dd6fac9fe69548f1dd02b301fb26641bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2b27a3a2_b5408f59",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
         "patchSetId": 39
@@ -163,6 +306,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4147a524_c09461f9",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 39
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-04-19T11:54:12Z",
+      "side": 1,
+      "message": "same as above",
+      "parentUuid": "2b27a3a2_b5408f59",
+      "range": {
+        "startLine": 252,
+        "startChar": 104,
+        "endLine": 252,
+        "endChar": 114
+      },
+      "revId": "4e806c9dd6fac9fe69548f1dd02b301fb26641bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5c401f89_be8c975a",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsDataServiceIntegrationSpec.groovy",
         "patchSetId": 39
@@ -174,6 +341,30 @@
       "writtenOn": "2024-04-19T10:19:07Z",
       "side": 1,
       "message": "can you explain this a bit ?",
+      "range": {
+        "startLine": 606,
+        "startChar": 83,
+        "endLine": 606,
+        "endChar": 112
+      },
+      "revId": "4e806c9dd6fac9fe69548f1dd02b301fb26641bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90dd7c95_35f4ab0a",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsDataServiceIntegrationSpec.groovy",
+        "patchSetId": 39
+      },
+      "lineNbr": 606,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-04-19T11:54:12Z",
+      "side": 1,
+      "message": "if you look into the FunctionalSpecBase.groovy.restoreBookstoreDataAnchor() when we setup the bookstore data, the data is modified to include the anchor number. Hence over here I am reading json as a string from the file and modifying it so it becomes similar to the data stored under the anchor during the setup process and then it returns a net zero delta because that would mean the data are same.\nAnother option would be to have a separate file with similar data or to insert the whole data a string.",
+      "parentUuid": "5c401f89_be8c975a",
       "range": {
         "startLine": 606,
         "startChar": 83,
