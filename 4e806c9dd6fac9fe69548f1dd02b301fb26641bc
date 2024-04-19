@@ -1,0 +1,187 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0abb380e_ddcf774d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 39
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-19T10:19:07Z",
+      "side": 1,
+      "message": "I see most of the things are in place.\nNeed to run and check it and in the meantime you can look at the below comments.",
+      "revId": "4e806c9dd6fac9fe69548f1dd02b301fb26641bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76eed9eb_58ca6978",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 39
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-19T10:19:07Z",
+      "side": 1,
+      "message": "NB: just checking , we dont need to take the descendentOption from the user ?\nwe will always include all the descendents ?",
+      "revId": "4e806c9dd6fac9fe69548f1dd02b301fb26641bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e37a390_b8cc0c43",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 39
+      },
+      "lineNbr": 372,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-19T10:19:07Z",
+      "side": 1,
+      "message": "can you break it down into atleast 2 methods.\nI think the first one could  be abt the root node xpath and the other one is general.\nlooks like 2 separate things been done in one method.",
+      "revId": "4e806c9dd6fac9fe69548f1dd02b301fb26641bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdc1cbc9_fa08844c",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 39
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-19T10:19:07Z",
+      "side": 1,
+      "message": "also sonar complains abt the repetitive use this string.\ntake some action abt it.",
+      "range": {
+        "startLine": 383,
+        "startChar": 50,
+        "endLine": 383,
+        "endChar": 92
+      },
+      "revId": "4e806c9dd6fac9fe69548f1dd02b301fb26641bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67c78b91_887e1678",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 39
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-19T10:19:07Z",
+      "side": 1,
+      "message": "Nb: also bring this method before of after the buildDataNodes**** methods just to logically group 😊",
+      "revId": "4e806c9dd6fac9fe69548f1dd02b301fb26641bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64dcb4bf_538385e2",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 39
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-19T10:19:07Z",
+      "side": 1,
+      "message": "we can validate it inplace as well. Good to know 😊 , I used ( _ , _ ) and then validate it.",
+      "range": {
+        "startLine": 231,
+        "startChar": 52,
+        "endLine": 231,
+        "endChar": 200
+      },
+      "revId": "4e806c9dd6fac9fe69548f1dd02b301fb26641bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12938773_71718687",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 39
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-19T10:19:07Z",
+      "side": 1,
+      "message": "should be \"/\" ??",
+      "range": {
+        "startLine": 234,
+        "startChar": 107,
+        "endLine": 234,
+        "endChar": 117
+      },
+      "revId": "4e806c9dd6fac9fe69548f1dd02b301fb26641bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b27a3a2_b5408f59",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 39
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-19T10:19:07Z",
+      "side": 1,
+      "message": "NB: same comment as above.",
+      "range": {
+        "startLine": 252,
+        "startChar": 104,
+        "endLine": 252,
+        "endChar": 114
+      },
+      "revId": "4e806c9dd6fac9fe69548f1dd02b301fb26641bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c401f89_be8c975a",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsDataServiceIntegrationSpec.groovy",
+        "patchSetId": 39
+      },
+      "lineNbr": 606,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-19T10:19:07Z",
+      "side": 1,
+      "message": "can you explain this a bit ?",
+      "range": {
+        "startLine": 606,
+        "startChar": 83,
+        "endLine": 606,
+        "endChar": 112
+      },
+      "revId": "4e806c9dd6fac9fe69548f1dd02b301fb26641bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
