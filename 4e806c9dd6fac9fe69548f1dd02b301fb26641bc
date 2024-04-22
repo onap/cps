@@ -70,6 +70,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "91de21b4_86e8cc59",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 39
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-22T09:53:45Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5525180e_b404cbab",
+      "revId": "4e806c9dd6fac9fe69548f1dd02b301fb26641bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2e37a390_b8cc0c43",
@@ -142,6 +160,30 @@
       "side": 1,
       "message": "I see this being used in multiple places in existing code as well. Should I change them as well. We can include more detailed message informing under which xpath the nodes are not found",
       "parentUuid": "bdc1cbc9_fa08844c",
+      "range": {
+        "startLine": 383,
+        "startChar": 50,
+        "endLine": 383,
+        "endChar": 92
+      },
+      "revId": "4e806c9dd6fac9fe69548f1dd02b301fb26641bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d3664cc_9a75bd4c",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 39
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-22T09:53:45Z",
+      "side": 1,
+      "message": "yeah for the newly introduced code you can put the detailed message.",
+      "parentUuid": "18725f48_26064b1b",
       "range": {
         "startLine": 383,
         "startChar": 50,
@@ -281,6 +323,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab522755_25efcf39",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 39
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-22T09:53:45Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1c443706_3a21c4aa",
+      "range": {
+        "startLine": 234,
+        "startChar": 107,
+        "endLine": 234,
+        "endChar": 117
+      },
+      "revId": "4e806c9dd6fac9fe69548f1dd02b301fb26641bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2b27a3a2_b5408f59",
@@ -328,6 +394,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee01e206_41036574",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 39
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-22T09:53:45Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4147a524_c09461f9",
+      "range": {
+        "startLine": 252,
+        "startChar": 104,
+        "endLine": 252,
+        "endChar": 114
+      },
+      "revId": "4e806c9dd6fac9fe69548f1dd02b301fb26641bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5c401f89_be8c975a",
@@ -365,6 +455,30 @@
       "side": 1,
       "message": "if you look into the FunctionalSpecBase.groovy.restoreBookstoreDataAnchor() when we setup the bookstore data, the data is modified to include the anchor number. Hence over here I am reading json as a string from the file and modifying it so it becomes similar to the data stored under the anchor during the setup process and then it returns a net zero delta because that would mean the data are same.\nAnother option would be to have a separate file with similar data or to insert the whole data a string.",
       "parentUuid": "5c401f89_be8c975a",
+      "range": {
+        "startLine": 606,
+        "startChar": 83,
+        "endLine": 606,
+        "endChar": 112
+      },
+      "revId": "4e806c9dd6fac9fe69548f1dd02b301fb26641bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47bafb97_102a1b1f",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsDataServiceIntegrationSpec.groovy",
+        "patchSetId": 39
+      },
+      "lineNbr": 606,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-22T09:53:45Z",
+      "side": 1,
+      "message": "NB: or maybe explain it in the header 😊 so that ppl are nt confused abt it.",
+      "parentUuid": "90dd7c95_35f4ab0a",
       "range": {
         "startLine": 606,
         "startChar": 83,
