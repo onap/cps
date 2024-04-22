@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "28854674_d8ff20ef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2024-04-22T10:38:32Z",
+      "side": 1,
+      "message": "addressed review comments.",
+      "revId": "595d1e1acc41c91f5336207b4248e210117a065f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e11bf5d1_17dd193b",
@@ -31,6 +48,30 @@
       "writtenOn": "2024-04-18T12:46:26Z",
       "side": 1,
       "message": "NB: would be better to define the topics at a single place.\n\napp.cps.data-updated.topic\u003d ${CPS_CHANGE_EVENT_TOPIC:cps-data-updated-events}\n\ncan look to use this hierarchy maybe.",
+      "range": {
+        "startLine": 121,
+        "startChar": 4,
+        "endLine": 122,
+        "endChar": 64
+      },
+      "revId": "595d1e1acc41c91f5336207b4248e210117a065f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0528c0cc_186a4644",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 14
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2024-04-22T10:38:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e11bf5d1_17dd193b",
       "range": {
         "startLine": 121,
         "startChar": 4,
@@ -64,6 +105,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bba2aa88_6a9d0ca4",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/CpsDataUpdateEventsService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2024-04-22T10:38:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d068cdf7_f51d379b",
+      "range": {
+        "startLine": 45,
+        "startChar": 4,
+        "endLine": 45,
+        "endChar": 52
+      },
+      "revId": "595d1e1acc41c91f5336207b4248e210117a065f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1425f32a_eee23eb6",
@@ -77,6 +142,30 @@
       "writtenOn": "2024-04-18T13:11:51Z",
       "side": 1,
       "message": "NB: cpsDataUpdatedEventAsCloudEvent",
+      "range": {
+        "startLine": 69,
+        "startChar": 29,
+        "endLine": 69,
+        "endChar": 50
+      },
+      "revId": "595d1e1acc41c91f5336207b4248e210117a065f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "201568ad_b923207c",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/CpsDataUpdateEventsService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2024-04-22T10:38:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1425f32a_eee23eb6",
       "range": {
         "startLine": 69,
         "startChar": 29,
@@ -110,6 +199,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1ddf3e5_90b9f50a",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 472,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2024-04-22T10:38:32Z",
+      "side": 1,
+      "message": "added check for validation of log message.",
+      "parentUuid": "2c52e3e9_4f4d08fd",
+      "range": {
+        "startLine": 472,
+        "startChar": 12,
+        "endLine": 472,
+        "endChar": 31
+      },
+      "revId": "595d1e1acc41c91f5336207b4248e210117a065f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6c85fca2_972bd693",
@@ -133,6 +246,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "36af83c4_9691990c",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/events/CpsDataUpdateEventsServiceSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2024-04-22T10:38:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c85fca2_972bd693",
+      "range": {
+        "startLine": 40,
+        "startChar": 4,
+        "endLine": 40,
+        "endChar": 32
+      },
+      "revId": "595d1e1acc41c91f5336207b4248e210117a065f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c95d2805_a3def882",
@@ -146,6 +283,30 @@
       "writtenOn": "2024-04-18T13:11:51Z",
       "side": 1,
       "message": "?? not relevant here I guess.",
+      "range": {
+        "startLine": 47,
+        "startChar": 16,
+        "endLine": 47,
+        "endChar": 54
+      },
+      "revId": "595d1e1acc41c91f5336207b4248e210117a065f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45a14433_fd0cda14",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/events/CpsDataUpdateEventsServiceSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2024-04-22T10:38:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c95d2805_a3def882",
       "range": {
         "startLine": 47,
         "startChar": 16,
