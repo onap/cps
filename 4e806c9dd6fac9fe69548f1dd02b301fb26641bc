@@ -123,6 +123,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "57bbbf6e_8c422855",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 39
+      },
+      "lineNbr": 372,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-04-22T11:39:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "35dc29e3_6129a04d",
+      "revId": "4e806c9dd6fac9fe69548f1dd02b301fb26641bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bdc1cbc9_fa08844c",
@@ -184,6 +202,30 @@
       "side": 1,
       "message": "yeah for the newly introduced code you can put the detailed message.",
       "parentUuid": "18725f48_26064b1b",
+      "range": {
+        "startLine": 383,
+        "startChar": 50,
+        "endLine": 383,
+        "endChar": 92
+      },
+      "revId": "4e806c9dd6fac9fe69548f1dd02b301fb26641bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b7509f9_665fb8ff",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 39
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-04-22T11:39:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1d3664cc_9a75bd4c",
       "range": {
         "startLine": 383,
         "startChar": 50,
@@ -479,6 +521,30 @@
       "side": 1,
       "message": "NB: or maybe explain it in the header 😊 so that ppl are nt confused abt it.",
       "parentUuid": "90dd7c95_35f4ab0a",
+      "range": {
+        "startLine": 606,
+        "startChar": 83,
+        "endLine": 606,
+        "endChar": 112
+      },
+      "revId": "4e806c9dd6fac9fe69548f1dd02b301fb26641bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "819875ab_5233a8c3",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsDataServiceIntegrationSpec.groovy",
+        "patchSetId": 39
+      },
+      "lineNbr": 606,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-04-22T11:39:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "47bafb97_102a1b1f",
       "range": {
         "startLine": 606,
         "startChar": 83,
