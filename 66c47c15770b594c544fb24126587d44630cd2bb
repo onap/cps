@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6455a908_1145a53a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionNcmpInEventConsumer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-22T09:14:05Z",
+      "side": 1,
+      "message": "NB: processSubscriptionCreateRequest just for consistency.",
+      "range": {
+        "startLine": 62,
+        "startChar": 53,
+        "endLine": 62,
+        "endChar": 85
+      },
+      "revId": "66c47c15770b594c544fb24126587d44630cd2bb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "303f3ff7_d89d4084",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/mapper/CmNotificationSubscriptionNcmpOutEventMapper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-22T09:14:05Z",
+      "side": 1,
+      "message": "I think we can reuse this for delete as well.\nSo we can remove the \u0027Create\u0027 wording from this one.",
+      "range": {
+        "startLine": 60,
+        "startChar": 94,
+        "endLine": 60,
+        "endChar": 100
+      },
+      "revId": "66c47c15770b594c544fb24126587d44630cd2bb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0648682_96b3e401",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionHandlerService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-22T09:14:05Z",
+      "side": 1,
+      "message": "incorrect javadocs",
+      "range": {
+        "startLine": 27,
+        "startChar": 4,
+        "endLine": 31,
+        "endChar": 7
+      },
+      "revId": "66c47c15770b594c544fb24126587d44630cd2bb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
