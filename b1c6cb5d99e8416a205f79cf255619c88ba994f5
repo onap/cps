@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "51c5392d_baf16ee6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-22T08:31:00Z",
+      "side": 1,
+      "message": "a few NB sugegstions",
+      "revId": "b1c6cb5d99e8416a205f79cf255619c88ba994f5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e6f1749_e37bcf29",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/executor/CpsNcmpTaskExecutor.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-22T08:31:00Z",
+      "side": 1,
+      "message": "NF: add: .. or error",
+      "range": {
+        "startLine": 39,
+        "startChar": 66,
+        "endLine": 39,
+        "endChar": 76
+      },
+      "revId": "b1c6cb5d99e8416a205f79cf255619c88ba994f5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4c95753_977e25b7",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreRequestHandlerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-22T08:31:00Z",
+      "side": 1,
+      "message": "NB: you are specifically checking 3 parameters to ensure the correct method is called, correct?\nMake me wonder if the method should have a different name then the legacy one e.g.\nexecuteTaskWithErrorHandling",
+      "range": {
+        "startLine": 61,
+        "startChar": 65,
+        "endLine": 61,
+        "endChar": 71
+      },
+      "revId": "b1c6cb5d99e8416a205f79cf255619c88ba994f5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05814155_c7c32957",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/data/operation/ResourceDataOperationRequestUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-22T08:31:00Z",
+      "side": 1,
+      "message": "NB: bit suprised at the amount of new code here, if I get a chance we might have a quick chat about it during stnadup",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 167,
+        "endChar": 5
+      },
+      "revId": "b1c6cb5d99e8416a205f79cf255619c88ba994f5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9efa2c17_69e90185",
+        "filename": "docs/cps-ncmp-message-status-codes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-22T08:31:00Z",
+      "side": 1,
+      "message": "NB: \u0027All features\u0027 or \u0027Multiple Features\u0027 might future proof this :-)",
+      "range": {
+        "startLine": 35,
+        "startChar": 79,
+        "endLine": 35,
+        "endChar": 104
+      },
+      "revId": "b1c6cb5d99e8416a205f79cf255619c88ba994f5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
