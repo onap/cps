@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf911ca5_615545a3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-22T11:59:39Z",
+      "side": 1,
+      "message": "looks fine to me.\nI will ask others to have a look.\nAlso wanted to check the topic provisioning ?\nwill u be handling that ?\n\nAlso the next patch will contain the fine grain control of the notification. right ?",
+      "revId": "82f73dd03c107ed9d46f1d065951dba8ebbc8461",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6cd9c3d_56ef2e2a",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 494,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-22T11:59:39Z",
+      "side": 1,
+      "message": "NB: indendation",
+      "range": {
+        "startLine": 493,
+        "startChar": 8,
+        "endLine": 494,
+        "endChar": 78
+      },
+      "revId": "82f73dd03c107ed9d46f1d065951dba8ebbc8461",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
