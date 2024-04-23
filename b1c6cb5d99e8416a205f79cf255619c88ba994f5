@@ -60,6 +60,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5dd21c76_975e4f91",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpPassthroughResourceRequestHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-23T06:54:59Z",
+      "side": 1,
+      "message": "if a method doesnt use instance variable it can (and should) be static",
+      "parentUuid": "9704864e_051b83c8",
+      "range": {
+        "startLine": 145,
+        "startChar": 12,
+        "endLine": 145,
+        "endChar": 19
+      },
+      "revId": "b1c6cb5d99e8416a205f79cf255619c88ba994f5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3e6f1749_e37bcf29",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/executor/CpsNcmpTaskExecutor.java",
         "patchSetId": 2
