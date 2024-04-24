@@ -16,6 +16,351 @@
       "message": "Addressed all the review comments",
       "revId": "32068aa2ae77dc432b52bfc7001c652f69cf5b45",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fb89a91_fe5f3998",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-24T08:56:36Z",
+      "side": 1,
+      "message": "NB: I woudl group it with teh other service ie move to line #67",
+      "range": {
+        "startLine": 72,
+        "startChar": 5,
+        "endLine": 72,
+        "endChar": 72
+      },
+      "revId": "32068aa2ae77dc432b52bfc7001c652f69cf5b45",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1de814de_0dd20d5b",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/CpsCloudEventBuilder.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-24T08:56:36Z",
+      "side": 1,
+      "message": "NB: bit unusual name for a build method",
+      "range": {
+        "startLine": 33,
+        "startChar": 28,
+        "endLine": 33,
+        "endChar": 41
+      },
+      "revId": "32068aa2ae77dc432b52bfc7001c652f69cf5b45",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a4870ee_237c2196",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/CpsCloudEventBuilder.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-24T08:56:36Z",
+      "side": 1,
+      "message": "Q: should this this not be generated",
+      "range": {
+        "startLine": 49,
+        "startChar": 22,
+        "endLine": 49,
+        "endChar": 27
+      },
+      "revId": "32068aa2ae77dc432b52bfc7001c652f69cf5b45",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9c8f419_f50cb214",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/CpsDataUpdateEventsService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-24T08:56:36Z",
+      "side": 1,
+      "message": "Q: i thought you were going to do a more fine grained option (per Anchor?) as well, is that a future improvement?",
+      "range": {
+        "startLine": 61,
+        "startChar": 12,
+        "endLine": 61,
+        "endChar": 32
+      },
+      "revId": "32068aa2ae77dc432b52bfc7001c652f69cf5b45",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "145a3ae8_1c81b732",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/CpsDataUpdateEventsService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-24T08:56:36Z",
+      "side": 1,
+      "message": "should you have a (unique) separator, maybe even space as that is NOT allowed in either name string...\nDo YOu need to split it again? IF so this is important if not just for visibility I woudl insert a \u0027-\u0027 or \u0027_\u0027",
+      "range": {
+        "startLine": 64,
+        "startChar": 66,
+        "endLine": 64,
+        "endChar": 69
+      },
+      "revId": "32068aa2ae77dc432b52bfc7001c652f69cf5b45",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28da2e24_344c8aca",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/CpsDataUpdateEventsService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-24T08:56:36Z",
+      "side": 1,
+      "message": "I understand setCloudEvent is also a build method as per my previous comment why do we have to build methods ?!\nI discussed thsi with Priyank and agreed this needs to be addressed",
+      "range": {
+        "startLine": 68,
+        "startChar": 75,
+        "endLine": 68,
+        "endChar": 98
+      },
+      "revId": "32068aa2ae77dc432b52bfc7001c652f69cf5b45",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aef4c049_223fe457",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/CpsDataUpdateEventsService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-24T08:56:36Z",
+      "side": 1,
+      "message": "create method and two build methdods ?! I am getting lost...",
+      "range": {
+        "startLine": 75,
+        "startChar": 1,
+        "endLine": 87,
+        "endChar": 35
+      },
+      "revId": "32068aa2ae77dc432b52bfc7001c652f69cf5b45",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2837035e_b12cb64f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 490,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-24T08:56:36Z",
+      "side": 1,
+      "message": "remove this as this part is it is explained and tested in the next block from line #492",
+      "range": {
+        "startLine": 490,
+        "startChar": 29,
+        "endLine": 490,
+        "endChar": 43
+      },
+      "revId": "32068aa2ae77dc432b52bfc7001c652f69cf5b45",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb70d0cd_69bb4d4c",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/events/CpsDataUpdateEventsServiceSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-24T08:56:36Z",
+      "side": 1,
+      "message": "single \u0027 (do find and replace!)",
+      "range": {
+        "startLine": 46,
+        "startChar": 35,
+        "endLine": 46,
+        "endChar": 37
+      },
+      "revId": "32068aa2ae77dc432b52bfc7001c652f69cf5b45",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91094ff0_ead7958b",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/events/CpsDataUpdateEventsServiceSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-24T08:56:36Z",
+      "side": 1,
+      "message": "I think you can insert the expected strings here instead of asserting them at lines #59 and #60",
+      "range": {
+        "startLine": 56,
+        "startChar": 77,
+        "endLine": 56,
+        "endChar": 83
+      },
+      "revId": "32068aa2ae77dc432b52bfc7001c652f69cf5b45",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a23afc58_7ae03c8c",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/events/CpsDataUpdateEventsServiceSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-24T08:56:36Z",
+      "side": 1,
+      "message": "single \u0027",
+      "range": {
+        "startLine": 62,
+        "startChar": 80,
+        "endLine": 62,
+        "endChar": 82
+      },
+      "revId": "32068aa2ae77dc432b52bfc7001c652f69cf5b45",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4f865be_5a95b8ee",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/events/CpsDataUpdateEventsServiceSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-24T08:56:36Z",
+      "side": 1,
+      "message": "actualEventOperation",
+      "range": {
+        "startLine": 65,
+        "startChar": 24,
+        "endLine": 65,
+        "endChar": 39
+      },
+      "revId": "32068aa2ae77dc432b52bfc7001c652f69cf5b45",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99de649b_2247f077",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/events/CpsDataUpdateEventsServiceSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-24T08:56:36Z",
+      "side": 1,
+      "message": "use static imports tio short this",
+      "range": {
+        "startLine": 71,
+        "startChar": 83,
+        "endLine": 71,
+        "endChar": 98
+      },
+      "revId": "32068aa2ae77dc432b52bfc7001c652f69cf5b45",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfffad60_6ac2000e",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/events/CpsDataUpdateEventsServiceSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-24T08:56:36Z",
+      "side": 1,
+      "message": "I dont understand this test, why done DELET become UPDATe, what does \u0027non container\u0027 mean, I think it needs a better descrption",
+      "range": {
+        "startLine": 75,
+        "startChar": 9,
+        "endLine": 75,
+        "endChar": 130
+      },
+      "revId": "32068aa2ae77dc432b52bfc7001c652f69cf5b45",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9459e715_e3ca6f79",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/events/CpsDataUpdateEventsServiceSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-24T08:56:36Z",
+      "side": 1,
+      "message": "I would strongly prefer a separate small test for this scenario, that means you can remvoe 2 columns from THIS test and teh scenarios become shorter. You will need no WHERE for the other test",
+      "range": {
+        "startLine": 76,
+        "startChar": 4,
+        "endLine": 76,
+        "endChar": 134
+      },
+      "revId": "32068aa2ae77dc432b52bfc7001c652f69cf5b45",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
