@@ -39,6 +39,75 @@
       },
       "revId": "2a1e5aac09411523e38fc7126b523ea4f6ac5f78",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62301be2_e2e0fe99",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionNcmpInEventConsumerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-04-24T16:21:26Z",
+      "side": 1,
+      "message": "NB: would try to get info level logger by some other way other than providing an index to the list",
+      "range": {
+        "startLine": 88,
+        "startChar": 26,
+        "endLine": 88,
+        "endChar": 28
+      },
+      "revId": "2a1e5aac09411523e38fc7126b523ea4f6ac5f78",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd70b618_cd8dae1a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/mapper/CmNotificationSubscriptionNcmpOutEventMapperSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-04-24T16:21:26Z",
+      "side": 1,
+      "message": "NB: assert result.data.subscriptionId \u003d\u003d \u0027test-subscription\u0027",
+      "range": {
+        "startLine": 60,
+        "startChar": 12,
+        "endLine": 60,
+        "endChar": 61
+      },
+      "revId": "2a1e5aac09411523e38fc7126b523ea4f6ac5f78",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d534b12c_1f4d1a66",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/mapper/CmNotificationSubscriptionNcmpOutEventMapperSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-04-24T16:21:26Z",
+      "side": 1,
+      "message": "NB: Same as above\u0027 (assert) please mind the order of element in the list can be changed in the future would still pass",
+      "range": {
+        "startLine": 62,
+        "startChar": 12,
+        "endLine": 62,
+        "endChar": 61
+      },
+      "revId": "2a1e5aac09411523e38fc7126b523ea4f6ac5f78",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
