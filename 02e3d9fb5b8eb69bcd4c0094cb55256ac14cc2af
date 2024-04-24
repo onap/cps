@@ -1,0 +1,573 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06a31ce1_c3632076",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-24T13:58:40Z",
+      "side": 1,
+      "message": "i came up with some better names for our methods and related (test)code it is all about \u0027find the parent cm handle using alternat ids\u0027 :-)",
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d565281a_5b6c5842",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistence.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-24T13:58:40Z",
+      "side": 1,
+      "message": "by removing elements (as defined by the separator string) from right to left",
+      "range": {
+        "startLine": 133,
+        "startChar": 55,
+        "endLine": 134,
+        "endChar": 6
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f005f29a_13738b70",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistence.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-24T13:58:40Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 136,
+        "startChar": 28,
+        "endLine": 136,
+        "endChar": 48
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e325b08_cb3eb38b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistence.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-24T13:58:40Z",
+      "side": 1,
+      "message": "use more generic term like \u0027each element\u0027",
+      "range": {
+        "startLine": 136,
+        "startChar": 76,
+        "endLine": 136,
+        "endChar": 84
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e39213f_f7b3dd91",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-24T13:58:40Z",
+      "side": 1,
+      "message": "findParentCmHandle",
+      "range": {
+        "startLine": 184,
+        "startChar": 20,
+        "endLine": 184,
+        "endChar": 36
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fdc5cee9_946c63c8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-24T13:58:40Z",
+      "side": 1,
+      "message": "I stil wonder if you need -1 here or NOT, \nI think it depends on whether the client registers the alternate ID with a \u0027\\\u0027 or not.. Can you double check this!",
+      "range": {
+        "startLine": 195,
+        "startChar": 55,
+        "endLine": 195,
+        "endChar": 73
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba33d831_e4bd83a3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-24T13:58:40Z",
+      "side": 1,
+      "message": "NoAlternateIdParentFoundException",
+      "range": {
+        "startLine": 201,
+        "startChar": 18,
+        "endLine": 201,
+        "endChar": 46
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "987bf765_db027ae0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-24T13:58:40Z",
+      "side": 1,
+      "message": "Find cm handle parent data node using alternate ids",
+      "range": {
+        "startLine": 308,
+        "startChar": 37,
+        "endLine": 308,
+        "endChar": 50
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2af84324_8eaa4c75",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-24T13:58:40Z",
+      "side": 1,
+      "message": "as per my previous comment we need to check with ericsson if the register alternat id with trailign / or not!",
+      "range": {
+        "startLine": 310,
+        "startChar": 75,
+        "endLine": 310,
+        "endChar": 79
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a461e02f_f6f5c641",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-24T13:58:40Z",
+      "side": 1,
+      "message": "no needed for this test anymore",
+      "range": {
+        "startLine": 312,
+        "startChar": 0,
+        "endLine": 313,
+        "endChar": 85
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db7caa26_1769ee4b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-24T13:58:40Z",
+      "side": 1,
+      "message": "only positive scenarios now so no need to user the term \u0027attempt\u0027",
+      "range": {
+        "startLine": 314,
+        "startChar": 15,
+        "endLine": 314,
+        "endChar": 26
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abddd678_cb5294b3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-24T13:58:40Z",
+      "side": 1,
+      "message": "alignmnet",
+      "range": {
+        "startLine": 320,
+        "startChar": 22,
+        "endLine": 320,
+        "endChar": 25
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "188c5619_9f8d5aab",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-24T13:58:40Z",
+      "side": 1,
+      "message": "can you als test with \n\u0027trailing separator\u0027 | \u0027/a/b/\u0027   \n(I assume and expect it to match)",
+      "range": {
+        "startLine": 320,
+        "startChar": 12,
+        "endLine": 320,
+        "endChar": 30
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b27067bc_900e06ef",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-24T13:58:40Z",
+      "side": 1,
+      "message": "exact match",
+      "range": {
+        "startLine": 320,
+        "startChar": 13,
+        "endLine": 320,
+        "endChar": 19
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42a7adca_f9eb0804",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-24T13:58:40Z",
+      "side": 1,
+      "message": "child match",
+      "range": {
+        "startLine": 321,
+        "startChar": 13,
+        "endLine": 321,
+        "endChar": 19
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e231c940_bcc3d173",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-24T13:58:40Z",
+      "side": 1,
+      "message": "Find cm handle parent data node using alternate ids mismatches",
+      "range": {
+        "startLine": 324,
+        "startChar": 9,
+        "endLine": 324,
+        "endChar": 46
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c63cf501_b81a5121",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-24T13:58:40Z",
+      "side": 1,
+      "message": "I think having 2 scenario is good but they only make sense if you have the same setup as in the previous test ie. add cm handle with alternate id \u0027/a/b/\u0027",
+      "range": {
+        "startLine": 325,
+        "startChar": 0,
+        "endLine": 326,
+        "endChar": 85
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d8e5798_2a099b0e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-24T13:58:40Z",
+      "side": 1,
+      "message": "no match for parent only",
+      "range": {
+        "startLine": 338,
+        "startChar": 13,
+        "endLine": 338,
+        "endChar": 19
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29d15d6c_5b6323fc",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-24T13:58:40Z",
+      "side": 1,
+      "message": "no match at all",
+      "range": {
+        "startLine": 339,
+        "startChar": 13,
+        "endLine": 339,
+        "endChar": 19
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90e35c3a_64235eba",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/AlternateIdNotFoundException.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-24T13:58:40Z",
+      "side": 1,
+      "message": "wrong place as this is NCMP specific functionality!",
+      "range": {
+        "startLine": 21,
+        "startChar": 8,
+        "endLine": 21,
+        "endChar": 36
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15a5af39_7194d087",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/AlternateIdNotFoundException.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-24T13:58:40Z",
+      "side": 1,
+      "message": "maybe not now but we do need a user story for exception handling later\n(but is its OK to introduce the exception already as you need it for your logic)",
+      "range": {
+        "startLine": 25,
+        "startChar": 13,
+        "endLine": 25,
+        "endChar": 42
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad3e535b_806e6e75",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/AlternateIdNotFoundException.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-24T13:58:40Z",
+      "side": 1,
+      "message": "No Matching (Parent) CM Handle found using alternate IDs",
+      "range": {
+        "startLine": 29,
+        "startChar": 58,
+        "endLine": 29,
+        "endChar": 95
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12544e26_71bdc363",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/AlternateIdNotFoundException.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-24T13:58:40Z",
+      "side": 1,
+      "message": "not required",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 43
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad45a9c8_676e1445",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/AlternateIdNotFoundException.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-24T13:58:40Z",
+      "side": 1,
+      "message": "align",
+      "range": {
+        "startLine": 36,
+        "startChar": 28,
+        "endLine": 36,
+        "endChar": 46
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ed458aa_6dfeda69",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/AlternateIdNotFoundException.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-24T13:58:40Z",
+      "side": 1,
+      "message": "\"cannot find a datanode with alternat id %s",
+      "range": {
+        "startLine": 40,
+        "startChar": 13,
+        "endLine": 40,
+        "endChar": 111
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
