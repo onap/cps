@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023 Nordix Foundation
+ *  Copyright (C) 2023-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -31,30 +31,32 @@ import org.onap.cps.ncmp.api.impl.utils.EventDateTimeFormatter;
 import org.onap.cps.ncmp.api.impl.utils.context.CpsApplicationContext;
 import org.onap.cps.utils.JsonObjectMapper;
 
-@Builder(buildMethodName = "setCloudEvent")
-public class NcmpCloudEventBuilder {
+@Builder
+public class NcmpEvent {
 
-    private Object event;
+    private Object data;
     private Map<String, String> extensions;
     private String type;
     @Builder.Default
-    private static final String EVENT_SPEC_VERSION_V1 = "1.0.0";
+    private static final String CLOUD_EVENT_SPEC_VERSION_V1 = "1.0.0";
+    @Builder.Default
+    private static final String CLOUD_EVENT_SOURCE = "NCMP";
 
     /**
      * Creates ncmp cloud event with provided attributes.
      *
      * @return Cloud Event
      */
-    public CloudEvent build() {
+    public CloudEvent asCloudEvent() {
         final JsonObjectMapper jsonObjectMapper = CpsApplicationContext.getCpsBean(JsonObjectMapper.class);
         final CloudEventBuilder cloudEventBuilder = CloudEventBuilder.v1()
                 .withId(UUID.randomUUID().toString())
-                .withSource(URI.create("NCMP"))
+                .withSource(URI.create(CLOUD_EVENT_SOURCE))
                 .withType(type)
-                .withDataSchema(URI.create("urn:cps:" + type + ":" + EVENT_SPEC_VERSION_V1))
+                .withDataSchema(URI.create("urn:cps:" + type + ":" + CLOUD_EVENT_SPEC_VERSION_V1))
                 .withTime(EventDateTimeFormatter.toIsoOffsetDateTime(
                         EventDateTimeFormatter.getCurrentIsoFormattedDateTime()))
-                .withData(jsonObjectMapper.asJsonBytes(event));
+                .withData(jsonObjectMapper.asJsonBytes(data));
         extensions.entrySet().stream()
                 .filter(extensionEntry -> StringUtils.isNotBlank(extensionEntry.getValue()))
                 .forEach(extensionEntry ->

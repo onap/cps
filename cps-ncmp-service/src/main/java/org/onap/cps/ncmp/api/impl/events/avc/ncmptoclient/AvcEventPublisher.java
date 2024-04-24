@@ -26,7 +26,7 @@ import java.util.HashMap;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.events.EventsPublisher;
-import org.onap.cps.ncmp.api.impl.events.NcmpCloudEventBuilder;
+import org.onap.cps.ncmp.api.impl.events.NcmpEvent;
 import org.onap.cps.ncmp.events.avc.ncmp_to_client.Avc;
 import org.onap.cps.ncmp.events.avc.ncmp_to_client.AvcEvent;
 import org.onap.cps.ncmp.events.avc.ncmp_to_client.Data;
@@ -53,8 +53,8 @@ public class AvcEventPublisher {
 
         final Map<String, String> extensions = createAvcEventExtensions(eventKey);
         final CloudEvent avcCloudEvent =
-            NcmpCloudEventBuilder.builder().type(AvcEvent.class.getTypeName())
-            .event(avcEvent).extensions(extensions).setCloudEvent().build();
+            NcmpEvent.builder().type(AvcEvent.class.getTypeName())
+            .data(avcEvent).extensions(extensions).build().asCloudEvent();
 
         eventsPublisher.publishCloudEvent(avcTopic, eventKey, avcCloudEvent);
     }
