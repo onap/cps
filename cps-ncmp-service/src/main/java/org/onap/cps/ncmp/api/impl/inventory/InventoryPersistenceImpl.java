@@ -36,6 +36,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsModuleService;
+import org.onap.cps.ncmp.api.impl.exception.NoAlternateIdParentFoundException;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.spi.FetchDescendantsOption;
@@ -169,14 +170,40 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
 
     @Override
     public DataNode getCmHandleDataNodeByAlternateId(final String alternateId) {
-        final String xPathForCmHandleByAlternateId = getXPathForCmHandleByAlternateId(alternateId);
+        final String cpsPathForCmHandleByAlternateId = getCpsPathForCmHandleByAlternateId(alternateId);
         final Collection<DataNode> dataNodes = cmHandleQueries
-            .queryNcmpRegistryByCpsPath(xPathForCmHandleByAlternateId, OMIT_DESCENDANTS);
+            .queryNcmpRegistryByCpsPath(cpsPathForCmHandleByAlternateId, OMIT_DESCENDANTS);
         if (dataNodes.isEmpty()) {
             throw new DataNodeNotFoundException(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                xPathForCmHandleByAlternateId);
+                cpsPathForCmHandleByAlternateId);
         }
         return dataNodes.iterator().next();
+    }
+
+    @Override
+    public DataNode findParentCmHandle(final String alternateId, final String separator) {
+        String bestMatch = alternateId;
+        while (true) {
+            final String cpsPathForCmHandleByAlternateId = getCpsPathForCmHandleByAlternateId(bestMatch);
+            final Collection<DataNode> dataNodes = cmHandleQueries
+                    .queryNcmpRegistryByCpsPath(cpsPathForCmHandleByAlternateId, OMIT_DESCENDANTS);
+            if (dataNodes == null) {
+                final int lastSeparatorIndex = bestMatch.lastIndexOf(separator);
+                if (lastSeparatorIndex < 0) {
+                    break;
+                } else {
+                    final String nextBestMatch = bestMatch.substring(0, lastSeparatorIndex);
+                    if (nextBestMatch.isEmpty()) {
+                        break;
+                    } else {
+                        bestMatch = nextBestMatch;
+                    }
+                }
+            } else {
+                return dataNodes.iterator().next();
+            }
+        }
+        throw new NoAlternateIdParentFoundException(alternateId);
     }
 
     @Override
@@ -195,7 +222,7 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
         return NCMP_DMI_REGISTRY_PARENT + "/cm-handles[@id='" + cmHandleId + "']";
     }
 
-    private static String getXPathForCmHandleByAlternateId(final String alternateId) {
+    private static String getCpsPathForCmHandleByAlternateId(final String alternateId) {
         return NCMP_DMI_REGISTRY_PARENT + "/cm-handles[@alternate-id='" + alternateId + "']";
     }
 
