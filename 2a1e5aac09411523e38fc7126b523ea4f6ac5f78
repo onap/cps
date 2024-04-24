@@ -16,6 +16,29 @@
       "message": "good for me.",
       "revId": "2a1e5aac09411523e38fc7126b523ea4f6ac5f78",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "308cc5ba_d6056ef3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionNcmpInEventConsumer.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-04-24T16:20:54Z",
+      "side": 1,
+      "message": "Nb question: I assume there will be other event types later? Otherwise we should log the \u0027else\u0027 condition",
+      "range": {
+        "startLine": 64,
+        "startChar": 8,
+        "endLine": 64,
+        "endChar": 9
+      },
+      "revId": "2a1e5aac09411523e38fc7126b523ea4f6ac5f78",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
