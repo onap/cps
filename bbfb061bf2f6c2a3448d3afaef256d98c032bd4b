@@ -22,6 +22,30 @@
       },
       "revId": "bbfb061bf2f6c2a3448d3afaef256d98c032bd4b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12f010ba_c4c82cdb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/NcmpEvent.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-24T15:37:09Z",
+      "side": 0,
+      "message": "yeah. we agreed to use the semantic versioning in all our schemas.\napplies for all the schemas we have as well.",
+      "parentUuid": "e7e12ec8_5ed42056",
+      "range": {
+        "startLine": 41,
+        "startChar": 57,
+        "endLine": 41,
+        "endChar": 62
+      },
+      "revId": "bbfb061bf2f6c2a3448d3afaef256d98c032bd4b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
