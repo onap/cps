@@ -66,6 +66,11 @@
       <artifactId>gson</artifactId>
     </dependency>
     <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+      <version>20090211</version>
+    </dependency>
+    <dependency>
       <!-- Hazelcast provide Distributed Caches -->
       <groupId>com.hazelcast</groupId>
       <artifactId>hazelcast-spring</artifactId>
