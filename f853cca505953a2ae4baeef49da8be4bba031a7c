@@ -16,6 +16,23 @@
       "message": "recheck",
       "revId": "f853cca505953a2ae4baeef49da8be4bba031a7c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c6383ec_142e9e6b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-04-24T16:16:16Z",
+      "side": 1,
+      "message": "I did some quick performance testing with this (20k registration, DMI passthrough, deregistration), no different than before (which is good).",
+      "revId": "f853cca505953a2ae4baeef49da8be4bba031a7c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
