@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b52d0e6_9a086863",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistence.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-24T17:17:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d565281a_5b6c5842",
+      "range": {
+        "startLine": 133,
+        "startChar": 55,
+        "endLine": 134,
+        "endChar": 6
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f005f29a_13738b70",
@@ -87,6 +111,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "df3595f1_4830dce4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistence.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-24T17:17:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f005f29a_13738b70",
+      "range": {
+        "startLine": 136,
+        "startChar": 28,
+        "endLine": 136,
+        "endChar": 48
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "172f41c4_b77c14bc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistence.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-24T17:17:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1e325b08_cb3eb38b",
+      "range": {
+        "startLine": 136,
+        "startChar": 76,
+        "endLine": 136,
+        "endChar": 84
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6e39213f_f7b3dd91",
@@ -100,6 +172,30 @@
       "writtenOn": "2024-04-24T13:58:40Z",
       "side": 1,
       "message": "findParentCmHandle",
+      "range": {
+        "startLine": 184,
+        "startChar": 20,
+        "endLine": 184,
+        "endChar": 36
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c58c9108_e26a7599",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-24T17:17:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6e39213f_f7b3dd91",
       "range": {
         "startLine": 184,
         "startChar": 20,
@@ -133,6 +229,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3f5e8d8_9b8b1a3c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-24T17:17:31Z",
+      "side": 1,
+      "message": "Path will always start with a \"/\"",
+      "parentUuid": "fdc5cee9_946c63c8",
+      "range": {
+        "startLine": 195,
+        "startChar": 55,
+        "endLine": 195,
+        "endChar": 73
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ba33d831_e4bd83a3",
@@ -146,6 +266,30 @@
       "writtenOn": "2024-04-24T13:58:40Z",
       "side": 1,
       "message": "NoAlternateIdParentFoundException",
+      "range": {
+        "startLine": 201,
+        "startChar": 18,
+        "endLine": 201,
+        "endChar": 46
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1003dd4c_3d717c62",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-24T17:17:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ba33d831_e4bd83a3",
       "range": {
         "startLine": 201,
         "startChar": 18,
@@ -179,6 +323,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac23131d_3c1121d1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-24T17:17:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "987bf765_db027ae0",
+      "range": {
+        "startLine": 308,
+        "startChar": 37,
+        "endLine": 308,
+        "endChar": 50
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2af84324_8eaa4c75",
@@ -192,6 +360,30 @@
       "writtenOn": "2024-04-24T13:58:40Z",
       "side": 1,
       "message": "as per my previous comment we need to check with ericsson if the register alternat id with trailign / or not!",
+      "range": {
+        "startLine": 310,
+        "startChar": 75,
+        "endLine": 310,
+        "endChar": 79
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a919d18d_1473880f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-24T17:17:31Z",
+      "side": 1,
+      "message": "Path will always start with a \"/\"",
+      "parentUuid": "2af84324_8eaa4c75",
       "range": {
         "startLine": 310,
         "startChar": 75,
@@ -225,6 +417,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4fbbc594_6b34c111",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-24T17:17:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a461e02f_f6f5c641",
+      "range": {
+        "startLine": 312,
+        "startChar": 0,
+        "endLine": 313,
+        "endChar": 85
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "db7caa26_1769ee4b",
@@ -238,6 +454,30 @@
       "writtenOn": "2024-04-24T13:58:40Z",
       "side": 1,
       "message": "only positive scenarios now so no need to user the term \u0027attempt\u0027",
+      "range": {
+        "startLine": 314,
+        "startChar": 15,
+        "endLine": 314,
+        "endChar": 26
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc326d36_6137dbb2",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-24T17:17:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "db7caa26_1769ee4b",
       "range": {
         "startLine": 314,
         "startChar": 15,
@@ -317,6 +557,78 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd94e9aa_c2e433f3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-24T17:17:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "188c5619_9f8d5aab",
+      "range": {
+        "startLine": 320,
+        "startChar": 12,
+        "endLine": 320,
+        "endChar": 30
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8bede89_adb7461e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-24T17:17:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b27067bc_900e06ef",
+      "range": {
+        "startLine": 320,
+        "startChar": 13,
+        "endLine": 320,
+        "endChar": 19
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6f9a7e4_69ff0e0d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-24T17:17:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "abddd678_cb5294b3",
+      "range": {
+        "startLine": 320,
+        "startChar": 22,
+        "endLine": 320,
+        "endChar": 25
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "42a7adca_f9eb0804",
@@ -330,6 +642,30 @@
       "writtenOn": "2024-04-24T13:58:40Z",
       "side": 1,
       "message": "child match",
+      "range": {
+        "startLine": 321,
+        "startChar": 13,
+        "endLine": 321,
+        "endChar": 19
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "598f8590_c91578ea",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-24T17:17:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "42a7adca_f9eb0804",
       "range": {
         "startLine": 321,
         "startChar": 13,
@@ -363,6 +699,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8b34b67_a8dc4abf",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-24T17:17:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e231c940_bcc3d173",
+      "range": {
+        "startLine": 324,
+        "startChar": 9,
+        "endLine": 324,
+        "endChar": 46
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c63cf501_b81a5121",
@@ -376,6 +736,30 @@
       "writtenOn": "2024-04-24T13:58:40Z",
       "side": 1,
       "message": "I think having 2 scenario is good but they only make sense if you have the same setup as in the previous test ie. add cm handle with alternate id \u0027/a/b/\u0027",
+      "range": {
+        "startLine": 325,
+        "startChar": 0,
+        "endLine": 326,
+        "endChar": 85
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6637df1_882e10f0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-24T17:17:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c63cf501_b81a5121",
       "range": {
         "startLine": 325,
         "startChar": 0,
@@ -409,6 +793,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "198633dc_169dfad7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-24T17:17:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9d8e5798_2a099b0e",
+      "range": {
+        "startLine": 338,
+        "startChar": 13,
+        "endLine": 338,
+        "endChar": 19
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "29d15d6c_5b6323fc",
@@ -422,6 +830,30 @@
       "writtenOn": "2024-04-24T13:58:40Z",
       "side": 1,
       "message": "no match at all",
+      "range": {
+        "startLine": 339,
+        "startChar": 13,
+        "endLine": 339,
+        "endChar": 19
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa981b9a_ee5bcf24",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-24T17:17:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "29d15d6c_5b6323fc",
       "range": {
         "startLine": 339,
         "startChar": 13,
@@ -455,6 +887,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3cb21f43_f7baee06",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/AlternateIdNotFoundException.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-24T17:17:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "90e35c3a_64235eba",
+      "range": {
+        "startLine": 21,
+        "startChar": 8,
+        "endLine": 21,
+        "endChar": 36
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "15a5af39_7194d087",
@@ -468,6 +924,30 @@
       "writtenOn": "2024-04-24T13:58:40Z",
       "side": 1,
       "message": "maybe not now but we do need a user story for exception handling later\n(but is its OK to introduce the exception already as you need it for your logic)",
+      "range": {
+        "startLine": 25,
+        "startChar": 13,
+        "endLine": 25,
+        "endChar": 42
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7c249df_dcfe3ae7",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/AlternateIdNotFoundException.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-24T17:17:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "15a5af39_7194d087",
       "range": {
         "startLine": 25,
         "startChar": 13,
@@ -501,6 +981,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "92bb36e6_968d988a",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/AlternateIdNotFoundException.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-24T17:17:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ad3e535b_806e6e75",
+      "range": {
+        "startLine": 29,
+        "startChar": 58,
+        "endLine": 29,
+        "endChar": 95
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "12544e26_71bdc363",
@@ -514,6 +1018,30 @@
       "writtenOn": "2024-04-24T13:58:40Z",
       "side": 1,
       "message": "not required",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 43
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9464844_da3cac38",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/AlternateIdNotFoundException.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-24T17:17:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "12544e26_71bdc363",
       "range": {
         "startLine": 34,
         "startChar": 0,
@@ -547,6 +1075,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cda59d8f_366657f2",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/AlternateIdNotFoundException.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-24T17:17:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ad45a9c8_676e1445",
+      "range": {
+        "startLine": 36,
+        "startChar": 28,
+        "endLine": 36,
+        "endChar": 46
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1ed458aa_6dfeda69",
@@ -560,6 +1112,30 @@
       "writtenOn": "2024-04-24T13:58:40Z",
       "side": 1,
       "message": "\"cannot find a datanode with alternat id %s",
+      "range": {
+        "startLine": 40,
+        "startChar": 13,
+        "endLine": 40,
+        "endChar": 111
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf0882da_2f6d4529",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/exceptions/AlternateIdNotFoundException.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-24T17:17:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1ed458aa_6dfeda69",
       "range": {
         "startLine": 40,
         "startChar": 13,
