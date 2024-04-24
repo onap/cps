@@ -29,6 +29,8 @@ import org.onap.cps.api.CpsModuleService
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.spi.CascadeDeleteAllowed
 import org.onap.cps.spi.FetchDescendantsOption
+import org.onap.cps.spi.exceptions.AlternateIdNotFoundException
+import org.onap.cps.spi.exceptions.AnchorNotFoundException
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.ModuleDefinition
@@ -303,6 +305,40 @@ class InventoryPersistenceImplSpec extends Specification {
             assert objectUnderTest.getCmHandleDataNodeByAlternateId('alternate id') == new DataNode()
     }
 
+    def 'Get cm handle data node for longest match'() {
+        given: 'cm handle in the registry with alternateId /a/b'
+            def matchingCpsPath = "/dmi-registry/cm-handles[@alternate-id='/a/b']"
+            mockCmHandleQueries.queryNcmpRegistryByCpsPath(matchingCpsPath, OMIT_DESCENDANTS) >> [new DataNode()]
+        and: 'no other cm handle'
+            mockCmHandleQueries.queryNcmpRegistryByCpsPath(_, OMIT_DESCENDANTS) >> []
+        when: 'attempt to find alternateId'
+            def foundMatch = objectUnderTest.findLongestMatch(alternateId, '/') != null
+        then: 'match found as expected'
+            assert foundMatch == true
+        where: 'the following parameters are used'
+            scenario | alternateId
+            'test-1'   | '/a/b'
+            'test-2' | '/a/b/c'
+    }
+
+    def 'Get cm handle data node for no match'() {
+        given: 'no other cm handle'
+            mockCmHandleQueries.queryNcmpRegistryByCpsPath(_, OMIT_DESCENDANTS) >> []
+        when: 'attempt to find alternateId'
+            def thrown = null
+            try {
+                objectUnderTest.findLongestMatch(alternateId, '/')
+            } catch (Exception exception) {
+                thrown = exception
+            }
+        then: 'no alternate id found exception thrown'
+            assert thrown instanceof AlternateIdNotFoundException
+        where: 'the following parameters are used'
+            scenario | alternateId
+            'test-1' | '/a'
+            'test-2' | '/x/y/z'
+    }
+
     def 'Attempt to get non existing cm handle data node by alternate id'() {
         given: 'query service is invoked and returns empty collection of data nodes'
             mockCmHandleQueries.queryNcmpRegistryByCpsPath(*_) >> []
@@ -339,6 +375,11 @@ class InventoryPersistenceImplSpec extends Specification {
             objectUnderTest.deleteDataNodes(['xpath1', 'xpath2'])
         then: 'the cps data service method to delete data nodes is invoked once with the same xPaths'
             1 * mockCpsDataService.deleteDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, ['xpath1', 'xpath2'], NO_TIMESTAMP);
+    }
+
+    def createDataNodeWithAlternateId(dataNodeId, alternateId) {
+        def cmHandleXpath = "/dmi-registry/cm-handles[@id='${dataNodeId}']"
+        return new DataNode(xpath: cmHandleXpath, leaves: ['id': dataNodeId, 'alternate-id': alternateId])
     }
 
 }

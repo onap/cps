@@ -179,4 +179,12 @@ class CpsExceptionsSpec extends Specification {
             exception.message == "Dataspace with name ${dataspaceName} is being used."
             exception.details == providedDetails
     }
+
+    def 'Creating an exception that the alternate id is not matched.'() {
+        given: 'a dataspace in use exception is created'
+            def exception = new AlternateIdNotFoundException(dataspaceName, anchorName, xpath)
+        expect: 'the exception has the correct message with dataspace name and xpath'
+            exception.message == "No match found for requested FDN path"
+            exception.details == "DataNode with cps path ${xpath} do not have any match for anchor ${anchorName} and dataspace ${dataspaceName}."
+    }
 }

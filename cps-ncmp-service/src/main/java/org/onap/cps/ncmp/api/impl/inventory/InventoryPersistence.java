@@ -130,6 +130,15 @@ public interface InventoryPersistence extends NcmpPersistence {
     DataNode getCmHandleDataNodeByAlternateId(String alternateId);
 
     /**
+     * Get data node that matches longest alternate id after trimming from  left ro right.
+     *
+     * @param alternateId alternate ID
+     * @param separator   a special character or string that separates each fdn path from the next.
+     * @return data node
+     */
+    DataNode findLongestMatch(final String alternateId, final String separator);
+
+    /**
      * Get collection of data nodes of given cm handles.
      *
      * @param cmHandleIds collection of cmHandle IDs
