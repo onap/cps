@@ -43,6 +43,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0bd4f8eb_20b80e37",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/CpsCloudEventBuilder.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-24T10:31:02Z",
+      "side": 1,
+      "message": "Hey Rajesh , had a quick session with Toine on this one and we came up with the below. You can use this class as below.\n\n@Builder\npublic class CpsEvent {\n\n    private Object data;\n    private Map\u003cString, String\u003e extensions;\n    private String type;\n    @Builder.Default\n    private static final String CLOUD_EVENT_SPEC_VERSION_V1 \u003d \"1.0.0\";\n    @Builder.Default\n    private static final String CLOUD_EVENT_SOURCE \u003d \"CPS\";\n\n    private final JsonObjectMapper jsonObjectMapper \u003d new JsonObjectMapper(new ObjectMapper());\n\n    /**\n     * Creates ncmp cloud event with provided attributes.\n     *\n     * @return Cloud Event\n     */\n    public CloudEvent asCloudEvent() {\n        final CloudEventBuilder cloudEventBuilder \u003d io.cloudevents.core.builder\n                .CloudEventBuilder.v1()\n                .withId(UUID.randomUUID().toString())\n                .withSource(URI.create(CLOUD_EVENT_SOURCE))\n                .withType(type)\n                .withDataSchema(URI.create(\"urn:cps:\" + type + \":\" + CLOUD_EVENT_SPEC_VERSION_V1))\n                .withData(jsonObjectMapper.asJsonBytes(data));\n        extensions.entrySet().stream()\n                .filter(extensionEntry -\u003e StringUtils.isNotBlank(extensionEntry.getValue()))\n                .forEach(extensionEntry -\u003e\n                        cloudEventBuilder.withExtension(extensionEntry.getKey(), extensionEntry.getValue()));\n        return cloudEventBuilder.build();\n    }\n\n}",
+      "revId": "32068aa2ae77dc432b52bfc7001c652f69cf5b45",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1de814de_0dd20d5b",
         "filename": "cps-service/src/main/java/org/onap/cps/events/CpsCloudEventBuilder.java",
         "patchSetId": 16
@@ -146,6 +163,30 @@
       "writtenOn": "2024-04-24T08:56:36Z",
       "side": 1,
       "message": "I understand setCloudEvent is also a build method as per my previous comment why do we have to build methods ?!\nI discussed thsi with Priyank and agreed this needs to be addressed",
+      "range": {
+        "startLine": 68,
+        "startChar": 75,
+        "endLine": 68,
+        "endChar": 98
+      },
+      "revId": "32068aa2ae77dc432b52bfc7001c652f69cf5b45",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c555d6e7_960dbdb7",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/CpsDataUpdateEventsService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-24T10:31:02Z",
+      "side": 1,
+      "message": "to be called this way.\n\nCpsEvent.builder().type(CpsDataUpdatedEvent.class.getTypeName()).data(cpsDataUpdatedEvent)\n                            .extensions(extensions).build().asCloudEvent();",
+      "parentUuid": "28da2e24_344c8aca",
       "range": {
         "startLine": 68,
         "startChar": 75,
