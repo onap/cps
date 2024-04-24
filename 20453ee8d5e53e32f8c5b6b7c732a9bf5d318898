@@ -64,6 +64,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6865ed73_e1bb3f00",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionNcmpInEventConsumer.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-04-24T13:49:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44057148_fd3622e4",
+      "range": {
+        "startLine": 61,
+        "startChar": 56,
+        "endLine": 61,
+        "endChar": 61
+      },
+      "revId": "20453ee8d5e53e32f8c5b6b7c732a9bf5d318898",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8500373f_131c6007",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionNcmpInEventConsumer.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-04-24T13:49:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f35cf3ba_54af4403",
+      "range": {
+        "startLine": 61,
+        "startChar": 39,
+        "endLine": 61,
+        "endChar": 47
+      },
+      "revId": "20453ee8d5e53e32f8c5b6b7c732a9bf5d318898",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "35685ab8_4e239381",
@@ -77,6 +125,30 @@
       "writtenOn": "2024-04-24T13:40:23Z",
       "side": 1,
       "message": "NB: rejectAndPublishCmNotificationSubscriptionCreateRequest probably.. or even something better?",
+      "range": {
+        "startLine": 60,
+        "startChar": 17,
+        "endLine": 60,
+        "endChar": 48
+      },
+      "revId": "20453ee8d5e53e32f8c5b6b7c732a9bf5d318898",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52fdf16a_e5cb282e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionHandlerServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-04-24T13:49:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "35685ab8_4e239381",
       "range": {
         "startLine": 60,
         "startChar": 17,
