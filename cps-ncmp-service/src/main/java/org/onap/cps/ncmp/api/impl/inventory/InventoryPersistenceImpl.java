@@ -33,9 +33,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsModuleService;
+import org.onap.cps.ncmp.api.impl.exception.NoAlternateIdParentFoundException;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.spi.FetchDescendantsOption;
@@ -169,14 +171,27 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
 
     @Override
     public DataNode getCmHandleDataNodeByAlternateId(final String alternateId) {
-        final String xPathForCmHandleByAlternateId = getXPathForCmHandleByAlternateId(alternateId);
+        final String cpsPathForCmHandleByAlternateId = getCpsPathForCmHandleByAlternateId(alternateId);
         final Collection<DataNode> dataNodes = cmHandleQueries
-            .queryNcmpRegistryByCpsPath(xPathForCmHandleByAlternateId, OMIT_DESCENDANTS);
+            .queryNcmpRegistryByCpsPath(cpsPathForCmHandleByAlternateId, OMIT_DESCENDANTS);
         if (dataNodes.isEmpty()) {
             throw new DataNodeNotFoundException(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                xPathForCmHandleByAlternateId);
+                cpsPathForCmHandleByAlternateId);
         }
         return dataNodes.iterator().next();
+    }
+
+    @Override
+    public DataNode getCmHandleDataNodeByLongestMatchAlternateId(final String alternateId, final String separator) {
+        String bestMatch = alternateId;
+        while (StringUtils.isNotEmpty(bestMatch)) {
+            try {
+                return getCmHandleDataNodeByAlternateId(bestMatch);
+            } catch (final DataNodeNotFoundException ignored) {
+                bestMatch = getParentPath(bestMatch, separator);
+            }
+        }
+        throw new NoAlternateIdParentFoundException(alternateId);
     }
 
     @Override
@@ -195,7 +210,7 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
         return NCMP_DMI_REGISTRY_PARENT + "/cm-handles[@id='" + cmHandleId + "']";
     }
 
-    private static String getXPathForCmHandleByAlternateId(final String alternateId) {
+    private static String getCpsPathForCmHandleByAlternateId(final String alternateId) {
         return NCMP_DMI_REGISTRY_PARENT + "/cm-handles[@alternate-id='" + alternateId + "']";
     }
 
@@ -205,5 +220,10 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
 
     private String createCmHandlesJsonData(final List<YangModelCmHandle> yangModelCmHandles) {
         return "{\"cm-handles\":" + jsonObjectMapper.asJsonString(yangModelCmHandles) + "}";
+    }
+
+    private static String getParentPath(final String path, final String separator) {
+        final int lastSeparatorIndex = path.lastIndexOf(separator);
+        return lastSeparatorIndex < 0 ? "" : path.substring(0, lastSeparatorIndex);
     }
 }
