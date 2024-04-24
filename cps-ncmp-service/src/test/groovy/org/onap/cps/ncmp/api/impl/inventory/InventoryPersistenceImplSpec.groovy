@@ -22,6 +22,14 @@
 
 package org.onap.cps.ncmp.api.impl.inventory
 
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NO_TIMESTAMP
+import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
+import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
+
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
@@ -29,6 +37,7 @@ import org.onap.cps.api.CpsModuleService
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.spi.CascadeDeleteAllowed
 import org.onap.cps.spi.FetchDescendantsOption
+import org.onap.cps.ncmp.api.impl.exception.NoAlternateIdParentFoundException
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.ModuleDefinition
@@ -37,18 +46,9 @@ import org.onap.cps.spi.utils.CpsValidator
 import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Shared
 import spock.lang.Specification
-
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
-
-import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
-import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
-import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT
-import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
-import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NO_TIMESTAMP
-import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
-import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 
 class InventoryPersistenceImplSpec extends Specification {
 
@@ -303,6 +303,37 @@ class InventoryPersistenceImplSpec extends Specification {
             assert objectUnderTest.getCmHandleDataNodeByAlternateId('alternate id') == new DataNode()
     }
 
+    def 'Find cm handle parent data node using alternate ids'() {
+        given: 'cm handle in the registry with alternateId /a/b'
+            def matchingCpsPath = "/dmi-registry/cm-handles[@alternate-id='/a/b']"
+            mockCmHandleQueries.queryNcmpRegistryByCpsPath(matchingCpsPath, OMIT_DESCENDANTS) >> [new DataNode()]
+        expect: 'querying for alternate id a matching result found'
+            assert objectUnderTest.findParentCmHandle(alternateId, '/') != null
+        where: 'the following parameters are used'
+            scenario                              | alternateId
+            'exact match'                         | '/a/b'
+            'exact match with trailing separator' | '/a/b/'
+            'child match'                         | '/a/b/c'
+    }
+
+    def 'Find cm handle parent data node using alternate ids mismatches'() {
+        given: 'cm handle in the registry with alternateId'
+            def matchingCpsPath = "/dmi-registry/cm-handles[@alternate-id='${cpsPath}]"
+            mockCmHandleQueries.queryNcmpRegistryByCpsPath(matchingCpsPath, OMIT_DESCENDANTS) >> [new DataNode()]
+        when: 'attempt to find alternateId'
+            objectUnderTest.findParentCmHandle(alternateId, '/')
+        then: 'no alternate id found exception thrown'
+            def thrown = thrown(NoAlternateIdParentFoundException)
+        and: 'the exception has the relevant details from the error response'
+            assert thrown.message == 'No matching (parent) cm handle found using alternate ids'
+            assert thrown.details == 'cannot find a datanode with alternate id ' + alternateId
+        where: 'the following parameters are used'
+            scenario                              | alternateId | cpsPath
+            'no match for parent only'            | '/a'        | '/a/b'
+            'no match at all'                     | '/x/y/z'    | '/a/b'
+            'no match with trailing separator'    | '/c/d/'     | '/c/d'
+    }
+
     def 'Attempt to get non existing cm handle data node by alternate id'() {
         given: 'query service is invoked and returns empty collection of data nodes'
             mockCmHandleQueries.queryNcmpRegistryByCpsPath(*_) >> []
@@ -340,5 +371,4 @@ class InventoryPersistenceImplSpec extends Specification {
         then: 'the cps data service method to delete data nodes is invoked once with the same xPaths'
             1 * mockCpsDataService.deleteDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, ['xpath1', 'xpath2'], NO_TIMESTAMP);
     }
-
 }
