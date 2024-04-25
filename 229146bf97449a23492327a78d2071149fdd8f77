@@ -16,6 +16,46 @@
       "message": "recheck",
       "revId": "229146bf97449a23492327a78d2071149fdd8f77",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e4f38e8_080a3490",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-25T09:06:36Z",
+      "side": 1,
+      "message": "all other changes are fine to me.\napart from the below comment.",
+      "revId": "229146bf97449a23492327a78d2071149fdd8f77",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "695c79bd_a94fd3df",
+        "filename": "cps-service/pom.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-25T09:06:36Z",
+      "side": 1,
+      "message": "check if jackson has this feature or not.\njust to check a simple case we are introducing this dependency.",
+      "range": {
+        "startLine": 69,
+        "startChar": 6,
+        "endLine": 71,
+        "endChar": 33
+      },
+      "revId": "229146bf97449a23492327a78d2071149fdd8f77",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
