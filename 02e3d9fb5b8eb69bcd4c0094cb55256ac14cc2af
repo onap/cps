@@ -418,6 +418,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2d65be9_11791dcb",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-25T15:35:27Z",
+      "side": 1,
+      "message": "nope fdn path never ends with \"/\"",
+      "parentUuid": "a1f096a5_bfa5f816",
+      "range": {
+        "startLine": 310,
+        "startChar": 75,
+        "endLine": 310,
+        "endChar": 79
+      },
+      "revId": "02e3d9fb5b8eb69bcd4c0094cb55256ac14cc2af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a461e02f_f6f5c641",

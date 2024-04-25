@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6bd89a70_f56c6af2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/exception/NoAlternateIdParentFoundException.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-25T15:35:27Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3f901898_cf36899c",
+      "range": {
+        "startLine": 29,
+        "startChar": 71,
+        "endLine": 29,
+        "endChar": 72
+      },
+      "revId": "d174f7dc0e0e877bdd9aeab1c9b31bbab70af730",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "67e828b7_aca9d4ee",
@@ -71,6 +95,30 @@
       "writtenOn": "2024-04-25T10:44:59Z",
       "side": 1,
       "message": "def matchingCpsPath \u003d \"/dmi-registry/cm-handles[@alternate-id\u003d\u0027/a/b\u0027]\"\ndef matchingCpsPathWithTrailingSeparator \u003d \"/dmi-registry/cm-handles[@alternate-id\u003d\u0027/c/d/\u0027]\"\n\nAlso test /c/d and /c/d/",
+      "range": {
+        "startLine": 310,
+        "startChar": 12,
+        "endLine": 310,
+        "endChar": 82
+      },
+      "revId": "d174f7dc0e0e877bdd9aeab1c9b31bbab70af730",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9820013_107d0c35",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-25T15:35:27Z",
+      "side": 1,
+      "message": "does not support alternate id with trailing separator",
+      "parentUuid": "67e828b7_aca9d4ee",
       "range": {
         "startLine": 310,
         "startChar": 12,
@@ -98,6 +146,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b623d587_bcd052bf",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-25T15:35:27Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "de0cbb5b_35dac9e7",
+      "revId": "d174f7dc0e0e877bdd9aeab1c9b31bbab70af730",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "600b9387_693b237d",
@@ -111,6 +177,24 @@
       "writtenOn": "2024-04-25T11:07:52Z",
       "side": 1,
       "message": "\u0027alternateId\u0027 column should be aligned with the data",
+      "revId": "d174f7dc0e0e877bdd9aeab1c9b31bbab70af730",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "536e98c1_b0caaf95",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-25T15:35:27Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "600b9387_693b237d",
       "revId": "d174f7dc0e0e877bdd9aeab1c9b31bbab70af730",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -138,6 +222,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc7bdd0b_d29fef1f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-25T15:35:27Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "db84611c_2ba2681e",
+      "range": {
+        "startLine": 333,
+        "startChar": 3,
+        "endLine": 335,
+        "endChar": 49
+      },
+      "revId": "d174f7dc0e0e877bdd9aeab1c9b31bbab70af730",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ca9cf79d_6c639a17",
@@ -151,6 +259,24 @@
       "writtenOn": "2024-04-25T11:07:52Z",
       "side": 1,
       "message": "seems like this is not used anywhere. should be deleted then",
+      "revId": "d174f7dc0e0e877bdd9aeab1c9b31bbab70af730",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0be9cc58_d7a675a1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-25T15:35:27Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ca9cf79d_6c639a17",
       "revId": "d174f7dc0e0e877bdd9aeab1c9b31bbab70af730",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
