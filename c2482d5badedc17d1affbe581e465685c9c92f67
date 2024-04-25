@@ -130,6 +130,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ece2db3_136f5016",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/NcmpConfiguration.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-25T08:07:00Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3c3d422c_21e0ca83",
+      "revId": "c2482d5badedc17d1affbe581e465685c9c92f67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7c11a5cf_b51596bf",
@@ -271,6 +289,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8772c223_8788deba",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/client/DmiRestClientSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-25T08:07:00Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "09a5cc63_dd388377",
+      "range": {
+        "startLine": 61,
+        "startChar": 4,
+        "endLine": 61,
+        "endChar": 15
+      },
+      "revId": "c2482d5badedc17d1affbe581e465685c9c92f67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4f589123_772cb971",
@@ -284,6 +326,30 @@
       "writtenOn": "2024-04-22T12:29:36Z",
       "side": 1,
       "message": "is this really need if so how come it return teh same mock as the .uri() method above?",
+      "range": {
+        "startLine": 148,
+        "startChar": 8,
+        "endLine": 148,
+        "endChar": 67
+      },
+      "revId": "c2482d5badedc17d1affbe581e465685c9c92f67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4b9638b_1fd8b432",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/client/DmiRestClientSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-25T08:07:00Z",
+      "side": 1,
+      "message": "OK\u003c I checked and it is needed",
+      "parentUuid": "4f589123_772cb971",
       "range": {
         "startLine": 148,
         "startChar": 8,
@@ -472,6 +538,30 @@
       "side": 1,
       "message": "According to https://stackoverflow.com/a/29948396, it is correct to use + for spaces after ? and %20 in URI before ?.",
       "parentUuid": "8354cc65_6463992e",
+      "range": {
+        "startLine": 89,
+        "startChar": 81,
+        "endLine": 89,
+        "endChar": 82
+      },
+      "revId": "c2482d5badedc17d1affbe581e465685c9c92f67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d407ee6_25af8d11",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/DmiServiceUrlBuilderSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-25T08:07:00Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3fc9928e_4116a9bb",
       "range": {
         "startLine": 89,
         "startChar": 81,

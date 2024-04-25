@@ -33,6 +33,69 @@
       "message": "I did some quick performance testing with this (20k registration, DMI passthrough, deregistration), no different than before (which is good).",
       "revId": "f853cca505953a2ae4baeef49da8be4bba031a7c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ef33924_cfeb4686",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-25T08:07:00Z",
+      "side": 1,
+      "message": "just 1 nb comment but it needs a rebase!",
+      "revId": "f853cca505953a2ae4baeef49da8be4bba031a7c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae7aef6e_e655bf15",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/DmiWebClientConfiguration.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-25T08:07:00Z",
+      "side": 1,
+      "message": "NB: connectionTimeoutInSeconds",
+      "range": {
+        "startLine": 47,
+        "startChar": 20,
+        "endLine": 47,
+        "endChar": 37
+      },
+      "revId": "f853cca505953a2ae4baeef49da8be4bba031a7c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70346908_174e7139",
+        "filename": "cps-ncmp-service/src/test/resources/application.yml",
+        "patchSetId": 12
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-25T08:07:00Z",
+      "side": 1,
+      "message": "can you rebase, as this has changed here: https://gerrit.onap.org/r/c/cps/+/137723/3/integration-test/src/test/resources/application.yml",
+      "range": {
+        "startLine": 40,
+        "startChar": 40,
+        "endLine": 40,
+        "endChar": 43
+      },
+      "revId": "f853cca505953a2ae4baeef49da8be4bba031a7c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
