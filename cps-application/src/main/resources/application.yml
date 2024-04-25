@@ -147,8 +147,26 @@ security:
         username: ${CPS_USERNAME}
         password: ${CPS_PASSWORD}
 
+cps:
+    tracing:
+        exporter:
+            endpoint: ${ONAP_OTEL_EXPORTER_ENDPOINT:http://onap-otel-collector:4317}
+            protocol: ${ONAP_OTEL_EXPORTER_PROTOCOL:grpc}
+        enabled: ${ONAP_TRACING_ENABLED:false}
+        sampler:
+            jaeger:
+                remote:
+                    endpoint: ${ONAP_OTEL_SAMPLER_JAEGER_REMOTE_ENDPOINT:http://onap-otel-collector:14250}
+        propagator:
+            type: ${ONAP_OTEL_PROPAGATOR_TYPE:w3c}
+        propagation:
+            produce: ${ONAP_OTEL_PROPAGATOR_PRODUCE:[W3C]}
+
 # Actuator
 management:
+    tracing:
+        sampling:
+            probability: 1.0
     endpoints:
         web:
             exposure:
@@ -209,3 +227,8 @@ hazelcast:
         kubernetes:
             enabled: ${HAZELCAST_MODE_KUBERNETES_ENABLED:false}
             service-name: ${CPS_NCMP_SERVICE_NAME:"cps-and-ncmp-service"}
+otel:
+    exporter:
+        otlp:
+            traces:
+                protocol: ${ONAP_OTEL_EXPORTER_OTLP_TRACES_PROTOCOL:grpc}
