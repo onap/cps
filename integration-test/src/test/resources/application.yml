@@ -219,3 +219,9 @@ hazelcast:
     kubernetes:
       enabled: false
       service-name: cps-and-ncmp-service
+
+cps:
+  tracing:
+    enabled: false
+    exporter:
+      protocol: grpc
