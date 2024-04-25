@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e52840ae_499a7e00",
+        "filename": "cps-rest/docs/openapi/cpsData.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-04-25T05:28:31Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "6f6ca0ca_fa84daf2",
+      "range": {
+        "startLine": 156,
+        "startChar": 57,
+        "endLine": 156,
+        "endChar": 70
+      },
+      "revId": "5b2c766f878bf732e6cb7fec20c49157ba53242a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "47fd84a7_e01f8e45",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-04-18T12:20:15Z",
       "side": 1,
       "message": "i guess you are using the wrong imports.\nplease correct it.",
+      "range": {
+        "startLine": 344,
+        "startChar": 16,
+        "endLine": 344,
+        "endChar": 26
+      },
+      "revId": "5b2c766f878bf732e6cb7fec20c49157ba53242a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "befe932d_80870f5e",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-04-25T05:28:31Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "47fd84a7_e01f8e45",
       "range": {
         "startLine": 344,
         "startChar": 16,
