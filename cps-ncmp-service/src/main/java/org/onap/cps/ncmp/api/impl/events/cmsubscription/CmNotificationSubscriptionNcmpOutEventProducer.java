@@ -34,7 +34,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.events.EventsPublisher;
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.mapper.CmNotificationSubscriptionNcmpOutEventMapper;
-import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.DmiCmNotificationSubscriptionDetails;
 import org.onap.cps.ncmp.events.cmsubscription_merge1_0_0.ncmp_to_client.CmNotificationSubscriptionNcmpOutEvent;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
@@ -55,8 +54,8 @@ public class CmNotificationSubscriptionNcmpOutEventProducer {
 
     private final EventsPublisher<CloudEvent> eventsPublisher;
     private final JsonObjectMapper jsonObjectMapper;
-    private final Map<String, Map<String, DmiCmNotificationSubscriptionDetails>> cmNotificationSubscriptionCache;
     private final CmNotificationSubscriptionNcmpOutEventMapper cmNotificationSubscriptionNcmpOutEventMapper;
+    private final DmiCmNotificationSubscriptionCacheHandler dmiCmNotificationSubscriptionCacheHandler;
     private final ScheduledExecutorService scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
     private static final Map<String, ScheduledFuture<?>> scheduledTasksPerSubscriptionId = new ConcurrentHashMap<>();
 
@@ -72,8 +71,9 @@ public class CmNotificationSubscriptionNcmpOutEventProducer {
      *                                               or published now
      */
     public void publishCmNotificationSubscriptionNcmpOutEvent(final String subscriptionId, final String eventType,
-            final CmNotificationSubscriptionNcmpOutEvent cmNotificationSubscriptionNcmpOutEvent,
-            final boolean isScheduledEvent) {
+                                                              final CmNotificationSubscriptionNcmpOutEvent
+                                                                      cmNotificationSubscriptionNcmpOutEvent,
+                                                              final boolean isScheduledEvent) {
 
         if (isScheduledEvent && !scheduledTasksPerSubscriptionId.containsKey(subscriptionId)) {
             final ScheduledFuture<?> scheduledFuture =
@@ -86,16 +86,15 @@ public class CmNotificationSubscriptionNcmpOutEventProducer {
                     cmNotificationSubscriptionNcmpOutEvent);
             log.info("Published CmNotificationSubscriptionEvent on demand for subscriptionId : {}", subscriptionId);
         }
-
     }
 
     private ScheduledFuture<?> scheduleAndPublishCmNotificationSubscriptionNcmpOutEvent(final String subscriptionId,
-            final String eventType) {
+                                                                                        final String eventType) {
         final CmNotificationSubscriptionNcmpOutEventPublishingTask
                 cmNotificationSubscriptionNcmpOutEventPublishingTask =
                 new CmNotificationSubscriptionNcmpOutEventPublishingTask(cmNotificationSubscriptionNcmpOutEventTopic,
-                        subscriptionId, eventType, eventsPublisher, jsonObjectMapper, cmNotificationSubscriptionCache,
-                        cmNotificationSubscriptionNcmpOutEventMapper);
+                        subscriptionId, eventType, eventsPublisher, jsonObjectMapper,
+                        cmNotificationSubscriptionNcmpOutEventMapper, dmiCmNotificationSubscriptionCacheHandler);
         return scheduledExecutorService.schedule(cmNotificationSubscriptionNcmpOutEventPublishingTask,
                 cmNotificationSubscriptionDmiOutEventTimeoutInMs, TimeUnit.MILLISECONDS);
     }
@@ -112,12 +111,15 @@ public class CmNotificationSubscriptionNcmpOutEventProducer {
 
 
     private void publishCmNotificationSubscriptionNcmpOutEventNow(final String subscriptionId, final String eventType,
-            final CmNotificationSubscriptionNcmpOutEvent cmNotificationSubscriptionNcmpOutEvent) {
+                                                                  final CmNotificationSubscriptionNcmpOutEvent
+                                                                          cmNotificationSubscriptionNcmpOutEvent) {
         final CloudEvent cmNotificationSubscriptionNcmpOutEventAsCloudEvent =
                 buildAndGetCmNotificationNcmpOutEventAsCloudEvent(jsonObjectMapper, subscriptionId, eventType,
                         cmNotificationSubscriptionNcmpOutEvent);
         eventsPublisher.publishCloudEvent(cmNotificationSubscriptionNcmpOutEventTopic, subscriptionId,
                 cmNotificationSubscriptionNcmpOutEventAsCloudEvent);
+        dmiCmNotificationSubscriptionCacheHandler
+                .removeAcceptedAndRejectedDmiCmNotificationSubscriptionEntries(subscriptionId);
     }
 
     protected static CloudEvent buildAndGetCmNotificationNcmpOutEventAsCloudEvent(
@@ -125,9 +127,9 @@ public class CmNotificationSubscriptionNcmpOutEventProducer {
             final CmNotificationSubscriptionNcmpOutEvent cmNotificationSubscriptionNcmpOutEvent) {
 
         return CloudEventBuilder.v1().withId(UUID.randomUUID().toString()).withType(eventType)
-                       .withSource(URI.create("NCMP")).withDataSchema(URI.create("org.onap.ncmp.cm.subscription:1.0.0"))
-                       .withExtension("correlationid", subscriptionId)
-                       .withData(jsonObjectMapper.asJsonBytes(cmNotificationSubscriptionNcmpOutEvent)).build();
+                .withSource(URI.create("NCMP")).withDataSchema(URI.create("org.onap.ncmp.cm.subscription:1.0.0"))
+                .withExtension("correlationid", subscriptionId)
+                .withData(jsonObjectMapper.asJsonBytes(cmNotificationSubscriptionNcmpOutEvent)).build();
     }
 
 }

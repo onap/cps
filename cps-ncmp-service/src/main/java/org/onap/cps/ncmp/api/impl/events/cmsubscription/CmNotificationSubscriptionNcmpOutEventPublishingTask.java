@@ -42,8 +42,8 @@ public class CmNotificationSubscriptionNcmpOutEventPublishingTask implements Run
     private final String eventType;
     private final EventsPublisher<CloudEvent> eventsPublisher;
     private final JsonObjectMapper jsonObjectMapper;
-    private final Map<String, Map<String, DmiCmNotificationSubscriptionDetails>> cmNotificationSubscriptionCache;
     private final CmNotificationSubscriptionNcmpOutEventMapper cmNotificationSubscriptionNcmpOutEventMapper;
+    private final DmiCmNotificationSubscriptionCacheHandler dmiCmNotificationSubscriptionCacheHandler;
 
     /**
      * Delegating the responsibility of publishing CmNotificationSubscriptionNcmpOutEvent as a separate task which will
@@ -52,13 +52,15 @@ public class CmNotificationSubscriptionNcmpOutEventPublishingTask implements Run
     @Override
     public void run() {
         final Map<String, DmiCmNotificationSubscriptionDetails> dmiCmNotificationSubscriptionDetailsMap =
-                cmNotificationSubscriptionCache.get(subscriptionId);
+                dmiCmNotificationSubscriptionCacheHandler.get(subscriptionId);
         final CmNotificationSubscriptionNcmpOutEvent cmNotificationSubscriptionNcmpOutEvent =
                 cmNotificationSubscriptionNcmpOutEventMapper.toCmNotificationSubscriptionNcmpOutEvent(subscriptionId,
                         dmiCmNotificationSubscriptionDetailsMap);
         eventsPublisher.publishCloudEvent(topicName, subscriptionId,
                 buildAndGetCmNotificationNcmpOutEventAsCloudEvent(jsonObjectMapper, subscriptionId, eventType,
                         cmNotificationSubscriptionNcmpOutEvent));
+        dmiCmNotificationSubscriptionCacheHandler
+                .removeAcceptedAndRejectedDmiCmNotificationSubscriptionEntries(subscriptionId);
     }
 
 }
