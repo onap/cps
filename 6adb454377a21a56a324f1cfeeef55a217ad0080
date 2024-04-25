@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7466bcfd_7dd002d2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-25T14:07:21Z",
+      "side": 1,
+      "message": "great test, good work Daniel, just please remove the steps in between, see comment below",
+      "revId": "6adb454377a21a56a324f1cfeeef55a217ad0080",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fdc5132_93e89855",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/ModuleQueryPerfTest.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-04-25T14:07:21Z",
+      "side": 1,
+      "message": "I think now we know the behavior testing it with 1KB and 100KB is good enough\n(all these in between test start adding up time  up and dont really add value)",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 105,
+        "endChar": 52
+      },
+      "revId": "6adb454377a21a56a324f1cfeeef55a217ad0080",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
