@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63c71ab2_c3cac635",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-04-25T14:35:15Z",
+      "side": 1,
+      "message": "NB: no need for this :)))",
+      "revId": "367e859713f8ffc43844c3a83ceabfcdeb5f4a28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57843e62_e0a4bbb6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/OpenTelemetryConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-04-25T14:35:15Z",
+      "side": 1,
+      "message": "formatting/tabulation needs to be fixed",
+      "revId": "367e859713f8ffc43844c3a83ceabfcdeb5f4a28",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
