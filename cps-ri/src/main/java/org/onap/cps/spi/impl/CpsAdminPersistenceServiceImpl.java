@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2020-2023 Nordix Foundation.
+ * Copyright (C) 2020-2024 Nordix Foundation.
  * Modifications Copyright (C) 2020-2022 Bell Canada.
  * Modifications Copyright (C) 2021 Pantheon.tech
  * Modifications Copyright (C) 2022 TechMahindra Ltd.
@@ -25,8 +25,6 @@ package org.onap.cps.spi.impl;
 
 import jakarta.transaction.Transactional;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -34,17 +32,13 @@ import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.SchemaSetEntity;
-import org.onap.cps.spi.entities.YangResourceModuleReference;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.exceptions.DataspaceInUseException;
-import org.onap.cps.spi.exceptions.DataspaceNotFoundException;
-import org.onap.cps.spi.exceptions.ModuleNamesNotFoundException;
 import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.model.Dataspace;
 import org.onap.cps.spi.repository.AnchorRepository;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.SchemaSetRepository;
-import org.onap.cps.spi.repository.YangResourceRepository;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
 
@@ -56,7 +50,6 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
     private final DataspaceRepository dataspaceRepository;
     private final AnchorRepository anchorRepository;
     private final SchemaSetRepository schemaSetRepository;
-    private final YangResourceRepository yangResourceRepository;
 
     @Override
     public void createDataspace(final String dataspaceName) {
@@ -139,13 +132,6 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
 
     @Override
     public Collection<Anchor> queryAnchors(final String dataspaceName, final Collection<String> inputModuleNames) {
-        try {
-            validateDataspaceAndModuleNames(dataspaceName, inputModuleNames);
-        } catch (DataspaceNotFoundException | ModuleNamesNotFoundException  e) {
-            log.info("Module search encountered unknown dataspace or modulename, treating this as nothing found");
-            return Collections.emptySet();
-        }
-
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final Collection<AnchorEntity> anchorEntities = anchorRepository
             .getAnchorsByDataspaceIdAndModuleNames(dataspaceEntity.getId(), inputModuleNames, inputModuleNames.size());
@@ -198,26 +184,5 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
 
     private static Dataspace toDataspace(final DataspaceEntity dataspaceEntity) {
         return Dataspace.builder().name(dataspaceEntity.getName()).build();
-    }
-
-    private void validateDataspaceAndModuleNames(final String dataspaceName,
-        final Collection<String> inputModuleNames) {
-        final Collection<String> retrievedModuleReferences =
-            yangResourceRepository.findAllModuleReferencesByDataspaceAndModuleNames(dataspaceName, inputModuleNames)
-                .stream().map(YangResourceModuleReference::getModuleName)
-                .collect(Collectors.toList());
-        if (retrievedModuleReferences.isEmpty()) {
-            verifyDataspaceName(dataspaceName);
-        }
-        if (inputModuleNames.size() > retrievedModuleReferences.size()) {
-            final List<String> unknownModules = inputModuleNames.stream()
-                .filter(moduleName -> !retrievedModuleReferences.contains(moduleName))
-                .collect(Collectors.toList());
-            throw new ModuleNamesNotFoundException(dataspaceName, unknownModules);
-        }
-    }
-
-    private void verifyDataspaceName(final String dataspaceName) {
-        dataspaceRepository.getByName(dataspaceName);
     }
 }

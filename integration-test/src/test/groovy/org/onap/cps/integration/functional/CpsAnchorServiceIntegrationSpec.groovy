@@ -84,15 +84,11 @@ class CpsAnchorServiceIntegrationSpec extends CpsIntegrationSpecBase {
             objectUnderTest.deleteAnchor(GENERAL_TEST_DATASPACE, 'newAnchor')
     }
 
-    def 'Query anchors without any known modules and #scenario'() {
+    def 'Query anchors without any known modules'() {
         when: 'querying for anchors with #scenario'
-            def result = objectUnderTest.queryAnchorNames(dataspaceName, ['unknownModule'])
+            def result = objectUnderTest.queryAnchorNames(GENERAL_TEST_DATASPACE, ['unknownModule'])
         then: 'an empty result is returned (no error)'
             assert result == []
-        where:
-            scenario                 | dataspaceName
-            'non existing database'  | 'nonExistingDataspace'
-            'just unknown module(s)' | GENERAL_TEST_DATASPACE
     }
 
     def 'Update anchor schema set.'() {

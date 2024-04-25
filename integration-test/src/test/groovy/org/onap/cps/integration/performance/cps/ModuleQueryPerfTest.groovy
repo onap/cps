@@ -76,7 +76,7 @@ class ModuleQueryPerfTest extends CpsPerfTestBase {
             )
     }
 
-    def 'Bug CPS-2190: Querying anchors by module name IS dependant on the file size of the module.'() {
+    def 'Querying anchors by module name is NOT dependant on the file size of the module.'() {
         when: 'we search for anchors with given Yang module name'
             resourceMeter.start()
             def result = cpsAnchorService.queryAnchorNames(CPS_PERFORMANCE_TEST_DATASPACE, [yangModuleName])
@@ -86,11 +86,11 @@ class ModuleQueryPerfTest extends CpsPerfTestBase {
         and: 'operation completes with expected resource usage'
             recordAndAssertResourceUsage("Query for anchors with ${scenario}",
                     expectedTimeInSeconds, resourceMeter.totalTimeInSeconds,
-                    300, resourceMeter.totalMemoryUsageInMB)
+                    150, resourceMeter.totalMemoryUsageInMB)
         where: 'the following parameters are used'
             scenario         | yangModuleName || expectedTimeInSeconds
             '1 KB module'    | 'module0'      || 3
-            '1000 KB module' | 'module1'      || 12
+            '1000 KB module' | 'module1'      || 3
     }
 
     def 'Module query - Clean up test data.'() {
