@@ -147,6 +147,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d1c0c36_a9d74b6c",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/CpsCloudEventBuilder.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-25T10:05:46Z",
+      "side": 1,
+      "message": "yeah. we event corrected that.\npatch got merged yesterday.\nhttps://gerrit.onap.org/r/c/cps/+/137734",
+      "parentUuid": "82be9052_b61bb881",
+      "range": {
+        "startLine": 33,
+        "startChar": 28,
+        "endLine": 33,
+        "endChar": 41
+      },
+      "revId": "32068aa2ae77dc432b52bfc7001c652f69cf5b45",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3a4870ee_237c2196",
