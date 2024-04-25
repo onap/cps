@@ -75,6 +75,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d8a8e0f_993c15a2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/DmiWebClientConfiguration.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-04-25T09:30:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae7aef6e_e655bf15",
+      "range": {
+        "startLine": 47,
+        "startChar": 20,
+        "endLine": 47,
+        "endChar": 37
+      },
+      "revId": "f853cca505953a2ae4baeef49da8be4bba031a7c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "70346908_174e7139",
@@ -88,6 +112,30 @@
       "writtenOn": "2024-04-25T08:07:00Z",
       "side": 1,
       "message": "can you rebase, as this has changed here: https://gerrit.onap.org/r/c/cps/+/137723/3/integration-test/src/test/resources/application.yml",
+      "range": {
+        "startLine": 40,
+        "startChar": 40,
+        "endLine": 40,
+        "endChar": 43
+      },
+      "revId": "f853cca505953a2ae4baeef49da8be4bba031a7c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1304f13c_635f43c3",
+        "filename": "cps-ncmp-service/src/test/resources/application.yml",
+        "patchSetId": 12
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-04-25T09:30:29Z",
+      "side": 1,
+      "message": "Yes, it should be 30 seconds now.",
+      "parentUuid": "70346908_174e7139",
       "range": {
         "startLine": 40,
         "startChar": 40,
