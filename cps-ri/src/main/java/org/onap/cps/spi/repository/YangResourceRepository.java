@@ -91,26 +91,6 @@ public interface YangResourceRepository extends JpaRepository<YangResourceEntity
             @Param("dataspaceName") String dataspaceName, @Param("anchorName") String anchorName,
             @Param("moduleName") String moduleName, @Param("revision") String revision);
 
-    @Query(value = """
-            SELECT DISTINCT
-                yang_resource.*
-            FROM
-                     dataspace
-                JOIN schema_set ON schema_set.dataspace_id = dataspace.id
-                JOIN schema_set_yang_resources ON schema_set_yang_resources.schema_set_id = schema_set.id
-                JOIN yang_resource ON yang_resource.id = schema_set_yang_resources.yang_resource_id
-            WHERE
-                    dataspace.name = :dataspaceName
-                AND yang_resource.module_name = ANY ( :moduleNames )
-            """, nativeQuery = true)
-    Set<YangResourceModuleReference> findAllModuleReferencesByDataspaceAndModuleNames(
-            @Param("dataspaceName") String dataspaceName, @Param("moduleNames") String[] moduleNames);
-
-    default Set<YangResourceModuleReference> findAllModuleReferencesByDataspaceAndModuleNames(
-        final String dataspaceName, final Collection<String> moduleNames) {
-        return findAllModuleReferencesByDataspaceAndModuleNames(dataspaceName, moduleNames.toArray(new String[0]));
-    }
-
     @Modifying
     @Query(value = "DELETE FROM schema_set_yang_resources WHERE schema_set_id = :schemaSetId", nativeQuery = true)
     void deleteSchemaSetYangResourceForSchemaSetId(@Param("schemaSetId") int schemaSetId);
