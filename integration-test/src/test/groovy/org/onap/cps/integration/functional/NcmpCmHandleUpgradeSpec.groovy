@@ -27,38 +27,26 @@ import org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.models.UpgradedCmHandles
-import org.springframework.http.HttpStatus
 import spock.util.concurrent.PollingConditions
-
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.anything
-import static org.springframework.test.web.client.response.MockRestResponseCreators.withStatus
 
 class NcmpCmHandleUpgradeSpec extends CpsIntegrationSpecBase {
 
     NetworkCmProxyDataService objectUnderTest
 
-    static final INITIAL_MODULE_REFERENCES_RESPONSE = readResourceDataFile('mock-dmi-responses/bookStoreAWithModules_M1_M2_Response.json')
-    static final INITIAL_MODULE_RESOURCES_RESPONSE = readResourceDataFile('mock-dmi-responses/bookStoreAWithModules_M1_M2_ResourcesResponse.json')
-    static final UPDATED_MODULE_REFERENCES_RESPONSE = readResourceDataFile('mock-dmi-responses/bookStoreBWithModules_M1_M3_Response.json')
-    static final UPDATED_MODULE_RESOURCES_RESPONSE = readResourceDataFile('mock-dmi-responses/bookStoreBWithModules_M1_M3_ResourcesResponse.json')
     static final CM_HANDLE_ID = 'ch-1'
     static final CM_HANDLE_ID_WITH_EXISTING_MODULE_SET_TAG = 'ch-2'
 
     def setup() {
         objectUnderTest = networkCmProxyDataService
-        mockDmiWillRespondToHealthChecks(DMI_URL)
     }
 
     def 'Upgrade CM-handle with new moduleSetTag or no moduleSetTag.'() {
-        given: 'DMI will return modules for initial registration'
-            mockDmiResponsesForModuleSync(DMI_URL, CM_HANDLE_ID, INITIAL_MODULE_REFERENCES_RESPONSE, INITIAL_MODULE_RESOURCES_RESPONSE)
-        and: 'DMI returns different modules for upgrade'
-            mockDmiResponsesForModuleSync(DMI_URL, CM_HANDLE_ID, UPDATED_MODULE_REFERENCES_RESPONSE, UPDATED_MODULE_RESOURCES_RESPONSE)
-
-        when: 'a CM-handle is created with expected initial modules: M1 and M2'
+        given: 'a CM-handle is created with expected initial modules: M1 and M2'
+            mockDmi.moduleNamesPerCmHandleId[CM_HANDLE_ID] = ['M1', 'M2']
             registerCmHandle(DMI_URL, CM_HANDLE_ID, initialModuleSetTag)
             assert ['M1', 'M2'] == objectUnderTest.getYangResourcesModuleReferences(CM_HANDLE_ID).moduleName.sort()
-        and: "the CM-handle is upgraded with given moduleSetTag '${updatedModuleSetTag}'"
+
+        when: "the CM-handle is upgraded with given moduleSetTag '${updatedModuleSetTag}'"
             def cmHandlesToUpgrade = new UpgradedCmHandles(cmHandles: [CM_HANDLE_ID], moduleSetTag: updatedModuleSetTag)
             def dmiPluginRegistrationResponse = networkCmProxyDataService.updateDmiRegistrationAndSyncModule(
                     new DmiPluginRegistration(dmiPlugin: DMI_URL, upgradedCmHandles: cmHandlesToUpgrade))
@@ -72,23 +60,22 @@ class NcmpCmHandleUpgradeSpec extends CpsIntegrationSpecBase {
             assert cmHandleCompositeState.lockReason.lockReasonCategory == LockReasonCategory.MODULE_UPGRADE
             assert cmHandleCompositeState.lockReason.details == "Upgrade to ModuleSetTag: ${updatedModuleSetTag}"
 
-        when: 'module sync runs'
+        when: 'DMI will return different modules for upgrade: M1 and M3'
+            mockDmi.moduleNamesPerCmHandleId[CM_HANDLE_ID] = ['M1', 'M3']
+        and: 'module sync runs'
             moduleSyncWatchdog.resetPreviouslyFailedCmHandles()
             moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
 
         then: 'CM-handle goes to READY state'
-            new PollingConditions().within(3, () -> {
+            new PollingConditions().eventually {
                 assert CmHandleState.READY == objectUnderTest.getCmHandleCompositeState(CM_HANDLE_ID).cmHandleState
-            })
+            }
 
         and: 'the CM-handle has expected moduleSetTag'
             assert objectUnderTest.getNcmpServiceCmHandle(CM_HANDLE_ID).moduleSetTag == updatedModuleSetTag
 
         and: 'CM-handle has expected updated modules: M1 and M3'
             assert ['M1', 'M3'] == objectUnderTest.getYangResourcesModuleReferences(CM_HANDLE_ID).moduleName.sort()
-
-        and: 'DMI received expected requests'
-            mockDmiServer.verify()
 
         cleanup: 'deregister CM-handle'
             deregisterCmHandle(DMI_URL, CM_HANDLE_ID)
@@ -103,8 +90,8 @@ class NcmpCmHandleUpgradeSpec extends CpsIntegrationSpecBase {
 
     def 'Upgrade CM-handle with existing moduleSetTag.'() {
         given: 'DMI will return modules for registration'
-            mockDmiResponsesForModuleSync(DMI_URL, CM_HANDLE_ID, INITIAL_MODULE_REFERENCES_RESPONSE, INITIAL_MODULE_RESOURCES_RESPONSE)
-            mockDmiResponsesForModuleSync(DMI_URL, CM_HANDLE_ID_WITH_EXISTING_MODULE_SET_TAG, UPDATED_MODULE_REFERENCES_RESPONSE, UPDATED_MODULE_RESOURCES_RESPONSE)
+            mockDmi.moduleNamesPerCmHandleId[CM_HANDLE_ID] = ['M1', 'M2']
+            mockDmi.moduleNamesPerCmHandleId[CM_HANDLE_ID_WITH_EXISTING_MODULE_SET_TAG] = ['M1', 'M3']
         and: "an existing CM-handle handle with moduleSetTag '${updatedModuleSetTag}'"
             registerCmHandle(DMI_URL, CM_HANDLE_ID_WITH_EXISTING_MODULE_SET_TAG, updatedModuleSetTag)
             assert ['M1', 'M3'] == objectUnderTest.getYangResourcesModuleReferences(CM_HANDLE_ID_WITH_EXISTING_MODULE_SET_TAG).moduleName.sort()
@@ -125,9 +112,9 @@ class NcmpCmHandleUpgradeSpec extends CpsIntegrationSpecBase {
             moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
 
         then: 'CM-handle goes to READY state'
-            new PollingConditions().within(3, () -> {
+            new PollingConditions().eventually {
                 assert CmHandleState.READY == objectUnderTest.getCmHandleCompositeState(CM_HANDLE_ID).cmHandleState
-            })
+            }
 
         and: 'the CM-handle has expected moduleSetTag'
             assert objectUnderTest.getNcmpServiceCmHandle(CM_HANDLE_ID).moduleSetTag == updatedModuleSetTag
@@ -146,7 +133,7 @@ class NcmpCmHandleUpgradeSpec extends CpsIntegrationSpecBase {
 
     def 'Skip upgrade of CM-handle with same moduleSetTag as before.'() {
         given: 'an existing CM-handle with expected initial modules: M1 and M2'
-            mockDmiResponsesForModuleSync(DMI_URL, CM_HANDLE_ID, INITIAL_MODULE_REFERENCES_RESPONSE, INITIAL_MODULE_RESOURCES_RESPONSE)
+            mockDmi.moduleNamesPerCmHandleId[CM_HANDLE_ID] = ['M1', 'M2']
             registerCmHandle(DMI_URL, CM_HANDLE_ID, 'same')
             assert ['M1', 'M2'] == objectUnderTest.getYangResourcesModuleReferences(CM_HANDLE_ID).moduleName.sort()
 
@@ -169,14 +156,13 @@ class NcmpCmHandleUpgradeSpec extends CpsIntegrationSpecBase {
     }
 
     def 'Upgrade of CM-handle fails due to DMI error.'() {
-        given: 'DMI will return modules for initial registration'
-            mockDmiResponsesForModuleSync(DMI_URL, CM_HANDLE_ID, INITIAL_MODULE_REFERENCES_RESPONSE, INITIAL_MODULE_RESOURCES_RESPONSE)
-        and: 'DMI returns error code for upgrade'
-            mockDmiServer.expect(anything()).andRespond(withStatus(HttpStatus.SERVICE_UNAVAILABLE))
-
-        when: 'a CM-handle is created'
+        given: 'a CM-handle exists'
+            mockDmi.moduleNamesPerCmHandleId[CM_HANDLE_ID] = ['M1', 'M2']
             registerCmHandle(DMI_URL, CM_HANDLE_ID, 'oldTag')
-        and: 'the CM-handle is upgraded'
+        and: 'DMI is not available for upgrade'
+            mockDmi.isAvailable = false
+
+        when: 'the CM-handle is upgraded'
             def cmHandlesToUpgrade = new UpgradedCmHandles(cmHandles: [CM_HANDLE_ID], moduleSetTag: 'newTag')
             networkCmProxyDataService.updateDmiRegistrationAndSyncModule(
                     new DmiPluginRegistration(dmiPlugin: DMI_URL, upgradedCmHandles: cmHandlesToUpgrade))
@@ -186,11 +172,11 @@ class NcmpCmHandleUpgradeSpec extends CpsIntegrationSpecBase {
             moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
 
         then: 'CM-handle goes to LOCKED state with reason MODULE_UPGRADE_FAILED'
-            new PollingConditions().within(3, () -> {
+            new PollingConditions(timeout: 3).eventually {
                 def cmHandleCompositeState = objectUnderTest.getCmHandleCompositeState(CM_HANDLE_ID)
                 assert cmHandleCompositeState.cmHandleState == CmHandleState.LOCKED
                 assert cmHandleCompositeState.lockReason.lockReasonCategory == LockReasonCategory.MODULE_UPGRADE_FAILED
-            })
+            }
 
         and: 'the CM-handle has same moduleSetTag as before'
             assert objectUnderTest.getNcmpServiceCmHandle(CM_HANDLE_ID).moduleSetTag == 'oldTag'

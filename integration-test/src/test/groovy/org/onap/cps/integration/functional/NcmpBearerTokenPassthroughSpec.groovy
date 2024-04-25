@@ -20,35 +20,45 @@
 
 package org.onap.cps.integration.functional
 
-import java.time.Duration
+import okhttp3.mockwebserver.Dispatcher
+import okhttp3.mockwebserver.MockResponse
+import okhttp3.mockwebserver.RecordedRequest
+import org.jetbrains.annotations.NotNull
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
-import org.springframework.test.web.client.match.MockRestRequestMatchers
+import spock.util.concurrent.PollingConditions
 
 import static org.springframework.http.HttpMethod.GET
 import static org.springframework.http.HttpMethod.DELETE
 import static org.springframework.http.HttpMethod.PATCH
 import static org.springframework.http.HttpMethod.POST
 import static org.springframework.http.HttpMethod.PUT
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.method
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo
-import static org.springframework.test.web.client.response.MockRestResponseCreators.withStatus
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.request
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
 class NcmpBearerTokenPassthroughSpec extends CpsIntegrationSpecBase {
 
-    static final MODULE_REFERENCES_RESPONSE = readResourceDataFile('mock-dmi-responses/bookStoreAWithModules_M1_M2_Response.json')
-    static final MODULE_RESOURCES_RESPONSE = readResourceDataFile('mock-dmi-responses/bookStoreAWithModules_M1_M2_ResourcesResponse.json')
+    def lastAuthHeaderReceived = null
 
     def setup() {
-        mockDmiWillRespondToHealthChecks(DMI_URL)
-        mockDmiResponsesForModuleSync(DMI_URL, 'ch-1', MODULE_REFERENCES_RESPONSE, MODULE_RESOURCES_RESPONSE)
+        mockDmi.moduleNamesPerCmHandleId['ch-1'] = ['M1', 'M2']
         registerCmHandle(DMI_URL, 'ch-1', NO_MODULE_SET_TAG)
-        mockDmiServer.reset()
-        mockDmiWillRespondToHealthChecks(DMI_URL)
+
+        mockDmiServer.setDispatcher(new Dispatcher() {
+            @Override
+            MockResponse dispatch(@NotNull RecordedRequest request) throws InterruptedException {
+                if (request.path == '/actuator/health') {
+                        return new MockResponse()
+                                .addHeader("Content-Type", MediaType.APPLICATION_JSON).setBody('{"status":"UP"}')
+                                .setResponseCode(HttpStatus.OK.value())
+                } else {
+                    lastAuthHeaderReceived = request.getHeader('Authorization')
+                    return new MockResponse().setResponseCode(HttpStatus.OK.value())
+                }
+            }
+        })
     }
 
     def cleanup() {
@@ -56,12 +66,6 @@ class NcmpBearerTokenPassthroughSpec extends CpsIntegrationSpecBase {
     }
 
     def 'Bearer token is passed from NCMP to DMI in pass-through data operations.'() {
-        given: 'DMI will expect to receive a request with a bearer token'
-            def targetDmiUrl = "$DMI_URL/dmi/v1/ch/ch-1/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=my-resource-id"
-            mockDmiServer.expect(requestTo(targetDmiUrl))
-                    .andExpect(MockRestRequestMatchers.header(HttpHeaders.AUTHORIZATION, 'Bearer some-bearer-token'))
-                    .andRespond(withStatus(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON))
-
         when: 'a pass-through data request is sent to NCMP with a bearer token'
             mvc.perform(request(httpMethod, '/ncmp/v1/ch/ch-1/data/ds/ncmp-datastore:passthrough-running')
                     .queryParam('resourceIdentifier', 'my-resource-id')
@@ -71,19 +75,13 @@ class NcmpBearerTokenPassthroughSpec extends CpsIntegrationSpecBase {
                     .andExpect(status().is2xxSuccessful())
 
         then: 'DMI has received request with bearer token'
-            mockDmiServer.verify()
+            lastAuthHeaderReceived == 'Bearer some-bearer-token'
 
         where: 'all HTTP operations are applied'
             httpMethod << [GET, POST, PUT, PATCH, DELETE]
     }
 
     def 'Basic auth header is NOT passed from NCMP to DMI in pass-through data operations.'() {
-        given: 'DMI will expect to receive a request with no authorization header'
-            def targetDmiUrl = "$DMI_URL/dmi/v1/ch/ch-1/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=my-resource-id"
-            mockDmiServer.expect(requestTo(targetDmiUrl))
-                    .andExpect(MockRestRequestMatchers.headerDoesNotExist(HttpHeaders.AUTHORIZATION))
-                    .andRespond(withStatus(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON))
-
         when: 'a pass-through data request is sent to NCMP with basic authentication'
             mvc.perform(request(httpMethod, '/ncmp/v1/ch/ch-1/data/ds/ncmp-datastore:passthrough-running')
                     .queryParam('resourceIdentifier', 'my-resource-id')
@@ -93,18 +91,13 @@ class NcmpBearerTokenPassthroughSpec extends CpsIntegrationSpecBase {
                     .andExpect(status().is2xxSuccessful())
 
         then: 'DMI has received request with no authorization header'
-            mockDmiServer.verify()
+            lastAuthHeaderReceived == null
 
         where: 'all HTTP operations are applied'
             httpMethod << [GET, POST, PUT, PATCH, DELETE]
     }
 
     def 'Bearer token is passed from NCMP to DMI in async batch pass-through data operation.'() {
-        given: 'DMI will expect to receive a request with a bearer token'
-            mockDmiServer.expect(method(POST))
-                    .andExpect(MockRestRequestMatchers.header(HttpHeaders.AUTHORIZATION, 'Bearer some-bearer-token'))
-                    .andRespond(withStatus(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON))
-
         when: 'a pass-through async data request is sent to NCMP with a bearer token'
             def requestBody = """{"operations": [{
                 "operation": "read",
@@ -121,7 +114,9 @@ class NcmpBearerTokenPassthroughSpec extends CpsIntegrationSpecBase {
                     .andExpect(status().is2xxSuccessful())
 
         then: 'DMI will receive the async request with bearer token'
-            mockDmiServer.verify(Duration.ofSeconds(1))
+            new PollingConditions().within(3, () -> {
+                assert lastAuthHeaderReceived == 'Bearer some-bearer-token'
+            })
     }
 
 }

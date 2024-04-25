@@ -22,6 +22,7 @@ package org.onap.cps.integration.base
 
 import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
+import okhttp3.mockwebserver.MockWebServer
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsDataspaceService
@@ -48,12 +49,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories
-import org.springframework.http.HttpStatus
-import org.springframework.http.MediaType
-import org.springframework.test.web.client.ExpectedCount
-import org.springframework.test.web.client.MockRestServiceServer
 import org.springframework.test.web.servlet.MockMvc
-import org.springframework.web.client.RestTemplate
 import org.testcontainers.spock.Testcontainers
 import spock.lang.Shared
 import spock.lang.Specification
@@ -62,8 +58,6 @@ import spock.util.concurrent.PollingConditions
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo
-import static org.springframework.test.web.client.response.MockRestResponseCreators.withStatus
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK, classes = [CpsDataspaceService])
 @Testcontainers
@@ -111,17 +105,16 @@ abstract class CpsIntegrationSpecBase extends Specification {
     NetworkCmProxyQueryService networkCmProxyQueryService
 
     @Autowired
-    RestTemplate restTemplate
-
-    @Autowired
     ModuleSyncWatchdog moduleSyncWatchdog
 
     @Autowired
     JsonObjectMapper jsonObjectMapper
 
-    MockRestServiceServer mockDmiServer = null
+    MockWebServer mockDmiServer = null
+    DmiDispatcher mockDmi = null
 
-    static DMI_URL = 'http://mock-dmi-server'
+    def DMI_URL = null
+
     static NO_MODULE_SET_TAG = ''
     static GENERAL_TEST_DATASPACE = 'generalTestDataspace'
     static BOOKSTORE_SCHEMA_SET = 'bookstoreSchemaSet'
@@ -135,7 +128,15 @@ abstract class CpsIntegrationSpecBase extends Specification {
             createStandardBookStoreSchemaSet(GENERAL_TEST_DATASPACE)
             initialized = true
         }
-        mockDmiServer = MockRestServiceServer.bindTo(restTemplate).ignoreExpectOrder(true).build()
+        mockDmi = new DmiDispatcher()
+        mockDmiServer = new MockWebServer()
+        mockDmiServer.setDispatcher(mockDmi)
+        mockDmiServer.start()
+        DMI_URL = String.format("http://%s:%s", mockDmiServer.getHostName(), mockDmiServer.getPort())
+    }
+
+    def cleanup() {
+        mockDmiServer.shutdown()
     }
 
     def static readResourceDataFile(filename) {
@@ -215,23 +216,6 @@ abstract class CpsIntegrationSpecBase extends Specification {
 
     def deregisterCmHandles(dmiPlugin, cmHandleIds) {
         networkCmProxyDataService.updateDmiRegistrationAndSyncModule(new DmiPluginRegistration(dmiPlugin: dmiPlugin, removedCmHandles: cmHandleIds))
-    }
-
-    def mockDmiResponsesForModuleSync(dmiPlugin, cmHandleId, dmiModuleReferencesResponse, dmiModuleResourcesResponse) {
-        mockDmiServer.expect(requestTo("${dmiPlugin}/dmi/v1/ch/${cmHandleId}/modules"))
-                .andRespond(withStatus(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(dmiModuleReferencesResponse))
-        mockDmiServer.expect(requestTo("${dmiPlugin}/dmi/v1/ch/${cmHandleId}/moduleResources"))
-                .andRespond(withStatus(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(dmiModuleResourcesResponse))
-    }
-
-    def mockDmiIsNotAvailableForModuleSync(dmiPlugin, cmHandleId) {
-        mockDmiServer.expect(requestTo("${dmiPlugin}/dmi/v1/ch/${cmHandleId}/modules"))
-                .andRespond(withStatus(HttpStatus.SERVICE_UNAVAILABLE))
-    }
-
-    def mockDmiWillRespondToHealthChecks(dmiPlugin) {
-        mockDmiServer.expect(ExpectedCount.between(0, Integer.MAX_VALUE), requestTo("${dmiPlugin}/actuator/health"))
-                .andRespond(withStatus(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body('{"status":"UP"}'))
     }
 
     def overrideCmHandleLastUpdateTime(cmHandleId, newUpdateTime) {
