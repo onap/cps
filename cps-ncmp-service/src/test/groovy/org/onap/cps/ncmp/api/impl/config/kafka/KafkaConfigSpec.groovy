@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.config.kafka;
+package org.onap.cps.ncmp.api.impl.config.kafka
 
 import io.cloudevents.CloudEvent
 import io.cloudevents.kafka.CloudEventDeserializer
@@ -31,12 +31,14 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.kafka.support.serializer.JsonDeserializer
 import org.springframework.kafka.support.serializer.JsonSerializer
+import org.springframework.test.context.TestPropertySource
 import spock.lang.Shared
 import spock.lang.Specification
 
 @SpringBootTest(classes = [KafkaProperties, KafkaConfig])
 @EnableSharedInjection
 @EnableConfigurationProperties
+@TestPropertySource(properties = ["cps.tracing.enabled=true"])
 class KafkaConfigSpec extends Specification {
 
     @Shared
