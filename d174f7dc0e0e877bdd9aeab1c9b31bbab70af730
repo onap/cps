@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "025020c1_28dd100a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-04-25T11:07:52Z",
+      "side": 1,
+      "message": "small fixed required in the testware",
+      "revId": "d174f7dc0e0e877bdd9aeab1c9b31bbab70af730",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3f901898_cf36899c",
@@ -66,6 +83,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "de0cbb5b_35dac9e7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-04-25T11:07:52Z",
+      "side": 1,
+      "message": "NB: should consider merging line 312 \u0026 315 to keep the test shorter\n\nwhen: \u0027querying for alternate id a matching result found\u0027\n            objectUnderTest.findParentCmHandle(alternateId, \u0027/\u0027) !\u003d null",
+      "revId": "d174f7dc0e0e877bdd9aeab1c9b31bbab70af730",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "600b9387_693b237d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-04-25T11:07:52Z",
+      "side": 1,
+      "message": "\u0027alternateId\u0027 column should be aligned with the data",
+      "revId": "d174f7dc0e0e877bdd9aeab1c9b31bbab70af730",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "db84611c_2ba2681e",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImplSpec.groovy",
         "patchSetId": 4
@@ -83,6 +134,23 @@
         "endLine": 335,
         "endChar": 49
       },
+      "revId": "d174f7dc0e0e877bdd9aeab1c9b31bbab70af730",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca9cf79d_6c639a17",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-04-25T11:07:52Z",
+      "side": 1,
+      "message": "seems like this is not used anywhere. should be deleted then",
       "revId": "d174f7dc0e0e877bdd9aeab1c9b31bbab70af730",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
