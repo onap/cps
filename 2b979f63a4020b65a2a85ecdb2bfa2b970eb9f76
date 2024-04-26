@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d911a376_5ca04a1f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-04-26T10:25:02Z",
+      "side": 1,
+      "message": "The SQL query for getAnchorsByDataspaceIdAndModuleNames already returns an empty set if the modules don\u0027t exist.\n\nThere is an existing integration test, which is still passing after the validation is removed:\n\n        when: \u0027querying for anchors with #scenario\u0027\n            def result \u003d objectUnderTest.queryAnchorNames(GENERAL_TEST_DATASPACE, [\u0027unknownModule\u0027])\n        then: \u0027an empty result is returned (no error)\u0027\n            assert result \u003d\u003d []",
+      "parentUuid": "d6e6e5e0_79056753",
+      "range": {
+        "startLine": 136,
+        "startChar": 39,
+        "endLine": 136,
+        "endChar": 54
+      },
+      "revId": "2b979f63a4020b65a2a85ecdb2bfa2b970eb9f76",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cf2c08e6_d1dc0854",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/ModuleQueryPerfTest.groovy",
         "patchSetId": 2
