@@ -40,6 +40,8 @@ Bug Fixes
 ---------
 3.4.8
     - `CPS-2186 <https://jira.onap.org/browse/CPS-2186>`_ Report async task failures to client topic during data operations request
+    - `CPS-2190 <https://jira.onap.org/browse/CPS-2190>`_ Improve performance of NCMP module searches
+    - `CPS-2194 <https://jira.onap.org/browse/CPS-2194>`_ Added defaults for CPS and DMI username and password
 
 Features
 --------
