@@ -38,6 +38,7 @@ ncmp:
     dmi:
         httpclient:
             connectionTimeoutInSeconds: 180
+            maxInMemorySize: 16
         auth:
             username: some-user
             password: some-password
