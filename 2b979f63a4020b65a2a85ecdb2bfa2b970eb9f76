@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d6e6e5e0_79056753",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-26T10:22:13Z",
+      "side": 1,
+      "message": "now that we have removed the validation which was returning an empty set if the validation failed.\ndo we want to return the empty set if the anchorEntities are null or empty to be in sync with the existing behaviour ???",
+      "range": {
+        "startLine": 136,
+        "startChar": 39,
+        "endLine": 136,
+        "endChar": 54
+      },
+      "revId": "2b979f63a4020b65a2a85ecdb2bfa2b970eb9f76",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cf2c08e6_d1dc0854",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/ModuleQueryPerfTest.groovy",
         "patchSetId": 2
