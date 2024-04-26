@@ -86,11 +86,11 @@ class ModuleQueryPerfTest extends CpsPerfTestBase {
         and: 'operation completes with expected resource usage'
             recordAndAssertResourceUsage("Query for anchors with ${scenario}",
                     expectedTimeInSeconds, resourceMeter.totalTimeInSeconds,
-                    150, resourceMeter.totalMemoryUsageInMB)
+                    5, resourceMeter.totalMemoryUsageInMB)
         where: 'the following parameters are used'
             scenario         | yangModuleName || expectedTimeInSeconds
-            '1 KB module'    | 'module0'      || 3
-            '1000 KB module' | 'module1'      || 3
+            '1 KB module'    | 'module0'      || 0.05
+            '1000 KB module' | 'module1'      || 0.05
     }
 
     def 'Module query - Clean up test data.'() {

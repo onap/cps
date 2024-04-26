@@ -21,7 +21,6 @@
 package org.onap.cps.api.impl;
 
 import java.util.Collection;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.spi.CpsAdminPersistenceService;
@@ -87,8 +86,7 @@ public class CpsAnchorServiceImpl implements CpsAnchorService {
     @Override
     public Collection<String> queryAnchorNames(final String dataspaceName, final Collection<String> moduleNames) {
         cpsValidator.validateNameCharacters(dataspaceName);
-        final Collection<Anchor> anchors = cpsAdminPersistenceService.queryAnchors(dataspaceName, moduleNames);
-        return anchors.stream().map(Anchor::getName).collect(Collectors.toList());
+        return cpsAdminPersistenceService.queryAnchorNames(dataspaceName, moduleNames);
     }
 
     @Override

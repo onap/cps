@@ -72,7 +72,7 @@ public interface AnchorRepository extends JpaRepository<AnchorEntity, Long> {
 
     @Query(value = """
             SELECT
-                anchor.*
+                anchor.name
             FROM
                      yang_resource
                 JOIN schema_set_yang_resources ON schema_set_yang_resources.yang_resource_id = yang_resource.id
@@ -89,15 +89,15 @@ public interface AnchorRepository extends JpaRepository<AnchorEntity, Long> {
             HAVING
                 COUNT(DISTINCT module_name) = :sizeOfModuleNames
             """, nativeQuery = true)
-    Collection<AnchorEntity> getAnchorsByDataspaceIdAndModuleNames(@Param("dataspaceId") int dataspaceId,
-                                                                   @Param("moduleNames") String[] moduleNames,
-                                                                   @Param("sizeOfModuleNames") int sizeOfModuleNames);
+    Collection<String> getAnchorNamesByDataspaceIdAndModuleNames(@Param("dataspaceId") int dataspaceId,
+                                                                 @Param("moduleNames") String[] moduleNames,
+                                                                 @Param("sizeOfModuleNames") int sizeOfModuleNames);
 
-    default Collection<AnchorEntity> getAnchorsByDataspaceIdAndModuleNames(final int dataspaceId,
-                                                                           final Collection<String> moduleNames,
-                                                                           final int sizeOfModuleNames) {
+    default Collection<String> getAnchorNamesByDataspaceIdAndModuleNames(final int dataspaceId,
+                                                                         final Collection<String> moduleNames,
+                                                                         final int sizeOfModuleNames) {
         final String[] moduleNamesArray = moduleNames.toArray(new String[0]);
-        return getAnchorsByDataspaceIdAndModuleNames(dataspaceId, moduleNamesArray, sizeOfModuleNames);
+        return getAnchorNamesByDataspaceIdAndModuleNames(dataspaceId, moduleNamesArray, sizeOfModuleNames);
     }
 
     @Modifying

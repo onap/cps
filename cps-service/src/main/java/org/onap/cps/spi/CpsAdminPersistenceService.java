@@ -107,7 +107,7 @@ public interface CpsAdminPersistenceService {
      * @return a collection of anchor names in the given dataspace. The schema set for each anchor must include all the
      *         given module names
      */
-    Collection<Anchor> queryAnchors(String dataspaceName, Collection<String> moduleNames);
+    Collection<String> queryAnchorNames(String dataspaceName, Collection<String> moduleNames);
 
     /**
      * Get an anchor in the given dataspace using the anchor name.

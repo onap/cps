@@ -118,7 +118,7 @@ class CpsAnchorServiceImplSpec extends Specification {
 
     def 'Query all anchor identifiers for a dataspace and module names.'() {
         given: 'the persistence service is invoked with the expected parameters and returns a list of anchors'
-            mockCpsAdminPersistenceService.queryAnchors('some-dataspace-name', ['some-module-name']) >> [new Anchor(name:'some-anchor-identifier')]
+            mockCpsAdminPersistenceService.queryAnchorNames('some-dataspace-name', ['some-module-name']) >> ['some-anchor-identifier']
         when: 'query anchor names is called using a dataspace name and module name'
             def result = objectUnderTest.queryAnchorNames('some-dataspace-name', ['some-module-name'])
         then: 'get anchor identifiers returns the same anchor identifier returned by the persistence layer'
@@ -130,7 +130,7 @@ class CpsAnchorServiceImplSpec extends Specification {
     def 'Query all anchors with Module Names Not Found Exception in persistence layer.'() {
         given: 'the persistence layer throws a Module Names Not Found Exception'
             def originalException = new ModuleNamesNotFoundException('exception-ds', ['m1', 'm2'])
-            mockCpsAdminPersistenceService.queryAnchors(*_) >> { throw originalException}
+            mockCpsAdminPersistenceService.queryAnchorNames(*_) >> { throw originalException}
         when: 'attempt query anchors'
             objectUnderTest.queryAnchorNames('some-dataspace-name', [])
         then: 'the same exception is thrown (up)'
