@@ -16,6 +16,121 @@
       "message": "first 4 files is good.\nstarted reviewing, will look again tomorrow morning",
       "revId": "6998250cf4eee1a6cfe0f6e3187ac5e150c7c51a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "310760bf_ec703761",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 43
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-04-26T13:39:03Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 365,
+        "startChar": 12,
+        "endLine": 365,
+        "endChar": 41
+      },
+      "revId": "6998250cf4eee1a6cfe0f6e3187ac5e150c7c51a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fafcf84f_1dab712f",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 43
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-04-26T13:39:03Z",
+      "side": 1,
+      "message": "NB: service layer.. just like above test",
+      "range": {
+        "startLine": 386,
+        "startChar": 18,
+        "endLine": 386,
+        "endChar": 25
+      },
+      "revId": "6998250cf4eee1a6cfe0f6e3187ac5e150c7c51a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c3cf93d_d46b2111",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 43
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-04-26T13:39:03Z",
+      "side": 1,
+      "message": "same to what priyank said..\nthis part can be extracted from both \u0027buildDataNodesWithXpath\u0027 and and call build dataNodes directly since for both the only difference is \u0027anchor\u0027 or \u0027yangResourcesNameToContentMap\u0027 ..... once extracted buildDataNodesWithXPath doesnt seem necessary\n\nalso \u0027withXpath\u0027 does not sound right as most (apart from 1 i think) build datanodes in this class method has xpath for parameter",
+      "range": {
+        "startLine": 421,
+        "startChar": 7,
+        "endLine": 424,
+        "endChar": 89
+      },
+      "revId": "6998250cf4eee1a6cfe0f6e3187ac5e150c7c51a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afd7f3aa_a0320146",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangParserSpec.groovy",
+        "patchSetId": 43
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-04-26T13:39:03Z",
+      "side": 1,
+      "message": "NB: no need\n\nyang parser helper",
+      "range": {
+        "startLine": 92,
+        "startChar": 32,
+        "endLine": 92,
+        "endChar": 48
+      },
+      "revId": "6998250cf4eee1a6cfe0f6e3187ac5e150c7c51a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "675b4b68_3f4345a7",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangParserSpec.groovy",
+        "patchSetId": 43
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-04-26T13:39:03Z",
+      "side": 1,
+      "message": "its like result is forced and assertion will always be true...\nin the java method the parseData method just delegates the task and passes in the schemaContext\nthis test can be \ngiven...\nmockTimedYangTextSchemaSourceSetBuilder.getYangTextSchemaSourceSet(yangResourcesNameToContentMap) \u003e\u003e mockYangTextSchemaSourceSet\n\nwhere.. result \u003d parseData()\nthen.. 1*mockYangParserHelper.parseData\nand .. result \u003d\u003d expected",
+      "range": {
+        "startLine": 100,
+        "startChar": 4,
+        "endLine": 100,
+        "endChar": 5
+      },
+      "revId": "6998250cf4eee1a6cfe0f6e3187ac5e150c7c51a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
