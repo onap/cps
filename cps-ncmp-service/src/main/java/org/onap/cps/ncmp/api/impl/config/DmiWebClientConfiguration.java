@@ -37,6 +37,7 @@ import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.netty.http.client.HttpClient;
+import reactor.netty.resources.ConnectionProvider;
 
 @Slf4j
 @Configuration
@@ -45,6 +46,9 @@ public class DmiWebClientConfiguration {
 
     @Value("${ncmp.dmi.httpclient.connectionTimeoutInSeconds:20000}")
     private Integer connectionTimeoutInSeconds;
+
+    @Value("${ncmp.dmi.httpclient.maximumInMemorySizeInMegabytes:1}")
+    private Integer maximumInMemorySizeInMegabytes;
 
     @Getter
     @Component
@@ -77,6 +81,9 @@ public class DmiWebClientConfiguration {
                 .defaultHeaders(header -> header.set(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
                 .defaultHeaders(header -> header.set(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE))
                 .clientConnector(new ReactorClientHttpConnector(httpClient))
+                .codecs(configurer -> configurer
+                        .defaultCodecs()
+                        .maxInMemorySize(maximumInMemorySizeInMegabytes * 1024 * 1024))
                 .build();
     }
 }

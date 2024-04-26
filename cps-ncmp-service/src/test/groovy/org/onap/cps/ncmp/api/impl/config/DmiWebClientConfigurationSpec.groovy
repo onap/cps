@@ -29,7 +29,7 @@ import spock.lang.Specification
 
 @SpringBootTest
 @ContextConfiguration(classes = [DmiWebClientConfiguration.DmiProperties])
-@TestPropertySource(properties = ["ncmp.dmi.httpclient.connectionTimeoutInSeconds=1"])
+@TestPropertySource(properties = ["ncmp.dmi.httpclient.connectionTimeoutInSeconds=1", "ncmp.dmi.httpclient.maximumInMemorySizeInMegabytes=1"])
 class DmiWebClientConfigurationSpec extends Specification {
 
     @Autowired
@@ -39,6 +39,7 @@ class DmiWebClientConfigurationSpec extends Specification {
 
     def setup() {
         objectUnderTest.connectionTimeoutInSeconds = 10
+        objectUnderTest.maximumInMemorySizeInMegabytes = 1
     }
 
     def 'DMI Properties.'() {
