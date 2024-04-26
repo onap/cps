@@ -40,9 +40,12 @@ Bug Fixes
 ---------
 3.4.8
     - `CPS-2186 <https://jira.onap.org/browse/CPS-2186>`_ Report async task failures to client topic during data operations request
+    - `CPS-2190 <https://jira.onap.org/browse/CPS-2190>`_ Improve performance of NCMP module searches
 
 Features
 --------
+    - `CPS-989 <https://jira.onap.org/browse/CPS-989>`_ Replace RestTemplate with WebClient for communication with DMI
+
 
 Version: 3.4.7
 ==============
