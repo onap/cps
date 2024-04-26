@@ -33,6 +33,86 @@
       "message": "Looks good on initial review",
       "revId": "738623723c63c5b3abfe643faef53a6860f8c630",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ebaad9c_6497b881",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistence.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-04-26T13:18:56Z",
+      "side": 1,
+      "message": "This needs a better name - maybe something like getCmHandleDataNodeByAlternateIdUsingLongestMatch ?",
+      "range": {
+        "startLine": 140,
+        "startChar": 13,
+        "endLine": 140,
+        "endChar": 31
+      },
+      "revId": "738623723c63c5b3abfe643faef53a6860f8c630",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c68c7bf_0f8ac9b5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-04-26T13:18:56Z",
+      "side": 1,
+      "message": "query API never returns null! Use dataNodes.isEmpty()",
+      "range": {
+        "startLine": 190,
+        "startChar": 16,
+        "endLine": 190,
+        "endChar": 33
+      },
+      "revId": "738623723c63c5b3abfe643faef53a6860f8c630",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98a2d2d5_483a41eb",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-04-26T13:18:56Z",
+      "side": 1,
+      "message": "Add this line too:\n\n    mockCmHandleQueries.queryNcmpRegistryByCpsPath(*_) \u003e\u003e []",
+      "revId": "738623723c63c5b3abfe643faef53a6860f8c630",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2dc93e2b_3495267e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-04-26T13:18:56Z",
+      "side": 1,
+      "message": "Add this line too:\n\n    mockCmHandleQueries.queryNcmpRegistryByCpsPath(*_) \u003e\u003e []",
+      "revId": "738623723c63c5b3abfe643faef53a6860f8c630",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
