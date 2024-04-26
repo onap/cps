@@ -83,6 +83,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "878afac6_e8ae4255",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-04-26T13:38:56Z",
+      "side": 1,
+      "message": "It\u0027s possible to refactor this to eliminate all the branching logic and breaks, something like this:\n\n    @Override\n    public DataNode findParentCmHandle(final String alternateId, final String separator) {\n        String bestMatch \u003d alternateId;\n        while (StringUtils.isNotEmpty(bestMatch)) {\n            try {\n                return getCmHandleDataNodeByAlternateId(bestMatch);\n            } catch (final DataNodeNotFoundException ignored) {\n                bestMatch \u003d getParentPath(bestMatch, separator);\n            }\n        }\n        throw new NoAlternateIdParentFoundException(alternateId);\n    }\n\n    private static String getParentPath(final String path, final String separator) {\n        final int lastSeparatorIndex \u003d path.lastIndexOf(separator);\n        return lastSeparatorIndex \u003c 0 ? \"\" : path.substring(0, lastSeparatorIndex);\n    }",
+      "revId": "738623723c63c5b3abfe643faef53a6860f8c630",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "98a2d2d5_483a41eb",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImplSpec.groovy",
         "patchSetId": 6
