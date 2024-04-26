@@ -46,6 +46,75 @@
       },
       "revId": "5437afcdfa259c82e300abfba8d10937c9253874",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7e56cbe_14c07f9e",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-26T12:32:51Z",
+      "side": 1,
+      "message": "maximumInMemorySizeInBytes",
+      "range": {
+        "startLine": 177,
+        "startChar": 12,
+        "endLine": 177,
+        "endChar": 27
+      },
+      "revId": "5437afcdfa259c82e300abfba8d10937c9253874",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8fa141b_d62d6746",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/DmiWebClientConfiguration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-26T12:32:51Z",
+      "side": 1,
+      "message": "maximumInMemorySizeInBytes",
+      "range": {
+        "startLine": 49,
+        "startChar": 34,
+        "endLine": 49,
+        "endChar": 49
+      },
+      "revId": "5437afcdfa259c82e300abfba8d10937c9253874",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc2519ea_85173a36",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/DmiWebClientConfiguration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-26T12:32:51Z",
+      "side": 1,
+      "message": "maximumInMemorySizeInBytes",
+      "range": {
+        "startLine": 50,
+        "startChar": 20,
+        "endLine": 50,
+        "endChar": 35
+      },
+      "revId": "5437afcdfa259c82e300abfba8d10937c9253874",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
