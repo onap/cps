@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23c0c80c_75972fe3",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-26T11:44:21Z",
+      "side": 1,
+      "message": "NB: best to have the unit also in the name..\nMB , KB etc ??",
+      "range": {
+        "startLine": 177,
+        "startChar": 12,
+        "endLine": 177,
+        "endChar": 27
+      },
+      "revId": "5437afcdfa259c82e300abfba8d10937c9253874",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
