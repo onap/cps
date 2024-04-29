@@ -70,6 +70,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b472857_94bbb7af",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/DmiWebClientConfiguration.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-29T16:07:23Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a4a901ef_b60f494d",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 6
+      },
+      "revId": "3ce3fbb4797a0ab7a6ff8e9fd3ce0be4a4f1a1d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dc237e65_b2e4b2bb",
@@ -93,6 +117,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "01b69801_7afd2290",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/DmiWebClientConfiguration.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-29T16:07:23Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "dc237e65_b2e4b2bb",
+      "range": {
+        "startLine": 76,
+        "startChar": 14,
+        "endLine": 76,
+        "endChar": 18
+      },
+      "revId": "3ce3fbb4797a0ab7a6ff8e9fd3ce0be4a4f1a1d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8a7263e4_b4fe35d4",
@@ -106,6 +154,30 @@
       "writtenOn": "2024-04-29T15:52:10Z",
       "side": 1,
       "message": "Same as above",
+      "range": {
+        "startLine": 79,
+        "startChar": 14,
+        "endLine": 79,
+        "endChar": 18
+      },
+      "revId": "3ce3fbb4797a0ab7a6ff8e9fd3ce0be4a4f1a1d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd4217d7_6a2430ae",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/DmiWebClientConfiguration.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-29T16:07:23Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8a7263e4_b4fe35d4",
       "range": {
         "startLine": 79,
         "startChar": 14,
