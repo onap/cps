@@ -37,6 +37,7 @@ import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.netty.http.client.HttpClient;
+import reactor.netty.resources.ConnectionProvider;
 
 @Slf4j
 @Configuration
@@ -48,6 +49,9 @@ public class DmiWebClientConfiguration {
 
     @Value("${ncmp.dmi.httpclient.maximumInMemorySizeInMegabytes:1}")
     private Integer maximumInMemorySizeInMegabytes;
+
+    @Value("${ncmp.dmi.httpclient.maximumConnectionsTotal:100}")
+    private Integer maximumConnectionsTotal;
 
     @Getter
     @Component
@@ -69,7 +73,11 @@ public class DmiWebClientConfiguration {
      */
     @Bean
     public WebClient webClient() {
-        final var httpClient = HttpClient.create()
+
+        final var dmiWebClientConnectionProvider
+                = ConnectionProvider.create("dmiWebClientConnectionPool", maximumConnectionsTotal);
+
+        final var httpClient = HttpClient.create(dmiWebClientConnectionProvider)
                 .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, connectionTimeoutInSeconds * 1000)
                 .doOnConnected(connection ->
                         connection
