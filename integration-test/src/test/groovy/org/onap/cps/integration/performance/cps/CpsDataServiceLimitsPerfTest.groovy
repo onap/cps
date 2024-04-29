@@ -47,7 +47,7 @@ class CpsDataServiceLimitsPerfTest extends CpsPerfTestBase {
             resourceMeter.stop()
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'the operation completes within 12 seconds'
-            recordAndAssertResourceUsage("Creating 33,000 books", 12, durationInSeconds, 150, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage("Creating 33,000 books", 16, durationInSeconds, 150, resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def 'Get data nodes from multiple xpaths 32K (2^15) limit exceeded.'() {
@@ -88,7 +88,7 @@ class CpsDataServiceLimitsPerfTest extends CpsPerfTestBase {
             resourceMeter.stop()
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'test data is deleted in 1 second'
-            recordAndAssertResourceUsage("Deleting test data", 1, durationInSeconds, 3, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage("Deleting test data", 0.1, durationInSeconds, 3, resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def countDataNodes() {

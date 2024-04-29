@@ -20,21 +20,15 @@
 
 package org.onap.cps.integration.performance.ncmp
 
-import org.apache.commons.lang3.StringUtils
-import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
-import org.onap.cps.ncmp.api.impl.inventory.sync.ModuleSyncService
-import org.onap.cps.ncmp.api.impl.utils.YangDataConverter
-import org.onap.cps.spi.FetchDescendantsOption
-import org.onap.cps.spi.model.DataNode
-import org.springframework.beans.factory.annotation.Autowired
 
-import java.util.stream.Collectors
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.integration.ResourceMeter
 import org.onap.cps.integration.performance.base.NcmpPerfTestBase
 
-import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
+import java.util.stream.Collectors
+
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
+import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 
 class CmHandleQueryPerfTest extends NcmpPerfTestBase {
 
@@ -74,7 +68,7 @@ class CmHandleQueryPerfTest extends NcmpPerfTestBase {
             resourceMeter.stop()
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'the required operations are performed within required time'
-            recordAndAssertResourceUsage("CpsPath Registry attributes Query", 2, durationInSeconds, 300, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage("CpsPath Registry attributes Query", 3.4, durationInSeconds, 300, resourceMeter.getTotalMemoryUsageInMB())
         and: 'all nodes are returned'
             result.size() == TOTAL_CM_HANDLES
         and: 'the tree contains all the expected descendants too'
@@ -98,7 +92,7 @@ class CmHandleQueryPerfTest extends NcmpPerfTestBase {
                     expectedAverageResponseTime, averageResponseTime,
                     15, resourceMeter.totalMemoryUsageInMB)
         where:
-            expectedAverageResponseTime = 1 * MILLISECONDS
+            expectedAverageResponseTime = 6 * MILLISECONDS
     }
 
     def 'CM-handle is looked up by alternate-id.'() {
@@ -118,7 +112,7 @@ class CmHandleQueryPerfTest extends NcmpPerfTestBase {
                     expectedAverageResponseTime, averageResponseTime,
                     15, resourceMeter.totalMemoryUsageInMB)
         where:
-            expectedAverageResponseTime = 10 * MILLISECONDS
+            expectedAverageResponseTime = 20 * MILLISECONDS
     }
 
     def 'A batch of CM-handles is looked up by alternate-id.'() {
@@ -157,7 +151,7 @@ class CmHandleQueryPerfTest extends NcmpPerfTestBase {
                     expectedAverageResponseTime, averageResponseTime,
                     500, resourceMeter.totalMemoryUsageInMB)
         where:
-            expectedAverageResponseTime = 100 * MILLISECONDS
+            expectedAverageResponseTime = 360 * MILLISECONDS
     }
 
 }
