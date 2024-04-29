@@ -16,6 +16,29 @@
       "message": "Addressed review comments and answered questions",
       "revId": "c21ab3ae06646a8577a3a80483733a6bd2b7b325",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc8c72fc_809157f3",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/CpsDataUpdateEventsService.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-04-29T11:50:57Z",
+      "side": 1,
+      "message": "I think this will be a problem as \"_\" is a valid character for dataspace/anchor names! We should use one of the unsupported name characters as a separator, e.g. \":\" or \";\", here is the full list:\n\n    UNSUPPORTED_NAME_CHARACTERS \u003d \"!\\\" #$%\u0026\u0027()*+,./\\\\:;\u003c\u003d\u003e?@[]^`{|}~\"",
+      "range": {
+        "startLine": 64,
+        "startChar": 69,
+        "endLine": 64,
+        "endChar": 72
+      },
+      "revId": "c21ab3ae06646a8577a3a80483733a6bd2b7b325",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
