@@ -40,6 +40,7 @@ class DmiWebClientConfigurationSpec extends Specification {
     def setup() {
         objectUnderTest.connectionTimeoutInSeconds = 10
         objectUnderTest.maximumInMemorySizeInMegabytes = 1
+        objectUnderTest.maximumConnectionsTotal = 2
     }
 
     def 'DMI Properties.'() {
