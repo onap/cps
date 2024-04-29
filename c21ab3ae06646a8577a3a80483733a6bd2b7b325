@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6652f539_ae5f1449",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2024-04-29T12:47:32Z",
+      "side": 1,
+      "message": "addressed review comments",
+      "revId": "c21ab3ae06646a8577a3a80483733a6bd2b7b325",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bc8c72fc_809157f3",
@@ -55,6 +72,30 @@
       "side": 1,
       "message": "I would suggest to use : # if no other objections.",
       "parentUuid": "bc8c72fc_809157f3",
+      "range": {
+        "startLine": 64,
+        "startChar": 69,
+        "endLine": 64,
+        "endChar": 72
+      },
+      "revId": "c21ab3ae06646a8577a3a80483733a6bd2b7b325",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "231719f8_2b23fdcc",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/CpsDataUpdateEventsService.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2024-04-29T12:47:32Z",
+      "side": 1,
+      "message": "changed it to \":\"",
+      "parentUuid": "9e712788_696d0d1e",
       "range": {
         "startLine": 64,
         "startChar": 69,
