@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.events.cmsubscription;
+package org.onap.cps.ncmp.api.impl.events.cmsubscription.producer;
 
 import io.cloudevents.CloudEvent;
 import io.cloudevents.core.builder.CloudEventBuilder;
@@ -33,6 +33,8 @@ import java.util.concurrent.TimeUnit;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.events.EventsPublisher;
+import org.onap.cps.ncmp.api.impl.events.cmsubscription.CmNotificationSubscriptionNcmpOutEventPublishingTask;
+import org.onap.cps.ncmp.api.impl.events.cmsubscription.DmiCmNotificationSubscriptionCacheHandler;
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.mapper.CmNotificationSubscriptionNcmpOutEventMapper;
 import org.onap.cps.ncmp.events.cmsubscription_merge1_0_0.ncmp_to_client.CmNotificationSubscriptionNcmpOutEvent;
 import org.onap.cps.utils.JsonObjectMapper;
@@ -122,7 +124,16 @@ public class CmNotificationSubscriptionNcmpOutEventProducer {
                 .removeAcceptedAndRejectedDmiCmNotificationSubscriptionEntries(subscriptionId);
     }
 
-    protected static CloudEvent buildAndGetCmNotificationNcmpOutEventAsCloudEvent(
+    /**
+     * Get an NCMP out event as cloud event.
+     *
+     * @param jsonObjectMapper  JSON object mapper
+     * @param subscriptionId subscription id
+     * @param eventType event type
+     * @param cmNotificationSubscriptionNcmpOutEvent cm notification subscription NCMP out event
+     * @return cm notification subscription NCMP out event as cloud event
+     */
+    public static CloudEvent buildAndGetCmNotificationNcmpOutEventAsCloudEvent(
             final JsonObjectMapper jsonObjectMapper, final String subscriptionId, final String eventType,
             final CmNotificationSubscriptionNcmpOutEvent cmNotificationSubscriptionNcmpOutEvent) {
 

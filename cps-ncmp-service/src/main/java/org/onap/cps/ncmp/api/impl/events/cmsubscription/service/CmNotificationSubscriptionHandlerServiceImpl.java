@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
-import org.onap.cps.ncmp.api.impl.events.cmsubscription.CmNotificationSubscriptionNcmpOutEventProducer;
+import org.onap.cps.ncmp.api.impl.events.cmsubscription.CmNotificationSubscriptionEventsHandler;
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.DmiCmNotificationSubscriptionCacheHandler;
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.mapper.CmNotificationSubscriptionNcmpOutEventMapper;
 import org.onap.cps.ncmp.events.cmnotificationsubscription_merge1_0_0.client_to_ncmp.CmNotificationSubscriptionNcmpInEvent;
@@ -39,7 +39,7 @@ public class CmNotificationSubscriptionHandlerServiceImpl implements CmNotificat
 
     private final CmNotificationSubscriptionPersistenceService cmNotificationSubscriptionPersistenceService;
     private final CmNotificationSubscriptionNcmpOutEventMapper cmNotificationSubscriptionNcmpOutEventMapper;
-    private final CmNotificationSubscriptionNcmpOutEventProducer cmNotificationSubscriptionNcmpOutEventProducer;
+    private final CmNotificationSubscriptionEventsHandler cmNotificationSubscriptionEventsHandler;
     private final DmiCmNotificationSubscriptionCacheHandler dmiCmNotificationSubscriptionCacheHandler;
 
     @Override
@@ -64,7 +64,7 @@ public class CmNotificationSubscriptionHandlerServiceImpl implements CmNotificat
             cmNotificationSubscriptionNcmpOutEventMapper
                 .toCmNotificationSubscriptionNcmpOutEventForRejectedRequest(subscriptionId,
                     subscriptionTargetFilters);
-        cmNotificationSubscriptionNcmpOutEventProducer.publishCmNotificationSubscriptionNcmpOutEvent(subscriptionId,
+        cmNotificationSubscriptionEventsHandler.publishCmNotificationSubscriptionNcmpOutEvent(subscriptionId,
             "subscriptionCreateResponse", cmNotificationSubscriptionNcmpOutEvent, false);
     }
 }

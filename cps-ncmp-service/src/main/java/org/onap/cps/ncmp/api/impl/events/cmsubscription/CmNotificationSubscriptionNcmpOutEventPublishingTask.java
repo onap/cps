@@ -20,7 +20,7 @@
 
 package org.onap.cps.ncmp.api.impl.events.cmsubscription;
 
-import static org.onap.cps.ncmp.api.impl.events.cmsubscription.CmNotificationSubscriptionNcmpOutEventProducer.buildAndGetCmNotificationNcmpOutEventAsCloudEvent;
+import static org.onap.cps.ncmp.api.impl.events.cmsubscription.producer.CmNotificationSubscriptionNcmpOutEventProducer.buildAndGetCmNotificationNcmpOutEventAsCloudEvent;
 
 import io.cloudevents.CloudEvent;
 import java.util.Map;
@@ -35,7 +35,6 @@ import org.onap.cps.utils.JsonObjectMapper;
 @Slf4j
 @RequiredArgsConstructor
 public class CmNotificationSubscriptionNcmpOutEventPublishingTask implements Runnable {
-
 
     private final String topicName;
     private final String subscriptionId;

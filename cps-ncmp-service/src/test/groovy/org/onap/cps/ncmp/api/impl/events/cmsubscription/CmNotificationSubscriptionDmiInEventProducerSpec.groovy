@@ -23,6 +23,7 @@ package org.onap.cps.ncmp.api.impl.events.cmsubscription
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.cloudevents.CloudEvent
 import org.onap.cps.events.EventsPublisher
+import org.onap.cps.ncmp.api.impl.events.cmsubscription.producer.CmNotificationSubscriptionDmiInEventProducer
 import org.onap.cps.ncmp.api.impl.events.mapper.CloudEventMapper
 import org.onap.cps.ncmp.events.cmnotificationsubscription_merge1_0_0.ncmp_to_dmi.CmNotificationSubscriptionDmiInEvent
 import org.onap.cps.ncmp.events.cmnotificationsubscription_merge1_0_0.ncmp_to_dmi.Cmhandle
