@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "91f7eb65_8807f5e7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-29T16:07:42Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "354688b1_3dee9bdf",
+      "range": {
+        "startLine": 7,
+        "startChar": 61,
+        "endLine": 7,
+        "endChar": 65
+      },
+      "revId": "3ce3fbb4797a0ab7a6ff8e9fd3ce0be4a4f1a1d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "66c33b1c_916a9647",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-04-29T15:52:10Z",
       "side": 1,
       "message": "Neither jira id nor commit message include why this change is required?",
+      "range": {
+        "startLine": 9,
+        "startChar": 10,
+        "endLine": 9,
+        "endChar": 18
+      },
+      "revId": "3ce3fbb4797a0ab7a6ff8e9fd3ce0be4a4f1a1d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "94e7adaf_4846fca2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-29T16:07:42Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "66c33b1c_916a9647",
       "range": {
         "startLine": 9,
         "startChar": 10,
