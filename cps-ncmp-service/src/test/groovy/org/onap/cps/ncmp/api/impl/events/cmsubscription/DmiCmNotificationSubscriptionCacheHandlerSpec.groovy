@@ -25,6 +25,7 @@ import io.cloudevents.CloudEvent
 import io.cloudevents.core.builder.CloudEventBuilder
 import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.CmNotificationSubscriptionStatus
+import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.DmiCmNotificationSubscriptionDetails
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.service.CmNotificationSubscriptionPersistenceService
 import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
@@ -73,6 +74,37 @@ class DmiCmNotificationSubscriptionCacheHandlerSpec extends MessagingBaseSpec {
             objectUnderTest.add(subscriptionId, predicates)
         then: 'the cache contains the correct entry with #subscriptionId subscription ID'
             assert testCache.containsKey(subscriptionId)
+    }
+
+    def 'Get cache entry via subscription id'() {
+        given: 'the cache contains value for some-id'
+            testCache.put('some-id',[:])
+        when: 'the get method is called'
+            def result = objectUnderTest.get('some-id')
+        then: 'correct value is returned as expected'
+            assert result == [:]
+    }
+
+    def 'Remove accepted and rejected entries from cache via subscription id'() {
+        given: 'a map as the value for cache entry for some-id'
+            def testMap = [:]
+            testMap.put("dmi-1",
+                new DmiCmNotificationSubscriptionDetails([],CmNotificationSubscriptionStatus.ACCEPTED))
+            testMap.put("dmi-2",
+                new DmiCmNotificationSubscriptionDetails([],CmNotificationSubscriptionStatus.REJECTED))
+            testMap.put("dmi-3",
+                new DmiCmNotificationSubscriptionDetails([],CmNotificationSubscriptionStatus.PENDING))
+            testCache.put("test-id", testMap)
+            assert testCache.get("test-id").size() == 3
+        when: 'the method to remove accepted and rejected entries for test-id is called'
+            objectUnderTest.removeAcceptedAndRejectedDmiCmNotificationSubscriptionEntries("test-id")
+        then: 'all entries with status accepted/rejected are no longer present for test-id'
+            testCache.get("test-id").each { key, testResultMap ->
+                assert testResultMap.cmNotificationSubscriptionStatus != CmNotificationSubscriptionStatus.ACCEPTED
+                    || testResultMap.cmNotificationSubscriptionStatus != CmNotificationSubscriptionStatus.REJECTED
+            }
+        and: 'the size of the map for cache entry test-id is as expected'
+            assert testCache.get("test-id").size() == 1
     }
 
     def 'Create map for DMI cm notification subscription per DMI service name'() {

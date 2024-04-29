@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import io.cloudevents.CloudEvent
 import org.onap.cps.events.EventsPublisher
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.mapper.CmNotificationSubscriptionNcmpOutEventMapper
-import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.DmiCmNotificationSubscriptionDetails
 import org.onap.cps.ncmp.api.impl.events.mapper.CloudEventMapper
 import org.onap.cps.ncmp.events.cmsubscription_merge1_0_0.ncmp_to_client.CmNotificationSubscriptionNcmpOutEvent
 import org.onap.cps.ncmp.events.cmsubscription_merge1_0_0.ncmp_to_client.Data
@@ -15,10 +14,11 @@ class CmNotificationSubscriptionNcmpOutEventProducerSpec extends Specification {
 
     def mockEventsPublisher = Mock(EventsPublisher)
     def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
-    def mockCmNotificationSubscriptionCache = Mock(Map<String, Map<String, DmiCmNotificationSubscriptionDetails>>)
     def mockCmNotificationSubscriptionNcmpOutEventMapper = Mock(CmNotificationSubscriptionNcmpOutEventMapper)
+    def mockDmiCmNotificationSubscriptionCacheHandler = Mock(DmiCmNotificationSubscriptionCacheHandler)
 
-    def objectUnderTest = new CmNotificationSubscriptionNcmpOutEventProducer(mockEventsPublisher, jsonObjectMapper, mockCmNotificationSubscriptionCache, mockCmNotificationSubscriptionNcmpOutEventMapper)
+    def objectUnderTest = new CmNotificationSubscriptionNcmpOutEventProducer(mockEventsPublisher, jsonObjectMapper,
+        mockCmNotificationSubscriptionNcmpOutEventMapper, mockDmiCmNotificationSubscriptionCacheHandler)
 
     def 'Create and #scenario Cm Notification Subscription NCMP out event'() {
         given: 'a cm subscription response for the client'
@@ -80,6 +80,8 @@ class CmNotificationSubscriptionNcmpOutEventProducerSpec extends Specification {
                         assert CloudEventMapper.toTargetEvent(cmNotificationSubscriptionNcmpOutEventAsCloudEvent, CmNotificationSubscriptionNcmpOutEvent) == cmNotificationSubscriptionNcmpOutEvent
                     }
             }
+        then: 'the cache handler is called once to remove accepted and rejected entries in cache'
+            1 * mockDmiCmNotificationSubscriptionCacheHandler.removeAcceptedAndRejectedDmiCmNotificationSubscriptionEntries(subscriptionId)
     }
 
 

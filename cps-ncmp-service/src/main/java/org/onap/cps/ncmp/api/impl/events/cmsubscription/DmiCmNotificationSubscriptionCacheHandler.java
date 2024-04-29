@@ -29,6 +29,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.CmNotificationSubscriptionStatus;
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.DmiCmNotificationSubscriptionDetails;
@@ -51,11 +52,38 @@ public class DmiCmNotificationSubscriptionCacheHandler {
     /**
      * Adds new subscription to the subscription cache.
      *
-     * @param subscriptionId    subscription Id
+     * @param subscriptionId    subscription id
      * @param predicates        subscription request predicates
      */
     public void add(final String subscriptionId, final List<Predicate> predicates) {
         cmNotificationSubscriptionCache.put(subscriptionId, createDmiCmNotificationSubscriptionsPerDmi(predicates));
+    }
+
+    /**
+     * Get cm notification subscription cache entry via subscription id.
+     *
+     * @param subscriptionId    subscription id
+     * @return map of dmi cm notification subscriptions per dmi
+     */
+    public Map<String, DmiCmNotificationSubscriptionDetails> get(final String subscriptionId) {
+        return cmNotificationSubscriptionCache.get(subscriptionId);
+    }
+
+
+    /**
+     * Remove cache entries with CmNotificationSubscriptionStatus ACCEPTED/REJECTED via subscription id.
+     *
+     * @param subscriptionId subscription id as key in CM notification Subscription cache.
+     */
+    public void removeAcceptedAndRejectedDmiCmNotificationSubscriptionEntries(final String subscriptionId) {
+        final Map<String, DmiCmNotificationSubscriptionDetails> dmiCmNotificationSubscriptionsPerDmi =
+                cmNotificationSubscriptionCache.get(subscriptionId);
+        final Map<String, DmiCmNotificationSubscriptionDetails> updatedDmiCmNotificationSubscriptionsPerDmi =
+                dmiCmNotificationSubscriptionsPerDmi.entrySet().stream().filter(
+                                dmiCmNotificationSubscription ->
+                                        !isAcceptedOrRejected(dmiCmNotificationSubscription.getValue()))
+                        .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+        cmNotificationSubscriptionCache.put(subscriptionId, updatedDmiCmNotificationSubscriptionsPerDmi);
     }
 
     /**
@@ -95,9 +123,9 @@ public class DmiCmNotificationSubscriptionCacheHandler {
      *
      */
     public void updateDmiCmNotificationSubscriptionStatusPerDmi(
-        final String subscriptionId, final String dmiServiceName, final CmNotificationSubscriptionStatus status) {
+            final String subscriptionId, final String dmiServiceName, final CmNotificationSubscriptionStatus status) {
         cmNotificationSubscriptionCache.get(subscriptionId).get(dmiServiceName)
-            .setCmNotificationSubscriptionStatus(status);
+                .setCmNotificationSubscriptionStatus(status);
     }
 
     /**
@@ -109,10 +137,10 @@ public class DmiCmNotificationSubscriptionCacheHandler {
      */
     public void persistIntoDatabasePerDmi(final String subscriptionId, final String dmiServiceName) {
         final List<DmiCmNotificationSubscriptionPredicate> dmiCmNotificationSubscriptionPredicateList =
-            cmNotificationSubscriptionCache.get(subscriptionId).get(dmiServiceName)
-            .getDmiCmNotificationSubscriptionPredicates();
+                cmNotificationSubscriptionCache.get(subscriptionId).get(dmiServiceName)
+                        .getDmiCmNotificationSubscriptionPredicates();
         for (final DmiCmNotificationSubscriptionPredicate dmiCmNotificationSubscriptionPredicate:
-            dmiCmNotificationSubscriptionPredicateList) {
+                dmiCmNotificationSubscriptionPredicateList) {
             final DatastoreType datastoreType = dmiCmNotificationSubscriptionPredicate.getDatastoreType();
             final Set<String> cmHandles = dmiCmNotificationSubscriptionPredicate.getTargetCmHandleIds();
             final Set<String> xpaths = dmiCmNotificationSubscriptionPredicate.getXpaths();
@@ -152,5 +180,11 @@ public class DmiCmNotificationSubscriptionCacheHandler {
             targetCmHandlesByDmiServiceNames.get(dmiServiceName).add(yangModelCmHandle.getId());
         }
         return targetCmHandlesByDmiServiceNames;
+    }
+
+    private boolean isAcceptedOrRejected(
+            final DmiCmNotificationSubscriptionDetails dmiCmNotificationSubscription) {
+        return dmiCmNotificationSubscription.getCmNotificationSubscriptionStatus().toString().equals("ACCEPTED")
+                || dmiCmNotificationSubscription.getCmNotificationSubscriptionStatus().toString().equals("REJECTED");
     }
 }
