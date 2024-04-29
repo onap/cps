@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e23dca92_59395b28",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistence.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-29T15:38:52Z",
+      "side": 1,
+      "message": "getCmHandleDataNodeByLongestMatchAlternateId",
+      "parentUuid": "5ebaad9c_6497b881",
+      "range": {
+        "startLine": 140,
+        "startChar": 13,
+        "endLine": 140,
+        "endChar": 31
+      },
+      "revId": "738623723c63c5b3abfe643faef53a6860f8c630",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5c68c7bf_0f8ac9b5",
@@ -71,6 +95,30 @@
       "writtenOn": "2024-04-26T13:18:56Z",
       "side": 1,
       "message": "query API never returns null! Use dataNodes.isEmpty()",
+      "range": {
+        "startLine": 190,
+        "startChar": 16,
+        "endLine": 190,
+        "endChar": 33
+      },
+      "revId": "738623723c63c5b3abfe643faef53a6860f8c630",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "26500ea2_55aff64a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-29T15:38:52Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5c68c7bf_0f8ac9b5",
       "range": {
         "startLine": 190,
         "startChar": 16,
@@ -98,6 +146,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "827af6a9_603bf7c7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-29T15:38:52Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "878afac6_e8ae4255",
+      "revId": "738623723c63c5b3abfe643faef53a6860f8c630",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "98a2d2d5_483a41eb",
@@ -115,6 +181,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8f8217b_facbd09c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-29T15:38:52Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "98a2d2d5_483a41eb",
+      "revId": "738623723c63c5b3abfe643faef53a6860f8c630",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2dc93e2b_3495267e",
@@ -128,6 +212,24 @@
       "writtenOn": "2024-04-26T13:18:56Z",
       "side": 1,
       "message": "Add this line too:\n\n    mockCmHandleQueries.queryNcmpRegistryByCpsPath(*_) \u003e\u003e []",
+      "revId": "738623723c63c5b3abfe643faef53a6860f8c630",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24226db4_b11f37aa",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-04-29T15:38:52Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2dc93e2b_3495267e",
       "revId": "738623723c63c5b3abfe643faef53a6860f8c630",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
