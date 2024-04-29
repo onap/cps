@@ -107,6 +107,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c653c131_22a50022",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/DmiCmNotificationSubscriptionCacheHandlerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-29T10:16:31Z",
+      "side": 1,
+      "message": "i mean the text to be : \"Only Remove accepted.......\"",
+      "parentUuid": "45e8bdf4_0a7afa2c",
+      "range": {
+        "startLine": 88,
+        "startChar": 9,
+        "endLine": 88,
+        "endChar": 15
+      },
+      "revId": "caaa35f528aa6708fe2332d74449851ea6ac49e7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1dd31e57_59d8c27e",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/DmiCmNotificationSubscriptionCacheHandlerSpec.groovy",
         "patchSetId": 1
