@@ -417,9 +417,9 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Update multiple data node leaves.'() {
         given: 'Updated json for bookstore data'
-            def jsonData =  "{'book-store:books':{'lang':'English/French','price':100,'title':'Matilda'}}"
+            def nodeData =  "{'book-store:books':{'lang':'English/French','price':100,'title':'Matilda'}}"
         when: 'update is performed for leaves'
-            objectUnderTest.updateNodeLeaves(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_2, "/bookstore/categories[@code='1']", jsonData, now)
+            objectUnderTest.updateNodeLeaves(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_2, "/bookstore/categories[@code='1']", nodeData, now)
         then: 'the updated data nodes are retrieved'
             def result = cpsDataService.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_2, "/bookstore/categories[@code=1]/books[@title='Matilda']", INCLUDE_ALL_DESCENDANTS)
         and: 'the leaf values are updated as expected'
@@ -431,9 +431,9 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Order of leaf-list elements is preserved when "ordered-by user" is set in the YANG model.'() {
         given: 'Updated json for bookstore data'
-            def jsonData =  "{'book-store:books':{'title':'Matilda', 'authors': ['beta', 'alpha', 'gamma', 'delta']}}"
+            def nodeData =  "{'book-store:books':{'title':'Matilda', 'authors': ['beta', 'alpha', 'gamma', 'delta']}}"
         when: 'update is performed for leaves'
-            objectUnderTest.updateNodeLeaves(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_2, "/bookstore/categories[@code='1']", jsonData, now)
+            objectUnderTest.updateNodeLeaves(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_2, "/bookstore/categories[@code='1']", nodeData, now)
         and: 'the updated data nodes are retrieved'
             def result = cpsDataService.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_2, "/bookstore/categories[@code=1]/books[@title='Matilda']", INCLUDE_ALL_DESCENDANTS)
         then: 'the leaf-list values have expected order'
@@ -444,9 +444,9 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Leaf-list elements are sorted when "ordered-by user" is not set in the YANG model.'() {
         given: 'Updated json for bookstore data'
-            def jsonData =  "{'book-store:books':{'title':'Matilda', 'editions': [2011, 1988, 2001, 2022, 2025]}}"
+            def nodeData =  "{'book-store:books':{'title':'Matilda', 'editions': [2011, 1988, 2001, 2022, 2025]}}"
         when: 'update is performed for leaves'
-            objectUnderTest.updateNodeLeaves(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_2, "/bookstore/categories[@code='1']", jsonData, now)
+            objectUnderTest.updateNodeLeaves(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_2, "/bookstore/categories[@code='1']", nodeData, now)
         and: 'the updated data nodes are retrieved'
             def result = cpsDataService.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_2, "/bookstore/categories[@code=1]/books[@title='Matilda']", INCLUDE_ALL_DESCENDANTS)
         then: 'the leaf-list values have natural order'
