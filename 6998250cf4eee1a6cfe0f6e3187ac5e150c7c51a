@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f060c1c_d57651e5",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 43
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-04-29T11:32:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "310760bf_ec703761",
+      "range": {
+        "startLine": 365,
+        "startChar": 12,
+        "endLine": 365,
+        "endChar": 41
+      },
+      "revId": "6998250cf4eee1a6cfe0f6e3187ac5e150c7c51a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fafcf84f_1dab712f",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-04-26T13:39:03Z",
       "side": 1,
       "message": "NB: service layer.. just like above test",
+      "range": {
+        "startLine": 386,
+        "startChar": 18,
+        "endLine": 386,
+        "endChar": 25
+      },
+      "revId": "6998250cf4eee1a6cfe0f6e3187ac5e150c7c51a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf72ddbb_969bf334",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 43
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-04-29T11:32:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafcf84f_1dab712f",
       "range": {
         "startLine": 386,
         "startChar": 18,
@@ -89,6 +137,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "257a1b8a_8e373f3d",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 43
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-04-29T11:32:41Z",
+      "side": 1,
+      "message": "apart from \u0027anchor\u0027 and \u0027yangResourcesNameToContentMap\u0027 this method expects xpath whereas buildDataNodes expects parentNodeXpath. So technically buildDataNodes can be called buildDataNodesWithParentNodeXpath\n\nHence the need for final String parentNodeXpath \u003d CpsPathUtil.getNormalizedParentXpath(xpath);\n\nOnce I get the parent node xpath I call the respective buildDataNode method",
+      "parentUuid": "6c3cf93d_d46b2111",
+      "range": {
+        "startLine": 421,
+        "startChar": 7,
+        "endLine": 424,
+        "endChar": 89
+      },
+      "revId": "6998250cf4eee1a6cfe0f6e3187ac5e150c7c51a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "afd7f3aa_a0320146",
         "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangParserSpec.groovy",
         "patchSetId": 43
@@ -100,6 +172,30 @@
       "writtenOn": "2024-04-26T13:39:03Z",
       "side": 1,
       "message": "NB: no need\n\nyang parser helper",
+      "range": {
+        "startLine": 92,
+        "startChar": 32,
+        "endLine": 92,
+        "endChar": 48
+      },
+      "revId": "6998250cf4eee1a6cfe0f6e3187ac5e150c7c51a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "804c2a64_b3dd466a",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangParserSpec.groovy",
+        "patchSetId": 43
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-04-29T11:32:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "afd7f3aa_a0320146",
       "range": {
         "startLine": 92,
         "startChar": 32,
@@ -123,6 +219,30 @@
       "writtenOn": "2024-04-26T13:39:03Z",
       "side": 1,
       "message": "its like result is forced and assertion will always be true...\nin the java method the parseData method just delegates the task and passes in the schemaContext\nthis test can be \ngiven...\nmockTimedYangTextSchemaSourceSetBuilder.getYangTextSchemaSourceSet(yangResourcesNameToContentMap) \u003e\u003e mockYangTextSchemaSourceSet\n\nwhere.. result \u003d parseData()\nthen.. 1*mockYangParserHelper.parseData\nand .. result \u003d\u003d expected",
+      "range": {
+        "startLine": 100,
+        "startChar": 4,
+        "endLine": 100,
+        "endChar": 5
+      },
+      "revId": "6998250cf4eee1a6cfe0f6e3187ac5e150c7c51a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aaf6ff53_43d1daa2",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangParserSpec.groovy",
+        "patchSetId": 43
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-04-29T11:32:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "675b4b68_3f4345a7",
       "range": {
         "startLine": 100,
         "startChar": 4,
