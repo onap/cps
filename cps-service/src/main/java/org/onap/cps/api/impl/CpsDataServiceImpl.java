@@ -24,6 +24,8 @@
 
 package org.onap.cps.api.impl;
 
+import com.hazelcast.shaded.org.json.JSONException;
+import com.hazelcast.shaded.org.json.JSONObject;
 import io.micrometer.core.annotation.Timed;
 import java.io.Serializable;
 import java.time.OffsetDateTime;
@@ -143,11 +145,12 @@ public class CpsDataServiceImpl implements CpsDataService {
     @Timed(value = "cps.data.service.datanode.leaves.update",
         description = "Time taken to update a batch of leaf data nodes")
     public void updateNodeLeaves(final String dataspaceName, final String anchorName, final String parentNodeXpath,
-        final String jsonData, final OffsetDateTime observedTimestamp) {
+        final String nodeData, final OffsetDateTime observedTimestamp) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
-        final Collection<DataNode> dataNodesInPatch = buildDataNodes(anchor, parentNodeXpath, jsonData,
-                ContentType.JSON);
+        final ContentType contentType = isJsonData(nodeData) ? ContentType.JSON : ContentType.XML;
+        final Collection<DataNode> dataNodesInPatch = buildDataNodes(anchor, parentNodeXpath, nodeData,
+                contentType);
         final Map<String, Map<String, Serializable>> xpathToUpdatedLeaves = dataNodesInPatch.stream()
                 .collect(Collectors.toMap(DataNode::getXpath, DataNode::getLeaves));
         cpsDataPersistenceService.batchUpdateDataLeaves(dataspaceName, anchorName, xpathToUpdatedLeaves);
@@ -334,6 +337,15 @@ public class CpsDataServiceImpl implements CpsDataService {
 
     private static boolean isRootNodeXpath(final String xpath) {
         return ROOT_NODE_XPATH.equals(xpath);
+    }
+
+    private static boolean isJsonData(final String data) {
+        try {
+            new JSONObject(data);
+            return true;
+        } catch (final JSONException e) {
+            return false;
+        }
     }
 
     private void processDataNodeUpdate(final Anchor anchor, final DataNode dataNodeUpdate) {
