@@ -20,13 +20,12 @@
 
 package org.onap.cps.ncmp.api.impl.utils
 
-import org.onap.cps.ncmp.api.impl.config.DmiWebClientConfiguration
-
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING
 
 import org.onap.cps.ncmp.api.impl.operations.RequiredDmiService
 import org.onap.cps.spi.utils.CpsValidator
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
+import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import spock.lang.Specification
 
@@ -35,7 +34,7 @@ class DmiServiceUrlBuilderSpec extends Specification {
     static YangModelCmHandle yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle('dmiServiceName',
         'dmiDataServiceName', 'dmiModuleServiceName', new NcmpServiceCmHandle(cmHandleId: 'some-cm-handle-id'),'my-module-set-tag', 'my-alternate-id', 'my-data-producer-identifier')
 
-    DmiWebClientConfiguration.DmiProperties dmiProperties = new DmiWebClientConfiguration.DmiProperties()
+    NcmpConfiguration.DmiProperties dmiProperties = new NcmpConfiguration.DmiProperties()
 
     def mockCpsValidator = Mock(CpsValidator)
 
@@ -86,7 +85,7 @@ class DmiServiceUrlBuilderSpec extends Specification {
         when: 'a URL is created'
             def result = objectUnderTest.getDataOperationRequestUrl(batchRequestQueryParams, batchRequestUriVariables)
         then: 'it is formed correctly'
-            assert result.toString() == 'some-service/testBase/v1/data?topic=some+topic&requestId=some+id'
+            assert result.toString() == 'some-service/testBase/v1/data?topic=some topic&requestId=some id'
     }
 
     def 'Populate batch uri variables.'() {

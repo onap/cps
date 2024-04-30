@@ -20,8 +20,6 @@
 
 package org.onap.cps.integration.functional
 
-import spock.lang.Ignore
-
 import java.time.Duration
 import java.time.OffsetDateTime
 import org.apache.kafka.common.TopicPartition
@@ -37,7 +35,6 @@ import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.events.lcm.v1.LcmEvent
 import spock.util.concurrent.PollingConditions
 
-@Ignore
 class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
 
     NetworkCmProxyDataService objectUnderTest

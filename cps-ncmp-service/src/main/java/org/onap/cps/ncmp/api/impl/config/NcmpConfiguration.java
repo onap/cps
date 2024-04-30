@@ -22,6 +22,7 @@ package org.onap.cps.ncmp.api.impl.config;
 
 import java.util.Arrays;
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.apache.hc.client5.http.config.ConnectionConfig;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
@@ -30,6 +31,7 @@ import org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManager;
 import org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManagerBuilder;
 import org.apache.hc.core5.util.TimeValue;
 import org.apache.hc.core5.util.Timeout;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -40,12 +42,26 @@ import org.springframework.http.MediaType;
 import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 @Configuration
 @EnableConfigurationProperties(HttpClientConfiguration.class)
 @RequiredArgsConstructor(access = AccessLevel.PROTECTED)
 public class NcmpConfiguration {
+
+    @Getter
+    @Component
+    public static class DmiProperties {
+        @Value("${ncmp.dmi.auth.username}")
+        private String authUsername;
+        @Value("${ncmp.dmi.auth.password}")
+        private String authPassword;
+        @Value("${ncmp.dmi.api.base-path}")
+        private String dmiBasePath;
+        @Value("${ncmp.dmi.auth.enabled}")
+        private boolean dmiBasicAuthEnabled;
+    }
 
     /**
      * Rest template bean.

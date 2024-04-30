@@ -169,7 +169,6 @@ ncmp:
       maximumConnectionsPerRoute: 50
       maximumConnectionsTotal: 100
       idleConnectionEvictionThresholdInSeconds: 5
-      maximumInMemorySizeInMegabytes: 16
     auth:
       username: dmi
       password: dmi

@@ -20,8 +20,6 @@
 
 package org.onap.cps.integration.functional
 
-import spock.lang.Ignore
-
 import java.time.Duration
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
 import org.springframework.http.HttpHeaders
@@ -40,7 +38,6 @@ import static org.springframework.test.web.client.response.MockRestResponseCreat
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.request
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
-@Ignore
 class NcmpBearerTokenPassthroughSpec extends CpsIntegrationSpecBase {
 
     static final MODULE_REFERENCES_RESPONSE = readResourceDataFile('mock-dmi-responses/bookStoreAWithModules_M1_M2_Response.json')
