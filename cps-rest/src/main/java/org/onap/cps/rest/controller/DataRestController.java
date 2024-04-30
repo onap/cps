@@ -24,6 +24,8 @@
 
 package org.onap.cps.rest.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.micrometer.core.annotation.Timed;
 import jakarta.validation.ValidationException;
 import java.time.OffsetDateTime;
@@ -131,11 +133,14 @@ public class DataRestController implements CpsDataApi {
         return new ResponseEntity<>(jsonObjectMapper.asJsonString(dataMaps), HttpStatus.OK);
     }
 
+
+
     @Override
     public ResponseEntity<Object> updateNodeLeaves(final String apiVersion, final String dataspaceName,
-        final String anchorName, final Object jsonData, final String parentNodeXpath, final String observedTimestamp) {
+        final String anchorName, final String nodeData, final String parentNodeXpath, final String observedTimestamp) {
+        final ContentType contentType = isJsonData(nodeData) ? ContentType.JSON : ContentType.XML;
         cpsDataService.updateNodeLeaves(dataspaceName, anchorName, parentNodeXpath,
-                jsonObjectMapper.asJsonString(jsonData), toOffsetDateTime(observedTimestamp));
+                nodeData, toOffsetDateTime(observedTimestamp), contentType);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -186,6 +191,15 @@ public class DataRestController implements CpsDataApi {
 
     private static boolean isRootXpath(final String xpath) {
         return ROOT_XPATH.equals(xpath);
+    }
+
+    private static boolean isJsonData(final String data) {
+        try {
+            new ObjectMapper().readTree(data);
+            return true;
+        } catch (final JsonProcessingException e) {
+            return false;
+        }
     }
 
     private static OffsetDateTime toOffsetDateTime(final String datetTimestamp) {

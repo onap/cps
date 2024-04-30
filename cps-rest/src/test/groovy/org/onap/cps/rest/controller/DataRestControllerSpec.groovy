@@ -360,19 +360,22 @@ class DataRestControllerSpec extends Specification {
             def response =
                 mvc.perform(
                     patch(endpoint)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(requestBodyJson)
+                        .contentType(contentType)
+                        .content(requestBody)
                         .param('xpath', inputXpath)
                 ).andReturn().response
         then: 'the service method is invoked with expected parameters'
-            1 * mockCpsDataService.updateNodeLeaves(dataspaceName, anchorName, xpathServiceParameter, expectedJsonData, null)
+            1 * mockCpsDataService.updateNodeLeaves(dataspaceName, anchorName, xpathServiceParameter, expectedData, null, expectedContentType)
         and: 'response status indicates success'
             response.status == HttpStatus.OK.value()
         where:
-            scenario               | inputXpath    || xpathServiceParameter
-            'root node by default' | ''            || '/'
-            'root node by choice'  | '/'           || '/'
-            'some xpath by parent' | '/some/xpath' || '/some/xpath'
+            scenario                             | inputXpath    | contentType                || xpathServiceParameter | requestBody     | expectedData        | expectedContentType
+            'JSON content: root node by default' | ''            | MediaType.APPLICATION_JSON || '/'                   | requestBodyJson | expectedJsonData    | ContentType.JSON
+            'JSON content: root node by choice'  | '/'           | MediaType.APPLICATION_JSON || '/'                   | requestBodyJson | expectedJsonData    | ContentType.JSON
+            'JSON content: some xpath by parent' | '/some/xpath' | MediaType.APPLICATION_JSON || '/some/xpath'         | requestBodyJson | expectedJsonData    | ContentType.JSON
+            'XML content: root node by default'  | ''            | MediaType.APPLICATION_XML  || '/'                   | requestBodyXml  | expectedXmlData     | ContentType.XML
+            'XML content: root node by choice'   | '/'           | MediaType.APPLICATION_XML  || '/'                   | requestBodyXml  | expectedXmlData     | ContentType.XML
+            'XML content: some xpath by parent'  | '/some/xpath' | MediaType.APPLICATION_XML  || '/some/xpath'         | requestBodyXml  | expectedXmlData     | ContentType.XML
     }
 
     def 'Update data node leaves with observedTimestamp'() {
@@ -382,20 +385,22 @@ class DataRestControllerSpec extends Specification {
             def response =
                 mvc.perform(
                     patch(endpoint)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(requestBodyJson)
+                        .contentType(contentType)
+                        .content(requestBody)
                         .param('xpath', '/')
                         .param('observed-timestamp', observedTimestamp)
                 ).andReturn().response
         then: 'the service method is invoked with expected parameters'
-            expectedApiCount * mockCpsDataService.updateNodeLeaves(dataspaceName, anchorName, '/', expectedJsonData,
-                { it == DateTimeUtility.toOffsetDateTime(observedTimestamp) })
+            expectedApiCount * mockCpsDataService.updateNodeLeaves(dataspaceName, anchorName, '/', expectedData,
+                { it == DateTimeUtility.toOffsetDateTime(observedTimestamp) }, expectedContentType)
         and: 'response status indicates success'
             response.status == expectedHttpStatus.value()
         where:
-            scenario                          | observedTimestamp              || expectedApiCount | expectedHttpStatus
-            'with observed-timestamp'         | '2021-03-03T23:59:59.999-0400' || 1                | HttpStatus.OK
-            'with invalid observed-timestamp' | 'invalid'                      || 0                | HttpStatus.BAD_REQUEST
+            scenario                                        | contentType                | requestBody     | observedTimestamp              || expectedApiCount | expectedHttpStatus     | expectedData       | expectedContentType
+            'JSON content: with observed-timestamp'         | MediaType.APPLICATION_JSON | requestBodyJson | '2021-03-03T23:59:59.999-0400' || 1                | HttpStatus.OK          | expectedJsonData   | ContentType.JSON
+            'JSON content: with invalid observed-timestamp' | MediaType.APPLICATION_JSON | requestBodyJson | 'invalid'                      || 0                | HttpStatus.BAD_REQUEST | expectedJsonData   | ContentType.JSON
+            'XML content: with observed-timestamp'          | MediaType.APPLICATION_XML  | requestBodyXml  | '2021-03-03T23:59:59.999-0400' || 1                | HttpStatus.OK          | expectedXmlData    | ContentType.XML
+            'XML content: with invalid observed-timestamp'  | MediaType.APPLICATION_XML  | requestBodyXml  | 'invalid'                      || 0                | HttpStatus.BAD_REQUEST | expectedXmlData    | ContentType.XML
     }
 
     def 'Replace data node tree: #scenario.'() {
