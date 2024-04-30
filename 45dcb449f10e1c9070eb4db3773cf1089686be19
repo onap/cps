@@ -16,6 +16,23 @@
       "message": "revert looks fine.\ndanielle already took care of reverting the release-notes",
       "revId": "45dcb449f10e1c9070eb4db3773cf1089686be19",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a1837ed_05400ec1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2024-04-30T14:30:43Z",
+      "side": 1,
+      "message": "Looks good",
+      "revId": "45dcb449f10e1c9070eb4db3773cf1089686be19",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
