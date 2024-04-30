@@ -21,7 +21,7 @@
 package org.onap.cps.ncmp.api.impl.events.cmsubscription.service
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import org.onap.cps.ncmp.api.impl.events.cmsubscription.CmNotificationSubscriptionNcmpOutEventProducer
+import org.onap.cps.ncmp.api.impl.events.cmsubscription.CmNotificationSubscriptionEventsHandler
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.DmiCmNotificationSubscriptionCacheHandler
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.mapper.CmNotificationSubscriptionNcmpOutEventMapper
 import org.onap.cps.ncmp.events.cmnotificationsubscription_merge1_0_0.client_to_ncmp.CmNotificationSubscriptionNcmpInEvent
@@ -34,10 +34,10 @@ class CmNotificationSubscriptionHandlerServiceImplSpec extends Specification{
     def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
     def mockCmNotificationSubscriptionPersistenceService = Mock(CmNotificationSubscriptionPersistenceService);
     def mockCmNotificationSubscriptionNcmpOutEventMapper = Mock(CmNotificationSubscriptionNcmpOutEventMapper);
-    def mockCmNotificationSubscriptionNcmpOutEventProducer = Mock(CmNotificationSubscriptionNcmpOutEventProducer);
+    def mockCmNotificationSubscriptionEventsHandler = Mock(CmNotificationSubscriptionEventsHandler);
     def mockDmiCmNotificationSubscriptionCacheHandler = Mock(DmiCmNotificationSubscriptionCacheHandler);
 
-    def objectUnderTest = new CmNotificationSubscriptionHandlerServiceImpl(mockCmNotificationSubscriptionPersistenceService, mockCmNotificationSubscriptionNcmpOutEventMapper, mockCmNotificationSubscriptionNcmpOutEventProducer, mockDmiCmNotificationSubscriptionCacheHandler)
+    def objectUnderTest = new CmNotificationSubscriptionHandlerServiceImpl(mockCmNotificationSubscriptionPersistenceService, mockCmNotificationSubscriptionNcmpOutEventMapper, mockCmNotificationSubscriptionEventsHandler, mockDmiCmNotificationSubscriptionCacheHandler)
 
     def 'Consume valid and unique CmNotificationSubscriptionNcmpInEvent create message'() {
         given: 'a cmNotificationSubscriptionNcmp in event'
@@ -58,6 +58,6 @@ class CmNotificationSubscriptionHandlerServiceImplSpec extends Specification{
         when: 'the valid but non-unique event is consumed'
             objectUnderTest.processSubscriptionCreateRequest(testEventConsumed)
         then: 'the subscription out event publisher is called once'
-            1 * mockCmNotificationSubscriptionNcmpOutEventProducer.publishCmNotificationSubscriptionNcmpOutEvent('cm-subscription-001', 'subscriptionCreateResponse', _, false)
+            1 * mockCmNotificationSubscriptionEventsHandler.publishCmNotificationSubscriptionNcmpOutEvent('cm-subscription-001', 'subscriptionCreateResponse', _, false)
     }
 }
