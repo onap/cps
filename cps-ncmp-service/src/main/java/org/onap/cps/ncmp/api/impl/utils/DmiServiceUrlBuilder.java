@@ -20,14 +20,12 @@
 
 package org.onap.cps.ncmp.api.impl.utils;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.apache.logging.log4j.util.Strings;
 import org.apache.logging.log4j.util.TriConsumer;
-import org.onap.cps.ncmp.api.impl.config.DmiWebClientConfiguration.DmiProperties;
+import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
 import org.onap.cps.spi.utils.CpsValidator;
 import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
@@ -37,7 +35,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 @Component
 @RequiredArgsConstructor
 public class DmiServiceUrlBuilder {
-    private final DmiProperties dmiProperties;
+
+    private final NcmpConfiguration.DmiProperties dmiProperties;
     private final CpsValidator cpsValidator;
 
     /**
@@ -142,7 +141,8 @@ public class DmiServiceUrlBuilder {
                                                              final String optionsParamInQuery,
                                                              final String topicParamInQuery) {
         final MultiValueMap<String, String> queryParams = new LinkedMultiValueMap<>();
-        getQueryParamConsumer().accept("resourceIdentifier", resourceId, queryParams);
+        getQueryParamConsumer().accept("resourceIdentifier",
+                resourceId, queryParams);
         getQueryParamConsumer().accept("options", optionsParamInQuery, queryParams);
         if (Strings.isNotEmpty(topicParamInQuery)) {
             getQueryParamConsumer().accept("topic", topicParamInQuery, queryParams);
@@ -168,7 +168,7 @@ public class DmiServiceUrlBuilder {
     private TriConsumer<String, String, MultiValueMap<String, String>> getQueryParamConsumer() {
         return (paramName, paramValue, paramMap) -> {
             if (Strings.isNotEmpty(paramValue)) {
-                paramMap.add(paramName, URLEncoder.encode(paramValue, StandardCharsets.UTF_8));
+                paramMap.add(paramName, paramValue);
             }
         };
     }

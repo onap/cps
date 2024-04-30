@@ -32,7 +32,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
-import org.onap.cps.ncmp.api.impl.config.DmiWebClientConfiguration.DmiProperties;
+import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
 import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
@@ -55,7 +55,7 @@ public class DmiModelOperations extends DmiOperations {
      */
     public DmiModelOperations(final InventoryPersistence inventoryPersistence,
                               final JsonObjectMapper jsonObjectMapper,
-                              final DmiProperties dmiProperties,
+                              final NcmpConfiguration.DmiProperties dmiProperties,
                               final DmiRestClient dmiRestClient, final DmiServiceUrlBuilder dmiServiceUrlBuilder) {
         super(inventoryPersistence, jsonObjectMapper, dmiProperties, dmiRestClient, dmiServiceUrlBuilder);
     }
@@ -71,7 +71,7 @@ public class DmiModelOperations extends DmiOperations {
                 .moduleSetTag(yangModelCmHandle.getModuleSetTag()).build();
         dmiRequestBody.asDmiProperties(yangModelCmHandle.getDmiProperties());
         final ResponseEntity<Object> dmiFetchModulesResponseEntity = getResourceFromDmiWithJsonData(
-                yangModelCmHandle.resolveDmiServiceName(MODEL),
+            yangModelCmHandle.resolveDmiServiceName(MODEL),
                 jsonObjectMapper.asJsonString(dmiRequestBody), yangModelCmHandle.getId(), "modules");
         return toModuleReferences((Map) dmiFetchModulesResponseEntity.getBody());
     }
@@ -89,12 +89,12 @@ public class DmiModelOperations extends DmiOperations {
             return Collections.emptyMap();
         }
         final String jsonWithDataAndDmiProperties = getRequestBodyToFetchYangResources(
-                newModuleReferences, yangModelCmHandle.getDmiProperties());
+            newModuleReferences, yangModelCmHandle.getDmiProperties());
         final ResponseEntity<Object> responseEntity = getResourceFromDmiWithJsonData(
-                yangModelCmHandle.resolveDmiServiceName(MODEL),
-                jsonWithDataAndDmiProperties,
-                yangModelCmHandle.getId(),
-                "moduleResources");
+            yangModelCmHandle.resolveDmiServiceName(MODEL),
+            jsonWithDataAndDmiProperties,
+            yangModelCmHandle.getId(),
+            "moduleResources");
         return asModuleNameToYangResourceMap(responseEntity);
     }
 
@@ -112,12 +112,12 @@ public class DmiModelOperations extends DmiOperations {
                                                                   final String cmHandle,
                                                                   final String resourceName) {
         final String dmiResourceDataUrl = getDmiResourceUrl(dmiServiceName, cmHandle, resourceName);
-        return dmiRestClient.postOperationWithJsonData(dmiResourceDataUrl,
-                jsonRequestBody, OperationType.READ, null);
+        return dmiRestClient.postOperationWithJsonData(dmiResourceDataUrl, jsonRequestBody,
+                OperationType.READ, null);
     }
 
     private static String getRequestBodyToFetchYangResources(final Collection<ModuleReference> newModuleReferences,
-                                                             final List<YangModelCmHandle.Property> dmiProperties) {
+        final List<YangModelCmHandle.Property> dmiProperties) {
         final JsonArray moduleReferencesAsJson = getModuleReferencesAsJson(newModuleReferences);
         final JsonObject data = new JsonObject();
         data.add("modules", moduleReferencesAsJson);
@@ -140,7 +140,7 @@ public class DmiModelOperations extends DmiOperations {
     }
 
     private static JsonObject toJsonObject(final List<YangModelCmHandle.Property>
-                                                   dmiProperties) {
+                                               dmiProperties) {
         final JsonObject asJsonObject = new JsonObject();
         for (final YangModelCmHandle.Property additionalProperty : dmiProperties) {
             asJsonObject.addProperty(additionalProperty.getName(), additionalProperty.getValue());
@@ -173,7 +173,7 @@ public class DmiModelOperations extends DmiOperations {
                 final YangResource yangResource =
                         jsonObjectMapper.convertToValueType(yangResourceAsMap, YangResource.class);
                 yangResourcesModuleNameToContentMap.put(yangResource.getModuleName(),
-                        yangResource.getYangSource());
+                    yangResource.getYangSource());
             });
         }
         return yangResourcesModuleNameToContentMap;

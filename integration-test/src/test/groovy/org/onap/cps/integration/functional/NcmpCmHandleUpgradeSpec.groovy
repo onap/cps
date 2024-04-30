@@ -28,13 +28,11 @@ import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.models.UpgradedCmHandles
 import org.springframework.http.HttpStatus
-import spock.lang.Ignore
 import spock.util.concurrent.PollingConditions
 
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.anything
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withStatus
 
-@Ignore
 class NcmpCmHandleUpgradeSpec extends CpsIntegrationSpecBase {
 
     NetworkCmProxyDataService objectUnderTest

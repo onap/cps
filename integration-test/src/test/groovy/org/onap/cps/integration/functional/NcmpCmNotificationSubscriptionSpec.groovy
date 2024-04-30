@@ -1,13 +1,10 @@
 package org.onap.cps.integration.functional
 
-import spock.lang.Ignore
-
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING;
 import org.onap.cps.integration.base.CpsIntegrationSpecBase;
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.service.CmNotificationSubscriptionPersistenceService;
 import org.springframework.beans.factory.annotation.Autowired;
 
-@Ignore
 class NcmpCmNotificationSubscriptionSpec extends CpsIntegrationSpecBase {
 
     @Autowired
