@@ -22,6 +22,30 @@
       },
       "revId": "eeab42d1f2ddecab2b76cb4ae495733464e7e67d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7fd4e12_c0da9c9b",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-04-30T12:13:39Z",
+      "side": 1,
+      "message": "yeah. We can remove all the security related stuff as part of a separate user story.\nWe also need to talk if we need security in our onap dmi plugin or not.\nI guess need to do a cleanup but all part of separate story.",
+      "parentUuid": "038ee166_d4bc2285",
+      "range": {
+        "startLine": 143,
+        "startChar": 0,
+        "endLine": 148,
+        "endChar": 43
+      },
+      "revId": "eeab42d1f2ddecab2b76cb4ae495733464e7e67d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
