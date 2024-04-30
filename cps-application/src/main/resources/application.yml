@@ -144,8 +144,8 @@ security:
     # comma-separated uri patterns which do not require authorization
     permit-uri: /actuator/**,/swagger-ui.html,/swagger-ui/**,/swagger-resources/**,/api-docs/**,/v3/api-docs/**
     auth:
-        username: ${CPS_USERNAME}
-        password: ${CPS_PASSWORD}
+        username: ${CPS_USERNAME:cpsuser}
+        password: ${CPS_PASSWORD:cpsr0cks!}
 
 # Actuator
 management:
@@ -176,8 +176,8 @@ ncmp:
             idleConnectionEvictionThresholdInSeconds: 5
             maximumInMemorySizeInMegabytes: 16
         auth:
-            username: ${DMI_USERNAME}
-            password: ${DMI_PASSWORD}
+            username: ${DMI_USERNAME:cpsuser}
+            password: ${DMI_PASSWORD:cpsr0cks!}
             enabled: ${DMI_AUTH_ENABLED:true}
         api:
             base-path: dmi
