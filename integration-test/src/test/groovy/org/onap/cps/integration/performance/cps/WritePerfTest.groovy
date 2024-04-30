@@ -44,10 +44,10 @@ class WritePerfTest extends CpsPerfTestBase {
             cpsAnchorService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR)
         where:
             totalNodes || expectedDuration | memoryLimit
-            50         || 2                | 100
-            100        || 4                | 200
-            200        || 7                | 400
-            400        || 14               | 500
+            50         || 1.6              | 100
+            100        || 3.3              | 200
+            200        || 6.8              | 400
+            400        || 13.0             | 500
     }
 
     def 'Writing bookstore data has exponential time.'() {
@@ -69,10 +69,10 @@ class WritePerfTest extends CpsPerfTestBase {
             cpsAnchorService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR)
         where:
             totalBooks || expectedDuration | memoryLimit
-            800        || 0.5              | 50
-            1600       || 1.5              | 100
-            3200       || 6.0              | 150
-            6400       || 18.0             | 200
+            800        || 0.3              | 50
+            1600       || 0.8              | 100
+            3200       || 2.6              | 150
+            6400       || 6.7              | 200
     }
 
     def 'Writing openroadm list data using saveListElements.'() {
@@ -97,10 +97,10 @@ class WritePerfTest extends CpsPerfTestBase {
             cpsAnchorService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR)
         where:
             totalNodes || expectedDuration | memoryLimit
-            50         || 2                | 100
-            100        || 4                | 200
-            200        || 7                | 400
-            400        || 14               | 500
+            50         || 1.5              | 100
+            100        || 3.0              | 200
+            200        || 6.3              | 400
+            400        || 14.0             | 500
     }
 
 }

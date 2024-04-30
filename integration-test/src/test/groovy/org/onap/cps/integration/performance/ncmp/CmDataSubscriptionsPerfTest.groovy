@@ -95,7 +95,7 @@ class CmDataSubscriptionsPerfTest extends NcmpPerfTestBase {
             def resultAfter = objectUnderTest.queryDataNodes(NCMP_PERFORMANCE_TEST_DATASPACE, CM_DATA_SUBSCRIPTIONS_ANCHOR, cpsPath, INCLUDE_ALL_DESCENDANTS)
             assert resultAfter.collect {it.leaves.subscribers.size()}.sum() == totalNumberOfEntries * (1 + numberOfCmDataSubscribers)
         and: 'update matching subscription within 15 seconds'
-            recordAndAssertResourceUsage("Update matching subscription", 15, durationInSeconds, 1000, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage("Update matching subscription", 11, durationInSeconds, 1000, resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def 'Worst case new subscription (200x10 new entries).'() {
