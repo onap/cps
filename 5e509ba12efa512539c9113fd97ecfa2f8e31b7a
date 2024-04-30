@@ -16,6 +16,24 @@
       "message": "NB: extra line",
       "revId": "5e509ba12efa512539c9113fd97ecfa2f8e31b7a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8661a380_e240f9b9",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-04-30T11:11:11Z",
+      "side": 1,
+      "message": "Will remove now that WebClient is being reverted",
+      "parentUuid": "04a55f7b_a5d8b741",
+      "revId": "5e509ba12efa512539c9113fd97ecfa2f8e31b7a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
