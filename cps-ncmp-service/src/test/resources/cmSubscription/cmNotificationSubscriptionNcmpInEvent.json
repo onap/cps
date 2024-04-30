@@ -1,6 +1,6 @@
 {
   "data": {
-    "subscriptionId": "cm-subscription-001",
+    "subscriptionId": "test-id",
     "predicates": [
       {
         "targetFilter":  ["ch1","ch2"],

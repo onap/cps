@@ -80,7 +80,7 @@ class CmNotificationSubscriptionNcmpInEventConsumerSpec extends MessagingBaseSpe
             def loggingEvent = getLoggingEvent()
             assert loggingEvent.level == Level.INFO
         and: 'the log indicates the task completed successfully'
-            assert loggingEvent.formattedMessage == 'Subscription for source some-resource with subscription id cm-subscription-001 ...'
+            assert loggingEvent.formattedMessage == 'Subscription for source some-resource with subscription id test-id ...'
         and: 'the subscription handler service is called once'
             1 * mockCmNotificationSubscriptionHandlerService.processSubscriptionCreateRequest(_)
     }

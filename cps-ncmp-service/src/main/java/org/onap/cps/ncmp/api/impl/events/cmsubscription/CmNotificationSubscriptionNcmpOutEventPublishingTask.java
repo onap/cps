@@ -27,7 +27,6 @@ import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.events.EventsPublisher;
-import org.onap.cps.ncmp.api.impl.events.cmsubscription.mapper.CmNotificationSubscriptionNcmpOutEventMapper;
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.DmiCmNotificationSubscriptionDetails;
 import org.onap.cps.ncmp.events.cmsubscription_merge1_0_0.ncmp_to_client.CmNotificationSubscriptionNcmpOutEvent;
 import org.onap.cps.utils.JsonObjectMapper;
@@ -41,7 +40,7 @@ public class CmNotificationSubscriptionNcmpOutEventPublishingTask implements Run
     private final String eventType;
     private final EventsPublisher<CloudEvent> eventsPublisher;
     private final JsonObjectMapper jsonObjectMapper;
-    private final CmNotificationSubscriptionNcmpOutEventMapper cmNotificationSubscriptionNcmpOutEventMapper;
+    private final CmNotificationSubscriptionMappersHandler cmNotificationSubscriptionMappersHandler;
     private final DmiCmNotificationSubscriptionCacheHandler dmiCmNotificationSubscriptionCacheHandler;
 
     /**
@@ -53,7 +52,7 @@ public class CmNotificationSubscriptionNcmpOutEventPublishingTask implements Run
         final Map<String, DmiCmNotificationSubscriptionDetails> dmiCmNotificationSubscriptionDetailsMap =
                 dmiCmNotificationSubscriptionCacheHandler.get(subscriptionId);
         final CmNotificationSubscriptionNcmpOutEvent cmNotificationSubscriptionNcmpOutEvent =
-                cmNotificationSubscriptionNcmpOutEventMapper.toCmNotificationSubscriptionNcmpOutEvent(subscriptionId,
+                cmNotificationSubscriptionMappersHandler.toCmNotificationSubscriptionNcmpOutEvent(subscriptionId,
                         dmiCmNotificationSubscriptionDetailsMap);
         eventsPublisher.publishCloudEvent(topicName, subscriptionId,
                 buildAndGetCmNotificationNcmpOutEventAsCloudEvent(jsonObjectMapper, subscriptionId, eventType,
@@ -61,5 +60,4 @@ public class CmNotificationSubscriptionNcmpOutEventPublishingTask implements Run
         dmiCmNotificationSubscriptionCacheHandler
                 .removeAcceptedAndRejectedDmiCmNotificationSubscriptionEntries(subscriptionId);
     }
-
 }
