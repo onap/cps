@@ -22,14 +22,19 @@ package org.onap.cps.ncmp.api.impl.events.cmsubscription.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
+import org.onap.cps.ncmp.api.impl.events.cmsubscription.CmNotificationSubscriptionDelta;
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.CmNotificationSubscriptionEventsHandler;
+import org.onap.cps.ncmp.api.impl.events.cmsubscription.CmNotificationSubscriptionMappersHandler;
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.DmiCmNotificationSubscriptionCacheHandler;
-import org.onap.cps.ncmp.api.impl.events.cmsubscription.mapper.CmNotificationSubscriptionNcmpOutEventMapper;
+import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.DmiCmNotificationSubscriptionDetails;
+import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.DmiCmNotificationSubscriptionPredicate;
 import org.onap.cps.ncmp.events.cmnotificationsubscription_merge1_0_0.client_to_ncmp.CmNotificationSubscriptionNcmpInEvent;
 import org.onap.cps.ncmp.events.cmnotificationsubscription_merge1_0_0.client_to_ncmp.Predicate;
+import org.onap.cps.ncmp.events.cmnotificationsubscription_merge1_0_0.ncmp_to_dmi.CmNotificationSubscriptionDmiInEvent;
 import org.onap.cps.ncmp.events.cmsubscription_merge1_0_0.ncmp_to_client.CmNotificationSubscriptionNcmpOutEvent;
 import org.springframework.stereotype.Service;
 
@@ -38,21 +43,23 @@ import org.springframework.stereotype.Service;
 public class CmNotificationSubscriptionHandlerServiceImpl implements CmNotificationSubscriptionHandlerService {
 
     private final CmNotificationSubscriptionPersistenceService cmNotificationSubscriptionPersistenceService;
-    private final CmNotificationSubscriptionNcmpOutEventMapper cmNotificationSubscriptionNcmpOutEventMapper;
+    private final CmNotificationSubscriptionDelta cmNotificationSubscriptionDelta;
+    private final CmNotificationSubscriptionMappersHandler cmNotificationSubscriptionMappersHandler;
     private final CmNotificationSubscriptionEventsHandler cmNotificationSubscriptionEventsHandler;
     private final DmiCmNotificationSubscriptionCacheHandler dmiCmNotificationSubscriptionCacheHandler;
 
     @Override
     public void processSubscriptionCreateRequest(
-        final CmNotificationSubscriptionNcmpInEvent cmNotificationSubscriptionNcmpInEvent) {
+            final CmNotificationSubscriptionNcmpInEvent cmNotificationSubscriptionNcmpInEvent) {
         final String subscriptionId = cmNotificationSubscriptionNcmpInEvent.getData().getSubscriptionId();
         final List<Predicate> predicates = cmNotificationSubscriptionNcmpInEvent.getData().getPredicates();
 
         if (cmNotificationSubscriptionPersistenceService.isUniqueSubscriptionId(subscriptionId)) {
             dmiCmNotificationSubscriptionCacheHandler.add(subscriptionId, predicates);
+            sendSubscriptionCreateRequestToDmi(subscriptionId);
         } else {
             final Set<String> subscriptionTargetFilters = predicates.stream().flatMap(
-                predicate -> predicate.getTargetFilter().stream()).collect(Collectors.toSet());
+                    predicate -> predicate.getTargetFilter().stream()).collect(Collectors.toSet());
             rejectAndPublishCmNotificationSubscriptionCreateRequest(subscriptionId,
                     new ArrayList<>(subscriptionTargetFilters));
         }
@@ -61,10 +68,25 @@ public class CmNotificationSubscriptionHandlerServiceImpl implements CmNotificat
     private void rejectAndPublishCmNotificationSubscriptionCreateRequest(final String subscriptionId,
                                                                          final List<String> subscriptionTargetFilters) {
         final CmNotificationSubscriptionNcmpOutEvent cmNotificationSubscriptionNcmpOutEvent =
-            cmNotificationSubscriptionNcmpOutEventMapper
-                .toCmNotificationSubscriptionNcmpOutEventForRejectedRequest(subscriptionId,
-                    subscriptionTargetFilters);
+                cmNotificationSubscriptionMappersHandler
+                        .toCmNotificationSubscriptionNcmpOutEventForRejectedRequest(subscriptionId,
+                                subscriptionTargetFilters);
         cmNotificationSubscriptionEventsHandler.publishCmNotificationSubscriptionNcmpOutEvent(subscriptionId,
-            "subscriptionCreateResponse", cmNotificationSubscriptionNcmpOutEvent, false);
+                "subscriptionCreateResponse", cmNotificationSubscriptionNcmpOutEvent, false);
+    }
+
+    private void sendSubscriptionCreateRequestToDmi(final String subscriptionId) {
+        final Map<String, DmiCmNotificationSubscriptionDetails> dmiCmNotificationSubscriptionDetailsMap =
+                dmiCmNotificationSubscriptionCacheHandler.get(subscriptionId);
+        dmiCmNotificationSubscriptionDetailsMap.forEach((dmiPluginName, dmiCmNotificationSubscriptionDetails) -> {
+            final List<DmiCmNotificationSubscriptionPredicate> dmiCmNotificationSubscriptionPredicates =
+                    cmNotificationSubscriptionDelta.getDelta(
+                            dmiCmNotificationSubscriptionDetails.getDmiCmNotificationSubscriptionPredicates());
+            final CmNotificationSubscriptionDmiInEvent cmNotificationSubscriptionDmiInEvent =
+                    cmNotificationSubscriptionMappersHandler.toCmNotificationSubscriptionDmiInEvent(
+                            dmiCmNotificationSubscriptionPredicates);
+            cmNotificationSubscriptionEventsHandler.publishCmNotificationSubscriptionDmiInEvent(subscriptionId,
+                    dmiPluginName, "subscriptionCreateRequest", cmNotificationSubscriptionDmiInEvent);
+        });
     }
 }

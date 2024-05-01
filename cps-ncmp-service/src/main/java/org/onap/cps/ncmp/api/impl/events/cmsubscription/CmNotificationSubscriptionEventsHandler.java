@@ -25,9 +25,9 @@ import org.onap.cps.ncmp.api.impl.events.cmsubscription.producer.CmNotificationS
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.producer.CmNotificationSubscriptionNcmpOutEventProducer;
 import org.onap.cps.ncmp.events.cmnotificationsubscription_merge1_0_0.ncmp_to_dmi.CmNotificationSubscriptionDmiInEvent;
 import org.onap.cps.ncmp.events.cmsubscription_merge1_0_0.ncmp_to_client.CmNotificationSubscriptionNcmpOutEvent;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 @RequiredArgsConstructor
 public class CmNotificationSubscriptionEventsHandler {
     private final CmNotificationSubscriptionNcmpOutEventProducer cmNotificationSubscriptionNcmpOutEventProducer;
@@ -37,7 +37,7 @@ public class CmNotificationSubscriptionEventsHandler {
      * Publish the event to the client who requested the subscription with key as subscription id and event is Cloud
      * Event compliant.
      *
-     * @param subscriptionId                         Cm Subscription Id
+     * @param subscriptionId                         Cm Subscription id
      * @param eventType                              Type of event
      * @param cmNotificationSubscriptionNcmpOutEvent Cm Notification Subscription Event for the
      *                                               client
@@ -45,9 +45,9 @@ public class CmNotificationSubscriptionEventsHandler {
      *                                               or published now
      */
     public void publishCmNotificationSubscriptionNcmpOutEvent(final String subscriptionId, final String eventType,
-                                                  final CmNotificationSubscriptionNcmpOutEvent
-                                                          cmNotificationSubscriptionNcmpOutEvent,
-                                                  final boolean isScheduledEvent) {
+                                                              final CmNotificationSubscriptionNcmpOutEvent
+                                                                      cmNotificationSubscriptionNcmpOutEvent,
+                                                              final boolean isScheduledEvent) {
         cmNotificationSubscriptionNcmpOutEventProducer.publishCmNotificationSubscriptionNcmpOutEvent(subscriptionId,
                 eventType, cmNotificationSubscriptionNcmpOutEvent, isScheduledEvent);
     }
@@ -55,7 +55,7 @@ public class CmNotificationSubscriptionEventsHandler {
     /**
      * Publish the event to the provided dmi plugin with key as subscription id and the event is in Cloud Event format.
      *
-     * @param subscriptionId                       Cm Subscription Id
+     * @param subscriptionId                       Cm Subscription id
      * @param dmiPluginName                        Dmi Plugin Name
      * @param eventType                            Type of event
      * @param cmNotificationSubscriptionDmiInEvent Cm Notification Subscription event for Dmi

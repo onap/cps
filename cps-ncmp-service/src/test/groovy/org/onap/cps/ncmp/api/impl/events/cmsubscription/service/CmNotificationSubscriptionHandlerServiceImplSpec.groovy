@@ -21,10 +21,17 @@
 package org.onap.cps.ncmp.api.impl.events.cmsubscription.service
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import org.onap.cps.ncmp.api.impl.events.cmsubscription.CmNotificationSubscriptionDelta
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.CmNotificationSubscriptionEventsHandler
+import org.onap.cps.ncmp.api.impl.events.cmsubscription.CmNotificationSubscriptionMappersHandler
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.DmiCmNotificationSubscriptionCacheHandler
+import org.onap.cps.ncmp.api.impl.events.cmsubscription.mapper.CmNotificationSubscriptionDmiInEventMapper
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.mapper.CmNotificationSubscriptionNcmpOutEventMapper
+import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.CmNotificationSubscriptionStatus
+import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.DmiCmNotificationSubscriptionDetails
 import org.onap.cps.ncmp.events.cmnotificationsubscription_merge1_0_0.client_to_ncmp.CmNotificationSubscriptionNcmpInEvent
+import org.onap.cps.ncmp.events.cmnotificationsubscription_merge1_0_0.ncmp_to_dmi.CmNotificationSubscriptionDmiInEvent
+import org.onap.cps.ncmp.events.cmsubscription_merge1_0_0.ncmp_to_client.CmNotificationSubscriptionNcmpOutEvent
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Specification
@@ -33,31 +40,55 @@ class CmNotificationSubscriptionHandlerServiceImplSpec extends Specification{
 
     def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
     def mockCmNotificationSubscriptionPersistenceService = Mock(CmNotificationSubscriptionPersistenceService);
-    def mockCmNotificationSubscriptionNcmpOutEventMapper = Mock(CmNotificationSubscriptionNcmpOutEventMapper);
+    def mockCmNotificationSubscriptionDelta = Mock(CmNotificationSubscriptionDelta);
+    def mockCmNotificationSubscriptionMappersHandler = Mock(CmNotificationSubscriptionMappersHandler);
     def mockCmNotificationSubscriptionEventsHandler = Mock(CmNotificationSubscriptionEventsHandler);
     def mockDmiCmNotificationSubscriptionCacheHandler = Mock(DmiCmNotificationSubscriptionCacheHandler);
 
-    def objectUnderTest = new CmNotificationSubscriptionHandlerServiceImpl(mockCmNotificationSubscriptionPersistenceService, mockCmNotificationSubscriptionNcmpOutEventMapper, mockCmNotificationSubscriptionEventsHandler, mockDmiCmNotificationSubscriptionCacheHandler)
+    def objectUnderTest = new CmNotificationSubscriptionHandlerServiceImpl(mockCmNotificationSubscriptionPersistenceService,
+        mockCmNotificationSubscriptionDelta, mockCmNotificationSubscriptionMappersHandler,
+        mockCmNotificationSubscriptionEventsHandler, mockDmiCmNotificationSubscriptionCacheHandler)
+
+    def testSubscriptionDetailsMap = ["dmi-1":new DmiCmNotificationSubscriptionDetails([], CmNotificationSubscriptionStatus.PENDING)]
+    def testListOfDeltaPredicates = []
 
     def 'Consume valid and unique CmNotificationSubscriptionNcmpInEvent create message'() {
-        given: 'a cmNotificationSubscriptionNcmp in event'
+        given: 'a cmNotificationSubscriptionNcmp in event with unique subscription id'
             def jsonData = TestUtils.getResourceFileContent('cmSubscription/cmNotificationSubscriptionNcmpInEvent.json')
             def testEventConsumed = jsonObjectMapper.convertJsonString(jsonData, CmNotificationSubscriptionNcmpInEvent.class)
-            mockCmNotificationSubscriptionPersistenceService.isUniqueSubscriptionId('cm-subscription-001') >> true
+            mockCmNotificationSubscriptionPersistenceService.isUniqueSubscriptionId("test-id") >> true
+        and: 'the cache handler returns for relevant subscription id'
+            1 * mockDmiCmNotificationSubscriptionCacheHandler.get("test-id") >> testSubscriptionDetailsMap
+        and: 'the delta predicates is returned'
+            1 * mockCmNotificationSubscriptionDelta.getDelta(_) >> testListOfDeltaPredicates
+        and: 'the DMI in event mapper returns cm notification subscription event'
+            def testDmiInEvent = new CmNotificationSubscriptionDmiInEvent()
+            1 *  mockCmNotificationSubscriptionMappersHandler
+                .toCmNotificationSubscriptionDmiInEvent(testListOfDeltaPredicates) >> testDmiInEvent
         when: 'the valid and unique event is consumed'
             objectUnderTest.processSubscriptionCreateRequest(testEventConsumed)
         then: 'the subscription cache handler is called once'
-            1 * mockDmiCmNotificationSubscriptionCacheHandler.add('cm-subscription-001',_)
+            1 * mockDmiCmNotificationSubscriptionCacheHandler.add('test-id',_)
+        and: 'the events handler method to publish DMI event is called correct number of times with the correct parameters'
+            testSubscriptionDetailsMap.size() * mockCmNotificationSubscriptionEventsHandler.publishCmNotificationSubscriptionDmiInEvent(
+                "test-id", "dmi-1", "subscriptionCreateRequest", testDmiInEvent)
     }
 
     def 'Consume valid and but non-unique CmNotificationSubscription create message'() {
         given: 'a cmNotificationSubscriptionNcmp in event'
             def jsonData = TestUtils.getResourceFileContent('cmSubscription/cmNotificationSubscriptionNcmpInEvent.json')
             def testEventConsumed = jsonObjectMapper.convertJsonString(jsonData, CmNotificationSubscriptionNcmpInEvent.class)
-            mockCmNotificationSubscriptionPersistenceService.isUniqueSubscriptionId('cm-subscription-001') >> false
+            mockCmNotificationSubscriptionPersistenceService.isUniqueSubscriptionId('test-id') >> false
+        and: 'the NCMP out in event mapper returns an event for rejected request'
+            def testNcmpOutEvent = new CmNotificationSubscriptionNcmpOutEvent()
+            1 * mockCmNotificationSubscriptionMappersHandler.toCmNotificationSubscriptionNcmpOutEventForRejectedRequest(
+                "test-id",_) >> testNcmpOutEvent
         when: 'the valid but non-unique event is consumed'
             objectUnderTest.processSubscriptionCreateRequest(testEventConsumed)
-        then: 'the subscription out event publisher is called once'
-            1 * mockCmNotificationSubscriptionEventsHandler.publishCmNotificationSubscriptionNcmpOutEvent('cm-subscription-001', 'subscriptionCreateResponse', _, false)
+        then: 'the events handler method to publish DMI event is never called'
+            0 * mockCmNotificationSubscriptionEventsHandler.publishCmNotificationSubscriptionDmiInEvent(_,_,_,_)
+        and: 'the events handler method to publish NCMP out event is called once'
+            1 * mockCmNotificationSubscriptionEventsHandler.publishCmNotificationSubscriptionNcmpOutEvent(
+                'test-id', 'subscriptionCreateResponse', testNcmpOutEvent, false)
     }
 }

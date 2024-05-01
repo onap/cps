@@ -33,9 +33,9 @@ import java.util.concurrent.TimeUnit;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.events.EventsPublisher;
+import org.onap.cps.ncmp.api.impl.events.cmsubscription.CmNotificationSubscriptionMappersHandler;
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.CmNotificationSubscriptionNcmpOutEventPublishingTask;
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.DmiCmNotificationSubscriptionCacheHandler;
-import org.onap.cps.ncmp.api.impl.events.cmsubscription.mapper.CmNotificationSubscriptionNcmpOutEventMapper;
 import org.onap.cps.ncmp.events.cmsubscription_merge1_0_0.ncmp_to_client.CmNotificationSubscriptionNcmpOutEvent;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
@@ -56,7 +56,7 @@ public class CmNotificationSubscriptionNcmpOutEventProducer {
 
     private final EventsPublisher<CloudEvent> eventsPublisher;
     private final JsonObjectMapper jsonObjectMapper;
-    private final CmNotificationSubscriptionNcmpOutEventMapper cmNotificationSubscriptionNcmpOutEventMapper;
+    private final CmNotificationSubscriptionMappersHandler cmNotificationSubscriptionMappersHandler;
     private final DmiCmNotificationSubscriptionCacheHandler dmiCmNotificationSubscriptionCacheHandler;
     private final ScheduledExecutorService scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
     private static final Map<String, ScheduledFuture<?>> scheduledTasksPerSubscriptionId = new ConcurrentHashMap<>();
@@ -96,7 +96,7 @@ public class CmNotificationSubscriptionNcmpOutEventProducer {
                 cmNotificationSubscriptionNcmpOutEventPublishingTask =
                 new CmNotificationSubscriptionNcmpOutEventPublishingTask(cmNotificationSubscriptionNcmpOutEventTopic,
                         subscriptionId, eventType, eventsPublisher, jsonObjectMapper,
-                        cmNotificationSubscriptionNcmpOutEventMapper, dmiCmNotificationSubscriptionCacheHandler);
+                        cmNotificationSubscriptionMappersHandler, dmiCmNotificationSubscriptionCacheHandler);
         return scheduledExecutorService.schedule(cmNotificationSubscriptionNcmpOutEventPublishingTask,
                 cmNotificationSubscriptionDmiOutEventTimeoutInMs, TimeUnit.MILLISECONDS);
     }
