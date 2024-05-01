@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb6eda92_e6619115",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-05-01T09:02:22Z",
+      "side": 1,
+      "message": "yes, we can try this",
+      "parentUuid": "5ab45e77_3e56618b",
+      "range": {
+        "startLine": 138,
+        "startChar": 16,
+        "endLine": 138,
+        "endChar": 24
+      },
+      "revId": "a82622f9c915de4c6333cbe7e7b86bfb548e132b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c9f916bc_dbeb5901",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-04-30T12:00:07Z",
       "side": 1,
       "message": "if you really want to validate the JSON , then use the objectmappers readTree method to parse the JSON. U need to have some abstraction in the jsonObjectMapper for the readTree method. Also validation needs to be done in the DataRestController?\nAlso check if its really needed to validate ??",
+      "range": {
+        "startLine": 342,
+        "startChar": 4,
+        "endLine": 349,
+        "endChar": 5
+      },
+      "revId": "a82622f9c915de4c6333cbe7e7b86bfb548e132b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "642febcc_54efaba2",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-05-01T09:02:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c9f916bc_dbeb5901",
       "range": {
         "startLine": 342,
         "startChar": 4,
