@@ -110,7 +110,7 @@ class DmiModelOperationsSpec extends DmiOperationsBaseSpec {
                                                       [moduleName: 'mod2', revision: 'C', yangSource: 'other yang source']], HttpStatus.OK)
             def expectedModuleReferencesInRequest = '{"name":"mod1","revision":"A"},{"name":"mod2","revision":"X"}'
             mockDmiRestClient.postOperationWithJsonData("${dmiServiceName}/dmi/v1/ch/${cmHandleId}/moduleResources",
-                    '{"data":{"modules":[' + expectedModuleReferencesInRequest + ']},"cmHandleProperties":{}}', READ, NO_AUTH_HEADER) >> responseFromDmi
+                    '{"moduleSetTag":"tag1","data":{"modules":[' + expectedModuleReferencesInRequest + ']},"cmHandleProperties":{}}', READ, NO_AUTH_HEADER) >> responseFromDmi
         when: 'get new yang resources from DMI service'
             def result = objectUnderTest.getNewYangResourcesFromDmi(yangModelCmHandle, newModuleReferences)
         then: 'the result has the 2 expected yang (re)sources (order is not guaranteed)'
@@ -139,10 +139,10 @@ class DmiModelOperationsSpec extends DmiOperationsBaseSpec {
     def 'Retrieving yang resources, DMI property handling #scenario.'() {
         given: 'a cm handle'
             mockYangModelCmHandleRetrieval(dmiProperties)
-        and: 'a positive response from DMI service when it is called with the expected parameters'
+        and: 'a positive response from DMI service when it is called with the expected moduleSetTag, modules and properties'
             def responseFromDmi = new ResponseEntity<>([[moduleName: 'mod1', revision: 'A', yangSource: 'some yang source']], HttpStatus.OK)
             mockDmiRestClient.postOperationWithJsonData("${dmiServiceName}/dmi/v1/ch/${cmHandleId}/moduleResources",
-                    '{"data":{"modules":[{"name":"mod1","revision":"A"},{"name":"mod2","revision":"X"}]},"cmHandleProperties":' + expectedAdditionalPropertiesInRequest + '}',
+                    '{"moduleSetTag":"tag1","data":{"modules":[{"name":"mod1","revision":"A"},{"name":"mod2","revision":"X"}]},"cmHandleProperties":' + expectedAdditionalPropertiesInRequest + '}',
                     READ, NO_AUTH_HEADER) >> responseFromDmi
         when: 'get new yang resources from DMI service'
             def result = objectUnderTest.getNewYangResourcesFromDmi(yangModelCmHandle, newModuleReferences)
@@ -152,6 +152,24 @@ class DmiModelOperationsSpec extends DmiOperationsBaseSpec {
             scenario                                | dmiProperties               || expectedAdditionalPropertiesInRequest
             'with module references and properties' | [yangModelCmHandleProperty] || '{"prop1":"val1"}'
             'without properties'                    | []                          || '{}'
+    }
+
+    def 'Retrieving yang resources, moduleSetTag handling #scenario.'() {
+        given: 'a cm handle'
+            mockYangModelCmHandleRetrieval([], moduleSetTag)
+        and: 'a positive response from DMI service when it is called with the expected moduleSetTag'
+            def responseFromDmi = new ResponseEntity<>([[moduleName: 'mod1', revision: 'A', yangSource: 'some yang source']], HttpStatus.OK)
+            mockDmiRestClient.postOperationWithJsonData("${dmiServiceName}/dmi/v1/ch/${cmHandleId}/moduleResources",
+                '{' + expectedModuleSetTagInRequest + ',"data":{"modules":[{"name":"mod1","revision":"A"},{"name":"mod2","revision":"X"}]},"cmHandleProperties":{}}',
+                READ, NO_AUTH_HEADER) >> responseFromDmi
+        when: 'get new yang resources from DMI service'
+            def result = objectUnderTest.getNewYangResourcesFromDmi(yangModelCmHandle, newModuleReferences)
+        then: 'the result is the response from DMI service'
+            assert result == [mod1:'some yang source']
+        where: 'the following Module Set Tags are used'
+            scenario                                | moduleSetTag               || expectedModuleSetTagInRequest
+            'with blank Module Set Tag'             | ""                         || '"moduleSetTag":null'
+            'with module set tag'                   | "moduleSetTag1"            || '"moduleSetTag":"moduleSetTag1"'
     }
 
     def 'Retrieving yang resources from DMI with no module references.'() {
