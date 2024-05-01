@@ -201,7 +201,8 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
             def dmiRegistrationResponse = new DmiPluginRegistrationResponse(
                 createdCmHandles: [createCmHandleResponse],
                 updatedCmHandles: [updateCmHandleResponse],
-                removedCmHandles: [removeCmHandleResponse]
+                removedCmHandles: [removeCmHandleResponse],
+                upgradedCmHandles: [upgradeCmHandleResponse]
             )
             mockNetworkCmProxyDataService.updateDmiRegistrationAndSyncModule(*_) >> dmiRegistrationResponse
         when: 'registration endpoint is invoked'
@@ -218,15 +219,18 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
             responseBody.getFailedCreatedCmHandles() == expectedFailedCreatedCmHandle
             responseBody.getFailedUpdatedCmHandles() == expectedFailedUpdateCmHandle
             responseBody.getFailedRemovedCmHandles() == expectedFailedRemovedCmHandle
+            responseBody.getFailedUpgradeCmHandles() == expectedFailedUpgradedCmHandle
         where:
-        scenario               | createCmHandleResponse                 | updateCmHandleResponse                 | removeCmHandleResponse                 || expectedFailedCreatedCmHandle                 | expectedFailedUpdateCmHandle                  | expectedFailedRemovedCmHandle
-        'only create failed'   | expectedFailedResponse('cm-handle-1')  | expectedSuccessResponse('cm-handle-2') | expectedSuccessResponse('cm-handle-3') || [expectedUnknownErrorResponse('cm-handle-1')] | []                                            | []
-        'only update failed'   | expectedSuccessResponse('cm-handle-1') | expectedFailedResponse('cm-handle-2')  | expectedSuccessResponse('cm-handle-3') || []                                            | [expectedUnknownErrorResponse('cm-handle-2')] | []
-        'only delete failed'   | expectedSuccessResponse('cm-handle-1') | expectedSuccessResponse('cm-handle-2') | expectedFailedResponse('cm-handle-3')  || []                                            | []                                            | [expectedUnknownErrorResponse('cm-handle-3')]
-        'all three failed'     | expectedFailedResponse('cm-handle-1')  | expectedFailedResponse('cm-handle-2')  | expectedFailedResponse('cm-handle-3')  || [expectedUnknownErrorResponse('cm-handle-1')] | [expectedUnknownErrorResponse('cm-handle-2')] | [expectedUnknownErrorResponse('cm-handle-3')]
-        'create update failed' | expectedFailedResponse('cm-handle-1')  | expectedFailedResponse('cm-handle-2')  | expectedSuccessResponse('cm-handle-3') || [expectedUnknownErrorResponse('cm-handle-1')] | [expectedUnknownErrorResponse('cm-handle-2')] | []
-        'create delete failed' | expectedFailedResponse('cm-handle-1')  | expectedSuccessResponse('cm-handle-2') | expectedFailedResponse('cm-handle-3')  || [expectedUnknownErrorResponse('cm-handle-1')] | []                                            | [expectedUnknownErrorResponse('cm-handle-3')]
-        'update delete failed' | expectedSuccessResponse('cm-handle-1') | expectedFailedResponse('cm-handle-2')  | expectedFailedResponse('cm-handle-3')  || []                                            | [expectedUnknownErrorResponse('cm-handle-2')] | [expectedUnknownErrorResponse('cm-handle-3')]
+            scenario                | createCmHandleResponse                 | updateCmHandleResponse                 | removeCmHandleResponse                 | upgradeCmHandleResponse                || expectedFailedCreatedCmHandle                 | expectedFailedUpdateCmHandle                  | expectedFailedRemovedCmHandle                 | expectedFailedUpgradedCmHandle
+            'only create failed'    | expectedFailedResponse('cm-handle-1')  | expectedSuccessResponse('cm-handle-2') | expectedSuccessResponse('cm-handle-3') | expectedSuccessResponse('cm-handle-4') || [expectedUnknownErrorResponse('cm-handle-1')] | []                                            | []                                            | []
+            'only update failed'    | expectedSuccessResponse('cm-handle-1') | expectedFailedResponse('cm-handle-2')  | expectedSuccessResponse('cm-handle-3') | expectedSuccessResponse('cm-handle-4') || []                                            | [expectedUnknownErrorResponse('cm-handle-2')] | []                                            | []
+            'only delete failed'    | expectedSuccessResponse('cm-handle-1') | expectedSuccessResponse('cm-handle-2') | expectedFailedResponse('cm-handle-3')  | expectedSuccessResponse('cm-handle-4') || []                                            | []                                            | [expectedUnknownErrorResponse('cm-handle-3')] | []
+            'only upgrade failed'   | expectedSuccessResponse('cm-handle-1') | expectedFailedResponse('cm-handle-2')  | expectedSuccessResponse('cm-handle-3') | expectedFailedResponse('cm-handle-4')  || []                                            | [expectedUnknownErrorResponse('cm-handle-2')] | []                                            | [expectedUnknownErrorResponse('cm-handle-4')]
+            'all four failed'       | expectedFailedResponse('cm-handle-1')  | expectedFailedResponse('cm-handle-2')  | expectedFailedResponse('cm-handle-3')  | expectedFailedResponse('cm-handle-4')  || [expectedUnknownErrorResponse('cm-handle-1')] | [expectedUnknownErrorResponse('cm-handle-2')] | [expectedUnknownErrorResponse('cm-handle-3')] | [expectedUnknownErrorResponse('cm-handle-4')]
+            'create update failed'  | expectedFailedResponse('cm-handle-1')  | expectedFailedResponse('cm-handle-2')  | expectedSuccessResponse('cm-handle-3') | expectedSuccessResponse('cm-handle-4') || [expectedUnknownErrorResponse('cm-handle-1')] | [expectedUnknownErrorResponse('cm-handle-2')] | []                                            | []
+            'create delete failed'  | expectedFailedResponse('cm-handle-1')  | expectedSuccessResponse('cm-handle-2') | expectedFailedResponse('cm-handle-3')  | expectedSuccessResponse('cm-handle-4') || [expectedUnknownErrorResponse('cm-handle-1')] | []                                            | [expectedUnknownErrorResponse('cm-handle-3')] | []
+            'update delete failed'  | expectedSuccessResponse('cm-handle-1') | expectedFailedResponse('cm-handle-2')  | expectedFailedResponse('cm-handle-3')  | expectedSuccessResponse('cm-handle-4') || []                                            | [expectedUnknownErrorResponse('cm-handle-2')] | [expectedUnknownErrorResponse('cm-handle-3')] | []
+            'delete upgrade failed' | expectedSuccessResponse('cm-handle-1') | expectedSuccessResponse('cm-handle-2') | expectedFailedResponse('cm-handle-3')  | expectedFailedResponse('cm-handle-4')  || []                                            | []                                            | [expectedUnknownErrorResponse('cm-handle-3')] | [expectedUnknownErrorResponse('cm-handle-4')]
     }
 
     def 'Get all cm handle IDs by DMI plugin identifier.'() {
