@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74a07783_acdcccd8",
+        "filename": "k6-tests/ncmp/3-passthrough-read.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-01T16:30:04Z",
+      "side": 1,
+      "message": "This could be refactored to a method getRandomCmHandleId() in utils.js",
+      "range": {
+        "startLine": 39,
+        "startChar": 23,
+        "endLine": 39,
+        "endChar": 71
+      },
+      "revId": "4d42983b7dd84c546b0022e1512bbab3ca6a5a81",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
