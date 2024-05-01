@@ -70,7 +70,7 @@ paths:
           content:
             application/json:
               example:
-                status: 400 BAD_REQUEST
+                status: 400
                 message: Bad request error message
                 details: Bad request error details
               schema:
@@ -216,7 +216,7 @@ paths:
           content:
             application/json:
               example:
-                status: 400 BAD_REQUEST
+                status: 400
                 message: Bad request error message
                 details: Bad request error details
               schema:
@@ -331,7 +331,7 @@ paths:
           content:
             application/json:
               example:
-                status: 400 BAD_REQUEST
+                status: 400
                 message: Bad request error message
                 details: Bad request error details
               schema:
@@ -449,7 +449,7 @@ paths:
           content:
             application/json:
               example:
-                status: 400 BAD_REQUEST
+                status: 400
                 message: Bad request error message
                 details: Bad request error details
               schema:
@@ -571,7 +571,7 @@ paths:
           content:
             application/json:
               example:
-                status: 400 BAD_REQUEST
+                status: 400
                 message: Bad request error message
                 details: Bad request error details
               schema:
@@ -615,7 +615,8 @@ paths:
     post:
       description: This request will be handled asynchronously using messaging to
         the supplied topic. The rest response will be an acknowledge with a requestId
-        to identify the relevant messages.
+        to identify the relevant messages. A maximum of 50 cm handles per operation
+        is supported.
       operationId: executeDataOperationForCmHandles
       parameters:
       - allowReserved: true
@@ -652,7 +653,7 @@ paths:
           content:
             application/json:
               example:
-                status: 400 BAD_REQUEST
+                status: 400
                 message: Bad request error message
                 details: Bad request error details
               schema:
@@ -668,6 +669,17 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
           description: Forbidden
+        "413":
+          content:
+            application/json:
+              example:
+                status: 413
+                message: Payload Too Large error message
+                details: Payload Too Large error details
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: The request is larger than the server is willing or able to
+            process
         "500":
           content:
             application/json:
@@ -776,7 +788,7 @@ paths:
           content:
             application/json:
               example:
-                status: 400 BAD_REQUEST
+                status: 400
                 message: Bad request error message
                 details: Bad request error details
               schema:
@@ -843,7 +855,7 @@ paths:
           content:
             application/json:
               example:
-                status: 400 BAD_REQUEST
+                status: 400
                 message: Bad request error message
                 details: Bad request error details
               schema:
@@ -981,7 +993,7 @@ paths:
           content:
             application/json:
               example:
-                status: 400 BAD_REQUEST
+                status: 400
                 message: Bad request error message
                 details: Bad request error details
               schema:
@@ -1034,7 +1046,7 @@ paths:
           content:
             application/json:
               example:
-                status: 400 BAD_REQUEST
+                status: 400
                 message: Bad request error message
                 details: Bad request error details
               schema:
@@ -1087,7 +1099,7 @@ paths:
           content:
             application/json:
               example:
-                status: 400 BAD_REQUEST
+                status: 400
                 message: Bad request error message
                 details: Bad request error details
               schema:
@@ -1164,7 +1176,7 @@ paths:
           content:
             application/json:
               example:
-                status: 400 BAD_REQUEST
+                status: 400
                 message: Bad request error message
                 details: Bad request error details
               schema:
@@ -1227,7 +1239,7 @@ paths:
           content:
             application/json:
               example:
-                status: 400 BAD_REQUEST
+                status: 400
                 message: Bad request error message
                 details: Bad request error details
               schema:
@@ -1289,7 +1301,7 @@ paths:
           content:
             application/json:
               example:
-                status: 400 BAD_REQUEST
+                status: 400
                 message: Bad request error message
                 details: Bad request error details
               schema:
@@ -1603,7 +1615,7 @@ components:
       content:
         application/json:
           example:
-            status: 400 BAD_REQUEST
+            status: 400
             message: Bad request error message
             details: Bad request error details
           schema:
@@ -1662,6 +1674,16 @@ components:
           schema:
             $ref: '#/components/schemas/ErrorMessage'
       description: The specified resource was not found
+    PayloadTooLarge:
+      content:
+        application/json:
+          example:
+            status: 413
+            message: Payload Too Large error message
+            details: Payload Too Large error details
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+      description: The request is larger than the server is willing or able to process
   schemas:
     ErrorMessage:
       properties:
@@ -1743,6 +1765,8 @@ components:
           type: string
         targetIds:
           items:
+            description: "targeted cm handles, maximum of 50 supported. If this limit\
+              \ is exceeded the request wil be refused."
             example: "[\"da310eecdb8d44c2acc0ddaae01174b1\",\"c748c58f8e0b438f9fd1f28370b17d47\"\
               ]"
             type: string
