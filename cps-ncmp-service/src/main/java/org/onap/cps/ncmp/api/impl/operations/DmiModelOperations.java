@@ -24,7 +24,9 @@ package org.onap.cps.ncmp.api.impl.operations;
 import static org.onap.cps.ncmp.api.impl.operations.RequiredDmiService.MODEL;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -88,8 +90,8 @@ public class DmiModelOperations extends DmiOperations {
         if (newModuleReferences.isEmpty()) {
             return Collections.emptyMap();
         }
-        final String jsonWithDataAndDmiProperties = getRequestBodyToFetchYangResources(
-            newModuleReferences, yangModelCmHandle.getDmiProperties());
+        final String jsonWithDataAndDmiProperties = getRequestBodyToFetchYangResources(newModuleReferences,
+                yangModelCmHandle.getDmiProperties(), yangModelCmHandle.getModuleSetTag());
         final ResponseEntity<Object> responseEntity = getResourceFromDmiWithJsonData(
             yangModelCmHandle.resolveDmiServiceName(MODEL),
             jsonWithDataAndDmiProperties,
@@ -117,11 +119,16 @@ public class DmiModelOperations extends DmiOperations {
     }
 
     private static String getRequestBodyToFetchYangResources(final Collection<ModuleReference> newModuleReferences,
-        final List<YangModelCmHandle.Property> dmiProperties) {
+                                                             final List<YangModelCmHandle.Property> dmiProperties,
+                                                             final String moduleSetTag) {
         final JsonArray moduleReferencesAsJson = getModuleReferencesAsJson(newModuleReferences);
         final JsonObject data = new JsonObject();
         data.add("modules", moduleReferencesAsJson);
         final JsonObject jsonRequestObject = new JsonObject();
+        if (!moduleSetTag.isEmpty()) {
+            final JsonElement moduleSetTagAsJson = JsonParser.parseString(moduleSetTag);
+            jsonRequestObject.add("moduleSetTag", moduleSetTagAsJson);
+        }
         jsonRequestObject.add("data", data);
         jsonRequestObject.add("cmHandleProperties", toJsonObject(dmiProperties));
         return jsonRequestObject.toString();
