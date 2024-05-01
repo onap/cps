@@ -38,10 +38,6 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-        </dependency>
-        <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>cps-rest</artifactId>
             <scope>test</scope>
@@ -64,6 +60,11 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>cps-ncmp-service</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>mockwebserver</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
