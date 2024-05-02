@@ -20,6 +20,8 @@
 
 package org.onap.cps.integration.base
 
+import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence
+
 import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
 import org.onap.cps.api.CpsAnchorService
@@ -118,6 +120,9 @@ abstract class CpsIntegrationSpecBase extends Specification {
 
     @Autowired
     JsonObjectMapper jsonObjectMapper
+
+    @Autowired
+    InventoryPersistence inventoryPersistence
 
     MockRestServiceServer mockDmiServer = null
 
