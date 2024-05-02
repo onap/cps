@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a51121d_27ea1e9c",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-02T08:37:28Z",
+      "side": 1,
+      "message": "This test case should only have upgrade failure, but it actually has update (cm-handle-2) and upgrade (cm-handle-4) failure",
+      "range": {
+        "startLine": 228,
+        "startChar": 38,
+        "endLine": 228,
+        "endChar": 392
+      },
+      "revId": "ae09ccd3f4f84f1f46de22b79ee5f5e93d140846",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
