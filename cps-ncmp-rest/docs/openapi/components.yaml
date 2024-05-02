@@ -621,6 +621,17 @@ components:
         sample 1:
           value:
             topic: my-topic-name
+    moduleSetTagParamInQuery:
+      name: moduleSetTag
+      in: query
+      description: moduleSetTag parameter in query.
+      required: false
+      schema:
+        type: string
+      allowReserved: true
+      examples:
+        sample 1:
+          value: tag1
     requiredTopicParamInQuery:
       name: topic
       in: query

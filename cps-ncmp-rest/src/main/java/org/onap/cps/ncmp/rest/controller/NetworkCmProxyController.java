@@ -108,6 +108,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                              final String resourceIdentifier,
                                                              final String optionsParamInQuery,
                                                              final String topicParamInQuery,
+                                                             final String moduleTagSetParamInQuery,
                                                              final Boolean includeDescendants,
                                                              final String authorization) {
         final NcmpDatastoreRequestHandler ncmpDatastoreRequestHandler = getNcmpDatastoreRequestHandler(datastoreName);
