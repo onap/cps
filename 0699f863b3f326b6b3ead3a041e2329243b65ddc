@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5cde8039_f4d56cf5",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-05-02T10:34:31Z",
+      "side": 1,
+      "message": "y do we not have contentType as header in this API ??\nsimilar to what we have in the createNode api.\nany reason ??\n\nif not than we should have that header in place and then we dont event have to introduce this logic to parse the json data..any thoughts??",
+      "range": {
+        "startLine": 141,
+        "startChar": 40,
+        "endLine": 141,
+        "endChar": 60
+      },
+      "revId": "0699f863b3f326b6b3ead3a041e2329243b65ddc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e7e900c2_3a00f261",
         "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
         "patchSetId": 15
