@@ -20,6 +20,9 @@
 
 package org.onap.cps.integration.performance.base
 
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
+
 import org.onap.cps.integration.ResourceMeter
 import org.onap.cps.spi.FetchDescendantsOption
 
@@ -60,6 +63,7 @@ class NcmpPerfTestBase extends PerfTestBase {
 
     def createInitialData() {
         addRegistryData()
+        addRegistryDataWithAlternateIdAsPath()
         addCmSubscriptionData()
     }
 
@@ -76,6 +80,18 @@ class NcmpPerfTestBase extends PerfTestBase {
         for (def i = 0; i < TOTAL_CM_HANDLES; i += batchSize) {
             def data = '{ "cm-handles": [' + (1..batchSize).collect { innerNodeJsonTemplate.replace('CMHANDLE_ID_HERE', (it + i).toString()) }.join(',') + ']}'
             cpsDataService.saveListElements(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_ANCHOR, '/dmi-registry', data, now)
+        }
+    }
+
+    def addRegistryDataWithAlternateIdAsPath() {
+        def innerNodeJsonTemplate = readResourceDataFile('ncmp-registry/innerCmHandleNode.json')
+        def batchSize = 10
+        for (def i = 0; i < TOTAL_CM_HANDLES; i += batchSize) {
+            def data = '{ "cm-handles": [' + (1..batchSize).collect {
+                innerNodeJsonTemplate.replace('CM_HANDLE_ID_HERE', (it + i).toString())
+                        .replace('ALTERNATE_ID_AS_PATH', (it + i).toString())
+            }.join(',') + ']}'
+            cpsDataService.saveListElements(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry', data, now)
         }
     }
 
