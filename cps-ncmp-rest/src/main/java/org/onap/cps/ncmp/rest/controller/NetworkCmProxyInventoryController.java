@@ -96,8 +96,9 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
     private boolean allRegistrationsSuccessful(
         final DmiPluginRegistrationErrorResponse dmiPluginRegistrationErrorResponse) {
         return dmiPluginRegistrationErrorResponse.getFailedCreatedCmHandles().isEmpty()
-            && dmiPluginRegistrationErrorResponse.getFailedUpdatedCmHandles().isEmpty()
-            && dmiPluginRegistrationErrorResponse.getFailedRemovedCmHandles().isEmpty();
+                && dmiPluginRegistrationErrorResponse.getFailedUpdatedCmHandles().isEmpty()
+                && dmiPluginRegistrationErrorResponse.getFailedRemovedCmHandles().isEmpty()
+                && dmiPluginRegistrationErrorResponse.getFailedUpgradeCmHandles().isEmpty();
     }
 
     private DmiPluginRegistrationErrorResponse getFailureRegistrationResponse(
