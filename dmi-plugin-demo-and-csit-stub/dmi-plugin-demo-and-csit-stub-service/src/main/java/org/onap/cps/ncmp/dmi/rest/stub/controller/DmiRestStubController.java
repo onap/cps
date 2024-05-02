@@ -205,6 +205,7 @@ public class DmiRestStubController {
             @RequestParam(value = "resourceIdentifier") final String resourceIdentifier,
             @RequestParam(value = "options", required = false) final String options,
             @RequestParam(value = "topic", required = false) final String topic,
+            @RequestParam(value = "moduleSetTag", required = false) final String moduleSetTag,
             @RequestHeader(value = "Authorization", required = false) final String authorization) {
         log.info("DMI AUTH HEADER: {}", authorization);
         delay(dataForCmHandleDelayMs);

@@ -69,6 +69,7 @@ public class NetworkCmProxyStubController implements NetworkCmProxyApi {
                                                              final String resourceIdentifier,
                                                              final String optionsParamInQuery,
                                                              final String topicParamInQuery,
+                                                             final String moduleSetTagParamInQuery,
                                                              final Boolean includeDescendants,
                                                              final String authorization) {
         if (DatastoreType.PASSTHROUGH_OPERATIONAL == DatastoreType.fromDatastoreName(datastoreName)) {
