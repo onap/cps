@@ -31,6 +31,7 @@ resourceDataForCmHandle:
       - $ref: 'components.yaml#/components/parameters/resourceIdentifierInQuery'
       - $ref: 'components.yaml#/components/parameters/optionsParamInQuery'
       - $ref: 'components.yaml#/components/parameters/topicParamInQuery'
+      - $ref: 'components.yaml#/components/parameters/moduleSetTagParamInQuery'
       - $ref: 'components.yaml#/components/parameters/includeDescendantsOptionInQuery'
       - $ref: 'components.yaml#/components/parameters/authorizationParamInHeader'
     responses:
