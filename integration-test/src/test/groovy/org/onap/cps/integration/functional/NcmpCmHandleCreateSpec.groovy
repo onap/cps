@@ -41,19 +41,13 @@ class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
 
     def kafkaConsumer = KafkaTestContainer.getConsumer('ncmp-group', StringDeserializer.class)
 
-    static final MODULE_REFERENCES_RESPONSE_A = readResourceDataFile('mock-dmi-responses/bookStoreAWithModules_M1_M2_Response.json')
-    static final MODULE_RESOURCES_RESPONSE_A = readResourceDataFile('mock-dmi-responses/bookStoreAWithModules_M1_M2_ResourcesResponse.json')
-    static final MODULE_REFERENCES_RESPONSE_B = readResourceDataFile('mock-dmi-responses/bookStoreBWithModules_M1_M3_Response.json')
-    static final MODULE_RESOURCES_RESPONSE_B = readResourceDataFile('mock-dmi-responses/bookStoreBWithModules_M1_M3_ResourcesResponse.json')
-
     def setup() {
         objectUnderTest = networkCmProxyDataService
-        mockDmiWillRespondToHealthChecks(DMI_URL)
     }
 
     def 'CM Handle registration is successful.'() {
         given: 'DMI will return modules when requested'
-            mockDmiResponsesForModuleSync(DMI_URL, 'ch-1', MODULE_REFERENCES_RESPONSE_A, MODULE_RESOURCES_RESPONSE_A)
+            dmiDispatcher.moduleNamesPerCmHandleId['ch-1'] = ['M1', 'M2']
 
         and: 'consumer subscribed to topic'
             kafkaConsumer.subscribe(['ncmp-events'])
@@ -88,16 +82,13 @@ class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
         and: 'the CM-handle has expected modules'
             assert ['M1', 'M2'] == objectUnderTest.getYangResourcesModuleReferences('ch-1').moduleName.sort()
 
-        and: 'DMI received expected requests'
-            mockDmiServer.verify()
-
         cleanup: 'deregister CM handle'
             deregisterCmHandle(DMI_URL, 'ch-1')
     }
 
     def 'CM Handle goes to LOCKED state when DMI gives error during module sync.'() {
         given: 'DMI is not available to handle requests'
-            mockDmiIsNotAvailableForModuleSync(DMI_URL, 'ch-1')
+            dmiDispatcher.isAvailable = false
 
         when: 'a CM-handle is registered for creation'
             def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: 'ch-1')
@@ -122,13 +113,11 @@ class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
     }
 
     def 'Create a CM-handle with existing moduleSetTag.'() {
-        given: 'existing CM-handles cm-1 with moduleSetTag "A", and cm-2 with moduleSetTag "B"'
-            mockDmiResponsesForModuleSync(DMI_URL, 'ch-1', MODULE_REFERENCES_RESPONSE_A, MODULE_RESOURCES_RESPONSE_A)
-            mockDmiResponsesForModuleSync(DMI_URL, 'ch-2', MODULE_REFERENCES_RESPONSE_B, MODULE_RESOURCES_RESPONSE_B)
+        given: 'DMI will return modules when requested'
+            dmiDispatcher.moduleNamesPerCmHandleId = ['ch-1': ['M1', 'M2'], 'ch-2': ['M1', 'M3']]
+        and: 'existing CM-handles cm-1 with moduleSetTag "A", and cm-2 with moduleSetTag "B"'
             registerCmHandle(DMI_URL, 'ch-1', 'A')
             registerCmHandle(DMI_URL, 'ch-2', 'B')
-            assert ['M1', 'M2'] == objectUnderTest.getYangResourcesModuleReferences('ch-1').moduleName.sort()
-            assert ['M1', 'M3'] == objectUnderTest.getYangResourcesModuleReferences('ch-2').moduleName.sort()
 
         when: 'a CM-handle is registered for creation with moduleSetTag "B"'
             def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: 'ch-3', moduleSetTag: 'B')
@@ -152,11 +141,7 @@ class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
 
     def 'CM Handle retry after failed module sync.'() {
         given: 'DMI is not initially available to handle requests'
-            mockDmiIsNotAvailableForModuleSync(DMI_URL, 'ch-1')
-            mockDmiIsNotAvailableForModuleSync(DMI_URL, 'ch-2')
-        and: 'DMI will be available for retry'
-            mockDmiResponsesForModuleSync(DMI_URL, 'ch-1', MODULE_REFERENCES_RESPONSE_A, MODULE_RESOURCES_RESPONSE_A)
-            mockDmiResponsesForModuleSync(DMI_URL, 'ch-2', MODULE_REFERENCES_RESPONSE_B, MODULE_RESOURCES_RESPONSE_B)
+            dmiDispatcher.isAvailable = false
 
         when: 'CM-handles are registered for creation'
             def cmHandlesToCreate = [new NcmpServiceCmHandle(cmHandleId: 'ch-1'), new NcmpServiceCmHandle(cmHandleId: 'ch-2')]
@@ -179,7 +164,11 @@ class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
             assert objectUnderTest.getCmHandleCompositeState('ch-1').cmHandleState == CmHandleState.ADVISED
             assert objectUnderTest.getCmHandleCompositeState('ch-2').cmHandleState == CmHandleState.ADVISED
 
-        when: 'module sync runs'
+        when: 'DMI is available for retry'
+            dmiDispatcher.isAvailable = true
+        and: 'DMI will return expected modules'
+            dmiDispatcher.moduleNamesPerCmHandleId = ['ch-1': ['M1', 'M2'], 'ch-2': ['M1', 'M3']]
+        and: 'module sync runs'
             moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
         then: 'CM-handles go to READY state'
             new PollingConditions().within(3, () -> {
@@ -192,8 +181,6 @@ class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
         and: 'CM-handles have expected module set tags (blank)'
             assert objectUnderTest.getNcmpServiceCmHandle('ch-1').moduleSetTag == ''
             assert objectUnderTest.getNcmpServiceCmHandle('ch-2').moduleSetTag == ''
-        and: 'DMI received expected requests'
-            mockDmiServer.verify()
 
         cleanup: 'deregister CM handle'
             deregisterCmHandles(DMI_URL, ['ch-1', 'ch-2'])

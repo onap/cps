@@ -32,20 +32,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 class NcmpRestApiSpec extends CpsIntegrationSpecBase {
 
-    static final MODULE_REFERENCES_RESPONSE_A = readResourceDataFile('mock-dmi-responses/bookStoreAWithModules_M1_M2_Response.json')
-    static final MODULE_RESOURCES_RESPONSE_A = readResourceDataFile('mock-dmi-responses/bookStoreAWithModules_M1_M2_ResourcesResponse.json')
-    static final MODULE_REFERENCES_RESPONSE_B = readResourceDataFile('mock-dmi-responses/bookStoreBWithModules_M1_M3_Response.json')
-    static final MODULE_RESOURCES_RESPONSE_B = readResourceDataFile('mock-dmi-responses/bookStoreBWithModules_M1_M3_ResourcesResponse.json')
-
-    def setup() {
-        mockDmiWillRespondToHealthChecks(DMI_URL)
-    }
-
     def 'Register CM Handles using REST API.'() {
         given: 'DMI will return modules'
-            mockDmiResponsesForModuleSync(DMI_URL, 'ch-1', MODULE_REFERENCES_RESPONSE_A, MODULE_RESOURCES_RESPONSE_A)
-            mockDmiResponsesForModuleSync(DMI_URL, 'ch-2', MODULE_REFERENCES_RESPONSE_A, MODULE_RESOURCES_RESPONSE_A)
-            mockDmiResponsesForModuleSync(DMI_URL, 'ch-3', MODULE_REFERENCES_RESPONSE_B, MODULE_RESOURCES_RESPONSE_B)
+            dmiDispatcher.moduleNamesPerCmHandleId = [
+                'ch-1': ['M1', 'M2'],
+                'ch-2': ['M1', 'M2'],
+                'ch-3': ['M1', 'M3']
+            ]
         and: 'a POST request is made to register the CM Handles'
             def requestBody = '{"dmiPlugin":"'+DMI_URL+'","createdCmHandles":[{"cmHandle":"ch-1"},{"cmHandle":"ch-2"},{"cmHandle":"ch-3"}]}'
             mvc.perform(post('/ncmpInventory/v1/ch').contentType(MediaType.APPLICATION_JSON).content(requestBody))
@@ -53,10 +46,12 @@ class NcmpRestApiSpec extends CpsIntegrationSpecBase {
         when: 'module sync runs'
             moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
         then: 'CM-handles go to READY state'
-            new PollingConditions(timeout: 3, delay: 0.5).eventually {
-                mvc.perform(get('/ncmp/v1/ch/ch-1'))
-                        .andExpect(status().isOk())
-                        .andExpect(jsonPath('$.state.cmHandleState').value('READY'))
+            new PollingConditions().eventually {
+                (1..3).each {
+                    mvc.perform(get('/ncmp/v1/ch/ch-'+it))
+                            .andExpect(status().isOk())
+                            .andExpect(jsonPath('$.state.cmHandleState').value('READY'))
+                }
             }
     }
 
@@ -71,7 +66,7 @@ class NcmpRestApiSpec extends CpsIntegrationSpecBase {
                     ]
                 }""".formatted(moduleName)
         expect: "a search for module ${moduleName} returns expected CM handles"
-            mvc.perform(post(DMI_URL+'/ncmp/v1/ch/id-searches').contentType(MediaType.APPLICATION_JSON).content(requestBodyWithModuleCondition))
+            mvc.perform(post('/ncmp/v1/ch/id-searches').contentType(MediaType.APPLICATION_JSON).content(requestBodyWithModuleCondition))
                     .andExpect(status().is2xxSuccessful())
                     .andExpect(jsonPath('$[*]', containsInAnyOrder(expectedCmHandles.toArray())))
                     .andExpect(jsonPath('$', hasSize(expectedCmHandles.size())));
