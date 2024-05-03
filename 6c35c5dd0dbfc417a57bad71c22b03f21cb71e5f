@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ceab8d6a_1f432828",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionHandlerServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-05-03T12:56:02Z",
+      "side": 1,
+      "message": "NB: Not used import in this test, better to remove",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 107
+      },
+      "revId": "6c35c5dd0dbfc417a57bad71c22b03f21cb71e5f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b186886d_7e7a0bad",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionHandlerServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-05-03T12:56:02Z",
+      "side": 1,
+      "message": "NB: this is the first time in the code seen this 😊",
+      "range": {
+        "startLine": 75,
+        "startChar": 14,
+        "endLine": 75,
+        "endChar": 16
+      },
+      "revId": "6c35c5dd0dbfc417a57bad71c22b03f21cb71e5f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
