@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe8c1f0e_3b903891",
+        "filename": "integration-test/pom.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-05-03T11:51:03Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "28e51802_d86ad1b2",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 21
+      },
+      "revId": "b738620c971281238a68d5b7da93ebea4b2eef2c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f68db668_fa8de4ee",
@@ -81,6 +105,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbf7674e_033d1bf8",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpBearerTokenPassthroughSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-05-03T11:51:03Z",
+      "side": 1,
+      "message": "Removed it from base class and kept into specific class only whenever it is needed.",
+      "parentUuid": "f68db668_fa8de4ee",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 71
+      },
+      "revId": "b738620c971281238a68d5b7da93ebea4b2eef2c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dd2f40f0_cddbde3f",
@@ -94,6 +142,30 @@
       "writtenOn": "2024-05-02T14:36:35Z",
       "side": 1,
       "message": "Can\u0027t we handle the token operation in the base class - DmiDispatcher ?",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 84
+      },
+      "revId": "b738620c971281238a68d5b7da93ebea4b2eef2c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0730cd7_aa85ef1d",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpBearerTokenPassthroughSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-05-03T11:51:03Z",
+      "side": 1,
+      "message": "this token is specific to this test only.",
+      "parentUuid": "dd2f40f0_cddbde3f",
       "range": {
         "startLine": 57,
         "startChar": 0,
