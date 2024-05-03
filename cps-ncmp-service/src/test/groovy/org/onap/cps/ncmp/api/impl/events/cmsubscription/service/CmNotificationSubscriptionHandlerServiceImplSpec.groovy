@@ -72,6 +72,9 @@ class CmNotificationSubscriptionHandlerServiceImplSpec extends Specification{
         and: 'the events handler method to publish DMI event is called correct number of times with the correct parameters'
             testSubscriptionDetailsMap.size() * mockCmNotificationSubscriptionEventsHandler.publishCmNotificationSubscriptionDmiInEvent(
                 "test-id", "dmi-1", "subscriptionCreateRequest", testDmiInEvent)
+        and: 'we schedule to send the response after configured time from the cache'
+            1 * mockCmNotificationSubscriptionEventsHandler.publishCmNotificationSubscriptionNcmpOutEvent(
+                "test-id", "subscriptionCreateResponse", null, true)
     }
 
     def 'Consume valid and but non-unique CmNotificationSubscription create message'() {
