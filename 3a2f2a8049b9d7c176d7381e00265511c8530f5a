@@ -16,6 +16,52 @@
       "message": "recheck",
       "revId": "3a2f2a8049b9d7c176d7381e00265511c8530f5a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85bef74f_aad40782",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/CpsDataUpdateEventsService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-05-03T13:19:00Z",
+      "side": 1,
+      "message": "Better to add Nordix copyright below TechMahindra.",
+      "range": {
+        "startLine": 3,
+        "startChar": 3,
+        "endLine": 3,
+        "endChar": 39
+      },
+      "revId": "3a2f2a8049b9d7c176d7381e00265511c8530f5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52e5d457_01a1de32",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/DateTimeUtility.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-05-03T13:19:00Z",
+      "side": 1,
+      "message": "I would suggest to keep the copyright (c) Bell Canada along with our Nordix one. Since we just use the same class as is, moving from test to src.",
+      "range": {
+        "startLine": 3,
+        "startChar": 3,
+        "endLine": 3,
+        "endChar": 39
+      },
+      "revId": "3a2f2a8049b9d7c176d7381e00265511c8530f5a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
