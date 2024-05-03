@@ -84,12 +84,26 @@ class CpsDataUpdateEventsServiceSpec extends Specification {
             def anchor = new Anchor('anchor01', 'dataspace01', 'schema01');
             def operation = CREATE
             def observedTimestamp = OffsetDateTime.now()
-        and: 'notificationsEnabled is flase'
+        and: 'notificationsEnabled is false'
             objectUnderTest.notificationsEnabled = false
         when: 'service is called to publish data update event'
             objectUnderTest.topicName = "cps-core-event"
             objectUnderTest.publishCpsDataUpdateEvent(anchor, '/', operation, observedTimestamp)
         then: 'the event contains the required attributes'
             0 * mockEventsPublisher.publishCloudEvent('cps-core-event', 'dataspace01:anchor01', _)
+    }
+
+    def 'publish cps update event when no timestamp provided'() {
+        given: 'an anchor, operation and null timestamp'
+            def anchor = new Anchor('anchor01', 'dataspace01', 'schema01');
+            def operation = CREATE
+            def observedTimestamp = null
+        and: 'notificationsEnabled is true'
+            objectUnderTest.notificationsEnabled = true
+        when: 'service is called to publish data update event'
+            objectUnderTest.topicName = "cps-core-event"
+            objectUnderTest.publishCpsDataUpdateEvent(anchor, '/', operation, observedTimestamp)
+        then: 'the event is published'
+            1 * mockEventsPublisher.publishCloudEvent('cps-core-event', 'dataspace01:anchor01', _)
     }
 }

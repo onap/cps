@@ -30,8 +30,8 @@ public interface DateTimeUtility {
     DateTimeFormatter ISO_TIMESTAMP_FORMATTER = DateTimeFormatter.ofPattern(ISO_TIMESTAMP_PATTERN);
 
     static OffsetDateTime toOffsetDateTime(String datetTimestampAsString) {
-        return ! StringUtils.hasLength(datetTimestampAsString)
-            ? null : OffsetDateTime.parse(datetTimestampAsString, ISO_TIMESTAMP_FORMATTER);
+        return !StringUtils.hasLength(datetTimestampAsString) ? null
+                       : OffsetDateTime.parse(datetTimestampAsString, ISO_TIMESTAMP_FORMATTER);
     }
 
     static String toString(OffsetDateTime offsetDateTime) {
