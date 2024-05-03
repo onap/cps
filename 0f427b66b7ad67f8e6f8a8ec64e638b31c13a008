@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a1e9f00_ee2c55d6",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/CpsDataUpdateEventsService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-05-03T13:29:38Z",
+      "side": 1,
+      "message": "Modifications Copyright (C) 2024 Nordix Foundation",
+      "range": {
+        "startLine": 4,
+        "startChar": 3,
+        "endLine": 4,
+        "endChar": 40
+      },
+      "revId": "0f427b66b7ad67f8e6f8a8ec64e638b31c13a008",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5268e13b_1434d358",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/DateTimeUtility.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-05-03T13:29:38Z",
+      "side": 1,
+      "message": "Modifications Copyright (C) 2024 Nordix Foundation",
+      "range": {
+        "startLine": 4,
+        "startChar": 3,
+        "endLine": 4,
+        "endChar": 40
+      },
+      "revId": "0f427b66b7ad67f8e6f8a8ec64e638b31c13a008",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
