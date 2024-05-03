@@ -31,7 +31,7 @@ public interface DateTimeUtility {
 
     static OffsetDateTime toOffsetDateTime(String datetTimestampAsString) {
         return ! StringUtils.hasLength(datetTimestampAsString)
-            ? null : OffsetDateTime.parse(datetTimestampAsString, ISO_TIMESTAMP_FORMATTER);
+                       ? null : OffsetDateTime.parse(datetTimestampAsString, ISO_TIMESTAMP_FORMATTER);
     }
 
     static String toString(OffsetDateTime offsetDateTime) {
