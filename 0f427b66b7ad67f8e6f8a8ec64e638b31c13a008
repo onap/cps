@@ -48,6 +48,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b16e5d87_c8d49ef0",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/CpsDataUpdateEventsService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-05-03T14:10:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7fecc71b_33aee7ea",
+      "range": {
+        "startLine": 4,
+        "startChar": 3,
+        "endLine": 4,
+        "endChar": 40
+      },
+      "revId": "0f427b66b7ad67f8e6f8a8ec64e638b31c13a008",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5268e13b_1434d358",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "same comment as before.",
       "parentUuid": "5268e13b_1434d358",
+      "range": {
+        "startLine": 4,
+        "startChar": 3,
+        "endLine": 4,
+        "endChar": 40
+      },
+      "revId": "0f427b66b7ad67f8e6f8a8ec64e638b31c13a008",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63b7d9b5_1e64bcb0",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/DateTimeUtility.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-05-03T14:10:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "90f7518c_aee5af74",
       "range": {
         "startLine": 4,
         "startChar": 3,
