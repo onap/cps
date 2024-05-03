@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8414132_8bcbe38c",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-05-03T06:05:20Z",
+      "side": 1,
+      "message": "contentType header is also existing in the interface, So need to go for this",
+      "parentUuid": "5cde8039_f4d56cf5",
+      "range": {
+        "startLine": 141,
+        "startChar": 40,
+        "endLine": 141,
+        "endChar": 60
+      },
+      "revId": "0699f863b3f326b6b3ead3a041e2329243b65ddc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e7e900c2_3a00f261",
