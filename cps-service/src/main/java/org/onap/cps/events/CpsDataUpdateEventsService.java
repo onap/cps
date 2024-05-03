@@ -31,6 +31,7 @@ import org.onap.cps.events.model.CpsDataUpdatedEvent;
 import org.onap.cps.events.model.Data;
 import org.onap.cps.events.model.Data.Operation;
 import org.onap.cps.spi.model.Anchor;
+import org.onap.cps.utils.DateTimeUtility;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -77,7 +78,7 @@ public class CpsDataUpdateEventsService {
                                                           final Operation rootNodeOperation) {
         final CpsDataUpdatedEvent cpsDataUpdatedEvent = new CpsDataUpdatedEvent();
         final Data updateEventData = new Data();
-        updateEventData.setObservedTimestamp(observedTimestamp.toString());
+        updateEventData.setObservedTimestamp(DateTimeUtility.toString(observedTimestamp));
         updateEventData.setDataspaceName(anchor.getDataspaceName());
         updateEventData.setAnchorName(anchor.getName());
         updateEventData.setSchemaSetName(anchor.getSchemaSetName());
