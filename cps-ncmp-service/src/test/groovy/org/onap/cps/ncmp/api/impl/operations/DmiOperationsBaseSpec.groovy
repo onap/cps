@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2023 Nordix Foundation
+ *  Copyright (C) 2021-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ package org.onap.cps.ncmp.api.impl.operations
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient
-import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration
+import org.onap.cps.ncmp.api.impl.config.DmiWebClientConfiguration
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
@@ -50,7 +50,7 @@ abstract class DmiOperationsBaseSpec extends Specification {
     ObjectMapper spyObjectMapper = Spy()
 
     @SpringBean
-    DmiServiceUrlBuilder dmiServiceUrlBuilder = new DmiServiceUrlBuilder(new NcmpConfiguration.DmiProperties(), mockCpsValidator)
+    DmiServiceUrlBuilder dmiServiceUrlBuilder = new DmiServiceUrlBuilder(new DmiWebClientConfiguration.DmiProperties(), mockCpsValidator)
 
     def yangModelCmHandle = new YangModelCmHandle()
     def static dmiServiceName = 'some service name'

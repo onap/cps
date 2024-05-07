@@ -23,9 +23,10 @@ package org.onap.cps.ncmp.rest.exceptions;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.ncmp.api.impl.exception.DmiClientRequestException;
 import org.onap.cps.ncmp.api.impl.exception.DmiRequestException;
-import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException;
 import org.onap.cps.ncmp.api.impl.exception.InvalidDatastoreException;
+import org.onap.cps.ncmp.api.impl.exception.InvalidDmiResourceUrlException;
 import org.onap.cps.ncmp.api.impl.exception.NcmpException;
 import org.onap.cps.ncmp.api.impl.exception.ServerNcmpException;
 import org.onap.cps.ncmp.rest.controller.NetworkCmProxyController;
@@ -69,14 +70,15 @@ public class NetworkCmProxyRestExceptionHandler {
         return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception);
     }
 
-    @ExceptionHandler({HttpClientRequestException.class})
+    @ExceptionHandler({DmiClientRequestException.class})
     public static ResponseEntity<Object> handleClientRequestExceptions(
-            final HttpClientRequestException httpClientRequestException) {
-        return wrapDmiErrorResponse(httpClientRequestException);
+            final DmiClientRequestException dmiClientRequestException) {
+        return wrapDmiErrorResponse(dmiClientRequestException);
     }
 
     @ExceptionHandler({DmiRequestException.class, DataValidationException.class, OperationNotSupportedException.class,
-            HttpMessageNotReadableException.class, InvalidTopicException.class, InvalidDatastoreException.class})
+            HttpMessageNotReadableException.class, InvalidTopicException.class, InvalidDatastoreException.class,
+            InvalidDmiResourceUrlException.class})
     public static ResponseEntity<Object> handleDmiRequestExceptions(final Exception exception) {
         return buildErrorResponse(HttpStatus.BAD_REQUEST, exception);
     }
@@ -115,13 +117,13 @@ public class NetworkCmProxyRestExceptionHandler {
         return new ResponseEntity<>(errorMessage, status);
     }
 
-    private static ResponseEntity<Object> wrapDmiErrorResponse(final HttpClientRequestException
-                                                                     httpClientRequestException) {
+    private static ResponseEntity<Object> wrapDmiErrorResponse(final DmiClientRequestException
+                                                                       dmiClientRequestException) {
         final var dmiErrorMessage = new DmiErrorMessage();
         final var dmiErrorResponse = new DmiErrorMessageDmiResponse();
-        dmiErrorResponse.setHttpCode(httpClientRequestException.getHttpStatus());
-        dmiErrorResponse.setBody(httpClientRequestException.getDetails());
-        dmiErrorMessage.setMessage(httpClientRequestException.getMessage());
+        dmiErrorResponse.setHttpCode(dmiClientRequestException.getHttpStatusCode());
+        dmiErrorResponse.setBody(dmiClientRequestException.getResponseBodyAsString());
+        dmiErrorMessage.setMessage(dmiClientRequestException.getMessage());
         dmiErrorMessage.setDmiResponse(dmiErrorResponse);
         return new ResponseEntity<>(dmiErrorMessage, HttpStatus.BAD_GATEWAY);
     }
