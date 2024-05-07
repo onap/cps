@@ -57,20 +57,26 @@ public class CmNotificationSubscriptionHandlerServiceImpl implements CmNotificat
         if (cmNotificationSubscriptionPersistenceService.isUniqueSubscriptionId(subscriptionId)) {
             dmiCmNotificationSubscriptionCacheHandler.add(subscriptionId, predicates);
             sendSubscriptionCreateRequestToDmi(subscriptionId);
+            scheduleCmNotificationSubscriptionNcmpOutEventResponse(subscriptionId);
         } else {
-            final Set<String> subscriptionTargetFilters = predicates.stream().flatMap(
-                    predicate -> predicate.getTargetFilter().stream()).collect(Collectors.toSet());
             rejectAndPublishCmNotificationSubscriptionCreateRequest(subscriptionId,
-                    new ArrayList<>(subscriptionTargetFilters));
+                    predicates);
         }
     }
 
+    private void scheduleCmNotificationSubscriptionNcmpOutEventResponse(final String subscriptionId) {
+        cmNotificationSubscriptionEventsHandler.publishCmNotificationSubscriptionNcmpOutEvent(subscriptionId,
+                "subscriptionCreateResponse", null, true);
+    }
+
     private void rejectAndPublishCmNotificationSubscriptionCreateRequest(final String subscriptionId,
-                                                                         final List<String> subscriptionTargetFilters) {
+            final List<Predicate> predicates) {
+        final Set<String> subscriptionTargetFilters =
+                predicates.stream().flatMap(predicate -> predicate.getTargetFilter().stream())
+                        .collect(Collectors.toSet());
         final CmNotificationSubscriptionNcmpOutEvent cmNotificationSubscriptionNcmpOutEvent =
-                cmNotificationSubscriptionMappersHandler
-                        .toCmNotificationSubscriptionNcmpOutEventForRejectedRequest(subscriptionId,
-                                subscriptionTargetFilters);
+                cmNotificationSubscriptionMappersHandler.toCmNotificationSubscriptionNcmpOutEventForRejectedRequest(
+                        subscriptionId, new ArrayList<>(subscriptionTargetFilters));
         cmNotificationSubscriptionEventsHandler.publishCmNotificationSubscriptionNcmpOutEvent(subscriptionId,
                 "subscriptionCreateResponse", cmNotificationSubscriptionNcmpOutEvent, false);
     }
