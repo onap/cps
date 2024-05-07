@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023 Nordix Foundation
+ *  Copyright (C) 2023-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -21,13 +21,13 @@
 package org.onap.cps.ncmp.init;
 
 import lombok.NonNull;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.context.ApplicationListener;
 
-public interface ModelLoader extends ApplicationListener<ApplicationReadyEvent> {
+public interface ModelLoader extends ApplicationListener<ApplicationStartedEvent> {
 
     @Override
-    void onApplicationEvent(@NonNull ApplicationReadyEvent applicationReadyEvent);
+    void onApplicationEvent(@NonNull ApplicationStartedEvent applicationStartedEvent);
 
     void onboardOrUpgradeModel();
 

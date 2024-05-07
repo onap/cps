@@ -39,7 +39,7 @@ import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.boot.context.event.ApplicationStartedEvent;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -61,12 +61,12 @@ abstract class AbstractModelLoader implements ModelLoader {
     long retryTimeMs;
 
     @Override
-    public void onApplicationEvent(@NonNull final ApplicationReadyEvent applicationReadyEvent) {
+    public void onApplicationEvent(@NonNull final ApplicationStartedEvent applicationStartedEvent) {
         try {
             onboardOrUpgradeModel();
         } catch (final NcmpStartUpException ncmpStartUpException) {
             log.error("Onboarding model for NCMP failed: {} ", ncmpStartUpException.getMessage());
-            SpringApplication.exit(applicationReadyEvent.getApplicationContext(), () -> EXIT_CODE_ON_ERROR);
+            SpringApplication.exit(applicationStartedEvent.getApplicationContext(), () -> EXIT_CODE_ON_ERROR);
         }
     }
 
