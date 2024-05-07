@@ -21,13 +21,13 @@
 package org.onap.cps.ncmp.init;
 
 import lombok.NonNull;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.context.ApplicationListener;
 
-public interface ModelLoader extends ApplicationListener<ApplicationReadyEvent> {
+public interface ModelLoader extends ApplicationListener<ApplicationStartedEvent> {
 
     @Override
-    void onApplicationEvent(@NonNull ApplicationReadyEvent applicationReadyEvent);
+    void onApplicationEvent(@NonNull ApplicationStartedEvent applicationStartedEvent);
 
     void onboardOrUpgradeModel();
 
