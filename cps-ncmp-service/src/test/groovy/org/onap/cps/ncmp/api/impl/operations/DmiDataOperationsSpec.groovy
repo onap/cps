@@ -21,10 +21,19 @@
 
 package org.onap.cps.ncmp.api.impl.operations
 
+import static org.onap.cps.ncmp.api.NcmpResponseStatus.DMI_SERVICE_NOT_RESPONDING
+import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNABLE_TO_READ_RESOURCE_DATA
+import static org.onap.cps.ncmp.api.impl.events.mapper.CloudEventMapper.toTargetEvent
+import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_OPERATIONAL
+import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING
+import static org.onap.cps.ncmp.api.impl.operations.OperationType.CREATE
+import static org.onap.cps.ncmp.api.impl.operations.OperationType.READ
+import static org.onap.cps.ncmp.api.impl.operations.OperationType.UPDATE
+
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.events.EventsPublisher
-import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration
-import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException
+import org.onap.cps.ncmp.api.impl.config.DmiWebClientConfiguration
+import org.onap.cps.ncmp.api.impl.exception.DmiClientRequestException
 import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder
 import org.onap.cps.ncmp.api.impl.utils.context.CpsApplicationContext
 import org.onap.cps.ncmp.api.models.DataOperationRequest
@@ -40,19 +49,8 @@ import org.springframework.http.ResponseEntity
 import org.springframework.test.context.ContextConfiguration
 import spock.lang.Shared
 
-import java.util.concurrent.TimeoutException
-
-import static org.onap.cps.ncmp.api.NcmpResponseStatus.DMI_SERVICE_NOT_RESPONDING
-import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNABLE_TO_READ_RESOURCE_DATA
-import static org.onap.cps.ncmp.api.impl.events.mapper.CloudEventMapper.toTargetEvent
-import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_OPERATIONAL
-import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING
-import static org.onap.cps.ncmp.api.impl.operations.OperationType.CREATE
-import static org.onap.cps.ncmp.api.impl.operations.OperationType.READ
-import static org.onap.cps.ncmp.api.impl.operations.OperationType.UPDATE
-
 @SpringBootTest
-@ContextConfiguration(classes = [EventsPublisher, CpsApplicationContext, NcmpConfiguration.DmiProperties, DmiDataOperations])
+@ContextConfiguration(classes = [EventsPublisher, CpsApplicationContext, DmiWebClientConfiguration.DmiProperties, DmiDataOperations])
 class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
 
     @SpringBean
@@ -121,7 +119,7 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             def dmiDataOperationResourceDataUrl = "http://dmi-service-name:dmi-port/dmi/v1/data?topic=my-topic-name&requestId=some-request-id"
             def actualDataOperationCloudEvent = null
         when: 'exception occurs after sending request to dmi service'
-            objectUnderTest.handleTaskCompletionException(new Throwable(exception), dmiDataOperationResourceDataUrl, List.of(dmiDataOperation))
+            objectUnderTest.handleTaskCompletionException(exception, dmiDataOperationResourceDataUrl, List.of(dmiDataOperation))
         then: 'a cloud event is published'
             eventsPublisher.publishCloudEvent('my-topic-name', 'some-request-id', _) >> { args -> actualDataOperationCloudEvent = args[2] }
         and: 'the event contains the expected error details'
@@ -131,9 +129,9 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             assert eventDataValue.statusCode == responseCode.code
             assert eventDataValue.statusMessage == responseCode.message
         where: 'the following exceptions are occurred'
-            scenario                        | exception                                                                                                || responseCode
-            'http client request exception' | new HttpClientRequestException('error-message', 'error-details', HttpStatus.SERVICE_UNAVAILABLE.value()) || UNABLE_TO_READ_RESOURCE_DATA
-            'timeout exception'             | new TimeoutException()                                                                                   || DMI_SERVICE_NOT_RESPONDING
+            scenario                        | exception                                                                                                                                         || responseCode
+            'http client request exception' | new DmiClientRequestException(HttpStatus.NOT_FOUND.value(), 'some error message', 'some error message details', UNABLE_TO_READ_RESOURCE_DATA)     || UNABLE_TO_READ_RESOURCE_DATA
+            'dmi request timeout'           | new DmiClientRequestException(HttpStatus.REQUEST_TIMEOUT.value(), 'some error message', 'some error message details', DMI_SERVICE_NOT_RESPONDING) || DMI_SERVICE_NOT_RESPONDING
     }
 
     def 'call get all resource data.'() {

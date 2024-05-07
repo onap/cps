@@ -21,8 +21,6 @@
 
 package org.onap.cps.ncmp.api.impl.operations;
 
-import static org.onap.cps.ncmp.api.NcmpResponseStatus.DMI_SERVICE_NOT_RESPONDING;
-import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNABLE_TO_READ_RESOURCE_DATA;
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING;
 import static org.onap.cps.ncmp.api.impl.operations.OperationType.READ;
 
@@ -35,8 +33,8 @@ import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.NcmpResponseStatus;
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
-import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
-import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException;
+import org.onap.cps.ncmp.api.impl.config.DmiWebClientConfiguration.DmiProperties;
+import org.onap.cps.ncmp.api.impl.exception.DmiClientRequestException;
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleState;
 import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder;
@@ -61,7 +59,7 @@ public class DmiDataOperations extends DmiOperations {
 
     public DmiDataOperations(final InventoryPersistence inventoryPersistence,
                              final JsonObjectMapper jsonObjectMapper,
-                             final NcmpConfiguration.DmiProperties dmiProperties,
+                             final DmiProperties dmiProperties,
                              final DmiRestClient dmiRestClient,
                              final DmiServiceUrlBuilder dmiServiceUrlBuilder) {
         super(inventoryPersistence, jsonObjectMapper, dmiProperties, dmiRestClient, dmiServiceUrlBuilder);
@@ -226,7 +224,7 @@ public class DmiDataOperations extends DmiOperations {
     }
 
     private static Set<String> getDistinctCmHandleIdsFromDataOperationRequest(final DataOperationRequest
-                                                                              dataOperationRequest) {
+                                                                                      dataOperationRequest) {
         return dataOperationRequest.getDataOperationDefinitions().stream()
                 .flatMap(dataOperationDefinition ->
                         dataOperationDefinition.getCmHandleIds().stream()).collect(Collectors.toSet());
@@ -235,7 +233,7 @@ public class DmiDataOperations extends DmiOperations {
     private void buildDataOperationRequestUrlAndSendToDmiService(final String topicParamInQuery,
                                                                  final String requestId,
                                                                  final Map<String, List<DmiDataOperation>>
-                                                                groupsOutPerDmiServiceName,
+                                                                         groupsOutPerDmiServiceName,
                                                                  final String authorization) {
 
         groupsOutPerDmiServiceName.forEach((dmiServiceName, dmiDataOperationRequestBodies) -> {
@@ -256,36 +254,29 @@ public class DmiDataOperations extends DmiOperations {
         try {
             dmiRestClient.postOperationWithJsonData(dataOperationResourceUrl, dmiDataOperationRequestAsJsonString, READ,
                     authorization);
-        } catch (final Exception exception) {
-            handleTaskCompletionException(exception, dataOperationResourceUrl, dmiDataOperationRequestBodies);
+        } catch (final DmiClientRequestException e) {
+            handleTaskCompletionException(e, dataOperationResourceUrl, dmiDataOperationRequestBodies);
         }
     }
 
-    private void handleTaskCompletionException(final Throwable throwable,
+    private void handleTaskCompletionException(final DmiClientRequestException dmiClientRequestException,
                                                final String dataOperationResourceUrl,
                                                final List<DmiDataOperation> dmiDataOperationRequestBodies) {
-        if (throwable != null) {
-            final MultiValueMap<String, String> dataOperationResourceUrlParameters =
-                    UriComponentsBuilder.fromUriString(dataOperationResourceUrl).build().getQueryParams();
-            final String topicName = dataOperationResourceUrlParameters.get("topic").get(0);
-            final String requestId = dataOperationResourceUrlParameters.get("requestId").get(0);
+        final MultiValueMap<String, String> dataOperationResourceUrlParameters =
+                UriComponentsBuilder.fromUriString(dataOperationResourceUrl).build().getQueryParams();
+        final String topicName = dataOperationResourceUrlParameters.get("topic").get(0);
+        final String requestId = dataOperationResourceUrlParameters.get("requestId").get(0);
 
-            final MultiValueMap<DmiDataOperation, Map<NcmpResponseStatus, List<String>>>
-                    cmHandleIdsPerResponseCodesPerOperation = new LinkedMultiValueMap<>();
+        final MultiValueMap<DmiDataOperation, Map<NcmpResponseStatus, List<String>>>
+                cmHandleIdsPerResponseCodesPerOperation = new LinkedMultiValueMap<>();
 
-            dmiDataOperationRequestBodies.forEach(dmiDataOperationRequestBody -> {
-                final List<String> cmHandleIds = dmiDataOperationRequestBody.getCmHandles().stream()
-                        .map(CmHandle::getId).toList();
-                if (throwable.getCause() instanceof HttpClientRequestException) {
-                    cmHandleIdsPerResponseCodesPerOperation.add(dmiDataOperationRequestBody,
-                            Map.of(UNABLE_TO_READ_RESOURCE_DATA, cmHandleIds));
-                } else {
-                    cmHandleIdsPerResponseCodesPerOperation.add(dmiDataOperationRequestBody,
-                            Map.of(DMI_SERVICE_NOT_RESPONDING, cmHandleIds));
-                }
-            });
-            ResourceDataOperationRequestUtils.publishErrorMessageToClientTopic(topicName, requestId,
-                    cmHandleIdsPerResponseCodesPerOperation);
-        }
+        dmiDataOperationRequestBodies.forEach(dmiDataOperationRequestBody -> {
+            final List<String> cmHandleIds = dmiDataOperationRequestBody.getCmHandles().stream()
+                    .map(CmHandle::getId).toList();
+            cmHandleIdsPerResponseCodesPerOperation.add(dmiDataOperationRequestBody,
+                    Map.of(dmiClientRequestException.getNcmpResponseStatus(), cmHandleIds));
+        });
+        ResourceDataOperationRequestUtils.publishErrorMessageToClientTopic(topicName, requestId,
+                cmHandleIdsPerResponseCodesPerOperation);
     }
 }
