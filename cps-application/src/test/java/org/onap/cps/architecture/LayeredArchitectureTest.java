@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation
+ *  Copyright (C) 2021-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -45,6 +45,7 @@ public class LayeredArchitectureTest {
     private static final String CPS_UTILS_PACKAGE = "org.onap.cps.utils..";
     private static final String NCMP_INIT_PACKAGE = "org.onap.cps.ncmp.init..";
     private static final String CPS_CACHE_PACKAGE = "org.onap.cps.cache..";
+    private static final String CPS_EVENTS_PACKAGE = "org.onap.cps.events..";
 
     @ArchTest
     static final ArchRule restControllerShouldOnlyDependOnRestController =
@@ -57,7 +58,7 @@ public class LayeredArchitectureTest {
             .or().resideInAPackage(SPI_SERVICE_PACKAGE).should().onlyHaveDependentClassesThat()
             .resideInAnyPackage(REST_CONTROLLER_PACKAGE, API_SERVICE_PACKAGE, SPI_SERVICE_PACKAGE, NCMP_REST_PACKAGE,
                 NCMP_SERVICE_PACKAGE, YANG_SCHEMA_PACKAGE, NOTIFICATION_PACKAGE, CPS_UTILS_PACKAGE, NCMP_INIT_PACKAGE,
-                CPS_CACHE_PACKAGE));
+                CPS_CACHE_PACKAGE, CPS_EVENTS_PACKAGE));
 
 
     @ArchTest
