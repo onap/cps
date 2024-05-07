@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2023 Nordix Foundation
+ *  Copyright (C) 2021-2024 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,7 +23,7 @@ package org.onap.cps.ncmp.api.impl.operations;
 
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
-import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration;
+import org.onap.cps.ncmp.api.impl.config.DmiWebClientConfiguration.DmiProperties;
 import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder;
 import org.onap.cps.utils.JsonObjectMapper;
@@ -35,7 +35,7 @@ public class DmiOperations {
 
     protected final InventoryPersistence inventoryPersistence;
     protected final JsonObjectMapper jsonObjectMapper;
-    protected final NcmpConfiguration.DmiProperties dmiProperties;
+    protected final DmiProperties dmiProperties;
     protected final DmiRestClient dmiRestClient;
     protected final DmiServiceUrlBuilder dmiServiceUrlBuilder;
 
@@ -44,6 +44,4 @@ public class DmiOperations {
                 .pathSegment("{resourceName}")
                 .buildAndExpand(dmiServiceName, dmiProperties.getDmiBasePath(), cmHandle, resourceName).toUriString();
     }
-
-
 }

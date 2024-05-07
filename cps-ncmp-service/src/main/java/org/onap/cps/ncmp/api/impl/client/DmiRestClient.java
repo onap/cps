@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2023 Nordix Foundation
+ *  Copyright (C) 2021-2024 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,20 +21,31 @@
 
 package org.onap.cps.ncmp.api.impl.client;
 
+import static org.onap.cps.ncmp.api.NcmpResponseStatus.DMI_SERVICE_NOT_RESPONDING;
+import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNABLE_TO_READ_RESOURCE_DATA;
+import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNKNOWN_ERROR;
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
+import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
+
 import com.fasterxml.jackson.databind.JsonNode;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Locale;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration.DmiProperties;
-import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException;
+import org.onap.cps.ncmp.api.impl.config.DmiWebClientConfiguration.DmiProperties;
+import org.onap.cps.ncmp.api.impl.exception.DmiClientRequestException;
+import org.onap.cps.ncmp.api.impl.exception.InvalidDmiResourceUrlException;
 import org.onap.cps.ncmp.api.impl.operations.OperationType;
-import org.springframework.http.HttpEntity;
+import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.HttpStatusCodeException;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.client.HttpServerErrorException;
+import org.springframework.web.reactive.function.BodyInserters;
+import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.reactive.function.client.WebClientResponseException;
 
 @Component
 @RequiredArgsConstructor
@@ -43,8 +54,10 @@ public class DmiRestClient {
 
     private static final String HEALTH_CHECK_URL_EXTENSION = "/actuator/health";
     private static final String NOT_SPECIFIED = "";
-    private final RestTemplate restTemplate;
+    private static final String NO_AUTHORIZATION = null;
+    private final WebClient webClient;
     private final DmiProperties dmiProperties;
+    private final JsonObjectMapper jsonObjectMapper;
 
     /**
      * Sends POST operation to DMI with json body containing module references.
@@ -59,14 +72,16 @@ public class DmiRestClient {
                                                             final String requestBodyAsJsonString,
                                                             final OperationType operationType,
                                                             final String authorization) {
-        final var httpEntity = new HttpEntity<>(requestBodyAsJsonString, configureHttpHeaders(new HttpHeaders(),
-                authorization));
         try {
-            return restTemplate.postForEntity(dmiResourceUrl, httpEntity, Object.class);
-        } catch (final HttpStatusCodeException httpStatusCodeException) {
-            final String exceptionMessage = "Unable to " + operationType.toString() + " resource data.";
-            throw new HttpClientRequestException(exceptionMessage, httpStatusCodeException.getResponseBodyAsString(),
-                httpStatusCodeException.getStatusCode().value());
+            return ResponseEntity.ok(webClient.post().uri(toUri(dmiResourceUrl))
+                    .headers(httpHeaders -> configureHttpHeaders(httpHeaders, authorization))
+                    .body(BodyInserters.fromValue(requestBodyAsJsonString))
+                    .retrieve()
+                    .bodyToMono(Object.class)
+                    .onErrorMap(httpError -> handleDmiClientException(httpError, operationType.getOperationName()))
+                    .block());
+        } catch (final HttpServerErrorException e) {
+            throw handleDmiClientException(e, operationType.getOperationName());
         }
     }
 
@@ -77,13 +92,14 @@ public class DmiRestClient {
      * @return      plugin health status ("UP" is all OK, "" (not-specified) in case of any exception)
      */
     public String getDmiHealthStatus(final String dmiPluginBaseUrl) {
-        final HttpEntity<Object> httpHeaders = new HttpEntity<>(configureHttpHeaders(new HttpHeaders(), null));
         try {
-            final JsonNode responseHealthStatus =
-                restTemplate.getForObject(dmiPluginBaseUrl + HEALTH_CHECK_URL_EXTENSION,
-                    JsonNode.class, httpHeaders);
+            final JsonNode responseHealthStatus = webClient.get()
+                    .uri(toUri(dmiPluginBaseUrl + HEALTH_CHECK_URL_EXTENSION))
+                    .headers(httpHeaders -> configureHttpHeaders(httpHeaders, NO_AUTHORIZATION))
+                    .retrieve()
+                    .bodyToMono(JsonNode.class).block();
             return responseHealthStatus == null ? NOT_SPECIFIED :
-                responseHealthStatus.get("status").asText();
+                    responseHealthStatus.get("status").asText();
         } catch (final Exception e) {
             log.warn("Failed to retrieve health status from {}. Error Message: {}", dmiPluginBaseUrl, e.getMessage());
             return NOT_SPECIFIED;
@@ -96,7 +112,33 @@ public class DmiRestClient {
         } else if (authorization != null && authorization.toLowerCase(Locale.getDefault()).startsWith("bearer ")) {
             httpHeaders.add(HttpHeaders.AUTHORIZATION, authorization);
         }
-        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         return httpHeaders;
+    }
+
+    private static URI toUri(final String dmiResourceUrl) {
+        try {
+            return new URI(dmiResourceUrl);
+        } catch (final URISyntaxException e) {
+            throw new InvalidDmiResourceUrlException(dmiResourceUrl, BAD_REQUEST.value());
+        }
+    }
+
+    private DmiClientRequestException handleDmiClientException(final Throwable e, final String operationType) {
+        final String exceptionMessage = "Unable to " + operationType + " resource data.";
+        if (e instanceof WebClientResponseException wcre) {
+            if (wcre.getStatusCode().isSameCodeAs(HttpStatus.REQUEST_TIMEOUT)) {
+                throw new DmiClientRequestException(wcre.getStatusCode().value(), wcre.getMessage(),
+                        jsonObjectMapper.asJsonString(wcre.getResponseBodyAsString()), DMI_SERVICE_NOT_RESPONDING);
+            }
+            throw new DmiClientRequestException(wcre.getStatusCode().value(), wcre.getMessage(),
+                    jsonObjectMapper.asJsonString(wcre.getResponseBodyAsString()), UNABLE_TO_READ_RESOURCE_DATA);
+
+        }
+        if (e instanceof HttpServerErrorException httpServerErrorException) {
+            throw new DmiClientRequestException(httpServerErrorException.getStatusCode().value(), exceptionMessage,
+                    httpServerErrorException.getResponseBodyAsString(), DMI_SERVICE_NOT_RESPONDING);
+        }
+        throw new DmiClientRequestException(INTERNAL_SERVER_ERROR.value(), exceptionMessage, e.getMessage(),
+                UNKNOWN_ERROR);
     }
 }
