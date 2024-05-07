@@ -31,13 +31,14 @@ import static org.onap.cps.ncmp.rest.exceptions.NetworkCmProxyRestExceptionHandl
 import static org.onap.cps.ncmp.rest.exceptions.NetworkCmProxyRestExceptionHandlerSpec.ApiType.NCMPINVENTORY
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
+import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNABLE_TO_READ_RESOURCE_DATA
 
 import groovy.json.JsonSlurper
 import org.mapstruct.factory.Mappers
 import org.onap.cps.TestUtils
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService
 import org.onap.cps.ncmp.api.impl.exception.DmiRequestException
-import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException
+import org.onap.cps.ncmp.api.impl.exception.DmiClientRequestException
 import org.onap.cps.ncmp.api.impl.exception.ServerNcmpException
 import org.onap.cps.ncmp.rest.controller.NcmpRestInputMapper
 import org.onap.cps.ncmp.rest.controller.handlers.NcmpCachedResourceRequestHandler
@@ -143,7 +144,7 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
 
     def 'Failing DMI Request - passthrough scenario'() {
         given: 'failing DMI request'
-            setupTestException(new HttpClientRequestException('Error Message Details NCMP', 'Bad Request from DMI', 400), NCMP)
+            setupTestException(new DmiClientRequestException(400, 'Error Message Details NCMP', 'Bad Request from DMI', UNABLE_TO_READ_RESOURCE_DATA), NCMP)
         when: 'the DMI request is executed'
             def response = performTestRequest(NCMP)
         then: 'NCMP service responds with 502 Bad Gateway status'
