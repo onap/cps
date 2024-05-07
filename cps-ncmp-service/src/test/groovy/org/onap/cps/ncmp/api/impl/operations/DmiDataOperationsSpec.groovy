@@ -21,27 +21,6 @@
 
 package org.onap.cps.ncmp.api.impl.operations
 
-import com.fasterxml.jackson.databind.ObjectMapper
-import org.onap.cps.events.EventsPublisher
-import org.onap.cps.ncmp.api.impl.config.NcmpConfiguration
-import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException
-import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder
-import org.onap.cps.ncmp.api.impl.utils.context.CpsApplicationContext
-import org.onap.cps.ncmp.api.models.DataOperationRequest
-import org.onap.cps.ncmp.api.models.CmResourceAddress
-import org.onap.cps.ncmp.events.async1_0_0.DataOperationEvent
-import org.onap.cps.ncmp.utils.TestUtils
-import org.onap.cps.utils.JsonObjectMapper
-import org.spockframework.spring.SpringBean
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.http.HttpStatus
-import org.springframework.http.ResponseEntity
-import org.springframework.test.context.ContextConfiguration
-import spock.lang.Shared
-
-import java.util.concurrent.TimeoutException
-
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.DMI_SERVICE_NOT_RESPONDING
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNABLE_TO_READ_RESOURCE_DATA
 import static org.onap.cps.ncmp.api.impl.events.mapper.CloudEventMapper.toTargetEvent
@@ -51,8 +30,28 @@ import static org.onap.cps.ncmp.api.impl.operations.OperationType.CREATE
 import static org.onap.cps.ncmp.api.impl.operations.OperationType.READ
 import static org.onap.cps.ncmp.api.impl.operations.OperationType.UPDATE
 
+import com.fasterxml.jackson.databind.ObjectMapper
+import org.onap.cps.events.EventsPublisher
+import org.onap.cps.ncmp.api.impl.config.DmiWebClientConfiguration
+import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException
+import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder
+import org.onap.cps.ncmp.api.impl.utils.context.CpsApplicationContext
+import org.onap.cps.ncmp.api.models.DataOperationRequest
+import org.onap.cps.ncmp.api.models.CmResourceAddress
+import org.onap.cps.ncmp.events.async1_0_0.DataOperationEvent
+import org.onap.cps.ncmp.utils.TestUtils
+import org.onap.cps.utils.JsonObjectMapper
+import java.util.concurrent.TimeoutException
+import org.spockframework.spring.SpringBean
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
+import org.springframework.test.context.ContextConfiguration
+import spock.lang.Shared
+
 @SpringBootTest
-@ContextConfiguration(classes = [EventsPublisher, CpsApplicationContext, NcmpConfiguration.DmiProperties, DmiDataOperations])
+@ContextConfiguration(classes = [EventsPublisher, CpsApplicationContext, DmiWebClientConfiguration.DmiProperties, DmiDataOperations])
 class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
 
     @SpringBean

@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2022-2024 Nordix Foundation
+ * Copyright (C) 2024 Nordix Foundation
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,24 +22,16 @@ package org.onap.cps.ncmp.api.impl.exception;
 
 import lombok.Getter;
 
-/**
- * Http Client Request exception for passthrough scenarios.
- */
 @Getter
-public class HttpClientRequestException extends NcmpException {
+public class InvalidDmiResourceUrlException extends RuntimeException {
 
-    private static final long serialVersionUID = 6659897770659834797L;
-    final String ncmpResponseCode;
+    private static final long serialVersionUID = 2928476384584894968L;
 
-    /**
-     * Constructor to form exception for passthrough scenarios.
-     *
-     * @param message    message details from NCMP
-     * @param details    response body from the client available as details
-     * @param ncmpResponseCode ncmp status code from the client
-     */
-    public HttpClientRequestException(final String message, final String details, final String ncmpResponseCode) {
-        super(message, details);
-        this.ncmpResponseCode = ncmpResponseCode;
+    private static final String INVALID_DMI_URL = "Invalid dmi resource url";
+    final Integer httpStatus;
+
+    public InvalidDmiResourceUrlException(final String details, final Integer httpStatus) {
+        super(String.format(INVALID_DMI_URL + ": %s", details));
+        this.httpStatus = httpStatus;
     }
 }
