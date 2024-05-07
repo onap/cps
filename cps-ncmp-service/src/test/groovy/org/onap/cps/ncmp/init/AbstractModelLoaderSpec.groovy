@@ -32,7 +32,7 @@ import org.onap.cps.spi.CascadeDeleteAllowed
 import org.onap.cps.spi.exceptions.AlreadyDefinedException
 import org.springframework.boot.SpringApplication
 import org.slf4j.LoggerFactory
-import org.springframework.boot.context.event.ApplicationReadyEvent
+import org.springframework.boot.context.event.ApplicationStartedEvent
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import spock.lang.Specification
 
@@ -66,7 +66,7 @@ class AbstractModelLoaderSpec extends Specification {
 
     def 'Application ready event'() {
         when: 'Application (ready) event is triggered'
-            objectUnderTest.onApplicationEvent(Mock(ApplicationReadyEvent))
+            objectUnderTest.onApplicationEvent(Mock(ApplicationStartedEvent))
         then: 'the onboard/upgrade method is executed'
             1 * objectUnderTest.onboardOrUpgradeModel()
     }
@@ -75,7 +75,7 @@ class AbstractModelLoaderSpec extends Specification {
         given: 'a start up exception is thrown doing model onboarding'
             objectUnderTest.onboardOrUpgradeModel() >> { throw new NcmpStartUpException('test message','details are not logged') }
         when: 'Application (ready) event is triggered'
-            objectUnderTest.onApplicationEvent(new ApplicationReadyEvent(new SpringApplication(), null, applicationContext, null))
+            objectUnderTest.onApplicationEvent(new ApplicationStartedEvent(new SpringApplication(), null, applicationContext, null))
         then: 'the exception message is logged'
             def logs = loggingListAppender.list.toString()
             assert logs.contains('test message')

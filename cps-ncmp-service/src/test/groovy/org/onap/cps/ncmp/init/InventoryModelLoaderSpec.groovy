@@ -20,22 +20,21 @@
 
 package org.onap.cps.ncmp.init
 
-import org.onap.cps.api.CpsAnchorService
-
-import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
-import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
-
 import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
 import ch.qos.logback.core.read.ListAppender
-import org.onap.cps.api.CpsDataspaceService
+import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
+import org.onap.cps.api.CpsDataspaceService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.spi.model.Dataspace
 import org.slf4j.LoggerFactory
-import org.springframework.boot.context.event.ApplicationReadyEvent
+import org.springframework.boot.context.event.ApplicationStartedEvent
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import spock.lang.Specification
+
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
 
 class InventoryModelLoaderSpec extends Specification {
 
@@ -68,8 +67,8 @@ class InventoryModelLoaderSpec extends Specification {
     def 'Onboard subscription model via application ready event.'() {
         given: 'dataspace is ready for use'
             mockCpsAdminService.getDataspace(NCMP_DATASPACE_NAME) >> new Dataspace('')
-        when: 'the application is ready'
-            objectUnderTest.onApplicationEvent(Mock(ApplicationReadyEvent))
+        when: 'the application is started'
+            objectUnderTest.onApplicationEvent(Mock(ApplicationStartedEvent))
         then: 'the module service is used to create the new schema set from the correct resource'
             1 * mockCpsModuleService.createSchemaSet(NCMP_DATASPACE_NAME, 'dmi-registry-2024-02-23', expectedYangResourceToContentMap)
         and: 'the admin service is used to update the anchor'
