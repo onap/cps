@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  * Copyright (C) 2024 TechMahindra Ltd.
+ * Copyright (C) 2024 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,7 +41,6 @@ import java.time.OffsetDateTime
 @ContextConfiguration(classes = [ObjectMapper, JsonObjectMapper])
 class CpsDataUpdateEventsServiceSpec extends Specification {
     def mockEventsPublisher = Mock(EventsPublisher)
-    def notificationsEnabled = true
     def objectMapper = new ObjectMapper();
 
     def objectUnderTest = new CpsDataUpdateEventsService(mockEventsPublisher)
@@ -52,6 +52,8 @@ class CpsDataUpdateEventsServiceSpec extends Specification {
             def observedTimestamp = OffsetDateTime.now()
         and: 'notificationsEnabled is #notificationsEnabled and it will be true as default'
             objectUnderTest.notificationsEnabled = true
+        and: 'cpsChangeEventNotificationsEnabled is also true'
+            objectUnderTest.cpsChangeEventNotificationsEnabled = true
         when: 'service is called to publish data update event'
             objectUnderTest.topicName = "cps-core-event"
             objectUnderTest.publishCpsDataUpdateEvent(anchor, xpath, operation, observedTimestamp)
@@ -79,18 +81,27 @@ class CpsDataUpdateEventsServiceSpec extends Specification {
         'non root node xpath and delete operation' | '/test/path' | DELETE              || UPDATE
     }
 
-    def 'publish cps update event when notification service is disabled'() {
+    def 'publish cps update event when #scenario'() {
         given: 'an anchor, operation and observed timestamp'
             def anchor = new Anchor('anchor01', 'dataspace01', 'schema01');
             def operation = CREATE
             def observedTimestamp = OffsetDateTime.now()
         and: 'notificationsEnabled is false'
-            objectUnderTest.notificationsEnabled = false
+            objectUnderTest.notificationsEnabled = notificationsEnabled
+        and: 'cpsChangeEventNotificationsEnabled is false'
+            objectUnderTest.cpsChangeEventNotificationsEnabled = cpsChangeEventNotificationsEnabled
         when: 'service is called to publish data update event'
             objectUnderTest.topicName = "cps-core-event"
             objectUnderTest.publishCpsDataUpdateEvent(anchor, '/', operation, observedTimestamp)
         then: 'the event contains the required attributes'
-            0 * mockEventsPublisher.publishCloudEvent('cps-core-event', 'dataspace01:anchor01', _)
+            expectedCallToPublisher * mockEventsPublisher.publishCloudEvent('cps-core-event', 'dataspace01:anchor01', _)
+        where: 'below scenarios are present'
+            scenario                                     | notificationsEnabled | cpsChangeEventNotificationsEnabled || expectedCallToPublisher
+            'both notifications enabled'                 | true                 | true                               || 1
+            'both notifications disbled'                 | false                | false                              || 0
+            'only CPS change event notification enabled' | false                | true                               || 0
+            'only overall notification enabled'          | true                 | false                              || 0
+
     }
 
     def 'publish cps update event when no timestamp provided'() {
@@ -100,6 +111,8 @@ class CpsDataUpdateEventsServiceSpec extends Specification {
             def observedTimestamp = null
         and: 'notificationsEnabled is true'
             objectUnderTest.notificationsEnabled = true
+        and: 'cpsChangeEventNotificationsEnabled is true'
+            objectUnderTest.cpsChangeEventNotificationsEnabled = true
         when: 'service is called to publish data update event'
             objectUnderTest.topicName = "cps-core-event"
             objectUnderTest.publishCpsDataUpdateEvent(anchor, '/', operation, observedTimestamp)

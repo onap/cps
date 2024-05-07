@@ -46,6 +46,9 @@ public class CpsDataUpdateEventsService {
     @Value("${app.cps.data-updated.topic:cps-data-updated-events}")
     private String topicName;
 
+    @Value("${app.cps.data-updated.change-event-notifications-enabled:true}")
+    private boolean cpsChangeEventNotificationsEnabled;
+
     @Value("${notification.enabled:false}")
     private boolean notificationsEnabled;
 
@@ -60,7 +63,7 @@ public class CpsDataUpdateEventsService {
     @Timed(value = "cps.dataupdate.events.publish", description = "Time taken to publish Data Update event")
     public void publishCpsDataUpdateEvent(final Anchor anchor, final String xpath,
                                           final Operation operation, final OffsetDateTime observedTimestamp) {
-        if (notificationsEnabled) {
+        if (notificationsEnabled && cpsChangeEventNotificationsEnabled) {
             final CpsDataUpdatedEvent cpsDataUpdatedEvent = createCpsDataUpdatedEvent(anchor,
                     observedTimestamp, xpath, operation);
             final String updateEventId = anchor.getDataspaceName() + ":" + anchor.getName();
@@ -70,7 +73,8 @@ public class CpsDataUpdateEventsService {
                             .extensions(extensions).build().asCloudEvent();
             eventsPublisher.publishCloudEvent(topicName, updateEventId, cpsDataUpdatedEventAsCloudEvent);
         } else {
-            log.debug("Notifications disabled.");
+            log.debug("State of Overall Notifications : {} and Cps Change Event Notifications : {}",
+                    notificationsEnabled, cpsChangeEventNotificationsEnabled);
         }
     }
 
