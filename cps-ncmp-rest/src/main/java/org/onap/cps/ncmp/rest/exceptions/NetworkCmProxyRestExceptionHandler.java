@@ -26,6 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.exception.DmiRequestException;
 import org.onap.cps.ncmp.api.impl.exception.HttpClientRequestException;
 import org.onap.cps.ncmp.api.impl.exception.InvalidDatastoreException;
+import org.onap.cps.ncmp.api.impl.exception.InvalidDmiResourceUrlException;
 import org.onap.cps.ncmp.api.impl.exception.NcmpException;
 import org.onap.cps.ncmp.api.impl.exception.ServerNcmpException;
 import org.onap.cps.ncmp.rest.controller.NetworkCmProxyController;
@@ -76,7 +77,8 @@ public class NetworkCmProxyRestExceptionHandler {
     }
 
     @ExceptionHandler({DmiRequestException.class, DataValidationException.class, OperationNotSupportedException.class,
-            HttpMessageNotReadableException.class, InvalidTopicException.class, InvalidDatastoreException.class})
+            HttpMessageNotReadableException.class, InvalidTopicException.class, InvalidDatastoreException.class,
+            InvalidDmiResourceUrlException.class})
     public static ResponseEntity<Object> handleDmiRequestExceptions(final Exception exception) {
         return buildErrorResponse(HttpStatus.BAD_REQUEST, exception);
     }
@@ -119,8 +121,8 @@ public class NetworkCmProxyRestExceptionHandler {
                                                                      httpClientRequestException) {
         final var dmiErrorMessage = new DmiErrorMessage();
         final var dmiErrorResponse = new DmiErrorMessageDmiResponse();
-        dmiErrorResponse.setHttpCode(httpClientRequestException.getHttpStatus());
-        dmiErrorResponse.setBody(httpClientRequestException.getDetails());
+        dmiErrorResponse.setHttpCode(httpClientRequestException.getHttpStatusCode());
+        dmiErrorResponse.setBody(httpClientRequestException.getResponseBodyAsString());
         dmiErrorMessage.setMessage(httpClientRequestException.getMessage());
         dmiErrorMessage.setDmiResponse(dmiErrorResponse);
         return new ResponseEntity<>(dmiErrorMessage, HttpStatus.BAD_GATEWAY);

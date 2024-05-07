@@ -178,6 +178,7 @@ ncmp:
             maximumConnectionsPerRoute: 50
             maximumConnectionsTotal: 100
             idleConnectionEvictionThresholdInSeconds: 5
+            maximumInMemorySizeInMegabytes: 16
         auth:
             username: ${DMI_USERNAME:cpsuser}
             password: ${DMI_PASSWORD:cpsr0cks!}

@@ -47,4 +47,19 @@ public enum NcmpResponseStatus {
         this.code = code;
         this.message = message;
     }
+
+    /**
+     * lookup for ncmp response status else set it to default.
+     *
+     * @param ncmpResponseStatus        lookup ncmp response status from client
+     * @param defaultNcmpResponseStatus in case of mismatch set it to default
+     */
+    public static NcmpResponseStatus lookup(final NcmpResponseStatus ncmpResponseStatus,
+                                            final NcmpResponseStatus defaultNcmpResponseStatus) {
+        try {
+            return NcmpResponseStatus.valueOf(ncmpResponseStatus.name());
+        } catch (final IllegalArgumentException ex) {
+            return defaultNcmpResponseStatus;
+        }
+    }
 }

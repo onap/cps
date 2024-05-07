@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2022 Nordix Foundation
+ * Copyright (C) 2022-2024 Nordix Foundation
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,25 +21,36 @@
 package org.onap.cps.ncmp.api.impl.exception;
 
 import lombok.Getter;
+import org.onap.cps.ncmp.api.NcmpResponseStatus;
 
 /**
- * Http Client Request exception for passthrough scenarios.
+ * Http Client Request exception from dmi service.
  */
 @Getter
 public class HttpClientRequestException extends NcmpException {
 
     private static final long serialVersionUID = 6659897770659834797L;
-    final Integer httpStatus;
+    final NcmpResponseStatus ncmpResponseStatus;
+    final String message;
+    final String responseBodyAsString;
+    final int httpStatusCode;
 
     /**
-     * Constructor to form exception for passthrough scenarios.
+     * Constructor to form exception for dmi service response.
      *
-     * @param message    message details from NCMP
-     * @param details    response body from the client available as details
-     * @param httpStatus http status code from the client
+     * @param ncmpResponseStatus   ncmp status message and code
+     * @param message              response message from the dmi client
+     * @param responseBodyAsString response body from the dmi client
+     * @param httpStatusCode       http response code from the dmi client
      */
-    public HttpClientRequestException(final String message, final String details, final Integer httpStatus) {
-        super(message, details);
-        this.httpStatus = httpStatus;
+    public HttpClientRequestException(final NcmpResponseStatus ncmpResponseStatus,
+                                      final String message,
+                                      final String responseBodyAsString,
+                                      final int httpStatusCode) {
+        super(message, responseBodyAsString);
+        this.ncmpResponseStatus = ncmpResponseStatus;
+        this.message = message;
+        this.responseBodyAsString = responseBodyAsString;
+        this.httpStatusCode = httpStatusCode;
     }
 }
