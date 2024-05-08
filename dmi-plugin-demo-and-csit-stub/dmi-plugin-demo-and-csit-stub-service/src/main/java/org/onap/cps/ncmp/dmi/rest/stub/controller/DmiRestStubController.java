@@ -267,6 +267,9 @@ public class DmiRestStubController {
 
     private DataOperationEvent getDataOperationEvent(final DataOperationRequest dataOperationRequest) {
         final Response response = new Response();
+        if (dataOperationRequest.getModuleSetTag() != null) {
+            log.info("ModuleSetTag: {}", dataOperationRequest.getModuleSetTag());
+        }
         response.setOperationId(dataOperationRequest.getOperationId());
         response.setStatusCode(SUCCESS.getCode());
         response.setStatusMessage(SUCCESS.getMessage());
