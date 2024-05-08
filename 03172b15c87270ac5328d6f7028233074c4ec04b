@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "41025edc_77e71717",
+        "filename": "k6-tests/ncmp/2-wait-for-cmhandles-to-be-ready.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-08T12:11:10Z",
+      "side": 1,
+      "message": "I\u0027ve added code to explicitly fail the test if it times out.",
+      "parentUuid": "d17ffe47_5c23ce9b",
+      "range": {
+        "startLine": 27,
+        "startChar": 15,
+        "endLine": 29,
+        "endChar": 56
+      },
+      "revId": "03172b15c87270ac5328d6f7028233074c4ec04b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "21083e6a_f887a21a",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-05-08T11:53:17Z",
       "side": 1,
       "message": "This should use constant TOTAL_CM_HANDLES from utils.js",
+      "range": {
+        "startLine": 34,
+        "startChar": 30,
+        "endLine": 34,
+        "endChar": 35
+      },
+      "revId": "03172b15c87270ac5328d6f7028233074c4ec04b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "46f8742c_00309540",
+        "filename": "k6-tests/ncmp/2-wait-for-cmhandles-to-be-ready.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-08T12:11:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "21083e6a_f887a21a",
       "range": {
         "startLine": 34,
         "startChar": 30,
