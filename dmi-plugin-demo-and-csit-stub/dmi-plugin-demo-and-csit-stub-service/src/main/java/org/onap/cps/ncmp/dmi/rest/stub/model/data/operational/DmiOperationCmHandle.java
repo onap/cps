@@ -27,7 +27,8 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class CmHandle {
+public class DmiOperationCmHandle {
     private String id;
     private Map<String, String> cmHandleProperties = new HashMap<>();
+    private String moduleSetTag;
 }

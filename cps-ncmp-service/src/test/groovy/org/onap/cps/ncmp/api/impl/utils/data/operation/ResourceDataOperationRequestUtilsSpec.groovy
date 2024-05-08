@@ -90,6 +90,23 @@ class ResourceDataOperationRequestUtilsSpec extends MessagingBaseSpec {
             'dmi2'      | 2              || 'operational-15'    | 'ncmp-datastore:passthrough-operational' | ['ch4-dmi2']
     }
 
+    def 'Process one data operation request with #serviceName and Module Set Tag set.'() {
+        given: 'data operation request'
+            def dataOperationRequestJsonData = TestUtils.getResourceFileContent('dataOperationRequest.json')
+            def dataOperationRequest = jsonObjectMapper.convertJsonString(dataOperationRequestJsonData, DataOperationRequest.class)
+        and: '1 known cm handles: ch1-dmi1'
+            def yangModelCmHandles = getYangModelCmHandlesForOneCmHandle()
+        when: 'data operation request is processed'
+            def operationsOutPerDmiServiceName = ResourceDataOperationRequestUtils.processPerDefinitionInDataOperationsRequest(clientTopic,'request-id', dataOperationRequest, yangModelCmHandles)
+        and: 'converted to a json node'
+            def dmiDataOperationRequestBody = operationsOutPerDmiServiceName['dmi1']
+            def cmHandlesInRequestBody = dmiDataOperationRequestBody[0].cmHandles
+        then: 'it contains the correct operation details'
+            assert cmHandlesInRequestBody.size() == 1
+            assert cmHandlesInRequestBody[0].id == 'ch1-dmi1'
+            assert cmHandlesInRequestBody[0].moduleSetTag == 'module-set-tag1'
+    }
+
     def 'Process per data operation request with non-ready, non-existing cm handle and publish event to client specified topic'() {
         given: 'consumer subscribing to client topic'
             def cloudEventKafkaConsumer = new KafkaConsumer<>(eventConsumerConfigProperties('test-1', CloudEventDeserializer))
@@ -155,5 +172,11 @@ class ResourceDataOperationRequestUtilsSpec extends MessagingBaseSpec {
                 new YangModelCmHandle(id: 'ch7-dmi2', dmiServiceName: 'dmi2', dmiProperties: dmiProperties, compositeState: readyState),
                 new YangModelCmHandle(id: 'non-ready-cm-handle', dmiServiceName: 'dmi2', dmiProperties: dmiProperties, compositeState: advisedState)
         ]
+    }
+
+    static def getYangModelCmHandlesForOneCmHandle() {
+        def dmiProperties = [new YangModelCmHandle.Property('prop', 'some DMI property')]
+        def readyState = new CompositeStateBuilder().withCmHandleState(CmHandleState.READY).withLastUpdatedTimeNow().build()
+        return [new YangModelCmHandle(id: 'ch1-dmi1', dmiServiceName: 'dmi1', moduleSetTag: 'module-set-tag1', dmiProperties: dmiProperties, compositeState: readyState)]
     }
 }

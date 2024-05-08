@@ -292,7 +292,7 @@ public class DmiDataOperations extends DmiOperations {
 
         dmiDataOperationRequestBodies.forEach(dmiDataOperationRequestBody -> {
             final List<String> cmHandleIds = dmiDataOperationRequestBody.getCmHandles().stream()
-                    .map(CmHandle::getId).toList();
+                    .map(DmiOperationCmHandle::getId).toList();
             cmHandleIdsPerResponseCodesPerOperation.add(dmiDataOperationRequestBody,
                     Map.of(dmiClientRequestException.getNcmpResponseStatus(), cmHandleIds));
         });
