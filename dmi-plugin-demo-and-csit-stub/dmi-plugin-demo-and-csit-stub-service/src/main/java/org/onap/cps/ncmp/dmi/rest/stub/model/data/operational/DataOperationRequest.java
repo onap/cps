@@ -35,5 +35,5 @@ public class DataOperationRequest {
     private String datastore;
     private String options;
     private String resourceIdentifier;
-    private List<CmHandle> cmHandles = new ArrayList<>();
+    private List<DmiOperationCmHandle> cmHandles = new ArrayList<>();
 }

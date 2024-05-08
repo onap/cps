@@ -29,14 +29,21 @@ import lombok.Getter;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Getter
 @Builder
-public class CmHandle {
+public class DmiOperationCmHandle {
     private String id;
 
     @JsonProperty("cmHandleProperties")
     private Map<String, String> dmiProperties;
+    private String moduleSetTag;
 
-    public static CmHandle buildCmHandleWithProperties(final String cmHandleId,
-                                                       final Map<String, String> dmiProperties) {
-        return CmHandle.builder().id(cmHandleId).dmiProperties(dmiProperties).build();
+    /**
+     * Builds Dmi Operation Cm Handle object with all its associated properties.
+     */
+    public static DmiOperationCmHandle buildDmiOperationCmHandle(final String cmHandleId,
+                                                                 final Map<String, String> dmiProperties,
+                                                                 final String moduleSetTag) {
+        return DmiOperationCmHandle.builder().id(cmHandleId)
+                .dmiProperties(dmiProperties).moduleSetTag(moduleSetTag)
+                .build();
     }
 }
