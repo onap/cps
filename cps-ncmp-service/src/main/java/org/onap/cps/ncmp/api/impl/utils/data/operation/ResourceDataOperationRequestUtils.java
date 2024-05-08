@@ -39,8 +39,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.events.EventsPublisher;
 import org.onap.cps.ncmp.api.NcmpResponseStatus;
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleState;
-import org.onap.cps.ncmp.api.impl.operations.CmHandle;
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperation;
+import org.onap.cps.ncmp.api.impl.operations.DmiOperationCmHandle;
 import org.onap.cps.ncmp.api.impl.utils.DmiServiceNameOrganizer;
 import org.onap.cps.ncmp.api.impl.utils.context.CpsApplicationContext;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
@@ -81,6 +81,8 @@ public class ResourceDataOperationRequestUtils {
         final Map<String, String> dmiServiceNamesPerCmHandleId =
                 getDmiServiceNamesPerCmHandleId(dmiPropertiesPerCmHandleIdPerServiceName);
 
+        final Map<String, String> moduleSetTagPerCmHandle = getModuleSetTagPerCmHandleId(yangModelCmHandles);
+
         for (final DataOperationDefinition dataOperationDefinitionIn :
                 dataOperationRequestIn.getDataOperationDefinitions()) {
             final List<String> nonExistingCmHandleIds = new ArrayList<>();
@@ -97,9 +99,10 @@ public class ResourceDataOperationRequestUtils {
                     } else {
                         final DmiDataOperation dmiBatchOperationOut = getOrAddDmiBatchOperation(dmiServiceName,
                                 dataOperationDefinitionIn, dmiDataOperationsOutPerDmiServiceName);
-                        final CmHandle cmHandle = CmHandle.buildCmHandleWithProperties(cmHandleId,
-                                cmHandleIdProperties);
-                        dmiBatchOperationOut.getCmHandles().add(cmHandle);
+                        final DmiOperationCmHandle dmiOperationCmHandle = DmiOperationCmHandle
+                                .buildDmiOperationCmHandle(cmHandleId, cmHandleIdProperties,
+                                        moduleSetTagPerCmHandle.get(cmHandleId));
+                        dmiBatchOperationOut.getCmHandles().add(dmiOperationCmHandle);
                     }
                 }
             }
@@ -112,6 +115,14 @@ public class ResourceDataOperationRequestUtils {
         }
         publishErrorMessageToClientTopic(topicParamInQuery, requestId, cmHandleIdsPerResponseCodesPerOperation);
         return dmiDataOperationsOutPerDmiServiceName;
+    }
+
+    private static Map<String, String> getModuleSetTagPerCmHandleId(
+                                                       final Collection<YangModelCmHandle> yangModelCmHandles) {
+        final Map<String, String> moduleSetTagPerCmHandle = new HashMap<>(yangModelCmHandles.size());
+        yangModelCmHandles.forEach(yangModelCmHandle ->
+                moduleSetTagPerCmHandle.put(yangModelCmHandle.getId(), yangModelCmHandle.getModuleSetTag()));
+        return moduleSetTagPerCmHandle;
     }
 
     /**

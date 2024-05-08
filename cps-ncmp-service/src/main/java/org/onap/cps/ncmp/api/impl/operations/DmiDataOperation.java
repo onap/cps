@@ -40,7 +40,7 @@ public class DmiDataOperation {
     private String options;
     private String resourceIdentifier;
 
-    private final List<CmHandle> cmHandles = new ArrayList<>();
+    private final List<DmiOperationCmHandle> cmHandles = new ArrayList<>();
 
     /**
      * Create and initialise a (outgoing) DMI data operation.
