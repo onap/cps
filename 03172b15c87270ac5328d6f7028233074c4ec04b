@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d17ffe47_5c23ce9b",
+        "filename": "k6-tests/ncmp/2-wait-for-cmhandles-to-be-ready.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-08T11:53:17Z",
+      "side": 1,
+      "message": "There is an issue here where if the whole test times out after 10 minutes, the test won\u0027t be considered a failure, since 0 iterations finished:\n\n    WARN[0630] No script iterations fully finished, consider making the test duration longer",
+      "range": {
+        "startLine": 27,
+        "startChar": 15,
+        "endLine": 29,
+        "endChar": 56
+      },
+      "revId": "03172b15c87270ac5328d6f7028233074c4ec04b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21083e6a_f887a21a",
+        "filename": "k6-tests/ncmp/2-wait-for-cmhandles-to-be-ready.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-08T11:53:17Z",
+      "side": 1,
+      "message": "This should use constant TOTAL_CM_HANDLES from utils.js",
+      "range": {
+        "startLine": 34,
+        "startChar": 30,
+        "endLine": 34,
+        "endChar": 35
+      },
+      "revId": "03172b15c87270ac5328d6f7028233074c4ec04b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
