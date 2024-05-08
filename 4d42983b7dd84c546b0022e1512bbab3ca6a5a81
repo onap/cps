@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "45ced782_60371b5f",
+        "filename": "k6-tests/ncmp/3-passthrough-read.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-08T11:30:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "79020a97_009b0792",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 4
+      },
+      "revId": "4d42983b7dd84c546b0022e1512bbab3ca6a5a81",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4190e339_42029394",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-05-02T14:59:40Z",
       "side": 1,
       "message": "This constant has been repeated in many file, you can try to have it in utils.js and try to use it from util.js whenever needed",
+      "range": {
+        "startLine": 38,
+        "startChar": 4,
+        "endLine": 38,
+        "endChar": 44
+      },
+      "revId": "4d42983b7dd84c546b0022e1512bbab3ca6a5a81",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d2090ca_2d9c7c1e",
+        "filename": "k6-tests/ncmp/3-passthrough-read.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-08T11:30:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4190e339_42029394",
       "range": {
         "startLine": 38,
         "startChar": 4,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "70b85093_d23adade",
+        "filename": "k6-tests/ncmp/3-passthrough-read.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-08T11:30:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "74a07783_acdcccd8",
+      "range": {
+        "startLine": 39,
+        "startChar": 23,
+        "endLine": 39,
+        "endChar": 71
+      },
+      "revId": "4d42983b7dd84c546b0022e1512bbab3ca6a5a81",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "890dc447_1e950629",
@@ -100,6 +172,30 @@
       "writtenOn": "2024-05-02T14:59:40Z",
       "side": 1,
       "message": "unused imports",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 41
+      },
+      "revId": "4d42983b7dd84c546b0022e1512bbab3ca6a5a81",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97838f72_e6c22a7e",
+        "filename": "k6-tests/ncmp/4-id-search-no-filter.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-08T11:30:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "890dc447_1e950629",
       "range": {
         "startLine": 21,
         "startChar": 0,
@@ -133,6 +229,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fda578d7_896ade7e",
+        "filename": "k6-tests/ncmp/5-search-no-filter.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-08T11:30:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af93c57b_5a0c0f54",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 41
+      },
+      "revId": "4d42983b7dd84c546b0022e1512bbab3ca6a5a81",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "776df428_2b6450db",
@@ -146,6 +266,30 @@
       "writtenOn": "2024-05-02T14:59:40Z",
       "side": 1,
       "message": "unused imports\nyou can see the same on the files number#: 7 , 8 , and 9",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 41
+      },
+      "revId": "4d42983b7dd84c546b0022e1512bbab3ca6a5a81",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8028feb3_2e2feb23",
+        "filename": "k6-tests/ncmp/6-id-search-public-property.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-08T11:30:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "776df428_2b6450db",
       "range": {
         "startLine": 21,
         "startChar": 0,
@@ -181,6 +325,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2178ec67_7f84ab24",
+        "filename": "k6-tests/ncmp/run-all-tests.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-08T11:30:56Z",
+      "side": 1,
+      "message": "This allows running the test script from any directory, e.g. from cps repo\n\n    ./k6-tests/ncmp/run-all-tests.sh",
+      "parentUuid": "3eda1a17_e01fc5a2",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 33
+      },
+      "revId": "4d42983b7dd84c546b0022e1512bbab3ca6a5a81",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "561130c6_d3832952",
         "filename": "k6-tests/ncmp/run-all-tests.sh",
         "patchSetId": 1
@@ -192,6 +360,30 @@
       "writtenOn": "2024-05-02T14:59:40Z",
       "side": 1,
       "message": "NB: how did you use the return value (prev. working directory ) ?",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 4
+      },
+      "revId": "4d42983b7dd84c546b0022e1512bbab3ca6a5a81",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06f9226a_e81e990b",
+        "filename": "k6-tests/ncmp/run-all-tests.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-08T11:30:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "561130c6_d3832952",
       "range": {
         "startLine": 38,
         "startChar": 0,
@@ -215,6 +407,30 @@
       "writtenOn": "2024-05-02T14:59:40Z",
       "side": 1,
       "message": "Unexpected var, use let or const instead.",
+      "range": {
+        "startLine": 29,
+        "startChar": 8,
+        "endLine": 29,
+        "endChar": 12
+      },
+      "revId": "4d42983b7dd84c546b0022e1512bbab3ca6a5a81",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "17962952_7c48b07e",
+        "filename": "k6-tests/ncmp/utils.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-08T11:30:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1742d4be_72463ce4",
       "range": {
         "startLine": 29,
         "startChar": 8,
