@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c736c0c_7810c8de",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/events/CpsDataUpdateEventsServiceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 8436
+      },
+      "writtenOn": "2024-05-08T12:54:35Z",
+      "side": 1,
+      "message": "NB: unused import",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 13
+      },
+      "revId": "cc13b48a60a910541cd1a8d76671679c1819a3d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "031928e6_e7fe5a4f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/events/CpsDataUpdateEventsServiceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 8436
+      },
+      "writtenOn": "2024-05-08T12:54:35Z",
+      "side": 1,
+      "message": "NB: with change event notification flag #cpsChangeEventNotificationsEnabled",
+      "range": {
+        "startLine": 91,
+        "startChar": 49,
+        "endLine": 91,
+        "endChar": 57
+      },
+      "revId": "cc13b48a60a910541cd1a8d76671679c1819a3d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b8b505a_404a4bc6",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/events/CpsDataUpdateEventsServiceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 8436
+      },
+      "writtenOn": "2024-05-08T12:54:35Z",
+      "side": 1,
+      "message": "NB: disabled",
+      "range": {
+        "startLine": 101,
+        "startChar": 32,
+        "endLine": 101,
+        "endChar": 39
+      },
+      "revId": "cc13b48a60a910541cd1a8d76671679c1819a3d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
