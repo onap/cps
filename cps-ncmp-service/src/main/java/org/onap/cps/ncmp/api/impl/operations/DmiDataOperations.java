@@ -275,7 +275,7 @@ public class DmiDataOperations extends DmiOperations {
 
             dmiDataOperationRequestBodies.forEach(dmiDataOperationRequestBody -> {
                 final List<String> cmHandleIds = dmiDataOperationRequestBody.getCmHandles().stream()
-                        .map(CmHandle::getId).toList();
+                        .map(DmiOperationCmHandle::getId).toList();
                 if (throwable.getCause() instanceof HttpClientRequestException) {
                     cmHandleIdsPerResponseCodesPerOperation.add(dmiDataOperationRequestBody,
                             Map.of(UNABLE_TO_READ_RESOURCE_DATA, cmHandleIds));

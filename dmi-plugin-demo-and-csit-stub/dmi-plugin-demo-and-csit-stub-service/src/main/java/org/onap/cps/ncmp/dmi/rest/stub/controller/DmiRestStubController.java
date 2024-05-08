@@ -37,9 +37,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.onap.cps.ncmp.api.impl.utils.EventDateTimeFormatter;
-import org.onap.cps.ncmp.dmi.rest.stub.model.data.operational.CmHandle;
 import org.onap.cps.ncmp.dmi.rest.stub.model.data.operational.DataOperationRequest;
 import org.onap.cps.ncmp.dmi.rest.stub.model.data.operational.DmiDataOperationRequest;
+import org.onap.cps.ncmp.dmi.rest.stub.model.data.operational.DmiOperationCmHandle;
 import org.onap.cps.ncmp.dmi.rest.stub.utils.ResourceFileReaderUtil;
 import org.onap.cps.ncmp.events.async1_0_0.Data;
 import org.onap.cps.ncmp.events.async1_0_0.DataOperationEvent;
@@ -235,8 +235,9 @@ public class DmiRestStubController {
         }
         dmiDataOperationRequest.getOperations().forEach(dmiDataOperation -> {
             final DataOperationEvent dataOperationEvent = getDataOperationEvent(dmiDataOperation);
-            dmiDataOperation.getCmHandles().forEach(cmHandle -> {
-                dataOperationEvent.getData().getResponses().get(0).setIds(List.of(cmHandle.getId()));
+            dmiDataOperation.getCmHandles().forEach(dmiOperationCmHandle -> {
+                log.info("Module Set Tag received: {}", dmiOperationCmHandle.getModuleSetTag());
+                dataOperationEvent.getData().getResponses().get(0).setIds(List.of(dmiOperationCmHandle.getId()));
                 final CloudEvent cloudEvent = buildAndGetCloudEvent(topic, requestId, dataOperationEvent);
                 cloudEventKafkaTemplate.send(ncmpAsyncM2mTopic, UUID.randomUUID().toString(), cloudEvent);
             });
@@ -267,10 +268,11 @@ public class DmiRestStubController {
 
     private DataOperationEvent getDataOperationEvent(final DataOperationRequest dataOperationRequest) {
         final Response response = new Response();
+
         response.setOperationId(dataOperationRequest.getOperationId());
         response.setStatusCode(SUCCESS.getCode());
         response.setStatusMessage(SUCCESS.getMessage());
-        response.setIds(dataOperationRequest.getCmHandles().stream().map(CmHandle::getId).toList());
+        response.setIds(dataOperationRequest.getCmHandles().stream().map(DmiOperationCmHandle::getId).toList());
         response.setResourceIdentifier(dataOperationRequest.getResourceIdentifier());
         response.setOptions(dataOperationRequest.getOptions());
         final String ietfNetworkTopologySample = ResourceFileReaderUtil
