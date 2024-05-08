@@ -1,5 +1,5 @@
 /*
- *  ============LICENSE_START=======================================================
+ * ============LICENSE_START=======================================================
  *  Copyright (C) 2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,28 +15,20 @@
  *  limitations under the License.
  *
  *  SPDX-License-Identifier: Apache-2.0
- * ============LICENSE_END=========================================================
+ *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.operations;
+package org.onap.cps.ncmp.dmi.rest.stub.model.data.operational;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.HashMap;
 import java.util.Map;
-import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
+@Setter
 @Getter
-@Builder
-public class CmHandle {
+public class DmiOperationCmHandle {
     private String id;
-
-    @JsonProperty("cmHandleProperties")
-    private Map<String, String> dmiProperties;
-
-    public static CmHandle buildCmHandleWithProperties(final String cmHandleId,
-                                                       final Map<String, String> dmiProperties) {
-        return CmHandle.builder().id(cmHandleId).dmiProperties(dmiProperties).build();
-    }
+    private Map<String, String> cmHandleProperties = new HashMap<>();
+    private String moduleSetTag;
 }

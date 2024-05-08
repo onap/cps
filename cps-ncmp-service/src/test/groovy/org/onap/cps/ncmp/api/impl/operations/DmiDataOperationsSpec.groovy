@@ -105,7 +105,7 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
         and: 'a positive response from DMI service when it is called with valid request parameters'
             def responseFromDmi = new ResponseEntity<Object>(HttpStatus.ACCEPTED)
             def expectedDmiBatchResourceDataUrl = "ncmp/v1/data/topic=my-topic-name"
-            def expectedBatchRequestAsJson = '{"operations":[{"operation":"read","operationId":"operational-14","datastore":"ncmp-datastore:passthrough-operational","options":"some option","resourceIdentifier":"some resource identifier","cmHandles":[{"id":"some-cm-handle","cmHandleProperties":{"prop1":"val1"}}]}]}'
+            def expectedBatchRequestAsJson = '{"operations":[{"operation":"read","operationId":"operational-14","datastore":"ncmp-datastore:passthrough-operational","options":"some option","resourceIdentifier":"some resource identifier","cmHandles":[{"id":"some-cm-handle","cmHandleProperties":{"prop1":"val1"},"moduleSetTag":""}]}]}'
             mockDmiRestClient.postOperationWithJsonData(expectedDmiBatchResourceDataUrl, _, READ.operationName, NO_AUTH_HEADER) >> responseFromDmi
             dmiServiceUrlBuilder.getDataOperationRequestUrl(_, _) >> expectedDmiBatchResourceDataUrl
         when: 'get resource data for group of cm handles are invoked'
@@ -117,7 +117,7 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
     def 'Execute (async) data operation from DMI service for #scenario.'() {
         given: 'data operation request body and dmi resource url'
             def dmiDataOperation = DmiDataOperation.builder().operationId('some-operation-id').build()
-            dmiDataOperation.getCmHandles().add(CmHandle.builder().id('some-cm-handle-id').build())
+            dmiDataOperation.getCmHandles().add(DmiOperationCmHandle.builder().id('some-cm-handle-id').moduleSetTag("module-set-tag1").build())
             def dmiDataOperationResourceDataUrl = "http://dmi-service-name:dmi-port/dmi/v1/data?topic=my-topic-name&requestId=some-request-id"
             def actualDataOperationCloudEvent = null
         when: 'exception occurs after sending request to dmi service'
