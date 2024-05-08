@@ -359,6 +359,9 @@ components:
         options:
           type: string
           example: '(fields=schemas/schema)'
+        moduleSetTag:
+          type: string
+          example: 'tag1'
         resourceIdentifier:
           type: string
           example: 'parent/child'
