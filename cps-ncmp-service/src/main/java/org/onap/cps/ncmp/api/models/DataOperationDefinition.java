@@ -42,6 +42,7 @@ public class DataOperationDefinition {
     private String datastore;
     private String options;
     private String resourceIdentifier;
+    private String moduleSetTag;
 
     @JsonProperty("targetIds")
     @Valid
