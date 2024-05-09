@@ -20,14 +20,40 @@
 
 package org.onap.cps.ncmp.impl.datajobs;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.datajobs.DataJobService;
 import org.onap.cps.ncmp.api.datajobs.models.DataJobMetadata;
 import org.onap.cps.ncmp.api.datajobs.models.DataJobReadRequest;
 import org.onap.cps.ncmp.api.datajobs.models.DataJobWriteRequest;
+import org.onap.cps.ncmp.api.datajobs.models.ProducerKey;
+import org.onap.cps.ncmp.api.datajobs.models.WriteOperation;
+import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
+import org.onap.cps.ncmp.api.datajobs.models.Dmi3ggpWriteOperation;
+import org.onap.cps.ncmp.api.datajobs.models.SubJobWriteRequest;
+import org.onap.cps.ncmp.api.impl.operations.OperationType;
+import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
+import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
+import org.onap.cps.ncmp.utils.AlternateIdMatcher;
+import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.utils.JsonObjectMapper;
+import org.springframework.stereotype.Service;
 
 @Slf4j
+@Service
+@RequiredArgsConstructor
 public class DataJobServiceImpl implements DataJobService {
+
+    private final AlternateIdMatcher alternateIdMatcher;
+    private final DmiRestClient dmiRestClient;
+    protected final JsonObjectMapper jsonObjectMapper;
+    private static final String SEPARATOR = "/";
+    private static final String NO_AUTH_HEADER = null;
 
     @Override
     public void readDataJob(final String dataJobId, final DataJobMetadata dataJobMetadata,
@@ -38,6 +64,52 @@ public class DataJobServiceImpl implements DataJobService {
     @Override
     public void writeDataJob(final String dataJobId, final DataJobMetadata dataJobMetadata,
                              final DataJobWriteRequest dataJobWriteRequest) {
-        log.info("data job id for write operation is: {}", dataJobId);
+        final Map<ProducerKey, Collection<SubJobWriteRequest>> producerKeyMap = new HashMap<>();
+
+        for (final WriteOperation writeOperation: dataJobWriteRequest.data()) {
+
+            log.info("data job id for write operation is: {}", dataJobId);
+            final DataNode dataNode = alternateIdMatcher
+                    .getCmHandleDataNodeByLongestMatchAlternateId(writeOperation.path(), SEPARATOR);
+
+            final SubJobWriteRequest subJobWriteRequest = new SubJobWriteRequest();
+            subJobWriteRequest.setDataContentType(dataJobMetadata.dataContentType());
+            subJobWriteRequest.setDataAcceptType(dataJobMetadata.dataAcceptType());
+            subJobWriteRequest.setDataProducerId(dataJobId);
+
+            final Dmi3ggpWriteOperation dmiWriteOperation = new Dmi3ggpWriteOperation();
+            dmiWriteOperation.setOp(writeOperation.op());
+            dmiWriteOperation.setOperationId(Integer.valueOf(writeOperation.operationId()));
+            dmiWriteOperation.setModuleSetTag((String) dataNode.getLeaves().get("module-set-tag"));
+            dmiWriteOperation.setPath(writeOperation.path());
+            dmiWriteOperation.setPrivateProperties(getPrivatePropertiesFromDataNode(dataNode));
+
+            subJobWriteRequest.getData().add(dmiWriteOperation);
+
+            final ProducerKey producerKey = new ProducerKey((String) dataNode.getLeaves().get("dmi-service-name"),
+                    (String) dataNode.getLeaves().get("data-producer-identifier"));
+
+            if (producerKeyMap.containsKey(producerKey)) {
+                Collection<SubJobWriteRequest> subJobWriteRequests = producerKeyMap.get(producerKey);
+                subJobWriteRequests.add(subJobWriteRequest);
+            } else {
+                producerKeyMap.put(producerKey, new ArrayList<>());
+            }
+        }
+
+        producerKeyMap.forEach((key, value) -> {
+            final String dmiResourceUrl = String.format("/v1/dataJobWrite/%s", dataJobId);
+            dmiRestClient.postOperationWithJsonData(dmiResourceUrl, jsonObjectMapper.asJsonString(value),
+                    OperationType.CREATE, NO_AUTH_HEADER);
+        });
+    }
+
+    private Map<String, String> getPrivatePropertiesFromDataNode(final DataNode dataNode) {
+        final YangModelCmHandle yangModelCmHandle =
+                YangDataConverter.convertCmHandleToYangModel(dataNode);
+        final Map<String, String> cmHandleDmiProperties = new LinkedHashMap<>();
+        yangModelCmHandle.getDmiProperties()
+                .forEach(dmiProperty -> cmHandleDmiProperties.put(dmiProperty.getName(), dmiProperty.getValue()));
+        return cmHandleDmiProperties;
     }
 }
