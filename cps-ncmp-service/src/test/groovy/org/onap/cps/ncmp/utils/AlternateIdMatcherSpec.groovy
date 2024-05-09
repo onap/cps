@@ -40,7 +40,7 @@ class AlternateIdMatcherSpec extends Specification {
 
     def 'Finding longest alternate id matches.'() {
         expect: 'querying for alternate id a matching result found'
-            assert objectUnderTest.getCmHandleDataNodeByLongestMatchAlternateId(targetAlternateId, '/') != null
+            assert objectUnderTest.getCmHandleDataNodeByLongestMatchingAlternateId(targetAlternateId, '/') != null
         where: 'the following parameters are used'
             scenario                   | targetAlternateId
             'exact match'              | '/a/b'
@@ -51,7 +51,7 @@ class AlternateIdMatcherSpec extends Specification {
 
     def 'Attempt to find longest alternate id match without any matches.'() {
         when: 'attempt to find alternateId'
-            objectUnderTest.getCmHandleDataNodeByLongestMatchAlternateId(targetAlternateId, '/')
+            objectUnderTest.getCmHandleDataNodeByLongestMatchingAlternateId(targetAlternateId, '/')
         then: 'no alternate id match found exception thrown'
             def thrown = thrown(NoAlternateIdMatchFoundException)
         and: 'the exception has the relevant details from the error response'
