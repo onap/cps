@@ -24,6 +24,10 @@ import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
 import ch.qos.logback.classic.spi.ILoggingEvent
 import ch.qos.logback.core.read.ListAppender
+import com.fasterxml.jackson.databind.ObjectMapper
+import org.onap.cps.ncmp.api.impl.client.DmiRestClient
+import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence
+import org.onap.cps.spi.model.DataNode
 import org.slf4j.LoggerFactory
 import org.onap.cps.ncmp.api.models.datajob.DataJobReadRequest
 import org.onap.cps.ncmp.api.models.datajob.DataJobWriteRequest
@@ -34,7 +38,10 @@ import spock.lang.Specification
 
 class DataJobServiceImplSpec extends Specification{
 
-    def objectUnderTest = new DataJobServiceImpl()
+    def mockInventoryPersistenceService = Mock(InventoryPersistence)
+    def mockDmiRestClient = Mock(DmiRestClient)
+    def mockObjectMapper = Mock(ObjectMapper)
+    def objectUnderTest = new DataJobServiceImpl(mockInventoryPersistenceService, mockDmiRestClient, mockObjectMapper)
 
     def logger = Spy(ListAppender<ILoggingEvent>)
 
@@ -49,6 +56,8 @@ class DataJobServiceImplSpec extends Specification{
     def '#operation data job request.'() {
         given: 'data job metadata'
             def dataJobMetadata = new DataJobMetadata('client-topic', 'application/vnd.3gpp.object-tree-hierarchical+json', 'application/3gpp-json-patch+json')
+        and: 'the inventory persistence returns a data node'
+            mockInventoryPersistenceService.getCmHandleDataNodeByLongestMatchAlternateId('some/write/path', '/') >> new DataNode(leaves: [id: 'ch-1', 'data-producer-identifier': 'my-data-producer-identifier'])
         when: 'read/write data job request is processed'
             if (operation == 'read') {
                 objectUnderTest.readDataJob('some-job-id', dataJobMetadata, new DataJobReadRequest([getWriteOrReadOperationRequest(operation)]))
