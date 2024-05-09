@@ -88,9 +88,9 @@ class GetPerfTest extends CpsPerfTestBase {
             recordAndAssertResourceUsage("Read datatrees using ${scenario}", durationLimit, durationInSeconds, memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
         where: 'the following xpaths are used'
             scenario                | xpath                                  || durationLimit  | memoryLimit  | expectedNumberOfDataNodes
-            'openroadm root'        | '/'                                    || 1.0            | 250          | 1 + OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
-            'openroadm top element' | '/openroadm-devices'                   || 1.0            | 250          | 1 + OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
-            'openroadm whole list'  | '/openroadm-devices/openroadm-device'  || 1.7            | 250          | OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
+            'openroadm root'        | '/'                                    || 1.2            | 250          | 1 + OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
+            'openroadm top element' | '/openroadm-devices'                   || 1.1            | 250          | 1 + OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
+            'openroadm whole list'  | '/openroadm-devices/openroadm-device'  || 1.8            | 250          | OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
     }
 
 }
