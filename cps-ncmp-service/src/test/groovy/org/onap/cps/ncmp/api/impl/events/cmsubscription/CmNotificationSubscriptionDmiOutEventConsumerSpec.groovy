@@ -49,10 +49,11 @@ class CmNotificationSubscriptionDmiOutEventConsumerSpec extends MessagingBaseSpe
     @Autowired
     ObjectMapper objectMapper
 
-    @SpringBean
-    DmiCmNotificationSubscriptionCacheHandler mockDmiCmNotificationSubscriptionCacheHandler = Mock(DmiCmNotificationSubscriptionCacheHandler)
+    def mockDmiCmNotificationSubscriptionCacheHandler = Mock(DmiCmNotificationSubscriptionCacheHandler)
+    def mockCmNotificationSubscriptionEventsHandler = Mock(CmNotificationSubscriptionEventsHandler)
+    def mockCmNotificationSubscriptionMappersHandler = Mock(CmNotificationSubscriptionMappersHandler)
 
-    def objectUnderTest = new CmNotificationSubscriptionDmiOutEventConsumer(mockDmiCmNotificationSubscriptionCacheHandler)
+    def objectUnderTest = new CmNotificationSubscriptionDmiOutEventConsumer(mockDmiCmNotificationSubscriptionCacheHandler, mockCmNotificationSubscriptionEventsHandler, mockCmNotificationSubscriptionMappersHandler)
     def logger = Spy(ListAppender<ILoggingEvent>)
 
     void setup() {
@@ -102,6 +103,10 @@ class CmNotificationSubscriptionDmiOutEventConsumerSpec extends MessagingBaseSpe
             expectedCacheCalls * mockDmiCmNotificationSubscriptionCacheHandler.updateDmiCmNotificationSubscriptionStatusPerDmi('sub-1','test-dmi-plugin-name', subscriptionStatus)
         and: 'correct number of calls to persist cache'
             expectedPersistenceCalls * mockDmiCmNotificationSubscriptionCacheHandler.persistIntoDatabasePerDmi('sub-1','test-dmi-plugin-name')
+        and: 'correct number of calls to map the ncmp out event'
+            1 * mockCmNotificationSubscriptionMappersHandler.toCmNotificationSubscriptionNcmpOutEvent('sub-1', _)
+        and: 'correct number of calls to publish the ncmp out event to client'
+            1 * mockCmNotificationSubscriptionEventsHandler.publishCmNotificationSubscriptionNcmpOutEvent('sub-1', 'subscriptionCreateResponse', _, false)
         where: 'the following parameters are used'
             scenario            | subscriptionStatus                            | statusCode || expectedCacheCalls | expectedPersistenceCalls
             'Accepted Status'   | CmNotificationSubscriptionStatus.ACCEPTED     | '1'        || 1                  | 1

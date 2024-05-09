@@ -122,10 +122,13 @@ public class DmiCmNotificationSubscriptionCacheHandler {
      * @param status            String of status
      *
      */
-    public void updateDmiCmNotificationSubscriptionStatusPerDmi(
-            final String subscriptionId, final String dmiServiceName, final CmNotificationSubscriptionStatus status) {
-        cmNotificationSubscriptionCache.get(subscriptionId).get(dmiServiceName)
-                .setCmNotificationSubscriptionStatus(status);
+    public void updateDmiCmNotificationSubscriptionStatusPerDmi(final String subscriptionId,
+            final String dmiServiceName, final CmNotificationSubscriptionStatus status) {
+        final Map<String, DmiCmNotificationSubscriptionDetails> dmiCmNotificationSubscriptionDetailsPerDmi =
+                cmNotificationSubscriptionCache.get(subscriptionId);
+        dmiCmNotificationSubscriptionDetailsPerDmi.get(dmiServiceName).setCmNotificationSubscriptionStatus(status);
+        cmNotificationSubscriptionCache.put(subscriptionId, dmiCmNotificationSubscriptionDetailsPerDmi);
+
     }
 
     /**
