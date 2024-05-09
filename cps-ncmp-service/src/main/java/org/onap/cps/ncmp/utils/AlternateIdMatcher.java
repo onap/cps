@@ -44,7 +44,7 @@ public class AlternateIdMatcher {
      * @param separator   a string that separates each element from the next.
      * @return data node
      */
-    public DataNode getCmHandleDataNodeByLongestMatchAlternateId(final String alternateId, final String separator) {
+    public DataNode getCmHandleDataNodeByLongestMatchingAlternateId(final String alternateId, final String separator) {
         String bestMatch = alternateId;
         while (StringUtils.isNotEmpty(bestMatch)) {
             try {
