@@ -39,7 +39,7 @@ class ResourceMeterPerfTest extends Specification {
             assert resourceMeter.getTotalTimeInSeconds() <= 2.01
     }
 
-    def 'ResourceMeter reports memory usage when allocating a large byte array'() {
+    def 'Resource Meter reports memory usage when allocating a large byte array'() {
         when: 'the resource meter is started'
             resourceMeter.start()
         and: 'some memory is allocated'
