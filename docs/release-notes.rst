@@ -39,6 +39,7 @@ Release Data
 Bug Fixes
 ---------
 3.4.9
+    - `CPS-2211 <https://jira.onap.org/browse/CPS-2211>`_ Toggle switch to disable CPS Core change events if not used by application. Set CPS_CHANGE_EVENT_NOTIFICATIONS_ENABLED environment variable for the same.
 
 Features
 --------
