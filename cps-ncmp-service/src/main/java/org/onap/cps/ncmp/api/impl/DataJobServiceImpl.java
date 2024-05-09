@@ -20,14 +20,30 @@
 
 package org.onap.cps.ncmp.api.impl;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.DataJobService;
+import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
+import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence;
+import org.onap.cps.ncmp.api.impl.operations.OperationType;
 import org.onap.cps.ncmp.api.models.datajob.DataJobMetadata;
 import org.onap.cps.ncmp.api.models.datajob.DataJobReadRequest;
 import org.onap.cps.ncmp.api.models.datajob.DataJobWriteRequest;
+import org.onap.cps.ncmp.api.models.datajob.ProducerKey;
+import org.onap.cps.ncmp.api.models.datajob.WriteOperation;
+import org.onap.cps.spi.model.DataNode;
+import org.springframework.stereotype.Service;
 
 @Slf4j
+@Service
+@RequiredArgsConstructor
 public class DataJobServiceImpl implements DataJobService {
+
+    private final InventoryPersistence inventoryPersistence;
+    private final DmiRestClient dmiRestClient;
+    private final ObjectMapper objectMapper;
 
     @Override
     public void readDataJob(final String dataJobId, final DataJobMetadata dataJobMetadata,
@@ -38,6 +54,18 @@ public class DataJobServiceImpl implements DataJobService {
     @Override
     public void writeDataJob(final String dataJobId, final DataJobMetadata dataJobMetadata,
                              final DataJobWriteRequest dataJobWriteRequest) {
+        if (!dataJobWriteRequest.data().isEmpty()) {
+            final WriteOperation writeOperation = dataJobWriteRequest.data().get(0);
+            final DataNode dataNode = inventoryPersistence.getCmHandleDataNodeByAlternateId(writeOperation.path());
+            final ProducerKey producerKey = new ProducerKey(dataNode.getLeaves().get("id") + "_"
+                    + dataNode.getLeaves().get("data-producer-identifier"), writeOperation);
+            try {
+                dmiRestClient.postOperationWithJsonData("", objectMapper.writeValueAsString(producerKey),
+                        OperationType.CREATE, null);
+            } catch (final JsonProcessingException e) {
+                log.error("Error reading the file.", e);
+            }
+        }
         log.info("data job id for write operation is: {}", dataJobId);
     }
 }
