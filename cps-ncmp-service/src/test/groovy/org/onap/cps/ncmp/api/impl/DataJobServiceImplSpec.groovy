@@ -24,18 +24,33 @@ import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
 import ch.qos.logback.classic.spi.ILoggingEvent
 import ch.qos.logback.core.read.ListAppender
+import com.fasterxml.jackson.databind.ObjectMapper
+import org.mockito.Mock
+import org.onap.cps.ncmp.api.impl.config.DmiProperties
+import org.onap.cps.ncmp.api.impl.operations.OperationType
+import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder
 import org.onap.cps.ncmp.impl.datajobs.DataJobServiceImpl
+import org.onap.cps.ncmp.api.impl.client.DmiRestClient
+import org.onap.cps.ncmp.utils.AlternateIdMatcher
+import org.onap.cps.spi.model.DataNode
+import org.onap.cps.utils.JsonObjectMapper
 import org.slf4j.LoggerFactory
 import org.onap.cps.ncmp.api.datajobs.models.DataJobReadRequest
 import org.onap.cps.ncmp.api.datajobs.models.DataJobWriteRequest
 import org.onap.cps.ncmp.api.datajobs.models.DataJobMetadata
 import org.onap.cps.ncmp.api.datajobs.models.ReadOperation
 import org.onap.cps.ncmp.api.datajobs.models.WriteOperation
+import org.springframework.test.context.ContextConfiguration
+import org.springframework.test.context.TestPropertySource
 import spock.lang.Specification
 
-class DataJobServiceImplSpec extends Specification{
+class DataJobServiceImplSpec extends Specification {
 
-    def objectUnderTest = new DataJobServiceImpl()
+    def mockAlternateIdMatcher = Mock(AlternateIdMatcher)
+    def mockDmiRestClient = Mock(DmiRestClient)
+    def mockObjectMapper = Mock(JsonObjectMapper)
+    def mockDmiProperties = Mock(DmiProperties)
+    def objectUnderTest = new DataJobServiceImpl(mockAlternateIdMatcher, mockDmiRestClient, mockDmiProperties, mockObjectMapper)
 
     def logger = Spy(ListAppender<ILoggingEvent>)
 
@@ -47,21 +62,30 @@ class DataJobServiceImplSpec extends Specification{
         ((Logger) LoggerFactory.getLogger(DataJobServiceImpl.class)).detachAndStopAllAppenders()
     }
 
-    def '#operation data job request.'() {
+    def 'Read data job request.'() {
         given: 'data job metadata'
             def dataJobMetadata = new DataJobMetadata('client-topic', 'application/vnd.3gpp.object-tree-hierarchical+json', 'application/3gpp-json-patch+json')
         when: 'read/write data job request is processed'
-            if (operation == 'read') {
-                objectUnderTest.readDataJob('some-job-id', dataJobMetadata, new DataJobReadRequest([getWriteOrReadOperationRequest(operation)]))
-            } else {
-                objectUnderTest.writeDataJob('some-job-id', dataJobMetadata, new DataJobWriteRequest([getWriteOrReadOperationRequest(operation)]))
-            }
+            objectUnderTest.readDataJob('some-job-id', dataJobMetadata, new DataJobReadRequest([getWriteOrReadOperationRequest('read')]))
         then: 'the data job id is correctly logged'
             def loggingEvent = logger.list[0]
             assert loggingEvent.level == Level.INFO
-            assert loggingEvent.formattedMessage.contains('data job id for ' + operation + ' operation is: some-job-id')
-        where: 'the following data job operations are used'
-            operation << ['read', 'write']
+            assert loggingEvent.formattedMessage.contains('data job id for read operation is: some-job-id')
+    }
+    def 'Write data job request.'() {
+        given: 'data job metadata'
+            def dataJobMetadata = new DataJobMetadata('client-topic', 'application/vnd.3gpp.object-tree-hierarchical+json', 'application/3gpp-json-patch+json')
+        and: 'the dmi base path returned'
+            mockDmiProperties.getDmiBasePath() >> 'dmi'
+        and: 'the inventory persistence returns a data node'
+            mockAlternateIdMatcher.getCmHandleDataNodeByLongestMatchAlternateId('some/write/path', '/') >> new DataNode(leaves: [id: 'ch-1', 'dmi-service-name': 'my-dmi-service-name', 'data-producer-identifier': 'my-data-producer-identifier'])
+        when: 'read/write data job request is processed'
+                objectUnderTest.writeDataJob('some-job-id', dataJobMetadata, new DataJobWriteRequest([getWriteOrReadOperationRequest('write'), getWriteOrReadOperationRequest('write')] as List<WriteOperation>))
+        then: 'the data job id is correctly logged'
+            def loggingEvent = logger.list[0]
+            assert loggingEvent.level == Level.INFO
+            assert loggingEvent.formattedMessage.contains('data job id for write operation is: some-job-id')
+            1 * mockDmiRestClient.postOperationWithJsonData('my-dmi-service-name/dmi/v1/writeJob/some-job-id', _, OperationType.CREATE, null)
     }
 
     def getWriteOrReadOperationRequest(operation) {
