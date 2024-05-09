@@ -34,7 +34,8 @@ public enum OperationType {
     CREATE("create"),
     UPDATE("update"),
     PATCH("patch"),
-    DELETE("delete");
+    DELETE("delete"),
+    ADD("add");
 
     private final String operationName;
 
