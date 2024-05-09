@@ -170,6 +170,20 @@ public class DmiServiceUrlBuilder {
         return queryParams;
     }
 
+    /**
+     * This method creates the dmi service url with path variables.
+     *
+     * @return {@code String} dmi service url
+     */
+    public String getWriteJobUrl(final String dmiServiceName, final String requestId) {
+        return UriComponentsBuilder.newInstance()
+                .path(dmiServiceName)
+                .pathSegment(dmiProperties.getDmiBasePath())
+                .pathSegment("v1")
+                .pathSegment("writeJob")
+                .pathSegment(requestId).toUriString();
+    }
+
     private TriConsumer<String, String, MultiValueMap<String, String>> getQueryParamConsumer() {
         return (paramName, paramValue, paramMap) -> {
             if (Strings.isNotEmpty(paramValue)) {

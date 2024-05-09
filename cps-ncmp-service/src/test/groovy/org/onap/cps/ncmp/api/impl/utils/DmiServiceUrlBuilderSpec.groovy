@@ -54,7 +54,7 @@ class DmiServiceUrlBuilderSpec extends Specification {
         then: 'service url is generated as expected'
             assert dmiServiceUrl == expectedDmiServiceUrl
         where: 'the following parameters are used'
-            scenario                       | topic               | moduleSetTag | resourceId   || expectedDmiServiceUrl
+            scenario                       | topic               | moduleSetTag      | resourceId   || expectedDmiServiceUrl
             'With valid resourceId'        | 'topicParamInQuery' | ''                | 'resourceId' || 'dmiServiceName/dmi/v1/ch/cmHandle/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=resourceId&options=optionsParamInQuery&topic=topicParamInQuery'
             'With Empty resourceId'        | 'topicParamInQuery' | ''                | ''           || 'dmiServiceName/dmi/v1/ch/cmHandle/data/ds/ncmp-datastore:passthrough-running?options=optionsParamInQuery&topic=topicParamInQuery'
             'With valid moduleSetTag'      | 'topicParamInQuery' | 'module-set-tag1' | 'resourceId' || 'dmiServiceName/dmi/v1/ch/cmHandle/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=resourceId&options=optionsParamInQuery&topic=topicParamInQuery&moduleSetTag=module-set-tag1'
@@ -89,6 +89,16 @@ class DmiServiceUrlBuilderSpec extends Specification {
             def result = objectUnderTest.getDataOperationRequestUrl(batchRequestQueryParams, batchRequestUriVariables)
         then: 'it is formed correctly'
             assert result.toString() == 'some-service/testBase/v1/data?topic=some+topic&requestId=some+id'
+    }
+
+    def 'Get data job write request URL.'() {
+        given: 'The reqired path variables for a data job write request'
+            def dmiServiceName = 'my-dmi-service-name'
+            def dataJobId = 'my-data-job-id'
+        when: 'the URL is created'
+            def result = objectUnderTest.getWriteJobUrl(dmiServiceName, dataJobId)
+        then: 'it is formatted correctly'
+            assert result == 'my-dmi-service-name/dmi/v1/writeJob/my-data-job-id'
     }
 
     def 'Populate batch uri variables.'() {
