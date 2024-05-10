@@ -157,7 +157,7 @@ public class CmNotificationSubscriptionPersistenceServiceImpl implements CmNotif
         final String subscriptionDetailsAsJson = "{\"filter\":["
                 + jsonObjectMapper.asJsonString(subscriptionDetailsAsMap).replace("'", "\"") + "]}";
         cpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME, parentXpath,
-                subscriptionDetailsAsJson, OffsetDateTime.now());
+                subscriptionDetailsAsJson, OffsetDateTime.now(), ContentType.JSON);
     }
 
     private static String escapeQuotesByDoublingThem(final String inputXpath) {
