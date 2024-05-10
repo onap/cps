@@ -23,12 +23,17 @@ package org.onap.cps.ncmp.api.impl.events.cmsubscription.consumer;
 import static org.onap.cps.ncmp.api.impl.events.mapper.CloudEventMapper.toTargetEvent;
 
 import io.cloudevents.CloudEvent;
+import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.onap.cps.ncmp.api.impl.events.cmsubscription.CmNotificationSubscriptionEventsHandler;
+import org.onap.cps.ncmp.api.impl.events.cmsubscription.CmNotificationSubscriptionMappersHandler;
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.DmiCmNotificationSubscriptionCacheHandler;
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.CmNotificationSubscriptionStatus;
+import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.DmiCmNotificationSubscriptionDetails;
 import org.onap.cps.ncmp.events.cmnotificationsubscription_merge1_0_0.dmi_to_ncmp.CmNotificationSubscriptionDmiOutEvent;
+import org.onap.cps.ncmp.events.cmsubscription_merge1_0_0.ncmp_to_client.CmNotificationSubscriptionNcmpOutEvent;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
@@ -38,6 +43,8 @@ import org.springframework.stereotype.Component;
 public class CmNotificationSubscriptionDmiOutEventConsumer {
 
     private final DmiCmNotificationSubscriptionCacheHandler dmiCmNotificationSubscriptionCacheHandler;
+    private final CmNotificationSubscriptionEventsHandler cmNotificationSubscriptionEventsHandler;
+    private final CmNotificationSubscriptionMappersHandler cmNotificationSubscriptionMappersHandler;
 
     /**
      * Consume the Cm Notification Subscription event from the dmi-plugin.
@@ -66,10 +73,12 @@ public class CmNotificationSubscriptionDmiOutEventConsumer {
         if ("ACCEPTED".equals(cmNotificationSubscriptionDmiOutEvent.getData().getStatusMessage())) {
             handleCacheStatusPerDmi(subscriptionId, dmiPluginName, CmNotificationSubscriptionStatus.ACCEPTED);
             dmiCmNotificationSubscriptionCacheHandler.persistIntoDatabasePerDmi(subscriptionId, dmiPluginName);
+            handleEventsStatusPerDmi(subscriptionId);
         }
 
         if ("REJECTED".equals(cmNotificationSubscriptionDmiOutEvent.getData().getStatusMessage())) {
             handleCacheStatusPerDmi(subscriptionId, dmiPluginName, CmNotificationSubscriptionStatus.REJECTED);
+            handleEventsStatusPerDmi(subscriptionId);
         }
 
         log.info("Cm Subscription with id : {} handled by the dmi-plugin : {} has the status : {}", subscriptionId,
@@ -77,8 +86,18 @@ public class CmNotificationSubscriptionDmiOutEventConsumer {
     }
 
     private void handleCacheStatusPerDmi(final String subscriptionId, final String dmiPluginName,
-                                         final CmNotificationSubscriptionStatus cmNotificationSubscriptionStatus) {
+            final CmNotificationSubscriptionStatus cmNotificationSubscriptionStatus) {
         dmiCmNotificationSubscriptionCacheHandler.updateDmiCmNotificationSubscriptionStatusPerDmi(subscriptionId,
-            dmiPluginName, cmNotificationSubscriptionStatus);
+                dmiPluginName, cmNotificationSubscriptionStatus);
+    }
+
+    private void handleEventsStatusPerDmi(final String subscriptionId) {
+        final Map<String, DmiCmNotificationSubscriptionDetails> dmiCmNotificationSubscriptionDetailsPerDmi =
+                dmiCmNotificationSubscriptionCacheHandler.get(subscriptionId);
+        final CmNotificationSubscriptionNcmpOutEvent cmNotificationSubscriptionNcmpOutEvent =
+                cmNotificationSubscriptionMappersHandler.toCmNotificationSubscriptionNcmpOutEvent(subscriptionId,
+                        dmiCmNotificationSubscriptionDetailsPerDmi);
+        cmNotificationSubscriptionEventsHandler.publishCmNotificationSubscriptionNcmpOutEvent(subscriptionId,
+                "subscriptionCreateResponse", cmNotificationSubscriptionNcmpOutEvent, false);
     }
 }
