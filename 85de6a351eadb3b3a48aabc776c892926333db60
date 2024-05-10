@@ -48,6 +48,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c213f62c_02e2955c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/DmiCmNotificationSubscriptionCacheHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-05-10T11:58:04Z",
+      "side": 1,
+      "message": "Sorry I meant line 39 on CmNotificationSubscriptionDmiOutEventConsumerSpec.groovy\n\nDont understand how I marked this class :)",
+      "parentUuid": "3eedb1a1_06b42a10",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 59
+      },
+      "revId": "85de6a351eadb3b3a48aabc776c892926333db60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "210fdfb7_a8204a18",
@@ -61,6 +85,29 @@
       "writtenOn": "2024-05-10T10:22:33Z",
       "side": 1,
       "message": "NB: redundant space",
+      "revId": "85de6a351eadb3b3a48aabc776c892926333db60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46ac2b6e_fcdf8243",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionDmiOutEventConsumerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-05-10T11:58:04Z",
+      "side": 1,
+      "message": "NB: unused import",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 43
+      },
       "revId": "85de6a351eadb3b3a48aabc776c892926333db60",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
