@@ -63,6 +63,24 @@
       "message": "Missing JavaDoc parameter for contentType",
       "revId": "0699f863b3f326b6b3ead3a041e2329243b65ddc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "51f76b6c_f22c6c17",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-05-11T09:10:07Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "e7e900c2_3a00f261",
+      "revId": "0699f863b3f326b6b3ead3a041e2329243b65ddc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
