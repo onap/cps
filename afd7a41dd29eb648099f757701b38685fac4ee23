@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbbcf706_36a3768c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiModelOperationsSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-13T15:49:34Z",
+      "side": 1,
+      "message": "Retrieving yang resources #scenario module set tag.\nscenarios\u0027with\u0027 and \u0027without\u0027",
+      "range": {
+        "startLine": 157,
+        "startChar": 9,
+        "endLine": 157,
+        "endChar": 68
+      },
+      "revId": "afd7a41dd29eb648099f757701b38685fac4ee23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20ad3d88_85d475aa",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiModelOperationsSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-13T15:49:34Z",
+      "side": 1,
+      "message": "preferably not in json at all if so use a boolean\nexpectedMouduleSetTagInRequest true/false (and use this boolean in assert above)",
+      "range": {
+        "startLine": 171,
+        "startChar": 84,
+        "endLine": 171,
+        "endChar": 105
+      },
+      "revId": "afd7a41dd29eb648099f757701b38685fac4ee23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d0e73c8_5b3b7ca9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiOperationsBaseSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-13T15:49:34Z",
+      "side": 1,
+      "message": "default should be blank \u0027\u0027",
+      "range": {
+        "startLine": 62,
+        "startChar": 54,
+        "endLine": 62,
+        "endChar": 60
+      },
+      "revId": "afd7a41dd29eb648099f757701b38685fac4ee23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8788884e_914289e2",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiOperationsBaseSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-13T15:49:34Z",
+      "side": 1,
+      "message": "\u0027\u0027",
+      "range": {
+        "startLine": 72,
+        "startChar": 48,
+        "endLine": 72,
+        "endChar": 51
+      },
+      "revId": "afd7a41dd29eb648099f757701b38685fac4ee23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
