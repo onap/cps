@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbdb1a60_c9e2400d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-13T11:02:23Z",
+      "side": 1,
+      "message": "REMVOE this commit is the NCMP inbound interface SHOUDL not have been affected",
+      "revId": "87b282aaa4eafb5b37953a7052bcfbe9387d541e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f3441fd_515d7eb1",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 634,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-13T11:02:23Z",
+      "side": 1,
+      "message": "REMOVE, there is NO new incoming parmeter (NCMP can lookup the tag itself without the client telling it, unlike the topic name)",
+      "range": {
+        "startLine": 624,
+        "startChar": 0,
+        "endLine": 634,
+        "endChar": 21
+      },
+      "revId": "87b282aaa4eafb5b37953a7052bcfbe9387d541e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
