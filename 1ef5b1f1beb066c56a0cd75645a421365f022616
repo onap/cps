@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3cd58655_e63dd9eb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-13T11:13:14Z",
+      "side": 1,
+      "message": "add something like:\n\u0027Included module set tag in NCMP calls to DMI for Yang Module Resources\u0027",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 59
+      },
+      "revId": "1ef5b1f1beb066c56a0cd75645a421365f022616",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c94ae23_557797ee",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiModelOperations.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-13T11:13:14Z",
+      "side": 1,
+      "message": "this mean you need to have 2 test (scenarios)! blank and non-blank!",
+      "range": {
+        "startLine": 128,
+        "startChar": 49,
+        "endLine": 128,
+        "endChar": 59
+      },
+      "revId": "1ef5b1f1beb066c56a0cd75645a421365f022616",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6193469b_5a53d330",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiModelOperations.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-13T11:13:14Z",
+      "side": 1,
+      "message": "remove the nullcheck, as discused with SOurabh null is already handle earlier and converted to empty string",
+      "range": {
+        "startLine": 128,
+        "startChar": 12,
+        "endLine": 128,
+        "endChar": 32
+      },
+      "revId": "1ef5b1f1beb066c56a0cd75645a421365f022616",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "485f27c8_4ecf66ea",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiModelOperationsSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-13T11:13:14Z",
+      "side": 1,
+      "message": "currently this method (in DmiOperationsBaseSpec) has a hardcoded \u0027tag1\u0027, you need to modify this method to take in a modulSetTag parameter  (you could even overload it) and leave it blank for the 2 test you had to modify!\n\nthen create  a NEW test dedicated to moduleSetTag where you test it with and without a modulSetTag (the new test can work with an EMPTY array of modules...)",
+      "range": {
+        "startLine": 107,
+        "startChar": 12,
+        "endLine": 107,
+        "endChar": 46
+      },
+      "revId": "1ef5b1f1beb066c56a0cd75645a421365f022616",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
