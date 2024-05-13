@@ -48,6 +48,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "04a75126_697cec57",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-05-13T11:48:55Z",
+      "side": 1,
+      "message": "My point is , since we already have the contentTypeHeader attribute already present which is supposed to contain application/json or application/xml , then why do we want to again check if its json data and then based on that decide if its xml or json ??\ncant we just rely on the content-type for this ???",
+      "parentUuid": "d8414132_8bcbe38c",
+      "range": {
+        "startLine": 141,
+        "startChar": 40,
+        "endLine": 141,
+        "endChar": 60
+      },
+      "revId": "0699f863b3f326b6b3ead3a041e2329243b65ddc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e7e900c2_3a00f261",
