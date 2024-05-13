@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd63dd17_9e76f124",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-13T11:28:35Z",
+      "side": 1,
+      "message": "add context clarification to separate all these commits like:\n\u0027Update DMI BATCH Data interface to include module set tag\u0027",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 39
+      },
+      "revId": "65fc825baeb2623eadddb4da9baac260fa4e62b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "b69b7c36_4488981b",
@@ -31,6 +54,29 @@
       "writtenOn": "2024-05-13T08:36:39Z",
       "side": 1,
       "message": "recheck",
+      "revId": "65fc825baeb2623eadddb4da9baac260fa4e62b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8f2ec2f_702daae4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/DataOperationDefinition.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-13T11:28:35Z",
+      "side": 1,
+      "message": "we have a more complicated problem for this sure story (BATCH interface). \nUntil now we could use the SAME object for in and out HOWEVER since we need to ADD the module set tag to the SOUTBOUND (outward) request only we need two different objects.\nI suggest to call a meeting with Sourabh and me to groom the \u0027HOW\u0027 part of this user story!",
+      "range": {
+        "startLine": 45,
+        "startChar": 4,
+        "endLine": 45,
+        "endChar": 32
+      },
       "revId": "65fc825baeb2623eadddb4da9baac260fa4e62b2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
