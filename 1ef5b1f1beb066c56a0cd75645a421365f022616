@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec39f307_901eaf7a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-05-13T15:32:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3cd58655_e63dd9eb",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 59
+      },
+      "revId": "1ef5b1f1beb066c56a0cd75645a421365f022616",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0c94ae23_557797ee",
@@ -70,6 +94,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "99245e8e_1652aabe",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiModelOperations.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-05-13T15:32:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c94ae23_557797ee",
+      "range": {
+        "startLine": 128,
+        "startChar": 49,
+        "endLine": 128,
+        "endChar": 59
+      },
+      "revId": "1ef5b1f1beb066c56a0cd75645a421365f022616",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "10280d18_5b337677",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiModelOperations.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-05-13T15:32:04Z",
+      "side": 1,
+      "message": "Done. However, it should be noted here that the null check for ModuleSetTag is only handled earlier in the toYangModelCmHandle() method in the YangModelCmHandle class.\n\nThe tests as they are currently do not use this class, and explicitly set the properties of YangModelCmHandle class.\nexample: yangModelCmHandle.moduleSetTag \u003d moduleSetTag.",
+      "parentUuid": "6193469b_5a53d330",
+      "range": {
+        "startLine": 128,
+        "startChar": 12,
+        "endLine": 128,
+        "endChar": 32
+      },
+      "revId": "1ef5b1f1beb066c56a0cd75645a421365f022616",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "485f27c8_4ecf66ea",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-05-13T11:13:14Z",
       "side": 1,
       "message": "currently this method (in DmiOperationsBaseSpec) has a hardcoded \u0027tag1\u0027, you need to modify this method to take in a modulSetTag parameter  (you could even overload it) and leave it blank for the 2 test you had to modify!\n\nthen create  a NEW test dedicated to moduleSetTag where you test it with and without a modulSetTag (the new test can work with an EMPTY array of modules...)",
+      "range": {
+        "startLine": 107,
+        "startChar": 12,
+        "endLine": 107,
+        "endChar": 46
+      },
+      "revId": "1ef5b1f1beb066c56a0cd75645a421365f022616",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb6b601d_9072061f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiModelOperationsSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-05-13T15:32:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "485f27c8_4ecf66ea",
       "range": {
         "startLine": 107,
         "startChar": 12,
