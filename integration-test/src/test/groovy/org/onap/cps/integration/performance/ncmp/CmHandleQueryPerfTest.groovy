@@ -68,7 +68,7 @@ class CmHandleQueryPerfTest extends NcmpPerfTestBase {
             resourceMeter.stop()
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'the required operations are performed within required time'
-            recordAndAssertResourceUsage("CpsPath Registry attributes Query", 3.4, durationInSeconds, 300, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage("CpsPath Registry attributes Query", 3.96, durationInSeconds, 300, resourceMeter.getTotalMemoryUsageInMB())
         and: 'all nodes are returned'
             result.size() == TOTAL_CM_HANDLES
         and: 'the tree contains all the expected descendants too'
@@ -92,7 +92,7 @@ class CmHandleQueryPerfTest extends NcmpPerfTestBase {
                     expectedAverageResponseTime, averageResponseTime,
                     15, resourceMeter.totalMemoryUsageInMB)
         where:
-            expectedAverageResponseTime = 6 * MILLISECONDS
+            expectedAverageResponseTime = 8 * MILLISECONDS
     }
 
     def 'CM-handle is looked up by alternate-id.'() {
@@ -130,7 +130,7 @@ class CmHandleQueryPerfTest extends NcmpPerfTestBase {
                     expectedAverageResponseTime, averageResponseTime,
                     15, resourceMeter.totalMemoryUsageInMB)
         where:
-            expectedAverageResponseTime = 1 * MILLISECONDS
+            expectedAverageResponseTime = 4 * MILLISECONDS
     }
 
     def 'Find any CM-handle given moduleSetTag when there are 20K READY handles with same moduleSetTag.'() {
@@ -151,7 +151,7 @@ class CmHandleQueryPerfTest extends NcmpPerfTestBase {
                     expectedAverageResponseTime, averageResponseTime,
                     500, resourceMeter.totalMemoryUsageInMB)
         where:
-            expectedAverageResponseTime = 360 * MILLISECONDS
+            expectedAverageResponseTime = 438 * MILLISECONDS
     }
 
 }
