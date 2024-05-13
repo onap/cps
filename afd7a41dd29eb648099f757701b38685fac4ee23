@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "49a24141_68ee7bde",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiModelOperationsSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-05-13T17:23:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bbbcf706_36a3768c",
+      "range": {
+        "startLine": 157,
+        "startChar": 9,
+        "endLine": 157,
+        "endChar": 68
+      },
+      "revId": "afd7a41dd29eb648099f757701b38685fac4ee23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "20ad3d88_85d475aa",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-05-13T15:49:34Z",
       "side": 1,
       "message": "preferably not in json at all if so use a boolean\nexpectedMouduleSetTagInRequest true/false (and use this boolean in assert above)",
+      "range": {
+        "startLine": 171,
+        "startChar": 84,
+        "endLine": 171,
+        "endChar": 105
+      },
+      "revId": "afd7a41dd29eb648099f757701b38685fac4ee23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3b6ca3e_373f7d32",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiModelOperationsSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-05-13T17:23:52Z",
+      "side": 1,
+      "message": "Added a change to remove ModuleSetTag from the requestBody if it is empty.\n\nTo  be aware, there are other DmiModelOperations that bake ModuleSetTag (empty or not) into their respective request bodies using the .build() command (such as getModuleReferences() ).\n\nJudgement call on whether you want to remove these as well to align, but it would take more work, and it is outside the scope of this request.",
+      "parentUuid": "20ad3d88_85d475aa",
       "range": {
         "startLine": 171,
         "startChar": 84,
@@ -70,6 +118,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7dcd0848_4c61e304",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiOperationsBaseSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-05-13T17:23:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8d0e73c8_5b3b7ca9",
+      "range": {
+        "startLine": 62,
+        "startChar": 54,
+        "endLine": 62,
+        "endChar": 60
+      },
+      "revId": "afd7a41dd29eb648099f757701b38685fac4ee23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8788884e_914289e2",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-05-13T15:49:34Z",
       "side": 1,
       "message": "\u0027\u0027",
+      "range": {
+        "startLine": 72,
+        "startChar": 48,
+        "endLine": 72,
+        "endChar": 51
+      },
+      "revId": "afd7a41dd29eb648099f757701b38685fac4ee23",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7dc5004_e87f2076",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiOperationsBaseSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-05-13T17:23:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8788884e_914289e2",
       "range": {
         "startLine": 72,
         "startChar": 48,
