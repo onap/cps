@@ -16,6 +16,24 @@
       "message": "it looks like you changed more graphs then we are actually plotting but I suppose there is no harm in this.\nI check one or 2 proposed figures and they look OK. \nI think the best way to actually review this is Merge it and look at the graphs tomorrow when we have a few new test runs and we can see how thy work out....",
       "revId": "26396cec9f7646a26d1f6725c6e558d6914c6553",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf9ed32e_0c5861c1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-05-14T08:05:55Z",
+      "side": 1,
+      "message": "Yes, I\u0027ve adjusted figures for more graphs than required/we have. No harm at all.",
+      "parentUuid": "7c82681e_af09f589",
+      "revId": "26396cec9f7646a26d1f6725c6e558d6914c6553",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
