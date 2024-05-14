@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf8152d8_11edabae",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 8437
+      },
+      "writtenOn": "2024-05-14T13:05:42Z",
+      "side": 1,
+      "message": "cps.tracing.sampler.jaeger_remote.endpoint",
+      "range": {
+        "startLine": 156,
+        "startChar": 8,
+        "endLine": 159,
+        "endChar": 28
+      },
+      "revId": "3850e5dc09eef3379b3af15e9d0f562913be31d2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3906215_66d2a412",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 8437
+      },
+      "writtenOn": "2024-05-14T13:05:42Z",
+      "side": 1,
+      "message": "what are these configurations?\n\nThere is a \"general\" management configuration in Spring Boot, what is needed.\n\nmanagement:\n  tracing:\n    propagation:\n      produce: ${ONAP_PROPAGATOR_PRODUCE:[W3C]}",
+      "range": {
+        "startLine": 160,
+        "startChar": 8,
+        "endLine": 163,
+        "endChar": 58
+      },
+      "revId": "3850e5dc09eef3379b3af15e9d0f562913be31d2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cd0abaf_b0c648ac",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/OpenTelemetryConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 8437
+      },
+      "writtenOn": "2024-05-14T13:05:42Z",
+      "side": 1,
+      "message": "not synch-ed with application.yaml",
+      "range": {
+        "startLine": 51,
+        "startChar": 34,
+        "endLine": 51,
+        "endChar": 47
+      },
+      "revId": "3850e5dc09eef3379b3af15e9d0f562913be31d2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a04f80e_85194e27",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/OpenTelemetryConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 8437
+      },
+      "writtenOn": "2024-05-14T13:05:42Z",
+      "side": 1,
+      "message": "it seems that this default value condition doesn\u0027t work. Could you remove it?",
+      "range": {
+        "startLine": 59,
+        "startChar": 30,
+        "endLine": 59,
+        "endChar": 36
+      },
+      "revId": "3850e5dc09eef3379b3af15e9d0f562913be31d2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5703aff_22279ba7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/OpenTelemetryConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 8437
+      },
+      "writtenOn": "2024-05-14T13:05:42Z",
+      "side": 1,
+      "message": "it seems that this default value condition doesn\u0027t work. Could you remove it?",
+      "range": {
+        "startLine": 59,
+        "startChar": 88,
+        "endLine": 59,
+        "endChar": 92
+      },
+      "revId": "3850e5dc09eef3379b3af15e9d0f562913be31d2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26b5399e_bebf17c1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/OpenTelemetryConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 8437
+      },
+      "writtenOn": "2024-05-14T13:05:42Z",
+      "side": 1,
+      "message": "it seems that this default value condition doesn\u0027t work. Could you remove it?",
+      "range": {
+        "startLine": 69,
+        "startChar": 88,
+        "endLine": 69,
+        "endChar": 92
+      },
+      "revId": "3850e5dc09eef3379b3af15e9d0f562913be31d2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58b3ff49_f46c469c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/OpenTelemetryConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 8437
+      },
+      "writtenOn": "2024-05-14T13:05:42Z",
+      "side": 1,
+      "message": "it seems that this default value condition doesn\u0027t work. Could you remove it?",
+      "range": {
+        "startLine": 78,
+        "startChar": 47,
+        "endLine": 78,
+        "endChar": 53
+      },
+      "revId": "3850e5dc09eef3379b3af15e9d0f562913be31d2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4a846a2_4093030a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/OpenTelemetryConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 8437
+      },
+      "writtenOn": "2024-05-14T13:05:42Z",
+      "side": 1,
+      "message": "it seems that this default value condition doesn\u0027t work. Could you remove it?",
+      "range": {
+        "startLine": 92,
+        "startChar": 47,
+        "endLine": 92,
+        "endChar": 53
+      },
+      "revId": "3850e5dc09eef3379b3af15e9d0f562913be31d2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
