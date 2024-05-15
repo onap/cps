@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04531213_bf501e66",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-15T12:51:54Z",
+      "side": 1,
+      "message": "ooh, JavaScript... Never bene keen on that it so \u0027flexible\u0027 :-) \nIts is testware too, so maybe we need to allow ourselves to set different standard then for Java Production code...\nIt might be useful to do a team walktrough first and in that meeting also agree on how strict we are going to review this we simply cannot apply the same rules as for Java code...",
+      "revId": "0d2ade3c2976c5730c9dba13c3409b02cd51b306",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
