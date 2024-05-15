@@ -16,6 +16,93 @@
       "message": "ooh, JavaScript... Never bene keen on that it so \u0027flexible\u0027 :-) \nIts is testware too, so maybe we need to allow ourselves to set different standard then for Java Production code...\nIt might be useful to do a team walktrough first and in that meeting also agree on how strict we are going to review this we simply cannot apply the same rules as for Java code...",
       "revId": "0d2ade3c2976c5730c9dba13c3409b02cd51b306",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a466d9a7_fc91166a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-05-15T15:36:30Z",
+      "side": 1,
+      "message": "These codes measure the performance and compare the results against the metrics. With this perspective, this is segregated from the source code. Also, the code base can be excluded from the Sonar Scan anytime. Other than that, I am ok to join a team walkthrough around this.",
+      "parentUuid": "04531213_bf501e66",
+      "revId": "0d2ade3c2976c5730c9dba13c3409b02cd51b306",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "512a296c_398676ff",
+        "filename": "k6-tests/ncmp/10-mixed-load-test.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-05-15T15:36:30Z",
+      "side": 1,
+      "message": "I think in this mixed-load test you aim to run different scenarios concurrently.\n\nHowever, in this setup, seems you run them sequentially by using executor: \u0027constant-vus\u0027. As per documentation, the executor should be a type of: executor: \u0027shared-iterations\u0027 for a scenario e.g. 50 VUs for passthrough_read and 25 VUs for id_search_modue, and 25 VUs for cm_search_module.\n\nI suggest to have a look at \u0027Distribute workloads across VUs\u0027 from official web site docs: https://grafana.com/docs/k6/latest/examples/distribute-workloads/",
+      "range": {
+        "startLine": 29,
+        "startChar": 6,
+        "endLine": 29,
+        "endChar": 31
+      },
+      "revId": "0d2ade3c2976c5730c9dba13c3409b02cd51b306",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c16ee8e0_22afe232",
+        "filename": "k6-tests/ncmp/10-mixed-load-test.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-05-15T15:36:30Z",
+      "side": 1,
+      "message": "I measure this value \"avg\u003d2.93s\" on my local, suggesting to set it 3000, otherwise may fail.",
+      "range": {
+        "startLine": 50,
+        "startChar": 58,
+        "endLine": 50,
+        "endChar": 62
+      },
+      "revId": "0d2ade3c2976c5730c9dba13c3409b02cd51b306",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2822db66_9bb77d7c",
+        "filename": "k6-tests/ncmp/10-mixed-load-test.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-05-15T15:36:30Z",
+      "side": 1,
+      "message": "i measure this value \"p(95)\u003d19.56s\" on my local run, suggesting to set i 20000",
+      "range": {
+        "startLine": 52,
+        "startChar": 60,
+        "endLine": 52,
+        "endChar": 65
+      },
+      "revId": "0d2ade3c2976c5730c9dba13c3409b02cd51b306",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
