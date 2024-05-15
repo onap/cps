@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "40a212c1_eb5abd40",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiModelOperationsSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-05-15T13:11:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f552a2c6_02abf460",
+      "range": {
+        "startLine": 157,
+        "startChar": 36,
+        "endLine": 157,
+        "endChar": 50
+      },
+      "revId": "95bb59085ede99b97692ecc9ba1c38e0662e6eba",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4ffa38f1_d0fdccb8",
@@ -47,6 +71,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "29000449_c94a4817",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiModelOperationsSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-05-15T13:11:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ffa38f1_d0fdccb8",
+      "range": {
+        "startLine": 169,
+        "startChar": 0,
+        "endLine": 173,
+        "endChar": 5
+      },
+      "revId": "95bb59085ede99b97692ecc9ba1c38e0662e6eba",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e03446b7_2b2292f9",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-05-15T12:39:42Z",
       "side": 1,
       "message": "NB: get use to using \u0027\u0027 :-)",
+      "range": {
+        "startLine": 61,
+        "startChar": 49,
+        "endLine": 61,
+        "endChar": 51
+      },
+      "revId": "95bb59085ede99b97692ecc9ba1c38e0662e6eba",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db23f361_9389bec0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiOperationsBaseSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-05-15T13:11:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e03446b7_2b2292f9",
       "range": {
         "startLine": 61,
         "startChar": 49,
