@@ -135,17 +135,22 @@ public class DmiServiceUrlBuilder {
      * @param resourceId          unique id of response for valid topic
      * @param optionsParamInQuery options into url param
      * @param topicParamInQuery   topic into url param
+     * @param moduleSetTagParamInQuery   module set tag into url param
      * @return all valid query params as map
      */
     public MultiValueMap<String, String> populateQueryParams(final String resourceId,
                                                              final String optionsParamInQuery,
-                                                             final String topicParamInQuery) {
+                                                             final String topicParamInQuery,
+                                                             final String moduleSetTagParamInQuery) {
         final MultiValueMap<String, String> queryParams = new LinkedMultiValueMap<>();
         getQueryParamConsumer().accept("resourceIdentifier",
                 resourceId, queryParams);
         getQueryParamConsumer().accept("options", optionsParamInQuery, queryParams);
         if (Strings.isNotEmpty(topicParamInQuery)) {
             getQueryParamConsumer().accept("topic", topicParamInQuery, queryParams);
+        }
+        if (Strings.isNotEmpty(moduleSetTagParamInQuery)) {
+            getQueryParamConsumer().accept("moduleSetTag", moduleSetTagParamInQuery, queryParams);
         }
         return queryParams;
     }

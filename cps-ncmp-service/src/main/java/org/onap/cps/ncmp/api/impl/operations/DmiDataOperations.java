@@ -92,7 +92,8 @@ public class DmiDataOperations extends DmiOperations {
         final String jsonRequestBody = getDmiRequestBody(READ, requestId, null, null, yangModelCmHandle);
         final String dmiResourceDataUrl = getDmiRequestUrl(cmResourceAddress.datastoreName(),
             cmResourceAddress.cmHandleId(), cmResourceAddress.resourceIdentifier(), optionsParamInQuery,
-                topicParamInQuery, yangModelCmHandle.resolveDmiServiceName(RequiredDmiService.DATA));
+                topicParamInQuery, yangModelCmHandle.getModuleSetTag(),
+                yangModelCmHandle.resolveDmiServiceName(RequiredDmiService.DATA));
         return dmiRestClient.postOperationWithJsonData(dmiResourceDataUrl, jsonRequestBody, READ, authorization);
     }
 
@@ -112,7 +113,7 @@ public class DmiDataOperations extends DmiOperations {
         final String jsonRequestBody = getDmiRequestBody(READ, requestId, null, null,
                 yangModelCmHandle);
         final String dmiResourceDataUrl = getDmiRequestUrl(dataStoreName, cmHandleId, "/",
-                null, null,
+                null, null, yangModelCmHandle.getModuleSetTag(),
                 yangModelCmHandle.resolveDmiServiceName(RequiredDmiService.DATA));
         final CmHandleState cmHandleState = yangModelCmHandle.getCompositeState().getCmHandleState();
         validateIfCmHandleStateReady(yangModelCmHandle, cmHandleState);
@@ -169,7 +170,7 @@ public class DmiDataOperations extends DmiOperations {
         final String jsonRequestBody = getDmiRequestBody(operationType, null, requestData, dataType,
                 yangModelCmHandle);
         final String dmiUrl = getDmiRequestUrl(PASSTHROUGH_RUNNING.getDatastoreName(), cmHandleId, resourceId,
-                null, null,
+                null, null, yangModelCmHandle.getModuleSetTag(),
                 yangModelCmHandle.resolveDmiServiceName(RequiredDmiService.DATA));
         final CmHandleState cmHandleState = yangModelCmHandle.getCompositeState().getCmHandleState();
         validateIfCmHandleStateReady(yangModelCmHandle, cmHandleState);
@@ -200,10 +201,12 @@ public class DmiDataOperations extends DmiOperations {
                                     final String resourceId,
                                     final String optionsParamInQuery,
                                     final String topicParamInQuery,
+                                    final String moduleSetTagParamInQuery,
                                     final String dmiServiceName) {
         return dmiServiceUrlBuilder.getDmiDatastoreUrl(
                 dmiServiceUrlBuilder.populateQueryParams(resourceId, optionsParamInQuery,
-                        topicParamInQuery), dmiServiceUrlBuilder.populateUriVariables(dataStoreName, dmiServiceName,
+                        topicParamInQuery, moduleSetTagParamInQuery),
+                dmiServiceUrlBuilder.populateUriVariables(dataStoreName, dmiServiceName,
                         cmHandleId));
     }
 
