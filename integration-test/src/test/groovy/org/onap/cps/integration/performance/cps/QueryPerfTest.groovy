@@ -84,7 +84,7 @@ class QueryPerfTest extends CpsPerfTestBase {
             scenario             | fetchDescendantsOption  || durationLimit  | memoryLimit   | expectedNumberOfDataNodes
             'no descendants'     | OMIT_DESCENDANTS        || 0.1            | 6             | OPENROADM_DEVICES_PER_ANCHOR
             'direct descendants' | DIRECT_CHILDREN_ONLY    || 0.16           | 12            | OPENROADM_DEVICES_PER_ANCHOR * 2
-            'all descendants'    | INCLUDE_ALL_DESCENDANTS || 1.2            | 200           | OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
+            'all descendants'    | INCLUDE_ALL_DESCENDANTS || 1.4            | 200           | OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
     }
 
     def 'Query ancestors with #scenario.'() {

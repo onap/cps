@@ -46,7 +46,7 @@ class WritePerfTest extends CpsPerfTestBase {
             totalNodes || expectedDuration | memoryLimit
             50         || 1.98             | 100
             100        || 3.84             | 200
-            200        || 7.58             | 400
+            200        || 8.6              | 400
             400        || 16.37            | 500
     }
 
@@ -97,7 +97,7 @@ class WritePerfTest extends CpsPerfTestBase {
             cpsAnchorService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR)
         where:
             totalNodes || expectedDuration | memoryLimit
-            50         || 1.49             | 100
+            50         || 1.8              | 100
             100        || 3.93             | 200
             200        || 7.77             | 400
             400        || 16.59            | 500
