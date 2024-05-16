@@ -37,6 +37,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.onap.cps.ncmp.api.impl.utils.EventDateTimeFormatter;
+import org.onap.cps.ncmp.dmi.rest.stub.model.DataJobResponse;
 import org.onap.cps.ncmp.dmi.rest.stub.model.data.operational.CmHandle;
 import org.onap.cps.ncmp.dmi.rest.stub.model.data.operational.DataOperationRequest;
 import org.onap.cps.ncmp.dmi.rest.stub.model.data.operational.DmiDataOperationRequest;
@@ -242,6 +243,36 @@ public class DmiRestStubController {
             });
         });
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    }
+
+    /**
+     * Endpoint for a read data job.
+     *
+     * @param requestId                 The identifier for a data job
+     * @param subjobReadRequest         data job read request body
+     * @return DataJobResponse          response entity having data job id as a string.
+     */
+    @PostMapping("/v1/readJob/{requestId}")
+    public ResponseEntity<DataJobResponse> readDmiDajaJob(
+            @PathVariable("requestId") final String requestId,
+            @RequestBody final Object subjobReadRequest) {
+        log.info("Request id: {} for read data job. Data: {}", requestId, subjobReadRequest);
+        return ResponseEntity.ok(new DataJobResponse(UUID.randomUUID().toString()));
+    }
+
+    /**
+     * Endpoint for a write data job.
+     *
+     * @param requestId                 The identifier for a data job
+     * @param subjobWriteRequest        data job write request body
+     * @return DataJobResponse          response entity having data job id as a string.
+     */
+    @PostMapping("/v1/writeJob/{requestId}")
+    public ResponseEntity<DataJobResponse> writeDmiDajaJob(
+            @PathVariable("requestId") final String requestId,
+            @RequestBody final Object subjobWriteRequest) {
+        log.info("Request id: {} for write data job. Data: {}", requestId, subjobWriteRequest);
+        return ResponseEntity.ok(new DataJobResponse(UUID.randomUUID().toString()));
     }
 
     private CloudEvent buildAndGetCloudEvent(final String topic, final String requestId,
