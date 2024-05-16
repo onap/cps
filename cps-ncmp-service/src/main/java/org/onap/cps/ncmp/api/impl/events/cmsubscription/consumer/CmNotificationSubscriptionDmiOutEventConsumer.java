@@ -51,7 +51,7 @@ public class CmNotificationSubscriptionDmiOutEventConsumer {
      *
      * @param cmNotificationSubscriptionDmiOutEventConsumerRecord the event to be consumed
      */
-    @KafkaListener(topics = "${app.ncmp.avc.subscription-response-topic}",
+    @KafkaListener(topics = "${app.ncmp.avc.cm-subscription-dmi-out}",
             containerFactory = "cloudEventConcurrentKafkaListenerContainerFactory")
     public void consumeCmNotificationSubscriptionDmiOutEvent(
             final ConsumerRecord<String, CloudEvent> cmNotificationSubscriptionDmiOutEventConsumerRecord) {

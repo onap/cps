@@ -72,8 +72,6 @@ class CmNotificationSubscriptionNcmpInEventConsumerSpec extends MessagingBaseSpe
                 .withSource(URI.create('some-resource'))
                 .withExtension('correlationid', 'test-cmhandle1').build()
             def consumerRecord = new ConsumerRecord<String, CloudEvent>('topic-name', 0, 0, 'event-key', testCloudEventSent)
-        and: 'notifications are enabled'
-            objectUnderTest.notificationFeatureEnabled = true
         when: 'the valid event is consumed'
             objectUnderTest.consumeSubscriptionEvent(consumerRecord)
         then: 'an event is logged with level INFO'
