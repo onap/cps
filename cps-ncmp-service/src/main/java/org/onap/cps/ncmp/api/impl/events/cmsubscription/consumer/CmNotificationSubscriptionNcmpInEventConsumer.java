@@ -47,7 +47,7 @@ public class CmNotificationSubscriptionNcmpInEventConsumer {
      *
      * @param subscriptionEventConsumerRecord the event to be consumed
      */
-    @KafkaListener(topics = "${app.ncmp.avc.subscription-topic}",
+    @KafkaListener(topics = "${app.ncmp.avc.cm-subscription-ncmp-in}",
             containerFactory = "cloudEventConcurrentKafkaListenerContainerFactory")
     public void consumeSubscriptionEvent(final ConsumerRecord<String, CloudEvent> subscriptionEventConsumerRecord) {
         final CloudEvent cloudEvent = subscriptionEventConsumerRecord.value();

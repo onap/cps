@@ -48,7 +48,7 @@ import org.springframework.stereotype.Component;
 @ConditionalOnProperty(name = "notification.enabled", havingValue = "true", matchIfMissing = true)
 public class CmNotificationSubscriptionNcmpOutEventProducer {
 
-    @Value("${app.ncmp.avc.subscription-outcome-topic}")
+    @Value("${app.ncmp.avc.cm-subscription-ncmp-out}")
     private String cmNotificationSubscriptionNcmpOutEventTopic;
 
     @Value("${ncmp.timers.subscription-forwarding.dmi-response-timeout-ms}")

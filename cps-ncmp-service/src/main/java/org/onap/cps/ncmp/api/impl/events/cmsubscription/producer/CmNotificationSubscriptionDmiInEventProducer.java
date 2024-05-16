@@ -42,7 +42,7 @@ public class CmNotificationSubscriptionDmiInEventProducer {
     private final EventsPublisher<CloudEvent> eventsPublisher;
     private final JsonObjectMapper jsonObjectMapper;
 
-    @Value("${app.ncmp.avc.subscription-forward-topic-prefix}")
+    @Value("${app.ncmp.avc.cm-subscription-dmi-in}")
     private String cmNotificationSubscriptionDmiInEventTopic;
 
     /**
