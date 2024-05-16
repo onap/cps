@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1bc07280_d8bb749e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-05-16T11:18:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a3a4d854_823e8717",
+      "range": {
+        "startLine": 199,
+        "startChar": 49,
+        "endLine": 205,
+        "endChar": 63
+      },
+      "revId": "7e4bf044d9eebafe2aad8601041b9bc2642b697a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f0f171fd_367d7f09",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-05-16T09:40:03Z",
       "side": 1,
       "message": "legacy not sure about this part, it is a bit confusing because theer is an incoming URl (were 2 paraneetr orignate) and Outgoing URl which is being created...\n I think just remove it in all 3 cases\n actual change it here to \u0027as provided by client\u0027",
+      "range": {
+        "startLine": 136,
+        "startChar": 42,
+        "endLine": 136,
+        "endChar": 56
+      },
+      "revId": "7e4bf044d9eebafe2aad8601041b9bc2642b697a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25e382b2_0aca9220",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/DmiServiceUrlBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-05-16T11:18:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f0f171fd_367d7f09",
       "range": {
         "startLine": 136,
         "startChar": 42,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "27c29f11_9059566f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/DmiServiceUrlBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-05-16T11:18:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff2f036e_98fc8a40",
+      "range": {
+        "startLine": 137,
+        "startChar": 40,
+        "endLine": 137,
+        "endChar": 54
+      },
+      "revId": "7e4bf044d9eebafe2aad8601041b9bc2642b697a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d06d18ff_c7f2a154",
@@ -100,6 +172,30 @@
       "writtenOn": "2024-05-16T09:40:03Z",
       "side": 1,
       "message": "associated with the given cm handle",
+      "range": {
+        "startLine": 138,
+        "startChar": 56,
+        "endLine": 138,
+        "endChar": 70
+      },
+      "revId": "7e4bf044d9eebafe2aad8601041b9bc2642b697a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f7babb1_0207e014",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/DmiServiceUrlBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-05-16T11:18:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d06d18ff_c7f2a154",
       "range": {
         "startLine": 138,
         "startChar": 56,
@@ -133,6 +229,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b102223_da731e27",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/DmiServiceUrlBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-05-16T11:18:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8fae6531_7723984c",
+      "range": {
+        "startLine": 144,
+        "startChar": 86,
+        "endLine": 144,
+        "endChar": 98
+      },
+      "revId": "7e4bf044d9eebafe2aad8601041b9bc2642b697a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "87115daa_db6b8cfb",
@@ -156,6 +276,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4db4d45_d97b1eb4",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-05-16T11:18:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87115daa_db6b8cfb",
+      "range": {
+        "startLine": 212,
+        "startChar": 12,
+        "endLine": 212,
+        "endChar": 33
+      },
+      "revId": "7e4bf044d9eebafe2aad8601041b9bc2642b697a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d5e83cc8_9038e6d2",
@@ -169,6 +313,30 @@
       "writtenOn": "2024-05-16T09:40:03Z",
       "side": 1,
       "message": "remove this part",
+      "range": {
+        "startLine": 213,
+        "startChar": 46,
+        "endLine": 213,
+        "endChar": 56
+      },
+      "revId": "7e4bf044d9eebafe2aad8601041b9bc2642b697a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3e4cf68_41524ed6",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-05-16T11:18:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d5e83cc8_9038e6d2",
       "range": {
         "startLine": 213,
         "startChar": 46,
