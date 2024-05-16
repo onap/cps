@@ -19,7 +19,7 @@
 ---
 project: 'cps'
 project_creation_date: '2020-10-27'
-lifecycle_state: 'Incubation'
+lifecycle_state: 'Mature'
 project_category: ''
 project_lead: &onap_releng_ptl
     name: 'Toine Siebelink'
