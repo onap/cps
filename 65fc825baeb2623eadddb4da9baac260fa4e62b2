@@ -103,6 +103,30 @@
       },
       "revId": "65fc825baeb2623eadddb4da9baac260fa4e62b2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be64320c_d97cae4b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/DataOperationDefinition.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-05-16T16:39:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b8f2ec2f_702daae4",
+      "range": {
+        "startLine": 45,
+        "startChar": 4,
+        "endLine": 45,
+        "endChar": 32
+      },
+      "revId": "65fc825baeb2623eadddb4da9baac260fa4e62b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
