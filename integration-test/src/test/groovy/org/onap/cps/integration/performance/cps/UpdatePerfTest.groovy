@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Modifications Copyright (C) 2024 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -19,6 +20,8 @@
  */
 
 package org.onap.cps.integration.performance.cps
+
+import org.onap.cps.utils.ContentType
 
 import java.time.OffsetDateTime
 import org.onap.cps.api.CpsDataService
@@ -121,7 +124,7 @@ class UpdatePerfTest extends CpsPerfTestBase {
             def jsonDataUpdated  = "{'openroadm-device':[" + (1..100).collect {"{'device-id':'C201-7-1A-" + it + "','status':'fail','ne-state':'jeopardy'}" }.join(",") + "]}"
         when: 'update is performed for leaves'
             resourceMeter.start()
-            objectUnderTest.updateNodeLeaves(CPS_PERFORMANCE_TEST_DATASPACE, UPDATE_TEST_ANCHOR, "/openroadm-devices", jsonDataUpdated, now)
+            objectUnderTest.updateNodeLeaves(CPS_PERFORMANCE_TEST_DATASPACE, UPDATE_TEST_ANCHOR, "/openroadm-devices", jsonDataUpdated, now, ContentType.JSON)
             resourceMeter.stop()
         then: 'data leaves have expected values'
             assert 100 == countDataNodes('/openroadm-devices/openroadm-device[@status="fail"]')

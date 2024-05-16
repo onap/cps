@@ -2,7 +2,7 @@
  * ============LICENSE_START=======================================================
  * Copyright (C) 2022-2024 Nordix Foundation
  * Modifications Copyright (C) 2022 Bell Canada
- * Modifications Copyright (C) 2023 TechMahindra Ltd.
+ * Modifications Copyright (C) 2024 TechMahindra Ltd.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,6 +35,7 @@ import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.DataNodeBuilder
+import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.JsonObjectMapper
 import org.slf4j.LoggerFactory
 import spock.lang.Specification
@@ -209,7 +210,7 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
         when: 'cm handle properties is updated'
             def response = objectUnderTest.updateCmHandleProperties(cmHandleUpdateRequest)
         then: 'the update is delegated to cps data service with correct parameters'
-            1 * mockCpsDataService.updateNodeLeaves('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry', _, _) >>
+            1 * mockCpsDataService.updateNodeLeaves('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry', _, _, ContentType.JSON) >>
                     { args ->
                         assert args[3].contains('alt-1')
                     }
@@ -245,7 +246,7 @@ class NetworkCmProxyDataServicePropertyHandlerSpec extends Specification {
         when: 'data producer identifier updated'
             objectUnderTest.updateDataProducerIdentifier(existingCmHandleDataNode, ncmpServiceCmHandle)
         then: 'the update node leaves method is invoked once'
-            1 * mockCpsDataService.updateNodeLeaves('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry', _, _) >> { args ->
+            1 * mockCpsDataService.updateNodeLeaves('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry', _, _, ContentType.JSON) >> { args ->
                 assert args[3].contains('someDataProducerIdentifier')
             }
         and: 'correct information is logged'

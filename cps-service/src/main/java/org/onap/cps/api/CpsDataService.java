@@ -4,7 +4,7 @@
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada
  *  Modifications Copyright (C) 2022 Deutsche Telekom AG
- *  Modifications Copyright (C) 2023 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2024 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -132,11 +132,12 @@ public interface CpsDataService {
      * @param dataspaceName   dataspace name
      * @param anchorName      anchor name
      * @param parentNodeXpath xpath to parent node
-     * @param jsonData        json data
+     * @param nodeData        node data
      * @param observedTimestamp observedTimestamp
+     * @param contentType       Application Content
      */
-    void updateNodeLeaves(String dataspaceName, String anchorName, String parentNodeXpath, String jsonData,
-        OffsetDateTime observedTimestamp);
+    void updateNodeLeaves(String dataspaceName, String anchorName, String parentNodeXpath, String nodeData,
+        OffsetDateTime observedTimestamp, ContentType contentType);
 
     /**
      * Replaces an existing data node's content including descendants.
