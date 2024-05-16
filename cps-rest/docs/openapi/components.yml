@@ -114,6 +114,8 @@ components:
               <categories>
                 <code>1</code>
                 <name>SciFi</name>
+                <code>2</code>
+                <name>kids</name>        
               </categories>
             </bookstore>
           </stores>

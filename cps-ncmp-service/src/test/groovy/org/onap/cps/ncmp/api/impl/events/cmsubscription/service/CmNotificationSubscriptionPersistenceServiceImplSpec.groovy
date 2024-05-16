@@ -25,6 +25,7 @@ import org.onap.cps.api.CpsQueryService
 import org.onap.cps.ncmp.api.impl.operations.DatastoreType
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.model.DataNode
+import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.JsonObjectMapper
 import com.fasterxml.jackson.databind.ObjectMapper
 import spock.lang.Specification
@@ -82,7 +83,7 @@ class CmNotificationSubscriptionPersistenceServiceImplSpec extends Specification
                 'NCMP-Admin',
                 'cm-data-subscriptions',
                 '/datastores/datastore[@name=\'ncmp-datastore:passthrough-running\']/cm-handles/cm-handle[@id=\'ch-1\']/filters',
-                '{"filter":[{"xpath":"/x/y","subscriptionIds":["sub-1","newSubId"]}]}', _)
+                '{"filter":[{"xpath":"/x/y","subscriptionIds":["sub-1","newSubId"]}]}', _, ContentType.JSON)
     }
 
     def 'Add new cm notification subscription for #datastoreType'() {
@@ -118,7 +119,7 @@ class CmNotificationSubscriptionPersistenceServiceImplSpec extends Specification
         then: 'the list of subscribers is updated'
             1 * mockCpsDataService.updateNodeLeaves('NCMP-Admin', 'cm-data-subscriptions',
                 '/datastores/datastore[@name=\'ncmp-datastore:passthrough-running\']/cm-handles/cm-handle[@id=\'ch-1\']/filters',
-                '{"filter":[{"xpath":"/x/y","subscriptionIds":["sub-2"]}]}', _)
+                '{"filter":[{"xpath":"/x/y","subscriptionIds":["sub-2"]}]}', _, ContentType.JSON)
     }
 
     def 'Removing ongoing subscription with no subscribers'(){
