@@ -27,6 +27,7 @@ import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DM
 import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
 import okhttp3.mockwebserver.MockWebServer
+import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsDataspaceService
@@ -109,6 +110,9 @@ abstract class CpsIntegrationSpecBase extends Specification {
 
     @Autowired
     JsonObjectMapper jsonObjectMapper
+
+    @Autowired
+    InventoryPersistence inventoryPersistence
 
     MockWebServer mockDmiServer = null
     DmiDispatcher dmiDispatcher = new DmiDispatcher()
