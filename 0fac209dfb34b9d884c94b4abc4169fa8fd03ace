@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b767d312_7e7dd6e7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/client/DmiRestClientSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-16T14:07:56Z",
+      "side": 1,
+      "message": "I dont think we need tabel at allanymore. I\u0027ll call you about this",
+      "range": {
+        "startLine": 136,
+        "startChar": 12,
+        "endLine": 139,
+        "endChar": 182
+      },
+      "revId": "0fac209dfb34b9d884c94b4abc4169fa8fd03ace",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b9b7380_42992044",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiDataOperationsSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-16T14:07:56Z",
+      "side": 1,
+      "message": "as discussed this can be simplified further\n(check what exactly the productioncode branches on)",
+      "range": {
+        "startLine": 133,
+        "startChar": 124,
+        "endLine": 134,
+        "endChar": 191
+      },
+      "revId": "0fac209dfb34b9d884c94b4abc4169fa8fd03ace",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
