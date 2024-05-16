@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2024 Nordix Foundation
+ *  Modifications Copyright (C) 2024 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -157,7 +158,7 @@ public class CmNotificationSubscriptionPersistenceServiceImpl implements CmNotif
         final String subscriptionDetailsAsJson = "{\"filter\":["
                 + jsonObjectMapper.asJsonString(subscriptionDetailsAsMap).replace("'", "\"") + "]}";
         cpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME, parentXpath,
-                subscriptionDetailsAsJson, OffsetDateTime.now());
+                subscriptionDetailsAsJson, OffsetDateTime.now(), ContentType.JSON);
     }
 
     private static String escapeQuotesByDoublingThem(final String inputXpath) {
