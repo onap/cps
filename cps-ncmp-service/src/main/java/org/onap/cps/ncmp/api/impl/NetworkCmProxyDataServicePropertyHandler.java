@@ -55,6 +55,7 @@ import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.DataNodeBuilder;
+import org.onap.cps.utils.ContentType;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -222,7 +223,7 @@ public class NetworkCmProxyDataServicePropertyHandler {
         cmHandleData.put(fieldName, newFieldValue);
         dmiRegistryData.put("cm-handles", cmHandleData);
         cpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
-                jsonObjectMapper.asJsonString(dmiRegistryData), OffsetDateTime.now());
+                jsonObjectMapper.asJsonString(dmiRegistryData), OffsetDateTime.now(), ContentType.JSON);
         log.debug("Updating {} for cmHandle {} with value : {})", fieldName, cmHandleIdToUpdate, newFieldValue);
     }
 
