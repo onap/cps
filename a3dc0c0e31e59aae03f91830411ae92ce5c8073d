@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "901cc157_0551c3d2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiOperationCmHandle.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-16T16:47:48Z",
+      "side": 1,
+      "message": "NB: I dont think this is need if the name in json is the same as in java...",
+      "range": {
+        "startLine": 33,
+        "startChar": 4,
+        "endLine": 33,
+        "endChar": 23
+      },
+      "revId": "a3dc0c0e31e59aae03f91830411ae92ce5c8073d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be6c4748_4ba28215",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiOperationCmHandle.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-16T16:47:48Z",
+      "side": 1,
+      "message": "NB: I dont think this is need if the name in json is the same as in java...",
+      "range": {
+        "startLine": 39,
+        "startChar": 3,
+        "endLine": 39,
+        "endChar": 33
+      },
+      "revId": "a3dc0c0e31e59aae03f91830411ae92ce5c8073d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee672e1a_7b187c4d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiOperationCmHandle.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-16T16:47:48Z",
+      "side": 1,
+      "message": "not 100% correct and superflous I think",
+      "range": {
+        "startLine": 45,
+        "startChar": 64,
+        "endLine": 45,
+        "endChar": 78
+      },
+      "revId": "a3dc0c0e31e59aae03f91830411ae92ce5c8073d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e940cc0_3cef1cc7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/data/operation/ResourceDataOperationRequestUtils.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-16T16:47:48Z",
+      "side": 1,
+      "message": "dont call things \u0027map\u0027 etc (as per our conventions)\n\nsuggestion: moduleSetTagPerCmHandle(id)",
+      "range": {
+        "startLine": 84,
+        "startChar": 34,
+        "endLine": 84,
+        "endChar": 61
+      },
+      "revId": "a3dc0c0e31e59aae03f91830411ae92ce5c8073d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f986bebf_ac1bba52",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/data/operation/ResourceDataOperationRequestUtils.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-16T16:47:48Z",
+      "side": 1,
+      "message": "always initialize size if known:\n\nnew HashMap\u003c\u003e(yangModelCmHandles.size())",
+      "range": {
+        "startLine": 122,
+        "startChar": 77,
+        "endLine": 122,
+        "endChar": 80
+      },
+      "revId": "a3dc0c0e31e59aae03f91830411ae92ce5c8073d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd96650f_cae44f8b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/data/operation/ResourceDataOperationRequestUtils.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-16T16:47:48Z",
+      "side": 1,
+      "message": "no need for each (against convention)",
+      "range": {
+        "startLine": 123,
+        "startChar": 37,
+        "endLine": 123,
+        "endChar": 42
+      },
+      "revId": "a3dc0c0e31e59aae03f91830411ae92ce5c8073d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9297979_0234c198",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiDataOperationsSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-16T16:47:48Z",
+      "side": 1,
+      "message": "you are not doing anythign with this ale (ie it isn\u0027t assert) dont set if if not need/not assrted",
+      "range": {
+        "startLine": 120,
+        "startChar": 116,
+        "endLine": 120,
+        "endChar": 124
+      },
+      "revId": "a3dc0c0e31e59aae03f91830411ae92ce5c8073d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a1f6bdf_b9b506b4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/data/operation/ResourceDataOperationRequestUtilsSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-16T16:47:48Z",
+      "side": 1,
+      "message": "extract \ndef cmHandlesInBody \u003d dmiDataOperationRequestBodyAsJsonNode.get(0).get(\u0027cmHandles\u0027)",
+      "range": {
+        "startLine": 105,
+        "startChar": 19,
+        "endLine": 105,
+        "endChar": 80
+      },
+      "revId": "a3dc0c0e31e59aae03f91830411ae92ce5c8073d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a6b654e_65ab2780",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/data/operation/ResourceDataOperationRequestUtilsSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-16T16:47:48Z",
+      "side": 1,
+      "message": "are these used anywhwere, is it compulsory for the test to pass?\nThey can be all the same (for clietnt many often are teh same) especially if not used just say \u0027some tag\u0027",
+      "range": {
+        "startLine": 172,
+        "startChar": 91,
+        "endLine": 172,
+        "endChar": 109
+      },
+      "revId": "a3dc0c0e31e59aae03f91830411ae92ce5c8073d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
