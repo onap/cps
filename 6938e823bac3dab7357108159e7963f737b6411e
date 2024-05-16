@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4d15df8_3eefb10b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-16T07:58:44Z",
+      "side": 1,
+      "message": "a few small things to clean up and one question to discuss",
+      "revId": "6938e823bac3dab7357108159e7963f737b6411e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0c0c6a4_b3a9a13a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/client/DmiRestClient.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-16T07:58:44Z",
+      "side": 1,
+      "message": "remvev the ! and swap the logic or better readability\n\nif (e instanceof WebClientResponseException) {\n  if (wcre.getStatusCode().isSameCodeAs(HttpStatus.REQUEST_TIMEOUT)) {\n            throw new DmiClientRequestException(wcre.getStatusCode().value(), wcre.getMessage(),\n                    jsonObjectMapper.asJsonString(wcre.getResponseBodyAsString()), DMI_SERVICE_NOT_RESPONDING);\n        }\n        throw new DmiClientRequestException(wcre.getStatusCode().value(), wcre.getMessage(),\n                jsonObjectMapper.asJsonString(wcre.getResponseBodyAsString()), UNABLE_TO_READ_RESOURCE_DATA);\n\n}  // No need for else\nthrow new DmiClientRequestException(INTERNAL_SERVER_ERROR.value(),exceptionMessage, .getMessage(), UNKNOWN_ERROR);",
+      "range": {
+        "startLine": 132,
+        "startChar": 1,
+        "endLine": 141,
+        "endChar": 109
+      },
+      "revId": "6938e823bac3dab7357108159e7963f737b6411e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28ea8653_6bc7da41",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/exception/DmiClientRequestException.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-16T07:58:44Z",
+      "side": 1,
+      "message": "NB: assign in teh same order as constructor",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 45
+      },
+      "revId": "6938e823bac3dab7357108159e7963f737b6411e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c643bfe8_aa55eadf",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/client/DmiRestClientSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-16T07:58:44Z",
+      "side": 1,
+      "message": "NB: errors occur",
+      "range": {
+        "startLine": 104,
+        "startChar": 30,
+        "endLine": 104,
+        "endChar": 51
+      },
+      "revId": "6938e823bac3dab7357108159e7963f737b6411e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d15efab_9a68de13",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/client/DmiRestClientSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-16T07:58:44Z",
+      "side": 1,
+      "message": "just wondering should this be  webClientResponseException too?!\nWhat would be the result Client HTTP Status code in those cases?\nMaybe we can discuss during standup...",
+      "range": {
+        "startLine": 139,
+        "startChar": 71,
+        "endLine": 139,
+        "endChar": 97
+      },
+      "revId": "6938e823bac3dab7357108159e7963f737b6411e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c22dd00_8690e12f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiDataOperationsSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-16T07:58:44Z",
+      "side": 1,
+      "message": "NB: just to make the table narrower \u0027message\u0027,\u0027details\u0027 woudl suffice",
+      "range": {
+        "startLine": 133,
+        "startChar": 106,
+        "endLine": 133,
+        "endChar": 156
+      },
+      "revId": "6938e823bac3dab7357108159e7963f737b6411e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
