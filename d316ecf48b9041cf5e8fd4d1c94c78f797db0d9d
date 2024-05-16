@@ -16,6 +16,46 @@
       "message": "recheck",
       "revId": "d316ecf48b9041cf5e8fd4d1c94c78f797db0d9d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eebf8b89_6feb6a48",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-16T16:00:36Z",
+      "side": 1,
+      "message": "all good, just one tiny test label update needed",
+      "revId": "d316ecf48b9041cf5e8fd4d1c94c78f797db0d9d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25d91528_ddca5a1c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiDataOperationsSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-16T16:00:36Z",
+      "side": 1,
+      "message": "with dmi client exception",
+      "range": {
+        "startLine": 114,
+        "startChar": 57,
+        "endLine": 114,
+        "endChar": 71
+      },
+      "revId": "d316ecf48b9041cf5e8fd4d1c94c78f797db0d9d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
