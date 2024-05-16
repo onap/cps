@@ -65,6 +65,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdb0b70e_3d4c5645",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-16T13:13:13Z",
+      "side": 1,
+      "message": "did Sonar complain ?!",
+      "parentUuid": "1bc07280_d8bb749e",
+      "range": {
+        "startLine": 199,
+        "startChar": 49,
+        "endLine": 205,
+        "endChar": 63
+      },
+      "revId": "7e4bf044d9eebafe2aad8601041b9bc2642b697a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f0f171fd_367d7f09",
