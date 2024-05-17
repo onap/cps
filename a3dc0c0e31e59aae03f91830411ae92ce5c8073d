@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "02e41f5f_91319557",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiOperationCmHandle.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-05-17T09:03:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "901cc157_0551c3d2",
+      "range": {
+        "startLine": 33,
+        "startChar": 4,
+        "endLine": 33,
+        "endChar": 23
+      },
+      "revId": "a3dc0c0e31e59aae03f91830411ae92ce5c8073d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "be6c4748_4ba28215",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-05-16T16:47:48Z",
       "side": 1,
       "message": "NB: I dont think this is need if the name in json is the same as in java...",
+      "range": {
+        "startLine": 39,
+        "startChar": 3,
+        "endLine": 39,
+        "endChar": 33
+      },
+      "revId": "a3dc0c0e31e59aae03f91830411ae92ce5c8073d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "54162c0d_f8a99a8c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiOperationCmHandle.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-05-17T09:03:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be6c4748_4ba28215",
       "range": {
         "startLine": 39,
         "startChar": 3,
@@ -70,6 +118,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "20a891bc_2ddde9c7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiOperationCmHandle.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-05-17T09:03:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee672e1a_7b187c4d",
+      "range": {
+        "startLine": 45,
+        "startChar": 64,
+        "endLine": 45,
+        "endChar": 78
+      },
+      "revId": "a3dc0c0e31e59aae03f91830411ae92ce5c8073d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4e940cc0_3cef1cc7",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-05-16T16:47:48Z",
       "side": 1,
       "message": "dont call things \u0027map\u0027 etc (as per our conventions)\n\nsuggestion: moduleSetTagPerCmHandle(id)",
+      "range": {
+        "startLine": 84,
+        "startChar": 34,
+        "endLine": 84,
+        "endChar": 61
+      },
+      "revId": "a3dc0c0e31e59aae03f91830411ae92ce5c8073d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a049f76_44bf9bea",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/data/operation/ResourceDataOperationRequestUtils.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-05-17T09:03:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e940cc0_3cef1cc7",
       "range": {
         "startLine": 84,
         "startChar": 34,
@@ -116,6 +212,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6426e00_67dcef50",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/data/operation/ResourceDataOperationRequestUtils.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-05-17T09:03:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f986bebf_ac1bba52",
+      "range": {
+        "startLine": 122,
+        "startChar": 77,
+        "endLine": 122,
+        "endChar": 80
+      },
+      "revId": "a3dc0c0e31e59aae03f91830411ae92ce5c8073d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bd96650f_cae44f8b",
@@ -129,6 +249,30 @@
       "writtenOn": "2024-05-16T16:47:48Z",
       "side": 1,
       "message": "no need for each (against convention)",
+      "range": {
+        "startLine": 123,
+        "startChar": 37,
+        "endLine": 123,
+        "endChar": 42
+      },
+      "revId": "a3dc0c0e31e59aae03f91830411ae92ce5c8073d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "41fea134_826147c7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/data/operation/ResourceDataOperationRequestUtils.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-05-17T09:03:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd96650f_cae44f8b",
       "range": {
         "startLine": 123,
         "startChar": 37,
@@ -162,6 +306,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3baf5150_b34a6b21",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiDataOperationsSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-05-17T09:03:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9297979_0234c198",
+      "range": {
+        "startLine": 120,
+        "startChar": 116,
+        "endLine": 120,
+        "endChar": 124
+      },
+      "revId": "a3dc0c0e31e59aae03f91830411ae92ce5c8073d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6a1f6bdf_b9b506b4",
@@ -185,6 +353,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "681f0b48_bdd39690",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/data/operation/ResourceDataOperationRequestUtilsSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-05-17T09:03:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6a1f6bdf_b9b506b4",
+      "range": {
+        "startLine": 105,
+        "startChar": 19,
+        "endLine": 105,
+        "endChar": 80
+      },
+      "revId": "a3dc0c0e31e59aae03f91830411ae92ce5c8073d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2a6b654e_65ab2780",
@@ -198,6 +390,30 @@
       "writtenOn": "2024-05-16T16:47:48Z",
       "side": 1,
       "message": "are these used anywhwere, is it compulsory for the test to pass?\nThey can be all the same (for clietnt many often are teh same) especially if not used just say \u0027some tag\u0027",
+      "range": {
+        "startLine": 172,
+        "startChar": 91,
+        "endLine": 172,
+        "endChar": 109
+      },
+      "revId": "a3dc0c0e31e59aae03f91830411ae92ce5c8073d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c227a065_7e5081c2",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/data/operation/ResourceDataOperationRequestUtilsSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-05-17T09:03:33Z",
+      "side": 1,
+      "message": "Was originally putting them in there to test, but then created a separate method below and hadn\u0027t taken them out of here yet.",
+      "parentUuid": "2a6b654e_65ab2780",
       "range": {
         "startLine": 172,
         "startChar": 91,
