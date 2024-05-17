@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "66b4c205_1bd9c45c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/consumer/CmNotificationSubscriptionNcmpInEventConsumer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-05-17T09:23:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c25df252_b5a0ad2e",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 47
+      },
+      "revId": "0759977741ca0444fe17a6c561c55958c93bcfcb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c59d4c12_89190c47",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-05-17T08:53:44Z",
       "side": 1,
       "message": "Never used, redundant import",
+      "range": {
+        "startLine": 37,
+        "startChar": 1,
+        "endLine": 37,
+        "endChar": 6
+      },
+      "revId": "0759977741ca0444fe17a6c561c55958c93bcfcb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5adbbf60_0b62b9ed",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/producer/CmNotificationSubscriptionDmiInEventProducer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-05-17T09:23:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c59d4c12_89190c47",
       "range": {
         "startLine": 37,
         "startChar": 1,
@@ -83,6 +131,30 @@
       "writtenOn": "2024-05-17T08:53:44Z",
       "side": 1,
       "message": "NB: 2024",
+      "range": {
+        "startLine": 2,
+        "startChar": 22,
+        "endLine": 2,
+        "endChar": 26
+      },
+      "revId": "0759977741ca0444fe17a6c561c55958c93bcfcb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8423061f_eb4742a1",
+        "filename": "cps-ncmp-service/src/test/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-05-17T09:23:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc479798_be03d126",
       "range": {
         "startLine": 2,
         "startChar": 22,
