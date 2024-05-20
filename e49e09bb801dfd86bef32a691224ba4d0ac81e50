@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "41c5da71_1fd76d44",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/data/operation/ResourceDataOperationRequestUtilsSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-05-20T15:26:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d2ff310e_d4ab8a88",
+      "range": {
+        "startLine": 102,
+        "startChar": 12,
+        "endLine": 103,
+        "endChar": 128
+      },
+      "revId": "e49e09bb801dfd86bef32a691224ba4d0ac81e50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cbc737c7_93d4adf7",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-05-20T15:21:09Z",
       "side": 1,
       "message": "assert cmHandlesInRequestBody[0].id \u003d\u003d \u0027ch1-dmi1\u0027\n            assert cmHandlesInRequestBody[0].moduleSetTag \u003d\u003d \u0027module-set-tag1\u0027",
+      "range": {
+        "startLine": 106,
+        "startChar": 10,
+        "endLine": 107,
+        "endChar": 94
+      },
+      "revId": "e49e09bb801dfd86bef32a691224ba4d0ac81e50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "efe35de1_7eb26447",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/data/operation/ResourceDataOperationRequestUtilsSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-05-20T15:26:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cbc737c7_93d4adf7",
       "range": {
         "startLine": 106,
         "startChar": 10,
