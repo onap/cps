@@ -16,6 +16,115 @@
       "message": "Ready for Review",
       "revId": "538b4f8e6cda352a3cf1e9307ec95026f590059d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "571bb0cd_10e1cd27",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-05-20T16:05:30Z",
+      "side": 1,
+      "message": "Please don\u0027t forget to update Modification Copyrights on changed files...\nPlease consider I haven\u0027t marked them all.\n\nFor the integration test suite, I see only ContentType.JSON has been passed as a parameter. Do we have any plan to have integration suite setup to test ContentType.XML in a seprate commit maybe later?",
+      "revId": "538b4f8e6cda352a3cf1e9307ec95026f590059d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d50590c1_19c2c995",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 18
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-05-20T16:05:30Z",
+      "side": 1,
+      "message": "NB: please update either of them for your organization",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 54
+      },
+      "revId": "538b4f8e6cda352a3cf1e9307ec95026f590059d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8101924_d196f9fb",
+        "filename": "cps-rest/docs/openapi/cpsData.yml",
+        "patchSetId": 18
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-05-20T16:05:30Z",
+      "side": 1,
+      "message": "NB: please update either of them for your organization",
+      "range": {
+        "startLine": 3,
+        "startChar": 1,
+        "endLine": 5,
+        "endChar": 54
+      },
+      "revId": "538b4f8e6cda352a3cf1e9307ec95026f590059d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4600593_e6fc7c00",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-05-20T16:05:30Z",
+      "side": 1,
+      "message": "NB: please update either of them for your organization",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 54
+      },
+      "revId": "538b4f8e6cda352a3cf1e9307ec95026f590059d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d419676c_0093858f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-05-20T16:05:30Z",
+      "side": 1,
+      "message": "NB: double pipe",
+      "range": {
+        "startLine": 258,
+        "startChar": 52,
+        "endLine": 258,
+        "endChar": 53
+      },
+      "revId": "538b4f8e6cda352a3cf1e9307ec95026f590059d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
