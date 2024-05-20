@@ -95,6 +95,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "32172f8a_20d6c964",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/data/operation/ResourceDataOperationRequestUtilsSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-05-20T15:21:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "807d8a04_71411aa5",
+      "range": {
+        "startLine": 177,
+        "startChar": 3,
+        "endLine": 177,
+        "endChar": 54
+      },
+      "revId": "50ea5481add87cd3e86cd2704deaa1e47415f53d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "be9ce638_837a9927",
