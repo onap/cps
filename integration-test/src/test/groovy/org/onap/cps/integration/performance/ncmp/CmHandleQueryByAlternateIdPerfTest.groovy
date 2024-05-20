@@ -20,13 +20,15 @@
 
 package org.onap.cps.integration.performance.ncmp
 
-import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
-
-import org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence
-import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence
 import org.onap.cps.integration.ResourceMeter
 import org.onap.cps.integration.performance.base.NcmpPerfTestBase
+import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence
+
 import java.util.stream.Collectors
+
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
+import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 
 class CmHandleQueryByAlternateIdPerfTest extends NcmpPerfTestBase {
 
@@ -43,11 +45,11 @@ class CmHandleQueryByAlternateIdPerfTest extends NcmpPerfTestBase {
         and: 'the ids of the result are extracted and converted to xpath'
             def cpsXpaths = dataNodes.stream().map(dataNode -> "/dmi-registry/cm-handles[@id='${dataNode.leaves.id}']".toString() ).collect(Collectors.toSet())
         and: 'a single get is executed to get all the parent objects and their descendants'
-            cpsDataService.getDataNodesForMultipleXpaths(NcmpPersistence.NCMP_DATASPACE_NAME, NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR, cpsXpaths, OMIT_DESCENDANTS)
+            cpsDataService.getDataNodesForMultipleXpaths(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cpsXpaths, OMIT_DESCENDANTS)
             resourceMeter.stop()
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
             print 'Total time in seconds to query ch handle by alternate id: ' + durationInSeconds
         then: 'the required operations are performed within required time and memory limit'
-            recordAndAssertResourceUsage('CpsPath Registry attributes Query', 1, durationInSeconds, 300, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage('Look up cm-handle by longest match alternate-id', 1, durationInSeconds, 300, resourceMeter.getTotalMemoryUsageInMB())
     }
 }
