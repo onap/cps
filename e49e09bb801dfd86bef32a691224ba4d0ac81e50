@@ -67,6 +67,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "de28feb8_30561696",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/data/operation/ResourceDataOperationRequestUtilsSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-05-20T15:28:11Z",
+      "side": 1,
+      "message": "ignore send line and use dmiDataOperationRequestBody[0].cmHandles",
+      "parentUuid": "d2ff310e_d4ab8a88",
+      "range": {
+        "startLine": 102,
+        "startChar": 12,
+        "endLine": 103,
+        "endChar": 128
+      },
+      "revId": "e49e09bb801dfd86bef32a691224ba4d0ac81e50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cbc737c7_93d4adf7",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/data/operation/ResourceDataOperationRequestUtilsSpec.groovy",
         "patchSetId": 11
