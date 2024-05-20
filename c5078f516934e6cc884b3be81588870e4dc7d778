@@ -3,6 +3,74 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fc7c1edf_f155dc0f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/DataJobServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2024-05-20T07:13:46Z",
+      "side": 1,
+      "message": "dmi-service-name",
+      "revId": "c5078f516934e6cc884b3be81588870e4dc7d778",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ad65781_45bff366",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/DataJobServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2024-05-20T07:13:46Z",
+      "side": 1,
+      "message": "Not sure the writeOperation is required",
+      "revId": "c5078f516934e6cc884b3be81588870e4dc7d778",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5288333_16bee028",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/DataJobServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2024-05-20T07:13:46Z",
+      "side": 1,
+      "message": "Needs a dmi-service-name. Is there something we can reuse in the DmiServiceUrlBuilder class?",
+      "revId": "c5078f516934e6cc884b3be81588870e4dc7d778",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52f81cab_08885c38",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/DataJobServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2024-05-20T07:13:46Z",
+      "side": 1,
+      "message": "CREATE",
+      "revId": "c5078f516934e6cc884b3be81588870e4dc7d778",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b1f3caf7_0dedb01e",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/OperationType.java",
         "patchSetId": 7
