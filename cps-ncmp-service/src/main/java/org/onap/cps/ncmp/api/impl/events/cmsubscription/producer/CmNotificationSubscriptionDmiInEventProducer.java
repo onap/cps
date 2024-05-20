@@ -25,7 +25,6 @@ import io.cloudevents.core.builder.CloudEventBuilder;
 import java.net.URI;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.events.EventsPublisher;
 import org.onap.cps.ncmp.events.cmnotificationsubscription_merge1_0_0.ncmp_to_dmi.CmNotificationSubscriptionDmiInEvent;
 import org.onap.cps.utils.JsonObjectMapper;
@@ -34,7 +33,6 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
 @Component
-@Slf4j
 @RequiredArgsConstructor
 @ConditionalOnProperty(name = "notification.enabled", havingValue = "true", matchIfMissing = true)
 public class CmNotificationSubscriptionDmiInEventProducer {
@@ -42,7 +40,7 @@ public class CmNotificationSubscriptionDmiInEventProducer {
     private final EventsPublisher<CloudEvent> eventsPublisher;
     private final JsonObjectMapper jsonObjectMapper;
 
-    @Value("${app.ncmp.avc.subscription-forward-topic-prefix}")
+    @Value("${app.ncmp.avc.cm-subscription-dmi-in}")
     private String cmNotificationSubscriptionDmiInEventTopic;
 
     /**
@@ -65,9 +63,10 @@ public class CmNotificationSubscriptionDmiInEventProducer {
             final String dmiPluginName, final String eventType,
             final CmNotificationSubscriptionDmiInEvent cmNotificationSubscriptionDmiInEvent) {
         return CloudEventBuilder.v1().withId(UUID.randomUUID().toString()).withType(eventType)
-                .withSource(URI.create("NCMP")).withDataSchema(URI.create("org.onap.ncmp.dmi.cm.subscription:1.0.0"))
-                .withExtension("correlationid", subscriptionId.concat("#").concat(dmiPluginName))
-                .withData(jsonObjectMapper.asJsonBytes(cmNotificationSubscriptionDmiInEvent)).build();
+                       .withSource(URI.create("NCMP"))
+                       .withDataSchema(URI.create("org.onap.ncmp.dmi.cm.subscription:1.0.0"))
+                       .withExtension("correlationid", subscriptionId.concat("#").concat(dmiPluginName))
+                       .withData(jsonObjectMapper.asJsonBytes(cmNotificationSubscriptionDmiInEvent)).build();
     }
 
 

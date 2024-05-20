@@ -28,7 +28,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.service.CmNotificationSubscriptionHandlerService;
 import org.onap.cps.ncmp.events.cmnotificationsubscription_merge1_0_0.client_to_ncmp.CmNotificationSubscriptionNcmpInEvent;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
@@ -39,15 +38,12 @@ public class CmNotificationSubscriptionNcmpInEventConsumer {
 
     private final CmNotificationSubscriptionHandlerService cmNotificationSubscriptionHandlerService;
 
-    @Value("${notification.enabled:true}")
-    private boolean notificationFeatureEnabled;
-
     /**
      * Consume the specified event.
      *
      * @param subscriptionEventConsumerRecord the event to be consumed
      */
-    @KafkaListener(topics = "${app.ncmp.avc.subscription-topic}",
+    @KafkaListener(topics = "${app.ncmp.avc.cm-subscription-ncmp-in}",
             containerFactory = "cloudEventConcurrentKafkaListenerContainerFactory")
     public void consumeSubscriptionEvent(final ConsumerRecord<String, CloudEvent> subscriptionEventConsumerRecord) {
         final CloudEvent cloudEvent = subscriptionEventConsumerRecord.value();
@@ -60,7 +56,7 @@ public class CmNotificationSubscriptionNcmpInEventConsumer {
         if ("subscriptionCreateRequest".equals(cloudEvent.getType())) {
             log.info("Subscription for source {} with subscription id {} ...", cloudEvent.getSource(), subscriptionId);
             cmNotificationSubscriptionHandlerService.processSubscriptionCreateRequest(
-                cmNotificationSubscriptionNcmpInEvent);
+                    cmNotificationSubscriptionNcmpInEvent);
         }
     }
 }
