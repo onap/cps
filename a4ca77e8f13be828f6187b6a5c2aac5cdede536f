@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e78a7edf_50a30600",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-05-20T12:42:28Z",
+      "side": 1,
+      "message": "A few suggesttions on constant namings..",
+      "revId": "a4ca77e8f13be828f6187b6a5c2aac5cdede536f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfbed33d_9b9fd418",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-05-20T12:42:28Z",
+      "side": 1,
+      "message": "CM_SUBSCRIPTION_CPS_PATH_QUERY_WITH_FILTERS is a better name since you use filters.",
+      "range": {
+        "startLine": 49,
+        "startChar": 32,
+        "endLine": 49,
+        "endChar": 62
+      },
+      "revId": "a4ca77e8f13be828f6187b6a5c2aac5cdede536f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "171790cd_ba98315a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-05-20T12:42:28Z",
+      "side": 1,
+      "message": "is it possible to have this part from another constant: \"CM_SUBSCRIPTION_CPS_PATH_QUERY\"",
+      "range": {
+        "startLine": 50,
+        "startChar": 12,
+        "endLine": 50,
+        "endChar": 76
+      },
+      "revId": "a4ca77e8f13be828f6187b6a5c2aac5cdede536f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f35c4e07_bfc213e0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-05-20T12:42:28Z",
+      "side": 1,
+      "message": "CM_SUBSCRIPTION_CPS_PATH_QUERY is a better name. Since we don\u0027t have any concept like SUBSCRIPTION_PATH_QUERY\n\nAlso I would take this constant above the constant:\n\nCM_SUBSCRIPTION_CPS_PATH_QUERY_WITH_FILTER",
+      "range": {
+        "startLine": 52,
+        "startChar": 32,
+        "endLine": 52,
+        "endChar": 69
+      },
+      "revId": "a4ca77e8f13be828f6187b6a5c2aac5cdede536f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
