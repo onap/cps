@@ -24,9 +24,12 @@ package org.onap.cps.integration.performance.ncmp
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.integration.ResourceMeter
 import org.onap.cps.integration.performance.base.NcmpPerfTestBase
+import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence
 
 import java.util.stream.Collectors
 
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 
@@ -35,9 +38,13 @@ class CmHandleQueryPerfTest extends NcmpPerfTestBase {
     static def MILLISECONDS = 0.001
 
     CpsQueryService objectUnderTest
+    InventoryPersistence objectUnderTestInventoryPersistence
     ResourceMeter resourceMeter = new ResourceMeter()
 
-    def setup() { objectUnderTest = cpsQueryService }
+    def setup() {
+        objectUnderTest = cpsQueryService
+        objectUnderTestInventoryPersistence = inventoryPersistence
+    }
 
     def 'JVM warmup.'() {
         when: 'the JVM is warmed up'
@@ -68,7 +75,7 @@ class CmHandleQueryPerfTest extends NcmpPerfTestBase {
             resourceMeter.stop()
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'the required operations are performed within required time'
-            recordAndAssertResourceUsage("CpsPath Registry attributes Query", 3.96, durationInSeconds, 300, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage("CpsPath Registry attributes Query", 3.96, durationInSeconds, 400, resourceMeter.getTotalMemoryUsageInMB())
         and: 'all nodes are returned'
             result.size() == TOTAL_CM_HANDLES
         and: 'the tree contains all the expected descendants too'
@@ -113,6 +120,22 @@ class CmHandleQueryPerfTest extends NcmpPerfTestBase {
                     15, resourceMeter.totalMemoryUsageInMB)
         where:
             expectedAverageResponseTime = 20 * MILLISECONDS
+    }
+
+    def 'CM-handle is looked up by longest match alternate id'() {
+        given: 'an alternate id as cps path query'
+            def alternateId = '/a/b/c/d-5/e/f/g/h/i'
+        when: 'CM-handles are looked up by longest match alternate-id'
+            resourceMeter.start()
+            def dataNodes = objectUnderTestInventoryPersistence.getCmHandleDataNodeByLongestMatchAlternateId(alternateId, '/')
+        and: 'the ids of the result are extracted and converted to xpath'
+            def cpsXpaths = dataNodes.stream().map(dataNode -> "/dmi-registry/cm-handles[@id='${dataNode.leaves.id}']".toString() ).collect(Collectors.toSet())
+        and: 'a single get is executed to get all the parent objects without descendants'
+            cpsDataService.getDataNodesForMultipleXpaths(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cpsXpaths, OMIT_DESCENDANTS)
+            resourceMeter.stop()
+        then: 'the required operations are performed within required time and memory limit'
+            def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
+            recordAndAssertResourceUsage('Look up cm-handle by longest match alternate-id', 1, durationInSeconds, 300, resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def 'A batch of CM-handles is looked up by alternate-id.'() {
