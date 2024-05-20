@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98043cc3_3be04373",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/data/operation/ResourceDataOperationRequestUtilsSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-05-20T13:49:28Z",
+      "side": 1,
+      "message": "we can use groovy way to access id like \ncmHandlesInRequestBody[0].id\ncmHandlesInRequestBody[0].moduleSetTag",
+      "range": {
+        "startLine": 106,
+        "startChar": 19,
+        "endLine": 107,
+        "endChar": 98
+      },
+      "revId": "50ea5481add87cd3e86cd2704deaa1e47415f53d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46fa5a12_62d154de",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/data/operation/ResourceDataOperationRequestUtilsSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-05-20T13:49:28Z",
+      "side": 1,
+      "message": "Can\u0027t we re-use getYangModelCmHandles at line no 162",
+      "range": {
+        "startLine": 177,
+        "startChar": 3,
+        "endLine": 177,
+        "endChar": 54
+      },
+      "revId": "50ea5481add87cd3e86cd2704deaa1e47415f53d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be9ce638_837a9927",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/data/operation/ResourceDataOperationRequestUtilsSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-05-20T13:49:28Z",
+      "side": 1,
+      "message": "Is it used anywhere?",
+      "range": {
+        "startLine": 180,
+        "startChar": 7,
+        "endLine": 180,
+        "endChar": 128
+      },
+      "revId": "50ea5481add87cd3e86cd2704deaa1e47415f53d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
