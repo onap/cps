@@ -49,6 +49,10 @@ public class CmNotificationSubscriptionPersistenceServiceImpl implements CmNotif
     private static final String CM_SUBSCRIPTION_CPS_PATH_QUERY = """
             /datastores/datastore[@name='%s']/cm-handles/cm-handle[@id='%s']/filters/filter[@xpath='%s']
             """.trim();
+    private static final String CM_HANDLE_FOR_SUBSCRIPTION_PATH_QUERY = """
+            /datastores/datastore[@name='%s']/cm-handles/cm-handle[@id='%s']
+            """.trim();
+
     private static final String SUBSCRIPTION_IDS_CPS_PATH_QUERY = """
             //filter/subscriptionIds[text()='%s']
             """.trim();
@@ -97,6 +101,8 @@ public class CmNotificationSubscriptionPersistenceServiceImpl implements CmNotif
                     cmHandleId, xpath);
             subscriptionIds.add(subscriptionId);
             saveSubscriptionDetails(subscriptionAsDataNode, subscriptionIds);
+        } else if (isExistingCmHandleForSubscription(datastoreType, cmHandleId)) {
+            addNewSubscriptionViaCmHandle(datastoreType, cmHandleId, xpath, subscriptionId);
         } else {
             addNewSubscriptionViaDatastore(datastoreType, cmHandleId, xpath, subscriptionId);
         }
@@ -148,6 +154,16 @@ public class CmNotificationSubscriptionPersistenceServiceImpl implements CmNotif
                 OffsetDateTime.now(), ContentType.JSON);
     }
 
+    private void addNewSubscriptionViaCmHandle(final DatastoreType datastoreType, final String cmHandleId,
+                                               final String xpath, final String newSubscriptionId) {
+        final String parentXpath = "/datastores/datastore[@name='%s']/cm-handles/cm-handle[@id='%s']/filters"
+                .formatted(datastoreType.getDatastoreName(), cmHandleId);
+        final String subscriptionAsJson = String.format("{\"filter\":"
+                + "[{\"xpath\":\"%s\",\"subscriptionIds\":[\"%s\"]}]}", xpath, newSubscriptionId);
+        cpsDataService.saveData(NCMP_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME, parentXpath, subscriptionAsJson,
+                OffsetDateTime.now(), ContentType.JSON);
+    }
+
     private void saveSubscriptionDetails(final DataNode subscriptionDetailsAsDataNode,
                                          final  Collection<String> subscriptionIds) {
         final Map<String, Serializable> subscriptionDetailsAsMap = new HashMap<>();
@@ -158,6 +174,14 @@ public class CmNotificationSubscriptionPersistenceServiceImpl implements CmNotif
                 + jsonObjectMapper.asJsonString(subscriptionDetailsAsMap).replace("'", "\"") + "]}";
         cpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME, parentXpath,
                 subscriptionDetailsAsJson, OffsetDateTime.now());
+    }
+
+    private boolean isExistingCmHandleForSubscription(final DatastoreType datastoreType, final String cmHandleId) {
+        final Collection<DataNode> existingNodes =
+                cpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME, CM_SUBSCRIPTIONS_ANCHOR_NAME,
+                        CM_HANDLE_FOR_SUBSCRIPTION_PATH_QUERY.formatted(
+                                datastoreType.getDatastoreName(), cmHandleId), OMIT_DESCENDANTS);
+        return !existingNodes.isEmpty();
     }
 
     private static String escapeQuotesByDoublingThem(final String inputXpath) {
