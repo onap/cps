@@ -47,19 +47,38 @@ class NcmpCmNotificationSubscriptionSpec extends CpsIntegrationSpecBase {
                 getOngoingCmNotificationSubscriptionIds(datastoreType,cmHandleId,xpath).size() == 1
     }
 
-    def 'Adding a cm notification subscription to the already existing'() {
+    def 'Adding a cm notification subscription to the already existing cm handle but non existing xpath'() {
+        given: 'an ongoing cm subscription with the following details'
+            def datastoreType = PASSTHROUGH_RUNNING
+            def cmHandleId = 'ch-1'
+            def existingXpath = '/x/y'
+            assert cmNotificationSubscriptionPersistenceService.isOngoingCmNotificationSubscription(datastoreType,cmHandleId,existingXpath)
+        and: 'a non existing cm subscription with same datastore name and cm handle but different xpath'
+            def nonExistingXpath = '/x2/y2'
+            assert !cmNotificationSubscriptionPersistenceService.isOngoingCmNotificationSubscription(datastoreType,cmHandleId,nonExistingXpath)
+        when: 'a new cm notification subscription is made for the existing cm handle and non existing xpath'
+            cmNotificationSubscriptionPersistenceService.addCmNotificationSubscription(datastoreType,cmHandleId, nonExistingXpath,
+                'subId-2')
+        then: 'there is an ongoing cm subscription for that CM handle and xpath'
+            assert cmNotificationSubscriptionPersistenceService.isOngoingCmNotificationSubscription(datastoreType,cmHandleId,nonExistingXpath)
+        and: 'only one subscription id is related to now ongoing cm subscription'
+            assert cmNotificationSubscriptionPersistenceService.
+                getOngoingCmNotificationSubscriptionIds(datastoreType,cmHandleId,nonExistingXpath).size() == 1
+    }
+
+    def 'Adding a cm notification subscription to the already existing cm handle and xpath'() {
         given: 'an ongoing cm subscription with the following details'
             def datastoreType = PASSTHROUGH_RUNNING
             def cmHandleId = 'ch-1'
             def xpath = '/x/y'
         when: 'a new cm notification subscription is made for the SAME CM handle and xpath'
             cmNotificationSubscriptionPersistenceService.addCmNotificationSubscription(datastoreType,cmHandleId,xpath,
-                'subId-2')
+                'subId-3')
         then: 'it is added to the ongoing list of subscription ids'
             def subscriptionIds = cmNotificationSubscriptionPersistenceService.getOngoingCmNotificationSubscriptionIds(datastoreType,cmHandleId,xpath)
             assert subscriptionIds.size() == 2
         and: 'both subscription ids exists for the CM handle and xpath'
-            assert subscriptionIds.contains("subId-1") && subscriptionIds.contains("subId-2")
+            assert subscriptionIds.contains("subId-1") && subscriptionIds.contains("subId-3")
     }
 
     def 'Removing cm notification subscriber among other subscribers'() {
@@ -71,7 +90,7 @@ class NcmpCmNotificationSubscriptionSpec extends CpsIntegrationSpecBase {
             def originalNumberOfSubscribers =
                 cmNotificationSubscriptionPersistenceService.getOngoingCmNotificationSubscriptionIds(datastoreType,cmHandleId,xpath).size()
         when: 'a subscriber is removed'
-            cmNotificationSubscriptionPersistenceService.removeCmNotificationSubscription(datastoreType,cmHandleId,xpath,'subId-2')
+            cmNotificationSubscriptionPersistenceService.removeCmNotificationSubscription(datastoreType,cmHandleId,xpath,'subId-3')
         then: 'the number of subscribers is reduced by 1'
             def updatedNumberOfSubscribers =
                 cmNotificationSubscriptionPersistenceService.getOngoingCmNotificationSubscriptionIds(datastoreType,cmHandleId,xpath).size()
