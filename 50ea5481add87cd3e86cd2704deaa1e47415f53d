@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5cd91e18_69f00359",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/data/operation/ResourceDataOperationRequestUtilsSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-05-20T14:37:26Z",
+      "side": 1,
+      "message": "Oh nice! I didn\u0027t know that! Thanks! 😊",
+      "parentUuid": "98043cc3_3be04373",
+      "range": {
+        "startLine": 106,
+        "startChar": 19,
+        "endLine": 107,
+        "endChar": 98
+      },
+      "revId": "50ea5481add87cd3e86cd2704deaa1e47415f53d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "46fa5a12_62d154de",
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "807d8a04_71411aa5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/data/operation/ResourceDataOperationRequestUtilsSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-05-20T14:37:26Z",
+      "side": 1,
+      "message": "Well, it\u0027s a different test. I had originally reused that, like you suggest. But other members called out that I was adding things to a test that I was never testing. 😄",
+      "parentUuid": "46fa5a12_62d154de",
+      "range": {
+        "startLine": 177,
+        "startChar": 3,
+        "endLine": 177,
+        "endChar": 54
+      },
+      "revId": "50ea5481add87cd3e86cd2704deaa1e47415f53d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "be9ce638_837a9927",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/data/operation/ResourceDataOperationRequestUtilsSpec.groovy",
         "patchSetId": 10
@@ -60,6 +108,30 @@
       "writtenOn": "2024-05-20T13:49:28Z",
       "side": 1,
       "message": "Is it used anywhere?",
+      "range": {
+        "startLine": 180,
+        "startChar": 7,
+        "endLine": 180,
+        "endChar": 128
+      },
+      "revId": "50ea5481add87cd3e86cd2704deaa1e47415f53d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e5fb115_92632f09",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/data/operation/ResourceDataOperationRequestUtilsSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-05-20T14:37:26Z",
+      "side": 1,
+      "message": "You\u0027re right. Removed.",
+      "parentUuid": "be9ce638_837a9927",
       "range": {
         "startLine": 180,
         "startChar": 7,
