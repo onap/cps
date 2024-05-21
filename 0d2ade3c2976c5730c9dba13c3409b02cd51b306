@@ -61,6 +61,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "855943c0_eec17566",
+        "filename": "k6-tests/ncmp/10-mixed-load-test.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-21T13:34:54Z",
+      "side": 1,
+      "message": "The scenarios do run in parallel even with constant-vus",
+      "parentUuid": "512a296c_398676ff",
+      "range": {
+        "startLine": 29,
+        "startChar": 6,
+        "endLine": 29,
+        "endChar": 31
+      },
+      "revId": "0d2ade3c2976c5730c9dba13c3409b02cd51b306",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c16ee8e0_22afe232",
         "filename": "k6-tests/ncmp/10-mixed-load-test.js",
         "patchSetId": 7
@@ -84,6 +108,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cae882d2_51d40826",
+        "filename": "k6-tests/ncmp/10-mixed-load-test.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-21T13:34:54Z",
+      "side": 1,
+      "message": "There is separate task to adjust figures later: https://jira.onap.org/browse/CPS-2208",
+      "parentUuid": "c16ee8e0_22afe232",
+      "range": {
+        "startLine": 50,
+        "startChar": 58,
+        "endLine": 50,
+        "endChar": 62
+      },
+      "revId": "0d2ade3c2976c5730c9dba13c3409b02cd51b306",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2822db66_9bb77d7c",
         "filename": "k6-tests/ncmp/10-mixed-load-test.js",
         "patchSetId": 7
@@ -95,6 +143,30 @@
       "writtenOn": "2024-05-15T15:36:30Z",
       "side": 1,
       "message": "i measure this value \"p(95)\u003d19.56s\" on my local run, suggesting to set i 20000",
+      "range": {
+        "startLine": 52,
+        "startChar": 60,
+        "endLine": 52,
+        "endChar": 65
+      },
+      "revId": "0d2ade3c2976c5730c9dba13c3409b02cd51b306",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df4cc403_309a1058",
+        "filename": "k6-tests/ncmp/10-mixed-load-test.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-21T13:34:54Z",
+      "side": 1,
+      "message": "For now I\u0027ve changed these so the pipeline will pass. But there is another task to adjust them later https://jira.onap.org/browse/CPS-2208\nIn future, we will base them on agreed requirements here: https://wiki.onap.org/display/DW/CPS-391Spike%3A+Define+and+Agree+NCMP+REST+Interface#CPS391Spike:DefineandAgreeNCMPRESTInterface-Characteristics-WIP",
+      "parentUuid": "2822db66_9bb77d7c",
       "range": {
         "startLine": 52,
         "startChar": 60,
