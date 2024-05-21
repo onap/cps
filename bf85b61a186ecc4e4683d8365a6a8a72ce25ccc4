@@ -1,0 +1,101 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffdec122_77bb24b7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 46
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-05-21T09:34:44Z",
+      "side": 1,
+      "message": "minor code refactoring needed.\nI will also ask others to have a look at it.",
+      "revId": "bf85b61a186ecc4e4683d8365a6a8a72ce25ccc4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18449a1c_c924e1b9",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 46
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-05-21T09:34:44Z",
+      "side": 1,
+      "message": "NB: probably extract to method buildSourceDataNodes",
+      "range": {
+        "startLine": 240,
+        "startChar": 8,
+        "endLine": 244,
+        "endChar": 9
+      },
+      "revId": "bf85b61a186ecc4e4683d8365a6a8a72ce25ccc4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08bf100a_03730a67",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 46
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-05-21T09:34:44Z",
+      "side": 1,
+      "message": "NB: buildTargetDataNodes method",
+      "range": {
+        "startLine": 246,
+        "startChar": 8,
+        "endLine": 251,
+        "endChar": 9
+      },
+      "revId": "bf85b61a186ecc4e4683d8365a6a8a72ce25ccc4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7e79af6_31b2ab24",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 46
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-05-21T09:34:44Z",
+      "side": 1,
+      "message": "419 to 430 to be a separate method with some logical name.",
+      "revId": "bf85b61a186ecc4e4683d8365a6a8a72ce25ccc4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf8c3ec1_ce80a47e",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 46
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-05-21T09:34:44Z",
+      "side": 1,
+      "message": "431 to 441 to be a separate method with some logical name.",
+      "revId": "bf85b61a186ecc4e4683d8365a6a8a72ce25ccc4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
