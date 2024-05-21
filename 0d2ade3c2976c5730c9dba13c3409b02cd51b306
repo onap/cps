@@ -83,6 +83,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc2a0ff9_e05896f0",
+        "filename": "k6-tests/ncmp/10-mixed-load-test.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-05-21T14:56:34Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "855943c0_eec17566",
+      "range": {
+        "startLine": 29,
+        "startChar": 6,
+        "endLine": 29,
+        "endChar": 31
+      },
+      "revId": "0d2ade3c2976c5730c9dba13c3409b02cd51b306",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c16ee8e0_22afe232",
@@ -130,6 +154,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1f58a9c_78cacac6",
+        "filename": "k6-tests/ncmp/10-mixed-load-test.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-05-21T14:56:34Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "cae882d2_51d40826",
+      "range": {
+        "startLine": 50,
+        "startChar": 58,
+        "endLine": 50,
+        "endChar": 62
+      },
+      "revId": "0d2ade3c2976c5730c9dba13c3409b02cd51b306",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2822db66_9bb77d7c",
@@ -167,6 +215,30 @@
       "side": 1,
       "message": "For now I\u0027ve changed these so the pipeline will pass. But there is another task to adjust them later https://jira.onap.org/browse/CPS-2208\nIn future, we will base them on agreed requirements here: https://wiki.onap.org/display/DW/CPS-391Spike%3A+Define+and+Agree+NCMP+REST+Interface#CPS391Spike:DefineandAgreeNCMPRESTInterface-Characteristics-WIP",
       "parentUuid": "2822db66_9bb77d7c",
+      "range": {
+        "startLine": 52,
+        "startChar": 60,
+        "endLine": 52,
+        "endChar": 65
+      },
+      "revId": "0d2ade3c2976c5730c9dba13c3409b02cd51b306",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7aa58f50_1b3f6c8e",
+        "filename": "k6-tests/ncmp/10-mixed-load-test.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-05-21T14:56:34Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "df4cc403_309a1058",
       "range": {
         "startLine": 52,
         "startChar": 60,
