@@ -18,6 +18,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8821a3d1_e0fce22c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/DataJobServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-05-21T08:57:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fc7c1edf_f155dc0f",
+      "revId": "c5078f516934e6cc884b3be81588870e4dc7d778",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3ad65781_45bff366",
@@ -69,6 +87,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "53b520d4_8e071683",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/DataJobServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-05-21T08:57:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "52f81cab_08885c38",
+      "revId": "c5078f516934e6cc884b3be81588870e4dc7d778",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b1f3caf7_0dedb01e",
@@ -82,6 +118,24 @@
       "writtenOn": "2024-05-16T14:37:41Z",
       "side": 1,
       "message": "In hindsight this is not needed. Just use create",
+      "revId": "c5078f516934e6cc884b3be81588870e4dc7d778",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b74de074_16e6e818",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/OperationType.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-05-21T08:57:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b1f3caf7_0dedb01e",
       "revId": "c5078f516934e6cc884b3be81588870e4dc7d778",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
