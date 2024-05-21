@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2024 Nordix Foundation.
+ *  Copyright (C) 2024 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,19 +20,36 @@
 
 package org.onap.cps.ncmp.api.impl.config;
 
+import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.Setter;
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Getter
-@Setter
 @Component
-@ConfigurationProperties(prefix = "ncmp.dmi.httpclient")
-public class HttpClientConfiguration {
-    private Integer maximumConnectionsTotal = 100;
-    private Integer connectionTimeoutInSeconds = 30;
-    private Integer readTimeoutInSeconds = 30;
-    private Integer writeTimeoutInSeconds = 30;
-    private Integer maximumInMemorySizeInMegabytes = 1;
+public class DmiProperties {
+    @Value("${ncmp.dmi.auth.username}")
+    private String authUsername;
+    @Value("${ncmp.dmi.auth.password}")
+    private String authPassword;
+    @Getter(AccessLevel.NONE)
+    @Value("${ncmp.dmi.api.base-path}")
+    private String dmiBasePath;
+    @Value("${ncmp.dmi.auth.enabled}")
+    private boolean dmiBasicAuthEnabled;
+
+    /**
+     * Removes both leading and trailing slashes if they are present.
+     *
+     * @return dmi base path without any slashes ("/")
+     */
+    public String getDmiBasePath() {
+        if (dmiBasePath.startsWith("/")) {
+            dmiBasePath = dmiBasePath.substring(1);
+        }
+        if (dmiBasePath.endsWith("/")) {
+            dmiBasePath = dmiBasePath.substring(0, dmiBasePath.length() - 1);
+        }
+        return dmiBasePath;
+    }
 }

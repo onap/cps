@@ -1,6 +1,6 @@
 /*-
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2023 Nordix Foundation.
+ *  Copyright (C) 2023-2024 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,32 +17,31 @@
  * SPDX-License-Identifier: Apache-2.0
  * ============LICENSE_END=========================================================
  */
+
 package org.onap.cps.ncmp.api.impl.config
 
-import java.time.Duration
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.TestPropertySource
-import org.springframework.test.context.support.AnnotationConfigContextLoader
 import spock.lang.Specification
 
 @SpringBootTest
 @ContextConfiguration(classes = [HttpClientConfiguration])
 @EnableConfigurationProperties(HttpClientConfiguration.class)
-@TestPropertySource(properties = ["ncmp.dmi.httpclient.connectionTimeoutInSeconds=1", "ncmp.dmi.httpclient.maximumConnectionsTotal=200"])
+@TestPropertySource(properties = ["ncmp.dmi.httpclient.readTimeoutInSeconds=123", "ncmp.dmi.httpclient.maximumConnectionsTotal=200"])
 class HttpClientConfigurationSpec extends Specification {
 
     @Autowired
     private HttpClientConfiguration httpClientConfiguration
 
     def 'Test HttpClientConfiguration properties with custom and default values'() {
-        expect: 'custom property values'
-        assert httpClientConfiguration.getConnectionTimeoutInSeconds() == Duration.ofSeconds(1)
-        assert httpClientConfiguration.getMaximumConnectionsTotal() == 200
-        and: 'default property values'
-        assert httpClientConfiguration.getMaximumConnectionsPerRoute() == 50
-        assert httpClientConfiguration.getIdleConnectionEvictionThresholdInSeconds() == Duration.ofSeconds(5)
+        expect: 'properties are populated correctly'
+            assert httpClientConfiguration.connectionTimeoutInSeconds == 123
+            assert httpClientConfiguration.readTimeoutInSeconds == 123
+            assert httpClientConfiguration.writeTimeoutInSeconds == 30
+            assert httpClientConfiguration.maximumConnectionsTotal == 200
+            assert httpClientConfiguration.maximumInMemorySizeInMegabytes == 16
     }
 }
