@@ -31,7 +31,7 @@ import static org.onap.cps.ncmp.api.impl.operations.OperationType.UPDATE
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.events.EventsPublisher
-import org.onap.cps.ncmp.api.impl.config.DmiWebClientConfiguration
+import org.onap.cps.ncmp.api.impl.config.DmiProperties
 import org.onap.cps.ncmp.api.impl.exception.DmiClientRequestException
 import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder
 import org.onap.cps.ncmp.api.impl.utils.context.CpsApplicationContext
@@ -49,7 +49,7 @@ import org.springframework.test.context.ContextConfiguration
 import spock.lang.Shared
 
 @SpringBootTest
-@ContextConfiguration(classes = [EventsPublisher, CpsApplicationContext, DmiWebClientConfiguration.DmiProperties, DmiDataOperations])
+@ContextConfiguration(classes = [EventsPublisher, CpsApplicationContext, DmiProperties, DmiDataOperations])
 class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
 
     @SpringBean
