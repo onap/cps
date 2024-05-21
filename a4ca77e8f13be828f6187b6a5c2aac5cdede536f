@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8262cf3f_65160226",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-05-21T13:19:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dfbed33d_9b9fd418",
+      "range": {
+        "startLine": 49,
+        "startChar": 32,
+        "endLine": 49,
+        "endChar": 62
+      },
+      "revId": "a4ca77e8f13be828f6187b6a5c2aac5cdede536f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "171790cd_ba98315a",
@@ -71,6 +95,30 @@
       "writtenOn": "2024-05-20T12:42:28Z",
       "side": 1,
       "message": "is it possible to have this part from another constant: \"CM_SUBSCRIPTION_CPS_PATH_QUERY\"",
+      "range": {
+        "startLine": 50,
+        "startChar": 12,
+        "endLine": 50,
+        "endChar": 76
+      },
+      "revId": "a4ca77e8f13be828f6187b6a5c2aac5cdede536f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed62572d_1c199b84",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-05-21T13:19:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "171790cd_ba98315a",
       "range": {
         "startLine": 50,
         "startChar": 12,
@@ -128,6 +176,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8a7dbc6_9881786e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-05-21T13:19:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a8d8e05d_c4cb6661",
+      "range": {
+        "startLine": 52,
+        "startChar": 32,
+        "endLine": 52,
+        "endChar": 69
+      },
+      "revId": "a4ca77e8f13be828f6187b6a5c2aac5cdede536f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8a861e5f_02005c9c",
@@ -141,6 +213,30 @@
       "writtenOn": "2024-05-20T15:28:49Z",
       "side": 1,
       "message": "CPS_PATH_QUERY_FOR_CM_SUBSCIPTION_WITH_ID",
+      "range": {
+        "startLine": 56,
+        "startChar": 32,
+        "endLine": 56,
+        "endChar": 63
+      },
+      "revId": "a4ca77e8f13be828f6187b6a5c2aac5cdede536f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "770be2c9_e0fc4bca",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-05-21T13:19:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8a861e5f_02005c9c",
       "range": {
         "startLine": 56,
         "startChar": 32,
@@ -174,6 +270,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4655c35f_7ce9735f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-05-21T13:19:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "37c23c8c_d8c01d94",
+      "range": {
+        "startLine": 105,
+        "startChar": 30,
+        "endLine": 105,
+        "endChar": 33
+      },
+      "revId": "a4ca77e8f13be828f6187b6a5c2aac5cdede536f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "43ad2598_de04ebf0",
@@ -187,6 +307,30 @@
       "writtenOn": "2024-05-20T15:28:49Z",
       "side": 1,
       "message": "addFirstSusbcriptionForDataStoreCmHandleAndXPath",
+      "range": {
+        "startLine": 147,
+        "startChar": 17,
+        "endLine": 147,
+        "endChar": 47
+      },
+      "revId": "a4ca77e8f13be828f6187b6a5c2aac5cdede536f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84fa003f_39969835",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-05-21T13:19:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "43ad2598_de04ebf0",
       "range": {
         "startLine": 147,
         "startChar": 17,
@@ -220,6 +364,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fa784ef_4474c715",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-05-21T13:19:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "46fe3851_9db70a10",
+      "range": {
+        "startLine": 157,
+        "startChar": 17,
+        "endLine": 157,
+        "endChar": 46
+      },
+      "revId": "a4ca77e8f13be828f6187b6a5c2aac5cdede536f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4266fd43_750b5604",
@@ -233,6 +401,30 @@
       "writtenOn": "2024-05-20T15:28:49Z",
       "side": 1,
       "message": "just one addCmSubscription method with\nCPS_PATH_QUERY_FOR_DATASTORE_AND_CM_HANDLE\n\nOther CREATE first or UPDTE with \u0027another\u0027",
+      "range": {
+        "startLine": 147,
+        "startChar": 0,
+        "endLine": 165,
+        "endChar": 2
+      },
+      "revId": "a4ca77e8f13be828f6187b6a5c2aac5cdede536f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c031184_97fd0071",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-05-21T13:19:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4266fd43_750b5604",
       "range": {
         "startLine": 147,
         "startChar": 0,
