@@ -28,12 +28,12 @@ import org.springframework.web.reactive.function.client.WebClient
 import spock.lang.Specification
 
 @SpringBootTest
-@ContextConfiguration(classes = [DmiWebClientConfiguration.DmiProperties])
+@ContextConfiguration(classes = [DmiProperties])
 @TestPropertySource(properties = ['ncmp.dmi.httpclient.connectionTimeoutInSeconds=1', 'ncmp.dmi.httpclient.maximumInMemorySizeInMegabytes=1'])
 class DmiWebClientConfigurationSpec extends Specification {
 
     @Autowired
-    DmiWebClientConfiguration.DmiProperties dmiProperties
+    DmiProperties dmiProperties
 
     def objectUnderTest = new DmiWebClientConfiguration()
 

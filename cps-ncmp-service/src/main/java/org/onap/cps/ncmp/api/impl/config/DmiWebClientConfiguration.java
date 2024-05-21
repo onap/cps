@@ -24,44 +24,23 @@ import io.netty.channel.ChannelOption;
 import io.netty.handler.timeout.ReadTimeoutHandler;
 import io.netty.handler.timeout.WriteTimeoutHandler;
 import java.util.concurrent.TimeUnit;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
-import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.netty.http.client.HttpClient;
 import reactor.netty.resources.ConnectionProvider;
 
 @Configuration
 @RequiredArgsConstructor
+@Slf4j
 public class DmiWebClientConfiguration {
 
-    @Value("${ncmp.dmi.httpclient.connectionTimeoutInSeconds:20000}")
-    private Integer connectionTimeoutInSeconds;
-
-    @Value("${ncmp.dmi.httpclient.maximumInMemorySizeInMegabytes:1}")
-    private Integer maximumInMemorySizeInMegabytes;
-
-    @Value("${ncmp.dmi.httpclient.maximumConnectionsTotal:100}")
-    private Integer maximumConnectionsTotal;
-
-    @Getter
-    @Component
-    public static class DmiProperties {
-        @Value("${ncmp.dmi.auth.username}")
-        private String authUsername;
-        @Value("${ncmp.dmi.auth.password}")
-        private String authPassword;
-        @Value("${ncmp.dmi.api.base-path}")
-        private String dmiBasePath;
-        @Value("${ncmp.dmi.auth.enabled}")
-        private boolean dmiBasicAuthEnabled;
-    }
+    private final HttpClientConfiguration httpClientConfiguration;
 
     /**
      * Configures and create a WebClient bean that triggers an initialization (warmup) of the host name resolver and
@@ -71,24 +50,23 @@ public class DmiWebClientConfiguration {
      */
     @Bean
     public WebClient webClient() {
-
-        final ConnectionProvider dmiWebClientConnectionProvider
-                = ConnectionProvider.create("dmiWebClientConnectionPool", maximumConnectionsTotal);
+        final ConnectionProvider dmiWebClientConnectionProvider = ConnectionProvider.create(
+                "dmiWebClientConnectionPool", httpClientConfiguration.getMaximumConnectionsTotal());
 
         final HttpClient httpClient = HttpClient.create(dmiWebClientConnectionProvider)
-                .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, connectionTimeoutInSeconds * 1000)
-                .doOnConnected(connection ->
-                        connection
-                                .addHandlerLast(new ReadTimeoutHandler(connectionTimeoutInSeconds, TimeUnit.SECONDS))
-                                .addHandlerLast(new WriteTimeoutHandler(connectionTimeoutInSeconds, TimeUnit.SECONDS)));
+                .option(ChannelOption.CONNECT_TIMEOUT_MILLIS,
+                        httpClientConfiguration.getConnectionTimeoutInSeconds() * 1000)
+                .doOnConnected(connection -> connection.addHandlerLast(new ReadTimeoutHandler(
+                                httpClientConfiguration.getReadTimeoutInSeconds(), TimeUnit.SECONDS))
+                        .addHandlerLast(new WriteTimeoutHandler(
+                                httpClientConfiguration.getWriteTimeoutInSeconds(), TimeUnit.SECONDS)));
         httpClient.warmup().block();
         return WebClient.builder()
                 .defaultHeaders(header -> header.set(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
                 .defaultHeaders(header -> header.set(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE))
                 .clientConnector(new ReactorClientHttpConnector(httpClient))
-                .codecs(configurer -> configurer
-                        .defaultCodecs()
-                        .maxInMemorySize(maximumInMemorySizeInMegabytes * 1024 * 1024))
+                .codecs(configurer -> configurer.defaultCodecs().maxInMemorySize(
+                        httpClientConfiguration.getMaximumInMemorySizeInMegabytes() * 1024 * 1024))
                 .build();
     }
 }

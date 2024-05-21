@@ -47,6 +47,7 @@ import org.springframework.web.reactive.function.client.WebClient
 import reactor.core.publisher.Mono
 import spock.lang.Specification
 import org.springframework.web.reactive.function.client.WebClientResponseException
+import org.onap.cps.ncmp.api.impl.config.DmiProperties
 
 @SpringBootTest
 @ContextConfiguration(classes = [DmiWebClientConfiguration, DmiRestClient, ObjectMapper])
@@ -57,7 +58,7 @@ class DmiRestClientSpec extends Specification {
     static final BEARER_AUTH_HEADER = 'Bearer my-bearer-token'
 
     @Autowired
-    DmiWebClientConfiguration.DmiProperties dmiProperties
+    DmiProperties dmiProperties
 
     @Autowired
     DmiRestClient objectUnderTest

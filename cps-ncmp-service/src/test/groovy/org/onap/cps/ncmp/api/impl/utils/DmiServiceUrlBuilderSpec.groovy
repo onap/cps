@@ -22,7 +22,7 @@ package org.onap.cps.ncmp.api.impl.utils
 
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING
 
-import org.onap.cps.ncmp.api.impl.config.DmiWebClientConfiguration
+import org.onap.cps.ncmp.api.impl.config.DmiProperties
 import org.onap.cps.ncmp.api.impl.operations.RequiredDmiService
 import org.onap.cps.spi.utils.CpsValidator
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
@@ -34,7 +34,7 @@ class DmiServiceUrlBuilderSpec extends Specification {
     static YangModelCmHandle yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle('dmiServiceName',
         'dmiDataServiceName', 'dmiModuleServiceName', new NcmpServiceCmHandle(cmHandleId: 'some-cm-handle-id'),'my-module-set-tag', 'my-alternate-id', 'my-data-producer-identifier')
 
-    DmiWebClientConfiguration.DmiProperties dmiProperties = new DmiWebClientConfiguration.DmiProperties()
+    DmiProperties dmiProperties = new DmiProperties()
 
     def mockCpsValidator = Mock(CpsValidator)
 
@@ -74,9 +74,10 @@ class DmiServiceUrlBuilderSpec extends Specification {
         then: 'the created dmi service url matches the expected'
             assert dmiServiceUrl == expectedDmiServiceUrl
         where: 'the following parameters are used'
-            scenario               | decription                                | dmiBasePath || expectedDmiServiceUrl
-            'with base path  / '   | 'Invalid base path as it starts with /'   | '/dmi'      || 'dmiServiceName//dmi/v1/ch/cmHandle/data/ds/ncmp-datastore:passthrough-running'
-            'without base path / ' | 'Valid path as it does not starts with /' | 'dmi'       || 'dmiServiceName/dmi/v1/ch/cmHandle/data/ds/ncmp-datastore:passthrough-running'
+            scenario                   | decription                          | dmiBasePath || expectedDmiServiceUrl
+            'base path starts with  /' | 'Remove / from start of base path'  | '/dmi'      || 'dmiServiceName/dmi/v1/ch/cmHandle/data/ds/ncmp-datastore:passthrough-running'
+            'base path ends with / '   | 'Remove / from end of base path'    | 'dmi/'      || 'dmiServiceName/dmi/v1/ch/cmHandle/data/ds/ncmp-datastore:passthrough-running'
+            'base path without any / ' | 'base path does not contains any /' | 'dmi'       || 'dmiServiceName/dmi/v1/ch/cmHandle/data/ds/ncmp-datastore:passthrough-running'
     }
 
     def 'Bath request Url creation.'() {
