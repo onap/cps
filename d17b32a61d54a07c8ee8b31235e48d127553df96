@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ba6f1b5_0100fd05",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/CmHandleQueryByAlternateIdPerfTest.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-21T09:23:36Z",
+      "side": 0,
+      "message": "I propose to keep this file, but just fix this line:\n  \n    \u0027Look up cm-handle by longest match alternate-id\u0027",
+      "range": {
+        "startLine": 51,
+        "startChar": 41,
+        "endLine": 51,
+        "endChar": 76
+      },
+      "revId": "d17b32a61d54a07c8ee8b31235e48d127553df96",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
