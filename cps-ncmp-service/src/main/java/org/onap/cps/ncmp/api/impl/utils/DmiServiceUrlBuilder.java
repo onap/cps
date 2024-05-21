@@ -27,7 +27,7 @@ import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.apache.logging.log4j.util.Strings;
 import org.apache.logging.log4j.util.TriConsumer;
-import org.onap.cps.ncmp.api.impl.config.DmiWebClientConfiguration.DmiProperties;
+import org.onap.cps.ncmp.api.impl.config.DmiProperties;
 import org.onap.cps.spi.utils.CpsValidator;
 import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
