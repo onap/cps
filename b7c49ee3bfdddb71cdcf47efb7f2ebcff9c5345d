@@ -39,6 +39,30 @@
       },
       "revId": "b7c49ee3bfdddb71cdcf47efb7f2ebcff9c5345d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9588b671_04ede8b2",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/CmHandleQueryPerfTest.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-05-21T14:03:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "14500d16_28f28bfd",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 60
+      },
+      "revId": "b7c49ee3bfdddb71cdcf47efb7f2ebcff9c5345d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
