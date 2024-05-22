@@ -33,6 +33,92 @@
       "message": "Ready for Review",
       "revId": "dd010d26d004f7726bd97616f9312f00eebece82",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e3c7117_80fe925d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-22T16:10:40Z",
+      "side": 1,
+      "message": "2 minor comments and a question",
+      "revId": "dd010d26d004f7726bd97616f9312f00eebece82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b53759c_542e8704",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 19
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-22T16:10:40Z",
+      "side": 1,
+      "message": "NB: make suer your IDE is setup to remove redundant whitespace",
+      "range": {
+        "startLine": 118,
+        "startChar": 33,
+        "endLine": 118,
+        "endChar": 41
+      },
+      "revId": "dd010d26d004f7726bd97616f9312f00eebece82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96b46f52_0a831b70",
+        "filename": "cps-rest/docs/openapi/cpsData.yml",
+        "patchSetId": 19
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-22T16:10:40Z",
+      "side": 1,
+      "message": "what is this exactly?",
+      "range": {
+        "startLine": 154,
+        "startChar": 20,
+        "endLine": 154,
+        "endChar": 26
+      },
+      "revId": "dd010d26d004f7726bd97616f9312f00eebece82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db271a01_6634f87e",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 403,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-22T16:10:40Z",
+      "side": 1,
+      "message": "since this test is about valid/invalid timestamps I dont think you needed to duplicate the scenarios for XML\n(doing this leads to unnecesary additional maintenance)",
+      "range": {
+        "startLine": 402,
+        "startChar": 0,
+        "endLine": 403,
+        "endChar": 221
+      },
+      "revId": "dd010d26d004f7726bd97616f9312f00eebece82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
