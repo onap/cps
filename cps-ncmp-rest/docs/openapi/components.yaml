@@ -578,7 +578,6 @@ components:
       in: query
       description: The format of resource identifier depend on the associated DMI Plugin implementation. For ONAP DMI Plugin it will be RESTConf paths but it can really be anything.
       required: true
-      allowReserved: true
       schema:
         type: string
       examples:
@@ -598,7 +597,6 @@ components:
       required: false
       schema:
         type: string
-      allowReserved: true
       examples:
         sample 1:
           value:
@@ -616,7 +614,6 @@ components:
       required: false
       schema:
         type: string
-      allowReserved: true
       examples:
         sample 1:
           value:
@@ -628,7 +625,6 @@ components:
       required: true
       schema:
         type: string
-      allowReserved: true
       examples:
         sample 1:
           value:
