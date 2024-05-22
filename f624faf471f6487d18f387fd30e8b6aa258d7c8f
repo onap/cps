@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d46c5af9_ded5337b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-22T14:32:43Z",
+      "side": 1,
+      "message": "This redundantly calls getOngoingCmNotificationSubscriptionIds three times. It could be more efficiently written as:\n\n    @Override\n    public void addCmNotificationSubscription(final DatastoreType datastoreType, final String cmHandleId,\n                                              final String xpath, final String subscriptionId) {\n        final Collection\u003cString\u003e subscriptionIds \u003d getOngoingCmNotificationSubscriptionIds(datastoreType,\n                cmHandleId, xpath);\n        if (subscriptionIds.isEmpty()) {\n            addFirstSubscriptionForDatastoreCmHandleAndXpath(datastoreType, cmHandleId, xpath, subscriptionId);\n        } else if (!subscriptionIds.contains(subscriptionId)) {\n            subscriptionIds.add(subscriptionId);\n            saveSubscriptionDetails(datastoreType, cmHandleId, xpath, subscriptionIds);\n        }\n    }",
+      "range": {
+        "startLine": 93,
+        "startChar": 0,
+        "endLine": 113,
+        "endChar": 5
+      },
+      "revId": "f624faf471f6487d18f387fd30e8b6aa258d7c8f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3404f314_f797f4c3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-22T14:32:43Z",
+      "side": 1,
+      "message": "Nb: .remove returns a boolean indicating whether the subscriptionId existed.\nUsing this, we could skip the other logic if the subscriptionId never existed:\n\n    if (subscriptionIds.remove(subscriptionId)) {\n        if (isOngoingCmNotificationSubscription(datastoreType, cmHandleId, xpath)) {\n           ...",
+      "range": {
+        "startLine": 120,
+        "startChar": 8,
+        "endLine": 120,
+        "endChar": 47
+      },
+      "revId": "f624faf471f6487d18f387fd30e8b6aa258d7c8f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb33cbee_0bb76dcd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-22T14:32:43Z",
+      "side": 1,
+      "message": "This could be moved inside the if-statement condition on line 123, since the \u0027else\u0027 branch would delete the last subscription anyway.",
+      "range": {
+        "startLine": 121,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 7
+      },
+      "revId": "f624faf471f6487d18f387fd30e8b6aa258d7c8f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06285bb0_2ad73c03",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-22T14:32:43Z",
+      "side": 1,
+      "message": "This method is only used once below, so it could be better written according to it\u0027s intended usage:\n\n    private boolean isFirstSubscriptionForCmHandle(DatastoreType datastoreType, String cmHandleId) {\n        return cpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME, CM_SUBSCRIPTIONS_ANCHOR_NAME,\n                CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_DATASTORE_AND_CMHANDLE.formatted(\n                        datastoreType.getDatastoreName(), cmHandleId),\n                OMIT_DESCENDANTS).isEmpty();\n    }",
+      "range": {
+        "startLine": 142,
+        "startChar": 0,
+        "endLine": 153,
+        "endChar": 5
+      },
+      "revId": "f624faf471f6487d18f387fd30e8b6aa258d7c8f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5b7bdc9_971a0a5d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-22T14:32:43Z",
+      "side": 1,
+      "message": "Nb, use singletonList:\n\n    final Collection\u003cString\u003e newSubscriptionList \u003d Collections.singletonList(subscriptionId);",
+      "range": {
+        "startLine": 159,
+        "startChar": 0,
+        "endLine": 160,
+        "endChar": 48
+      },
+      "revId": "f624faf471f6487d18f387fd30e8b6aa258d7c8f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e030057f_6b42c204",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-22T14:32:43Z",
+      "side": 1,
+      "message": "After replacing method getExistingDataNodesForDatastoreAndCmhandle on line 142:\n\n    if (isFirstSubscriptionForCmHandle(datastoreType, cmHandleId)) {",
+      "range": {
+        "startLine": 162,
+        "startChar": 0,
+        "endLine": 164,
+        "endChar": 65
+      },
+      "revId": "f624faf471f6487d18f387fd30e8b6aa258d7c8f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55b7debd_e7abd349",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-22T14:32:43Z",
+      "side": 1,
+      "message": "Nb: use Map.of\n\n        final Map\u003cString, Serializable\u003e subscriptionDetailsAsMap \u003d\n                Map.of(\"xpath\", xpath, \"subscriptionIds\", (Serializable) subscriptionIds);",
+      "range": {
+        "startLine": 189,
+        "startChar": 0,
+        "endLine": 191,
+        "endChar": 88
+      },
+      "revId": "f624faf471f6487d18f387fd30e8b6aa258d7c8f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6be8c8e3_d6a339d3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-22T14:32:43Z",
+      "side": 1,
+      "message": "Why is this needed?",
+      "range": {
+        "startLine": 193,
+        "startChar": 73,
+        "endLine": 193,
+        "endChar": 92
+      },
+      "revId": "f624faf471f6487d18f387fd30e8b6aa258d7c8f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
