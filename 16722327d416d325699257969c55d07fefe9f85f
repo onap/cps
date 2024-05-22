@@ -134,6 +134,30 @@
       },
       "revId": "16722327d416d325699257969c55d07fefe9f85f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d5914ef_5b6f4a15",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/HttpClientConfiguration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-22T11:35:57Z",
+      "side": 1,
+      "message": "I agree, we should use the same values (30 seconds) as in application.yaml",
+      "parentUuid": "af4e5da7_2aa64a93",
+      "range": {
+        "startLine": 34,
+        "startChar": 1,
+        "endLine": 36,
+        "endChar": 47
+      },
+      "revId": "16722327d416d325699257969c55d07fefe9f85f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
