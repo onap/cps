@@ -28,8 +28,7 @@ paths:
         schema:
           example: my-cm-handle
           type: string
-      - allowReserved: true
-        description: The format of resource identifier depend on the associated DMI
+      - description: The format of resource identifier depend on the associated DMI
           Plugin implementation. For ONAP DMI Plugin it will be RESTConf paths but
           it can really be anything.
         examples:
@@ -139,8 +138,7 @@ paths:
         schema:
           example: my-cm-handle
           type: string
-      - allowReserved: true
-        description: The format of resource identifier depend on the associated DMI
+      - description: The format of resource identifier depend on the associated DMI
           Plugin implementation. For ONAP DMI Plugin it will be RESTConf paths but
           it can really be anything.
         examples:
@@ -158,8 +156,7 @@ paths:
         required: true
         schema:
           type: string
-      - allowReserved: true
-        description: "options parameter in query, it is mandatory to wrap key(s)=value(s)\
+      - description: "options parameter in query, it is mandatory to wrap key(s)=value(s)\
           \ in parenthesis'()'. The format of options parameter depend on the associated\
           \ DMI Plugin implementation."
         examples:
@@ -177,8 +174,7 @@ paths:
         required: false
         schema:
           type: string
-      - allowReserved: true
-        description: topic parameter in query.
+      - description: topic parameter in query.
         examples:
           sample 1:
             value:
@@ -276,8 +272,7 @@ paths:
         schema:
           example: my-cm-handle
           type: string
-      - allowReserved: true
-        description: The format of resource identifier depend on the associated DMI
+      - description: The format of resource identifier depend on the associated DMI
           Plugin implementation. For ONAP DMI Plugin it will be RESTConf paths but
           it can really be anything.
         examples:
@@ -390,8 +385,7 @@ paths:
         schema:
           example: my-cm-handle
           type: string
-      - allowReserved: true
-        description: The format of resource identifier depend on the associated DMI
+      - description: The format of resource identifier depend on the associated DMI
           Plugin implementation. For ONAP DMI Plugin it will be RESTConf paths but
           it can really be anything.
         examples:
@@ -509,8 +503,7 @@ paths:
         schema:
           example: my-cm-handle
           type: string
-      - allowReserved: true
-        description: The format of resource identifier depend on the associated DMI
+      - description: The format of resource identifier depend on the associated DMI
           Plugin implementation. For ONAP DMI Plugin it will be RESTConf paths but
           it can really be anything.
         examples:
@@ -619,8 +612,7 @@ paths:
         is supported.
       operationId: executeDataOperationForCmHandles
       parameters:
-      - allowReserved: true
-        description: mandatory topic parameter in query.
+      - description: mandatory topic parameter in query.
         examples:
           sample 1:
             value:
@@ -736,8 +728,7 @@ paths:
         schema:
           default: /
           type: string
-      - allowReserved: true
-        description: "options parameter in query, it is mandatory to wrap key(s)=value(s)\
+      - description: "options parameter in query, it is mandatory to wrap key(s)=value(s)\
           \ in parenthesis'()'. The format of options parameter depend on the associated\
           \ DMI Plugin implementation."
         examples:
@@ -755,8 +746,7 @@ paths:
         required: false
         schema:
           type: string
-      - allowReserved: true
-        description: topic parameter in query.
+      - description: topic parameter in query.
         examples:
           sample 1:
             value:
@@ -1484,7 +1474,6 @@ components:
         example: my-cm-handle
         type: string
     resourceIdentifierInQuery:
-      allowReserved: true
       description: The format of resource identifier depend on the associated DMI
         Plugin implementation. For ONAP DMI Plugin it will be RESTConf paths but it
         can really be anything.
@@ -1504,7 +1493,6 @@ components:
       schema:
         type: string
     optionsParamInQuery:
-      allowReserved: true
       description: "options parameter in query, it is mandatory to wrap key(s)=value(s)\
         \ in parenthesis'()'. The format of options parameter depend on the associated\
         \ DMI Plugin implementation."
@@ -1524,7 +1512,6 @@ components:
       schema:
         type: string
     topicParamInQuery:
-      allowReserved: true
       description: topic parameter in query.
       examples:
         sample 1:
@@ -1561,7 +1548,6 @@ components:
         example: application/yang-data+json
         type: string
     requiredTopicParamInQuery:
-      allowReserved: true
       description: mandatory topic parameter in query.
       examples:
         sample 1:
