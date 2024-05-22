@@ -3,6 +3,75 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c8b2d2d6_971b5116",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/DataJobServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-22T15:57:51Z",
+      "side": 1,
+      "message": "should be in API\npossibly in api.models, we might nee a bit of team a discussion this\n(this same comment applies to quiet a few data objects)\nlter thought: i think models is realy just for REST models",
+      "range": {
+        "startLine": 29,
+        "startChar": 29,
+        "endLine": 29,
+        "endChar": 33
+      },
+      "revId": "19afa3de40ad407df9d127a355936ea3c0faf326",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fafd6339_0c3b4f21",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/DataJobServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-22T15:57:51Z",
+      "side": 1,
+      "message": "should be in API",
+      "range": {
+        "startLine": 30,
+        "startChar": 29,
+        "endLine": 30,
+        "endChar": 33
+      },
+      "revId": "19afa3de40ad407df9d127a355936ea3c0faf326",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9191c165_1fd24806",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/DataJobServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-22T15:57:51Z",
+      "side": 1,
+      "message": "should be in API",
+      "range": {
+        "startLine": 32,
+        "startChar": 29,
+        "endLine": 32,
+        "endChar": 33
+      },
+      "revId": "19afa3de40ad407df9d127a355936ea3c0faf326",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9883eecc_8731fc48",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/DataJobServiceImpl.java",
         "patchSetId": 11
@@ -134,6 +203,29 @@
         "startChar": 0,
         "endLine": 26,
         "endChar": 5
+      },
+      "revId": "19afa3de40ad407df9d127a355936ea3c0faf326",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3380f51a_f6e85b80",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/datajob/SubJobWriteRequest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-22T15:57:51Z",
+      "side": 1,
+      "message": "we need to be careful what goes in the API and what in the IMPL. Anything that the client will need to call the interface will need to go onto the API folder\nWe have broken this rul a bit already in legacy code but lets do it correct here as we will have a different team using this API and NOT the impl...",
+      "range": {
+        "startLine": 21,
+        "startChar": 26,
+        "endLine": 21,
+        "endChar": 34
       },
       "revId": "19afa3de40ad407df9d127a355936ea3c0faf326",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"

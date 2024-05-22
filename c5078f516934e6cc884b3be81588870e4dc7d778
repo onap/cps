@@ -173,6 +173,24 @@
       "parentUuid": "25c3f05c_b806c3ff",
       "revId": "c5078f516934e6cc884b3be81588870e4dc7d778",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3179a952_5d01df7f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/models/datajob/ProducerKey.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-22T15:57:51Z",
+      "side": 1,
+      "message": "in any case there is a naming issue as the class is called producerKey and one of its fields is a String with the same name but they are obviously not the same thing...",
+      "parentUuid": "25c3f05c_b806c3ff",
+      "revId": "c5078f516934e6cc884b3be81588870e4dc7d778",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
