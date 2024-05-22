@@ -122,6 +122,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "669d6352_317023b9",
+        "filename": "k6-tests/ncmp/1-create-cmhandles.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-22T17:02:52Z",
+      "side": 1,
+      "message": "We should not log, as it will clutter the output.\nk6 already reports summary of this:\n\n         ✗ status equals 200\n          ↳  24% — ✓ 49 / ✗ 151\n\nIn addition, if even a single check fails, k6 will return with error code:\n\n    ERRO[0001] thresholds on metrics \u0027http_req_failed\u0027 have been crossed \n\nAlso CPS logs are printed at the end, so failure cause can be investigated.",
+      "parentUuid": "1db940e9_e755b5c7",
+      "revId": "15d53e81b319ed1fcd35db83c4870a14f219cb72",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "851fac91_993c5ee5",
         "filename": "k6-tests/ncmp/10-mixed-load-test.js",
         "patchSetId": 8
@@ -133,6 +151,30 @@
       "writtenOn": "2024-05-22T12:15:30Z",
       "side": 1,
       "message": "NB: logAndCheck(response, \u0027passthrough_read\u0027);\n\nfunction logAndCheck(response, scenarioName) {\n    const success \u003d check(response, {\n        \u0027status is 200\u0027: (r) \u003d\u003e r.status \u003d\u003d\u003d 200,\n    });\n\n    if (!success) {\n        console.error(`[${scenarioName}] Request failed. Status: ${response.status}, Response: ${response.body}`);\n    }\n}",
+      "range": {
+        "startLine": 61,
+        "startChar": 3,
+        "endLine": 63,
+        "endChar": 6
+      },
+      "revId": "15d53e81b319ed1fcd35db83c4870a14f219cb72",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a637e81_8e9b8786",
+        "filename": "k6-tests/ncmp/10-mixed-load-test.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-22T17:02:52Z",
+      "side": 1,
+      "message": "I\u0027m against this detailed logging. These are not functional tests, just performance. We\u0027re only interested in average response time, throughput, etc. If there are failures, they will be shown in the summary, and can be investigated from CPS logs.",
+      "parentUuid": "851fac91_993c5ee5",
       "range": {
         "startLine": 61,
         "startChar": 3,
@@ -166,6 +208,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c00b282d_9b7c6e8f",
+        "filename": "k6-tests/ncmp/10-mixed-load-test.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-22T17:02:52Z",
+      "side": 1,
+      "message": "searchRequest method already does checks.",
+      "parentUuid": "b17d3a77_a91ac515",
+      "range": {
+        "startLine": 75,
+        "startChar": 4,
+        "endLine": 75,
+        "endChar": 64
+      },
+      "revId": "15d53e81b319ed1fcd35db83c4870a14f219cb72",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a07c5eee_24f51c7d",
@@ -189,6 +255,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e0a2dde_d75701d6",
+        "filename": "k6-tests/ncmp/10-mixed-load-test.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-22T17:02:52Z",
+      "side": 1,
+      "message": "searchRequest method already does checks.",
+      "parentUuid": "a07c5eee_24f51c7d",
+      "range": {
+        "startLine": 87,
+        "startChar": 4,
+        "endLine": 87,
+        "endChar": 61
+      },
+      "revId": "15d53e81b319ed1fcd35db83c4870a14f219cb72",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3fadb9f8_6b1ad478",
@@ -202,6 +292,30 @@
       "writtenOn": "2024-05-22T12:15:30Z",
       "side": 1,
       "message": "Math.ceil(TOTAL_CM_HANDLES / 100),",
+      "range": {
+        "startLine": 28,
+        "startChar": 14,
+        "endLine": 28,
+        "endChar": 37
+      },
+      "revId": "15d53e81b319ed1fcd35db83c4870a14f219cb72",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ebe0078_b94a426e",
+        "filename": "k6-tests/ncmp/11-delete-cmhandles.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-22T17:02:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3fadb9f8_6b1ad478",
       "range": {
         "startLine": 28,
         "startChar": 14,
@@ -237,6 +351,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8e3773a4_c8cfe4fc",
+        "filename": "k6-tests/ncmp/11-delete-cmhandles.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-22T17:02:52Z",
+      "side": 1,
+      "message": "Again, we get summary of how many passed or failed.\n\n     ✗ status equals 200\n      ↳  0% — ✓ 0 / ✗ 200\n\nCPS logs are printed at the end too, so failure cause can be investigated.",
+      "parentUuid": "16293b6c_28377048",
+      "range": {
+        "startLine": 44,
+        "startChar": 4,
+        "endLine": 46,
+        "endChar": 7
+      },
+      "revId": "15d53e81b319ed1fcd35db83c4870a14f219cb72",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8343bf34_d0b446f0",
         "filename": "k6-tests/ncmp/2-wait-for-cmhandles-to-be-ready.js",
         "patchSetId": 8
@@ -248,6 +386,30 @@
       "writtenOn": "2024-05-22T12:15:30Z",
       "side": 1,
       "message": "Math.ceil(timeoutInSeconds / pollingIntervalInSeconds);",
+      "range": {
+        "startLine": 41,
+        "startChar": 23,
+        "endLine": 41,
+        "endChar": 67
+      },
+      "revId": "15d53e81b319ed1fcd35db83c4870a14f219cb72",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6f7ba41_e893e45b",
+        "filename": "k6-tests/ncmp/2-wait-for-cmhandles-to-be-ready.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-22T17:02:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8343bf34_d0b446f0",
       "range": {
         "startLine": 41,
         "startChar": 23,
@@ -281,6 +443,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "96da9f3d_5becdb1f",
+        "filename": "k6-tests/ncmp/2-wait-for-cmhandles-to-be-ready.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-22T17:02:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ccad17d1_6e3b7236",
+      "range": {
+        "startLine": 48,
+        "startChar": 12,
+        "endLine": 48,
+        "endChar": 39
+      },
+      "revId": "15d53e81b319ed1fcd35db83c4870a14f219cb72",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "25fe4657_8da427ab",
@@ -294,6 +480,30 @@
       "writtenOn": "2024-05-22T12:15:30Z",
       "side": 1,
       "message": "NB: console.log(`Attempt ${currentTry + 1} - ${cmHandlesReady}/${totalCmHandles} CM handles are READY`);",
+      "range": {
+        "startLine": 50,
+        "startChar": 8,
+        "endLine": 50,
+        "endChar": 62
+      },
+      "revId": "15d53e81b319ed1fcd35db83c4870a14f219cb72",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13abed5d_fb7b37b2",
+        "filename": "k6-tests/ncmp/2-wait-for-cmhandles-to-be-ready.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-22T17:02:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "25fe4657_8da427ab",
       "range": {
         "startLine": 50,
         "startChar": 8,
@@ -321,6 +531,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "434766d6_9196f481",
+        "filename": "k6-tests/ncmp/2-wait-for-cmhandles-to-be-ready.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-22T17:02:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f76c91ad_8e019f91",
+      "revId": "15d53e81b319ed1fcd35db83c4870a14f219cb72",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "92227efe_f24fc119",
@@ -334,6 +562,30 @@
       "writtenOn": "2024-05-22T12:15:30Z",
       "side": 1,
       "message": "fail(`Timed out after ${timeoutInSeconds} seconds waiting for ${totalCmHandles} CM handles to be READY`);",
+      "range": {
+        "startLine": 55,
+        "startChar": 4,
+        "endLine": 55,
+        "endChar": 57
+      },
+      "revId": "15d53e81b319ed1fcd35db83c4870a14f219cb72",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "46a11c9d_de4a59c7",
+        "filename": "k6-tests/ncmp/2-wait-for-cmhandles-to-be-ready.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-22T17:02:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "92227efe_f24fc119",
       "range": {
         "startLine": 55,
         "startChar": 4,
@@ -367,6 +619,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a84aaad9_fca08be0",
+        "filename": "k6-tests/ncmp/2-wait-for-cmhandles-to-be-ready.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-22T17:02:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ed11c62f_c31d6793",
+      "range": {
+        "startLine": 60,
+        "startChar": 24,
+        "endLine": 60,
+        "endChar": 41
+      },
+      "revId": "15d53e81b319ed1fcd35db83c4870a14f219cb72",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "623eb31d_bf4bf2ed",
@@ -380,6 +656,30 @@
       "writtenOn": "2024-05-22T12:15:30Z",
       "side": 1,
       "message": "const cmHandles \u003d jsonData[0][\"dmi-reg:dmi-registry\"][\"cm-handles\"];\n    return cmHandles.filter(cmhandle \u003d\u003e cmhandle[\u0027state\u0027][\u0027cm-handle-state\u0027] \u003d\u003d\u003d \u0027READY\u0027).length;",
+      "range": {
+        "startLine": 62,
+        "startChar": 4,
+        "endLine": 67,
+        "endChar": 26
+      },
+      "revId": "15d53e81b319ed1fcd35db83c4870a14f219cb72",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "191ed211_db64c151",
+        "filename": "k6-tests/ncmp/2-wait-for-cmhandles-to-be-ready.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-22T17:02:52Z",
+      "side": 1,
+      "message": "Nice!",
+      "parentUuid": "623eb31d_bf4bf2ed",
       "range": {
         "startLine": 62,
         "startChar": 4,
@@ -415,6 +715,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d0c9d8b4_f101dd72",
+        "filename": "k6-tests/ncmp/3-passthrough-read.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-22T17:02:52Z",
+      "side": 1,
+      "message": "We don\u0027t need to log every result, k6 already reports avg, min, max, etc.\n\n      iterations.....................: 144     4.765338/s\n    ✓ ncmp_overhead..................: avg\u003d16.710612 min\u003d4.323657 med\u003d11.647516 max\u003d96.147325 p(90)\u003d16.830077 p(95)\u003d67.817928",
+      "parentUuid": "76a59006_d1af030d",
+      "range": {
+        "startLine": 43,
+        "startChar": 3,
+        "endLine": 47,
+        "endChar": 60
+      },
+      "revId": "15d53e81b319ed1fcd35db83c4870a14f219cb72",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "675a3734_8d72378c",
         "filename": "k6-tests/ncmp/4-id-search-no-filter.js",
         "patchSetId": 8
@@ -426,6 +750,24 @@
       "writtenOn": "2024-05-22T12:15:30Z",
       "side": 1,
       "message": "import http from \u0027k6/http\u0027;\nimport { check } from \u0027k6\u0027;\nimport { Trend, Rate } from \u0027k6/metrics\u0027;",
+      "revId": "15d53e81b319ed1fcd35db83c4870a14f219cb72",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fcb4f5e3_9e1b6413",
+        "filename": "k6-tests/ncmp/4-id-search-no-filter.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-22T17:02:52Z",
+      "side": 1,
+      "message": "search-base.js implements check logic for all searches",
+      "parentUuid": "675a3734_8d72378c",
       "revId": "15d53e81b319ed1fcd35db83c4870a14f219cb72",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -455,6 +797,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "66f69cfc_d8e20b42",
+        "filename": "k6-tests/ncmp/4-id-search-no-filter.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-22T17:02:52Z",
+      "side": 1,
+      "message": "k6 report automatically provides summary of all of this with no extra coding:\n\n       ✓ status equals 200\n       ✓ returned list has expected CM-handles\n\n       checks.........................: 100.00% ✓ 2602      ✗ 0   \n     ✓ http_req_duration..............: avg\u003d219.93ms min\u003d112.14ms med\u003d210.97ms max\u003d457.61ms p(90)\u003d289.5ms  p(95)\u003d318.51ms\n     ✓ http_req_failed................: 0.00%   ✓ 0         ✗ 1301\n\nIt\u0027s a lot of extra work for information we already have.",
+      "parentUuid": "460450c1_ecdfa2d7",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 38
+      },
+      "revId": "15d53e81b319ed1fcd35db83c4870a14f219cb72",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "61e80a50_58189109",
         "filename": "k6-tests/ncmp/5-search-no-filter.js",
         "patchSetId": 8
@@ -466,6 +832,24 @@
       "writtenOn": "2024-05-22T12:15:30Z",
       "side": 1,
       "message": "import http from \u0027k6/http\u0027;\nimport { check } from \u0027k6\u0027;\nimport { Trend, Rate } from \u0027k6/metrics\u0027;",
+      "revId": "15d53e81b319ed1fcd35db83c4870a14f219cb72",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "61454ec5_e152bab1",
+        "filename": "k6-tests/ncmp/5-search-no-filter.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-22T17:02:52Z",
+      "side": 1,
+      "message": "search-base.js implements check logic for all searches",
+      "parentUuid": "61e80a50_58189109",
       "revId": "15d53e81b319ed1fcd35db83c4870a14f219cb72",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -493,6 +877,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a9b66c8_4d1ac414",
+        "filename": "k6-tests/ncmp/5-search-no-filter.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-22T17:02:52Z",
+      "side": 1,
+      "message": "search-base.js implements check logic for all searches",
+      "parentUuid": "23dc17c1_a3dc97b3",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 1
+      },
+      "revId": "15d53e81b319ed1fcd35db83c4870a14f219cb72",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eb33af17_96a329ef",
@@ -510,6 +918,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae341d97_e015e3b5",
+        "filename": "k6-tests/ncmp/6-id-search-public-property.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-22T17:02:52Z",
+      "side": 1,
+      "message": "search-base.js implements check logic for all searches",
+      "parentUuid": "eb33af17_96a329ef",
+      "revId": "15d53e81b319ed1fcd35db83c4870a14f219cb72",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "556677dc_678f67dd",
@@ -523,6 +949,24 @@
       "writtenOn": "2024-05-22T12:15:30Z",
       "side": 1,
       "message": "import http from \u0027k6/http\u0027;",
+      "revId": "15d53e81b319ed1fcd35db83c4870a14f219cb72",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d9f4e17_0b08da0e",
+        "filename": "k6-tests/ncmp/6-id-search-public-property.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-22T17:02:52Z",
+      "side": 1,
+      "message": "search-base.js implements check logic for all searches",
+      "parentUuid": "556677dc_678f67dd",
       "revId": "15d53e81b319ed1fcd35db83c4870a14f219cb72",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -550,6 +994,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5352bb31_9658b0c9",
+        "filename": "k6-tests/ncmp/6-id-search-public-property.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-22T17:02:52Z",
+      "side": 1,
+      "message": "search-base.js implements check logic for all searches",
+      "parentUuid": "0bf11642_35a07845",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 64
+      },
+      "revId": "15d53e81b319ed1fcd35db83c4870a14f219cb72",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4d6fed4a_1031fe8c",
@@ -563,6 +1031,24 @@
       "writtenOn": "2024-05-22T12:15:30Z",
       "side": 1,
       "message": "import { check } from \u0027k6\u0027;",
+      "revId": "15d53e81b319ed1fcd35db83c4870a14f219cb72",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "42351b4b_1f35869c",
+        "filename": "k6-tests/ncmp/7-search-public-property.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-22T17:02:52Z",
+      "side": 1,
+      "message": "search-base.js implements check logic for all searches",
+      "parentUuid": "4d6fed4a_1031fe8c",
       "revId": "15d53e81b319ed1fcd35db83c4870a14f219cb72",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -590,6 +1076,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "30d2ac82_b6188da3",
+        "filename": "k6-tests/ncmp/7-search-public-property.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-22T17:02:52Z",
+      "side": 1,
+      "message": "search-base.js implements check logic for all searches",
+      "parentUuid": "71ac9468_0c282a4f",
+      "range": {
+        "startLine": 41,
+        "startChar": 3,
+        "endLine": 41,
+        "endChar": 61
+      },
+      "revId": "15d53e81b319ed1fcd35db83c4870a14f219cb72",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9b4cf001_dfb9bb1d",
@@ -603,6 +1113,24 @@
       "writtenOn": "2024-05-22T12:15:30Z",
       "side": 1,
       "message": "import { check } from \u0027k6\u0027;",
+      "revId": "15d53e81b319ed1fcd35db83c4870a14f219cb72",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd776f2f_201c3693",
+        "filename": "k6-tests/ncmp/8-id-search-module.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-22T17:02:52Z",
+      "side": 1,
+      "message": "search-base.js implements check logic for all searches",
+      "parentUuid": "9b4cf001_dfb9bb1d",
       "revId": "15d53e81b319ed1fcd35db83c4870a14f219cb72",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -630,6 +1158,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "91e696be_5d379f75",
+        "filename": "k6-tests/ncmp/8-id-search-module.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-22T17:02:52Z",
+      "side": 1,
+      "message": "search-base.js implements check logic for all searches",
+      "parentUuid": "a5c85002_5cd61e39",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 64
+      },
+      "revId": "15d53e81b319ed1fcd35db83c4870a14f219cb72",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7762c4b1_9f30c293",
@@ -647,6 +1199,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b98dacbf_53f1843f",
+        "filename": "k6-tests/ncmp/9-search-module.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-22T17:02:52Z",
+      "side": 1,
+      "message": "search-base.js implements check logic for all searches",
+      "parentUuid": "7762c4b1_9f30c293",
+      "revId": "15d53e81b319ed1fcd35db83c4870a14f219cb72",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c4bd6d26_e2a12eb4",
@@ -660,6 +1230,30 @@
       "writtenOn": "2024-05-22T12:15:30Z",
       "side": 1,
       "message": "NB: \n\nconst body \u003d JSON.stringify(search_filter);\n    const response \u003d searchRequest(\u0027searches\u0027, body);\n\n    // Check response status\n    const checkRes \u003d check(response, {\n        \u0027status is 200\u0027: (r) \u003d\u003e r.status \u003d\u003d\u003d 200,\n    });\n\n    // Log errors if check failed\n    if (!checkRes) {\n        console.error(`Search request failed for filters: ${body}. Response: ${response.status} ${response.body}`);\n    }",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 61
+      },
+      "revId": "15d53e81b319ed1fcd35db83c4870a14f219cb72",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dcf189a5_2931c5c4",
+        "filename": "k6-tests/ncmp/9-search-module.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-22T17:02:52Z",
+      "side": 1,
+      "message": "search-base.js implements check logic for all searches",
+      "parentUuid": "c4bd6d26_e2a12eb4",
       "range": {
         "startLine": 41,
         "startChar": 4,
@@ -695,6 +1289,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6f8dcf6f_2a62ea2e",
+        "filename": "k6-tests/ncmp/run-all-tests.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-22T17:02:52Z",
+      "side": 1,
+      "message": "This is out of scope: this task is only to implement a test suite with overall pass/fail.\nHalil is working on https://jira.onap.org/browse/CPS-2215 to add summary report table at the end.",
+      "parentUuid": "0deef88c_aaa3e06a",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 0
+      },
+      "revId": "15d53e81b319ed1fcd35db83c4870a14f219cb72",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d693c11f_a0077ff6",
         "filename": "k6-tests/ncmp/search-base.js",
         "patchSetId": 8
@@ -706,6 +1324,30 @@
       "writtenOn": "2024-05-22T12:15:30Z",
       "side": 1,
       "message": "// Check response status\n    const statusCheck \u003d check(response, {\n        \u0027status is 200\u0027: (r) \u003d\u003e r.status \u003d\u003d\u003d 200,\n    });\n\n    // Check returned list of CM-handles\n    const body \u003d JSON.parse(response.body);\n    const cmHandlesCheck \u003d check(body, {\n        \u0027returned list has expected CM-handles\u0027: (arr) \u003d\u003e arr.length \u003d\u003d\u003d TOTAL_CM_HANDLES,\n    });\n\n    // Log errors\n    if (!statusCheck) {\n        console.error(`Search request failed with status ${response.status}`);\n    }\n    if (!cmHandlesCheck) {\n        console.error(`Returned list does not have expected CM-handles`);\n    }\n\n    // Log response body for debugging\n    console.log(`Search response body: ${response.body}`);",
+      "range": {
+        "startLine": 32,
+        "startChar": 4,
+        "endLine": 34,
+        "endChar": 7
+      },
+      "revId": "15d53e81b319ed1fcd35db83c4870a14f219cb72",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "998f7180_0f650efe",
+        "filename": "k6-tests/ncmp/search-base.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-22T17:02:52Z",
+      "side": 1,
+      "message": "Logging every response would produce millions of lines of output.\nFor example, a single 30-second test of module ID search produces over 300MB of output. For all tests combined, it would be gigabytes of log output.",
+      "parentUuid": "d693c11f_a0077ff6",
       "range": {
         "startLine": 32,
         "startChar": 4,
