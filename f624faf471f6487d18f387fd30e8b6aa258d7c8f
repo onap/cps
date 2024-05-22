@@ -279,6 +279,30 @@
       },
       "revId": "f624faf471f6487d18f387fd30e8b6aa258d7c8f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7ceccd2_440cba4b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-22T15:12:05Z",
+      "side": 1,
+      "message": "This is definitely wrong and should be removed.\nImagine the xpath parameter containted a single quote: /target/xpath[@id\u003d\u0027123\u0027]\n\nThen subscriptionDetailsAsMap in JSON becomes:\n\n    { \"xpath\": \"/target/xpath[@id\u003d\u0027123\u0027]\", \"subscriptionIds\": [\"sub1\"] }\nNow replacing the single quote with double quote gives:\n\n    { \"xpath\": \"/target/xpath[@id\u003d\"123\"]\", \"subscriptionIds\": [\"sub1\"] }\n                                  ^ invalid json",
+      "parentUuid": "6be8c8e3_d6a339d3",
+      "range": {
+        "startLine": 193,
+        "startChar": 73,
+        "endLine": 193,
+        "endChar": 92
+      },
+      "revId": "f624faf471f6487d18f387fd30e8b6aa258d7c8f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
