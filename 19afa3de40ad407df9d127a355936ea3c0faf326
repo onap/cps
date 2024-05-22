@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9883eecc_8731fc48",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/DataJobServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-05-22T15:42:22Z",
+      "side": 1,
+      "message": "if (dataJobWriteRequest.data().isEmpty()) {\n        log.info(\"Data job request is empty for data job id: {}.\", dataJobId);\n        return;\n    }",
+      "range": {
+        "startLine": 62,
+        "startChar": 7,
+        "endLine": 62,
+        "endChar": 52
+      },
+      "revId": "19afa3de40ad407df9d127a355936ea3c0faf326",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7caf4a38_fb8ea601",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/DataJobServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-05-22T15:42:22Z",
+      "side": 1,
+      "message": "create global constant FIRST_JOB",
+      "range": {
+        "startLine": 64,
+        "startChar": 81,
+        "endLine": 64,
+        "endChar": 82
+      },
+      "revId": "19afa3de40ad407df9d127a355936ea3c0faf326",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72508353_803bf53d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/DataJobServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-05-22T15:42:22Z",
+      "side": 1,
+      "message": "Yes Gerard  here we should make use of DmiServiceUrlBuilder",
+      "range": {
+        "startLine": 81,
+        "startChar": 42,
+        "endLine": 81,
+        "endChar": 90
+      },
+      "revId": "19afa3de40ad407df9d127a355936ea3c0faf326",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1ad775b_13c03706",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/DataJobServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-05-22T15:42:22Z",
+      "side": 1,
+      "message": "create global constant NO_AUTH_HEADER",
+      "range": {
+        "startLine": 83,
+        "startChar": 46,
+        "endLine": 83,
+        "endChar": 50
+      },
+      "revId": "19afa3de40ad407df9d127a355936ea3c0faf326",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d061457_91577831",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/DataJobServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-05-22T15:42:22Z",
+      "side": 1,
+      "message": "log.info(\"Starting write operation for data job id: {}\", dataJobId);\n\n    final WriteOperation writeOperation \u003d dataJobWriteRequest.data().get(FIRST_JOB);\n\n        final DataNode dataNode \u003d fetchDataNode(writeOperation.path());\n        final SubJobWriteRequest subJobWriteRequest \u003d createSubJobWriteRequest(dataJobMetadata, dataJobId, writeOperation, dataNode);\n        postWriteOperation(dataJobId, subJobWriteRequest);\n    }\n    \n    \n    private DataNode fetchDataNode(String path) {\n    try {\n        return inventoryPersistence.getCmHandleDataNodeByLongestMatchAlternateId(path, SEPARATOR);\n    } catch (Exception e) {\n        log.error(\"Error fetching DataNode for path: {}\", path, e.getMessage());\n    }\n}\n\n\n\nprivate SubJobWriteRequest createSubJobWriteRequest(final DataJobMetadata dataJobMetadata, final String dataJobId,\n                                                    final WriteOperation writeOperation, final DataNode dataNode) {\n    SubJobWriteRequest subJobWriteRequest \u003d new SubJobWriteRequest();\n    subJobWriteRequest.setDataContentType(dataJobMetadata.dataContentType());\n    subJobWriteRequest.setDataAcceptType(dataJobMetadata.dataAcceptType());\n    subJobWriteRequest.setDataProducerId(dataJobId);\n\n    Dmi3ggpWriteOperation dmiWriteOperation \u003d new Dmi3ggpWriteOperation();\n    dmiWriteOperation.setOp(writeOperation.op());\n    dmiWriteOperation.setOperationId(Integer.valueOf(writeOperation.operationId()));\n    dmiWriteOperation.setModuleSetTag((String) dataNode.getLeaves().get(\"module-set-tag\"));\n    dmiWriteOperation.setPath(writeOperation.path());\n    dmiWriteOperation.setPrivateProperties(getPrivatePropertiesFromDataNode(dataNode));\n\n    subJobWriteRequest.getData().add(dmiWriteOperation);\n\n    return subJobWriteRequest;\n}\n\n\n\nprivate void postWriteOperation(final String dataJobId, final SubJobWriteRequest subJobWriteRequest) {\n    try {\n        final String dmiResourceUrl \u003d make use of DmiServiceUrlBuilder class;\n        dmiRestClient.postOperationWithJsonData(dmiResourceUrl, jsonObjectMapper.asJsonString(subJobWriteRequest),\n                OperationType.CREATE, NO_AUTH_HEADER);\n        log.info(\"Successfully posted write operation for data job id: {}\", dataJobId);\n    } catch (Exception e) {\n        log.error(\"Error posting write operation for data job id: {}\", dataJobId, e);\n        throw e; // Re-throw to indicate failure\n    }\n}",
+      "range": {
+        "startLine": 63,
+        "startChar": 9,
+        "endLine": 86,
+        "endChar": 9
+      },
+      "revId": "19afa3de40ad407df9d127a355936ea3c0faf326",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d72a6b3d_49acb2a5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/datajob/Dmi3ggpWriteOperation.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-05-22T15:42:22Z",
+      "side": 1,
+      "message": "Use record here as below:\n\norg/onap/cps/ncmp/api/models/datajob/DataJobMetadata.java:33",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 5
+      },
+      "revId": "19afa3de40ad407df9d127a355936ea3c0faf326",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0b9345f_dc6dcfc5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/datajob/SubJobWriteRequest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-05-22T15:42:22Z",
+      "side": 1,
+      "message": "Use record here as below:\n\norg/onap/cps/ncmp/api/models/datajob/DataJobMetadata.java:33",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 5
+      },
+      "revId": "19afa3de40ad407df9d127a355936ea3c0faf326",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
