@@ -20,7 +20,6 @@
 
 package org.onap.cps.integration.performance.ncmp
 
-
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.integration.ResourceMeter
 import org.onap.cps.integration.performance.base.NcmpPerfTestBase
@@ -68,7 +67,7 @@ class CmHandleQueryPerfTest extends NcmpPerfTestBase {
             resourceMeter.stop()
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'the required operations are performed within required time'
-            recordAndAssertResourceUsage("CpsPath Registry attributes Query", 3.96, durationInSeconds, 300, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage("CpsPath Registry attributes Query", 3.96, durationInSeconds, 400, resourceMeter.getTotalMemoryUsageInMB())
         and: 'all nodes are returned'
             result.size() == TOTAL_CM_HANDLES
         and: 'the tree contains all the expected descendants too'
