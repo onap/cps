@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f81b0a5_75727712",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-22T09:04:49Z",
+      "side": 1,
+      "message": "I think we need to discuss teh timeout settings (with Daniel)",
+      "revId": "16722327d416d325699257969c55d07fefe9f85f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5111b8d6_ec9ca313",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/DmiWebClientConfiguration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-22T09:04:49Z",
+      "side": 1,
+      "message": "NB: you added logger but it doesnt seem to be used yet",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 6
+      },
+      "revId": "16722327d416d325699257969c55d07fefe9f85f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36dada26_b7bdd144",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/HttpClientConfiguration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-22T09:04:49Z",
+      "side": 1,
+      "message": "I thought these normally were 30, di we discuss with Ericsson?\nAnd the old code used 180 (line #39 in teh base)seconds ?!\nI think we need to discuss this",
+      "range": {
+        "startLine": 34,
+        "startChar": 1,
+        "endLine": 36,
+        "endChar": 47
+      },
+      "revId": "16722327d416d325699257969c55d07fefe9f85f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
