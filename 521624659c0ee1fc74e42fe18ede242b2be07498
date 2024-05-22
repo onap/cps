@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ed26de5_d1f6bcde",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-22T09:38:05Z",
+      "side": 1,
+      "message": "almost there, some last suggestions",
+      "revId": "521624659c0ee1fc74e42fe18ede242b2be07498",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2323401_80706ba0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-22T09:38:05Z",
+      "side": 1,
+      "message": "CPS_PATH_QUERY_FOR_CM_SUBSCIPTION_WITH_ID\nI think you forgot although you marked them comment as \u0027Done\u0027...",
+      "range": {
+        "startLine": 56,
+        "startChar": 32,
+        "endLine": 56,
+        "endChar": 64
+      },
+      "revId": "521624659c0ee1fc74e42fe18ede242b2be07498",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ead4a47c_c2f240f7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-22T09:38:05Z",
+      "side": 1,
+      "message": "long difficult expression so maybe extract out to give meaningful name?\nisAdditionalSubscriptionForDataStoreCmHandleAndXPath",
+      "range": {
+        "startLine": 96,
+        "startChar": 12,
+        "endLine": 98,
+        "endChar": 44
+      },
+      "revId": "521624659c0ee1fc74e42fe18ede242b2be07498",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "713fae7c_f7491bd0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-22T09:38:05Z",
+      "side": 1,
+      "message": "(1) initialise with correct size",
+      "range": {
+        "startLine": 104,
+        "startChar": 74,
+        "endLine": 104,
+        "endChar": 75
+      },
+      "revId": "521624659c0ee1fc74e42fe18ede242b2be07498",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa4b000b_1912c5b0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-22T09:38:05Z",
+      "side": 1,
+      "message": "move this inside the method for addFirst...",
+      "range": {
+        "startLine": 104,
+        "startChar": 2,
+        "endLine": 106,
+        "endChar": 110
+      },
+      "revId": "521624659c0ee1fc74e42fe18ede242b2be07498",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bff28c41_10ec306c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-22T09:38:05Z",
+      "side": 1,
+      "message": "NB: use static import to remove class/object reference",
+      "range": {
+        "startLine": 90,
+        "startChar": 45,
+        "endLine": 90,
+        "endChar": 61
+      },
+      "revId": "521624659c0ee1fc74e42fe18ede242b2be07498",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
