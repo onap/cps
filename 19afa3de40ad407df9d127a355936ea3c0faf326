@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "819005df_c88828f5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-23T09:59:14Z",
+      "side": 1,
+      "message": "teh code does have soem bits we need but teh strycture is wrong at a high level.\nTeh AC for this usre storiy mentioend to agrre a Prposla befoer we start code, I thinkthi review shows taht was teh correct approach. So please do a moe detailed proposal (e.g. some pseudo code) first, I can help you get started with that",
+      "revId": "19afa3de40ad407df9d127a355936ea3c0faf326",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c8b2d2d6_971b5116",
@@ -83,6 +100,30 @@
       "writtenOn": "2024-05-22T15:42:22Z",
       "side": 1,
       "message": "if (dataJobWriteRequest.data().isEmpty()) {\n        log.info(\"Data job request is empty for data job id: {}.\", dataJobId);\n        return;\n    }",
+      "range": {
+        "startLine": 62,
+        "startChar": 7,
+        "endLine": 62,
+        "endChar": 52
+      },
+      "revId": "19afa3de40ad407df9d127a355936ea3c0faf326",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b98268a_b89f8e5f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/DataJobServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-23T09:59:14Z",
+      "side": 1,
+      "message": "I am not sure if we even need to handle this case (now)... Its an edge case lets focus on happy path now. I think we need/have separate user stories for erro handling and error cases this is a good eample for that. And thsi shoudl even be doen at teh requiremtn level so we need to agree with stakehodlers about this\n\nfor now I would NOT check this to avoid tets complications...",
+      "parentUuid": "9883eecc_8731fc48",
       "range": {
         "startLine": 62,
         "startChar": 7,
