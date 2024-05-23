@@ -18,11 +18,11 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api;
+package org.onap.cps.ncmp.api.datajobs;
 
-import org.onap.cps.ncmp.api.models.datajob.DataJobMetadata;
-import org.onap.cps.ncmp.api.models.datajob.DataJobReadRequest;
-import org.onap.cps.ncmp.api.models.datajob.DataJobWriteRequest;
+import org.onap.cps.ncmp.api.datajobs.models.DataJobMetadata;
+import org.onap.cps.ncmp.api.datajobs.models.DataJobReadRequest;
+import org.onap.cps.ncmp.api.datajobs.models.DataJobWriteRequest;
 
 public interface DataJobService {
 

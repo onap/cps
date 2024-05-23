@@ -46,6 +46,7 @@ import org.onap.cps.spi.exceptions.DataspaceNotFoundException
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.repository.DataspaceRepository
 import org.onap.cps.spi.utils.SessionManager
+import org.onap.cps.ncmp.utils.AlternateIdMatcher
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
@@ -113,6 +114,9 @@ abstract class CpsIntegrationSpecBase extends Specification {
 
     @Autowired
     InventoryPersistence inventoryPersistence
+
+    @Autowired
+    AlternateIdMatcher alternateIdMatcher
 
     MockWebServer mockDmiServer = null
     DmiDispatcher dmiDispatcher = new DmiDispatcher()

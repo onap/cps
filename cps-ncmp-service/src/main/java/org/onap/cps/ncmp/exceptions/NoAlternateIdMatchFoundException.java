@@ -18,22 +18,23 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.exception;
+package org.onap.cps.ncmp.exceptions;
 
 import java.io.Serial;
+import org.onap.cps.ncmp.api.impl.exception.NcmpException;
 
-public class NoAlternateIdParentFoundException extends NcmpException {
+public class NoAlternateIdMatchFoundException extends NcmpException {
 
     @Serial
     private static final long serialVersionUID = -2412915490233422945L;
-    private static final String ALTERNATE_ID_NOT_FOUND = "No matching (parent) cm handle found using alternate ids";
+    private static final String ALTERNATE_ID_NOT_FOUND = "No matching cm handle found using alternate ids";
 
     /**
      * Constructor.
      *
      * @param cpsPath datanode cpsPath
      */
-    public NoAlternateIdParentFoundException(final String cpsPath) {
+    public NoAlternateIdMatchFoundException(final String cpsPath) {
         super(ALTERNATE_ID_NOT_FOUND, String.format("cannot find a datanode with alternate id %s", cpsPath));
     }
 }

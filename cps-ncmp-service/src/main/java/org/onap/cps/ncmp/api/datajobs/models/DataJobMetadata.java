@@ -18,7 +18,7 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.models.datajob;
+package org.onap.cps.ncmp.api.datajobs.models;
 
 /**
  * Metadata of read/write data job request.
