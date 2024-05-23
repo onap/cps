@@ -18,13 +18,13 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl;
+package org.onap.cps.ncmp.impl.datajobs;
 
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.ncmp.api.DataJobService;
-import org.onap.cps.ncmp.api.models.datajob.DataJobMetadata;
-import org.onap.cps.ncmp.api.models.datajob.DataJobReadRequest;
-import org.onap.cps.ncmp.api.models.datajob.DataJobWriteRequest;
+import org.onap.cps.ncmp.api.datajobs.DataJobService;
+import org.onap.cps.ncmp.api.datajobs.models.DataJobMetadata;
+import org.onap.cps.ncmp.api.datajobs.models.DataJobReadRequest;
+import org.onap.cps.ncmp.api.datajobs.models.DataJobWriteRequest;
 
 @Slf4j
 public class DataJobServiceImpl implements DataJobService {

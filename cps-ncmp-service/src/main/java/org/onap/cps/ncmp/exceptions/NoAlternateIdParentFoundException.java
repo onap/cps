@@ -15,16 +15,26 @@
  *  limitations under the License.
  *
  *  SPDX-License-Identifier: Apache-2.0
- * ============LICENSE_END=========================================================
+ *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.models.datajob;
+package org.onap.cps.ncmp.exceptions;
 
-import java.util.List;
+import java.io.Serial;
+import org.onap.cps.ncmp.api.impl.exception.NcmpException;
 
-/**
- * Describes the read data job operation to be forwarded to dmi.
- *
- * @param data List of read operations to be executed.
- */
-public record DataJobReadRequest(List<ReadOperation> data) {}
+public class NoAlternateIdParentFoundException extends NcmpException {
+
+    @Serial
+    private static final long serialVersionUID = -2412915490233422945L;
+    private static final String ALTERNATE_ID_NOT_FOUND = "No matching (parent) cm handle found using alternate ids";
+
+    /**
+     * Constructor.
+     *
+     * @param cpsPath datanode cpsPath
+     */
+    public NoAlternateIdParentFoundException(final String cpsPath) {
+        super(ALTERNATE_ID_NOT_FOUND, String.format("cannot find a datanode with alternate id %s", cpsPath));
+    }
+}
