@@ -138,6 +138,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "287b01be_5278c414",
+        "filename": "k6-tests/ncmp/1-create-cmhandles.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-05-23T10:29:04Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "669d6352_317023b9",
+      "revId": "15d53e81b319ed1fcd35db83c4870a14f219cb72",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "851fac91_993c5ee5",
@@ -175,6 +193,30 @@
       "side": 1,
       "message": "I\u0027m against this detailed logging. These are not functional tests, just performance. We\u0027re only interested in average response time, throughput, etc. If there are failures, they will be shown in the summary, and can be investigated from CPS logs.",
       "parentUuid": "851fac91_993c5ee5",
+      "range": {
+        "startLine": 61,
+        "startChar": 3,
+        "endLine": 63,
+        "endChar": 6
+      },
+      "revId": "15d53e81b319ed1fcd35db83c4870a14f219cb72",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ea15e18_8cc5ca7b",
+        "filename": "k6-tests/ncmp/10-mixed-load-test.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-05-23T10:29:04Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2a637e81_8e9b8786",
       "range": {
         "startLine": 61,
         "startChar": 3,
@@ -363,6 +405,30 @@
       "side": 1,
       "message": "Again, we get summary of how many passed or failed.\n\n     ✗ status equals 200\n      ↳  0% — ✓ 0 / ✗ 200\n\nCPS logs are printed at the end too, so failure cause can be investigated.",
       "parentUuid": "16293b6c_28377048",
+      "range": {
+        "startLine": 44,
+        "startChar": 4,
+        "endLine": 46,
+        "endChar": 7
+      },
+      "revId": "15d53e81b319ed1fcd35db83c4870a14f219cb72",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2df63082_451209de",
+        "filename": "k6-tests/ncmp/11-delete-cmhandles.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-05-23T10:29:04Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8e3773a4_c8cfe4fc",
       "range": {
         "startLine": 44,
         "startChar": 4,
@@ -737,6 +803,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e34036a4_cdf8ff76",
+        "filename": "k6-tests/ncmp/3-passthrough-read.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-05-23T10:29:04Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d0c9d8b4_f101dd72",
+      "range": {
+        "startLine": 43,
+        "startChar": 3,
+        "endLine": 47,
+        "endChar": 60
+      },
+      "revId": "15d53e81b319ed1fcd35db83c4870a14f219cb72",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "675a3734_8d72378c",
@@ -809,6 +899,30 @@
       "side": 1,
       "message": "k6 report automatically provides summary of all of this with no extra coding:\n\n       ✓ status equals 200\n       ✓ returned list has expected CM-handles\n\n       checks.........................: 100.00% ✓ 2602      ✗ 0   \n     ✓ http_req_duration..............: avg\u003d219.93ms min\u003d112.14ms med\u003d210.97ms max\u003d457.61ms p(90)\u003d289.5ms  p(95)\u003d318.51ms\n     ✓ http_req_failed................: 0.00%   ✓ 0         ✗ 1301\n\nIt\u0027s a lot of extra work for information we already have.",
       "parentUuid": "460450c1_ecdfa2d7",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 38
+      },
+      "revId": "15d53e81b319ed1fcd35db83c4870a14f219cb72",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f012164_134815fb",
+        "filename": "k6-tests/ncmp/4-id-search-no-filter.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-05-23T10:29:04Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "66f69cfc_d8e20b42",
       "range": {
         "startLine": 32,
         "startChar": 0,
@@ -1311,6 +1425,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfe29d23_6912f15b",
+        "filename": "k6-tests/ncmp/run-all-tests.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-05-23T10:29:04Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6f8dcf6f_2a62ea2e",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 0
+      },
+      "revId": "15d53e81b319ed1fcd35db83c4870a14f219cb72",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d693c11f_a0077ff6",
@@ -1348,6 +1486,30 @@
       "side": 1,
       "message": "Logging every response would produce millions of lines of output.\nFor example, a single 30-second test of module ID search produces over 300MB of output. For all tests combined, it would be gigabytes of log output.",
       "parentUuid": "d693c11f_a0077ff6",
+      "range": {
+        "startLine": 32,
+        "startChar": 4,
+        "endLine": 34,
+        "endChar": 7
+      },
+      "revId": "15d53e81b319ed1fcd35db83c4870a14f219cb72",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24ba6077_2e9c8cc2",
+        "filename": "k6-tests/ncmp/search-base.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-05-23T10:29:04Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "998f7180_0f650efe",
       "range": {
         "startLine": 32,
         "startChar": 4,
