@@ -16,6 +16,24 @@
       "message": "checkstyle violation",
       "revId": "0aa177d318347d8c574b177c560b23accf3a586a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f90061d_a29fe6a3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-05-23T13:34:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e47e1e2e_440faa55",
+      "revId": "0aa177d318347d8c574b177c560b23accf3a586a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
