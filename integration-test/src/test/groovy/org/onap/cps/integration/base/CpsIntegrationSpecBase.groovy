@@ -20,6 +20,8 @@
 
 package org.onap.cps.integration.base
 
+import org.onap.cps.ncmp.utils.AlternateIdMatcher
+
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT
@@ -113,6 +115,9 @@ abstract class CpsIntegrationSpecBase extends Specification {
 
     @Autowired
     InventoryPersistence inventoryPersistence
+
+    @Autowired
+    AlternateIdMatcher alternateIdMatcher
 
     MockWebServer mockDmiServer = null
     DmiDispatcher dmiDispatcher = new DmiDispatcher()

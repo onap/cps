@@ -37,7 +37,7 @@ import org.onap.cps.api.CpsModuleService
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.spi.CascadeDeleteAllowed
 import org.onap.cps.spi.FetchDescendantsOption
-import org.onap.cps.ncmp.api.impl.exception.NoAlternateIdParentFoundException
+import org.onap.cps.ncmp.exceptions.NoAlternateIdParentFoundException
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.ModuleDefinition
@@ -301,41 +301,6 @@ class InventoryPersistenceImplSpec extends Specification {
             mockCmHandleQueries.queryNcmpRegistryByCpsPath(expectedXPath, OMIT_DESCENDANTS) >> [new DataNode()]
         expect: 'getting the cm handle data node'
             assert objectUnderTest.getCmHandleDataNodeByAlternateId('alternate id') == new DataNode()
-    }
-
-    def 'Find cm handle parent data node using alternate ids'() {
-        given: 'cm handle in the registry with alternateId /a/b'
-            def matchingCpsPath = "/dmi-registry/cm-handles[@alternate-id='/a/b']"
-            mockCmHandleQueries.queryNcmpRegistryByCpsPath(matchingCpsPath, OMIT_DESCENDANTS) >> [new DataNode()]
-        and: 'no other cm handle'
-            mockCmHandleQueries.queryNcmpRegistryByCpsPath(*_) >> []
-        expect: 'querying for alternate id a matching result found'
-            assert objectUnderTest.getCmHandleDataNodeByLongestMatchAlternateId(alternateId, '/') != null
-        where: 'the following parameters are used'
-            scenario                              | alternateId
-            'exact match'                         | '/a/b'
-            'exact match with trailing separator' | '/a/b/'
-            'child match'                         | '/a/b/c'
-    }
-
-    def 'Find cm handle parent data node using alternate ids mismatches'() {
-        given: 'cm handle in the registry with alternateId'
-            def matchingCpsPath = "/dmi-registry/cm-handles[@alternate-id='${cpsPath}]"
-            mockCmHandleQueries.queryNcmpRegistryByCpsPath(matchingCpsPath, OMIT_DESCENDANTS) >> [new DataNode()]
-        and: 'no other cm handle'
-            mockCmHandleQueries.queryNcmpRegistryByCpsPath(*_) >> []
-        when: 'attempt to find alternateId'
-            objectUnderTest.getCmHandleDataNodeByLongestMatchAlternateId(alternateId, '/')
-        then: 'no alternate id found exception thrown'
-            def thrown = thrown(NoAlternateIdParentFoundException)
-        and: 'the exception has the relevant details from the error response'
-            assert thrown.message == 'No matching (parent) cm handle found using alternate ids'
-            assert thrown.details == 'cannot find a datanode with alternate id ' + alternateId
-        where: 'the following parameters are used'
-            scenario                              | alternateId | cpsPath
-            'no match for parent only'            | '/a'        | '/a/b'
-            'no match at all'                     | '/x/y/z'    | '/a/b'
-            'no match with trailing separator'    | '/c/d/'     | '/c/d'
     }
 
     def 'Attempt to get non existing cm handle data node by alternate id'() {
