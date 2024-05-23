@@ -37,7 +37,7 @@ app:
 ncmp:
     dmi:
         httpclient:
-            connectionTimeoutInSeconds: 180
+            connectionTimeoutInSeconds: 123
             maximumInMemorySizeInMegabytes: 16
         auth:
             username: some-user

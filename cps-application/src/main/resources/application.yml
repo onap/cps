@@ -175,9 +175,9 @@ ncmp:
     dmi:
         httpclient:
             connectionTimeoutInSeconds: 30
-            maximumConnectionsPerRoute: 50
+            readTimeoutInSeconds: 30
+            writeTimeoutInSeconds: 30
             maximumConnectionsTotal: 100
-            idleConnectionEvictionThresholdInSeconds: 5
             maximumInMemorySizeInMegabytes: 16
         auth:
             username: ${DMI_USERNAME:cpsuser}

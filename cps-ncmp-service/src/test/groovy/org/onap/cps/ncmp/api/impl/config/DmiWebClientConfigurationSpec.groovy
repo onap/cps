@@ -20,7 +20,7 @@
 
 package org.onap.cps.ncmp.api.impl.config
 
-import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.TestPropertySource
@@ -28,30 +28,18 @@ import org.springframework.web.reactive.function.client.WebClient
 import spock.lang.Specification
 
 @SpringBootTest
-@ContextConfiguration(classes = [DmiWebClientConfiguration.DmiProperties])
+@ContextConfiguration(classes = [HttpClientConfiguration])
 @TestPropertySource(properties = ['ncmp.dmi.httpclient.connectionTimeoutInSeconds=1', 'ncmp.dmi.httpclient.maximumInMemorySizeInMegabytes=1'])
+@EnableConfigurationProperties
 class DmiWebClientConfigurationSpec extends Specification {
 
-    @Autowired
-    DmiWebClientConfiguration.DmiProperties dmiProperties
+    def httpClientConfiguration = Spy(HttpClientConfiguration.class)
 
-    def objectUnderTest = new DmiWebClientConfiguration()
-
-    def setup() {
-        objectUnderTest.connectionTimeoutInSeconds = 10
-        objectUnderTest.maximumInMemorySizeInMegabytes = 1
-        objectUnderTest.maximumConnectionsTotal = 2
-    }
-
-    def 'DMI Properties.'() {
-        expect: 'properties are set to values in test configuration yaml file'
-            dmiProperties.authUsername == 'some-user'
-            dmiProperties.authPassword == 'some-password'
-    }
+    def objectUnderTest = new DmiWebClientConfiguration(httpClientConfiguration)
 
     def 'Web Client Configuration construction.'() {
         expect: 'the system can create an instance'
-            new DmiWebClientConfiguration() != null
+            new DmiWebClientConfiguration(httpClientConfiguration) != null
     }
 
     def 'Creating a WebClient instance.'() {
