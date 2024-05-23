@@ -20,6 +20,282 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0cc55fd8_5b75267d",
+        "filename": "cps-rest/docs/openapi/openapi.yml",
+        "patchSetId": 46
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-23T14:40:47Z",
+      "side": 1,
+      "message": "stil not suer about main URL names... Did you have a discussion on this?",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 110,
+        "endChar": 71
+      },
+      "revId": "bf85b61a186ecc4e4683d8365a6a8a72ce25ccc4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22e98ac0_6f5f6984",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 46
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-23T14:40:47Z",
+      "side": 1,
+      "message": "remove ! and swap if else",
+      "range": {
+        "startLine": 183,
+        "startChar": 26,
+        "endLine": 183,
+        "endChar": 27
+      },
+      "revId": "bf85b61a186ecc4e4683d8365a6a8a72ce25ccc4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efaa1d6d_8937ec2c",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 46
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-23T14:40:47Z",
+      "side": 1,
+      "message": "this is common to if else block and could be doen after it",
+      "range": {
+        "startLine": 187,
+        "startChar": 12,
+        "endLine": 187,
+        "endChar": 30
+      },
+      "revId": "bf85b61a186ecc4e4683d8365a6a8a72ce25ccc4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76f7d77c_254a26a4",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 46
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-23T14:40:47Z",
+      "side": 1,
+      "message": "this test is just delegation test, no need for fully flesh example, definitly not an example that refers to common test data wich is actually misleading!\n\nfor any test follow the principle of \u0027minimal data to proof the test\u0027\n\nI would just do something like this \ngiven: \u0027the service returns a delta report\u0027\nmockCpsDataService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath, [\u0027filename.yang\u0027:\u0027content\u0027], expectedJsonData, INCLUDE_ALL_DESCENDANTS) \u003e\u003e [new deltaReport(action:\u0027some action\u0027)]\n...\nthen: \u0027the respons contains the action from the delta report from the service\u0027\nassert response.contentAsString.contains(\u0027some action\u0027)",
+      "range": {
+        "startLine": 360,
+        "startChar": 35,
+        "endLine": 360,
+        "endChar": 192
+      },
+      "revId": "bf85b61a186ecc4e4683d8365a6a8a72ce25ccc4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb46dde3_a6b28a27",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 46
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-23T14:40:47Z",
+      "side": 1,
+      "message": "use \u0027 where posisble (most times)",
+      "range": {
+        "startLine": 362,
+        "startChar": 56,
+        "endLine": 362,
+        "endChar": 82
+      },
+      "revId": "bf85b61a186ecc4e4683d8365a6a8a72ce25ccc4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d845bfc_ea9d61ad",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 46
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-23T14:40:47Z",
+      "side": 1,
+      "message": "no need to assert exact json (thsi test is NOT about json conversion!), just test on somethign unique!\nSee previous comment",
+      "range": {
+        "startLine": 377,
+        "startChar": 53,
+        "endLine": 377,
+        "endChar": 203
+      },
+      "revId": "bf85b61a186ecc4e4683d8365a6a8a72ce25ccc4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2bb807f_dc86fe32",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 46
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-23T14:40:47Z",
+      "side": 1,
+      "message": "same issue as above: too many unnecessary details which distract from what this test is about and lead to additional maintenance...",
+      "range": {
+        "startLine": 380,
+        "startChar": 0,
+        "endLine": 398,
+        "endChar": 5
+      },
+      "revId": "bf85b61a186ecc4e4683d8365a6a8a72ce25ccc4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a01b1a7_acadf22c",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 46
+      },
+      "lineNbr": 552,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-23T14:40:47Z",
+      "side": 1,
+      "message": "mockMultipartFile",
+      "range": {
+        "startLine": 552,
+        "startChar": 8,
+        "endLine": 552,
+        "endChar": 27
+      },
+      "revId": "bf85b61a186ecc4e4683d8365a6a8a72ce25ccc4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a7107db_cca86629",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 46
+      },
+      "lineNbr": 554,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-23T14:40:47Z",
+      "side": 1,
+      "message": "instead of method you can just declare common (Class) field for this",
+      "range": {
+        "startLine": 552,
+        "startChar": 0,
+        "endLine": 554,
+        "endChar": 5
+      },
+      "revId": "bf85b61a186ecc4e4683d8365a6a8a72ce25ccc4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "046ffbcc_6cb244d0",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 46
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-23T14:40:47Z",
+      "side": 1,
+      "message": "not a great name, not suer what is best but something like\ndataToCompare\ntaregtData\n\n(json is a format should be in desciption not really in name at this stage, if you really need to because of conflict use ...asJson)",
+      "range": {
+        "startLine": 313,
+        "startChar": 14,
+        "endLine": 313,
+        "endChar": 48
+      },
+      "revId": "bf85b61a186ecc4e4683d8365a6a8a72ce25ccc4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11c0079f_6bb455c3",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 46
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-23T14:40:47Z",
+      "side": 1,
+      "message": "coudl eb more descriptive! this is thee data you are going to compare, should be usin same model (or model provided) etc.",
+      "range": {
+        "startLine": 313,
+        "startChar": 48,
+        "endLine": 313,
+        "endChar": 60
+      },
+      "revId": "bf85b61a186ecc4e4683d8365a6a8a72ce25ccc4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c7dbc3d_e92f100a",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 46
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-23T14:40:47Z",
+      "side": 1,
+      "message": "as befoer, thsi is not a very good name...",
+      "range": {
+        "startLine": 230,
+        "startChar": 77,
+        "endLine": 230,
+        "endChar": 88
+      },
+      "revId": "bf85b61a186ecc4e4683d8365a6a8a72ce25ccc4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "18449a1c_c924e1b9",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 46
@@ -43,6 +319,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1bac8729_98ba6a20",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 46
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-23T14:40:47Z",
+      "side": 1,
+      "message": "Remove ! and swap if else blocks",
+      "range": {
+        "startLine": 246,
+        "startChar": 12,
+        "endLine": 246,
+        "endChar": 13
+      },
+      "revId": "bf85b61a186ecc4e4683d8365a6a8a72ce25ccc4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "08bf100a_03730a67",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 46
@@ -59,6 +358,29 @@
         "startChar": 8,
         "endLine": 251,
         "endChar": 9
+      },
+      "revId": "bf85b61a186ecc4e4683d8365a6a8a72ce25ccc4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2128dce_d0d17745",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 46
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-23T14:40:47Z",
+      "side": 1,
+      "message": "again very generic name, does not indicate what the content is at all really only describe the java data types...\n\nthe code in this method is using very generic names, I have no idea what is going on or what is actually being created here :-( \n\nwhat is \u0027data\u0027\nwhat is \u0027identifier\u0027",
+      "range": {
+        "startLine": 367,
+        "startChar": 40,
+        "endLine": 367,
+        "endChar": 49
       },
       "revId": "bf85b61a186ecc4e4683d8365a6a8a72ce25ccc4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
