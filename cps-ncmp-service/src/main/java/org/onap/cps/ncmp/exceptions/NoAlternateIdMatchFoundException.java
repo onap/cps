@@ -18,26 +18,23 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl;
+package org.onap.cps.ncmp.exceptions;
 
-import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.ncmp.api.DataJobService;
-import org.onap.cps.ncmp.api.models.datajob.DataJobMetadata;
-import org.onap.cps.ncmp.api.models.datajob.DataJobReadRequest;
-import org.onap.cps.ncmp.api.models.datajob.DataJobWriteRequest;
+import java.io.Serial;
+import org.onap.cps.ncmp.api.impl.exception.NcmpException;
 
-@Slf4j
-public class DataJobServiceImpl implements DataJobService {
+public class NoAlternateIdMatchFoundException extends NcmpException {
 
-    @Override
-    public void readDataJob(final String dataJobId, final DataJobMetadata dataJobMetadata,
-                            final DataJobReadRequest dataJobReadRequest) {
-        log.info("data job id for read operation is: {}", dataJobId);
-    }
+    @Serial
+    private static final long serialVersionUID = -2412915490233422945L;
+    private static final String ALTERNATE_ID_NOT_FOUND = "No matching (parent) cm handle found using alternate ids";
 
-    @Override
-    public void writeDataJob(final String dataJobId, final DataJobMetadata dataJobMetadata,
-                             final DataJobWriteRequest dataJobWriteRequest) {
-        log.info("data job id for write operation is: {}", dataJobId);
+    /**
+     * Constructor.
+     *
+     * @param cpsPath datanode cpsPath
+     */
+    public NoAlternateIdMatchFoundException(final String cpsPath) {
+        super(ALTERNATE_ID_NOT_FOUND, String.format("cannot find a datanode with alternate id %s", cpsPath));
     }
 }

@@ -24,12 +24,13 @@ import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
 import ch.qos.logback.classic.spi.ILoggingEvent
 import ch.qos.logback.core.read.ListAppender
+import org.onap.cps.ncmp.impl.datajobs.DataJobServiceImpl
 import org.slf4j.LoggerFactory
-import org.onap.cps.ncmp.api.models.datajob.DataJobReadRequest
-import org.onap.cps.ncmp.api.models.datajob.DataJobWriteRequest
-import org.onap.cps.ncmp.api.models.datajob.DataJobMetadata
-import org.onap.cps.ncmp.api.models.datajob.ReadOperation
-import org.onap.cps.ncmp.api.models.datajob.WriteOperation
+import org.onap.cps.ncmp.api.datajobs.models.DataJobReadRequest
+import org.onap.cps.ncmp.api.datajobs.models.DataJobWriteRequest
+import org.onap.cps.ncmp.api.datajobs.models.DataJobMetadata
+import org.onap.cps.ncmp.api.datajobs.models.ReadOperation
+import org.onap.cps.ncmp.api.datajobs.models.WriteOperation
 import spock.lang.Specification
 
 class DataJobServiceImplSpec extends Specification{

@@ -15,25 +15,19 @@
  *  limitations under the License.
  *
  *  SPDX-License-Identifier: Apache-2.0
- *  ============LICENSE_END=========================================================
+ * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.exception;
+package org.onap.cps.ncmp.api.datajobs.models;
 
-import java.io.Serial;
-
-public class NoAlternateIdParentFoundException extends NcmpException {
-
-    @Serial
-    private static final long serialVersionUID = -2412915490233422945L;
-    private static final String ALTERNATE_ID_NOT_FOUND = "No matching (parent) cm handle found using alternate ids";
-
-    /**
-     * Constructor.
-     *
-     * @param cpsPath datanode cpsPath
-     */
-    public NoAlternateIdParentFoundException(final String cpsPath) {
-        super(ALTERNATE_ID_NOT_FOUND, String.format("cannot find a datanode with alternate id %s", cpsPath));
-    }
-}
+/**
+ * Metadata of read/write data job request.
+ *
+ * @param destination     The destination of the data job results.
+ * @param dataAcceptType  Define the data response accept type.
+ *                        e.g. "application/vnd.3gpp.object-tree-hierarchical+json",
+ *                        "application/vnd.3gpp.object-tree-flat+json" etc.
+ * @param dataContentType Define the data request content type.
+ *                        e.g. "application/3gpp-json-patch+json" etc.
+ */
+public record DataJobMetadata(String destination, String dataAcceptType, String dataContentType) {}
