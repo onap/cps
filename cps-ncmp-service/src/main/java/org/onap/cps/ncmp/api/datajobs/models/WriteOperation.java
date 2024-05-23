@@ -18,26 +18,17 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.models.datajob;
-
-import java.util.List;
+package org.onap.cps.ncmp.api.datajobs.models;
 
 /**
- * Holds information of read data job operation.
+ * Holds information of write data job operation.
  * based on <a href="https://www.etsi.org/deliver/etsi_ts/128500_128599/128532/16.04.00_60/ts_128532v160400p.pdf">ETSI TS 128 532 V16.4.0 (2020-08)</a>
  *
  * @param path        Identifier of a managed object (MO) on a network element. Defines the resource on which operation
- *                    is executed. Url Encoded Fully Distinguished Name (FDN).
- * @param op          Describes the operation to execute. The value can only be "read".
+ *                    is executed. Typically, is Fully Distinguished Name (FDN).
+ * @param op          Describes the operation to execute.  The value can be as below:
+ *                    e.g. "add", "replace", "remove", "action" etc.
  * @param operationId Unique identifier of the operation within the request.
- * @param attributes  Specifies the attributes of the resources that are returned.
- * @param fields      Specifies the attribute fields of the resources that are returned. This should be used if an
- *                    attribute is a struct and only a subset of its fields should be returned.
- * @param filter      This filters the managed Objects.
- * @param scopeType   This selects MOs depending on relationships with Base Managed Object.
- *                    e.g. "BASE_ONLY", "BASE_ALL", "BASE_NTH_LEVEL" etc.
- * @param scopeLevel  Defines the level for objects to be returned for certain scopeTypes. The base level is zero.
+ * @param value       The value to be written depends on the type of operation.
  */
-public record ReadOperation(String path, String op, String operationId, List<String> attributes, List<String> fields,
-                            String filter, String scopeType, int scopeLevel) {
-}
+public record WriteOperation(String path, String op, String operationId, Object value) {}

@@ -18,13 +18,13 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.models.datajob;
+package org.onap.cps.ncmp.api.datajobs.models;
 
 import java.util.List;
 
 /**
- * Describes the write data job operation to be forwarded to dmi.
+ * Describes the read data job operation to be forwarded to dmi.
  *
- * @param data List of write operations to be executed.
+ * @param data List of read operations to be executed.
  */
-public record DataJobWriteRequest(List<WriteOperation> data) {}
+public record DataJobReadRequest(List<ReadOperation> data) {}

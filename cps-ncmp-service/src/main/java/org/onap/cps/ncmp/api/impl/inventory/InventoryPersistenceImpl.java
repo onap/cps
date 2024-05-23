@@ -33,11 +33,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsModuleService;
-import org.onap.cps.ncmp.api.impl.exception.NoAlternateIdParentFoundException;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.spi.FetchDescendantsOption;
@@ -182,19 +180,6 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
     }
 
     @Override
-    public DataNode getCmHandleDataNodeByLongestMatchAlternateId(final String alternateId, final String separator) {
-        String bestMatch = alternateId;
-        while (StringUtils.isNotEmpty(bestMatch)) {
-            try {
-                return getCmHandleDataNodeByAlternateId(bestMatch);
-            } catch (final DataNodeNotFoundException ignored) {
-                bestMatch = getParentPath(bestMatch, separator);
-            }
-        }
-        throw new NoAlternateIdParentFoundException(alternateId);
-    }
-
-    @Override
     public Collection<DataNode> getCmHandleDataNodes(final Collection<String> cmHandleIds) {
         final Collection<String> xpaths = new ArrayList<>(cmHandleIds.size());
         cmHandleIds.forEach(cmHandleId -> xpaths.add(getXPathForCmHandleById(cmHandleId)));
@@ -220,10 +205,5 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
 
     private String createCmHandlesJsonData(final List<YangModelCmHandle> yangModelCmHandles) {
         return "{\"cm-handles\":" + jsonObjectMapper.asJsonString(yangModelCmHandles) + "}";
-    }
-
-    private static String getParentPath(final String path, final String separator) {
-        final int lastSeparatorIndex = path.lastIndexOf(separator);
-        return lastSeparatorIndex < 0 ? "" : path.substring(0, lastSeparatorIndex);
     }
 }

@@ -18,16 +18,13 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.models.datajob;
+package org.onap.cps.ncmp.api.datajobs.models;
+
+import java.util.List;
 
 /**
- * Metadata of read/write data job request.
+ * Describes the write data job operation to be forwarded to dmi.
  *
- * @param destination     The destination of the data job results.
- * @param dataAcceptType  Define the data response accept type.
- *                        e.g. "application/vnd.3gpp.object-tree-hierarchical+json",
- *                        "application/vnd.3gpp.object-tree-flat+json" etc.
- * @param dataContentType Define the data request content type.
- *                        e.g. "application/3gpp-json-patch+json" etc.
+ * @param data List of write operations to be executed.
  */
-public record DataJobMetadata(String destination, String dataAcceptType, String dataContentType) {}
+public record DataJobWriteRequest(List<WriteOperation> data) {}
