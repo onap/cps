@@ -388,6 +388,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "caeb3249_0ad38835",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 46
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-05-23T14:57:12Z",
+      "side": 1,
+      "message": "also we might need to simplify it if we can.",
+      "range": {
+        "startLine": 368,
+        "startChar": 8,
+        "endLine": 377,
+        "endChar": 9
+      },
+      "revId": "bf85b61a186ecc4e4683d8365a6a8a72ce25ccc4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f7e79af6_31b2ab24",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 46
