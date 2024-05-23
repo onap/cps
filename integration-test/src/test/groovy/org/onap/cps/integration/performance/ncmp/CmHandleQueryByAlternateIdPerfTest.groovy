@@ -23,6 +23,7 @@ package org.onap.cps.integration.performance.ncmp
 import org.onap.cps.integration.ResourceMeter
 import org.onap.cps.integration.performance.base.NcmpPerfTestBase
 import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence
+import org.onap.cps.ncmp.utils.AlternateIdMatcher
 
 import java.util.stream.Collectors
 
@@ -32,10 +33,10 @@ import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 
 class CmHandleQueryByAlternateIdPerfTest extends NcmpPerfTestBase {
 
-    InventoryPersistence objectUnderTest
+    AlternateIdMatcher objectUnderTest
     ResourceMeter resourceMeter = new ResourceMeter()
 
-    def setup() { objectUnderTest = inventoryPersistence }
+    def setup() { objectUnderTest = alternateIdMatcher }
 
     def 'Query cm handle by longest match alternate id'() {
         when: 'an alternate id as cps path query'
