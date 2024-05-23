@@ -20,6 +20,12 @@
 
 package org.onap.cps.ncmp.api.impl.events.cmsubscription.service
 
+import org.onap.cps.utils.ContentType
+
+import static org.onap.cps.ncmp.api.impl.events.cmsubscription.service.CmNotificationSubscriptionPersistenceServiceImpl.CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_ID;
+import static org.onap.cps.ncmp.api.impl.events.cmsubscription.service.CmNotificationSubscriptionPersistenceServiceImpl.CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_DATASTORE_AND_CMHANDLE;
+import static org.onap.cps.ncmp.api.impl.events.cmsubscription.service.CmNotificationSubscriptionPersistenceServiceImpl.CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_DATASTORE_CMHANDLE_AND_XPATH;
+
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.ncmp.api.impl.operations.DatastoreType
@@ -55,7 +61,7 @@ class CmNotificationSubscriptionPersistenceServiceImplSpec extends Specification
 
     def 'Checking uniqueness of incoming subscription ID'() {
         given: 'a cps path with a subscription ID for querying'
-            def cpsPathQuery = objectUnderTest.SUBSCRIPTION_IDS_CPS_PATH_QUERY.formatted('some-sub')
+            def cpsPathQuery = CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_ID.formatted('some-sub')
         and: 'relevant datanodes are returned'
             1 * mockCpsQueryService.queryDataNodes('NCMP-Admin', 'cm-data-subscriptions', cpsPathQuery, FetchDescendantsOption.OMIT_DESCENDANTS) >>
                     dataNodes
@@ -71,7 +77,7 @@ class CmNotificationSubscriptionPersistenceServiceImplSpec extends Specification
 
     def 'Add new subscriber to an ongoing cm notification subscription'() {
         given: 'a valid cm subscription path query'
-            def cpsPathQuery = objectUnderTest.CM_SUBSCRIPTION_CPS_PATH_QUERY.formatted('ncmp-datastore:passthrough-running', 'ch-1', '/x/y')
+            def cpsPathQuery =CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_DATASTORE_CMHANDLE_AND_XPATH.formatted('ncmp-datastore:passthrough-running', 'ch-1', '/x/y')
         and: 'a dataNode exists for the given cps path query'
              mockCpsQueryService.queryDataNodes('NCMP-Admin', 'cm-data-subscriptions',
                 cpsPathQuery, FetchDescendantsOption.OMIT_DESCENDANTS) >> [new DataNode(xpath: cpsPathQuery, leaves: ['xpath': '/x/y','subscriptionIds': ['sub-1']])]
@@ -82,26 +88,59 @@ class CmNotificationSubscriptionPersistenceServiceImplSpec extends Specification
                 'NCMP-Admin',
                 'cm-data-subscriptions',
                 '/datastores/datastore[@name=\'ncmp-datastore:passthrough-running\']/cm-handles/cm-handle[@id=\'ch-1\']/filters',
-                '{"filter":[{"xpath":"/x/y","subscriptionIds":["sub-1","newSubId"]}]}', _)
+                objectUnderTest.getSubscriptionDetailsAsJson('/x/y', ['sub-1','newSubId']), _)
     }
 
     def 'Add new cm notification subscription for #datastoreType'() {
         given: 'a valid cm subscription path query'
-            def cpsPathQuery = objectUnderTest.CM_SUBSCRIPTION_CPS_PATH_QUERY.formatted(datastoreName, 'ch-1', '/x/y')
-        and: 'a parent node xpath for given path above'
+            def cmSubscriptionCpsPathQuery = CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_DATASTORE_CMHANDLE_AND_XPATH.formatted(datastoreName, 'ch-1', '/x/y')
+            def cmHandleForSubscriptionPathQuery = CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_DATASTORE_AND_CMHANDLE.formatted(datastoreName, 'ch-1')
+        and: 'a parent node xpath for the cm subscription path above'
             def parentNodeXpath = '/datastores/datastore[@name=\'%s\']/cm-handles'
-        and: 'a datanode does not exist for the given cps path query'
+        and: 'a datanode does not exist for cm subscription path query'
             mockCpsQueryService.queryDataNodes('NCMP-Admin', 'cm-data-subscriptions',
-                cpsPathQuery.formatted(datastoreName),
+               cmSubscriptionCpsPathQuery,
                 FetchDescendantsOption.OMIT_DESCENDANTS) >> []
+        and: 'a datanode does not exist for the given cm handle subscription path query'
+            mockCpsQueryService.queryDataNodes('NCMP-Admin', 'cm-data-subscriptions',
+                cmHandleForSubscriptionPathQuery, FetchDescendantsOption.OMIT_DESCENDANTS) >> []
+        and: 'subscription is mapped as JSON'
+            def subscriptionAsJson = '{"cm-handle":[{"id":"ch-1","filters":' +
+                objectUnderTest.getSubscriptionDetailsAsJson('/x/y', ['newSubId']) + '}]}'
         when: 'the method to add/update cm notification subscription is called'
             objectUnderTest.addCmNotificationSubscription(datastoreType, 'ch-1','/x/y', 'newSubId')
-        then: 'data service method to update list of subscribers is called once with the correct parameters'
+        then: 'data service method to create new subscription for given subscriber is called once with the correct parameters'
             1 * mockCpsDataService.saveData(
                 'NCMP-Admin',
                 'cm-data-subscriptions',
                 parentNodeXpath.formatted(datastoreName),
-                '{"cm-handle":[{"id":"ch-1","filters":{"filter":[{"xpath":"/x/y","subscriptionIds":["newSubId"]}]}}]}', _,_)
+                subscriptionAsJson,_, ContentType.JSON)
+        where:
+            scenario                  | datastoreType                          || datastoreName
+            'passthrough_running'     | DatastoreType.PASSTHROUGH_RUNNING      || "ncmp-datastore:passthrough-running"
+            'passthrough_operational' | DatastoreType.PASSTHROUGH_OPERATIONAL  || "ncmp-datastore:passthrough-operational"
+    }
+
+    def 'Add new cm notification subscription when xpath does not exist for existing subscription cm handle'() {
+        given: 'a valid cm subscription path query'
+            def cmSubscriptionCpsPathQuery = CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_DATASTORE_CMHANDLE_AND_XPATH.formatted(datastoreName, 'ch-1', '/x/y')
+            def cmHandleForSubscriptionPathQuery = CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_DATASTORE_AND_CMHANDLE.formatted(datastoreName, 'ch-1')
+        and: 'a parent node xpath for given cm handle for subscription path above'
+            def parentNodeXpath = '/datastores/datastore[@name=\'%s\']/cm-handles/cm-handle[@id=\'%s\']/filters'
+        and: 'a datanode does not exist for cm subscription path query'
+            mockCpsQueryService.queryDataNodes('NCMP-Admin', 'cm-data-subscriptions',
+                cmSubscriptionCpsPathQuery, FetchDescendantsOption.OMIT_DESCENDANTS) >> []
+        and: 'a datanode exists for the given cm handle subscription path query'
+            mockCpsQueryService.queryDataNodes('NCMP-Admin', 'cm-data-subscriptions',
+                cmHandleForSubscriptionPathQuery, FetchDescendantsOption.OMIT_DESCENDANTS) >> [new DataNode()]
+        when: 'the method to add/update cm notification subscription is called'
+            objectUnderTest.addCmNotificationSubscription(datastoreType, 'ch-1','/x/y', 'newSubId')
+        then: 'data service method to create new subscription for given subscriber is called once with the correct parameters'
+            1 * mockCpsDataService.saveListElements(
+                'NCMP-Admin',
+                'cm-data-subscriptions',
+                parentNodeXpath.formatted(datastoreName, 'ch-1'),
+                objectUnderTest.getSubscriptionDetailsAsJson('/x/y', ['newSubId']),_)
         where:
             scenario                  | datastoreType                          || datastoreName
             'passthrough_running'     | DatastoreType.PASSTHROUGH_RUNNING      || "ncmp-datastore:passthrough-running"
@@ -110,7 +149,7 @@ class CmNotificationSubscriptionPersistenceServiceImplSpec extends Specification
 
     def 'Remove subscriber from a list of an ongoing cm notification subscription'() {
         given: 'a subscription exists when queried'
-            def cpsPathQuery = objectUnderTest.CM_SUBSCRIPTION_CPS_PATH_QUERY.formatted('ncmp-datastore:passthrough-running', 'ch-1', '/x/y')
+            def cpsPathQuery = CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_DATASTORE_CMHANDLE_AND_XPATH.formatted('ncmp-datastore:passthrough-running', 'ch-1', '/x/y')
             mockCpsQueryService.queryDataNodes('NCMP-Admin', 'cm-data-subscriptions',
                 cpsPathQuery, FetchDescendantsOption.OMIT_DESCENDANTS) >> [new DataNode(xpath: cpsPathQuery, leaves: ['xpath': '/x/y','subscriptionIds': ['sub-1', 'sub-2']])]
         when: 'the subscriber is removed'
@@ -118,15 +157,15 @@ class CmNotificationSubscriptionPersistenceServiceImplSpec extends Specification
         then: 'the list of subscribers is updated'
             1 * mockCpsDataService.updateNodeLeaves('NCMP-Admin', 'cm-data-subscriptions',
                 '/datastores/datastore[@name=\'ncmp-datastore:passthrough-running\']/cm-handles/cm-handle[@id=\'ch-1\']/filters',
-                '{"filter":[{"xpath":"/x/y","subscriptionIds":["sub-2"]}]}', _)
+                objectUnderTest.getSubscriptionDetailsAsJson('/x/y', ['sub-2']), _)
     }
 
-    def 'Removing ongoing subscription with no subscribers'(){
-        given: 'a subscription exists when queried but has no subscribers'
-            def cpsPathQuery = objectUnderTest.CM_SUBSCRIPTION_CPS_PATH_QUERY.formatted('ncmp-datastore:passthrough-running', 'ch-1', '/x/y')
+    def 'Removing last ongoing subscription for datastore, cmhandle and xpath'(){
+        given: 'a subscription exists when queried but has only 1 subscriber'
+            def cpsPathQuery = CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_DATASTORE_CMHANDLE_AND_XPATH.formatted('ncmp-datastore:passthrough-running', 'ch-1', '/x/y')
             mockCpsQueryService.queryDataNodes('NCMP-Admin', 'cm-data-subscriptions',
-                cpsPathQuery, FetchDescendantsOption.OMIT_DESCENDANTS) >> [new DataNode(xpath: cpsPathQuery, leaves: ['xpath': '/x/y','subscriptionIds': []])]
-        when: 'a an ongoing subscription is refreshed'
+                cpsPathQuery, FetchDescendantsOption.OMIT_DESCENDANTS) >> [new DataNode(xpath: cpsPathQuery, leaves: ['xpath': '/x/y','subscriptionIds': ['sub-1']])]
+        when: 'that last ongoing subscription is removed'
             objectUnderTest.removeCmNotificationSubscription(DatastoreType.PASSTHROUGH_RUNNING, 'ch-1', '/x/y', 'sub-1')
         then: 'the subscription with empty subscriber list is removed'
             1 * mockCpsDataService.deleteDataNode('NCMP-Admin', 'cm-data-subscriptions',

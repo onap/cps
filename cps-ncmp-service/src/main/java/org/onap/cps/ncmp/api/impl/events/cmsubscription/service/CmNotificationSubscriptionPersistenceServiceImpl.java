@@ -26,14 +26,12 @@ import java.io.Serializable;
 import java.time.OffsetDateTime;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsQueryService;
-import org.onap.cps.cpspath.parser.CpsPathUtil;
 import org.onap.cps.ncmp.api.impl.operations.DatastoreType;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.utils.ContentType;
@@ -46,10 +44,13 @@ import org.springframework.stereotype.Service;
 public class CmNotificationSubscriptionPersistenceServiceImpl implements CmNotificationSubscriptionPersistenceService {
 
     private static final String SUBSCRIPTION_ANCHOR_NAME = "cm-data-subscriptions";
-    private static final String CM_SUBSCRIPTION_CPS_PATH_QUERY = """
-            /datastores/datastore[@name='%s']/cm-handles/cm-handle[@id='%s']/filters/filter[@xpath='%s']
+    private static final String CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_DATASTORE_AND_CMHANDLE = """
+            /datastores/datastore[@name='%s']/cm-handles/cm-handle[@id='%s']/filters
             """.trim();
-    private static final String SUBSCRIPTION_IDS_CPS_PATH_QUERY = """
+    private static final String CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_DATASTORE_CMHANDLE_AND_XPATH =
+            CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_DATASTORE_AND_CMHANDLE + "/filter[@xpath='%s']";
+
+    private static final String CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_ID = """
             //filter/subscriptionIds[text()='%s']
             """.trim();
 
@@ -66,7 +67,7 @@ public class CmNotificationSubscriptionPersistenceServiceImpl implements CmNotif
     @Override
     public boolean isUniqueSubscriptionId(final String subscriptionId) {
         return cpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME,
-                SUBSCRIPTION_IDS_CPS_PATH_QUERY.formatted(subscriptionId),
+                CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_ID.formatted(subscriptionId),
                 OMIT_DESCENDANTS).isEmpty();
     }
 
@@ -75,8 +76,8 @@ public class CmNotificationSubscriptionPersistenceServiceImpl implements CmNotif
                                                                       final String cmHandleId, final String xpath) {
 
         final String isOngoingCmSubscriptionCpsPathQuery =
-                CM_SUBSCRIPTION_CPS_PATH_QUERY.formatted(datastoreType.getDatastoreName(), cmHandleId,
-                        escapeQuotesByDoublingThem(xpath));
+                CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_DATASTORE_CMHANDLE_AND_XPATH.formatted(
+                        datastoreType.getDatastoreName(), cmHandleId, escapeQuotesByDoublingThem(xpath));
         final Collection<DataNode> existingNodes =
                 cpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME, CM_SUBSCRIPTIONS_ANCHOR_NAME,
                         isOngoingCmSubscriptionCpsPathQuery, OMIT_DESCENDANTS);
@@ -89,75 +90,85 @@ public class CmNotificationSubscriptionPersistenceServiceImpl implements CmNotif
     @Override
     public void addCmNotificationSubscription(final DatastoreType datastoreType, final String cmHandleId,
                                               final String xpath, final String subscriptionId) {
-        if (isOngoingCmNotificationSubscription(datastoreType, cmHandleId, xpath)
-                && (!getOngoingCmNotificationSubscriptionIds(datastoreType, cmHandleId, xpath)
-                .contains(subscriptionId))) {
-            final DataNode subscriptionAsDataNode = getSubscriptionAsDataNode(datastoreType, cmHandleId, xpath);
-            final Collection<String> subscriptionIds = getOngoingCmNotificationSubscriptionIds(datastoreType,
-                    cmHandleId, xpath);
+        final Collection<String> subscriptionIds = getOngoingCmNotificationSubscriptionIds(datastoreType,
+                cmHandleId, xpath);
+        if (subscriptionIds.isEmpty()) {
+            addFirstSubscriptionForDatastoreCmHandleAndXpath(datastoreType, cmHandleId, xpath, subscriptionId);
+        } else if (!subscriptionIds.contains(subscriptionId)) {
             subscriptionIds.add(subscriptionId);
-            saveSubscriptionDetails(subscriptionAsDataNode, subscriptionIds);
-        } else {
-            addNewSubscriptionViaDatastore(datastoreType, cmHandleId, xpath, subscriptionId);
+            saveSubscriptionDetails(datastoreType, cmHandleId, xpath, subscriptionIds);
         }
     }
 
     @Override
     public void removeCmNotificationSubscription(final DatastoreType datastoreType, final String cmHandleId,
                                                  final String xpath, final String subscriptionId) {
-        final DataNode subscriptionAsDataNode = getSubscriptionAsDataNode(datastoreType, cmHandleId, xpath);
         final Collection<String> subscriptionIds = getOngoingCmNotificationSubscriptionIds(datastoreType,
                 cmHandleId, xpath);
-        subscriptionIds.remove(subscriptionId);
-        saveSubscriptionDetails(subscriptionAsDataNode, subscriptionIds);
-        if (isOngoingCmNotificationSubscription(datastoreType, cmHandleId, xpath)) {
-            log.info("There are subscribers left for the following cps path {} :",
-                    CM_SUBSCRIPTION_CPS_PATH_QUERY.formatted(datastoreType.getDatastoreName(), cmHandleId,
-                            escapeQuotesByDoublingThem(xpath)));
-        } else {
-            log.info("No subscribers left for the following cps path {} :",
-                    CM_SUBSCRIPTION_CPS_PATH_QUERY.formatted(datastoreType.getDatastoreName(), cmHandleId,
-                            escapeQuotesByDoublingThem(xpath)));
-            deleteListOfSubscriptionsFor(datastoreType, cmHandleId, xpath);
+        if (subscriptionIds.remove(subscriptionId)) {
+            if (isOngoingCmNotificationSubscription(datastoreType, cmHandleId, xpath)) {
+                saveSubscriptionDetails(datastoreType, cmHandleId, xpath, subscriptionIds);
+                log.info("There are subscribers left for the following cps path {} :",
+                        CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_DATASTORE_CMHANDLE_AND_XPATH.formatted(
+                                datastoreType.getDatastoreName(), cmHandleId, escapeQuotesByDoublingThem(xpath)));
+            } else {
+                log.info("No subscribers left for the following cps path {} :",
+                        CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_DATASTORE_CMHANDLE_AND_XPATH.formatted(
+                                datastoreType.getDatastoreName(), cmHandleId, escapeQuotesByDoublingThem(xpath)));
+                deleteListOfSubscriptionsFor(datastoreType, cmHandleId, xpath);
+            }
         }
     }
 
     private void deleteListOfSubscriptionsFor(final DatastoreType datastoreType, final String cmHandleId,
                                               final String xpath) {
         cpsDataService.deleteDataNode(NCMP_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME,
-                CM_SUBSCRIPTION_CPS_PATH_QUERY.formatted(datastoreType.getDatastoreName(), cmHandleId,
-                        escapeQuotesByDoublingThem(xpath)),
+                CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_DATASTORE_CMHANDLE_AND_XPATH.formatted(
+                        datastoreType.getDatastoreName(), cmHandleId, escapeQuotesByDoublingThem(xpath)),
                 OffsetDateTime.now());
     }
 
-    private DataNode getSubscriptionAsDataNode(final DatastoreType datastoreType, final String cmHandleId,
-                                               final String xpath) {
-        return cpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME,
-                CM_SUBSCRIPTION_CPS_PATH_QUERY.formatted(datastoreType.getDatastoreName(), cmHandleId,
-                        escapeQuotesByDoublingThem(xpath)),
-                OMIT_DESCENDANTS).iterator().next();
+    private boolean isFirstSubscriptionForCmHandle(final DatastoreType datastoreType, final String cmHandleId) {
+        return cpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME, CM_SUBSCRIPTIONS_ANCHOR_NAME,
+                CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_DATASTORE_AND_CMHANDLE.formatted(
+                        datastoreType.getDatastoreName(), cmHandleId),
+                OMIT_DESCENDANTS).isEmpty();
     }
 
-    private void addNewSubscriptionViaDatastore(final DatastoreType datastoreType, final String cmHandleId,
-                                                final String xpath, final String newSubscriptionId) {
-        final String parentXpath = "/datastores/datastore[@name='%s']/cm-handles"
-                .formatted(datastoreType.getDatastoreName());
-        final String subscriptionAsJson = String.format("{\"cm-handle\":[{\"id\":\"%s\",\"filters\":{\"filter\":"
-                + "[{\"xpath\":\"%s\",\"subscriptionIds\":[\"%s\"]}]}}]}", cmHandleId, xpath, newSubscriptionId);
-        cpsDataService.saveData(NCMP_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME, parentXpath, subscriptionAsJson,
-                OffsetDateTime.now(), ContentType.JSON);
+    private void addFirstSubscriptionForDatastoreCmHandleAndXpath(final DatastoreType datastoreType,
+                                                                  final String cmHandleId,
+                                                                  final String xpath,
+                                                                  final String subscriptionId) {
+        final Collection<String> newSubscriptionList = Collections.singletonList(subscriptionId);
+        final String subscriptionDetailsAsJson = getSubscriptionDetailsAsJson(xpath, newSubscriptionList);
+        if (isFirstSubscriptionForCmHandle(datastoreType, cmHandleId)) {
+            final String parentXpath = "/datastores/datastore[@name='%s']/cm-handles"
+                    .formatted(datastoreType.getDatastoreName());
+            final String subscriptionAsJson = String.format("{\"cm-handle\":[{\"id\":\"%s\",\"filters\":%s}]}",
+                    cmHandleId, subscriptionDetailsAsJson);
+            cpsDataService.saveData(NCMP_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME, parentXpath, subscriptionAsJson,
+                    OffsetDateTime.now(), ContentType.JSON);
+        } else {
+            cpsDataService.saveListElements(NCMP_DATASPACE_NAME, CM_SUBSCRIPTIONS_ANCHOR_NAME,
+                    CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_DATASTORE_AND_CMHANDLE.formatted(
+                            datastoreType.getDatastoreName(), cmHandleId),
+                    subscriptionDetailsAsJson, OffsetDateTime.now());
+        }
     }
 
-    private void saveSubscriptionDetails(final DataNode subscriptionDetailsAsDataNode,
+    private void saveSubscriptionDetails(final DatastoreType datastoreType, final String cmHandleId,
+                                         final String xpath,
                                          final  Collection<String> subscriptionIds) {
-        final Map<String, Serializable> subscriptionDetailsAsMap = new HashMap<>();
-        subscriptionDetailsAsMap.put("xpath", subscriptionDetailsAsDataNode.getLeaves().get("xpath"));
-        subscriptionDetailsAsMap.put("subscriptionIds", (Serializable) subscriptionIds);
-        final String parentXpath = CpsPathUtil.getNormalizedParentXpath(subscriptionDetailsAsDataNode.getXpath());
-        final String subscriptionDetailsAsJson = "{\"filter\":["
-                + jsonObjectMapper.asJsonString(subscriptionDetailsAsMap).replace("'", "\"") + "]}";
-        cpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME, parentXpath,
-                subscriptionDetailsAsJson, OffsetDateTime.now());
+        final String subscriptionDetailsAsJson = getSubscriptionDetailsAsJson(xpath, subscriptionIds);
+        cpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, CM_SUBSCRIPTIONS_ANCHOR_NAME,
+                CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_DATASTORE_AND_CMHANDLE.formatted(
+                        datastoreType.getDatastoreName(), cmHandleId), subscriptionDetailsAsJson, OffsetDateTime.now());
+    }
+
+    private String getSubscriptionDetailsAsJson(final String xpath, final Collection<String> subscriptionIds) {
+        final Map<String, Serializable> subscriptionDetailsAsMap =
+                Map.of("xpath", xpath, "subscriptionIds", (Serializable) subscriptionIds);
+        return "{\"filter\":[" + jsonObjectMapper.asJsonString(subscriptionDetailsAsMap) + "]}";
     }
 
     private static String escapeQuotesByDoublingThem(final String inputXpath) {
