@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71d95c91_12bd14b2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionHandlerServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-05-24T13:53:51Z",
+      "side": 1,
+      "message": "hmm its kinda similar meaning to \u0027processSubscription...\u0027",
+      "range": {
+        "startLine": 84,
+        "startChar": 17,
+        "endLine": 84,
+        "endChar": 23
+      },
+      "revId": "8cd90be14143cd78c376d03718dc191761545f74",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f73092e_1f901ac2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionHandlerServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-05-24T13:53:51Z",
+      "side": 1,
+      "message": "suggestion .. maybe you can extract this to give a boolean and then you can check to send it to DMI or not in line 60 ?",
+      "range": {
+        "startLine": 85,
+        "startChar": 7,
+        "endLine": 92,
+        "endChar": 68
+      },
+      "revId": "8cd90be14143cd78c376d03718dc191761545f74",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71bd1313_61645dea",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionHandlerServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-05-24T13:53:51Z",
+      "side": 1,
+      "message": "these 2 method needs to be renamed to something more descriptive like \u0027sendToDMI.. sumn sumn\u0027",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 115,
+        "endChar": 1
+      },
+      "revId": "8cd90be14143cd78c376d03718dc191761545f74",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
