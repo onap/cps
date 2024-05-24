@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "46d85dc3_9bf3c857",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-05-24T13:40:33Z",
+      "side": 1,
+      "message": "impl should be as \u003e\u003e\u003e /org/onap/cps/ncmp/impl... \n\nsuggestion : subfolders under api aswell just how impl is done . .../api/contracts/datajobs...",
+      "revId": "67b228c224364721fdd0d900ddfdba9110388dea",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
