@@ -26,6 +26,7 @@ import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsDataspaceService
 import org.onap.cps.api.CpsModuleService
+import org.onap.cps.api.CpsNotificationService
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.integration.DatabaseTestContainer
 import org.onap.cps.integration.KafkaTestContainer
@@ -89,6 +90,9 @@ abstract class CpsIntegrationSpecBase extends Specification {
 
     @Autowired
     CpsAnchorService cpsAnchorService
+
+    @Autowired
+    CpsNotificationService cpsNotificationService
 
     @Autowired
     CpsDataService cpsDataService

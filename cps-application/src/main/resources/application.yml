@@ -119,8 +119,6 @@ app:
             change-event-notifications-enabled: ${CPS_CHANGE_EVENT_NOTIFICATIONS_ENABLED:true}
             topic: ${CPS_CHANGE_EVENT_TOPIC:cps-data-updated-events}
 
-
-
 notification:
     enabled: true
     async:

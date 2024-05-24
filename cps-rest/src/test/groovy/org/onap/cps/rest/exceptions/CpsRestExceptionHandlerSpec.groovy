@@ -30,6 +30,7 @@ import org.onap.cps.api.CpsDataspaceService
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
+import org.onap.cps.api.CpsNotificationService
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.rest.controller.CpsRestInputMapper
 import org.onap.cps.spi.exceptions.AlreadyDefinedException
@@ -68,6 +69,9 @@ class CpsRestExceptionHandlerSpec extends Specification {
 
     @SpringBean
     CpsAnchorService mockCpsAnchorService = Stub()
+
+    @SpringBean
+    CpsNotificationService mockCpsNotificationService = Stub()
 
     @SpringBean
     CpsModuleService mockCpsModuleService = Stub()
