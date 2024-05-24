@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fd9c755_ec63bc20",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionDelta.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-24T16:49:38Z",
+      "side": 1,
+      "message": "This looks completely wrong to me, you are ignoring other predicates by returning early?",
+      "range": {
+        "startLine": 65,
+        "startChar": 13,
+        "endLine": 69,
+        "endChar": 13
+      },
+      "revId": "00a05d883c6a4a131dbca9c4ac182c9c9b64666c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "914b7ad5_370b5d2d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionDeltaSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-24T16:49:38Z",
+      "side": 1,
+      "message": "I tried this with 3 predicates, where only 1 subscription is ongoing, the delta returns 0 instead of 2:\n\n        given: \u0027A list of 3 predicates\u0027\n            def predicateList \u003d [\n                    new DmiCmNotificationSubscriptionPredicate([\u0027ch-1\u0027].toSet(), DatastoreType.PASSTHROUGH_OPERATIONAL, [\u0027a/1/\u0027].toSet()),\n                    new DmiCmNotificationSubscriptionPredicate([\u0027ch-2\u0027].toSet(), DatastoreType.PASSTHROUGH_OPERATIONAL, [\u0027a/2/\u0027].toSet()),\n                    new DmiCmNotificationSubscriptionPredicate([\u0027ch-3\u0027].toSet(), DatastoreType.PASSTHROUGH_OPERATIONAL, [\u0027a/3/\u0027].toSet()),\n            ]\n        and: \u0027one is already present\u0027\n            mockCmNotificationSubscriptionPersistenceService.isOngoingCmNotificationSubscription(DatastoreType.PASSTHROUGH_OPERATIONAL, \u0027ch-1\u0027, \u0027a/1/\u0027) \u003e\u003e true\n            mockCmNotificationSubscriptionPersistenceService.isOngoingCmNotificationSubscription(DatastoreType.PASSTHROUGH_OPERATIONAL, \u0027ch-2\u0027, \u0027a/2/\u0027) \u003e\u003e false\n            mockCmNotificationSubscriptionPersistenceService.isOngoingCmNotificationSubscription(DatastoreType.PASSTHROUGH_OPERATIONAL, \u0027ch-3\u0027, \u0027a/3/\u0027) \u003e\u003e false\n        when: \u0027getDelta is called\u0027\n            def result \u003d objectUnderTest.getDelta(predicateList)\n        then: \u0027verify correct delta is returned\u0027\n            assert result.size() \u003d\u003d 2\n            //     |      |      |\n            //     []     0      false",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 37
+      },
+      "revId": "00a05d883c6a4a131dbca9c4ac182c9c9b64666c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
