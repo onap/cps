@@ -3,7 +3,7 @@
  *  Copyright (C) 2020-2023 Nordix Foundation
  *  Modifications Copyright (C) 2020-2021 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
- *  Modifications Copyright (C) 2022 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2022-2024 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -36,6 +36,7 @@ import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.CpsDataspaceService;
 import org.onap.cps.api.CpsModuleService;
+import org.onap.cps.api.CpsNotificationService;
 import org.onap.cps.rest.api.CpsAdminApi;
 import org.onap.cps.rest.model.AnchorDetails;
 import org.onap.cps.rest.model.DataspaceDetails;
@@ -58,6 +59,7 @@ public class AdminRestController implements CpsAdminApi {
     private final CpsModuleService cpsModuleService;
     private final CpsRestInputMapper cpsRestInputMapper;
     private final CpsAnchorService cpsAnchorService;
+    private final CpsNotificationService cpsNotificationService;
 
     /**
      * Create a dataspace.
@@ -158,6 +160,14 @@ public class AdminRestController implements CpsAdminApi {
         final List<SchemaSetDetails> schemaSetDetails = schemaSets.stream().map(cpsRestInputMapper::toSchemaSetDetails)
                 .collect(Collectors.toList());
         return new ResponseEntity<>(schemaSetDetails, HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<Object> notificationSubscription(final String dataspaceName,
+                                                           final String subscription,
+                                                           final List<String> requestBody) {
+        cpsNotificationService.updateNotificationSubscription(dataspaceName, subscription, requestBody);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     /**
