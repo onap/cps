@@ -46,4 +46,15 @@ class CmNotificationSubscriptionDeltaSpec extends Specification {
 
     }
 
+    def 'Find Delta of given list of predicates when it is an ongoing Cm Subscription'() {
+        given: 'A list of predicates'
+            def predicateList = [new DmiCmNotificationSubscriptionPredicate(['ch-1'].toSet(), DatastoreType.PASSTHROUGH_OPERATIONAL, ['a/1/'].toSet())]
+        and: 'its already present'
+            mockCmNotificationSubscriptionPersistenceService.isOngoingCmNotificationSubscription(DatastoreType.PASSTHROUGH_OPERATIONAL, 'ch-1', 'a/1/') >>> true
+        when: 'getDelta is called'
+            def result = objectUnderTest.getDelta(predicateList)
+        then: 'verify correct delta is returned'
+            assert result.size() == 0
+    }
+
 }

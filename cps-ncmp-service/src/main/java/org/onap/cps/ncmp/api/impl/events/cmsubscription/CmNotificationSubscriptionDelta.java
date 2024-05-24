@@ -64,6 +64,10 @@ public class CmNotificationSubscriptionDelta {
                 }
             }
 
+            if (targetCmHandleIds.isEmpty() || xpaths.isEmpty()) {
+                return delta;
+            }
+
             final DmiCmNotificationSubscriptionPredicate predicateDelta =
                 new DmiCmNotificationSubscriptionPredicate(targetCmHandleIds, datastoreType, xpaths);
 
