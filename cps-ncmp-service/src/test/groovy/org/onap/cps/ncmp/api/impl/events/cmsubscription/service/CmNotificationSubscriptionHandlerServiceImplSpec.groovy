@@ -25,10 +25,10 @@ import org.onap.cps.ncmp.api.impl.events.cmsubscription.CmNotificationSubscripti
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.CmNotificationSubscriptionEventsHandler
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.CmNotificationSubscriptionMappersHandler
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.DmiCmNotificationSubscriptionCacheHandler
-import org.onap.cps.ncmp.api.impl.events.cmsubscription.mapper.CmNotificationSubscriptionDmiInEventMapper
-import org.onap.cps.ncmp.api.impl.events.cmsubscription.mapper.CmNotificationSubscriptionNcmpOutEventMapper
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.CmNotificationSubscriptionStatus
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.DmiCmNotificationSubscriptionDetails
+import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.DmiCmNotificationSubscriptionPredicate
+import org.onap.cps.ncmp.api.impl.operations.DatastoreType
 import org.onap.cps.ncmp.events.cmnotificationsubscription_merge1_0_0.client_to_ncmp.CmNotificationSubscriptionNcmpInEvent
 import org.onap.cps.ncmp.events.cmnotificationsubscription_merge1_0_0.ncmp_to_dmi.CmNotificationSubscriptionDmiInEvent
 import org.onap.cps.ncmp.events.cmsubscription_merge1_0_0.ncmp_to_client.CmNotificationSubscriptionNcmpOutEvent
@@ -50,12 +50,12 @@ class CmNotificationSubscriptionHandlerServiceImplSpec extends Specification{
         mockCmNotificationSubscriptionEventsHandler, mockDmiCmNotificationSubscriptionCacheHandler)
 
     def testSubscriptionDetailsMap = ["dmi-1":new DmiCmNotificationSubscriptionDetails([], CmNotificationSubscriptionStatus.PENDING)]
-    def testListOfDeltaPredicates = []
 
     def 'Consume valid and unique CmNotificationSubscriptionNcmpInEvent create message'() {
         given: 'a cmNotificationSubscriptionNcmp in event with unique subscription id'
             def jsonData = TestUtils.getResourceFileContent('cmSubscription/cmNotificationSubscriptionNcmpInEvent.json')
             def testEventConsumed = jsonObjectMapper.convertJsonString(jsonData, CmNotificationSubscriptionNcmpInEvent.class)
+            def testListOfDeltaPredicates = [new DmiCmNotificationSubscriptionPredicate(['ch1'].toSet(), DatastoreType.PASSTHROUGH_OPERATIONAL, ['/a/b'].toSet())]
             mockCmNotificationSubscriptionPersistenceService.isUniqueSubscriptionId("test-id") >> true
         and: 'the cache handler returns for relevant subscription id'
             1 * mockDmiCmNotificationSubscriptionCacheHandler.get("test-id") >> testSubscriptionDetailsMap
@@ -72,6 +72,27 @@ class CmNotificationSubscriptionHandlerServiceImplSpec extends Specification{
         and: 'the events handler method to publish DMI event is called correct number of times with the correct parameters'
             testSubscriptionDetailsMap.size() * mockCmNotificationSubscriptionEventsHandler.publishCmNotificationSubscriptionDmiInEvent(
                 "test-id", "dmi-1", "subscriptionCreateRequest", testDmiInEvent)
+        and: 'we schedule to send the response after configured time from the cache'
+            1 * mockCmNotificationSubscriptionEventsHandler.publishCmNotificationSubscriptionNcmpOutEvent(
+                "test-id", "subscriptionCreateResponse", null, true)
+    }
+
+    def 'Consume valid and Overlapping Cm Notification Subscription NcmpIn Event'() {
+        given: 'a cmNotificationSubscriptionNcmp in event with unique subscription id'
+            def jsonData = TestUtils.getResourceFileContent('cmSubscription/cmNotificationSubscriptionNcmpInEvent.json')
+            def testEventConsumed = jsonObjectMapper.convertJsonString(jsonData, CmNotificationSubscriptionNcmpInEvent.class)
+            def noDeltaPredicates = []
+            mockCmNotificationSubscriptionPersistenceService.isUniqueSubscriptionId("test-id") >> true
+        and: 'the cache handler returns for relevant subscription id'
+            1 * mockDmiCmNotificationSubscriptionCacheHandler.get("test-id") >> testSubscriptionDetailsMap
+        and: 'the delta predicates is returned'
+            1 * mockCmNotificationSubscriptionDelta.getDelta(_) >> noDeltaPredicates
+        when: 'the valid and unique event is consumed'
+            objectUnderTest.processSubscriptionCreateRequest(testEventConsumed)
+        then: 'the subscription cache handler is called once'
+            1 * mockDmiCmNotificationSubscriptionCacheHandler.add('test-id', _)
+        and: 'the subscription details are updated in the cache'
+            1 * mockDmiCmNotificationSubscriptionCacheHandler.updateDmiCmNotificationSubscriptionStatusPerDmi('test-id', _, CmNotificationSubscriptionStatus.ACCEPTED)
         and: 'we schedule to send the response after configured time from the cache'
             1 * mockCmNotificationSubscriptionEventsHandler.publishCmNotificationSubscriptionNcmpOutEvent(
                 "test-id", "subscriptionCreateResponse", null, true)
