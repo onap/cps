@@ -3,7 +3,7 @@
  *  Copyright (C) 2020-2023 Nordix Foundation
  *  Modifications Copyright (C) 2020-2021 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
- *  Modifications Copyright (C) 2022 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2022-2024 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -36,6 +36,7 @@ import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.CpsDataspaceService;
 import org.onap.cps.api.CpsModuleService;
+import org.onap.cps.api.CpsNotificationService;
 import org.onap.cps.rest.api.CpsAdminApi;
 import org.onap.cps.rest.model.AnchorDetails;
 import org.onap.cps.rest.model.DataspaceDetails;
@@ -43,6 +44,7 @@ import org.onap.cps.rest.model.SchemaSetDetails;
 import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.model.Dataspace;
 import org.onap.cps.spi.model.SchemaSet;
+import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,6 +60,9 @@ public class AdminRestController implements CpsAdminApi {
     private final CpsModuleService cpsModuleService;
     private final CpsRestInputMapper cpsRestInputMapper;
     private final CpsAnchorService cpsAnchorService;
+    private final CpsNotificationService cpsNotificationService;
+
+    private final JsonObjectMapper jsonObjectMapper;
 
     /**
      * Create a dataspace.
@@ -83,6 +88,12 @@ public class AdminRestController implements CpsAdminApi {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    @Override
+    public ResponseEntity<Void> createNotificationSubscription(final Object jsonData, String xpath) {
+        cpsNotificationService.createNotificationSubscription(jsonObjectMapper.asJsonString(jsonData), xpath);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
     /**
      * Delete a dataspace.
      *
@@ -92,6 +103,12 @@ public class AdminRestController implements CpsAdminApi {
     @Override
     public ResponseEntity<Void> deleteDataspace(final String apiVersion, final String dataspaceName) {
         cpsDataspaceService.deleteDataspace(dataspaceName);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @Override
+    public ResponseEntity<Void> deleteNotificationSubscription(final String xpath) {
+        cpsNotificationService.deleteNotificationSubscription(xpath);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
