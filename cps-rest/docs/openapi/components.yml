@@ -157,6 +157,12 @@ components:
             name: "Funny"
           target-data:
             name: "Comic"
+    SubscribeNotificationsDataSample:
+      value:
+        cps-notification-subscriptions:dataspaces:
+          dataspace:
+            - name: ds01
+            - name: ds02
 
   parameters:
     dataspaceNameInQuery:
@@ -320,6 +326,16 @@ components:
       schema:
         type: integer
         example: 10
+    notificationSubscriptionInPath:
+      name: subscription
+      in: path
+      description: notification subscription
+      required: true
+      schema:
+        type: string
+        enum: [subscribe, unsubscribe]
+        default: subscribe
+        example: subscribe
 
   responses:
     NotFound:

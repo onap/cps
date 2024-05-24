@@ -3,7 +3,7 @@
  * Copyright (C) 2021-2023 Nordix Foundation.
  * Modifications Copyright (C) 2020-2021 Bell Canada.
  * Modifications Copyright (C) 2020-2021 Pantheon.tech.
- * Modifications Copyright (C) 2023 TechMahindra Ltd.
+ * Modifications Copyright (C) 2023-2024 TechMahindra Ltd.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -134,7 +134,7 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
                 EscapeUtils.escapeForSqlLike(xpath) + "%");
     }
 
-    @Query(value = "SELECT * FROM fragment WHERE anchor_id = :anchorId AND parent_id IS NULL", nativeQuery = true)
+    @Query(value = "SELECT * FROM fragment WHERE anchor_id = :anchorId AND parent_id IS NULL ", nativeQuery = true)
     List<FragmentEntity> findRootsByAnchorId(@Param("anchorId") long anchorId);
 
 }
