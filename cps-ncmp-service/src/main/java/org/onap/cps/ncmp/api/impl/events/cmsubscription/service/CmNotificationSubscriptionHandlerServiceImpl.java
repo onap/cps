@@ -30,6 +30,7 @@ import org.onap.cps.ncmp.api.impl.events.cmsubscription.CmNotificationSubscripti
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.CmNotificationSubscriptionEventsHandler;
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.CmNotificationSubscriptionMappersHandler;
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.DmiCmNotificationSubscriptionCacheHandler;
+import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.CmNotificationSubscriptionStatus;
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.DmiCmNotificationSubscriptionDetails;
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.DmiCmNotificationSubscriptionPredicate;
 import org.onap.cps.ncmp.events.cmnotificationsubscription_merge1_0_0.client_to_ncmp.CmNotificationSubscriptionNcmpInEvent;
@@ -56,11 +57,10 @@ public class CmNotificationSubscriptionHandlerServiceImpl implements CmNotificat
 
         if (cmNotificationSubscriptionPersistenceService.isUniqueSubscriptionId(subscriptionId)) {
             dmiCmNotificationSubscriptionCacheHandler.add(subscriptionId, predicates);
-            sendSubscriptionCreateRequestToDmi(subscriptionId);
+            handleCmNotificationSubscriptionDelta(subscriptionId);
             scheduleCmNotificationSubscriptionNcmpOutEventResponse(subscriptionId);
         } else {
-            rejectAndPublishCmNotificationSubscriptionCreateRequest(subscriptionId,
-                    predicates);
+            rejectAndPublishCmNotificationSubscriptionCreateRequest(subscriptionId, predicates);
         }
     }
 
@@ -81,18 +81,37 @@ public class CmNotificationSubscriptionHandlerServiceImpl implements CmNotificat
                 "subscriptionCreateResponse", cmNotificationSubscriptionNcmpOutEvent, false);
     }
 
-    private void sendSubscriptionCreateRequestToDmi(final String subscriptionId) {
+    private void handleCmNotificationSubscriptionDelta(final String subscriptionId) {
         final Map<String, DmiCmNotificationSubscriptionDetails> dmiCmNotificationSubscriptionDetailsMap =
                 dmiCmNotificationSubscriptionCacheHandler.get(subscriptionId);
         dmiCmNotificationSubscriptionDetailsMap.forEach((dmiPluginName, dmiCmNotificationSubscriptionDetails) -> {
             final List<DmiCmNotificationSubscriptionPredicate> dmiCmNotificationSubscriptionPredicates =
                     cmNotificationSubscriptionDelta.getDelta(
                             dmiCmNotificationSubscriptionDetails.getDmiCmNotificationSubscriptionPredicates());
-            final CmNotificationSubscriptionDmiInEvent cmNotificationSubscriptionDmiInEvent =
-                    cmNotificationSubscriptionMappersHandler.toCmNotificationSubscriptionDmiInEvent(
-                            dmiCmNotificationSubscriptionPredicates);
-            cmNotificationSubscriptionEventsHandler.publishCmNotificationSubscriptionDmiInEvent(subscriptionId,
-                    dmiPluginName, "subscriptionCreateRequest", cmNotificationSubscriptionDmiInEvent);
+
+            if (dmiCmNotificationSubscriptionPredicates.isEmpty()) {
+                acceptAndPublishCmNotificationSubscriptionNcmpOutEventPerDmi(subscriptionId, dmiPluginName);
+            } else {
+                publishCmNotificationSubscriptionDmiInEventPerDmi(subscriptionId, dmiPluginName,
+                        dmiCmNotificationSubscriptionPredicates);
+            }
         });
+    }
+
+    private void publishCmNotificationSubscriptionDmiInEventPerDmi(final String subscriptionId,
+            final String dmiPluginName,
+            final List<DmiCmNotificationSubscriptionPredicate> dmiCmNotificationSubscriptionPredicates) {
+        final CmNotificationSubscriptionDmiInEvent cmNotificationSubscriptionDmiInEvent =
+                cmNotificationSubscriptionMappersHandler.toCmNotificationSubscriptionDmiInEvent(
+                        dmiCmNotificationSubscriptionPredicates);
+        cmNotificationSubscriptionEventsHandler.publishCmNotificationSubscriptionDmiInEvent(subscriptionId,
+                dmiPluginName, "subscriptionCreateRequest", cmNotificationSubscriptionDmiInEvent);
+    }
+
+    private void acceptAndPublishCmNotificationSubscriptionNcmpOutEventPerDmi(final String subscriptionId,
+            final String dmiPluginName) {
+        dmiCmNotificationSubscriptionCacheHandler.updateDmiCmNotificationSubscriptionStatusPerDmi(subscriptionId,
+                dmiPluginName, CmNotificationSubscriptionStatus.ACCEPTED);
+        dmiCmNotificationSubscriptionCacheHandler.persistIntoDatabasePerDmi(subscriptionId, dmiPluginName);
     }
 }

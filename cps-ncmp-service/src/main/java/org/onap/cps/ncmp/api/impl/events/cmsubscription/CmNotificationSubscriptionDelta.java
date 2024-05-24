@@ -64,12 +64,19 @@ public class CmNotificationSubscriptionDelta {
                 }
             }
 
-            final DmiCmNotificationSubscriptionPredicate predicateDelta =
-                new DmiCmNotificationSubscriptionPredicate(targetCmHandleIds, datastoreType, xpaths);
-
-            delta.add(predicateDelta);
+            populateValidDmiCmNotificationSubscriptionPredicateDelta(targetCmHandleIds, xpaths, datastoreType, delta);
         }
         return delta;
+    }
+
+    private void populateValidDmiCmNotificationSubscriptionPredicateDelta(final Set<String> targetCmHandleIds,
+            final Set<String> xpaths, final DatastoreType datastoreType,
+            final List<DmiCmNotificationSubscriptionPredicate> delta) {
+        if (!(targetCmHandleIds.isEmpty() || xpaths.isEmpty())) {
+            final DmiCmNotificationSubscriptionPredicate predicateDelta =
+                    new DmiCmNotificationSubscriptionPredicate(targetCmHandleIds, datastoreType, xpaths);
+            delta.add(predicateDelta);
+        }
     }
 
 }
