@@ -21,6 +21,8 @@
 
 package org.onap.cps.events
 
+import org.onap.cps.api.CpsNotificationService
+
 import static org.onap.cps.events.model.Data.Operation.CREATE
 import static org.onap.cps.events.model.Data.Operation.DELETE
 import static org.onap.cps.events.model.Data.Operation.UPDATE
@@ -38,17 +40,19 @@ import spock.lang.Specification
 import java.time.OffsetDateTime
 
 @ContextConfiguration(classes = [ObjectMapper, JsonObjectMapper])
-class CpsDataUpdateEventsServiceSpec extends Specification {
+    class CpsDataUpdateEventsServiceSpec extends Specification {
     def mockEventsPublisher = Mock(EventsPublisher)
     def objectMapper = new ObjectMapper();
+    def mockCpsNotificationService = Mock(CpsNotificationService)
 
-    def objectUnderTest = new CpsDataUpdateEventsService(mockEventsPublisher)
+    def objectUnderTest = new CpsDataUpdateEventsService(mockEventsPublisher, mockCpsNotificationService)
 
     def 'Create and Publish cps update event where events are #scenario'() {
         given: 'an anchor, operation and observed timestamp'
             def anchor = new Anchor('anchor01', 'dataspace01', 'schema01');
             def operation = operationInRequest
             def observedTimestamp = OffsetDateTime.now()
+            mockCpsNotificationService.isNotificationEnabled('dataspace01', 'anchor01') >> true
         and: 'notificationsEnabled is #notificationsEnabled and it will be true as default'
             objectUnderTest.notificationsEnabled = true
         and: 'cpsChangeEventNotificationsEnabled is also true'
@@ -85,6 +89,7 @@ class CpsDataUpdateEventsServiceSpec extends Specification {
             def anchor = new Anchor('anchor01', 'dataspace01', 'schema01');
             def operation = CREATE
             def observedTimestamp = OffsetDateTime.now()
+            mockCpsNotificationService.isNotificationEnabled('dataspace01', 'anchor01') >> true
         and: 'notificationsEnabled is #notificationsEnabled'
             objectUnderTest.notificationsEnabled = notificationsEnabled
         and: 'cpsChangeEventNotificationsEnabled is #cpsChangeEventNotificationsEnabled'
@@ -97,7 +102,7 @@ class CpsDataUpdateEventsServiceSpec extends Specification {
         where: 'below scenarios are present'
             scenario                                     | notificationsEnabled | cpsChangeEventNotificationsEnabled || expectedCallToPublisher
             'both notifications enabled'                 | true                 | true                               || 1
-            'both notifications disabled'                 | false                | false                              || 0
+            'both notifications disabled'                | false                | false                              || 0
             'only CPS change event notification enabled' | false                | true                               || 0
             'only overall notification enabled'          | true                 | false                              || 0
 
@@ -108,6 +113,7 @@ class CpsDataUpdateEventsServiceSpec extends Specification {
             def anchor = new Anchor('anchor01', 'dataspace01', 'schema01');
             def operation = CREATE
             def observedTimestamp = null
+            mockCpsNotificationService.isNotificationEnabled('dataspace01', 'anchor01') >> true
         and: 'notificationsEnabled is true'
             objectUnderTest.notificationsEnabled = true
         and: 'cpsChangeEventNotificationsEnabled is true'

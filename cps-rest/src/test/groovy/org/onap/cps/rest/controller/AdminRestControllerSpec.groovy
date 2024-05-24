@@ -24,6 +24,7 @@
 package org.onap.cps.rest.controller
 
 import org.onap.cps.api.CpsAnchorService
+import org.onap.cps.api.CpsNotificationService
 
 import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
@@ -51,6 +52,8 @@ import org.springframework.util.LinkedMultiValueMap
 import org.springframework.util.MultiValueMap
 import spock.lang.Specification
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put
+
 @WebMvcTest(AdminRestController)
 class AdminRestControllerSpec extends Specification {
 
@@ -62,6 +65,9 @@ class AdminRestControllerSpec extends Specification {
 
     @SpringBean
     CpsAnchorService mockCpsAnchorService = Mock()
+
+    @SpringBean
+    CpsNotificationService mockCpsNotificationService = Mock()
 
     @SpringBean
     CpsRestInputMapper cpsRestInputMapper = Mappers.getMapper(CpsRestInputMapper)
@@ -382,6 +388,25 @@ class AdminRestControllerSpec extends Specification {
             1 * mockCpsDataspaceService.deleteDataspace(dataspaceName)
         and: 'response code indicates success'
             response.status == HttpStatus.NO_CONTENT.value()
+    }
+
+    def 'Configure notification subscription with #scenario.'() {
+        given: 'an endpoint'
+            def endpoint = "$basePath/v2/dataspaces/$dataspaceName/notification/${subscription}"
+        when: 'put request is performed'
+        def response =
+                mvc.perform(
+                        put(endpoint)
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(requestBodyJson))
+                        .andReturn().response
+        then: 'anchor is created successfully'
+            1 * mockCpsNotificationService.updateNotificationSubscription(dataspaceName, subscription, expectedListOfAnchors)
+            assert response.status == HttpStatus.OK.value()
+        where: 'following cases are tested'
+            scenario                      | subscription  | requestBodyJson            || expectedListOfAnchors
+            'subscribe list of anchors'   | 'subscribe'   | '["anchor01", "anchor02"]' || ["anchor01", "anchor02"]
+            'unsubscribe list of anchors' | 'unsubscribe' | '["anchor02"]'             || ["anchor02"]
     }
 
     def createMultipartFile(filename, content) {
