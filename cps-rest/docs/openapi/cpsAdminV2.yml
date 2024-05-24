@@ -1,5 +1,5 @@
 # ============LICENSE_START=======================================================
-# Copyright (C) 2022 TechMahindra Ltd.
+# Copyright (C) 2022-2024 TechMahindra Ltd.
 # ================================================================================
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -85,5 +85,37 @@ schemaSet:
         $ref: 'components.yml#/components/responses/Forbidden'
       '409':
         $ref: 'components.yml#/components/responses/Conflict'
+      '500':
+        $ref: 'components.yml#/components/responses/InternalServerError'
+
+notification:
+  put:
+    description: Subscribe or unsubscribe cps notifications for a given anchor
+    tags:
+      - cps-admin
+    summary: Notification subscription
+    operationId: notificationSubscription
+    parameters:
+      - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
+      - $ref: 'components.yml#/components/parameters/notificationSubscriptionInPath'
+    requestBody:
+      required: false
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              type: string
+            example: ["anchor01", "anchor2"]
+          examples:
+            dataSample:
+              $ref: 'components.yml#/components/examples/subscriptionSample'
+    responses:
+      '200':
+        $ref: 'components.yml#/components/responses/Ok'
+      '400':
+        $ref: 'components.yml#/components/responses/BadRequest'
+      '403':
+        $ref: 'components.yml#/components/responses/Forbidden'
       '500':
         $ref: 'components.yml#/components/responses/InternalServerError'

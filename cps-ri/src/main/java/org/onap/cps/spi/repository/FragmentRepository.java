@@ -26,6 +26,7 @@ package org.onap.cps.spi.repository;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+
 import org.onap.cps.spi.entities.AnchorEntity;
 import org.onap.cps.spi.entities.DataspaceEntity;
 import org.onap.cps.spi.entities.FragmentEntity;
@@ -134,7 +135,7 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
                 EscapeUtils.escapeForSqlLike(xpath) + "%");
     }
 
-    @Query(value = "SELECT * FROM fragment WHERE anchor_id = :anchorId AND parent_id IS NULL", nativeQuery = true)
-    List<FragmentEntity> findRootsByAnchorId(@Param("anchorId") long anchorId);
+    @Query(value = "SELECT * FROM fragment WHERE anchor_id = :anchorId AND parent_id IS NULL and xpath not in :disabledXpaths", nativeQuery = true)
+    List<FragmentEntity> findRootsByAnchorId(@Param("anchorId") long anchorId, @Param("disabledXpaths") String[] disabledXpaths);
 
 }

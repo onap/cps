@@ -67,6 +67,7 @@ import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.FragmentRepository;
 import org.onap.cps.spi.utils.SessionManager;
 import org.onap.cps.utils.JsonObjectMapper;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
@@ -82,6 +83,9 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     private final SessionManager sessionManager;
 
     private static final String REG_EX_FOR_OPTIONAL_LIST_INDEX = "(\\[@.+?])?)";
+
+    @Value("${app.cps.disabled-root-xpaths:}")
+    String disabledRootXpaths;
 
     @Override
     public void storeDataNodes(final String dataspaceName, final String anchorName,
@@ -622,7 +626,8 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         }
 
         if (haveRootXpath) {
-            fragmentEntities.addAll(fragmentRepository.findRootsByAnchorId(anchorEntity.getId()));
+            fragmentEntities.addAll(fragmentRepository.findRootsByAnchorId(anchorEntity.getId(),
+                    disabledRootXpaths.split(",")));
         }
 
         return fragmentEntities;
