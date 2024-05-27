@@ -54,7 +54,7 @@ class DmiServiceUrlBuilderSpec extends Specification {
         then: 'service url is generated as expected'
             assert dmiServiceUrl == expectedDmiServiceUrl
         where: 'the following parameters are used'
-            scenario                       | topic               | moduleSetTag | resourceId   || expectedDmiServiceUrl
+            scenario                       | topic               | moduleSetTag      | resourceId   || expectedDmiServiceUrl
             'With valid resourceId'        | 'topicParamInQuery' | ''                | 'resourceId' || 'dmiServiceName/dmi/v1/ch/cmHandle/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=resourceId&options=optionsParamInQuery&topic=topicParamInQuery'
             'With Empty resourceId'        | 'topicParamInQuery' | ''                | ''           || 'dmiServiceName/dmi/v1/ch/cmHandle/data/ds/ncmp-datastore:passthrough-running?options=optionsParamInQuery&topic=topicParamInQuery'
             'With valid moduleSetTag'      | 'topicParamInQuery' | 'module-set-tag1' | 'resourceId' || 'dmiServiceName/dmi/v1/ch/cmHandle/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=resourceId&options=optionsParamInQuery&topic=topicParamInQuery&moduleSetTag=module-set-tag1'
