@@ -20,37 +20,39 @@
 
 import http from 'k6/http';
 import { check } from 'k6';
-import { NCMP_BASE_URL, getRandomCmHandleId } from './utils.js'
+import { NCMP_BASE_URL, getRandomCmHandleId, makeCustomSummaryReport } from './utils.js'
 import { searchRequest } from './search-base.js';
 
 export const options = {
-  scenarios: {
-    passthrough_read: {
-      executor: 'constant-vus',
-      exec: 'passthrough_read',
-      vus: 10,
-      duration: '1m',
+    scenarios: {
+        passthrough_read: {
+            executor: 'constant-vus',
+            exec: 'passthrough_read',
+            vus: 10,
+            duration: '1m',
+        },
+        id_search_module: {
+            executor: 'constant-vus',
+            exec: 'id_search_module',
+            vus: 5,
+            duration: '1m',
+        },
+        cm_search_module: {
+            executor: 'constant-vus',
+            exec: 'cm_search_module',
+            vus: 5,
+            duration: '1m',
+        },
     },
-    id_search_module: {
-      executor: 'constant-vus',
-      exec: 'id_search_module',
-      vus: 5,
-      duration: '1m',
-    },
-    cm_search_module: {
-      executor: 'constant-vus',
-      exec: 'cm_search_module',
-      vus: 5,
-      duration: '1m',
-    },
-  },
 
-  thresholds: {
-    http_req_failed: ['rate==0'],
-    'http_req_duration{scenario:passthrough_read}': ['avg <= 2540'], // DMI delay + 40 ms
-    'http_req_duration{scenario:id_search_module}': ['avg <= 200'],
-    'http_req_duration{scenario:cm_search_module}': ['avg <= 35_000'],
-  },
+    thresholds: {
+        'http_req_failed{scenario:passthrough_read}': ['rate == 0'],
+        'http_req_failed{scenario:id_search_module}': ['rate == 0'],
+        'http_req_failed{scenario:cm_search_module}': ['rate == 0'],
+        'http_req_duration{scenario:passthrough_read}': ['avg <= 2540'], // DMI delay + 40 ms
+        'http_req_duration{scenario:id_search_module}': ['avg <= 200'],
+        'http_req_duration{scenario:cm_search_module}': ['avg <= 35_000'],
+    },
 };
 
 export function passthrough_read() {
@@ -68,7 +70,7 @@ export function id_search_module() {
         "cmHandleQueryParameters": [
             {
                 "conditionName": "hasAllModules",
-                "conditionParameters": [ {"moduleName": "ietf-yang-types-1"} ]
+                "conditionParameters": [{"moduleName": "ietf-yang-types-1"}]
             }
         ]
     };
@@ -80,9 +82,15 @@ export function cm_search_module() {
         "cmHandleQueryParameters": [
             {
                 "conditionName": "hasAllModules",
-                "conditionParameters": [ {"moduleName": "ietf-yang-types-1"} ]
+                "conditionParameters": [{"moduleName": "ietf-yang-types-1"}]
             }
         ]
     };
     searchRequest('searches', JSON.stringify(search_filter));
+}
+
+export function handleSummary(data) {
+    return {
+        stdout: makeCustomSummaryReport(data, options),
+    };
 }

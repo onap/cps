@@ -20,18 +20,18 @@
 
 import http from 'k6/http';
 import { sleep, fail } from 'k6';
-import { NCMP_BASE_URL, TOTAL_CM_HANDLES } from './utils.js';
+import { makeCustomSummaryReport, NCMP_BASE_URL, TOTAL_CM_HANDLES } from './utils.js';
 
 export const options = {
-  vus: 1,
-  iterations: 1,
-  thresholds: {
-    http_req_failed: ['rate == 0'],
-    iteration_duration: ['max <= 300_000'], // 5 minutes
-  },
+    vus: 1,
+    iterations: 1,
+    thresholds: {
+        http_req_failed: ['rate == 0'],
+        iteration_duration: ['max <= 300_000'], // 5 minutes
+    },
 };
 
-export default function() {
+export default function () {
     waitForCmHandlesToBeReady(TOTAL_CM_HANDLES);
 }
 
@@ -61,4 +61,10 @@ function getNumberOfReadyCmHandles() {
     const jsonData = http.get(endpointUrl).json();
     const cmHandles = jsonData[0]["dmi-reg:dmi-registry"]["cm-handles"];
     return cmHandles.filter(cmhandle => cmhandle['state']['cm-handle-state'] === 'READY').length;
+}
+
+export function handleSummary(data) {
+    return {
+        stdout: makeCustomSummaryReport(data, options),
+    };
 }

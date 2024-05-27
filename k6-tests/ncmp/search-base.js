@@ -24,7 +24,7 @@ import { NCMP_BASE_URL, TOTAL_CM_HANDLES } from './utils.js';
 
 export function searchRequest(searchType, searchFilter) {
     const response = http.post(NCMP_BASE_URL + '/ncmp/v1/ch/' + searchType, searchFilter, {
-        headers: { 'Content-Type': 'application/json' },
+        headers: {'Content-Type': 'application/json'},
     });
     check(response, {
         'status equals 200': (r) => r.status === 200,
