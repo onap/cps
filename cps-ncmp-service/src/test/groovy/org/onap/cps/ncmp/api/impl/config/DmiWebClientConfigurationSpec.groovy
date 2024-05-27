@@ -42,11 +42,27 @@ class DmiWebClientConfigurationSpec extends Specification {
             new DmiWebClientConfiguration(httpClientConfiguration) != null
     }
 
-    def 'Creating a WebClient instance.'() {
-        given: 'WebClient configuration invoked'
-            def webClientInstance = objectUnderTest.webClient()
-        expect: 'the system can create an instance'
-            assert webClientInstance != null
-            assert webClientInstance instanceof WebClient
+    def 'Creating a web client instance data service.'() {
+        given: 'Web client configuration is invoked'
+            def dataWebClientInstance = objectUnderTest.dataWebClient()
+        expect: 'the system can create an instance for data service'
+            assert dataWebClientInstance != null
+            assert dataWebClientInstance instanceof WebClient
+    }
+
+    def 'Creating a web client instance model service.'() {
+        given: 'Web client configuration invoked'
+            def modelWebClientInstance = objectUnderTest.modelWebClient()
+        expect: 'the system can create an instance for data service'
+            assert modelWebClientInstance != null
+            assert modelWebClientInstance instanceof WebClient
+    }
+
+    def 'Creating a web client instance health service.'() {
+        given: 'Web client configuration invoked'
+            def healthWebClientInstance = objectUnderTest.healthWebClient()
+        expect: 'the system can create an instance for data service'
+            assert healthWebClientInstance != null
+            assert healthWebClientInstance instanceof WebClient
     }
 }
