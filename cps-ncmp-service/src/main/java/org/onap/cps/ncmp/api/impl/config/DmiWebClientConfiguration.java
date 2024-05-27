@@ -34,6 +34,10 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.netty.http.client.HttpClient;
 import reactor.netty.resources.ConnectionProvider;
 
+/**
+ * Configures and create a WebClient bean that triggers an initialization (warmup) of the host name resolver and
+ * loads the necessary native libraries to avoid the extra time needed to load resources for first request.
+ */
 @Configuration
 @RequiredArgsConstructor
 public class DmiWebClientConfiguration {
@@ -41,30 +45,83 @@ public class DmiWebClientConfiguration {
     private final HttpClientConfiguration httpClientConfiguration;
 
     /**
-     * Configures and create a WebClient bean that triggers an initialization (warmup) of the host name resolver and
-     * loads the necessary native libraries to avoid the extra time needed to load resources for first request.
+     * Configures and create a WebClient bean for DMI data service.
      *
-     * @return a WebClient instance.
+     * @return a WebClient instance for data services.
      */
     @Bean
-    public WebClient webClient() {
-        final ConnectionProvider dmiWebClientConnectionProvider = ConnectionProvider.create(
-                "dmiWebClientConnectionPool", httpClientConfiguration.getMaximumConnectionsTotal());
+    public WebClient dataServicesWebClient() {
+        final HttpClientConfiguration.DataServices httpClientConfiguration
+                = this.httpClientConfiguration.getDataServices();
+
+        final HttpClient httpClient = createHttpClient("dataConnectionPool",
+                httpClientConfiguration.getMaximumConnectionsTotal(),
+                httpClientConfiguration.getConnectionTimeoutInSeconds(),
+                httpClientConfiguration.getReadTimeoutInSeconds(),
+                httpClientConfiguration.getWriteTimeoutInSeconds());
+        return buildAndGetWebClient(httpClient, httpClientConfiguration.getMaximumInMemorySizeInMegabytes());
+    }
+
+    /**
+     * Configures and creates a WebClient bean for DMI model service.
+     *
+     * @return a WebClient instance for model services.
+     */
+    @Bean
+    public WebClient modelServicesWebClient() {
+        final HttpClientConfiguration.ModelServices httpClientConfiguration
+                = this.httpClientConfiguration.getModelServices();
+
+        final HttpClient httpClient = createHttpClient("modelConnectionPool",
+                httpClientConfiguration.getMaximumConnectionsTotal(),
+                httpClientConfiguration.getConnectionTimeoutInSeconds(),
+                httpClientConfiguration.getReadTimeoutInSeconds(),
+                httpClientConfiguration.getWriteTimeoutInSeconds());
+        return buildAndGetWebClient(httpClient, httpClientConfiguration.getMaximumInMemorySizeInMegabytes());
+    }
+
+    /**
+     * Configures and creates a WebClient bean for DMI health service.
+     *
+     * @return a WebClient instance for health checks.
+     */
+    @Bean
+    public WebClient healthChecksWebClient() {
+        final HttpClientConfiguration.HealthCheckServices httpClientConfiguration
+                = this.httpClientConfiguration.getHealthCheckServices();
+
+        final HttpClient httpClient = createHttpClient("healthConnectionPool",
+                httpClientConfiguration.getMaximumConnectionsTotal(),
+                httpClientConfiguration.getConnectionTimeoutInSeconds(),
+                httpClientConfiguration.getReadTimeoutInSeconds(),
+                httpClientConfiguration.getWriteTimeoutInSeconds());
+        return buildAndGetWebClient(httpClient, httpClientConfiguration.getMaximumInMemorySizeInMegabytes());
+    }
+
+    private static HttpClient createHttpClient(final String connectionProviderName,
+                                               final Integer maximumConnectionsTotal,
+                                               final Integer connectionTimeoutInSeconds,
+                                               final Integer readTimeoutInSeconds,
+                                               final Integer writeTimeoutInSeconds) {
+        final ConnectionProvider dmiWebClientConnectionProvider = ConnectionProvider.create(connectionProviderName,
+                maximumConnectionsTotal);
 
         final HttpClient httpClient = HttpClient.create(dmiWebClientConnectionProvider)
-                .option(ChannelOption.CONNECT_TIMEOUT_MILLIS,
-                        httpClientConfiguration.getConnectionTimeoutInSeconds() * 1000)
-                .doOnConnected(connection -> connection.addHandlerLast(new ReadTimeoutHandler(
-                                httpClientConfiguration.getReadTimeoutInSeconds(), TimeUnit.SECONDS))
-                        .addHandlerLast(new WriteTimeoutHandler(
-                                httpClientConfiguration.getWriteTimeoutInSeconds(), TimeUnit.SECONDS)));
+                .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, connectionTimeoutInSeconds * 1000)
+                .doOnConnected(connection -> connection.addHandlerLast(new ReadTimeoutHandler(readTimeoutInSeconds,
+                        TimeUnit.SECONDS)).addHandlerLast(new WriteTimeoutHandler(writeTimeoutInSeconds,
+                        TimeUnit.SECONDS)));
         httpClient.warmup().block();
+        return httpClient;
+    }
+
+    private static WebClient buildAndGetWebClient(final HttpClient httpClient,
+                                                  final Integer maximumInMemorySizeInMegabytes) {
         return WebClient.builder()
                 .defaultHeaders(header -> header.set(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
                 .defaultHeaders(header -> header.set(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE))
                 .clientConnector(new ReactorClientHttpConnector(httpClient))
                 .codecs(configurer -> configurer.defaultCodecs().maxInMemorySize(
-                        httpClientConfiguration.getMaximumInMemorySizeInMegabytes() * 1024 * 1024))
-                .build();
+                        maximumInMemorySizeInMegabytes * 1024 * 1024)).build();
     }
 }
