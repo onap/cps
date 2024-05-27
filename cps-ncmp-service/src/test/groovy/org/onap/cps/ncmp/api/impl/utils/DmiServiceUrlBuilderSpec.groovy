@@ -20,77 +20,67 @@
 
 package org.onap.cps.ncmp.api.impl.utils
 
-import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING
-
-import org.onap.cps.ncmp.api.impl.config.DmiProperties
-import org.onap.cps.ncmp.api.impl.operations.RequiredDmiService
-import org.onap.cps.spi.utils.CpsValidator
-import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
-import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import spock.lang.Specification
 
 class DmiServiceUrlBuilderSpec extends Specification {
 
-    static YangModelCmHandle yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle('dmiServiceName',
-        'dmiDataServiceName', 'dmiModuleServiceName', new NcmpServiceCmHandle(cmHandleId: 'some-cm-handle-id'),'my-module-set-tag', 'my-alternate-id', 'my-data-producer-identifier')
+    def objectUnderTest = new DmiServiceUrlBuilder()
 
-    DmiProperties dmiProperties = new DmiProperties()
-
-    def mockCpsValidator = Mock(CpsValidator)
-
-    def objectUnderTest = new DmiServiceUrlBuilder(dmiProperties, mockCpsValidator)
-
-    def setup() {
-        dmiProperties.dmiBasePath = 'dmi'
+    def 'Build URI with (variable) path segments and parameters.'() {
+        given: 'the URI details are given to the builder'
+            objectUnderTest.pathSegment(segment1)
+            objectUnderTest.variablePathSegment('myVariableSegment','someValue')
+            objectUnderTest.pathSegment(segment2)
+            objectUnderTest.queryParameter('param1', paramValue1)
+            objectUnderTest.queryParameter('param2', paramValue2)
+            objectUnderTest.queryParameter('param3', null)
+            objectUnderTest.queryParameter('param4', '')
+        when: 'the URI (string) is build'
+            def result = objectUnderTest.build('myDmiServer', 'myBasePath')
+        then: 'the URI is correct (segments are in correct order) '
+            assert result == expectedUri
+        where: 'following URI details are used'
+            segment1   | segment2   | paramValue1 | paramValue2 || expectedUri
+            'segment1' | 'segment2' | '123'       | 'abc'       || 'myDmiServer/myBasePath/v1/segment1/someValue/segment2?param1=123&param2=abc'
+            'segment2' | 'segment1' | 'abc'       | '123'       || 'myDmiServer/myBasePath/v1/segment2/someValue/segment1?param1=abc&param2=123'
     }
 
-    def 'Create the dmi service url with #scenario.'() {
-        given: 'uri variables'
-            def uriVars = objectUnderTest.populateUriVariables(PASSTHROUGH_RUNNING.datastoreName, yangModelCmHandle.resolveDmiServiceName(RequiredDmiService.DATA), 'cmHandle')
-        and: 'query params'
-            def uriQueries = objectUnderTest.populateQueryParams(resourceId, 'optionsParamInQuery', topic)
-        when: 'a dmi datastore service url is generated'
-            def dmiServiceUrl = objectUnderTest.getDmiDatastoreUrl(uriQueries, uriVars)
-        then: 'service url is generated as expected'
-            assert dmiServiceUrl == expectedDmiServiceUrl
-        where: 'the following parameters are used'
-            scenario                       | topic               | resourceId   || expectedDmiServiceUrl
-            'With valid resourceId'        | 'topicParamInQuery' | 'resourceId' || 'dmiServiceName/dmi/v1/ch/cmHandle/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=resourceId&options=optionsParamInQuery&topic=topicParamInQuery'
-            'With Empty resourceId'        | 'topicParamInQuery' | ''           || 'dmiServiceName/dmi/v1/ch/cmHandle/data/ds/ncmp-datastore:passthrough-running?options=optionsParamInQuery&topic=topicParamInQuery'
-            'With Empty dmi base path'     | 'topicParamInQuery' | 'resourceId' || 'dmiServiceName/dmi/v1/ch/cmHandle/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=resourceId&options=optionsParamInQuery&topic=topicParamInQuery'
-            'With Empty topicParamInQuery' | ''                  | 'resourceId' || 'dmiServiceName/dmi/v1/ch/cmHandle/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=resourceId&options=optionsParamInQuery'
+    def 'Build URI with special characters in path segments.'() {
+        given: 'the path segments are given to the builder'
+            objectUnderTest.pathSegment(segment)
+            objectUnderTest.variablePathSegment('myVariableSegment', variableSegmentValue)
+        when: 'the URI (string) is build'
+            def result = objectUnderTest.build('myDmiServer', 'myBasePath')
+        then: 'Only teh characters that cause issues in path segments issues are encoded'
+            assert result == expectedUri
+        where: 'following variable path segments are used'
+            segment                                | variableSegmentValue || expectedUri
+            'some/special?characters=are\\encoded' | 'my/variable/segment'  || 'myDmiServer/myBasePath/v1/some%2Fspecial%3Fcharacters=are%5Cencoded/my%2Fvariable%2Fsegment'
+            'but=some&are:not-!'                   | 'my&variable:segment'  || 'myDmiServer/myBasePath/v1/but=some&are:not-!/my&variable:segment'
     }
 
-    def 'Populate dmi data store url #scenario.'() {
-        given: 'uri variables are created'
-            dmiProperties.dmiBasePath = dmiBasePath
-            def uriVars = objectUnderTest.populateUriVariables(PASSTHROUGH_RUNNING.datastoreName, yangModelCmHandle.resolveDmiServiceName(RequiredDmiService.DATA), 'cmHandle')
-        and: 'null query params'
-            def uriQueries = objectUnderTest.populateQueryParams(null, null, null)
-        when: 'a dmi datastore service url is generated'
-            def dmiServiceUrl = objectUnderTest.getDmiDatastoreUrl(uriQueries, uriVars)
-        then: 'the created dmi service url matches the expected'
-            assert dmiServiceUrl == expectedDmiServiceUrl
-        where: 'the following parameters are used'
-            scenario                   | decription                          | dmiBasePath || expectedDmiServiceUrl
-            'base path starts with  /' | 'Remove / from start of base path'  | '/dmi'      || 'dmiServiceName/dmi/v1/ch/cmHandle/data/ds/ncmp-datastore:passthrough-running'
-            'base path ends with / '   | 'Remove / from end of base path'    | 'dmi/'      || 'dmiServiceName/dmi/v1/ch/cmHandle/data/ds/ncmp-datastore:passthrough-running'
-            'base path without any / ' | 'base path does not contains any /' | 'dmi'       || 'dmiServiceName/dmi/v1/ch/cmHandle/data/ds/ncmp-datastore:passthrough-running'
+    def 'Build URI with special characters in query parameters.'() {
+        given: 'the query parameter is given to the builder'
+           objectUnderTest.queryParameter(paramName, value)
+        when: 'the URI (string) is build'
+            def result = objectUnderTest.build('myDmiServer', 'myBasePath')
+        then: 'Only the characters (in the name and value) that cause issues in query parameters are encoded'
+            assert result == expectedUri
+        where: 'the following query parameters are used'
+            paramName  | value                                  || expectedUri
+            'my&param' | 'some?special&characters=are\\encoded' || 'myDmiServer/myBasePath/v1?my%26param=some?special%26characters%3Dare%5Cencoded'
+            'my-param' | 'but/some:are-not-!'                   || 'myDmiServer/myBasePath/v1?my-param=but/some:are-not-!'
     }
 
-    def 'Bath request Url creation.'() {
-        given: 'the required path parameters'
-            def batchRequestUriVariables = [dmiServiceName: 'some-service', dmiBasePath: 'testBase', cmHandleId: '123']
-        and: 'the relevant query parameters'
-            def batchRequestQueryParams = objectUnderTest.getDataOperationRequestQueryParams('some topic', 'some id')
-        when: 'a URL is created'
-            def result = objectUnderTest.getDataOperationRequestUrl(batchRequestQueryParams, batchRequestUriVariables)
-        then: 'it is formed correctly'
-            assert result.toString() == 'some-service/testBase/v1/data?topic=some+topic&requestId=some+id'
+    def 'Build URI with empty query parameters.'() {
+        when: 'the query parameter is given to the builder'
+            objectUnderTest.queryParameter('param', value)
+        and: 'the URI (string) is build'
+            def result = objectUnderTest.build('myDmiServer', 'myBasePath')
+        then: 'no parameter gets added'
+            assert result == 'myDmiServer/myBasePath/v1'
+        where: 'the following parameter values are used'
+            value << [ null, '', ' ' ]
     }
 
-    def 'Populate batch uri variables.'() {
-        expect: 'Populate batch uri variables returns a map with given service name and base path from setup'
-            assert objectUnderTest.populateDataOperationRequestUriVariables('some service')  == [dmiServiceName: 'some service', dmiBasePath: 'dmi' ]
-    }
 }

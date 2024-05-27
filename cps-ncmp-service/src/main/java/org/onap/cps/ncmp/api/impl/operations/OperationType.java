@@ -21,9 +21,7 @@
 package org.onap.cps.ncmp.api.impl.operations;
 
 import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Locale;
 import lombok.Getter;
 import org.onap.cps.ncmp.api.impl.exception.InvalidOperationException;
 
@@ -48,13 +46,6 @@ public enum OperationType {
         return String.valueOf(operationName);
     }
 
-    private static final Map<String, OperationType> operationNameToOperationEnum = new HashMap<>();
-
-    static {
-        Arrays.stream(OperationType.values()).forEach(
-                operationType -> operationNameToOperationEnum.put(operationType.getOperationName(), operationType));
-    }
-
     /**
      * From operation name get operation enum type.
      *
@@ -62,10 +53,10 @@ public enum OperationType {
      * @return the operation enum type
      */
     public static OperationType fromOperationName(final String operationName) {
-        final OperationType operationType = operationNameToOperationEnum.get(operationName);
-        if (null == operationType) {
+        try {
+            return OperationType.valueOf(operationName.toUpperCase(Locale.ENGLISH));
+        } catch (final IllegalArgumentException e) {
             throw new InvalidOperationException(operationName + " is an invalid operation name");
         }
-        return operationType;
     }
 }
