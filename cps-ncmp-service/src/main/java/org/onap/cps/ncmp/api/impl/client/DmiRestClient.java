@@ -26,6 +26,7 @@ import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNABLE_TO_READ_RESOURCE_D
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNKNOWN_ERROR;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
+import static org.springframework.http.HttpStatus.REQUEST_TIMEOUT;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import java.net.URI;
@@ -37,7 +38,9 @@ import org.onap.cps.ncmp.api.impl.config.DmiProperties;
 import org.onap.cps.ncmp.api.impl.exception.DmiClientRequestException;
 import org.onap.cps.ncmp.api.impl.exception.InvalidDmiResourceUrlException;
 import org.onap.cps.ncmp.api.impl.operations.OperationType;
+import org.onap.cps.ncmp.api.impl.operations.RequiredDmiService;
 import org.onap.cps.utils.JsonObjectMapper;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,6 +48,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.reactive.function.client.WebClientRequestException;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 
 @Component
@@ -55,31 +59,43 @@ public class DmiRestClient {
     private static final String HEALTH_CHECK_URL_EXTENSION = "/actuator/health";
     private static final String NOT_SPECIFIED = "";
     private static final String NO_AUTHORIZATION = null;
-    private final WebClient webClient;
+
     private final DmiProperties dmiProperties;
     private final JsonObjectMapper jsonObjectMapper;
+    @Qualifier("dataServicesWebClient")
+    private final WebClient dataServicesWebClient;
+    @Qualifier("modelServicesWebClient")
+    private final WebClient modelServicesWebClient;
+    @Qualifier("healthChecksWebClient")
+    private final WebClient healthChecksWebClient;
 
     /**
-     * Sends POST operation to DMI with json body containing module references.
+     * Sends a POST operation to the DMI with a JSON body containing module references.
      *
-     * @param dmiResourceUrl          dmi resource url
-     * @param requestBodyAsJsonString json data body
-     * @param operationType           the type of operation being executed (for error reporting only)
-     * @param authorization           contents of Authorization header, or null if not present
-     * @return response entity of type String
+     * @param requiredDmiService      Determines if the required service is for a data or model operation.
+     * @param dmiUrl                  The DMI resource URL.
+     * @param requestBodyAsJsonString JSON data body.
+     * @param operationType           The type of operation being executed (for error reporting only).
+     * @param authorization           Contents of the Authorization header, or null if not present.
+     * @return ResponseEntity containing the response from the DMI.
+     * @throws DmiClientRequestException If there is an error during the DMI request.
      */
-    public ResponseEntity<Object> postOperationWithJsonData(final String dmiResourceUrl,
+    public ResponseEntity<Object> postOperationWithJsonData(final RequiredDmiService requiredDmiService,
+                                                            final String dmiUrl,
                                                             final String requestBodyAsJsonString,
                                                             final OperationType operationType,
                                                             final String authorization) {
+        final WebClient webClient = requiredDmiService.equals(RequiredDmiService.DATA)
+                ? dataServicesWebClient : modelServicesWebClient;
         try {
-            return ResponseEntity.ok(webClient.post().uri(toUri(dmiResourceUrl))
+            return webClient.post()
+                    .uri(toUri(dmiUrl))
                     .headers(httpHeaders -> configureHttpHeaders(httpHeaders, authorization))
                     .body(BodyInserters.fromValue(requestBodyAsJsonString))
                     .retrieve()
-                    .bodyToMono(Object.class)
+                    .toEntity(Object.class)
                     .onErrorMap(httpError -> handleDmiClientException(httpError, operationType.getOperationName()))
-                    .block());
+                    .block();
         } catch (final HttpServerErrorException e) {
             throw handleDmiClientException(e, operationType.getOperationName());
         }
@@ -88,31 +104,31 @@ public class DmiRestClient {
     /**
      * Get DMI plugin health status.
      *
-     * @param       dmiPluginBaseUrl the base URL of the dmi-plugin
-     * @return      plugin health status ("UP" is all OK, "" (not-specified) in case of any exception)
+     * @param dmiUrl the base URL of the dmi-plugin
+     * @return plugin health status ("UP" is all OK, "" (not-specified) in case of any exception)
      */
-    public String getDmiHealthStatus(final String dmiPluginBaseUrl) {
+    public String getDmiHealthStatus(final String dmiUrl) {
         try {
-            final JsonNode responseHealthStatus = webClient.get()
-                    .uri(toUri(dmiPluginBaseUrl + HEALTH_CHECK_URL_EXTENSION))
+            final URI dmiHealthCheckUri = toUri(dmiUrl + HEALTH_CHECK_URL_EXTENSION);
+            final JsonNode responseHealthStatus = healthChecksWebClient.get()
+                    .uri(dmiHealthCheckUri)
                     .headers(httpHeaders -> configureHttpHeaders(httpHeaders, NO_AUTHORIZATION))
                     .retrieve()
                     .bodyToMono(JsonNode.class).block();
             return responseHealthStatus == null ? NOT_SPECIFIED :
-                    responseHealthStatus.get("status").asText();
+                    responseHealthStatus.path("status").asText();
         } catch (final Exception e) {
-            log.warn("Failed to retrieve health status from {}. Error Message: {}", dmiPluginBaseUrl, e.getMessage());
+            log.warn("Failed to retrieve health status from {}. Error Message: {}", dmiUrl, e.getMessage());
             return NOT_SPECIFIED;
         }
     }
 
-    private HttpHeaders configureHttpHeaders(final HttpHeaders httpHeaders, final String authorization) {
+    private void configureHttpHeaders(final HttpHeaders httpHeaders, final String authorization) {
         if (dmiProperties.isDmiBasicAuthEnabled()) {
             httpHeaders.setBasicAuth(dmiProperties.getAuthUsername(), dmiProperties.getAuthPassword());
         } else if (authorization != null && authorization.toLowerCase(Locale.getDefault()).startsWith("bearer ")) {
             httpHeaders.add(HttpHeaders.AUTHORIZATION, authorization);
         }
-        return httpHeaders;
     }
 
     private static URI toUri(final String dmiResourceUrl) {
@@ -123,22 +139,31 @@ public class DmiRestClient {
         }
     }
 
-    private DmiClientRequestException handleDmiClientException(final Throwable e, final String operationType) {
+    private DmiClientRequestException handleDmiClientException(final Throwable throwable, final String operationType) {
         final String exceptionMessage = "Unable to " + operationType + " resource data.";
-        if (e instanceof WebClientResponseException wcre) {
-            if (wcre.getStatusCode().isSameCodeAs(HttpStatus.REQUEST_TIMEOUT)) {
-                throw new DmiClientRequestException(wcre.getStatusCode().value(), wcre.getMessage(),
-                        jsonObjectMapper.asJsonString(wcre.getResponseBodyAsString()), DMI_SERVICE_NOT_RESPONDING);
+        if (throwable instanceof WebClientResponseException webClientResponseException) {
+            if (webClientResponseException.getStatusCode().isSameCodeAs(REQUEST_TIMEOUT)) {
+                throw new DmiClientRequestException(webClientResponseException.getStatusCode().value(),
+                        webClientResponseException.getMessage(),
+                        jsonObjectMapper.asJsonString(webClientResponseException.getResponseBodyAsString()),
+                        DMI_SERVICE_NOT_RESPONDING);
             }
-            throw new DmiClientRequestException(wcre.getStatusCode().value(), wcre.getMessage(),
-                    jsonObjectMapper.asJsonString(wcre.getResponseBodyAsString()), UNABLE_TO_READ_RESOURCE_DATA);
+            throw new DmiClientRequestException(webClientResponseException.getStatusCode().value(),
+                    webClientResponseException.getMessage(),
+                    jsonObjectMapper.asJsonString(webClientResponseException.getResponseBodyAsString()),
+                    UNABLE_TO_READ_RESOURCE_DATA);
 
         }
-        if (e instanceof HttpServerErrorException httpServerErrorException) {
+        if (throwable instanceof WebClientRequestException webClientRequestException) {
+            throw new DmiClientRequestException(HttpStatus.SERVICE_UNAVAILABLE.value(),
+                    webClientRequestException.getMessage(),
+                    exceptionMessage, DMI_SERVICE_NOT_RESPONDING);
+        }
+        if (throwable instanceof HttpServerErrorException httpServerErrorException) {
             throw new DmiClientRequestException(httpServerErrorException.getStatusCode().value(), exceptionMessage,
                     httpServerErrorException.getResponseBodyAsString(), DMI_SERVICE_NOT_RESPONDING);
         }
-        throw new DmiClientRequestException(INTERNAL_SERVER_ERROR.value(), exceptionMessage, e.getMessage(),
+        throw new DmiClientRequestException(INTERNAL_SERVER_ERROR.value(), exceptionMessage, throwable.getMessage(),
                 UNKNOWN_ERROR);
     }
 }
