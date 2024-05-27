@@ -80,6 +80,30 @@
       },
       "revId": "00419b06de72c75631dc3c0856f01aefb6c8906a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "587d9f36_9aff69a5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/exceptions/NoAlternateIdMatchFoundException.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-27T12:54:21Z",
+      "side": 1,
+      "message": "we agreed that there will be OTHER features that will need the same exception ie. the support in legacy interfaces for alternate ids will probably end up using this too",
+      "parentUuid": "0f29b745_9e31ec52",
+      "range": {
+        "startLine": 26,
+        "startChar": 13,
+        "endLine": 26,
+        "endChar": 45
+      },
+      "revId": "00419b06de72c75631dc3c0856f01aefb6c8906a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
