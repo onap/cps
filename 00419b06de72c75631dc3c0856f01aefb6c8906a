@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "724908a0_15dc4657",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-05-27T10:13:43Z",
+      "side": 1,
+      "message": "just a minor question.\nother than that looks fine to me.",
+      "revId": "00419b06de72c75631dc3c0856f01aefb6c8906a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4d775c7_7700eb76",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/exceptions/NoAlternateIdMatchFoundException.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-05-27T10:13:43Z",
+      "side": 1,
+      "message": "NB: will this exception be used in multiple use cases ?\nJust remind me if we agreed to keep the exception specific to a particular use case inside the use case package?\nOr keeping all exceptions together is fine ?",
+      "range": {
+        "startLine": 26,
+        "startChar": 13,
+        "endLine": 26,
+        "endChar": 45
+      },
+      "revId": "00419b06de72c75631dc3c0856f01aefb6c8906a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
