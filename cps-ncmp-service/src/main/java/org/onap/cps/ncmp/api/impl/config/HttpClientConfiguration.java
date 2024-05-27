@@ -30,9 +30,37 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties(prefix = "ncmp.dmi.httpclient")
 public class HttpClientConfiguration {
-    private Integer maximumConnectionsTotal = 100;
-    private Integer connectionTimeoutInSeconds = 30;
-    private Integer readTimeoutInSeconds = 30;
-    private Integer writeTimeoutInSeconds = 30;
-    private Integer maximumInMemorySizeInMegabytes = 1;
+
+    private final DataServices dataServices = new DataServices();
+    private final ModelServices modelServices = new ModelServices();
+    private final HealthCheckServices healthCheckServices = new HealthCheckServices();
+
+    @Getter
+    @Setter
+    public static class DataServices {
+        private Integer maximumConnectionsTotal = 100;
+        private Integer connectionTimeoutInSeconds = 30;
+        private Integer readTimeoutInSeconds = 30;
+        private Integer writeTimeoutInSeconds = 30;
+        private Integer maximumInMemorySizeInMegabytes = 1;
+    }
+
+    @Getter
+    @Setter
+    public static class ModelServices {
+        private Integer maximumConnectionsTotal = 100;
+        private Integer connectionTimeoutInSeconds = 30;
+        private Integer readTimeoutInSeconds = 30;
+        private Integer writeTimeoutInSeconds = 30;
+        private Integer maximumInMemorySizeInMegabytes = 1;
+    }
+
+    @Getter
+    public static class HealthCheckServices {
+        private final Integer maximumConnectionsTotal = 10;
+        private final Integer connectionTimeoutInSeconds = 30;
+        private final Integer readTimeoutInSeconds = 30;
+        private final Integer writeTimeoutInSeconds = 30;
+        private final Integer maximumInMemorySizeInMegabytes = 1;
+    }
 }
