@@ -30,18 +30,42 @@ import spock.lang.Specification
 @SpringBootTest
 @ContextConfiguration(classes = [HttpClientConfiguration])
 @EnableConfigurationProperties(HttpClientConfiguration.class)
-@TestPropertySource(properties = ["ncmp.dmi.httpclient.readTimeoutInSeconds=123", "ncmp.dmi.httpclient.maximumConnectionsTotal=200"])
+@TestPropertySource(properties = ["ncmp.dmi.httpclient.data-services.readTimeoutInSeconds=789", "ncmp.dmi.httpclient.model-services.maximumConnectionsTotal=111"])
 class HttpClientConfigurationSpec extends Specification {
 
     @Autowired
     private HttpClientConfiguration httpClientConfiguration
 
-    def 'Test HttpClientConfiguration properties with custom and default values'() {
-        expect: 'properties are populated correctly'
-            assert httpClientConfiguration.connectionTimeoutInSeconds == 123
-            assert httpClientConfiguration.readTimeoutInSeconds == 123
-            assert httpClientConfiguration.writeTimeoutInSeconds == 30
-            assert httpClientConfiguration.maximumConnectionsTotal == 200
-            assert httpClientConfiguration.maximumInMemorySizeInMegabytes == 16
+    def 'Test http client configuration properties of data with custom and default values'() {
+        expect: 'properties are populated correctly for data'
+            with(httpClientConfiguration.dataServices) {
+                assert connectionTimeoutInSeconds == 123
+                assert readTimeoutInSeconds == 789
+                assert writeTimeoutInSeconds == 30
+                assert maximumConnectionsTotal == 100
+                assert maximumInMemorySizeInMegabytes == 7
+            }
+    }
+
+    def 'Test http client configuration properties of model with custom and default values'() {
+        expect: 'properties are populated correctly for model'
+            with(httpClientConfiguration.modelServices) {
+                assert connectionTimeoutInSeconds == 456
+                assert readTimeoutInSeconds == 30
+                assert writeTimeoutInSeconds == 30
+                assert maximumConnectionsTotal == 111
+                assert maximumInMemorySizeInMegabytes == 8
+            }
+    }
+
+    def 'Test http client configuration properties of health with default values'() {
+        expect: 'properties are populated correctly for health'
+            with(httpClientConfiguration.healthCheckServices) {
+                assert connectionTimeoutInSeconds == 30
+                assert readTimeoutInSeconds == 30
+                assert writeTimeoutInSeconds == 30
+                assert maximumConnectionsTotal == 10
+                assert maximumInMemorySizeInMegabytes == 1
+            }
     }
 }

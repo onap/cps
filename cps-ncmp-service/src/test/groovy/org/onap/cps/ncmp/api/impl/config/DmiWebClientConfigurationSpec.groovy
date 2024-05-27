@@ -29,7 +29,7 @@ import spock.lang.Specification
 
 @SpringBootTest
 @ContextConfiguration(classes = [HttpClientConfiguration])
-@TestPropertySource(properties = ['ncmp.dmi.httpclient.connectionTimeoutInSeconds=1', 'ncmp.dmi.httpclient.maximumInMemorySizeInMegabytes=1'])
+@TestPropertySource(properties = ['ncmp.dmi.httpclient.data-services.connectionTimeoutInSeconds=1', 'ncmp.dmi.httpclient.model-services.maximumInMemorySizeInMegabytes=1'])
 @EnableConfigurationProperties
 class DmiWebClientConfigurationSpec extends Specification {
 
@@ -42,11 +42,27 @@ class DmiWebClientConfigurationSpec extends Specification {
             new DmiWebClientConfiguration(httpClientConfiguration) != null
     }
 
-    def 'Creating a WebClient instance.'() {
-        given: 'WebClient configuration invoked'
-            def webClientInstance = objectUnderTest.webClient()
-        expect: 'the system can create an instance'
-            assert webClientInstance != null
-            assert webClientInstance instanceof WebClient
+    def 'Creating a web client instance data service.'() {
+        given: 'Web client configuration is invoked'
+            def dataServicesWebClient = objectUnderTest.dataServicesWebClient()
+        expect: 'the system can create an instance for data service'
+            assert dataServicesWebClient != null
+            assert dataServicesWebClient instanceof WebClient
+    }
+
+    def 'Creating a web client instance model service.'() {
+        given: 'Web client configuration invoked'
+            def modelServicesWebClient = objectUnderTest.modelServicesWebClient()
+        expect: 'the system can create an instance for model service'
+            assert modelServicesWebClient != null
+            assert modelServicesWebClient instanceof WebClient
+    }
+
+    def 'Creating a web client instance health service.'() {
+        given: 'Web client configuration invoked'
+            def healthChecksWebClient = objectUnderTest.healthChecksWebClient()
+        expect: 'the system can create an instance for health service'
+            assert healthChecksWebClient != null
+            assert healthChecksWebClient instanceof WebClient
     }
 }

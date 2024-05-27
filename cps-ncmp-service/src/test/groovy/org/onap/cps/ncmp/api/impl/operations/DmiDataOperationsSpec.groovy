@@ -21,15 +21,14 @@
 
 package org.onap.cps.ncmp.api.impl.operations
 
-import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
-
-import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNKNOWN_ERROR
 import static org.onap.cps.ncmp.api.impl.events.mapper.CloudEventMapper.toTargetEvent
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_OPERATIONAL
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING
 import static org.onap.cps.ncmp.api.impl.operations.OperationType.CREATE
 import static org.onap.cps.ncmp.api.impl.operations.OperationType.READ
 import static org.onap.cps.ncmp.api.impl.operations.OperationType.UPDATE
+import static org.onap.cps.ncmp.api.impl.operations.RequiredDmiService.DATA
+import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNKNOWN_ERROR
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.events.EventsPublisher
@@ -40,6 +39,7 @@ import org.onap.cps.ncmp.api.models.DataOperationRequest
 import org.onap.cps.ncmp.api.models.CmResourceAddress
 import org.onap.cps.ncmp.events.async1_0_0.DataOperationEvent
 import org.onap.cps.ncmp.utils.TestUtils
+import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
@@ -77,7 +77,7 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             def responseFromDmi = new ResponseEntity<Object>(HttpStatus.OK)
             def expectedUrl = "${dmiServiceBaseUrl}${expectedDatastoreInUrl}?resourceIdentifier=${resourceIdentifier}${expectedOptionsInUrl}"
             def expectedJson = '{"operation":"read","cmHandleProperties":'  + expectedProperties + ',"moduleSetTag":""}'
-            mockDmiRestClient.postOperationWithJsonData(expectedUrl, expectedJson, READ, NO_AUTH_HEADER) >> responseFromDmi
+            mockDmiRestClient.postOperationWithJsonData(DATA, expectedUrl, expectedJson, READ, NO_AUTH_HEADER) >> responseFromDmi
         when: 'get resource data is invoked'
             def cmResourceAddress = new CmResourceAddress(dataStore.datastoreName, cmHandleId, resourceIdentifier)
             def result = objectUnderTest.getResourceDataFromDmi(cmResourceAddress, options, NO_TOPIC, NO_REQUEST_ID, NO_AUTH_HEADER)
@@ -103,11 +103,11 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             def responseFromDmi = new ResponseEntity<Object>(HttpStatus.ACCEPTED)
             def expectedDmiBatchResourceDataUrl = "someServiceName/dmi/v1/data?requestId=requestId&topic=my-topic-name"
             def expectedBatchRequestAsJson = '{"operations":[{"operation":"read","operationId":"operational-14","datastore":"ncmp-datastore:passthrough-operational","options":"some option","resourceIdentifier":"some resource identifier","cmHandles":[{"id":"some-cm-handle","moduleSetTag":"","cmHandleProperties":{"prop1":"val1"}}]}]}'
-            mockDmiRestClient.postOperationWithJsonData(expectedDmiBatchResourceDataUrl, _, READ.operationName, NO_AUTH_HEADER) >> responseFromDmi
+            mockDmiRestClient.postOperationWithJsonData(DATA, expectedDmiBatchResourceDataUrl, _, READ, NO_AUTH_HEADER) >> responseFromDmi
         when: 'get resource data for group of cm handles are invoked'
             objectUnderTest.requestResourceDataFromDmi('my-topic-name', dataOperationRequest, 'requestId', NO_AUTH_HEADER)
         then: 'the post operation was called and ncmp generated dmi request body json args'
-            1 * mockDmiRestClient.postOperationWithJsonData(expectedDmiBatchResourceDataUrl, expectedBatchRequestAsJson, READ, NO_AUTH_HEADER)
+            1 * mockDmiRestClient.postOperationWithJsonData(DATA, expectedDmiBatchResourceDataUrl, expectedBatchRequestAsJson, READ, NO_AUTH_HEADER)
     }
 
     def 'Execute (async) data operation from DMI service with Exception.'() {
@@ -139,7 +139,7 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             def responseFromDmi = new ResponseEntity<Object>(HttpStatus.OK)
             def expectedUrl = dmiServiceBaseUrl + "passthrough-operational?resourceIdentifier=/"
             def expectedJson = '{"operation":"read","cmHandleProperties":{"prop1":"val1"},"moduleSetTag":"my-module-set-tag"}'
-            mockDmiRestClient.postOperationWithJsonData(expectedUrl, expectedJson, READ, null) >> responseFromDmi
+            mockDmiRestClient.postOperationWithJsonData(DATA, expectedUrl, expectedJson, READ, null) >> responseFromDmi
         when: 'get resource data is invoked'
             def result = objectUnderTest.getResourceDataFromDmi( PASSTHROUGH_OPERATIONAL.datastoreName, cmHandleId, NO_REQUEST_ID)
         then: 'the result is the response from the DMI service'
@@ -153,7 +153,7 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             def expectedUrl = "${dmiServiceBaseUrl}passthrough-running?resourceIdentifier=${resourceIdentifier}"
             def expectedJson = '{"operation":"' + expectedOperationInUrl + '","dataType":"some data type","data":"requestData","cmHandleProperties":{"prop1":"val1"},"moduleSetTag":""}'
             def responseFromDmi = new ResponseEntity<Object>(HttpStatus.OK)
-            mockDmiRestClient.postOperationWithJsonData(expectedUrl, expectedJson, operation, NO_AUTH_HEADER) >> responseFromDmi
+            mockDmiRestClient.postOperationWithJsonData(DATA, expectedUrl, expectedJson, operation, NO_AUTH_HEADER) >> responseFromDmi
         when: 'write resource method is invoked'
             def result = objectUnderTest.writeResourceDataPassThroughRunningFromDmi(cmHandleId, 'parent/child', operation, 'requestData', 'some data type', NO_AUTH_HEADER)
         then: 'the result is the response from the DMI service'
