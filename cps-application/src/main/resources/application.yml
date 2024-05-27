@@ -174,11 +174,18 @@ logging:
 ncmp:
     dmi:
         httpclient:
-            connectionTimeoutInSeconds: 30
-            readTimeoutInSeconds: 30
-            writeTimeoutInSeconds: 30
-            maximumConnectionsTotal: 100
-            maximumInMemorySizeInMegabytes: 16
+            data:
+                connectionTimeoutInSeconds: 123
+                readTimeoutInSeconds: 2
+                writeTimeoutInSeconds: 3
+                maximumConnectionsTotal: 4
+                maximumInMemorySizeInMegabytes: 1
+            model:
+                connectionTimeoutInSeconds: 456
+                readTimeoutInSeconds: 5
+                writeTimeoutInSeconds: 6
+                maximumConnectionsTotal: 7
+                maximumInMemorySizeInMegabytes: 2
         auth:
             username: ${DMI_USERNAME:cpsuser}
             password: ${DMI_PASSWORD:cpsr0cks!}
