@@ -20,172 +20,92 @@
 
 package org.onap.cps.ncmp.api.impl.utils;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.apache.logging.log4j.util.Strings;
-import org.apache.logging.log4j.util.TriConsumer;
-import org.onap.cps.ncmp.api.impl.config.DmiProperties;
-import org.onap.cps.spi.utils.CpsValidator;
-import org.springframework.stereotype.Component;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.util.UriComponentsBuilder;
 
-@Component
-@RequiredArgsConstructor
+@NoArgsConstructor
 public class DmiServiceUrlBuilder {
-    private final DmiProperties dmiProperties;
-    private final CpsValidator cpsValidator;
 
-    /**
-     * This method creates the dmi service url.
-     *
-     * @param queryParams  query param map as key,value pair
-     * @param uriVariables uri param map as key (placeholder),value pair
-     * @return {@code String} dmi service url as string
-     */
-    public String getDmiDatastoreUrl(final MultiValueMap<String, String> queryParams,
-                                     final Map<String, Object> uriVariables) {
-        return getUriComponentsBuilder(getResourceDataBasePathUriBuilder(), queryParams, uriVariables)
-                .buildAndExpand().toUriString();
+    private static final String FIXED_PATH_SEGMENT = null;
+
+    final UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance();
+    final Map<String, Object> pathSegments = new LinkedHashMap<>();
+
+    public static DmiServiceUrlBuilder newInstance() {
+        return new DmiServiceUrlBuilder();
     }
 
     /**
-     * This method builds data operation request url.
+     * Add a fixed pathSegment to the URI.
      *
-     * @param dataoperationRequestQueryParams  query param map as key, value pair
-     * @param dataoperationRequestUriVariables uri param map as key (placeholder), value pair
-     * @return {@code String} data operation request url as string
+     * @param pathSegment the path segment
+     * @return this builder
      */
-    public String getDataOperationRequestUrl(final MultiValueMap<String, String> dataoperationRequestQueryParams,
-                                             final Map<String, Object> dataoperationRequestUriVariables) {
-        return getDataOperationResourceDataBasePathUriBuilder()
-                .queryParams(dataoperationRequestQueryParams)
-                .uriVariables(dataoperationRequestUriVariables)
-                .buildAndExpand().toUriString();
+    public DmiServiceUrlBuilder pathSegment(final String pathSegment) {
+        pathSegments.put(pathSegment, FIXED_PATH_SEGMENT);
+        return this;
     }
 
     /**
-     * This method creates the dmi service url builder object with path variables.
+     * Add a variable pathSegment to the URI.
+     * Do NOT add { } braces. the builder will take care of that
      *
-     * @return {@code UriComponentsBuilder} dmi service url builder object
+     * @param pathSegment the name of the variable path segment (with { and }
+     * @param value       the value to be insert in teh URI for the given variable path segment
+     * @return this builder
      */
-    public UriComponentsBuilder getResourceDataBasePathUriBuilder() {
-        return UriComponentsBuilder.newInstance()
-                .path("{dmiServiceName}")
-                .pathSegment("{dmiBasePath}")
-                .pathSegment("v1")
-                .pathSegment("ch")
-                .pathSegment("{cmHandleId}");
+    public DmiServiceUrlBuilder variablePathSegment(final String pathSegment, final Object value) {
+        pathSegments.put(pathSegment, value);
+        return this;
     }
 
     /**
-     * This method creates the dmi service url builder object with path variables for data operation request.
+     * Add a query parameter to the URI.
+     * Do NOT encode as the builder wil take care of encoding
      *
-     * @return {@code UriComponentsBuilder} dmi service url builder object
+     * @param name  the name of the variable
+     * @param value the value of the variable (only Strings are supported).
+     *
+     * @return this builder
      */
-    public UriComponentsBuilder getDataOperationResourceDataBasePathUriBuilder() {
-        return UriComponentsBuilder.newInstance()
-                .path("{dmiServiceName}")
-                .pathSegment("{dmiBasePath}")
-                .pathSegment("v1")
-                .pathSegment("data");
+    public DmiServiceUrlBuilder queryParameter(final String name, final String value) {
+        if (Strings.isNotBlank(value)) {
+            uriComponentsBuilder.queryParam(name, value);
+        }
+        return this;
     }
 
     /**
-     * This method populates uri variables.
+     * Build the URI as a correctly percentage-encoded String.
      *
-     * @param dataStoreName data store name
-     * @param dmiServiceName dmi service name
-     * @param cmHandleId        cm handle id for dmi registration
-     * @return {@code String} dmi service url as string
+     * @param dmiServiceName the name of the dmi service
+     * @param dmiBasePath    the base path of the dmi service
+     *
+     * @return URI as a string
      */
-    public Map<String, Object> populateUriVariables(final String dataStoreName,
-                                                    final String dmiServiceName,
-                                                    final String cmHandleId) {
-        cpsValidator.validateNameCharacters(cmHandleId);
+    public String build(final String dmiServiceName, final String dmiBasePath) {
+        uriComponentsBuilder
+            .path("{dmiServiceName}")
+            .pathSegment("{dmiBasePath}")
+            .pathSegment("v1");
+
         final Map<String, Object> uriVariables = new HashMap<>();
-        final String dmiBasePath = dmiProperties.getDmiBasePath();
         uriVariables.put("dmiServiceName", dmiServiceName);
         uriVariables.put("dmiBasePath", dmiBasePath);
-        uriVariables.put("cmHandleId", cmHandleId);
-        uriVariables.put("dataStore", dataStoreName);
-        return uriVariables;
-    }
 
-    /**
-     * This method populates uri variables for data operation request.
-     *
-     * @param dmiServiceName dmi service name
-     * @return {@code Map<String, Object>} uri variables as map
-     */
-    public Map<String, Object> populateDataOperationRequestUriVariables(final String dmiServiceName) {
-        final Map<String, Object> uriVariables = new HashMap<>();
-        final String dmiBasePath = dmiProperties.getDmiBasePath();
-        uriVariables.put("dmiServiceName", dmiServiceName);
-        uriVariables.put("dmiBasePath", dmiBasePath);
-        return uriVariables;
-    }
-
-    /**
-     * This method is used to populate map from query params.
-     *
-     * @param resourceId          unique id of response for valid topic
-     * @param optionsParamInQuery options as provided by client
-     * @param topicParamInQuery   topic as provided by client
-     * @param moduleSetTag   module set tag associated with the given cm handle
-     * @return all valid query params as map
-     */
-    public MultiValueMap<String, String> populateQueryParams(final String resourceId,
-                                                             final String optionsParamInQuery,
-                                                             final String topicParamInQuery,
-                                                             final String moduleSetTag) {
-        final MultiValueMap<String, String> queryParams = new LinkedMultiValueMap<>();
-        getQueryParamConsumer().accept("resourceIdentifier", resourceId, queryParams);
-        getQueryParamConsumer().accept("options", optionsParamInQuery, queryParams);
-        if (Strings.isNotEmpty(topicParamInQuery)) {
-            getQueryParamConsumer().accept("topic", topicParamInQuery, queryParams);
-        }
-        if (Strings.isNotEmpty(moduleSetTag)) {
-            getQueryParamConsumer().accept("moduleSetTag", moduleSetTag, queryParams);
-        }
-        return queryParams;
-    }
-
-    /**
-     * This method is used to populate map from query params for data operation request.
-     *
-     * @param topicParamInQuery topic into url param
-     * @param requestId         unique id of response for valid topic
-     * @return all valid query params as map
-     */
-    public MultiValueMap<String, String> getDataOperationRequestQueryParams(final String topicParamInQuery,
-                                                                            final String requestId) {
-        final MultiValueMap<String, String> queryParams = new LinkedMultiValueMap<>();
-        getQueryParamConsumer().accept("topic", topicParamInQuery, queryParams);
-        getQueryParamConsumer().accept("requestId", requestId, queryParams);
-        return queryParams;
-    }
-
-    private TriConsumer<String, String, MultiValueMap<String, String>> getQueryParamConsumer() {
-        return (paramName, paramValue, paramMap) -> {
-            if (Strings.isNotEmpty(paramValue)) {
-                paramMap.add(paramName, URLEncoder.encode(paramValue, StandardCharsets.UTF_8));
+        pathSegments.forEach((pathSegment, variablePathValue) ->  {
+            if (variablePathValue == FIXED_PATH_SEGMENT) {
+                uriComponentsBuilder.pathSegment(pathSegment);
+            } else {
+                uriComponentsBuilder.pathSegment("{" + pathSegment + "}");
+                uriVariables.put(pathSegment, variablePathValue);
             }
-        };
+        });
+        return uriComponentsBuilder.buildAndExpand(uriVariables).encode().toUriString();
     }
 
-    private UriComponentsBuilder getUriComponentsBuilder(final UriComponentsBuilder uriComponentsBuilder,
-                                                         final MultiValueMap<String, String> queryParams,
-                                                         final Map<String, Object> uriVariables) {
-        return uriComponentsBuilder
-                .pathSegment("data")
-                .pathSegment("ds")
-                .pathSegment("{dataStore}")
-                .queryParams(queryParams)
-                .uriVariables(uriVariables);
-    }
 }
