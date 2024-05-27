@@ -27,7 +27,6 @@ import spock.lang.Specification
 
 class RestQueryParametersValidatorSpec extends Specification {
 
-
     def 'CM Handle Query validation: empty query.'() {
         given: 'a cm handle query'
             def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
@@ -62,13 +61,13 @@ class RestQueryParametersValidatorSpec extends Specification {
         then: 'a data validation exception is thrown'
             def thrown = thrown(DataValidationException)
         and: 'the exception details contain the correct significant term '
-            thrown.details.contains(expectedWordInDetails)
+            assert thrown.details.contains(expectedWordInDetails)
         where:
             scenario                 | conditionName        | conditionParameters                || expectedWordInDetails
             'unknown condition name' | 'unknownCondition'   | [['key': 'value']]                 || 'conditionName'
             'no condition name'      | ''                   | [['key': 'value']]                 || 'conditionName'
+            'empty conditions'       | 'validConditionName' | []                                 || 'conditionsParameters'
             'empty properties'       | 'validConditionName' | [[:]]                              || 'conditionsParameter'
-            'empty conditions'       | 'validConditionName' | [[:]]                              || 'conditionsParameter'
             'too many properties'    | 'validConditionName' | [[key1: 'value1', key2: 'value2']] || 'conditionsParameter'
             'empty key'              | 'validConditionName' | [['': 'wrong']]                    || 'conditionsParameter'
     }

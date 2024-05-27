@@ -22,13 +22,10 @@ package org.onap.cps.ncmp.api.impl.operations
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient
-import org.onap.cps.ncmp.api.impl.config.DmiProperties
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
-import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
 import org.onap.cps.ncmp.api.impl.inventory.CompositeState
 import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence
-import org.onap.cps.spi.utils.CpsValidator
 import org.spockframework.spring.SpringBean
 import spock.lang.Shared
 import spock.lang.Specification
@@ -44,16 +41,11 @@ abstract class DmiOperationsBaseSpec extends Specification {
     @SpringBean
     InventoryPersistence mockInventoryPersistence = Mock()
 
-    def mockCpsValidator = Mock(CpsValidator)
-
     @SpringBean
     ObjectMapper spyObjectMapper = Spy()
 
-    @SpringBean
-    DmiServiceUrlBuilder dmiServiceUrlBuilder = new DmiServiceUrlBuilder(new DmiProperties(), mockCpsValidator)
-
     def yangModelCmHandle = new YangModelCmHandle()
-    def static dmiServiceName = 'some service name'
+    def static dmiServiceName = 'someServiceName'
     def static cmHandleId = 'some-cm-handle'
     def static resourceIdentifier = 'parent/child'
 
@@ -68,7 +60,7 @@ abstract class DmiOperationsBaseSpec extends Specification {
     }
 
     def mockYangModelCmHandleCollectionRetrieval(dmiProperties) {
-        populateYangModelCmHandle(dmiProperties, "")
+        populateYangModelCmHandle(dmiProperties, '')
         mockInventoryPersistence.getYangModelCmHandles(_) >> [yangModelCmHandle]
     }
 
