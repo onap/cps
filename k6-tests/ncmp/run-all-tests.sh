@@ -34,7 +34,7 @@ pushd "$(dirname "$0")" || exit 1
 number_of_failures=0
 for test_script in "${ALL_TEST_SCRIPTS[@]}"; do
   echo "k6 run $test_script"
-  k6 --quiet run "$test_script" || ((number_of_failures++))
+  k6 --quiet run -e K6_MODULE_NAME="$test_script" "$test_script" || ((number_of_failures++))
   echo
 done
 

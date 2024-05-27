@@ -39,3 +39,35 @@ export function makeBatchOfCmHandleIds(batchSize, batchNumber) {
 export function getRandomCmHandleId() {
     return 'ch-' + (Math.floor(Math.random() * TOTAL_CM_HANDLES) + 1);
 }
+
+function removeBracketsAndQuotes(str) {
+    return str.replace(/\[|\]|"/g, '');
+}
+
+export function makeCustomSummaryReport(data, options) {
+    const moduleName = `${__ENV.K6_MODULE_NAME}`;
+    const header = `
+########################################################################################################################
+##                   K 6   P E R F O R M A N C E   T E S T   R E S U L T S                                            ##
+########################################################################################################################
+  \n`;
+
+    let body = ``;
+
+    for (const condition in options.thresholds) {
+        let limit = JSON.stringify(options.thresholds[condition])
+        limit = removeBracketsAndQuotes(limit)
+        let limitKey = limit.split(' ')[0]
+        const actual = Math.ceil(data.metrics[condition].values[limitKey])
+        const result = data.metrics[condition].thresholds[limit].ok ? 'PASS' : 'FAIL'
+        const row = `Test Case: ${moduleName}     Condition: ${condition}     Limit: ${limit}     Actual: ${actual}     Result: ${result}\n`;
+        body += row;
+    }
+
+    const footer = `    
+########################################################################################################################
+  \n`;
+
+    return header + body + footer;
+}
+

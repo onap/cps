@@ -21,28 +21,34 @@
 import http from 'k6/http';
 import exec from 'k6/execution';
 import { check } from 'k6';
-import { NCMP_BASE_URL, TOTAL_CM_HANDLES, makeBatchOfCmHandleIds } from './utils.js';
+import { NCMP_BASE_URL, TOTAL_CM_HANDLES, makeBatchOfCmHandleIds, makeCustomSummaryReport } from './utils.js';
 
 const BATCH_SIZE = 100;
 export const options = {
-  vus: 1,
-  iterations: Math.ceil(TOTAL_CM_HANDLES / BATCH_SIZE),
-  thresholds: {
-    http_req_failed: ['rate == 0'],
-    http_req_duration: ['avg <= 1000'],
-  },
+    vus: 1,
+    iterations: Math.ceil(TOTAL_CM_HANDLES / BATCH_SIZE),
+    thresholds: {
+        http_req_failed: ['rate == 0'],
+        http_req_duration: ['avg <= 1000'],
+    },
 };
 
-export default function() {
+export default function () {
     const nextBatchOfCmHandleIds = makeBatchOfCmHandleIds(BATCH_SIZE, exec.scenario.iterationInTest);
     const payload = {
         "dmiPlugin": "http://ncmp-dmi-plugin-demo-and-csit-stub:8092",
         "removedCmHandles": nextBatchOfCmHandleIds,
     };
     const response = http.post(NCMP_BASE_URL + '/ncmpInventory/v1/ch', JSON.stringify(payload), {
-        headers: { 'Content-Type': 'application/json' },
+        headers: {'Content-Type': 'application/json'},
     });
     check(response, {
         'status equals 200': (r) => r.status === 200,
     });
+}
+
+export function handleSummary(data) {
+    return {
+        stdout: makeCustomSummaryReport(data, options),
+    };
 }

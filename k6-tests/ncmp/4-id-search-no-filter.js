@@ -19,6 +19,7 @@
  */
 
 import { searchRequest } from './search-base.js';
+import { makeCustomSummaryReport } from "./utils.js";
 
 export const options = {
     vus: 5,
@@ -30,6 +31,12 @@ export const options = {
 };
 
 // The function that defines VU logic.
-export default function() {
+export default function () {
     searchRequest('id-searches', '{}')
+}
+
+export function handleSummary(data) {
+    return {
+        stdout: makeCustomSummaryReport(data, options),
+    };
 }
