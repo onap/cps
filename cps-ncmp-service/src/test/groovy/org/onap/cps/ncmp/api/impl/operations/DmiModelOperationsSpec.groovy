@@ -21,6 +21,9 @@
 
 package org.onap.cps.ncmp.api.impl.operations
 
+import static org.onap.cps.ncmp.api.impl.operations.OperationType.READ
+import static org.onap.cps.ncmp.api.impl.operations.RequiredDmiService.MODEL
+
 import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.api.impl.config.DmiProperties
@@ -33,8 +36,6 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.test.context.ContextConfiguration
 import spock.lang.Shared
-
-import static org.onap.cps.ncmp.api.impl.operations.OperationType.READ
 
 @SpringBootTest
 @ContextConfiguration(classes = [DmiProperties, DmiModelOperations])
@@ -58,7 +59,7 @@ class DmiModelOperationsSpec extends DmiOperationsBaseSpec {
             def moduleReferencesAsLisOfMaps = [[moduleName: 'mod1', revision: 'A'], [moduleName: 'mod2', revision: 'X']]
             def expectedUrl = "${dmiServiceName}/dmi/v1/ch/${cmHandleId}/modules"
             def responseFromDmi = new ResponseEntity([schemas: moduleReferencesAsLisOfMaps], HttpStatus.OK)
-            mockDmiRestClient.postOperationWithJsonData(expectedUrl, '{"cmHandleProperties":{},"moduleSetTag":""}', READ, NO_AUTH_HEADER)
+            mockDmiRestClient.postOperationWithJsonData(MODEL, expectedUrl, '{"cmHandleProperties":{},"moduleSetTag":""}', READ, NO_AUTH_HEADER)
                     >> responseFromDmi
         when: 'get module references is called'
             def result = objectUnderTest.getModuleReferences(yangModelCmHandle)
@@ -90,7 +91,7 @@ class DmiModelOperationsSpec extends DmiOperationsBaseSpec {
             mockYangModelCmHandleRetrieval(dmiProperties)
         and: 'a positive response from DMI service when it is called with tha expected parameters'
             def responseFromDmi = new ResponseEntity<String>(HttpStatus.OK)
-            mockDmiRestClient.postOperationWithJsonData("${dmiServiceName}/dmi/v1/ch/${cmHandleId}/modules",
+            mockDmiRestClient.postOperationWithJsonData(MODEL, "${dmiServiceName}/dmi/v1/ch/${cmHandleId}/modules",
                     '{"cmHandleProperties":' + expectedAdditionalPropertiesInRequest + ',"moduleSetTag":""}', READ, NO_AUTH_HEADER) >> responseFromDmi
         when: 'a get module references is called'
             def result = objectUnderTest.getModuleReferences(yangModelCmHandle)
@@ -109,7 +110,7 @@ class DmiModelOperationsSpec extends DmiOperationsBaseSpec {
             def responseFromDmi = new ResponseEntity([[moduleName: 'mod1', revision: 'A', yangSource: 'some yang source'],
                                                       [moduleName: 'mod2', revision: 'C', yangSource: 'other yang source']], HttpStatus.OK)
             def expectedModuleReferencesInRequest = '{"name":"mod1","revision":"A"},{"name":"mod2","revision":"X"}'
-            mockDmiRestClient.postOperationWithJsonData("${dmiServiceName}/dmi/v1/ch/${cmHandleId}/moduleResources",
+            mockDmiRestClient.postOperationWithJsonData(MODEL, "${dmiServiceName}/dmi/v1/ch/${cmHandleId}/moduleResources",
                     '{"data":{"modules":[' + expectedModuleReferencesInRequest + ']},"cmHandleProperties":{}}', READ, NO_AUTH_HEADER) >> responseFromDmi
         when: 'get new yang resources from DMI service'
             def result = objectUnderTest.getNewYangResourcesFromDmi(yangModelCmHandle, newModuleReferences)
@@ -141,7 +142,7 @@ class DmiModelOperationsSpec extends DmiOperationsBaseSpec {
             mockYangModelCmHandleRetrieval(dmiProperties)
         and: 'a positive response from DMI service when it is called with the expected moduleSetTag, modules and properties'
             def responseFromDmi = new ResponseEntity<>([[moduleName: 'mod1', revision: 'A', yangSource: 'some yang source']], HttpStatus.OK)
-            mockDmiRestClient.postOperationWithJsonData("${dmiServiceName}/dmi/v1/ch/${cmHandleId}/moduleResources",
+            mockDmiRestClient.postOperationWithJsonData(MODEL, "${dmiServiceName}/dmi/v1/ch/${cmHandleId}/moduleResources",
                     '{"data":{"modules":[{"name":"mod1","revision":"A"},{"name":"mod2","revision":"X"}]},"cmHandleProperties":' + expectedAdditionalPropertiesInRequest + '}',
                     READ, NO_AUTH_HEADER) >> responseFromDmi
         when: 'get new yang resources from DMI service'
@@ -159,9 +160,9 @@ class DmiModelOperationsSpec extends DmiOperationsBaseSpec {
             mockYangModelCmHandleRetrieval([], moduleSetTag)
         and: 'a positive response from DMI service when it is called with the expected moduleSetTag'
             def responseFromDmi = new ResponseEntity<>([[moduleName: 'mod1', revision: 'A', yangSource: 'some yang source']], HttpStatus.OK)
-            mockDmiRestClient.postOperationWithJsonData("${dmiServiceName}/dmi/v1/ch/${cmHandleId}/moduleResources",
-                '{' + expectedModuleSetTagInRequest + '"data":{"modules":[{"name":"mod1","revision":"A"},{"name":"mod2","revision":"X"}]},"cmHandleProperties":{}}',
-                READ, NO_AUTH_HEADER) >> responseFromDmi
+            mockDmiRestClient.postOperationWithJsonData(MODEL, "${dmiServiceName}/dmi/v1/ch/${cmHandleId}/moduleResources",
+                    '{' + expectedModuleSetTagInRequest + '"data":{"modules":[{"name":"mod1","revision":"A"},{"name":"mod2","revision":"X"}]},"cmHandleProperties":{}}',
+                    READ, NO_AUTH_HEADER) >> responseFromDmi
         when: 'get new yang resources from DMI service'
             def result = objectUnderTest.getNewYangResourcesFromDmi(yangModelCmHandle, newModuleReferences)
         then: 'the result is the response from DMI service'

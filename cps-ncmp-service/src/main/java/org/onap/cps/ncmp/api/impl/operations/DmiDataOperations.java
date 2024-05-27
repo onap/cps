@@ -23,6 +23,7 @@ package org.onap.cps.ncmp.api.impl.operations;
 
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING;
 import static org.onap.cps.ncmp.api.impl.operations.OperationType.READ;
+import static org.onap.cps.ncmp.api.impl.operations.RequiredDmiService.DATA;
 
 import io.micrometer.core.annotation.Timed;
 import java.util.Collection;
@@ -87,15 +88,16 @@ public class DmiDataOperations extends DmiOperations {
         final YangModelCmHandle yangModelCmHandle = getYangModelCmHandle(cmResourceAddress.cmHandleId());
         final CmHandleState cmHandleState = yangModelCmHandle.getCompositeState().getCmHandleState();
         validateIfCmHandleStateReady(yangModelCmHandle, cmHandleState);
-        final String jsonRequestBody = getDmiRequestBody(READ, requestId, null, null, yangModelCmHandle);
+        final String jsonRequestBody = getDmiRequestBody(READ, requestId, null, null,
+                yangModelCmHandle);
 
         final MultiValueMap<String, String> uriQueryParamsMap = getUriQueryParamsMap(
                 cmResourceAddress.resourceIdentifier(), optionsParamInQuery, topicParamInQuery);
         final Map<String, Object> uriVariableParamsMap = getUriVariableParamsMap(cmResourceAddress.datastoreName(),
-                yangModelCmHandle.resolveDmiServiceName(RequiredDmiService.DATA), cmResourceAddress.cmHandleId());
+                yangModelCmHandle.resolveDmiServiceName(DATA), cmResourceAddress.cmHandleId());
         final String dmiResourceDataUrl = getDmiRequestUrl(uriQueryParamsMap, uriVariableParamsMap);
 
-        return dmiRestClient.postOperationWithJsonData(dmiResourceDataUrl, jsonRequestBody, READ, authorization);
+        return dmiRestClient.postOperationWithJsonData(DATA, dmiResourceDataUrl, jsonRequestBody, READ, authorization);
     }
 
     /**
@@ -116,12 +118,13 @@ public class DmiDataOperations extends DmiOperations {
 
         final MultiValueMap<String, String> uriQueryParamsMap = getUriQueryParamsMap("/", null, null);
         final Map<String, Object> uriVariableParamsMap = getUriVariableParamsMap(dataStoreName,
-                yangModelCmHandle.resolveDmiServiceName(RequiredDmiService.DATA), cmHandleId);
+                yangModelCmHandle.resolveDmiServiceName(DATA), cmHandleId);
         final String dmiResourceDataUrl = getDmiRequestUrl(uriQueryParamsMap, uriVariableParamsMap);
 
         final CmHandleState cmHandleState = yangModelCmHandle.getCompositeState().getCmHandleState();
         validateIfCmHandleStateReady(yangModelCmHandle, cmHandleState);
-        return dmiRestClient.postOperationWithJsonData(dmiResourceDataUrl, jsonRequestBody, READ, null);
+        return dmiRestClient.postOperationWithJsonData(DATA, dmiResourceDataUrl, jsonRequestBody, READ,
+                null);
     }
 
     /**
@@ -176,12 +179,12 @@ public class DmiDataOperations extends DmiOperations {
 
         final MultiValueMap<String, String> uriQueryParamsMap = getUriQueryParamsMap(resourceId, null, null);
         final Map<String, Object> uriVariableParamsMap = getUriVariableParamsMap(PASSTHROUGH_RUNNING.getDatastoreName(),
-                yangModelCmHandle.resolveDmiServiceName(RequiredDmiService.DATA), cmHandleId);
+                yangModelCmHandle.resolveDmiServiceName(DATA), cmHandleId);
         final String dmiUrl = getDmiRequestUrl(uriQueryParamsMap, uriVariableParamsMap);
 
         final CmHandleState cmHandleState = yangModelCmHandle.getCompositeState().getCmHandleState();
         validateIfCmHandleStateReady(yangModelCmHandle, cmHandleState);
-        return dmiRestClient.postOperationWithJsonData(dmiUrl, jsonRequestBody, operationType, authorization);
+        return dmiRestClient.postOperationWithJsonData(DATA, dmiUrl, jsonRequestBody, operationType, authorization);
     }
 
     private YangModelCmHandle getYangModelCmHandle(final String cmHandleId) {
@@ -269,8 +272,8 @@ public class DmiDataOperations extends DmiOperations {
         final String dmiDataOperationRequestAsJsonString =
                 jsonObjectMapper.asJsonString(dmiDataOperationRequest);
         try {
-            dmiRestClient.postOperationWithJsonData(dataOperationResourceUrl, dmiDataOperationRequestAsJsonString, READ,
-                    authorization);
+            dmiRestClient.postOperationWithJsonData(DATA, dataOperationResourceUrl, dmiDataOperationRequestAsJsonString,
+                    READ, authorization);
         } catch (final DmiClientRequestException e) {
             handleTaskCompletionException(e, dataOperationResourceUrl, dmiDataOperationRequestBodies);
         }
