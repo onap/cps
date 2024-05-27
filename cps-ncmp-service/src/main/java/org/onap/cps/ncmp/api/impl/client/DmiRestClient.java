@@ -37,7 +37,9 @@ import org.onap.cps.ncmp.api.impl.config.DmiProperties;
 import org.onap.cps.ncmp.api.impl.exception.DmiClientRequestException;
 import org.onap.cps.ncmp.api.impl.exception.InvalidDmiResourceUrlException;
 import org.onap.cps.ncmp.api.impl.operations.OperationType;
+import org.onap.cps.ncmp.api.impl.operations.RequiredDmiService;
 import org.onap.cps.utils.JsonObjectMapper;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -55,31 +57,42 @@ public class DmiRestClient {
     private static final String HEALTH_CHECK_URL_EXTENSION = "/actuator/health";
     private static final String NOT_SPECIFIED = "";
     private static final String NO_AUTHORIZATION = null;
-    private final WebClient webClient;
+
     private final DmiProperties dmiProperties;
     private final JsonObjectMapper jsonObjectMapper;
+    @Qualifier("dataWebClient")
+    private final WebClient dataWebClient;
+    @Qualifier("modelWebClient")
+    private final WebClient modelWebClient;
+    @Qualifier("healthWebClient")
+    private final WebClient healthWebClient;
 
     /**
      * Sends POST operation to DMI with json body containing module references.
      *
+     * @param requiredDmiService      determine if the required service is for a data or model operation
      * @param dmiResourceUrl          dmi resource url
      * @param requestBodyAsJsonString json data body
      * @param operationType           the type of operation being executed (for error reporting only)
      * @param authorization           contents of Authorization header, or null if not present
      * @return response entity of type String
      */
-    public ResponseEntity<Object> postOperationWithJsonData(final String dmiResourceUrl,
+    public ResponseEntity<Object> postOperationWithJsonData(final RequiredDmiService requiredDmiService,
+                                                            final String dmiResourceUrl,
                                                             final String requestBodyAsJsonString,
                                                             final OperationType operationType,
                                                             final String authorization) {
+        final WebClient webClient = requiredDmiService.equals(RequiredDmiService.DATA) ? dataWebClient : modelWebClient;
         try {
-            return ResponseEntity.ok(webClient.post().uri(toUri(dmiResourceUrl))
+            final Object response = webClient
+                    .post().uri(toUri(dmiResourceUrl))
                     .headers(httpHeaders -> configureHttpHeaders(httpHeaders, authorization))
                     .body(BodyInserters.fromValue(requestBodyAsJsonString))
                     .retrieve()
                     .bodyToMono(Object.class)
                     .onErrorMap(httpError -> handleDmiClientException(httpError, operationType.getOperationName()))
-                    .block());
+                    .block();
+            return ResponseEntity.ok(response);
         } catch (final HttpServerErrorException e) {
             throw handleDmiClientException(e, operationType.getOperationName());
         }
@@ -93,7 +106,7 @@ public class DmiRestClient {
      */
     public String getDmiHealthStatus(final String dmiPluginBaseUrl) {
         try {
-            final JsonNode responseHealthStatus = webClient.get()
+            final JsonNode responseHealthStatus = healthWebClient.get()
                     .uri(toUri(dmiPluginBaseUrl + HEALTH_CHECK_URL_EXTENSION))
                     .headers(httpHeaders -> configureHttpHeaders(httpHeaders, NO_AUTHORIZATION))
                     .retrieve()
@@ -106,13 +119,12 @@ public class DmiRestClient {
         }
     }
 
-    private HttpHeaders configureHttpHeaders(final HttpHeaders httpHeaders, final String authorization) {
+    private void configureHttpHeaders(final HttpHeaders httpHeaders, final String authorization) {
         if (dmiProperties.isDmiBasicAuthEnabled()) {
             httpHeaders.setBasicAuth(dmiProperties.getAuthUsername(), dmiProperties.getAuthPassword());
         } else if (authorization != null && authorization.toLowerCase(Locale.getDefault()).startsWith("bearer ")) {
             httpHeaders.add(HttpHeaders.AUTHORIZATION, authorization);
         }
-        return httpHeaders;
     }
 
     private static URI toUri(final String dmiResourceUrl) {
