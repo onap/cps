@@ -19,6 +19,7 @@
  */
 
 import { searchRequest } from './search-base.js';
+import { makeCustomSummaryReport } from "./utils.js";
 
 export const options = {
     vus: 5,
@@ -29,6 +30,12 @@ export const options = {
     },
 };
 
-export default function() {
+export default function () {
     searchRequest('searches', '{}')
+}
+
+export function handleSummary(data) {
+    return {
+        stdout: makeCustomSummaryReport(data, options),
+    };
 }

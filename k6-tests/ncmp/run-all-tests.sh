@@ -31,12 +31,18 @@ ALL_TEST_SCRIPTS=( \
 
 pushd "$(dirname "$0")" || exit 1
 
+printf "Test Case\tCondition\tLimit\tActual\tResult\n" > summary.log
+
 number_of_failures=0
 for test_script in "${ALL_TEST_SCRIPTS[@]}"; do
   echo "k6 run $test_script"
-  k6 --quiet run "$test_script" || ((number_of_failures++))
-  echo
+  k6 --quiet run -e K6_MODULE_NAME="$test_script" "$test_script" >> summary.log || ((number_of_failures++))
 done
+
+echo '##############################################################################################################################'
+echo '##                             K 6   P E R F O R M A N C E   T E S T   R E S U L T S                                        ##'
+echo '##############################################################################################################################'
+awk -F$'\t' '{printf "%-40s%-50s%-20s%-10s%-6s\n", $1, $2, $3, $4, $5}' summary.log
 
 popd || exit 1
 

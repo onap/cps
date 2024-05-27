@@ -18,9 +18,6 @@
 echo '================================== docker info =========================='
 docker ps -a
 
-echo '================================== CPS-NCMP Logs ========================'
-docker logs cps-and-ncmp
-
 echo 'Stopping, Removing all running containers...'
 docker stop $(docker ps -aq) && docker rm $(docker ps -aq)
 

@@ -19,6 +19,7 @@
  */
 
 import { searchRequest } from './search-base.js';
+import { makeCustomSummaryReport } from "./utils.js";
 
 export const options = {
     vus: 5,
@@ -29,14 +30,20 @@ export const options = {
     },
 };
 
-export default function() {
+export default function () {
     const search_filter = {
         "cmHandleQueryParameters": [
             {
                 "conditionName": "hasAllModules",
-                "conditionParameters": [ {"moduleName": "ietf-yang-types-1"} ]
+                "conditionParameters": [{"moduleName": "ietf-yang-types-1"}]
             }
         ]
     };
     searchRequest('searches', JSON.stringify(search_filter));
+}
+
+export function handleSummary(data) {
+    return {
+        stdout: makeCustomSummaryReport(data, options),
+    };
 }
