@@ -111,7 +111,7 @@ public class DmiModelOperations {
                 .variablePathSegment("cmHandleId", cmHandle)
                 .variablePathSegment("resourceName", resourceName)
                 .build(dmiServiceName, dmiProperties.getDmiBasePath());
-        return dmiRestClient.postOperationWithJsonData(dmiUrl, jsonRequestBody, OperationType.READ, null);
+        return dmiRestClient.postOperationWithJsonData(MODEL, dmiUrl, jsonRequestBody, OperationType.READ, null);
     }
 
     private static String getRequestBodyToFetchYangResources(final Collection<ModuleReference> newModuleReferences,
