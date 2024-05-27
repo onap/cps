@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "311ff541_331bdc7f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionDelta.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-05-27T08:56:16Z",
+      "side": 1,
+      "message": "yeah. nice catch.\nintended to do something else 😊",
+      "parentUuid": "0fd9c755_ec63bc20",
+      "range": {
+        "startLine": 65,
+        "startChar": 13,
+        "endLine": 69,
+        "endChar": 13
+      },
+      "revId": "00a05d883c6a4a131dbca9c4ac182c9c9b64666c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "914b7ad5_370b5d2d",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionDeltaSpec.groovy",
         "patchSetId": 2
