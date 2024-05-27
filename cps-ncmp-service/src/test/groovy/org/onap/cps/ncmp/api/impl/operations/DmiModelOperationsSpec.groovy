@@ -58,8 +58,7 @@ class DmiModelOperationsSpec extends DmiOperationsBaseSpec {
             def moduleReferencesAsLisOfMaps = [[moduleName: 'mod1', revision: 'A'], [moduleName: 'mod2', revision: 'X']]
             def expectedUrl = "${dmiServiceName}/dmi/v1/ch/${cmHandleId}/modules"
             def responseFromDmi = new ResponseEntity([schemas: moduleReferencesAsLisOfMaps], HttpStatus.OK)
-            mockDmiRestClient.postOperationWithJsonData(expectedUrl, '{"cmHandleProperties":{},"moduleSetTag":""}', READ, NO_AUTH_HEADER)
-                    >> responseFromDmi
+            mockDmiRestClient.postOperationWithJsonData(expectedUrl, '{"cmHandleProperties":{},"moduleSetTag":""}', READ, NO_AUTH_HEADER) >> responseFromDmi
         when: 'get module references is called'
             def result = objectUnderTest.getModuleReferences(yangModelCmHandle)
         then: 'the result consists of expected module references'

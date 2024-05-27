@@ -33,34 +33,27 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
 import org.onap.cps.ncmp.api.impl.config.DmiProperties;
-import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.models.YangResource;
 import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 /**
  * Operations class for DMI Model.
  */
-@Component
-public class DmiModelOperations extends DmiOperations {
+@RequiredArgsConstructor
+@Service
+public class DmiModelOperations {
 
-    /**
-     * Constructor for {@code DmiOperations}. This method also manipulates url properties.
-     *
-     * @param dmiRestClient {@code DmiRestClient}
-     */
-    public DmiModelOperations(final InventoryPersistence inventoryPersistence,
-                              final JsonObjectMapper jsonObjectMapper,
-                              final DmiProperties dmiProperties,
-                              final DmiRestClient dmiRestClient, final DmiServiceUrlBuilder dmiServiceUrlBuilder) {
-        super(inventoryPersistence, jsonObjectMapper, dmiProperties, dmiRestClient, dmiServiceUrlBuilder);
-    }
+    protected final JsonObjectMapper jsonObjectMapper;
+    protected final DmiProperties dmiProperties;
+    protected final DmiRestClient dmiRestClient;
 
     /**
      * Retrieves module references.
@@ -113,9 +106,12 @@ public class DmiModelOperations extends DmiOperations {
                                                                   final String jsonRequestBody,
                                                                   final String cmHandle,
                                                                   final String resourceName) {
-        final String dmiResourceDataUrl = getDmiResourceUrl(dmiServiceName, cmHandle, resourceName);
-        return dmiRestClient.postOperationWithJsonData(dmiResourceDataUrl, jsonRequestBody,
-                OperationType.READ, null);
+        final String dmiUrl = DmiServiceUrlBuilder.newInstance()
+                .pathSegment("ch")
+                .variablePathSegment("cmHandleId", cmHandle)
+                .variablePathSegment("resourceName", resourceName)
+                .build(dmiServiceName, dmiProperties.getDmiBasePath());
+        return dmiRestClient.postOperationWithJsonData(dmiUrl, jsonRequestBody, OperationType.READ, null);
     }
 
     private static String getRequestBodyToFetchYangResources(final Collection<ModuleReference> newModuleReferences,

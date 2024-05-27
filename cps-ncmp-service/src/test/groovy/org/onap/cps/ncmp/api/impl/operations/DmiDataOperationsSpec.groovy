@@ -75,9 +75,8 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             mockYangModelCmHandleRetrieval(dmiProperties)
         and: 'a positive response from DMI service when it is called with the expected parameters'
             def responseFromDmi = new ResponseEntity<Object>(HttpStatus.OK)
-            def expectedUrl = dmiServiceBaseUrl + "${expectedDatastoreInUrl}?resourceIdentifier=${resourceIdentifier}${expectedOptionsInUrl}"
+            def expectedUrl = "${dmiServiceBaseUrl}${expectedDatastoreInUrl}?resourceIdentifier=${resourceIdentifier}${expectedOptionsInUrl}"
             mockDmiRestClient.postOperationWithJsonData(expectedUrl, expectedJson, READ, NO_AUTH_HEADER) >> responseFromDmi
-            dmiServiceUrlBuilder.getDmiDatastoreUrl(_, _) >> expectedUrl
         when: 'get resource data is invoked'
             def cmResourceAddress = new CmResourceAddress(dataStore.datastoreName, cmHandleId, resourceIdentifier)
             def result = objectUnderTest.getResourceDataFromDmi(cmResourceAddress, options, NO_TOPIC, NO_REQUEST_ID, NO_AUTH_HEADER)
@@ -85,12 +84,12 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             assert result == responseFromDmi
         where: 'the following parameters are used'
             scenario                               | dmiProperties               | dataStore               | options       || expectedJson                                                 | expectedDatastoreInUrl    | expectedOptionsInUrl
-            'without properties'                   | []                          | PASSTHROUGH_OPERATIONAL | OPTIONS_PARAM || '{"operation":"read","cmHandleProperties":{}}'               | 'passthrough-operational' | '&options=(a=1,b=2)'
-            'with properties'                      | [yangModelCmHandleProperty] | PASSTHROUGH_OPERATIONAL | OPTIONS_PARAM || '{"operation":"read","cmHandleProperties":{"prop1":"val1"}}' | 'passthrough-operational' | '&options=(a=1,b=2)'
+            'without properties'                   | []                          | PASSTHROUGH_OPERATIONAL | OPTIONS_PARAM || '{"operation":"read","cmHandleProperties":{}}'               | 'passthrough-operational' | '&options=(a%3D1,b%3D2)'
+            'with properties'                      | [yangModelCmHandleProperty] | PASSTHROUGH_OPERATIONAL | OPTIONS_PARAM || '{"operation":"read","cmHandleProperties":{"prop1":"val1"}}' | 'passthrough-operational' | '&options=(a%3D1,b%3D2)'
             'null options'                         | [yangModelCmHandleProperty] | PASSTHROUGH_OPERATIONAL | null          || '{"operation":"read","cmHandleProperties":{"prop1":"val1"}}' | 'passthrough-operational' | ''
             'empty options'                        | [yangModelCmHandleProperty] | PASSTHROUGH_OPERATIONAL | ''            || '{"operation":"read","cmHandleProperties":{"prop1":"val1"}}' | 'passthrough-operational' | ''
-            'datastore running without properties' | []                          | PASSTHROUGH_RUNNING     | OPTIONS_PARAM || '{"operation":"read","cmHandleProperties":{}}'               | 'passthrough-running'     | '&options=(a=1,b=2)'
-            'datastore running with properties'    | [yangModelCmHandleProperty] | PASSTHROUGH_RUNNING     | OPTIONS_PARAM || '{"operation":"read","cmHandleProperties":{"prop1":"val1"}}' | 'passthrough-running'     | '&options=(a=1,b=2)'
+            'datastore running without properties' | []                          | PASSTHROUGH_RUNNING     | OPTIONS_PARAM || '{"operation":"read","cmHandleProperties":{}}'               | 'passthrough-running'     | '&options=(a%3D1,b%3D2)'
+            'datastore running with properties'    | [yangModelCmHandleProperty] | PASSTHROUGH_RUNNING     | OPTIONS_PARAM || '{"operation":"read","cmHandleProperties":{"prop1":"val1"}}' | 'passthrough-running'     | '&options=(a%3D1,b%3D2)'
     }
 
     def 'Execute (async) data operation from DMI service.'() {
@@ -101,10 +100,9 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             dataOperationRequest.dataOperationDefinitions[0].cmHandleIds = [cmHandleId]
         and: 'a positive response from DMI service when it is called with valid request parameters'
             def responseFromDmi = new ResponseEntity<Object>(HttpStatus.ACCEPTED)
-            def expectedDmiBatchResourceDataUrl = "ncmp/v1/data/topic=my-topic-name"
+            def expectedDmiBatchResourceDataUrl = "someServiceName/dmi/v1/data?requestId=requestId&topic=my-topic-name"
             def expectedBatchRequestAsJson = '{"operations":[{"operation":"read","operationId":"operational-14","datastore":"ncmp-datastore:passthrough-operational","options":"some option","resourceIdentifier":"some resource identifier","cmHandles":[{"id":"some-cm-handle","moduleSetTag":"","cmHandleProperties":{"prop1":"val1"}}]}]}'
             mockDmiRestClient.postOperationWithJsonData(expectedDmiBatchResourceDataUrl, _, READ.operationName, NO_AUTH_HEADER) >> responseFromDmi
-            dmiServiceUrlBuilder.getDataOperationRequestUrl(_, _) >> expectedDmiBatchResourceDataUrl
         when: 'get resource data for group of cm handles are invoked'
             objectUnderTest.requestResourceDataFromDmi('my-topic-name', dataOperationRequest, 'requestId', NO_AUTH_HEADER)
         then: 'the post operation was called and ncmp generated dmi request body json args'
@@ -115,12 +113,12 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
         given: 'data operation request body and dmi resource url'
             def dmiDataOperation = DmiDataOperation.builder().operationId('some-operation-id').build()
             dmiDataOperation.getCmHandles().add(DmiOperationCmHandle.builder().id('some-cm-handle-id').build())
-            def dmiDataOperationResourceDataUrl = "http://dmi-service-name:dmi-port/dmi/v1/data?topic=my-topic-name&requestId=some-request-id"
+            def dmiDataOperationResourceDataUrl = 'urlWithTopicAndQueryParam?topic=my-topic-name&requestId=my-request-id'
             def actualDataOperationCloudEvent = null
         when: 'exception occurs after sending request to dmi service'
             objectUnderTest.handleTaskCompletionException(new DmiClientRequestException(123, 'message', 'details', UNABLE_TO_READ_RESOURCE_DATA), dmiDataOperationResourceDataUrl, List.of(dmiDataOperation))
         then: 'a cloud event is published'
-            eventsPublisher.publishCloudEvent('my-topic-name', 'some-request-id', _) >> { args -> actualDataOperationCloudEvent = args[2] }
+            eventsPublisher.publishCloudEvent('my-topic-name', 'my-request-id', _) >> { args -> actualDataOperationCloudEvent = args[2] }
         and: 'the event contains the expected error details'
             def eventDataValue = extractDataValue(actualDataOperationCloudEvent)
             assert eventDataValue.operationId == dmiDataOperation.operationId
@@ -136,7 +134,6 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             def responseFromDmi = new ResponseEntity<Object>(HttpStatus.OK)
             def expectedUrl = dmiServiceBaseUrl + "passthrough-operational?resourceIdentifier=/"
             mockDmiRestClient.postOperationWithJsonData(expectedUrl, '{"operation":"read","cmHandleProperties":{"prop1":"val1"}}', READ, null) >> responseFromDmi
-            dmiServiceUrlBuilder.getDmiDatastoreUrl(_, _) >> expectedUrl
         when: 'get resource data is invoked'
             def result = objectUnderTest.getResourceDataFromDmi( PASSTHROUGH_OPERATIONAL.datastoreName, cmHandleId, NO_REQUEST_ID)
         then: 'the result is the response from the DMI service'
@@ -147,10 +144,9 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
         given: 'a cm handle for #cmHandleId'
             mockYangModelCmHandleRetrieval([yangModelCmHandleProperty])
         and: 'a positive response from DMI service when it is called with the expected parameters'
-            def expectedUrl = dmiServiceBaseUrl + "passthrough-running?resourceIdentifier=${resourceIdentifier}"
+            def expectedUrl = "${dmiServiceBaseUrl}passthrough-running?resourceIdentifier=${resourceIdentifier}"
             def expectedJson = '{"operation":"' + expectedOperationInUrl + '","dataType":"some data type","data":"requestData","cmHandleProperties":{"prop1":"val1"}}'
             def responseFromDmi = new ResponseEntity<Object>(HttpStatus.OK)
-            dmiServiceUrlBuilder.getDmiDatastoreUrl(_, _) >> expectedUrl
             mockDmiRestClient.postOperationWithJsonData(expectedUrl, expectedJson, operation, NO_AUTH_HEADER) >> responseFromDmi
         when: 'write resource method is invoked'
             def result = objectUnderTest.writeResourceDataPassThroughRunningFromDmi(cmHandleId, 'parent/child', operation, 'requestData', 'some data type', NO_AUTH_HEADER)
@@ -163,6 +159,6 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
     }
 
     def extractDataValue(actualDataOperationCloudEvent) {
-        return toTargetEvent(actualDataOperationCloudEvent, DataOperationEvent.class).data.responses[0]
+        return toTargetEvent(actualDataOperationCloudEvent, DataOperationEvent).data.responses[0]
     }
 }
