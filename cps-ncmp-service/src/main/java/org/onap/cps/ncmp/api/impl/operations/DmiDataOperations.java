@@ -23,6 +23,7 @@ package org.onap.cps.ncmp.api.impl.operations;
 
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING;
 import static org.onap.cps.ncmp.api.impl.operations.OperationType.READ;
+import static org.onap.cps.ncmp.api.impl.operations.RequiredDmiService.DATA;
 
 import io.micrometer.core.annotation.Timed;
 import java.util.Collection;
@@ -87,13 +88,9 @@ public class DmiDataOperations {
         final CmHandleState cmHandleState = yangModelCmHandle.getCompositeState().getCmHandleState();
         validateIfCmHandleStateReady(yangModelCmHandle, cmHandleState);
         final String jsonRequestBody = getDmiRequestBody(READ, requestId, null, null, yangModelCmHandle);
-
-        final String dmiUrl = getDmiResourceDataUrl(cmResourceAddress.datastoreName(),
-                                                    yangModelCmHandle,
-                                                    cmResourceAddress.resourceIdentifier(),
-                                                    optionsParamInQuery,
-                                                    topicParamInQuery);
-        return dmiRestClient.postOperationWithJsonData(dmiUrl, jsonRequestBody, READ, authorization);
+        final String dmiUrl = getDmiResourceDataUrl(cmResourceAddress.datastoreName(), yangModelCmHandle,
+                cmResourceAddress.resourceIdentifier(), optionsParamInQuery, topicParamInQuery);
+        return dmiRestClient.postOperationWithJsonData(DATA, dmiUrl, jsonRequestBody, READ, authorization);
     }
 
     /**
@@ -114,7 +111,7 @@ public class DmiDataOperations {
 
         final String jsonRequestBody = getDmiRequestBody(READ, requestId, null, null, yangModelCmHandle);
         final String dmiUrl = getDmiResourceDataUrl(datastoreName, yangModelCmHandle, "/", null, null);
-        return dmiRestClient.postOperationWithJsonData(dmiUrl, jsonRequestBody, READ, null);
+        return dmiRestClient.postOperationWithJsonData(DATA, dmiUrl, jsonRequestBody, READ, null);
     }
 
     /**
@@ -171,7 +168,7 @@ public class DmiDataOperations {
                 yangModelCmHandle);
         final String dmiUrl = getDmiResourceDataUrl(PASSTHROUGH_RUNNING.getDatastoreName(),
             yangModelCmHandle, resourceId, null, null);
-        return dmiRestClient.postOperationWithJsonData(dmiUrl, jsonRequestBody, operationType, authorization);
+        return dmiRestClient.postOperationWithJsonData(DATA, dmiUrl, jsonRequestBody, operationType, authorization);
     }
 
     private YangModelCmHandle getYangModelCmHandle(final String cmHandleId) {
@@ -251,7 +248,8 @@ public class DmiDataOperations {
                 .operations(dmiDataOperationRequestBodies).build();
         final String dmiDataOperationRequestAsJsonString = jsonObjectMapper.asJsonString(dmiDataOperationRequest);
         try {
-            dmiRestClient.postOperationWithJsonData(dmiUrl, dmiDataOperationRequestAsJsonString, READ, authorization);
+            dmiRestClient.postOperationWithJsonData(DATA, dmiUrl, dmiDataOperationRequestAsJsonString, READ,
+                    authorization);
         } catch (final DmiClientRequestException e) {
             handleTaskCompletionException(e, dmiUrl, dmiDataOperationRequestBodies);
         }
