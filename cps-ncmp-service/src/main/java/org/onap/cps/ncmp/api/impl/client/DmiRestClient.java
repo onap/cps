@@ -37,15 +37,19 @@ import org.onap.cps.ncmp.api.impl.config.DmiProperties;
 import org.onap.cps.ncmp.api.impl.exception.DmiClientRequestException;
 import org.onap.cps.ncmp.api.impl.exception.InvalidDmiResourceUrlException;
 import org.onap.cps.ncmp.api.impl.operations.OperationType;
+import org.onap.cps.ncmp.api.impl.operations.RequiredDmiService;
 import org.onap.cps.utils.JsonObjectMapper;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.reactive.function.BodyInserters;
+import org.springframework.web.reactive.function.client.ClientResponse;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
+import reactor.core.publisher.Mono;
 
 @Component
 @RequiredArgsConstructor
@@ -55,31 +59,47 @@ public class DmiRestClient {
     private static final String HEALTH_CHECK_URL_EXTENSION = "/actuator/health";
     private static final String NOT_SPECIFIED = "";
     private static final String NO_AUTHORIZATION = null;
-    private final WebClient webClient;
+
     private final DmiProperties dmiProperties;
     private final JsonObjectMapper jsonObjectMapper;
+    @Qualifier("dataWebClient")
+    private final WebClient dataWebClient;
+    @Qualifier("modelWebClient")
+    private final WebClient modelWebClient;
+    @Qualifier("healthWebClient")
+    private final WebClient healthWebClient;
 
     /**
      * Sends POST operation to DMI with json body containing module references.
      *
-     * @param dmiResourceUrl          dmi resource url
+     * @param requiredDmiService      determine if the required service is for a data or model operation
+     * @param dmiUrl                  dmi resource url
      * @param requestBodyAsJsonString json data body
      * @param operationType           the type of operation being executed (for error reporting only)
      * @param authorization           contents of Authorization header, or null if not present
      * @return response entity of type String
      */
-    public ResponseEntity<Object> postOperationWithJsonData(final String dmiResourceUrl,
+    public ResponseEntity<Object> postOperationWithJsonData(final RequiredDmiService requiredDmiService,
+                                                            final String dmiUrl,
                                                             final String requestBodyAsJsonString,
                                                             final OperationType operationType,
                                                             final String authorization) {
+        final WebClient webClient = requiredDmiService.equals(RequiredDmiService.DATA) ? dataWebClient : modelWebClient;
         try {
-            return ResponseEntity.ok(webClient.post().uri(toUri(dmiResourceUrl))
+            final Mono<ClientResponse> clientResponseAsMono = webClient
+                    .post().uri(toUri(dmiUrl))
                     .headers(httpHeaders -> configureHttpHeaders(httpHeaders, authorization))
                     .body(BodyInserters.fromValue(requestBodyAsJsonString))
-                    .retrieve()
-                    .bodyToMono(Object.class)
-                    .onErrorMap(httpError -> handleDmiClientException(httpError, operationType.getOperationName()))
-                    .block());
+                    .exchangeToMono(Mono::just)
+                    .onErrorMap(httpError -> handleDmiClientException(httpError, operationType.getOperationName()));
+
+            return clientResponseAsMono.flatMap(clientResponse -> {
+                final int statusCode = clientResponse.statusCode().value();
+                final Mono<Object> responseBodyMono = clientResponse.bodyToMono(Object.class);
+
+                return responseBodyMono.map(responseBody -> ResponseEntity.status(statusCode).body(responseBody))
+                        .switchIfEmpty(Mono.just(ResponseEntity.status(statusCode).build()));
+            }).block();
         } catch (final HttpServerErrorException e) {
             throw handleDmiClientException(e, operationType.getOperationName());
         }
@@ -88,31 +108,31 @@ public class DmiRestClient {
     /**
      * Get DMI plugin health status.
      *
-     * @param       dmiPluginBaseUrl the base URL of the dmi-plugin
-     * @return      plugin health status ("UP" is all OK, "" (not-specified) in case of any exception)
+     * @param dmiUrl the base URL of the dmi-plugin
+     * @return plugin health status ("UP" is all OK, "" (not-specified) in case of any exception)
      */
-    public String getDmiHealthStatus(final String dmiPluginBaseUrl) {
+    public String getDmiHealthStatus(final String dmiUrl) {
         try {
-            final JsonNode responseHealthStatus = webClient.get()
-                    .uri(toUri(dmiPluginBaseUrl + HEALTH_CHECK_URL_EXTENSION))
+            final URI dmiHealthCheckUri = toUri(dmiUrl + HEALTH_CHECK_URL_EXTENSION);
+            final JsonNode responseHealthStatus = healthWebClient.get()
+                    .uri(dmiHealthCheckUri)
                     .headers(httpHeaders -> configureHttpHeaders(httpHeaders, NO_AUTHORIZATION))
                     .retrieve()
                     .bodyToMono(JsonNode.class).block();
             return responseHealthStatus == null ? NOT_SPECIFIED :
-                    responseHealthStatus.get("status").asText();
+                    responseHealthStatus.path("status").asText();
         } catch (final Exception e) {
-            log.warn("Failed to retrieve health status from {}. Error Message: {}", dmiPluginBaseUrl, e.getMessage());
+            log.warn("Failed to retrieve health status from {}. Error Message: {}", dmiUrl, e.getMessage());
             return NOT_SPECIFIED;
         }
     }
 
-    private HttpHeaders configureHttpHeaders(final HttpHeaders httpHeaders, final String authorization) {
+    private void configureHttpHeaders(final HttpHeaders httpHeaders, final String authorization) {
         if (dmiProperties.isDmiBasicAuthEnabled()) {
             httpHeaders.setBasicAuth(dmiProperties.getAuthUsername(), dmiProperties.getAuthPassword());
         } else if (authorization != null && authorization.toLowerCase(Locale.getDefault()).startsWith("bearer ")) {
             httpHeaders.add(HttpHeaders.AUTHORIZATION, authorization);
         }
-        return httpHeaders;
     }
 
     private static URI toUri(final String dmiResourceUrl) {
