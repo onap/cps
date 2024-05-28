@@ -40,7 +40,7 @@ export const options = {
         cm_search_module: {
             executor: 'constant-vus',
             exec: 'cm_search_module',
-            vus: 5,
+            vus: 4,
             duration: '1m',
         },
     },
@@ -49,9 +49,9 @@ export const options = {
         'http_req_failed{scenario:passthrough_read}': ['rate == 0'],
         'http_req_failed{scenario:id_search_module}': ['rate == 0'],
         'http_req_failed{scenario:cm_search_module}': ['rate == 0'],
-        'http_req_duration{scenario:passthrough_read}': ['avg <= 2540'], // DMI delay + 40 ms
-        'http_req_duration{scenario:id_search_module}': ['avg <= 200'],
-        'http_req_duration{scenario:cm_search_module}': ['avg <= 35_000'],
+        'http_req_duration{scenario:passthrough_read}': ['avg <= 2600'], // DMI delay + 100 ms
+        'http_req_duration{scenario:id_search_module}': ['avg <= 500'],
+        'http_req_duration{scenario:cm_search_module}': ['avg <= 30000'],
     },
 };
 

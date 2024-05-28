@@ -22,11 +22,11 @@ import { searchRequest } from './search-base.js';
 import { makeCustomSummaryReport } from "./utils.js";
 
 export const options = {
-    vus: 5,
+    vus: 4,
     duration: '30s',
     thresholds: {
         http_req_failed: ['rate == 0'],
-        http_req_duration: ['avg <= 35_000'],
+        http_req_duration: ['avg <= 25000'],
     },
 };
 
