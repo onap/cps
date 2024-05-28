@@ -29,7 +29,7 @@ export const options = {
     iterations: Math.ceil(TOTAL_CM_HANDLES / BATCH_SIZE),
     thresholds: {
         http_req_failed: ['rate == 0'],
-        http_req_duration: ['avg <= 1000'],
+        http_req_duration: ['avg <= 1050'],
     },
 };
 

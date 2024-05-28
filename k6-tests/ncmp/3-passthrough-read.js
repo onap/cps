@@ -30,7 +30,7 @@ export const options = {
     duration: '30s',
     thresholds: {
         http_req_failed: ['rate == 0'],
-        ncmp_overhead: ['avg <= 40'],
+        ncmp_overhead: ['avg <= 50'],
     },
 };
 

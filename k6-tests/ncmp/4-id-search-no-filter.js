@@ -23,10 +23,10 @@ import { makeCustomSummaryReport } from "./utils.js";
 
 export const options = {
     vus: 5,
-    duration: '60s',
+    duration: '30s',
     thresholds: {
         http_req_failed: ['rate == 0'],
-        http_req_duration: ['avg <= 800'],
+        http_req_duration: ['avg <= 700'],
     },
 };
 

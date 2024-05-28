@@ -27,7 +27,7 @@ export const options = {
     iterations: 1,
     thresholds: {
         http_req_failed: ['rate == 0'],
-        iteration_duration: ['max <= 300_000'], // 5 minutes
+        iteration_duration: ['max <= 260000'], // 4m20s
     },
 };
 
