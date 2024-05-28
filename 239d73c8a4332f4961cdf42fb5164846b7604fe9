@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c46263db_c1805adb",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-05-28T13:06:34Z",
+      "side": 1,
+      "message": "This is my only concern (only the stub. But still).\nThere was no request body in the stub endpoint, while there is in DMI itself.",
+      "revId": "239d73c8a4332f4961cdf42fb5164846b7604fe9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
