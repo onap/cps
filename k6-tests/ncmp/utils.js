@@ -39,3 +39,23 @@ export function makeBatchOfCmHandleIds(batchSize, batchNumber) {
 export function getRandomCmHandleId() {
     return 'ch-' + (Math.floor(Math.random() * TOTAL_CM_HANDLES) + 1);
 }
+
+function removeBracketsAndQuotes(str) {
+    return str.replace(/\[|\]|"/g, '');
+}
+
+export function makeCustomSummaryReport(data, options) {
+    const moduleName = `${__ENV.K6_MODULE_NAME}`;
+    let body = ``;
+    for (const condition in options.thresholds) {
+        let limit = JSON.stringify(options.thresholds[condition])
+        limit = removeBracketsAndQuotes(limit)
+        let limitKey = limit.split(' ')[0]
+        const actual = Math.ceil(data.metrics[condition].values[limitKey])
+        const result = data.metrics[condition].thresholds[limit].ok ? 'PASS' : 'FAIL'
+        const row = `${moduleName}\t${condition}\t${limit}\t${actual}\t${result}\n`;
+        body += row;
+    }
+    return body;
+}
+
