@@ -84,13 +84,13 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
         then: 'the result is the response from the DMI service'
             assert result == responseFromDmi
         where: 'the following parameters are used'
-            scenario                               | dmiProperties               | dataStore               | options       || expectedJson                                                 | expectedDatastoreInUrl    | expectedOptionsInUrl
-            'without properties'                   | []                          | PASSTHROUGH_OPERATIONAL | OPTIONS_PARAM || '{"operation":"read","cmHandleProperties":{}}'               | 'passthrough-operational' | '&options=(a=1,b=2)'
-            'with properties'                      | [yangModelCmHandleProperty] | PASSTHROUGH_OPERATIONAL | OPTIONS_PARAM || '{"operation":"read","cmHandleProperties":{"prop1":"val1"}}' | 'passthrough-operational' | '&options=(a=1,b=2)'
-            'null options'                         | [yangModelCmHandleProperty] | PASSTHROUGH_OPERATIONAL | null          || '{"operation":"read","cmHandleProperties":{"prop1":"val1"}}' | 'passthrough-operational' | ''
-            'empty options'                        | [yangModelCmHandleProperty] | PASSTHROUGH_OPERATIONAL | ''            || '{"operation":"read","cmHandleProperties":{"prop1":"val1"}}' | 'passthrough-operational' | ''
-            'datastore running without properties' | []                          | PASSTHROUGH_RUNNING     | OPTIONS_PARAM || '{"operation":"read","cmHandleProperties":{}}'               | 'passthrough-running'     | '&options=(a=1,b=2)'
-            'datastore running with properties'    | [yangModelCmHandleProperty] | PASSTHROUGH_RUNNING     | OPTIONS_PARAM || '{"operation":"read","cmHandleProperties":{"prop1":"val1"}}' | 'passthrough-running'     | '&options=(a=1,b=2)'
+            scenario                               | dmiProperties               | dataStore               | options       || expectedJson                                                                   | expectedDatastoreInUrl    | expectedOptionsInUrl
+            'without properties'                   | []                          | PASSTHROUGH_OPERATIONAL | OPTIONS_PARAM || '{"operation":"read","cmHandleProperties":{},"moduleSetTag":""}'               | 'passthrough-operational' | '&options=(a=1,b=2)'
+            'with properties'                      | [yangModelCmHandleProperty] | PASSTHROUGH_OPERATIONAL | OPTIONS_PARAM || '{"operation":"read","cmHandleProperties":{"prop1":"val1"},"moduleSetTag":""}' | 'passthrough-operational' | '&options=(a=1,b=2)'
+            'null options'                         | [yangModelCmHandleProperty] | PASSTHROUGH_OPERATIONAL | null          || '{"operation":"read","cmHandleProperties":{"prop1":"val1"},"moduleSetTag":""}' | 'passthrough-operational' | ''
+            'empty options'                        | [yangModelCmHandleProperty] | PASSTHROUGH_OPERATIONAL | ''            || '{"operation":"read","cmHandleProperties":{"prop1":"val1"},"moduleSetTag":""}' | 'passthrough-operational' | ''
+            'datastore running without properties' | []                          | PASSTHROUGH_RUNNING     | OPTIONS_PARAM || '{"operation":"read","cmHandleProperties":{},"moduleSetTag":""}'               | 'passthrough-running'     | '&options=(a=1,b=2)'
+            'datastore running with properties'    | [yangModelCmHandleProperty] | PASSTHROUGH_RUNNING     | OPTIONS_PARAM || '{"operation":"read","cmHandleProperties":{"prop1":"val1"},"moduleSetTag":""}' | 'passthrough-running'     | '&options=(a=1,b=2)'
     }
 
     def 'Execute (async) data operation from DMI service.'() {
@@ -130,12 +130,13 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
     }
 
     def 'call get all resource data.'() {
-        given: 'the system returns a cm handle with a sample property'
-            mockYangModelCmHandleRetrieval([yangModelCmHandleProperty])
+        given: 'the system returns a cm handle with a sample property and sample module set tag'
+            def sampleModuleSetTag = "mod-tag-1"
+            mockYangModelCmHandleRetrieval([yangModelCmHandleProperty], sampleModuleSetTag)
         and: 'a positive response from DMI service when it is called with the expected parameters'
             def responseFromDmi = new ResponseEntity<Object>(HttpStatus.OK)
             def expectedUrl = dmiServiceBaseUrl + "passthrough-operational?resourceIdentifier=/"
-            mockDmiRestClient.postOperationWithJsonData(expectedUrl, '{"operation":"read","cmHandleProperties":{"prop1":"val1"}}', READ, null) >> responseFromDmi
+            mockDmiRestClient.postOperationWithJsonData(expectedUrl, '{"operation":"read","cmHandleProperties":{"prop1":"val1"},"moduleSetTag":"'+sampleModuleSetTag+'"}', READ, null) >> responseFromDmi
             dmiServiceUrlBuilder.getDmiDatastoreUrl(_, _) >> expectedUrl
         when: 'get resource data is invoked'
             def result = objectUnderTest.getResourceDataFromDmi( PASSTHROUGH_OPERATIONAL.datastoreName, cmHandleId, NO_REQUEST_ID)
@@ -148,7 +149,7 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             mockYangModelCmHandleRetrieval([yangModelCmHandleProperty])
         and: 'a positive response from DMI service when it is called with the expected parameters'
             def expectedUrl = dmiServiceBaseUrl + "passthrough-running?resourceIdentifier=${resourceIdentifier}"
-            def expectedJson = '{"operation":"' + expectedOperationInUrl + '","dataType":"some data type","data":"requestData","cmHandleProperties":{"prop1":"val1"}}'
+            def expectedJson = '{"operation":"' + expectedOperationInUrl + '","dataType":"some data type","data":"requestData","cmHandleProperties":{"prop1":"val1"},"moduleSetTag":""}'
             def responseFromDmi = new ResponseEntity<Object>(HttpStatus.OK)
             dmiServiceUrlBuilder.getDmiDatastoreUrl(_, _) >> expectedUrl
             mockDmiRestClient.postOperationWithJsonData(expectedUrl, expectedJson, operation, NO_AUTH_HEADER) >> responseFromDmi
