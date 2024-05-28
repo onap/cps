@@ -52,6 +52,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb3bb2de_c21f0fa0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-05-28T11:08:09Z",
+      "side": 1,
+      "message": "some minor NB comments are left",
+      "revId": "00419b06de72c75631dc3c0856f01aefb6c8906a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6455f457_876c6ee5",
@@ -189,6 +206,98 @@
         "startChar": 13,
         "endLine": 26,
         "endChar": 45
+      },
+      "revId": "00419b06de72c75631dc3c0856f01aefb6c8906a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c3be5e9_55aafbf2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/utils/AlternateIdMatcher.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-05-28T11:08:09Z",
+      "side": 1,
+      "message": "NB: 2024",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 23
+      },
+      "revId": "00419b06de72c75631dc3c0856f01aefb6c8906a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0555d9d_13b7f5a9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/utils/AlternateIdMatcherSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-05-28T11:08:09Z",
+      "side": 1,
+      "message": "NB: match found",
+      "range": {
+        "startLine": 55,
+        "startChar": 31,
+        "endLine": 55,
+        "endChar": 37
+      },
+      "revId": "00419b06de72c75631dc3c0856f01aefb6c8906a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40860a40_db893d05",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/utils/AlternateIdMatcherSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-05-28T11:08:09Z",
+      "side": 1,
+      "message": "NB: remove it",
+      "range": {
+        "startLine": 58,
+        "startChar": 50,
+        "endLine": 58,
+        "endChar": 58
+      },
+      "revId": "00419b06de72c75631dc3c0856f01aefb6c8906a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f441197_4d9dd414",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-05-28T11:08:09Z",
+      "side": 1,
+      "message": "NB: group it with non static imports",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 49
       },
       "revId": "00419b06de72c75631dc3c0856f01aefb6c8906a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
