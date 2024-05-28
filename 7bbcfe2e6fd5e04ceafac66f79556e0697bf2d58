@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56335eb4_1bfb5151",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiDataOperationsSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-05-28T16:29:32Z",
+      "side": 1,
+      "message": "NB: Please verify non empty module set tag here",
+      "range": {
+        "startLine": 89,
+        "startChar": 185,
+        "endLine": 89,
+        "endChar": 202
+      },
+      "revId": "7bbcfe2e6fd5e04ceafac66f79556e0697bf2d58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63a087f0_a03e25f2",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiDataOperationsSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-05-28T16:29:32Z",
+      "side": 1,
+      "message": "NB: Please verify non empty module set tag here",
+      "range": {
+        "startLine": 93,
+        "startChar": 185,
+        "endLine": 93,
+        "endChar": 203
+      },
+      "revId": "7bbcfe2e6fd5e04ceafac66f79556e0697bf2d58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3bf4aa71_116c761e",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-05-28T16:29:32Z",
+      "side": 1,
+      "message": "NB: requestBody",
+      "range": {
+        "startLine": 209,
+        "startChar": 38,
+        "endLine": 209,
+        "endChar": 42
+      },
+      "revId": "7bbcfe2e6fd5e04ceafac66f79556e0697bf2d58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7eb85620_6975041f",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-05-28T16:29:32Z",
+      "side": 1,
+      "message": "NB: requestBody",
+      "range": {
+        "startLine": 212,
+        "startChar": 44,
+        "endLine": 212,
+        "endChar": 48
+      },
+      "revId": "7bbcfe2e6fd5e04ceafac66f79556e0697bf2d58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
