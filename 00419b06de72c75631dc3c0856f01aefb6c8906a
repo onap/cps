@@ -305,6 +305,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "08dbd243_3cad6c1a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/utils/AlternateIdMatcherSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-05-28T12:18:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a0555d9d_13b7f5a9",
+      "range": {
+        "startLine": 55,
+        "startChar": 31,
+        "endLine": 55,
+        "endChar": 37
+      },
+      "revId": "00419b06de72c75631dc3c0856f01aefb6c8906a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "40860a40_db893d05",
@@ -365,6 +389,30 @@
       "writtenOn": "2024-05-28T11:08:09Z",
       "side": 1,
       "message": "NB: group it with non static imports",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 49
+      },
+      "revId": "00419b06de72c75631dc3c0856f01aefb6c8906a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13a9868e_42b81535",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-05-28T12:18:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f441197_4d9dd414",
       "range": {
         "startLine": 23,
         "startChar": 0,
