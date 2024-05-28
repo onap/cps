@@ -75,6 +75,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "87ac36c0_e042bc2d",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 19
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-05-28T17:26:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b53759c_542e8704",
+      "range": {
+        "startLine": 118,
+        "startChar": 33,
+        "endLine": 118,
+        "endChar": 41
+      },
+      "revId": "dd010d26d004f7726bd97616f9312f00eebece82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "96b46f52_0a831b70",
@@ -98,6 +122,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e816b3aa_c1534aa0",
+        "filename": "cps-rest/docs/openapi/cpsData.yml",
+        "patchSetId": 19
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-05-28T17:26:10Z",
+      "side": 1,
+      "message": "Example Name",
+      "parentUuid": "96b46f52_0a831b70",
+      "range": {
+        "startLine": 154,
+        "startChar": 20,
+        "endLine": 154,
+        "endChar": 26
+      },
+      "revId": "dd010d26d004f7726bd97616f9312f00eebece82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "db271a01_6634f87e",
@@ -111,6 +159,30 @@
       "writtenOn": "2024-05-22T16:10:40Z",
       "side": 1,
       "message": "since this test is about valid/invalid timestamps I dont think you needed to duplicate the scenarios for XML\n(doing this leads to unnecesary additional maintenance)",
+      "range": {
+        "startLine": 402,
+        "startChar": 0,
+        "endLine": 403,
+        "endChar": 221
+      },
+      "revId": "dd010d26d004f7726bd97616f9312f00eebece82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90307fa3_baba85c7",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 403,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-05-28T17:26:10Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "db271a01_6634f87e",
       "range": {
         "startLine": 402,
         "startChar": 0,
