@@ -29,4 +29,5 @@ import lombok.Setter;
 public class DmiDataOperationRequest {
 
     private List<DataOperationRequest> operations;
+
 }
