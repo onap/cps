@@ -16,6 +16,29 @@
       "message": "thanks Daniel for the good review",
       "revId": "0613fbd654bacb9324e07bb2f9f4244302c48aaa",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1964b1c5_c5925f56",
+        "filename": "k6-tests/ncmp/run-all-tests.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-05-28T10:02:54Z",
+      "side": 1,
+      "message": "NB -legacy- should come after copyright",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 11
+      },
+      "revId": "0613fbd654bacb9324e07bb2f9f4244302c48aaa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
