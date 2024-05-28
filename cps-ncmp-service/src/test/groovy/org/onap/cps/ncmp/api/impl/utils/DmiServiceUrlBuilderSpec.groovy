@@ -48,19 +48,17 @@ class DmiServiceUrlBuilderSpec extends Specification {
         given: 'uri variables'
             def uriVars = objectUnderTest.populateUriVariables(PASSTHROUGH_RUNNING.datastoreName, yangModelCmHandle.resolveDmiServiceName(RequiredDmiService.DATA), 'cmHandle')
         and: 'query params'
-            def uriQueries = objectUnderTest.populateQueryParams(resourceId, 'optionsParamInQuery', topic, moduleSetTag)
+            def uriQueries = objectUnderTest.populateQueryParams(resourceId, 'optionsParamInQuery', topic)
         when: 'a dmi datastore service url is generated'
             def dmiServiceUrl = objectUnderTest.getDmiDatastoreUrl(uriQueries, uriVars)
         then: 'service url is generated as expected'
             assert dmiServiceUrl == expectedDmiServiceUrl
         where: 'the following parameters are used'
-            scenario                       | topic               | moduleSetTag | resourceId   || expectedDmiServiceUrl
-            'With valid resourceId'        | 'topicParamInQuery' | ''                | 'resourceId' || 'dmiServiceName/dmi/v1/ch/cmHandle/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=resourceId&options=optionsParamInQuery&topic=topicParamInQuery'
-            'With Empty resourceId'        | 'topicParamInQuery' | ''                | ''           || 'dmiServiceName/dmi/v1/ch/cmHandle/data/ds/ncmp-datastore:passthrough-running?options=optionsParamInQuery&topic=topicParamInQuery'
-            'With valid moduleSetTag'      | 'topicParamInQuery' | 'module-set-tag1' | 'resourceId' || 'dmiServiceName/dmi/v1/ch/cmHandle/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=resourceId&options=optionsParamInQuery&topic=topicParamInQuery&moduleSetTag=module-set-tag1'
-            'With Empty moduleSetTag'      | 'topicParamInQuery' | ''                | 'resourceId' || 'dmiServiceName/dmi/v1/ch/cmHandle/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=resourceId&options=optionsParamInQuery&topic=topicParamInQuery'
-            'With Empty dmi base path'     | 'topicParamInQuery' | ''                | 'resourceId' || 'dmiServiceName/dmi/v1/ch/cmHandle/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=resourceId&options=optionsParamInQuery&topic=topicParamInQuery'
-            'With Empty topicParamInQuery' | ''                  | ''                | 'resourceId' || 'dmiServiceName/dmi/v1/ch/cmHandle/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=resourceId&options=optionsParamInQuery'
+            scenario                       | topic               | resourceId   || expectedDmiServiceUrl
+            'With valid resourceId'        | 'topicParamInQuery' | 'resourceId' || 'dmiServiceName/dmi/v1/ch/cmHandle/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=resourceId&options=optionsParamInQuery&topic=topicParamInQuery'
+            'With Empty resourceId'        | 'topicParamInQuery' | ''           || 'dmiServiceName/dmi/v1/ch/cmHandle/data/ds/ncmp-datastore:passthrough-running?options=optionsParamInQuery&topic=topicParamInQuery'
+            'With Empty dmi base path'     | 'topicParamInQuery' | 'resourceId' || 'dmiServiceName/dmi/v1/ch/cmHandle/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=resourceId&options=optionsParamInQuery&topic=topicParamInQuery'
+            'With Empty topicParamInQuery' | ''                  | 'resourceId' || 'dmiServiceName/dmi/v1/ch/cmHandle/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=resourceId&options=optionsParamInQuery'
     }
 
     def 'Populate dmi data store url #scenario.'() {
@@ -68,7 +66,7 @@ class DmiServiceUrlBuilderSpec extends Specification {
             dmiProperties.dmiBasePath = dmiBasePath
             def uriVars = objectUnderTest.populateUriVariables(PASSTHROUGH_RUNNING.datastoreName, yangModelCmHandle.resolveDmiServiceName(RequiredDmiService.DATA), 'cmHandle')
         and: 'null query params'
-            def uriQueries = objectUnderTest.populateQueryParams(null, null, null, null)
+            def uriQueries = objectUnderTest.populateQueryParams(null, null, null)
         when: 'a dmi datastore service url is generated'
             def dmiServiceUrl = objectUnderTest.getDmiDatastoreUrl(uriQueries, uriVars)
         then: 'the created dmi service url matches the expected'

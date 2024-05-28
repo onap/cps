@@ -205,11 +205,11 @@ public class DmiRestStubController {
             @RequestParam(value = "resourceIdentifier") final String resourceIdentifier,
             @RequestParam(value = "options", required = false) final String options,
             @RequestParam(value = "topic", required = false) final String topic,
-            @RequestParam(value = "moduleSetTag", required = false) final String moduleSetTag,
-            @RequestHeader(value = "Authorization", required = false) final String authorization) {
+            @RequestHeader(value = "Authorization", required = false) final String authorization,
+            @RequestBody final String requestBody) {
         log.info("DMI AUTH HEADER: {}", authorization);
         delay(dataForCmHandleDelayMs);
-        log.info("Module set tag received: {}", moduleSetTag);
+        log.info("Logging request body {}", requestBody);
 
         final String sampleJson = ResourceFileReaderUtil.getResourceFileContent(applicationContext.getResource(
                 ResourceLoader.CLASSPATH_URL_PREFIX + "data/operational/ietf-network-topology-sample-rfc8345.json"));

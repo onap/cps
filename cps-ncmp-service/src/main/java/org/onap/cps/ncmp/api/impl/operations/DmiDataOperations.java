@@ -90,8 +90,7 @@ public class DmiDataOperations extends DmiOperations {
         final String jsonRequestBody = getDmiRequestBody(READ, requestId, null, null, yangModelCmHandle);
 
         final MultiValueMap<String, String> uriQueryParamsMap = getUriQueryParamsMap(
-                cmResourceAddress.resourceIdentifier(), optionsParamInQuery,
-                topicParamInQuery, yangModelCmHandle.getModuleSetTag());
+                cmResourceAddress.resourceIdentifier(), optionsParamInQuery, topicParamInQuery);
         final Map<String, Object> uriVariableParamsMap = getUriVariableParamsMap(cmResourceAddress.datastoreName(),
                 yangModelCmHandle.resolveDmiServiceName(RequiredDmiService.DATA), cmResourceAddress.cmHandleId());
         final String dmiResourceDataUrl = getDmiRequestUrl(uriQueryParamsMap, uriVariableParamsMap);
@@ -115,8 +114,7 @@ public class DmiDataOperations extends DmiOperations {
         final String jsonRequestBody = getDmiRequestBody(READ, requestId, null, null,
                 yangModelCmHandle);
 
-        final MultiValueMap<String, String> uriQueryParamsMap = getUriQueryParamsMap("/", null,
-                null, yangModelCmHandle.getModuleSetTag());
+        final MultiValueMap<String, String> uriQueryParamsMap = getUriQueryParamsMap("/", null, null);
         final Map<String, Object> uriVariableParamsMap = getUriVariableParamsMap(dataStoreName,
                 yangModelCmHandle.resolveDmiServiceName(RequiredDmiService.DATA), cmHandleId);
         final String dmiResourceDataUrl = getDmiRequestUrl(uriQueryParamsMap, uriVariableParamsMap);
@@ -176,8 +174,7 @@ public class DmiDataOperations extends DmiOperations {
         final String jsonRequestBody = getDmiRequestBody(operationType, null, requestData, dataType,
                 yangModelCmHandle);
 
-        final MultiValueMap<String, String> uriQueryParamsMap = getUriQueryParamsMap(resourceId, null,
-                null, yangModelCmHandle.getModuleSetTag());
+        final MultiValueMap<String, String> uriQueryParamsMap = getUriQueryParamsMap(resourceId, null, null);
         final Map<String, Object> uriVariableParamsMap = getUriVariableParamsMap(PASSTHROUGH_RUNNING.getDatastoreName(),
                 yangModelCmHandle.resolveDmiServiceName(RequiredDmiService.DATA), cmHandleId);
         final String dmiUrl = getDmiRequestUrl(uriQueryParamsMap, uriVariableParamsMap);
@@ -201,6 +198,7 @@ public class DmiDataOperations extends DmiOperations {
                 .requestId(requestId)
                 .data(requestData)
                 .dataType(dataType)
+                .moduleSetTag(yangModelCmHandle.getModuleSetTag())
                 .build();
         dmiRequestBody.asDmiProperties(yangModelCmHandle.getDmiProperties());
         return jsonObjectMapper.asJsonString(dmiRequestBody);
@@ -213,10 +211,9 @@ public class DmiDataOperations extends DmiOperations {
 
     private MultiValueMap<String, String> getUriQueryParamsMap(final String resourceId,
                                                                final String optionsParamInQuery,
-                                                               final String topicParamInQuery,
-                                                               final String moduleSetTagParamInQuery) {
+                                                               final String topicParamInQuery) {
         return dmiServiceUrlBuilder.populateQueryParams(resourceId, optionsParamInQuery,
-                topicParamInQuery, moduleSetTagParamInQuery);
+                topicParamInQuery);
     }
 
     private Map<String, Object> getUriVariableParamsMap(final String dataStoreName,
