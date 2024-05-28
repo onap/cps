@@ -36,7 +36,6 @@ import org.onap.cps.ncmp.events.cmnotificationsubscription_merge1_0_0.dmi_to_ncm
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.utils.JsonObjectMapper
 import org.slf4j.LoggerFactory
-import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 
@@ -108,9 +107,9 @@ class CmNotificationSubscriptionDmiOutEventConsumerSpec extends MessagingBaseSpe
         and: 'correct number of calls to publish the ncmp out event to client'
             1 * mockCmNotificationSubscriptionEventsHandler.publishCmNotificationSubscriptionNcmpOutEvent('sub-1', 'subscriptionCreateResponse', _, false)
         where: 'the following parameters are used'
-            scenario            | subscriptionStatus                            | statusCode || expectedCacheCalls | expectedPersistenceCalls
-            'Accepted Status'   | CmNotificationSubscriptionStatus.ACCEPTED     | '1'        || 1                  | 1
-            'Rejected Status'   | CmNotificationSubscriptionStatus.REJECTED     | '2'        || 1                  | 0
+            scenario          | subscriptionStatus                        | statusCode || expectedCacheCalls | expectedPersistenceCalls
+            'Accepted Status' | CmNotificationSubscriptionStatus.ACCEPTED | '1'        || 1                  | 1
+            'Rejected Status' | CmNotificationSubscriptionStatus.REJECTED | '104'      || 1                  | 0
     }
 
     def getLoggingEvent() {
