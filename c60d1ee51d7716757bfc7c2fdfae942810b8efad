@@ -22,6 +22,30 @@
       },
       "revId": "c60d1ee51d7716757bfc7c2fdfae942810b8efad",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8e5de9c_4ed79bbd",
+        "filename": "cps-rest/docs/openapi/openapi.yml",
+        "patchSetId": 45
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-05-28T05:24:43Z",
+      "side": 1,
+      "message": "alright, will leave this comment as open and if we do not get any suggestions then I will use the ones you mentioned as they provide a clear separation between the two.\nCan we do:\n1) deltaByAnchors\n2) deltaByPayload?",
+      "parentUuid": "44a28eef_24eae970",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 110,
+        "endChar": 70
+      },
+      "revId": "c60d1ee51d7716757bfc7c2fdfae942810b8efad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
