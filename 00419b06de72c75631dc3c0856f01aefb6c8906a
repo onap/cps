@@ -77,6 +77,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "89e6af19_5a41da18",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/exceptions/NoAlternateIdMatchFoundException.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-05-28T10:18:50Z",
+      "side": 1,
+      "message": "will be moved in a different patch (as discussed during the stand up meeting :)",
+      "parentUuid": "6455f457_876c6ee5",
+      "range": {
+        "startLine": 24,
+        "startChar": 29,
+        "endLine": 24,
+        "endChar": 33
+      },
+      "revId": "00419b06de72c75631dc3c0856f01aefb6c8906a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a4d775c7_7700eb76",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/exceptions/NoAlternateIdMatchFoundException.java",
         "patchSetId": 5
