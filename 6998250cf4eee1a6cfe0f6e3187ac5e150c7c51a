@@ -185,6 +185,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "798a9296_ee51e0df",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 43
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-29T13:10:28Z",
+      "side": 1,
+      "message": "good idea",
+      "parentUuid": "39a3ab7f_41af0dbd",
+      "range": {
+        "startLine": 421,
+        "startChar": 7,
+        "endLine": 424,
+        "endChar": 89
+      },
+      "revId": "6998250cf4eee1a6cfe0f6e3187ac5e150c7c51a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "afd7f3aa_a0320146",
         "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangParserSpec.groovy",
         "patchSetId": 43

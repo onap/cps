@@ -16,6 +16,92 @@
       "message": "Replied and resolved comments",
       "revId": "91147a22a4d5f4813e478adb478d61cf79b18347",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6fcaf42d_0d6f305d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 49
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-29T13:10:28Z",
+      "side": 1,
+      "message": "just a few last bits",
+      "revId": "91147a22a4d5f4813e478adb478d61cf79b18347",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6ab95d4_077444e6",
+        "filename": "cps-rest/docs/openapi/openapi.yml",
+        "patchSetId": 49
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-29T13:10:28Z",
+      "side": 1,
+      "message": "Sugegstion (as discussed with Priyank) can we use same noun (delta-report)  and move targetAnchor to pathVariable to distinguish the 2 varations e.g\n\n\n  /v2/dataspaces/{dataspace-name}/anchors/{anchor-name}/delta-report/targetAnchor{targat-anchor-name}:\n    $ref: \u0027cpsDataV2.yml#/deltaByDataspaceAndAnchors\u0027\n\n  /v2/dataspaces/{dataspace-name}/anchors/{anchor-name}/delta-report:",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 110,
+        "endChar": 69
+      },
+      "revId": "91147a22a4d5f4813e478adb478d61cf79b18347",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "daadfafe_5654cc42",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 49
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-29T13:10:28Z",
+      "side": 1,
+      "message": "delta.all can be done outside",
+      "range": {
+        "startLine": 188,
+        "startChar": 12,
+        "endLine": 188,
+        "endChar": 30
+      },
+      "revId": "91147a22a4d5f4813e478adb478d61cf79b18347",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfe26b0e_cb4337ab",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 49
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-29T13:10:28Z",
+      "side": 1,
+      "message": "mayeb give these methdos slightly diffrent names",
+      "range": {
+        "startLine": 373,
+        "startChar": 19,
+        "endLine": 373,
+        "endChar": 42
+      },
+      "revId": "91147a22a4d5f4813e478adb478d61cf79b18347",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
