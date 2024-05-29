@@ -16,6 +16,57 @@
       "message": "Ready for review",
       "revId": "b7012a85cdfea4dbd834c9aa733dad15b1455ae4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a090c6c0_24d1d1ea",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-05-29T09:12:26Z",
+      "side": 1,
+      "message": "NB: this import not at correct location",
+      "revId": "b7012a85cdfea4dbd834c9aa733dad15b1455ae4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "530e1fe1_2b963692",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/CpsAnchorServiceIntegrationSpec.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-05-29T09:12:26Z",
+      "side": 1,
+      "message": "NB: this import not at correct location",
+      "revId": "b7012a85cdfea4dbd834c9aa733dad15b1455ae4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb6a6c27_dbfa21a7",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/UpdatePerfTest.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-05-29T09:12:26Z",
+      "side": 1,
+      "message": "NB: this import not at correct location",
+      "revId": "b7012a85cdfea4dbd834c9aa733dad15b1455ae4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

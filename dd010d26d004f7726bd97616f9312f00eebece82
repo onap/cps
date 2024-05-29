@@ -146,6 +146,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3bd6c70_74651e20",
+        "filename": "cps-rest/docs/openapi/cpsData.yml",
+        "patchSetId": 19
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-05-29T09:12:26Z",
+      "side": 1,
+      "message": "this is the root for the example xml you have. workaround to show the example in swagger ui.\n\u003cstores\u003e is the root element.",
+      "parentUuid": "e816b3aa_c1534aa0",
+      "range": {
+        "startLine": 154,
+        "startChar": 20,
+        "endLine": 154,
+        "endChar": 26
+      },
+      "revId": "dd010d26d004f7726bd97616f9312f00eebece82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "db271a01_6634f87e",
