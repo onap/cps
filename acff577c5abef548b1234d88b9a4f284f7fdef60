@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f9e08b1_7d7ba92b",
+        "filename": "k6-tests/ncmp/8-id-search-module.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-05-29T08:57:41Z",
+      "side": 1,
+      "message": "NB can revert to old file",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 1
+      },
+      "revId": "acff577c5abef548b1234d88b9a4f284f7fdef60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
