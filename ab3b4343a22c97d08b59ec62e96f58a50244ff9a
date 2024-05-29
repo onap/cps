@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a3260a4_e0bf904d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiDataOperationsSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-29T11:15:49Z",
+      "side": 1,
+      "message": "The next test checks that a CloudEvent was published containing error.\n(These tests are very similar, they could be combined.)",
+      "range": {
+        "startLine": 125,
+        "startChar": 12,
+        "endLine": 125,
+        "endChar": 31
+      },
+      "revId": "ab3b4343a22c97d08b59ec62e96f58a50244ff9a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
