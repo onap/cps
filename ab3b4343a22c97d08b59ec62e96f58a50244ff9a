@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "49302ffa_115c3d8b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-05-29T13:38:23Z",
+      "side": 1,
+      "message": "private final InventoryPersistence inventoryPersistence;\nprivate final JsonObjectMapper jsonObjectMapper;\nprivate final DmiProperties dmiProperties;\nprivate final DmiRestClient dmiRestClient;",
+      "range": {
+        "startLine": 62,
+        "startChar": 4,
+        "endLine": 65,
+        "endChar": 48
+      },
+      "revId": "ab3b4343a22c97d08b59ec62e96f58a50244ff9a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13b3931e_11146ded",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiModelOperations.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-05-29T13:38:23Z",
+      "side": 1,
+      "message": "private final JsonObjectMapper jsonObjectMapper;\nprivate final DmiProperties dmiProperties;\nprivate final DmiRestClient dmiRestClient;",
+      "range": {
+        "startLine": 54,
+        "startChar": 4,
+        "endLine": 56,
+        "endChar": 48
+      },
+      "revId": "ab3b4343a22c97d08b59ec62e96f58a50244ff9a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3a3260a4_e0bf904d",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiDataOperationsSpec.groovy",
         "patchSetId": 3
@@ -20,6 +66,23 @@
         "endLine": 125,
         "endChar": 31
       },
+      "revId": "ab3b4343a22c97d08b59ec62e96f58a50244ff9a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2569acc1_8f1c33a7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/EventDateTimeFormatterSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-05-29T13:38:23Z",
+      "side": 1,
+      "message": "remove white space",
       "revId": "ab3b4343a22c97d08b59ec62e96f58a50244ff9a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
