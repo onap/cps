@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d640c44f_4477485b",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-29T12:51:14Z",
+      "side": 1,
+      "message": "can be xml to now\nsuggestion: \u0027node data in xml or json format\u0027",
+      "range": {
+        "startLine": 135,
+        "startChar": 30,
+        "endLine": 135,
+        "endChar": 39
+      },
+      "revId": "b7012a85cdfea4dbd834c9aa733dad15b1455ae4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a090c6c0_24d1d1ea",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
         "patchSetId": 21
