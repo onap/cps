@@ -1,6 +1,92 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3dfb8767_fa513ce3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-05-29T12:31:56Z",
+      "side": 1,
+      "message": "The new threshold values and # of vus are ok, I made some NB suggesstions around them by looking the last build outputs.",
+      "revId": "acff577c5abef548b1234d88b9a4f284f7fdef60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a07e6f1_626f44b4",
+        "filename": "k6-tests/ncmp/3-passthrough-read.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-05-29T12:31:56Z",
+      "side": 1,
+      "message": "NB: the build numbers #20 , #21 and #22 measured 52 , 41 and 44 respectively.\n\nSince the number of vus the same I strongly suggest to set it to 60",
+      "range": {
+        "startLine": 33,
+        "startChar": 32,
+        "endLine": 33,
+        "endChar": 34
+      },
+      "revId": "acff577c5abef548b1234d88b9a4f284f7fdef60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4391e36_f71e265f",
+        "filename": "k6-tests/ncmp/5-search-no-filter.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-05-29T12:31:56Z",
+      "side": 1,
+      "message": "NB: the build numbers #20 , #21, and #22 measured 41186 , 44245 and 27012 respectively.\n\nSince the number of vus reduced by 1, I suggest to set it to 50000",
+      "range": {
+        "startLine": 29,
+        "startChar": 36,
+        "endLine": 29,
+        "endChar": 41
+      },
+      "revId": "acff577c5abef548b1234d88b9a4f284f7fdef60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "868223ca_a8cfd038",
+        "filename": "k6-tests/ncmp/7-search-public-property.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-05-29T12:31:56Z",
+      "side": 1,
+      "message": "NB: The build numbers #20, #21 and #22 measured this value 26474 , 33026  and 33442 respectively.\n\nSince the number of vus reduced by 1, I suggest to set it to 40000",
+      "range": {
+        "startLine": 29,
+        "startChar": 36,
+        "endLine": 29,
+        "endChar": 41
+      },
+      "revId": "acff577c5abef548b1234d88b9a4f284f7fdef60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6f9e08b1_7d7ba92b",
@@ -19,6 +105,29 @@
         "startChar": 0,
         "endLine": 49,
         "endChar": 1
+      },
+      "revId": "acff577c5abef548b1234d88b9a4f284f7fdef60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12aabf74_32f68017",
+        "filename": "k6-tests/ncmp/9-search-module.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-05-29T12:31:56Z",
+      "side": 1,
+      "message": "NB: The build number #20, #21 and #22 measured this value 25605, 25344 and 26023 respectively.\n\nSince the number of vus reduced to 4 from 5, thus the avg may be longer than 25 seconds... I suggest to set it to 30000 sec.",
+      "range": {
+        "startLine": 29,
+        "startChar": 36,
+        "endLine": 29,
+        "endChar": 41
       },
       "revId": "acff577c5abef548b1234d88b9a4f284f7fdef60",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
