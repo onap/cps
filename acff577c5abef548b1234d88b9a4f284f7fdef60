@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9026d11e_6f9f0b1e",
+        "filename": "k6-tests/ncmp/3-passthrough-read.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-29T12:45:40Z",
+      "side": 1,
+      "message": "Firstly I think we should only consider timings for the tests that ran at 7:15 am\nI made a spreadsheet, it is nearly always below 50ms:\n\n    41.26  42.34  42.95  46.78  45.31  43.66  32.15  36.89  47.54  37.91",
+      "parentUuid": "2a07e6f1_626f44b4",
+      "range": {
+        "startLine": 33,
+        "startChar": 32,
+        "endLine": 33,
+        "endChar": 34
+      },
+      "revId": "acff577c5abef548b1234d88b9a4f284f7fdef60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b4391e36_f71e265f",
         "filename": "k6-tests/ncmp/5-search-no-filter.js",
         "patchSetId": 2
@@ -66,6 +90,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7036c55a_a6c72cd6",
+        "filename": "k6-tests/ncmp/5-search-no-filter.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-29T12:45:40Z",
+      "side": 1,
+      "message": "Less VUs means less parallel requests, so there will be less CPU and memory usage, which makes it faster. Basically I think it takes so long right now because it is running out of memory.\n\nTesting on my laptop shows it is much faster e.g. going from 5 to 4 VUs shows search goes from 9 seconds to 5 seconds.\n\nLet\u0027s deploy it on the server and see.",
+      "parentUuid": "b4391e36_f71e265f",
+      "range": {
+        "startLine": 29,
+        "startChar": 36,
+        "endLine": 29,
+        "endChar": 41
+      },
+      "revId": "acff577c5abef548b1234d88b9a4f284f7fdef60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "868223ca_a8cfd038",
         "filename": "k6-tests/ncmp/7-search-public-property.js",
         "patchSetId": 2
@@ -77,6 +125,30 @@
       "writtenOn": "2024-05-29T12:31:56Z",
       "side": 1,
       "message": "NB: The build numbers #20, #21 and #22 measured this value 26474 , 33026  and 33442 respectively.\n\nSince the number of vus reduced by 1, I suggest to set it to 40000",
+      "range": {
+        "startLine": 29,
+        "startChar": 36,
+        "endLine": 29,
+        "endChar": 41
+      },
+      "revId": "acff577c5abef548b1234d88b9a4f284f7fdef60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e493d88_21d732c6",
+        "filename": "k6-tests/ncmp/7-search-public-property.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-29T12:45:40Z",
+      "side": 1,
+      "message": "Similar to other comment, reducing VUs show make it faster.",
+      "parentUuid": "868223ca_a8cfd038",
       "range": {
         "startLine": 29,
         "startChar": 36,
@@ -123,6 +195,30 @@
       "writtenOn": "2024-05-29T12:31:56Z",
       "side": 1,
       "message": "NB: The build number #20, #21 and #22 measured this value 25605, 25344 and 26023 respectively.\n\nSince the number of vus reduced to 4 from 5, thus the avg may be longer than 25 seconds... I suggest to set it to 30000 sec.",
+      "range": {
+        "startLine": 29,
+        "startChar": 36,
+        "endLine": 29,
+        "endChar": 41
+      },
+      "revId": "acff577c5abef548b1234d88b9a4f284f7fdef60",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e961801e_85db54ee",
+        "filename": "k6-tests/ncmp/9-search-module.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-29T12:45:40Z",
+      "side": 1,
+      "message": "Same as other comment, should be faster now with 4 VUs",
+      "parentUuid": "12aabf74_32f68017",
       "range": {
         "startLine": 29,
         "startChar": 36,
