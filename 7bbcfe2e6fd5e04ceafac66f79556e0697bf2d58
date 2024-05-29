@@ -48,6 +48,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "412dd37e_b02463ec",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiDataOperationsSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-29T12:46:01Z",
+      "side": 1,
+      "message": "and in general we should not combine test too much, separate test is better!",
+      "parentUuid": "cb784c50_c4645246",
+      "range": {
+        "startLine": 89,
+        "startChar": 185,
+        "endLine": 89,
+        "endChar": 202
+      },
+      "revId": "7bbcfe2e6fd5e04ceafac66f79556e0697bf2d58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "63a087f0_a03e25f2",
