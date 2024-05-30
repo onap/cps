@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2fcf8261_61e207ff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 51
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-30T10:00:07Z",
+      "side": 1,
+      "message": "we can leave the endpoint change for a future commit one we agree, lets try to get this commit merged today!\n\nPlease do \u0027self-review\u0027 to prevent us having to comment on common mistakes...\n\nMaybe Priyank has explained: I alwasy recommend all developers in our teams do a self-review on their last commit ie. use gerrit to compare your latest and previous. Pretend ou are reviewing someone else code, critically. I often catch mistakes in my own code that way and this prevents ping pong with reviewers and just speeds things up",
+      "revId": "deb55f13712cddf92681cd2e9ad26c7746040c96",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f263c2f4_6ecb0e95",
