@@ -78,10 +78,33 @@ class CmNotificationSubscriptionNcmpInEventConsumerSpec extends MessagingBaseSpe
             def loggingEvent = getLoggingEvent()
             assert loggingEvent.level == Level.INFO
         and: 'the log indicates the task completed successfully'
-            assert loggingEvent.formattedMessage == 'Subscription for source some-resource with subscription id test-id ...'
+            assert loggingEvent.formattedMessage == 'Subscription create request for source some-resource with subscription id test-id ...'
         and: 'the subscription handler service is called once'
-            1 * mockCmNotificationSubscriptionHandlerService.processSubscriptionCreateRequest(_)
+            1 * mockCmNotificationSubscriptionHandlerService.processSubscriptionCreateRequest('test-id',_)
     }
+
+    def 'Consume valid CmNotificationSubscriptionNcmpInEvent delete message'() {
+        given: 'a cmNotificationSubscription event'
+            def jsonData = TestUtils.getResourceFileContent('cmSubscription/cmNotificationSubscriptionNcmpInEvent.json')
+            def testEventSent = jsonObjectMapper.convertJsonString(jsonData, CmNotificationSubscriptionNcmpInEvent.class)
+            def testCloudEventSent = CloudEventBuilder.v1()
+                .withData(objectMapper.writeValueAsBytes(testEventSent))
+                .withId('sub-id')
+                .withType('subscriptionDeleteRequest')
+                .withSource(URI.create('some-resource'))
+                .withExtension('correlationid', 'test-cmhandle1').build()
+            def consumerRecord = new ConsumerRecord<String, CloudEvent>('topic-name', 0, 0, 'event-key', testCloudEventSent)
+        when: 'the valid event is consumed'
+            objectUnderTest.consumeSubscriptionEvent(consumerRecord)
+        then: 'an event is logged with level INFO'
+            def loggingEvent = getLoggingEvent()
+            assert loggingEvent.level == Level.INFO
+        and: 'the log indicates the task completed successfully'
+            assert loggingEvent.formattedMessage == 'Subscription delete request for source some-resource with subscription id test-id ...'
+        and: 'the subscription handler service is called once'
+            1 * mockCmNotificationSubscriptionHandlerService.processSubscriptionDeleteRequest('test-id',_)
+    }
+
 
     def getLoggingEvent() {
         return logger.list[1]
