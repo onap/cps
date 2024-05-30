@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b0de47a_3461c475",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 52
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-05-30T10:36:53Z",
+      "side": 1,
+      "message": "resoled comments. \n\nNote: Endpoints to be modified in future patch",
+      "revId": "bde0c5a72b90f719c43d4b2b13eb87cd755bd647",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
