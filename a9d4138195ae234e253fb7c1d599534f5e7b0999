@@ -33,6 +33,98 @@
       "message": "recheck",
       "revId": "a9d4138195ae234e253fb7c1d599534f5e7b0999",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b93d7b96_4e0cbf89",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionHandlerServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-05-30T09:43:37Z",
+      "side": 1,
+      "message": "\u0027test-id\u0027",
+      "range": {
+        "startLine": 133,
+        "startChar": 66,
+        "endLine": 133,
+        "endChar": 75
+      },
+      "revId": "a9d4138195ae234e253fb7c1d599534f5e7b0999",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "604ff8ed_a9e84c69",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionHandlerServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-05-30T09:43:37Z",
+      "side": 1,
+      "message": "remove it",
+      "range": {
+        "startLine": 139,
+        "startChar": 102,
+        "endLine": 139,
+        "endChar": 103
+      },
+      "revId": "a9d4138195ae234e253fb7c1d599534f5e7b0999",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52f1c61a_b5ce5cd8",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionHandlerServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-05-30T09:43:37Z",
+      "side": 1,
+      "message": "\u0027test-id\u0027, \u0027dmi-1\u0027, \u0027subscriptionDeleteRequest\u0027",
+      "range": {
+        "startLine": 142,
+        "startChar": 16,
+        "endLine": 142,
+        "endChar": 63
+      },
+      "revId": "a9d4138195ae234e253fb7c1d599534f5e7b0999",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83dc72ac_a7a348fa",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionHandlerServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-05-30T09:43:37Z",
+      "side": 1,
+      "message": "\u0027test-id\u0027, \u0027subscriptionDeleteRequest\u0027",
+      "range": {
+        "startLine": 145,
+        "startChar": 16,
+        "endLine": 145,
+        "endChar": 55
+      },
+      "revId": "a9d4138195ae234e253fb7c1d599534f5e7b0999",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
