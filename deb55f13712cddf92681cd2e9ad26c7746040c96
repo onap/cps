@@ -16,6 +16,52 @@
       "message": "resolved and replied to comments",
       "revId": "deb55f13712cddf92681cd2e9ad26c7746040c96",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f263c2f4_6ecb0e95",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 51
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-30T09:56:13Z",
+      "side": 1,
+      "message": "make sure you IDE doesnt do this!!!",
+      "range": {
+        "startLine": 33,
+        "startChar": 16,
+        "endLine": 33,
+        "endChar": 19
+      },
+      "revId": "deb55f13712cddf92681cd2e9ad26c7746040c96",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d7bdcca_7c109e76",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 51
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-30T09:56:13Z",
+      "side": 1,
+      "message": "its is still a colection so should be plural\naslo use Collections.singletonList() to create it instead",
+      "range": {
+        "startLine": 185,
+        "startChar": 38,
+        "endLine": 185,
+        "endChar": 50
+      },
+      "revId": "deb55f13712cddf92681cd2e9ad26c7746040c96",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

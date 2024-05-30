@@ -127,6 +127,30 @@
       },
       "revId": "003469956c0e0f68eb6d2e1df4d5397aceaffd47",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fcabcc3c_4cb4afb4",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 50
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-30T09:56:13Z",
+      "side": 1,
+      "message": "yes I know they are overloaded but it is hard to tell and here it looks like the other case (you just fixed) where you should just set one parameter in if\u003dthen-else. But you cannot because they are different types.\nHence I would different names on for clarity!",
+      "parentUuid": "6bc45068_8931ce84",
+      "range": {
+        "startLine": 378,
+        "startChar": 19,
+        "endLine": 378,
+        "endChar": 50
+      },
+      "revId": "003469956c0e0f68eb6d2e1df4d5397aceaffd47",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
