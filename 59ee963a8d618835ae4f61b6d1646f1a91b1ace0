@@ -33,6 +33,69 @@
       "message": "recheck",
       "revId": "59ee963a8d618835ae4f61b6d1646f1a91b1ace0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f673582_16a8bc69",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-05-30T14:46:29Z",
+      "side": 1,
+      "message": "initial review.",
+      "revId": "59ee963a8d618835ae4f61b6d1646f1a91b1ace0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23739018_81a79e44",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/consumer/CmNotificationSubscriptionDmiOutEventConsumer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-05-30T14:46:29Z",
+      "side": 1,
+      "message": "maybe use the constant or remove it.\nI introduced it earlier thinking that we might need to change it.\nBut during the last demo it was confirmed that we can use # as a separator.",
+      "range": {
+        "startLine": 78,
+        "startChar": 58,
+        "endLine": 78,
+        "endChar": 61
+      },
+      "revId": "59ee963a8d618835ae4f61b6d1646f1a91b1ace0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "937601bd_37b05136",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-05-30T14:46:29Z",
+      "side": 1,
+      "message": "extract out and give a meaning to it just like we did for other xpaths.",
+      "range": {
+        "startLine": 141,
+        "startChar": 17,
+        "endLine": 141,
+        "endChar": 81
+      },
+      "revId": "59ee963a8d618835ae4f61b6d1646f1a91b1ace0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
