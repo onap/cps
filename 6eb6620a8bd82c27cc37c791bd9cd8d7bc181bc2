@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b5bffa3_b771a1ca",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 10
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-05-30T16:57:24Z",
+      "side": 1,
+      "message": "Delete this dependency.\nThen in cps-application/pom.xml, change\n\n    \u003cartifactId\u003emicrometer-tracing-bridge-brave\u003c/artifactId\u003e\nto:\n\n    \u003cartifactId\u003emicrometer-tracing-bridge-otel\u003c/artifactId\u003e\n\nBasically this \u0027brave\u0027 artifact will prevent the OpenTelemetry (otel) bean from being imported.",
+      "range": {
+        "startLine": 179,
+        "startChar": 25,
+        "endLine": 184,
+        "endChar": 25
+      },
+      "revId": "6eb6620a8bd82c27cc37c791bd9cd8d7bc181bc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
