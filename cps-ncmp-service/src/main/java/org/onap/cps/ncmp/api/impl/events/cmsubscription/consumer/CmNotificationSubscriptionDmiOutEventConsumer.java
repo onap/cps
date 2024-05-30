@@ -65,26 +65,33 @@ public class CmNotificationSubscriptionDmiOutEventConsumer {
         final CmNotificationSubscriptionDmiOutEvent cmNotificationSubscriptionDmiOutEvent =
                 toTargetEvent(cloudEvent, CmNotificationSubscriptionDmiOutEvent.class);
         final String correlationId = String.valueOf(cloudEvent.getExtension("correlationid"));
-        if ("subscriptionCreateResponse".equals(cloudEvent.getType()) && cmNotificationSubscriptionDmiOutEvent != null
-                    && correlationId != null) {
-            handleCmSubscriptionCreate(correlationId, cmNotificationSubscriptionDmiOutEvent);
+        if (cmNotificationSubscriptionDmiOutEvent != null && correlationId != null) {
+            final String eventType = cloudEvent.getType();
+            handleCmSubscriptionDmiOutEvent(correlationId, eventType, cmNotificationSubscriptionDmiOutEvent);
         }
     }
 
-    private void handleCmSubscriptionCreate(final String correlationId,
-            final CmNotificationSubscriptionDmiOutEvent cmNotificationSubscriptionDmiOutEvent) {
-        final String subscriptionId = correlationId.split(CM_DATA_SUBSCRIPTION_CORRELATION_ID_SEPARATOR)[0];
-        final String dmiPluginName = correlationId.split(CM_DATA_SUBSCRIPTION_CORRELATION_ID_SEPARATOR)[1];
+    private void handleCmSubscriptionDmiOutEvent(final String correlationId,
+                                                 final String eventType,
+                                                 final CmNotificationSubscriptionDmiOutEvent
+                                                         cmNotificationSubscriptionDmiOutEvent) {
+        final String subscriptionId = correlationId.split("#")[0];
+        final String dmiPluginName = correlationId.split("#")[1];
 
         if (checkStatusCodeAndMessage(CM_DATA_SUBSCRIPTION_ACCEPTED, cmNotificationSubscriptionDmiOutEvent.getData())) {
             handleCacheStatusPerDmi(subscriptionId, dmiPluginName, CmNotificationSubscriptionStatus.ACCEPTED);
-            dmiCmNotificationSubscriptionCacheHandler.persistIntoDatabasePerDmi(subscriptionId, dmiPluginName);
-            handleEventsStatusPerDmi(subscriptionId);
+            if (eventType.equals("subscriptionCreateResponse")) {
+                dmiCmNotificationSubscriptionCacheHandler.persistIntoDatabasePerDmi(subscriptionId, dmiPluginName);
+            }
+            if (eventType.equals("subscriptionDeleteResponse")) {
+                dmiCmNotificationSubscriptionCacheHandler.removeFromDatabasePerDmi(subscriptionId, dmiPluginName);
+            }
+            handleEventsStatusPerDmi(subscriptionId, eventType);
         }
 
         if (checkStatusCodeAndMessage(CM_DATA_SUBSCRIPTION_REJECTED, cmNotificationSubscriptionDmiOutEvent.getData())) {
             handleCacheStatusPerDmi(subscriptionId, dmiPluginName, CmNotificationSubscriptionStatus.REJECTED);
-            handleEventsStatusPerDmi(subscriptionId);
+            handleEventsStatusPerDmi(subscriptionId, eventType);
         }
 
         log.info("Cm Subscription with id : {} handled by the dmi-plugin : {} has the status : {}", subscriptionId,
@@ -92,25 +99,25 @@ public class CmNotificationSubscriptionDmiOutEventConsumer {
     }
 
     private void handleCacheStatusPerDmi(final String subscriptionId, final String dmiPluginName,
-            final CmNotificationSubscriptionStatus cmNotificationSubscriptionStatus) {
+                                         final CmNotificationSubscriptionStatus cmNotificationSubscriptionStatus) {
         dmiCmNotificationSubscriptionCacheHandler.updateDmiCmNotificationSubscriptionStatusPerDmi(subscriptionId,
                 dmiPluginName, cmNotificationSubscriptionStatus);
     }
 
-    private void handleEventsStatusPerDmi(final String subscriptionId) {
+    private void handleEventsStatusPerDmi(final String subscriptionId, final String eventType) {
         final Map<String, DmiCmNotificationSubscriptionDetails> dmiCmNotificationSubscriptionDetailsPerDmi =
                 dmiCmNotificationSubscriptionCacheHandler.get(subscriptionId);
         final CmNotificationSubscriptionNcmpOutEvent cmNotificationSubscriptionNcmpOutEvent =
                 cmNotificationSubscriptionMappersHandler.toCmNotificationSubscriptionNcmpOutEvent(subscriptionId,
                         dmiCmNotificationSubscriptionDetailsPerDmi);
         cmNotificationSubscriptionEventsHandler.publishCmNotificationSubscriptionNcmpOutEvent(subscriptionId,
-                "subscriptionCreateResponse", cmNotificationSubscriptionNcmpOutEvent, false);
+                eventType, cmNotificationSubscriptionNcmpOutEvent, false);
     }
 
     private boolean checkStatusCodeAndMessage(final NcmpResponseStatus ncmpResponseStatus,
-            final Data cmNotificationSubscriptionDmiOutData) {
+                                              final Data cmNotificationSubscriptionDmiOutData) {
         return ncmpResponseStatus.getCode().equals(cmNotificationSubscriptionDmiOutData.getStatusCode())
-                       && ncmpResponseStatus.getMessage()
-                                  .equals(cmNotificationSubscriptionDmiOutData.getStatusMessage());
+                && ncmpResponseStatus.getMessage()
+                .equals(cmNotificationSubscriptionDmiOutData.getStatusMessage());
     }
 }
