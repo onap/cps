@@ -84,6 +84,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "437b3d77_bc65bb12",
+        "filename": "cps-rest/docs/openapi/openapi.yml",
+        "patchSetId": 49
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-30T11:21:04Z",
+      "side": 1,
+      "message": "you need check with your stakeholder but I think you shoudl eb able to coordinate taht as I think it is not really u in production till next year\nAlternatviely we can alwasy depcreate and have a V2 version of thsi aprt of teh interface",
+      "parentUuid": "2626b933_eb8d6279",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 110,
+        "endChar": 69
+      },
+      "revId": "91147a22a4d5f4813e478adb478d61cf79b18347",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "daadfafe_5654cc42",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
         "patchSetId": 49
