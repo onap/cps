@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7781be73_2f214987",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 50
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-05-30T09:45:52Z",
+      "side": 1,
+      "message": "thanks for the clarification, this would work 😊",
+      "parentUuid": "d4dca532_3c56cec5",
+      "range": {
+        "startLine": 185,
+        "startChar": 0,
+        "endLine": 190,
+        "endChar": 115
+      },
+      "revId": "003469956c0e0f68eb6d2e1df4d5397aceaffd47",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d68a9158_0469d3a5",
@@ -71,6 +95,30 @@
       "writtenOn": "2024-05-30T08:20:21Z",
       "side": 1,
       "message": "what I mean is give this method a different name then the method on line 376",
+      "range": {
+        "startLine": 378,
+        "startChar": 19,
+        "endLine": 378,
+        "endChar": 50
+      },
+      "revId": "003469956c0e0f68eb6d2e1df4d5397aceaffd47",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bc45068_8931ce84",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 50
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-05-30T09:45:52Z",
+      "side": 1,
+      "message": "both are overloaded methods, the parameter that differs is anchor name and yangResourceMap, apart from that they do the same thing that is build data nodes using xpath.\n\nBut I can change name to buildDataNodesWithAnchorAndXpath and buildDataNodesWithYangResourceAndXpath",
+      "parentUuid": "d68a9158_0469d3a5",
       "range": {
         "startLine": 378,
         "startChar": 19,
