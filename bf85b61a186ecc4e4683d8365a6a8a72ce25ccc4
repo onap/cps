@@ -746,6 +746,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d3eef3d_848b5b94",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 46
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-05-30T08:18:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b5c3c350_1bd79a13",
+      "range": {
+        "startLine": 367,
+        "startChar": 40,
+        "endLine": 367,
+        "endChar": 49
+      },
+      "revId": "bf85b61a186ecc4e4683d8365a6a8a72ce25ccc4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "caeb3249_0ad38835",
@@ -828,6 +852,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "beb3974f_f9855ac1",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 46
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-05-30T08:18:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "374e303c_70b217c6",
+      "revId": "bf85b61a186ecc4e4683d8365a6a8a72ce25ccc4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cf8c3ec1_ce80a47e",
@@ -859,6 +901,24 @@
       "side": 1,
       "message": "Same as above comment.",
       "parentUuid": "cf8c3ec1_ce80a47e",
+      "revId": "bf85b61a186ecc4e4683d8365a6a8a72ce25ccc4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "50ea5389_9ca66db0",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 46
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-05-30T08:18:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "94b3e1d5_cd58b36a",
       "revId": "bf85b61a186ecc4e4683d8365a6a8a72ce25ccc4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }

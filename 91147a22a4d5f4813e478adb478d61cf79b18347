@@ -60,6 +60,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2626b933_eb8d6279",
+        "filename": "cps-rest/docs/openapi/openapi.yml",
+        "patchSetId": 49
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-05-30T08:18:26Z",
+      "side": 1,
+      "message": "Will it be feasible to change the first API endpoint now? Given that it is already in production code and was also released in Montreal branch. Also, our stakeholders are using it already.",
+      "parentUuid": "f6ab95d4_077444e6",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 110,
+        "endChar": 69
+      },
+      "revId": "91147a22a4d5f4813e478adb478d61cf79b18347",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "daadfafe_5654cc42",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
         "patchSetId": 49
@@ -83,6 +107,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ce2f0b22_9e5874e1",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 49
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-05-30T08:18:26Z",
+      "side": 1,
+      "message": "did you mean like this:\n\nfinal Collection\u003cDeltaReport\u003e deltaReports \u003d new ArrayList\u003c\u003e();\nfinal Collection\u003cDeltaReport\u003e deltaReport \u003d new ArrayList\u003c\u003e();\n        if (multipartFile \u003d\u003d null) {\n            deltaReport \u003d cpsDataService.getDeltaByDataspaceAnchorAndPayload(dataspaceName,\n                    sourceAnchorName, xpath, Collections.emptyMap(), jsonPayload.toString(), fetchDescendantsOption);\n\n        } else {\n            deltaReport \u003d cpsDataService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, sourceAnchorName,\n                    xpath, extractYangResourcesMap(multipartFile), jsonPayload.toString(), fetchDescendantsOption);\n        }\n\n        deltaReports.addAll(deltaReport);",
+      "parentUuid": "daadfafe_5654cc42",
+      "range": {
+        "startLine": 188,
+        "startChar": 12,
+        "endLine": 188,
+        "endChar": 30
+      },
+      "revId": "91147a22a4d5f4813e478adb478d61cf79b18347",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cfe26b0e_cb4337ab",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
         "patchSetId": 49
@@ -94,6 +142,30 @@
       "writtenOn": "2024-05-29T13:10:28Z",
       "side": 1,
       "message": "mayeb give these methdos slightly diffrent names",
+      "range": {
+        "startLine": 373,
+        "startChar": 19,
+        "endLine": 373,
+        "endChar": 42
+      },
+      "revId": "91147a22a4d5f4813e478adb478d61cf79b18347",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d32fe10a_93d45a53",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 49
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-05-30T08:18:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cfe26b0e_cb4337ab",
       "range": {
         "startLine": 373,
         "startChar": 19,

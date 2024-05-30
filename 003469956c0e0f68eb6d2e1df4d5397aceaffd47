@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f09b28c4_2f53694c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 50
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-05-30T08:18:26Z",
+      "side": 1,
+      "message": "resolved and replied to a few comments. Need inputs regarding change of endpoint for 1st API",
+      "revId": "003469956c0e0f68eb6d2e1df4d5397aceaffd47",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
