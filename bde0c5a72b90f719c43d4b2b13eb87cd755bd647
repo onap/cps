@@ -69,6 +69,24 @@
       "parentUuid": "dca00b86_d5ea06d4",
       "revId": "bde0c5a72b90f719c43d4b2b13eb87cd755bd647",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc07e1bc_b728ff9b",
+        "filename": "cps-rest/docs/openapi/openapi.yml",
+        "patchSetId": 52
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-05-30T11:47:59Z",
+      "side": 1,
+      "message": "Yep. Correct.\nSo just to summarize my understanding for you to put into context.\n\nNow we can have just one endpoint ( a separate controller ) - if we look at Option#B above to cater our delta report requirement.\n\nWe can make the body flexible enough to decide which underlying method needs to invoked.",
+      "parentUuid": "b2d3d5f8_5b713e38",
+      "revId": "bde0c5a72b90f719c43d4b2b13eb87cd755bd647",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
