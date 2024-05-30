@@ -16,6 +16,69 @@
       "message": "resolved and replied to a few comments. Need inputs regarding change of endpoint for 1st API",
       "revId": "003469956c0e0f68eb6d2e1df4d5397aceaffd47",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec4e945f_42aeb8b0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 50
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-30T08:20:21Z",
+      "side": 1,
+      "message": "2 small misunderstanding to be cleared :-) \nAlso waiting on feedback on rest endpoint change proposal, I understand from Priyank we might need to test to see if it works...",
+      "revId": "003469956c0e0f68eb6d2e1df4d5397aceaffd47",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4dca532_3c56cec5",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 50
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-30T08:20:21Z",
+      "side": 1,
+      "message": "looking more closely now; teher is only one parameter differencee correct?\nso is shoudl look liek this:\n\nfinal Map\u003c...\u003e yangResourcesMap\nif (multipartFile \u003d\u003d null) {\nyangResourcesMap \u003d Collections.emptyMap()\nelse\nyangResourcesMap \u003d extractYangResourcesMap(multipartFile)\nendif\ndeltareports \u003d cpsDataService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, sourceAnchorName, xpath, yangResourcesMap, jsonPayload.toString(), fetchDescendantsOption);\ndeltaReport.addAll(deltareports);",
+      "range": {
+        "startLine": 185,
+        "startChar": 0,
+        "endLine": 190,
+        "endChar": 115
+      },
+      "revId": "003469956c0e0f68eb6d2e1df4d5397aceaffd47",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d68a9158_0469d3a5",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 50
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-05-30T08:20:21Z",
+      "side": 1,
+      "message": "what I mean is give this method a different name then the method on line 376",
+      "range": {
+        "startLine": 378,
+        "startChar": 19,
+        "endLine": 378,
+        "endChar": 50
+      },
+      "revId": "003469956c0e0f68eb6d2e1df4d5397aceaffd47",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
