@@ -123,12 +123,12 @@ public class DmiCmNotificationSubscriptionCacheHandler {
      *
      */
     public void updateDmiCmNotificationSubscriptionStatusPerDmi(final String subscriptionId,
-            final String dmiServiceName, final CmNotificationSubscriptionStatus status) {
+                                                                final String dmiServiceName,
+                                                                final CmNotificationSubscriptionStatus status) {
         final Map<String, DmiCmNotificationSubscriptionDetails> dmiCmNotificationSubscriptionDetailsPerDmi =
                 cmNotificationSubscriptionCache.get(subscriptionId);
         dmiCmNotificationSubscriptionDetailsPerDmi.get(dmiServiceName).setCmNotificationSubscriptionStatus(status);
         cmNotificationSubscriptionCache.put(subscriptionId, dmiCmNotificationSubscriptionDetailsPerDmi);
-
     }
 
     /**
@@ -152,6 +152,32 @@ public class DmiCmNotificationSubscriptionCacheHandler {
                 for (final String xpath: xpaths) {
                     cmNotificationSubscriptionPersistenceService.addCmNotificationSubscription(datastoreType, cmHandle,
                             xpath, subscriptionId);
+                }
+            }
+        }
+    }
+
+    /**
+     *  Remove subscription from database per DMI service name.
+     *
+     * @param subscriptionId    String of subscription id
+     * @param dmiServiceName    String of dmiServiceName
+     *
+     */
+    public void removeFromDatabasePerDmi(final String subscriptionId, final String dmiServiceName) {
+        final List<DmiCmNotificationSubscriptionPredicate> dmiCmNotificationSubscriptionPredicateList =
+                cmNotificationSubscriptionCache.get(subscriptionId).get(dmiServiceName)
+                        .getDmiCmNotificationSubscriptionPredicates();
+        for (final DmiCmNotificationSubscriptionPredicate dmiCmNotificationSubscriptionPredicate:
+                dmiCmNotificationSubscriptionPredicateList) {
+            final DatastoreType datastoreType = dmiCmNotificationSubscriptionPredicate.getDatastoreType();
+            final Set<String> cmHandles = dmiCmNotificationSubscriptionPredicate.getTargetCmHandleIds();
+            final Set<String> xpaths = dmiCmNotificationSubscriptionPredicate.getXpaths();
+
+            for (final String cmHandle: cmHandles) {
+                for (final String xpath: xpaths) {
+                    cmNotificationSubscriptionPersistenceService.removeCmNotificationSubscription(datastoreType,
+                            cmHandle, xpath, subscriptionId);
                 }
             }
         }

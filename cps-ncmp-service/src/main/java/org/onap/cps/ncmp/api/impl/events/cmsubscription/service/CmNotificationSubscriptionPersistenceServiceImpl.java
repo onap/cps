@@ -20,6 +20,7 @@
 
 package org.onap.cps.ncmp.api.impl.events.cmsubscription.service;
 
+import static org.onap.cps.spi.FetchDescendantsOption.DIRECT_CHILDREN_ONLY;
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS;
 
 import java.io.Serializable;
@@ -45,10 +46,14 @@ public class CmNotificationSubscriptionPersistenceServiceImpl implements CmNotif
 
     private static final String SUBSCRIPTION_ANCHOR_NAME = "cm-data-subscriptions";
     private static final String CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_DATASTORE_AND_CMHANDLE = """
-            /datastores/datastore[@name='%s']/cm-handles/cm-handle[@id='%s']/filters
+            /datastores/datastore[@name='%s']/cm-handles/cm-handle[@id='%s']
             """.trim();
+    private static final String CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_FILTERS_WITH_DATASTORE_AND_CMHANDLE =
+            CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_DATASTORE_AND_CMHANDLE + "/filters";
+
     private static final String CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_DATASTORE_CMHANDLE_AND_XPATH =
-            CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_DATASTORE_AND_CMHANDLE + "/filter[@xpath='%s']";
+            CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_FILTERS_WITH_DATASTORE_AND_CMHANDLE + "/filter[@xpath='%s']";
+
 
     private static final String CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_ID = """
             //filter/subscriptionIds[text()='%s']
@@ -106,12 +111,11 @@ public class CmNotificationSubscriptionPersistenceServiceImpl implements CmNotif
         final Collection<String> subscriptionIds = getOngoingCmNotificationSubscriptionIds(datastoreType,
                 cmHandleId, xpath);
         if (subscriptionIds.remove(subscriptionId)) {
-            if (isOngoingCmNotificationSubscription(datastoreType, cmHandleId, xpath)) {
-                saveSubscriptionDetails(datastoreType, cmHandleId, xpath, subscriptionIds);
-                log.info("There are subscribers left for the following cps path {} :",
-                        CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_DATASTORE_CMHANDLE_AND_XPATH.formatted(
-                                datastoreType.getDatastoreName(), cmHandleId, escapeQuotesByDoublingThem(xpath)));
-            } else {
+            saveSubscriptionDetails(datastoreType, cmHandleId, xpath, subscriptionIds);
+            log.info("There are subscribers left for the following cps path {} :",
+                    CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_DATASTORE_CMHANDLE_AND_XPATH.formatted(
+                            datastoreType.getDatastoreName(), cmHandleId, escapeQuotesByDoublingThem(xpath)));
+            if (subscriptionIds.isEmpty()) {
                 log.info("No subscribers left for the following cps path {} :",
                         CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_DATASTORE_CMHANDLE_AND_XPATH.formatted(
                                 datastoreType.getDatastoreName(), cmHandleId, escapeQuotesByDoublingThem(xpath)));
@@ -126,11 +130,25 @@ public class CmNotificationSubscriptionPersistenceServiceImpl implements CmNotif
                 CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_DATASTORE_CMHANDLE_AND_XPATH.formatted(
                         datastoreType.getDatastoreName(), cmHandleId, escapeQuotesByDoublingThem(xpath)),
                 OffsetDateTime.now());
+        final Collection<DataNode> existingFiltersForCmHandle =
+                cpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME, CM_SUBSCRIPTIONS_ANCHOR_NAME,
+                        CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_FILTERS_WITH_DATASTORE_AND_CMHANDLE.formatted(
+                                datastoreType.getDatastoreName(), cmHandleId),
+                        DIRECT_CHILDREN_ONLY).iterator().next().getChildDataNodes();
+        if (existingFiltersForCmHandle.isEmpty()) {
+            removeCmHandleFromDatastore(datastoreType.getDatastoreName(), cmHandleId);
+        }
+    }
+
+    private void removeCmHandleFromDatastore(final String datastoreName, final String cmHandleId) {
+        cpsDataService.deleteDataNode(NCMP_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME,
+                CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_DATASTORE_AND_CMHANDLE.formatted(
+                        datastoreName, cmHandleId), OffsetDateTime.now());
     }
 
     private boolean isFirstSubscriptionForCmHandle(final DatastoreType datastoreType, final String cmHandleId) {
         return cpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME, CM_SUBSCRIPTIONS_ANCHOR_NAME,
-                CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_DATASTORE_AND_CMHANDLE.formatted(
+                CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_FILTERS_WITH_DATASTORE_AND_CMHANDLE.formatted(
                         datastoreType.getDatastoreName(), cmHandleId),
                 OMIT_DESCENDANTS).isEmpty();
     }
@@ -150,7 +168,7 @@ public class CmNotificationSubscriptionPersistenceServiceImpl implements CmNotif
                     OffsetDateTime.now(), ContentType.JSON);
         } else {
             cpsDataService.saveListElements(NCMP_DATASPACE_NAME, CM_SUBSCRIPTIONS_ANCHOR_NAME,
-                    CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_DATASTORE_AND_CMHANDLE.formatted(
+                    CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_FILTERS_WITH_DATASTORE_AND_CMHANDLE.formatted(
                             datastoreType.getDatastoreName(), cmHandleId),
                     subscriptionDetailsAsJson, OffsetDateTime.now());
         }
@@ -161,7 +179,7 @@ public class CmNotificationSubscriptionPersistenceServiceImpl implements CmNotif
                                          final  Collection<String> subscriptionIds) {
         final String subscriptionDetailsAsJson = getSubscriptionDetailsAsJson(xpath, subscriptionIds);
         cpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, CM_SUBSCRIPTIONS_ANCHOR_NAME,
-                CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_DATASTORE_AND_CMHANDLE.formatted(
+                CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_FILTERS_WITH_DATASTORE_AND_CMHANDLE.formatted(
                         datastoreType.getDatastoreName(), cmHandleId), subscriptionDetailsAsJson, OffsetDateTime.now());
     }
 
