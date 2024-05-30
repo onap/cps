@@ -33,6 +33,24 @@
       "message": "just think out loud with Priyank:\n\nwe feel that the delate feature should NOT be in the data interface as it does NOT directly retrieve data!\n\nI see 2 alternatives\nA )subfeature of nodes/query interface like so:\n  /v2/dataspaces/{dataspace-name}/nodes/query/delta-report (POST)\nB) new \u0027nodes\u0027 feature like so:\n  /v2/dataspaces/{dataspace-name}/nodes/delta-report (POST)\n  \nbody:\n{\n\"source: \"\u003canchor-name\u003e\"\n\"targetType\":\"payload\"\n\"target\":\"\u003call data as json string\u003e\"\n}\nMultiPartFile  (optional)\n\n\nand for the other use case\nbody:\n{\n\"source: \"\u003canchor-name\u003e\"\n\"targetType\":\"anchor\"\n  \"target\":\"\u003canchorName\u003e\"\n}\n\n\nthis wil also be cleaner if you add more functionality later",
       "revId": "bde0c5a72b90f719c43d4b2b13eb87cd755bd647",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dca00b86_d5ea06d4",
+        "filename": "cps-rest/docs/openapi/openapi.yml",
+        "patchSetId": 52
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-05-30T11:27:31Z",
+      "side": 1,
+      "message": "@Arpit : if needed we can talk abt this.",
+      "parentUuid": "10f356eb_c6071214",
+      "revId": "bde0c5a72b90f719c43d4b2b13eb87cd755bd647",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
