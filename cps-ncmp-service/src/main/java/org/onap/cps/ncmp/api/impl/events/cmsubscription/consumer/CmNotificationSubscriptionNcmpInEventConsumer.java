@@ -23,11 +23,13 @@ package org.onap.cps.ncmp.api.impl.events.cmsubscription.consumer;
 import static org.onap.cps.ncmp.api.impl.events.mapper.CloudEventMapper.toTargetEvent;
 
 import io.cloudevents.CloudEvent;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.service.CmNotificationSubscriptionHandlerService;
 import org.onap.cps.ncmp.events.cmnotificationsubscription_merge1_0_0.client_to_ncmp.CmNotificationSubscriptionNcmpInEvent;
+import org.onap.cps.ncmp.events.cmnotificationsubscription_merge1_0_0.client_to_ncmp.Predicate;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
@@ -53,10 +55,16 @@ public class CmNotificationSubscriptionNcmpInEventConsumer {
                 cmNotificationSubscriptionNcmpInEvent.getData().getSubscriptionId());
 
         final String subscriptionId = cmNotificationSubscriptionNcmpInEvent.getData().getSubscriptionId();
+        final List<Predicate> predicates = cmNotificationSubscriptionNcmpInEvent.getData().getPredicates();
         if ("subscriptionCreateRequest".equals(cloudEvent.getType())) {
-            log.info("Subscription for source {} with subscription id {} ...", cloudEvent.getSource(), subscriptionId);
-            cmNotificationSubscriptionHandlerService.processSubscriptionCreateRequest(
-                    cmNotificationSubscriptionNcmpInEvent);
+            log.info("Subscription create request for source {} with subscription id {} ...",
+                    cloudEvent.getSource(), subscriptionId);
+            cmNotificationSubscriptionHandlerService.processSubscriptionCreateRequest(subscriptionId, predicates);
+        }
+        if ("subscriptionDeleteRequest".equals(cloudEvent.getType())) {
+            log.info("Subscription delete request for source {} with subscription id {} ...",
+                    cloudEvent.getSource(), subscriptionId);
+            cmNotificationSubscriptionHandlerService.processSubscriptionDeleteRequest(subscriptionId, predicates);
         }
     }
 }
