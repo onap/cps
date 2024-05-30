@@ -54,6 +54,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ca27d1e7_09551438",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionHandlerServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-05-30T14:42:44Z",
+      "side": 1,
+      "message": "NB: we can also make 1 method and accept the eventType.\nProbably call it scheduleCmNotificationSubscriptionNcmpOutEventResponse",
+      "range": {
+        "startLine": 70,
+        "startChar": 4,
+        "endLine": 78,
+        "endChar": 5
+      },
+      "revId": "a9d4138195ae234e253fb7c1d599534f5e7b0999",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b93d7b96_4e0cbf89",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionHandlerServiceImplSpec.groovy",
         "patchSetId": 1
