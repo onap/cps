@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Modifications Copyright (C) 2024 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -47,6 +48,7 @@ import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.repository.DataspaceRepository
 import org.onap.cps.spi.utils.SessionManager
 import org.onap.cps.ncmp.utils.AlternateIdMatcher
+import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
@@ -230,6 +232,6 @@ abstract class CpsIntegrationSpecBase extends Specification {
         DateTimeFormatter ISO_TIMESTAMP_FORMATTER = DateTimeFormatter.ofPattern(ISO_TIMESTAMP_PATTERN);
         def jsonForUpdate = '{ "state": { "last-update-time": "%s" } }'.formatted(ISO_TIMESTAMP_FORMATTER.format(newUpdateTime))
         cpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                NCMP_DMI_REGISTRY_PARENT + "/cm-handles[@id='${cmHandleId}']", jsonForUpdate, now)
+                NCMP_DMI_REGISTRY_PARENT + "/cm-handles[@id='${cmHandleId}']", jsonForUpdate, now, ContentType.JSON)
     }
 }
