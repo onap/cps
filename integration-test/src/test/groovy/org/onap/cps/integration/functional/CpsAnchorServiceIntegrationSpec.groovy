@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Modifications Copyright (C) 2024 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -27,6 +28,7 @@ import org.onap.cps.integration.base.CpsIntegrationSpecBase
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.exceptions.AlreadyDefinedException
 import org.onap.cps.spi.exceptions.AnchorNotFoundException
+import org.onap.cps.utils.ContentType
 
 class CpsAnchorServiceIntegrationSpec extends CpsIntegrationSpecBase {
 
@@ -110,7 +112,7 @@ class CpsAnchorServiceIntegrationSpec extends CpsIntegrationSpecBase {
             objectUnderTest.updateAnchorSchemaSet(GENERAL_TEST_DATASPACE, 'anchor4', 'anotherTreeSchemaSet')
         when: 'updated tree data node with new leaves'
             def updatedTreeJsonData = readResourceDataFile('tree/updated-test-tree.json')
-            cpsDataService.updateNodeLeaves(GENERAL_TEST_DATASPACE, "anchor4", "/test-tree/branch[@name='left']", updatedTreeJsonData, OffsetDateTime.now())
+            cpsDataService.updateNodeLeaves(GENERAL_TEST_DATASPACE, "anchor4", "/test-tree/branch[@name='left']", updatedTreeJsonData, OffsetDateTime.now(), ContentType.JSON)
         then: 'updated tree data node can be retrieved by its normalized xpath'
             def birdsName = cpsDataService.getDataNodes(GENERAL_TEST_DATASPACE, 'anchor4',"/test-tree/branch[@name='left']/nest", FetchDescendantsOption.DIRECT_CHILDREN_ONLY)[0].leaves['birds'] as List
             assert birdsName.size() == 3
