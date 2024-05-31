@@ -29,8 +29,8 @@ import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.DmiCmNotificationSubscriptionPredicate;
 import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence;
+import org.onap.cps.ncmp.events.cmnotificationsubscription_merge1_0_0.ncmp_to_dmi.CmHandle;
 import org.onap.cps.ncmp.events.cmnotificationsubscription_merge1_0_0.ncmp_to_dmi.CmNotificationSubscriptionDmiInEvent;
-import org.onap.cps.ncmp.events.cmnotificationsubscription_merge1_0_0.ncmp_to_dmi.Cmhandle;
 import org.onap.cps.ncmp.events.cmnotificationsubscription_merge1_0_0.ncmp_to_dmi.Data;
 import org.onap.cps.ncmp.events.cmnotificationsubscription_merge1_0_0.ncmp_to_dmi.Predicate;
 import org.onap.cps.ncmp.events.cmnotificationsubscription_merge1_0_0.ncmp_to_dmi.ScopeFilter;
@@ -54,7 +54,7 @@ public class CmNotificationSubscriptionDmiInEventMapper {
                 new CmNotificationSubscriptionDmiInEvent();
         final Data cmSubscriptionData = new Data();
         cmSubscriptionData.setPredicates(mapToDmiInEventPredicates(dmiCmNotificationSubscriptionPredicates));
-        cmSubscriptionData.setCmhandles(mapToCmSubscriptionCmhandleWithPrivateProperties(
+        cmSubscriptionData.setCmHandles(mapToCmSubscriptionCmhandleWithPrivateProperties(
                 extractUniqueCmHandleIds(dmiCmNotificationSubscriptionPredicates)));
         cmNotificationSubscriptionDmiInEvent.setData(cmSubscriptionData);
         return cmNotificationSubscriptionDmiInEvent;
@@ -81,12 +81,12 @@ public class CmNotificationSubscriptionDmiInEventMapper {
 
     }
 
-    private List<Cmhandle> mapToCmSubscriptionCmhandleWithPrivateProperties(final Set<String> cmHandleIds) {
+    private List<CmHandle> mapToCmSubscriptionCmhandleWithPrivateProperties(final Set<String> cmHandleIds) {
 
-        final List<Cmhandle> cmSubscriptionCmHandles = new ArrayList<>();
+        final List<CmHandle> cmSubscriptionCmHandles = new ArrayList<>();
 
         inventoryPersistence.getYangModelCmHandles(cmHandleIds).forEach(yangModelCmHandle -> {
-            final Cmhandle cmhandle = new Cmhandle();
+            final CmHandle cmhandle = new CmHandle();
             final Map<String, String> cmhandleDmiProperties = new LinkedHashMap<>();
             yangModelCmHandle.getDmiProperties()
                     .forEach(dmiProperty -> cmhandleDmiProperties.put(dmiProperty.getName(), dmiProperty.getValue()));

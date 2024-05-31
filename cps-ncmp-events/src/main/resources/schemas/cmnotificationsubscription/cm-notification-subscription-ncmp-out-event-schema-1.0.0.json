@@ -27,21 +27,21 @@
           "type": "string",
           "description": "The unique subscription id"
         },
-        "accepted-targets": {
+        "acceptedTargets": {
           "type": "array",
           "description": "List of accepted targets",
           "items": {
             "type": "string"
           }
         },
-        "rejected-targets": {
+        "rejectedTargets": {
           "type": "array",
           "description": "List of rejected targets",
           "items": {
             "type": "string"
           }
         },
-        "pending-targets": {
+        "pendingTargets": {
           "type": "array",
           "description": "List of pending targets",
           "items": {
@@ -50,9 +50,9 @@
         }
       },
       "required": [
-        "accepted-targets",
-        "pending-targets",
-        "rejected-targets",
+        "acceptedTargets",
+        "pendingTargets",
+        "rejectedTargets",
         "subscriptionId"
       ],
       "title": "Data"

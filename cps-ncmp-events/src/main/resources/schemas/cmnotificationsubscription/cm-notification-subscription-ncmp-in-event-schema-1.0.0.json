@@ -34,7 +34,7 @@
                         "type": "string",
                         "enum": ["ncmp-datastore:passthrough-operational", "ncmp-datastore:passthrough-running"]
                       },
-                      "xpath-filter": {
+                      "xpathFilter": {
                         "description": "Filter to be applied to the CM Handles through this event",
                         "type": "array",
                         "items": {
@@ -44,7 +44,7 @@
                     },
                     "additionalProperties": false,
                     "required": [
-                      "xpath-filter"
+                      "xpathFilter"
                     ]
                   }
                 },

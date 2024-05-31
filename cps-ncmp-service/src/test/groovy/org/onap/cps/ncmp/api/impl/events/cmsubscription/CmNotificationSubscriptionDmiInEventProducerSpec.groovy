@@ -25,8 +25,8 @@ import io.cloudevents.CloudEvent
 import org.onap.cps.events.EventsPublisher
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.producer.CmNotificationSubscriptionDmiInEventProducer
 import org.onap.cps.ncmp.api.impl.events.mapper.CloudEventMapper
+import org.onap.cps.ncmp.events.cmnotificationsubscription_merge1_0_0.ncmp_to_dmi.CmHandle
 import org.onap.cps.ncmp.events.cmnotificationsubscription_merge1_0_0.ncmp_to_dmi.CmNotificationSubscriptionDmiInEvent
-import org.onap.cps.ncmp.events.cmnotificationsubscription_merge1_0_0.ncmp_to_dmi.Cmhandle
 import org.onap.cps.ncmp.events.cmnotificationsubscription_merge1_0_0.ncmp_to_dmi.Data
 import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Specification
@@ -43,7 +43,7 @@ class CmNotificationSubscriptionDmiInEventProducerSpec extends Specification {
             def subscriptionId = 'test-subscription-id'
             def dmiPluginName = 'test-dmiplugin'
             def eventType = 'subscriptionCreateRequest'
-            def cmNotificationSubscriptionDmiInEvent = new CmNotificationSubscriptionDmiInEvent(data: new Data(cmhandles: [new Cmhandle(cmhandleId: 'test-1', privateProperties: [:])]))
+            def cmNotificationSubscriptionDmiInEvent = new CmNotificationSubscriptionDmiInEvent(data: new Data(cmHandles: [new CmHandle(cmhandleId: 'test-1', privateProperties: [:])]))
         and: 'also we have target topic for dmiPlugin'
             objectUnderTest.cmNotificationSubscriptionDmiInEventTopic = 'dmiplugin-test-topic'
         when: 'the event is published'

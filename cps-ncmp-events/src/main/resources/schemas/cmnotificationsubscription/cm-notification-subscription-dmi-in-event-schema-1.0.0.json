@@ -22,7 +22,7 @@
       "description": "Information about the targets and subscription",
       "additionalProperties": false,
       "properties": {
-        "cmhandles": {
+        "cmHandles": {
           "type": "array",
           "items": {
             "type": "object",
@@ -32,7 +32,7 @@
               "cmhandleId": {
                 "type": "string"
               },
-              "private-properties": {
+              "privateProperties": {
                 "type": "object",
                 "existingJavaType": "java.util.Map<String,String>",
                 "items": {
@@ -63,7 +63,7 @@
                     "type": "string",
                     "enum": ["ncmp-datastore:passthrough-operational", "ncmp-datastore:passthrough-running"]
                   },
-                  "xpath-filter": {
+                  "xpathFilter": {
                     "description": "Filter to be applied to the CM Handles through this event",
                     "type": "array",
                     "items": {
@@ -73,7 +73,7 @@
                 },
                 "additionalProperties": false,
                 "required": [
-                  "xpath-filter"
+                  "xpathFilter"
                 ]
               }
             },
@@ -86,7 +86,7 @@
         }
       },
       "required": [
-        "cmhandles",
+        "cmHandles",
         "predicates"
       ]
     }

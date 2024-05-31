@@ -48,8 +48,8 @@ class CmNotificationSubscriptionDmiInEventMapperSpec extends Specification {
         when: 'we try to map the values'
             def result = objectUnderTest.toCmNotificationSubscriptionDmiInEvent(dmiCmNotificationSubscriptionPredicates)
         then: 'it contains correct cm notification subscription cmhandle object'
-            assert result.data.cmhandles.cmhandleId.containsAll(['ch-1', 'ch-2'])
-            assert result.data.cmhandles.privateProperties.containsAll([['k1': 'v1'], ['k2': 'v2']])
+            assert result.data.cmHandles.cmhandleId.containsAll(['ch-1', 'ch-2'])
+            assert result.data.cmHandles.privateProperties.containsAll([['k1': 'v1'], ['k2': 'v2']])
         and: 'also has the correct dmi cm notification subscription predicates'
             assert result.data.predicates.targetFilter.containsAll([['ch-1'], ['ch-2']])
 
