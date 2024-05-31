@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2493cdef_e4adf4ca",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionHandlerServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-05-31T10:59:14Z",
+      "side": 1,
+      "message": "can you enhance handleCmNotificationSubscriptionDelta(subscriptionId) method to cater to create and delete use case ??\nalmost similar methods.\nmaybe pass in handleCmNotificationSubscriptionDelta(subscriptionId, eventType) as well.",
+      "range": {
+        "startLine": 66,
+        "startChar": 8,
+        "endLine": 66,
+        "endChar": 59
+      },
+      "revId": "44504115d9fdd04b866169af9d4789fdb5ce8f90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
