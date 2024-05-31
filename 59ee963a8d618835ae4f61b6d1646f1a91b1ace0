@@ -75,6 +75,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2229bfd8_1f7912fe",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/consumer/CmNotificationSubscriptionDmiOutEventConsumer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-05-31T10:14:52Z",
+      "side": 1,
+      "message": "keeping it , i think it makes more sense with it and tells the reader what exactly # is",
+      "parentUuid": "23739018_81a79e44",
+      "range": {
+        "startLine": 78,
+        "startChar": 58,
+        "endLine": 78,
+        "endChar": 61
+      },
+      "revId": "59ee963a8d618835ae4f61b6d1646f1a91b1ace0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "937601bd_37b05136",
@@ -88,6 +112,30 @@
       "writtenOn": "2024-05-30T14:46:29Z",
       "side": 1,
       "message": "extract out and give a meaning to it just like we did for other xpaths.",
+      "range": {
+        "startLine": 141,
+        "startChar": 17,
+        "endLine": 141,
+        "endChar": 81
+      },
+      "revId": "59ee963a8d618835ae4f61b6d1646f1a91b1ace0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ade9d300_30d5ca06",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-05-31T10:14:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "937601bd_37b05136",
       "range": {
         "startLine": 141,
         "startChar": 17,
