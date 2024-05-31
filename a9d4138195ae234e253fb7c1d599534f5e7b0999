@@ -92,6 +92,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ddc1b9eb_89abb650",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionHandlerServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-05-31T09:41:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca27d1e7_09551438",
+      "range": {
+        "startLine": 70,
+        "startChar": 4,
+        "endLine": 78,
+        "endChar": 5
+      },
+      "revId": "a9d4138195ae234e253fb7c1d599534f5e7b0999",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b93d7b96_4e0cbf89",
@@ -105,6 +129,30 @@
       "writtenOn": "2024-05-30T09:43:37Z",
       "side": 1,
       "message": "\u0027test-id\u0027",
+      "range": {
+        "startLine": 133,
+        "startChar": 66,
+        "endLine": 133,
+        "endChar": 75
+      },
+      "revId": "a9d4138195ae234e253fb7c1d599534f5e7b0999",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db8461a6_0eebcc0f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionHandlerServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-05-31T09:41:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b93d7b96_4e0cbf89",
       "range": {
         "startLine": 133,
         "startChar": 66,
@@ -138,6 +186,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "819cbfb0_409d3112",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionHandlerServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-05-31T09:41:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "604ff8ed_a9e84c69",
+      "range": {
+        "startLine": 139,
+        "startChar": 102,
+        "endLine": 139,
+        "endChar": 103
+      },
+      "revId": "a9d4138195ae234e253fb7c1d599534f5e7b0999",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "52f1c61a_b5ce5cd8",
@@ -161,6 +233,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d841f69_81fe454a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionHandlerServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-05-31T09:41:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "52f1c61a_b5ce5cd8",
+      "range": {
+        "startLine": 142,
+        "startChar": 16,
+        "endLine": 142,
+        "endChar": 63
+      },
+      "revId": "a9d4138195ae234e253fb7c1d599534f5e7b0999",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "83dc72ac_a7a348fa",
@@ -174,6 +270,30 @@
       "writtenOn": "2024-05-30T09:43:37Z",
       "side": 1,
       "message": "\u0027test-id\u0027, \u0027subscriptionDeleteRequest\u0027",
+      "range": {
+        "startLine": 145,
+        "startChar": 16,
+        "endLine": 145,
+        "endChar": 55
+      },
+      "revId": "a9d4138195ae234e253fb7c1d599534f5e7b0999",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a6f2c46_7f3f81c6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionHandlerServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-05-31T09:41:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "83dc72ac_a7a348fa",
       "range": {
         "startLine": 145,
         "startChar": 16,
