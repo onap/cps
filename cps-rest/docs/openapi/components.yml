@@ -1,7 +1,7 @@
 # ============LICENSE_START=======================================================
 # Copyright (c) 2021-2022 Bell Canada.
 # Modifications Copyright (C) 2021-2023 Nordix Foundation
-# Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
+# Modifications Copyright (C) 2022-2024 TechMahindra Ltd.
 # Modifications Copyright (C) 2022 Deutsche Telekom AG
 # ================================================================================
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -114,6 +114,8 @@ components:
               <categories>
                 <code>1</code>
                 <name>SciFi</name>
+                <code>2</code>
+                <name>kids</name>
               </categories>
             </bookstore>
           </stores>

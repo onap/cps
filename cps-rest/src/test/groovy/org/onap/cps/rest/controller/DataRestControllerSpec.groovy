@@ -4,7 +4,7 @@
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
  *  Modifications Copyright (C) 2022 Deutsche Telekom AG
- *  Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2022-2024 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -360,19 +360,22 @@ class DataRestControllerSpec extends Specification {
             def response =
                 mvc.perform(
                     patch(endpoint)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(requestBodyJson)
+                        .contentType(contentType)
+                        .content(requestBody)
                         .param('xpath', inputXpath)
                 ).andReturn().response
         then: 'the service method is invoked with expected parameters'
-            1 * mockCpsDataService.updateNodeLeaves(dataspaceName, anchorName, xpathServiceParameter, expectedJsonData, null)
+            1 * mockCpsDataService.updateNodeLeaves(dataspaceName, anchorName, xpathServiceParameter, expectedData, null, expectedContentType)
         and: 'response status indicates success'
             response.status == HttpStatus.OK.value()
         where:
-            scenario               | inputXpath    || xpathServiceParameter
-            'root node by default' | ''            || '/'
-            'root node by choice'  | '/'           || '/'
-            'some xpath by parent' | '/some/xpath' || '/some/xpath'
+            scenario                             | inputXpath    | contentType                || xpathServiceParameter | requestBody     | expectedData        | expectedContentType
+            'JSON content: root node by default' | ''            | MediaType.APPLICATION_JSON || '/'                   | requestBodyJson | expectedJsonData    | ContentType.JSON
+            'JSON content: root node by choice'  | '/'           | MediaType.APPLICATION_JSON || '/'                   | requestBodyJson | expectedJsonData    | ContentType.JSON
+            'JSON content: some xpath by parent' | '/some/xpath' | MediaType.APPLICATION_JSON || '/some/xpath'         | requestBodyJson | expectedJsonData    | ContentType.JSON
+            'XML content: root node by default'  | ''            | MediaType.APPLICATION_XML  || '/'                   | requestBodyXml  | expectedXmlData     | ContentType.XML
+            'XML content: root node by choice'   | '/'           | MediaType.APPLICATION_XML  || '/'                   | requestBodyXml  | expectedXmlData     | ContentType.XML
+            'XML content: some xpath by parent'  | '/some/xpath' | MediaType.APPLICATION_XML  || '/some/xpath'         | requestBodyXml  | expectedXmlData     | ContentType.XML
     }
 
     def 'Update data node leaves with observedTimestamp'() {
@@ -389,7 +392,7 @@ class DataRestControllerSpec extends Specification {
                 ).andReturn().response
         then: 'the service method is invoked with expected parameters'
             expectedApiCount * mockCpsDataService.updateNodeLeaves(dataspaceName, anchorName, '/', expectedJsonData,
-                { it == DateTimeUtility.toOffsetDateTime(observedTimestamp) })
+                { it == DateTimeUtility.toOffsetDateTime(observedTimestamp) }, ContentType.JSON)
         and: 'response status indicates success'
             response.status == expectedHttpStatus.value()
         where:
