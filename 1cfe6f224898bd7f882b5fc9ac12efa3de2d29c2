@@ -83,6 +83,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "73460a8e_c7b68b7f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/DmiCmNotificationSubscriptionCacheHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-06-04T13:36:15Z",
+      "side": 1,
+      "message": "when we send the response back to the client , and if the response is either ACCEPTED/REJECTED then the entry is cleared from the cache.\n@Anjella to check and confirm for the delete case as well.",
+      "parentUuid": "86578b53_3a029d96",
+      "range": {
+        "startLine": 46,
+        "startChar": 13,
+        "endLine": 46,
+        "endChar": 54
+      },
+      "revId": "1cfe6f224898bd7f882b5fc9ac12efa3de2d29c2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "204528a3_b2b7bea7",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/DmiCmNotificationSubscriptionCacheHandler.java",
         "patchSetId": 2
