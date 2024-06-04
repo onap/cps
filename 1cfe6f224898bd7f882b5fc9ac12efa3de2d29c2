@@ -107,6 +107,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5ad984c5_bc286329",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/DmiCmNotificationSubscriptionCacheHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-06-04T13:42:26Z",
+      "side": 1,
+      "message": "yeah , in this method in CmNotificationSubscriptionNcmpOutEventProducer after publishing to client method in line 78 is called",
+      "parentUuid": "73460a8e_c7b68b7f",
+      "range": {
+        "startLine": 46,
+        "startChar": 13,
+        "endLine": 46,
+        "endChar": 54
+      },
+      "revId": "1cfe6f224898bd7f882b5fc9ac12efa3de2d29c2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "204528a3_b2b7bea7",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/DmiCmNotificationSubscriptionCacheHandler.java",
         "patchSetId": 2
