@@ -1,6 +1,46 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "465144ff_aedf31a1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-04T13:50:07Z",
+      "side": 1,
+      "message": "Some NB reviews...",
+      "revId": "44504115d9fdd04b866169af9d4789fdb5ce8f90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a6f1597_0ceea810",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/consumer/CmNotificationSubscriptionNcmpInEventConsumer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-04T13:50:07Z",
+      "side": 1,
+      "message": "MB: Not sure if it is a good idea to keep log level info. E.g. if there would be hundred of thousand of subscription than there will be an log-oversize issue.",
+      "range": {
+        "startLine": 60,
+        "startChar": 16,
+        "endLine": 60,
+        "endChar": 20
+      },
+      "revId": "44504115d9fdd04b866169af9d4789fdb5ce8f90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2493cdef_e4adf4ca",
@@ -43,6 +83,75 @@
         "startChar": 8,
         "endLine": 66,
         "endChar": 59
+      },
+      "revId": "44504115d9fdd04b866169af9d4789fdb5ce8f90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24a99d16_f4194a2a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionHandlerServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-04T13:50:07Z",
+      "side": 1,
+      "message": "NB: would it be good to extract these two string into a final variable?",
+      "range": {
+        "startLine": 113,
+        "startChar": 32,
+        "endLine": 113,
+        "endChar": 57
+      },
+      "revId": "44504115d9fdd04b866169af9d4789fdb5ce8f90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6548eb33_2faf9566",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionHandlerServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-04T13:50:07Z",
+      "side": 1,
+      "message": "NB: would it be good to extract these two string into a final variable?",
+      "range": {
+        "startLine": 131,
+        "startChar": 36,
+        "endLine": 131,
+        "endChar": 61
+      },
+      "revId": "44504115d9fdd04b866169af9d4789fdb5ce8f90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70069ca3_13aa3501",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionNcmpInEventConsumerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-04T13:50:07Z",
+      "side": 1,
+      "message": "NB: I would suggest to merge this test into the create using scenarios if it is not too much complicated especially to test the logging.\n\nif complicated, then its good. (Nearly identical tests)",
+      "range": {
+        "startLine": 86,
+        "startChar": 4,
+        "endLine": 86,
+        "endChar": 80
       },
       "revId": "44504115d9fdd04b866169af9d4789fdb5ce8f90",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
