@@ -20,6 +20,75 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "204528a3_b2b7bea7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/DmiCmNotificationSubscriptionCacheHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-06-04T13:29:45Z",
+      "side": 1,
+      "message": "NB: dont like this. same for dmiServiceName",
+      "range": {
+        "startLine": 163,
+        "startChar": 32,
+        "endLine": 163,
+        "endChar": 42
+      },
+      "revId": "1cfe6f224898bd7f882b5fc9ac12efa3de2d29c2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5184f596_255f4a62",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/consumer/CmNotificationSubscriptionDmiOutEventConsumer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-06-04T13:29:45Z",
+      "side": 1,
+      "message": "NB: \"subscriptionCreateResponse\".equals(eventType);",
+      "range": {
+        "startLine": 83,
+        "startChar": 16,
+        "endLine": 83,
+        "endChar": 62
+      },
+      "revId": "1cfe6f224898bd7f882b5fc9ac12efa3de2d29c2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6fe69de_201b1dc9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/consumer/CmNotificationSubscriptionDmiOutEventConsumer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-06-04T13:29:45Z",
+      "side": 1,
+      "message": "NB: \"subscriptionDeleteResponse\".equals(eventType);",
+      "range": {
+        "startLine": 86,
+        "startChar": 12,
+        "endLine": 86,
+        "endChar": 64
+      },
+      "revId": "1cfe6f224898bd7f882b5fc9ac12efa3de2d29c2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "57a00917_8e5ca490",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionPersistenceServiceImpl.java",
         "patchSetId": 2
