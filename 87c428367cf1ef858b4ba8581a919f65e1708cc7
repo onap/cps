@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba0585f2_fe088e4b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-04T16:20:31Z",
+      "side": 1,
+      "message": "need to tidy up main logic, you are still creating one requests for each operation :-(",
+      "revId": "87c428367cf1ef858b4ba8581a919f65e1708cc7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8657ce75_cd2b1fc5",
@@ -14,6 +31,29 @@
       "writtenOn": "2024-06-04T15:54:39Z",
       "side": 1,
       "message": "subJobsPerProducerKey",
+      "revId": "87c428367cf1ef858b4ba8581a919f65e1708cc7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a7d2ccf_da0e9e4f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobServiceImpl.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-04T16:20:31Z",
+      "side": 1,
+      "message": "Dmi3ggpWriteOperation",
+      "range": {
+        "startLine": 71,
+        "startChar": 42,
+        "endLine": 71,
+        "endChar": 60
+      },
       "revId": "87c428367cf1ef858b4ba8581a919f65e1708cc7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -77,6 +117,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a377bde1_af28ebbc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobServiceImpl.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-04T16:20:31Z",
+      "side": 1,
+      "message": "do NOT create request her. only create request (1 per produceKey) when iterating over the resulting map",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 93
+      },
+      "revId": "87c428367cf1ef858b4ba8581a919f65e1708cc7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e226fddb_0c3b0f60",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobServiceImpl.java",
         "patchSetId": 17
@@ -88,6 +151,190 @@
       "writtenOn": "2024-06-04T15:54:39Z",
       "side": 1,
       "message": "extract to a private method",
+      "revId": "87c428367cf1ef858b4ba8581a919f65e1708cc7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27b38863_6df36233",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobServiceImpl.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-04T16:20:31Z",
+      "side": 1,
+      "message": "change to:\nfinal Collection\u003cSubJobWriteRequest\u003e subJobWriteRequests\nif (map.contains...)\n   subJobWriteRequests \u003d map.get(..)\nelse\n   subJobWriteRequests \u003d new ...\n   map.put(...)\nendif\nsubJobWriteRequests.add(...)",
+      "range": {
+        "startLine": 85,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 13
+      },
+      "revId": "87c428367cf1ef858b4ba8581a919f65e1708cc7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06780143_1ad7c0c9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobServiceImpl.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-04T16:20:31Z",
+      "side": 1,
+      "message": "produceKey",
+      "range": {
+        "startLine": 96,
+        "startChar": 32,
+        "endLine": 96,
+        "endChar": 35
+      },
+      "revId": "87c428367cf1ef858b4ba8581a919f65e1708cc7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fcff83c7_c1268775",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobServiceImpl.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-04T16:20:31Z",
+      "side": 1,
+      "message": "subWriteJobs",
+      "range": {
+        "startLine": 96,
+        "startChar": 37,
+        "endLine": 96,
+        "endChar": 42
+      },
+      "revId": "87c428367cf1ef858b4ba8581a919f65e1708cc7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04ecb562_c3eaceb5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobServiceImpl.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-04T16:20:31Z",
+      "side": 1,
+      "message": "responseEnity",
+      "range": {
+        "startLine": 101,
+        "startChar": 41,
+        "endLine": 101,
+        "endChar": 50
+      },
+      "revId": "87c428367cf1ef858b4ba8581a919f65e1708cc7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b790001a_0f19bb22",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobServiceImpl.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-04T16:20:31Z",
+      "side": 1,
+      "message": "log subJobid ONLY and at debug level!",
+      "range": {
+        "startLine": 103,
+        "startChar": 12,
+        "endLine": 103,
+        "endChar": 61
+      },
+      "revId": "87c428367cf1ef858b4ba8581a919f65e1708cc7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b75d6dd5_3b9efda1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobServiceImpl.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-04T16:20:31Z",
+      "side": 1,
+      "message": "split into 2 methods: 1 to create map, one to process it",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 105,
+        "endChar": 5
+      },
+      "revId": "87c428367cf1ef858b4ba8581a919f65e1708cc7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84670571_1e4009a4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobServiceImpl.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-04T16:20:31Z",
+      "side": 1,
+      "message": "should be a collection of these",
+      "range": {
+        "startLine": 109,
+        "startChar": 62,
+        "endLine": 109,
+        "endChar": 84
+      },
+      "revId": "87c428367cf1ef858b4ba8581a919f65e1708cc7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffd4a01f_179d8ef7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobServiceImpl.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-04T16:20:31Z",
+      "side": 1,
+      "message": "dmi3ggpWriteOperations",
+      "range": {
+        "startLine": 110,
+        "startChar": 47,
+        "endLine": 110,
+        "endChar": 66
+      },
       "revId": "87c428367cf1ef858b4ba8581a919f65e1708cc7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
