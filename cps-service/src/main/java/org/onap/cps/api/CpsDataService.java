@@ -4,7 +4,7 @@
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada
  *  Modifications Copyright (C) 2022 Deutsche Telekom AG
- *  Modifications Copyright (C) 2023 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2024 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -107,10 +107,11 @@ public interface CpsDataService {
      * @param xpath                   xpath
      * @param fetchDescendantsOption  defines the scope of data to fetch: either single node or all the descendant nodes
      *                                (recursively) as well
+     * @param contentType       node data content type
      * @return collection of data node objects
      */
     Collection<DataNode> getDataNodes(String dataspaceName, String anchorName, String xpath,
-                                      FetchDescendantsOption fetchDescendantsOption);
+                                      FetchDescendantsOption fetchDescendantsOption, ContentType contentType);
 
     /**
      * Retrieves all the datanodes for multiple XPaths for given dataspace and anchor.

@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Modifications Copyright (C) 2024 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -19,6 +20,8 @@
  */
 
 package org.onap.cps.integration.performance.base
+
+import org.onap.cps.utils.ContentType
 
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
@@ -112,7 +115,7 @@ class NcmpPerfTestBase extends PerfTestBase {
     def 'NCMP pre-load test data'() {
         when: 'dummy get data nodes runs so that populating the DB does not get included in other test timings'
             resourceMeter.start()
-            def result = cpsDataService.getDataNodes(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_ANCHOR, '/', FetchDescendantsOption.OMIT_DESCENDANTS)
+            def result = cpsDataService.getDataNodes(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_ANCHOR, '/', FetchDescendantsOption.OMIT_DESCENDANTS, ContentType.JSON)
             resourceMeter.stop()
         then: 'expected data exists'
             assert result.xpath == ['/dmi-registry']

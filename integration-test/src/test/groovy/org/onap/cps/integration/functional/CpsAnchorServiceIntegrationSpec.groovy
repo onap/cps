@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Modifications Copyright (C) 2024 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -19,6 +20,8 @@
  */
 
 package org.onap.cps.integration.functional
+
+import org.onap.cps.utils.ContentType
 
 import java.time.OffsetDateTime
 
@@ -101,7 +104,7 @@ class CpsAnchorServiceIntegrationSpec extends CpsIntegrationSpecBase {
             def treeJsonData = readResourceDataFile('tree/new-test-tree.json')
             cpsDataService.saveData(GENERAL_TEST_DATASPACE, 'anchor4', treeJsonData, OffsetDateTime.now())
         and: 'saved tree data node can be retrieved by its normalized xpath'
-            def branchName = cpsDataService.getDataNodes(GENERAL_TEST_DATASPACE, 'anchor4', "/test-tree/branch", FetchDescendantsOption.DIRECT_CHILDREN_ONLY)[0].leaves['name']
+            def branchName = cpsDataService.getDataNodes(GENERAL_TEST_DATASPACE, 'anchor4', "/test-tree/branch", FetchDescendantsOption.DIRECT_CHILDREN_ONLY, ContentType.JSON)[0].leaves['name']
             assert branchName == 'left'
         and: 'a another schema set with updated tree yang model is created'
             def updatedTreeYangModelAsString = readResourceDataFile('tree/updated-test-tree.yang')
@@ -112,7 +115,7 @@ class CpsAnchorServiceIntegrationSpec extends CpsIntegrationSpecBase {
             def updatedTreeJsonData = readResourceDataFile('tree/updated-test-tree.json')
             cpsDataService.updateNodeLeaves(GENERAL_TEST_DATASPACE, "anchor4", "/test-tree/branch[@name='left']", updatedTreeJsonData, OffsetDateTime.now())
         then: 'updated tree data node can be retrieved by its normalized xpath'
-            def birdsName = cpsDataService.getDataNodes(GENERAL_TEST_DATASPACE, 'anchor4',"/test-tree/branch[@name='left']/nest", FetchDescendantsOption.DIRECT_CHILDREN_ONLY)[0].leaves['birds'] as List
+            def birdsName = cpsDataService.getDataNodes(GENERAL_TEST_DATASPACE, 'anchor4',"/test-tree/branch[@name='left']/nest", FetchDescendantsOption.DIRECT_CHILDREN_ONLY, ContentType.JSON)[0].leaves['birds'] as List
             assert birdsName.size() == 3
             assert birdsName.containsAll('Night Owl', 'Raven', 'Crow')
     }

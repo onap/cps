@@ -3,7 +3,7 @@
  *  Copyright (C) 2020-2024 Nordix Foundation.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 Bell Canada
- *  Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2022-2024 TechMahindra Ltd.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,6 +28,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.utils.ContentType;
 
 /*
     Data Store interface that is responsible for handling yang data.
@@ -79,7 +80,7 @@ public interface CpsDataPersistenceService {
      * @return collection of data node object
      */
     Collection<DataNode> getDataNodes(String dataspaceName, String anchorName, String xpath,
-                                      FetchDescendantsOption fetchDescendantsOption);
+                                      FetchDescendantsOption fetchDescendantsOption, ContentType contentType);
 
     /**
      * Retrieves multiple datanodes for multiple XPaths, given a dataspace and anchor.

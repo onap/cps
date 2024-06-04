@@ -191,9 +191,9 @@ class CpsDataServiceImplSpec extends Specification {
 
     def 'Get all data nodes #scenario.'() {
         given: 'persistence service returns data for GET request'
-            mockCpsDataPersistenceService.getDataNodes(dataspaceName, anchorName, xpath, fetchDescendantsOption) >> dataNode
+            mockCpsDataPersistenceService.getDataNodes(dataspaceName, anchorName, xpath, fetchDescendantsOption, ContentType.JSON) >> dataNode
         expect: 'service returns same data if using same parameters'
-            objectUnderTest.getDataNodes(dataspaceName, anchorName, xpath, fetchDescendantsOption) == dataNode
+            objectUnderTest.getDataNodes(dataspaceName, anchorName, xpath, fetchDescendantsOption, ContentType.JSON) == dataNode
         where: 'following parameters were used'
             scenario                                   | xpath   | fetchDescendantsOption                         |   dataNode
             'with root node xpath and descendants'     | '/'     | FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS | [new DataNodeBuilder().withXpath('/xpath-1').build(), new DataNodeBuilder().withXpath('/xpath-2').build()]
