@@ -18,6 +18,69 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "231fb09f_268aac3b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-04T13:33:57Z",
+      "side": 1,
+      "message": "The commit is good but just saw the subscription needs to be removed from cache?\n\nMaybe I missed sth. around the logic, if so please let me know so that I can remove -1",
+      "revId": "1cfe6f224898bd7f882b5fc9ac12efa3de2d29c2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1f93b30_a69c784a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/DmiCmNotificationSubscriptionCacheHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-04T13:33:57Z",
+      "side": 1,
+      "message": "NB:@Service",
+      "range": {
+        "startLine": 44,
+        "startChar": 1,
+        "endLine": 44,
+        "endChar": 10
+      },
+      "revId": "1cfe6f224898bd7f882b5fc9ac12efa3de2d29c2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86578b53_3a029d96",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/DmiCmNotificationSubscriptionCacheHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-04T13:33:57Z",
+      "side": 1,
+      "message": "Did you forget to remove the subscription from the cache? Or maybe I was not able to see the code.\n\nIt seems you remove it from the db only.",
+      "range": {
+        "startLine": 46,
+        "startChar": 13,
+        "endLine": 46,
+        "endChar": 54
+      },
+      "revId": "1cfe6f224898bd7f882b5fc9ac12efa3de2d29c2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "204528a3_b2b7bea7",
