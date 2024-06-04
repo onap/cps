@@ -33,7 +33,6 @@ import org.onap.cps.ncmp.api.impl.events.cmsubscription.DmiCmNotificationSubscri
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.CmNotificationSubscriptionStatus;
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.DmiCmNotificationSubscriptionDetails;
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.DmiCmNotificationSubscriptionPredicate;
-import org.onap.cps.ncmp.events.cmnotificationsubscription_merge1_0_0.client_to_ncmp.CmNotificationSubscriptionNcmpInEvent;
 import org.onap.cps.ncmp.events.cmnotificationsubscription_merge1_0_0.client_to_ncmp.Predicate;
 import org.onap.cps.ncmp.events.cmnotificationsubscription_merge1_0_0.ncmp_to_dmi.CmNotificationSubscriptionDmiInEvent;
 import org.onap.cps.ncmp.events.cmsubscription_merge1_0_0.ncmp_to_client.CmNotificationSubscriptionNcmpOutEvent;
@@ -50,27 +49,32 @@ public class CmNotificationSubscriptionHandlerServiceImpl implements CmNotificat
     private final DmiCmNotificationSubscriptionCacheHandler dmiCmNotificationSubscriptionCacheHandler;
 
     @Override
-    public void processSubscriptionCreateRequest(
-            final CmNotificationSubscriptionNcmpInEvent cmNotificationSubscriptionNcmpInEvent) {
-        final String subscriptionId = cmNotificationSubscriptionNcmpInEvent.getData().getSubscriptionId();
-        final List<Predicate> predicates = cmNotificationSubscriptionNcmpInEvent.getData().getPredicates();
-
+    public void processSubscriptionCreateRequest(final String subscriptionId, final List<Predicate> predicates) {
         if (cmNotificationSubscriptionPersistenceService.isUniqueSubscriptionId(subscriptionId)) {
             dmiCmNotificationSubscriptionCacheHandler.add(subscriptionId, predicates);
             handleCmNotificationSubscriptionDelta(subscriptionId);
-            scheduleCmNotificationSubscriptionNcmpOutEventResponse(subscriptionId);
+            scheduleCmNotificationSubscriptionNcmpOutEventResponse(subscriptionId,
+                    "subscriptionCreateResponse");
         } else {
             rejectAndPublishCmNotificationSubscriptionCreateRequest(subscriptionId, predicates);
         }
     }
 
-    private void scheduleCmNotificationSubscriptionNcmpOutEventResponse(final String subscriptionId) {
+    @Override
+    public void processSubscriptionDeleteRequest(final String subscriptionId, final List<Predicate> predicates) {
+        dmiCmNotificationSubscriptionCacheHandler.add(subscriptionId, predicates);
+        sendSubscriptionDeleteRequestToDmi(subscriptionId);
+        scheduleCmNotificationSubscriptionNcmpOutEventResponse(subscriptionId, "subscriptionDeleteResponse");
+    }
+
+    private void scheduleCmNotificationSubscriptionNcmpOutEventResponse(final String subscriptionId,
+                                                                        final String eventType) {
         cmNotificationSubscriptionEventsHandler.publishCmNotificationSubscriptionNcmpOutEvent(subscriptionId,
-                "subscriptionCreateResponse", null, true);
+                eventType, null, true);
     }
 
     private void rejectAndPublishCmNotificationSubscriptionCreateRequest(final String subscriptionId,
-            final List<Predicate> predicates) {
+                                                                         final List<Predicate> predicates) {
         final Set<String> subscriptionTargetFilters =
                 predicates.stream().flatMap(predicate -> predicate.getTargetFilter().stream())
                         .collect(Collectors.toSet());
@@ -99,8 +103,9 @@ public class CmNotificationSubscriptionHandlerServiceImpl implements CmNotificat
     }
 
     private void publishCmNotificationSubscriptionDmiInEventPerDmi(final String subscriptionId,
-            final String dmiPluginName,
-            final List<DmiCmNotificationSubscriptionPredicate> dmiCmNotificationSubscriptionPredicates) {
+                                                                   final String dmiPluginName,
+                                                                   final List<DmiCmNotificationSubscriptionPredicate>
+                                                                           dmiCmNotificationSubscriptionPredicates) {
         final CmNotificationSubscriptionDmiInEvent cmNotificationSubscriptionDmiInEvent =
                 cmNotificationSubscriptionMappersHandler.toCmNotificationSubscriptionDmiInEvent(
                         dmiCmNotificationSubscriptionPredicates);
@@ -109,9 +114,21 @@ public class CmNotificationSubscriptionHandlerServiceImpl implements CmNotificat
     }
 
     private void acceptAndPublishCmNotificationSubscriptionNcmpOutEventPerDmi(final String subscriptionId,
-            final String dmiPluginName) {
+                                                                              final String dmiPluginName) {
         dmiCmNotificationSubscriptionCacheHandler.updateDmiCmNotificationSubscriptionStatusPerDmi(subscriptionId,
                 dmiPluginName, CmNotificationSubscriptionStatus.ACCEPTED);
         dmiCmNotificationSubscriptionCacheHandler.persistIntoDatabasePerDmi(subscriptionId, dmiPluginName);
+    }
+
+    private void sendSubscriptionDeleteRequestToDmi(final String subscriptionId) {
+        final Map<String, DmiCmNotificationSubscriptionDetails> dmiCmNotificationSubscriptionDetailsMap =
+                dmiCmNotificationSubscriptionCacheHandler.get(subscriptionId);
+        dmiCmNotificationSubscriptionDetailsMap.forEach((dmiPluginName, dmiCmNotificationSubscriptionDetails) -> {
+            final CmNotificationSubscriptionDmiInEvent cmNotificationSubscriptionDmiInEvent =
+                    cmNotificationSubscriptionMappersHandler.toCmNotificationSubscriptionDmiInEvent(
+                            dmiCmNotificationSubscriptionDetails.getDmiCmNotificationSubscriptionPredicates());
+            cmNotificationSubscriptionEventsHandler.publishCmNotificationSubscriptionDmiInEvent(subscriptionId,
+                    dmiPluginName, "subscriptionDeleteRequest", cmNotificationSubscriptionDmiInEvent);
+        });
     }
 }

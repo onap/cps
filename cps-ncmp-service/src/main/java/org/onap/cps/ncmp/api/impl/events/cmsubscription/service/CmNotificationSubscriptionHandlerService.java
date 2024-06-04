@@ -20,16 +20,25 @@
 
 package org.onap.cps.ncmp.api.impl.events.cmsubscription.service;
 
-import org.onap.cps.ncmp.events.cmnotificationsubscription_merge1_0_0.client_to_ncmp.CmNotificationSubscriptionNcmpInEvent;
+import java.util.List;
+import org.onap.cps.ncmp.events.cmnotificationsubscription_merge1_0_0.client_to_ncmp.Predicate;
 
 public interface CmNotificationSubscriptionHandlerService {
 
     /**
-     * Process cm notification subscription request.
+     * Process cm notification subscription create request.
      *
-     * @param cmNotificationSubscriptionNcmpInEvent CM Notification Subscription event
+     * @param subscriptionId subscription id
+     * @param predicates subscription predicates
      */
-    void processSubscriptionCreateRequest(
-        final CmNotificationSubscriptionNcmpInEvent cmNotificationSubscriptionNcmpInEvent);
+    void processSubscriptionCreateRequest(final String subscriptionId, final List<Predicate> predicates);
+
+    /**
+     * Process cm notification subscription delete request.
+     *
+     * @param subscriptionId subscription id
+     * @param predicates subscription predicates
+     */
+    void processSubscriptionDeleteRequest(final String subscriptionId, final List<Predicate> predicates);
 
 }
