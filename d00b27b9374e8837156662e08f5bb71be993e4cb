@@ -16,6 +16,161 @@
       "message": "recheck",
       "revId": "d00b27b9374e8837156662e08f5bb71be993e4cb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ea6eaf2_cf46546e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-04T13:12:05Z",
+      "side": 1,
+      "message": "some re-naming on the testware",
+      "revId": "d00b27b9374e8837156662e08f5bb71be993e4cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db0a359e_f3b4b8b1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/ModelLoader.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-04T13:12:05Z",
+      "side": 1,
+      "message": "NB: outdated",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 22
+      },
+      "revId": "d00b27b9374e8837156662e08f5bb71be993e4cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43728d02_3408468c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-04T13:12:05Z",
+      "side": 1,
+      "message": "started",
+      "range": {
+        "startLine": 67,
+        "startChar": 21,
+        "endLine": 67,
+        "endChar": 26
+      },
+      "revId": "d00b27b9374e8837156662e08f5bb71be993e4cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d6730a0_48225887",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-04T13:12:05Z",
+      "side": 1,
+      "message": "started",
+      "range": {
+        "startLine": 68,
+        "startChar": 28,
+        "endLine": 68,
+        "endChar": 33
+      },
+      "revId": "d00b27b9374e8837156662e08f5bb71be993e4cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "032aa1d2_36f23d58",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-04T13:12:05Z",
+      "side": 1,
+      "message": "started",
+      "range": {
+        "startLine": 74,
+        "startChar": 21,
+        "endLine": 74,
+        "endChar": 26
+      },
+      "revId": "d00b27b9374e8837156662e08f5bb71be993e4cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2885dd3d_8ea9fdc8",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-04T13:12:05Z",
+      "side": 1,
+      "message": "started",
+      "range": {
+        "startLine": 77,
+        "startChar": 28,
+        "endLine": 77,
+        "endChar": 33
+      },
+      "revId": "d00b27b9374e8837156662e08f5bb71be993e4cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a99c0a8c_a8475b9e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/CmDataSubscriptionModelLoaderSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-04T13:12:05Z",
+      "side": 1,
+      "message": "started",
+      "range": {
+        "startLine": 71,
+        "startChar": 34,
+        "endLine": 71,
+        "endChar": 39
+      },
+      "revId": "d00b27b9374e8837156662e08f5bb71be993e4cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
