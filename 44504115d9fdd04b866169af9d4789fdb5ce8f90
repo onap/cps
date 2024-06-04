@@ -113,6 +113,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "de8af348_cf782828",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionHandlerServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-06-04T15:09:48Z",
+      "side": 1,
+      "message": "just thinking we can refactor later and have an enum with the below values.\nsubscriptionCreateRequest\nsubscriptionDeleteRequest\nsubscriptionCreateResponse\nsubscriptionDeleteResponse\n\nand may be call it CmSubscriptionEventTypes probably if u guys like the idea.",
+      "parentUuid": "24a99d16_f4194a2a",
+      "range": {
+        "startLine": 113,
+        "startChar": 32,
+        "endLine": 113,
+        "endChar": 57
+      },
+      "revId": "44504115d9fdd04b866169af9d4789fdb5ce8f90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6548eb33_2faf9566",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/service/CmNotificationSubscriptionHandlerServiceImpl.java",
         "patchSetId": 2
