@@ -178,6 +178,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "52910da9_ffd0f66c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-06-04T16:31:28Z",
+      "side": 1,
+      "message": "The rebase has gone wrong here and in other places. Basically the checks for separate Data and Model service names got lost.",
+      "range": {
+        "startLine": 121,
+        "startChar": 16,
+        "endLine": 121,
+        "endChar": 61
+      },
+      "revId": "37196c004f0c6895f0af34a4729d37be05d68e50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d85d7c6f_6857f7d7",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/DmiWebClientConfigurationSpec.groovy",
         "patchSetId": 5
