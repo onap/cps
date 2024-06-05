@@ -89,6 +89,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0e39fc5d_fe8c746e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/client/DmiRestClient.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-06-05T10:31:40Z",
+      "side": 1,
+      "message": "Use this inside the try { }\n\n            return webClient.post().uri(toUri(dmiUrl))\n                    .headers(httpHeaders -\u003e configureHttpHeaders(httpHeaders, authorization))\n                    .body(BodyInserters.fromValue(requestBodyAsJsonString))\n                    .retrieve()\n                    .toEntity(Object.class)\n                    .onErrorMap(httpError -\u003e handleDmiClientException(httpError, operationType.getOperationName()))\n                    .block();\n\nThis fixes the integration-tests, but you\u0027ll need to update unit tests in DmiRestClientSpec.",
+      "parentUuid": "7c2ae1b4_641b71ac",
+      "range": {
+        "startLine": 88,
+        "startChar": 13,
+        "endLine": 102,
+        "endChar": 23
+      },
+      "revId": "82b3ef08aefd58d396c955a7e56dff3688fa30c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "589f73f7_869fc208",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/HttpClientConfiguration.java",
         "patchSetId": 7
