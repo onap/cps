@@ -16,6 +16,24 @@
       "message": "You should consider adding Jaeger to docker-compose",
       "revId": "2293486de5c408c2c9c27205f1167747df6e1d42",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ba5b01e_d397523f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-05T07:11:01Z",
+      "side": 1,
+      "message": "i thought we agreed to ONLY do that for demo pusposes ie. NOT commit that to our code base....",
+      "parentUuid": "788c0f67_e93a36ca",
+      "revId": "2293486de5c408c2c9c27205f1167747df6e1d42",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
