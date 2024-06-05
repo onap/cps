@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  * Copyright (c) 2024 Nordix Foundation.
+ * Modifications Copyright (C) 2024 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -87,7 +88,7 @@ class CmNotificationSubscriptionPersistenceServiceImplSpec extends Specification
                 'NCMP-Admin',
                 'cm-data-subscriptions',
                 '/datastores/datastore[@name=\'ncmp-datastore:passthrough-running\']/cm-handles/cm-handle[@id=\'ch-1\']/filters',
-                objectUnderTest.getSubscriptionDetailsAsJson('/x/y', ['sub-1','newSubId']), _)
+                objectUnderTest.getSubscriptionDetailsAsJson('/x/y', ['sub-1','newSubId']), _,ContentType.JSON)
     }
 
     def 'Add new cm notification subscription for #datastoreType'() {
@@ -156,7 +157,7 @@ class CmNotificationSubscriptionPersistenceServiceImplSpec extends Specification
         then: 'the list of subscribers is updated'
             1 * mockCpsDataService.updateNodeLeaves('NCMP-Admin', 'cm-data-subscriptions',
                 '/datastores/datastore[@name=\'ncmp-datastore:passthrough-running\']/cm-handles/cm-handle[@id=\'ch-1\']/filters',
-                objectUnderTest.getSubscriptionDetailsAsJson('/x/y', ['sub-2']), _)
+                objectUnderTest.getSubscriptionDetailsAsJson('/x/y', ['sub-2']), _, ContentType.JSON)
     }
 
     def 'Removing last ongoing subscription for datastore and cmhandle and xpath'(){
