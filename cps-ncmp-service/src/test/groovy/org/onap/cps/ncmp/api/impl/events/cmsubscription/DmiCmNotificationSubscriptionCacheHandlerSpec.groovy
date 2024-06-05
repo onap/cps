@@ -133,10 +133,10 @@ class DmiCmNotificationSubscriptionCacheHandlerSpec extends MessagingBaseSpec {
             assert resultMapForDmi2.dmiCmNotificationSubscriptionPredicates[1].targetCmHandleIds == ['ch4'].toSet()
         and: 'the list of xpath for each is correct'
             assert resultMapForDmi1.dmiCmNotificationSubscriptionPredicates[0].xpaths
-                    && resultMapForDmi2.dmiCmNotificationSubscriptionPredicates[0].xpaths == ['/x1/y1','x2/y2'].toSet()
+                && resultMapForDmi2.dmiCmNotificationSubscriptionPredicates[0].xpaths == ['/x1/y1','x2/y2'].toSet()
 
             assert resultMapForDmi1.dmiCmNotificationSubscriptionPredicates[1].xpaths
-                    && resultMapForDmi2.dmiCmNotificationSubscriptionPredicates[1].xpaths == ['/x3/y3','x4/y4'].toSet()
+                && resultMapForDmi2.dmiCmNotificationSubscriptionPredicates[1].xpaths == ['/x3/y3','x4/y4'].toSet()
     }
 
     def 'Get map for cm handle IDs by DMI service name'() {
@@ -164,7 +164,7 @@ class DmiCmNotificationSubscriptionCacheHandlerSpec extends MessagingBaseSpec {
     }
 
     def 'Persist Cache into database per dmi'() {
-        given: 'populate cache'
+        given: 'populated cache'
             def predicates = cmNotificationSubscriptionNcmpInEvent.getData().getPredicates()
             def subscriptionId = cmNotificationSubscriptionNcmpInEvent.getData().getSubscriptionId()
             objectUnderTest.add(subscriptionId, predicates)
@@ -174,15 +174,26 @@ class DmiCmNotificationSubscriptionCacheHandlerSpec extends MessagingBaseSpec {
             4 * mockCmNotificationSubscriptionPersistenceService.addCmNotificationSubscription(_,_,_,subscriptionId)
     }
 
+    def 'Remove subscription from database per dmi'() {
+        given: 'populated cache'
+            def predicates = cmNotificationSubscriptionNcmpInEvent.getData().getPredicates()
+            def subscriptionId = cmNotificationSubscriptionNcmpInEvent.getData().getSubscriptionId()
+            objectUnderTest.add(subscriptionId, predicates)
+        when: 'subscription is persisted in database'
+            objectUnderTest.removeFromDatabasePerDmi(subscriptionId,'dmi-1')
+        then: 'persistence service is called the correct number of times per dmi'
+            4 * mockCmNotificationSubscriptionPersistenceService.removeCmNotificationSubscription(_,_,_,subscriptionId)
+    }
+
     def setUpTestEvent(){
         def jsonData = TestUtils.getResourceFileContent('cmSubscription/cmNotificationSubscriptionNcmpInEvent.json')
         def testEventSent = jsonObjectMapper.convertJsonString(jsonData, CmNotificationSubscriptionNcmpInEvent.class)
         def testCloudEventSent = CloudEventBuilder.v1()
-                .withData(objectMapper.writeValueAsBytes(testEventSent))
-                .withId('subscriptionCreated')
-                .withType('subscriptionCreated')
-                .withSource(URI.create('some-resource'))
-                .withExtension('correlationid', 'test-cmhandle1').build()
+            .withData(objectMapper.writeValueAsBytes(testEventSent))
+            .withId('subscriptionCreated')
+            .withType('subscriptionCreated')
+            .withSource(URI.create('some-resource'))
+            .withExtension('correlationid', 'test-cmhandle1').build()
         def consumerRecord = new ConsumerRecord<String, CloudEvent>('topic-name', 0, 0, 'event-key', testCloudEventSent)
         def cloudEvent = consumerRecord.value()
 
@@ -191,10 +202,10 @@ class DmiCmNotificationSubscriptionCacheHandlerSpec extends MessagingBaseSpec {
 
     def initialiseMockInventoryPersistenceResponses(){
         mockInventoryPersistence.getYangModelCmHandles(['ch1','ch2'])
-                >> [yangModelCmHandle1, yangModelCmHandle2]
+            >> [yangModelCmHandle1, yangModelCmHandle2]
 
         mockInventoryPersistence.getYangModelCmHandles(['ch3','ch4'])
-                >> [yangModelCmHandle3, yangModelCmHandle4]
+            >> [yangModelCmHandle3, yangModelCmHandle4]
     }
 
 }
