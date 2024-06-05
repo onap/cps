@@ -42,6 +42,7 @@
         <testcontainers.version>1.18.3</testcontainers.version>
         <mapstruct.version>1.4.2.Final</mapstruct.version>
         <jetty-version>11.0.16</jetty-version>
+        <version.opentelemetry-instrumentation-bom>2.1.0-alpha</version.opentelemetry-instrumentation-bom>
     </properties>
 
     <build>
@@ -177,9 +178,18 @@
                 <version>3.7.3</version>
             </dependency>
             <dependency>
-                <groupId>io.micrometer</groupId>
-                <artifactId>micrometer-tracing-bridge-brave</artifactId>
-                <version>1.0.0</version>
+                <groupId>io.opentelemetry.instrumentation</groupId>
+                <artifactId>opentelemetry-instrumentation-bom-alpha</artifactId>
+                <version>${version.opentelemetry-instrumentation-bom}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.opentelemetry</groupId>
+                <artifactId>opentelemetry-bom</artifactId>
+                <version>1.37.0</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
             <dependency>
                 <groupId>io.swagger.core.v3</groupId>
