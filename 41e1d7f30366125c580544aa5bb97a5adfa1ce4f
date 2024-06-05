@@ -50,6 +50,23 @@
       "message": "looks fine to me.",
       "revId": "41e1d7f30366125c580544aa5bb97a5adfa1ce4f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9764464d_5b4a8444",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 24
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-05T10:27:00Z",
+      "side": 1,
+      "message": "just needs rebasing now",
+      "revId": "41e1d7f30366125c580544aa5bb97a5adfa1ce4f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
