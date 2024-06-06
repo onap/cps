@@ -1,0 +1,314 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f27fc1fb_892e6b4d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-06T08:09:19Z",
+      "side": 1,
+      "message": "we need to discuss the use of generated code (most models) in the standup!",
+      "revId": "64a97d822b386152b6afef9c74608b956facb166",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2178b69c_26805b48",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/datajobs/models/Dmi3ggpWriteOperation.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-06T08:09:19Z",
+      "side": 1,
+      "message": "just wondering: this object is defined in the OPenAPI for DMI, correct?\nIf so can we import the generated code for that instead?",
+      "revId": "64a97d822b386152b6afef9c74608b956facb166",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d8c5b53_e33f7523",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/datajobs/models/ProducerKey.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-06T08:09:19Z",
+      "side": 1,
+      "message": "i think this is an implementation class and not used in any REST interface therefore I think it belongs in the impl. package...",
+      "range": {
+        "startLine": 21,
+        "startChar": 39,
+        "endLine": 21,
+        "endChar": 45
+      },
+      "revId": "64a97d822b386152b6afef9c74608b956facb166",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "917b2470_6055b73b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobServiceImpl.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-06T08:09:19Z",
+      "side": 1,
+      "message": "remove TODO",
+      "range": {
+        "startLine": 72,
+        "startChar": 7,
+        "endLine": 72,
+        "endChar": 34
+      },
+      "revId": "64a97d822b386152b6afef9c74608b956facb166",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ca09b78_39179efe",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobServiceImpl.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-06T08:09:19Z",
+      "side": 1,
+      "message": "cmHandleAsDataNode",
+      "range": {
+        "startLine": 86,
+        "startChar": 27,
+        "endLine": 86,
+        "endChar": 36
+      },
+      "revId": "64a97d822b386152b6afef9c74608b956facb166",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff005dc6_64d47ff8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobServiceImpl.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-06T08:09:19Z",
+      "side": 1,
+      "message": "NB: Put private methods in the order they are called",
+      "range": {
+        "startLine": 122,
+        "startChar": 24,
+        "endLine": 122,
+        "endChar": 41
+      },
+      "revId": "64a97d822b386152b6afef9c74608b956facb166",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86fb5350_68d50174",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobServiceImpl.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-06T08:09:19Z",
+      "side": 1,
+      "message": "NB: Put private methods in the order they are called",
+      "range": {
+        "startLine": 127,
+        "startChar": 31,
+        "endLine": 127,
+        "endChar": 55
+      },
+      "revId": "64a97d822b386152b6afef9c74608b956facb166",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e85d1d49_c8500fda",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobServiceImpl.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-06T08:09:19Z",
+      "side": 1,
+      "message": "cmHandleAsDataNode",
+      "range": {
+        "startLine": 135,
+        "startChar": 77,
+        "endLine": 135,
+        "endChar": 85
+      },
+      "revId": "64a97d822b386152b6afef9c74608b956facb166",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65179409_9f99ae90",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobServiceImpl.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-06T08:09:19Z",
+      "side": 1,
+      "message": "cmHandleAsDataNode",
+      "range": {
+        "startLine": 145,
+        "startChar": 80,
+        "endLine": 145,
+        "endChar": 88
+      },
+      "revId": "64a97d822b386152b6afef9c74608b956facb166",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96e9fcd8_e8a15582",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobServiceImpl.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-06T08:09:19Z",
+      "side": 1,
+      "message": "CmHandle\n\nDataNode is a very generic class -like \u0027String\u0027. Should avoid usign \u0027dataNode\u0027 as a variableName or in method Names if it is expecting a \u0027specific type of DataNode in this case it has to be a DataNode representing a Cm Handle!",
+      "range": {
+        "startLine": 145,
+        "startChar": 55,
+        "endLine": 145,
+        "endChar": 64
+      },
+      "revId": "64a97d822b386152b6afef9c74608b956facb166",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1840bd8_b4b71d27",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobServiceImpl.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-06T08:09:19Z",
+      "side": 1,
+      "message": "initialise with size of properties",
+      "range": {
+        "startLine": 148,
+        "startChar": 77,
+        "endLine": 148,
+        "endChar": 79
+      },
+      "revId": "64a97d822b386152b6afef9c74608b956facb166",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7b0ad6f_f8054813",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/DataJobServiceImplSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-06T08:09:19Z",
+      "side": 1,
+      "message": "the point of using contains it to just check the significant info and prevent the test breaking if we change the wording. IN this case I would just check if it contains \u0027some-job-id\u0027",
+      "range": {
+        "startLine": 74,
+        "startChar": 57,
+        "endLine": 75,
+        "endChar": 5
+      },
+      "revId": "64a97d822b386152b6afef9c74608b956facb166",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8793363_ed6f3c5b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/DataJobServiceImplSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-06T08:09:19Z",
+      "side": 1,
+      "message": "I dont think this is needed, again very brittle and hard to maintain\nI think you can just expect _ (anything for this parent) You already check the logging below!",
+      "range": {
+        "startLine": 85,
+        "startChar": 12,
+        "endLine": 85,
+        "endChar": 636
+      },
+      "revId": "64a97d822b386152b6afef9c74608b956facb166",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08b635b7_12289d3a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/DataJobServiceImplSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-06T08:09:19Z",
+      "side": 1,
+      "message": "since the test depend on line 86 matching teh actual code teher is no need to verify again",
+      "range": {
+        "startLine": 93,
+        "startChar": 11,
+        "endLine": 93,
+        "endChar": 59
+      },
+      "revId": "64a97d822b386152b6afef9c74608b956facb166",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
