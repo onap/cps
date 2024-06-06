@@ -86,8 +86,7 @@
         }
       },
       "required": [
-        "cmHandles",
-        "predicates"
+        "cmHandles"
       ]
     }
   }
