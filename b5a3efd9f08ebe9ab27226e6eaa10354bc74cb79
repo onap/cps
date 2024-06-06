@@ -153,6 +153,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef3e8d3f_4deb3138",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/client/DmiRestClient.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-06T15:34:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "64110a70_208f2137",
+      "range": {
+        "startLine": 91,
+        "startChar": 19,
+        "endLine": 99,
+        "endChar": 0
+      },
+      "revId": "b5a3efd9f08ebe9ab27226e6eaa10354bc74cb79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a7d15e05_91d8907b",
