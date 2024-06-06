@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "47a9bf9d_c62993bd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-06T09:42:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fb399517_0310f5fb",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 49
+      },
+      "revId": "82b3ef08aefd58d396c955a7e56dff3688fa30c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "cef6da6b_93f8be51",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 7
@@ -54,6 +78,30 @@
       "writtenOn": "2024-06-04T17:07:36Z",
       "side": 1,
       "message": "suggestion: see later comments too, i think we need slight better names:\n\ndatServicesWebClient\nmodelServicesWebClient\nhealthChecksWebClient",
+      "range": {
+        "startLine": 65,
+        "startChar": 3,
+        "endLine": 70,
+        "endChar": 44
+      },
+      "revId": "82b3ef08aefd58d396c955a7e56dff3688fa30c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "825f99f9_8c6c1421",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/client/DmiRestClient.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-06T09:42:09Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "b2d63947_df4c48c7",
       "range": {
         "startLine": 65,
         "startChar": 3,
@@ -113,6 +161,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d3f08e20_7b8e9e7f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/client/DmiRestClient.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-06T09:42:09Z",
+      "side": 1,
+      "message": "Reverted and fixed groovy test for diff. http status code for success.",
+      "parentUuid": "0e39fc5d_fe8c746e",
+      "range": {
+        "startLine": 88,
+        "startChar": 13,
+        "endLine": 102,
+        "endChar": 23
+      },
+      "revId": "82b3ef08aefd58d396c955a7e56dff3688fa30c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "589f73f7_869fc208",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/HttpClientConfiguration.java",
         "patchSetId": 7
@@ -124,6 +196,30 @@
       "writtenOn": "2024-06-04T17:07:36Z",
       "side": 1,
       "message": "sugegstiom: i know this are subclass but I stil think we coudl expanse teh neasme a bit and add \"services\"?\nHttpClientConfiguration.DataServices",
+      "range": {
+        "startLine": 40,
+        "startChar": 24,
+        "endLine": 40,
+        "endChar": 28
+      },
+      "revId": "82b3ef08aefd58d396c955a7e56dff3688fa30c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d726800d_a1aff4ba",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/HttpClientConfiguration.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-06T09:42:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "589f73f7_869fc208",
       "range": {
         "startLine": 40,
         "startChar": 24,
@@ -159,6 +255,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9af68def_3711cb07",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/HttpClientConfiguration.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-06T09:42:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b5922e2_4429574c",
+      "range": {
+        "startLine": 50,
+        "startChar": 24,
+        "endLine": 50,
+        "endChar": 30
+      },
+      "revId": "82b3ef08aefd58d396c955a7e56dff3688fa30c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "05bbcb1a_12e2cad0",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/HttpClientConfiguration.java",
         "patchSetId": 7
@@ -182,6 +302,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ce01be6e_a8ced2d1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/HttpClientConfiguration.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-06T09:42:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "05bbcb1a_12e2cad0",
+      "range": {
+        "startLine": 59,
+        "startChar": 24,
+        "endLine": 59,
+        "endChar": 31
+      },
+      "revId": "82b3ef08aefd58d396c955a7e56dff3688fa30c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "52bd5aea_d648892a",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
         "patchSetId": 7
@@ -193,6 +337,30 @@
       "writtenOn": "2024-06-04T17:07:36Z",
       "side": 1,
       "message": "NB: the linebreak is back? Is it needed here?",
+      "range": {
+        "startLine": 90,
+        "startChar": 8,
+        "endLine": 91,
+        "endChar": 35
+      },
+      "revId": "82b3ef08aefd58d396c955a7e56dff3688fa30c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7ada494_ec3a4c76",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-06T09:42:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "52bd5aea_d648892a",
       "range": {
         "startLine": 90,
         "startChar": 8,
@@ -228,6 +396,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4a7940e6_6ec5f6bb",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/client/DmiRestClientSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-06T09:42:09Z",
+      "side": 1,
+      "message": "renamed",
+      "parentUuid": "aeb3a3a1_6d12eaf6",
+      "range": {
+        "startLine": 57,
+        "startChar": 8,
+        "endLine": 57,
+        "endChar": 28
+      },
+      "revId": "82b3ef08aefd58d396c955a7e56dff3688fa30c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bb16f0c8_da47678c",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/client/DmiRestClientSpec.groovy",
         "patchSetId": 7
@@ -239,6 +431,30 @@
       "writtenOn": "2024-06-04T17:07:36Z",
       "side": 1,
       "message": "see comment at bottom too, we really need to have beter names for these!",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 58
+      },
+      "revId": "82b3ef08aefd58d396c955a7e56dff3688fa30c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc247f66_6253abbd",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/client/DmiRestClientSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-06T09:42:09Z",
+      "side": 1,
+      "message": "renamed and simplified",
+      "parentUuid": "bb16f0c8_da47678c",
       "range": {
         "startLine": 59,
         "startChar": 0,
@@ -274,6 +490,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5a31f0ae_4a22f295",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/client/DmiRestClientSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-06T09:42:09Z",
+      "side": 1,
+      "message": "Renamed the test heading",
+      "parentUuid": "32fe4a24_8ac5b4c3",
+      "range": {
+        "startLine": 78,
+        "startChar": 9,
+        "endLine": 78,
+        "endChar": 38
+      },
+      "revId": "82b3ef08aefd58d396c955a7e56dff3688fa30c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "10589084_26f63dd6",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/client/DmiRestClientSpec.groovy",
         "patchSetId": 7
@@ -285,6 +525,30 @@
       "writtenOn": "2024-06-04T17:07:36Z",
       "side": 1,
       "message": "tehes are NOT errors",
+      "range": {
+        "startLine": 89,
+        "startChar": 30,
+        "endLine": 89,
+        "endChar": 37
+      },
+      "revId": "82b3ef08aefd58d396c955a7e56dff3688fa30c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee456b4b_448b94f4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/client/DmiRestClientSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-06T09:42:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "10589084_26f63dd6",
       "range": {
         "startLine": 89,
         "startChar": 30,
@@ -320,6 +584,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d2de6002_b1680de2",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/client/DmiRestClientSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-06T09:42:09Z",
+      "side": 1,
+      "message": "Yes different code paths are tested.\nUsed status codes like below :\nhttpStatusCode \u003c\u003c [HttpStatus.OK, HttpStatus.CREATED, HttpStatus.ACCEPTED]",
+      "parentUuid": "105914e1_c6aee848",
+      "range": {
+        "startLine": 91,
+        "startChar": 3,
+        "endLine": 93,
+        "endChar": 63
+      },
+      "revId": "82b3ef08aefd58d396c955a7e56dff3688fa30c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "696767e5_2c2157dc",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/client/DmiRestClientSpec.groovy",
         "patchSetId": 7
@@ -343,6 +631,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e46b5680_77b21a63",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/client/DmiRestClientSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-06T09:42:09Z",
+      "side": 1,
+      "message": "renamed and simplified",
+      "parentUuid": "696767e5_2c2157dc",
+      "range": {
+        "startLine": 183,
+        "startChar": 44,
+        "endLine": 183,
+        "endChar": 69
+      },
+      "revId": "82b3ef08aefd58d396c955a7e56dff3688fa30c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6c1077dc_bf554c4a",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/client/DmiRestClientSpec.groovy",
         "patchSetId": 7
@@ -354,6 +666,30 @@
       "writtenOn": "2024-06-04T17:07:36Z",
       "side": 1,
       "message": "this is a bit confusing (to read)why DO you (need to) return the the body when teh code is lookign for header too ?!\n\nI think ALL the mocks need better names",
+      "range": {
+        "startLine": 190,
+        "startChar": 6,
+        "endLine": 191,
+        "endChar": 64
+      },
+      "revId": "82b3ef08aefd58d396c955a7e56dff3688fa30c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6a07e7f_8cea40bb",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/client/DmiRestClientSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-06T09:42:09Z",
+      "side": 1,
+      "message": "renamed and simplified",
+      "parentUuid": "6c1077dc_bf554c4a",
       "range": {
         "startLine": 190,
         "startChar": 6,
