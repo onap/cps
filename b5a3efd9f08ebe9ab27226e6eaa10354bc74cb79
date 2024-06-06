@@ -41,6 +41,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "20447791_d1e2bed1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-06-06T10:43:33Z",
+      "side": 1,
+      "message": "Trojan work. Looks really good. I\u0027ll +1 when you address Toine\u0027s suggestions.",
+      "revId": "b5a3efd9f08ebe9ab27226e6eaa10354bc74cb79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e237947e_dc52eaf8",
@@ -111,6 +128,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecdaacd8_4251801c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/client/DmiRestClient.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-06-06T10:43:33Z",
+      "side": 1,
+      "message": "The ReponseException acronym here has the same acronym as the RequestException below! 😊",
+      "parentUuid": "a7d15e05_91d8907b",
+      "range": {
+        "startLine": 144,
+        "startChar": 52,
+        "endLine": 144,
+        "endChar": 56
+      },
+      "revId": "b5a3efd9f08ebe9ab27226e6eaa10354bc74cb79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "42497ab7_f900cb72",
@@ -129,6 +170,29 @@
         "startChar": 50,
         "endLine": 157,
         "endChar": 74
+      },
+      "revId": "b5a3efd9f08ebe9ab27226e6eaa10354bc74cb79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cc197a7_4bdae0ee",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/DmiWebClientConfiguration.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7617
+      },
+      "writtenOn": "2024-06-06T10:43:33Z",
+      "side": 1,
+      "message": "NB: creates",
+      "range": {
+        "startLine": 38,
+        "startChar": 18,
+        "endLine": 38,
+        "endChar": 24
       },
       "revId": "b5a3efd9f08ebe9ab27226e6eaa10354bc74cb79",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
