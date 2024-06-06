@@ -52,6 +52,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "484bd8d5_b7f00e16",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 53
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-06-06T12:53:39Z",
+      "side": 1,
+      "message": "merging this and the REST layer and service layer refactoring to be part of a separate patch.",
+      "revId": "d7fa9601a1409ee3a156ac2f6a6ec11853989cd7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3b03666e_df56e1b0",
