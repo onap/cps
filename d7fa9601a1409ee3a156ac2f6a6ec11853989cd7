@@ -80,6 +80,30 @@
       },
       "revId": "d7fa9601a1409ee3a156ac2f6a6ec11853989cd7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6ac2f9c_26615ea2",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 53
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-06-06T11:56:07Z",
+      "side": 1,
+      "message": "yup. thats correct.\nbest to do that refactoring as part of the separate patch.",
+      "parentUuid": "5d5c6035_95f3de77",
+      "range": {
+        "startLine": 318,
+        "startChar": 22,
+        "endLine": 318,
+        "endChar": 57
+      },
+      "revId": "d7fa9601a1409ee3a156ac2f6a6ec11853989cd7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
