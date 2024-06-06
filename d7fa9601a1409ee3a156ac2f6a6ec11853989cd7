@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e2ef52a_775aafd1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 53
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-06-06T11:52:35Z",
+      "side": 1,
+      "message": "Just a reply 😊",
+      "revId": "d7fa9601a1409ee3a156ac2f6a6ec11853989cd7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3b03666e_df56e1b0",
@@ -31,6 +48,30 @@
       "writtenOn": "2024-06-06T11:18:39Z",
       "side": 1,
       "message": "I wonder, do these getDelta methods belong in CpsDataService or CpsDeltaService?\nMy thinking is that methods in CpsDataService return DataNodes, but methods in CpsDeltaService return DeltaReports.",
+      "range": {
+        "startLine": 318,
+        "startChar": 22,
+        "endLine": 318,
+        "endChar": 57
+      },
+      "revId": "d7fa9601a1409ee3a156ac2f6a6ec11853989cd7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d5c6035_95f3de77",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 53
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-06-06T11:52:35Z",
+      "side": 1,
+      "message": "yes, the idea was to provide Delta feature as part of data service rather than its own separate service. Hence, we are using the Data Service to delegate our request to delta service.\nI had a discussion with Toine and Priyank and we plan on having a single endpoint for delta with the possibility of having it as a separate service in a new patch. Just waiting for a response from stakeholders to identify any impacts on their use cases.",
+      "parentUuid": "3b03666e_df56e1b0",
       "range": {
         "startLine": 318,
         "startChar": 22,
