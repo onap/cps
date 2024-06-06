@@ -57,8 +57,7 @@
             }
           },
           "required": [
-            "subscriptionId",
-            "predicates"
+            "subscriptionId"
           ],
           "type": "object",
           "additionalProperties": false
