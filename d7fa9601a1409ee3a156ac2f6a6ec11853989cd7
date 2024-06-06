@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52160916_a776e563",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 53
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-06-06T09:14:07Z",
+      "side": 1,
+      "message": "merge conflict resolved.\nCombining of REST endpoints to be taken later.",
+      "revId": "d7fa9601a1409ee3a156ac2f6a6ec11853989cd7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
