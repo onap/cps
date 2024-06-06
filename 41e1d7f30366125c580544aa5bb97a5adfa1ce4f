@@ -67,6 +67,23 @@
       "message": "just needs rebasing now",
       "revId": "41e1d7f30366125c580544aa5bb97a5adfa1ce4f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd5c228a_c0c0ffd0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 24
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-06T08:10:42Z",
+      "side": 1,
+      "message": "Since I\u0027ve already reviewd.",
+      "revId": "41e1d7f30366125c580544aa5bb97a5adfa1ce4f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
