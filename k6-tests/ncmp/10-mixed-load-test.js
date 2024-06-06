@@ -21,7 +21,7 @@
 import http from 'k6/http';
 import { check } from 'k6';
 import { NCMP_BASE_URL, getRandomCmHandleId, makeCustomSummaryReport } from './utils.js'
-import { searchRequest } from './search-base.js';
+import { executeCmHandleSearch, executeCmHandleIdSearch } from './search-base.js';
 
 export const options = {
     scenarios: {
@@ -66,27 +66,11 @@ export function passthrough_read() {
 }
 
 export function id_search_module() {
-    const search_filter = {
-        "cmHandleQueryParameters": [
-            {
-                "conditionName": "hasAllModules",
-                "conditionParameters": [{"moduleName": "ietf-yang-types-1"}]
-            }
-        ]
-    };
-    searchRequest('id-searches', JSON.stringify(search_filter));
+    executeCmHandleIdSearch('module');
 }
 
 export function cm_search_module() {
-    const search_filter = {
-        "cmHandleQueryParameters": [
-            {
-                "conditionName": "hasAllModules",
-                "conditionParameters": [{"moduleName": "ietf-yang-types-1"}]
-            }
-        ]
-    };
-    searchRequest('searches', JSON.stringify(search_filter));
+    executeCmHandleSearch('module');
 }
 
 export function handleSummary(data) {

@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-import { searchRequest } from './search-base.js';
+import { executeCmHandleIdSearch } from './search-base.js';
 import { makeCustomSummaryReport } from "./utils.js";
 
 export const options = {
@@ -31,15 +31,7 @@ export const options = {
 };
 
 export default function () {
-    const search_filter = {
-        "cmHandleQueryParameters": [
-            {
-                "conditionName": "hasAllProperties",
-                "conditionParameters": [{"Color": "yellow"}, {"Size": "small"}]
-            }
-        ]
-    };
-    searchRequest('id-searches', JSON.stringify(search_filter));
+    executeCmHandleIdSearch('property');
 }
 
 export function handleSummary(data) {
