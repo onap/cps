@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e237947e_dc52eaf8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/client/DmiRestClient.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-06T10:01:19Z",
+      "side": 1,
+      "message": "can you explain why this is so much simpler then in patch #7",
+      "range": {
+        "startLine": 91,
+        "startChar": 19,
+        "endLine": 99,
+        "endChar": 0
+      },
+      "revId": "b5a3efd9f08ebe9ab27226e6eaa10354bc74cb79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7d15e05_91d8907b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/client/DmiRestClient.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-06T10:01:19Z",
+      "side": 1,
+      "message": "legacy: in this case as you ahve different code block for different exception types use fullnames and not \u0027e\u0027 and as per our convention never uses acroymns for long class names",
+      "range": {
+        "startLine": 144,
+        "startChar": 52,
+        "endLine": 144,
+        "endChar": 56
+      },
+      "revId": "b5a3efd9f08ebe9ab27226e6eaa10354bc74cb79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "42497ab7_f900cb72",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/client/DmiRestClient.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-06T10:01:19Z",
+      "side": 1,
+      "message": "this is the correct way!",
+      "range": {
+        "startLine": 157,
+        "startChar": 50,
+        "endLine": 157,
+        "endChar": 74
+      },
+      "revId": "b5a3efd9f08ebe9ab27226e6eaa10354bc74cb79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b0a7b12_8bce8672",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/config/DmiWebClientConfiguration.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-06T10:01:19Z",
+      "side": 1,
+      "message": "not sure if you were asked to change this to upper case. I think either is OK\n(i would have a slight preference for lowercase as that is what we would do in java names too but we never did this consistently in java doc and I woudln\u0027t bother commenting or changing back and forward....\nOverall I do appreciate you putting some effort in making the JavaDoc better!",
+      "range": {
+        "startLine": 48,
+        "startChar": 50,
+        "endLine": 48,
+        "endChar": 54
+      },
+      "revId": "b5a3efd9f08ebe9ab27226e6eaa10354bc74cb79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f77120c2_065fdf6b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/client/DmiRestClientSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-06T10:01:19Z",
+      "side": 1,
+      "message": "could do this be doen in a setup block (i knwow it isn\u0027t used in all test but if it doesn\u0027t affect the other test it is OK do to it there)",
+      "range": {
+        "startLine": 172,
+        "startChar": 0,
+        "endLine": 176,
+        "endChar": 50
+      },
+      "revId": "b5a3efd9f08ebe9ab27226e6eaa10354bc74cb79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4984be01_d7084bf7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/DmiWebClientConfigurationSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-06T10:01:19Z",
+      "side": 1,
+      "message": "rename instances too",
+      "range": {
+        "startLine": 47,
+        "startChar": 16,
+        "endLine": 47,
+        "endChar": 38
+      },
+      "revId": "b5a3efd9f08ebe9ab27226e6eaa10354bc74cb79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce55c125_175cf2ad",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/DmiWebClientConfigurationSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-06T10:01:19Z",
+      "side": 1,
+      "message": "rename instances too",
+      "range": {
+        "startLine": 55,
+        "startChar": 16,
+        "endLine": 55,
+        "endChar": 39
+      },
+      "revId": "b5a3efd9f08ebe9ab27226e6eaa10354bc74cb79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27871aae_a7a5c439",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/DmiWebClientConfigurationSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-06T10:01:19Z",
+      "side": 1,
+      "message": "rename instances too",
+      "range": {
+        "startLine": 63,
+        "startChar": 16,
+        "endLine": 63,
+        "endChar": 40
+      },
+      "revId": "b5a3efd9f08ebe9ab27226e6eaa10354bc74cb79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04a3c4f1_1cf28630",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/HttpClientConfigurationSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-06T10:01:19Z",
+      "side": 1,
+      "message": "if think in groovy you can do somethign like\nwith (httpClientConfiguration.dataServices) {\n  assert readTimeotInseconds \u003d\u003d 789\n\n\n}\n(I dont know the exact syntax)",
+      "range": {
+        "startLine": 41,
+        "startChar": 12,
+        "endLine": 41,
+        "endChar": 56
+      },
+      "revId": "b5a3efd9f08ebe9ab27226e6eaa10354bc74cb79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
