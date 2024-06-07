@@ -104,6 +104,30 @@
       },
       "revId": "0e006004acf07ee044c9a4c258cee5518ffd0988",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e677ca3f_a1c07be6",
+        "filename": "k6-tests/ncmp/search-base.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-06-07T14:00:11Z",
+      "side": 1,
+      "message": "Thanks Halil, I understand now.\nYes, it would defo be nice to have combined scenario. But for now, we\u0027ve only been asked to do no-filter, 1 module, 1 property.",
+      "parentUuid": "54e71e21_c8c8440f",
+      "range": {
+        "startLine": 45,
+        "startChar": 38,
+        "endLine": 45,
+        "endChar": 46
+      },
+      "revId": "0e006004acf07ee044c9a4c258cee5518ffd0988",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
