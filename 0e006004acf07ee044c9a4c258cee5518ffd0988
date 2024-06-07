@@ -80,6 +80,30 @@
       },
       "revId": "0e006004acf07ee044c9a4c258cee5518ffd0988",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54e71e21_c8c8440f",
+        "filename": "k6-tests/ncmp/search-base.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-07T13:55:13Z",
+      "side": 1,
+      "message": "I think I got Priyank\u0027s question. Since we don\u0027t have any module (k6 test) which query with multiple conditions at a time, thus Daniel don\u0027t need to have a query body to form in search-base.js\n\nOtherwise, it would be possible to have that constant payload which contain both conditions like \"hasAllModules\" and \"hasAllProperties\" at a time.\n\nFor this commit, this may be not required.",
+      "parentUuid": "67861297_51c148cd",
+      "range": {
+        "startLine": 45,
+        "startChar": 38,
+        "endLine": 45,
+        "endChar": 46
+      },
+      "revId": "0e006004acf07ee044c9a4c258cee5518ffd0988",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
