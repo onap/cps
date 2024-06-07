@@ -106,13 +106,11 @@ public class DmiWebClientConfiguration {
         final ConnectionProvider dmiWebClientConnectionProvider = ConnectionProvider.create(connectionProviderName,
                 maximumConnectionsTotal);
 
-        final HttpClient httpClient = HttpClient.create(dmiWebClientConnectionProvider)
+        return HttpClient.create(dmiWebClientConnectionProvider)
                 .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, connectionTimeoutInSeconds * 1000)
                 .doOnConnected(connection -> connection.addHandlerLast(new ReadTimeoutHandler(readTimeoutInSeconds,
                         TimeUnit.SECONDS)).addHandlerLast(new WriteTimeoutHandler(writeTimeoutInSeconds,
                         TimeUnit.SECONDS)));
-        httpClient.warmup().block();
-        return httpClient;
     }
 
     private static WebClient buildAndGetWebClient(final HttpClient httpClient,
