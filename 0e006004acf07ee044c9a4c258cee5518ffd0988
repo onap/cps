@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79c57c73_bb09d84e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-06-07T12:52:18Z",
+      "side": 1,
+      "message": "looks good to me.",
+      "revId": "0e006004acf07ee044c9a4c258cee5518ffd0988",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5dcb7028_c16b7e70",
+        "filename": "k6-tests/ncmp/search-base.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-06-07T12:52:18Z",
+      "side": 1,
+      "message": "NB: we also have combined scenarios as well right ?\ndo you want to accomodate as well here?",
+      "range": {
+        "startLine": 45,
+        "startChar": 38,
+        "endLine": 45,
+        "endChar": 46
+      },
+      "revId": "0e006004acf07ee044c9a4c258cee5518ffd0988",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
