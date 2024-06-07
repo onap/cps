@@ -160,8 +160,7 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
                                                  final DataOperationRequest dataOperationRequest,
                                                  final String requestId,
                                                  final String authorization) {
-        dmiDataOperations.requestResourceDataFromDmi(topicParamInQuery, dataOperationRequest, requestId,
-                authorization);
+        dmiDataOperations.requestResourceDataFromDmi(topicParamInQuery, dataOperationRequest, requestId, authorization);
     }
 
     @Override

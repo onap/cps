@@ -31,7 +31,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.TimeoutException;
 import java.util.stream.Collectors;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -123,58 +122,6 @@ public class ResourceDataOperationRequestUtils {
         yangModelCmHandles.forEach(yangModelCmHandle ->
                 moduleSetTagPerCmHandle.put(yangModelCmHandle.getId(), yangModelCmHandle.getModuleSetTag()));
         return moduleSetTagPerCmHandle;
-    }
-
-    /**
-     * Handles the async task completion for an entire data, publishing errors to client topic on task failure.
-     *
-     * @param topicParamInQuery      client given topic
-     * @param requestId              unique identifier per request
-     * @param dataOperationRequest   incoming data operation request details
-     * @param throwable              error cause, or null if task completed with no exception
-     */
-    public static void handleAsyncTaskCompletionForDataOperationsRequest(
-            final String topicParamInQuery,
-            final String requestId,
-            final DataOperationRequest dataOperationRequest,
-            final Throwable throwable) {
-        if (throwable == null) {
-            log.info("Data operations request {} completed.", requestId);
-        } else if (throwable instanceof TimeoutException) {
-            log.error("Data operations request {} timed out.", requestId);
-            ResourceDataOperationRequestUtils.publishErrorMessageToClientTopicForEntireOperation(topicParamInQuery,
-                    requestId, dataOperationRequest, NcmpResponseStatus.DMI_SERVICE_NOT_RESPONDING);
-        } else {
-            log.error("Data operations request {} failed.", requestId, throwable);
-            ResourceDataOperationRequestUtils.publishErrorMessageToClientTopicForEntireOperation(topicParamInQuery,
-                    requestId, dataOperationRequest, NcmpResponseStatus.UNKNOWN_ERROR);
-        }
-    }
-
-    /**
-     * Creates data operation cloud event for when the entire data operation fails and publishes it to client topic.
-     *
-     * @param topicParamInQuery      client given topic
-     * @param requestId              unique identifier per request
-     * @param dataOperationRequestIn incoming data operation request details
-     * @param ncmpResponseStatus     response code to be sent for all cm handle ids in all operations
-     */
-    private static void publishErrorMessageToClientTopicForEntireOperation(
-            final String topicParamInQuery,
-            final String requestId,
-            final DataOperationRequest dataOperationRequestIn,
-            final NcmpResponseStatus ncmpResponseStatus) {
-
-        final MultiValueMap<DmiDataOperation, Map<NcmpResponseStatus, List<String>>>
-                cmHandleIdsPerResponseCodesPerOperation = new LinkedMultiValueMap<>();
-
-        for (final DataOperationDefinition dataOperationDefinitionIn :
-                dataOperationRequestIn.getDataOperationDefinitions()) {
-            cmHandleIdsPerResponseCodesPerOperation.add(
-                    DmiDataOperation.buildDmiDataOperationRequestBodyWithoutCmHandles(dataOperationDefinitionIn),
-                    Map.of(ncmpResponseStatus, dataOperationDefinitionIn.getCmHandleIds()));
-        }
-        publishErrorMessageToClientTopic(topicParamInQuery, requestId, cmHandleIdsPerResponseCodesPerOperation);
     }
 
     /**
