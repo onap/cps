@@ -51,6 +51,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.util.UriComponentsBuilder;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 /**
  * Operations class for DMI data.
@@ -231,28 +233,35 @@ public class DmiDataOperations {
                                                                          groupsOutPerDmiServiceName,
                                                                  final String authorization) {
 
-        groupsOutPerDmiServiceName.forEach((dmiServiceName, dmiDataOperationRequestBodies) -> {
-            final String dmiUrl = DmiServiceUrlBuilder.newInstance()
-                .pathSegment("data")
-                .queryParameter("requestId", requestId)
-                .queryParameter("topic", topicParamInQuery)
-                .build(dmiServiceName, dmiProperties.getDmiBasePath());
-            sendDataOperationRequestToDmiService(dmiUrl, dmiDataOperationRequestBodies, authorization);
-        });
+        Flux.fromIterable(groupsOutPerDmiServiceName.entrySet())
+                .flatMap(entry -> {
+                    final String dmiServiceName = entry.getKey();
+                    final List<DmiDataOperation> dmiDataOperationRequestBodies = entry.getValue();
+
+                    final String dmiUrl = DmiServiceUrlBuilder.newInstance()
+                            .pathSegment("data")
+                            .queryParameter("requestId", requestId)
+                            .queryParameter("topic", topicParamInQuery)
+                            .build(dmiServiceName, dmiProperties.getDmiBasePath());
+
+                    return sendDataOperationRequestToDmiService(dmiUrl, dmiDataOperationRequestBodies, authorization);
+                })
+                .subscribe();
     }
 
-    private void sendDataOperationRequestToDmiService(final String dmiUrl,
-                                                      final List<DmiDataOperation> dmiDataOperationRequestBodies,
-                                                      final String authorization) {
+    private Mono<Void> sendDataOperationRequestToDmiService(final String dmiUrl,
+                                                            final List<DmiDataOperation> dmiDataOperationRequestBodies,
+                                                            final String authorization) {
         final DmiDataOperationRequest dmiDataOperationRequest = DmiDataOperationRequest.builder()
                 .operations(dmiDataOperationRequestBodies).build();
         final String dmiDataOperationRequestAsJsonString = jsonObjectMapper.asJsonString(dmiDataOperationRequest);
-        try {
-            dmiRestClient.postOperationWithJsonData(DATA, dmiUrl, dmiDataOperationRequestAsJsonString, READ,
-                    authorization);
-        } catch (final DmiClientRequestException e) {
-            handleTaskCompletionException(e, dmiUrl, dmiDataOperationRequestBodies);
-        }
+        return dmiRestClient.postOperationWithJsonDataAsync(DATA, dmiUrl, dmiDataOperationRequestAsJsonString,
+                        READ, authorization)
+                .then()
+                .onErrorResume(DmiClientRequestException.class, e -> {
+                    handleTaskCompletionException(e, dmiUrl, dmiDataOperationRequestBodies);
+                    return Mono.empty();
+                });
     }
 
     private void handleTaskCompletionException(final DmiClientRequestException dmiClientRequestException,
