@@ -128,6 +128,30 @@
       },
       "revId": "0e006004acf07ee044c9a4c258cee5518ffd0988",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3223dcf_5802f4ff",
+        "filename": "k6-tests/ncmp/search-base.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-06-07T14:21:01Z",
+      "side": 1,
+      "message": "Oh yeah..\nI meant what Halil mentioned 😄\nAlright. I get it. Thanks.",
+      "parentUuid": "e677ca3f_a1c07be6",
+      "range": {
+        "startLine": 45,
+        "startChar": 38,
+        "endLine": 45,
+        "endChar": 46
+      },
+      "revId": "0e006004acf07ee044c9a4c258cee5518ffd0988",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
