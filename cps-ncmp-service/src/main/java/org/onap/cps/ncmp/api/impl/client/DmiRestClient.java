@@ -50,6 +50,7 @@ import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientRequestException;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
+import reactor.core.publisher.Mono;
 
 @Component
 @RequiredArgsConstructor
@@ -85,20 +86,38 @@ public class DmiRestClient {
                                                             final String requestBodyAsJsonString,
                                                             final OperationType operationType,
                                                             final String authorization) {
-        final WebClient webClient = requiredDmiService.equals(RequiredDmiService.DATA)
-                ? dataServicesWebClient : modelServicesWebClient;
         try {
-            return webClient.post()
-                    .uri(toUri(dmiUrl))
-                    .headers(httpHeaders -> configureHttpHeaders(httpHeaders, authorization))
-                    .body(BodyInserters.fromValue(requestBodyAsJsonString))
-                    .retrieve()
-                    .toEntity(Object.class)
-                    .onErrorMap(httpError -> handleDmiClientException(httpError, operationType.getOperationName()))
-                    .block();
+            return postOperationWithJsonDataAsync(requiredDmiService, dmiUrl, requestBodyAsJsonString, operationType,
+                    authorization).block();
         } catch (final HttpServerErrorException e) {
             throw handleDmiClientException(e, operationType.getOperationName());
         }
+    }
+
+    /**
+     * Asynchronously performs an HTTP POST operation with the given JSON data.
+     *
+     * @param requiredDmiService      The service object required for retrieving or configuring the WebClient.
+     * @param dmiUrl                  The URL to which the POST request is sent.
+     * @param requestBodyAsJsonString The JSON string that will be sent as the request body.
+     * @param operationType           An enumeration or object that holds information about the type of operation
+     *                                being performed.
+     * @param authorization           The authorization token to be added to the request headers.
+     * @return A Mono emitting the response entity containing the server's response.
+     */
+    public Mono<ResponseEntity<Object>> postOperationWithJsonDataAsync(final RequiredDmiService requiredDmiService,
+                                                                       final String dmiUrl,
+                                                                       final String requestBodyAsJsonString,
+                                                                       final OperationType operationType,
+                                                                       final String authorization) {
+        final WebClient webClient = getWebClient(requiredDmiService);
+        return webClient.post()
+                .uri(toUri(dmiUrl))
+                .headers(httpHeaders -> configureHttpHeaders(httpHeaders, authorization))
+                .body(BodyInserters.fromValue(requestBodyAsJsonString))
+                .retrieve()
+                .toEntity(Object.class)
+                .onErrorMap(throwable -> handleDmiClientException(throwable, operationType.getOperationName()));
     }
 
     /**
@@ -121,6 +140,10 @@ public class DmiRestClient {
             log.warn("Failed to retrieve health status from {}. Error Message: {}", dmiUrl, e.getMessage());
             return NOT_SPECIFIED;
         }
+    }
+
+    private WebClient getWebClient(final RequiredDmiService requiredDmiService) {
+        return requiredDmiService.equals(RequiredDmiService.DATA) ? dataServicesWebClient : modelServicesWebClient;
     }
 
     private void configureHttpHeaders(final HttpHeaders httpHeaders, final String authorization) {

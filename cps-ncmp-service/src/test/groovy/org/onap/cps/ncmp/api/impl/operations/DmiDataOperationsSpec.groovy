@@ -21,6 +21,8 @@
 
 package org.onap.cps.ncmp.api.impl.operations
 
+import reactor.core.publisher.Mono
+
 import static org.onap.cps.ncmp.api.impl.events.mapper.CloudEventMapper.toTargetEvent
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_OPERATIONAL
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING
@@ -100,14 +102,14 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             def dataOperationRequest = spiedJsonObjectMapper.convertJsonString(dataOperationBatchRequestJsonData, DataOperationRequest.class)
             dataOperationRequest.dataOperationDefinitions[0].cmHandleIds = [cmHandleId]
         and: 'a positive response from DMI service when it is called with valid request parameters'
-            def responseFromDmi = new ResponseEntity<Object>(HttpStatus.ACCEPTED)
+            def responseFromDmi = Mono.just(new ResponseEntity<Object>(HttpStatus.ACCEPTED))
             def expectedDmiBatchResourceDataUrl = "someServiceName/dmi/v1/data?requestId=requestId&topic=my-topic-name"
             def expectedBatchRequestAsJson = '{"operations":[{"operation":"read","operationId":"operational-14","datastore":"ncmp-datastore:passthrough-operational","options":"some option","resourceIdentifier":"some resource identifier","cmHandles":[{"id":"some-cm-handle","moduleSetTag":"","cmHandleProperties":{"prop1":"val1"}}]}]}'
-            mockDmiRestClient.postOperationWithJsonData(DATA, expectedDmiBatchResourceDataUrl, _, READ, NO_AUTH_HEADER) >> responseFromDmi
-        when: 'get resource data for group of cm handles are invoked'
+            mockDmiRestClient.postOperationWithJsonDataAsync(DATA, expectedDmiBatchResourceDataUrl, _, READ, NO_AUTH_HEADER) >> responseFromDmi
+        when: 'get resource data for group of cm handles is invoked'
             objectUnderTest.requestResourceDataFromDmi('my-topic-name', dataOperationRequest, 'requestId', NO_AUTH_HEADER)
-        then: 'the post operation was called and ncmp generated dmi request body json args'
-            1 * mockDmiRestClient.postOperationWithJsonData(DATA, expectedDmiBatchResourceDataUrl, expectedBatchRequestAsJson, READ, NO_AUTH_HEADER)
+        then: 'the post operation was called with the expected URL and JSON request body'
+            1 * mockDmiRestClient.postOperationWithJsonDataAsync(DATA, expectedDmiBatchResourceDataUrl, expectedBatchRequestAsJson, READ, NO_AUTH_HEADER)
     }
 
     def 'Execute (async) data operation from DMI service with Exception.'() {
@@ -116,12 +118,12 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             def dataOperationBatchRequestJsonData = TestUtils.getResourceFileContent('dataOperationRequest.json')
             def dataOperationRequest = spiedJsonObjectMapper.convertJsonString(dataOperationBatchRequestJsonData, DataOperationRequest.class)
             dataOperationRequest.dataOperationDefinitions[0].cmHandleIds = [cmHandleId]
-        and: 'the published cloud will be captured'
+        and: 'the published cloud event will be captured'
             def actualDataOperationCloudEvent = null
             eventsPublisher.publishCloudEvent('my-topic-name', 'my-request-id', _) >> { args -> actualDataOperationCloudEvent = args[2] }
-        and: 'a positive response from DMI service when it is called with valid request parameters'
-            mockDmiRestClient.postOperationWithJsonData(*_) >> { throw new DmiClientRequestException(123,'','', UNKNOWN_ERROR) }
-        when: 'attempt tp get resource data for group of cm handles are invoked'
+        and: 'a DMI client request exception is thrown when DMI service is called'
+            mockDmiRestClient.postOperationWithJsonDataAsync(*_) >> { Mono.error(new DmiClientRequestException(123, '', '', UNKNOWN_ERROR)) }
+        when: 'attempt to get resource data for group of cm handles is invoked'
             objectUnderTest.requestResourceDataFromDmi('my-topic-name', dataOperationRequest, 'my-request-id', NO_AUTH_HEADER)
         then: 'the event contains the expected error details'
             def eventDataValue = extractDataValue(actualDataOperationCloudEvent)
