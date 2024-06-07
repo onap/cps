@@ -25,13 +25,11 @@ import static org.onap.cps.ncmp.api.impl.operations.OperationType.READ;
 
 import java.util.Map;
 import java.util.UUID;
-import java.util.function.BiConsumer;
 import java.util.function.Supplier;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.api.impl.exception.InvalidDatastoreException;
 import org.onap.cps.ncmp.api.impl.operations.DatastoreType;
 import org.onap.cps.ncmp.api.impl.operations.OperationType;
-import org.onap.cps.ncmp.api.impl.utils.data.operation.ResourceDataOperationRequestUtils;
 import org.onap.cps.ncmp.api.models.CmResourceAddress;
 import org.onap.cps.ncmp.api.models.DataOperationRequest;
 import org.onap.cps.ncmp.rest.exceptions.OperationNotSupportedException;
@@ -45,11 +43,7 @@ import org.springframework.stereotype.Component;
 public class NcmpPassthroughResourceRequestHandler extends NcmpDatastoreRequestHandler {
 
     private final NetworkCmProxyDataService networkCmProxyDataService;
-
-    private static final Object noReturn = null;
-
     private static final int MAXIMUM_CM_HANDLES_PER_OPERATION = 200;
-
     private static final String PAYLOAD_TOO_LARGE_TEMPLATE = "Operation '%s' affects too many (%d) cm handles";
 
     /**
@@ -101,10 +95,8 @@ public class NcmpPassthroughResourceRequestHandler extends NcmpDatastoreRequestH
             final DataOperationRequest dataOperationRequest,
             final String authorization) {
         final String requestId = UUID.randomUUID().toString();
-        cpsNcmpTaskExecutor.executeTaskWithErrorHandling(
-            getTaskSupplierForDataOperationRequest(topicParamInQuery, dataOperationRequest, requestId, authorization),
-            getTaskCompletionHandlerForDataOperationRequest(topicParamInQuery, dataOperationRequest, requestId),
-            timeOutInMilliSeconds);
+        networkCmProxyDataService.executeDataOperationForCmHandles(topicParamInQuery, dataOperationRequest, requestId,
+                authorization);
         return ResponseEntity.ok(Map.of("requestId", requestId));
     }
 
@@ -114,41 +106,18 @@ public class NcmpPassthroughResourceRequestHandler extends NcmpDatastoreRequestH
         dataOperationRequest.getDataOperationDefinitions().forEach(dataOperationDetail -> {
             if (OperationType.fromOperationName(dataOperationDetail.getOperation()) != READ) {
                 throw new OperationNotSupportedException(
-                    dataOperationDetail.getOperation() + " operation not yet supported");
+                        dataOperationDetail.getOperation() + " operation not yet supported");
             }
             if (DatastoreType.fromDatastoreName(dataOperationDetail.getDatastore()) == OPERATIONAL) {
                 throw new InvalidDatastoreException(dataOperationDetail.getDatastore()
-                    + " datastore is not supported");
+                        + " datastore is not supported");
             }
             if (dataOperationDetail.getCmHandleIds().size() > MAXIMUM_CM_HANDLES_PER_OPERATION) {
                 final String errorMessage = String.format(PAYLOAD_TOO_LARGE_TEMPLATE,
-                    dataOperationDetail.getOperationId(),
-                    dataOperationDetail.getCmHandleIds().size());
+                        dataOperationDetail.getOperationId(),
+                        dataOperationDetail.getCmHandleIds().size());
                 throw new PayloadTooLargeException(errorMessage);
             }
         });
     }
-
-    private Supplier<Object> getTaskSupplierForDataOperationRequest(final String topicParamInQuery,
-                                                                    final DataOperationRequest dataOperationRequest,
-                                                                    final String requestId,
-                                                                    final String authorization) {
-        return () -> {
-            networkCmProxyDataService.executeDataOperationForCmHandles(topicParamInQuery,
-                dataOperationRequest,
-                requestId,
-                authorization);
-            return noReturn;
-        };
-    }
-
-    private static BiConsumer<Object, Throwable> getTaskCompletionHandlerForDataOperationRequest(
-            final String topicParamInQuery,
-            final DataOperationRequest dataOperationRequest,
-            final String requestId) {
-        return (result, throwable) ->
-                ResourceDataOperationRequestUtils.handleAsyncTaskCompletionForDataOperationsRequest(topicParamInQuery,
-                        requestId, dataOperationRequest, throwable);
-    }
-
 }

@@ -20,16 +20,20 @@
 
 package org.onap.cps.ncmp.api.impl.utils.data.operation
 
+import static org.onap.cps.ncmp.api.impl.events.mapper.CloudEventMapper.toTargetEvent
+import static org.onap.cps.ncmp.api.impl.inventory.CmHandleState.ADVISED
+import static org.onap.cps.ncmp.api.impl.inventory.CmHandleState.READY
+
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.cloudevents.CloudEvent
 import io.cloudevents.kafka.CloudEventDeserializer
 import io.cloudevents.kafka.impl.KafkaHeaders
 import org.apache.kafka.clients.consumer.KafkaConsumer
 import org.onap.cps.events.EventsPublisher
-import org.onap.cps.ncmp.api.NcmpResponseStatus
+import org.onap.cps.ncmp.api.impl.operations.DmiDataOperation
+import org.onap.cps.ncmp.api.impl.operations.OperationType
 import org.onap.cps.ncmp.api.impl.utils.context.CpsApplicationContext
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
-import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
 import org.onap.cps.ncmp.api.impl.inventory.CompositeStateBuilder
 import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
 import org.onap.cps.ncmp.api.models.DataOperationRequest
@@ -37,15 +41,11 @@ import org.onap.cps.ncmp.events.async1_0_0.DataOperationEvent
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.ContextConfiguration
-
+import org.springframework.util.LinkedMultiValueMap
 import java.time.Duration
-import java.util.concurrent.TimeoutException
 
-import static org.onap.cps.ncmp.api.impl.events.mapper.CloudEventMapper.toTargetEvent
-
-@ContextConfiguration(classes = [EventsPublisher, CpsApplicationContext, ObjectMapper])
+@ContextConfiguration(classes = [EventsPublisher, CpsApplicationContext])
 class ResourceDataOperationRequestUtilsSpec extends MessagingBaseSpec {
 
     def static clientTopic = 'my-topic-name'
@@ -56,9 +56,6 @@ class ResourceDataOperationRequestUtilsSpec extends MessagingBaseSpec {
 
     @SpringBean
     EventsPublisher eventPublisher = new EventsPublisher<CloudEvent>(legacyEventKafkaTemplate, cloudEventKafkaTemplate)
-
-    @Autowired
-    ObjectMapper objectMapper
 
     def 'Process per data operation request with #serviceName.'() {
         given: 'data operation request with 3 operations'
@@ -135,34 +132,10 @@ class ResourceDataOperationRequestUtilsSpec extends MessagingBaseSpec {
             jsonObjectMapper.asJsonString(dataOperationResponseEvent.data.responses) == dataOperationResponseEventJson
     }
 
-    def 'Publish error response for entire data operations request when async task fails'() {
-        given: 'consumer subscribing to client topic'
-            def cloudEventKafkaConsumer = new KafkaConsumer<>(eventConsumerConfigProperties(consumerGroupId, CloudEventDeserializer))
-            cloudEventKafkaConsumer.subscribe([clientTopic])
-        and: 'data operation request having non-ready and non-existing cm handle ids'
-            def dataOperationRequestJsonData = TestUtils.getResourceFileContent('dataOperationRequest.json')
-            def dataOperationRequest = jsonObjectMapper.convertJsonString(dataOperationRequestJsonData, DataOperationRequest.class)
-        when: 'an error occurs for the entire data operations request'
-            ResourceDataOperationRequestUtils.handleAsyncTaskCompletionForDataOperationsRequest(clientTopic, 'request-id', dataOperationRequest, exceptionThrown)
-        and: 'subscribed client specified topic is polled and first record is selected'
-            def consumerRecordOut = cloudEventKafkaConsumer.poll(Duration.ofMillis(1500)).last()
-            def dataOperationResponseEvent = toTargetEvent(consumerRecordOut.value(), DataOperationEvent.class)
-        then: 'data operation response event response size is 3'
-            dataOperationResponseEvent.data.responses.size() == 3
-        and: 'all 3 have the expected error code'
-            dataOperationResponseEvent.data.responses.each {
-                assert it.statusCode == errorReportedToClientTopic.code
-            }
-        where:
-            scenario             | exceptionThrown        | consumerGroupId || errorReportedToClientTopic
-            'task timed out'     | new TimeoutException() | 'test-2'        || NcmpResponseStatus.DMI_SERVICE_NOT_RESPONDING
-            'unspecified error'  | new RuntimeException() | 'test-3'        || NcmpResponseStatus.UNKNOWN_ERROR
-    }
-
     static def getYangModelCmHandles() {
         def dmiProperties = [new YangModelCmHandle.Property('prop', 'some DMI property')]
-        def readyState = new CompositeStateBuilder().withCmHandleState(CmHandleState.READY).withLastUpdatedTimeNow().build()
-        def advisedState = new CompositeStateBuilder().withCmHandleState(CmHandleState.ADVISED).withLastUpdatedTimeNow().build()
+        def readyState = new CompositeStateBuilder().withCmHandleState(READY).withLastUpdatedTimeNow().build()
+        def advisedState = new CompositeStateBuilder().withCmHandleState(ADVISED).withLastUpdatedTimeNow().build()
         return [new YangModelCmHandle(id: 'ch1-dmi1', dmiServiceName: 'dmi1', dmiProperties: dmiProperties, compositeState: readyState),
                 new YangModelCmHandle(id: 'ch2-dmi1', dmiServiceName: 'dmi1', dmiProperties: dmiProperties, compositeState: readyState),
                 new YangModelCmHandle(id: 'ch6-dmi1', dmiServiceName: 'dmi1', dmiProperties: dmiProperties, compositeState: readyState),
@@ -176,7 +149,16 @@ class ResourceDataOperationRequestUtilsSpec extends MessagingBaseSpec {
 
     static def getYangModelCmHandlesForOneCmHandle() {
         def dmiProperties = [new YangModelCmHandle.Property('prop', 'some DMI property')]
-        def readyState = new CompositeStateBuilder().withCmHandleState(CmHandleState.READY).withLastUpdatedTimeNow().build()
+        def readyState = new CompositeStateBuilder().withCmHandleState(READY).withLastUpdatedTimeNow().build()
         return [new YangModelCmHandle(id: 'ch1-dmi1', dmiServiceName: 'dmi1', moduleSetTag: 'module-set-tag1', dmiProperties: dmiProperties, compositeState: readyState)]
+    }
+
+    def mockAndPopulateErrorMap(errorReportedToClientTopic) {
+        def dmiDataOperation = DmiDataOperation.builder().operation(OperationType.fromOperationName('read'))
+                .operationId('some-op-id').datastore('ncmp-datastore:passthrough-operational')
+                .options('some-option').resourceIdentifier('some-resource-identifier').build()
+        def cmHandleIdsPerResponseCodesPerOperation = new LinkedMultiValueMap<>()
+        cmHandleIdsPerResponseCodesPerOperation.add(dmiDataOperation, Map.of(errorReportedToClientTopic, ['some-cm-handle-id']))
+        return cmHandleIdsPerResponseCodesPerOperation
     }
 }
