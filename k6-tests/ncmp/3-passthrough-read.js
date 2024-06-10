@@ -18,10 +18,9 @@
  *  ============LICENSE_END=========================================================
  */
 
-import http from 'k6/http';
-import { check } from 'k6';
-import { Trend } from "k6/metrics";
-import { NCMP_BASE_URL, getRandomCmHandleId, makeCustomSummaryReport } from './utils.js'
+import { Trend } from 'k6/metrics';
+import { passthroughRead } from './common/passthrough-crud.js'
+import { makeCustomSummaryReport } from './common/utils.js'
 
 let ncmpOverheadTrend = new Trend("ncmp_overhead");
 
@@ -36,14 +35,7 @@ export const options = {
 
 // The function that defines VU logic.
 export default function () {
-    const cmHandleId = getRandomCmHandleId();
-    const datastoreName = 'ncmp-datastore%3Apassthrough-operational';
-    const url = `${NCMP_BASE_URL}/ncmp/v1/ch/${cmHandleId}/data/ds/${datastoreName}?resourceIdentifier=x&include-descendants=true`
-    const response = http.get(url);
-    check(response, {
-        'status equals 200': (r) => r.status === 200,
-    });
-
+    const response = passthroughRead();
     // Calculate overhead assuming DMI data delay is 2500ms.
     const dmiDelay = 2500; // This should be same as value DATA_FOR_CM_HANDLE_DELAY_MS in docker-compose.yml
     const overhead = response.timings.duration - dmiDelay;

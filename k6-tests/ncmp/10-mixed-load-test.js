@@ -18,10 +18,9 @@
  *  ============LICENSE_END=========================================================
  */
 
-import http from 'k6/http';
-import { check } from 'k6';
-import { NCMP_BASE_URL, getRandomCmHandleId, makeCustomSummaryReport } from './utils.js'
-import { executeCmHandleSearch, executeCmHandleIdSearch } from './search-base.js';
+import { makeCustomSummaryReport } from './common/utils.js'
+import { executeCmHandleSearch, executeCmHandleIdSearch } from './common/search-base.js';
+import { passthroughRead } from './common/passthrough-crud.js';
 
 export const options = {
     scenarios: {
@@ -56,13 +55,7 @@ export const options = {
 };
 
 export function passthrough_read() {
-    const cmHandleId = getRandomCmHandleId();
-    const datastoreName = 'ncmp-datastore%3Apassthrough-operational';
-    const url = `${NCMP_BASE_URL}/ncmp/v1/ch/${cmHandleId}/data/ds/${datastoreName}?resourceIdentifier=x&include-descendants=true`
-    const response = http.get(url);
-    check(response, {
-        'status equals 200': (r) => r.status === 200,
-    });
+    passthroughRead();
 }
 
 export function id_search_module() {
