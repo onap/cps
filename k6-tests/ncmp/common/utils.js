@@ -22,9 +22,11 @@ export const NCMP_BASE_URL = 'http://localhost:8883';
 export const DMI_PLUGIN_URL = 'http://ncmp-dmi-plugin-demo-and-csit-stub:8092';
 export const TOTAL_CM_HANDLES = 20000
 
-/*
- * Makes a batch of CM-handle IDs.
- * Given a batchSize=100 and batchNumber=2, it will generate ['ch-201', 'ch-202' ... 'ch-300']
+/**
+ * Generates a batch of CM-handle IDs based on batch size and number.
+ * @param {number} batchSize - Size of each batch.
+ * @param {number} batchNumber - Number of the batch.
+ * @returns {string[]} Array of CM-handle IDs, for example ['ch-201', 'ch-202' ... 'ch-300']
  */
 export function makeBatchOfCmHandleIds(batchSize, batchNumber) {
     const batchOfIds = [];
@@ -37,7 +39,7 @@ export function makeBatchOfCmHandleIds(batchSize, batchNumber) {
 }
 
 export function getRandomCmHandleId() {
-    return 'ch-' + (Math.floor(Math.random() * TOTAL_CM_HANDLES) + 1);
+    return `ch-${Math.floor(Math.random() * TOTAL_CM_HANDLES) + 1}`;
 }
 
 function removeBracketsAndQuotes(str) {

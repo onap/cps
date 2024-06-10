@@ -51,14 +51,18 @@ export function executeCmHandleIdSearch(scenario) {
 }
 
 function executeSearchRequest(searchType, scenario) {
-    const searchParameter = JSON.stringify(SEARCH_PARAMETERS_PER_SCENARIO[scenario]);
-    const response = http.post(NCMP_BASE_URL + '/ncmp/v1/ch/' + searchType, searchParameter, {
-        headers: {'Content-Type': 'application/json'},
-    });
+    const searchParameters = SEARCH_PARAMETERS_PER_SCENARIO[scenario];
+    const payload = JSON.stringify(searchParameters);
+    const url = `${NCMP_BASE_URL}/ncmp/v1/ch/${searchType}`;
+    const params = {
+        headers: {'Content-Type': 'application/json'}
+    };
+    const response = http.post(url, payload, params);
     check(response, {
         'status equals 200': (r) => r.status === 200,
     });
-    check(JSON.parse(response.body), {
+    const responseData = JSON.parse(response.body);
+    check(responseData, {
         'returned list has expected CM-handles': (arr) => arr.length === TOTAL_CM_HANDLES,
     });
 }
