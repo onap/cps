@@ -18,16 +18,9 @@
  *  ============LICENSE_END=========================================================
  */
 
-import http from 'k6/http';
 import exec from 'k6/execution';
-import { check } from 'k6';
-import {
-    NCMP_BASE_URL,
-    DMI_PLUGIN_URL,
-    TOTAL_CM_HANDLES,
-    makeBatchOfCmHandleIds,
-    makeCustomSummaryReport
-} from './utils.js';
+import { TOTAL_CM_HANDLES, makeBatchOfCmHandleIds, makeCustomSummaryReport } from './common/utils.js';
+import { createCmHandles } from './common/cmhandle-crud.js';
 
 const BATCH_SIZE = 100;
 export const options = {
@@ -40,25 +33,9 @@ export const options = {
 };
 
 export default function () {
-    const nextBatchOfCmHandleIds = makeBatchOfCmHandleIds(BATCH_SIZE, exec.scenario.iterationInTest);
-    const payload = {
-        "dmiPlugin": DMI_PLUGIN_URL,
-        "createdCmHandles": nextBatchOfCmHandleIds.map(cmHandleId => ({
-            "cmHandle": cmHandleId,
-            "cmHandleProperties": {"neType": "RadioNode"},
-            "publicCmHandleProperties": {
-                "Color": "yellow",
-                "Size": "small",
-                "Shape": "cube"
-            }
-        })),
-    };
-    const response = http.post(NCMP_BASE_URL + '/ncmpInventory/v1/ch', JSON.stringify(payload), {
-        headers: {'Content-Type': 'application/json'},
-    });
-    check(response, {
-        'status equals 200': (r) => r.status === 200,
-    });
+    const batchNumber = exec.scenario.iterationInTest;
+    const nextBatchOfCmHandleIds = makeBatchOfCmHandleIds(BATCH_SIZE, batchNumber);
+    createCmHandles(nextBatchOfCmHandleIds);
 }
 
 export function handleSummary(data) {
