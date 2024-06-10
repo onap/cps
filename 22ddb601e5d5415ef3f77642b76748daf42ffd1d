@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20f53390_7dd56117",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-06-10T14:56:51Z",
+      "side": 1,
+      "message": "fine for me as well.\nAs discussed that TrustLevelCacheConfig can be removed from the controller layer.\nProbably as part of a separate patchset.",
+      "revId": "22ddb601e5d5415ef3f77642b76748daf42ffd1d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
