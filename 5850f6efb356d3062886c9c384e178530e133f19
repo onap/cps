@@ -39,6 +39,24 @@
       "message": "The change is ok to me. Just want to clarify some points for my understanding.\n\n\nI don\u0027t understand \"why\" we have two package signatures (paths) for the model classes in different locations:\n\n1- cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/models\n2- cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/models\n\nSpecifically for those package paths.\n\nIn wiki page, it was mentioned like for impl packages:\n\n\"impl all classes that are NOT exposed on the northbound interface and are unique to just one feature\"\n\nThen, my question \"how do we ensure\" the classes inside impl package will not be consumed by northbound interfaces since all have public modifiers?",
       "revId": "5850f6efb356d3062886c9c384e178530e133f19",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e223e85e_24b23d62",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-10T14:45:45Z",
+      "side": 1,
+      "message": "impl/models are dat object NOT exposed on the API. these will be quite common and it is good to separate them from those needed for the northbound interface. \nIt is technically possible to enforce dependencies and this has nothing to do with teh \u0027public\u0027 modifier. But I think this is (a discussion) for another time. For now we simply need to do proper reviews and make sure developer put new stuff in the right places. Historically we haven\u0027t been great at this we simply need to get better but I do not want to enforce this trough technical solutions....",
+      "parentUuid": "7f4d94f1_aa97c046",
+      "revId": "5850f6efb356d3062886c9c384e178530e133f19",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
