@@ -22,8 +22,37 @@ import http from 'k6/http';
 import { check } from 'k6';
 import { NCMP_BASE_URL, TOTAL_CM_HANDLES } from './utils.js';
 
-export function searchRequest(searchType, searchFilter) {
-    const response = http.post(NCMP_BASE_URL + '/ncmp/v1/ch/' + searchType, searchFilter, {
+const SEARCH_PARAMETERS_PER_SCENARIO = {
+    'no-filter': {},
+    'module': {
+        'cmHandleQueryParameters': [
+            {
+                'conditionName': 'hasAllModules',
+                'conditionParameters': [{'moduleName': 'ietf-yang-types-1'}]
+            }
+        ]
+    },
+    'property': {
+        'cmHandleQueryParameters': [
+            {
+                'conditionName': 'hasAllProperties',
+                'conditionParameters': [{'Color': 'yellow'}]
+            }
+        ]
+    }
+};
+
+export function executeCmHandleSearch(scenario) {
+    executeSearchRequest('searches', scenario);
+}
+
+export function executeCmHandleIdSearch(scenario) {
+    executeSearchRequest('id-searches', scenario);
+}
+
+function executeSearchRequest(searchType, scenario) {
+    const searchParameter = JSON.stringify(SEARCH_PARAMETERS_PER_SCENARIO[scenario]);
+    const response = http.post(NCMP_BASE_URL + '/ncmp/v1/ch/' + searchType, searchParameter, {
         headers: {'Content-Type': 'application/json'},
     });
     check(response, {

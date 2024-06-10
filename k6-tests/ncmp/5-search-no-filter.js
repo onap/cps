@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-import { searchRequest } from './search-base.js';
+import { executeCmHandleSearch } from './search-base.js';
 import { makeCustomSummaryReport } from "./utils.js";
 
 export const options = {
@@ -31,7 +31,7 @@ export const options = {
 };
 
 export default function () {
-    searchRequest('searches', '{}')
+    executeCmHandleSearch('no-filter');
 }
 
 export function handleSummary(data) {
