@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de95185b_dd5031c6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-10T14:40:04Z",
+      "side": 1,
+      "message": "NB: I would be more specific on jira ticket: CPS-2258",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 18
+      },
+      "revId": "5850f6efb356d3062886c9c384e178530e133f19",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f4d94f1_aa97c046",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-10T14:40:04Z",
+      "side": 1,
+      "message": "The change is ok to me. Just want to clarify some points for my understanding.\n\n\nI don\u0027t understand \"why\" we have two package signatures (paths) for the model classes in different locations:\n\n1- cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/models\n2- cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/models\n\nSpecifically for those package paths.\n\nIn wiki page, it was mentioned like for impl packages:\n\n\"impl all classes that are NOT exposed on the northbound interface and are unique to just one feature\"\n\nThen, my question \"how do we ensure\" the classes inside impl package will not be consumed by northbound interfaces since all have public modifiers?",
+      "revId": "5850f6efb356d3062886c9c384e178530e133f19",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
