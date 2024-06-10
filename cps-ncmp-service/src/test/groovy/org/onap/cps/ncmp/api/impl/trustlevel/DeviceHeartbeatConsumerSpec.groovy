@@ -25,6 +25,7 @@ import io.cloudevents.CloudEvent
 import io.cloudevents.core.builder.CloudEventBuilder
 import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.onap.cps.ncmp.events.trustlevel.DeviceTrustLevel
+import org.onap.cps.ncmp.impl.inventory.models.TrustLevel
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification

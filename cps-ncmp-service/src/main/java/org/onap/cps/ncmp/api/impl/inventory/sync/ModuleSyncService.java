@@ -21,10 +21,10 @@
 
 package org.onap.cps.ncmp.api.impl.inventory.sync;
 
-import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME;
-import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR;
-import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT;
-import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME;
+import static org.onap.cps.ncmp.impl.NcmpPersistence.NCMP_DATASPACE_NAME;
+import static org.onap.cps.ncmp.impl.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR;
+import static org.onap.cps.ncmp.impl.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT;
+import static org.onap.cps.ncmp.impl.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME;
 
 import java.time.OffsetDateTime;
 import java.util.Collection;
@@ -38,11 +38,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsModuleService;
-import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueries;
-import org.onap.cps.ncmp.api.impl.inventory.CmHandleState;
 import org.onap.cps.ncmp.api.impl.operations.DmiModelOperations;
-import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
-import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
+import org.onap.cps.ncmp.impl.inventory.CmHandleQueries;
+import org.onap.cps.ncmp.impl.inventory.models.CmHandleState;
+import org.onap.cps.ncmp.impl.models.YangModelCmHandle;
+import org.onap.cps.ncmp.impl.utils.YangDataConverter;
 import org.onap.cps.spi.CascadeDeleteAllowed;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.exceptions.SchemaSetNotFoundException;

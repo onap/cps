@@ -33,13 +33,13 @@ import org.onap.cps.TestUtils
 import org.onap.cps.events.EventsPublisher
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService
 import org.onap.cps.ncmp.api.NetworkCmProxyQueryService
-import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
-import org.onap.cps.ncmp.api.impl.inventory.CompositeState
-import org.onap.cps.ncmp.api.impl.inventory.DataStoreSyncState
-import org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory
-import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel
-import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
+import org.onap.cps.ncmp.api.impl.inventory.sync.DataStoreSyncState
+import org.onap.cps.ncmp.api.impl.inventory.sync.LockReasonCategory
 import org.onap.cps.ncmp.api.models.CmResourceAddress
+import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
+import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
+import org.onap.cps.ncmp.impl.inventory.models.CompositeState
+import org.onap.cps.ncmp.impl.inventory.models.TrustLevel
 import org.onap.cps.ncmp.rest.controller.handlers.NcmpCachedResourceRequestHandler
 import org.onap.cps.ncmp.rest.controller.handlers.NcmpPassthroughResourceRequestHandler
 import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor
@@ -67,8 +67,6 @@ import java.time.OffsetDateTime
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 
-import static org.onap.cps.ncmp.api.impl.inventory.CompositeState.DataStores
-import static org.onap.cps.ncmp.api.impl.inventory.CompositeState.Operational
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.OPERATIONAL
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_OPERATIONAL
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING
@@ -76,6 +74,8 @@ import static org.onap.cps.ncmp.api.impl.operations.OperationType.CREATE
 import static org.onap.cps.ncmp.api.impl.operations.OperationType.DELETE
 import static org.onap.cps.ncmp.api.impl.operations.OperationType.PATCH
 import static org.onap.cps.ncmp.api.impl.operations.OperationType.UPDATE
+import static org.onap.cps.ncmp.impl.inventory.models.CompositeState.DataStores
+import static org.onap.cps.ncmp.impl.inventory.models.CompositeState.Operational
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete

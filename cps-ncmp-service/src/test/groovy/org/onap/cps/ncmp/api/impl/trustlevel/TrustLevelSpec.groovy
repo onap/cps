@@ -20,6 +20,7 @@
 
 package org.onap.cps.ncmp.api.impl.trustlevel
 
+import org.onap.cps.ncmp.impl.inventory.models.TrustLevel
 import spock.lang.Specification
 
 class TrustLevelSpec extends Specification {
@@ -28,8 +29,8 @@ class TrustLevelSpec extends Specification {
         expect: 'the lower of two is returned'
             assert effectiveLevel == current.getEffectiveTrustLevel(other)
         where: 'the following trust level is used'
-            current             | other               || effectiveLevel
-            TrustLevel.COMPLETE | TrustLevel.NONE     || TrustLevel.NONE
+            current             | other           || effectiveLevel
+            TrustLevel.COMPLETE | TrustLevel.NONE || TrustLevel.NONE
             TrustLevel.NONE     | TrustLevel.COMPLETE || TrustLevel.NONE
             TrustLevel.COMPLETE | TrustLevel.COMPLETE || TrustLevel.COMPLETE
     }

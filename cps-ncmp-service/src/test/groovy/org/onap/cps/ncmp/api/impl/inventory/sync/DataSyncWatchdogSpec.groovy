@@ -20,16 +20,15 @@
 
 package org.onap.cps.ncmp.api.impl.inventory.sync
 
-import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
-
 import com.hazelcast.map.IMap
 import org.onap.cps.api.CpsDataService
-import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
-import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
-import org.onap.cps.ncmp.api.impl.inventory.CompositeState
-import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence
-import org.onap.cps.ncmp.api.impl.inventory.DataStoreSyncState
+import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
+import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
+import org.onap.cps.ncmp.impl.inventory.models.CompositeState
+import org.onap.cps.ncmp.impl.models.YangModelCmHandle
 import spock.lang.Specification
+
+import static org.onap.cps.ncmp.impl.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
 
 class DataSyncWatchdogSpec extends Specification {
 
