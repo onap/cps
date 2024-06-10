@@ -30,12 +30,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.events.lcm.LcmEventsCmHandleStateHandler;
-import org.onap.cps.ncmp.api.impl.inventory.CmHandleState;
-import org.onap.cps.ncmp.api.impl.inventory.CompositeState;
-import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence;
-import org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory;
-import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
-import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
+import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
+import org.onap.cps.ncmp.impl.inventory.models.CmHandleState;
+import org.onap.cps.ncmp.impl.inventory.models.CompositeState;
+import org.onap.cps.ncmp.impl.models.YangModelCmHandle;
+import org.onap.cps.ncmp.impl.utils.YangDataConverter;
 import org.onap.cps.spi.model.DataNode;
 import org.springframework.stereotype.Component;
 

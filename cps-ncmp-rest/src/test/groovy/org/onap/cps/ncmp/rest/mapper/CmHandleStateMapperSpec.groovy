@@ -20,18 +20,19 @@
 
 package org.onap.cps.ncmp.rest.mapper
 
-import static org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory.LOCKED_MISBEHAVING
-import static org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory.MODULE_SYNC_FAILED
-
 import org.mapstruct.factory.Mappers
-import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
-import org.onap.cps.ncmp.api.impl.inventory.CompositeStateBuilder
+import org.onap.cps.ncmp.api.impl.inventory.sync.DataStoreSyncState
+import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
+import org.onap.cps.ncmp.impl.inventory.models.CompositeStateBuilder
 import org.onap.cps.ncmp.rest.model.CmHandleCompositeState
-import org.onap.cps.ncmp.api.impl.inventory.DataStoreSyncState
 import spock.lang.Specification
+
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
+
+import static org.onap.cps.ncmp.api.impl.inventory.sync.LockReasonCategory.LOCKED_MISBEHAVING
+import static org.onap.cps.ncmp.api.impl.inventory.sync.LockReasonCategory.MODULE_SYNC_FAILED
 
 class CmHandleStateMapperSpec extends Specification {
 

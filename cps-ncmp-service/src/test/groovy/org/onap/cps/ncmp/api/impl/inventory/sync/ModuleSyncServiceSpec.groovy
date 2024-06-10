@@ -21,25 +21,24 @@
 package org.onap.cps.ncmp.api.impl.inventory.sync
 
 import org.onap.cps.api.CpsAnchorService
-
-import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
-import static org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory.MODULE_UPGRADE
-
-import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
-import org.onap.cps.spi.model.DataNode
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
-import org.onap.cps.spi.model.DataNodeBuilder
 import org.onap.cps.ncmp.api.impl.operations.DmiModelOperations
-import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
-import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueries
-import org.onap.cps.ncmp.api.impl.inventory.CompositeStateBuilder
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
+import org.onap.cps.ncmp.impl.inventory.CmHandleQueries
+import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
+import org.onap.cps.ncmp.impl.inventory.models.CompositeStateBuilder
+import org.onap.cps.ncmp.impl.models.YangModelCmHandle
 import org.onap.cps.spi.CascadeDeleteAllowed
 import org.onap.cps.spi.exceptions.SchemaSetNotFoundException
+import org.onap.cps.spi.model.DataNode
+import org.onap.cps.spi.model.DataNodeBuilder
 import org.onap.cps.spi.model.ModuleReference
 import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Specification
+
+import static LockReasonCategory.MODULE_UPGRADE
+import static org.onap.cps.ncmp.impl.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
 
 class ModuleSyncServiceSpec extends Specification {
 

@@ -22,11 +22,12 @@
 package org.onap.cps.ncmp.api.impl.inventory.sync
 
 import com.hazelcast.map.IMap
-import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.impl.inventory.sync.executor.AsyncTaskExecutor
-import java.util.concurrent.ArrayBlockingQueue
+import org.onap.cps.ncmp.impl.models.YangModelCmHandle
 import org.onap.cps.spi.model.DataNode
 import spock.lang.Specification
+
+import java.util.concurrent.ArrayBlockingQueue
 
 class ModuleSyncWatchdogSpec extends Specification {
 

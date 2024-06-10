@@ -23,49 +23,50 @@
 
 package org.onap.cps.ncmp.api.impl
 
-import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
-import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
-import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.hazelcast.map.IMap
+import org.onap.cps.api.CpsDataService
+import org.onap.cps.ncmp.api.impl.events.lcm.LcmEventsCmHandleStateHandler
+import org.onap.cps.ncmp.api.impl.inventory.sync.DataStoreSyncState
+import org.onap.cps.ncmp.api.impl.inventory.sync.LockReasonCategory
+import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations
+import org.onap.cps.ncmp.api.impl.utils.AlternateIdChecker
+import org.onap.cps.ncmp.api.inventory.NetworkCmProxyCmHandleQueryService
+import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryServiceParameters
+import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters
+import org.onap.cps.ncmp.api.models.CmResourceAddress
+import org.onap.cps.ncmp.api.models.ConditionApiProperties
+import org.onap.cps.ncmp.api.models.DataOperationDefinition
+import org.onap.cps.ncmp.api.models.DataOperationRequest
+import org.onap.cps.ncmp.api.models.DmiPluginRegistration
+import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse
+import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
+import org.onap.cps.ncmp.impl.inventory.CmHandleQueries
+import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
+import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
+import org.onap.cps.ncmp.impl.inventory.models.CompositeState
+import org.onap.cps.ncmp.impl.models.YangModelCmHandle
+import org.onap.cps.ncmp.impl.trustlevel.TrustLevelManager
+import org.onap.cps.ncmp.impl.trustlevel.models.TrustLevel
+import org.onap.cps.spi.FetchDescendantsOption
+import org.onap.cps.spi.exceptions.CpsException
+import org.onap.cps.spi.model.ConditionProperties
+import org.onap.cps.spi.model.DataNode
+import org.onap.cps.utils.JsonObjectMapper
+import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
+import spock.lang.Specification
+
+import java.util.stream.Collectors
+
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.OPERATIONAL
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_OPERATIONAL
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING
 import static org.onap.cps.ncmp.api.impl.operations.OperationType.CREATE
 import static org.onap.cps.ncmp.api.impl.operations.OperationType.UPDATE
-
-import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse
-import org.onap.cps.ncmp.api.models.CmResourceAddress
-import org.onap.cps.ncmp.api.impl.utils.AlternateIdChecker
-import com.hazelcast.map.IMap
-import org.onap.cps.ncmp.api.NetworkCmProxyCmHandleQueryService
-import org.onap.cps.ncmp.api.impl.events.lcm.LcmEventsCmHandleStateHandler
-import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel
-import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevelManager
-import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
-import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueries
-import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
-import org.onap.cps.ncmp.api.impl.inventory.CompositeState
-import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence
-import org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory
-import org.onap.cps.ncmp.api.impl.inventory.DataStoreSyncState
-import org.onap.cps.ncmp.api.models.DataOperationDefinition
-import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters
-import org.onap.cps.ncmp.api.models.CmHandleQueryServiceParameters
-import org.onap.cps.ncmp.api.models.ConditionApiProperties
-import org.onap.cps.ncmp.api.models.DmiPluginRegistration
-import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
-import org.onap.cps.ncmp.api.models.DataOperationRequest
-import org.onap.cps.spi.exceptions.CpsException
-import org.onap.cps.spi.model.ConditionProperties
-import java.util.stream.Collectors
-import org.onap.cps.utils.JsonObjectMapper
-import com.fasterxml.jackson.databind.ObjectMapper
-import org.onap.cps.api.CpsDataService
-import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations
-import org.onap.cps.spi.FetchDescendantsOption
-import org.onap.cps.spi.model.DataNode
-import org.springframework.http.HttpStatus
-import org.springframework.http.ResponseEntity
-import spock.lang.Specification
+import static org.onap.cps.ncmp.impl.NcmpPersistence.NCMP_DATASPACE_NAME
+import static org.onap.cps.ncmp.impl.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
+import static org.onap.cps.ncmp.impl.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
 
 class NetworkCmProxyDataServiceImplSpec extends Specification {
 

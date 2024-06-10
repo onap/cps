@@ -20,7 +20,7 @@
 
 package org.onap.cps.ncmp.api.impl.inventory.sync;
 
-import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME;
+import static org.onap.cps.ncmp.impl.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME;
 
 import com.hazelcast.map.IMap;
 import java.time.OffsetDateTime;
@@ -30,9 +30,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.ncmp.api.impl.config.embeddedcache.SynchronizationCacheConfig;
-import org.onap.cps.ncmp.api.impl.inventory.CompositeState;
-import org.onap.cps.ncmp.api.impl.inventory.DataStoreSyncState;
-import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence;
+import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
+import org.onap.cps.ncmp.impl.inventory.models.CompositeState;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 

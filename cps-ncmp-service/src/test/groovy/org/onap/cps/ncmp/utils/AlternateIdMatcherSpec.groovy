@@ -20,8 +20,8 @@
 
 package org.onap.cps.ncmp.utils
 
-import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence
 import org.onap.cps.ncmp.exceptions.NoAlternateIdMatchFoundException
+import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.model.DataNode
 import spock.lang.Specification

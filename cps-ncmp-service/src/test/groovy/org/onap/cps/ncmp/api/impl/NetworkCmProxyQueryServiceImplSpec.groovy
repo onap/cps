@@ -20,13 +20,13 @@
 
 package org.onap.cps.ncmp.api.impl
 
-import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
-import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
-
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.model.DataNode
 import spock.lang.Specification
+
+import static org.onap.cps.ncmp.impl.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
+import static org.onap.cps.ncmp.impl.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
 
 class NetworkCmProxyQueryServiceImplSpec extends Specification {
 

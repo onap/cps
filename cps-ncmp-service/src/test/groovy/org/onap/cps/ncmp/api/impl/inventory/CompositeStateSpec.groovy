@@ -21,17 +21,18 @@
 package org.onap.cps.ncmp.api.impl.inventory
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
-import org.onap.cps.ncmp.api.impl.inventory.CompositeState
-import org.onap.cps.ncmp.api.impl.inventory.DataStoreSyncState
-import org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory
+import org.onap.cps.ncmp.api.impl.inventory.sync.DataStoreSyncState
+import org.onap.cps.ncmp.api.impl.inventory.sync.LockReasonCategory
+import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
+import org.onap.cps.ncmp.impl.inventory.models.CompositeState
 import spock.lang.Specification
+
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 
-import static org.onap.cps.ncmp.api.impl.inventory.CompositeState.DataStores
-import static org.onap.cps.ncmp.api.impl.inventory.CompositeState.Operational
+import static org.onap.cps.ncmp.impl.inventory.models.CompositeState.DataStores
+import static org.onap.cps.ncmp.impl.inventory.models.CompositeState.Operational
 import static org.onap.cps.ncmp.utils.TestUtils.getResourceFileContent
 import static org.springframework.util.StringUtils.trimAllWhitespace
 

@@ -22,11 +22,11 @@ package org.onap.cps.integration.functional
 
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService
-import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
-import org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory
+import org.onap.cps.ncmp.api.impl.inventory.sync.LockReasonCategory
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.models.UpgradedCmHandles
+import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
 import spock.util.concurrent.PollingConditions
 
 class NcmpCmHandleUpgradeSpec extends CpsIntegrationSpecBase {

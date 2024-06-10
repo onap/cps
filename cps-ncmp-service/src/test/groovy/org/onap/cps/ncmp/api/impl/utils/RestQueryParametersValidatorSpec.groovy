@@ -20,7 +20,7 @@
 
 package org.onap.cps.ncmp.api.impl.utils
 
-import org.onap.cps.ncmp.api.models.CmHandleQueryServiceParameters
+import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryServiceParameters
 import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.model.ConditionProperties
 import spock.lang.Specification

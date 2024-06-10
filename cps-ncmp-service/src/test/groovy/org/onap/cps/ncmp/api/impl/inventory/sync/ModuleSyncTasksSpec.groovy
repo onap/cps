@@ -21,9 +21,6 @@
 
 package org.onap.cps.ncmp.api.impl.inventory.sync
 
-import static org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory.MODULE_SYNC_FAILED
-import static org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory.MODULE_UPGRADE_FAILED
-
 import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
 import ch.qos.logback.classic.spi.ILoggingEvent
@@ -32,16 +29,19 @@ import com.hazelcast.config.Config
 import com.hazelcast.instance.impl.HazelcastInstanceFactory
 import com.hazelcast.map.IMap
 import org.onap.cps.ncmp.api.impl.events.lcm.LcmEventsCmHandleStateHandler
-import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
-import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
-import org.onap.cps.ncmp.api.impl.inventory.CompositeState
-import org.onap.cps.ncmp.api.impl.inventory.CompositeStateBuilder
-import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence
-import org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory
+import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
+import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
+import org.onap.cps.ncmp.impl.inventory.models.CompositeState
+import org.onap.cps.ncmp.impl.inventory.models.CompositeStateBuilder
+import org.onap.cps.ncmp.impl.models.YangModelCmHandle
 import org.onap.cps.spi.model.DataNode
 import org.slf4j.LoggerFactory
 import spock.lang.Specification
+
 import java.util.concurrent.atomic.AtomicInteger
+
+import static LockReasonCategory.MODULE_SYNC_FAILED
+import static LockReasonCategory.MODULE_UPGRADE_FAILED
 
 class ModuleSyncTasksSpec extends Specification {
 

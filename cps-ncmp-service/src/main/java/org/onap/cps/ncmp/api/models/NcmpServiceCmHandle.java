@@ -27,8 +27,8 @@ import java.util.Map;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.onap.cps.ncmp.api.impl.inventory.CompositeState;
-import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel;
+import org.onap.cps.ncmp.impl.inventory.models.CompositeState;
+import org.onap.cps.ncmp.impl.trustlevel.models.TrustLevel;
 import org.springframework.validation.annotation.Validated;
 
 /**
