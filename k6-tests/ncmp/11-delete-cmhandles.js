@@ -18,10 +18,9 @@
  *  ============LICENSE_END=========================================================
  */
 
-import http from 'k6/http';
 import exec from 'k6/execution';
-import { check } from 'k6';
-import { NCMP_BASE_URL, TOTAL_CM_HANDLES, makeBatchOfCmHandleIds, makeCustomSummaryReport } from './utils.js';
+import { TOTAL_CM_HANDLES, makeBatchOfCmHandleIds, makeCustomSummaryReport } from './common/utils.js';
+import { deleteCmHandles } from './common/cmhandle-registration.js';
 
 const BATCH_SIZE = 100;
 export const options = {
@@ -35,16 +34,7 @@ export const options = {
 
 export default function () {
     const nextBatchOfCmHandleIds = makeBatchOfCmHandleIds(BATCH_SIZE, exec.scenario.iterationInTest);
-    const payload = {
-        "dmiPlugin": "http://ncmp-dmi-plugin-demo-and-csit-stub:8092",
-        "removedCmHandles": nextBatchOfCmHandleIds,
-    };
-    const response = http.post(NCMP_BASE_URL + '/ncmpInventory/v1/ch', JSON.stringify(payload), {
-        headers: {'Content-Type': 'application/json'},
-    });
-    check(response, {
-        'status equals 200': (r) => r.status === 200,
-    });
+    deleteCmHandles(nextBatchOfCmHandleIds);
 }
 
 export function handleSummary(data) {

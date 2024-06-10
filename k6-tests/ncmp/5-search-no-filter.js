@@ -18,8 +18,8 @@
  *  ============LICENSE_END=========================================================
  */
 
-import { executeCmHandleSearch } from './search-base.js';
-import { makeCustomSummaryReport } from "./utils.js";
+import { executeCmHandleSearch } from './common/search-base.js';
+import { makeCustomSummaryReport } from './common/utils.js';
 
 export const options = {
     vus: 4,
