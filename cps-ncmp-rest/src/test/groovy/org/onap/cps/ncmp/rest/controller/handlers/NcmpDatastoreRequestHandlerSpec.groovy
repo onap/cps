@@ -28,16 +28,16 @@ import org.onap.cps.ncmp.api.models.DataOperationRequest
 import org.onap.cps.ncmp.api.models.CmResourceAddress
 import org.onap.cps.ncmp.rest.exceptions.OperationNotSupportedException
 import org.onap.cps.ncmp.rest.exceptions.PayloadTooLargeException
-import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor
+import org.springframework.http.HttpStatus
+import reactor.core.publisher.Mono
 import spock.lang.Specification
 import spock.util.concurrent.PollingConditions
 
 class NcmpDatastoreRequestHandlerSpec extends Specification {
 
-    def spiedCpsNcmpTaskExecutor = Spy(CpsNcmpTaskExecutor)
     def mockNetworkCmProxyDataService = Mock(NetworkCmProxyDataService)
 
-    def objectUnderTest = new NcmpPassthroughResourceRequestHandler(spiedCpsNcmpTaskExecutor, mockNetworkCmProxyDataService)
+    def objectUnderTest = new NcmpPassthroughResourceRequestHandler(mockNetworkCmProxyDataService)
 
     def NO_AUTH_HEADER = null
 
@@ -48,32 +48,26 @@ class NcmpDatastoreRequestHandlerSpec extends Specification {
     def 'Attempt to execute async get request with #scenario.'() {
         given: 'notification feature is turned on/off'
             objectUnderTest.notificationFeatureEnabled = notificationFeatureEnabled
-        and: 'a flag to track the network service call'
-            def networkServiceMethodCalled = false
         and: 'a CM resource address'
             def cmResourceAddress = new CmResourceAddress('ds', 'ch1', 'resource1')
         and: 'the (mocked) service will use the flag to indicate if it is called'
-            mockNetworkCmProxyDataService.getResourceDataForCmHandle(cmResourceAddress, 'options', _, _, NO_AUTH_HEADER) >>
-                { networkServiceMethodCalled = true }
+            1 * mockNetworkCmProxyDataService.getResourceDataForCmHandle(cmResourceAddress, 'options', _, _, NO_AUTH_HEADER) >> Mono.just(HttpStatus.OK)
         when: 'get request is executed with topic = #topic'
-            objectUnderTest.executeRequest(cmResourceAddress, 'options', topic, false, NO_AUTH_HEADER)
-        then: 'the task is executed in an async fashion or not'
-            expectedCalls * spiedCpsNcmpTaskExecutor.executeTask(*_)
-        and: 'the service request is invoked'
-            new PollingConditions().within(1) {
-                assert networkServiceMethodCalled == true
-            }
+            def response= objectUnderTest.executeRequest(cmResourceAddress, 'options', topic, false, NO_AUTH_HEADER)
+        then: 'a successful response with/without request id is returned'
+            assert response.statusCode.value == 200
+            assert response.body instanceof Map == expectedResponseBodyIsMap
         where: 'the following parameters are used'
-            scenario                   | notificationFeatureEnabled | topic   || expectedCalls
-            'feature on, valid topic'  | true                       | 'valid' || 1
-            'feature on, no topic'     | true                       | null    || 0
-            'feature off, valid topic' | false                      | 'valid' || 0
-            'feature off, no topic'    | false                      | null    || 0
+            scenario                   | notificationFeatureEnabled | topic   || expectedCalls | expectedResponseBodyIsMap
+            'feature on, valid topic'  | true                       | 'valid' || 1             | true
+            'feature on, no topic'     | true                       | null    || 0             | false
+            'feature off, valid topic' | false                      | 'valid' || 0             | false
+            'feature off, no topic'    | false                      | null    || 0             | false
     }
 
     def 'Attempt to execute async data operation request with feature #scenario.'() {
         given: 'a extended request handler that supports bulk requests'
-           def objectUnderTest = new NcmpPassthroughResourceRequestHandler(spiedCpsNcmpTaskExecutor, mockNetworkCmProxyDataService)
+           def objectUnderTest = new NcmpPassthroughResourceRequestHandler(mockNetworkCmProxyDataService)
         and: 'notification feature is turned on/off'
             objectUnderTest.notificationFeatureEnabled = notificationFeatureEnabled
         when: 'data operation request is executed'
@@ -101,7 +95,7 @@ class NcmpDatastoreRequestHandlerSpec extends Specification {
         when: 'data operation request is executed'
             def response = objectUnderTest.executeRequest('myTopic', dataOperationRequest, NO_AUTH_HEADER)
         and: 'verify async response'
-            assert response.statusCode == 200
+            assert response.statusCode.value == 200
             assert response.body.requestId != null
         then: 'the network service is invoked'
             new PollingConditions().within(1) {

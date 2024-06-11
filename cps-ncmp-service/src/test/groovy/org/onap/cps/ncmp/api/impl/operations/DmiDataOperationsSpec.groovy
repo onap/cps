@@ -21,8 +21,6 @@
 
 package org.onap.cps.ncmp.api.impl.operations
 
-import reactor.core.publisher.Mono
-
 import static org.onap.cps.ncmp.api.impl.events.mapper.CloudEventMapper.toTargetEvent
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_OPERATIONAL
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING
@@ -50,6 +48,7 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.test.context.ContextConfiguration
 import spock.lang.Shared
+import reactor.core.publisher.Mono
 
 @SpringBootTest
 @ContextConfiguration(classes = [EventsPublisher, CpsApplicationContext, DmiProperties, DmiDataOperations])
@@ -76,15 +75,15 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
         given: 'a cm handle for #cmHandleId'
             mockYangModelCmHandleRetrieval(dmiProperties)
         and: 'a positive response from DMI service when it is called with the expected parameters'
-            def responseFromDmi = new ResponseEntity<Object>(HttpStatus.OK)
+            def responseFromDmi = Mono.just(new ResponseEntity<Object>(HttpStatus.OK))
             def expectedUrl = "${dmiServiceBaseUrl}${expectedDatastoreInUrl}?resourceIdentifier=${resourceIdentifier}${expectedOptionsInUrl}"
-            def expectedJson = '{"operation":"read","cmHandleProperties":'  + expectedProperties + ',"moduleSetTag":""}'
-            mockDmiRestClient.postOperationWithJsonData(DATA, expectedUrl, expectedJson, READ, NO_AUTH_HEADER) >> responseFromDmi
+            def expectedJson = '{"operation":"read","cmHandleProperties":' + expectedProperties + ',"moduleSetTag":""}'
+            mockDmiRestClient.postOperationWithJsonDataAsync(DATA, expectedUrl, expectedJson, READ, NO_AUTH_HEADER) >> responseFromDmi
         when: 'get resource data is invoked'
             def cmResourceAddress = new CmResourceAddress(dataStore.datastoreName, cmHandleId, resourceIdentifier)
-            def result = objectUnderTest.getResourceDataFromDmi(cmResourceAddress, options, NO_TOPIC, NO_REQUEST_ID, NO_AUTH_HEADER)
+            def result = objectUnderTest.getResourceDataFromDmi(cmResourceAddress, options, NO_TOPIC, NO_REQUEST_ID, NO_AUTH_HEADER).block()
         then: 'the result is the response from the DMI service'
-            assert result == responseFromDmi
+            assert result.statusCode.'2xxSuccessful'
         where: 'the following parameters are used'
             scenario                               | dmiProperties               | dataStore               | options       || expectedProperties | expectedDatastoreInUrl    | expectedOptionsInUrl
             'without properties'                   | []                          | PASSTHROUGH_OPERATIONAL | OPTIONS_PARAM || '{}'               | 'passthrough-operational' | '&options=(a%3D1,b%3D2)'

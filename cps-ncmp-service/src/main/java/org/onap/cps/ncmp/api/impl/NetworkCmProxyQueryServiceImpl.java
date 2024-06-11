@@ -22,11 +22,13 @@ package org.onap.cps.ncmp.api.impl;
 
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME;
 
+import java.util.Collection;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsQueryService;
 import org.onap.cps.ncmp.api.NetworkCmProxyQueryService;
 import org.onap.cps.spi.FetchDescendantsOption;
+import org.onap.cps.spi.model.DataNode;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -37,9 +39,9 @@ public class NetworkCmProxyQueryServiceImpl implements NetworkCmProxyQueryServic
     private final CpsQueryService cpsQueryService;
 
     @Override
-    public Object queryResourceDataOperational(final String cmHandleId,
-                                               final String cpsPath,
-                                               final FetchDescendantsOption fetchDescendantsOption) {
+    public Collection<DataNode> queryResourceDataOperational(final String cmHandleId,
+                                                             final String cpsPath,
+                                                             final FetchDescendantsOption fetchDescendantsOption) {
         return cpsQueryService.queryDataNodes(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId, cpsPath,
             fetchDescendantsOption);
     }
