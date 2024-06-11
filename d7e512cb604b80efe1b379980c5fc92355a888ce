@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c066e87_3c76bf8f",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-11T13:19:23Z",
+      "side": 1,
+      "message": "check the descriptions of what you have changed!",
+      "range": {
+        "startLine": 199,
+        "startChar": 15,
+        "endLine": 199,
+        "endChar": 52
+      },
+      "revId": "d7e512cb604b80efe1b379980c5fc92355a888ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb0be8a3_7b60ee72",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-11T13:19:23Z",
+      "side": 1,
+      "message": "a lot of \u0027magic\u0027 in one line please split it to make it more readable",
+      "range": {
+        "startLine": 236,
+        "startChar": 0,
+        "endLine": 249,
+        "endChar": 29
+      },
+      "revId": "d7e512cb604b80efe1b379980c5fc92355a888ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4d0b2dc_80debfe2",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/data/operation/ResourceDataOperationRequestUtilsSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-11T13:19:23Z",
+      "side": 1,
+      "message": "this variable is both input (see line #146) and output now, are you just testing the mocked behavior, do we stil need scenarios here?!",
+      "range": {
+        "startLine": 155,
+        "startChar": 53,
+        "endLine": 155,
+        "endChar": 79
+      },
+      "revId": "d7e512cb604b80efe1b379980c5fc92355a888ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
