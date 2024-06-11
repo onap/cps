@@ -87,8 +87,8 @@ import org.onap.cps.spi.model.ModuleDefinition;
 import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Mono;
 
 @Slf4j
 @Service
@@ -133,17 +133,14 @@ public class NetworkCmProxyDataServiceImpl implements NetworkCmProxyDataService 
     }
 
     @Override
-    public Object getResourceDataForCmHandle(final CmResourceAddress cmResourceAddress,
+    public Mono<Object> getResourceDataForCmHandle(final CmResourceAddress cmResourceAddress,
                                              final String optionsParamInQuery,
                                              final String topicParamInQuery,
                                              final String requestId,
                                              final String authorization) {
-        final ResponseEntity<?> responseEntity = dmiDataOperations.getResourceDataFromDmi(cmResourceAddress,
-            optionsParamInQuery,
-            topicParamInQuery,
-            requestId,
-            authorization);
-        return responseEntity.getBody();
+        return dmiDataOperations.getResourceDataFromDmi(cmResourceAddress, optionsParamInQuery, topicParamInQuery,
+                        requestId, authorization)
+                .flatMap(responseEntity -> Mono.justOrEmpty(responseEntity.getBody()));
     }
 
     @Override
