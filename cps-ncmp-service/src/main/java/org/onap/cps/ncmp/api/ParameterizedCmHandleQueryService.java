@@ -24,7 +24,7 @@ import java.util.Collection;
 import org.onap.cps.ncmp.api.models.CmHandleQueryServiceParameters;
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 
-public interface NetworkCmProxyCmHandleQueryService {
+public interface ParameterizedCmHandleQueryService {
     /**
      * Query and return cm handle ids that match the given query parameters.
      * Supported query types:
@@ -63,7 +63,7 @@ public interface NetworkCmProxyCmHandleQueryService {
     Collection<NcmpServiceCmHandle> queryCmHandles(CmHandleQueryServiceParameters cmHandleQueryServiceParameters);
 
     /**
-     * Query and return all cm handle objects.
+     * Get all cm handle objects.
      *
      * @return collection of cm handles
      */

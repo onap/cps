@@ -36,7 +36,7 @@ import org.onap.cps.api.CpsModuleService
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.integration.DatabaseTestContainer
 import org.onap.cps.integration.KafkaTestContainer
-import org.onap.cps.ncmp.api.NetworkCmProxyCmHandleQueryService
+import org.onap.cps.ncmp.api.ParameterizedCmHandleQueryService
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService
 import org.onap.cps.ncmp.api.NetworkCmProxyQueryService
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
@@ -100,7 +100,7 @@ abstract class CpsIntegrationSpecBase extends Specification {
     SessionManager sessionManager
 
     @Autowired
-    NetworkCmProxyCmHandleQueryService networkCmProxyCmHandleQueryService
+    ParameterizedCmHandleQueryService networkCmProxyCmHandleQueryService
 
     @Autowired
     NetworkCmProxyDataService networkCmProxyDataService

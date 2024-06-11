@@ -24,8 +24,7 @@ import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DM
 
 import org.onap.cps.cpspath.parser.PathParsingException
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
-import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueries
-import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueriesImpl
+import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueryService
 import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence
 import org.onap.cps.ncmp.api.models.CmHandleQueryServiceParameters
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
@@ -36,16 +35,16 @@ import org.onap.cps.spi.model.ConditionProperties
 import org.onap.cps.spi.model.DataNode
 import spock.lang.Specification
 
-class NetworkCmProxyCmHandleQueryServiceSpec extends Specification {
+class ParameterizedCmHandleQueryServiceSpec extends Specification {
 
-    def cmHandleQueries = Mock(CmHandleQueries)
-    def partiallyMockedCmHandleQueries = Spy(CmHandleQueries)
+    def cmHandleQueries = Mock(CmHandleQueryService)
+    def partiallyMockedCmHandleQueries = Spy(CmHandleQueryService)
     def mockInventoryPersistence = Mock(InventoryPersistence)
 
     def dmiRegistry = new DataNode(xpath: NCMP_DMI_REGISTRY_PARENT, childDataNodes: createDataNodeList(['PNFDemo1', 'PNFDemo2', 'PNFDemo3', 'PNFDemo4']))
 
-    def objectUnderTest = new NetworkCmProxyCmHandleQueryServiceImpl(cmHandleQueries, mockInventoryPersistence)
-    def objectUnderTestWithPartiallyMockedQueries = new NetworkCmProxyCmHandleQueryServiceImpl(partiallyMockedCmHandleQueries, mockInventoryPersistence)
+    def objectUnderTest = new ParameterizedCmHandleQueryServiceImpl(cmHandleQueries, mockInventoryPersistence)
+    def objectUnderTestWithPartiallyMockedQueries = new ParameterizedCmHandleQueryServiceImpl(partiallyMockedCmHandleQueries, mockInventoryPersistence)
 
     def 'Query cm handle ids with cpsPath.'() {
         given: 'a cmHandleWithCpsPath condition property'
