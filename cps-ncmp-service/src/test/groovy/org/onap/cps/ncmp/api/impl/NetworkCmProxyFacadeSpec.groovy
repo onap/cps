@@ -35,13 +35,10 @@ import static org.onap.cps.ncmp.api.impl.operations.OperationType.UPDATE
 import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse
 import org.onap.cps.ncmp.api.models.CmResourceAddress
 import org.onap.cps.ncmp.api.impl.utils.AlternateIdChecker
-import com.hazelcast.map.IMap
-import org.onap.cps.ncmp.api.NetworkCmProxyCmHandleQueryService
+import org.onap.cps.ncmp.api.ParameterizedCmHandleQueryService
 import org.onap.cps.ncmp.api.impl.events.lcm.LcmEventsCmHandleStateHandler
-import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel
-import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevelManager
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
-import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueries
+import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueryService
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
 import org.onap.cps.ncmp.api.impl.inventory.CompositeState
 import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence
@@ -67,20 +64,16 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import spock.lang.Specification
 
-class NetworkCmProxyDataServiceImplSpec extends Specification {
+class NetworkCmProxyFacadeSpec extends Specification {
 
     def mockCpsDataService = Mock(CpsDataService)
     def spiedJsonObjectMapper = Spy(new JsonObjectMapper(new ObjectMapper()))
     def mockDmiDataOperations = Mock(DmiDataOperations)
-    def nullNetworkCmProxyDataServicePropertyHandler = null
     def mockInventoryPersistence = Mock(InventoryPersistence)
-    def mockCmHandleQueries = Mock(CmHandleQueries)
+    def mockCmHandleQueries = Mock(CmHandleQueryService)
     def mockDmiPluginRegistration = Mock(DmiPluginRegistration)
-    def mockCpsCmHandlerQueryService = Mock(NetworkCmProxyCmHandleQueryService)
+    def mockCpsCmHandlerQueryService = Mock(ParameterizedCmHandleQueryService)
     def mockLcmEventsCmHandleStateHandler = Mock(LcmEventsCmHandleStateHandler)
-    def stubModuleSyncStartedOnCmHandles = Stub(IMap<String, Object>)
-    def stubTrustLevelPerDmiPlugin = Stub(Map<String, TrustLevel>)
-    def mockTrustLevelManager = Mock(TrustLevelManager)
     def mockAlternateIdChecker = Mock(AlternateIdChecker)
 
     def NO_TOPIC = null
@@ -89,19 +82,13 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     def OPTIONS_PARAM = '(a=1,b=2)'
     def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: 'test-cm-handle-id')
 
-    def objectUnderTest = new NetworkCmProxyDataServiceImpl(
+    def objectUnderTest = new NetworkCmProxyFacade(
             spiedJsonObjectMapper,
             mockDmiDataOperations,
-            nullNetworkCmProxyDataServicePropertyHandler,
             mockInventoryPersistence,
             mockCmHandleQueries,
             mockCpsCmHandlerQueryService,
-            mockLcmEventsCmHandleStateHandler,
-            mockCpsDataService,
-            stubModuleSyncStartedOnCmHandles,
-            stubTrustLevelPerDmiPlugin,
-            mockTrustLevelManager,
-            mockAlternateIdChecker)
+            mockCpsDataService)
 
     def cmHandleXPath = "/dmi-registry/cm-handles[@id='testCmHandle']"
 

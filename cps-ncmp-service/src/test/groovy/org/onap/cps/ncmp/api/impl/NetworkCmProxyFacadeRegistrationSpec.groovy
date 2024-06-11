@@ -35,13 +35,13 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.hazelcast.map.IMap
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
-import org.onap.cps.ncmp.api.NetworkCmProxyCmHandleQueryService
+import org.onap.cps.ncmp.api.ParameterizedCmHandleQueryService
 import org.onap.cps.ncmp.api.impl.events.lcm.LcmEventsCmHandleStateHandler
 import org.onap.cps.ncmp.api.impl.exception.DmiRequestException
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations
 import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
-import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueries
+import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueryService
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
 import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse
@@ -54,7 +54,7 @@ import org.onap.cps.spi.exceptions.SchemaSetNotFoundException
 import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Specification
 
-class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
+class NetworkCmProxyFacadeRegistrationSpec extends Specification {
 
     def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: 'some-cm-handle-id')
     def mockCpsModuleService = Mock(CpsModuleService)
@@ -62,8 +62,8 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def mockDmiDataOperations = Mock(DmiDataOperations)
     def mockNetworkCmProxyDataServicePropertyHandler = Mock(NetworkCmProxyDataServicePropertyHandler)
     def mockInventoryPersistence = Mock(InventoryPersistence)
-    def mockCmHandleQueries = Mock(CmHandleQueries)
-    def stubbedNetworkCmProxyCmHandlerQueryService = Stub(NetworkCmProxyCmHandleQueryService)
+    def mockCmHandleQueries = Mock(CmHandleQueryService)
+    def stubbedNetworkCmProxyCmHandlerQueryService = Stub(ParameterizedCmHandleQueryService)
     def mockLcmEventsCmHandleStateHandler = Mock(LcmEventsCmHandleStateHandler)
     def mockCpsDataService = Mock(CpsDataService)
     def mockModuleSyncStartedOnCmHandles = Mock(IMap<String, Object>)
@@ -71,7 +71,7 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def mockTrustLevelManager = Mock(TrustLevelManager)
     def mockAlternateIdChecker = Mock(AlternateIdChecker)
 
-    def objectUnderTest = Spy(new NetworkCmProxyDataServiceImpl(spiedJsonObjectMapper, mockDmiDataOperations,
+    def objectUnderTest = Spy(new NetworkCmProxyFacade(spiedJsonObjectMapper, mockDmiDataOperations,
         mockNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence, mockCmHandleQueries,
         stubbedNetworkCmProxyCmHandlerQueryService, mockLcmEventsCmHandleStateHandler, mockCpsDataService,
         mockModuleSyncStartedOnCmHandles, trustLevelPerDmiPlugin, mockTrustLevelManager, mockAlternateIdChecker))

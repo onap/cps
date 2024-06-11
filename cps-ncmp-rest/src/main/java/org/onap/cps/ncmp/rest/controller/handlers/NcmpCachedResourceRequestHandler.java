@@ -21,8 +21,8 @@
 package org.onap.cps.ncmp.rest.controller.handlers;
 
 import java.util.function.Supplier;
-import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.api.NetworkCmProxyQueryService;
+import org.onap.cps.ncmp.api.impl.NetworkCmProxyFacade;
 import org.onap.cps.ncmp.api.models.CmResourceAddress;
 import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor;
 import org.onap.cps.spi.FetchDescendantsOption;
@@ -32,7 +32,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class NcmpCachedResourceRequestHandler extends NcmpDatastoreRequestHandler {
 
-    private final NetworkCmProxyDataService networkCmProxyDataService;
+    private final NetworkCmProxyFacade networkCmProxyDataService;
     private final NetworkCmProxyQueryService networkCmProxyQueryService;
 
     /**
@@ -43,7 +43,7 @@ public class NcmpCachedResourceRequestHandler extends NcmpDatastoreRequestHandle
      * @param networkCmProxyQueryService @see org.onap.cps.ncmp.api.NetworkCmProxyQueryService
      */
     public NcmpCachedResourceRequestHandler(final CpsNcmpTaskExecutor cpsNcmpTaskExecutor,
-                                            final NetworkCmProxyDataService networkCmProxyDataService,
+                                            final NetworkCmProxyFacade networkCmProxyDataService,
                                             final NetworkCmProxyQueryService networkCmProxyQueryService) {
         super(cpsNcmpTaskExecutor);
         this.networkCmProxyDataService = networkCmProxyDataService;

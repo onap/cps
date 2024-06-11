@@ -27,7 +27,7 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.function.BiConsumer;
 import java.util.function.Supplier;
-import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
+import org.onap.cps.ncmp.api.impl.NetworkCmProxyFacade;
 import org.onap.cps.ncmp.api.impl.exception.InvalidDatastoreException;
 import org.onap.cps.ncmp.api.impl.operations.DatastoreType;
 import org.onap.cps.ncmp.api.impl.operations.OperationType;
@@ -44,7 +44,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class NcmpPassthroughResourceRequestHandler extends NcmpDatastoreRequestHandler {
 
-    private final NetworkCmProxyDataService networkCmProxyDataService;
+    private final NetworkCmProxyFacade networkCmProxyFacade;
 
     private static final Object noReturn = null;
 
@@ -56,12 +56,12 @@ public class NcmpPassthroughResourceRequestHandler extends NcmpDatastoreRequestH
      * Constructor.
      *
      * @param cpsNcmpTaskExecutor        @see org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor
-     * @param networkCmProxyDataService  @see org.onap.cps.ncmp.api.NetworkCmProxyDataService
+     * @param networkCmProxyFacade  @see org.onap.cps.ncmp.api.NetworkCmProxyDataService
      */
     public NcmpPassthroughResourceRequestHandler(final CpsNcmpTaskExecutor cpsNcmpTaskExecutor,
-                                                 final NetworkCmProxyDataService networkCmProxyDataService) {
+                                                 final NetworkCmProxyFacade networkCmProxyFacade) {
         super(cpsNcmpTaskExecutor);
-        this.networkCmProxyDataService = networkCmProxyDataService;
+        this.networkCmProxyFacade = networkCmProxyFacade;
     }
 
     /**
@@ -92,7 +92,7 @@ public class NcmpPassthroughResourceRequestHandler extends NcmpDatastoreRequestH
                                                             final boolean includeDescendants,
                                                             final String authorization) {
 
-        return () -> networkCmProxyDataService.getResourceDataForCmHandle(cmResourceAddress, optionsParamInQuery,
+        return () -> networkCmProxyFacade.getResourceDataForCmHandle(cmResourceAddress, optionsParamInQuery,
             topicParamInQuery, requestId, authorization);
     }
 
@@ -134,7 +134,7 @@ public class NcmpPassthroughResourceRequestHandler extends NcmpDatastoreRequestH
                                                                     final String requestId,
                                                                     final String authorization) {
         return () -> {
-            networkCmProxyDataService.executeDataOperationForCmHandles(topicParamInQuery,
+            networkCmProxyFacade.executeDataOperationForCmHandles(topicParamInQuery,
                 dataOperationRequest,
                 requestId,
                 authorization);
