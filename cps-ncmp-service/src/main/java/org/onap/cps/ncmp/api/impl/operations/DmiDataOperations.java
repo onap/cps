@@ -66,20 +66,20 @@ public class DmiDataOperations {
     private final DmiRestClient dmiRestClient;
 
     /**
-     * This method fetches the resource data from operational data store for given cm handle
-     * identifier on given resource using dmi client.
+     * This method fetches the resource data from the operational data store for a given CM handle
+     * identifier on the specified resource using the DMI client.
      *
-     * @param cmResourceAddress   target datastore, cm handle and resource identifier
-     * @param optionsParamInQuery options query
-     * @param topicParamInQuery   topic name for (triggering) async responses
-     * @param requestId           requestId for async responses
-     * @param authorization       contents of Authorization header, or null if not present
-     * @return {@code ResponseEntity} response entity
+     * @param cmResourceAddress   Target datastore, CM handle, and resource identifier.
+     * @param optionsParamInQuery Options query string.
+     * @param topicParamInQuery   Topic name for triggering asynchronous responses.
+     * @param requestId           Request ID for asynchronous responses.
+     * @param authorization       Contents of the Authorization header, or null if not present.
+     * @return {@code Mono<ResponseEntity<Object>>} A reactive type representing the response entity.
      */
     @Timed(value = "cps.ncmp.dmi.get",
             description = "Time taken to fetch the resource data from operational data store for given cm handle "
                     + "identifier on given resource using dmi client")
-    public ResponseEntity<Object> getResourceDataFromDmi(final CmResourceAddress cmResourceAddress,
+    public Mono<ResponseEntity<Object>> getResourceDataFromDmi(final CmResourceAddress cmResourceAddress,
                                                          final String optionsParamInQuery,
                                                          final String topicParamInQuery,
                                                          final String requestId,
@@ -90,7 +90,7 @@ public class DmiDataOperations {
         final String jsonRequestBody = getDmiRequestBody(READ, requestId, null, null, yangModelCmHandle);
         final String dmiUrl = getDmiResourceDataUrl(cmResourceAddress.datastoreName(), yangModelCmHandle,
                 cmResourceAddress.resourceIdentifier(), optionsParamInQuery, topicParamInQuery);
-        return dmiRestClient.postOperationWithJsonData(DATA, dmiUrl, jsonRequestBody, READ, authorization);
+        return dmiRestClient.postOperationWithJsonDataAsync(DATA, dmiUrl, jsonRequestBody, READ, authorization);
     }
 
     /**

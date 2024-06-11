@@ -23,6 +23,8 @@
 
 package org.onap.cps.ncmp.api.impl
 
+import reactor.core.publisher.Mono
+
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
@@ -120,16 +122,16 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
                 >> { new ResponseEntity<>(HttpStatus.CREATED) }
     }
 
-    def 'Get resource data for from DMI.'() {
+    def 'Get resource data from DMI.'() {
         given: 'cpsDataService returns valid data node'
             mockDataNode()
         and: 'some cm resource address'
-            def cmResourceAddress = new CmResourceAddress('some datastore','some CM Handle', 'some resource Id')
+            def cmResourceAddress = new CmResourceAddress('some datastore', 'some CM Handle', 'some resource Id')
         and: 'get resource data from DMI is called'
             mockDmiDataOperations.getResourceDataFromDmi(cmResourceAddress, OPTIONS_PARAM, NO_TOPIC, NO_REQUEST_ID, NO_AUTH_HEADER) >>
-                    new ResponseEntity<>('dmi-response', HttpStatus.OK)
+                    Mono.just(new ResponseEntity<>('dmi-response', HttpStatus.OK))
         when: 'get resource data operational for the given cm resource address is called'
-            def response = objectUnderTest.getResourceDataForCmHandle(cmResourceAddress, OPTIONS_PARAM, NO_TOPIC, NO_REQUEST_ID, NO_AUTH_HEADER)
+            def response = objectUnderTest.getResourceDataForCmHandle(cmResourceAddress, OPTIONS_PARAM, NO_TOPIC, NO_REQUEST_ID, NO_AUTH_HEADER).block()
         then: 'DMI returns a json response'
             assert response == 'dmi-response'
     }

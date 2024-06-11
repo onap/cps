@@ -423,7 +423,5 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         }
         return ncmpPassthroughResourceRequestHandler;
     }
-
-
 }
 

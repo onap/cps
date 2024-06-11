@@ -37,6 +37,7 @@ import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.ModuleDefinition;
 import org.onap.cps.spi.model.ModuleReference;
+import reactor.core.publisher.Mono;
 
 /*
  * Datastore interface for handling CPS data.
@@ -52,20 +53,29 @@ public interface NetworkCmProxyDataService {
     DmiPluginRegistrationResponse updateDmiRegistrationAndSyncModule(DmiPluginRegistration dmiPluginRegistration);
 
     /**
-     * Get resource data for given data store using dmi.
+     * Fetches resource data for a given data store using DMI (Data Management Interface).
+     * This method retrieves data based on the provided CmResourceAddress and additional query parameters.
+     * It supports asynchronous processing and handles authorization if required.
      *
-     * @param cmResourceAddress   target datastore, cm handle and resource identifier
-     * @param optionsParamInQuery options query
-     * @param topicParamInQuery   topic name for (triggering) async responses
-     * @param requestId           unique requestId for async request
-     * @param authorization       contents of Authorization header, or null if not present
-     * @return {@code Object} resource data
+     * @param cmResourceAddress   The target data store, including the CM handle and resource identifier.
+     *                            This parameter must not be null.
+     * @param optionsParamInQuery Additional query parameters that may influence the data retrieval process,
+     *                            such as filters or limits. This parameter can be null.
+     * @param topicParamInQuery   The topic name for triggering asynchronous responses. If specified,
+     *                            the response will be sent to this topic. This parameter can be null.
+     * @param requestId           A unique identifier for the request, used for tracking and correlating
+     *                            asynchronous operations. This parameter must not be null.
+     * @param authorization       The contents of the Authorization header. This parameter can be null
+     *                            if authorization is not required.
+     * @return {@code Mono<Object>} A reactive Mono that emits the resource data on successful retrieval
+     *     or an error signal if the operation fails. The Mono represents a single asynchronous
+     *     computation result.
      */
-    Object getResourceDataForCmHandle(CmResourceAddress cmResourceAddress,
-                                      String optionsParamInQuery,
-                                      String topicParamInQuery,
-                                      String requestId,
-                                      String authorization);
+    Mono<Object> getResourceDataForCmHandle(CmResourceAddress cmResourceAddress,
+                                            String optionsParamInQuery,
+                                            String topicParamInQuery,
+                                            String requestId,
+                                            String authorization);
 
     /**
      * Get resource data for operational.

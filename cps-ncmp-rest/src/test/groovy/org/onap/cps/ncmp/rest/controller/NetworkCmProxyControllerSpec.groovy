@@ -59,7 +59,6 @@ import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.api.models.CmResourceAddress
 import org.onap.cps.ncmp.rest.controller.handlers.NcmpCachedResourceRequestHandler
 import org.onap.cps.ncmp.rest.controller.handlers.NcmpPassthroughResourceRequestHandler
-import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor
 import org.onap.cps.ncmp.rest.mapper.CmHandleStateMapper
 import org.onap.cps.ncmp.rest.mapper.DataOperationRequestMapper
 import org.onap.cps.ncmp.rest.model.DataOperationDefinition
@@ -82,6 +81,9 @@ import spock.lang.Specification
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
+import groovy.json.JsonSlurper
+import org.springframework.http.ResponseEntity
+import reactor.core.publisher.Mono
 
 @WebMvcTest(NetworkCmProxyController)
 class NetworkCmProxyControllerSpec extends Specification {
@@ -114,16 +116,13 @@ class NetworkCmProxyControllerSpec extends Specification {
     Map<String, TrustLevel> trustLevelPerCmHandle = [:]
 
     @SpringBean
-    CpsNcmpTaskExecutor mockCpsTaskExecutor = Mock()
-
-    @SpringBean
     DeprecationHelper stubbedDeprecationHelper = Stub()
 
     @SpringBean
-    NcmpCachedResourceRequestHandler ncmpCachedResourceRequestHandler = new NcmpCachedResourceRequestHandler(mockCpsTaskExecutor, mockNetworkCmProxyDataService, mockNetworkCmProxyQueryService)
+    NcmpCachedResourceRequestHandler ncmpCachedResourceRequestHandler = new NcmpCachedResourceRequestHandler(mockNetworkCmProxyDataService, mockNetworkCmProxyQueryService)
 
     @SpringBean
-    NcmpPassthroughResourceRequestHandler ncmpPassthroughResourceRequestHandler = new NcmpPassthroughResourceRequestHandler(mockCpsTaskExecutor, mockNetworkCmProxyDataService)
+    NcmpPassthroughResourceRequestHandler ncmpPassthroughResourceRequestHandler = new NcmpPassthroughResourceRequestHandler(mockNetworkCmProxyDataService)
 
     @Value('${rest.api.ncmp-base-path}/v1')
     def ncmpBasePathV1
@@ -160,7 +159,7 @@ class NetworkCmProxyControllerSpec extends Specification {
         when: 'get data resource request is performed'
             def response = mvc.perform(get(getUrl).contentType(MediaType.APPLICATION_JSON)).andReturn().response
         then: 'the NCMP data service is called with correct parameters'
-            1 * mockNetworkCmProxyDataService.getResourceDataForCmHandle(expectedCmResourceAddress, '(a=1,b=2)', NO_TOPIC, NO_REQUEST_ID, NO_AUTH_HEADER)
+            1 * mockNetworkCmProxyDataService.getResourceDataForCmHandle(expectedCmResourceAddress, '(a=1,b=2)', NO_TOPIC, NO_REQUEST_ID, NO_AUTH_HEADER) >> Mono.just(new ResponseEntity<Object>(HttpStatus.OK))
         and: 'response status is Ok'
             assert response.status == HttpStatus.OK.value()
     }
@@ -253,13 +252,15 @@ class NetworkCmProxyControllerSpec extends Specification {
             def getUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=$resourceIdentifier&options=(a=1,b=2)"
         and: 'ncmp service returns json object'
             def expectedCmResourceAddress = new CmResourceAddress(PASSTHROUGH_RUNNING.datastoreName, 'testCmHandle', resourceIdentifier)
-            mockNetworkCmProxyDataService.getResourceDataForCmHandle(expectedCmResourceAddress,'(a=1,b=2)', NO_TOPIC, NO_REQUEST_ID, NO_AUTH_HEADER) >> '{valid-json}'
+            1 * mockNetworkCmProxyDataService.getResourceDataForCmHandle(expectedCmResourceAddress, '(a=1,b=2)', NO_TOPIC, NO_REQUEST_ID, NO_AUTH_HEADER)
+                    >> Mono.just(new ResponseEntity<Object>('{valid-json}', HttpStatus.OK))
         when: 'get data resource request is performed'
             def response = mvc.perform(get(getUrl).contentType(MediaType.APPLICATION_JSON)).andReturn().response
         then: 'response status is Ok'
-            response.status == HttpStatus.OK.value()
-        and: 'response contains valid object body'
-            response.getContentAsString() == '{valid-json}'
+            assert response.status == 200
+        and: 'response contains the object returned by the service'
+            def responseAsJsonObject = new JsonSlurper().parseText(response.getContentAsString())
+            assert responseAsJsonObject.body == '{valid-json}'
         where: 'tokens are used in the resource identifier parameter'
             scenario                       | resourceIdentifier
             '/'                            | 'id/with/slashes'
@@ -452,6 +453,8 @@ class NetworkCmProxyControllerSpec extends Specification {
     def 'Get resource data from DMI with valid topic i.e. async request for #scenario'() {
         given: 'resource data url'
             def getUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:${datastoreInUrl}?resourceIdentifier=parent/child&options=(a=1,b=2)&topic=my-topic-name"
+        and: 'the NCMP data service is called with correct parameters'
+            1 * mockNetworkCmProxyDataService.getResourceDataForCmHandle(_, '(a=1,b=2)', 'my-topic-name', _, NO_AUTH_HEADER) >> Mono.just(new ResponseEntity<Object>(HttpStatus.OK))
         when: 'get data resource request is performed'
             def response = mvc.perform(get(getUrl).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON_VALUE)).andReturn().response
         then: 'async request id is generated'
