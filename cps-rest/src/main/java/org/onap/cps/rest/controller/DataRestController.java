@@ -26,6 +26,8 @@ package org.onap.cps.rest.controller;
 
 import static org.onap.cps.rest.utils.MultipartFileUtil.extractYangResourcesMap;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import io.micrometer.core.annotation.Timed;
 import jakarta.validation.ValidationException;
 import java.time.OffsetDateTime;
@@ -107,32 +109,63 @@ public class DataRestController implements CpsDataApi {
     @Timed(value = "cps.data.controller.datanode.get.v1",
             description = "Time taken to get data node")
     public ResponseEntity<Object> getNodeByDataspaceAndAnchor(final String dataspaceName,
-        final String anchorName, final String xpath, final Boolean includeDescendants) {
+        final String anchorName, final String contentTypeHeader, final String xpath, final Boolean includeDescendants) {
+        final ContentType contentType = contentTypeHeader.contains(MediaType.APPLICATION_XML_VALUE) ? ContentType.XML
+                : ContentType.JSON;
         final FetchDescendantsOption fetchDescendantsOption = Boolean.TRUE.equals(includeDescendants)
             ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS : FetchDescendantsOption.OMIT_DESCENDANTS;
         final DataNode dataNode = cpsDataService.getDataNodes(dataspaceName, anchorName, xpath,
-            fetchDescendantsOption).iterator().next();
+            fetchDescendantsOption, contentType).iterator().next();
         final String prefix = prefixResolver.getPrefix(dataspaceName, anchorName, dataNode.getXpath());
-        return new ResponseEntity<>(DataMapUtils.toDataMapWithIdentifier(dataNode, prefix), HttpStatus.OK);
+        final Map<String, Object> dataMap = DataMapUtils.toDataMapWithIdentifier(dataNode, prefix);
+        if (contentType == ContentType.XML) {
+            try {
+                final XmlMapper xmlMapper = new XmlMapper();
+                String xmlContent = xmlMapper.writeValueAsString(dataMap);
+                xmlContent = xmlData(xmlContent);
+                return new ResponseEntity<>(xmlContent, HttpStatus.OK);
+            } catch (final JsonProcessingException e) {
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        } else {
+            return new ResponseEntity<>(dataMap, HttpStatus.OK);
+        }
     }
 
     @Override
     @Timed(value = "cps.data.controller.datanode.get.v2",
             description = "Time taken to get data node")
     public ResponseEntity<Object> getNodeByDataspaceAndAnchorV2(final String dataspaceName, final String anchorName,
-                                                                final String xpath,
+                                                                final String contentTypeHeader, final String xpath,
                                                                 final String fetchDescendantsOptionAsString) {
+        final ContentType contentType = contentTypeHeader.contains(MediaType.APPLICATION_XML_VALUE) ? ContentType.XML
+                : ContentType.JSON;
         final FetchDescendantsOption fetchDescendantsOption =
                 FetchDescendantsOption.getFetchDescendantsOption(fetchDescendantsOptionAsString);
         final Collection<DataNode> dataNodes = cpsDataService.getDataNodes(dataspaceName, anchorName, xpath,
-                fetchDescendantsOption);
+                fetchDescendantsOption, contentType);
         final List<Map<String, Object>> dataMaps = new ArrayList<>(dataNodes.size());
         for (final DataNode dataNode: dataNodes) {
             final String prefix = prefixResolver.getPrefix(dataspaceName, anchorName, dataNode.getXpath());
             final Map<String, Object> dataMap = DataMapUtils.toDataMapWithIdentifier(dataNode, prefix);
             dataMaps.add(dataMap);
         }
-        return new ResponseEntity<>(jsonObjectMapper.asJsonString(dataMaps), HttpStatus.OK);
+        if (contentType == ContentType.XML) {
+            try {
+                final XmlMapper xmlMapper = new XmlMapper();
+                final StringBuilder xmlContentBuilder = new StringBuilder();
+                for (final Map<String, Object> dataMap : dataMaps) {
+                    final String xmlString = xmlMapper.writeValueAsString(dataMap);
+                    xmlContentBuilder.append(xmlData(xmlString));
+                }
+                final String xmlContent = xmlContentBuilder.toString();
+                return new ResponseEntity<>(xmlContent, HttpStatus.OK);
+            } catch (final JsonProcessingException e) {
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        } else {
+            return new ResponseEntity<>(jsonObjectMapper.asJsonString(dataMaps), HttpStatus.OK);
+        }
     }
 
     @Override
@@ -215,6 +248,15 @@ public class DataRestController implements CpsDataApi {
 
     private static boolean isRootXpath(final String xpath) {
         return ROOT_XPATH.equals(xpath);
+    }
+
+    private String xmlData(final String xmlString) {
+        final int start = xmlString.indexOf(">") + 1;
+        final int end = xmlString.lastIndexOf("<");
+        if (start < end) {
+            return xmlString.substring(start, end);
+        }
+        return xmlString;
     }
 
     private static OffsetDateTime toOffsetDateTime(final String datetTimestamp) {

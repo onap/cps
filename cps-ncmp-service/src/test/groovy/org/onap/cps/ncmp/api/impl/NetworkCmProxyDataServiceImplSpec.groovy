@@ -3,7 +3,7 @@
  *  Copyright (C) 2021-2024 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada
- *  Modifications Copyright (C) 2023 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2024 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -57,6 +57,7 @@ import org.onap.cps.ncmp.api.models.DataOperationRequest
 import org.onap.cps.spi.exceptions.CpsException
 import org.onap.cps.spi.model.ConditionProperties
 import java.util.stream.Collectors
+import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.JsonObjectMapper
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.CpsDataService
@@ -136,7 +137,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
 
     def 'Get resource data for operational (cached) data.'() {
         given: 'CPS Data service returns some object(s)'
-            mockCpsDataService.getDataNodes(OPERATIONAL.datastoreName, 'testCmHandle', 'testResourceId', FetchDescendantsOption.OMIT_DESCENDANTS) >> ['First Object', 'other Object']
+            mockCpsDataService.getDataNodes(OPERATIONAL.datastoreName, 'testCmHandle', 'testResourceId', FetchDescendantsOption.OMIT_DESCENDANTS, ContentType.JSON) >> ['First Object', 'other Object']
         and: 'a cm resource address for the same datastore, cm handle and resource id'
             def cmResourceAddress = new CmResourceAddress(OPERATIONAL.datastoreName, 'testCmHandle', 'testResourceId')
         when: 'get resource data is called'
@@ -247,7 +248,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
 
     def 'Update resource data for pass-through running from dmi using POST #scenario DMI properties.'() {
         given: 'cpsDataService returns valid datanode'
-            mockCpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cmHandleXPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
+            mockCpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cmHandleXPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS, ContentType.JSON) >> dataNode
         when: 'get resource data is called'
             objectUnderTest.writeResourceDataPassThroughRunningForCmHandle('testCmHandle',
                 'testResourceId', UPDATE,
@@ -387,7 +388,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
     }
 
     def mockDataNode() {
-        mockCpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cmHandleXPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> dataNode
+        mockCpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cmHandleXPath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS, ContentType.JSON) >> dataNode
     }
 
     def getDataOperationRequest(datastore) {
