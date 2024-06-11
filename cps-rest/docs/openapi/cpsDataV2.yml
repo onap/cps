@@ -28,6 +28,7 @@ nodeByDataspaceAndAnchor:
       - $ref: 'components.yml#/components/parameters/anchorNameInPath'
       - $ref: 'components.yml#/components/parameters/xpathInQuery'
       - $ref: 'components.yml#/components/parameters/descendantsInQuery'
+      - $ref: 'components.yml#/components/parameters/contentTypeHeader'
     responses:
       '200':
         description: OK
@@ -38,6 +39,14 @@ nodeByDataspaceAndAnchor:
             examples:
               dataSample:
                 $ref: 'components.yml#/components/examples/dataSample'
+          application/xml:
+            schema:
+              type: object
+              xml:
+                name: stores
+            examples:
+              dataSample:
+                $ref: 'components.yml#/components/examples/dataSampleXml'
       '400':
         $ref: 'components.yml#/components/responses/BadRequest'
       '403':
