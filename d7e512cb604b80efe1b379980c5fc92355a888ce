@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7eef4f0f_89825ced",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-11T15:55:03Z",
+      "side": 1,
+      "message": "Some minor reviews...",
+      "revId": "d7e512cb604b80efe1b379980c5fc92355a888ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6c066e87_3c76bf8f",
@@ -60,6 +77,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "39a2c4cd_162b0362",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-11T15:55:03Z",
+      "side": 1,
+      "message": "Redundant import since no logging in the class",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 6
+      },
+      "revId": "d7e512cb604b80efe1b379980c5fc92355a888ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fb0be8a3_7b60ee72",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
         "patchSetId": 5
@@ -75,6 +115,52 @@
         "startLine": 236,
         "startChar": 0,
         "endLine": 249,
+        "endChar": 29
+      },
+      "revId": "d7e512cb604b80efe1b379980c5fc92355a888ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb6c07cb_17397b22",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/data/operation/ResourceDataOperationRequestUtils.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-11T15:55:03Z",
+      "side": 1,
+      "message": "Redundant annotation since no logging in the class",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 6
+      },
+      "revId": "d7e512cb604b80efe1b379980c5fc92355a888ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a27e80c_6a3e45d0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/data/operation/ResourceDataOperationRequestUtilsSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-11T15:55:03Z",
+      "side": 1,
+      "message": "No need to autowire ObjectMapper since it has already been given by instantiating it with new on line 58.\n\nThus, you can remove this objects",
+      "range": {
+        "startLine": 63,
+        "startChar": 1,
+        "endLine": 64,
         "endChar": 29
       },
       "revId": "d7e512cb604b80efe1b379980c5fc92355a888ce",
@@ -99,6 +185,29 @@
         "startChar": 53,
         "endLine": 155,
         "endChar": 79
+      },
+      "revId": "d7e512cb604b80efe1b379980c5fc92355a888ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89774ee8_9815c308",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/data/operation/ResourceDataOperationRequestUtilsSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-11T15:55:03Z",
+      "side": 1,
+      "message": "Maybe better to use a \"return\" before closing the method on line 187",
+      "range": {
+        "startLine": 187,
+        "startChar": 8,
+        "endLine": 187,
+        "endChar": 47
       },
       "revId": "d7e512cb604b80efe1b379980c5fc92355a888ce",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
