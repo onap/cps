@@ -20,7 +20,9 @@
 
 package org.onap.cps.ncmp.api;
 
+import java.util.Collection;
 import org.onap.cps.spi.FetchDescendantsOption;
+import org.onap.cps.spi.model.DataNode;
 
 /*
  * Datastore interface for handling cached CPS data query requests.
@@ -35,7 +37,7 @@ public interface NetworkCmProxyQueryService {
      * @Link FetchDescendantsOption fetch descendants option
      * @return {@code Object} resource data
      */
-    Object queryResourceDataOperational(String cmHandleId,
-                                      String cpsPath,
-                                      FetchDescendantsOption fetchDescendantsOption);
+    Collection<DataNode> queryResourceDataOperational(String cmHandleId,
+                                                      String cpsPath,
+                                                      FetchDescendantsOption fetchDescendantsOption);
 }

@@ -37,6 +37,7 @@ import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.ModuleDefinition;
 import org.onap.cps.spi.model.ModuleReference;
+import reactor.core.publisher.Mono;
 
 /*
  * Datastore interface for handling CPS data.
@@ -61,11 +62,11 @@ public interface NetworkCmProxyDataService {
      * @param authorization       contents of Authorization header, or null if not present
      * @return {@code Object} resource data
      */
-    Object getResourceDataForCmHandle(CmResourceAddress cmResourceAddress,
-                                      String optionsParamInQuery,
-                                      String topicParamInQuery,
-                                      String requestId,
-                                      String authorization);
+    Mono<Object> getResourceDataForCmHandle(CmResourceAddress cmResourceAddress,
+                                            String optionsParamInQuery,
+                                            String topicParamInQuery,
+                                            String requestId,
+                                            String authorization);
 
     /**
      * Get resource data for operational.

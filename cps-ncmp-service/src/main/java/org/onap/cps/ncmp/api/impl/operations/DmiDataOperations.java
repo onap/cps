@@ -81,7 +81,7 @@ public class DmiDataOperations {
     @Timed(value = "cps.ncmp.dmi.get",
             description = "Time taken to fetch the resource data from operational data store for given cm handle "
                     + "identifier on given resource using dmi client")
-    public ResponseEntity<Object> getResourceDataFromDmi(final CmResourceAddress cmResourceAddress,
+    public Mono<ResponseEntity<Object>> getResourceDataFromDmi(final CmResourceAddress cmResourceAddress,
                                                          final String optionsParamInQuery,
                                                          final String topicParamInQuery,
                                                          final String requestId,
@@ -92,7 +92,7 @@ public class DmiDataOperations {
         final String jsonRequestBody = getDmiRequestBody(READ, requestId, null, null, yangModelCmHandle);
         final String dmiUrl = getDmiResourceDataUrl(cmResourceAddress.datastoreName(), yangModelCmHandle,
                 cmResourceAddress.resourceIdentifier(), optionsParamInQuery, topicParamInQuery);
-        return dmiRestClient.postOperationWithJsonData(DATA, dmiUrl, jsonRequestBody, READ, authorization);
+        return dmiRestClient.postOperationWithJsonDataAsync(DATA, dmiUrl, jsonRequestBody, READ, authorization);
     }
 
     /**
