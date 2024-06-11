@@ -20,7 +20,9 @@
 
 package org.onap.cps.ncmp.api;
 
+import java.util.Collection;
 import org.onap.cps.spi.FetchDescendantsOption;
+import org.onap.cps.spi.model.DataNode;
 
 /*
  * Datastore interface for handling cached CPS data query requests.
@@ -28,14 +30,22 @@ import org.onap.cps.spi.FetchDescendantsOption;
 public interface NetworkCmProxyQueryService {
 
     /**
-     * Get resource data for operational.
+     * Fetches operational resource data based on the provided CM handle identifier and CPS path.
+     * This method retrieves data nodes from the specified path within the context of a given CM handle.
+     * It supports options for fetching descendant nodes.
      *
-     * @param cmHandleId cm handle identifier
-     * @param cpsPath cps path
-     * @Link FetchDescendantsOption fetch descendants option
-     * @return {@code Object} resource data
+     * @param cmHandleId             The CM handle identifier, which uniquely identifies the CM handle.
+     *                               This parameter must not be null.
+     * @param cpsPath                The CPS (Control Plane Service) path specifying the location of the
+     *                               resource data within the CM handle. This parameter must not be null.
+     * @param fetchDescendantsOption The option specifying whether to fetch descendant nodes along with
+     *                               the specified resource data. This parameter can be null if descendants
+     *                               are not required.
+     * @return {@code Collection<DataNode>} A collection of DataNode objects representing the resource data
+     *     retrieved from the specified path. The collection may include descendant nodes based on the
+     *     fetchDescendantsOption.
      */
-    Object queryResourceDataOperational(String cmHandleId,
-                                      String cpsPath,
-                                      FetchDescendantsOption fetchDescendantsOption);
+    Collection<DataNode> queryResourceDataOperational(String cmHandleId,
+                                                      String cpsPath,
+                                                      FetchDescendantsOption fetchDescendantsOption);
 }

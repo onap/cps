@@ -117,6 +117,8 @@ public class DmiRestClient {
                 .body(BodyInserters.fromValue(requestBodyAsJsonString))
                 .retrieve()
                 .toEntity(Object.class)
+                .doOnSubscribe(subscription -> log.debug("Sending POST request to DMI URL: {}", dmiUrl))
+                .doOnSuccess(response -> log.debug("Received response with status code: {}", response.getStatusCode()))
                 .onErrorMap(throwable -> handleDmiClientException(throwable, operationType.getOperationName()));
     }
 
