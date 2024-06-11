@@ -25,7 +25,6 @@ import static org.onap.cps.ncmp.api.impl.operations.OperationType.READ;
 
 import java.util.Map;
 import java.util.UUID;
-import java.util.function.Supplier;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.api.impl.exception.InvalidDatastoreException;
 import org.onap.cps.ncmp.api.impl.operations.DatastoreType;
@@ -34,12 +33,12 @@ import org.onap.cps.ncmp.api.models.CmResourceAddress;
 import org.onap.cps.ncmp.api.models.DataOperationRequest;
 import org.onap.cps.ncmp.rest.exceptions.OperationNotSupportedException;
 import org.onap.cps.ncmp.rest.exceptions.PayloadTooLargeException;
-import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor;
 import org.onap.cps.ncmp.rest.util.TopicValidator;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import reactor.core.publisher.Mono;
 
-@Component
+@Service
 public class NcmpPassthroughResourceRequestHandler extends NcmpDatastoreRequestHandler {
 
     private final NetworkCmProxyDataService networkCmProxyDataService;
@@ -49,12 +48,9 @@ public class NcmpPassthroughResourceRequestHandler extends NcmpDatastoreRequestH
     /**
      * Constructor.
      *
-     * @param cpsNcmpTaskExecutor        @see org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor
      * @param networkCmProxyDataService  @see org.onap.cps.ncmp.api.NetworkCmProxyDataService
      */
-    public NcmpPassthroughResourceRequestHandler(final CpsNcmpTaskExecutor cpsNcmpTaskExecutor,
-                                                 final NetworkCmProxyDataService networkCmProxyDataService) {
-        super(cpsNcmpTaskExecutor);
+    public NcmpPassthroughResourceRequestHandler(final NetworkCmProxyDataService networkCmProxyDataService) {
         this.networkCmProxyDataService = networkCmProxyDataService;
     }
 
@@ -79,15 +75,14 @@ public class NcmpPassthroughResourceRequestHandler extends NcmpDatastoreRequestH
     }
 
     @Override
-    protected Supplier<Object> getTaskSupplierForGetRequest(final CmResourceAddress cmResourceAddress,
-                                                            final String optionsParamInQuery,
-                                                            final String topicParamInQuery,
-                                                            final String requestId,
-                                                            final boolean includeDescendants,
-                                                            final String authorization) {
-
-        return () -> networkCmProxyDataService.getResourceDataForCmHandle(cmResourceAddress, optionsParamInQuery,
-            topicParamInQuery, requestId, authorization);
+    protected Mono<Object> getResourceDataForCmHandle(final CmResourceAddress cmResourceAddress,
+                                                      final String optionsParamInQuery,
+                                                      final String topicParamInQuery,
+                                                      final String requestId,
+                                                      final boolean includeDescendants,
+                                                      final String authorization) {
+        return networkCmProxyDataService.getResourceDataForCmHandle(cmResourceAddress, optionsParamInQuery,
+                topicParamInQuery, requestId, authorization);
     }
 
     private ResponseEntity<Object> getRequestIdAndSendDataOperationRequestToDmiService(
