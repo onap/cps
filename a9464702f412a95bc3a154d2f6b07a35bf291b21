@@ -1,0 +1,205 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed5e1a0f_b3760d8a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-12T13:44:55Z",
+      "side": 1,
+      "message": "No issue id available in the commit message",
+      "revId": "a9464702f412a95bc3a154d2f6b07a35bf291b21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "813be7cf_e360cccb",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpCachedResourceRequestHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-12T13:44:55Z",
+      "side": 1,
+      "message": "NB: @Service may be better here",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 2
+      },
+      "revId": "a9464702f412a95bc3a154d2f6b07a35bf291b21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "100b9296_66f5628a",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreRequestHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-12T13:44:55Z",
+      "side": 1,
+      "message": "No need to mention object type on the variable name",
+      "range": {
+        "startLine": 78,
+        "startChar": 54,
+        "endLine": 78,
+        "endChar": 60
+      },
+      "revId": "a9464702f412a95bc3a154d2f6b07a35bf291b21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23b9b219_e5f93043",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreRequestHandlerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-12T13:44:55Z",
+      "side": 1,
+      "message": "Redundant import since not used",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 30
+      },
+      "revId": "a9464702f412a95bc3a154d2f6b07a35bf291b21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "211a00c6_2b5091a2",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreRequestHandlerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-12T13:44:55Z",
+      "side": 1,
+      "message": "Not a good test header name since no id can be boolean type.",
+      "range": {
+        "startLine": 62,
+        "startChar": 97,
+        "endLine": 62,
+        "endChar": 114
+      },
+      "revId": "a9464702f412a95bc3a154d2f6b07a35bf291b21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c5b86be_448c8299",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NetworkCmProxyQueryService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-12T13:44:55Z",
+      "side": 1,
+      "message": "NB: 2024",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 22
+      },
+      "revId": "a9464702f412a95bc3a154d2f6b07a35bf291b21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cde3492e_0a1522c2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/client/DmiRestClient.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-12T13:44:55Z",
+      "side": 1,
+      "message": "No need to log successfull post req. since there is an error handling after line, for those got failed.",
+      "range": {
+        "startLine": 121,
+        "startChar": 16,
+        "endLine": 121,
+        "endChar": 119
+      },
+      "revId": "a9464702f412a95bc3a154d2f6b07a35bf291b21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b93fa31_db7b1a18",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-12T13:44:55Z",
+      "side": 1,
+      "message": "No logging in the class then redundant here",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 2
+      },
+      "revId": "a9464702f412a95bc3a154d2f6b07a35bf291b21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25620493_3fe7075f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-12T13:44:55Z",
+      "side": 1,
+      "message": "I think we usally keep assert keyword while comparison to ehhance the readability",
+      "range": {
+        "startLine": 136,
+        "startChar": 11,
+        "endLine": 136,
+        "endChar": 38
+      },
+      "revId": "a9464702f412a95bc3a154d2f6b07a35bf291b21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
