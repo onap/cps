@@ -31,6 +31,12 @@ ALL_TEST_SCRIPTS=( \
 
 pushd "$(dirname "$0")" || exit 1
 
+echo 'Warming up JVM (warmup results will not be recorded)'
+for test_script in "${ALL_TEST_SCRIPTS[@]}"; do
+  echo "[warmup] k6 run $test_script"
+  k6 --quiet -e TOTAL_CM_HANDLES=1000 -e REGISTRATION_BATCH_SIZE=10 -e K6_MODULE_NAME="$test_script" run "$test_script" > /dev/null
+done
+
 printf "Test Case\tCondition\tLimit\tActual\tResult\n" > summary.log
 
 number_of_failures=0
