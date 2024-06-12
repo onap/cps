@@ -19,13 +19,12 @@
  */
 
 import exec from 'k6/execution';
-import { TOTAL_CM_HANDLES, makeBatchOfCmHandleIds, makeCustomSummaryReport } from './common/utils.js';
+import { TOTAL_CM_HANDLES, REGISTRATION_BATCH_SIZE, makeBatchOfCmHandleIds, makeCustomSummaryReport } from './common/utils.js';
 import { createCmHandles } from './common/cmhandle-registration.js';
 
-const BATCH_SIZE = 100;
 export const options = {
     vus: 1,
-    iterations: Math.ceil(TOTAL_CM_HANDLES / BATCH_SIZE),
+    iterations: Math.ceil(TOTAL_CM_HANDLES / REGISTRATION_BATCH_SIZE),
     thresholds: {
         http_req_failed: ['rate == 0'],
         http_req_duration: ['avg <= 850'],
@@ -33,7 +32,7 @@ export const options = {
 };
 
 export default function () {
-    const nextBatchOfCmHandleIds = makeBatchOfCmHandleIds(BATCH_SIZE, exec.scenario.iterationInTest);
+    const nextBatchOfCmHandleIds = makeBatchOfCmHandleIds(REGISTRATION_BATCH_SIZE, exec.scenario.iterationInTest);
     createCmHandles(nextBatchOfCmHandleIds);
 }
 

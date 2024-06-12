@@ -75,7 +75,7 @@ export function waitForCmHandlesToBeReady(timeOutInSeconds) {
             return;
         }
     }
-    fail(`Timed out after ${timeoutInSeconds} seconds waiting for ${TOTAL_CM_HANDLES} CM handles to be READY`);
+    fail(`Timed out after ${timeOutInSeconds} seconds waiting for ${TOTAL_CM_HANDLES} CM handles to be READY`);
 }
 
 function getNumberOfReadyCmHandles() {

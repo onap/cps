@@ -20,7 +20,7 @@
 
 import http from 'k6/http';
 import { check } from 'k6';
-import { NCMP_BASE_URL, getRandomCmHandleId } from './utils.js'
+import { NCMP_BASE_URL, getRandomCmHandleId } from './utils.js';
 
 export function passthroughRead() {
     const cmHandleId = getRandomCmHandleId();
