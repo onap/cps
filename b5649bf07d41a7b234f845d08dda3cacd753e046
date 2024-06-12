@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6696d3e3_a403faa8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-12T14:42:26Z",
+      "side": 1,
+      "message": "A few suggestions other than good.",
+      "revId": "b5649bf07d41a7b234f845d08dda3cacd753e046",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58c57a21_b2a44011",
+        "filename": "k6-tests/ncmp/10-mixed-load-test.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-12T14:42:26Z",
+      "side": 1,
+      "message": "better to have this file renamed to passthrough-read.js if we really dont have functionlity called passthrough-crud",
+      "range": {
+        "startLine": 23,
+        "startChar": 42,
+        "endLine": 23,
+        "endChar": 61
+      },
+      "revId": "b5649bf07d41a7b234f845d08dda3cacd753e046",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ab5fb5d_3c6ad7fd",
+        "filename": "k6-tests/ncmp/common/cmhandle-registration.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-12T14:42:26Z",
+      "side": 1,
+      "message": "Want to comment on the file name (cmhandle-registration.js) \n\nas this module contains create, delete and discovery the module name may not be fully represent the content.\n\nBetter to have it sth like: cmhandle-crud.js",
+      "revId": "b5649bf07d41a7b234f845d08dda3cacd753e046",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc8a30c9_5a712885",
+        "filename": "k6-tests/ncmp/common/passthrough-crud.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-12T14:42:26Z",
+      "side": 1,
+      "message": "the function name is ok since it reflects what does it do. However, I can not remember do we really have passthrough-crud operation?\n\nThus, I suggest to change the file name into sth pasthrough-read.js to comply with the content.",
+      "range": {
+        "startLine": 25,
+        "startChar": 16,
+        "endLine": 25,
+        "endChar": 31
+      },
+      "revId": "b5649bf07d41a7b234f845d08dda3cacd753e046",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "841a9ad7_4635c47c",
+        "filename": "k6-tests/ncmp/common/passthrough-crud.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-12T14:42:26Z",
+      "side": 1,
+      "message": "I see a lot of Unicode being given in the javascript code base that make the code reading difficult. \n\nJust wonder, will it be still working if we provide non-unicode (actual) characters in the code-base ?",
+      "range": {
+        "startLine": 27,
+        "startChar": 41,
+        "endLine": 27,
+        "endChar": 44
+      },
+      "revId": "b5649bf07d41a7b234f845d08dda3cacd753e046",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
