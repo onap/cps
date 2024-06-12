@@ -24,7 +24,11 @@ import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
 import ch.qos.logback.classic.spi.ILoggingEvent
 import ch.qos.logback.core.read.ListAppender
+import org.onap.cps.ncmp.api.datajobs.models.DmiWriteOperation
+import org.onap.cps.ncmp.api.datajobs.models.ProducerKey
 import org.onap.cps.ncmp.impl.datajobs.DataJobServiceImpl
+import org.onap.cps.ncmp.impl.datajobs.DmiSubJobRequestHandler
+import org.onap.cps.ncmp.impl.datajobs.WriteRequestExaminer
 import org.slf4j.LoggerFactory
 import org.onap.cps.ncmp.api.datajobs.models.DataJobReadRequest
 import org.onap.cps.ncmp.api.datajobs.models.DataJobWriteRequest
@@ -33,9 +37,12 @@ import org.onap.cps.ncmp.api.datajobs.models.ReadOperation
 import org.onap.cps.ncmp.api.datajobs.models.WriteOperation
 import spock.lang.Specification
 
-class DataJobServiceImplSpec extends Specification{
+class DataJobServiceImplSpec extends Specification {
 
-    def objectUnderTest = new DataJobServiceImpl()
+    def mockWriteOperationExaminer = Mock(WriteRequestExaminer)
+    def mockDmiSubJobClient = Mock(DmiSubJobRequestHandler)
+    def objectUnderTest = new DataJobServiceImpl(mockDmiSubJobClient, mockWriteOperationExaminer)
+    def static singleWriteOperation = [new WriteOperation('fdn-1', 'add', 'some-operation-id', new Object())]
 
     def logger = Spy(ListAppender<ILoggingEvent>)
 
@@ -47,21 +54,33 @@ class DataJobServiceImplSpec extends Specification{
         ((Logger) LoggerFactory.getLogger(DataJobServiceImpl.class)).detachAndStopAllAppenders()
     }
 
-    def '#operation data job request.'() {
+    def 'Read data job request.'() {
         given: 'data job metadata'
             def dataJobMetadata = new DataJobMetadata('client-topic', 'application/vnd.3gpp.object-tree-hierarchical+json', 'application/3gpp-json-patch+json')
         when: 'read/write data job request is processed'
-            if (operation == 'read') {
-                objectUnderTest.readDataJob('some-job-id', dataJobMetadata, new DataJobReadRequest([getWriteOrReadOperationRequest(operation)]))
-            } else {
-                objectUnderTest.writeDataJob('some-job-id', dataJobMetadata, new DataJobWriteRequest([getWriteOrReadOperationRequest(operation)]))
-            }
+            objectUnderTest.readDataJob('some-job-id', dataJobMetadata, new DataJobReadRequest([getWriteOrReadOperationRequest('read')] as List<ReadOperation>))
         then: 'the data job id is correctly logged'
             def loggingEvent = logger.list[0]
             assert loggingEvent.level == Level.INFO
-            assert loggingEvent.formattedMessage.contains('data job id for ' + operation + ' operation is: some-job-id')
-        where: 'the following data job operations are used'
-            operation << ['read', 'write']
+            assert loggingEvent.formattedMessage.contains('data job id for read operation is: some-job-id')
+    }
+
+    def 'Create sub-job request.'() {
+        given: 'data job metadata'
+            def dataJobMetadata = new DataJobMetadata('client-topic', 'application/vnd.3gpp.object-tree-hierarchical+json', 'application/3gpp-json-patch+json')
+            def dataJobWriteRequest = new DataJobWriteRequest(singleWriteOperation as List<WriteOperation>)
+        and: 'the examiner service returns a map of a producer key and DMI 3gpp write operation'
+            def dmi3gppWriteOperation = new DmiWriteOperation('fdn-1', 'create', 'module-set-tag', new Object(), 'some-operation-id', ['dmi-service-name':'my-dmi-service'])
+            def dmi3ggpWriteOperationsPerProducerKey = [new ProducerKey('my-dmi-service', 'my-data-producer-identifier') : [dmi3gppWriteOperation]] as HashMap
+            mockWriteOperationExaminer.splitDmiWriteOperationsFromRequest(_, _) >> dmi3ggpWriteOperationsPerProducerKey
+        when: 'read/write data job request is processed'
+            objectUnderTest.writeDataJob('some-job-id', dataJobMetadata, dataJobWriteRequest)
+        then: 'the data job id is correctly logged'
+            def loggingEvent = logger.list[0]
+            assert loggingEvent.level == Level.INFO
+            assert loggingEvent.formattedMessage.contains('data job id for write operation is: some-job-id')
+            1 * mockWriteOperationExaminer.splitDmiWriteOperationsFromRequest('some-job-id', dataJobWriteRequest)
+            1 * mockDmiSubJobClient.sendRequestsToDmi('some-job-id', dataJobMetadata, dmi3ggpWriteOperationsPerProducerKey)
     }
 
     def getWriteOrReadOperationRequest(operation) {
