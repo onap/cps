@@ -106,6 +106,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "95b36aa9_747b9793",
+        "filename": "k6-tests/ncmp/common/cmhandle-registration.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-06-12T15:53:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ab5fb5d_3c6ad7fd",
+      "revId": "b5649bf07d41a7b234f845d08dda3cacd753e046",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dc8a30c9_5a712885",
@@ -129,6 +147,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3affb414_34272588",
+        "filename": "k6-tests/ncmp/common/passthrough-crud.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-06-12T15:53:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dc8a30c9_5a712885",
+      "range": {
+        "startLine": 25,
+        "startChar": 16,
+        "endLine": 25,
+        "endChar": 31
+      },
+      "revId": "b5649bf07d41a7b234f845d08dda3cacd753e046",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "841a9ad7_4635c47c",
@@ -142,6 +184,30 @@
       "writtenOn": "2024-06-12T14:42:26Z",
       "side": 1,
       "message": "I see a lot of Unicode being given in the javascript code base that make the code reading difficult. \n\nJust wonder, will it be still working if we provide non-unicode (actual) characters in the code-base ?",
+      "range": {
+        "startLine": 27,
+        "startChar": 41,
+        "endLine": 27,
+        "endChar": 44
+      },
+      "revId": "b5649bf07d41a7b234f845d08dda3cacd753e046",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c18e84f9_24314cd9",
+        "filename": "k6-tests/ncmp/common/passthrough-crud.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-06-12T15:53:32Z",
+      "side": 1,
+      "message": "Yes, it works in this case without the encoding.",
+      "parentUuid": "841a9ad7_4635c47c",
       "range": {
         "startLine": 27,
         "startChar": 41,
