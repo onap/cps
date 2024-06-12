@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7437a6f4_718b1aac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-06-12T14:30:10Z",
+      "side": 1,
+      "message": "mostly we need to fix the javadocs.\nit was not properly handled. And also the copyrights.\nsome new files dont have them.",
+      "revId": "afe62f88b3858847f290eba0d581069974ef326e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfacd701_89dae818",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/handlers/NcmpPassthroughResourceRequestHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-06-12T14:30:10Z",
+      "side": 1,
+      "message": "NB: IDE was not intelligent enough. need to handle it manually.",
+      "range": {
+        "startLine": 59,
+        "startChar": 41,
+        "endLine": 59,
+        "endChar": 88
+      },
+      "revId": "afe62f88b3858847f290eba0d581069974ef326e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
