@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5f3b13be_3dd6b308",
+        "filename": "k6-tests/ncmp/10-mixed-load-test.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-06-12T14:52:12Z",
+      "side": 1,
+      "message": "We will have all CRUD operations in near future, just waiting for DMI delays for different operations, see rows 5 and 6 in this table:\nhttps://wiki.onap.org/display/DW/CPS-391Spike%3A+Define+and+Agree+NCMP+REST+Interface#CPS391Spike:DefineandAgreeNCMPRESTInterface-Characteristics-WIP",
+      "parentUuid": "58c57a21_b2a44011",
+      "range": {
+        "startLine": 23,
+        "startChar": 42,
+        "endLine": 23,
+        "endChar": 61
+      },
+      "revId": "b5649bf07d41a7b234f845d08dda3cacd753e046",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9ab5fb5d_3c6ad7fd",
         "filename": "k6-tests/ncmp/common/cmhandle-registration.js",
         "patchSetId": 1
