@@ -32,10 +32,10 @@ import groovy.json.JsonSlurper
 import org.mapstruct.factory.Mappers
 import org.onap.cps.TestUtils
 import org.onap.cps.events.EventsPublisher
-import org.onap.cps.ncmp.api.NetworkCmProxyDataService
 import org.onap.cps.ncmp.api.NetworkCmProxyQueryService
 import org.onap.cps.ncmp.api.impl.NcmpCachedResourceRequestHandler
 import org.onap.cps.ncmp.api.impl.NcmpPassthroughResourceRequestHandler
+import org.onap.cps.ncmp.api.impl.NetworkCmProxyFacade
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
 import org.onap.cps.ncmp.api.impl.inventory.CompositeState
 import org.onap.cps.ncmp.api.impl.inventory.DataStoreSyncState
@@ -93,7 +93,7 @@ class NetworkCmProxyControllerSpec extends Specification {
     MockMvc mvc
 
     @SpringBean
-    NetworkCmProxyDataService mockNetworkCmProxyDataService = Mock()
+    NetworkCmProxyFacade mockNetworkCmProxyDataService = Mock()
 
     @SpringBean
     NetworkCmProxyQueryService mockNetworkCmProxyQueryService = Mock()

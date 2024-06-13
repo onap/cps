@@ -23,9 +23,33 @@
 
 package org.onap.cps.ncmp.api.impl
 
+import com.fasterxml.jackson.databind.ObjectMapper
+import org.onap.cps.api.CpsDataService
+import org.onap.cps.ncmp.api.ParameterizedCmHandleQueryService
+import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
+import org.onap.cps.ncmp.api.impl.inventory.CompositeState
+import org.onap.cps.ncmp.api.impl.inventory.DataStoreSyncState
+import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence
+import org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory
+import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations
+import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
+import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters
+import org.onap.cps.ncmp.api.models.CmHandleQueryServiceParameters
+import org.onap.cps.ncmp.api.models.CmResourceAddress
+import org.onap.cps.ncmp.api.models.ConditionApiProperties
+import org.onap.cps.ncmp.api.models.DataOperationDefinition
+import org.onap.cps.ncmp.api.models.DataOperationRequest
+import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
+import org.onap.cps.spi.FetchDescendantsOption
+import org.onap.cps.spi.model.DataNode
+import org.onap.cps.utils.JsonObjectMapper
+import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
 import reactor.core.publisher.Mono
+import spock.lang.Specification
 
-import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
+import java.util.stream.Collectors
+
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.OPERATIONAL
@@ -34,76 +58,22 @@ import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RU
 import static org.onap.cps.ncmp.api.impl.operations.OperationType.CREATE
 import static org.onap.cps.ncmp.api.impl.operations.OperationType.UPDATE
 
-import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse
-import org.onap.cps.ncmp.api.models.CmResourceAddress
-import org.onap.cps.ncmp.api.impl.utils.AlternateIdChecker
-import com.hazelcast.map.IMap
-import org.onap.cps.ncmp.api.NetworkCmProxyCmHandleQueryService
-import org.onap.cps.ncmp.api.impl.events.lcm.LcmEventsCmHandleStateHandler
-import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel
-import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevelManager
-import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
-import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueries
-import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
-import org.onap.cps.ncmp.api.impl.inventory.CompositeState
-import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence
-import org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory
-import org.onap.cps.ncmp.api.impl.inventory.DataStoreSyncState
-import org.onap.cps.ncmp.api.models.DataOperationDefinition
-import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters
-import org.onap.cps.ncmp.api.models.CmHandleQueryServiceParameters
-import org.onap.cps.ncmp.api.models.ConditionApiProperties
-import org.onap.cps.ncmp.api.models.DmiPluginRegistration
-import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
-import org.onap.cps.ncmp.api.models.DataOperationRequest
-import org.onap.cps.spi.exceptions.CpsException
-import org.onap.cps.spi.model.ConditionProperties
-import java.util.stream.Collectors
-import org.onap.cps.utils.JsonObjectMapper
-import com.fasterxml.jackson.databind.ObjectMapper
-import org.onap.cps.api.CpsDataService
-import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations
-import org.onap.cps.spi.FetchDescendantsOption
-import org.onap.cps.spi.model.DataNode
-import org.springframework.http.HttpStatus
-import org.springframework.http.ResponseEntity
-import spock.lang.Specification
+class NetworkCmProxyFacadeSpec extends Specification {
 
-class NetworkCmProxyDataServiceImplSpec extends Specification {
-
-    def mockCpsDataService = Mock(CpsDataService)
     def spiedJsonObjectMapper = Spy(new JsonObjectMapper(new ObjectMapper()))
     def mockDmiDataOperations = Mock(DmiDataOperations)
-    def nullNetworkCmProxyDataServicePropertyHandler = null
+    def mockParameterizedCmHandleQueryService = Mock(ParameterizedCmHandleQueryService)
+    def mockCpsDataService = Mock(CpsDataService)
+    def mockCmHandleRegistrationService = Mock(CmHandleRegistrationService)
     def mockInventoryPersistence = Mock(InventoryPersistence)
-    def mockCmHandleQueries = Mock(CmHandleQueries)
-    def mockDmiPluginRegistration = Mock(DmiPluginRegistration)
-    def mockCpsCmHandlerQueryService = Mock(NetworkCmProxyCmHandleQueryService)
-    def mockLcmEventsCmHandleStateHandler = Mock(LcmEventsCmHandleStateHandler)
-    def stubModuleSyncStartedOnCmHandles = Stub(IMap<String, Object>)
-    def stubTrustLevelPerDmiPlugin = Stub(Map<String, TrustLevel>)
-    def mockTrustLevelManager = Mock(TrustLevelManager)
-    def mockAlternateIdChecker = Mock(AlternateIdChecker)
 
     def NO_TOPIC = null
     def NO_REQUEST_ID = null
     def NO_AUTH_HEADER = null
     def OPTIONS_PARAM = '(a=1,b=2)'
-    def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: 'test-cm-handle-id')
 
-    def objectUnderTest = new NetworkCmProxyDataServiceImpl(
-            spiedJsonObjectMapper,
-            mockDmiDataOperations,
-            nullNetworkCmProxyDataServicePropertyHandler,
-            mockInventoryPersistence,
-            mockCmHandleQueries,
-            mockCpsCmHandlerQueryService,
-            mockLcmEventsCmHandleStateHandler,
-            mockCpsDataService,
-            stubModuleSyncStartedOnCmHandles,
-            stubTrustLevelPerDmiPlugin,
-            mockTrustLevelManager,
-            mockAlternateIdChecker)
+    def objectUnderTest = new NetworkCmProxyFacade(spiedJsonObjectMapper, mockDmiDataOperations, mockParameterizedCmHandleQueryService,
+            mockCpsDataService, mockCmHandleRegistrationService, mockInventoryPersistence)
 
     def cmHandleXPath = "/dmi-registry/cm-handles[@id='testCmHandle']"
 
@@ -212,23 +182,6 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             result == [ 'public prop' : 'some public prop' ]
     }
 
-    def 'Execute cm handle id search for inventory'() {
-        given: 'a ConditionApiProperties object'
-            def conditionProperties = new ConditionProperties()
-            conditionProperties.conditionName = 'hasAllProperties'
-            conditionProperties.conditionParameters = [ [ 'some-key' : 'some-value' ] ]
-            def conditionServiceProps = new CmHandleQueryServiceParameters()
-            conditionServiceProps.cmHandleQueryParameters = [conditionProperties] as List<ConditionProperties>
-        and: 'the system returns an set of cmHandle ids'
-            mockCpsCmHandlerQueryService.queryCmHandleIdsForInventory(*_) >> [ 'cmHandle1', 'cmHandle2' ]
-        when: 'getting cm handle id set for a given dmi property'
-            def result = objectUnderTest.executeCmHandleIdSearchForInventory(conditionServiceProps)
-        then: 'the result returns the correct 2 elements'
-            assert result.size() == 2
-            assert result.contains('cmHandle1')
-            assert result.contains('cmHandle2')
-    }
-
     def 'Get cm handle composite state'() {
         given: 'a yang modelled cm handle'
             def compositeState = new CompositeState(cmHandleState: CmHandleState.ADVISED,
@@ -259,28 +212,28 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
                     UPDATE, '{some-json}', 'application/json', NO_AUTH_HEADER)
                 >> { new ResponseEntity<>(HttpStatus.OK) }
     }
-
-    def 'Verify modules and create anchor params.'() {
-        given: 'dmi plugin registration return created cm handles'
-            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'service1', dmiModelPlugin: 'service1',
-                    dmiDataPlugin: 'service2')
-            dmiPluginRegistration.createdCmHandles = [ncmpServiceCmHandle]
-            mockDmiPluginRegistration.getCreatedCmHandles() >> [ncmpServiceCmHandle]
-        and: 'no rejected cm handles because of alternate ids'
-            mockAlternateIdChecker.getIdsOfCmHandlesWithRejectedAlternateId(*_) >> []
-        when: 'parse and create cm handle in dmi registration then sync module'
-            mockDmiPluginRegistration.createdCmHandles = ['test-cm-handle-id']
-            objectUnderTest.processCreatedCmHandles(mockDmiPluginRegistration, new DmiPluginRegistrationResponse())
-        then: 'system persists the cm handle state'
-            1 * mockLcmEventsCmHandleStateHandler.initiateStateAdvised(_) >> {
-                args -> {
-                          def cmHandleStatePerCmHandle = (args[0] as Collection)
-                          cmHandleStatePerCmHandle.each {
-                            assert it.id == 'test-cm-handle-id'
-                          }
-                    }
-            }
-    }
+//TODO: verify belwo test in covered by CmHandleRegistrationServiceSpec
+//    def 'Verify modules and create anchor params.'() {
+//        given: 'dmi plugin registration return created cm handles'
+//            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'service1', dmiModelPlugin: 'service1',
+//                    dmiDataPlugin: 'service2')
+//            dmiPluginRegistration.createdCmHandles = [ncmpServiceCmHandle]
+//            mockDmiPluginRegistration.getCreatedCmHandles() >> [ncmpServiceCmHandle]
+//        and: 'no rejected cm handles because of alternate ids'
+//            mockAlternateIdChecker.getIdsOfCmHandlesWithRejectedAlternateId(*_) >> []
+//        when: 'parse and create cm handle in dmi registration then sync module'
+//            mockDmiPluginRegistration.createdCmHandles = ['test-cm-handle-id']
+//            objectUnderTest.processCreatedCmHandles(mockDmiPluginRegistration, new DmiPluginRegistrationResponse())
+//        then: 'system persists the cm handle state'
+//            1 * mockLcmEventsCmHandleStateHandler.initiateStateAdvised(_) >> {
+//                args -> {
+//                          def cmHandleStatePerCmHandle = (args[0] as Collection)
+//                          cmHandleStatePerCmHandle.each {
+//                            assert it.id == 'test-cm-handle-id'
+//                          }
+//                    }
+//            }
+//    }
 
     def 'Execute cm handle id search'() {
         given: 'valid CmHandleQueryApiParameters input'
@@ -290,7 +243,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             conditionApiProperties.conditionParameters = [[moduleName: 'module-name-1']]
             cmHandleQueryApiParameters.cmHandleQueryParameters = [conditionApiProperties]
         and: 'query cm handle method return with a data node list'
-            mockCpsCmHandlerQueryService.queryCmHandleIds(
+            mockParameterizedCmHandleQueryService.queryCmHandleIds(
                     spiedJsonObjectMapper.convertToValueType(cmHandleQueryApiParameters, CmHandleQueryServiceParameters.class))
                     >> ['cm-handle-id-1']
         when: 'execute cm handle search is called'
@@ -321,7 +274,7 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             conditionApiProperties.conditionParameters = [[moduleName: 'module-name-1']]
             cmHandleQueryApiParameters.cmHandleQueryParameters = [conditionApiProperties]
         and: 'query cm handle method return with a data node list'
-            mockCpsCmHandlerQueryService.queryCmHandles(
+            mockParameterizedCmHandleQueryService.queryCmHandles(
                     spiedJsonObjectMapper.convertToValueType(cmHandleQueryApiParameters, CmHandleQueryServiceParameters.class))
                     >> [new NcmpServiceCmHandle(cmHandleId: 'cm-handle-id-1')]
         when: 'execute cm handle search is called'
@@ -330,55 +283,11 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
             assert result.stream().map(d -> d.cmHandleId).collect(Collectors.toSet()) == ['cm-handle-id-1'] as Set
     }
 
-    def 'Set Cm Handle Data Sync Enabled Flag where data sync flag is  #scenario'() {
-        given: 'an existing cm handle composite state'
-            def compositeState = new CompositeState(cmHandleState: CmHandleState.READY, dataSyncEnabled: initialDataSyncEnabledFlag,
-                dataStores: CompositeState.DataStores.builder()
-                    .operationalDataStore(CompositeState.Operational.builder()
-                        .dataStoreSyncState(initialDataSyncState)
-                        .build()).build())
-        and: 'get cm handle state returns the composite state for the given cm handle id'
-            mockInventoryPersistence.getCmHandleState('some-cm-handle-id') >> compositeState
-        when: 'set data sync enabled is called with the data sync enabled flag set to #dataSyncEnabledFlag'
-            objectUnderTest.setDataSyncEnabled('some-cm-handle-id', dataSyncEnabledFlag)
-        then: 'the data sync enabled flag is set to #dataSyncEnabled'
-            compositeState.dataSyncEnabled == dataSyncEnabledFlag
-        and: 'the data store sync state is set to #expectedDataStoreSyncState'
-            compositeState.dataStores.operationalDataStore.dataStoreSyncState == expectedDataStoreSyncState
-        and: 'the cps data service to delete data nodes is invoked the expected number of times'
-            deleteDataNodeExpectedNumberOfInvocation * mockCpsDataService.deleteDataNode(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'some-cm-handle-id', '/netconf-state', _)
-        and: 'the inventory persistence service to update node leaves is called with the correct values'
-            saveCmHandleStateExpectedNumberOfInvocations * mockInventoryPersistence.saveCmHandleState('some-cm-handle-id', compositeState)
-        where: 'the following data sync enabled flag is used'
-            scenario                                              | dataSyncEnabledFlag | initialDataSyncEnabledFlag | initialDataSyncState               || expectedDataStoreSyncState         | deleteDataNodeExpectedNumberOfInvocation | saveCmHandleStateExpectedNumberOfInvocations
-            'enabled'                                             | true                | false                      | DataStoreSyncState.NONE_REQUESTED  || DataStoreSyncState.UNSYNCHRONIZED  | 0                                        | 1
-            'disabled'                                            | false               | true                       | DataStoreSyncState.UNSYNCHRONIZED  || DataStoreSyncState.NONE_REQUESTED  | 0                                        | 1
-            'disabled where sync-state is currently SYNCHRONIZED' | false               | true                       | DataStoreSyncState.SYNCHRONIZED    || DataStoreSyncState.NONE_REQUESTED  | 1                                        | 1
-            'is set to existing flag state'                       | true                | true                       | DataStoreSyncState.UNSYNCHRONIZED  || DataStoreSyncState.UNSYNCHRONIZED  | 0                                        | 0
-    }
-
-    def 'Set cm Handle Data Sync Enabled flag with following cm handle not in ready state exception' () {
-        given: 'a cm handle composite state'
-            def compositeState = new CompositeState(cmHandleState: CmHandleState.ADVISED, dataSyncEnabled: false)
-        and: 'get cm handle state returns the composite state for the given cm handle id'
-            mockInventoryPersistence.getCmHandleState('some-cm-handle-id') >> compositeState
-        when: 'set data sync enabled is called with the data sync enabled flag set to true'
-            objectUnderTest.setDataSyncEnabled('some-cm-handle-id', true)
-        then: 'the expected exception is thrown'
-            thrown(CpsException)
-        and: 'the inventory persistence service to update node leaves is not invoked'
-            0 * mockInventoryPersistence.saveCmHandleState(_, _)
-    }
-
-    def 'Get all cm handle IDs by DMI plugin identifier.' () {
-        given: 'cm handle queries service returns cm handles'
-            1 * mockCmHandleQueries.getCmHandleIdsByDmiPluginIdentifier('some-dmi-plugin-identifier') >> ['cm-handle-1','cm-handle-2']
-        when: 'cm handle Ids are requested with dmi plugin identifier'
-            def result = objectUnderTest.getAllCmHandleIdsByDmiPluginIdentifier('some-dmi-plugin-identifier')
-        then: 'the result size is correct'
-            assert result.size() == 2
-        and: 'the result returns the correct details'
-            assert result.containsAll('cm-handle-1','cm-handle-2')
+    def 'Set Cm Handle Data Sync flag.'() {
+        when: 'setting data sync enabled flag'
+            objectUnderTest.setDataSyncEnabled('ch-1',true)
+        then: 'call is delegated to the cm handle registration service'
+            mockCmHandleRegistrationService.setDataSyncEnabled('ch-1', true)
     }
 
     def dataStores() {
@@ -402,11 +311,11 @@ class NetworkCmProxyDataServiceImplSpec extends Specification {
 
     def getDataOperationDefinition(datastore) {
         def dataOperationDefinition = new DataOperationDefinition()
-        dataOperationDefinition.setOperation("read")
-        dataOperationDefinition.setOperationId("operational-12")
+        dataOperationDefinition.setOperation('read')
+        dataOperationDefinition.setOperationId('"operational-12')
         dataOperationDefinition.setDatastore(datastore)
         def targetIds = new ArrayList()
-        targetIds.add("some-cm-handle")
+        targetIds.add('some-cm-handle')
         dataOperationDefinition.setCmHandleIds(targetIds)
         return dataOperationDefinition
     }

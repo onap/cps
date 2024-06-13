@@ -20,13 +20,15 @@
 
 package org.onap.cps.integration.functional
 
+import org.onap.cps.ncmp.api.impl.NetworkCmProxyFacade
+import org.onap.cps.ncmp.api.impl.NetworkCmProxyInventoryFacade
+
 import java.time.Duration
 import java.time.OffsetDateTime
 import org.apache.kafka.common.TopicPartition
 import org.apache.kafka.common.serialization.StringDeserializer
 import org.onap.cps.integration.KafkaTestContainer
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
-import org.onap.cps.ncmp.api.NetworkCmProxyDataService
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
 import org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse
@@ -37,12 +39,12 @@ import spock.util.concurrent.PollingConditions
 
 class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
 
-    NetworkCmProxyDataService objectUnderTest
+    NetworkCmProxyInventoryFacade objectUnderTest
 
     def kafkaConsumer = KafkaTestContainer.getConsumer('ncmp-group', StringDeserializer.class)
 
     def setup() {
-        objectUnderTest = networkCmProxyDataService
+        objectUnderTest = networkCmProxyInventoryFacade
     }
 
     def 'CM Handle registration is successful.'() {
@@ -55,20 +57,20 @@ class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
         when: 'a CM-handle is registered for creation'
             def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: 'ch-1')
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: DMI_URL, createdCmHandles: [cmHandleToCreate])
-            def dmiPluginRegistrationResponse = networkCmProxyDataService.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+            def dmiPluginRegistrationResponse = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
 
         then: 'registration gives successful response'
             assert dmiPluginRegistrationResponse.createdCmHandles == [CmHandleRegistrationResponse.createSuccessResponse('ch-1')]
 
         and: 'CM-handle is initially in ADVISED state'
-            assert CmHandleState.ADVISED == objectUnderTest.getCmHandleCompositeState('ch-1').cmHandleState
+            assert CmHandleState.ADVISED == networkCmProxyFacade.getCmHandleCompositeState('ch-1').cmHandleState
 
         when: 'module sync runs'
             moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
 
         then: 'CM-handle goes to READY state'
             new PollingConditions().within(3, () -> {
-                assert CmHandleState.READY == objectUnderTest.getCmHandleCompositeState('ch-1').cmHandleState
+                assert CmHandleState.READY == networkCmProxyFacade.getCmHandleCompositeState('ch-1').cmHandleState
             })
 
         and: 'the messages is polled'
@@ -80,7 +82,7 @@ class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
             assert notificationMessage.event.newValues.cmHandleState.value() == 'READY'
 
         and: 'the CM-handle has expected modules'
-            assert ['M1', 'M2'] == objectUnderTest.getYangResourcesModuleReferences('ch-1').moduleName.sort()
+            assert ['M1', 'M2'] == networkCmProxyFacade.getYangResourcesModuleReferences('ch-1').moduleName.sort()
 
         cleanup: 'deregister CM handle'
             deregisterCmHandle(DMI_URL, 'ch-1')
@@ -93,20 +95,20 @@ class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
         when: 'a CM-handle is registered for creation'
             def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: 'ch-1')
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: DMI_URL, createdCmHandles: [cmHandleToCreate])
-            networkCmProxyDataService.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+            objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
 
         and: 'module sync runs'
             moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
 
         then: 'CM-handle goes to LOCKED state with reason MODULE_SYNC_FAILED'
             new PollingConditions().within(3, () -> {
-                def cmHandleCompositeState = objectUnderTest.getCmHandleCompositeState('ch-1')
+                def cmHandleCompositeState = networkCmProxyFacade.getCmHandleCompositeState('ch-1')
                 assert cmHandleCompositeState.cmHandleState == CmHandleState.LOCKED
                 assert cmHandleCompositeState.lockReason.lockReasonCategory == LockReasonCategory.MODULE_SYNC_FAILED
             })
 
         and: 'CM-handle has no modules'
-            assert objectUnderTest.getYangResourcesModuleReferences('ch-1').empty
+            assert networkCmProxyFacade.getYangResourcesModuleReferences('ch-1').empty
 
         cleanup: 'deregister CM handle'
             deregisterCmHandle(DMI_URL, 'ch-1')
@@ -121,19 +123,19 @@ class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
 
         when: 'a CM-handle is registered for creation with moduleSetTag "B"'
             def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: 'ch-3', moduleSetTag: 'B')
-            networkCmProxyDataService.updateDmiRegistrationAndSyncModule(new DmiPluginRegistration(dmiPlugin: DMI_URL, createdCmHandles: [cmHandleToCreate]))
+            objectUnderTest.updateDmiRegistrationAndSyncModule(new DmiPluginRegistration(dmiPlugin: DMI_URL, createdCmHandles: [cmHandleToCreate]))
 
         then: 'the CM-handle goes to READY state after module sync'
             moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
             new PollingConditions().within(3, () -> {
-                assert CmHandleState.READY == objectUnderTest.getCmHandleCompositeState('ch-3').cmHandleState
+                assert CmHandleState.READY == networkCmProxyFacade.getCmHandleCompositeState('ch-3').cmHandleState
             })
 
         and: 'the CM-handle has expected moduleSetTag'
-            assert objectUnderTest.getNcmpServiceCmHandle('ch-3').moduleSetTag == 'B'
+            assert networkCmProxyFacade.getNcmpServiceCmHandle('ch-3').moduleSetTag == 'B'
 
         and: 'the CM-handle has expected modules from module set "B": M1 and M3'
-            assert ['M1', 'M3'] == objectUnderTest.getYangResourcesModuleReferences('ch-3').moduleName.sort()
+            assert ['M1', 'M3'] == networkCmProxyFacade.getYangResourcesModuleReferences('ch-3').moduleName.sort()
 
         cleanup: 'deregister CM handles'
             deregisterCmHandles(DMI_URL, ['ch-1', 'ch-2', 'ch-3'])
@@ -146,13 +148,13 @@ class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
         when: 'CM-handles are registered for creation'
             def cmHandlesToCreate = [new NcmpServiceCmHandle(cmHandleId: 'ch-1'), new NcmpServiceCmHandle(cmHandleId: 'ch-2')]
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: DMI_URL, createdCmHandles: cmHandlesToCreate)
-            networkCmProxyDataService.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+            objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         and: 'module sync runs'
             moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
         then: 'CM-handles go to LOCKED state'
             new PollingConditions().within(3, () -> {
-                assert objectUnderTest.getCmHandleCompositeState('ch-1').cmHandleState == CmHandleState.LOCKED
-                assert objectUnderTest.getCmHandleCompositeState('ch-2').cmHandleState == CmHandleState.LOCKED
+                assert networkCmProxyFacade.getCmHandleCompositeState('ch-1').cmHandleState == CmHandleState.LOCKED
+                assert networkCmProxyFacade.getCmHandleCompositeState('ch-2').cmHandleState == CmHandleState.LOCKED
             })
 
         when: 'we wait for LOCKED CM handle retry time (actually just subtract 3 minutes from handles lastUpdateTime)'
@@ -161,8 +163,8 @@ class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
         and: 'failed CM handles are reset'
             moduleSyncWatchdog.resetPreviouslyFailedCmHandles()
         then: 'CM-handles are ADVISED state'
-            assert objectUnderTest.getCmHandleCompositeState('ch-1').cmHandleState == CmHandleState.ADVISED
-            assert objectUnderTest.getCmHandleCompositeState('ch-2').cmHandleState == CmHandleState.ADVISED
+            assert networkCmProxyFacade.getCmHandleCompositeState('ch-1').cmHandleState == CmHandleState.ADVISED
+            assert networkCmProxyFacade.getCmHandleCompositeState('ch-2').cmHandleState == CmHandleState.ADVISED
 
         when: 'DMI is available for retry'
             dmiDispatcher.isAvailable = true
@@ -172,15 +174,15 @@ class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
             moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
         then: 'CM-handles go to READY state'
             new PollingConditions().within(3, () -> {
-                assert objectUnderTest.getCmHandleCompositeState('ch-1').cmHandleState == CmHandleState.READY
-                assert objectUnderTest.getCmHandleCompositeState('ch-2').cmHandleState == CmHandleState.READY
+                assert networkCmProxyFacade.getCmHandleCompositeState('ch-1').cmHandleState == CmHandleState.READY
+                assert networkCmProxyFacade.getCmHandleCompositeState('ch-2').cmHandleState == CmHandleState.READY
             })
         and: 'CM-handles have expected modules'
-            assert ['M1', 'M2'] == objectUnderTest.getYangResourcesModuleReferences('ch-1').moduleName.sort()
-            assert ['M1', 'M3'] == objectUnderTest.getYangResourcesModuleReferences('ch-2').moduleName.sort()
+            assert ['M1', 'M2'] == networkCmProxyFacade.getYangResourcesModuleReferences('ch-1').moduleName.sort()
+            assert ['M1', 'M3'] == networkCmProxyFacade.getYangResourcesModuleReferences('ch-2').moduleName.sort()
         and: 'CM-handles have expected module set tags (blank)'
-            assert objectUnderTest.getNcmpServiceCmHandle('ch-1').moduleSetTag == ''
-            assert objectUnderTest.getNcmpServiceCmHandle('ch-2').moduleSetTag == ''
+            assert networkCmProxyFacade.getNcmpServiceCmHandle('ch-1').moduleSetTag == ''
+            assert networkCmProxyFacade.getNcmpServiceCmHandle('ch-2').moduleSetTag == ''
 
         cleanup: 'deregister CM handle'
             deregisterCmHandles(DMI_URL, ['ch-1', 'ch-2'])

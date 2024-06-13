@@ -26,7 +26,6 @@ import static org.onap.cps.ncmp.api.impl.operations.OperationType.READ;
 import java.util.Map;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
-import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.api.impl.exception.InvalidDatastoreException;
 import org.onap.cps.ncmp.api.impl.operations.DatastoreType;
 import org.onap.cps.ncmp.api.impl.operations.OperationType;
@@ -42,7 +41,7 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class NcmpPassthroughResourceRequestHandler extends NcmpDatastoreRequestHandler {
 
-    private final NetworkCmProxyDataService networkCmProxyDataService;
+    private final NetworkCmProxyFacade networkCmProxyFacade;
     private static final int MAXIMUM_CM_HANDLES_PER_OPERATION = 200;
     private static final String PAYLOAD_TOO_LARGE_TEMPLATE = "Operation '%s' affects too many (%d) cm handles";
 
@@ -63,7 +62,7 @@ public class NcmpPassthroughResourceRequestHandler extends NcmpDatastoreRequestH
                 "Asynchronous request is unavailable as notification feature is currently disabled.");
         }
         final String requestId = UUID.randomUUID().toString();
-        networkCmProxyDataService.executeDataOperationForCmHandles(topicParamInQuery, dataOperationRequest, requestId,
+        networkCmProxyFacade.executeDataOperationForCmHandles(topicParamInQuery, dataOperationRequest, requestId,
             authorization);
         return Map.of("requestId", requestId);
 
@@ -76,7 +75,7 @@ public class NcmpPassthroughResourceRequestHandler extends NcmpDatastoreRequestH
                                                       final String requestId,
                                                       final boolean includeDescendants,
                                                       final String authorization) {
-        return networkCmProxyDataService.getResourceDataForCmHandle(cmResourceAddress, optionsParamInQuery,
+        return networkCmProxyFacade.getResourceDataForCmHandle(cmResourceAddress, optionsParamInQuery,
                 topicParamInQuery, requestId, authorization);
     }
 

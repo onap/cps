@@ -20,7 +20,6 @@
 
 package org.onap.cps.ncmp.api.impl
 
-import org.onap.cps.ncmp.api.NetworkCmProxyDataService
 import org.onap.cps.ncmp.api.impl.exception.InvalidDatastoreException
 import org.onap.cps.ncmp.api.impl.exception.InvalidOperationException
 import org.onap.cps.ncmp.api.models.CmResourceAddress
@@ -35,9 +34,9 @@ import spock.lang.Specification
 
 class NcmpDatastoreRequestHandlerSpec extends Specification {
 
-    def mockNetworkCmProxyDataService = Mock(NetworkCmProxyDataService)
+    def mockNetworkCmProxyFacada = Mock(NetworkCmProxyFacade)
 
-    def objectUnderTest = new NcmpPassthroughResourceRequestHandler(mockNetworkCmProxyDataService)
+    def objectUnderTest = new NcmpPassthroughResourceRequestHandler(mockNetworkCmProxyFacada)
 
     def NO_AUTH_HEADER = null
 
@@ -53,7 +52,7 @@ class NcmpDatastoreRequestHandlerSpec extends Specification {
         and: 'the (mocked) service when called with the correct parameters returns a response from dmi'
             def resultFromDmi = new ResponseEntity('response from dmi',HttpStatus.I_AM_A_TEAPOT)
             def synchronousResult = Mono.justOrEmpty(resultFromDmi)
-            mockNetworkCmProxyDataService.getResourceDataForCmHandle(cmResourceAddress, 'options', _, _, NO_AUTH_HEADER) >> synchronousResult
+            mockNetworkCmProxyFacada.getResourceDataForCmHandle(cmResourceAddress, 'options', _, _, NO_AUTH_HEADER) >> synchronousResult
         when: 'get request is executed with topic = #topic'
             def response = objectUnderTest.executeRequest(cmResourceAddress, 'options', topic, false, NO_AUTH_HEADER)
         then: 'a successful result with/without request id is returned'
@@ -74,13 +73,13 @@ class NcmpDatastoreRequestHandlerSpec extends Specification {
 
     def 'Attempt to execute async data operation request with feature #scenario.'() {
         given: 'a extended request handler that supports bulk requests'
-           def objectUnderTest = new NcmpPassthroughResourceRequestHandler(mockNetworkCmProxyDataService)
+           def objectUnderTest = new NcmpPassthroughResourceRequestHandler(mockNetworkCmProxyFacada)
         and: 'notification feature is turned on/off'
             objectUnderTest.notificationFeatureEnabled = notificationFeatureEnabled
         when: 'data operation request is executed'
             objectUnderTest.executeRequest('someTopic', new DataOperationRequest(), NO_AUTH_HEADER)
         then: 'the task is executed in an async fashion or not'
-            expectedCalls * mockNetworkCmProxyDataService.executeDataOperationForCmHandles('someTopic', _, _, null)
+            expectedCalls * mockNetworkCmProxyFacada.executeDataOperationForCmHandles('someTopic', _, _, null)
         where: 'the following parameters are used'
             scenario | notificationFeatureEnabled || expectedCalls
             'on'     | true                       || 1
@@ -98,7 +97,7 @@ class NcmpDatastoreRequestHandlerSpec extends Specification {
         and: 'a map with request id is returned'
             assert response.keySet()[0] == 'requestId'
         then: 'the network service is invoked'
-            1 * mockNetworkCmProxyDataService.executeDataOperationForCmHandles('myTopic', dataOperationRequest, _, NO_AUTH_HEADER)
+            1 * mockNetworkCmProxyFacada.executeDataOperationForCmHandles('myTopic', dataOperationRequest, _, NO_AUTH_HEADER)
         where: 'the following datastores are used'
             datastore << ['ncmp-datastore:passthrough-running', 'ncmp-datastore:passthrough-operational']
     }

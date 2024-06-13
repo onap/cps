@@ -38,7 +38,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueries;
+import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueryService;
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleState;
 import org.onap.cps.ncmp.api.impl.inventory.CompositeState;
 import org.onap.cps.ncmp.api.impl.inventory.DataStoreSyncState;
@@ -57,7 +57,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ModuleOperationsUtils {
 
-    private final CmHandleQueries cmHandleQueries;
+    private final CmHandleQueryService cmHandleQueryService;
     private final DmiDataOperations dmiDataOperations;
     private final JsonObjectMapper jsonObjectMapper;
     private static final String RETRY_ATTEMPT_KEY = "attempt";
@@ -78,7 +78,8 @@ public class ModuleOperationsUtils {
      * @return cm handles (data nodes) in ADVISED state (empty list if none found)
      */
     public List<DataNode> getAdvisedCmHandles() {
-        final List<DataNode> advisedCmHandlesAsDataNodes = cmHandleQueries.queryCmHandlesByState(CmHandleState.ADVISED);
+        final List<DataNode> advisedCmHandlesAsDataNodes =
+            cmHandleQueryService.queryCmHandlesByState(CmHandleState.ADVISED);
         log.debug("Total number of fetched advised cm handle(s) is (are) {}", advisedCmHandlesAsDataNodes.size());
         return advisedCmHandlesAsDataNodes;
     }
@@ -91,13 +92,13 @@ public class ModuleOperationsUtils {
      *         return empty list if not found
      */
     public List<YangModelCmHandle> getUnsynchronizedReadyCmHandles() {
-        final List<DataNode> unsynchronizedCmHandles = cmHandleQueries
+        final List<DataNode> unsynchronizedCmHandles = cmHandleQueryService
                 .queryCmHandlesByOperationalSyncState(DataStoreSyncState.UNSYNCHRONIZED);
 
         final List<YangModelCmHandle> yangModelCmHandles = new ArrayList<>();
         for (final DataNode unsynchronizedCmHandle : unsynchronizedCmHandles) {
             final String cmHandleId = unsynchronizedCmHandle.getLeaves().get("id").toString();
-            if (cmHandleQueries.cmHandleHasState(cmHandleId, CmHandleState.READY)) {
+            if (cmHandleQueryService.cmHandleHasState(cmHandleId, CmHandleState.READY)) {
                 yangModelCmHandles.addAll(convertCmHandlesDataNodesToYangModelCmHandles(
                                 Collections.singletonList(unsynchronizedCmHandle)));
             }
@@ -113,7 +114,7 @@ public class ModuleOperationsUtils {
      */
     public List<YangModelCmHandle> getCmHandlesThatFailedModelSyncOrUpgrade() {
         final List<DataNode> lockedCmHandlesAsDataNodeList
-                = cmHandleQueries.queryCmHandleAncestorsByCpsPath(CPS_PATH_CM_HANDLES_MODEL_SYNC_FAILED_OR_UPGRADE,
+                = cmHandleQueryService.queryCmHandleAncestorsByCpsPath(CPS_PATH_CM_HANDLES_MODEL_SYNC_FAILED_OR_UPGRADE,
                 FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
         return convertCmHandlesDataNodesToYangModelCmHandles(lockedCmHandlesAsDataNodeList);
     }

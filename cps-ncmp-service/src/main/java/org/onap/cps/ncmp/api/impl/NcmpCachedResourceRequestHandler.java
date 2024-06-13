@@ -21,8 +21,7 @@
 package org.onap.cps.ncmp.api.impl;
 
 import java.util.Collection;
-import lombok.RequiredArgsConstructor;
-import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
+import lombok.AllArgsConstructor;
 import org.onap.cps.ncmp.api.NetworkCmProxyQueryService;
 import org.onap.cps.ncmp.api.models.CmResourceAddress;
 import org.onap.cps.spi.FetchDescendantsOption;
@@ -31,10 +30,16 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class NcmpCachedResourceRequestHandler extends NcmpDatastoreRequestHandler {
 
-    private final NetworkCmProxyDataService networkCmProxyDataService;
+    /**
+     * TODO The old 'networkCmProxyDataService' has over time been 'polluted' with non-data methods
+     * It now effectively has become (and been renamed) to a facade. The controller should use (only) the
+     * Facade. In turn the facade should choose handlers etc. and pass on the call
+     */
+
+    private final NetworkCmProxyFacade networkCmProxyFacade;
     private final NetworkCmProxyQueryService networkCmProxyQueryService;
 
     /**
@@ -61,8 +66,9 @@ public class NcmpCachedResourceRequestHandler extends NcmpDatastoreRequestHandle
                                                       final boolean includeDescendants,
                                                       final String authorization) {
         final FetchDescendantsOption fetchDescendantsOption = getFetchDescendantsOption(includeDescendants);
+
         return Mono.fromSupplier(
-                () -> networkCmProxyDataService.getResourceDataForCmHandle(cmResourceAddress, fetchDescendantsOption));
+                () -> networkCmProxyFacade.getResourceDataForCmHandle(cmResourceAddress, fetchDescendantsOption));
     }
 
     private static FetchDescendantsOption getFetchDescendantsOption(final boolean includeDescendants) {
