@@ -21,7 +21,7 @@
 package org.onap.cps.integration.functional
 
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
-import org.onap.cps.ncmp.api.NetworkCmProxyDataService
+import org.onap.cps.ncmp.api.impl.NetworkCmProxyInventoryFacade
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
 import org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse
@@ -31,13 +31,13 @@ import spock.util.concurrent.PollingConditions
 
 class NcmpCmHandleUpgradeSpec extends CpsIntegrationSpecBase {
 
-    NetworkCmProxyDataService objectUnderTest
+    NetworkCmProxyInventoryFacade objectUnderTest
 
     static final CM_HANDLE_ID = 'ch-1'
     static final CM_HANDLE_ID_WITH_EXISTING_MODULE_SET_TAG = 'ch-2'
 
     def setup() {
-        objectUnderTest = networkCmProxyDataService
+        objectUnderTest = networkCmProxyInventoryFacade
     }
 
     def 'Upgrade CM-handle with new moduleSetTag or no moduleSetTag.'() {
@@ -48,7 +48,7 @@ class NcmpCmHandleUpgradeSpec extends CpsIntegrationSpecBase {
 
         when: "the CM-handle is upgraded with given moduleSetTag '${updatedModuleSetTag}'"
             def cmHandlesToUpgrade = new UpgradedCmHandles(cmHandles: [CM_HANDLE_ID], moduleSetTag: updatedModuleSetTag)
-            def dmiPluginRegistrationResponse = networkCmProxyDataService.updateDmiRegistrationAndSyncModule(
+            def dmiPluginRegistrationResponse = objectUnderTest.updateDmiRegistrationAndSyncModule(
                     new DmiPluginRegistration(dmiPlugin: DMI_URL, upgradedCmHandles: cmHandlesToUpgrade))
 
         then: 'registration gives successful response'
@@ -101,7 +101,7 @@ class NcmpCmHandleUpgradeSpec extends CpsIntegrationSpecBase {
 
         when: "CM-handle is upgraded to moduleSetTag '${updatedModuleSetTag}'"
             def cmHandlesToUpgrade = new UpgradedCmHandles(cmHandles: [CM_HANDLE_ID], moduleSetTag: updatedModuleSetTag)
-            def dmiPluginRegistrationResponse = networkCmProxyDataService.updateDmiRegistrationAndSyncModule(
+            def dmiPluginRegistrationResponse = objectUnderTest.updateDmiRegistrationAndSyncModule(
                     new DmiPluginRegistration(dmiPlugin: DMI_URL, upgradedCmHandles: cmHandlesToUpgrade))
 
         then: 'registration gives successful response'
@@ -139,7 +139,7 @@ class NcmpCmHandleUpgradeSpec extends CpsIntegrationSpecBase {
 
         when: 'CM-handle is upgraded with the same moduleSetTag'
             def cmHandlesToUpgrade = new UpgradedCmHandles(cmHandles: [CM_HANDLE_ID], moduleSetTag: 'same')
-            networkCmProxyDataService.updateDmiRegistrationAndSyncModule(
+            objectUnderTest.updateDmiRegistrationAndSyncModule(
                     new DmiPluginRegistration(dmiPlugin: DMI_URL, upgradedCmHandles: cmHandlesToUpgrade))
 
         then: 'CM-handle remains in READY state'
@@ -164,7 +164,7 @@ class NcmpCmHandleUpgradeSpec extends CpsIntegrationSpecBase {
 
         when: 'the CM-handle is upgraded'
             def cmHandlesToUpgrade = new UpgradedCmHandles(cmHandles: [CM_HANDLE_ID], moduleSetTag: 'newTag')
-            networkCmProxyDataService.updateDmiRegistrationAndSyncModule(
+            objectUnderTest.updateDmiRegistrationAndSyncModule(
                     new DmiPluginRegistration(dmiPlugin: DMI_URL, upgradedCmHandles: cmHandlesToUpgrade))
 
         and: 'module sync runs'

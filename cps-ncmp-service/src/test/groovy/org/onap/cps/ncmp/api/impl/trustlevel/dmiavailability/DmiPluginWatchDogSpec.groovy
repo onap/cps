@@ -20,8 +20,8 @@
 
 package org.onap.cps.ncmp.api.impl.trustlevel.dmiavailability
 
-import org.onap.cps.ncmp.api.NetworkCmProxyDataService
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient
+import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueryService
 import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel
 import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevelManager
 import spock.lang.Specification
@@ -29,15 +29,12 @@ import spock.lang.Specification
 class DmiPluginWatchDogSpec extends Specification {
 
     def mockDmiRestClient = Mock(DmiRestClient)
-    def mockNetworkCmProxyDataService = Mock(NetworkCmProxyDataService)
+    def mockCmHandleQueryService = Mock(CmHandleQueryService)
     def mockTrustLevelManager = Mock(TrustLevelManager)
     def trustLevelPerDmiPlugin = [:]
 
 
-    def objectUnderTest = new DmiPluginWatchDog(mockDmiRestClient,
-        mockNetworkCmProxyDataService,
-        mockTrustLevelManager,
-        trustLevelPerDmiPlugin)
+    def objectUnderTest = new DmiPluginWatchDog(mockDmiRestClient, mockCmHandleQueryService, mockTrustLevelManager, trustLevelPerDmiPlugin)
 
     def 'watch dmi plugin health status for #dmiHealhStatus'() {
         given: 'the cache has been initialised and "knows" about dmi-1'

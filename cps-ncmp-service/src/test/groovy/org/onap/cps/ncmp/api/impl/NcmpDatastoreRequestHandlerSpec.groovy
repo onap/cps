@@ -20,48 +20,44 @@
 
 package org.onap.cps.ncmp.api.impl
 
-import org.onap.cps.ncmp.api.NetworkCmProxyDataService
 import org.onap.cps.ncmp.api.impl.exception.InvalidDatastoreException
 import org.onap.cps.ncmp.api.impl.exception.InvalidOperationException
+import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations
 import org.onap.cps.ncmp.api.models.CmResourceAddress
 import org.onap.cps.ncmp.api.models.DataOperationDefinition
 import org.onap.cps.ncmp.api.models.DataOperationRequest
 import org.onap.cps.ncmp.exceptions.OperationNotSupportedException
 import org.onap.cps.ncmp.exceptions.PayloadTooLargeException
-import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import reactor.core.publisher.Mono
 import spock.lang.Specification
 
+import static org.springframework.http.HttpStatus.I_AM_A_TEAPOT
+
 class NcmpDatastoreRequestHandlerSpec extends Specification {
 
-    def mockNetworkCmProxyDataService = Mock(NetworkCmProxyDataService)
+    def dmiDataOperations = Mock(DmiDataOperations)
 
-    def objectUnderTest = new NcmpPassthroughResourceRequestHandler(mockNetworkCmProxyDataService)
+    def objectUnderTest = new NcmpPassthroughResourceRequestHandler(dmiDataOperations)
 
+    def NO_TOPIC = null
     def NO_AUTH_HEADER = null
-
-    def setup() {
-        objectUnderTest.timeOutInMilliSeconds = 100
-    }
 
     def 'Attempt to execute async get request with #scenario.'() {
         given: 'notification feature is turned on/off'
             objectUnderTest.notificationFeatureEnabled = notificationFeatureEnabled
         and: 'a CM resource address'
             def cmResourceAddress = new CmResourceAddress('ds', 'ch1', 'resource1')
-        and: 'the (mocked) service when called with the correct parameters returns a response from dmi'
-            def resultFromDmi = new ResponseEntity('response from dmi',HttpStatus.I_AM_A_TEAPOT)
-            def synchronousResult = Mono.justOrEmpty(resultFromDmi)
-            mockNetworkCmProxyDataService.getResourceDataForCmHandle(cmResourceAddress, 'options', _, _, NO_AUTH_HEADER) >> synchronousResult
+        and: 'the (mocked) service when called with the correct parameters (with or without topic) returns a response from dmi'
+            def dmiResponse = Mono.justOrEmpty(new ResponseEntity('dmi response',I_AM_A_TEAPOT))
+            dmiDataOperations.getResourceDataFromDmi(cmResourceAddress, 'options', NO_TOPIC, _, NO_AUTH_HEADER) >> dmiResponse
+            dmiDataOperations.getResourceDataFromDmi(cmResourceAddress, 'options', topic, _, NO_AUTH_HEADER) >> dmiResponse
         when: 'get request is executed with topic = #topic'
             def response = objectUnderTest.executeRequest(cmResourceAddress, 'options', topic, false, NO_AUTH_HEADER)
         then: 'a successful result with/without request id is returned'
             if (expectSynchronousResponse) {
-                assert response.toString().contains('response from dmi')
-                assert response.toString().contains("I'm a teapot")
-            } else {
-                // expect request id in a map
+                assert response == 'dmi response'
+            } else { // expect request id in a map
                 assert response.keySet()[0] == 'requestId'
             }
         where: 'the following parameters are used'
@@ -74,33 +70,20 @@ class NcmpDatastoreRequestHandlerSpec extends Specification {
 
     def 'Attempt to execute async data operation request with feature #scenario.'() {
         given: 'a extended request handler that supports bulk requests'
-           def objectUnderTest = new NcmpPassthroughResourceRequestHandler(mockNetworkCmProxyDataService)
+           def objectUnderTest = new NcmpPassthroughResourceRequestHandler(dmiDataOperations)
         and: 'notification feature is turned on/off'
             objectUnderTest.notificationFeatureEnabled = notificationFeatureEnabled
         when: 'data operation request is executed'
-            objectUnderTest.executeRequest('someTopic', new DataOperationRequest(), NO_AUTH_HEADER)
+            def dataOperationDefinition = new DataOperationDefinition(operation: 'read', datastore: 'ncmp-datastore:passthrough-running', cmHandleIds: ['ch'])
+            def result = objectUnderTest.executeAsynchronousRequest('someTopic', new DataOperationRequest(dataOperationDefinitions:[dataOperationDefinition]), NO_AUTH_HEADER)
         then: 'the task is executed in an async fashion or not'
-            expectedCalls * mockNetworkCmProxyDataService.executeDataOperationForCmHandles('someTopic', _, _, null)
+            expectedCalls * dmiDataOperations.requestResourceDataFromDmi('someTopic', _, _, NO_AUTH_HEADER)
+        and:
+            result.keySet()[0] == expectedKeyInMap
         where: 'the following parameters are used'
-            scenario | notificationFeatureEnabled || expectedCalls
-            'on'     | true                       || 1
-            'off'    | false                      || 0
-    }
-
-    def 'Execute async data operation request with datastore #datastore.'() {
-        given: 'notification feature is turned on'
-            objectUnderTest.notificationFeatureEnabled = true
-        and: 'a data operation request with datastore: #datastore'
-            def dataOperationDefinition = new DataOperationDefinition(operation: 'read', datastore: datastore)
-            def dataOperationRequest = new DataOperationRequest(dataOperationDefinitions: [dataOperationDefinition])
-        when: 'data operation request is executed'
-            def response = objectUnderTest.executeRequest('myTopic', dataOperationRequest, NO_AUTH_HEADER)
-        and: 'a map with request id is returned'
-            assert response.keySet()[0] == 'requestId'
-        then: 'the network service is invoked'
-            1 * mockNetworkCmProxyDataService.executeDataOperationForCmHandles('myTopic', dataOperationRequest, _, NO_AUTH_HEADER)
-        where: 'the following datastores are used'
-            datastore << ['ncmp-datastore:passthrough-running', 'ncmp-datastore:passthrough-operational']
+            scenario | notificationFeatureEnabled || expectedCalls || expectedKeyInMap
+            'on'     | true                       || 1             || 'requestId'
+            'off'    | false                      || 0             || 'status'
     }
 
     def 'Attempt to execute async data operation request with error #scenario'() {
@@ -108,7 +91,7 @@ class NcmpDatastoreRequestHandlerSpec extends Specification {
             def dataOperationDefinition = new DataOperationDefinition(operation: 'read', datastore: datastore)
         when: 'data operation request is executed'
             def dataOperationRequest = new DataOperationRequest(dataOperationDefinitions: [dataOperationDefinition])
-            objectUnderTest.executeRequest('myTopic', dataOperationRequest, NO_AUTH_HEADER)
+            objectUnderTest.executeAsynchronousRequest('myTopic', dataOperationRequest, NO_AUTH_HEADER)
         then: 'the correct error is thrown'
             def thrown = thrown(InvalidDatastoreException)
             assert thrown.message.contains(expectedErrorMessage)
@@ -122,7 +105,7 @@ class NcmpDatastoreRequestHandlerSpec extends Specification {
         given: 'a data operation definition with operation: #operation'
             def dataOperationDefinition = new DataOperationDefinition(operation: operation, datastore: 'ncmp-datastore:passthrough-running')
         when: 'data operation request is executed'
-            objectUnderTest.executeRequest('someTopic', new DataOperationRequest(dataOperationDefinitions:[dataOperationDefinition]), NO_AUTH_HEADER)
+            objectUnderTest.executeAsynchronousRequest('someTopic', new DataOperationRequest(dataOperationDefinitions:[dataOperationDefinition]), NO_AUTH_HEADER)
         then: 'the expected type of exception is thrown'
             thrown(expectedException)
         where: 'the following operations are used'
@@ -136,11 +119,11 @@ class NcmpDatastoreRequestHandlerSpec extends Specification {
 
     def 'Attempt to execute async data operation request with too many cm handles.'() {
         given: 'a data operation definition with too many cm handles'
-            def tooMany = objectUnderTest.MAXIMUM_CM_HANDLES_PER_OPERATION+1
+            def tooMany = objectUnderTest.MAXIMUM_CM_HANDLES_PER_OPERATION + 1
             def cmHandleIds = new String[tooMany]
             def dataOperationDefinition = new DataOperationDefinition(operationId: 'abc', operation: 'read', datastore: 'ncmp-datastore:passthrough-running', cmHandleIds: cmHandleIds)
         when: 'data operation request is executed'
-            objectUnderTest.executeRequest('someTopic', new DataOperationRequest(dataOperationDefinitions:[dataOperationDefinition]), NO_AUTH_HEADER)
+            objectUnderTest.executeAsynchronousRequest('someTopic', new DataOperationRequest(dataOperationDefinitions:[dataOperationDefinition]), NO_AUTH_HEADER)
         then: 'a payload too large exception is thrown'
             def exceptionThrown = thrown(PayloadTooLargeException)
         and: 'the error message contains the offending number of cm handles'

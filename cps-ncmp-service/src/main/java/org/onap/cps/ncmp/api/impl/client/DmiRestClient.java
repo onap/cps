@@ -86,12 +86,11 @@ public class DmiRestClient {
                                                             final String requestBodyAsJsonString,
                                                             final OperationType operationType,
                                                             final String authorization) {
-        try {
-            return postOperationWithJsonDataAsync(requiredDmiService, dmiUrl, requestBodyAsJsonString, operationType,
-                    authorization).block();
-        } catch (final HttpServerErrorException e) {
-            throw handleDmiClientException(e, operationType.getOperationName());
-        }
+        return asynchronousPostOperationWithJsonData(requiredDmiService,
+                                                     dmiUrl,
+                                                     requestBodyAsJsonString,
+                                                     operationType,
+                                                     authorization).block();
     }
 
     /**
@@ -105,11 +104,12 @@ public class DmiRestClient {
      * @param authorization           The authorization token to be added to the request headers.
      * @return A Mono emitting the response entity containing the server's response.
      */
-    public Mono<ResponseEntity<Object>> postOperationWithJsonDataAsync(final RequiredDmiService requiredDmiService,
-                                                                       final String dmiUrl,
-                                                                       final String requestBodyAsJsonString,
-                                                                       final OperationType operationType,
-                                                                       final String authorization) {
+    public Mono<ResponseEntity<Object>> asynchronousPostOperationWithJsonData(
+                                                            final RequiredDmiService requiredDmiService,
+                                                            final String dmiUrl,
+                                                            final String requestBodyAsJsonString,
+                                                            final OperationType operationType,
+                                                            final String authorization) {
         final WebClient webClient = getWebClient(requiredDmiService);
         return webClient.post()
                 .uri(toUri(dmiUrl))

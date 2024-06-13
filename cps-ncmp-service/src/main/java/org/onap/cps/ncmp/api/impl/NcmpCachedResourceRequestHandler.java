@@ -21,8 +21,8 @@
 package org.onap.cps.ncmp.api.impl;
 
 import java.util.Collection;
-import lombok.RequiredArgsConstructor;
-import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
+import lombok.AllArgsConstructor;
+import org.onap.cps.api.CpsDataService;
 import org.onap.cps.ncmp.api.NetworkCmProxyQueryService;
 import org.onap.cps.ncmp.api.models.CmResourceAddress;
 import org.onap.cps.spi.FetchDescendantsOption;
@@ -31,10 +31,10 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class NcmpCachedResourceRequestHandler extends NcmpDatastoreRequestHandler {
 
-    private final NetworkCmProxyDataService networkCmProxyDataService;
+    private final CpsDataService cpsDataService;
     private final NetworkCmProxyQueryService networkCmProxyQueryService;
 
     /**
@@ -61,8 +61,12 @@ public class NcmpCachedResourceRequestHandler extends NcmpDatastoreRequestHandle
                                                       final boolean includeDescendants,
                                                       final String authorization) {
         final FetchDescendantsOption fetchDescendantsOption = getFetchDescendantsOption(includeDescendants);
-        return Mono.fromSupplier(
-                () -> networkCmProxyDataService.getResourceDataForCmHandle(cmResourceAddress, fetchDescendantsOption));
+
+        final DataNode dataNode = cpsDataService.getDataNodes(cmResourceAddress.datastoreName(),
+            cmResourceAddress.cmHandleId(),
+            cmResourceAddress.resourceIdentifier(),
+            fetchDescendantsOption).iterator().next();
+        return Mono.justOrEmpty(dataNode);
     }
 
     private static FetchDescendantsOption getFetchDescendantsOption(final boolean includeDescendants) {

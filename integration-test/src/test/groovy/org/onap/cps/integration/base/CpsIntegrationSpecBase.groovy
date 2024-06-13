@@ -21,6 +21,9 @@
 
 package org.onap.cps.integration.base
 
+import org.onap.cps.ncmp.api.impl.NetworkCmProxyFacade
+import org.onap.cps.ncmp.api.impl.NetworkCmProxyInventoryFacade
+
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT
@@ -36,8 +39,7 @@ import org.onap.cps.api.CpsModuleService
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.integration.DatabaseTestContainer
 import org.onap.cps.integration.KafkaTestContainer
-import org.onap.cps.ncmp.api.NetworkCmProxyCmHandleQueryService
-import org.onap.cps.ncmp.api.NetworkCmProxyDataService
+import org.onap.cps.ncmp.api.ParameterizedCmHandleQueryService
 import org.onap.cps.ncmp.api.NetworkCmProxyQueryService
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
 import org.onap.cps.ncmp.api.impl.inventory.sync.ModuleSyncWatchdog
@@ -100,10 +102,13 @@ abstract class CpsIntegrationSpecBase extends Specification {
     SessionManager sessionManager
 
     @Autowired
-    NetworkCmProxyCmHandleQueryService networkCmProxyCmHandleQueryService
+    ParameterizedCmHandleQueryService networkCmProxyCmHandleQueryService
 
     @Autowired
-    NetworkCmProxyDataService networkCmProxyDataService
+    NetworkCmProxyFacade networkCmProxyFacade
+
+    @Autowired
+    NetworkCmProxyInventoryFacade NetworkCmProxyInventoryFacade
 
     @Autowired
     NetworkCmProxyQueryService networkCmProxyQueryService
@@ -212,10 +217,10 @@ abstract class CpsIntegrationSpecBase extends Specification {
 
     def registerCmHandle(dmiPlugin, cmHandleId, moduleSetTag) {
         def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: cmHandleId, moduleSetTag: moduleSetTag)
-        networkCmProxyDataService.updateDmiRegistrationAndSyncModule(new DmiPluginRegistration(dmiPlugin: dmiPlugin, createdCmHandles: [cmHandleToCreate]))
+        networkCmProxyInventoryFacade.updateDmiRegistrationAndSyncModule(new DmiPluginRegistration(dmiPlugin: dmiPlugin, createdCmHandles: [cmHandleToCreate]))
         moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
         new PollingConditions().within(3, () -> {
-            CmHandleState.READY == networkCmProxyDataService.getCmHandleCompositeState(cmHandleId).cmHandleState
+            CmHandleState.READY == networkCmProxyInventoryFacade.getCmHandleCompositeState(cmHandleId).cmHandleState
         })
     }
 
@@ -224,7 +229,7 @@ abstract class CpsIntegrationSpecBase extends Specification {
     }
 
     def deregisterCmHandles(dmiPlugin, cmHandleIds) {
-        networkCmProxyDataService.updateDmiRegistrationAndSyncModule(new DmiPluginRegistration(dmiPlugin: dmiPlugin, removedCmHandles: cmHandleIds))
+        networkCmProxyInventoryFacade.updateDmiRegistrationAndSyncModule(new DmiPluginRegistration(dmiPlugin: dmiPlugin, removedCmHandles: cmHandleIds))
     }
 
     def overrideCmHandleLastUpdateTime(cmHandleId, newUpdateTime) {

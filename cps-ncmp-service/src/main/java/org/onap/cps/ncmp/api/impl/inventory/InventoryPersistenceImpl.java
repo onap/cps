@@ -57,7 +57,7 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
     private final CpsModuleService cpsModuleService;
     private final CpsAnchorService cpsAnchorService;
     private final CpsValidator cpsValidator;
-    private final CmHandleQueries cmHandleQueries;
+    private final CmHandleQueryService cmHandleQueryService;
 
     /**
      * initialize an inventory persistence object.
@@ -70,12 +70,13 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
      */
     public InventoryPersistenceImpl(final JsonObjectMapper jsonObjectMapper, final CpsDataService cpsDataService,
                                     final CpsModuleService cpsModuleService, final CpsValidator cpsValidator,
-                                    final CpsAnchorService cpsAnchorService, final CmHandleQueries cmHandleQueries) {
+                                    final CpsAnchorService cpsAnchorService,
+                                    final CmHandleQueryService cmHandleQueryService) {
         super(jsonObjectMapper, cpsDataService, cpsModuleService, cpsValidator);
         this.cpsModuleService = cpsModuleService;
         this.cpsAnchorService = cpsAnchorService;
         this.cpsValidator = cpsValidator;
-        this.cmHandleQueries = cmHandleQueries;
+        this.cmHandleQueryService = cmHandleQueryService;
     }
 
 
@@ -170,7 +171,7 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
     @Override
     public DataNode getCmHandleDataNodeByAlternateId(final String alternateId) {
         final String cpsPathForCmHandleByAlternateId = getCpsPathForCmHandleByAlternateId(alternateId);
-        final Collection<DataNode> dataNodes = cmHandleQueries
+        final Collection<DataNode> dataNodes = cmHandleQueryService
             .queryNcmpRegistryByCpsPath(cpsPathForCmHandleByAlternateId, OMIT_DESCENDANTS);
         if (dataNodes.isEmpty()) {
             throw new DataNodeNotFoundException(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
