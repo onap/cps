@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8563f101_2248a4f5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-13T09:36:33Z",
+      "side": 1,
+      "message": "Just NB comment otherwise it is good to me.",
+      "revId": "910a72c4b504419bafbf09e782ddc36c43e691e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96607c1d_f86e029a",
+        "filename": "k6-tests/ncmp/1-create-cmhandles.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-13T09:36:33Z",
+      "side": 1,
+      "message": "NB: Difficult to read what this variable\u0027s value is.\n\nIs it possible to give some constant integer other than a variable, if that has not been changed dynamically.",
+      "range": {
+        "startLine": 36,
+        "startChar": 70,
+        "endLine": 36,
+        "endChar": 99
+      },
+      "revId": "910a72c4b504419bafbf09e782ddc36c43e691e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d630dfd9_d202cf2e",
+        "filename": "k6-tests/ncmp/11-delete-cmhandles.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-13T09:36:33Z",
+      "side": 1,
+      "message": "NB: Difficult to read what this variable\u0027s value is.\n\nIs it possible to give some constant integer other than a variable, if that has not been changed dynamically.",
+      "range": {
+        "startLine": 36,
+        "startChar": 70,
+        "endLine": 36,
+        "endChar": 99
+      },
+      "revId": "910a72c4b504419bafbf09e782ddc36c43e691e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
