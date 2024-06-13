@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7cb3952f_475597ba",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreRequestHandlerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-13T09:43:14Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8b5ac8ed_14e24901",
+      "range": {
+        "startLine": 103,
+        "startChar": 14,
+        "endLine": 103,
+        "endChar": 34
+      },
+      "revId": "255bba080245afe495f6f58b3ccfba6f62799aa1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2ca2c0c7_c776290e",
@@ -71,6 +95,30 @@
       "writtenOn": "2024-06-13T09:09:37Z",
       "side": 1,
       "message": "NB: do things in teh right order, this line shoudl be after #239",
+      "range": {
+        "startLine": 237,
+        "startChar": 0,
+        "endLine": 238,
+        "endChar": 75
+      },
+      "revId": "255bba080245afe495f6f58b3ccfba6f62799aa1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d429446_9f4506b5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-13T09:43:14Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2ca2c0c7_c776290e",
       "range": {
         "startLine": 237,
         "startChar": 0,
