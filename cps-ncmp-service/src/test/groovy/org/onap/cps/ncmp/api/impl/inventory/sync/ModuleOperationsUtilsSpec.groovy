@@ -35,7 +35,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations
-import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueries
+import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueryService
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
 import org.onap.cps.ncmp.api.impl.inventory.CompositeState
 import org.onap.cps.ncmp.api.impl.inventory.CompositeStateBuilder
@@ -52,7 +52,7 @@ import java.util.stream.Collectors
 
 class ModuleOperationsUtilsSpec extends Specification{
 
-    def mockCmHandleQueries = Mock(CmHandleQueries)
+    def mockCmHandleQueries = Mock(CmHandleQueryService)
 
     def mockDmiDataOperations = Mock(DmiDataOperations)
 
@@ -202,7 +202,7 @@ class ModuleOperationsUtilsSpec extends Specification{
             def jsonString = '{"stores:bookstore":{"categories":[{"code":"01"}]}}'
             JsonNode jsonNode = jsonObjectMapper.convertToJsonNode(jsonString);
             def responseEntity = new ResponseEntity<>(jsonNode, HttpStatus.OK)
-            mockDmiDataOperations.getResourceDataFromDmi(PASSTHROUGH_OPERATIONAL.datastoreName, 'cm-handle-123', _) >> responseEntity
+            mockDmiDataOperations.getAllResourceDataFromDmi('cm-handle-123', _) >> responseEntity
         when: 'get resource data is called'
             def result = objectUnderTest.getResourceData('cm-handle-123')
         then: 'the returned data is correct'

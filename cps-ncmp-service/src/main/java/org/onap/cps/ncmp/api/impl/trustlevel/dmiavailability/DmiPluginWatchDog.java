@@ -24,9 +24,9 @@ import java.util.Collection;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
 import org.onap.cps.ncmp.api.impl.config.embeddedcache.TrustLevelCacheConfig;
+import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueryService;
 import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel;
 import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevelManager;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -39,7 +39,7 @@ import org.springframework.stereotype.Service;
 public class DmiPluginWatchDog {
 
     private final DmiRestClient dmiRestClient;
-    private final NetworkCmProxyDataService networkCmProxyDataService;
+    private final CmHandleQueryService cmHandleQueryService;
     private final TrustLevelManager trustLevelManager;
 
     @Qualifier(TrustLevelCacheConfig.TRUST_LEVEL_PER_DMI_PLUGIN)
@@ -68,7 +68,7 @@ public class DmiPluginWatchDog {
                 log.debug("The Dmi Plugin: {} has already the same trust level: {}", dmiServiceName, newDmiTrustLevel);
             } else {
                 final Collection<String> cmHandleIds =
-                    networkCmProxyDataService.getAllCmHandleIdsByDmiPluginIdentifier(dmiServiceName);
+                    cmHandleQueryService.getCmHandleIdsByDmiPluginIdentifier(dmiServiceName);
                 trustLevelManager.handleUpdateOfDmiTrustLevel(dmiServiceName, cmHandleIds, newDmiTrustLevel);
             }
         });

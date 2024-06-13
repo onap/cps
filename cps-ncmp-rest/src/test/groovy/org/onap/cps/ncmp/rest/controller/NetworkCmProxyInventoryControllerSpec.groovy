@@ -23,7 +23,9 @@ package org.onap.cps.ncmp.rest.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.TestUtils
-import org.onap.cps.ncmp.api.NetworkCmProxyDataService
+import org.onap.cps.ncmp.api.impl.NetworkCmProxyFacade
+import org.onap.cps.ncmp.api.impl.NetworkCmProxyInventoryFacade
+import org.onap.cps.ncmp.api.models.CmHandleQueryServiceParameters
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse
 import org.onap.cps.ncmp.api.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse
@@ -31,7 +33,6 @@ import org.onap.cps.ncmp.rest.model.CmHandleQueryParameters
 import org.onap.cps.ncmp.rest.model.CmHandlerRegistrationErrorResponse
 import org.onap.cps.ncmp.rest.model.DmiPluginRegistrationErrorResponse
 import org.onap.cps.ncmp.rest.model.RestDmiPluginRegistration
-import org.onap.cps.ncmp.api.models.CmHandleQueryServiceParameters
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
@@ -54,7 +55,7 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
     MockMvc mvc
 
     @SpringBean
-    NetworkCmProxyDataService mockNetworkCmProxyDataService = Mock()
+    NetworkCmProxyInventoryFacade mockNetworkCmProxyInventoryFacade = Mock()
 
     @SpringBean
     NcmpRestInputMapper ncmpRestInputMapper = Mock()
@@ -83,7 +84,7 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
                     .content(jsonData)
             ).andReturn().response
         then: 'the converted object is forwarded to the registration service'
-            1 * mockNetworkCmProxyDataService.updateDmiRegistrationAndSyncModule(mockDmiPluginRegistration) >> new DmiPluginRegistrationResponse()
+            1 * mockNetworkCmProxyInventoryFacade.updateDmiRegistrationAndSyncModule(mockDmiPluginRegistration) >> new DmiPluginRegistrationResponse()
         and: 'response status is no content'
             response.status == HttpStatus.OK.value()
         where: 'the following registration json is used'
@@ -112,7 +113,7 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
         and: 'the mapper service returns a converted object'
             ncmpRestInputMapper.toCmHandleQueryServiceParameters(_) >> cmHandleQueryServiceParameters
         and: 'the service returns the desired results'
-            mockNetworkCmProxyDataService.executeCmHandleIdSearchForInventory(cmHandleQueryServiceParameters) >> serviceMockResponse
+            mockNetworkCmProxyInventoryFacade.executeParameterizedCmHandleIdSearch(cmHandleQueryServiceParameters) >> serviceMockResponse
         when: 'post request is performed & search is called with the given request parameters'
             def response = mvc.perform(
                     post("$ncmpBasePathV1/ch/searches")
@@ -135,7 +136,7 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
         and: 'the mapper service returns a converted object'
             ncmpRestInputMapper.toCmHandleQueryServiceParameters(_) >> cmHandleQueryServiceParameters
         and: 'the service returns the desired results'
-            mockNetworkCmProxyDataService.executeCmHandleIdSearchForInventory(cmHandleQueryServiceParameters) >> serviceMockResponse
+            mockNetworkCmProxyInventoryFacade.executeParameterizedCmHandleIdSearch(cmHandleQueryServiceParameters) >> serviceMockResponse
         when: 'post request is performed & search is called with the given request parameters'
             def response = mvc.perform(
                     post("$ncmpBasePathV1/ch/searches")
@@ -156,7 +157,7 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
         given: 'the mapper service returns a converted object'
             ncmpRestInputMapper.toCmHandleQueryServiceParameters(_) >> cmHandleQueryServiceParameters
         and: 'the service returns the desired results'
-            mockNetworkCmProxyDataService.executeCmHandleIdSearchForInventory(cmHandleQueryServiceParameters) >> []
+            mockNetworkCmProxyInventoryFacade.executeParameterizedCmHandleIdSearch(cmHandleQueryServiceParameters) >> []
         when: 'post request is performed & search is called with the given request parameters'
             def response = mvc.perform(
                     post("$ncmpBasePathV1/ch/searches")
@@ -180,7 +181,7 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
                 updatedCmHandles: [CmHandleRegistrationResponse.createSuccessResponse('cm-handle-2')],
                 removedCmHandles: [CmHandleRegistrationResponse.createSuccessResponse('cm-handle-3')]
             )
-            mockNetworkCmProxyDataService.updateDmiRegistrationAndSyncModule(*_) >> dmiRegistrationResponse
+            mockNetworkCmProxyInventoryFacade.updateDmiRegistrationAndSyncModule(*_) >> dmiRegistrationResponse
         when: 'registration endpoint is invoked'
             def response = mvc.perform(
                 post("$ncmpBasePathV1/ch")
@@ -204,7 +205,7 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
                 removedCmHandles: [removeCmHandleResponse],
                 upgradedCmHandles: [upgradeCmHandleResponse]
             )
-            mockNetworkCmProxyDataService.updateDmiRegistrationAndSyncModule(*_) >> dmiRegistrationResponse
+            mockNetworkCmProxyInventoryFacade.updateDmiRegistrationAndSyncModule(*_) >> dmiRegistrationResponse
         when: 'registration endpoint is invoked'
             def response = mvc.perform(
                 post("$ncmpBasePathV1/ch")
@@ -237,7 +238,7 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
         given: 'an endpoint for returning cm handle IDs for a registered dmi plugin'
             def getUrl = "$ncmpBasePathV1/ch/cmHandles?dmi-plugin-identifier=some-dmi-plugin-identifier"
         and: 'a collection of cm handle IDs are returned'
-            1 * mockNetworkCmProxyDataService.getAllCmHandleIdsByDmiPluginIdentifier('some-dmi-plugin-identifier')
+            1 * mockNetworkCmProxyInventoryFacade.getAllCmHandleIdsByDmiPluginIdentifier('some-dmi-plugin-identifier')
                     >> ['cm-handle-id-1','cm-handle-id-2']
         when: 'the endpoint is invoked'
             def response = mvc.perform(

@@ -21,49 +21,45 @@
 
 package org.onap.cps.ncmp.api.impl
 
-import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.Status
+import com.hazelcast.map.IMap
+import org.onap.cps.api.CpsDataService
+import org.onap.cps.api.CpsModuleService
+import org.onap.cps.ncmp.api.impl.events.lcm.LcmEventsCmHandleStateHandler
+import org.onap.cps.ncmp.api.impl.exception.DmiRequestException
+import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueryService
+import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
+import org.onap.cps.ncmp.api.impl.inventory.CompositeState
+import org.onap.cps.ncmp.api.impl.inventory.DataStoreSyncState
+import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence
+import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel
+import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevelManager
+import org.onap.cps.ncmp.api.impl.utils.AlternateIdChecker
+import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
+import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse
+import org.onap.cps.ncmp.api.models.DmiPluginRegistration
+import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
+import org.onap.cps.ncmp.api.models.UpgradedCmHandles
+import org.onap.cps.spi.exceptions.AlreadyDefinedException
+import org.onap.cps.spi.exceptions.CpsException
+import org.onap.cps.spi.exceptions.DataNodeNotFoundException
+import org.onap.cps.spi.exceptions.DataValidationException
+import org.onap.cps.spi.exceptions.SchemaSetNotFoundException
+import spock.lang.Specification
+
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLES_NOT_FOUND
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLE_ALREADY_EXIST
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLE_INVALID_ID
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNKNOWN_ERROR
+import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
+import static org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.Status
 
-import org.onap.cps.ncmp.api.impl.inventory.CompositeState
-import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevelManager
-import org.onap.cps.ncmp.api.impl.utils.AlternateIdChecker
-import org.onap.cps.ncmp.api.models.UpgradedCmHandles
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.hazelcast.map.IMap
-import org.onap.cps.api.CpsDataService
-import org.onap.cps.api.CpsModuleService
-import org.onap.cps.ncmp.api.NetworkCmProxyCmHandleQueryService
-import org.onap.cps.ncmp.api.impl.events.lcm.LcmEventsCmHandleStateHandler
-import org.onap.cps.ncmp.api.impl.exception.DmiRequestException
-import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations
-import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel
-import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
-import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueries
-import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
-import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence
-import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse
-import org.onap.cps.ncmp.api.models.DmiPluginRegistration
-import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
-import org.onap.cps.spi.exceptions.AlreadyDefinedException
-import org.onap.cps.spi.exceptions.DataNodeNotFoundException
-import org.onap.cps.spi.exceptions.DataValidationException
-import org.onap.cps.spi.exceptions.SchemaSetNotFoundException
-import org.onap.cps.utils.JsonObjectMapper
-import spock.lang.Specification
-
-class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
+class CmHandleRegistrationServiceSpec extends Specification {
 
     def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: 'some-cm-handle-id')
     def mockCpsModuleService = Mock(CpsModuleService)
-    def spiedJsonObjectMapper = Spy(new JsonObjectMapper(new ObjectMapper()))
-    def mockDmiDataOperations = Mock(DmiDataOperations)
-    def mockNetworkCmProxyDataServicePropertyHandler = Mock(NetworkCmProxyDataServicePropertyHandler)
+    def mockNetworkCmProxyDataServicePropertyHandler = Mock(CmHandleRegistrationServicePropertyHandler)
     def mockInventoryPersistence = Mock(InventoryPersistence)
-    def mockCmHandleQueries = Mock(CmHandleQueries)
-    def stubbedNetworkCmProxyCmHandlerQueryService = Stub(NetworkCmProxyCmHandleQueryService)
+    def mockCmHandleQueries = Mock(CmHandleQueryService)
     def mockLcmEventsCmHandleStateHandler = Mock(LcmEventsCmHandleStateHandler)
     def mockCpsDataService = Mock(CpsDataService)
     def mockModuleSyncStartedOnCmHandles = Mock(IMap<String, Object>)
@@ -71,10 +67,9 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
     def mockTrustLevelManager = Mock(TrustLevelManager)
     def mockAlternateIdChecker = Mock(AlternateIdChecker)
 
-    def objectUnderTest = Spy(new NetworkCmProxyDataServiceImpl(spiedJsonObjectMapper, mockDmiDataOperations,
-        mockNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence, mockCmHandleQueries,
-        stubbedNetworkCmProxyCmHandlerQueryService, mockLcmEventsCmHandleStateHandler, mockCpsDataService,
-        mockModuleSyncStartedOnCmHandles, trustLevelPerDmiPlugin, mockTrustLevelManager, mockAlternateIdChecker))
+    def objectUnderTest = Spy(new CmHandleRegistrationService(
+        mockNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence, mockCpsDataService, mockLcmEventsCmHandleStateHandler,
+        mockModuleSyncStartedOnCmHandles, trustLevelPerDmiPlugin , mockTrustLevelManager, mockAlternateIdChecker))
 
     def setup() {
         // always accept all cm handles
@@ -417,5 +412,47 @@ class NetworkCmProxyDataServiceImplRegistrationSpec extends Specification {
         'cm-handle has invalid name' | 'cm handle with space' | new DataValidationException('', '')       || CM_HANDLE_INVALID_ID | 'cm-handle has an invalid character(s) in id'
         'an unexpected exception'    | 'cmhandle'             | new RuntimeException('Failed')            || UNKNOWN_ERROR        | 'Failed'
     }
+
+    def 'Set Cm Handle Data Sync Enabled Flag where data sync flag is  #scenario'() {
+        given: 'an existing cm handle composite state'
+            def compositeState = new CompositeState(cmHandleState: CmHandleState.READY, dataSyncEnabled: initialDataSyncEnabledFlag,
+                dataStores: CompositeState.DataStores.builder()
+                    .operationalDataStore(CompositeState.Operational.builder()
+                        .dataStoreSyncState(initialDataSyncState)
+                        .build()).build())
+        and: 'get cm handle state returns the composite state for the given cm handle id'
+            mockInventoryPersistence.getCmHandleState('some-cm-handle-id') >> compositeState
+        when: 'set data sync enabled is called with the data sync enabled flag set to #dataSyncEnabledFlag'
+            objectUnderTest.setDataSyncEnabled('some-cm-handle-id', dataSyncEnabledFlag)
+        then: 'the data sync enabled flag is set to #dataSyncEnabled'
+            compositeState.dataSyncEnabled == dataSyncEnabledFlag
+        and: 'the data store sync state is set to #expectedDataStoreSyncState'
+            compositeState.dataStores.operationalDataStore.dataStoreSyncState == expectedDataStoreSyncState
+        and: 'the cps data service to delete data nodes is invoked the expected number of times'
+            deleteDataNodeExpectedNumberOfInvocation * mockCpsDataService.deleteDataNode(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'some-cm-handle-id', '/netconf-state', _)
+        and: 'the inventory persistence service to update node leaves is called with the correct values'
+            saveCmHandleStateExpectedNumberOfInvocations * mockInventoryPersistence.saveCmHandleState('some-cm-handle-id', compositeState)
+        where: 'the following data sync enabled flag is used'
+            scenario                                              | dataSyncEnabledFlag | initialDataSyncEnabledFlag | initialDataSyncState               || expectedDataStoreSyncState         | deleteDataNodeExpectedNumberOfInvocation | saveCmHandleStateExpectedNumberOfInvocations
+            'enabled'                                             | true                | false                      | DataStoreSyncState.NONE_REQUESTED || DataStoreSyncState.UNSYNCHRONIZED | 0 | 1
+            'disabled'                                            | false               | true                       | DataStoreSyncState.UNSYNCHRONIZED  || DataStoreSyncState.NONE_REQUESTED  | 0                                        | 1
+            'disabled where sync-state is currently SYNCHRONIZED' | false               | true                       | DataStoreSyncState.SYNCHRONIZED    || DataStoreSyncState.NONE_REQUESTED  | 1                                        | 1
+            'is set to existing flag state'                       | true                | true                       | DataStoreSyncState.UNSYNCHRONIZED  || DataStoreSyncState.UNSYNCHRONIZED  | 0                                        | 0
+    }
+
+    def 'Set cm Handle Data Sync Enabled flag with following cm handle not in ready state exception' () {
+        given: 'a cm handle composite state'
+            def compositeState = new CompositeState(cmHandleState: CmHandleState.ADVISED, dataSyncEnabled: false)
+        and: 'get cm handle state returns the composite state for the given cm handle id'
+            mockInventoryPersistence.getCmHandleState('some-cm-handle-id') >> compositeState
+        when: 'set data sync enabled is called with the data sync enabled flag set to true'
+            objectUnderTest.setDataSyncEnabled('some-cm-handle-id', true)
+        then: 'the expected exception is thrown'
+            thrown(CpsException)
+        and: 'the inventory persistence service to update node leaves is not invoked'
+            0 * mockInventoryPersistence.saveCmHandleState(_, _)
+    }
+
+
 
 }

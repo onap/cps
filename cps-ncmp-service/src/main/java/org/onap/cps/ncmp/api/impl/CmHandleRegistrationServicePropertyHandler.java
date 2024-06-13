@@ -25,8 +25,8 @@ package org.onap.cps.ncmp.api.impl;
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.ALTERNATE_ID_ALREADY_ASSOCIATED;
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLES_NOT_FOUND;
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLE_INVALID_ID;
-import static org.onap.cps.ncmp.api.impl.NetworkCmProxyDataServicePropertyHandler.PropertyType.DMI_PROPERTY;
-import static org.onap.cps.ncmp.api.impl.NetworkCmProxyDataServicePropertyHandler.PropertyType.PUBLIC_PROPERTY;
+import static org.onap.cps.ncmp.api.impl.CmHandleRegistrationServicePropertyHandler.PropertyType.DMI_PROPERTY;
+import static org.onap.cps.ncmp.api.impl.CmHandleRegistrationServicePropertyHandler.PropertyType.PUBLIC_PROPERTY;
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME;
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR;
 import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT;
@@ -65,7 +65,7 @@ import org.springframework.util.StringUtils;
 @RequiredArgsConstructor
 //Accepting the security hotspot as the string checked is generated from inside code and not user input.
 @SuppressWarnings("squid:S5852")
-public class NetworkCmProxyDataServicePropertyHandler {
+public class CmHandleRegistrationServicePropertyHandler {
 
     private final InventoryPersistence inventoryPersistence;
     private final CpsDataService cpsDataService;
@@ -138,6 +138,9 @@ public class NetworkCmProxyDataServicePropertyHandler {
                     log.warn("Unable to update dataProducerIdentifier for cmHandle {}. "
                             + "Value for dataProducerIdentifier has been set previously.",
                         ncmpServiceCmHandle.getCmHandleId());
+                } else {
+                    log.debug("dataProducerIdentifier for cmHandle {} is already set to {}.",
+                        ncmpServiceCmHandle.getCmHandleId(), newDataProducerIdentifier);
                 }
             } else {
                 setAndUpdateCmHandleField(

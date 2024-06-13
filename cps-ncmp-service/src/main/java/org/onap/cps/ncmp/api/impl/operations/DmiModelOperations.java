@@ -21,6 +21,7 @@
 
 package org.onap.cps.ncmp.api.impl.operations;
 
+import static org.onap.cps.ncmp.api.impl.operations.OperationType.READ;
 import static org.onap.cps.ncmp.api.impl.operations.RequiredDmiService.MODEL;
 
 import com.google.gson.JsonArray;
@@ -111,7 +112,7 @@ public class DmiModelOperations {
                 .variablePathSegment("cmHandleId", cmHandle)
                 .variablePathSegment("resourceName", resourceName)
                 .build(dmiServiceName, dmiProperties.getDmiBasePath());
-        return dmiRestClient.postOperationWithJsonData(MODEL, dmiUrl, jsonRequestBody, OperationType.READ, null);
+        return dmiRestClient.synchronousPostOperationWithJsonData(MODEL, dmiUrl, jsonRequestBody, READ, null);
     }
 
     private static String getRequestBodyToFetchYangResources(final Collection<ModuleReference> newModuleReferences,

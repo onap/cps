@@ -24,9 +24,10 @@ package org.onap.cps.ncmp.rest.exceptions
 import groovy.json.JsonSlurper
 import org.mapstruct.factory.Mappers
 import org.onap.cps.TestUtils
-import org.onap.cps.ncmp.api.NetworkCmProxyDataService
 import org.onap.cps.ncmp.api.impl.NcmpCachedResourceRequestHandler
 import org.onap.cps.ncmp.api.impl.NcmpPassthroughResourceRequestHandler
+import org.onap.cps.ncmp.api.impl.NetworkCmProxyFacade
+import org.onap.cps.ncmp.api.impl.NetworkCmProxyInventoryFacade
 import org.onap.cps.ncmp.api.impl.exception.DmiClientRequestException
 import org.onap.cps.ncmp.api.impl.exception.DmiRequestException
 import org.onap.cps.ncmp.api.impl.exception.ServerNcmpException
@@ -68,7 +69,10 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
     MockMvc mvc
 
     @SpringBean
-    NetworkCmProxyDataService mockNetworkCmProxyDataService = Mock()
+    NetworkCmProxyFacade mockNetworkCmProxyFacade = Mock()
+
+    @SpringBean
+    NetworkCmProxyInventoryFacade mockNetworkCmProxyInventoryFacade = Mock()
 
     @SpringBean
     JsonObjectMapper stubbedJsonObjectMapper = Stub()
@@ -153,9 +157,9 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
 
     def setupTestException(exception, apiType) {
         if (NCMP == apiType) {
-            mockNetworkCmProxyDataService.getYangResourcesModuleReferences(*_) >> { throw exception }
+            mockNetworkCmProxyInventoryFacade.getYangResourcesModuleReferences(*_) >> { throw exception }
         }
-        mockNetworkCmProxyDataService.updateDmiRegistrationAndSyncModule(*_) >> { throw exception }
+        mockNetworkCmProxyInventoryFacade.updateDmiRegistrationAndSyncModule(*_) >> { throw exception }
     }
 
     def performTestRequest(apiType) {
@@ -174,8 +178,5 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
         assert expectedErrorDetails == null || content['details'].toString().contains(expectedErrorDetails)
     }
 
-    enum ApiType {
-        NCMP,
-        NCMPINVENTORY;
-    }
+    enum ApiType { NCMP,  NCMPINVENTORY  }
 }

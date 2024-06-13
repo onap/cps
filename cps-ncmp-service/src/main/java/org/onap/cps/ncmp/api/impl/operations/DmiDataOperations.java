@@ -21,6 +21,7 @@
 
 package org.onap.cps.ncmp.api.impl.operations;
 
+import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_OPERATIONAL;
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING;
 import static org.onap.cps.ncmp.api.impl.operations.OperationType.READ;
 import static org.onap.cps.ncmp.api.impl.operations.RequiredDmiService.DATA;
@@ -69,49 +70,48 @@ public class DmiDataOperations {
      * This method fetches the resource data from the operational data store for a given CM handle
      * identifier on the specified resource using the DMI client.
      *
-     * @param cmResourceAddress   Target datastore, CM handle, and resource identifier.
-     * @param optionsParamInQuery Options query string.
-     * @param topicParamInQuery   Topic name for triggering asynchronous responses.
-     * @param requestId           Request ID for asynchronous responses.
-     * @param authorization       Contents of the Authorization header, or null if not present.
+     * @param cmResourceAddress Target datastore, CM handle, and resource identifier.
+     * @param options           Options query string.
+     * @param topic             Topic name for triggering asynchronous responses.
+     * @param requestId         Request ID for asynchronous responses.
+     * @param authorization     Contents of the Authorization header, or null if not present.
      * @return {@code Mono<ResponseEntity<Object>>} A reactive type representing the response entity.
      */
     @Timed(value = "cps.ncmp.dmi.get",
             description = "Time taken to fetch the resource data from operational data store for given cm handle "
                     + "identifier on given resource using dmi client")
     public Mono<ResponseEntity<Object>> getResourceDataFromDmi(final CmResourceAddress cmResourceAddress,
-                                                         final String optionsParamInQuery,
-                                                         final String topicParamInQuery,
-                                                         final String requestId,
-                                                         final String authorization) {
+                                                               final String options,
+                                                               final String topic,
+                                                               final String requestId,
+                                                               final String authorization) {
         final YangModelCmHandle yangModelCmHandle = getYangModelCmHandle(cmResourceAddress.cmHandleId());
         final CmHandleState cmHandleState = yangModelCmHandle.getCompositeState().getCmHandleState();
         validateIfCmHandleStateReady(yangModelCmHandle, cmHandleState);
         final String jsonRequestBody = getDmiRequestBody(READ, requestId, null, null, yangModelCmHandle);
         final String dmiUrl = getDmiResourceDataUrl(cmResourceAddress.datastoreName(), yangModelCmHandle,
-                cmResourceAddress.resourceIdentifier(), optionsParamInQuery, topicParamInQuery);
-        return dmiRestClient.postOperationWithJsonDataAsync(DATA, dmiUrl, jsonRequestBody, READ, authorization);
+                cmResourceAddress.resourceIdentifier(), options, topic);
+        return dmiRestClient.asynchronousPostOperationWithJsonData(DATA, dmiUrl, jsonRequestBody, READ, authorization);
     }
 
     /**
      * This method fetches all the resource data from operational data store for given cm handle
      * identifier using dmi client.
+     * Note: this method is only used for DataSync
      *
-     * @param datastoreName data store name
      * @param cmHandleId    network resource identifier
      * @param requestId     requestId for async responses
      * @return {@code ResponseEntity} response entity
      */
-    public ResponseEntity<Object> getResourceDataFromDmi(final String datastoreName,
-                                                         final String cmHandleId,
-                                                         final String requestId) {
+    public ResponseEntity<Object> getAllResourceDataFromDmi(final String cmHandleId, final String requestId) {
         final YangModelCmHandle yangModelCmHandle = getYangModelCmHandle(cmHandleId);
         final CmHandleState cmHandleState = yangModelCmHandle.getCompositeState().getCmHandleState();
         validateIfCmHandleStateReady(yangModelCmHandle, cmHandleState);
 
         final String jsonRequestBody = getDmiRequestBody(READ, requestId, null, null, yangModelCmHandle);
-        final String dmiUrl = getDmiResourceDataUrl(datastoreName, yangModelCmHandle, "/", null, null);
-        return dmiRestClient.postOperationWithJsonData(DATA, dmiUrl, jsonRequestBody, READ, null);
+        final String dmiUrl =
+            getDmiResourceDataUrl(PASSTHROUGH_OPERATIONAL.getDatastoreName(), yangModelCmHandle, "/", null, null);
+        return dmiRestClient.synchronousPostOperationWithJsonData(DATA, dmiUrl, jsonRequestBody, READ, null);
     }
 
     /**
@@ -168,7 +168,8 @@ public class DmiDataOperations {
                 yangModelCmHandle);
         final String dmiUrl = getDmiResourceDataUrl(PASSTHROUGH_RUNNING.getDatastoreName(),
             yangModelCmHandle, resourceId, null, null);
-        return dmiRestClient.postOperationWithJsonData(DATA, dmiUrl, jsonRequestBody, operationType, authorization);
+        return dmiRestClient.synchronousPostOperationWithJsonData(DATA, dmiUrl, jsonRequestBody,
+                                                                  operationType, authorization);
     }
 
     private YangModelCmHandle getYangModelCmHandle(final String cmHandleId) {
@@ -256,7 +257,7 @@ public class DmiDataOperations {
                                                             final String authorization) {
         final String dmiDataOperationRequestAsJsonString
                 = createDmiDataOperationRequestAsJsonString(dmiDataOperationRequestBodies);
-        return dmiRestClient.postOperationWithJsonDataAsync(DATA, dmiUrl, dmiDataOperationRequestAsJsonString,
+        return dmiRestClient.asynchronousPostOperationWithJsonData(DATA, dmiUrl, dmiDataOperationRequestAsJsonString,
                         READ, authorization)
                 .then()
                 .onErrorResume(DmiClientRequestException.class, dmiClientRequestException -> {
