@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c346cc90_2370bc51",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-13T12:22:58Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1693dcbc_26c65df3",
+      "range": {
+        "startLine": 261,
+        "startChar": 32,
+        "endLine": 261,
+        "endChar": 49
+      },
+      "revId": "0fe85c6da8d18a6a6e91ff3faa4fe7f4c73d7c04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5483f2a2_760e7aab",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-06-13T11:33:11Z",
       "side": 1,
       "message": "no longer \u0027a flag\u0027. Always check your descriptions of any test blocks taht have changed!",
+      "range": {
+        "startLine": 53,
+        "startChar": 40,
+        "endLine": 53,
+        "endChar": 53
+      },
+      "revId": "0fe85c6da8d18a6a6e91ff3faa4fe7f4c73d7c04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c7521fb_c4e9ae1d",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreRequestHandlerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-13T12:22:58Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5483f2a2_760e7aab",
       "range": {
         "startLine": 53,
         "startChar": 40,
@@ -70,6 +118,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "54a21d1e_a3b2d308",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NetworkCmProxyQueryService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-13T12:22:58Z",
+      "side": 1,
+      "message": "Nope this line is removed",
+      "parentUuid": "08f1f4eb_9136cd9d",
+      "range": {
+        "startLine": 42,
+        "startChar": 66,
+        "endLine": 43,
+        "endChar": 54
+      },
+      "revId": "0fe85c6da8d18a6a6e91ff3faa4fe7f4c73d7c04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1bd9abfa_621a5ad6",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-06-13T11:33:11Z",
       "side": 1,
       "message": "update description",
+      "range": {
+        "startLine": 85,
+        "startChar": 15,
+        "endLine": 85,
+        "endChar": 62
+      },
+      "revId": "0fe85c6da8d18a6a6e91ff3faa4fe7f4c73d7c04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad3fde9f_496e111c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiDataOperationsSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-13T12:22:58Z",
+      "side": 1,
+      "message": "asserted response body",
+      "parentUuid": "1bd9abfa_621a5ad6",
       "range": {
         "startLine": 85,
         "startChar": 15,
