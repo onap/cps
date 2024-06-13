@@ -25,7 +25,8 @@ import static org.onap.cps.ncmp.api.impl.operations.OperationType.READ;
 
 import java.util.Map;
 import java.util.UUID;
-import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
+import lombok.AllArgsConstructor;
+import org.onap.cps.ncmp.api.impl.NetworkCmProxyFacade;
 import org.onap.cps.ncmp.api.impl.exception.InvalidDatastoreException;
 import org.onap.cps.ncmp.api.impl.operations.DatastoreType;
 import org.onap.cps.ncmp.api.impl.operations.OperationType;
@@ -39,20 +40,12 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
 @Service
+@AllArgsConstructor
 public class NcmpPassthroughResourceRequestHandler extends NcmpDatastoreRequestHandler {
 
-    private final NetworkCmProxyDataService networkCmProxyDataService;
+    private final NetworkCmProxyFacade networkCmProxyFacade;
     private static final int MAXIMUM_CM_HANDLES_PER_OPERATION = 200;
     private static final String PAYLOAD_TOO_LARGE_TEMPLATE = "Operation '%s' affects too many (%d) cm handles";
-
-    /**
-     * Constructor.
-     *
-     * @param networkCmProxyDataService  @see org.onap.cps.ncmp.api.NetworkCmProxyDataService
-     */
-    public NcmpPassthroughResourceRequestHandler(final NetworkCmProxyDataService networkCmProxyDataService) {
-        this.networkCmProxyDataService = networkCmProxyDataService;
-    }
 
     /**
      * Executes asynchronous request for group of cm handles to resource data.
@@ -81,7 +74,7 @@ public class NcmpPassthroughResourceRequestHandler extends NcmpDatastoreRequestH
                                                       final String requestId,
                                                       final boolean includeDescendants,
                                                       final String authorization) {
-        return networkCmProxyDataService.getResourceDataForCmHandle(cmResourceAddress, optionsParamInQuery,
+        return networkCmProxyFacade.getResourceDataForCmHandle(cmResourceAddress, optionsParamInQuery,
                 topicParamInQuery, requestId, authorization);
     }
 
@@ -90,7 +83,7 @@ public class NcmpPassthroughResourceRequestHandler extends NcmpDatastoreRequestH
             final DataOperationRequest dataOperationRequest,
             final String authorization) {
         final String requestId = UUID.randomUUID().toString();
-        networkCmProxyDataService.executeDataOperationForCmHandles(topicParamInQuery, dataOperationRequest, requestId,
+        networkCmProxyFacade.executeDataOperationForCmHandles(topicParamInQuery, dataOperationRequest, requestId,
                 authorization);
         return ResponseEntity.ok(Map.of("requestId", requestId));
     }

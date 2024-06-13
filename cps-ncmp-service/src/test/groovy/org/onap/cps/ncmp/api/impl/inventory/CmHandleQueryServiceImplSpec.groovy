@@ -33,7 +33,7 @@ import org.onap.cps.spi.model.DataNode
 import spock.lang.Shared
 import spock.lang.Specification
 
-class CmHandleQueriesImplSpec extends Specification {
+class CmHandleQueryServiceImplSpec extends Specification {
 
     def mockCpsDataPersistenceService = Mock(CpsDataPersistenceService)
 
@@ -43,7 +43,7 @@ class CmHandleQueriesImplSpec extends Specification {
 
     def mockCpsValidator = Mock(CpsValidator)
 
-    def objectUnderTest = new CmHandleQueriesImpl(mockCpsDataPersistenceService, trustLevelPerDmiPlugin, trustLevelPerCmHandle, mockCpsValidator)
+    def objectUnderTest = new CmHandleQueryServiceImpl(mockCpsDataPersistenceService, trustLevelPerDmiPlugin, trustLevelPerCmHandle, mockCpsValidator)
 
     @Shared
     def static sampleDataNodes = [new DataNode()]

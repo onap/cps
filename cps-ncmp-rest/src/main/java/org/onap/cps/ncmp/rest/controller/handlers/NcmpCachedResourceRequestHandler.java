@@ -21,8 +21,9 @@
 package org.onap.cps.ncmp.rest.controller.handlers;
 
 import java.util.Collection;
-import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
+import lombok.AllArgsConstructor;
 import org.onap.cps.ncmp.api.NetworkCmProxyQueryService;
+import org.onap.cps.ncmp.api.impl.NetworkCmProxyFacade;
 import org.onap.cps.ncmp.api.models.CmResourceAddress;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
@@ -31,22 +32,17 @@ import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
 @Component
+@AllArgsConstructor
 public class NcmpCachedResourceRequestHandler extends NcmpDatastoreRequestHandler {
 
-    private final NetworkCmProxyDataService networkCmProxyDataService;
-    private final NetworkCmProxyQueryService networkCmProxyQueryService;
-
     /**
-     * Constructor.
-     *
-     * @param networkCmProxyDataService  @see org.onap.cps.ncmp.api.NetworkCmProxyDataService
-     * @param networkCmProxyQueryService @see org.onap.cps.ncmp.api.NetworkCmProxyQueryService
+     * TODO The old 'networkCmProxyDataService' has over time been 'polluted' with non-data methods
+     * It now effectively has become (and been renamed) to a facade. The controller should use (only) the
+     * Facade. In turn the facade should choose handlers etc. and pass on the call
      */
-    public NcmpCachedResourceRequestHandler(final NetworkCmProxyDataService networkCmProxyDataService,
-                                            final NetworkCmProxyQueryService networkCmProxyQueryService) {
-        this.networkCmProxyDataService = networkCmProxyDataService;
-        this.networkCmProxyQueryService = networkCmProxyQueryService;
-    }
+
+    private final NetworkCmProxyFacade networkCmProxyFacade;
+    private final NetworkCmProxyQueryService networkCmProxyQueryService;
 
     /**
      * Executes a synchronous query request for given cm handle.
@@ -72,8 +68,9 @@ public class NcmpCachedResourceRequestHandler extends NcmpDatastoreRequestHandle
                                                       final boolean includeDescendants,
                                                       final String authorization) {
         final FetchDescendantsOption fetchDescendantsOption = getFetchDescendantsOption(includeDescendants);
+
         return Mono.fromSupplier(
-                () -> networkCmProxyDataService.getResourceDataForCmHandle(cmResourceAddress, fetchDescendantsOption));
+                () -> networkCmProxyFacade.getResourceDataForCmHandle(cmResourceAddress, fetchDescendantsOption));
     }
 
     private Collection<DataNode> getTaskSupplierForQueryRequest(final String cmHandleId,

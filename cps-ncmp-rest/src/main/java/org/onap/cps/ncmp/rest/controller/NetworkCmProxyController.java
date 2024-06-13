@@ -38,7 +38,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
+import org.onap.cps.ncmp.api.impl.NetworkCmProxyFacade;
 import org.onap.cps.ncmp.api.impl.config.embeddedcache.TrustLevelCacheConfig;
 import org.onap.cps.ncmp.api.impl.exception.InvalidDatastoreException;
 import org.onap.cps.ncmp.api.impl.inventory.CompositeState;
@@ -78,14 +78,17 @@ import org.springframework.web.bind.annotation.RestController;
 public class NetworkCmProxyController implements NetworkCmProxyApi {
 
     private static final String NO_BODY = null;
-    private final NetworkCmProxyDataService networkCmProxyDataService;
+    private final NetworkCmProxyFacade networkCmProxyFacade;
     private final JsonObjectMapper jsonObjectMapper;
     private final DeprecationHelper deprecationHelper;
     private final NcmpRestInputMapper ncmpRestInputMapper;
     private final CmHandleStateMapper cmHandleStateMapper;
+
     private final NcmpCachedResourceRequestHandler ncmpCachedResourceRequestHandler;
     private final NcmpPassthroughResourceRequestHandler ncmpPassthroughResourceRequestHandler;
+
     private final DataOperationRequestMapper dataOperationRequestMapper;
+
     @Qualifier(TrustLevelCacheConfig.TRUST_LEVEL_PER_CM_HANDLE)
     private final Map<String, TrustLevel> trustLevelPerCmHandle;
 
@@ -169,7 +172,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
 
         validateDataStore(PASSTHROUGH_RUNNING, datastoreName);
 
-        final Object responseObject = networkCmProxyDataService
+        final Object responseObject = networkCmProxyFacade
                 .writeResourceDataPassThroughRunningForCmHandle(
                         cmHandle, resourceIdentifier, PATCH,
                         jsonObjectMapper.asJsonString(requestBody), contentType, authorization);
@@ -196,7 +199,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                                      final String authorization) {
         validateDataStore(PASSTHROUGH_RUNNING, datastoreName);
 
-        networkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle(cmHandle,
+        networkCmProxyFacade.writeResourceDataPassThroughRunningForCmHandle(cmHandle,
                 resourceIdentifier, CREATE, jsonObjectMapper.asJsonString(requestBody), contentType, authorization);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -222,7 +225,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                                        final String authorization) {
         validateDataStore(PASSTHROUGH_RUNNING, datastoreName);
 
-        networkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle(cmHandle,
+        networkCmProxyFacade.writeResourceDataPassThroughRunningForCmHandle(cmHandle,
                 resourceIdentifier, UPDATE, jsonObjectMapper.asJsonString(requestBody), contentType, authorization);
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -246,7 +249,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
 
         validateDataStore(PASSTHROUGH_RUNNING, datastoreName);
 
-        networkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle(cmHandle,
+        networkCmProxyFacade.writeResourceDataPassThroughRunningForCmHandle(cmHandle,
                 resourceIdentifier, DELETE, NO_BODY, contentType, authorization);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
@@ -263,7 +266,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
             final CmHandleQueryParameters cmHandleQueryParameters) {
         final CmHandleQueryApiParameters cmHandleQueryApiParameters =
                 deprecationHelper.mapOldConditionProperties(cmHandleQueryParameters);
-        final Collection<NcmpServiceCmHandle> cmHandles = networkCmProxyDataService
+        final Collection<NcmpServiceCmHandle> cmHandles = networkCmProxyFacade
                 .executeCmHandleSearch(cmHandleQueryApiParameters);
         final List<RestOutputCmHandle> outputCmHandles =
                 cmHandles.stream().map(this::toRestOutputCmHandle).collect(Collectors.toList());
@@ -282,7 +285,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         final CmHandleQueryApiParameters cmHandleQueryApiParameters =
                 jsonObjectMapper.convertToValueType(cmHandleQueryParameters, CmHandleQueryApiParameters.class);
         final Collection<String> cmHandleIds
-            = networkCmProxyDataService.executeCmHandleIdSearch(cmHandleQueryApiParameters);
+            = networkCmProxyFacade.executeCmHandleIdSearch(cmHandleQueryApiParameters);
         return ResponseEntity.ok(List.copyOf(cmHandleIds));
     }
 
@@ -294,7 +297,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      */
     @Override
     public ResponseEntity<RestOutputCmHandle> retrieveCmHandleDetailsById(final String cmHandleId) {
-        final NcmpServiceCmHandle ncmpServiceCmHandle = networkCmProxyDataService.getNcmpServiceCmHandle(cmHandleId);
+        final NcmpServiceCmHandle ncmpServiceCmHandle = networkCmProxyFacade.getNcmpServiceCmHandle(cmHandleId);
         final RestOutputCmHandle restOutputCmHandle = toRestOutputCmHandle(ncmpServiceCmHandle);
         return ResponseEntity.ok(restOutputCmHandle);
     }
@@ -309,7 +312,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     public ResponseEntity<RestOutputCmHandlePublicProperties> getCmHandlePublicPropertiesByCmHandleId(
             final String cmHandleId) {
         final CmHandlePublicProperties cmHandlePublicProperties = new CmHandlePublicProperties();
-        cmHandlePublicProperties.add(networkCmProxyDataService.getCmHandlePublicProperties(cmHandleId));
+        cmHandlePublicProperties.add(networkCmProxyFacade.getCmHandlePublicProperties(cmHandleId));
         final RestOutputCmHandlePublicProperties restOutputCmHandlePublicProperties =
                 new RestOutputCmHandlePublicProperties();
         restOutputCmHandlePublicProperties.setPublicCmHandleProperties(cmHandlePublicProperties);
@@ -325,7 +328,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     @Override
     public ResponseEntity<RestOutputCmHandleCompositeState> getCmHandleStateByCmHandleId(
             final String cmHandleId) {
-        final CompositeState cmHandleState = networkCmProxyDataService.getCmHandleCompositeState(cmHandleId);
+        final CompositeState cmHandleState = networkCmProxyFacade.getCmHandleCompositeState(cmHandleId);
         final RestOutputCmHandleCompositeState restOutputCmHandleCompositeState =
                 new RestOutputCmHandleCompositeState();
         restOutputCmHandleCompositeState.setState(
@@ -348,9 +351,9 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         final Collection<ModuleDefinition> moduleDefinitions;
         if (StringUtils.hasText(moduleName)) {
             moduleDefinitions =
-                networkCmProxyDataService.getModuleDefinitionsByCmHandleAndModule(cmHandleId, moduleName, revision);
+                networkCmProxyFacade.getModuleDefinitionsByCmHandleAndModule(cmHandleId, moduleName, revision);
         } else {
-            moduleDefinitions = networkCmProxyDataService.getModuleDefinitionsByCmHandleId(cmHandleId);
+            moduleDefinitions = networkCmProxyFacade.getModuleDefinitionsByCmHandleId(cmHandleId);
             if (StringUtils.hasText(revision)) {
                 log.warn("Ignoring revision filter as no module name is provided");
             }
@@ -370,7 +373,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      */
     public ResponseEntity<List<RestModuleReference>> getModuleReferencesByCmHandle(final String cmHandle) {
         final List<RestModuleReference> restModuleReferences =
-                networkCmProxyDataService.getYangResourcesModuleReferences(cmHandle).stream()
+                networkCmProxyFacade.getYangResourcesModuleReferences(cmHandle).stream()
                         .map(ncmpRestInputMapper::toRestModuleReference)
                         .collect(Collectors.toList());
         return new ResponseEntity<>(restModuleReferences, HttpStatus.OK);
@@ -386,7 +389,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     @Override
     public ResponseEntity<Object> setDataSyncEnabledFlagForCmHandle(final String cmHandleId,
                                                                     final Boolean dataSyncEnabledFlag) {
-        networkCmProxyDataService.setDataSyncEnabled(cmHandleId, dataSyncEnabledFlag);
+        networkCmProxyFacade.setDataSyncEnabled(cmHandleId, dataSyncEnabledFlag);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
