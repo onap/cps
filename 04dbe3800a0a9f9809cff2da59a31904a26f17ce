@@ -16,6 +16,24 @@
       "message": "Nice job",
       "revId": "04dbe3800a0a9f9809cff2da59a31904a26f17ce",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f93e6652_53afeb61",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-13T12:28:44Z",
+      "side": 1,
+      "message": "thanks",
+      "parentUuid": "fb2090b6_a5a8b34d",
+      "revId": "04dbe3800a0a9f9809cff2da59a31904a26f17ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
