@@ -16,6 +16,69 @@
       "message": "recheck",
       "revId": "255bba080245afe495f6f58b3ccfba6f62799aa1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03baed86_35165e22",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-13T09:09:37Z",
+      "side": 1,
+      "message": "a few comment/question still\nthe combination is why I dont +1 now, although it is very close",
+      "revId": "255bba080245afe495f6f58b3ccfba6f62799aa1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b5ac8ed_14e24901",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/handlers/NcmpDatastoreRequestHandlerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-13T09:09:37Z",
+      "side": 1,
+      "message": "NB: \u0027a successful response with request id is returned\u0027",
+      "range": {
+        "startLine": 103,
+        "startChar": 14,
+        "endLine": 103,
+        "endChar": 34
+      },
+      "revId": "255bba080245afe495f6f58b3ccfba6f62799aa1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ca2c0c7_c776290e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-13T09:09:37Z",
+      "side": 1,
+      "message": "NB: do things in teh right order, this line shoudl be after #239",
+      "range": {
+        "startLine": 237,
+        "startChar": 0,
+        "endLine": 238,
+        "endChar": 75
+      },
+      "revId": "255bba080245afe495f6f58b3ccfba6f62799aa1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
