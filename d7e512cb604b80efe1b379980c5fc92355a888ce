@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c03eab4f_2dbcb706",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-13T08:44:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6c066e87_3c76bf8f",
+      "range": {
+        "startLine": 199,
+        "startChar": 15,
+        "endLine": 199,
+        "endChar": 52
+      },
+      "revId": "d7e512cb604b80efe1b379980c5fc92355a888ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2b536162_7c9a15d7",
@@ -75,6 +99,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c89e913e_367cc536",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/client/DmiRestClient.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-13T08:44:02Z",
+      "side": 1,
+      "message": "yes, like org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java:93",
+      "parentUuid": "2b536162_7c9a15d7",
+      "revId": "d7e512cb604b80efe1b379980c5fc92355a888ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "39a2c4cd_162b0362",
@@ -88,6 +130,30 @@
       "writtenOn": "2024-06-11T15:55:03Z",
       "side": 1,
       "message": "Redundant import since no logging in the class",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 6
+      },
+      "revId": "d7e512cb604b80efe1b379980c5fc92355a888ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7cda163e_b3d391b7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-13T08:44:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "39a2c4cd_162b0362",
       "range": {
         "startLine": 62,
         "startChar": 0,
@@ -121,6 +187,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec219cdf_1a6e9e58",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-13T08:44:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fb0be8a3_7b60ee72",
+      "range": {
+        "startLine": 236,
+        "startChar": 0,
+        "endLine": 249,
+        "endChar": 29
+      },
+      "revId": "d7e512cb604b80efe1b379980c5fc92355a888ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fb6c07cb_17397b22",
@@ -134,6 +224,30 @@
       "writtenOn": "2024-06-11T15:55:03Z",
       "side": 1,
       "message": "Redundant annotation since no logging in the class",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 6
+      },
+      "revId": "d7e512cb604b80efe1b379980c5fc92355a888ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f970e55c_ea4cf5fb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/data/operation/ResourceDataOperationRequestUtils.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-13T08:44:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fb6c07cb_17397b22",
       "range": {
         "startLine": 51,
         "startChar": 0,
@@ -167,6 +281,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6eb0ae78_8c1f9342",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/data/operation/ResourceDataOperationRequestUtilsSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-13T08:44:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6a27e80c_6a3e45d0",
+      "range": {
+        "startLine": 63,
+        "startChar": 1,
+        "endLine": 64,
+        "endChar": 29
+      },
+      "revId": "d7e512cb604b80efe1b379980c5fc92355a888ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a4d0b2dc_80debfe2",
@@ -190,6 +328,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ddf1a1ee_747b6022",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/data/operation/ResourceDataOperationRequestUtilsSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-13T08:44:02Z",
+      "side": 1,
+      "message": "yes it no more valid, Removed",
+      "parentUuid": "a4d0b2dc_80debfe2",
+      "range": {
+        "startLine": 155,
+        "startChar": 53,
+        "endLine": 155,
+        "endChar": 79
+      },
+      "revId": "d7e512cb604b80efe1b379980c5fc92355a888ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "89774ee8_9815c308",
@@ -203,6 +365,30 @@
       "writtenOn": "2024-06-11T15:55:03Z",
       "side": 1,
       "message": "Maybe better to use a \"return\" before closing the method on line 187",
+      "range": {
+        "startLine": 187,
+        "startChar": 8,
+        "endLine": 187,
+        "endChar": 47
+      },
+      "revId": "d7e512cb604b80efe1b379980c5fc92355a888ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "385b422f_00c499bf",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/data/operation/ResourceDataOperationRequestUtilsSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-13T08:44:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "89774ee8_9815c308",
       "range": {
         "startLine": 187,
         "startChar": 8,
