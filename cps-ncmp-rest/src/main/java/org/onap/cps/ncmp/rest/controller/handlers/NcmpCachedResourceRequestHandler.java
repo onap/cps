@@ -21,9 +21,10 @@
 package org.onap.cps.ncmp.rest.controller.handlers;
 
 import java.util.function.Supplier;
-import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.api.NetworkCmProxyQueryService;
+import org.onap.cps.ncmp.api.impl.NetworkCmProxyFacade;
 import org.onap.cps.ncmp.api.models.CmResourceAddress;
+//TODO the Service should NOT depend on the REST module, should be gone as part of Sourabhs WebClient improvements
 import org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.springframework.http.ResponseEntity;
@@ -32,21 +33,27 @@ import org.springframework.stereotype.Component;
 @Component
 public class NcmpCachedResourceRequestHandler extends NcmpDatastoreRequestHandler {
 
-    private final NetworkCmProxyDataService networkCmProxyDataService;
+    /**
+     * TODO The old 'networkCmProxyDataService' has over time been 'polluted' with non-data methods
+     * It now effectively has become (and been renamed) to a facade. The controller should use (only) the
+     * Facade. In turn the facade should choose handlers etc. and pass on the call
+     */
+
+    private final NetworkCmProxyFacade networkCmProxyFacade;
     private final NetworkCmProxyQueryService networkCmProxyQueryService;
 
     /**
      * Constructor.
      *
      * @param cpsNcmpTaskExecutor        @see org.onap.cps.ncmp.rest.executor.CpsNcmpTaskExecutor
-     * @param networkCmProxyDataService  @see org.onap.cps.ncmp.api.NetworkCmProxyDataService
+     * @param networkCmProxyFacade       @see org.onap.cps.ncmp.api.NetworkCmProxyDataService
      * @param networkCmProxyQueryService @see org.onap.cps.ncmp.api.NetworkCmProxyQueryService
      */
     public NcmpCachedResourceRequestHandler(final CpsNcmpTaskExecutor cpsNcmpTaskExecutor,
-                                            final NetworkCmProxyDataService networkCmProxyDataService,
+                                            final NetworkCmProxyFacade networkCmProxyFacade,
                                             final NetworkCmProxyQueryService networkCmProxyQueryService) {
         super(cpsNcmpTaskExecutor);
-        this.networkCmProxyDataService = networkCmProxyDataService;
+        this.networkCmProxyFacade = networkCmProxyFacade;
         this.networkCmProxyQueryService = networkCmProxyQueryService;
     }
 
@@ -78,7 +85,7 @@ public class NcmpCachedResourceRequestHandler extends NcmpDatastoreRequestHandle
 
         final FetchDescendantsOption fetchDescendantsOption = getFetchDescendantsOption(includeDescendants);
 
-        return () -> networkCmProxyDataService.getResourceDataForCmHandle(cmResourceAddress, fetchDescendantsOption);
+        return () -> networkCmProxyFacade.getResourceDataForCmHandle(cmResourceAddress, fetchDescendantsOption);
     }
 
     private Supplier<Object> getTaskSupplierForQueryRequest(final String cmHandleId,

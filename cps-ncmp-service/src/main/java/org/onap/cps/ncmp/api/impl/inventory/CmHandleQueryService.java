@@ -26,18 +26,18 @@ import java.util.Map;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
 
-public interface CmHandleQueries {
+public interface CmHandleQueryService {
 
     /**
-     * Query CmHandles based on additional (private) properties.
+     * Query Cm Handles based on additional (private) properties.
      *
      * @param additionalPropertyQueryPairs private properties for query
-     * @return Ids of CmHandles which have these private properties
+     * @return Ids of Cm Handles which have these private properties
      */
     Collection<String> queryCmHandleAdditionalProperties(Map<String, String> additionalPropertyQueryPairs);
 
     /**
-     * Query CmHandles based on public properties.
+     * Query Cm Handles based on public properties.
      *
      * @param publicPropertyQueryPairs public properties for query
      * @return CmHandles which have these public properties
@@ -45,10 +45,10 @@ public interface CmHandleQueries {
     Collection<String> queryCmHandlePublicProperties(Map<String, String> publicPropertyQueryPairs);
 
     /**
-     * Query CmHandles based on Trust Level.
+     * Query Cm Handles based on Trust Level.
      *
      * @param trustLevelPropertyQueryPairs trust level properties for query
-     * @return CmHandles which have desired trust level
+     * @return Ids of Cm Handles which have desired trust level
      */
     Collection<String> queryCmHandlesByTrustLevel(Map<String, String> trustLevelPropertyQueryPairs);
 
@@ -56,7 +56,7 @@ public interface CmHandleQueries {
      * Method which returns cm handles by the cm handles state.
      *
      * @param cmHandleState cm handle state
-     * @return a list of cm handles
+     * @return a list of data nodes representing the cm handles.
      */
     List<DataNode> queryCmHandlesByState(CmHandleState cmHandleState);
 
@@ -90,7 +90,7 @@ public interface CmHandleQueries {
      * Method which returns cm handles by the operational sync state of cm handle.
      *
      * @param dataStoreSyncState sync state
-     * @return a list of cm handles
+     * @return a list of data nodes representing the cm handles.
      */
     List<DataNode> queryCmHandlesByOperationalSyncState(DataStoreSyncState dataStoreSyncState);
 
@@ -98,7 +98,8 @@ public interface CmHandleQueries {
      * Get all cm handles ids by DMI plugin identifier.
      *
      * @param dmiPluginIdentifier DMI plugin identifier
-     * @return collection of cm handles
+     * @return collection of cm handle ids
      */
     Collection<String> getCmHandleIdsByDmiPluginIdentifier(String dmiPluginIdentifier);
+
 }
