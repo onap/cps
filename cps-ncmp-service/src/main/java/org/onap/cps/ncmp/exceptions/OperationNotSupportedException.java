@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -18,23 +18,15 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.rest.exceptions;
+package org.onap.cps.ncmp.exceptions;
 
-import lombok.Getter;
-
-public class InvalidTopicException extends RuntimeException {
-
-    @Getter
-    final String details;
-
+public class OperationNotSupportedException extends RuntimeException {
     /**
-     * Constructor.
+     * Instantiates a new not implemented operation exception.
      *
-     * @param message the error message
-     * @param details the error details
+     * @param message the message
      */
-    public InvalidTopicException(final String message, final String details) {
+    public OperationNotSupportedException(final String message) {
         super(message);
-        this.details = details;
     }
 }
