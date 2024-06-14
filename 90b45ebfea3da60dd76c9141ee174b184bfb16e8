@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "508adc61_72ff5463",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-06-14T11:30:08Z",
+      "side": 1,
+      "message": "some outstanding questions.Once resolved/answered then only will look at the testware in the patch.",
+      "revId": "90b45ebfea3da60dd76c9141ee174b184bfb16e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1791f76_dc265c1e",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-06-14T11:30:08Z",
+      "side": 1,
+      "message": "also do we really need to change both the V1 and V2 version of the API ???",
+      "revId": "90b45ebfea3da60dd76c9141ee174b184bfb16e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efa57eee_4bb6d838",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-06-14T11:30:08Z",
+      "side": 1,
+      "message": "please explain this ??",
+      "range": {
+        "startLine": 253,
+        "startChar": 4,
+        "endLine": 260,
+        "endChar": 5
+      },
+      "revId": "90b45ebfea3da60dd76c9141ee174b184bfb16e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
