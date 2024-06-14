@@ -18,35 +18,24 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.rest.controller.handlers;
+package org.onap.cps.ncmp.api.impl;
 
 import java.util.Collection;
+import lombok.AllArgsConstructor;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.api.NetworkCmProxyQueryService;
 import org.onap.cps.ncmp.api.models.CmResourceAddress;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
 @Component
+@AllArgsConstructor
 public class NcmpCachedResourceRequestHandler extends NcmpDatastoreRequestHandler {
 
     private final NetworkCmProxyDataService networkCmProxyDataService;
     private final NetworkCmProxyQueryService networkCmProxyQueryService;
-
-    /**
-     * Constructor.
-     *
-     * @param networkCmProxyDataService  @see org.onap.cps.ncmp.api.NetworkCmProxyDataService
-     * @param networkCmProxyQueryService @see org.onap.cps.ncmp.api.NetworkCmProxyQueryService
-     */
-    public NcmpCachedResourceRequestHandler(final NetworkCmProxyDataService networkCmProxyDataService,
-                                            final NetworkCmProxyQueryService networkCmProxyQueryService) {
-        this.networkCmProxyDataService = networkCmProxyDataService;
-        this.networkCmProxyQueryService = networkCmProxyQueryService;
-    }
 
     /**
      * Executes a synchronous query request for given cm handle.
@@ -55,13 +44,13 @@ public class NcmpCachedResourceRequestHandler extends NcmpDatastoreRequestHandle
      * @param cmHandleId         the cm handle
      * @param resourceIdentifier the resource identifier
      * @param includeDescendants whether include descendants
-     * @return the response entity
+     * @return a collection of data nodes
      */
-    public ResponseEntity<Object> executeRequest(final String cmHandleId, final String resourceIdentifier,
+    public Collection<DataNode> executeRequest(final String cmHandleId, final String resourceIdentifier,
                                                  final boolean includeDescendants) {
-        final Collection<DataNode> dataNodes = getTaskSupplierForQueryRequest(cmHandleId, resourceIdentifier,
-                includeDescendants);
-        return ResponseEntity.ok(dataNodes);
+        final FetchDescendantsOption fetchDescendantsOption = getFetchDescendantsOption(includeDescendants);
+        return networkCmProxyQueryService.queryResourceDataOperational(cmHandleId, resourceIdentifier,
+            fetchDescendantsOption);
     }
 
     @Override
@@ -74,14 +63,6 @@ public class NcmpCachedResourceRequestHandler extends NcmpDatastoreRequestHandle
         final FetchDescendantsOption fetchDescendantsOption = getFetchDescendantsOption(includeDescendants);
         return Mono.fromSupplier(
                 () -> networkCmProxyDataService.getResourceDataForCmHandle(cmResourceAddress, fetchDescendantsOption));
-    }
-
-    private Collection<DataNode> getTaskSupplierForQueryRequest(final String cmHandleId,
-                                                                final String resourceIdentifier,
-                                                                final boolean includeDescendants) {
-        final FetchDescendantsOption fetchDescendantsOption = getFetchDescendantsOption(includeDescendants);
-        return networkCmProxyQueryService.queryResourceDataOperational(cmHandleId, resourceIdentifier,
-            fetchDescendantsOption);
     }
 
     private static FetchDescendantsOption getFetchDescendantsOption(final boolean includeDescendants) {
