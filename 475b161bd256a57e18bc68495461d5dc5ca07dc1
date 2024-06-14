@@ -109,6 +109,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "519789be_1206c1d6",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-06-14T15:30:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8585fa33_cfd82457",
+      "range": {
+        "startLine": 38,
+        "startChar": 4,
+        "endLine": 40,
+        "endChar": 7
+      },
+      "revId": "475b161bd256a57e18bc68495461d5dc5ca07dc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "277bed97_1db5873e",
@@ -122,6 +146,30 @@
       "writtenOn": "2024-06-14T13:10:44Z",
       "side": 1,
       "message": "NB: same as above:\n\nconst url \u003d `${NCMP_BASE_URL}/ncmpInventory/v1/ch`;\n    const params \u003d {\n        headers: {\n            \u0027Content-Type\u0027: \u0027application/json\u0027,\n        },\n    };\n\n    const response \u003d http.post(url, JSON.stringify(payload), params);",
+      "range": {
+        "startLine": 52,
+        "startChar": 4,
+        "endLine": 54,
+        "endChar": 7
+      },
+      "revId": "475b161bd256a57e18bc68495461d5dc5ca07dc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "569f13c8_82c5ab1d",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-06-14T15:30:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "277bed97_1db5873e",
       "range": {
         "startLine": 52,
         "startChar": 4,
@@ -149,6 +197,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e0a6602_9cbceb08",
+        "filename": "k6-tests/ncmp/common/passthrough-read.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-06-14T15:30:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d8f4909_eb0e4052",
+      "revId": "475b161bd256a57e18bc68495461d5dc5ca07dc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9b848b72_c807f440",
@@ -162,6 +228,30 @@
       "writtenOn": "2024-06-14T13:10:44Z",
       "side": 1,
       "message": "NB:\n\nconst searchParameters \u003d SEARCH_PARAMETERS_PER_SCENARIO[scenario];\n    const payload \u003d JSON.stringify(searchParameters);",
+      "range": {
+        "startLine": 54,
+        "startChar": 4,
+        "endLine": 54,
+        "endChar": 85
+      },
+      "revId": "475b161bd256a57e18bc68495461d5dc5ca07dc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "659897ef_1a0eebde",
+        "filename": "k6-tests/ncmp/common/search-base.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-06-14T15:30:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9b848b72_c807f440",
       "range": {
         "startLine": 54,
         "startChar": 4,
@@ -195,6 +285,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "59f5166e_34872bf0",
+        "filename": "k6-tests/ncmp/common/search-base.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-06-14T15:30:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "178ea66c_266503ba",
+      "range": {
+        "startLine": 55,
+        "startChar": 3,
+        "endLine": 57,
+        "endChar": 7
+      },
+      "revId": "475b161bd256a57e18bc68495461d5dc5ca07dc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9896b8cf_682ed1dc",
@@ -208,6 +322,30 @@
       "writtenOn": "2024-06-14T13:10:44Z",
       "side": 1,
       "message": "NB:\n\nconst responseData \u003d JSON.parse(response.body);\n    check(responseData, {",
+      "range": {
+        "startLine": 61,
+        "startChar": 4,
+        "endLine": 61,
+        "endChar": 38
+      },
+      "revId": "475b161bd256a57e18bc68495461d5dc5ca07dc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1478cac3_990586f9",
+        "filename": "k6-tests/ncmp/common/search-base.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-06-14T15:30:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9896b8cf_682ed1dc",
       "range": {
         "startLine": 61,
         "startChar": 4,
@@ -241,6 +379,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7dc13a8f_f6801c86",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-06-14T15:30:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b59364eb_df7ddbef",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 3
+      },
+      "revId": "475b161bd256a57e18bc68495461d5dc5ca07dc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c12bac91_63ccc7cd",
@@ -254,6 +416,30 @@
       "writtenOn": "2024-06-14T13:10:44Z",
       "side": 1,
       "message": "NB:\n\nreturn `ch-${Math.floor(Math.random() * TOTAL_CM_HANDLES) + 1}`;",
+      "range": {
+        "startLine": 40,
+        "startChar": 11,
+        "endLine": 40,
+        "endChar": 70
+      },
+      "revId": "475b161bd256a57e18bc68495461d5dc5ca07dc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c066c6c_6c59ac84",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-06-14T15:30:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c12bac91_63ccc7cd",
       "range": {
         "startLine": 40,
         "startChar": 11,
