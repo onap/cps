@@ -67,6 +67,184 @@
       "message": "recheck",
       "revId": "475b161bd256a57e18bc68495461d5dc5ca07dc1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8585fa33_cfd82457",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-14T13:10:44Z",
+      "side": 1,
+      "message": "NB: More readable if:\n\nconst url \u003d `${NCMP_BASE_URL}/ncmpInventory/v1/ch`;\n    const params \u003d {\n        headers: {\n            \u0027Content-Type\u0027: \u0027application/json\u0027,\n        },\n    };\n\n    const response \u003d http.post(url, JSON.stringify(payload), params);",
+      "range": {
+        "startLine": 38,
+        "startChar": 4,
+        "endLine": 40,
+        "endChar": 7
+      },
+      "revId": "475b161bd256a57e18bc68495461d5dc5ca07dc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "277bed97_1db5873e",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-14T13:10:44Z",
+      "side": 1,
+      "message": "NB: same as above:\n\nconst url \u003d `${NCMP_BASE_URL}/ncmpInventory/v1/ch`;\n    const params \u003d {\n        headers: {\n            \u0027Content-Type\u0027: \u0027application/json\u0027,\n        },\n    };\n\n    const response \u003d http.post(url, JSON.stringify(payload), params);",
+      "range": {
+        "startLine": 52,
+        "startChar": 4,
+        "endLine": 54,
+        "endChar": 7
+      },
+      "revId": "475b161bd256a57e18bc68495461d5dc5ca07dc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d8f4909_eb0e4052",
+        "filename": "k6-tests/ncmp/common/passthrough-read.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-14T13:10:44Z",
+      "side": 1,
+      "message": "NB: Use these as const as well for readability and consistency:\n\nconst resourceIdentifier \u003d \u0027x\u0027; // Example resource identifier\n    const includeDescendants \u003d true;\n    \nconst url \u003d `${NCMP_BASE_URL}/ncmp/v1/ch/${cmHandleId}/data/ds/${datastoreName}?resourceIdentifier\u003d${resourceIdentifier}\u0026include-descendants\u003d${includeDescendants}`;",
+      "revId": "475b161bd256a57e18bc68495461d5dc5ca07dc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b848b72_c807f440",
+        "filename": "k6-tests/ncmp/common/search-base.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-14T13:10:44Z",
+      "side": 1,
+      "message": "NB:\n\nconst searchParameters \u003d SEARCH_PARAMETERS_PER_SCENARIO[scenario];\n    const payload \u003d JSON.stringify(searchParameters);",
+      "range": {
+        "startLine": 54,
+        "startChar": 4,
+        "endLine": 54,
+        "endChar": 85
+      },
+      "revId": "475b161bd256a57e18bc68495461d5dc5ca07dc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "178ea66c_266503ba",
+        "filename": "k6-tests/ncmp/common/search-base.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-14T13:10:44Z",
+      "side": 1,
+      "message": "NB:\n\n const url \u003d `${NCMP_BASE_URL}/ncmp/v1/ch/${searchType}`;\n    const headers \u003d { \u0027Content-Type\u0027: \u0027application/json\u0027 };\n\n    const response \u003d http.post(url, payload, { headers });",
+      "range": {
+        "startLine": 55,
+        "startChar": 3,
+        "endLine": 57,
+        "endChar": 7
+      },
+      "revId": "475b161bd256a57e18bc68495461d5dc5ca07dc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9896b8cf_682ed1dc",
+        "filename": "k6-tests/ncmp/common/search-base.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-14T13:10:44Z",
+      "side": 1,
+      "message": "NB:\n\nconst responseData \u003d JSON.parse(response.body);\n    check(responseData, {",
+      "range": {
+        "startLine": 61,
+        "startChar": 4,
+        "endLine": 61,
+        "endChar": 38
+      },
+      "revId": "475b161bd256a57e18bc68495461d5dc5ca07dc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b59364eb_df7ddbef",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-14T13:10:44Z",
+      "side": 1,
+      "message": "NB:\n\n/**\n * Generates a batch of CM-handle IDs based on batch size and number.\n * @param {number} batchSize - Size of each batch.\n * @param {number} batchNumber - Number of the batch.\n * @returns {string[]} Array of CM-handle IDs.\n */",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 3
+      },
+      "revId": "475b161bd256a57e18bc68495461d5dc5ca07dc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c12bac91_63ccc7cd",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-14T13:10:44Z",
+      "side": 1,
+      "message": "NB:\n\nreturn `ch-${Math.floor(Math.random() * TOTAL_CM_HANDLES) + 1}`;",
+      "range": {
+        "startLine": 40,
+        "startChar": 11,
+        "endLine": 40,
+        "endChar": 70
+      },
+      "revId": "475b161bd256a57e18bc68495461d5dc5ca07dc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
