@@ -18,20 +18,20 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.rest.controller.handlers
+package org.onap.cps.ncmp.api.impl
 
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService
 import org.onap.cps.ncmp.api.impl.exception.InvalidDatastoreException
 import org.onap.cps.ncmp.api.impl.exception.InvalidOperationException
+import org.onap.cps.ncmp.api.models.CmResourceAddress
 import org.onap.cps.ncmp.api.models.DataOperationDefinition
 import org.onap.cps.ncmp.api.models.DataOperationRequest
-import org.onap.cps.ncmp.api.models.CmResourceAddress
-import org.onap.cps.ncmp.rest.exceptions.OperationNotSupportedException
-import org.onap.cps.ncmp.rest.exceptions.PayloadTooLargeException
+import org.onap.cps.ncmp.exceptions.OperationNotSupportedException
+import org.onap.cps.ncmp.exceptions.PayloadTooLargeException
 import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
 import reactor.core.publisher.Mono
 import spock.lang.Specification
-import spock.util.concurrent.PollingConditions
 
 class NcmpDatastoreRequestHandlerSpec extends Specification {
 
@@ -50,19 +50,26 @@ class NcmpDatastoreRequestHandlerSpec extends Specification {
             objectUnderTest.notificationFeatureEnabled = notificationFeatureEnabled
         and: 'a CM resource address'
             def cmResourceAddress = new CmResourceAddress('ds', 'ch1', 'resource1')
-        and: 'the (mocked) service is called with the correct parameters returns OK'
-            1 * mockNetworkCmProxyDataService.getResourceDataForCmHandle(cmResourceAddress, 'options', _, _, NO_AUTH_HEADER) >> Mono.just(HttpStatus.OK)
+        and: 'the (mocked) service when called with the correct parameters returns a response from dmi'
+            def resultFromDmi = new ResponseEntity('response from dmi',HttpStatus.I_AM_A_TEAPOT)
+            def synchronousResult = Mono.justOrEmpty(resultFromDmi)
+            mockNetworkCmProxyDataService.getResourceDataForCmHandle(cmResourceAddress, 'options', _, _, NO_AUTH_HEADER) >> synchronousResult
         when: 'get request is executed with topic = #topic'
-            def response= objectUnderTest.executeRequest(cmResourceAddress, 'options', topic, false, NO_AUTH_HEADER)
-        then: 'a successful response with/without request id is returned'
-            assert response.statusCode.value == 200
-            assert response.body instanceof Map == expectedResponseBodyIsMap
+            def response = objectUnderTest.executeRequest(cmResourceAddress, 'options', topic, false, NO_AUTH_HEADER)
+        then: 'a successful result with/without request id is returned'
+            if (expectSynchronousResponse) {
+                assert response.toString().contains('response from dmi')
+                assert response.toString().contains("I'm a teapot")
+            } else {
+                // expect request id in a map
+                assert response.keySet()[0] == 'requestId'
+            }
         where: 'the following parameters are used'
-            scenario                   | notificationFeatureEnabled | topic   || expectedCalls | expectedResponseBodyIsMap
-            'feature on, valid topic'  | true                       | 'valid' || 1             | true
-            'feature on, no topic'     | true                       | null    || 0             | false
-            'feature off, valid topic' | false                      | 'valid' || 0             | false
-            'feature off, no topic'    | false                      | null    || 0             | false
+            scenario                   | notificationFeatureEnabled | topic   || expectSynchronousResponse
+            'feature on, valid topic'  | true                       | 'valid' || false
+            'feature on, no topic'     | true                       | null    || true
+            'feature off, valid topic' | false                      | 'valid' || true
+            'feature off, no topic'    | false                      | null    || true
     }
 
     def 'Attempt to execute async data operation request with feature #scenario.'() {
@@ -86,21 +93,12 @@ class NcmpDatastoreRequestHandlerSpec extends Specification {
         and: 'a data operation request with datastore: #datastore'
             def dataOperationDefinition = new DataOperationDefinition(operation: 'read', datastore: datastore)
             def dataOperationRequest = new DataOperationRequest(dataOperationDefinitions: [dataOperationDefinition])
-        and: ' a flag to track the network service call'
-            def networkServiceMethodCalled = false
-        and: 'the (mocked) service will use the flag to indicate it is called'
-            mockNetworkCmProxyDataService.executeDataOperationForCmHandles('myTopic', dataOperationRequest, _, NO_AUTH_HEADER) >> {
-                networkServiceMethodCalled = true
-            }
         when: 'data operation request is executed'
             def response = objectUnderTest.executeRequest('myTopic', dataOperationRequest, NO_AUTH_HEADER)
-        and: 'a successful response with request id is returned'
-            assert response.statusCode.value == 200
-            assert response.body.requestId != null
+        and: 'a map with request id is returned'
+            assert response.keySet()[0] == 'requestId'
         then: 'the network service is invoked'
-            new PollingConditions().within(1) {
-                assert networkServiceMethodCalled == true
-            }
+            1 * mockNetworkCmProxyDataService.executeDataOperationForCmHandles('myTopic', dataOperationRequest, _, NO_AUTH_HEADER)
         where: 'the following datastores are used'
             datastore << ['ncmp-datastore:passthrough-running', 'ncmp-datastore:passthrough-operational']
     }

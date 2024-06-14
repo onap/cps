@@ -18,7 +18,7 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.rest.exceptions;
+package org.onap.cps.ncmp.exceptions;
 
 public class PayloadTooLargeException extends RuntimeException {
 
