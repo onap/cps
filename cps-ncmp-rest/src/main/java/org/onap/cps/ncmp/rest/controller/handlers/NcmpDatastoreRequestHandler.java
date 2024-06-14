@@ -25,9 +25,8 @@ import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.models.CmResourceAddress;
-import org.onap.cps.ncmp.rest.util.TopicValidator;
+import org.onap.cps.ncmp.utils.TopicValidator;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
@@ -52,9 +51,10 @@ public abstract class NcmpDatastoreRequestHandler {
      * @param topicParamInQuery   the topic param in query
      * @param includeDescendants  whether include descendants
      * @param authorization       contents of Authorization header, or null if not present
-     * @return the response entity
+     * @return the result object, depends on use op topic. With topic a map object with request id is returned
+     *         otherwise the result of the request.
      */
-    public ResponseEntity<Object> executeRequest(final CmResourceAddress cmResourceAddress,
+    public Object executeRequest(final CmResourceAddress cmResourceAddress,
                                                  final String optionsParamInQuery,
                                                  final String topicParamInQuery,
                                                  final boolean includeDescendants,
@@ -72,14 +72,10 @@ public abstract class NcmpDatastoreRequestHandler {
         }
         final Mono<Object> resourceDataMono = getResourceDataForCmHandle(cmResourceAddress, optionsParamInQuery,
                 NO_TOPIC, NO_REQUEST_ID, includeDescendants, authorization);
-        return fetchResourceDataSynchronously(resourceDataMono);
+        return resourceDataMono.block();
     }
 
-    private ResponseEntity<Object> fetchResourceDataSynchronously(final Mono<Object> resourceDataMono) {
-        return ResponseEntity.ok(resourceDataMono.block());
-    }
-
-    private ResponseEntity<Object> fetchResourceDataAsynchronously(final CmResourceAddress cmResourceAddress,
+    private Map<String, String> fetchResourceDataAsynchronously(final CmResourceAddress cmResourceAddress,
                                                                    final String optionsParamInQuery,
                                                                    final String topicParamInQuery,
                                                                    final boolean includeDescendants,
@@ -93,7 +89,7 @@ public abstract class NcmpDatastoreRequestHandler {
                         log.error("Async operation failed for request id {}: {}", requestId, error.getMessage()))
                 .subscribe();
         log.debug("Received Async request with id {}", requestId);
-        return ResponseEntity.ok(Map.of("requestId", requestId));
+        return Map.of("requestId", requestId);
     }
 
     protected abstract Mono<Object> getResourceDataForCmHandle(final CmResourceAddress cmResourceAddress,

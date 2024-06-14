@@ -62,6 +62,7 @@ import org.onap.cps.ncmp.rest.model.RestOutputCmHandle;
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandleCompositeState;
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandlePublicProperties;
 import org.onap.cps.ncmp.rest.util.DeprecationHelper;
+import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.ModuleDefinition;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -112,16 +113,18 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                              final String authorization) {
         final NcmpDatastoreRequestHandler ncmpDatastoreRequestHandler = getNcmpDatastoreRequestHandler(datastoreName);
         final CmResourceAddress cmResourceAddress = new CmResourceAddress(datastoreName, cmHandle, resourceIdentifier);
-        return ncmpDatastoreRequestHandler.executeRequest(cmResourceAddress, optionsParamInQuery, topicParamInQuery,
-            includeDescendants, authorization);
+        final Object result = ncmpDatastoreRequestHandler.executeRequest(cmResourceAddress, optionsParamInQuery,
+            topicParamInQuery, includeDescendants, authorization);
+        return ResponseEntity.ok(result);
     }
 
     @Override
     public ResponseEntity<Object> executeDataOperationForCmHandles(final String topicParamInQuery,
                                                                    final DataOperationRequest dataOperationRequest,
                                                                    final String authorization) {
-        return ncmpPassthroughResourceRequestHandler.executeRequest(topicParamInQuery,
+        final Object result = ncmpPassthroughResourceRequestHandler.executeRequest(topicParamInQuery,
                 dataOperationRequestMapper.toDataOperationRequest(dataOperationRequest), authorization);
+        return ResponseEntity.ok(result);
     }
 
     /**
@@ -133,7 +136,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      * @param optionsParamInQuery  options query parameter
      * @param topicParamInQuery    topic query parameter
      * @param includeDescendants   whether to include descendants or not
-     * @return {@code ResponseEntity} response from dmi plugin
+     * @return {@code ResponseEntity} response. Body contains a collection of DataNodes
      */
 
     @Override
@@ -144,7 +147,9 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                                final String topicParamInQuery,
                                                                final Boolean includeDescendants) {
         validateDataStore(OPERATIONAL, datastoreName);
-        return ncmpCachedResourceRequestHandler.executeRequest(cmHandle, cpsPath, includeDescendants);
+        final Collection<DataNode> dataNodes = ncmpCachedResourceRequestHandler.executeRequest(cmHandle, cpsPath,
+            includeDescendants);
+        return ResponseEntity.ok(dataNodes);
     }
 
     /**

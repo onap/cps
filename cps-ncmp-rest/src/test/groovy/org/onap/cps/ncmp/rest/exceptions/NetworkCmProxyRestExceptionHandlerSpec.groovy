@@ -21,6 +21,8 @@
 
 package org.onap.cps.ncmp.rest.exceptions
 
+import org.onap.cps.ncmp.exceptions.PayloadTooLargeException
+
 import static org.springframework.http.HttpStatus.BAD_GATEWAY
 import static org.springframework.http.HttpStatus.BAD_REQUEST
 import static org.springframework.http.HttpStatus.CONFLICT
@@ -125,7 +127,7 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
             'Data Node Not Found' | new DataNodeNotFoundException('myDataspaceName', 'myAnchorName') || NOT_FOUND             | 'DataNode not found'        | 'DataNode not found'
             'Existing entry'      | new AlreadyDefinedException('name',null)                         || CONFLICT              | 'Already defined exception' | 'name already exists'
             'Existing entries'    | AlreadyDefinedException.forDataNodes(['A', 'B'], 'myAnchorName') || CONFLICT              | 'Already defined exception' | '2 data node(s) already exist'
-            'Operation too large' | new PayloadTooLargeException(sampleErrorMessage)                 || PAYLOAD_TOO_LARGE     | sampleErrorMessage          | 'Check logs'
+            'Operation too large' | new PayloadTooLargeException(sampleErrorMessage) || PAYLOAD_TOO_LARGE | sampleErrorMessage | 'Check logs'
     }
 
     def 'Post request with exception returns correct HTTP Status.'() {
