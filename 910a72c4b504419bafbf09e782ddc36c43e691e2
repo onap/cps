@@ -82,6 +82,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a32415b_6c9cbf63",
+        "filename": "k6-tests/ncmp/1-create-cmhandles.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-14T10:02:40Z",
+      "side": 1,
+      "message": "Thank you for the details. Now new name make sense.",
+      "parentUuid": "73dde735_d405999f",
+      "range": {
+        "startLine": 36,
+        "startChar": 70,
+        "endLine": 36,
+        "endChar": 99
+      },
+      "revId": "910a72c4b504419bafbf09e782ddc36c43e691e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d630dfd9_d202cf2e",
@@ -119,6 +143,30 @@
       "side": 1,
       "message": "I named it \u0027batchNumber\u0027 to make it more clear",
       "parentUuid": "d630dfd9_d202cf2e",
+      "range": {
+        "startLine": 36,
+        "startChar": 70,
+        "endLine": 36,
+        "endChar": 99
+      },
+      "revId": "910a72c4b504419bafbf09e782ddc36c43e691e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f37d3210_c62234bf",
+        "filename": "k6-tests/ncmp/11-delete-cmhandles.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-14T10:02:40Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c587ee9c_ddbe3447",
       "range": {
         "startLine": 36,
         "startChar": 70,
