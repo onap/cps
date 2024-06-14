@@ -21,28 +21,17 @@
 
 package org.onap.cps.ncmp.rest.exceptions
 
-import static org.springframework.http.HttpStatus.BAD_GATEWAY
-import static org.springframework.http.HttpStatus.BAD_REQUEST
-import static org.springframework.http.HttpStatus.CONFLICT
-import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
-import static org.springframework.http.HttpStatus.NOT_FOUND
-import static org.springframework.http.HttpStatus.PAYLOAD_TOO_LARGE
-import static org.onap.cps.ncmp.rest.exceptions.NetworkCmProxyRestExceptionHandlerSpec.ApiType.NCMP
-import static org.onap.cps.ncmp.rest.exceptions.NetworkCmProxyRestExceptionHandlerSpec.ApiType.NCMPINVENTORY
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
-import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNABLE_TO_READ_RESOURCE_DATA
-
 import groovy.json.JsonSlurper
 import org.mapstruct.factory.Mappers
 import org.onap.cps.TestUtils
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService
-import org.onap.cps.ncmp.api.impl.exception.DmiRequestException
+import org.onap.cps.ncmp.api.impl.NcmpCachedResourceRequestHandler
+import org.onap.cps.ncmp.api.impl.NcmpPassthroughResourceRequestHandler
 import org.onap.cps.ncmp.api.impl.exception.DmiClientRequestException
+import org.onap.cps.ncmp.api.impl.exception.DmiRequestException
 import org.onap.cps.ncmp.api.impl.exception.ServerNcmpException
+import org.onap.cps.ncmp.exceptions.PayloadTooLargeException
 import org.onap.cps.ncmp.rest.controller.NcmpRestInputMapper
-import org.onap.cps.ncmp.rest.controller.handlers.NcmpCachedResourceRequestHandler
-import org.onap.cps.ncmp.rest.controller.handlers.NcmpPassthroughResourceRequestHandler
 import org.onap.cps.ncmp.rest.mapper.CmHandleStateMapper
 import org.onap.cps.ncmp.rest.mapper.DataOperationRequestMapper
 import org.onap.cps.ncmp.rest.util.DeprecationHelper
@@ -59,6 +48,18 @@ import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Shared
 import spock.lang.Specification
+
+import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNABLE_TO_READ_RESOURCE_DATA
+import static org.onap.cps.ncmp.rest.exceptions.NetworkCmProxyRestExceptionHandlerSpec.ApiType.NCMP
+import static org.onap.cps.ncmp.rest.exceptions.NetworkCmProxyRestExceptionHandlerSpec.ApiType.NCMPINVENTORY
+import static org.springframework.http.HttpStatus.BAD_GATEWAY
+import static org.springframework.http.HttpStatus.BAD_REQUEST
+import static org.springframework.http.HttpStatus.CONFLICT
+import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
+import static org.springframework.http.HttpStatus.NOT_FOUND
+import static org.springframework.http.HttpStatus.PAYLOAD_TOO_LARGE
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 
 @WebMvcTest
 class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
@@ -125,7 +126,7 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
             'Data Node Not Found' | new DataNodeNotFoundException('myDataspaceName', 'myAnchorName') || NOT_FOUND             | 'DataNode not found'        | 'DataNode not found'
             'Existing entry'      | new AlreadyDefinedException('name',null)                         || CONFLICT              | 'Already defined exception' | 'name already exists'
             'Existing entries'    | AlreadyDefinedException.forDataNodes(['A', 'B'], 'myAnchorName') || CONFLICT              | 'Already defined exception' | '2 data node(s) already exist'
-            'Operation too large' | new PayloadTooLargeException(sampleErrorMessage)                 || PAYLOAD_TOO_LARGE     | sampleErrorMessage          | 'Check logs'
+            'Operation too large' | new PayloadTooLargeException(sampleErrorMessage) || PAYLOAD_TOO_LARGE | sampleErrorMessage | 'Check logs'
     }
 
     def 'Post request with exception returns correct HTTP Status.'() {

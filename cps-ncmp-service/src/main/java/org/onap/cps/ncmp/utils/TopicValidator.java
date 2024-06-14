@@ -18,12 +18,12 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.rest.util;
+package org.onap.cps.ncmp.utils;
 
 import java.util.regex.Pattern;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import org.onap.cps.ncmp.rest.exceptions.InvalidTopicException;
+import org.onap.cps.ncmp.exceptions.InvalidTopicException;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class TopicValidator {

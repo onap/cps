@@ -18,27 +18,28 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.rest.controller.handlers;
+package org.onap.cps.ncmp.api.impl;
 
 import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.OPERATIONAL;
 import static org.onap.cps.ncmp.api.impl.operations.OperationType.READ;
 
 import java.util.Map;
 import java.util.UUID;
+import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
 import org.onap.cps.ncmp.api.impl.exception.InvalidDatastoreException;
 import org.onap.cps.ncmp.api.impl.operations.DatastoreType;
 import org.onap.cps.ncmp.api.impl.operations.OperationType;
 import org.onap.cps.ncmp.api.models.CmResourceAddress;
 import org.onap.cps.ncmp.api.models.DataOperationRequest;
-import org.onap.cps.ncmp.rest.exceptions.OperationNotSupportedException;
-import org.onap.cps.ncmp.rest.exceptions.PayloadTooLargeException;
-import org.onap.cps.ncmp.rest.util.TopicValidator;
-import org.springframework.http.ResponseEntity;
+import org.onap.cps.ncmp.exceptions.OperationNotSupportedException;
+import org.onap.cps.ncmp.exceptions.PayloadTooLargeException;
+import org.onap.cps.ncmp.utils.TopicValidator;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
 @Service
+@RequiredArgsConstructor
 public class NcmpPassthroughResourceRequestHandler extends NcmpDatastoreRequestHandler {
 
     private final NetworkCmProxyDataService networkCmProxyDataService;
@@ -46,32 +47,26 @@ public class NcmpPassthroughResourceRequestHandler extends NcmpDatastoreRequestH
     private static final String PAYLOAD_TOO_LARGE_TEMPLATE = "Operation '%s' affects too many (%d) cm handles";
 
     /**
-     * Constructor.
-     *
-     * @param networkCmProxyDataService  @see org.onap.cps.ncmp.api.NetworkCmProxyDataService
-     */
-    public NcmpPassthroughResourceRequestHandler(final NetworkCmProxyDataService networkCmProxyDataService) {
-        this.networkCmProxyDataService = networkCmProxyDataService;
-    }
-
-    /**
      * Executes asynchronous request for group of cm handles to resource data.
      *
      * @param topicParamInQuery        the topic param in query
      * @param dataOperationRequest     data operation request details for resource data
      * @param authorization            contents of Authorization header, or null if not present
-     * @return the response entity
+     * @return a map with one entry of request Id for success or status and error when async feature is disabled
      */
-    public ResponseEntity<Object> executeRequest(final String topicParamInQuery,
-                                                 final DataOperationRequest dataOperationRequest,
-                                                 final String authorization) {
+    public Map<String, String> executeRequest(final String topicParamInQuery,
+                                              final DataOperationRequest dataOperationRequest,
+                                              final String authorization) {
         validateDataOperationRequest(topicParamInQuery, dataOperationRequest);
         if (!notificationFeatureEnabled) {
-            return ResponseEntity.ok(Map.of("status",
-                "Asynchronous request is unavailable as notification feature is currently disabled."));
+            return Map.of("status",
+                "Asynchronous request is unavailable as notification feature is currently disabled.");
         }
-        return getRequestIdAndSendDataOperationRequestToDmiService(topicParamInQuery, dataOperationRequest,
-                authorization);
+        final String requestId = UUID.randomUUID().toString();
+        networkCmProxyDataService.executeDataOperationForCmHandles(topicParamInQuery, dataOperationRequest, requestId,
+            authorization);
+        return Map.of("requestId", requestId);
+
     }
 
     @Override
@@ -83,16 +78,6 @@ public class NcmpPassthroughResourceRequestHandler extends NcmpDatastoreRequestH
                                                       final String authorization) {
         return networkCmProxyDataService.getResourceDataForCmHandle(cmResourceAddress, optionsParamInQuery,
                 topicParamInQuery, requestId, authorization);
-    }
-
-    private ResponseEntity<Object> getRequestIdAndSendDataOperationRequestToDmiService(
-            final String topicParamInQuery,
-            final DataOperationRequest dataOperationRequest,
-            final String authorization) {
-        final String requestId = UUID.randomUUID().toString();
-        networkCmProxyDataService.executeDataOperationForCmHandles(topicParamInQuery, dataOperationRequest, requestId,
-                authorization);
-        return ResponseEntity.ok(Map.of("requestId", requestId));
     }
 
     private void validateDataOperationRequest(final String topicParamInQuery,
