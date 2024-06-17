@@ -16,6 +16,29 @@
       "message": "recheck",
       "revId": "f66694a076be41d83693423dec818493bcf66715",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b28d41f7_6bc53330",
+        "filename": "k6-tests/ncmp/2-wait-for-cmhandles-to-be-ready.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-06-17T12:31:25Z",
+      "side": 1,
+      "message": "NB: do we really need to wait this much ?",
+      "range": {
+        "startLine": 34,
+        "startChar": 29,
+        "endLine": 34,
+        "endChar": 35
+      },
+      "revId": "f66694a076be41d83693423dec818493bcf66715",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
