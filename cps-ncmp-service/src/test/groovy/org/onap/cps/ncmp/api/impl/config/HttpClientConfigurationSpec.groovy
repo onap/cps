@@ -43,6 +43,7 @@ class HttpClientConfigurationSpec extends Specification {
                 assert readTimeoutInSeconds == 789
                 assert writeTimeoutInSeconds == 30
                 assert maximumConnectionsTotal == 100
+                assert pendingAcquireMaxCount == 22
                 assert maximumInMemorySizeInMegabytes == 7
             }
     }
@@ -54,6 +55,7 @@ class HttpClientConfigurationSpec extends Specification {
                 assert readTimeoutInSeconds == 30
                 assert writeTimeoutInSeconds == 30
                 assert maximumConnectionsTotal == 111
+                assert pendingAcquireMaxCount == 44
                 assert maximumInMemorySizeInMegabytes == 8
             }
     }
@@ -65,6 +67,7 @@ class HttpClientConfigurationSpec extends Specification {
                 assert readTimeoutInSeconds == 30
                 assert writeTimeoutInSeconds == 30
                 assert maximumConnectionsTotal == 10
+                assert pendingAcquireMaxCount == 5
                 assert maximumInMemorySizeInMegabytes == 1
             }
     }
