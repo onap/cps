@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21379c9a_76e4dc1b",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-06-17T15:59:00Z",
+      "side": 1,
+      "message": "NB Copyright 2024 (same in some other files)",
+      "range": {
+        "startLine": 4,
+        "startChar": 37,
+        "endLine": 4,
+        "endChar": 41
+      },
+      "revId": "2bda784416645f4409a0ad77b65a5bf820126e32",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "260e066f_d0a77747",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyFacade.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-06-17T15:59:00Z",
+      "side": 1,
+      "message": "I\u0027m inclined to move the methods to Inventory facade. I think it fits with Single Responsibility Principle (a class should only have one reason to change).\n\nThere does not need to be a 1-to-1 mapping between REST controller and service layers anyway.",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 7
+      },
+      "revId": "2bda784416645f4409a0ad77b65a5bf820126e32",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cdee3d07_f4a73ca1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/CmHandleQueryService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-06-17T15:59:00Z",
+      "side": 1,
+      "message": "NB Arguably this could be a class instead of interface, since it\u0027s only used internally, and there is only one implementation.",
+      "range": {
+        "startLine": 29,
+        "startChar": 7,
+        "endLine": 29,
+        "endChar": 37
+      },
+      "revId": "2bda784416645f4409a0ad77b65a5bf820126e32",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
