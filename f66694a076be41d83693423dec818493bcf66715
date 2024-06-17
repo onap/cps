@@ -63,6 +63,30 @@
       },
       "revId": "f66694a076be41d83693423dec818493bcf66715",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c436ab5c_d6d97dab",
+        "filename": "k6-tests/ncmp/2-wait-for-cmhandles-to-be-ready.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-06-17T13:12:26Z",
+      "side": 1,
+      "message": "ok. so if we have a performant hardware then it could be less than this.\ngood. makes sense.",
+      "parentUuid": "6edb55eb_60a9d0c1",
+      "range": {
+        "startLine": 34,
+        "startChar": 29,
+        "endLine": 34,
+        "endChar": 35
+      },
+      "revId": "f66694a076be41d83693423dec818493bcf66715",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
