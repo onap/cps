@@ -77,4 +77,18 @@ class AnchorDataCacheConfigSpec extends Specification {
 
     }
 
+    def 'Verify docker network config'() {
+        given: 'Trust level config object and test configuration'
+            def objectUnderTest = new AnchorDataCacheConfig()
+            def testConfig = new Config()
+        when: 'docker properties are enabled'
+            objectUnderTest.cacheKubernetesEnabled = false
+            objectUnderTest.cacheDockerEnabled = true
+        and: 'method called to update the discovery mode'
+            objectUnderTest.updateDiscoveryMode(testConfig)
+        then: 'applied properties are reflected'
+            assert !testConfig.networkConfig.join.multicastConfig.enabled
+            assert testConfig.networkConfig.join.tcpIpConfig.enabled
+    }
+
 }
