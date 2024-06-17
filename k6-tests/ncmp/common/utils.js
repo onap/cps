@@ -20,7 +20,8 @@
 
 export const NCMP_BASE_URL = 'http://localhost:8883';
 export const DMI_PLUGIN_URL = 'http://ncmp-dmi-plugin-demo-and-csit-stub:8092';
-export const TOTAL_CM_HANDLES = 20000
+export const TOTAL_CM_HANDLES = Number(__ENV.TOTAL_CM_HANDLES) || 20000;
+export const REGISTRATION_BATCH_SIZE = Number(__ENV.REGISTRATION_BATCH_SIZE) || 100;
 
 /**
  * Generates a batch of CM-handle IDs based on batch size and number.
