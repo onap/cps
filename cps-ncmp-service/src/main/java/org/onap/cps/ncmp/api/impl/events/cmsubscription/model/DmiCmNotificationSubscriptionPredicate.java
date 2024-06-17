@@ -20,6 +20,7 @@
 
 package org.onap.cps.ncmp.api.impl.events.cmsubscription.model;
 
+import java.io.Serializable;
 import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,10 +30,11 @@ import org.onap.cps.ncmp.api.impl.operations.DatastoreType;
 @Getter
 @Setter
 @AllArgsConstructor
-public class DmiCmNotificationSubscriptionPredicate {
+public class DmiCmNotificationSubscriptionPredicate implements Serializable {
+
+    private static final long serialVersionUID = -8698018309036213401L;
 
     private Set<String> targetCmHandleIds;
     private DatastoreType datastoreType;
     private Set<String> xpaths;
-
 }
