@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4dec5841_b7b870ec",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/WriteOperationExaminerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-06-17T15:18:28Z",
+      "side": 1,
+      "message": "i thinks this scenario dos not makes sense anymore, since we are not checking the order here. we have a specific test for that now",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 81
+      },
+      "revId": "322c9b6bf92ca203f7c865acfb69d9b6b5de4f3a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
