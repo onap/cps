@@ -20,14 +20,26 @@
 
 package org.onap.cps.ncmp.impl.datajobs;
 
+import java.util.List;
+import java.util.Map;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.datajobs.DataJobService;
 import org.onap.cps.ncmp.api.datajobs.models.DataJobMetadata;
 import org.onap.cps.ncmp.api.datajobs.models.DataJobReadRequest;
 import org.onap.cps.ncmp.api.datajobs.models.DataJobWriteRequest;
+import org.onap.cps.ncmp.api.datajobs.models.DmiWriteOperation;
+import org.onap.cps.ncmp.api.datajobs.models.ProducerKey;
+import org.onap.cps.ncmp.api.datajobs.models.SubJobWriteResponse;
+import org.springframework.stereotype.Service;
 
 @Slf4j
+@Service
+@RequiredArgsConstructor
 public class DataJobServiceImpl implements DataJobService {
+
+    private final DmiSubJobRequestHandler dmiSubJobClient;
+    private final WriteRequestExaminer writeRequestExaminer;
 
     @Override
     public void readDataJob(final String dataJobId, final DataJobMetadata dataJobMetadata,
@@ -36,8 +48,13 @@ public class DataJobServiceImpl implements DataJobService {
     }
 
     @Override
-    public void writeDataJob(final String dataJobId, final DataJobMetadata dataJobMetadata,
-                             final DataJobWriteRequest dataJobWriteRequest) {
+    public List<SubJobWriteResponse> writeDataJob(final String dataJobId, final DataJobMetadata dataJobMetadata,
+                                                  final DataJobWriteRequest dataJobWriteRequest) {
         log.info("data job id for write operation is: {}", dataJobId);
+
+        final Map<ProducerKey, List<DmiWriteOperation>> dmiWriteOperationsPerProducerKey =
+                writeRequestExaminer.splitDmiWriteOperationsFromRequest(dataJobId, dataJobWriteRequest);
+
+        return dmiSubJobClient.sendRequestsToDmi(dataJobId, dataJobMetadata, dmiWriteOperationsPerProducerKey);
     }
 }

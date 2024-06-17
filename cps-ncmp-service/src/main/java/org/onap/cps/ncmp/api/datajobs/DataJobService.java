@@ -20,9 +20,11 @@
 
 package org.onap.cps.ncmp.api.datajobs;
 
+import java.util.List;
 import org.onap.cps.ncmp.api.datajobs.models.DataJobMetadata;
 import org.onap.cps.ncmp.api.datajobs.models.DataJobReadRequest;
 import org.onap.cps.ncmp.api.datajobs.models.DataJobWriteRequest;
+import org.onap.cps.ncmp.api.datajobs.models.SubJobWriteResponse;
 
 public interface DataJobService {
 
@@ -41,6 +43,8 @@ public interface DataJobService {
      * @param dataJobId           Unique identifier of the job within the request
      * @param dataJobMetadata     data job request headers
      * @param dataJobWriteRequest write data job request
+     * @return a list of sub-job write responses
      */
-    void writeDataJob(String dataJobId, DataJobMetadata dataJobMetadata, DataJobWriteRequest dataJobWriteRequest);
+    List<SubJobWriteResponse> writeDataJob(String dataJobId, DataJobMetadata dataJobMetadata,
+                                           DataJobWriteRequest dataJobWriteRequest);
 }
