@@ -39,6 +39,30 @@
       },
       "revId": "f66694a076be41d83693423dec818493bcf66715",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6edb55eb_60a9d0c1",
+        "filename": "k6-tests/ncmp/2-wait-for-cmhandles-to-be-ready.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-06-17T12:45:47Z",
+      "side": 1,
+      "message": "Yes, it takes up to 5 minutes for 20,000 CM-handles to be ready in our environment. So we set the max timeout here to be a little higher.\n(Note the method waitForCmHandlesToBeReady will return as soon as all 20,000 CM-handles are ready.)",
+      "parentUuid": "b28d41f7_6bc53330",
+      "range": {
+        "startLine": 34,
+        "startChar": 29,
+        "endLine": 34,
+        "endChar": 35
+      },
+      "revId": "f66694a076be41d83693423dec818493bcf66715",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
