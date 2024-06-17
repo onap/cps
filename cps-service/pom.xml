@@ -70,9 +70,8 @@
       <artifactId>gson</artifactId>
     </dependency>
     <dependency>
-      <!-- Hazelcast provide Distributed Caches -->
       <groupId>com.hazelcast</groupId>
-      <artifactId>hazelcast-spring</artifactId>
+      <artifactId>hazelcast-all</artifactId>
     </dependency>
     <dependency>
       <groupId>io.micrometer</groupId>

@@ -219,6 +219,8 @@ hazelcast:
     kubernetes:
       enabled: false
       service-name: cps-and-ncmp-service
+    docker:
+      enabled: false
 
 cps:
   tracing:
