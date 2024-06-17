@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2023 Nordix Foundation
+ *  Copyright (C) 2022-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -67,7 +67,7 @@ class AnchorDataCacheConfigSpec extends Specification {
             def objectUnderTest = new AnchorDataCacheConfig()
             def testConfig = new Config()
         when: 'kubernetes properties are enabled'
-            objectUnderTest.cacheKubernetesEnabled = true
+            objectUnderTest.kubernetesDiscoveryEnabled = true
             objectUnderTest.cacheKubernetesServiceName = 'test-service-name'
         and: 'method called to update the discovery mode'
             objectUnderTest.updateDiscoveryMode(testConfig)

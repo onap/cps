@@ -70,7 +70,6 @@
       <artifactId>gson</artifactId>
     </dependency>
     <dependency>
-      <!-- Hazelcast provide Distributed Caches -->
       <groupId>com.hazelcast</groupId>
       <artifactId>hazelcast-spring</artifactId>
     </dependency>
