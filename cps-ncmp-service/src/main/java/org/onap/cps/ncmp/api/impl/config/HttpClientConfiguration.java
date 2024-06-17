@@ -23,11 +23,11 @@ package org.onap.cps.ncmp.api.impl.config;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 
 @Getter
 @Setter
-@Component
+@Configuration
 @ConfigurationProperties(prefix = "ncmp.dmi.httpclient")
 public class HttpClientConfiguration {
 
@@ -37,30 +37,36 @@ public class HttpClientConfiguration {
 
     @Getter
     @Setter
-    public static class DataServices {
-        private Integer maximumConnectionsTotal = 100;
-        private Integer connectionTimeoutInSeconds = 30;
-        private Integer readTimeoutInSeconds = 30;
-        private Integer writeTimeoutInSeconds = 30;
-        private Integer maximumInMemorySizeInMegabytes = 1;
+    public static class DataServices extends ServiceConfig {
+        private String connectionProviderName = "dataConnectionPool";
     }
 
     @Getter
     @Setter
-    public static class ModelServices {
-        private Integer maximumConnectionsTotal = 100;
-        private Integer connectionTimeoutInSeconds = 30;
-        private Integer readTimeoutInSeconds = 30;
-        private Integer writeTimeoutInSeconds = 30;
-        private Integer maximumInMemorySizeInMegabytes = 1;
+    public static class ModelServices extends ServiceConfig {
+        private String connectionProviderName = "modelConnectionPool";
     }
 
     @Getter
-    public static class HealthCheckServices {
-        private final Integer maximumConnectionsTotal = 10;
-        private final Integer connectionTimeoutInSeconds = 30;
-        private final Integer readTimeoutInSeconds = 30;
-        private final Integer writeTimeoutInSeconds = 30;
-        private final Integer maximumInMemorySizeInMegabytes = 1;
+    @Setter
+    public static class HealthCheckServices extends ServiceConfig {
+        private String connectionProviderName = "healthConnectionPool";
+        private int maximumConnectionsTotal = 10;
+        private int pendingAcquireMaxCount = 5;
+    }
+
+    /**
+     * Base configuration properties for all services.
+     */
+    @Getter
+    @Setter
+    public static class ServiceConfig {
+        private String connectionProviderName = "cpsConnectionPool";
+        private int maximumConnectionsTotal = 100;
+        private int pendingAcquireMaxCount = 50;
+        private Integer connectionTimeoutInSeconds = 30;
+        private long readTimeoutInSeconds = 30;
+        private long writeTimeoutInSeconds = 30;
+        private int maximumInMemorySizeInMegabytes = 1;
     }
 }

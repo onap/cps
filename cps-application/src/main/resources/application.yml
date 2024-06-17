@@ -194,12 +194,14 @@ ncmp:
                 readTimeoutInSeconds: 30
                 writeTimeoutInSeconds: 30
                 maximumConnectionsTotal: 100
+                pendingAcquireMaxCount: 50
                 maximumInMemorySizeInMegabytes: 16
             model-services:
                 connectionTimeoutInSeconds: 30
                 readTimeoutInSeconds: 30
                 writeTimeoutInSeconds: 30
                 maximumConnectionsTotal: 100
+                pendingAcquireMaxCount: 50
                 maximumInMemorySizeInMegabytes: 16
         auth:
             username: ${DMI_USERNAME:cpsuser}
