@@ -238,6 +238,8 @@ hazelcast:
         kubernetes:
             enabled: ${HAZELCAST_MODE_KUBERNETES_ENABLED:false}
             service-name: ${CPS_NCMP_SERVICE_NAME:"cps-and-ncmp-service"}
+        docker:
+            enabled: ${HAZELCAST_DOCKER_ENABLED:true}
 
 otel:
     exporter:

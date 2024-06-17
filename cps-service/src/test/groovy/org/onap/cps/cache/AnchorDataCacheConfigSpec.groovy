@@ -67,7 +67,7 @@ class AnchorDataCacheConfigSpec extends Specification {
             def objectUnderTest = new AnchorDataCacheConfig()
             def testConfig = new Config()
         when: 'kubernetes properties are enabled'
-            objectUnderTest.cacheKubernetesEnabled = true
+            objectUnderTest.kubernetesDiscoveryEnabled = true
             objectUnderTest.cacheKubernetesServiceName = 'test-service-name'
         and: 'method called to update the discovery mode'
             objectUnderTest.updateDiscoveryMode(testConfig)
@@ -75,6 +75,19 @@ class AnchorDataCacheConfigSpec extends Specification {
             assert testConfig.networkConfig.join.kubernetesConfig.enabled
             assert testConfig.networkConfig.join.kubernetesConfig.properties.get('service-name') == 'test-service-name'
 
+    }
+
+    def 'Verify docker network config'() {
+        given: 'Synchronization config object and test configuration'
+            def objectUnderTest = new AnchorDataCacheConfig()
+            def testConfig = new Config()
+        when: 'docker properties are enabled'
+            objectUnderTest.kubernetesDiscoveryEnabled = false
+            objectUnderTest.dockerDiscoveryEnabled = true
+        and: 'method called to update the discovery mode'
+            objectUnderTest.updateDiscoveryMode(testConfig)
+        then: 'applied properties are reflected'
+            assert testConfig.networkConfig.join.autoDetectionEnabled
     }
 
 }

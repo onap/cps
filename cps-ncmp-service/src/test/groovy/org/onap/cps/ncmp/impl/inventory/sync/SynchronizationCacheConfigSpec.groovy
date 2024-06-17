@@ -108,7 +108,7 @@ class SynchronizationCacheConfigSpec extends Specification {
             def objectUnderTest = new SynchronizationCacheConfig()
             def testConfig = new Config()
         when: 'kubernetes properties are enabled'
-            objectUnderTest.cacheKubernetesEnabled = true
+            objectUnderTest.kubernetesDiscoveryEnabled = true
             objectUnderTest.cacheKubernetesServiceName = 'test-service-name'
         and: 'method called to update the discovery mode'
             objectUnderTest.updateDiscoveryMode(testConfig)

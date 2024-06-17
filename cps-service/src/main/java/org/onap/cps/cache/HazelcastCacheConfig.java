@@ -41,7 +41,10 @@ public class HazelcastCacheConfig {
     protected String clusterName;
 
     @Value("${hazelcast.mode.kubernetes.enabled}")
-    protected boolean cacheKubernetesEnabled;
+    protected boolean kubernetesDiscoveryEnabled;
+
+    @Value("${hazelcast.mode.docker.enabled}")
+    protected boolean dockerDiscoveryEnabled;
 
     @Value("${hazelcast.mode.kubernetes.service-name}")
     protected String cacheKubernetesServiceName;
@@ -89,10 +92,15 @@ public class HazelcastCacheConfig {
     }
 
     protected void updateDiscoveryMode(final Config config) {
-        if (cacheKubernetesEnabled) {
+        if (kubernetesDiscoveryEnabled) {
             log.info("Enabling kubernetes mode with service-name : {}", cacheKubernetesServiceName);
             config.getNetworkConfig().getJoin().getKubernetesConfig().setEnabled(true)
                 .setProperty("service-name", cacheKubernetesServiceName);
+        } else if (dockerDiscoveryEnabled) {
+            log.info("Enabling Docker discovery");
+            config.getNetworkConfig().getJoin().getAutoDetectionConfig().setEnabled(true);
+        } else {
+            log.info("Neither Kubernetes nor Docker discovery mode is enabled");
         }
     }
 

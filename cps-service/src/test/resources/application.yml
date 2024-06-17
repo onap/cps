@@ -1,6 +1,6 @@
 #  ============LICENSE_START=======================================================
 #  Copyright (c) 2021 Bell Canada.
-#  Modification Copyright (C) 2022 Nordix Foundation.
+#  Modification Copyright (C) 2022-2024 Nordix Foundation.
 #  ================================================================================
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -49,3 +49,5 @@ hazelcast:
     kubernetes:
       enabled: false
       service-name: "cps-and-ncmp-service"
+    docker:
+      enabled: false
