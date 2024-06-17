@@ -38,9 +38,11 @@ ncmp:
     dmi:
         httpclient:
             data-services:
+                pendingAcquireMaxCount: 22
                 connectionTimeoutInSeconds: 123
                 maximumInMemorySizeInMegabytes: 7
             model-services:
+                pendingAcquireMaxCount: 44
                 connectionTimeoutInSeconds: 456
                 maximumInMemorySizeInMegabytes: 8
         auth:
