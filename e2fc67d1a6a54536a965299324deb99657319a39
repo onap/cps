@@ -45,6 +45,30 @@
       },
       "revId": "e2fc67d1a6a54536a965299324deb99657319a39",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "386dddfa_5dda5a00",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-17T09:28:14Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "47813c6a_bc52e58b",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 61
+      },
+      "revId": "e2fc67d1a6a54536a965299324deb99657319a39",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

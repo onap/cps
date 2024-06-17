@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0fafd07_4db6cd47",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-17T09:28:14Z",
+      "side": 1,
+      "message": "Left some comments",
+      "revId": "ea02e8a729b05b632a4bdf641a3925c30abc2a75",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1298306_a78512cb",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/exceptions/NetworkCmProxyRestExceptionHandlerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-17T09:28:14Z",
+      "side": 1,
+      "message": "NB: Group it with imports",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 60
+      },
+      "revId": "ea02e8a729b05b632a4bdf641a3925c30abc2a75",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3dd4a7e8_8210b430",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NcmpCachedResourceRequestHandler.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-17T09:28:14Z",
+      "side": 1,
+      "message": "@Service\n@RequiredArgsConstructor",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 19
+      },
+      "revId": "ea02e8a729b05b632a4bdf641a3925c30abc2a75",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
