@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46722f60_dc20caf1",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-06-17T13:17:48Z",
+      "side": 0,
+      "message": "u removed this coz of 2 replicas now ? and 2 containers cant have the same name.\nnow we are relying on the auto-generated container names ???",
+      "range": {
+        "startLine": 46,
+        "startChar": 4,
+        "endLine": 46,
+        "endChar": 32
+      },
+      "revId": "35e0df312cbb2fd0a3740805636338713836b5e1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
