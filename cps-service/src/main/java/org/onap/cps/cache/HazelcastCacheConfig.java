@@ -41,7 +41,7 @@ public class HazelcastCacheConfig {
     protected String clusterName;
 
     @Value("${hazelcast.mode.kubernetes.enabled}")
-    protected boolean cacheKubernetesEnabled;
+    protected boolean kubernetesDiscoveryEnabled;
 
     @Value("${hazelcast.mode.kubernetes.service-name}")
     protected String cacheKubernetesServiceName;
@@ -89,7 +89,7 @@ public class HazelcastCacheConfig {
     }
 
     protected void updateDiscoveryMode(final Config config) {
-        if (cacheKubernetesEnabled) {
+        if (kubernetesDiscoveryEnabled) {
             log.info("Enabling kubernetes mode with service-name : {}", cacheKubernetesServiceName);
             config.getNetworkConfig().getJoin().getKubernetesConfig().setEnabled(true)
                 .setProperty("service-name", cacheKubernetesServiceName);

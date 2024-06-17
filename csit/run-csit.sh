@@ -2,6 +2,7 @@
 #
 # Copyright 2016-2017 Huawei Technologies Co., Ltd.
 # Modification Copyright 2019-2021 © Samsung Electronics Co., Ltd.
+# Modification Copyright (C) 2024 Nordix Foundation.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -185,6 +186,10 @@ export TESTOPTIONS="${2}"
 
 rm -rf "$WORKSPACE/archives/$TESTPLAN"
 mkdir -p "$WORKSPACE/archives/$TESTPLAN"
+
+rm -rf "$WORKSPACE/nginx-log"
+mkdir -p "$WORKSPACE/nginx-log"
+chmod -R 755 "$WORKSPACE/nginx-log"
 
 TESTPLANDIR="${WORKSPACE}/${TESTPLAN}"
 

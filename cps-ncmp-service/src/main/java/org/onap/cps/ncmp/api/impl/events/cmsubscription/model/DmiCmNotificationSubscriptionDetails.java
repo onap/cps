@@ -20,6 +20,7 @@
 
 package org.onap.cps.ncmp.api.impl.events.cmsubscription.model;
 
+import java.io.Serializable;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,7 +29,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class DmiCmNotificationSubscriptionDetails {
+public class DmiCmNotificationSubscriptionDetails implements Serializable {
+
+    private static final long serialVersionUID = 1354625546257065328L;
 
     private List<DmiCmNotificationSubscriptionPredicate> dmiCmNotificationSubscriptionPredicates;
     private CmNotificationSubscriptionStatus cmNotificationSubscriptionStatus;
