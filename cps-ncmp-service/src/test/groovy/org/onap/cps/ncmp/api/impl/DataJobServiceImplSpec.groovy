@@ -25,6 +25,8 @@ import ch.qos.logback.classic.Logger
 import ch.qos.logback.classic.spi.ILoggingEvent
 import ch.qos.logback.core.read.ListAppender
 import org.onap.cps.ncmp.impl.datajobs.DataJobServiceImpl
+import org.onap.cps.ncmp.impl.datajobs.DmiSubJobRequestHandler
+import org.onap.cps.ncmp.impl.datajobs.WriteRequestExaminer
 import org.slf4j.LoggerFactory
 import org.onap.cps.ncmp.api.datajobs.models.DataJobReadRequest
 import org.onap.cps.ncmp.api.datajobs.models.DataJobWriteRequest
@@ -33,9 +35,14 @@ import org.onap.cps.ncmp.api.datajobs.models.ReadOperation
 import org.onap.cps.ncmp.api.datajobs.models.WriteOperation
 import spock.lang.Specification
 
-class DataJobServiceImplSpec extends Specification{
+class DataJobServiceImplSpec extends Specification {
 
-    def objectUnderTest = new DataJobServiceImpl()
+    def mockWriteRequestExaminer = Mock(WriteRequestExaminer)
+    def mockDmiSubJobRequestHandler = Mock(DmiSubJobRequestHandler)
+
+    def objectUnderTest = new DataJobServiceImpl(mockDmiSubJobRequestHandler, mockWriteRequestExaminer)
+
+    def myDataJobMetadata = new DataJobMetadata('', '', '')
 
     def logger = Spy(ListAppender<ILoggingEvent>)
 
@@ -47,28 +54,27 @@ class DataJobServiceImplSpec extends Specification{
         ((Logger) LoggerFactory.getLogger(DataJobServiceImpl.class)).detachAndStopAllAppenders()
     }
 
-    def '#operation data job request.'() {
-        given: 'data job metadata'
-            def dataJobMetadata = new DataJobMetadata('client-topic', 'application/vnd.3gpp.object-tree-hierarchical+json', 'application/3gpp-json-patch+json')
-        when: 'read/write data job request is processed'
-            if (operation == 'read') {
-                objectUnderTest.readDataJob('some-job-id', dataJobMetadata, new DataJobReadRequest([getWriteOrReadOperationRequest(operation)]))
-            } else {
-                objectUnderTest.writeDataJob('some-job-id', dataJobMetadata, new DataJobWriteRequest([getWriteOrReadOperationRequest(operation)]))
-            }
+    def 'Read data job request.'() {
+        when: 'read data job request is processed'
+            def readOperation = new ReadOperation('', '', '', [], [], '', '', 1)
+            objectUnderTest.readDataJob('my-job-id', myDataJobMetadata, new DataJobReadRequest([readOperation] as List<ReadOperation>))
         then: 'the data job id is correctly logged'
             def loggingEvent = logger.list[0]
             assert loggingEvent.level == Level.INFO
-            assert loggingEvent.formattedMessage.contains('data job id for ' + operation + ' operation is: some-job-id')
-        where: 'the following data job operations are used'
-            operation << ['read', 'write']
+            assert loggingEvent.formattedMessage.contains('data job id for read operation is: my-job-id')
     }
 
-    def getWriteOrReadOperationRequest(operation) {
-        if (operation == 'write') {
-            return new WriteOperation('some/write/path', 'add', 'some-operation-id', 'some-value')
-        }
-        return new ReadOperation('some/read/path', 'read', 'some-operation-id', ['some-attrib-1'], ['some-field-1'], 'some-filter', 'some-scope-type', 1)
+    def 'Write data-job request.'() {
+        given: 'data job metadata and write request'
+            def dataJobWriteRequest = new DataJobWriteRequest([new WriteOperation('', '', '', null)])
+        and: 'a map of producer key and dmi 3gpp write operation'
+            def dmiWriteOperationsPerProducerKey = [:]
+        when: 'write data job request is processed'
+            objectUnderTest.writeDataJob('my-job-id', myDataJobMetadata, dataJobWriteRequest)
+        then: 'the examiner service is called and a map is returned'
+            1 * mockWriteRequestExaminer.splitDmiWriteOperationsFromRequest('my-job-id', dataJobWriteRequest) >> dmiWriteOperationsPerProducerKey
+        and: 'the dmi request handler is called with the result from the examiner'
+            1 * mockDmiSubJobRequestHandler.sendRequestsToDmi('my-job-id', myDataJobMetadata, dmiWriteOperationsPerProducerKey)
     }
 
     def setupLogger() {
