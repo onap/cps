@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76eabb06_80fad7b7",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-19T07:33:16Z",
+      "side": 1,
+      "message": "q: why is there no entry for the health check client here?\n( I assume because it uses default settings only)",
+      "range": {
+        "startLine": 191,
+        "startChar": 8,
+        "endLine": 191,
+        "endChar": 18
+      },
+      "revId": "c7a0e15bb5365e5385d5b8bc8672c29f9dc8fd6e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e310e7f4_9af75233",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/HttpClientConfigurationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-19T07:33:16Z",
+      "side": 1,
+      "message": "can you put different values in the test yaml to see they get applied here?",
+      "range": {
+        "startLine": 46,
+        "startChar": 24,
+        "endLine": 46,
+        "endChar": 51
+      },
+      "revId": "c7a0e15bb5365e5385d5b8bc8672c29f9dc8fd6e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
