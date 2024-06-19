@@ -20,6 +20,74 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ebf3f7e4_255e4bc4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/datajobs/models/DmiWriteOperation.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-19T15:36:39Z",
+      "side": 1,
+      "message": "Include Java doc here",
+      "revId": "2f7c4272b929b30af6a19d47d73901fcf2d47776",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc9447b6_84d3c15a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/datajobs/models/ProducerKey.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-19T15:36:39Z",
+      "side": 1,
+      "message": "Java doc",
+      "revId": "2f7c4272b929b30af6a19d47d73901fcf2d47776",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c3600da_b77c7b2a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/datajobs/models/SubJobWriteRequest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-19T15:36:39Z",
+      "side": 1,
+      "message": "java doc",
+      "revId": "2f7c4272b929b30af6a19d47d73901fcf2d47776",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97640339_0ddbf474",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/datajobs/models/SubJobWriteResponse.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-19T15:36:39Z",
+      "side": 1,
+      "message": "java doc",
+      "revId": "2f7c4272b929b30af6a19d47d73901fcf2d47776",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3bf4657d_a0862b5d",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/DataJobServiceImplSpec.groovy",
         "patchSetId": 3
