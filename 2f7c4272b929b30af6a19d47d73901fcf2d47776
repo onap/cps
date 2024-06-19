@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4e47271_2cdf984f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-19T07:45:32Z",
+      "side": 1,
+      "message": "two small comments",
+      "revId": "2f7c4272b929b30af6a19d47d73901fcf2d47776",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3bf4657d_a0862b5d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/DataJobServiceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-19T07:45:32Z",
+      "side": 1,
+      "message": "wrong description (I missed it the last time) These can be easily captured during  a self--check!",
+      "range": {
+        "startLine": 74,
+        "startChar": 15,
+        "endLine": 74,
+        "endChar": 50
+      },
+      "revId": "2f7c4272b929b30af6a19d47d73901fcf2d47776",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e087db2_efa54486",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/DmiSubJobRequestHandlerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-19T07:45:32Z",
+      "side": 1,
+      "message": "since we can check thr interaction with the DmiRetsClicent I dont think we need to assert logging. Logging assert are really only doen when there is nothing else to assert!",
+      "range": {
+        "startLine": 53,
+        "startChar": 1,
+        "endLine": 55,
+        "endChar": 74
+      },
+      "revId": "2f7c4272b929b30af6a19d47d73901fcf2d47776",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0331b18_aa1afc14",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/WriteRequestExaminerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-19T07:45:32Z",
+      "side": 1,
+      "message": "good scenario descriptions!",
+      "range": {
+        "startLine": 44,
+        "startChar": 20,
+        "endLine": 44,
+        "endChar": 78
+      },
+      "revId": "2f7c4272b929b30af6a19d47d73901fcf2d47776",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
