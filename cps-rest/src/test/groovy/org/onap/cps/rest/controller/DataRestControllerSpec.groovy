@@ -202,7 +202,7 @@ class DataRestControllerSpec extends Specification {
             response.status == expectedHttpStatus.value()
         then: 'the java API was called with the correct parameters'
             expectedApiCount * mockCpsDataService.saveListElements(dataspaceName, anchorName, rootNodeXpath, expectedJsonData,
-                { it == DateTimeUtility.toOffsetDateTime(observedTimestamp) })
+                { it == DateTimeUtility.toOffsetDateTime(observedTimestamp) }, ContentType.JSON)
         where:
             scenario                          | observedTimestamp              || expectedApiCount | expectedHttpStatus
             'with observed-timestamp'         | '2021-03-03T23:59:59.999-0400' || 1                | HttpStatus.CREATED
@@ -225,7 +225,7 @@ class DataRestControllerSpec extends Specification {
             response.status == expectedHttpStatus.value()
         then: 'the java API was called with the correct parameters'
             expectedApiCount * mockCpsDataService.saveListElements(dataspaceName, anchorName, parentNodeXpath, expectedJsonData,
-                { it == DateTimeUtility.toOffsetDateTime(observedTimestamp) })
+                { it == DateTimeUtility.toOffsetDateTime(observedTimestamp) }, ContentType.JSON)
         where:
             scenario                          | observedTimestamp              || expectedApiCount | expectedHttpStatus
             'with observed-timestamp'         | '2021-03-03T23:59:59.999-0400' || 1                | HttpStatus.CREATED
