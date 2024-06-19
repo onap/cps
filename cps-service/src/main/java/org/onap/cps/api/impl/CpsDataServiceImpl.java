@@ -65,6 +65,7 @@ public class CpsDataServiceImpl implements CpsDataService {
 
     private static final String ROOT_NODE_XPATH = "/";
     private static final long DEFAULT_LOCK_TIMEOUT_IN_MILLISECONDS = 300L;
+    public static final String NO_DATA_NODES = "No data nodes.";
 
     private final CpsDataPersistenceService cpsDataPersistenceService;
     private final CpsDataUpdateEventsService cpsDataUpdateEventsService;
@@ -425,7 +426,7 @@ public class CpsDataServiceImpl implements CpsDataService {
                     .withContainerNode(containerNode)
                     .buildCollection();
             if (dataNodes.isEmpty()) {
-                throw new DataValidationException("No data nodes.", "No data nodes provided");
+                throw new DataValidationException(NO_DATA_NODES, "No data nodes provided");
             }
             return dataNodes;
         }
@@ -437,7 +438,7 @@ public class CpsDataServiceImpl implements CpsDataService {
             .withContainerNode(containerNode)
             .buildCollection();
         if (dataNodes.isEmpty()) {
-            throw new DataValidationException("No data nodes.", "No data nodes provided");
+            throw new DataValidationException(NO_DATA_NODES, "No data nodes provided");
         }
         return dataNodes;
     }
@@ -453,8 +454,7 @@ public class CpsDataServiceImpl implements CpsDataService {
                     .withContainerNode(containerNode)
                     .buildCollection();
             if (dataNodes.isEmpty()) {
-                throw new DataValidationException("No data nodes.",
-                        "Data nodes were not found under the xpath " + xpath);
+                throw new DataValidationException(NO_DATA_NODES, "Data nodes were not found under the xpath " + xpath);
             }
             return dataNodes;
         }
@@ -466,7 +466,7 @@ public class CpsDataServiceImpl implements CpsDataService {
                 .withContainerNode(containerNode)
                 .buildCollection();
         if (dataNodes.isEmpty()) {
-            throw new DataValidationException("No data nodes.", "Data nodes were not found under the xpath " + xpath);
+            throw new DataValidationException(NO_DATA_NODES, "Data nodes were not found under the xpath " + xpath);
         }
         return dataNodes;
     }
