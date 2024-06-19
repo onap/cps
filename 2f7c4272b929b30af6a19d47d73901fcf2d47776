@@ -65,6 +65,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b2d283a_023d0bde",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/DataJobServiceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-06-19T14:30:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3bf4657d_a0862b5d",
+      "range": {
+        "startLine": 74,
+        "startChar": 15,
+        "endLine": 74,
+        "endChar": 50
+      },
+      "revId": "2f7c4272b929b30af6a19d47d73901fcf2d47776",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6e087db2_efa54486",
@@ -99,6 +123,30 @@
         "id": 6639
       },
       "writtenOn": "2024-06-19T14:24:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e087db2_efa54486",
+      "range": {
+        "startLine": 53,
+        "startChar": 1,
+        "endLine": 55,
+        "endChar": 74
+      },
+      "revId": "2f7c4272b929b30af6a19d47d73901fcf2d47776",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "42129464_0b892dac",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/DmiSubJobRequestHandlerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-06-19T14:30:12Z",
       "side": 1,
       "message": "Done",
       "parentUuid": "6e087db2_efa54486",
