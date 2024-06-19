@@ -35,6 +35,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "25ab5581_ad159a21",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-06-19T10:30:13Z",
+      "side": 1,
+      "message": "Will apply changes to V2 only",
+      "parentUuid": "d1791f76_dc265c1e",
+      "revId": "90b45ebfea3da60dd76c9141ee174b184bfb16e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "efa57eee_4bb6d838",
@@ -48,6 +66,30 @@
       "writtenOn": "2024-06-14T11:30:08Z",
       "side": 1,
       "message": "please explain this ??",
+      "range": {
+        "startLine": 253,
+        "startChar": 4,
+        "endLine": 260,
+        "endChar": 5
+      },
+      "revId": "90b45ebfea3da60dd76c9141ee174b184bfb16e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9463e32_01fdfb45",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-06-19T10:30:13Z",
+      "side": 1,
+      "message": "this method is to extract the xml string by removing the external tags like Immutable tag, here it finds the index of first \u0027\u003e\u0027 bracket adding 1 gives immediate  character which is beginning of xml content and end finds the index of last\u0027\u003c\u0027character which is beginning of closing tag. If start index is less than end index it extracts the substring as xml content",
+      "parentUuid": "efa57eee_4bb6d838",
       "range": {
         "startLine": 253,
         "startChar": 4,
