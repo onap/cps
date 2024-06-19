@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e22291a_41d93e10",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-19T09:48:05Z",
+      "side": 1,
+      "message": "Yes, for health services we are using default settings only.",
+      "parentUuid": "76eabb06_80fad7b7",
+      "range": {
+        "startLine": 191,
+        "startChar": 8,
+        "endLine": 191,
+        "endChar": 18
+      },
+      "revId": "c7a0e15bb5365e5385d5b8bc8672c29f9dc8fd6e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e310e7f4_9af75233",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-06-19T07:33:16Z",
       "side": 1,
       "message": "can you put different values in the test yaml to see they get applied here?",
+      "range": {
+        "startLine": 46,
+        "startChar": 24,
+        "endLine": 46,
+        "endChar": 51
+      },
+      "revId": "c7a0e15bb5365e5385d5b8bc8672c29f9dc8fd6e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cdd55756_7b423a56",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/HttpClientConfigurationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-19T09:48:05Z",
+      "side": 1,
+      "message": "Yes we can",
+      "parentUuid": "e310e7f4_9af75233",
       "range": {
         "startLine": 46,
         "startChar": 24,
