@@ -164,6 +164,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5153e7a7_66031eab",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/DmiSubJobRequestHandlerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-20T13:51:48Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "42065246_99cb09bc",
+      "revId": "35e17b9bc481aecc7607f1570bcca4c83123df41",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5436e897_39aee7b2",
