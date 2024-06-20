@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "265f41c5_09c590db",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-20T13:29:24Z",
+      "side": 1,
+      "message": "Its looks good to me. some NB comments.",
+      "revId": "3488fa5adaac972984de4829a219aa455ca88256",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee702cfd_6f7591d5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/CmHandleRegistrationService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-20T13:29:24Z",
+      "side": 1,
+      "message": "NB:\n\n// Filter out rejected cm handles and process the rest\n        List\u003cString\u003e succeededCmHandleIds \u003d cmHandlesToBeCreated.stream()\n            .filter(cmHandle -\u003e !rejectedCmHandleIds.contains(cmHandle.getCmHandleId()))\n            .peek(cmHandle -\u003e yangModelCmHandlesToRegister.add(getYangModelCmHandle(dmiPluginRegistration, cmHandle)))\n            .peek(cmHandle -\u003e cmHandleRegistrationResponses.add(\n                CmHandleRegistrationResponse.createSuccessResponse(cmHandle.getCmHandleId())))\n            .map(NcmpServiceCmHandle::getCmHandleId)\n            .collect(Collectors.toList());",
+      "range": {
+        "startLine": 375,
+        "startChar": 6,
+        "endLine": 382,
+        "endChar": 9
+      },
+      "revId": "3488fa5adaac972984de4829a219aa455ca88256",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e791dd5_864480aa",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NcmpDatastoreRequestHandler.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-20T13:29:24Z",
+      "side": 1,
+      "message": "NB:\n\nWe merge both lines",
+      "range": {
+        "startLine": 70,
+        "startChar": 7,
+        "endLine": 72,
+        "endChar": 40
+      },
+      "revId": "3488fa5adaac972984de4829a219aa455ca88256",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
