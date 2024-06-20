@@ -1,0 +1,119 @@
+/*
+ *  ============LICENSE_START=======================================================
+ *  Copyright (C) 2022-2024 Nordix Foundation
+ *  ================================================================================
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ *  SPDX-License-Identifier: Apache-2.0
+ *  ============LICENSE_END=========================================================
+ */
+
+package org.onap.cps.ncmp.api.impl.utils.url.builder;
+
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import lombok.NoArgsConstructor;
+import org.apache.logging.log4j.util.Strings;
+import org.springframework.web.util.UriComponentsBuilder;
+
+@NoArgsConstructor
+public class DmiServiceUrlBuilder extends UriComponentsBuilder {
+    private static final String FIXED_PATH_SEGMENT = null;
+    private static final String VERSION_SEGMENT = "v1";
+    private final Map<String, Object> pathSegments = new LinkedHashMap<>();
+    private final Map<String, String> queryParameters = new LinkedHashMap<>();
+
+    /**
+     * Static factory method to create a new instance of DmiServiceUrlBuilder.
+     *
+     * @return a new instance of DmiServiceUrlBuilder
+     */
+    public static DmiServiceUrlBuilder newInstance() {
+        return new DmiServiceUrlBuilder();
+    }
+
+    /**
+     * Add a fixed pathSegment to the URI.
+     *
+     * @param pathSegment the path segment
+     * @return this builder instance
+     */
+    public DmiServiceUrlBuilder fixedPathSegment(final String pathSegment) {
+        pathSegments.put(pathSegment, FIXED_PATH_SEGMENT);
+        return this;
+    }
+
+    /**
+     * Add a variable pathSegment to the URI.
+     * Do NOT add { } braces. the builder will take care of that
+     *
+     * @param pathSegment the name of the variable path segment (with { and }
+     * @param value       the value to be insert in teh URI for the given variable path segment
+     * @return this builder instance
+     */
+    public DmiServiceUrlBuilder variablePathSegment(final String pathSegment, final Object value) {
+        pathSegments.put(pathSegment, value);
+        return this;
+    }
+
+    /**
+     * Add a query parameter to the URI.
+     * Do NOT encode as the builder wil take care of encoding
+     *
+     * @param queryParameterName  the name of the variable
+     * @param queryParameterValue the value of the variable (only Strings are supported).
+     *
+     * @return this builder instance
+     */
+    public DmiServiceUrlBuilder queryParameter(final String queryParameterName, final String queryParameterValue) {
+        if (Strings.isNotBlank(queryParameterValue)) {
+            queryParameters.put(queryParameterName, queryParameterValue);
+        }
+        return this;
+    }
+
+    /**
+     * Constructs a URI template with variables based on the accumulated path segments and query parameters.
+     *
+     * @param dmiServiceName the name of the DMI service
+     * @param dmiBasePath    the base path of the DMI service
+     * @return a UriTemplateWithVariables instance containing the complete URL template and URI variables
+     */
+    public UriTemplateParameters createUriTemplateWithVariables(final String dmiServiceName,
+                                                                final String dmiBasePath) {
+        pathSegment("{dmiBasePath}")
+            .pathSegment(VERSION_SEGMENT);
+
+        final Map<String, Object> uriTemplateVariables = new HashMap<>();
+        uriTemplateVariables.put("dmiBasePath", dmiBasePath);
+
+        pathSegments.forEach((pathSegmentName, variablePathValue) ->  {
+            if (variablePathValue == FIXED_PATH_SEGMENT) {
+                pathSegment(pathSegmentName);
+            } else {
+                pathSegment("{" + pathSegmentName + "}");
+                uriTemplateVariables.put(pathSegmentName, variablePathValue);
+            }
+        });
+
+        queryParameters.forEach((paramName, paramValue) -> {
+            queryParam(paramName, "{" + paramName + "}");
+            uriTemplateVariables.put(paramName, paramValue);
+        });
+
+        final String urlTemplate = build().toUriString();
+        final String completeUrlTemplate = dmiServiceName + urlTemplate;
+        return new UriTemplateParameters(completeUrlTemplate, uriTemplateVariables);
+    }
+}
