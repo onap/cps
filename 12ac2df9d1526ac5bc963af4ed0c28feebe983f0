@@ -22,6 +22,30 @@
       },
       "revId": "12ac2df9d1526ac5bc963af4ed0c28feebe983f0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c48943d7_020d089d",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-06-20T14:55:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "81b5aab6_cbc5132b",
+      "range": {
+        "startLine": 63,
+        "startChar": 41,
+        "endLine": 63,
+        "endChar": 58
+      },
+      "revId": "12ac2df9d1526ac5bc963af4ed0c28feebe983f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
