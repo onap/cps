@@ -21,6 +21,9 @@
 
 package org.onap.cps.ncmp.impl.inventory.sync;
 
+import static org.onap.cps.ncmp.api.data.models.OperationType.READ;
+import static org.onap.cps.ncmp.impl.models.RequiredDmiService.MODEL;
+
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -32,14 +35,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
-import org.onap.cps.ncmp.api.data.models.OperationType;
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
 import org.onap.cps.ncmp.api.impl.config.DmiProperties;
-import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder;
+import org.onap.cps.ncmp.api.impl.utils.url.builder.DmiServiceUrlBuilder;
+import org.onap.cps.ncmp.api.impl.utils.url.builder.UrlTemplateParameters;
 import org.onap.cps.ncmp.api.inventory.models.YangResource;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.models.DmiRequestBody;
-import org.onap.cps.ncmp.impl.models.RequiredDmiService;
 import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.ResponseEntity;
@@ -67,7 +69,7 @@ public class DmiModelOperations {
                 .moduleSetTag(yangModelCmHandle.getModuleSetTag()).build();
         dmiRequestBody.asDmiProperties(yangModelCmHandle.getDmiProperties());
         final ResponseEntity<Object> dmiFetchModulesResponseEntity = getResourceFromDmiWithJsonData(
-            yangModelCmHandle.resolveDmiServiceName(RequiredDmiService.MODEL),
+            yangModelCmHandle.resolveDmiServiceName(MODEL),
                 jsonObjectMapper.asJsonString(dmiRequestBody), yangModelCmHandle.getId(), "modules");
         return toModuleReferences((Map) dmiFetchModulesResponseEntity.getBody());
     }
@@ -87,7 +89,7 @@ public class DmiModelOperations {
         final String jsonWithDataAndDmiProperties = getRequestBodyToFetchYangResources(newModuleReferences,
                 yangModelCmHandle.getDmiProperties(), yangModelCmHandle.getModuleSetTag());
         final ResponseEntity<Object> responseEntity = getResourceFromDmiWithJsonData(
-            yangModelCmHandle.resolveDmiServiceName(RequiredDmiService.MODEL),
+            yangModelCmHandle.resolveDmiServiceName(MODEL),
             jsonWithDataAndDmiProperties,
             yangModelCmHandle.getId(),
             "moduleResources");
@@ -107,13 +109,13 @@ public class DmiModelOperations {
                                                                   final String jsonRequestBody,
                                                                   final String cmHandle,
                                                                   final String resourceName) {
-        final String dmiUrl = DmiServiceUrlBuilder.newInstance()
-                .pathSegment("ch")
+        final UrlTemplateParameters urlTemplateParameters = DmiServiceUrlBuilder.newInstance()
+                .fixedPathSegment("ch")
                 .variablePathSegment("cmHandleId", cmHandle)
                 .variablePathSegment("resourceName", resourceName)
-                .build(dmiServiceName, dmiProperties.getDmiBasePath());
-        return dmiRestClient.synchronousPostOperationWithJsonData(RequiredDmiService.MODEL, dmiUrl, jsonRequestBody,
-                OperationType.READ, null);
+                .createUrlTemplateParameters(dmiServiceName, dmiProperties.getDmiBasePath());
+        return dmiRestClient.synchronousPostOperationWithJsonData(MODEL, urlTemplateParameters, jsonRequestBody, READ,
+                null);
     }
 
     private static String getRequestBodyToFetchYangResources(final Collection<ModuleReference> newModuleReferences,
