@@ -189,4 +189,13 @@ class CmNotificationSubscriptionPersistenceServiceImplSpec extends Specification
             'cm handle in same datastore is NOT used for other subscriptions'   | []                || 1
     }
 
+    def 'Get all existing nodes for subscription id'() {
+        when: 'method to get all relevant nodes for subscription id is called'
+            objectUnderTest.getAllNodesForSubscriptionId('sub-1')
+        then: 'the query service is called for querying datanodes'
+            1 * mockCpsQueryService.queryDataNodes("NCMP-Admin", objectUnderTest.SUBSCRIPTION_ANCHOR_NAME,
+                objectUnderTest.CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_ID.formatted('sub-1'),
+                FetchDescendantsOption.OMIT_DESCENDANTS)
+    }
+
 }

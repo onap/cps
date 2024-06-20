@@ -29,6 +29,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.CmNotificationSubscriptionStatus;
@@ -39,6 +41,7 @@ import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.impl.operations.DatastoreType;
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.events.cmnotificationsubscription_merge1_0_0.client_to_ncmp.Predicate;
+import org.onap.cps.spi.model.DataNode;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -57,6 +60,18 @@ public class DmiCmNotificationSubscriptionCacheHandler {
      */
     public void add(final String subscriptionId, final List<Predicate> predicates) {
         cmNotificationSubscriptionCache.put(subscriptionId, createDmiCmNotificationSubscriptionsPerDmi(predicates));
+    }
+
+
+    /**
+     * Adds existing subscription to the subscription cache.
+     *
+     * @param subscriptionId    subscription id
+     */
+    public void add(final String subscriptionId) {
+        final Map<String, DmiCmNotificationSubscriptionDetails> dmiCmNotificationSubscriptionPerDmi =
+                getAllDmiCmNotificationSubscriptionsPerDmiForSubscription(subscriptionId);
+        cmNotificationSubscriptionCache.put(subscriptionId, dmiCmNotificationSubscriptionPerDmi);
     }
 
     /**
@@ -181,6 +196,54 @@ public class DmiCmNotificationSubscriptionCacheHandler {
                 }
             }
         }
+    }
+
+    private Map<String, DmiCmNotificationSubscriptionDetails> getAllDmiCmNotificationSubscriptionsPerDmiForSubscription(
+            final String subscriptionId) {
+        final Map<String, DmiCmNotificationSubscriptionDetails> dmiCmNotificationSubscriptionDetailsPerDmi =
+                new HashMap<>();
+        final Collection<DataNode> existingNodesForSubscriptionId =
+                cmNotificationSubscriptionPersistenceService.getAllNodesForSubscriptionId(subscriptionId);
+        for (final DataNode existingDataNode: existingNodesForSubscriptionId) {
+            final DatastoreType datastoreType = extractCmSubscriptionDatastoreFromXpath(existingDataNode.getXpath());
+            final String cmHandleId = extractCmSubscriptionCmHandleIdFromXpath(existingDataNode.getXpath());
+            final String xpath = existingDataNode.getLeaves().get("xpath").toString();
+            final String dmiServiceName = inventoryPersistence.getYangModelCmHandle(cmHandleId).getDmiServiceName();
+            final DmiCmNotificationSubscriptionPredicate dmiCmNotificationSubscriptionPredicate =
+                    new DmiCmNotificationSubscriptionPredicate(Set.of(cmHandleId), datastoreType, Set.of(xpath));
+            if (dmiCmNotificationSubscriptionDetailsPerDmi.containsKey(dmiServiceName)) {
+                dmiCmNotificationSubscriptionDetailsPerDmi.get(dmiServiceName)
+                        .getDmiCmNotificationSubscriptionPredicates().add(dmiCmNotificationSubscriptionPredicate);
+            } else {
+                final List<DmiCmNotificationSubscriptionPredicate> dmiCmNotificationSubscriptionPredicateList =
+                        new ArrayList<>();
+                dmiCmNotificationSubscriptionPredicateList.add(dmiCmNotificationSubscriptionPredicate);
+                final DmiCmNotificationSubscriptionDetails dmiCmNotificationSubscriptionDetails =
+                        new DmiCmNotificationSubscriptionDetails(dmiCmNotificationSubscriptionPredicateList,
+                                PENDING);
+                dmiCmNotificationSubscriptionDetailsPerDmi.put(dmiServiceName, dmiCmNotificationSubscriptionDetails);
+            }
+        }
+        return dmiCmNotificationSubscriptionDetailsPerDmi;
+    }
+
+    private DatastoreType extractCmSubscriptionDatastoreFromXpath(final String xpath) {
+        final Pattern pattern = Pattern.compile("/datastore\\[@name='(.*?)'\\]");
+        final Matcher matcher = pattern.matcher(xpath);
+        if (matcher.find()) {
+            final String datastoreName = matcher.group(1);
+            return DatastoreType.fromDatastoreName(datastoreName);
+        }
+        return null;
+    }
+
+    private String extractCmSubscriptionCmHandleIdFromXpath(final String xpath) {
+        final Pattern pattern = Pattern.compile("/cm-handle\\[@id='(.*?)'\\]");
+        final Matcher matcher = pattern.matcher(xpath);
+        if (matcher.find()) {
+            return matcher.group(1);
+        }
+        return null;
     }
 
     private void updateDmiCmNotificationSubscriptionDetailsPerDmi(

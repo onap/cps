@@ -57,4 +57,19 @@ class CmNotificationSubscriptionDeltaSpec extends Specification {
             assert result.size() == 0
     }
 
+    def 'Find Predicates used ONLY by subscription id'() {
+        given: 'A list of predicates'
+            def predicateList = [new DmiCmNotificationSubscriptionPredicate(['ch-1'].toSet(), DatastoreType.PASSTHROUGH_OPERATIONAL, ['a/1/','b/2'].toSet())]
+        and: 'the given subscription id is subscribed to one path alone'
+            mockCmNotificationSubscriptionPersistenceService.getOngoingCmNotificationSubscriptionIds(
+                DatastoreType.PASSTHROUGH_OPERATIONAL, 'ch-1', 'a/1/') >> ['sub-1']
+        and: 'subscribed to another path shared with other subscribers'
+            mockCmNotificationSubscriptionPersistenceService.getOngoingCmNotificationSubscriptionIds(
+                DatastoreType.PASSTHROUGH_OPERATIONAL, 'ch-1', 'b/2') >> ['sub-1','sub-2']
+        when: 'the method to get predicates used only by the subscription id is called'
+            def result = objectUnderTest.getPredicatesUsedOnlyBySubscriptionId('sub-1',predicateList)
+        then: 'correct number of predicates is returned'
+            assert result.size() == 1
+    }
+
 }

@@ -32,6 +32,7 @@ import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
 import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
 import org.onap.cps.ncmp.events.cmnotificationsubscription_merge1_0_0.client_to_ncmp.CmNotificationSubscriptionNcmpInEvent
 import org.onap.cps.ncmp.utils.TestUtils
+import org.onap.cps.spi.model.DataNode
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
@@ -74,6 +75,21 @@ class DmiCmNotificationSubscriptionCacheHandlerSpec extends MessagingBaseSpec {
             objectUnderTest.add(subscriptionId, predicates)
         then: 'the cache contains the correct entry with #subscriptionId subscription ID'
             assert testCache.containsKey(subscriptionId)
+    }
+
+    def 'Load existing subscription into cache'() {
+        given: 'a subscription id'
+            def subId = 'sub-1'
+        and: 'inventory persistence returns relevant yangModelCmHandles'
+            mockInventoryPersistence.getYangModelCmHandle('cm-1') >> new YangModelCmHandle(dmiDataServiceName: 'dmi-1')
+        and: 'the existing nodes is retrieved related to the given subscription id'
+            def existingDataNode = new DataNode(xpath: "/datastore[@name='ncmp-datastore:passthrough-operational']/cm-handle[@id='cm-1']",
+            leaves: [xpath:"x/y"])
+            mockCmNotificationSubscriptionPersistenceService.getAllNodesForSubscriptionId(subId) >> [existingDataNode]
+        when: 'the add to cache is called with just subscription id'
+            objectUnderTest.add('sub-1')
+        then: 'the cache contains the correct entry with given subscription id'
+            assert testCache.containsKey('sub-1')
     }
 
     def 'Get cache entry via subscription id'() {
