@@ -39,7 +39,7 @@ class DmiPluginTrustLevelWatchDogSpec extends Specification {
         given: 'the cache has been initialised and "knows" about dmi-1'
             trustLevelPerDmiPlugin.put('dmi-1', dmiOldTrustLevel)
         and: 'dmi client returns health status #dmiHealhStatus'
-            mockDmiRestClient.getDmiHealthStatus('dmi-1') >> dmiHealhStatus
+            mockDmiRestClient.getDmiHealthStatus('dmi-1/actuator/health') >> dmiHealhStatus
         when: 'dmi watch dog method runs'
             objectUnderTest.checkDmiAvailability()
         then: 'the update delegated to manager'
@@ -52,5 +52,4 @@ class DmiPluginTrustLevelWatchDogSpec extends Specification {
             'UP'           | TrustLevel.NONE     | TrustLevel.COMPLETE || 1
             ''             | TrustLevel.COMPLETE | TrustLevel.NONE     || 1
     }
-
 }
