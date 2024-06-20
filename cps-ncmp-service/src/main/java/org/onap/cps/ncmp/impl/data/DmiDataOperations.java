@@ -23,6 +23,8 @@ package org.onap.cps.ncmp.impl.data;
 
 import static org.onap.cps.ncmp.api.data.models.DatastoreType.PASSTHROUGH_OPERATIONAL;
 import static org.onap.cps.ncmp.api.data.models.DatastoreType.PASSTHROUGH_RUNNING;
+import static org.onap.cps.ncmp.api.data.models.OperationType.READ;
+import static org.onap.cps.ncmp.impl.models.RequiredDmiService.DATA;
 
 import io.micrometer.core.annotation.Timed;
 import java.util.Collection;
@@ -38,7 +40,8 @@ import org.onap.cps.ncmp.api.data.models.OperationType;
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
 import org.onap.cps.ncmp.api.impl.config.DmiProperties;
 import org.onap.cps.ncmp.api.impl.exception.DmiClientRequestException;
-import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder;
+import org.onap.cps.ncmp.api.impl.utils.url.builder.DmiServiceUrlBuilder;
+import org.onap.cps.ncmp.api.impl.utils.url.builder.UrlTemplateParameters;
 import org.onap.cps.ncmp.impl.data.models.DmiDataOperation;
 import org.onap.cps.ncmp.impl.data.models.DmiDataOperationRequest;
 import org.onap.cps.ncmp.impl.data.models.DmiOperationCmHandle;
@@ -47,7 +50,6 @@ import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.impl.inventory.models.CmHandleState;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.models.DmiRequestBody;
-import org.onap.cps.ncmp.impl.models.RequiredDmiService;
 import org.onap.cps.spi.exceptions.CpsException;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.ResponseEntity;
@@ -92,11 +94,11 @@ public class DmiDataOperations {
         final YangModelCmHandle yangModelCmHandle = getYangModelCmHandle(cmResourceAddress.cmHandleId());
         final CmHandleState cmHandleState = yangModelCmHandle.getCompositeState().getCmHandleState();
         validateIfCmHandleStateReady(yangModelCmHandle, cmHandleState);
-        final String jsonRequestBody = getDmiRequestBody(OperationType.READ, requestId, null, null, yangModelCmHandle);
-        final String dmiUrl = getDmiResourceDataUrl(cmResourceAddress.datastoreName(), yangModelCmHandle,
-                cmResourceAddress.resourceIdentifier(), options, topic);
-        return dmiRestClient.asynchronousPostOperationWithJsonData(RequiredDmiService.DATA,
-                dmiUrl, jsonRequestBody, OperationType.READ, authorization);
+        final String jsonRequestBody = getDmiRequestBody(READ, requestId, null, null, yangModelCmHandle);
+        final UrlTemplateParameters urlTemplateParameters = getUrlTemplateParameters(cmResourceAddress
+                .datastoreName(), yangModelCmHandle, cmResourceAddress.resourceIdentifier(), options, topic);
+        return dmiRestClient.asynchronousPostOperationWithJsonData(DATA, urlTemplateParameters, jsonRequestBody, READ,
+                authorization);
     }
 
     /**
@@ -113,11 +115,12 @@ public class DmiDataOperations {
         final CmHandleState cmHandleState = yangModelCmHandle.getCompositeState().getCmHandleState();
         validateIfCmHandleStateReady(yangModelCmHandle, cmHandleState);
 
-        final String jsonRequestBody = getDmiRequestBody(OperationType.READ, requestId, null, null, yangModelCmHandle);
-        final String dmiUrl =
-            getDmiResourceDataUrl(PASSTHROUGH_OPERATIONAL.getDatastoreName(), yangModelCmHandle, "/", null, null);
-        return dmiRestClient.synchronousPostOperationWithJsonData(RequiredDmiService.DATA, dmiUrl, jsonRequestBody,
-                OperationType.READ, null);
+        final String jsonRequestBody = getDmiRequestBody(READ, requestId, null, null, yangModelCmHandle);
+        final UrlTemplateParameters urlTemplateParameters = getUrlTemplateParameters(
+                PASSTHROUGH_OPERATIONAL.getDatastoreName(), yangModelCmHandle, "/", null,
+                null);
+        return dmiRestClient.synchronousPostOperationWithJsonData(DATA, urlTemplateParameters, jsonRequestBody, READ,
+                null);
     }
 
     /**
@@ -135,7 +138,7 @@ public class DmiDataOperations {
                                            final String authorization)  {
 
         final Set<String> cmHandlesIds
-                = getDistinctCmHandleIdsFromDataOperationRequest(dataOperationRequest);
+                = getDistinctCmHandleIds(dataOperationRequest);
 
         final Collection<YangModelCmHandle> yangModelCmHandles
             = inventoryPersistence.getYangModelCmHandles(cmHandlesIds);
@@ -144,7 +147,7 @@ public class DmiDataOperations {
                 = DmiDataOperationsHelper.processPerDefinitionInDataOperationsRequest(topicParamInQuery,
                 requestId, dataOperationRequest, yangModelCmHandles);
 
-        buildDataOperationRequestUrlAndSendToDmiService(requestId, topicParamInQuery, operationsOutPerDmiServiceName,
+        asyncSendMultipleRequest(requestId, topicParamInQuery, operationsOutPerDmiServiceName,
                 authorization);
     }
 
@@ -172,10 +175,11 @@ public class DmiDataOperations {
 
         final String jsonRequestBody = getDmiRequestBody(operationType, null, requestData, dataType,
                 yangModelCmHandle);
-        final String dmiUrl = getDmiResourceDataUrl(PASSTHROUGH_RUNNING.getDatastoreName(),
-            yangModelCmHandle, resourceId, null, null);
-        return dmiRestClient.synchronousPostOperationWithJsonData(RequiredDmiService.DATA, dmiUrl, jsonRequestBody,
-                                                                  operationType, authorization);
+        final UrlTemplateParameters urlTemplateParameters = getUrlTemplateParameters(
+                PASSTHROUGH_RUNNING.getDatastoreName(), yangModelCmHandle, resourceId, null,
+                null);
+        return dmiRestClient.synchronousPostOperationWithJsonData(DATA, urlTemplateParameters, jsonRequestBody,
+                operationType, authorization);
     }
 
     private YangModelCmHandle getYangModelCmHandle(final String cmHandleId) {
@@ -198,22 +202,32 @@ public class DmiDataOperations {
         return jsonObjectMapper.asJsonString(dmiRequestBody);
     }
 
-    private String getDmiResourceDataUrl(final String datastoreName,
-                                         final YangModelCmHandle yangModelCmHandle,
-                                         final String resourceIdentifier,
-                                         final String optionsParamInQuery,
-                                         final String topicParamInQuery) {
-        final String dmiServiceName = yangModelCmHandle.resolveDmiServiceName(RequiredDmiService.DATA);
+    private UrlTemplateParameters getUrlTemplateParameters(final String datastoreName,
+                                                           final YangModelCmHandle yangModelCmHandle,
+                                                           final String resourceIdentifier,
+                                                           final String optionsParamInQuery,
+                                                           final String topicParamInQuery) {
+        final String dmiServiceName = yangModelCmHandle.resolveDmiServiceName(DATA);
         return DmiServiceUrlBuilder.newInstance()
-            .pathSegment("ch")
-            .variablePathSegment("cmHandleId", yangModelCmHandle.getId())
-            .pathSegment("data")
-            .pathSegment("ds")
-            .variablePathSegment("datastore", datastoreName)
-            .queryParameter("resourceIdentifier", resourceIdentifier)
-            .queryParameter("options", optionsParamInQuery)
-            .queryParameter("topic", topicParamInQuery)
-            .build(dmiServiceName, dmiProperties.getDmiBasePath());
+                .fixedPathSegment("ch")
+                .variablePathSegment("cmHandleId", yangModelCmHandle.getId())
+                .fixedPathSegment("data")
+                .fixedPathSegment("ds")
+                .variablePathSegment("datastore", datastoreName)
+                .queryParameter("resourceIdentifier", resourceIdentifier)
+                .queryParameter("options", optionsParamInQuery)
+                .queryParameter("topic", topicParamInQuery)
+                .createUrlTemplateParameters(dmiServiceName, dmiProperties.getDmiBasePath());
+    }
+
+    private UrlTemplateParameters getUrlTemplateParameters(final String dmiServiceName,
+                                                           final String requestId,
+                                                           final String topicParamInQuery) {
+        return DmiServiceUrlBuilder.newInstance()
+                .fixedPathSegment("data")
+                .queryParameter("requestId", requestId)
+                .queryParameter("topic", topicParamInQuery)
+                .createUrlTemplateParameters(dmiServiceName, dmiProperties.getDmiBasePath());
     }
 
     private void validateIfCmHandleStateReady(final YangModelCmHandle yangModelCmHandle,
@@ -225,51 +239,37 @@ public class DmiDataOperations {
         }
     }
 
-    private static Set<String> getDistinctCmHandleIdsFromDataOperationRequest(final DataOperationRequest
-                                                                                      dataOperationRequest) {
+    private static Set<String> getDistinctCmHandleIds(final DataOperationRequest dataOperationRequest) {
         return dataOperationRequest.getDataOperationDefinitions().stream()
                 .flatMap(dataOperationDefinition ->
                         dataOperationDefinition.getCmHandleIds().stream()).collect(Collectors.toSet());
     }
 
-    private void buildDataOperationRequestUrlAndSendToDmiService(final String requestId,
-                                                                 final String topicParamInQuery,
-                                                                 final Map<String, List<DmiDataOperation>>
-                                                                         groupsOutPerDmiServiceName,
-                                                                 final String authorization) {
+    private void asyncSendMultipleRequest(final String requestId, final String topicParamInQuery,
+                                          final Map<String, List<DmiDataOperation>> dmiDataOperationsPerDmi,
+                                          final String authorization) {
 
-        Flux.fromIterable(groupsOutPerDmiServiceName.entrySet())
-                .flatMap(dmiDataOperationsByDmiServiceName -> {
-                    final String dmiServiceName = dmiDataOperationsByDmiServiceName.getKey();
-                    final String dmiUrl = buildDmiServiceUrl(dmiServiceName, requestId, topicParamInQuery);
-                    final List<DmiDataOperation> dmiDataOperationRequestBodies
-                            = dmiDataOperationsByDmiServiceName.getValue();
-                    return sendDataOperationRequestToDmiService(dmiUrl, dmiDataOperationRequestBodies, authorization);
-                })
-                .subscribe();
-    }
-
-    private String buildDmiServiceUrl(final String dmiServiceName, final String requestId,
-                                      final String topicParamInQuery) {
-        return DmiServiceUrlBuilder.newInstance()
-                .pathSegment("data")
-                .queryParameter("requestId", requestId)
-                .queryParameter("topic", topicParamInQuery)
-                .build(dmiServiceName, dmiProperties.getDmiBasePath());
-    }
-
-    private Mono<Void> sendDataOperationRequestToDmiService(final String dmiUrl,
-                                                            final List<DmiDataOperation> dmiDataOperationRequestBodies,
-                                                            final String authorization) {
-        final String dmiDataOperationRequestAsJsonString
-                = createDmiDataOperationRequestAsJsonString(dmiDataOperationRequestBodies);
-        return dmiRestClient.asynchronousPostOperationWithJsonData(RequiredDmiService.DATA, dmiUrl,
-                    dmiDataOperationRequestAsJsonString, OperationType.READ, authorization)
-                .then()
-                .onErrorResume(DmiClientRequestException.class, dmiClientRequestException -> {
-                    handleTaskCompletionException(dmiClientRequestException, dmiUrl, dmiDataOperationRequestBodies);
-                    return Mono.empty();
-                });
+        Flux.fromIterable(dmiDataOperationsPerDmi.entrySet())
+                .flatMap(entry -> {
+                    final String dmiServiceName = entry.getKey();
+                    final UrlTemplateParameters urlTemplateParameters = getUrlTemplateParameters(dmiServiceName,
+                            requestId, topicParamInQuery);
+                    final List<DmiDataOperation> dmiDataOperations = entry.getValue();
+                    final String dmiDataOperationRequestAsJsonString
+                            = createDmiDataOperationRequestAsJsonString(dmiDataOperations);
+                    return dmiRestClient.asynchronousPostOperationWithJsonData(DATA, urlTemplateParameters,
+                                    dmiDataOperationRequestAsJsonString, READ, authorization)
+                            .then()
+                            .onErrorResume(DmiClientRequestException.class, dmiClientRequestException -> {
+                                final String dataOperationResourceUrl = UriComponentsBuilder
+                                        .fromUriString(urlTemplateParameters.urlTemplate())
+                                        .buildAndExpand(urlTemplateParameters.urlVariables())
+                                        .toUriString();
+                                handleTaskCompletionException(dmiClientRequestException, dataOperationResourceUrl,
+                                        dmiDataOperations);
+                                return Mono.empty();
+                            });
+                }).subscribe();
     }
 
     private String createDmiDataOperationRequestAsJsonString(
@@ -282,7 +282,7 @@ public class DmiDataOperations {
 
     private void handleTaskCompletionException(final DmiClientRequestException dmiClientRequestException,
                                                final String dataOperationResourceUrl,
-                                               final List<DmiDataOperation> dmiDataOperationRequestBodies) {
+                                               final List<DmiDataOperation> dmiDataOperations) {
         final MultiValueMap<String, String> dataOperationResourceUrlParameters =
                 UriComponentsBuilder.fromUriString(dataOperationResourceUrl).build().getQueryParams();
         final String topicName = dataOperationResourceUrlParameters.get("topic").get(0);
@@ -291,7 +291,7 @@ public class DmiDataOperations {
         final MultiValueMap<DmiDataOperation, Map<NcmpResponseStatus, List<String>>>
                 cmHandleIdsPerResponseCodesPerOperation = new LinkedMultiValueMap<>();
 
-        dmiDataOperationRequestBodies.forEach(dmiDataOperationRequestBody -> {
+        dmiDataOperations.forEach(dmiDataOperationRequestBody -> {
             final List<String> cmHandleIds = dmiDataOperationRequestBody.getCmHandles().stream()
                     .map(DmiOperationCmHandle::getId).toList();
             cmHandleIdsPerResponseCodesPerOperation.add(dmiDataOperationRequestBody,
