@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0bbef24d_e3308062",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/WriteRequestExaminer.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-06-20T08:34:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "003a5594_ffeafcac",
+      "range": {
+        "startLine": 102,
+        "startChar": 7,
+        "endLine": 103,
+        "endChar": 71
+      },
+      "revId": "35e17b9bc481aecc7607f1570bcca4c83123df41",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "45ecd93e_f970a622",
@@ -71,6 +95,30 @@
       "writtenOn": "2024-06-19T15:36:39Z",
       "side": 1,
       "message": "Can be removed as its redundant",
+      "range": {
+        "startLine": 60,
+        "startChar": 111,
+        "endLine": 60,
+        "endChar": 133
+      },
+      "revId": "35e17b9bc481aecc7607f1570bcca4c83123df41",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3db1205a_ccdd9b5c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/DataJobServiceImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-06-20T08:34:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "45ecd93e_f970a622",
       "range": {
         "startLine": 60,
         "startChar": 111,
@@ -100,6 +148,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "42065246_99cb09bc",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/DmiSubJobRequestHandlerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-06-20T08:34:40Z",
+      "side": 1,
+      "message": "had to write this part in a different manner, but the test now checking the subjob id",
+      "parentUuid": "cec84e73_0ec4d3e5",
+      "revId": "35e17b9bc481aecc7607f1570bcca4c83123df41",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5436e897_39aee7b2",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/WriteRequestExaminerSpec.groovy",
         "patchSetId": 4
@@ -111,6 +177,30 @@
       "writtenOn": "2024-06-19T15:36:39Z",
       "side": 1,
       "message": "NB:\n\ndef writeOperations \u003d writeOperationFdns.collect {\n                new WriteOperation(it, \u0027\u0027, \u0027\u0027, null)\n            }",
+      "range": {
+        "startLine": 29,
+        "startChar": 11,
+        "endLine": 31,
+        "endChar": 13
+      },
+      "revId": "35e17b9bc481aecc7607f1570bcca4c83123df41",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "394b5b62_2435b933",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/WriteRequestExaminerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-06-20T08:34:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5436e897_39aee7b2",
       "range": {
         "startLine": 29,
         "startChar": 11,
@@ -144,6 +234,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "72b399f2_21bb5217",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/WriteRequestExaminerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-06-20T08:34:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec130191_ff1b5636",
+      "range": {
+        "startLine": 38,
+        "startChar": 11,
+        "endLine": 40,
+        "endChar": 13
+      },
+      "revId": "35e17b9bc481aecc7607f1570bcca4c83123df41",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "08ffb7e7_a28966e5",
@@ -157,6 +271,30 @@
       "writtenOn": "2024-06-19T15:36:39Z",
       "side": 1,
       "message": "NB:\n  \n  def writeOperations \u003d (1..3).collect {\n                new WriteOperation(\u0027fdn1\u0027, \u0027\u0027, it.toString(), null)\n            }",
+      "range": {
+        "startLine": 55,
+        "startChar": 12,
+        "endLine": 58,
+        "endChar": 13
+      },
+      "revId": "35e17b9bc481aecc7607f1570bcca4c83123df41",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24905b6a_de017a33",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/WriteRequestExaminerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-06-20T08:34:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "08ffb7e7_a28966e5",
       "range": {
         "startLine": 55,
         "startChar": 12,
@@ -204,6 +342,30 @@
       "side": 1,
       "message": "not suer what you are suggesting heer Sourabh...",
       "parentUuid": "3fa45437_9a6ccd43",
+      "range": {
+        "startLine": 62,
+        "startChar": 12,
+        "endLine": 64,
+        "endChar": 68
+      },
+      "revId": "35e17b9bc481aecc7607f1570bcca4c83123df41",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f189ad25_f1fc3f0b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/WriteRequestExaminerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-06-20T08:34:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87abe588_cda35247",
       "range": {
         "startLine": 62,
         "startChar": 12,
