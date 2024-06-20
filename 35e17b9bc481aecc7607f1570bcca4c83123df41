@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6eb00a29_f405a899",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-20T07:48:29Z",
+      "side": 1,
+      "message": "SOurabh has a good point about teh JavaDoc, its very important since we delivering a Java API!\nI totally missed that, sorry",
+      "revId": "35e17b9bc481aecc7607f1570bcca4c83123df41",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "003a5594_ffeafcac",
@@ -163,6 +180,30 @@
       "writtenOn": "2024-06-19T15:36:39Z",
       "side": 1,
       "message": "NB:\n \n def dmiWriteOperations \u003d objectUnderTest.splitDmiWriteOperationsFromRequest(\u0027some id\u0027, dataJobWriteRequest).values().iterator().next()\n        then: \u0027we get the operation IDs in the expected order\u0027\n            dmiWriteOperations*.operationId \u003d\u003d [\u00271\u0027, \u00272\u0027, \u00273\u0027]",
+      "range": {
+        "startLine": 62,
+        "startChar": 12,
+        "endLine": 64,
+        "endChar": 68
+      },
+      "revId": "35e17b9bc481aecc7607f1570bcca4c83123df41",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87abe588_cda35247",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/WriteRequestExaminerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-20T07:48:29Z",
+      "side": 1,
+      "message": "not suer what you are suggesting heer Sourabh...",
+      "parentUuid": "3fa45437_9a6ccd43",
       "range": {
         "startLine": 62,
         "startChar": 12,
