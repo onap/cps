@@ -46,6 +46,7 @@ abstract class DmiOperationsBaseSpec extends Specification {
 
     def yangModelCmHandle = new YangModelCmHandle()
     def static dmiServiceName = 'someServiceName'
+    def static dmiBasePath = 'dmi'
     def static cmHandleId = 'some-cm-handle'
     def static resourceIdentifier = 'parent/child'
 

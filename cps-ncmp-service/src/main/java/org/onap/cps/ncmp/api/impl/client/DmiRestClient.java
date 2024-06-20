@@ -24,21 +24,18 @@ package org.onap.cps.ncmp.api.impl.client;
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.DMI_SERVICE_NOT_RESPONDING;
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNABLE_TO_READ_RESOURCE_DATA;
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNKNOWN_ERROR;
-import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 import static org.springframework.http.HttpStatus.REQUEST_TIMEOUT;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.Locale;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.config.DmiProperties;
 import org.onap.cps.ncmp.api.impl.exception.DmiClientRequestException;
-import org.onap.cps.ncmp.api.impl.exception.InvalidDmiResourceUrlException;
 import org.onap.cps.ncmp.api.impl.operations.OperationType;
 import org.onap.cps.ncmp.api.impl.operations.RequiredDmiService;
+import org.onap.cps.ncmp.api.impl.utils.url.builder.UrlTemplateParameters;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpHeaders;
@@ -57,7 +54,6 @@ import reactor.core.publisher.Mono;
 @Slf4j
 public class DmiRestClient {
 
-    private static final String HEALTH_CHECK_URL_EXTENSION = "/actuator/health";
     private static final String NOT_SPECIFIED = "";
     private static final String NO_AUTHORIZATION = null;
 
@@ -74,7 +70,7 @@ public class DmiRestClient {
      * Sends a synchronous (blocking) POST operation to the DMI with a JSON body containing module references.
      *
      * @param requiredDmiService      Determines if the required service is for a data or model operation.
-     * @param dmiUrl                  The DMI resource URL.
+     * @param urlTemplateParameters   The DMI resource URL template with variables.
      * @param requestBodyAsJsonString JSON data body.
      * @param operationType           The type of operation being executed (for error reporting only).
      * @param authorization           Contents of the Authorization header, or null if not present.
@@ -82,13 +78,14 @@ public class DmiRestClient {
      * @throws DmiClientRequestException If there is an error during the DMI request.
      */
     public ResponseEntity<Object> synchronousPostOperationWithJsonData(final RequiredDmiService requiredDmiService,
-                                                                       final String dmiUrl,
+                                                                       final UrlTemplateParameters
+                                                                               urlTemplateParameters,
                                                                        final String requestBodyAsJsonString,
                                                                        final OperationType operationType,
                                                                        final String authorization) {
         final Mono<ResponseEntity<Object>> responseEntityMono =
             asynchronousPostOperationWithJsonData(requiredDmiService,
-                dmiUrl,
+                    urlTemplateParameters,
                 requestBodyAsJsonString,
                 operationType,
                 authorization);
@@ -99,22 +96,23 @@ public class DmiRestClient {
      * Asynchronously performs an HTTP POST operation with the given JSON data.
      *
      * @param requiredDmiService      The service object required for retrieving or configuring the WebClient.
-     * @param dmiUrl                  The URL to which the POST request is sent.
+     * @param urlTemplateParameters   The URL template with variables for the POST request.
      * @param requestBodyAsJsonString The JSON string that will be sent as the request body.
      * @param operationType           An enumeration or object that holds information about the type of operation
      *                                being performed.
      * @param authorization           The authorization token to be added to the request headers.
      * @return A Mono emitting the response entity containing the server's response.
      */
-    public Mono<ResponseEntity<Object>> asynchronousPostOperationWithJsonData(
-                                                            final RequiredDmiService requiredDmiService,
-                                                            final String dmiUrl,
-                                                            final String requestBodyAsJsonString,
-                                                            final OperationType operationType,
-                                                            final String authorization) {
+    public Mono<ResponseEntity<Object>> asynchronousPostOperationWithJsonData(final RequiredDmiService
+                                                                                      requiredDmiService,
+                                                                              final UrlTemplateParameters
+                                                                                      urlTemplateParameters,
+                                                                              final String requestBodyAsJsonString,
+                                                                              final OperationType operationType,
+                                                                              final String authorization) {
         final WebClient webClient = getWebClient(requiredDmiService);
         return webClient.post()
-                .uri(toUri(dmiUrl))
+                .uri(urlTemplateParameters.urlTemplate(), urlTemplateParameters.urlVariables())
                 .headers(httpHeaders -> configureHttpHeaders(httpHeaders, authorization))
                 .body(BodyInserters.fromValue(requestBodyAsJsonString))
                 .retrieve()
@@ -125,12 +123,11 @@ public class DmiRestClient {
     /**
      * Get DMI plugin health status.
      *
-     * @param dmiUrl the base URL of the dmi-plugin
+     * @param dmiHealthCheckUri the health check service URL of the dmi-plugin
      * @return plugin health status ("UP" is all OK, "" (not-specified) in case of any exception)
      */
-    public String getDmiHealthStatus(final String dmiUrl) {
+    public String getDmiHealthStatus(final String dmiHealthCheckUri) {
         try {
-            final URI dmiHealthCheckUri = toUri(dmiUrl + HEALTH_CHECK_URL_EXTENSION);
             final JsonNode responseHealthStatus = healthChecksWebClient.get()
                     .uri(dmiHealthCheckUri)
                     .headers(httpHeaders -> configureHttpHeaders(httpHeaders, NO_AUTHORIZATION))
@@ -139,7 +136,7 @@ public class DmiRestClient {
             return responseHealthStatus == null ? NOT_SPECIFIED :
                     responseHealthStatus.path("status").asText();
         } catch (final Exception e) {
-            log.warn("Failed to retrieve health status from {}. Error Message: {}", dmiUrl, e.getMessage());
+            log.warn("Failed to retrieve health status from {}. Error Message: {}", dmiHealthCheckUri, e.getMessage());
             return NOT_SPECIFIED;
         }
     }
@@ -153,14 +150,6 @@ public class DmiRestClient {
             httpHeaders.setBasicAuth(dmiProperties.getAuthUsername(), dmiProperties.getAuthPassword());
         } else if (authorization != null && authorization.toLowerCase(Locale.getDefault()).startsWith("bearer ")) {
             httpHeaders.add(HttpHeaders.AUTHORIZATION, authorization);
-        }
-    }
-
-    private static URI toUri(final String dmiResourceUrl) {
-        try {
-            return new URI(dmiResourceUrl);
-        } catch (final URISyntaxException e) {
-            throw new InvalidDmiResourceUrlException(dmiResourceUrl, BAD_REQUEST.value());
         }
     }
 
