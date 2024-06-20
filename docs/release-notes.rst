@@ -12,12 +12,12 @@ CPS Release Notes
     :depth: 2
 ..
 
-..      =========================
-..      * * *   NEW DELHI   * * *
-..      =========================
+..      ====================
+..      * * *   OSLO   * * *
+..      ====================
 
-Version: 3.4.10
-===============
+Version: 3.5.0
+==============
 
 Release Data
 ------------
@@ -26,10 +26,10 @@ Release Data
 | **CPS Project**                      |                                                        |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
-| **Docker images**                    | onap/cps-and-ncmp:3.4.10                               |
+| **Docker images**                    | onap/cps-and-ncmp:3.5.0                                |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
-| **Release designation**              | 3.4.10 New Delhi                                       |
+| **Release designation**              | 3.5.0 Oslo                                             |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
 | **Release date**                     | Not yet released                                       |
@@ -38,10 +38,17 @@ Release Data
 
 Bug Fixes
 ---------
-3.4.10
+3.5.0
 
 Features
 --------
+3.5.0
+    - `CPS-989 <https://jira.onap.org/browse/CPS-989>`_ Replace RestTemplate with WebClient.
+    - `CPS-2172 <https://jira.onap.org/browse/CPS-2172>`_ Support for OpenTelemetry Tracing.
+
+..      =========================
+..      * * *   NEW DELHI   * * *
+..      =========================
 
 Version: 3.4.9
 ==============

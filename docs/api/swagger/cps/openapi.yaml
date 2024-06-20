@@ -1346,6 +1346,13 @@ paths:
         schema:
           example: 2021-03-21T00:10:34.030-0100
           type: string
+      - description: Content type header
+        in: header
+        name: Content-Type
+        required: true
+        schema:
+          example: application/json
+          type: string
       requestBody:
         content:
           application/json:
@@ -1354,7 +1361,16 @@ paths:
                 $ref: '#/components/examples/dataSample'
                 value: null
             schema:
+              type: string
+          application/xml:
+            examples:
+              dataSample:
+                $ref: '#/components/examples/dataSampleXml'
+                value: null
+            schema:
               type: object
+              xml:
+                name: stores
         required: true
       responses:
         "200":
@@ -1896,7 +1912,7 @@ paths:
       summary: Replace list content
       tags:
       - cps-data
-  /v2/dataspaces/{dataspace-name}/anchors/{anchor-name}/delta:
+  /v2/dataspaces/{dataspace-name}/anchors/{anchor-name}/deltaAnchors:
     get:
       description: Get delta between two anchors within a given dataspace
       operationId: getDeltaByDataspaceAndAnchors
@@ -1989,6 +2005,96 @@ paths:
       tags:
       - cps-data
       x-codegen-request-body-name: xpath
+  /v2/dataspaces/{dataspace-name}/anchors/{anchor-name}/deltaPayload:
+    post:
+      description: Get delta between an anchor in a dataspace and JSON payload
+      operationId: getDeltaByDataspaceAnchorAndPayload
+      parameters:
+      - description: dataspace-name
+        in: path
+        name: dataspace-name
+        required: true
+        schema:
+          example: my-dataspace
+          type: string
+      - description: anchor-name
+        in: path
+        name: anchor-name
+        required: true
+        schema:
+          example: my-anchor
+          type: string
+      - description: "For more details on xpath, please refer https://docs.onap.org/projects/onap-cps/en/latest/xpath.html"
+        examples:
+          container xpath:
+            value: /shops/bookstore
+          list attributes xpath:
+            value: "/shops/bookstore/categories[@code=1]"
+        in: query
+        name: xpath
+        required: false
+        schema:
+          default: /
+          type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/getDeltaByDataspaceAnchorAndPayload_request'
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                dataSample:
+                  $ref: '#/components/examples/deltaReportSample'
+                  value: null
+              schema:
+                type: object
+          description: OK
+        "400":
+          content:
+            application/json:
+              example:
+                status: 400
+                message: Bad Request
+                details: The provided request is not valid
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              example:
+                status: 401
+                message: Unauthorized request
+                details: This request is unauthorized
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              example:
+                status: 403
+                message: Request Forbidden
+                details: This request is forbidden
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Forbidden
+        "500":
+          content:
+            application/json:
+              example:
+                status: 500
+                message: Internal Server Error
+                details: Internal Server Error occurred
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Internal Server Error
+      summary: Get delta between an anchor and JSON payload
+      tags:
+      - cps-data
   /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/nodes/query:
     get:
       deprecated: true
@@ -2270,7 +2376,7 @@ components:
     dataSampleXml:
       value: <stores xmlns="urn:ietf:params:xml:ns:netconf:base:1.0"> <bookstore xmlns="org:onap:ccsdk:sample">
         <bookstore-name>Chapters</bookstore-name> <categories> <code>1</code> <name>SciFi</name>
-        </categories> </bookstore> </stores>
+        <code>2</code> <name>kids</name> </categories> </bookstore> </stores>
     deltaReportSample:
       value:
       - action: ADD
@@ -2530,6 +2636,16 @@ components:
           schema:
             type: object
       description: OK
+    Unauthorized:
+      content:
+        application/json:
+          example:
+            status: 401
+            message: Unauthorized request
+            details: This request is unauthorized
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+      description: Unauthorized
   schemas:
     ErrorMessage:
       properties:
@@ -2618,6 +2734,24 @@ components:
           example: my-module-reference-revision
           type: string
       title: Module reference object
+      type: object
+    getDeltaByDataspaceAnchorAndPayload_request:
+      properties:
+        json:
+          example:
+            test:bookstore:
+              bookstore-name: Chapters
+              categories:
+              - code: 1
+                name: SciFi
+              - code: 2
+                name: kids
+          type: object
+        file:
+          format: binary
+          type: string
+      required:
+      - json
       type: object
   securitySchemes:
     basicAuth:
