@@ -20,6 +20,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0b190480_1fd07903",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-20T13:36:49Z",
+      "side": 1,
+      "message": "legacy issue: interface name should match impl:\n\na) NetworkCmProxyInventoryImpl implements NetworkCmProxyInventoryApi\nor\nb) ?",
+      "range": {
+        "startLine": 48,
+        "startChar": 58,
+        "endLine": 48,
+        "endChar": 85
+      },
+      "revId": "3488fa5adaac972984de4829a219aa455ca88256",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ea171b8_556f9d84",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/CmHandleRegistrationService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-20T13:36:49Z",
+      "side": 1,
+      "message": "hmmm, maybe I should put back these copyrights. I think I started this as a new class but then pasted in a lot of existing code :-)",
+      "range": {
+        "startLine": 3,
+        "startChar": 3,
+        "endLine": 3,
+        "endChar": 40
+      },
+      "revId": "3488fa5adaac972984de4829a219aa455ca88256",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ee702cfd_6f7591d5",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/CmHandleRegistrationService.java",
         "patchSetId": 4
@@ -59,6 +105,98 @@
         "startChar": 7,
         "endLine": 72,
         "endChar": 40
+      },
+      "revId": "3488fa5adaac972984de4829a219aa455ca88256",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f23ada02_7861a744",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyFacade.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-20T13:36:49Z",
+      "side": 1,
+      "message": "I think gerrit just dont recognise this as a modified fiel anymore :-)",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 54
+      },
+      "revId": "3488fa5adaac972984de4829a219aa455ca88256",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18f28726_764f9b25",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/client/DmiRestClient.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-20T13:36:49Z",
+      "side": 1,
+      "message": "just explaining:\nall exceptions are handled inside the OnErrorMap method below\n\nprobably could now move the whole method inside this unless there us add value to calling it \u0027asynchronous...\u0027",
+      "range": {
+        "startLine": 89,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 76
+      },
+      "revId": "3488fa5adaac972984de4829a219aa455ca88256",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1afab882_97adb301",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyFacadeSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-20T13:36:49Z",
+      "side": 1,
+      "message": "just a suggestion to clearly indicate this test is just a delegation-type test. (I didn\u0027t apply it consistently yet though)",
+      "range": {
+        "startLine": 51,
+        "startChar": 46,
+        "endLine": 51,
+        "endChar": 59
+      },
+      "revId": "3488fa5adaac972984de4829a219aa455ca88256",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "386d6a35_ccede99f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/NetworkCmProxyInventoryFacadeSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-20T13:36:49Z",
+      "side": 1,
+      "message": "again move and restructured beyond recognition for Gerrit but NO new code here..",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 54
       },
       "revId": "3488fa5adaac972984de4829a219aa455ca88256",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
