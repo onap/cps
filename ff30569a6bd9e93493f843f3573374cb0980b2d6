@@ -16,6 +16,115 @@
       "message": "recheck",
       "revId": "ff30569a6bd9e93493f843f3573374cb0980b2d6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccdbf726_c0ed4fdb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-20T13:02:53Z",
+      "side": 1,
+      "message": "some small last points",
+      "revId": "ff30569a6bd9e93493f843f3573374cb0980b2d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c994aca_6fa7c2fe",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/DmiSubJobRequestHandlerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-20T13:02:53Z",
+      "side": 1,
+      "message": "not needed becasue of next line",
+      "range": {
+        "startLine": 39,
+        "startChar": 12,
+        "endLine": 39,
+        "endChar": 33
+      },
+      "revId": "ff30569a6bd9e93493f843f3573374cb0980b2d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18eaf10f_ec987042",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/DmiSubJobRequestHandlerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-20T13:02:53Z",
+      "side": 1,
+      "message": "use assert keyword",
+      "range": {
+        "startLine": 40,
+        "startChar": 12,
+        "endLine": 40,
+        "endChar": 48
+      },
+      "revId": "ff30569a6bd9e93493f843f3573374cb0980b2d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d97a95bd_a80c4a96",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/WriteRequestExaminerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-20T13:02:53Z",
+      "side": 1,
+      "message": "sicne it works fine without * why is it added?!",
+      "range": {
+        "startLine": 61,
+        "startChar": 30,
+        "endLine": 61,
+        "endChar": 31
+      },
+      "revId": "ff30569a6bd9e93493f843f3573374cb0980b2d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afedbaf3_8aeed7a3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/WriteRequestExaminerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-20T13:02:53Z",
+      "side": 1,
+      "message": "use \u0027assert\u0027",
+      "range": {
+        "startLine": 61,
+        "startChar": 10,
+        "endLine": 61,
+        "endChar": 12
+      },
+      "revId": "ff30569a6bd9e93493f843f3573374cb0980b2d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
