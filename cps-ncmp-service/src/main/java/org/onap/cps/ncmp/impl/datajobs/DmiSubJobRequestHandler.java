@@ -33,7 +33,8 @@ import org.onap.cps.ncmp.api.datajobs.models.SubJobWriteRequest;
 import org.onap.cps.ncmp.api.datajobs.models.SubJobWriteResponse;
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
 import org.onap.cps.ncmp.api.impl.config.DmiProperties;
-import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder;
+import org.onap.cps.ncmp.api.impl.utils.url.builder.DmiServiceUrlBuilder;
+import org.onap.cps.ncmp.api.impl.utils.url.builder.UrlTemplateParameters;
 import org.onap.cps.ncmp.impl.models.RequiredDmiService;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.ResponseEntity;
@@ -64,10 +65,10 @@ public class DmiSubJobRequestHandler {
             final SubJobWriteRequest subJobWriteRequest = new SubJobWriteRequest(dataJobMetadata.dataAcceptType(),
                     dataJobMetadata.dataContentType(), dataJobId, dmi3ggpWriteOperations);
 
-            final String dmiResourceUrl = getDmiResourceUrl(dataJobId, producerKey);
+            final UrlTemplateParameters urlTemplateParameters = getUrlTemplateParameters(dataJobId, producerKey);
             final ResponseEntity<Object> responseEntity = dmiRestClient.synchronousPostOperationWithJsonData(
                     RequiredDmiService.DATA,
-                    dmiResourceUrl,
+                    urlTemplateParameters,
                     jsonObjectMapper.asJsonString(subJobWriteRequest),
                     OperationType.CREATE,
                     NO_AUTH_HEADER);
@@ -78,8 +79,10 @@ public class DmiSubJobRequestHandler {
         return subJobWriteResponses;
     }
 
-    private String getDmiResourceUrl(final String dataJobId, final ProducerKey producerKey) {
-        return DmiServiceUrlBuilder.newInstance().pathSegment("writeJob").variablePathSegment("requestId", dataJobId)
-                .build(producerKey.dmiServiceName(), dmiProperties.getDmiBasePath());
+    private UrlTemplateParameters getUrlTemplateParameters(final String dataJobId, final ProducerKey producerKey) {
+        return DmiServiceUrlBuilder.newInstance()
+                .fixedPathSegment("writeJob")
+                .variablePathSegment("requestId", dataJobId)
+                .createUrlTemplateParameters(producerKey.dmiServiceName(), dmiProperties.getDmiBasePath());
     }
 }

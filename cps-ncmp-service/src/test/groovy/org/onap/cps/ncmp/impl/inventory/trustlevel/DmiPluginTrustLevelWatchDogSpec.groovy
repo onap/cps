@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2023 Nordix Foundation
+ *  Copyright (C) 2023-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -21,8 +21,10 @@
 package org.onap.cps.ncmp.impl.inventory.trustlevel
 
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient
+import org.onap.cps.ncmp.api.impl.utils.url.builder.UrlTemplateParameters
 import org.onap.cps.ncmp.api.inventory.models.TrustLevel
 import org.onap.cps.ncmp.impl.inventory.CmHandleQueryService
+import reactor.core.publisher.Mono
 import spock.lang.Specification
 
 class DmiPluginTrustLevelWatchDogSpec extends Specification {
@@ -39,7 +41,8 @@ class DmiPluginTrustLevelWatchDogSpec extends Specification {
         given: 'the cache has been initialised and "knows" about dmi-1'
             trustLevelPerDmiPlugin.put('dmi-1', dmiOldTrustLevel)
         and: 'dmi client returns health status #dmiHealhStatus'
-            mockDmiRestClient.getDmiHealthStatus('dmi-1') >> dmiHealhStatus
+            def urlTemplateParameters = new UrlTemplateParameters('dmi-1/actuator/health', [:])
+            mockDmiRestClient.getDmiHealthStatus(urlTemplateParameters) >> Mono.just(dmiHealhStatus)
         when: 'dmi watch dog method runs'
             objectUnderTest.checkDmiAvailability()
         then: 'the update delegated to manager'
@@ -52,5 +55,4 @@ class DmiPluginTrustLevelWatchDogSpec extends Specification {
             'UP'           | TrustLevel.NONE     | TrustLevel.COMPLETE || 1
             ''             | TrustLevel.COMPLETE | TrustLevel.NONE     || 1
     }
-
 }
