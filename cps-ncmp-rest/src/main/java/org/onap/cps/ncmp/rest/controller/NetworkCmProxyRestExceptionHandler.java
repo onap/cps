@@ -27,7 +27,6 @@ import org.onap.cps.ncmp.api.data.exceptions.InvalidDatastoreException;
 import org.onap.cps.ncmp.api.data.exceptions.OperationNotSupportedException;
 import org.onap.cps.ncmp.api.impl.exception.DmiClientRequestException;
 import org.onap.cps.ncmp.api.impl.exception.DmiRequestException;
-import org.onap.cps.ncmp.api.impl.exception.InvalidDmiResourceUrlException;
 import org.onap.cps.ncmp.api.impl.exception.NcmpException;
 import org.onap.cps.ncmp.api.impl.exception.ServerNcmpException;
 import org.onap.cps.ncmp.exceptions.InvalidTopicException;
@@ -78,8 +77,7 @@ public class NetworkCmProxyRestExceptionHandler {
     }
 
     @ExceptionHandler({DmiRequestException.class, DataValidationException.class, OperationNotSupportedException.class,
-            HttpMessageNotReadableException.class, InvalidTopicException.class, InvalidDatastoreException.class,
-            InvalidDmiResourceUrlException.class})
+            HttpMessageNotReadableException.class, InvalidTopicException.class, InvalidDatastoreException.class})
     public static ResponseEntity<Object> handleDmiRequestExceptions(final Exception exception) {
         return buildErrorResponse(HttpStatus.BAD_REQUEST, exception);
     }

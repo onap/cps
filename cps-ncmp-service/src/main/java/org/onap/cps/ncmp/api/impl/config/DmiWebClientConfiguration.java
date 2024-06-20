@@ -47,31 +47,33 @@ import reactor.netty.resources.ConnectionProvider;
 public class DmiWebClientConfiguration {
 
     private final HttpClientConfiguration httpClientConfiguration;
-
     private static final Duration DEFAULT_RESPONSE_TIMEOUT = Duration.ofSeconds(30);
 
     /**
-     * Configures and creates a WebClient bean for DMI data services.
+     * Configures and creates a web client bean for DMI data services.
      *
+     * @param webClientBuilder The builder instance to create the WebClient.
      * @return a WebClient instance configured for data services.
      */
     @Bean
-    public WebClient dataServicesWebClient() {
+    public WebClient dataServicesWebClient(final WebClient.Builder webClientBuilder) {
         final HttpClientConfiguration.DataServices dataServiceConfig = httpClientConfiguration.getDataServices();
         final ConnectionProvider dataServicesConnectionProvider
                 = getConnectionProvider(dataServiceConfig.getConnectionProviderName(),
                 dataServiceConfig.getMaximumConnectionsTotal(), dataServiceConfig.getPendingAcquireMaxCount());
         final HttpClient dataServicesHttpClient = createHttpClient(dataServiceConfig, dataServicesConnectionProvider);
-        return buildAndGetWebClient(dataServicesHttpClient, dataServiceConfig.getMaximumInMemorySizeInMegabytes());
+        return buildAndGetWebClient(webClientBuilder, dataServicesHttpClient,
+                dataServiceConfig.getMaximumInMemorySizeInMegabytes());
     }
 
     /**
-     * Configures and creates a WebClient bean for DMI model services.
+     * Configures and creates a web client bean for DMI model services.
      *
+     * @param webClientBuilder The builder instance to create the WebClient.
      * @return a WebClient instance configured for model services.
      */
     @Bean
-    public WebClient modelServicesWebClient() {
+    public WebClient modelServicesWebClient(final WebClient.Builder webClientBuilder) {
         final HttpClientConfiguration.ModelServices modelServiceConfig = httpClientConfiguration.getModelServices();
         final ConnectionProvider modelServicesConnectionProvider
                 = getConnectionProvider(modelServiceConfig.getConnectionProviderName(),
@@ -79,16 +81,18 @@ public class DmiWebClientConfiguration {
                 modelServiceConfig.getPendingAcquireMaxCount());
         final HttpClient modelServicesHttpClient
                 = createHttpClient(modelServiceConfig, modelServicesConnectionProvider);
-        return buildAndGetWebClient(modelServicesHttpClient, modelServiceConfig.getMaximumInMemorySizeInMegabytes());
+        return buildAndGetWebClient(webClientBuilder, modelServicesHttpClient,
+                modelServiceConfig.getMaximumInMemorySizeInMegabytes());
     }
 
     /**
-     * Configures and creates a WebClient bean for DMI health check services.
+     * Configures and creates a web client bean for DMI health check services.
      *
+     * @param webClientBuilder The builder instance to create the WebClient.
      * @return a WebClient instance configured for health check services.
      */
     @Bean
-    public WebClient healthChecksWebClient() {
+    public WebClient healthChecksWebClient(final WebClient.Builder webClientBuilder) {
         final HttpClientConfiguration.HealthCheckServices healthCheckServiceConfig
                 = httpClientConfiguration.getHealthCheckServices();
         final ConnectionProvider healthChecksConnectionProvider
@@ -97,18 +101,8 @@ public class DmiWebClientConfiguration {
                 healthCheckServiceConfig.getPendingAcquireMaxCount());
         final HttpClient healthChecksHttpClient
                 = createHttpClient(healthCheckServiceConfig, healthChecksConnectionProvider);
-        return buildAndGetWebClient(healthChecksHttpClient,
+        return buildAndGetWebClient(webClientBuilder, healthChecksHttpClient,
                 healthCheckServiceConfig.getMaximumInMemorySizeInMegabytes());
-    }
-
-    /**
-     * Provides a WebClient.Builder bean for creating WebClient instances.
-     *
-     * @return a WebClient.Builder instance.
-     */
-    @Bean
-    public WebClient.Builder webClientBuilder() {
-        return WebClient.builder();
     }
 
     private static HttpClient createHttpClient(final HttpClientConfiguration.ServiceConfig serviceConfig,
@@ -133,9 +127,9 @@ public class DmiWebClientConfiguration {
                 .build();
     }
 
-    private WebClient buildAndGetWebClient(final HttpClient httpClient,
+    private WebClient buildAndGetWebClient(final WebClient.Builder webClientBuilder, final HttpClient httpClient,
                                                   final int maximumInMemorySizeInMegabytes) {
-        return webClientBuilder()
+        return webClientBuilder
                 .defaultHeaders(header -> header.set(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
                 .defaultHeaders(header -> header.set(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE))
                 .clientConnector(new ReactorClientHttpConnector(httpClient))

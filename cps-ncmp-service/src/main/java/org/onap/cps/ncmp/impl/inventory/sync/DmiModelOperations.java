@@ -35,7 +35,8 @@ import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.api.data.models.OperationType;
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
 import org.onap.cps.ncmp.api.impl.config.DmiProperties;
-import org.onap.cps.ncmp.api.impl.utils.DmiServiceUrlBuilder;
+import org.onap.cps.ncmp.api.impl.utils.url.builder.DmiServiceUrlBuilder;
+import org.onap.cps.ncmp.api.impl.utils.url.builder.UrlTemplateParameters;
 import org.onap.cps.ncmp.api.inventory.models.YangResource;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.models.DmiRequestBody;
@@ -107,13 +108,13 @@ public class DmiModelOperations {
                                                                   final String jsonRequestBody,
                                                                   final String cmHandle,
                                                                   final String resourceName) {
-        final String dmiUrl = DmiServiceUrlBuilder.newInstance()
-                .pathSegment("ch")
+        final UrlTemplateParameters urlTemplateParameters = DmiServiceUrlBuilder.newInstance()
+                .fixedPathSegment("ch")
                 .variablePathSegment("cmHandleId", cmHandle)
                 .variablePathSegment("resourceName", resourceName)
-                .build(dmiServiceName, dmiProperties.getDmiBasePath());
-        return dmiRestClient.synchronousPostOperationWithJsonData(RequiredDmiService.MODEL, dmiUrl, jsonRequestBody,
-                OperationType.READ, null);
+                .createUrlTemplateParameters(dmiServiceName, dmiProperties.getDmiBasePath());
+        return dmiRestClient.synchronousPostOperationWithJsonData(RequiredDmiService.MODEL, urlTemplateParameters,
+                jsonRequestBody, OperationType.READ, null);
     }
 
     private static String getRequestBodyToFetchYangResources(final Collection<ModuleReference> newModuleReferences,
