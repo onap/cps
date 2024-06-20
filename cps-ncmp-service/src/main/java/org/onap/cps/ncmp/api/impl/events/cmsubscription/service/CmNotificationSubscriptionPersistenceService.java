@@ -22,6 +22,7 @@ package org.onap.cps.ncmp.api.impl.events.cmsubscription.service;
 
 import java.util.Collection;
 import org.onap.cps.ncmp.api.impl.operations.DatastoreType;
+import org.onap.cps.spi.model.DataNode;
 
 public interface CmNotificationSubscriptionPersistenceService {
 
@@ -80,5 +81,12 @@ public interface CmNotificationSubscriptionPersistenceService {
     void removeCmNotificationSubscription(final DatastoreType datastoreType, final String cmHandleId,
                                           final String xpath, final String subscriptionId);
 
+    /**
+     * Retrieve all existing dataNodes for given subscription id.
+     *
+     * @param subscriptionId  subscription id
+     * @return collection of DataNodes
+     */
+    Collection<DataNode> getAllNodesForSubscriptionId(String subscriptionId);
 }
 

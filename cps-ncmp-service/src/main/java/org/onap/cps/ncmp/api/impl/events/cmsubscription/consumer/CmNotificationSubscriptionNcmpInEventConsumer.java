@@ -55,16 +55,16 @@ public class CmNotificationSubscriptionNcmpInEventConsumer {
                 cmNotificationSubscriptionNcmpInEvent.getData().getSubscriptionId());
 
         final String subscriptionId = cmNotificationSubscriptionNcmpInEvent.getData().getSubscriptionId();
-        final List<Predicate> predicates = cmNotificationSubscriptionNcmpInEvent.getData().getPredicates();
         if ("subscriptionCreateRequest".equals(cloudEvent.getType())) {
             log.info("Subscription create request for source {} with subscription id {} ...",
                     cloudEvent.getSource(), subscriptionId);
+            final List<Predicate> predicates = cmNotificationSubscriptionNcmpInEvent.getData().getPredicates();
             cmNotificationSubscriptionHandlerService.processSubscriptionCreateRequest(subscriptionId, predicates);
         }
         if ("subscriptionDeleteRequest".equals(cloudEvent.getType())) {
             log.info("Subscription delete request for source {} with subscription id {} ...",
                     cloudEvent.getSource(), subscriptionId);
-            cmNotificationSubscriptionHandlerService.processSubscriptionDeleteRequest(subscriptionId, predicates);
+            cmNotificationSubscriptionHandlerService.processSubscriptionDeleteRequest(subscriptionId);
         }
     }
 }

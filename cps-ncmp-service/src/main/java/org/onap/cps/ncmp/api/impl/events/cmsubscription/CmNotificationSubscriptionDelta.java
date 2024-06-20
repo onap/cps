@@ -21,6 +21,7 @@
 package org.onap.cps.ncmp.api.impl.events.cmsubscription;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -64,6 +65,40 @@ public class CmNotificationSubscriptionDelta {
                 }
             }
 
+            populateValidDmiCmNotificationSubscriptionPredicateDelta(targetCmHandleIds, xpaths, datastoreType, delta);
+        }
+        return delta;
+    }
+
+    /**
+     * Get the delta for a given predicates list with shared subscriptions.
+     *
+     * @param dmiCmNotificationSubscriptionPredicates list of DmiCmNotificationSubscriptionPredicates
+     * @return delta list of DmiCmNotificationSubscriptionPredicates
+     */
+    public List<DmiCmNotificationSubscriptionPredicate> getPredicatesUsedOnlyBySubscriptionId(
+            final String subscriptionId,
+            final List<DmiCmNotificationSubscriptionPredicate> dmiCmNotificationSubscriptionPredicates) {
+        final List<DmiCmNotificationSubscriptionPredicate> delta = new ArrayList<>();
+        for (final DmiCmNotificationSubscriptionPredicate cmNotificationSubscriptionPredicate:
+                dmiCmNotificationSubscriptionPredicates) {
+
+            final Set<String> targetCmHandleIds = new HashSet<>();
+            final Set<String> xpaths = new HashSet<>();
+            final DatastoreType datastoreType = cmNotificationSubscriptionPredicate.getDatastoreType();
+
+            for (final String cmHandleId : cmNotificationSubscriptionPredicate.getTargetCmHandleIds()) {
+                for (final String xpath : cmNotificationSubscriptionPredicate.getXpaths()) {
+                    final Collection<String> ongoingCmNotificationSubscriptionIds =
+                            cmNotificationSubscriptionPersistenceService.getOngoingCmNotificationSubscriptionIds(
+                                    datastoreType, cmHandleId, xpath);
+                    if (ongoingCmNotificationSubscriptionIds.size() == 1
+                            && ongoingCmNotificationSubscriptionIds.contains(subscriptionId)) {
+                        xpaths.add(xpath);
+                        targetCmHandleIds.add(cmHandleId);
+                    }
+                }
+            }
             populateValidDmiCmNotificationSubscriptionPredicateDelta(targetCmHandleIds, xpaths, datastoreType, delta);
         }
         return delta;
