@@ -28,6 +28,7 @@ import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
 import org.onap.cps.ncmp.api.impl.config.embeddedcache.TrustLevelCacheConfig;
 import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel;
 import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevelManager;
+import org.onap.cps.ncmp.api.impl.utils.url.builder.DmiServiceUrlBuilder;
 import org.onap.cps.ncmp.impl.inventory.CmHandleQueryService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -52,10 +53,8 @@ public class DmiPluginWatchDog {
      */
     @Scheduled(fixedDelayString = "${ncmp.timers.trust-level.dmi-availability-watchdog-ms:30000}")
     public void checkDmiAvailability() {
-        trustLevelPerDmiPlugin.entrySet().forEach(entry -> {
+        trustLevelPerDmiPlugin.forEach((dmiServiceName, oldDmiTrustLevel) -> {
             final TrustLevel newDmiTrustLevel;
-            final TrustLevel oldDmiTrustLevel = entry.getValue();
-            final String dmiServiceName = entry.getKey();
             final String dmiHealthStatus = getDmiHealthStatus(dmiServiceName);
             log.debug("The health status for dmi-plugin: {} is {}", dmiServiceName, dmiHealthStatus);
 
@@ -75,6 +74,11 @@ public class DmiPluginWatchDog {
     }
 
     private String getDmiHealthStatus(final String dmiServiceName) {
-        return dmiRestClient.getDmiHealthStatus(dmiServiceName);
+        final String dmiHealthCheckUri = DmiServiceUrlBuilder.newInstance()
+                .path(dmiServiceName)
+                .pathSegment("actuator")
+                .pathSegment("health")
+                .toUriString();
+        return dmiRestClient.getDmiHealthStatus(dmiHealthCheckUri);
     }
 }

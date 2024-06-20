@@ -26,12 +26,14 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.node.ObjectNode
 import org.onap.cps.ncmp.api.impl.config.DmiProperties
 import org.onap.cps.ncmp.api.impl.exception.DmiClientRequestException
-import org.onap.cps.ncmp.api.impl.exception.InvalidDmiResourceUrlException
+import org.onap.cps.ncmp.api.impl.utils.url.builder.UriTemplateParameters
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
+import org.springframework.http.HttpStatusCode
 import org.springframework.http.ResponseEntity
+import org.springframework.web.client.HttpServerErrorException
 import org.springframework.web.reactive.function.client.WebClient
 import org.springframework.web.reactive.function.client.WebClientRequestException
 import org.springframework.web.reactive.function.client.WebClientResponseException
@@ -41,8 +43,6 @@ import spock.lang.Specification
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.DMI_SERVICE_NOT_RESPONDING
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNABLE_TO_READ_RESOURCE_DATA
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNKNOWN_ERROR
-import static org.onap.cps.ncmp.api.impl.operations.OperationType.CREATE
-import static org.onap.cps.ncmp.api.impl.operations.OperationType.PATCH
 import static org.onap.cps.ncmp.api.impl.operations.OperationType.READ
 import static org.onap.cps.ncmp.api.impl.operations.RequiredDmiService.DATA
 import static org.onap.cps.ncmp.api.impl.operations.RequiredDmiService.MODEL
@@ -67,7 +67,7 @@ class DmiRestClientSpec extends Specification {
     DmiRestClient objectUnderTest = new DmiRestClient(mockDmiProperties, jsonObjectMapper, mockDataServicesWebClient, mockModelServicesWebClient, mockHealthChecksWebClient)
 
     def setup() {
-        mockRequestBody.uri(_) >> mockRequestBody
+        mockRequestBody.uri(_,_) >> mockRequestBody
         mockRequestBody.headers(_) >> mockRequestBody
         mockRequestBody.body(_) >> mockRequestBody
         mockRequestBody.retrieve() >> mockResponse
@@ -78,7 +78,8 @@ class DmiRestClientSpec extends Specification {
             mockDataServicesWebClient.post() >> mockRequestBody
             mockResponse.toEntity(Object.class) >> Mono.just(new ResponseEntity<>('from Data service', HttpStatus.I_AM_A_TEAPOT))
         when: 'POST operation is invoked fro Data Service'
-            def response = objectUnderTest.synchronousPostOperationWithJsonData(DATA, '/my/url', 'some json', READ, NO_AUTH_HEADER)
+            def templateWithVariables = new UriTemplateParameters('/{pathParam1}/{pathParam2}', ['pathParam1': 'my', 'pathParam2': 'url'])
+            def response = objectUnderTest.synchronousPostOperationWithJsonData(DATA, templateWithVariables, 'some json', READ, NO_AUTH_HEADER)
         then: 'the output of the method is equal to the output from the test template'
             assert response.statusCode == HttpStatus.I_AM_A_TEAPOT
             assert response.body == 'from Data service'
@@ -89,22 +90,11 @@ class DmiRestClientSpec extends Specification {
             mockModelServicesWebClient.post() >> mockRequestBody
             mockResponse.toEntity(Object.class) >> Mono.just(new ResponseEntity<>('from Model service', HttpStatus.I_AM_A_TEAPOT))
         when: 'POST operation is invoked for Model Service'
-            def response = objectUnderTest.synchronousPostOperationWithJsonData(MODEL, '/my/url', 'some json', READ, NO_AUTH_HEADER)
+            def templateWithVariables = new UriTemplateParameters('/{pathParam1}/{pathParam2}', ['pathParam1': 'my', 'pathParam2': 'url'])
+            def response = objectUnderTest.synchronousPostOperationWithJsonData(MODEL, templateWithVariables, 'some json', READ, NO_AUTH_HEADER)
         then: 'the output of the method is equal to the output from the test template'
             assert response.statusCode == HttpStatus.I_AM_A_TEAPOT
             assert response.body == 'from Model service'
-    }
-
-    def 'Failing DMI POST operation due to invalid dmi resource url.'() {
-        when: 'POST operation is invoked with invalid dmi resource url'
-            objectUnderTest.synchronousPostOperationWithJsonData(DATA, '/invalid dmi url', null, null, NO_AUTH_HEADER)
-        then: 'invalid dmi resource url exception is thrown'
-            def thrown = thrown(InvalidDmiResourceUrlException)
-        and: 'the exception has the relevant details from the error response'
-            thrown.httpStatus == 400
-            thrown.message == 'Invalid dmi resource url: /invalid dmi url'
-        where: 'the following operations are executed'
-            operation << [CREATE, READ, PATCH]
     }
 
     def 'Dmi service sends client error response when #scenario'() {
@@ -112,7 +102,8 @@ class DmiRestClientSpec extends Specification {
             mockDataServicesWebClient.post() >> mockRequestBody
             mockResponse.toEntity(Object.class) >> Mono.error(exceptionType)
         when: 'POST operation is invoked'
-            objectUnderTest.synchronousPostOperationWithJsonData(DATA, '/my/url', 'some json', READ, NO_AUTH_HEADER)
+            def templateWithVariables = new UriTemplateParameters('/{pathParam1}/{pathParam2}', ['pathParam1': 'my', 'pathParam2': 'url'])
+            objectUnderTest.synchronousPostOperationWithJsonData(DATA, templateWithVariables, 'some json', READ, NO_AUTH_HEADER)
         then: 'a http client exception is thrown'
             def thrown = thrown(DmiClientRequestException)
         and: 'the exception has the relevant details from the error response'
@@ -123,6 +114,7 @@ class DmiRestClientSpec extends Specification {
             'dmi service unavailable' | 503            | new WebClientRequestException(new RuntimeException('some-error'), null, null, new HttpHeaders()) || DMI_SERVICE_NOT_RESPONDING
             'dmi request timeout'     | 408            | new WebClientResponseException('message', httpStatusCode, 'statusText', null, null, null)        || DMI_SERVICE_NOT_RESPONDING
             'dmi server error'        | 500            | new WebClientResponseException('message', httpStatusCode, 'statusText', null, null, null)        || UNABLE_TO_READ_RESOURCE_DATA
+            'dmi service unavailable' | 503            | new HttpServerErrorException(HttpStatusCode.valueOf(503))                                        || DMI_SERVICE_NOT_RESPONDING
             'unknown error'           | 500            | new Throwable('message')                                                                         || UNKNOWN_ERROR
     }
 
