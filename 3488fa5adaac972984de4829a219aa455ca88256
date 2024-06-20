@@ -113,6 +113,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "42005c5b_fffc6640",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/CmHandleRegistrationService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-20T14:12:08Z",
+      "side": 1,
+      "message": "Team decided to use old fashioned loop for readability.",
+      "parentUuid": "0362f174_a787e8d4",
+      "range": {
+        "startLine": 375,
+        "startChar": 6,
+        "endLine": 382,
+        "endChar": 9
+      },
+      "revId": "3488fa5adaac972984de4829a219aa455ca88256",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6e791dd5_864480aa",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NcmpDatastoreRequestHandler.java",
         "patchSetId": 4
@@ -148,6 +172,30 @@
       "side": 1,
       "message": "I delibertaly didn\u0027t for redability and debuggin reasons...",
       "parentUuid": "6e791dd5_864480aa",
+      "range": {
+        "startLine": 70,
+        "startChar": 7,
+        "endLine": 72,
+        "endChar": 40
+      },
+      "revId": "3488fa5adaac972984de4829a219aa455ca88256",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "88cb9c25_b969286f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NcmpDatastoreRequestHandler.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-20T14:12:08Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "dc02025f_1b50882f",
       "range": {
         "startLine": 70,
         "startChar": 7,
