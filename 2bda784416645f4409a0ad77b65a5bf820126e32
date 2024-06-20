@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1f26656c_5a1f4d1c",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-20T11:08:25Z",
+      "side": 1,
+      "message": "as I mentioned before: I am NOT going to update copyright in classes that have been automatically updated because an import has been renamed. Its is not worth the effort and might be technically incorrect...",
+      "parentUuid": "21379c9a_76e4dc1b",
+      "range": {
+        "startLine": 4,
+        "startChar": 37,
+        "endLine": 4,
+        "endChar": 41
+      },
+      "revId": "2bda784416645f4409a0ad77b65a5bf820126e32",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "260e066f_d0a77747",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyFacade.java",
         "patchSetId": 3
@@ -37,6 +61,30 @@
       "writtenOn": "2024-06-17T15:59:00Z",
       "side": 1,
       "message": "I\u0027m inclined to move the methods to Inventory facade. I think it fits with Single Responsibility Principle (a class should only have one reason to change).\n\nThere does not need to be a 1-to-1 mapping between REST controller and service layers anyway.",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 7
+      },
+      "revId": "2bda784416645f4409a0ad77b65a5bf820126e32",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbd10183_6f1b6032",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/NetworkCmProxyFacade.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-20T11:08:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "260e066f_d0a77747",
       "range": {
         "startLine": 66,
         "startChar": 0,
@@ -60,6 +108,30 @@
       "writtenOn": "2024-06-17T15:59:00Z",
       "side": 1,
       "message": "NB Arguably this could be a class instead of interface, since it\u0027s only used internally, and there is only one implementation.",
+      "range": {
+        "startLine": 29,
+        "startChar": 7,
+        "endLine": 29,
+        "endChar": 37
+      },
+      "revId": "2bda784416645f4409a0ad77b65a5bf820126e32",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "831682af_9d5f00fb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/inventory/CmHandleQueryService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-20T11:08:25Z",
+      "side": 1,
+      "message": "sine the interface exists I left it...",
+      "parentUuid": "cdee3d07_f4a73ca1",
       "range": {
         "startLine": 29,
         "startChar": 7,
