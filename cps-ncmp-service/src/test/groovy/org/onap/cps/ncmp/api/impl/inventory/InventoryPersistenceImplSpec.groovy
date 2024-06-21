@@ -42,6 +42,7 @@ import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.ModuleDefinition
 import org.onap.cps.spi.model.ModuleReference
 import org.onap.cps.spi.utils.CpsValidator
+import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Shared
 import spock.lang.Specification
@@ -228,7 +229,7 @@ class InventoryPersistenceImplSpec extends Specification {
             objectUnderTest.saveCmHandle(yangModelCmHandle)
         then: 'the data service method to save list elements is called once'
             1 * mockCpsDataService.saveListElements(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
-                    _,null) >> {
+                    _,null, ContentType.JSON) >> {
                 args -> {
                     assert args[3].startsWith('{"cm-handles":[{"id":"cmhandle","additional-properties":[],"public-properties":[]}]}')
                 }
@@ -243,7 +244,7 @@ class InventoryPersistenceImplSpec extends Specification {
             objectUnderTest.saveCmHandleBatch([yangModelCmHandle1, yangModelCmHandle2])
         then: 'CPS Data Service persists both cm handles as a batch'
             1 * mockCpsDataService.saveListElements(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                    NCMP_DMI_REGISTRY_PARENT, _,null) >> {
+                    NCMP_DMI_REGISTRY_PARENT, _,null, ContentType.JSON) >> {
                 args -> {
                     def jsonData = (args[3] as String)
                     jsonData.contains('cmhandle1')
