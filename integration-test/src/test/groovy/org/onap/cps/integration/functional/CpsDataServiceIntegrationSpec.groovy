@@ -224,7 +224,7 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
         given: 'a new (multiple-data-tree:invoice) datanodes'
             def json = '{"bookstore-address":[{"bookstore-name":"Easons","address":"Bangalore,India","postal-code":"560043"}]}'
         when: 'the new list elements are saved'
-            objectUnderTest.saveListElements(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1 , '/', json, now)
+            objectUnderTest.saveListElements(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1 , '/', json, now, ContentType.JSON)
         then: 'they can be retrieved by their xpaths'
             objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1 , '/bookstore-address[@bookstore-name="Easons"]', INCLUDE_ALL_DESCENDANTS)
         and: 'there is one extra datanode'
@@ -239,7 +239,7 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
         given: 'two new (categories) data nodes'
             def json = '{"categories": [ {"code":"new1"}, {"code":"new2" } ] }'
         when: 'the new list elements are saved'
-            objectUnderTest.saveListElements(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1 , '/bookstore', json, now)
+            objectUnderTest.saveListElements(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1 , '/bookstore', json, now, ContentType.JSON)
         then: 'they can be retrieved by their xpaths'
             objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore/categories[@code="new1"]', DIRECT_CHILDREN_ONLY).size() == 1
             objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore/categories[@code="new2"]', DIRECT_CHILDREN_ONLY).size() == 1
@@ -256,7 +256,7 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
         given: 'two (categories) data nodes, one new and one existing'
             def json = '{"categories": [ {"code":"1"}, {"code":"new1"} ] }'
         when: 'attempt to save the list element'
-            objectUnderTest.saveListElements(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1 , '/bookstore', json, now)
+            objectUnderTest.saveListElements(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1 , '/bookstore', json, now, ContentType.JSON)
         then: 'an exception that (one cps paths is)  already defined is thrown '
             def exceptionThrown = thrown(AlreadyDefinedException)
             exceptionThrown.alreadyDefinedObjectNames == ['/bookstore/categories[@code=\'1\']' ] as Set
@@ -270,7 +270,7 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
         given: 'a new (categories) data nodes'
             def json = '{"categories": [ {"code":"new1"} ] }'
         and: 'the new list element is saved'
-            objectUnderTest.saveListElements(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1 , '/bookstore', json, now)
+            objectUnderTest.saveListElements(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1 , '/bookstore', json, now, ContentType.JSON)
         when: 'the new element is deleted'
             objectUnderTest.deleteListOrListElement(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore/categories[@code="new1"]', now)
         then: 'the original number of data nodes is restored'
@@ -281,7 +281,7 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
         given: 'two new (categories) data nodes in a single batch'
             def json = '{"categories": [ {"code":"new1"}, {"code":"new2"} ] }'
         when: 'the batches of new list element(s) are saved'
-            objectUnderTest.saveListElements(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1 , '/bookstore', json, now)
+            objectUnderTest.saveListElements(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1 , '/bookstore', json, now, ContentType.JSON)
         then: 'they can be retrieved by their xpaths'
             assert objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore/categories[@code="new1"]', DIRECT_CHILDREN_ONLY).size() == 1
             assert objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore/categories[@code="new2"]', DIRECT_CHILDREN_ONLY).size() == 1
@@ -298,7 +298,7 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
         given: 'one existing and one new (categories) data nodes in a single batch'
             def json = '{"categories": [ {"code":"new1"}, {"code":"1"} ] }'
         when: 'the batches of new list element(s) are saved'
-            objectUnderTest.saveListElements(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1 , '/bookstore', json, now)
+            objectUnderTest.saveListElements(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1 , '/bookstore', json, now, ContentType.JSON)
         then: 'an already defined (batch) exception is thrown for the existing path'
             def exceptionThrown = thrown(AlreadyDefinedException)
             assert exceptionThrown.alreadyDefinedObjectNames ==  ['/bookstore/categories[@code=\'1\']' ] as Set

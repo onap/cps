@@ -187,6 +187,26 @@ class CpsDataServiceImplSpec extends Specification {
             1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
     }
 
+    def 'Saving list element data fragment under existing node XML Data.'() {
+        given: 'schema set for given anchor and dataspace references test-tree model'
+            setupSchemaSetMocks('test-tree.yang')
+        when: 'save data method is invoked with list element xml data'
+            def xmlData = '<test-tree xmlns="org:onap:cps:test:test-tree"><branch><name>A</name></branch><branch><name>B</name></branch></test-tree>'
+            objectUnderTest.saveListElements(dataspaceName, anchorName, '/test-tree', xmlData, observedTimestamp, ContentType.XML)
+        then: 'the persistence service method is invoked with correct parameters'
+            1 * mockCpsDataPersistenceService.addListElements(dataspaceName, anchorName, '/test-tree',
+                { dataNodeCollection ->
+                    {
+                        assert dataNodeCollection.size() == 2
+                        assert dataNodeCollection.collect { it.getXpath() }
+                            .containsAll(['/test-tree/branch[@name=\'A\']', '/test-tree/branch[@name=\'B\']'])
+                    }
+                }
+            )
+        and: 'the CpsValidator is called on the dataspaceName and AnchorName'
+            1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
+    }
+
     def 'Saving empty list element data fragment JSON Data.'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')
