@@ -33,10 +33,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.atomic.AtomicInteger;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.onap.cps.ncmp.api.datajobs.models.SubJobWriteRequest;
+import org.onap.cps.ncmp.api.datajobs.models.SubJobWriteResponse;
 import org.onap.cps.ncmp.dmi.rest.stub.model.data.operational.DataOperationRequest;
 import org.onap.cps.ncmp.dmi.rest.stub.model.data.operational.DmiDataOperationRequest;
 import org.onap.cps.ncmp.dmi.rest.stub.model.data.operational.DmiOperationCmHandle;
@@ -86,6 +89,7 @@ public class DmiRestStubController {
     private long readDataForCmHandleDelayMs;
     @Value("${delay.write-data-for-cm-handle-delay-ms}")
     private long writeDataForCmHandleDelayMs;
+    @Value("${delay.data-for-cm-handle-delay-ms}")
 
     /**
      * This code defines a REST API endpoint for adding new the module set tag mapping. The endpoint receives the

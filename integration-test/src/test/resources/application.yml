@@ -110,6 +110,8 @@ app:
       topic: ${DMI_CM_EVENTS_TOPIC:dmi-cm-events}
     device-heartbeat:
       topic: ${DMI_DEVICE_HEARTBEAT_TOPIC:dmi-device-heartbeat}
+    stub:
+      image-name: ${DMI_STUB_IMAGE_NAME:ncmp-dmi-plugin-demo-and-csit-stub}
 
 notification:
   enabled: true
