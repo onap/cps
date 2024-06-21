@@ -20,6 +20,9 @@
 
 package org.onap.cps.integration.base
 
+import okio.Buffer
+import org.onap.cps.ncmp.api.datajobs.models.SubJobWriteResponse
+
 import static org.onap.cps.integration.base.CpsIntegrationSpecBase.readResourceDataFile
 
 import org.springframework.http.HttpHeaders

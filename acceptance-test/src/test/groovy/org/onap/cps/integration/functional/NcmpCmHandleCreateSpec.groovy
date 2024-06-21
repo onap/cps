@@ -117,8 +117,8 @@ class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
         given: 'DMI will return modules when requested'
             dmiDispatcher.moduleNamesPerCmHandleId = ['ch-1': ['M1', 'M2'], 'ch-2': ['M1', 'M3']]
         and: 'existing CM-handles cm-1 with moduleSetTag "A", and cm-2 with moduleSetTag "B"'
-            registerCmHandle(DMI_URL, 'ch-1', 'A')
-            registerCmHandle(DMI_URL, 'ch-2', 'B')
+            registerCmHandle(DMI_URL, 'ch-1', 'A', NO_ALTERNATE_ID)
+            registerCmHandle(DMI_URL, 'ch-2', 'B', NO_ALTERNATE_ID)
 
         when: 'a CM-handle is registered for creation with moduleSetTag "B"'
             def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: 'ch-3', moduleSetTag: 'B')

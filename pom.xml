@@ -62,7 +62,7 @@
         <module>cps-path-parser</module>
         <module>cps-ri</module>
         <module>dmi-plugin-demo-and-csit-stub</module>
-        <module>integration-test</module>
+        <module>acceptance-test</module>
         <module>checkstyle</module>
         <module>spotbugs</module>
         <module>cps-application</module>
