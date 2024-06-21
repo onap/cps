@@ -20,6 +20,13 @@
 
 package org.onap.cps.integration.base
 
+import groovy.json.JsonSlurper
+import okio.Buffer
+import org.apache.hc.core5.http.ContentType
+import org.onap.cps.ncmp.api.datajobs.models.SubJobWriteRequest
+import org.onap.cps.ncmp.api.datajobs.models.SubJobWriteResponse
+import org.testcontainers.shaded.com.fasterxml.jackson.databind.ObjectMapper
+
 import static org.onap.cps.integration.base.CpsIntegrationSpecBase.readResourceDataFile
 
 import org.springframework.http.HttpHeaders
@@ -54,7 +61,9 @@ class DmiDispatcher extends Dispatcher {
 
     def isAvailable = true
 
+    def jsonSlurper = new JsonSlurper()
     Map<String, List<String>> moduleNamesPerCmHandleId = [:]
+    Map<String, Object> receivedSubJobs = [:]
 
     @Override
     MockResponse dispatch(RecordedRequest request) {
@@ -62,6 +71,12 @@ class DmiDispatcher extends Dispatcher {
             return new MockResponse().setResponseCode(HttpStatus.SERVICE_UNAVAILABLE.value())
         }
         switch (request.path) {
+
+            case '/actuator/health':
+                return new MockResponse()
+                        .addHeader("Content-Type", MediaType.APPLICATION_JSON).setBody('{"status":"UP"}')
+                        .setResponseCode(HttpStatus.OK.value())
+
             case ~/^\/dmi\/v1\/ch\/(.*)\/modules$/:
                 def cmHandleId = Matcher.lastMatcher[0][1]
                 return getModuleReferencesResponse(cmHandleId)
@@ -70,6 +85,12 @@ class DmiDispatcher extends Dispatcher {
                 def cmHandleId = Matcher.lastMatcher[0][1]
                 return getModuleResourcesResponse(cmHandleId)
 
+            case ~/^\/dmi\/v1\/writeJob\/(.*)$/:
+                String requestId = Matcher.lastMatcher[0][1]
+                def subJobWriteRequest = jsonSlurper.parseText(request.getBody().readUtf8())
+                this.receivedSubJobs.put(requestId, subJobWriteRequest)
+                def response = '{"subJobId":"", "dmiServiceName":"", "dataProducerId":""}'
+                return mockOkResponseWithBody(response)
             default:
                 throw new IllegalArgumentException('Mock DMI does not handle path ' + request.path)
         }

@@ -125,12 +125,17 @@ abstract class CpsIntegrationSpecBase extends Specification {
     @Autowired
     AlternateIdMatcher alternateIdMatcher
 
-    MockWebServer mockDmiServer = null
-    DmiDispatcher dmiDispatcher = new DmiDispatcher()
+    MockWebServer mockDmiServer1 = null
+    DmiDispatcher dmiDispatcher1 = new DmiDispatcher()
+
+    MockWebServer mockDmiServer2 = null
+    DmiDispatcher dmiDispatcher2 = new DmiDispatcher()
 
     def DMI_URL = null
+    def DMI_URL2 = null
 
     static NO_MODULE_SET_TAG = ''
+    static NO_ALTERNATE_ID = ''
     static GENERAL_TEST_DATASPACE = 'generalTestDataspace'
     static BOOKSTORE_SCHEMA_SET = 'bookstoreSchemaSet'
 
@@ -143,14 +148,21 @@ abstract class CpsIntegrationSpecBase extends Specification {
             createStandardBookStoreSchemaSet(GENERAL_TEST_DATASPACE)
             initialized = true
         }
-        mockDmiServer = new MockWebServer()
-        mockDmiServer.setDispatcher(dmiDispatcher)
-        mockDmiServer.start()
-        DMI_URL = String.format("http://%s:%s", mockDmiServer.getHostName(), mockDmiServer.getPort())
+        mockDmiServer1 = new MockWebServer()
+        mockDmiServer1.setDispatcher(dmiDispatcher1)
+        mockDmiServer1.start()
+
+        mockDmiServer2 = new MockWebServer()
+        mockDmiServer2.setDispatcher(dmiDispatcher2)
+        mockDmiServer2.start()
+
+        DMI_URL = String.format("http://%s:%s", mockDmiServer1.getHostName(), mockDmiServer1.getPort())
+        DMI_URL2 = String.format("http://%s:%s", mockDmiServer2.getHostName(), mockDmiServer2.getPort())
     }
 
     def cleanup() {
-        mockDmiServer.shutdown()
+        mockDmiServer1.shutdown()
+        mockDmiServer2.shutdown()
     }
 
     def static readResourceDataFile(filename) {
@@ -215,8 +227,8 @@ abstract class CpsIntegrationSpecBase extends Specification {
 
     // *** NCMP Integration Test Utilities ***
 
-    def registerCmHandle(dmiPlugin, cmHandleId, moduleSetTag) {
-        def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: cmHandleId, moduleSetTag: moduleSetTag)
+    def registerCmHandle(dmiPlugin, cmHandleId, moduleSetTag, alternateId) {
+        def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: cmHandleId, moduleSetTag: moduleSetTag, alternateId: alternateId)
         networkCmProxyInventoryFacade.updateDmiRegistrationAndSyncModule(new DmiPluginRegistration(dmiPlugin: dmiPlugin, createdCmHandles: [cmHandleToCreate]))
         moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
         new PollingConditions().within(3, () -> {

@@ -35,7 +35,7 @@ class NcmpRestApiSpec extends CpsIntegrationSpecBase {
 
     def 'Register CM Handles using REST API.'() {
         given: 'DMI will return modules'
-            dmiDispatcher.moduleNamesPerCmHandleId = [
+            dmiDispatcher1.moduleNamesPerCmHandleId = [
                 'ch-1': ['M1', 'M2'],
                 'ch-2': ['M1', 'M2'],
                 'ch-3': ['M1', 'M3']

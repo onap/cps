@@ -48,7 +48,7 @@ class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
 
     def 'CM Handle registration is successful.'() {
         given: 'DMI will return modules when requested'
-            dmiDispatcher.moduleNamesPerCmHandleId['ch-1'] = ['M1', 'M2']
+            dmiDispatcher1.moduleNamesPerCmHandleId['ch-1'] = ['M1', 'M2']
 
         and: 'consumer subscribed to topic'
             kafkaConsumer.subscribe(['ncmp-events'])
@@ -89,7 +89,7 @@ class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
 
     def 'CM Handle goes to LOCKED state when DMI gives error during module sync.'() {
         given: 'DMI is not available to handle requests'
-            dmiDispatcher.isAvailable = false
+            dmiDispatcher1.isAvailable = false
 
         when: 'a CM-handle is registered for creation'
             def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: 'ch-1')
@@ -115,10 +115,10 @@ class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
 
     def 'Create a CM-handle with existing moduleSetTag.'() {
         given: 'DMI will return modules when requested'
-            dmiDispatcher.moduleNamesPerCmHandleId = ['ch-1': ['M1', 'M2'], 'ch-2': ['M1', 'M3']]
+            dmiDispatcher1.moduleNamesPerCmHandleId = ['ch-1': ['M1', 'M2'], 'ch-2': ['M1', 'M3']]
         and: 'existing CM-handles cm-1 with moduleSetTag "A", and cm-2 with moduleSetTag "B"'
-            registerCmHandle(DMI_URL, 'ch-1', 'A')
-            registerCmHandle(DMI_URL, 'ch-2', 'B')
+            registerCmHandle(DMI_URL, 'ch-1', 'A', NO_ALTERNATE_ID)
+            registerCmHandle(DMI_URL, 'ch-2', 'B', NO_ALTERNATE_ID)
 
         when: 'a CM-handle is registered for creation with moduleSetTag "B"'
             def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: 'ch-3', moduleSetTag: 'B')
@@ -142,7 +142,7 @@ class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
 
     def 'CM Handle retry after failed module sync.'() {
         given: 'DMI is not initially available to handle requests'
-            dmiDispatcher.isAvailable = false
+            dmiDispatcher1.isAvailable = false
 
         when: 'CM-handles are registered for creation'
             def cmHandlesToCreate = [new NcmpServiceCmHandle(cmHandleId: 'ch-1'), new NcmpServiceCmHandle(cmHandleId: 'ch-2')]
@@ -166,9 +166,9 @@ class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
             assert objectUnderTest.getCmHandleCompositeState('ch-2').cmHandleState == CmHandleState.ADVISED
 
         when: 'DMI is available for retry'
-            dmiDispatcher.isAvailable = true
+            dmiDispatcher1.isAvailable = true
         and: 'DMI will return expected modules'
-            dmiDispatcher.moduleNamesPerCmHandleId = ['ch-1': ['M1', 'M2'], 'ch-2': ['M1', 'M3']]
+            dmiDispatcher1.moduleNamesPerCmHandleId = ['ch-1': ['M1', 'M2'], 'ch-2': ['M1', 'M3']]
         and: 'module sync runs'
             moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
         then: 'CM-handles go to READY state'
