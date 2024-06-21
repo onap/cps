@@ -43,10 +43,10 @@ class NcmpBearerTokenPassthroughSpec extends CpsIntegrationSpecBase {
     def lastAuthHeaderReceived = null
 
     def setup() {
-        dmiDispatcher.moduleNamesPerCmHandleId['ch-1'] = ['M1', 'M2']
-        registerCmHandle(DMI_URL, 'ch-1', NO_MODULE_SET_TAG)
+        dmiDispatcher1.moduleNamesPerCmHandleId['ch-1'] = ['M1', 'M2']
+        registerCmHandle(DMI1_URL, 'ch-1', NO_MODULE_SET_TAG)
 
-        mockDmiServer.setDispatcher(new Dispatcher() {
+        mockDmiServer1.setDispatcher(new Dispatcher() {
             @Override
             MockResponse dispatch(@NotNull RecordedRequest request) throws InterruptedException {
                 if (request.path == '/actuator/health') {
@@ -62,7 +62,7 @@ class NcmpBearerTokenPassthroughSpec extends CpsIntegrationSpecBase {
     }
 
     def cleanup() {
-        deregisterCmHandle(DMI_URL, 'ch-1')
+        deregisterCmHandle(DMI1_URL, 'ch-1')
     }
 
     def 'Bearer token is passed from NCMP to DMI in pass-through data operations.'() {

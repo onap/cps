@@ -35,13 +35,13 @@ class NcmpRestApiSpec extends CpsIntegrationSpecBase {
 
     def 'Register CM Handles using REST API.'() {
         given: 'DMI will return modules'
-            dmiDispatcher.moduleNamesPerCmHandleId = [
+            dmiDispatcher1.moduleNamesPerCmHandleId = [
                 'ch-1': ['M1', 'M2'],
                 'ch-2': ['M1', 'M2'],
                 'ch-3': ['M1', 'M3']
             ]
         and: 'a POST request is made to register the CM Handles'
-            def requestBody = '{"dmiPlugin":"'+DMI_URL+'","createdCmHandles":[{"cmHandle":"ch-1"},{"cmHandle":"ch-2"},{"cmHandle":"ch-3"}]}'
+            def requestBody = '{"dmiPlugin":"'+DMI1_URL+'","createdCmHandles":[{"cmHandle":"ch-1"},{"cmHandle":"ch-2"},{"cmHandle":"ch-3"}]}'
             mvc.perform(post('/ncmpInventory/v1/ch').contentType(MediaType.APPLICATION_JSON).content(requestBody))
                     .andExpect(status().is2xxSuccessful())
         when: 'module sync runs'
@@ -80,7 +80,7 @@ class NcmpRestApiSpec extends CpsIntegrationSpecBase {
 
     def 'De-register CM handles using REST API.'() {
         when: 'a POST request is made to deregister the CM Handle'
-            def requestBody = '{"dmiPlugin":"'+DMI_URL+'", "removedCmHandles": ["ch-1", "ch-2", "ch-3"]}'
+            def requestBody = '{"dmiPlugin":"'+DMI1_URL+'", "removedCmHandles": ["ch-1", "ch-2", "ch-3"]}'
             mvc.perform(post('/ncmpInventory/v1/ch').contentType(MediaType.APPLICATION_JSON).content(requestBody))
                     .andExpect(status().is2xxSuccessful())
         then: 'the CM handles are not found using GET'
