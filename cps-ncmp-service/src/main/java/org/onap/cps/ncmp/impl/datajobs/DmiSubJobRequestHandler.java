@@ -71,7 +71,8 @@ public class DmiSubJobRequestHandler {
                     jsonObjectMapper.asJsonString(subJobWriteRequest),
                     OperationType.CREATE,
                     NO_AUTH_HEADER);
-            final SubJobWriteResponse subJobWriteResponse = (SubJobWriteResponse) responseEntity.getBody();
+            final SubJobWriteResponse subJobWriteResponse = jsonObjectMapper
+                                            .convertToValueType(responseEntity.getBody(), SubJobWriteResponse.class);
             log.debug("Sub job write response: {}", subJobWriteResponse);
             subJobWriteResponses.add(subJobWriteResponse);
         });

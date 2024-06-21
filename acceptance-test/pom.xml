@@ -28,7 +28,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>integration-test</artifactId>
+    <artifactId>acceptance-test</artifactId>
 
     <dependencies>
         <!-- T E S T   D E P E N D E N C I E S -->

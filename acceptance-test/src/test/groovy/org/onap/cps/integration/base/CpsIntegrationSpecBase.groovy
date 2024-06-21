@@ -131,6 +131,7 @@ abstract class CpsIntegrationSpecBase extends Specification {
     def DMI_URL = null
 
     static NO_MODULE_SET_TAG = ''
+    static NO_ALTERNATE_ID = ''
     static GENERAL_TEST_DATASPACE = 'generalTestDataspace'
     static BOOKSTORE_SCHEMA_SET = 'bookstoreSchemaSet'
 
@@ -215,8 +216,8 @@ abstract class CpsIntegrationSpecBase extends Specification {
 
     // *** NCMP Integration Test Utilities ***
 
-    def registerCmHandle(dmiPlugin, cmHandleId, moduleSetTag) {
-        def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: cmHandleId, moduleSetTag: moduleSetTag)
+    def registerCmHandle(dmiPlugin, cmHandleId, moduleSetTag, alternateId) {
+        def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: cmHandleId, moduleSetTag: moduleSetTag, alternateId: alternateId)
         networkCmProxyInventoryFacade.updateDmiRegistrationAndSyncModule(new DmiPluginRegistration(dmiPlugin: dmiPlugin, createdCmHandles: [cmHandleToCreate]))
         moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
         new PollingConditions().within(3, () -> {
