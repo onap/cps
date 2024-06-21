@@ -22,6 +22,52 @@
       },
       "revId": "a59d939b57e6003662437a30c8c014d335d1a014",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80a550fe_6ce7aa7b",
+        "filename": "k6-tests/ncmp/10-mixed-load-test.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-06-21T16:31:16Z",
+      "side": 1,
+      "message": "It\u0027s a bit weird, the characteristics page says \u00272.5\u0027 parallel requests.\nWe can look at it in more detail later, maybe sharing 5 VUs between both id search and cmhandle search if that\u0027s possible. For now, maybe set this to 3.",
+      "range": {
+        "startLine": 35,
+        "startChar": 37,
+        "endLine": 36,
+        "endChar": 19
+      },
+      "revId": "a59d939b57e6003662437a30c8c014d335d1a014",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96e59950_0aa02bd2",
+        "filename": "k6-tests/ncmp/10-mixed-load-test.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-06-21T16:31:16Z",
+      "side": 1,
+      "message": "Similar to above, characteristics page has \u00272.5\u0027 parallel requests, so set it to 3 for now.",
+      "range": {
+        "startLine": 42,
+        "startChar": 12,
+        "endLine": 42,
+        "endChar": 19
+      },
+      "revId": "a59d939b57e6003662437a30c8c014d335d1a014",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
