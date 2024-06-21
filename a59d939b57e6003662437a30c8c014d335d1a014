@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c2e7ecf_1fe0891a",
+        "filename": "k6-tests/ncmp/10-mixed-load-test.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-06-21T16:23:26Z",
+      "side": 1,
+      "message": "Can we increase these durations to 15 minutes? (it is in the ticket)\nI\u0027d suggest a constant used for all three since they run in parallel:\n\n    const DURATION \u003d \u002715m\u0027;",
+      "range": {
+        "startLine": 31,
+        "startChar": 12,
+        "endLine": 31,
+        "endChar": 27
+      },
+      "revId": "a59d939b57e6003662437a30c8c014d335d1a014",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
