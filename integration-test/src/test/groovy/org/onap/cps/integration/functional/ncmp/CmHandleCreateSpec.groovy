@@ -138,7 +138,7 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
             dmiDispatcher.isAvailable = false
 
         when: 'CM-handles are registered for creation'
-            def cmHandlesToCreate = [new NcmpServiceCmHandle(cmHandleId: 'ch-1')]
+            def cmHandlesToCreate = [new NcmpServiceCmHandle(cmHandleId: 'ch-1'), new NcmpServiceCmHandle(cmHandleId: 'ch-2')]
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: DMI_URL, createdCmHandles: cmHandlesToCreate)
             objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'CM-handles go to LOCKED state'
@@ -160,6 +160,6 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
             assert ['M1', 'M2'] == objectUnderTest.getYangResourcesModuleReferences('ch-1').moduleName.sort()
 
         cleanup: 'deregister CM handle'
-            deregisterCmHandle(DMI_URL, 'ch-1')
+            deregisterCmHandles(DMI_URL, ['ch-1', 'ch-2'])
     }
 }
