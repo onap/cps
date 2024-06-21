@@ -28,6 +28,7 @@ import org.onap.cps.api.CpsDataspaceService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.integration.DatabaseTestContainer
+import org.onap.cps.integration.DmiStubTestContainer
 import org.onap.cps.integration.KafkaTestContainer
 import org.onap.cps.ncmp.api.inventory.NetworkCmProxyInventoryFacade
 import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistration
@@ -80,6 +81,9 @@ abstract class CpsIntegrationSpecBase extends Specification {
     @Shared
     KafkaTestContainer kafkaTestContainer = KafkaTestContainer.getInstance()
 
+    @Shared
+    DmiStubTestContainer dmiStubTestContainer = DmiStubTestContainer.getInstance()
+
     @Autowired
     MockMvc mvc
 
@@ -131,6 +135,7 @@ abstract class CpsIntegrationSpecBase extends Specification {
     def DMI_URL = null
 
     static NO_MODULE_SET_TAG = ''
+    static NO_ALTERNATE_ID = ''
     static GENERAL_TEST_DATASPACE = 'generalTestDataspace'
     static BOOKSTORE_SCHEMA_SET = 'bookstoreSchemaSet'
 
@@ -215,8 +220,8 @@ abstract class CpsIntegrationSpecBase extends Specification {
 
     // *** NCMP Integration Test Utilities ***
 
-    def registerCmHandle(dmiPlugin, cmHandleId, moduleSetTag) {
-        def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: cmHandleId, moduleSetTag: moduleSetTag)
+    def registerCmHandle(dmiPlugin, cmHandleId, moduleSetTag, alternateId) {
+        def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: cmHandleId, moduleSetTag: moduleSetTag, alternateId: alternateId)
         networkCmProxyInventoryFacade.updateDmiRegistrationAndSyncModule(new DmiPluginRegistration(dmiPlugin: dmiPlugin, createdCmHandles: [cmHandleToCreate]))
         moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
         new PollingConditions().within(3, () -> {

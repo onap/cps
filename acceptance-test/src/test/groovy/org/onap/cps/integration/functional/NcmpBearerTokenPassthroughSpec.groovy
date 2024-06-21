@@ -44,7 +44,7 @@ class NcmpBearerTokenPassthroughSpec extends CpsIntegrationSpecBase {
 
     def setup() {
         dmiDispatcher.moduleNamesPerCmHandleId['ch-1'] = ['M1', 'M2']
-        registerCmHandle(DMI_URL, 'ch-1', NO_MODULE_SET_TAG)
+        registerCmHandle(DMI_URL, 'ch-1', NO_MODULE_SET_TAG, NO_ALTERNATE_ID)
 
         mockDmiServer.setDispatcher(new Dispatcher() {
             @Override
