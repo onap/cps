@@ -38,10 +38,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
-import org.onap.cps.ncmp.api.impl.NcmpCachedResourceRequestHandler;
-import org.onap.cps.ncmp.api.impl.NcmpDatastoreRequestHandler;
-import org.onap.cps.ncmp.api.impl.NcmpPassthroughResourceRequestHandler;
+import org.onap.cps.ncmp.api.impl.NetworkCmProxyFacade;
+import org.onap.cps.ncmp.api.impl.NetworkCmProxyInventoryFacade;
 import org.onap.cps.ncmp.api.impl.config.embeddedcache.TrustLevelCacheConfig;
 import org.onap.cps.ncmp.api.impl.exception.InvalidDatastoreException;
 import org.onap.cps.ncmp.api.impl.inventory.CompositeState;
@@ -79,14 +77,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class NetworkCmProxyController implements NetworkCmProxyApi {
 
     private static final String NO_BODY = null;
-    private final NetworkCmProxyDataService networkCmProxyDataService;
+    private final NetworkCmProxyFacade networkCmProxyFacade;
+    private final NetworkCmProxyInventoryFacade networkCmProxyInventoryFacade;
     private final JsonObjectMapper jsonObjectMapper;
     private final DeprecationHelper deprecationHelper;
     private final NcmpRestInputMapper ncmpRestInputMapper;
     private final CmHandleStateMapper cmHandleStateMapper;
-    private final NcmpCachedResourceRequestHandler ncmpCachedResourceRequestHandler;
-    private final NcmpPassthroughResourceRequestHandler ncmpPassthroughResourceRequestHandler;
+
     private final DataOperationRequestMapper dataOperationRequestMapper;
+
     @Qualifier(TrustLevelCacheConfig.TRUST_LEVEL_PER_CM_HANDLE)
     private final Map<String, TrustLevel> trustLevelPerCmHandle;
 
@@ -111,10 +110,9 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                              final String topicParamInQuery,
                                                              final Boolean includeDescendants,
                                                              final String authorization) {
-        final NcmpDatastoreRequestHandler ncmpDatastoreRequestHandler = getNcmpDatastoreRequestHandler(datastoreName);
         final CmResourceAddress cmResourceAddress = new CmResourceAddress(datastoreName, cmHandle, resourceIdentifier);
-        final Object result = ncmpDatastoreRequestHandler.executeRequest(cmResourceAddress, optionsParamInQuery,
-            topicParamInQuery, includeDescendants, authorization);
+        final Object result = networkCmProxyFacade.getResourceDataForCmHandle(cmResourceAddress, optionsParamInQuery,
+                                                               topicParamInQuery, includeDescendants, authorization);
         return ResponseEntity.ok(result);
     }
 
@@ -122,7 +120,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     public ResponseEntity<Object> executeDataOperationForCmHandles(final String topicParamInQuery,
                                                                    final DataOperationRequest dataOperationRequest,
                                                                    final String authorization) {
-        final Object result = ncmpPassthroughResourceRequestHandler.executeRequest(topicParamInQuery,
+        final Object result = networkCmProxyFacade.executeDataOperationForCmHandles(topicParamInQuery,
                 dataOperationRequestMapper.toDataOperationRequest(dataOperationRequest), authorization);
         return ResponseEntity.ok(result);
     }
@@ -147,7 +145,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                                final String topicParamInQuery,
                                                                final Boolean includeDescendants) {
         validateDataStore(OPERATIONAL, datastoreName);
-        final Collection<DataNode> dataNodes = ncmpCachedResourceRequestHandler.executeRequest(cmHandle, cpsPath,
+        final Collection<DataNode> dataNodes = networkCmProxyFacade.queryResourceDataForCmHandle(cmHandle, cpsPath,
             includeDescendants);
         return ResponseEntity.ok(dataNodes);
     }
@@ -174,7 +172,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
 
         validateDataStore(PASSTHROUGH_RUNNING, datastoreName);
 
-        final Object responseObject = networkCmProxyDataService
+        final Object responseObject = networkCmProxyFacade
                 .writeResourceDataPassThroughRunningForCmHandle(
                         cmHandle, resourceIdentifier, PATCH,
                         jsonObjectMapper.asJsonString(requestBody), contentType, authorization);
@@ -201,7 +199,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                                      final String authorization) {
         validateDataStore(PASSTHROUGH_RUNNING, datastoreName);
 
-        networkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle(cmHandle,
+        networkCmProxyFacade.writeResourceDataPassThroughRunningForCmHandle(cmHandle,
                 resourceIdentifier, CREATE, jsonObjectMapper.asJsonString(requestBody), contentType, authorization);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -227,7 +225,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                                        final String authorization) {
         validateDataStore(PASSTHROUGH_RUNNING, datastoreName);
 
-        networkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle(cmHandle,
+        networkCmProxyFacade.writeResourceDataPassThroughRunningForCmHandle(cmHandle,
                 resourceIdentifier, UPDATE, jsonObjectMapper.asJsonString(requestBody), contentType, authorization);
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -251,7 +249,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
 
         validateDataStore(PASSTHROUGH_RUNNING, datastoreName);
 
-        networkCmProxyDataService.writeResourceDataPassThroughRunningForCmHandle(cmHandle,
+        networkCmProxyFacade.writeResourceDataPassThroughRunningForCmHandle(cmHandle,
                 resourceIdentifier, DELETE, NO_BODY, contentType, authorization);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
@@ -268,7 +266,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
             final CmHandleQueryParameters cmHandleQueryParameters) {
         final CmHandleQueryApiParameters cmHandleQueryApiParameters =
                 deprecationHelper.mapOldConditionProperties(cmHandleQueryParameters);
-        final Collection<NcmpServiceCmHandle> cmHandles = networkCmProxyDataService
+        final Collection<NcmpServiceCmHandle> cmHandles = networkCmProxyInventoryFacade
                 .executeCmHandleSearch(cmHandleQueryApiParameters);
         final List<RestOutputCmHandle> outputCmHandles =
                 cmHandles.stream().map(this::toRestOutputCmHandle).collect(Collectors.toList());
@@ -287,7 +285,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         final CmHandleQueryApiParameters cmHandleQueryApiParameters =
                 jsonObjectMapper.convertToValueType(cmHandleQueryParameters, CmHandleQueryApiParameters.class);
         final Collection<String> cmHandleIds
-            = networkCmProxyDataService.executeCmHandleIdSearch(cmHandleQueryApiParameters);
+            = networkCmProxyInventoryFacade.executeCmHandleIdSearch(cmHandleQueryApiParameters);
         return ResponseEntity.ok(List.copyOf(cmHandleIds));
     }
 
@@ -299,7 +297,8 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      */
     @Override
     public ResponseEntity<RestOutputCmHandle> retrieveCmHandleDetailsById(final String cmHandleId) {
-        final NcmpServiceCmHandle ncmpServiceCmHandle = networkCmProxyDataService.getNcmpServiceCmHandle(cmHandleId);
+        final NcmpServiceCmHandle ncmpServiceCmHandle
+            = networkCmProxyInventoryFacade.getNcmpServiceCmHandle(cmHandleId);
         final RestOutputCmHandle restOutputCmHandle = toRestOutputCmHandle(ncmpServiceCmHandle);
         return ResponseEntity.ok(restOutputCmHandle);
     }
@@ -314,7 +313,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     public ResponseEntity<RestOutputCmHandlePublicProperties> getCmHandlePublicPropertiesByCmHandleId(
             final String cmHandleId) {
         final CmHandlePublicProperties cmHandlePublicProperties = new CmHandlePublicProperties();
-        cmHandlePublicProperties.add(networkCmProxyDataService.getCmHandlePublicProperties(cmHandleId));
+        cmHandlePublicProperties.add(networkCmProxyInventoryFacade.getCmHandlePublicProperties(cmHandleId));
         final RestOutputCmHandlePublicProperties restOutputCmHandlePublicProperties =
                 new RestOutputCmHandlePublicProperties();
         restOutputCmHandlePublicProperties.setPublicCmHandleProperties(cmHandlePublicProperties);
@@ -330,7 +329,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     @Override
     public ResponseEntity<RestOutputCmHandleCompositeState> getCmHandleStateByCmHandleId(
             final String cmHandleId) {
-        final CompositeState cmHandleState = networkCmProxyDataService.getCmHandleCompositeState(cmHandleId);
+        final CompositeState cmHandleState = networkCmProxyInventoryFacade.getCmHandleCompositeState(cmHandleId);
         final RestOutputCmHandleCompositeState restOutputCmHandleCompositeState =
                 new RestOutputCmHandleCompositeState();
         restOutputCmHandleCompositeState.setState(
@@ -353,9 +352,9 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         final Collection<ModuleDefinition> moduleDefinitions;
         if (StringUtils.hasText(moduleName)) {
             moduleDefinitions =
-                networkCmProxyDataService.getModuleDefinitionsByCmHandleAndModule(cmHandleId, moduleName, revision);
+                networkCmProxyInventoryFacade.getModuleDefinitionsByCmHandleAndModule(cmHandleId, moduleName, revision);
         } else {
-            moduleDefinitions = networkCmProxyDataService.getModuleDefinitionsByCmHandleId(cmHandleId);
+            moduleDefinitions = networkCmProxyInventoryFacade.getModuleDefinitionsByCmHandleId(cmHandleId);
             if (StringUtils.hasText(revision)) {
                 log.warn("Ignoring revision filter as no module name is provided");
             }
@@ -375,7 +374,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      */
     public ResponseEntity<List<RestModuleReference>> getModuleReferencesByCmHandle(final String cmHandle) {
         final List<RestModuleReference> restModuleReferences =
-                networkCmProxyDataService.getYangResourcesModuleReferences(cmHandle).stream()
+            networkCmProxyInventoryFacade.getYangResourcesModuleReferences(cmHandle).stream()
                         .map(ncmpRestInputMapper::toRestModuleReference)
                         .collect(Collectors.toList());
         return new ResponseEntity<>(restModuleReferences, HttpStatus.OK);
@@ -391,7 +390,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     @Override
     public ResponseEntity<Object> setDataSyncEnabledFlagForCmHandle(final String cmHandleId,
                                                                     final Boolean dataSyncEnabledFlag) {
-        networkCmProxyDataService.setDataSyncEnabled(cmHandleId, dataSyncEnabledFlag);
+        networkCmProxyInventoryFacade.setDataSyncEnabled(cmHandleId, dataSyncEnabledFlag);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -422,11 +421,5 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         }
     }
 
-    private NcmpDatastoreRequestHandler getNcmpDatastoreRequestHandler(final String datastoreName) {
-        if (OPERATIONAL.equals(DatastoreType.fromDatastoreName(datastoreName))) {
-            return ncmpCachedResourceRequestHandler;
-        }
-        return ncmpPassthroughResourceRequestHandler;
-    }
 }
 

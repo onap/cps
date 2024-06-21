@@ -71,7 +71,7 @@ public class DmiRestClient {
     private final WebClient healthChecksWebClient;
 
     /**
-     * Sends a POST operation to the DMI with a JSON body containing module references.
+     * Sends a synchronous (blocking) POST operation to the DMI with a JSON body containing module references.
      *
      * @param requiredDmiService      Determines if the required service is for a data or model operation.
      * @param dmiUrl                  The DMI resource URL.
@@ -81,17 +81,18 @@ public class DmiRestClient {
      * @return ResponseEntity containing the response from the DMI.
      * @throws DmiClientRequestException If there is an error during the DMI request.
      */
-    public ResponseEntity<Object> postOperationWithJsonData(final RequiredDmiService requiredDmiService,
-                                                            final String dmiUrl,
-                                                            final String requestBodyAsJsonString,
-                                                            final OperationType operationType,
-                                                            final String authorization) {
-        try {
-            return postOperationWithJsonDataAsync(requiredDmiService, dmiUrl, requestBodyAsJsonString, operationType,
-                    authorization).block();
-        } catch (final HttpServerErrorException e) {
-            throw handleDmiClientException(e, operationType.getOperationName());
-        }
+    public ResponseEntity<Object> synchronousPostOperationWithJsonData(final RequiredDmiService requiredDmiService,
+                                                                       final String dmiUrl,
+                                                                       final String requestBodyAsJsonString,
+                                                                       final OperationType operationType,
+                                                                       final String authorization) {
+        final Mono<ResponseEntity<Object>> responseEntityMono =
+            asynchronousPostOperationWithJsonData(requiredDmiService,
+                dmiUrl,
+                requestBodyAsJsonString,
+                operationType,
+                authorization);
+        return responseEntityMono.block();
     }
 
     /**
@@ -105,11 +106,12 @@ public class DmiRestClient {
      * @param authorization           The authorization token to be added to the request headers.
      * @return A Mono emitting the response entity containing the server's response.
      */
-    public Mono<ResponseEntity<Object>> postOperationWithJsonDataAsync(final RequiredDmiService requiredDmiService,
-                                                                       final String dmiUrl,
-                                                                       final String requestBodyAsJsonString,
-                                                                       final OperationType operationType,
-                                                                       final String authorization) {
+    public Mono<ResponseEntity<Object>> asynchronousPostOperationWithJsonData(
+                                                            final RequiredDmiService requiredDmiService,
+                                                            final String dmiUrl,
+                                                            final String requestBodyAsJsonString,
+                                                            final OperationType operationType,
+                                                            final String authorization) {
         final WebClient webClient = getWebClient(requiredDmiService);
         return webClient.post()
                 .uri(toUri(dmiUrl))

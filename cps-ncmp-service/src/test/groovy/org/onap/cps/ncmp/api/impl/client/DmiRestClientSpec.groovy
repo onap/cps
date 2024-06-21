@@ -21,32 +21,31 @@
 
 package org.onap.cps.ncmp.api.impl.client
 
-import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNKNOWN_ERROR
-import static org.onap.cps.ncmp.api.impl.operations.OperationType.CREATE
-import static org.onap.cps.ncmp.api.impl.operations.OperationType.PATCH
-import static org.onap.cps.ncmp.api.impl.operations.OperationType.READ
-import static org.onap.cps.ncmp.api.impl.operations.RequiredDmiService.DATA
-import static org.springframework.http.HttpStatus.SERVICE_UNAVAILABLE
-import static org.onap.cps.ncmp.api.NcmpResponseStatus.DMI_SERVICE_NOT_RESPONDING
-import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNABLE_TO_READ_RESOURCE_DATA
-
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.node.ObjectNode
+import org.onap.cps.ncmp.api.impl.config.DmiProperties
 import org.onap.cps.ncmp.api.impl.exception.DmiClientRequestException
 import org.onap.cps.ncmp.api.impl.exception.InvalidDmiResourceUrlException
-import org.onap.cps.ncmp.api.impl.config.DmiProperties
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.web.client.HttpServerErrorException
 import org.springframework.web.reactive.function.client.WebClient
-import org.springframework.web.reactive.function.client.WebClientResponseException
 import org.springframework.web.reactive.function.client.WebClientRequestException
+import org.springframework.web.reactive.function.client.WebClientResponseException
 import reactor.core.publisher.Mono
 import spock.lang.Specification
+
+import static org.onap.cps.ncmp.api.NcmpResponseStatus.DMI_SERVICE_NOT_RESPONDING
+import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNABLE_TO_READ_RESOURCE_DATA
+import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNKNOWN_ERROR
+import static org.onap.cps.ncmp.api.impl.operations.OperationType.CREATE
+import static org.onap.cps.ncmp.api.impl.operations.OperationType.PATCH
+import static org.onap.cps.ncmp.api.impl.operations.OperationType.READ
+import static org.onap.cps.ncmp.api.impl.operations.RequiredDmiService.DATA
+import static org.onap.cps.ncmp.api.impl.operations.RequiredDmiService.MODEL
 
 class DmiRestClientSpec extends Specification {
 
@@ -61,7 +60,6 @@ class DmiRestClientSpec extends Specification {
     def mockRequestBody = Mock(WebClient.RequestBodyUriSpec)
     def mockResponse = Mock(WebClient.ResponseSpec)
 
-    def responseBody = [message: 'Success']
     def mockDmiProperties = Mock(DmiProperties)
 
     JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
@@ -75,34 +73,31 @@ class DmiRestClientSpec extends Specification {
         mockRequestBody.retrieve() >> mockResponse
     }
 
-    def 'DMI POST Operation with JSON for status #httpStatusCode'() {
-        given: 'the web client returns a valid response entity for the expected parameters'
+    def 'DMI POST Operation with JSON for DMI Data Service '() {
+        given: 'the Data web client returns a valid response entity for the expected parameters'
             mockDataServicesWebClient.post() >> mockRequestBody
-            mockResponse.toEntity(Object.class) >> Mono.just(new ResponseEntity<>(responseBody, httpStatusCode))
-        when: 'POST operation is invoked'
-            def response = objectUnderTest.postOperationWithJsonData(DATA, '/my/url', 'some json', READ, NO_AUTH_HEADER)
+            mockResponse.toEntity(Object.class) >> Mono.just(new ResponseEntity<>('from Data service', HttpStatus.I_AM_A_TEAPOT))
+        when: 'POST operation is invoked fro Data Service'
+            def response = objectUnderTest.synchronousPostOperationWithJsonData(DATA, '/my/url', 'some json', READ, NO_AUTH_HEADER)
         then: 'the output of the method is equal to the output from the test template'
-            assert response.statusCode == httpStatusCode
-            assert response.body == responseBody
-        where: 'the following status codes are used'
-            httpStatusCode << [HttpStatus.OK, HttpStatus.CREATED, HttpStatus.ACCEPTED]
+            assert response.statusCode == HttpStatus.I_AM_A_TEAPOT
+            assert response.body == 'from Data service'
     }
 
-    def 'Failing DMI POST operation for server error'() {
-        given: 'the web client throws an exception'
-            mockDataServicesWebClient.post() >> { throw new HttpServerErrorException(SERVICE_UNAVAILABLE, null, null, null) }
-        when: 'POST operation is invoked'
-            objectUnderTest.postOperationWithJsonData(DATA, '/some', 'some json', READ, NO_AUTH_HEADER)
-        then: 'a http client exception is thrown'
-            def thrown = thrown(DmiClientRequestException)
-        and: 'the exception has the relevant details from the error response'
-            thrown.ncmpResponseStatus.code == '102'
-            thrown.httpStatusCode == 503
+    def 'DMI POST Operation with JSON for DMI Model Service '() {
+        given: 'the Model web client returns a valid response entity for the expected parameters'
+            mockModelServicesWebClient.post() >> mockRequestBody
+            mockResponse.toEntity(Object.class) >> Mono.just(new ResponseEntity<>('from Model service', HttpStatus.I_AM_A_TEAPOT))
+        when: 'POST operation is invoked for Model Service'
+            def response = objectUnderTest.synchronousPostOperationWithJsonData(MODEL, '/my/url', 'some json', READ, NO_AUTH_HEADER)
+        then: 'the output of the method is equal to the output from the test template'
+            assert response.statusCode == HttpStatus.I_AM_A_TEAPOT
+            assert response.body == 'from Model service'
     }
 
     def 'Failing DMI POST operation due to invalid dmi resource url.'() {
         when: 'POST operation is invoked with invalid dmi resource url'
-            objectUnderTest.postOperationWithJsonData(DATA, '/invalid dmi url', null, null, NO_AUTH_HEADER)
+            objectUnderTest.synchronousPostOperationWithJsonData(DATA, '/invalid dmi url', null, null, NO_AUTH_HEADER)
         then: 'invalid dmi resource url exception is thrown'
             def thrown = thrown(InvalidDmiResourceUrlException)
         and: 'the exception has the relevant details from the error response'
@@ -117,7 +112,7 @@ class DmiRestClientSpec extends Specification {
             mockDataServicesWebClient.post() >> mockRequestBody
             mockResponse.toEntity(Object.class) >> Mono.error(exceptionType)
         when: 'POST operation is invoked'
-            objectUnderTest.postOperationWithJsonData(DATA, '/my/url', 'some json', READ, NO_AUTH_HEADER)
+            objectUnderTest.synchronousPostOperationWithJsonData(DATA, '/my/url', 'some json', READ, NO_AUTH_HEADER)
         then: 'a http client exception is thrown'
             def thrown = thrown(DmiClientRequestException)
         and: 'the exception has the relevant details from the error response'

@@ -42,8 +42,8 @@ import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.cpspath.parser.PathParsingException;
-import org.onap.cps.ncmp.api.NetworkCmProxyCmHandleQueryService;
-import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueries;
+import org.onap.cps.ncmp.api.ParameterizedCmHandleQueryService;
+import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueryService;
 import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.api.impl.inventory.enums.PropertyType;
 import org.onap.cps.ncmp.api.impl.utils.InventoryQueryConditions;
@@ -59,10 +59,10 @@ import org.springframework.stereotype.Service;
 @Service
 @Slf4j
 @RequiredArgsConstructor
-public class NetworkCmProxyCmHandleQueryServiceImpl implements NetworkCmProxyCmHandleQueryService {
+public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHandleQueryService {
 
     private static final Collection<String> NO_QUERY_TO_EXECUTE = null;
-    private final CmHandleQueries cmHandleQueries;
+    private final CmHandleQueryService cmHandleQueryService;
     private final InventoryPersistence inventoryPersistence;
 
     @Override
@@ -115,7 +115,7 @@ public class NetworkCmProxyCmHandleQueryServiceImpl implements NetworkCmProxyCmH
         final String dmiPluginIdentifierValue = dmiPropertyQueryPairs
             .get(PropertyType.DMI_PLUGIN.getYangContainerName());
 
-        return cmHandleQueries.getCmHandleIdsByDmiPluginIdentifier(dmiPluginIdentifierValue);
+        return cmHandleQueryService.getCmHandleIdsByDmiPluginIdentifier(dmiPluginIdentifierValue);
     }
 
     private Collection<String> queryCmHandlesByPrivateProperties(
@@ -128,7 +128,7 @@ public class NetworkCmProxyCmHandleQueryServiceImpl implements NetworkCmProxyCmH
         if (privatePropertyQueryPairs.isEmpty()) {
             return NO_QUERY_TO_EXECUTE;
         }
-        return cmHandleQueries.queryCmHandleAdditionalProperties(privatePropertyQueryPairs);
+        return cmHandleQueryService.queryCmHandleAdditionalProperties(privatePropertyQueryPairs);
     }
 
     private Collection<String> queryCmHandlesByPublicProperties(
@@ -141,7 +141,7 @@ public class NetworkCmProxyCmHandleQueryServiceImpl implements NetworkCmProxyCmH
         if (publicPropertyQueryPairs.isEmpty()) {
             return NO_QUERY_TO_EXECUTE;
         }
-        return cmHandleQueries.queryCmHandlePublicProperties(publicPropertyQueryPairs);
+        return cmHandleQueryService.queryCmHandlePublicProperties(publicPropertyQueryPairs);
     }
 
     private Collection<String> queryCmHandlesByTrustLevel(final CmHandleQueryServiceParameters
@@ -154,7 +154,7 @@ public class NetworkCmProxyCmHandleQueryServiceImpl implements NetworkCmProxyCmH
         if (trustLevelPropertyQueryPairs.isEmpty()) {
             return NO_QUERY_TO_EXECUTE;
         }
-        return cmHandleQueries.queryCmHandlesByTrustLevel(trustLevelPropertyQueryPairs);
+        return cmHandleQueryService.queryCmHandlesByTrustLevel(trustLevelPropertyQueryPairs);
     }
 
     private Collection<String> executeModuleNameQuery(
@@ -180,7 +180,7 @@ public class NetworkCmProxyCmHandleQueryServiceImpl implements NetworkCmProxyCmH
         }
         try {
             cpsPathQueryResult = collectCmHandleIdsFromDataNodes(
-                cmHandleQueries.queryCmHandleAncestorsByCpsPath(
+                cmHandleQueryService.queryCmHandleAncestorsByCpsPath(
                         cpsPathCondition.get("cpsPath"), OMIT_DESCENDANTS));
         } catch (final PathParsingException pathParsingException) {
             throw new DataValidationException(pathParsingException.getMessage(), pathParsingException.getDetails(),

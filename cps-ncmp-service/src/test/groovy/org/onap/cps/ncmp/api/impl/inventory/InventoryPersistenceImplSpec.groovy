@@ -61,7 +61,7 @@ class InventoryPersistenceImplSpec extends Specification {
 
     def mockCpsValidator = Mock(CpsValidator)
 
-    def mockCmHandleQueries = Mock(CmHandleQueries)
+    def mockCmHandleQueries = Mock(CmHandleQueryService)
 
     def objectUnderTest = new InventoryPersistenceImpl(spiedJsonObjectMapper, mockCpsDataService, mockCpsModuleService,
             mockCpsValidator, mockCpsAnchorService, mockCmHandleQueries)

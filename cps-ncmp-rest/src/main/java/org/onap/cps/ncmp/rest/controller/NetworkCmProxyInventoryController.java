@@ -27,7 +27,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
-import org.onap.cps.ncmp.api.NetworkCmProxyDataService;
+import org.onap.cps.ncmp.api.impl.NetworkCmProxyInventoryFacade;
 import org.onap.cps.ncmp.api.models.CmHandleQueryServiceParameters;
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse;
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse.Status;
@@ -47,7 +47,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class NetworkCmProxyInventoryController implements NetworkCmProxyInventoryApi {
 
-    private final NetworkCmProxyDataService networkCmProxyDataService;
+    private final NetworkCmProxyInventoryFacade networkCmProxyInventoryFacade;
     private final NcmpRestInputMapper ncmpRestInputMapper;
 
     @Override
@@ -55,8 +55,8 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
         final CmHandleQueryServiceParameters cmHandleQueryServiceParameters = ncmpRestInputMapper
                 .toCmHandleQueryServiceParameters(cmHandleQueryParameters);
 
-        final Collection<String> cmHandleIds = networkCmProxyDataService
-                .executeCmHandleIdSearchForInventory(cmHandleQueryServiceParameters);
+        final Collection<String> cmHandleIds = networkCmProxyInventoryFacade
+                .executeParameterizedCmHandleIdSearch(cmHandleQueryServiceParameters);
         return ResponseEntity.ok(List.copyOf(cmHandleIds));
     }
 
@@ -69,7 +69,7 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
     @Override
     public ResponseEntity<List<String>> getAllCmHandleIdsForRegisteredDmi(final String dmiPluginIdentifier) {
         final Collection<String> cmHandleIds =
-                networkCmProxyDataService.getAllCmHandleIdsByDmiPluginIdentifier(dmiPluginIdentifier);
+            networkCmProxyInventoryFacade.getAllCmHandleIdsByDmiPluginIdentifier(dmiPluginIdentifier);
         return ResponseEntity.ok(List.copyOf(cmHandleIds));
     }
 
@@ -84,7 +84,7 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
     public ResponseEntity updateDmiPluginRegistration(
         final @Valid RestDmiPluginRegistration restDmiPluginRegistration) {
         final DmiPluginRegistrationResponse dmiPluginRegistrationResponse =
-            networkCmProxyDataService.updateDmiRegistrationAndSyncModule(
+            networkCmProxyInventoryFacade.updateDmiRegistrationAndSyncModule(
                 ncmpRestInputMapper.toDmiPluginRegistration(restDmiPluginRegistration));
         final DmiPluginRegistrationErrorResponse failedRegistrationErrorResponse =
             getFailureRegistrationResponse(dmiPluginRegistrationResponse);

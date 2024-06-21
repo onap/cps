@@ -21,8 +21,6 @@
 
 package org.onap.cps.ncmp.api.impl.inventory.sync;
 
-import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_OPERATIONAL;
-
 import com.fasterxml.jackson.databind.JsonNode;
 import java.time.Duration;
 import java.time.OffsetDateTime;
@@ -38,7 +36,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueries;
+import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueryService;
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleState;
 import org.onap.cps.ncmp.api.impl.inventory.CompositeState;
 import org.onap.cps.ncmp.api.impl.inventory.DataStoreSyncState;
@@ -57,7 +55,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ModuleOperationsUtils {
 
-    private final CmHandleQueries cmHandleQueries;
+    private final CmHandleQueryService cmHandleQueryService;
     private final DmiDataOperations dmiDataOperations;
     private final JsonObjectMapper jsonObjectMapper;
     private static final String RETRY_ATTEMPT_KEY = "attempt";
@@ -78,7 +76,8 @@ public class ModuleOperationsUtils {
      * @return cm handles (data nodes) in ADVISED state (empty list if none found)
      */
     public List<DataNode> getAdvisedCmHandles() {
-        final List<DataNode> advisedCmHandlesAsDataNodes = cmHandleQueries.queryCmHandlesByState(CmHandleState.ADVISED);
+        final List<DataNode> advisedCmHandlesAsDataNodes =
+            cmHandleQueryService.queryCmHandlesByState(CmHandleState.ADVISED);
         log.debug("Total number of fetched advised cm handle(s) is (are) {}", advisedCmHandlesAsDataNodes.size());
         return advisedCmHandlesAsDataNodes;
     }
@@ -91,13 +90,13 @@ public class ModuleOperationsUtils {
      *         return empty list if not found
      */
     public List<YangModelCmHandle> getUnsynchronizedReadyCmHandles() {
-        final List<DataNode> unsynchronizedCmHandles = cmHandleQueries
+        final List<DataNode> unsynchronizedCmHandles = cmHandleQueryService
                 .queryCmHandlesByOperationalSyncState(DataStoreSyncState.UNSYNCHRONIZED);
 
         final List<YangModelCmHandle> yangModelCmHandles = new ArrayList<>();
         for (final DataNode unsynchronizedCmHandle : unsynchronizedCmHandles) {
             final String cmHandleId = unsynchronizedCmHandle.getLeaves().get("id").toString();
-            if (cmHandleQueries.cmHandleHasState(cmHandleId, CmHandleState.READY)) {
+            if (cmHandleQueryService.cmHandleHasState(cmHandleId, CmHandleState.READY)) {
                 yangModelCmHandles.addAll(convertCmHandlesDataNodesToYangModelCmHandles(
                                 Collections.singletonList(unsynchronizedCmHandle)));
             }
@@ -113,7 +112,7 @@ public class ModuleOperationsUtils {
      */
     public List<YangModelCmHandle> getCmHandlesThatFailedModelSyncOrUpgrade() {
         final List<DataNode> lockedCmHandlesAsDataNodeList
-                = cmHandleQueries.queryCmHandleAncestorsByCpsPath(CPS_PATH_CM_HANDLES_MODEL_SYNC_FAILED_OR_UPGRADE,
+                = cmHandleQueryService.queryCmHandleAncestorsByCpsPath(CPS_PATH_CM_HANDLES_MODEL_SYNC_FAILED_OR_UPGRADE,
                 FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
         return convertCmHandlesDataNodesToYangModelCmHandles(lockedCmHandlesAsDataNodeList);
     }
@@ -198,16 +197,14 @@ public class ModuleOperationsUtils {
     }
 
     /**
-     * Get the Resourece Data from Node through DMI Passthrough service.
+     * Get the Resource Data from Node through DMI Passthrough service.
      *
      * @param cmHandleId cm handle id
      * @return optional string containing the resource data
      */
     public String getResourceData(final String cmHandleId) {
-        final ResponseEntity<Object> resourceDataResponseEntity = dmiDataOperations.getResourceDataFromDmi(
-                PASSTHROUGH_OPERATIONAL.getDatastoreName(),
-                cmHandleId,
-                UUID.randomUUID().toString());
+        final ResponseEntity<Object> resourceDataResponseEntity = dmiDataOperations.getAllResourceDataFromDmi(
+                cmHandleId, UUID.randomUUID().toString());
         if (resourceDataResponseEntity.getStatusCode().is2xxSuccessful()) {
             return getFirstResource(resourceDataResponseEntity.getBody());
         }

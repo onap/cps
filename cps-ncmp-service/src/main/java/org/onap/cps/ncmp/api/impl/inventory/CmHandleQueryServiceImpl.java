@@ -46,7 +46,7 @@ import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
 @Component
-public class CmHandleQueriesImpl implements CmHandleQueries {
+public class CmHandleQueryServiceImpl implements CmHandleQueryService {
 
     private static final String DESCENDANT_PATH = "//";
     private static final String ANCESTOR_CM_HANDLES = "/ancestor::cm-handles";

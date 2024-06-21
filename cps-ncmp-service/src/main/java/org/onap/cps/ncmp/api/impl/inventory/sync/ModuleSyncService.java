@@ -38,7 +38,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsModuleService;
-import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueries;
+import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueryService;
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleState;
 import org.onap.cps.ncmp.api.impl.operations.DmiModelOperations;
 import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
@@ -59,7 +59,7 @@ public class ModuleSyncService {
 
     private final DmiModelOperations dmiModelOperations;
     private final CpsModuleService cpsModuleService;
-    private final CmHandleQueries cmHandleQueries;
+    private final CmHandleQueryService cmHandleQueryService;
     private final CpsDataService cpsDataService;
     private final CpsAnchorService cpsAnchorService;
     private final JsonObjectMapper jsonObjectMapper;
@@ -136,7 +136,7 @@ public class ModuleSyncService {
             return null;
         }
         final String escapedModuleSetTag = moduleSetTag.replace("'", "''");
-        final List<DataNode> dataNodes = cmHandleQueries.queryNcmpRegistryByCpsPath(
+        final List<DataNode> dataNodes = cmHandleQueryService.queryNcmpRegistryByCpsPath(
                 NCMP_DMI_REGISTRY_PARENT + "/cm-handles[@module-set-tag='" + escapedModuleSetTag + "']",
                 FetchDescendantsOption.DIRECT_CHILDREN_ONLY);
         return dataNodes.stream().map(YangDataConverter::convertCmHandleToYangModel)

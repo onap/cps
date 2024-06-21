@@ -32,7 +32,7 @@ import org.onap.cps.api.CpsModuleService
 import org.onap.cps.spi.model.DataNodeBuilder
 import org.onap.cps.ncmp.api.impl.operations.DmiModelOperations
 import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
-import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueries
+import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueryService
 import org.onap.cps.ncmp.api.impl.inventory.CompositeStateBuilder
 import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.spi.CascadeDeleteAllowed
@@ -46,7 +46,7 @@ class ModuleSyncServiceSpec extends Specification {
     def mockCpsModuleService = Mock(CpsModuleService)
     def mockDmiModelOperations = Mock(DmiModelOperations)
     def mockCpsAnchorService = Mock(CpsAnchorService)
-    def mockCmHandleQueries = Mock(CmHandleQueries)
+    def mockCmHandleQueries = Mock(CmHandleQueryService)
     def mockCpsDataService = Mock(CpsDataService)
     def mockJsonObjectMapper = Mock(JsonObjectMapper)
 

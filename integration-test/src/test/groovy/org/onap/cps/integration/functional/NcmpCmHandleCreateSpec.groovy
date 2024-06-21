@@ -20,13 +20,11 @@
 
 package org.onap.cps.integration.functional
 
-import java.time.Duration
-import java.time.OffsetDateTime
 import org.apache.kafka.common.TopicPartition
 import org.apache.kafka.common.serialization.StringDeserializer
 import org.onap.cps.integration.KafkaTestContainer
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
-import org.onap.cps.ncmp.api.NetworkCmProxyDataService
+import org.onap.cps.ncmp.api.impl.NetworkCmProxyInventoryFacade
 import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
 import org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory
 import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse
@@ -35,14 +33,17 @@ import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.events.lcm.v1.LcmEvent
 import spock.util.concurrent.PollingConditions
 
+import java.time.Duration
+import java.time.OffsetDateTime
+
 class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
 
-    NetworkCmProxyDataService objectUnderTest
+    NetworkCmProxyInventoryFacade objectUnderTest
 
     def kafkaConsumer = KafkaTestContainer.getConsumer('ncmp-group', StringDeserializer.class)
 
     def setup() {
-        objectUnderTest = networkCmProxyDataService
+        objectUnderTest = networkCmProxyInventoryFacade
     }
 
     def 'CM Handle registration is successful.'() {
@@ -55,7 +56,7 @@ class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
         when: 'a CM-handle is registered for creation'
             def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: 'ch-1')
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: DMI_URL, createdCmHandles: [cmHandleToCreate])
-            def dmiPluginRegistrationResponse = networkCmProxyDataService.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+            def dmiPluginRegistrationResponse = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
 
         then: 'registration gives successful response'
             assert dmiPluginRegistrationResponse.createdCmHandles == [CmHandleRegistrationResponse.createSuccessResponse('ch-1')]
@@ -93,7 +94,7 @@ class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
         when: 'a CM-handle is registered for creation'
             def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: 'ch-1')
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: DMI_URL, createdCmHandles: [cmHandleToCreate])
-            networkCmProxyDataService.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+            objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
 
         and: 'module sync runs'
             moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
@@ -121,7 +122,7 @@ class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
 
         when: 'a CM-handle is registered for creation with moduleSetTag "B"'
             def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: 'ch-3', moduleSetTag: 'B')
-            networkCmProxyDataService.updateDmiRegistrationAndSyncModule(new DmiPluginRegistration(dmiPlugin: DMI_URL, createdCmHandles: [cmHandleToCreate]))
+            objectUnderTest.updateDmiRegistrationAndSyncModule(new DmiPluginRegistration(dmiPlugin: DMI_URL, createdCmHandles: [cmHandleToCreate]))
 
         then: 'the CM-handle goes to READY state after module sync'
             moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
@@ -146,7 +147,7 @@ class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
         when: 'CM-handles are registered for creation'
             def cmHandlesToCreate = [new NcmpServiceCmHandle(cmHandleId: 'ch-1'), new NcmpServiceCmHandle(cmHandleId: 'ch-2')]
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: DMI_URL, createdCmHandles: cmHandlesToCreate)
-            networkCmProxyDataService.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+            objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         and: 'module sync runs'
             moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
         then: 'CM-handles go to LOCKED state'
