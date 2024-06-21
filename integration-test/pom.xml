@@ -107,6 +107,11 @@
             <artifactId>spock</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-json</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <profiles>
