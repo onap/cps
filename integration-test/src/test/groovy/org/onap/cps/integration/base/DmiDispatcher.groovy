@@ -20,6 +20,13 @@
 
 package org.onap.cps.integration.base
 
+import groovy.json.JsonSlurper
+import okio.Buffer
+import org.apache.hc.core5.http.ContentType
+import org.onap.cps.ncmp.api.datajobs.models.SubJobWriteRequest
+import org.onap.cps.ncmp.api.datajobs.models.SubJobWriteResponse
+import org.testcontainers.shaded.com.fasterxml.jackson.databind.ObjectMapper
+
 import static org.onap.cps.integration.base.CpsIntegrationSpecBase.readResourceDataFile
 
 import java.util.regex.Matcher
@@ -53,7 +60,10 @@ class DmiDispatcher extends Dispatcher {
     static final MODULE_RESOURCES_RESPONSE_TEMPLATE = readResourceDataFile('mock-dmi-responses/moduleResourcesTemplate.json')
 
     def isAvailable = true
+
+    def jsonSlurper = new JsonSlurper()
     Map<String, List<String>> moduleNamesPerCmHandleId = [:]
+    Map<String, Object> receivedSubJobs = [:]
     def lastAuthHeaderReceived
 
     @Override
@@ -85,9 +95,19 @@ class DmiDispatcher extends Dispatcher {
             case ~'^/dmi/v1/data$':
                 return mockResponseWithBody(HttpStatus.ACCEPTED, '{}')
 
+            case ~/^\/dmi\/v1\/writeJob\/(.*)$/:
+                return mockWriteJobResponse(request)
             default:
                 throw new IllegalArgumentException('Mock DMI does not implement endpoint ' + request.path)
         }
+    }
+
+    private mockWriteJobResponse(RecordedRequest request) {
+        String requestId = Matcher.lastMatcher[0][1]
+        def subJobWriteRequest = jsonSlurper.parseText(request.getBody().readUtf8())
+        this.receivedSubJobs.put(requestId, subJobWriteRequest)
+        def response = '{"subJobId":"", "dmiServiceName":"", "dataProducerId":""}'
+        return mockResponseWithBody(HttpStatus.OK, response)
     }
 
     private getModuleReferencesResponse(cmHandleId) {
