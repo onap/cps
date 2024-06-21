@@ -498,6 +498,8 @@ class CpsDataServiceImplSpec extends Specification {
             2 * mockCpsValidator.validateNameCharacters(_)
         and: 'the persistence service method is invoked with the correct parameters'
             1 * mockCpsDataPersistenceService.deleteDataNodes(dataspaceName, _ as Collection<String>)
+        and: 'a data update event is sent for each anchor'
+            2 * mockDataUpdateEventsService.publishCpsDataUpdateEvent(_, _, _, _)
     }
 
     def 'Start session.'() {

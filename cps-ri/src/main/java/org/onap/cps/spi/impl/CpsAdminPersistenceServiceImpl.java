@@ -107,6 +107,11 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
     }
 
     @Override
+    public Anchor getAnchor(final String dataspaceName, final String anchorName) {
+        return toAnchor(getAnchorEntity(dataspaceName, anchorName));
+    }
+
+    @Override
     public Collection<Anchor> getAnchors(final String dataspaceName) {
         final var dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final Collection<AnchorEntity> anchorEntities = anchorRepository.findAllByDataspace(dataspaceEntity);
@@ -114,7 +119,14 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
     }
 
     @Override
-    public Collection<Anchor> getAnchors(final String dataspaceName, final String schemaSetName) {
+    public Collection<Anchor> getAnchors(final String dataspaceName, final Collection<String> anchorNames) {
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        return anchorRepository.findAllByDataspaceAndNameIn(dataspaceEntity, anchorNames)
+                .stream().map(CpsAdminPersistenceServiceImpl::toAnchor).collect(Collectors.toSet());
+    }
+
+    @Override
+    public Collection<Anchor> getAnchorsBySchemaSetName(final String dataspaceName, final String schemaSetName) {
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final SchemaSetEntity schemaSetEntity = schemaSetRepository.getByDataspaceAndName(
             dataspaceEntity, schemaSetName);
@@ -124,7 +136,8 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
     }
 
     @Override
-    public Collection<Anchor> getAnchors(final String dataspaceName, final Collection<String> schemaSetNames) {
+    public Collection<Anchor> getAnchorsBySchemaSetNames(final String dataspaceName,
+                                                         final Collection<String> schemaSetNames) {
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         return anchorRepository.findAllByDataspaceAndSchemaSetNameIn(dataspaceEntity, schemaSetNames)
             .stream().map(CpsAdminPersistenceServiceImpl::toAnchor).collect(Collectors.toSet());
@@ -135,11 +148,6 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         return anchorRepository.getAnchorNamesByDataspaceIdAndModuleNames(dataspaceEntity.getId(), inputModuleNames,
                 inputModuleNames.size());
-    }
-
-    @Override
-    public Anchor getAnchor(final String dataspaceName, final String anchorName) {
-        return toAnchor(getAnchorEntity(dataspaceName, anchorName));
     }
 
     @Transactional

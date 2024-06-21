@@ -33,7 +33,7 @@ class CpsDataspaceServiceLimitsPerfTest extends CpsPerfTestBase {
         given: 'more than 32,766 schema set names'
             def schemaSetNames = (0..40_000).collect { "size-of-this-name-does-not-matter-for-limit-" + it }
         when: 'single get is executed to get all the anchors'
-            objectUnderTest.getAnchors(CPS_PERFORMANCE_TEST_DATASPACE, schemaSetNames)
+            objectUnderTest.getAnchorsBySchemaSetNames(CPS_PERFORMANCE_TEST_DATASPACE, schemaSetNames)
         then: 'a database exception is not thrown'
             noExceptionThrown()
     }

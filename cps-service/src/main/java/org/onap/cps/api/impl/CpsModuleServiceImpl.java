@@ -97,7 +97,7 @@ public class CpsModuleServiceImpl implements CpsModuleService {
     public void deleteSchemaSet(final String dataspaceName, final String schemaSetName,
                                 final CascadeDeleteAllowed cascadeDeleteAllowed) {
         cpsValidator.validateNameCharacters(dataspaceName, schemaSetName);
-        final Collection<Anchor> anchors = cpsAnchorService.getAnchors(dataspaceName, schemaSetName);
+        final Collection<Anchor> anchors = cpsAnchorService.getAnchorsBySchemaSetName(dataspaceName, schemaSetName);
         if (!anchors.isEmpty() && isCascadeDeleteProhibited(cascadeDeleteAllowed)) {
             throw new SchemaSetInUseException(dataspaceName, schemaSetName);
         }
@@ -114,8 +114,9 @@ public class CpsModuleServiceImpl implements CpsModuleService {
     public void deleteSchemaSetsWithCascade(final String dataspaceName, final Collection<String> schemaSetNames) {
         cpsValidator.validateNameCharacters(dataspaceName);
         cpsValidator.validateNameCharacters(schemaSetNames);
-        final Collection<String> anchorNames = cpsAnchorService.getAnchors(dataspaceName, schemaSetNames)
-            .stream().map(Anchor::getName).collect(Collectors.toSet());
+        final Collection<String> anchorNames =
+                cpsAnchorService.getAnchorsBySchemaSetNames(dataspaceName, schemaSetNames)
+                        .stream().map(Anchor::getName).collect(Collectors.toSet());
         cpsAnchorService.deleteAnchors(dataspaceName, anchorNames);
         cpsModulePersistenceService.deleteSchemaSets(dataspaceName, schemaSetNames);
         cpsModulePersistenceService.deleteUnusedYangResourceModules();

@@ -63,9 +63,9 @@ class CpsAnchorServiceIntegrationSpec extends CpsIntegrationSpecBase {
         then: 'there are 3 anchors in the general test database'
             assert objectUnderTest.getAnchors(GENERAL_TEST_DATASPACE).size() == 3
         and: 'there are 2 anchors associated with bookstore schema set'
-            assert objectUnderTest.getAnchors(GENERAL_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET).size() == 2
+            assert objectUnderTest.getAnchorsBySchemaSetName(GENERAL_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET).size() == 2
         and: 'there is 1 anchor associated with other schema set'
-            assert objectUnderTest.getAnchors(GENERAL_TEST_DATASPACE, 'otherSchemaSet').size() == 1
+            assert objectUnderTest.getAnchorsBySchemaSetName(GENERAL_TEST_DATASPACE, 'otherSchemaSet').size() == 1
     }
 
     def 'Querying anchor(name)s (depends on previous test!).'() {
