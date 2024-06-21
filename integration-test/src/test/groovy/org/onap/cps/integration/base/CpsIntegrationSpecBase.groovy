@@ -125,12 +125,17 @@ abstract class CpsIntegrationSpecBase extends Specification {
     @Autowired
     AlternateIdMatcher alternateIdMatcher
 
-    MockWebServer mockDmiServer = null
-    DmiDispatcher dmiDispatcher = new DmiDispatcher()
+    MockWebServer mockDmiServerForDataOperations = new MockWebServer()
+    DmiDispatcher dmiDispatcherForDataOperations = new DmiDispatcher()
+
+    MockWebServer mockDmiServerForDataJobs = new MockWebServer()
+    DmiDispatcher dmiDispatcherForDataJobs = new DmiDispatcher()
 
     def DMI_URL = null
+    def DMI_DATA_JOB_URL = null
 
     static NO_MODULE_SET_TAG = ''
+    static NO_ALTERNATE_ID = ''
     static GENERAL_TEST_DATASPACE = 'generalTestDataspace'
     static BOOKSTORE_SCHEMA_SET = 'bookstoreSchemaSet'
     static MODULE_SYNC_WAIT_TIME_IN_SECONDS = 10
@@ -144,14 +149,19 @@ abstract class CpsIntegrationSpecBase extends Specification {
             createStandardBookStoreSchemaSet(GENERAL_TEST_DATASPACE)
             initialized = true
         }
-        mockDmiServer = new MockWebServer()
-        mockDmiServer.setDispatcher(dmiDispatcher)
-        mockDmiServer.start()
-        DMI_URL = String.format("http://%s:%s", mockDmiServer.getHostName(), mockDmiServer.getPort())
+        mockDmiServerForDataOperations.setDispatcher(dmiDispatcherForDataOperations)
+        mockDmiServerForDataOperations.start()
+
+        mockDmiServerForDataJobs.setDispatcher(dmiDispatcherForDataJobs)
+        mockDmiServerForDataJobs.start()
+
+        DMI_URL = String.format("http://%s:%s", mockDmiServerForDataOperations.getHostName(), mockDmiServerForDataOperations.getPort())
+        DMI_DATA_JOB_URL = String.format("http://%s:%s", mockDmiServerForDataJobs.getHostName(), mockDmiServerForDataJobs.getPort())
     }
 
     def cleanup() {
-        mockDmiServer.shutdown()
+        mockDmiServerForDataOperations.shutdown()
+        mockDmiServerForDataJobs.shutdown()
     }
 
     def static readResourceDataFile(filename) {
@@ -217,7 +227,11 @@ abstract class CpsIntegrationSpecBase extends Specification {
     // *** NCMP Integration Test Utilities ***
 
     def registerCmHandle(dmiPlugin, cmHandleId, moduleSetTag) {
-        def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: cmHandleId, moduleSetTag: moduleSetTag)
+        registerCmHandle(dmiPlugin, cmHandleId, moduleSetTag, NO_ALTERNATE_ID)
+    }
+
+    def registerCmHandle(dmiPlugin, cmHandleId, moduleSetTag, alternateId) {
+        def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: cmHandleId, moduleSetTag: moduleSetTag, alternateId: alternateId)
         networkCmProxyInventoryFacade.updateDmiRegistrationAndSyncModule(new DmiPluginRegistration(dmiPlugin: dmiPlugin, createdCmHandles: [cmHandleToCreate]))
         new PollingConditions().within(MODULE_SYNC_WAIT_TIME_IN_SECONDS, () -> {
             CmHandleState.READY == networkCmProxyInventoryFacade.getCmHandleCompositeState(cmHandleId).cmHandleState

@@ -48,7 +48,7 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
 
     def 'CM Handle registration is successful.'() {
         given: 'DMI will return modules when requested'
-            dmiDispatcher.moduleNamesPerCmHandleId['ch-1'] = ['M1', 'M2']
+            dmiDispatcherForDataOperations.moduleNamesPerCmHandleId['ch-1'] = ['M1', 'M2']
 
         and: 'consumer subscribed to topic'
             kafkaConsumer.subscribe(['ncmp-events'])
@@ -86,7 +86,7 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
 
     def 'CM Handle goes to LOCKED state when DMI gives error during module sync.'() {
         given: 'DMI is not available to handle requests'
-            dmiDispatcher.isAvailable = false
+            dmiDispatcherForDataOperations.isAvailable = false
 
         when: 'a CM-handle is registered for creation'
             def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: 'ch-1')
@@ -109,7 +109,7 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
 
     def 'Create a CM-handle with existing moduleSetTag.'() {
         given: 'DMI will return modules when requested'
-            dmiDispatcher.moduleNamesPerCmHandleId = ['ch-1': ['M1', 'M2'], 'ch-2': ['M1', 'M3']]
+            dmiDispatcherForDataOperations.moduleNamesPerCmHandleId = ['ch-1': ['M1', 'M2'], 'ch-2': ['M1', 'M3']]
         and: 'existing CM-handles cm-1 with moduleSetTag "A", and cm-2 with moduleSetTag "B"'
             registerCmHandle(DMI_URL, 'ch-1', 'A')
             registerCmHandle(DMI_URL, 'ch-2', 'B')
@@ -135,10 +135,10 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
 
     def 'CM Handle retry after failed module sync.'() {
         given: 'DMI is not initially available to handle requests'
-            dmiDispatcher.isAvailable = false
+            dmiDispatcherForDataOperations.isAvailable = false
 
         when: 'CM-handles are registered for creation'
-            def cmHandlesToCreate = [new NcmpServiceCmHandle(cmHandleId: 'ch-1')]
+            def cmHandlesToCreate = [new NcmpServiceCmHandle(cmHandleId: 'ch-1'), new NcmpServiceCmHandle(cmHandleId: 'ch-2')]
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: DMI_URL, createdCmHandles: cmHandlesToCreate)
             objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'CM-handles go to LOCKED state'
@@ -147,8 +147,8 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
             })
 
         when: 'DMI is available for retry'
-            dmiDispatcher.moduleNamesPerCmHandleId = ['ch-1': ['M1', 'M2']]
-            dmiDispatcher.isAvailable = true
+            dmiDispatcherForDataOperations.moduleNamesPerCmHandleId = ['ch-1': ['M1', 'M2']]
+            dmiDispatcherForDataOperations.isAvailable = true
         and: 'the LOCKED CM handle retry time elapses (actually just subtract 3 minutes from handles lastUpdateTime)'
             overrideCmHandleLastUpdateTime('ch-1', OffsetDateTime.now().minusMinutes(3))
 
@@ -159,7 +159,7 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
         and: 'CM-handle has expected modules'
             assert ['M1', 'M2'] == objectUnderTest.getYangResourcesModuleReferences('ch-1').moduleName.sort()
 
-        cleanup: 'deregister CM handle'
-            deregisterCmHandle(DMI_URL, 'ch-1')
+        cleanup: 'deregister CM handles'
+            deregisterCmHandles(DMI_URL, ['ch-1', 'ch-2'])
     }
 }

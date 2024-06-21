@@ -36,7 +36,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class BearerTokenPassthroughSpec extends CpsIntegrationSpecBase {
 
     def setup() {
-        dmiDispatcher.moduleNamesPerCmHandleId['ch-1'] = ['M1', 'M2']
+        dmiDispatcherForDataOperations.moduleNamesPerCmHandleId['ch-1'] = ['M1', 'M2']
         registerCmHandle(DMI_URL, 'ch-1', NO_MODULE_SET_TAG)
     }
 
@@ -54,7 +54,7 @@ class BearerTokenPassthroughSpec extends CpsIntegrationSpecBase {
                     .andExpect(status().is2xxSuccessful())
 
         then: 'DMI has received request with bearer token'
-            assert dmiDispatcher.lastAuthHeaderReceived == 'Bearer some-bearer-token'
+            assert dmiDispatcherForDataOperations.lastAuthHeaderReceived == 'Bearer some-bearer-token'
 
         where: 'all HTTP operations are applied'
             httpMethod << [GET, POST, PUT, PATCH, DELETE]
@@ -70,7 +70,7 @@ class BearerTokenPassthroughSpec extends CpsIntegrationSpecBase {
                     .andExpect(status().is2xxSuccessful())
 
         then: 'DMI has received request with no authorization header'
-            assert dmiDispatcher.lastAuthHeaderReceived == null
+            assert dmiDispatcherForDataOperations.lastAuthHeaderReceived == null
 
         where: 'all HTTP operations are applied'
             httpMethod << [GET, POST, PUT, PATCH, DELETE]
@@ -94,7 +94,7 @@ class BearerTokenPassthroughSpec extends CpsIntegrationSpecBase {
 
         then: 'DMI will receive the async request with bearer token'
             new PollingConditions().within(3, () -> {
-                assert dmiDispatcher.lastAuthHeaderReceived == 'Bearer some-bearer-token'
+                assert dmiDispatcherForDataOperations.lastAuthHeaderReceived == 'Bearer some-bearer-token'
             })
     }
 
