@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2023 Nordix Foundation
+ *  Copyright (C) 2023-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -37,6 +37,15 @@ public interface CpsAnchorService {
     void createAnchor(String dataspaceName, String schemaSetName, String anchorName);
 
     /**
+     * Get an anchor in the given dataspace using the anchor name.
+     *
+     * @param dataspaceName dataspace name
+     * @param anchorName    anchor name
+     * @return an anchor
+     */
+    Anchor getAnchor(String dataspaceName, String anchorName);
+
+    /**
      * Read all anchors in the given dataspace.
      *
      * @param dataspaceName dataspace name
@@ -45,13 +54,22 @@ public interface CpsAnchorService {
     Collection<Anchor> getAnchors(String dataspaceName);
 
     /**
+     * Read all anchors in the given dataspace with the anchor names.
+     *
+     * @param dataspaceName dataspace name
+     * @param anchorNames   anchor names
+     * @return a collection of anchors
+     */
+    Collection<Anchor> getAnchors(String dataspaceName, Collection<String> anchorNames);
+
+    /**
      * Read all anchors associated with the given schema-set in the given dataspace.
      *
      * @param dataspaceName dataspace name
      * @param schemaSetName schema-set name
      * @return a collection of anchors
      */
-    Collection<Anchor> getAnchors(String dataspaceName, String schemaSetName);
+    Collection<Anchor> getAnchorsBySchemaSetName(String dataspaceName, String schemaSetName);
 
     /**
      * Read all anchors associated with the given schema-sets in the given dataspace.
@@ -60,16 +78,7 @@ public interface CpsAnchorService {
      * @param schemaSetNames schema-set names
      * @return a collection of anchors
      */
-    Collection<Anchor> getAnchors(String dataspaceName, Collection<String> schemaSetNames);
-
-    /**
-     * Get an anchor in the given dataspace using the anchor name.
-     *
-     * @param dataspaceName dataspace name
-     * @param anchorName    anchor name
-     * @return an anchor
-     */
-    Anchor getAnchor(String dataspaceName, String anchorName);
+    Collection<Anchor> getAnchorsBySchemaSetNames(String dataspaceName, Collection<String> schemaSetNames);
 
     /**
      * Delete anchor by name in given dataspace.

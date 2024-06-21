@@ -55,6 +55,8 @@ import spock.lang.Shared
 import spock.lang.Specification
 import java.time.OffsetDateTime
 
+import static org.onap.cps.events.model.Data.Operation.DELETE
+
 class CpsDataServiceImplSpec extends Specification {
     def mockCpsDataPersistenceService = Mock(CpsDataPersistenceService)
     def mockCpsAnchorService = Mock(CpsAnchorService)
@@ -489,15 +491,19 @@ class CpsDataServiceImplSpec extends Specification {
     def 'Delete all data nodes for given dataspace and multiple anchors.'() {
         given: 'schema set for given anchors and dataspace references test tree model'
             setupSchemaSetMocks('test-tree.yang')
-            mockCpsAnchorService.getAnchors(dataspaceName, ['anchor1', 'anchor2']) >>
-                [new Anchor(name: 'anchor1', dataspaceName: dataspaceName),
-                 new Anchor(name: 'anchor2', dataspaceName: dataspaceName)]
+            def anchor1 = new Anchor(name: 'anchor1', dataspaceName: dataspaceName)
+            def anchor2 = new Anchor(name: 'anchor2', dataspaceName: dataspaceName)
+            mockCpsAnchorService.getAnchors(dataspaceName, ['anchor1', 'anchor2']) >> [anchor1, anchor2]
         when: 'delete data node method is invoked with correct parameters'
             objectUnderTest.deleteDataNodes(dataspaceName, ['anchor1', 'anchor2'], observedTimestamp)
         then: 'the CpsValidator is called on the dataspace name and the anchor names'
-            2 * mockCpsValidator.validateNameCharacters(_)
+            1 * mockCpsValidator.validateNameCharacters(dataspaceName)
+            1 * mockCpsValidator.validateNameCharacters(['anchor1', 'anchor2'])
         and: 'the persistence service method is invoked with the correct parameters'
             1 * mockCpsDataPersistenceService.deleteDataNodes(dataspaceName, _ as Collection<String>)
+        and: 'a data update event is sent for each anchor'
+            1 * mockDataUpdateEventsService.publishCpsDataUpdateEvent(anchor1, '/', DELETE, observedTimestamp)
+            1 * mockDataUpdateEventsService.publishCpsDataUpdateEvent(anchor2, '/', DELETE, observedTimestamp)
     }
 
     def 'Start session.'() {

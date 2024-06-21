@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2023 Nordix Foundation
+ *  Copyright (C) 2023-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -44,28 +44,36 @@ public class CpsAnchorServiceImpl implements CpsAnchorService {
     }
 
     @Override
+    public Anchor getAnchor(final String dataspaceName, final String anchorName) {
+        cpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        return cpsAdminPersistenceService.getAnchor(dataspaceName, anchorName);
+    }
+
+    @Override
     public Collection<Anchor> getAnchors(final String dataspaceName) {
         cpsValidator.validateNameCharacters(dataspaceName);
         return cpsAdminPersistenceService.getAnchors(dataspaceName);
     }
 
     @Override
-    public Collection<Anchor> getAnchors(final String dataspaceName, final String schemaSetName) {
-        cpsValidator.validateNameCharacters(dataspaceName, schemaSetName);
-        return cpsAdminPersistenceService.getAnchors(dataspaceName, schemaSetName);
+    public Collection<Anchor> getAnchors(final String dataspaceName, final Collection<String> anchorNames) {
+        cpsValidator.validateNameCharacters(dataspaceName);
+        cpsValidator.validateNameCharacters(anchorNames);
+        return cpsAdminPersistenceService.getAnchors(dataspaceName, anchorNames);
     }
 
     @Override
-    public Collection<Anchor> getAnchors(final String dataspaceName, final Collection<String> schemaSetNames) {
+    public Collection<Anchor> getAnchorsBySchemaSetName(final String dataspaceName, final String schemaSetName) {
+        cpsValidator.validateNameCharacters(dataspaceName, schemaSetName);
+        return cpsAdminPersistenceService.getAnchorsBySchemaSetName(dataspaceName, schemaSetName);
+    }
+
+    @Override
+    public Collection<Anchor> getAnchorsBySchemaSetNames(final String dataspaceName,
+                                                         final Collection<String> schemaSetNames) {
         cpsValidator.validateNameCharacters(dataspaceName);
         cpsValidator.validateNameCharacters(schemaSetNames);
-        return cpsAdminPersistenceService.getAnchors(dataspaceName, schemaSetNames);
-    }
-
-    @Override
-    public Anchor getAnchor(final String dataspaceName, final String anchorName) {
-        cpsValidator.validateNameCharacters(dataspaceName, anchorName);
-        return cpsAdminPersistenceService.getAnchor(dataspaceName, anchorName);
+        return cpsAdminPersistenceService.getAnchorsBySchemaSetNames(dataspaceName, schemaSetNames);
     }
 
     @Override

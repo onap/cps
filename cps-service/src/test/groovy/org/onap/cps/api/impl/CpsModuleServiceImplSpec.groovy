@@ -134,7 +134,7 @@ class CpsModuleServiceImplSpec extends Specification {
     def 'Delete schema-set when cascade is allowed.'() {
         given: '#numberOfAnchors anchors are associated with schemaset'
             def associatedAnchors = createAnchors(numberOfAnchors)
-            mockCpsAnchorService.getAnchors('my-dataspace', 'my-schemaset') >> associatedAnchors
+            mockCpsAnchorService.getAnchorsBySchemaSetName('my-dataspace', 'my-schemaset') >> associatedAnchors
         when: 'schema set deletion is requested with cascade allowed'
             objectUnderTest.deleteSchemaSet('my-dataspace', 'my-schemaset', CASCADE_DELETE_ALLOWED)
         then: 'anchor deletion is called #numberOfAnchors times'
@@ -153,7 +153,7 @@ class CpsModuleServiceImplSpec extends Specification {
 
     def 'Delete schema-set when cascade is prohibited.'() {
         given: 'no anchors are associated with schemaset'
-            mockCpsAnchorService.getAnchors('my-dataspace', 'my-schemaset') >> Collections.emptyList()
+            mockCpsAnchorService.getAnchorsBySchemaSetName('my-dataspace', 'my-schemaset') >> Collections.emptyList()
         when: 'schema set deletion is requested with cascade allowed'
             objectUnderTest.deleteSchemaSet('my-dataspace', 'my-schemaset', CASCADE_DELETE_PROHIBITED)
         then: 'no anchors are deleted'
@@ -170,7 +170,7 @@ class CpsModuleServiceImplSpec extends Specification {
 
     def 'Delete schema-set when cascade is prohibited and schema-set has anchors.'() {
         given: '2 anchors are associated with schemaset'
-            mockCpsAnchorService.getAnchors('my-dataspace', 'my-schemaset') >> createAnchors(2)
+            mockCpsAnchorService.getAnchorsBySchemaSetName('my-dataspace', 'my-schemaset') >> createAnchors(2)
         when: 'schema set deletion is requested with cascade allowed'
             objectUnderTest.deleteSchemaSet('my-dataspace', 'my-schemaset', CASCADE_DELETE_PROHIBITED)
         then: 'Schema-Set in Use exception is thrown'
@@ -179,7 +179,7 @@ class CpsModuleServiceImplSpec extends Specification {
 
     def 'Delete multiple schema-sets when cascade is allowed.'() {
         given: '#numberOfAnchors anchors are associated with each schemaset'
-            mockCpsAnchorService.getAnchors('my-dataspace', ['my-schemaset1', 'my-schemaset2']) >> createAnchors(numberOfAnchors * 2)
+            mockCpsAnchorService.getAnchorsBySchemaSetNames('my-dataspace', ['my-schemaset1', 'my-schemaset2']) >> createAnchors(numberOfAnchors * 2)
         when: 'schema set deletion is requested with cascade allowed'
             objectUnderTest.deleteSchemaSetsWithCascade('my-dataspace', ['my-schemaset1', 'my-schemaset2'])
         then: 'anchor deletion is called #numberOfAnchors times'
