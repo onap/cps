@@ -48,14 +48,14 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
 
     def 'CM Handle registration is successful.'() {
         given: 'DMI will return modules when requested'
-            dmiDispatcher.moduleNamesPerCmHandleId['ch-1'] = ['M1', 'M2']
+            dmiDispatcher1.moduleNamesPerCmHandleId['ch-1'] = ['M1', 'M2']
 
         and: 'consumer subscribed to topic'
             kafkaConsumer.subscribe(['ncmp-events'])
 
         when: 'a CM-handle is registered for creation'
             def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: 'ch-1')
-            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: DMI_URL, createdCmHandles: [cmHandleToCreate])
+            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: DMI1_URL, createdCmHandles: [cmHandleToCreate])
             def dmiPluginRegistrationResponse = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
 
         then: 'registration gives successful response'
@@ -81,16 +81,16 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
             assert ['M1', 'M2'] == objectUnderTest.getYangResourcesModuleReferences('ch-1').moduleName.sort()
 
         cleanup: 'deregister CM handle'
-            deregisterCmHandle(DMI_URL, 'ch-1')
+            deregisterCmHandle(DMI1_URL, 'ch-1')
     }
 
     def 'CM Handle goes to LOCKED state when DMI gives error during module sync.'() {
         given: 'DMI is not available to handle requests'
-            dmiDispatcher.isAvailable = false
+            dmiDispatcher1.isAvailable = false
 
         when: 'a CM-handle is registered for creation'
             def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: 'ch-1')
-            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: DMI_URL, createdCmHandles: [cmHandleToCreate])
+            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: DMI1_URL, createdCmHandles: [cmHandleToCreate])
             objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
 
         then: 'CM-handle goes to LOCKED state with reason MODULE_SYNC_FAILED'
@@ -104,19 +104,19 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
             assert objectUnderTest.getYangResourcesModuleReferences('ch-1').empty
 
         cleanup: 'deregister CM handle'
-            deregisterCmHandle(DMI_URL, 'ch-1')
+            deregisterCmHandle(DMI1_URL, 'ch-1')
     }
 
     def 'Create a CM-handle with existing moduleSetTag.'() {
         given: 'DMI will return modules when requested'
-            dmiDispatcher.moduleNamesPerCmHandleId = ['ch-1': ['M1', 'M2'], 'ch-2': ['M1', 'M3']]
+            dmiDispatcher1.moduleNamesPerCmHandleId = ['ch-1': ['M1', 'M2'], 'ch-2': ['M1', 'M3']]
         and: 'existing CM-handles cm-1 with moduleSetTag "A", and cm-2 with moduleSetTag "B"'
-            registerCmHandle(DMI_URL, 'ch-1', 'A')
-            registerCmHandle(DMI_URL, 'ch-2', 'B')
+            registerCmHandle(DMI1_URL, 'ch-1', 'A')
+            registerCmHandle(DMI1_URL, 'ch-2', 'B')
 
         when: 'a CM-handle is registered for creation with moduleSetTag "B"'
             def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: 'ch-3', moduleSetTag: 'B')
-            objectUnderTest.updateDmiRegistrationAndSyncModule(new DmiPluginRegistration(dmiPlugin: DMI_URL, createdCmHandles: [cmHandleToCreate]))
+            objectUnderTest.updateDmiRegistrationAndSyncModule(new DmiPluginRegistration(dmiPlugin: DMI1_URL, createdCmHandles: [cmHandleToCreate]))
 
         then: 'the CM-handle goes to READY state'
             new PollingConditions().within(MODULE_SYNC_WAIT_TIME_IN_SECONDS, () -> {
@@ -130,16 +130,16 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
             assert ['M1', 'M3'] == objectUnderTest.getYangResourcesModuleReferences('ch-3').moduleName.sort()
 
         cleanup: 'deregister CM handles'
-            deregisterCmHandles(DMI_URL, ['ch-1', 'ch-2', 'ch-3'])
+            deregisterCmHandles(DMI1_URL, ['ch-1', 'ch-2', 'ch-3'])
     }
 
     def 'CM Handle retry after failed module sync.'() {
         given: 'DMI is not initially available to handle requests'
-            dmiDispatcher.isAvailable = false
+            dmiDispatcher1.isAvailable = false
 
         when: 'CM-handles are registered for creation'
             def cmHandlesToCreate = [new NcmpServiceCmHandle(cmHandleId: 'ch-1'), new NcmpServiceCmHandle(cmHandleId: 'ch-2')]
-            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: DMI_URL, createdCmHandles: cmHandlesToCreate)
+            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: DMI1_URL, createdCmHandles: cmHandlesToCreate)
             objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'CM-handles go to LOCKED state'
             new PollingConditions().within(MODULE_SYNC_WAIT_TIME_IN_SECONDS, () -> {
@@ -157,9 +157,9 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
             })
 
         when: 'DMI will return expected modules'
-            dmiDispatcher.moduleNamesPerCmHandleId = ['ch-1': ['M1', 'M2'], 'ch-2': ['M1', 'M3']]
+            dmiDispatcher1.moduleNamesPerCmHandleId = ['ch-1': ['M1', 'M2'], 'ch-2': ['M1', 'M3']]
         and: 'DMI is available for retry'
-            dmiDispatcher.isAvailable = true
+            dmiDispatcher1.isAvailable = true
         then: 'CM-handles go to READY state'
             new PollingConditions().within(MODULE_SYNC_WAIT_TIME_IN_SECONDS, () -> {
                 assert objectUnderTest.getCmHandleCompositeState('ch-1').cmHandleState == CmHandleState.READY
@@ -173,6 +173,6 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
             assert objectUnderTest.getNcmpServiceCmHandle('ch-2').moduleSetTag == ''
 
         cleanup: 'deregister CM handle'
-            deregisterCmHandles(DMI_URL, ['ch-1', 'ch-2'])
+            deregisterCmHandles(DMI1_URL, ['ch-1', 'ch-2'])
     }
 }
