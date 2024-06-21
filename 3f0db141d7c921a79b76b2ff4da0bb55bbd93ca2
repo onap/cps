@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee8331d9_72a8b3a2",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-06-21T13:39:28Z",
+      "side": 1,
+      "message": "NB: this is call to the iterable version of validateNameCharacters.\nmaybe best to validate the input as well.",
+      "range": {
+        "startLine": 106,
+        "startChar": 12,
+        "endLine": 106,
+        "endChar": 58
+      },
+      "revId": "3f0db141d7c921a79b76b2ff4da0bb55bbd93ca2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
