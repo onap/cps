@@ -23,7 +23,7 @@ package org.onap.cps.ncmp.api.datajobs.models;
 import java.util.Collection;
 
 /**
- * Response data for a write operation by the DMI Plugin.
+ * Request data for a write operation by the DMI Plugin.
  *
  * @param dataAcceptType  Define the data response accept type.
  *                        e.g. "application/vnd.3gpp.object-tree-hierarchical+json",
