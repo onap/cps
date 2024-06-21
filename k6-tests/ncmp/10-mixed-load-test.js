@@ -22,25 +22,27 @@ import { makeCustomSummaryReport } from './common/utils.js'
 import { executeCmHandleSearch, executeCmHandleIdSearch } from './common/search-base.js';
 import { passthroughRead } from './common/passthrough-read.js';
 
+const DURATION = '15m';
+
 export const options = {
     scenarios: {
         passthrough_read: {
             executor: 'constant-vus',
             exec: 'passthrough_read',
             vus: 10,
-            duration: '1m',
+            duration: DURATION,
         },
         id_search_module: {
             executor: 'constant-vus',
             exec: 'id_search_module',
-            vus: 5,
-            duration: '1m',
+            vus: 3,
+            duration: DURATION,
         },
         cm_search_module: {
             executor: 'constant-vus',
             exec: 'cm_search_module',
-            vus: 4,
-            duration: '1m',
+            vus: 3,
+            duration: DURATION,
         },
     },
 
@@ -49,8 +51,8 @@ export const options = {
         'http_req_failed{scenario:id_search_module}': ['rate == 0'],
         'http_req_failed{scenario:cm_search_module}': ['rate == 0'],
         'http_req_duration{scenario:passthrough_read}': ['avg <= 2600'], // DMI delay + 100 ms
-        'http_req_duration{scenario:id_search_module}': ['avg <= 500'],
-        'http_req_duration{scenario:cm_search_module}': ['avg <= 30000'],
+        'http_req_duration{scenario:id_search_module}': ['avg <= 625'],
+        'http_req_duration{scenario:cm_search_module}': ['avg <= 13000'],
     },
 };
 

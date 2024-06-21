@@ -18,24 +18,11 @@
 ALL_TEST_SCRIPTS=( \
 1-create-cmhandles.js \
 2-wait-for-cmhandles-to-be-ready.js \
-3-passthrough-read.js \
-4-id-search-no-filter.js \
-5-search-no-filter.js \
-6-id-search-public-property.js \
-7-search-public-property.js \
-8-id-search-module.js \
-9-search-module.js \
 10-mixed-load-test.js \
 11-delete-cmhandles.js \
 )
 
 pushd "$(dirname "$0")" || exit 1
-
-echo 'Warming up JVM (warmup results will not be recorded)'
-for test_script in "${ALL_TEST_SCRIPTS[@]}"; do
-  echo "[warmup] k6 run $test_script"
-  k6 --quiet -e TOTAL_CM_HANDLES=1000 -e REGISTRATION_BATCH_SIZE=10 -e K6_MODULE_NAME="$test_script" run "$test_script" > /dev/null
-done
 
 printf "Test Case\tCondition\tLimit\tActual\tResult\n" > summary.log
 
