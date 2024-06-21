@@ -33,7 +33,7 @@ class DmiSubJobRequestHandlerSpec extends Specification {
         when: 'sending request to DMI invoked'
             objectUnderTest.sendRequestsToDmi(dataJobId, dataJobMetadata, dmiWriteOperationsPerProducerKey)
         then: 'the dmi rest client is called'
-            1 * mockDmiRestClient.postOperationWithJsonData(RequiredDmiService.DATA, _, _, OperationType.CREATE, NO_AUTH) >> response
+            1 * mockDmiRestClient.synchronousPostOperationWithJsonData(RequiredDmiService.DATA, _, _, OperationType.CREATE, NO_AUTH) >> response
         and: 'the result contains the expected sub-job write responses'
             def result = response.body
             assert result.subJobId() == 'my-sub-job-id'

@@ -65,7 +65,7 @@ public class DmiSubJobRequestHandler {
                     dataJobMetadata.dataContentType(), dataJobId, dmi3ggpWriteOperations);
 
             final String dmiResourceUrl = getDmiResourceUrl(dataJobId, producerKey);
-            final ResponseEntity<Object> responseEntity = dmiRestClient.postOperationWithJsonData(
+            final ResponseEntity<Object> responseEntity = dmiRestClient.synchronousPostOperationWithJsonData(
                     RequiredDmiService.DATA,
                     dmiResourceUrl,
                     jsonObjectMapper.asJsonString(subJobWriteRequest),
