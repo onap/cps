@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2022 Nordix Foundation.
+ *  Copyright (C) 2020-2024 Nordix Foundation.
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 TechMahindra Ltd.
@@ -73,22 +73,13 @@ public interface CpsAdminPersistenceService {
     void createAnchor(String dataspaceName, String schemaSetName, String anchorName);
 
     /**
-     * Read all anchors associated with the given schema-set in the given dataspace.
+     * Get an anchor in the given dataspace using the anchor name.
      *
      * @param dataspaceName dataspace name
-     * @param schemaSetName schema-set name
-     * @return a collection of anchors
+     * @param anchorName anchor name
+     * @return an anchor
      */
-    Collection<Anchor> getAnchors(String dataspaceName, String schemaSetName);
-
-    /**
-     * Read all anchors associated with multiple schema-sets in the given dataspace.
-     *
-     * @param dataspaceName  dataspace name
-     * @param schemaSetNames schema-set names
-     * @return a collection of anchors
-     */
-    Collection<Anchor> getAnchors(String dataspaceName, Collection<String> schemaSetNames);
+    Anchor getAnchor(String dataspaceName, String anchorName);
 
     /**
      * Read all anchors in the given a dataspace.
@@ -97,6 +88,33 @@ public interface CpsAdminPersistenceService {
      * @return a collection of anchors
      */
     Collection<Anchor> getAnchors(String dataspaceName);
+
+    /**
+     * Read all anchors in the given dataspace with the anchor names.
+     *
+     * @param dataspaceName dataspace name
+     * @param anchorNames   anchor names
+     * @return a collection of anchors
+     */
+    Collection<Anchor> getAnchors(String dataspaceName, Collection<String> anchorNames);
+
+    /**
+     * Read all anchors associated with the given schema-set in the given dataspace.
+     *
+     * @param dataspaceName dataspace name
+     * @param schemaSetName schema-set name
+     * @return a collection of anchors
+     */
+    Collection<Anchor> getAnchorsBySchemaSetName(String dataspaceName, String schemaSetName);
+
+    /**
+     * Read all anchors associated with multiple schema-sets in the given dataspace.
+     *
+     * @param dataspaceName  dataspace name
+     * @param schemaSetNames schema-set names
+     * @return a collection of anchors
+     */
+    Collection<Anchor> getAnchorsBySchemaSetNames(String dataspaceName, Collection<String> schemaSetNames);
 
     /**
      * Query anchor names for the given module names in the provided dataspace.
@@ -108,15 +126,6 @@ public interface CpsAdminPersistenceService {
      *         given module names
      */
     Collection<String> queryAnchorNames(String dataspaceName, Collection<String> moduleNames);
-
-    /**
-     * Get an anchor in the given dataspace using the anchor name.
-     *
-     * @param dataspaceName dataspace name
-     * @param anchorName anchor name
-     * @return an anchor
-     */
-    Anchor getAnchor(String dataspaceName, String anchorName);
 
     /**
      * Delete anchor by name in given dataspace.
