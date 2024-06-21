@@ -35,7 +35,7 @@ class RestApiSpec extends CpsIntegrationSpecBase {
 
     def 'Register CM Handles using REST API.'() {
         given: 'DMI will return modules'
-            dmiDispatcher.moduleNamesPerCmHandleId = [
+            dmiDispatcherForDataOperations.moduleNamesPerCmHandleId = [
                 'ch-1': ['M1', 'M2'],
                 'ch-2': ['M1', 'M2'],
                 'ch-3': ['M1', 'M3']

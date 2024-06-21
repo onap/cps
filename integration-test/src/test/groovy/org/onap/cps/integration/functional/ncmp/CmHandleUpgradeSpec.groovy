@@ -42,7 +42,7 @@ class CmHandleUpgradeSpec extends CpsIntegrationSpecBase {
 
     def 'Upgrade CM-handle with new moduleSetTag or no moduleSetTag.'() {
         given: 'a CM-handle is created with expected initial modules: M1 and M2'
-            dmiDispatcher.moduleNamesPerCmHandleId[CM_HANDLE_ID] = ['M1', 'M2']
+            dmiDispatcherForDataOperations.moduleNamesPerCmHandleId[CM_HANDLE_ID] = ['M1', 'M2']
             registerCmHandle(DMI_URL, CM_HANDLE_ID, initialModuleSetTag)
             assert ['M1', 'M2'] == objectUnderTest.getYangResourcesModuleReferences(CM_HANDLE_ID).moduleName.sort()
 
@@ -61,7 +61,7 @@ class CmHandleUpgradeSpec extends CpsIntegrationSpecBase {
             assert cmHandleCompositeState.lockReason.details == "Upgrade to ModuleSetTag: ${updatedModuleSetTag}"
 
         when: 'DMI will return different modules for upgrade: M1 and M3'
-            dmiDispatcher.moduleNamesPerCmHandleId[CM_HANDLE_ID] = ['M1', 'M3']
+            dmiDispatcherForDataOperations.moduleNamesPerCmHandleId[CM_HANDLE_ID] = ['M1', 'M3']
 
         then: 'CM-handle goes to READY state'
             new PollingConditions().within(MODULE_SYNC_WAIT_TIME_IN_SECONDS, () -> {
@@ -87,8 +87,8 @@ class CmHandleUpgradeSpec extends CpsIntegrationSpecBase {
 
     def 'Upgrade CM-handle with existing moduleSetTag.'() {
         given: 'DMI will return modules for registration'
-            dmiDispatcher.moduleNamesPerCmHandleId[CM_HANDLE_ID] = ['M1', 'M2']
-            dmiDispatcher.moduleNamesPerCmHandleId[CM_HANDLE_ID_WITH_EXISTING_MODULE_SET_TAG] = ['M1', 'M3']
+            dmiDispatcherForDataOperations.moduleNamesPerCmHandleId[CM_HANDLE_ID] = ['M1', 'M2']
+            dmiDispatcherForDataOperations.moduleNamesPerCmHandleId[CM_HANDLE_ID_WITH_EXISTING_MODULE_SET_TAG] = ['M1', 'M3']
         and: "an existing CM-handle handle with moduleSetTag '${updatedModuleSetTag}'"
             registerCmHandle(DMI_URL, CM_HANDLE_ID_WITH_EXISTING_MODULE_SET_TAG, updatedModuleSetTag)
             assert ['M1', 'M3'] == objectUnderTest.getYangResourcesModuleReferences(CM_HANDLE_ID_WITH_EXISTING_MODULE_SET_TAG).moduleName.sort()
@@ -126,7 +126,7 @@ class CmHandleUpgradeSpec extends CpsIntegrationSpecBase {
 
     def 'Skip upgrade of CM-handle with same moduleSetTag as before.'() {
         given: 'an existing CM-handle with expected initial modules: M1 and M2'
-            dmiDispatcher.moduleNamesPerCmHandleId[CM_HANDLE_ID] = ['M1', 'M2']
+            dmiDispatcherForDataOperations.moduleNamesPerCmHandleId[CM_HANDLE_ID] = ['M1', 'M2']
             registerCmHandle(DMI_URL, CM_HANDLE_ID, 'same')
             assert ['M1', 'M2'] == objectUnderTest.getYangResourcesModuleReferences(CM_HANDLE_ID).moduleName.sort()
 
@@ -150,10 +150,10 @@ class CmHandleUpgradeSpec extends CpsIntegrationSpecBase {
 
     def 'Upgrade of CM-handle fails due to DMI error.'() {
         given: 'a CM-handle exists'
-            dmiDispatcher.moduleNamesPerCmHandleId[CM_HANDLE_ID] = ['M1', 'M2']
+            dmiDispatcherForDataOperations.moduleNamesPerCmHandleId[CM_HANDLE_ID] = ['M1', 'M2']
             registerCmHandle(DMI_URL, CM_HANDLE_ID, 'oldTag')
         and: 'DMI is not available for upgrade'
-            dmiDispatcher.isAvailable = false
+            dmiDispatcherForDataOperations.isAvailable = false
 
         when: 'the CM-handle is upgraded'
             def cmHandlesToUpgrade = new UpgradedCmHandles(cmHandles: [CM_HANDLE_ID], moduleSetTag: 'newTag')

@@ -32,7 +32,7 @@ class CmHandleResourceDataSpec extends CpsIntegrationSpecBase {
     NetworkCmProxyFacade objectUnderTest
 
     def setup() {
-        dmiDispatcher.moduleNamesPerCmHandleId['ch-1'] = ['M1', 'M2']
+        dmiDispatcherForDataOperations.moduleNamesPerCmHandleId['ch-1'] = ['M1', 'M2']
         registerCmHandle(DMI_URL, 'ch-1', NO_MODULE_SET_TAG)
         objectUnderTest = networkCmProxyFacade
     }
@@ -47,7 +47,7 @@ class CmHandleResourceDataSpec extends CpsIntegrationSpecBase {
             objectUnderTest.getResourceDataForCmHandle(cmResourceAddress, '(a=1,b=2)', 'my-client-topic', false, null)
         then: 'dmi resource data url is encoded correctly'
             new PollingConditions().within(5, () -> {
-                assert dmiDispatcher.dmiResourceDataUrl == '/dmi/v1/ch/ch-1/data/ds/ncmp-datastore%3Apassthrough-operational?resourceIdentifier=parent%2Fchild&options=%28a%3D1%2Cb%3D2%29&topic=my-client-topic'
+                assert dmiDispatcherForDataOperations.dmiResourceDataUrl == '/dmi/v1/ch/ch-1/data/ds/ncmp-datastore%3Apassthrough-operational?resourceIdentifier=parent%2Fchild&options=%28a%3D1%2Cb%3D2%29&topic=my-client-topic'
             })
     }
 }
