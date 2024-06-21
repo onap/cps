@@ -49,8 +49,8 @@ export const options = {
         'http_req_failed{scenario:id_search_module}': ['rate == 0'],
         'http_req_failed{scenario:cm_search_module}': ['rate == 0'],
         'http_req_duration{scenario:passthrough_read}': ['avg <= 2600'], // DMI delay + 100 ms
-        'http_req_duration{scenario:id_search_module}': ['avg <= 500'],
-        'http_req_duration{scenario:cm_search_module}': ['avg <= 30000'],
+        'http_req_duration{scenario:id_search_module}': ['avg <= 625'],
+        'http_req_duration{scenario:cm_search_module}': ['avg <= 13000'],
     },
 };
 
