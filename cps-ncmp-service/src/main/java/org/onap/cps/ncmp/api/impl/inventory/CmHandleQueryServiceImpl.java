@@ -41,6 +41,7 @@ import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.utils.CpsValidator;
+import org.onap.cps.utils.ContentType;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
@@ -185,7 +186,7 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
         cpsValidator.validateNameCharacters(cmHandleId);
         final String xpath = NCMP_DMI_REGISTRY_PARENT + "/cm-handles[@id='" + cmHandleId + "']/state";
         return cpsDataPersistenceService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                xpath, OMIT_DESCENDANTS).iterator().next();
+                xpath, OMIT_DESCENDANTS, ContentType.JSON).iterator().next();
     }
 }
 

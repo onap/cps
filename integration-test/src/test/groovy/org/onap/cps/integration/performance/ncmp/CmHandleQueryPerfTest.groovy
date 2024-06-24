@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Modifications Copyright (C) 2024 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -23,6 +24,7 @@ package org.onap.cps.integration.performance.ncmp
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.integration.ResourceMeter
 import org.onap.cps.integration.performance.base.NcmpPerfTestBase
+import org.onap.cps.utils.ContentType
 
 import java.util.stream.Collectors
 
@@ -44,7 +46,7 @@ class CmHandleQueryPerfTest extends NcmpPerfTestBase {
             resourceMeter.start()
             (1..iterations).forEach {
                 cpsDataService.getDataNodes(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_ANCHOR,
-                        '/dmi-registry/cm-handles[@id="cm-' + it + '"]', OMIT_DESCENDANTS)
+                        '/dmi-registry/cm-handles[@id="cm-' + it + '"]', OMIT_DESCENDANTS, ContentType.JSON)
                 objectUnderTest.queryDataNodes(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_ANCHOR,
                         '/dmi-registry/cm-handles[@alternate-id="alt-' + it + '"]', OMIT_DESCENDANTS)
             }
@@ -80,7 +82,7 @@ class CmHandleQueryPerfTest extends NcmpPerfTestBase {
             resourceMeter.start()
             (1..100).each {
                 count += cpsDataService.getDataNodes(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_ANCHOR,
-                        '/dmi-registry/cm-handles[@id="cm-' + it + '"]', OMIT_DESCENDANTS).size()
+                        '/dmi-registry/cm-handles[@id="cm-' + it + '"]', OMIT_DESCENDANTS, ContentType.JSON).size()
             }
             resourceMeter.stop()
         then:
