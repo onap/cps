@@ -21,25 +21,16 @@
 
 package org.onap.cps.ncmp.api.impl.operations
 
-import static org.onap.cps.ncmp.api.impl.events.mapper.CloudEventMapper.toTargetEvent
-import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_OPERATIONAL
-import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING
-import static org.onap.cps.ncmp.api.impl.operations.OperationType.CREATE
-import static org.onap.cps.ncmp.api.impl.operations.OperationType.READ
-import static org.onap.cps.ncmp.api.impl.operations.OperationType.UPDATE
-import static org.onap.cps.ncmp.api.impl.operations.RequiredDmiService.DATA
-import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNKNOWN_ERROR
-
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.events.EventsPublisher
 import org.onap.cps.ncmp.api.impl.config.DmiProperties
 import org.onap.cps.ncmp.api.impl.exception.DmiClientRequestException
 import org.onap.cps.ncmp.api.impl.utils.context.CpsApplicationContext
-import org.onap.cps.ncmp.api.models.DataOperationRequest
 import org.onap.cps.ncmp.api.models.CmResourceAddress
+import org.onap.cps.ncmp.api.models.DataOperationRequest
 import org.onap.cps.ncmp.events.async1_0_0.DataOperationEvent
+import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
 import org.onap.cps.ncmp.utils.TestUtils
-import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
@@ -47,8 +38,17 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.test.context.ContextConfiguration
-import spock.lang.Shared
 import reactor.core.publisher.Mono
+import spock.lang.Shared
+
+import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNKNOWN_ERROR
+import static org.onap.cps.ncmp.api.impl.events.mapper.CloudEventMapper.toTargetEvent
+import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_OPERATIONAL
+import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING
+import static org.onap.cps.ncmp.api.impl.operations.OperationType.CREATE
+import static org.onap.cps.ncmp.api.impl.operations.OperationType.READ
+import static org.onap.cps.ncmp.api.impl.operations.OperationType.UPDATE
+import static org.onap.cps.ncmp.api.impl.operations.RequiredDmiService.DATA
 
 @SpringBootTest
 @ContextConfiguration(classes = [EventsPublisher, CpsApplicationContext, DmiProperties, DmiDataOperations])

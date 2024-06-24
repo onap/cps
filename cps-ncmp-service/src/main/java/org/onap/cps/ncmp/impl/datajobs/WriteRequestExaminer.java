@@ -31,9 +31,9 @@ import org.onap.cps.ncmp.api.datajobs.models.DataJobWriteRequest;
 import org.onap.cps.ncmp.api.datajobs.models.DmiWriteOperation;
 import org.onap.cps.ncmp.api.datajobs.models.ProducerKey;
 import org.onap.cps.ncmp.api.datajobs.models.WriteOperation;
-import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
-import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
-import org.onap.cps.ncmp.utils.AlternateIdMatcher;
+import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
+import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher;
+import org.onap.cps.ncmp.impl.utils.YangDataConverter;
 import org.onap.cps.spi.model.DataNode;
 import org.springframework.stereotype.Service;
 

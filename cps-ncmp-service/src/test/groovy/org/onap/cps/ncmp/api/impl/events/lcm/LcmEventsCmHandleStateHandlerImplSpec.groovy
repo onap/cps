@@ -20,18 +20,18 @@
 
 package org.onap.cps.ncmp.api.impl.events.lcm
 
-import static org.onap.cps.ncmp.api.impl.inventory.CmHandleState.ADVISED
-import static org.onap.cps.ncmp.api.impl.inventory.CmHandleState.DELETED
-import static org.onap.cps.ncmp.api.impl.inventory.CmHandleState.DELETING
-import static org.onap.cps.ncmp.api.impl.inventory.CmHandleState.LOCKED
-import static org.onap.cps.ncmp.api.impl.inventory.CmHandleState.READY
-import static org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory.MODULE_SYNC_FAILED
-
-import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
-import org.onap.cps.ncmp.api.impl.inventory.CompositeState
-import org.onap.cps.ncmp.api.impl.inventory.DataStoreSyncState
-import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence
+import org.onap.cps.ncmp.api.inventory.models.CompositeState
+import org.onap.cps.ncmp.impl.inventory.DataStoreSyncState
+import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
+import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import spock.lang.Specification
+
+import static org.onap.cps.ncmp.impl.inventory.models.CmHandleState.ADVISED
+import static org.onap.cps.ncmp.impl.inventory.models.CmHandleState.DELETED
+import static org.onap.cps.ncmp.impl.inventory.models.CmHandleState.DELETING
+import static org.onap.cps.ncmp.impl.inventory.models.CmHandleState.LOCKED
+import static org.onap.cps.ncmp.impl.inventory.models.CmHandleState.READY
+import static org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory.MODULE_SYNC_FAILED
 
 class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
 

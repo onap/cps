@@ -20,14 +20,14 @@
 
 package org.onap.cps.ncmp.rest.mapper;
 
-import static org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory.LOCKED_MISBEHAVING;
+import static org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory.LOCKED_MISBEHAVING;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import org.mapstruct.NullValueCheckStrategy;
 import org.mapstruct.NullValuePropertyMappingStrategy;
-import org.onap.cps.ncmp.api.impl.inventory.CompositeState;
+import org.onap.cps.ncmp.api.inventory.models.CompositeState;
 import org.onap.cps.ncmp.rest.model.CmHandleCompositeState;
 import org.onap.cps.ncmp.rest.model.DataStores;
 import org.onap.cps.ncmp.rest.model.LockReason;

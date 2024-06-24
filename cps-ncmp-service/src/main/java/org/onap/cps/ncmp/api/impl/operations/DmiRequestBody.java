@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.Map;
 import lombok.Builder;
 import lombok.Getter;
-import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
+import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Getter

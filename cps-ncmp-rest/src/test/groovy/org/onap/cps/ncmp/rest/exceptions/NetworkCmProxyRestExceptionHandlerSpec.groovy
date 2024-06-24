@@ -27,10 +27,10 @@ import org.onap.cps.TestUtils
 import org.onap.cps.ncmp.api.impl.NcmpCachedResourceRequestHandler
 import org.onap.cps.ncmp.api.impl.NcmpPassthroughResourceRequestHandler
 import org.onap.cps.ncmp.api.impl.NetworkCmProxyFacade
-import org.onap.cps.ncmp.api.impl.NetworkCmProxyInventoryFacade
 import org.onap.cps.ncmp.api.impl.exception.DmiClientRequestException
 import org.onap.cps.ncmp.api.impl.exception.DmiRequestException
 import org.onap.cps.ncmp.api.impl.exception.ServerNcmpException
+import org.onap.cps.ncmp.api.inventory.NetworkCmProxyInventoryFacade
 import org.onap.cps.ncmp.exceptions.PayloadTooLargeException
 import org.onap.cps.ncmp.rest.controller.NcmpRestInputMapper
 import org.onap.cps.ncmp.rest.mapper.CmHandleStateMapper

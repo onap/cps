@@ -21,9 +21,9 @@
 package org.onap.cps.ncmp.api.impl.trustlevel.dmiavailability
 
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient
-import org.onap.cps.ncmp.api.impl.inventory.CmHandleQueryService
 import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel
 import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevelManager
+import org.onap.cps.ncmp.impl.inventory.CmHandleQueryService
 import spock.lang.Specification
 
 class DmiPluginWatchDogSpec extends Specification {

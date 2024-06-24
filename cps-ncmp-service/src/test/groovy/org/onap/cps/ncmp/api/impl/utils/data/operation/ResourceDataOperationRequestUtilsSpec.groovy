@@ -20,10 +20,6 @@
 
 package org.onap.cps.ncmp.api.impl.utils.data.operation
 
-import static org.onap.cps.ncmp.api.impl.events.mapper.CloudEventMapper.toTargetEvent
-import static org.onap.cps.ncmp.api.impl.inventory.CmHandleState.ADVISED
-import static org.onap.cps.ncmp.api.impl.inventory.CmHandleState.READY
-
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.cloudevents.CloudEvent
 import io.cloudevents.kafka.CloudEventDeserializer
@@ -33,17 +29,22 @@ import org.onap.cps.events.EventsPublisher
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperation
 import org.onap.cps.ncmp.api.impl.operations.OperationType
 import org.onap.cps.ncmp.api.impl.utils.context.CpsApplicationContext
-import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
-import org.onap.cps.ncmp.api.impl.inventory.CompositeStateBuilder
+import org.onap.cps.ncmp.api.inventory.models.CompositeStateBuilder
 import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
 import org.onap.cps.ncmp.api.models.DataOperationRequest
 import org.onap.cps.ncmp.events.async1_0_0.DataOperationEvent
+import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.util.LinkedMultiValueMap
+
 import java.time.Duration
+
+import static org.onap.cps.ncmp.api.impl.events.mapper.CloudEventMapper.toTargetEvent
+import static org.onap.cps.ncmp.impl.inventory.models.CmHandleState.ADVISED
+import static org.onap.cps.ncmp.impl.inventory.models.CmHandleState.READY
 
 @ContextConfiguration(classes = [EventsPublisher, CpsApplicationContext])
 class ResourceDataOperationRequestUtilsSpec extends MessagingBaseSpec {

@@ -20,10 +20,10 @@
 
 package org.onap.cps.ncmp.api.impl.utils
 
-import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
-
 import org.onap.cps.spi.model.DataNodeBuilder
 import spock.lang.Specification
+
+import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DATASPACE_NAME
 
 class DataNodeBaseSpec extends Specification {
 

@@ -24,13 +24,13 @@ import org.apache.kafka.common.TopicPartition
 import org.apache.kafka.common.serialization.StringDeserializer
 import org.onap.cps.integration.KafkaTestContainer
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
-import org.onap.cps.ncmp.api.impl.NetworkCmProxyInventoryFacade
-import org.onap.cps.ncmp.api.impl.inventory.CmHandleState
-import org.onap.cps.ncmp.api.impl.inventory.LockReasonCategory
-import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse
-import org.onap.cps.ncmp.api.models.DmiPluginRegistration
-import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle
+import org.onap.cps.ncmp.api.inventory.NetworkCmProxyInventoryFacade
+import org.onap.cps.ncmp.api.inventory.models.CmHandleRegistrationResponse
+import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistration
+import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.events.lcm.v1.LcmEvent
+import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
+import org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory
 import spock.util.concurrent.PollingConditions
 
 import java.time.Duration

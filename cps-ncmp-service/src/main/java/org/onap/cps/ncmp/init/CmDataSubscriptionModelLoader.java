@@ -20,7 +20,7 @@
 
 package org.onap.cps.ncmp.init;
 
-import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME;
+import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DATASPACE_NAME;
 import static org.onap.cps.utils.ContentType.JSON;
 
 import java.time.OffsetDateTime;

@@ -20,10 +20,10 @@
 
 package org.onap.cps.ncmp.api.impl.events.lcm;
 
-import static org.onap.cps.ncmp.api.impl.inventory.CmHandleState.ADVISED;
-import static org.onap.cps.ncmp.api.impl.inventory.CmHandleState.DELETED;
-import static org.onap.cps.ncmp.api.impl.inventory.CmHandleState.LOCKED;
-import static org.onap.cps.ncmp.api.impl.inventory.CmHandleState.READY;
+import static org.onap.cps.ncmp.impl.inventory.models.CmHandleState.ADVISED;
+import static org.onap.cps.ncmp.impl.inventory.models.CmHandleState.DELETED;
+import static org.onap.cps.ncmp.impl.inventory.models.CmHandleState.LOCKED;
+import static org.onap.cps.ncmp.impl.inventory.models.CmHandleState.READY;
 
 import io.micrometer.core.annotation.Timed;
 import java.util.ArrayList;
@@ -37,13 +37,13 @@ import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.ncmp.api.impl.inventory.CmHandleState;
-import org.onap.cps.ncmp.api.impl.inventory.CompositeState;
-import org.onap.cps.ncmp.api.impl.inventory.CompositeStateUtils;
-import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence;
-import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
-import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
-import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
+import org.onap.cps.ncmp.api.inventory.models.CompositeState;
+import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
+import org.onap.cps.ncmp.impl.inventory.CompositeStateUtils;
+import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
+import org.onap.cps.ncmp.impl.inventory.models.CmHandleState;
+import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
+import org.onap.cps.ncmp.impl.utils.YangDataConverter;
 import org.springframework.stereotype.Service;
 
 @Slf4j

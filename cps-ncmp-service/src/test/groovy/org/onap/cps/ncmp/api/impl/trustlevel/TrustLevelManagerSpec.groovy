@@ -21,8 +21,8 @@
 package org.onap.cps.ncmp.api.impl.trustlevel
 
 import org.onap.cps.ncmp.api.impl.events.avc.ncmptoclient.AvcEventPublisher
-import org.onap.cps.ncmp.api.impl.inventory.InventoryPersistence
-import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle
+import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
+import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import spock.lang.Specification
 
 class TrustLevelManagerSpec extends Specification {

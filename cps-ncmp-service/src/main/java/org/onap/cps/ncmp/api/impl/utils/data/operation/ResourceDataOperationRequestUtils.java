@@ -37,14 +37,14 @@ import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.events.EventsPublisher;
 import org.onap.cps.ncmp.api.NcmpResponseStatus;
-import org.onap.cps.ncmp.api.impl.inventory.CmHandleState;
 import org.onap.cps.ncmp.api.impl.operations.DmiDataOperation;
 import org.onap.cps.ncmp.api.impl.operations.DmiOperationCmHandle;
 import org.onap.cps.ncmp.api.impl.utils.DmiServiceNameOrganizer;
 import org.onap.cps.ncmp.api.impl.utils.context.CpsApplicationContext;
-import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
 import org.onap.cps.ncmp.api.models.DataOperationDefinition;
 import org.onap.cps.ncmp.api.models.DataOperationRequest;
+import org.onap.cps.ncmp.impl.inventory.models.CmHandleState;
+import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 

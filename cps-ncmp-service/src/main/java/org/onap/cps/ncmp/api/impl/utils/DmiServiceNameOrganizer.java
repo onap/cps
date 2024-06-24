@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.onap.cps.ncmp.api.impl.operations.RequiredDmiService;
-import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
+import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class DmiServiceNameOrganizer {

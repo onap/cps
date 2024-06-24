@@ -20,6 +20,7 @@
 
 package org.onap.cps.ncmp.api.impl.utils
 
+import org.onap.cps.ncmp.impl.utils.YangDataConverter
 import org.onap.cps.spi.model.DataNode
 import spock.lang.Specification
 
@@ -34,7 +35,7 @@ class YangDataConverterSpec extends Specification{
             def dataNodeCmHandle = new DataNode(leaves:['id':'sample-id'], childDataNodes:[dataNodeAdditionalProperties, dataNodePublicProperties])
         when: 'the dataNode is converted'
             def yangModelCmHandle =
-                    YangDataConverter.convertCmHandleToYangModel(dataNodeCmHandle)
+                YangDataConverter.convertCmHandleToYangModel(dataNodeCmHandle)
         then: 'the converted object has the correct id'
             assert yangModelCmHandle.id == 'sample-id'
         and: 'the additional (dmi, private) properties are included'

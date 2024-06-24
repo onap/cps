@@ -23,7 +23,7 @@ package org.onap.cps.ncmp.api.impl.events.lcm;
 import static org.onap.cps.ncmp.api.impl.events.lcm.LcmEventType.CREATE;
 import static org.onap.cps.ncmp.api.impl.events.lcm.LcmEventType.DELETE;
 import static org.onap.cps.ncmp.api.impl.events.lcm.LcmEventType.UPDATE;
-import static org.onap.cps.ncmp.api.impl.inventory.CmHandleState.DELETED;
+import static org.onap.cps.ncmp.impl.inventory.models.CmHandleState.DELETED;
 
 import com.google.common.collect.MapDifference;
 import com.google.common.collect.Maps;
@@ -33,7 +33,7 @@ import java.util.Map;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
+import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.events.lcm.v1.Values;
 
 /**

@@ -23,12 +23,11 @@ package org.onap.cps.ncmp.rest.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.TestUtils
-import org.onap.cps.ncmp.api.impl.NetworkCmProxyFacade
-import org.onap.cps.ncmp.api.impl.NetworkCmProxyInventoryFacade
-import org.onap.cps.ncmp.api.models.CmHandleQueryServiceParameters
-import org.onap.cps.ncmp.api.models.CmHandleRegistrationResponse
-import org.onap.cps.ncmp.api.models.DmiPluginRegistration
-import org.onap.cps.ncmp.api.models.DmiPluginRegistrationResponse
+import org.onap.cps.ncmp.api.inventory.NetworkCmProxyInventoryFacade
+import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryServiceParameters
+import org.onap.cps.ncmp.api.inventory.models.CmHandleRegistrationResponse
+import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistration
+import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistrationResponse
 import org.onap.cps.ncmp.rest.model.CmHandleQueryParameters
 import org.onap.cps.ncmp.rest.model.CmHandlerRegistrationErrorResponse
 import org.onap.cps.ncmp.rest.model.DmiPluginRegistrationErrorResponse

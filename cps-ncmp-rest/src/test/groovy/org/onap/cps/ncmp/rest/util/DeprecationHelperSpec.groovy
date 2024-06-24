@@ -21,8 +21,8 @@
 package org.onap.cps.ncmp.rest.util
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import org.onap.cps.ncmp.api.models.CmHandleQueryApiParameters
-import org.onap.cps.ncmp.api.models.ConditionApiProperties
+import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryApiParameters
+import org.onap.cps.ncmp.api.inventory.models.ConditionApiProperties
 import org.onap.cps.ncmp.rest.model.CmHandleQueryParameters
 import org.onap.cps.ncmp.rest.model.ConditionProperties
 import org.onap.cps.ncmp.rest.model.ModuleNameAsJsonObject

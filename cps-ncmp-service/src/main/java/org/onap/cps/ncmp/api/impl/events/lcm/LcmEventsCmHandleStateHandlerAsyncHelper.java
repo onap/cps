@@ -22,11 +22,11 @@ package org.onap.cps.ncmp.api.impl.events.lcm;
 
 import java.util.Collection;
 import lombok.RequiredArgsConstructor;
-import org.onap.cps.ncmp.api.impl.utils.YangDataConverter;
-import org.onap.cps.ncmp.api.impl.yangmodels.YangModelCmHandle;
-import org.onap.cps.ncmp.api.models.NcmpServiceCmHandle;
+import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.events.lcm.v1.LcmEvent;
 import org.onap.cps.ncmp.events.lcm.v1.LcmEventHeader;
+import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
+import org.onap.cps.ncmp.impl.utils.YangDataConverter;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 

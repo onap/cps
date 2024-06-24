@@ -22,12 +22,12 @@ package org.onap.cps.integration.performance.ncmp
 
 import org.onap.cps.integration.ResourceMeter
 import org.onap.cps.integration.performance.base.NcmpPerfTestBase
-import org.onap.cps.ncmp.utils.AlternateIdMatcher
+import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
 
 import java.util.stream.Collectors
 
-import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
-import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
+import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DATASPACE_NAME
+import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 
 class CmHandleQueryByAlternateIdPerfTest extends NcmpPerfTestBase {

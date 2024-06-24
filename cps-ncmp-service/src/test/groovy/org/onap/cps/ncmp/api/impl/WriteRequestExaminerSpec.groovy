@@ -3,7 +3,7 @@ package org.onap.cps.ncmp.impl.datajobs
 
 import org.onap.cps.ncmp.api.datajobs.models.DataJobWriteRequest
 import org.onap.cps.ncmp.api.datajobs.models.WriteOperation
-import org.onap.cps.ncmp.utils.AlternateIdMatcher
+import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
 import org.onap.cps.spi.model.DataNode
 import spock.lang.Specification
 

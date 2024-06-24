@@ -20,11 +20,11 @@
 
 package org.onap.cps.integration.performance.base
 
-import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DATASPACE_NAME
-import static org.onap.cps.ncmp.api.impl.ncmppersistence.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
-
 import org.onap.cps.integration.ResourceMeter
 import org.onap.cps.spi.FetchDescendantsOption
+
+import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DATASPACE_NAME
+import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
 
 class NcmpPerfTestBase extends PerfTestBase {
 
