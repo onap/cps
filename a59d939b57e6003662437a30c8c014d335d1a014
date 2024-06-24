@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4c30c12_0a605ff5",
+        "filename": "k6-tests/ncmp/10-mixed-load-test.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-24T09:59:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c2e7ecf_1fe0891a",
+      "range": {
+        "startLine": 31,
+        "startChar": 12,
+        "endLine": 31,
+        "endChar": 27
+      },
+      "revId": "a59d939b57e6003662437a30c8c014d335d1a014",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "80a550fe_6ce7aa7b",
@@ -47,6 +71,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d0238cc_978b6996",
+        "filename": "k6-tests/ncmp/10-mixed-load-test.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-24T09:59:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80a550fe_6ce7aa7b",
+      "range": {
+        "startLine": 35,
+        "startChar": 37,
+        "endLine": 36,
+        "endChar": 19
+      },
+      "revId": "a59d939b57e6003662437a30c8c014d335d1a014",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "96e59950_0aa02bd2",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-06-21T16:31:16Z",
       "side": 1,
       "message": "Similar to above, characteristics page has \u00272.5\u0027 parallel requests, so set it to 3 for now.",
+      "range": {
+        "startLine": 42,
+        "startChar": 12,
+        "endLine": 42,
+        "endChar": 19
+      },
+      "revId": "a59d939b57e6003662437a30c8c014d335d1a014",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "025b3f42_cce1dd70",
+        "filename": "k6-tests/ncmp/10-mixed-load-test.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-24T09:59:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "96e59950_0aa02bd2",
       "range": {
         "startLine": 42,
         "startChar": 12,
