@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Modifications Copyright (C) 2024 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -23,6 +24,7 @@ package org.onap.cps.integration.performance.base
 import org.onap.cps.integration.ResourceMeter
 import org.onap.cps.rest.utils.MultipartFileUtil
 import org.onap.cps.spi.FetchDescendantsOption
+import org.onap.cps.utils.ContentType
 import org.springframework.web.multipart.MultipartFile
 
 class CpsPerfTestBase extends PerfTestBase {
@@ -79,7 +81,7 @@ class CpsPerfTestBase extends PerfTestBase {
     def 'CPS pre-load test data'() {
         when: 'dummy get data nodes runs so that populating the DB does not get included in other test timings'
             resourceMeter.start()
-            def result = cpsDataService.getDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm1', '/', FetchDescendantsOption.OMIT_DESCENDANTS)
+            def result = cpsDataService.getDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm1', '/', FetchDescendantsOption.OMIT_DESCENDANTS, ContentType.JSON)
             resourceMeter.stop()
         then: 'expected data exists'
             assert result.xpath == ['/openroadm-devices']

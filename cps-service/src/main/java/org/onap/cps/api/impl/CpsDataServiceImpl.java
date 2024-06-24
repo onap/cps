@@ -139,9 +139,11 @@ public class CpsDataServiceImpl implements CpsDataService {
             description = "Time taken to get data nodes for an xpath")
     public Collection<DataNode> getDataNodes(final String dataspaceName, final String anchorName,
                                              final String xpath,
-                                             final FetchDescendantsOption fetchDescendantsOption) {
+                                             final FetchDescendantsOption fetchDescendantsOption,
+                                             final ContentType contentType) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
-        return cpsDataPersistenceService.getDataNodes(dataspaceName, anchorName, xpath, fetchDescendantsOption);
+        return cpsDataPersistenceService.getDataNodes(dataspaceName, anchorName, xpath, fetchDescendantsOption,
+                contentType);
     }
 
     @Override
@@ -236,7 +238,7 @@ public class CpsDataServiceImpl implements CpsDataService {
         final Anchor sourceAnchor = cpsAnchorService.getAnchor(dataspaceName, sourceAnchorName);
 
         final Collection<DataNode> sourceDataNodes = getDataNodes(dataspaceName,
-                sourceAnchorName, xpath, fetchDescendantsOption);
+                sourceAnchorName, xpath, fetchDescendantsOption, ContentType.JSON);
 
         final Collection<DataNode> sourceDataNodesRebuilt =
                 new ArrayList<>(rebuildSourceDataNodes(xpath, sourceAnchor, sourceDataNodes));
