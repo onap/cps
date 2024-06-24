@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92f6136e_904eb855",
+        "filename": "k6-tests/ncmp/run-all-tests.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-06-24T12:58:03Z",
+      "side": 0,
+      "message": "the renaming of the tests will be done as part of separate patches ??\nI recall Halil/Daniel mentioning that the tests will now be renamed.",
+      "revId": "f582c464c714816dc5c94bf351927b72d0edc313",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
