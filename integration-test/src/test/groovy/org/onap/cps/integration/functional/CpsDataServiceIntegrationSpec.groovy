@@ -53,7 +53,7 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Read bookstore top-level container(s) using #fetchDescendantsOption.'() {
         when: 'get data nodes for bookstore container'
-            def result = objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore', fetchDescendantsOption)
+            def result = objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore', fetchDescendantsOption, ContentType.JSON)
         then: 'the tree consist ouf of #expectNumberOfDataNodes data nodes'
             assert countDataNodesInTree(result) == expectNumberOfDataNodes
         and: 'the top level data node has the expected attribute and value'
@@ -72,7 +72,7 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Read bookstore top-level container(s) using "root" path variations.'() {
         when: 'get data nodes for bookstore container'
-            def result = objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, root, OMIT_DESCENDANTS)
+            def result = objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, root, OMIT_DESCENDANTS, ContentType.JSON)
         then: 'the tree consist correct number of data nodes'
             assert countDataNodesInTree(result) == 2
         and: 'the top level data node has the expected number of leaves'
@@ -83,7 +83,7 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Read data nodes with error: #cpsPath'() {
         when: 'attempt to get data nodes using invalid path'
-            objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, cpsPath, DIRECT_CHILDREN_ONLY)
+            objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, cpsPath, DIRECT_CHILDREN_ONLY, ContentType.JSON)
         then: 'a #expectedException is thrown'
             thrown(expectedException)
         where:
@@ -103,7 +103,7 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Get data nodes error scenario #scenario'() {
         when: 'attempt to retrieve data nodes'
-            objectUnderTest.getDataNodes(dataspaceName, anchorName, xpath, OMIT_DESCENDANTS)
+            objectUnderTest.getDataNodes(dataspaceName, anchorName, xpath, OMIT_DESCENDANTS, ContentType.JSON)
         then: 'expected exception is thrown'
             thrown(expectedException)
         where: 'following data is used'
@@ -119,7 +119,7 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
         when: 'the "root" is deleted'
             objectUnderTest.deleteDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, [ '/' ], now)
         and: 'attempt to get the top level data node'
-            objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore', DIRECT_CHILDREN_ONLY)
+            objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore', DIRECT_CHILDREN_ONLY, ContentType.JSON)
         then: 'an datanode not found exception is thrown'
             thrown(DataNodeNotFoundException)
         cleanup:
@@ -129,7 +129,7 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
     def 'Get whole list data' () {
             def xpathForWholeList = "/bookstore/categories"
         when: 'get data nodes for bookstore container'
-            def dataNodes = objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, xpathForWholeList, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+            def dataNodes = objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, xpathForWholeList, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS, ContentType.JSON)
         then: 'the tree consist ouf of #expectNumberOfDataNodes data nodes'
             assert dataNodes.size() == 5
         and: 'each datanode contains the list node xpath partially in its xpath'
@@ -156,7 +156,7 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
             when: 'the new datanode is saved'
                 objectUnderTest.saveData(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1 , parentXpath, json, now)
             then: 'it can be retrieved by its normalized xpath'
-                def result = objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, normalizedXpathToNode, DIRECT_CHILDREN_ONLY)
+                def result = objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, normalizedXpathToNode, DIRECT_CHILDREN_ONLY, ContentType.JSON)
                 assert result.size() == 1
                 assert result[0].xpath == normalizedXpathToNode
             and: 'there is now one extra datanode'
@@ -226,7 +226,7 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
         when: 'the new list elements are saved'
             objectUnderTest.saveListElements(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1 , '/', json, now)
         then: 'they can be retrieved by their xpaths'
-            objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1 , '/bookstore-address[@bookstore-name="Easons"]', INCLUDE_ALL_DESCENDANTS)
+            objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1 , '/bookstore-address[@bookstore-name="Easons"]', INCLUDE_ALL_DESCENDANTS, ContentType.JSON)
         and: 'there is one extra datanode'
             assert originalCountBookstoreTopLevelListNodes + 1 == countTopLevelListDataNodesInBookstore()
         when: 'the new elements are deleted'
@@ -241,8 +241,8 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
         when: 'the new list elements are saved'
             objectUnderTest.saveListElements(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1 , '/bookstore', json, now)
         then: 'they can be retrieved by their xpaths'
-            objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore/categories[@code="new1"]', DIRECT_CHILDREN_ONLY).size() == 1
-            objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore/categories[@code="new2"]', DIRECT_CHILDREN_ONLY).size() == 1
+            objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore/categories[@code="new1"]', DIRECT_CHILDREN_ONLY, ContentType.JSON).size() == 1
+            objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore/categories[@code="new2"]', DIRECT_CHILDREN_ONLY, ContentType.JSON).size() == 1
         and: 'there are now two extra data nodes'
             assert originalCountBookstoreChildNodes + 2 == countDataNodesInBookstore()
         when: 'the new elements are deleted'
@@ -283,8 +283,8 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
         when: 'the batches of new list element(s) are saved'
             objectUnderTest.saveListElements(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1 , '/bookstore', json, now)
         then: 'they can be retrieved by their xpaths'
-            assert objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore/categories[@code="new1"]', DIRECT_CHILDREN_ONLY).size() == 1
-            assert objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore/categories[@code="new2"]', DIRECT_CHILDREN_ONLY).size() == 1
+            assert objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore/categories[@code="new1"]', DIRECT_CHILDREN_ONLY, ContentType.JSON).size() == 1
+            assert objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore/categories[@code="new2"]', DIRECT_CHILDREN_ONLY, ContentType.JSON).size() == 1
         and: 'there are now two extra data nodes'
             assert originalCountBookstoreChildNodes + 2 == countDataNodesInBookstore()
         when: 'the new elements are deleted'
@@ -335,20 +335,20 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
             def thrown  = thrown(AlreadyDefinedException)
             assert thrown.alreadyDefinedObjectNames == [ "/bookstore/categories[@code='1']" ] as Set
         and: 'the new data node has been added i.e. can be retrieved'
-            assert objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore/categories[@code="new"]', DIRECT_CHILDREN_ONLY).size() == 1
+            assert objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore/categories[@code="new"]', DIRECT_CHILDREN_ONLY, ContentType.JSON).size() == 1
     }
 
     def 'Replace list content #scenario.'() {
         given: 'the bookstore categories 1 and 2 exist and have at least 1 child each '
-            assert countDataNodesInTree(objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore/categories[@code="1"]', DIRECT_CHILDREN_ONLY)) > 1
-            assert countDataNodesInTree(objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore/categories[@code="2"]', DIRECT_CHILDREN_ONLY)) > 1
+            assert countDataNodesInTree(objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore/categories[@code="1"]', DIRECT_CHILDREN_ONLY, ContentType.JSON)) > 1
+            assert countDataNodesInTree(objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore/categories[@code="2"]', DIRECT_CHILDREN_ONLY, ContentType.JSON)) > 1
         when: 'the categories list is replaced with just category "1" and without child nodes (books)'
             def json = '{"categories": [ {"code":"' +categoryCode + '"' + childJson + '} ] }'
             objectUnderTest.replaceListContent(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore', json, now)
         then: 'the new replaced category can be retrieved but has no children anymore'
-            assert expectedNumberOfDataNodes == countDataNodesInTree(objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore/categories[@code="' +categoryCode + '"]', DIRECT_CHILDREN_ONLY))
+            assert expectedNumberOfDataNodes == countDataNodesInTree(objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore/categories[@code="' +categoryCode + '"]', DIRECT_CHILDREN_ONLY, ContentType.JSON))
         when: 'attempt to retrieve a category (code) not in the new list'
-            objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore/categories[@code="2"]', DIRECT_CHILDREN_ONLY)
+            objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore/categories[@code="2"]', DIRECT_CHILDREN_ONLY, ContentType.JSON)
         then: 'a datanode not found exception occurs'
             thrown(DataNodeNotFoundException)
         cleanup:
@@ -369,7 +369,7 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
             def updatedJson = '{"webinfo": {"domain-name":"new leaf data"}}'
             objectUnderTest.updateNodeLeaves(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, "/bookstore", updatedJson, now, ContentType.JSON)
         then: 'the updated data nodes are retrieved'
-            def result = cpsDataService.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, "/bookstore/webinfo", INCLUDE_ALL_DESCENDANTS)
+            def result = cpsDataService.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, "/bookstore/webinfo", INCLUDE_ALL_DESCENDANTS, ContentType.JSON)
         and: 'the leaf value is updated as expected'
             assert result.leaves['domain-name'] == ['new leaf data']
         cleanup:
@@ -398,7 +398,7 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
             json = '{"webinfo": {"domain-name":"newdomain.com" ,"contact-email":"info@newdomain.com" }}'
             objectUnderTest.updateDataNodeAndDescendants(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore', json, now)
         then: 'webinfo has been updated with teh new details'
-            def result = objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore/webinfo', DIRECT_CHILDREN_ONLY)
+            def result = objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore/webinfo', DIRECT_CHILDREN_ONLY, ContentType.JSON)
             result.leaves.'domain-name'[0] == 'newdomain.com'
             result.leaves.'contact-email'[0] == 'info@newdomain.com'
         cleanup:
@@ -410,7 +410,7 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
             def json = '{ "bookstore": { "bookstore-name": "new bookstore" }}'
             objectUnderTest.updateDataNodeAndDescendants(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/', json, now)
         then: 'bookstore name has been updated'
-            def result = objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore', DIRECT_CHILDREN_ONLY)
+            def result = objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore', DIRECT_CHILDREN_ONLY, ContentType.JSON)
             result.leaves.'bookstore-name'[0] == 'new bookstore'
         cleanup:
             restoreBookstoreDataAnchor(1)
@@ -422,7 +422,7 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
         when: 'update is performed for leaves'
             objectUnderTest.updateNodeLeaves(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_2, "/bookstore/categories[@code='1']", jsonData, now, ContentType.JSON)
         then: 'the updated data nodes are retrieved'
-            def result = cpsDataService.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_2, "/bookstore/categories[@code=1]/books[@title='Matilda']", INCLUDE_ALL_DESCENDANTS)
+            def result = cpsDataService.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_2, "/bookstore/categories[@code=1]/books[@title='Matilda']", INCLUDE_ALL_DESCENDANTS, ContentType.JSON)
         and: 'the leaf values are updated as expected'
             assert result[0].leaves['lang'] == 'English/French'
             assert result[0].leaves['price'] == 100
@@ -436,7 +436,7 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
         when: 'update is performed for leaves'
             objectUnderTest.updateNodeLeaves(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_2, "/bookstore/categories[@code='1']", jsonData, now, ContentType.JSON)
         and: 'the updated data nodes are retrieved'
-            def result = cpsDataService.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_2, "/bookstore/categories[@code=1]/books[@title='Matilda']", INCLUDE_ALL_DESCENDANTS)
+            def result = cpsDataService.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_2, "/bookstore/categories[@code=1]/books[@title='Matilda']", INCLUDE_ALL_DESCENDANTS, ContentType.JSON)
         then: 'the leaf-list values have expected order'
             assert result[0].leaves['authors'] == ['beta', 'alpha', 'gamma', 'delta']
         cleanup:
@@ -449,7 +449,7 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
         when: 'update is performed for leaves'
             objectUnderTest.updateNodeLeaves(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_2, "/bookstore/categories[@code='1']", jsonData, now, ContentType.JSON)
         and: 'the updated data nodes are retrieved'
-            def result = cpsDataService.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_2, "/bookstore/categories[@code=1]/books[@title='Matilda']", INCLUDE_ALL_DESCENDANTS)
+            def result = cpsDataService.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_2, "/bookstore/categories[@code=1]/books[@title='Matilda']", INCLUDE_ALL_DESCENDANTS, ContentType.JSON)
         then: 'the leaf-list values have natural order'
             assert result[0].leaves['editions'] == [1988, 2001, 2011, 2022, 2025]
         cleanup:
@@ -640,10 +640,10 @@ class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
     }
 
     def countDataNodesInBookstore() {
-        return countDataNodesInTree(objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore', INCLUDE_ALL_DESCENDANTS))
+        return countDataNodesInTree(objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore', INCLUDE_ALL_DESCENDANTS, ContentType.JSON))
     }
 
     def countTopLevelListDataNodesInBookstore() {
-        return countDataNodesInTree(objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/', INCLUDE_ALL_DESCENDANTS))
+        return countDataNodesInTree(objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/', INCLUDE_ALL_DESCENDANTS, ContentType.JSON))
     }
 }

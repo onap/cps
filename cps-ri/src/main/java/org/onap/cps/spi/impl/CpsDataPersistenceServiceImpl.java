@@ -66,6 +66,7 @@ import org.onap.cps.spi.repository.AnchorRepository;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.FragmentRepository;
 import org.onap.cps.spi.utils.SessionManager;
+import org.onap.cps.utils.ContentType;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -523,7 +524,8 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         description = "Time taken to get a data node")
     public Collection<DataNode> getDataNodes(final String dataspaceName, final String anchorName,
                                              final String xpath,
-                                             final FetchDescendantsOption fetchDescendantsOption) {
+                                             final FetchDescendantsOption fetchDescendantsOption,
+                                             final ContentType contentType) {
         final String targetXpath = getNormalizedXpath(xpath);
         final Collection<DataNode> dataNodes = getDataNodesForMultipleXpaths(dataspaceName, anchorName,
             Collections.singletonList(targetXpath), fetchDescendantsOption);

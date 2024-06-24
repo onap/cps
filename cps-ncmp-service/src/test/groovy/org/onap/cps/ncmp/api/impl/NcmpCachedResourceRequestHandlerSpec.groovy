@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2024 Nordix Foundation
+ *  Modifications Copyright (C) 2024 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -24,6 +25,7 @@ import org.onap.cps.api.CpsDataService
 import org.onap.cps.ncmp.api.NetworkCmProxyQueryService
 import org.onap.cps.ncmp.api.models.CmResourceAddress
 import org.onap.cps.spi.model.DataNode
+import org.onap.cps.utils.ContentType
 import reactor.core.publisher.Mono
 import spock.lang.Specification
 
@@ -53,7 +55,7 @@ class NcmpCachedResourceRequestHandlerSpec extends Specification {
             def cmResourceAddress = new CmResourceAddress('datastore','ch-1','resource')
             def dataNode1 = new DataNode(xpath:'p1')
             def dataNode2 = new DataNode(xpath:'p2')
-            cpsDataService.getDataNodes('datastore','ch-1','resource',OMIT_DESCENDANTS) >> [dataNode1, dataNode2]
+            cpsDataService.getDataNodes('datastore','ch-1','resource',OMIT_DESCENDANTS, ContentType.JSON) >> [dataNode1, dataNode2]
         when: 'getting the resource data'
             def result = objectUnderTest.getResourceDataForCmHandle(cmResourceAddress, 'options', 'topic', 'request id', false, 'authorization')
         then: 'the result is a "Mono" holding just the first data node'
