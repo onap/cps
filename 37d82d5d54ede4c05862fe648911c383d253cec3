@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "437ed502_65cec0ed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-24T13:59:55Z",
+      "side": 1,
+      "message": "NO Code changes, just moved files. 1 or 2 files I have tried to give better names. So just focus on the renamed/moved filed all other files just have import statements updated (automatically) ...\nAgain I have NOT and do NOT intend to update copyright years...",
+      "revId": "37d82d5d54ede4c05862fe648911c383d253cec3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

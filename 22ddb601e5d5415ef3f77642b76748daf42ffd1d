@@ -103,6 +103,30 @@
       },
       "revId": "22ddb601e5d5415ef3f77642b76748daf42ffd1d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fa27662_b6c5e8ae",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/models/CompositeStateBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-24T13:59:55Z",
+      "side": 1,
+      "message": "unfortunately the builder depends on inner static classes from CompositeState which cannot be made public and only be accessed when in the same package.\nUI tried to extract out teh inner classes but that lead to other conflict and decide to give up on that idea and accept that builder(s) live in the models package too...",
+      "parentUuid": "1c6e98e6_c0db78d5",
+      "range": {
+        "startLine": 22,
+        "startChar": 41,
+        "endLine": 22,
+        "endChar": 47
+      },
+      "revId": "22ddb601e5d5415ef3f77642b76748daf42ffd1d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
