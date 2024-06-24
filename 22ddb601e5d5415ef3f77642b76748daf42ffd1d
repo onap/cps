@@ -61,6 +61,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "50476d07_800b9d66",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CompositeStateUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-24T14:02:13Z",
+      "side": 1,
+      "message": "moved \u0027sync\u0027 with inventory for now",
+      "parentUuid": "7c5ce4b8_cbbe3b8f",
+      "range": {
+        "startLine": 21,
+        "startChar": 31,
+        "endLine": 21,
+        "endChar": 40
+      },
+      "revId": "22ddb601e5d5415ef3f77642b76748daf42ffd1d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9e1c6b24_1afb36ae",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/models/CmHandleState.java",
         "patchSetId": 2
@@ -72,6 +96,30 @@
       "writtenOn": "2024-06-11T11:02:32Z",
       "side": 1,
       "message": "move to sync feature in next story",
+      "range": {
+        "startLine": 21,
+        "startChar": 31,
+        "endLine": 21,
+        "endChar": 40
+      },
+      "revId": "22ddb601e5d5415ef3f77642b76748daf42ffd1d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "664ce7c0_ec4e90e3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/models/CmHandleState.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-24T14:02:13Z",
+      "side": 1,
+      "message": "moved to inventory.models",
+      "parentUuid": "9e1c6b24_1afb36ae",
       "range": {
         "startLine": 21,
         "startChar": 31,
