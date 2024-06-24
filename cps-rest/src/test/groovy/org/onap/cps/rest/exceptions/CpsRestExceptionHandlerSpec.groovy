@@ -24,6 +24,7 @@
 
 package org.onap.cps.rest.exceptions
 
+import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.ObjectMapper
 import groovy.json.JsonSlurper
 import org.onap.cps.api.CpsDataspaceService
@@ -117,6 +118,14 @@ class CpsRestExceptionHandlerSpec extends Specification {
             def response = performTestRequest()
         then: 'an HTTP Internal Server Error response is returned with correct message and details'
             assertTestResponse(response, INTERNAL_SERVER_ERROR, errorMessage, errorDetails)
+    }
+
+    def 'Get request with  JSON Processing exception returns HTTP Status Internal Server Error'() {
+        when: 'generic CPS exception is thrown by the service'
+            setupTestException(new JsonProcessingException("null"))
+            def response = performTestRequest()
+        then: 'an HTTP Internal Server Error response is returned with correct message and details'
+            assertTestResponse(response, INTERNAL_SERVER_ERROR,null, "Check logs for details.")
     }
 
     def 'Get request with no data found CPS exception returns HTTP Status Not Found'() {
