@@ -197,11 +197,24 @@ class CpsDataServiceImplSpec extends Specification {
             thrown(DataValidationException)
     }
 
-    def 'Get all data nodes #scenario.'() {
+    def 'Get all data nodes JSON data #scenario.'() {
         given: 'persistence service returns data for GET request'
-            mockCpsDataPersistenceService.getDataNodes(dataspaceName, anchorName, xpath, fetchDescendantsOption) >> dataNode
+            mockCpsDataPersistenceService.getDataNodes(dataspaceName, anchorName, xpath, fetchDescendantsOption, ContentType.JSON) >> dataNode
         expect: 'service returns same data if using same parameters'
-            objectUnderTest.getDataNodes(dataspaceName, anchorName, xpath, fetchDescendantsOption) == dataNode
+            objectUnderTest.getDataNodes(dataspaceName, anchorName, xpath, fetchDescendantsOption, ContentType.JSON) == dataNode
+        where: 'following parameters were used'
+            scenario                                   | xpath   | fetchDescendantsOption                         |   dataNode
+            'with root node xpath and descendants'     | '/'     | FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS | [new DataNodeBuilder().withXpath('/xpath-1').build(), new DataNodeBuilder().withXpath('/xpath-2').build()]
+            'with root node xpath and no descendants'  | '/'     | FetchDescendantsOption.OMIT_DESCENDANTS        | [new DataNodeBuilder().withXpath('/xpath-1').build(), new DataNodeBuilder().withXpath('/xpath-2').build()]
+            'with valid xpath and descendants'         | '/xpath'| FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS | [new DataNodeBuilder().withXpath('/xpath').build()]
+            'with valid xpath and no descendants'      | '/xpath'| FetchDescendantsOption.OMIT_DESCENDANTS        | [new DataNodeBuilder().withXpath('/xpath').build()]
+    }
+
+    def 'Get all data nodes XML data #scenario.'() {
+        given: 'persistence service returns data for GET request'
+            mockCpsDataPersistenceService.getDataNodes(dataspaceName, anchorName, xpath, fetchDescendantsOption, ContentType.XML) >> dataNode
+        expect: 'service returns same data if using same parameters'
+            objectUnderTest.getDataNodes(dataspaceName, anchorName, xpath, fetchDescendantsOption, ContentType.XML) == dataNode
         where: 'following parameters were used'
             scenario                                   | xpath   | fetchDescendantsOption                         |   dataNode
             'with root node xpath and descendants'     | '/'     | FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS | [new DataNodeBuilder().withXpath('/xpath-1').build(), new DataNodeBuilder().withXpath('/xpath-2').build()]
