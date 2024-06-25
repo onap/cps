@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c311af9_8492d84c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-06-25T12:37:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "22f354e5_c4bca614",
+      "range": {
+        "startLine": 111,
+        "startChar": 24,
+        "endLine": 111,
+        "endChar": 66
+      },
+      "revId": "3f0db141d7c921a79b76b2ff4da0bb55bbd93ca2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d4135189_92755f44",
@@ -158,6 +182,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4811f5b7_29244251",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-06-25T12:37:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "559e53c8_d99fd86b",
+      "range": {
+        "startLine": 101,
+        "startChar": 68,
+        "endLine": 101,
+        "endChar": 90
+      },
+      "revId": "3f0db141d7c921a79b76b2ff4da0bb55bbd93ca2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ee8331d9_72a8b3a2",
@@ -171,6 +219,30 @@
       "writtenOn": "2024-06-21T13:39:28Z",
       "side": 1,
       "message": "NB: this is call to the iterable version of validateNameCharacters.\nmaybe best to validate the input as well.",
+      "range": {
+        "startLine": 106,
+        "startChar": 12,
+        "endLine": 106,
+        "endChar": 58
+      },
+      "revId": "3f0db141d7c921a79b76b2ff4da0bb55bbd93ca2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f2b4ef3_8dbbcf93",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-06-25T12:37:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee8331d9_72a8b3a2",
       "range": {
         "startLine": 106,
         "startChar": 12,
@@ -204,6 +276,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2cb006a_4ed30ed2",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 502,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-06-25T12:37:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73b1dea0_214e365e",
+      "range": {
+        "startLine": 502,
+        "startChar": 76,
+        "endLine": 502,
+        "endChar": 77
+      },
+      "revId": "3f0db141d7c921a79b76b2ff4da0bb55bbd93ca2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "44e51f76_23ce1b62",
@@ -217,6 +313,30 @@
       "writtenOn": "2024-06-25T10:44:00Z",
       "side": 1,
       "message": "NB: 2023-2024",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 22
+      },
+      "revId": "3f0db141d7c921a79b76b2ff4da0bb55bbd93ca2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6c9ce16_e8343211",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/CpsDataspaceServiceLimitsPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-06-25T12:37:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44e51f76_23ce1b62",
       "range": {
         "startLine": 3,
         "startChar": 18,
