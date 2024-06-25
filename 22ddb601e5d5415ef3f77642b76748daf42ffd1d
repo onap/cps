@@ -83,6 +83,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "71f9d4d3_a22e03d3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CompositeStateUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-25T10:39:45Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "50476d07_800b9d66",
+      "range": {
+        "startLine": 21,
+        "startChar": 31,
+        "endLine": 21,
+        "endChar": 40
+      },
+      "revId": "22ddb601e5d5415ef3f77642b76748daf42ffd1d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9e1c6b24_1afb36ae",
@@ -167,6 +191,30 @@
       "side": 1,
       "message": "unfortunately the builder depends on inner static classes from CompositeState which cannot be made public and only be accessed when in the same package.\nUI tried to extract out teh inner classes but that lead to other conflict and decide to give up on that idea and accept that builder(s) live in the models package too...",
       "parentUuid": "1c6e98e6_c0db78d5",
+      "range": {
+        "startLine": 22,
+        "startChar": 41,
+        "endLine": 22,
+        "endChar": 47
+      },
+      "revId": "22ddb601e5d5415ef3f77642b76748daf42ffd1d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9a6d8c9_44bffe96",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/models/CompositeStateBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-25T10:39:45Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2fa27662_b6c5e8ae",
       "range": {
         "startLine": 22,
         "startChar": 41,
