@@ -73,6 +73,30 @@
       },
       "revId": "37d82d5d54ede4c05862fe648911c383d253cec3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "60d50898_88756a14",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NcmpRestInputMapper.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-25T10:25:53Z",
+      "side": 1,
+      "message": "I Priyank I can but the scope of this refactor is the service layer only. So If you dont mind I wont do it as part of this commit",
+      "parentUuid": "377d1df4_7c355c55",
+      "range": {
+        "startLine": 40,
+        "startChar": 17,
+        "endLine": 40,
+        "endChar": 36
+      },
+      "revId": "37d82d5d54ede4c05862fe648911c383d253cec3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
