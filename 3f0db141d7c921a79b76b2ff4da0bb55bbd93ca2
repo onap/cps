@@ -1,6 +1,115 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "175630cb_e22b5aa1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-25T10:44:00Z",
+      "side": 1,
+      "message": "Good to me with some NB reviews",
+      "revId": "3f0db141d7c921a79b76b2ff4da0bb55bbd93ca2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22f354e5_c4bca614",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-25T10:44:00Z",
+      "side": 1,
+      "message": "NB: I would extract this into a variable to make it readable easy.",
+      "range": {
+        "startLine": 111,
+        "startChar": 24,
+        "endLine": 111,
+        "endChar": 66
+      },
+      "revId": "3f0db141d7c921a79b76b2ff4da0bb55bbd93ca2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4135189_92755f44",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-25T10:44:00Z",
+      "side": 1,
+      "message": "NB: if we have a method getAnchorsBySchemaSetName than I would suggest to change this method name into getAnchorsByAnchorNames",
+      "range": {
+        "startLine": 122,
+        "startChar": 30,
+        "endLine": 122,
+        "endChar": 40
+      },
+      "revId": "3f0db141d7c921a79b76b2ff4da0bb55bbd93ca2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "465764bd_a50aac04",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsAnchorService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-25T10:44:00Z",
+      "side": 1,
+      "message": "NB: Same as getAnchorsByAnchorNames",
+      "range": {
+        "startLine": 63,
+        "startChar": 23,
+        "endLine": 63,
+        "endChar": 33
+      },
+      "revId": "3f0db141d7c921a79b76b2ff4da0bb55bbd93ca2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "559e53c8_d99fd86b",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-25T10:44:00Z",
+      "side": 1,
+      "message": "NB: irrelevant can be replaced with _ since new Anchor() have not been given any name",
+      "range": {
+        "startLine": 101,
+        "startChar": 68,
+        "endLine": 101,
+        "endChar": 90
+      },
+      "revId": "3f0db141d7c921a79b76b2ff4da0bb55bbd93ca2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ee8331d9_72a8b3a2",
@@ -19,6 +128,52 @@
         "startChar": 12,
         "endLine": 106,
         "endChar": 58
+      },
+      "revId": "3f0db141d7c921a79b76b2ff4da0bb55bbd93ca2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73b1dea0_214e365e",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 502,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-25T10:44:00Z",
+      "side": 1,
+      "message": "NB: could be Data.Operation.DELETE",
+      "range": {
+        "startLine": 502,
+        "startChar": 76,
+        "endLine": 502,
+        "endChar": 77
+      },
+      "revId": "3f0db141d7c921a79b76b2ff4da0bb55bbd93ca2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44e51f76_23ce1b62",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/CpsDataspaceServiceLimitsPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-25T10:44:00Z",
+      "side": 1,
+      "message": "NB: 2023-2024",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 22
       },
       "revId": "3f0db141d7c921a79b76b2ff4da0bb55bbd93ca2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
