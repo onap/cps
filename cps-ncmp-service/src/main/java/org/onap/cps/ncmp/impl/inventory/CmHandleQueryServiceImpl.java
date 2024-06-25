@@ -35,7 +35,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.api.impl.config.embeddedcache.TrustLevelCacheConfig;
-import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel;
+import org.onap.cps.ncmp.api.inventory.models.TrustLevel;
 import org.onap.cps.ncmp.impl.inventory.models.CmHandleState;
 import org.onap.cps.ncmp.impl.inventory.models.ModelledDmiServiceLeaves;
 import org.onap.cps.ncmp.impl.inventory.models.PropertyType;

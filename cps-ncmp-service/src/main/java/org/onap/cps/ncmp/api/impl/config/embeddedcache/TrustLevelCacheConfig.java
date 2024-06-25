@@ -23,7 +23,7 @@ package org.onap.cps.ncmp.api.impl.config.embeddedcache;
 import com.hazelcast.config.MapConfig;
 import java.util.Map;
 import org.onap.cps.cache.HazelcastCacheConfig;
-import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel;
+import org.onap.cps.ncmp.api.inventory.models.TrustLevel;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

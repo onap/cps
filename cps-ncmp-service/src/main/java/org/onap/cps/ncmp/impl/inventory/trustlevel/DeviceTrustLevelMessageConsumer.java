@@ -18,20 +18,21 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.trustlevel;
+package org.onap.cps.ncmp.impl.inventory.trustlevel;
 
 import io.cloudevents.CloudEvent;
 import io.cloudevents.kafka.impl.KafkaHeaders;
 import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.onap.cps.ncmp.api.impl.events.mapper.CloudEventMapper;
+import org.onap.cps.ncmp.api.inventory.models.TrustLevel;
 import org.onap.cps.ncmp.events.trustlevel.DeviceTrustLevel;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class DeviceHeartbeatConsumer {
+public class DeviceTrustLevelMessageConsumer {
 
     private static final String CLOUD_EVENT_ID_HEADER_NAME = "ce_id";
     private final TrustLevelManager trustLevelManager;
