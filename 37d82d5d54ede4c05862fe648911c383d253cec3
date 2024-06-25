@@ -33,6 +33,46 @@
       "message": "You were right. It looks a lot, but it\u0027s all moving and renaming packages 😊",
       "revId": "37d82d5d54ede4c05862fe648911c383d253cec3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6f092bf_1e966315",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-06-25T10:19:24Z",
+      "side": 1,
+      "message": "just one minor comment.\nAlso we have to re-strategize our LayeredArchitectureTest rules.\nThe violations are increasing now.",
+      "revId": "37d82d5d54ede4c05862fe648911c383d253cec3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "377d1df4_7c355c55",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NcmpRestInputMapper.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-06-25T10:19:24Z",
+      "side": 1,
+      "message": "NB: can we move this to org.onap.cps.ncmp.rest.mapper ???",
+      "range": {
+        "startLine": 40,
+        "startChar": 17,
+        "endLine": 40,
+        "endChar": 36
+      },
+      "revId": "37d82d5d54ede4c05862fe648911c383d253cec3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
