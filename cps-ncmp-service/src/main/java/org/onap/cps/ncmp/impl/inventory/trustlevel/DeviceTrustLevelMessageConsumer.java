@@ -18,41 +18,41 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.trustlevel;
+package org.onap.cps.ncmp.impl.inventory.trustlevel;
 
 import io.cloudevents.CloudEvent;
 import io.cloudevents.kafka.impl.KafkaHeaders;
 import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.onap.cps.ncmp.api.impl.events.mapper.CloudEventMapper;
+import org.onap.cps.ncmp.api.inventory.models.TrustLevel;
 import org.onap.cps.ncmp.events.trustlevel.DeviceTrustLevel;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class DeviceHeartbeatConsumer {
+public class DeviceTrustLevelMessageConsumer {
 
     private static final String CLOUD_EVENT_ID_HEADER_NAME = "ce_id";
     private final TrustLevelManager trustLevelManager;
 
     /**
-     * Listening the device heartbeats.
+     * Listening to the device trust level updates.
      *
-     * @param deviceHeartbeatConsumerRecord Device Heartbeat record.
+     * @param consumerRecord Device trust level record.
      */
     @KafkaListener(topics = "${app.dmi.device-heartbeat.topic}",
         containerFactory = "cloudEventConcurrentKafkaListenerContainerFactory")
-    public void heartbeatListener(final ConsumerRecord<String, CloudEvent> deviceHeartbeatConsumerRecord) {
+    public void deviceTrustLevelListener(final ConsumerRecord<String, CloudEvent> consumerRecord) {
 
-        final String cmHandleId = KafkaHeaders.getParsedKafkaHeader(deviceHeartbeatConsumerRecord.headers(),
+        final String cmHandleId = KafkaHeaders.getParsedKafkaHeader(consumerRecord.headers(),
             CLOUD_EVENT_ID_HEADER_NAME);
 
         final DeviceTrustLevel deviceTrustLevel =
-            CloudEventMapper.toTargetEvent(deviceHeartbeatConsumerRecord.value(), DeviceTrustLevel.class);
-        final TrustLevel newDeviceTrustLevel = TrustLevel.valueOf(deviceTrustLevel.getData().getTrustLevel());
-        trustLevelManager.handleUpdateOfDeviceTrustLevel(cmHandleId, newDeviceTrustLevel);
-
+            CloudEventMapper.toTargetEvent(consumerRecord.value(), DeviceTrustLevel.class);
+        final String trustLevelAsString = deviceTrustLevel.getData().getTrustLevel();
+        trustLevelManager.handleUpdateOfDeviceTrustLevel(cmHandleId, TrustLevel.valueOf(trustLevelAsString));
     }
 
 }

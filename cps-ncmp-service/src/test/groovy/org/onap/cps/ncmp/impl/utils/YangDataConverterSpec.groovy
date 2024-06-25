@@ -18,9 +18,8 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.utils
+package org.onap.cps.ncmp.impl.utils
 
-import org.onap.cps.ncmp.impl.utils.YangDataConverter
 import org.onap.cps.spi.model.DataNode
 import spock.lang.Specification
 
@@ -34,8 +33,7 @@ class YangDataConverterSpec extends Specification{
                     leaves: ['name': 'pubProp1', 'value': 'pubValue1'])
             def dataNodeCmHandle = new DataNode(leaves:['id':'sample-id'], childDataNodes:[dataNodeAdditionalProperties, dataNodePublicProperties])
         when: 'the dataNode is converted'
-            def yangModelCmHandle =
-                YangDataConverter.convertCmHandleToYangModel(dataNodeCmHandle)
+            def yangModelCmHandle = YangDataConverter.toYangModelCmHandle(dataNodeCmHandle)
         then: 'the converted object has the correct id'
             assert yangModelCmHandle.id == 'sample-id'
         and: 'the additional (dmi, private) properties are included'
@@ -51,7 +49,7 @@ class YangDataConverterSpec extends Specification{
             def dataNodes = [new DataNode(xpath:'/dmi-registry/cm-handles[@id=\'some-cm-handle\']', leaves: ['id':'some-cm-handle']),
                              new DataNode(xpath:'/dmi-registry/cm-handles[@id=\'another-cm-handle\']', leaves: ['id':'another-cm-handle'])]
         when: 'the data nodes are converted'
-            def yangModelCmHandles = YangDataConverter.convertDataNodesToYangModelCmHandles(dataNodes)
+            def yangModelCmHandles = YangDataConverter.toYangModelCmHandles(dataNodes)
         then: 'verify both have returned and CmHandleIds are correct'
             assert yangModelCmHandles.size() == 2
             assert yangModelCmHandles.id.containsAll(['some-cm-handle', 'another-cm-handle'])

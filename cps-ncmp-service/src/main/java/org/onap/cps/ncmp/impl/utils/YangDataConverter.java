@@ -43,12 +43,12 @@ public class YangDataConverter {
     private static final Pattern cmHandleIdInXpathPattern = Pattern.compile("\\[@id='(.*?)']");
 
     /**
-     * This method convert yang model cm handle to ncmp service cm handle.
+     * This method converts yang model cm handle to ncmp service cm handle.
      * @param yangModelCmHandle the yang model of the cm handle
      * @return ncmp service cm handle
      */
-    public static NcmpServiceCmHandle convertYangModelCmHandleToNcmpServiceCmHandle(
-            final YangModelCmHandle yangModelCmHandle) {
+    public static NcmpServiceCmHandle toNcmpServiceCmHandle(
+        final YangModelCmHandle yangModelCmHandle) {
         final NcmpServiceCmHandle ncmpServiceCmHandle = new NcmpServiceCmHandle();
         final List<YangModelCmHandle.Property> dmiProperties = yangModelCmHandle.getDmiProperties();
         final List<YangModelCmHandle.Property> publicProperties = yangModelCmHandle.getPublicProperties();
@@ -63,23 +63,24 @@ public class YangDataConverter {
     }
 
     /**
-     * This method convert yang model cm handle properties to simple map.
+     * This method converts yang model cm handle properties to simple map.
      * @param properties the yang model cm handle properties
-     * @param propertiesMap the String, String map for the results
+     * @return simple map representing the properties
      */
-    public static void asPropertiesMap(final List<YangModelCmHandle.Property> properties,
-                                       final Map<String, String> propertiesMap) {
+    public static Map<String, String> toPropertiesMap(final List<YangModelCmHandle.Property> properties) {
+        final Map<String, String> propertiesMap = new LinkedHashMap<>(properties.size());
         for (final YangModelCmHandle.Property property : properties) {
             propertiesMap.put(property.getName(), property.getValue());
         }
+        return propertiesMap;
     }
 
     /**
-     * This method convert cm handle data node to yang model cm handle.
+     * This method converts cm handle data node to yang model cm handle.
      * @param cmHandleDataNode the datanode of the cm handle
      * @return yang model cm handle
      */
-    public static YangModelCmHandle convertCmHandleToYangModel(final DataNode cmHandleDataNode) {
+    public static YangModelCmHandle toYangModelCmHandle(final DataNode cmHandleDataNode) {
         final NcmpServiceCmHandle ncmpServiceCmHandle = new NcmpServiceCmHandle();
         final String cmHandleId = cmHandleDataNode.getLeaves().get("id").toString();
         ncmpServiceCmHandle.setCmHandleId(cmHandleId);
@@ -96,18 +97,17 @@ public class YangDataConverter {
     }
 
     /**
-     * This method convert cm handle data nodes to yang model cm handles.
+     * This method converts cm handle data nodes to yang model cm handles.
      * @param cmHandleDataNodes the datanode of the cm handle
      * @return yang model cm handles
      */
-    public static Collection<YangModelCmHandle> convertDataNodesToYangModelCmHandles(
+    public static Collection<YangModelCmHandle> toYangModelCmHandles(
             final Collection<DataNode> cmHandleDataNodes) {
-        return cmHandleDataNodes.stream().map(YangDataConverter::convertCmHandleToYangModel)
-                .collect(Collectors.toList());
+        return cmHandleDataNodes.stream().map(YangDataConverter::toYangModelCmHandle).collect(Collectors.toList());
     }
 
     /**
-     * This method extract cm handle id from xpath of data node.
+     * This method extracts cm handle id from xpath of data node.
      * @param xpath for data node of the cm handle
      * @return cm handle Id
      */
@@ -145,15 +145,11 @@ public class YangDataConverter {
 
     private static void setDmiProperties(final List<YangModelCmHandle.Property> dmiProperties,
                                          final NcmpServiceCmHandle ncmpServiceCmHandle) {
-        final Map<String, String> dmiPropertiesMap = new LinkedHashMap<>(dmiProperties.size());
-        asPropertiesMap(dmiProperties, dmiPropertiesMap);
-        ncmpServiceCmHandle.setDmiProperties(dmiPropertiesMap);
+        ncmpServiceCmHandle.setDmiProperties(toPropertiesMap(dmiProperties));
     }
 
     private static void setPublicProperties(final List<YangModelCmHandle.Property> publicProperties,
                                             final NcmpServiceCmHandle ncmpServiceCmHandle) {
-        final Map<String, String> publicPropertiesMap = new LinkedHashMap<>();
-        asPropertiesMap(publicProperties, publicPropertiesMap);
-        ncmpServiceCmHandle.setPublicProperties(publicPropertiesMap);
+        ncmpServiceCmHandle.setPublicProperties(toPropertiesMap(publicProperties));
     }
 }

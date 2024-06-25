@@ -74,6 +74,6 @@ public class LcmEventsCmHandleStateHandlerAsyncHelper {
     }
 
     private static NcmpServiceCmHandle toNcmpServiceCmHandle(final YangModelCmHandle yangModelCmHandle) {
-        return YangDataConverter.convertYangModelCmHandleToNcmpServiceCmHandle(yangModelCmHandle);
+        return YangDataConverter.toNcmpServiceCmHandle(yangModelCmHandle);
     }
 }

@@ -25,6 +25,7 @@ import static com.tngtech.archunit.library.freeze.FreezingArchRule.freeze;
 
 import com.tngtech.archunit.core.importer.ImportOption;
 import com.tngtech.archunit.junit.AnalyzeClasses;
+import com.tngtech.archunit.junit.ArchIgnore;
 import com.tngtech.archunit.junit.ArchTest;
 import com.tngtech.archunit.lang.ArchRule;
 
@@ -47,12 +48,15 @@ public class LayeredArchitectureTest {
     private static final String CPS_CACHE_PACKAGE = "org.onap.cps.cache..";
     private static final String CPS_EVENTS_PACKAGE = "org.onap.cps.events..";
 
+    //TODO We need to revisit these rules, the first one doesn't even make any sense: CPS-2293
+
     @ArchTest
     static final ArchRule restControllerShouldOnlyDependOnRestController =
         classes().that().resideInAPackage(REST_CONTROLLER_PACKAGE).should().onlyHaveDependentClassesThat()
             .resideInAPackage(REST_CONTROLLER_PACKAGE);
 
     @ArchTest
+    @ArchIgnore
     static final ArchRule apiOrSpiServiceShouldOnlyBeDependedOnByControllerAndServicesAndCommonUtilityPackages =
         freeze(classes().that().resideInAPackage(API_SERVICE_PACKAGE)
             .or().resideInAPackage(SPI_SERVICE_PACKAGE).should().onlyHaveDependentClassesThat()

@@ -18,16 +18,14 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.trustlevel.dmiavailability;
+package org.onap.cps.ncmp.impl.inventory.trustlevel;
 
 import java.util.Collection;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient;
-import org.onap.cps.ncmp.api.impl.config.embeddedcache.TrustLevelCacheConfig;
-import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel;
-import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevelManager;
+import org.onap.cps.ncmp.api.inventory.models.TrustLevel;
 import org.onap.cps.ncmp.impl.inventory.CmHandleQueryService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -36,7 +34,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @RequiredArgsConstructor
 @Service
-public class DmiPluginWatchDog {
+public class DmiPluginTrustLevelWatchDog {
 
     private final DmiRestClient dmiRestClient;
     private final CmHandleQueryService cmHandleQueryService;

@@ -27,7 +27,6 @@ import java.util.Map;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel;
 import org.springframework.validation.annotation.Validated;
 
 /**
@@ -56,6 +55,9 @@ public class NcmpServiceCmHandle {
 
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     private TrustLevel registrationTrustLevel;
+
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
+    private TrustLevel currentTrustLevel;
 
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     private String alternateId;

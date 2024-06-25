@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.trustlevel;
+package org.onap.cps.ncmp.api.inventory.models;
 
 import lombok.Getter;
 

@@ -129,8 +129,7 @@ public class CmHandleRegistrationServicePropertyHandler {
                                               final NcmpServiceCmHandle ncmpServiceCmHandle) {
         final String newDataProducerIdentifier = ncmpServiceCmHandle.getDataProducerIdentifier();
         if (StringUtils.hasText(newDataProducerIdentifier)) {
-            final YangModelCmHandle yangModelCmHandle =
-                YangDataConverter.convertCmHandleToYangModel(cmHandleDataNode);
+            final YangModelCmHandle yangModelCmHandle = YangDataConverter.toYangModelCmHandle(cmHandleDataNode);
             final String existingDataProducerIdentifier = yangModelCmHandle.getDataProducerIdentifier();
             if (StringUtils.hasText(existingDataProducerIdentifier)) {
                 if (!existingDataProducerIdentifier.equals(newDataProducerIdentifier)) {

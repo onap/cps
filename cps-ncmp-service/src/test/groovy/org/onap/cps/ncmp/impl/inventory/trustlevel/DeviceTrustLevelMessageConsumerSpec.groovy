@@ -18,23 +18,24 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.trustlevel
+package org.onap.cps.ncmp.impl.inventory.trustlevel
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.cloudevents.CloudEvent
 import io.cloudevents.core.builder.CloudEventBuilder
 import org.apache.kafka.clients.consumer.ConsumerRecord
+import org.onap.cps.ncmp.api.inventory.models.TrustLevel
 import org.onap.cps.ncmp.events.trustlevel.DeviceTrustLevel
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification
 
 @SpringBootTest(classes = [ObjectMapper, JsonObjectMapper])
-class DeviceHeartbeatConsumerSpec extends Specification {
+class DeviceTrustLevelMessageConsumerSpec extends Specification {
 
     def mockTrustLevelManager = Mock(TrustLevelManager)
 
-    def objectUnderTest = new DeviceHeartbeatConsumer(mockTrustLevelManager)
+    def objectUnderTest = new DeviceTrustLevelMessageConsumer(mockTrustLevelManager)
     def objectMapper = new ObjectMapper()
     def jsonObjectMapper = new JsonObjectMapper(objectMapper)
 
@@ -46,7 +47,7 @@ class DeviceHeartbeatConsumerSpec extends Specification {
             def consumerRecord = new ConsumerRecord<String, CloudEvent>('test-device-heartbeat', 0, 0, 'sample-message-key', eventFromDmi)
             consumerRecord.headers().add('ce_id', objectMapper.writeValueAsBytes('ch-1'))
         when: 'the event is consumed'
-            objectUnderTest.heartbeatListener(consumerRecord)
+            objectUnderTest.deviceTrustLevelListener(consumerRecord)
         then: 'cm handles are stored with correct trust level'
             1 * mockTrustLevelManager.handleUpdateOfDeviceTrustLevel('"ch-1"', TrustLevel.COMPLETE)
     }

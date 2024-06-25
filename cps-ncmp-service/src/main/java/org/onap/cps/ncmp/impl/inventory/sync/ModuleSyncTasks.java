@@ -64,8 +64,7 @@ public class ModuleSyncTasks {
                     = new HashMap<>(cmHandlesAsDataNodes.size());
             for (final DataNode cmHandleAsDataNode : cmHandlesAsDataNodes) {
                 final String cmHandleId = String.valueOf(cmHandleAsDataNode.getLeaves().get("id"));
-                final YangModelCmHandle yangModelCmHandle =
-                        YangDataConverter.convertCmHandleToYangModel(cmHandleAsDataNode);
+                final YangModelCmHandle yangModelCmHandle = YangDataConverter.toYangModelCmHandle(cmHandleAsDataNode);
                 final CompositeState compositeState = inventoryPersistence.getCmHandleState(cmHandleId);
                 final boolean inUpgrade = ModuleOperationsUtils.inUpgradeOrUpgradeFailed(compositeState);
                 try {
