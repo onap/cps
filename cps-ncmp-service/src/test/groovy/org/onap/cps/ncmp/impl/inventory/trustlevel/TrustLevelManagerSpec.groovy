@@ -18,9 +18,10 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.trustlevel
+package org.onap.cps.ncmp.impl.inventory.trustlevel
 
 import org.onap.cps.ncmp.api.impl.events.avc.ncmptoclient.AvcEventPublisher
+import org.onap.cps.ncmp.api.inventory.models.TrustLevel
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import spock.lang.Specification

@@ -21,9 +21,9 @@
 package org.onap.cps.ncmp.rest.controller
 
 import org.mapstruct.factory.Mappers
-import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryServiceParameters
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
+import org.onap.cps.ncmp.api.inventory.models.TrustLevel
 import org.onap.cps.ncmp.rest.model.CmHandleQueryParameters
 import org.onap.cps.ncmp.rest.model.ConditionProperties
 import org.onap.cps.ncmp.rest.model.RestDmiPluginRegistration

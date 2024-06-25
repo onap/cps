@@ -27,7 +27,7 @@ import static org.onap.cps.ncmp.impl.inventory.models.CmHandleQueryConditions.HA
 import static org.onap.cps.ncmp.impl.inventory.models.CmHandleQueryConditions.HAS_ALL_PROPERTIES;
 import static org.onap.cps.ncmp.impl.inventory.models.CmHandleQueryConditions.WITH_CPS_PATH;
 import static org.onap.cps.ncmp.impl.inventory.models.CmHandleQueryConditions.WITH_TRUST_LEVEL;
-import static org.onap.cps.ncmp.impl.utils.YangDataConverter.convertYangModelCmHandleToNcmpServiceCmHandle;
+import static org.onap.cps.ncmp.impl.utils.YangDataConverter.toNcmpServiceCmHandle;
 import static org.onap.cps.spi.FetchDescendantsOption.DIRECT_CHILDREN_ONLY;
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS;
 
@@ -232,13 +232,13 @@ public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHan
         final Collection<NcmpServiceCmHandle> ncmpServiceCmHandles = new ArrayList<>(yangModelcmHandles.size());
 
         yangModelcmHandles.forEach(yangModelcmHandle ->
-            ncmpServiceCmHandles.add(YangDataConverter.convertYangModelCmHandleToNcmpServiceCmHandle(yangModelcmHandle))
+            ncmpServiceCmHandles.add(YangDataConverter.toNcmpServiceCmHandle(yangModelcmHandle))
         );
         return ncmpServiceCmHandles;
     }
 
     private NcmpServiceCmHandle createNcmpServiceCmHandle(final DataNode dataNode) {
-        return convertYangModelCmHandleToNcmpServiceCmHandle(YangDataConverter.convertCmHandleToYangModel(dataNode));
+        return toNcmpServiceCmHandle(YangDataConverter.toYangModelCmHandle(dataNode));
     }
 
     private Collection<String> executeQueries(final CmHandleQueryServiceParameters cmHandleQueryServiceParameters,

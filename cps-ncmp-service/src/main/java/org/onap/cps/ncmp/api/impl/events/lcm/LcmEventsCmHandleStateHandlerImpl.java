@@ -194,7 +194,7 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
     }
 
     private NcmpServiceCmHandle toNcmpServiceCmHandle(final YangModelCmHandle yangModelCmHandle) {
-        return YangDataConverter.convertYangModelCmHandleToNcmpServiceCmHandle(yangModelCmHandle);
+        return YangDataConverter.toNcmpServiceCmHandle(yangModelCmHandle);
     }
 
     @Getter
