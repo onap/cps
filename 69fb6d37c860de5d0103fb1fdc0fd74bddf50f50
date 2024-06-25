@@ -1,0 +1,234 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c87b1ae_5e4431da",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionDelta.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-25T12:18:48Z",
+      "side": 1,
+      "message": "this methdo shoudl NOT be needed see comment in file #4",
+      "range": {
+        "startLine": 79,
+        "startChar": 56,
+        "endLine": 79,
+        "endChar": 93
+      },
+      "revId": "69fb6d37c860de5d0103fb1fdc0fd74bddf50f50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "779f076c_5ec1abe7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionDelta.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-25T12:18:48Z",
+      "side": 1,
+      "message": "clientSubscriptionId",
+      "range": {
+        "startLine": 80,
+        "startChar": 25,
+        "endLine": 80,
+        "endChar": 39
+      },
+      "revId": "69fb6d37c860de5d0103fb1fdc0fd74bddf50f50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15b1fdf2_cb0fab20",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/CmNotificationSubscriptionDelta.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-25T12:18:48Z",
+      "side": 1,
+      "message": "dmi",
+      "range": {
+        "startLine": 83,
+        "startChar": 58,
+        "endLine": 83,
+        "endChar": 93
+      },
+      "revId": "69fb6d37c860de5d0103fb1fdc0fd74bddf50f50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da8c981c_f429e640",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/DmiCmNotificationSubscriptionCacheHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-25T12:18:48Z",
+      "side": 1,
+      "message": "void x(Map \u003cString,Collection\u003cDmiCmSubscriptionKey\u003e\u003e lastSubscriberPerDmi,\n       Map \u003cString,Collection\u003cDmiCmSubscriptionKey\u003e\u003e otherSubscribersPerDmi)\n\n\nSubscriber X \n\nCreate Predicate:\n[ch-1, ch-2]\n[\\a\\b, \\c\\d]\n\n\nNew Class: DmiCmSubscriptionKey : datastore+cm-handle+xpath \n\n1) Map \u003cDMI, Collection\u003cDmiCmSubscriptionKey\u003e\u003e lastSubscriber\n\n- iterate over each DMI and send delete message\n\n2) Map \u003cDMI, Collection\u003cDmiCmSubscriptionKey\u003e\u003e moreSubscribersInvolved\n \n- populate cache with this info and \u0027PENDING\u0027\n\n\n1) DMI-A CH-1 | a\\b | [X]        -\u003e Need to Tell DMI\n2) DMI-B CH-2 | a\\b | [X,Y..]    -\u003e Accepted without Check\n\n3) DMI-A CH-1 | c\\d | [X]        -\u003e Need to Tell DMI\n4) DMI-A CH-2 | c\\d | [X,Z..]    -\u003e Accepted without Check\n\n5) DMI-A CH-1 | f\\g | [Y]        -\u003e Not relevant  \n\n(Create) Cache View\nX - \n\nDelete X \n        DMI-A\n        - (Create) DmiPredicate for CH-1\n        - Status\n              Pending\n        DMI-B\n        - (Create) DmiPredicate for CH-1\n        - Status\n              Pending",
+      "range": {
+        "startLine": 201,
+        "startChar": 62,
+        "endLine": 201,
+        "endChar": 119
+      },
+      "revId": "69fb6d37c860de5d0103fb1fdc0fd74bddf50f50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d99a749_4dfe404f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/DmiCmNotificationSubscriptionCacheHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-25T12:18:48Z",
+      "side": 1,
+      "message": "don\u0027t use word like existing",
+      "range": {
+        "startLine": 205,
+        "startChar": 35,
+        "endLine": 205,
+        "endChar": 43
+      },
+      "revId": "69fb6d37c860de5d0103fb1fdc0fd74bddf50f50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ec4c9ad_be18f0eb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/DmiCmNotificationSubscriptionCacheHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-25T12:18:48Z",
+      "side": 1,
+      "message": "use new DmiCmSubscriptionKey instead",
+      "range": {
+        "startLine": 212,
+        "startChar": 11,
+        "endLine": 215,
+        "endChar": 58
+      },
+      "revId": "69fb6d37c860de5d0103fb1fdc0fd74bddf50f50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86b6259d_0899f1e0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/DmiCmNotificationSubscriptionCacheHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-25T12:18:48Z",
+      "side": 1,
+      "message": "static final DATASTORE_NAME_PATTERN",
+      "range": {
+        "startLine": 231,
+        "startChar": 9,
+        "endLine": 231,
+        "endChar": 81
+      },
+      "revId": "69fb6d37c860de5d0103fb1fdc0fd74bddf50f50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b225cb0b_01998ab8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/DmiCmNotificationSubscriptionCacheHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-25T12:18:48Z",
+      "side": 1,
+      "message": "no need for \u0027if\u0027 as this is our data!",
+      "range": {
+        "startLine": 233,
+        "startChar": 8,
+        "endLine": 233,
+        "endChar": 28
+      },
+      "revId": "69fb6d37c860de5d0103fb1fdc0fd74bddf50f50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d596055d_0ad6acbd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/DmiCmNotificationSubscriptionCacheHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-25T12:18:48Z",
+      "side": 1,
+      "message": "static final CM_HANDLE_NAME_PATTERN",
+      "range": {
+        "startLine": 241,
+        "startChar": 22,
+        "endLine": 241,
+        "endChar": 30
+      },
+      "revId": "69fb6d37c860de5d0103fb1fdc0fd74bddf50f50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f134433_7a2f2b65",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/DmiCmNotificationSubscriptionCacheHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-25T12:18:48Z",
+      "side": 1,
+      "message": "no need for \u0027if\u0027 as this is our data!",
+      "range": {
+        "startLine": 243,
+        "startChar": 8,
+        "endLine": 243,
+        "endChar": 11
+      },
+      "revId": "69fb6d37c860de5d0103fb1fdc0fd74bddf50f50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
