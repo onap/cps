@@ -33,10 +33,10 @@ import org.mapstruct.factory.Mappers
 import org.onap.cps.TestUtils
 import org.onap.cps.events.EventsPublisher
 import org.onap.cps.ncmp.api.impl.NetworkCmProxyFacade
-import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel
 import org.onap.cps.ncmp.api.inventory.NetworkCmProxyInventoryFacade
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
+import org.onap.cps.ncmp.api.inventory.models.TrustLevel
 import org.onap.cps.ncmp.api.models.CmResourceAddress
 import org.onap.cps.ncmp.impl.inventory.DataStoreSyncState
 import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
@@ -108,9 +108,6 @@ class NetworkCmProxyControllerSpec extends Specification {
     DataOperationRequestMapper dataOperationRequestMapper = Mappers.getMapper(DataOperationRequestMapper)
 
     @SpringBean
-    Map<String, TrustLevel> trustLevelPerCmHandle = [:]
-
-    @SpringBean
     DeprecationHelper stubbedDeprecationHelper = Stub()
 
     @Value('${rest.api.ncmp-base-path}/v1')
@@ -123,7 +120,6 @@ class NetworkCmProxyControllerSpec extends Specification {
     @Shared
     def NO_TOPIC = null
     def NO_OPTIONS = null
-    def NO_REQUEST_ID = null
     def NO_AUTH_HEADER = null
 
     def logger = Spy(ListAppender<ILoggingEvent>)
@@ -272,6 +268,7 @@ class NetworkCmProxyControllerSpec extends Specification {
             def cmHandle1 = new NcmpServiceCmHandle()
             cmHandle1.cmHandleId = 'ch-1'
             cmHandle1.publicProperties = [color: 'yellow']
+            cmHandle1.currentTrustLevel = TrustLevel.NONE
             def cmHandle2 = new NcmpServiceCmHandle()
             cmHandle2.cmHandleId = 'ch-2'
             cmHandle2.publicProperties = [color: 'green']
@@ -279,8 +276,6 @@ class NetworkCmProxyControllerSpec extends Specification {
             cmHandle2.moduleSetTag = 'someModuleSetTag'
             cmHandle2.dataProducerIdentifier = 'someDataProducerIdentifier'
             mockNetworkCmProxyInventoryFacade.executeCmHandleSearch(_) >> [cmHandle1, cmHandle2]
-        and: 'map for trust level per cmHandle has value for only one cm handle'
-              trustLevelPerCmHandle.put('ch-1', TrustLevel.NONE)
         when: 'the searches api is invoked'
             def response = mvc.perform(post(searchesEndpoint).contentType(MediaType.APPLICATION_JSON).content(jsonString)).andReturn().response
         then: 'response status returns OK'
@@ -297,11 +292,9 @@ class NetworkCmProxyControllerSpec extends Specification {
             def dmiProperties = [prop: 'some DMI property']
             def publicProperties = ["public prop": 'some public property']
             def compositeState = compositeStateTestObject()
-            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, dmiProperties: dmiProperties, publicProperties: publicProperties, compositeState: compositeState)
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, dmiProperties: dmiProperties, publicProperties: publicProperties, compositeState: compositeState, currentTrustLevel: TrustLevel.COMPLETE)
         and: 'the service method is invoked with the cm handle id'
             1 * mockNetworkCmProxyInventoryFacade.getNcmpServiceCmHandle('some-cm-handle') >> ncmpServiceCmHandle
-        and: 'map for trust level per cmHandle has values'
-            trustLevelPerCmHandle.get('some-cm-handle') >> { TrustLevel.COMPLETE }
         when: 'the cm handle details api is invoked'
             def response = mvc.perform(
                     get(cmHandleDetailsEndpoint)).andReturn().response
@@ -350,16 +343,15 @@ class NetworkCmProxyControllerSpec extends Specification {
             def searchesEndpoint = "$ncmpBasePathV1/ch/searches"
             String jsonString = TestUtils.getResourceFileContent('invalid-cmhandle-search.json')
         and: 'the service method is invoked with module names and returns two cm handles'
-            def cmHandel1 = new NcmpServiceCmHandle()
-            cmHandel1.cmHandleId = 'ch-1'
-            cmHandel1.publicProperties = [color: 'yellow']
-            def cmHandel2 = new NcmpServiceCmHandle()
-            cmHandel2.cmHandleId = 'ch-2'
-            cmHandel2.publicProperties = [color: 'green']
-            mockNetworkCmProxyInventoryFacade.executeCmHandleSearch(_) >> [cmHandel1, cmHandel2]
-        and: 'map for trust level per cmHandle has values'
-            trustLevelPerCmHandle.put('ch-1', TrustLevel.COMPLETE)
-            trustLevelPerCmHandle.put('ch-2', TrustLevel.NONE)
+            def cmHandle1 = new NcmpServiceCmHandle()
+            cmHandle1.cmHandleId = 'ch-1'
+            cmHandle1.publicProperties = [color: 'yellow']
+            cmHandle1.currentTrustLevel = TrustLevel.COMPLETE
+            def cmHandle2 = new NcmpServiceCmHandle()
+            cmHandle2.cmHandleId = 'ch-2'
+            cmHandle2.publicProperties = [color: 'green']
+            cmHandle2.currentTrustLevel = TrustLevel.NONE
+            mockNetworkCmProxyInventoryFacade.executeCmHandleSearch(_) >> [cmHandle1, cmHandle2]
         when: 'the searches api is invoked'
             def response = mvc.perform(post(searchesEndpoint).contentType(MediaType.APPLICATION_JSON).content(jsonString)).andReturn().response
         then: 'an empty cm handle identifier is returned'

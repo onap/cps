@@ -99,7 +99,7 @@ public class WriteRequestExaminer {
     }
 
     private Map<String, String> getPrivatePropertiesFromDataNode(final DataNode dataNode) {
-        final YangModelCmHandle yangModelCmHandle = YangDataConverter.convertCmHandleToYangModel(dataNode);
+        final YangModelCmHandle yangModelCmHandle = YangDataConverter.toYangModelCmHandle(dataNode);
         final Map<String, String> cmHandleDmiProperties = new LinkedHashMap<>();
         yangModelCmHandle.getDmiProperties()
                 .forEach(dmiProperty -> cmHandleDmiProperties.put(dmiProperty.getName(), dmiProperty.getValue()));

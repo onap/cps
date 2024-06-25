@@ -34,15 +34,12 @@ import io.micrometer.core.annotation.Timed;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.NetworkCmProxyFacade;
-import org.onap.cps.ncmp.api.impl.config.embeddedcache.TrustLevelCacheConfig;
 import org.onap.cps.ncmp.api.impl.exception.InvalidDatastoreException;
 import org.onap.cps.ncmp.api.impl.operations.DatastoreType;
-import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel;
 import org.onap.cps.ncmp.api.inventory.NetworkCmProxyInventoryFacade;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryApiParameters;
 import org.onap.cps.ncmp.api.inventory.models.CompositeState;
@@ -63,7 +60,6 @@ import org.onap.cps.ncmp.rest.util.DeprecationHelper;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.ModuleDefinition;
 import org.onap.cps.utils.JsonObjectMapper;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
@@ -83,11 +79,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     private final DeprecationHelper deprecationHelper;
     private final NcmpRestInputMapper ncmpRestInputMapper;
     private final CmHandleStateMapper cmHandleStateMapper;
-
     private final DataOperationRequestMapper dataOperationRequestMapper;
-
-    @Qualifier(TrustLevelCacheConfig.TRUST_LEVEL_PER_CM_HANDLE)
-    private final Map<String, TrustLevel> trustLevelPerCmHandle;
 
     /**
      * Get resource data from datastore.
@@ -268,9 +260,9 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                 deprecationHelper.mapOldConditionProperties(cmHandleQueryParameters);
         final Collection<NcmpServiceCmHandle> cmHandles = networkCmProxyInventoryFacade
                 .executeCmHandleSearch(cmHandleQueryApiParameters);
-        final List<RestOutputCmHandle> outputCmHandles =
+        final List<RestOutputCmHandle> restOutputCmHandles =
                 cmHandles.stream().map(this::toRestOutputCmHandle).collect(Collectors.toList());
-        return ResponseEntity.ok(outputCmHandles);
+        return ResponseEntity.ok(restOutputCmHandles);
     }
 
     /**
@@ -394,18 +386,16 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-
     private RestOutputCmHandle toRestOutputCmHandle(final NcmpServiceCmHandle ncmpServiceCmHandle) {
         final RestOutputCmHandle restOutputCmHandle = new RestOutputCmHandle();
         final CmHandlePublicProperties cmHandlePublicProperties = new CmHandlePublicProperties();
-        final TrustLevel cmHandleCurrentTrustLevel = trustLevelPerCmHandle.get(ncmpServiceCmHandle.getCmHandleId());
         restOutputCmHandle.setCmHandle(ncmpServiceCmHandle.getCmHandleId());
         cmHandlePublicProperties.add(ncmpServiceCmHandle.getPublicProperties());
         restOutputCmHandle.setPublicCmHandleProperties(cmHandlePublicProperties);
         restOutputCmHandle.setState(cmHandleStateMapper.toCmHandleCompositeStateExternalLockReason(
                 ncmpServiceCmHandle.getCompositeState()));
-        if (cmHandleCurrentTrustLevel != null) {
-            restOutputCmHandle.setTrustLevel(cmHandleCurrentTrustLevel.toString());
+        if (ncmpServiceCmHandle.getCurrentTrustLevel() != null) {
+            restOutputCmHandle.setTrustLevel(ncmpServiceCmHandle.getCurrentTrustLevel().toString());
         }
         restOutputCmHandle.setModuleSetTag(ncmpServiceCmHandle.getModuleSetTag());
         restOutputCmHandle.setAlternateId(ncmpServiceCmHandle.getAlternateId());

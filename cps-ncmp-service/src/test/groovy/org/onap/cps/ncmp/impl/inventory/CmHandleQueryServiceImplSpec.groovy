@@ -21,7 +21,7 @@
 
 package org.onap.cps.ncmp.impl.inventory
 
-import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel
+import org.onap.cps.ncmp.api.inventory.models.TrustLevel
 import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.model.DataNode
