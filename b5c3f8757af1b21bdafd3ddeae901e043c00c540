@@ -33,6 +33,29 @@
       "message": "recheck",
       "revId": "b5c3f8757af1b21bdafd3ddeae901e043c00c540",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26a807a4_e8f1bf83",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/NetworkCmProxyInventoryFacade.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-06-26T13:46:36Z",
+      "side": 1,
+      "message": "Package seems inconsistent with others. Shouldn\u0027t it be .api or .impl (but not both)?",
+      "range": {
+        "startLine": 33,
+        "startChar": 7,
+        "endLine": 33,
+        "endChar": 34
+      },
+      "revId": "b5c3f8757af1b21bdafd3ddeae901e043c00c540",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
