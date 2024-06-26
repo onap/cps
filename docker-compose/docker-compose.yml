@@ -47,7 +47,7 @@ services:
     image: ${DOCKER_REPO:-nexus3.onap.org:10003}/onap/cps-and-ncmp:${CPS_VERSION:-latest}
     ports:
       - ${CPS_CORE_PORT:-8883}:8080
-      - ${CPS_CORE_DEBUG_PORT:-5005}:5005
+      # - ${CPS_CORE_DEBUG_PORT:-5005}:5005
     environment:
       CPS_USERNAME: ${CPS_CORE_USERNAME:-cpsuser}
       CPS_PASSWORD: ${CPS_CORE_PASSWORD:-cpsr0cks!}
@@ -58,7 +58,7 @@ services:
       DMI_PASSWORD: ${DMI_PASSWORD:-cpsr0cks!}
       KAFKA_BOOTSTRAP_SERVER: kafka:29092
       notification.enabled: 'true'
-      JAVA_TOOL_OPTIONS: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
+      # JAVA_TOOL_OPTIONS: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
     restart: unless-stopped
     depends_on:
       - dbpostgresql
