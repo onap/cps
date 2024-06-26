@@ -197,15 +197,24 @@ nodesByDataspaceAndAnchor:
       - $ref: 'components.yml#/components/parameters/anchorNameInPath'
       - $ref: 'components.yml#/components/parameters/xpathInQuery'
       - $ref: 'components.yml#/components/parameters/observedTimestampInQuery'
+      - $ref: 'components.yml#/components/parameters/contentTypeHeader'
     requestBody:
       required: true
       content:
         application/json:
           schema:
-            type: object
+            type: string
           examples:
             dataSample:
               $ref: 'components.yml#/components/examples/dataSample'
+        application/xml:
+          schema:
+            type: object
+            xml:
+              name: stores
+          examples:
+            dataSample:
+              $ref: 'components.yml#/components/examples/dataSampleXml'
     responses:
       '200':
         $ref: 'components.yml#/components/responses/Ok'

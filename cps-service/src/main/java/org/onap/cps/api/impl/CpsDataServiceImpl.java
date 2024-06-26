@@ -251,12 +251,12 @@ public class CpsDataServiceImpl implements CpsDataService {
     @Timed(value = "cps.data.service.datanode.descendants.update",
         description = "Time taken to update a data node and descendants")
     public void updateDataNodeAndDescendants(final String dataspaceName, final String anchorName,
-                                             final String parentNodeXpath, final String jsonData,
-                                             final OffsetDateTime observedTimestamp) {
+                                             final String parentNodeXpath, final String nodeData,
+                                             final OffsetDateTime observedTimestamp, final ContentType contentType) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
         final Collection<DataNode> dataNodes =
-                buildDataNodesWithParentNodeXpath(anchor, parentNodeXpath, jsonData, ContentType.JSON);
+                buildDataNodesWithParentNodeXpath(anchor, parentNodeXpath, nodeData, contentType);
         cpsDataPersistenceService.updateDataNodesAndDescendants(dataspaceName, anchorName, dataNodes);
         sendDataUpdatedEvent(anchor, parentNodeXpath, Operation.UPDATE, observedTimestamp);
     }
@@ -266,10 +266,10 @@ public class CpsDataServiceImpl implements CpsDataService {
         description = "Time taken to update a batch of data nodes and descendants")
     public void updateDataNodesAndDescendants(final String dataspaceName, final String anchorName,
                                               final Map<String, String> nodesJsonData,
-                                              final OffsetDateTime observedTimestamp) {
+                                              final OffsetDateTime observedTimestamp, final ContentType contentType) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
-        final Collection<DataNode> dataNodes = buildDataNodesWithParentNodeXpath(anchor, nodesJsonData);
+        final Collection<DataNode> dataNodes = buildDataNodesWithParentNodeXpath(anchor, nodesJsonData, contentType);
         cpsDataPersistenceService.updateDataNodesAndDescendants(dataspaceName, anchorName, dataNodes);
         nodesJsonData.keySet().forEach(nodeXpath ->
                 sendDataUpdatedEvent(anchor, nodeXpath, Operation.UPDATE, observedTimestamp));
@@ -408,11 +408,12 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     private Collection<DataNode> buildDataNodesWithParentNodeXpath(final Anchor anchor,
-                                                                   final Map<String, String> nodesJsonData) {
+                                                                   final Map<String, String> nodesJsonData,
+                                                                   final ContentType contentType) {
         final Collection<DataNode> dataNodes = new ArrayList<>();
         for (final Map.Entry<String, String> nodeJsonData : nodesJsonData.entrySet()) {
             dataNodes.addAll(buildDataNodesWithParentNodeXpath(anchor, nodeJsonData.getKey(),
-                    nodeJsonData.getValue(), ContentType.JSON));
+                    nodeJsonData.getValue(), contentType));
         }
         return dataNodes;
     }
