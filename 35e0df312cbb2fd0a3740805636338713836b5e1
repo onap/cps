@@ -46,6 +46,30 @@
       },
       "revId": "35e0df312cbb2fd0a3740805636338713836b5e1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c032efd_8028ee76",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-26T10:46:28Z",
+      "side": 0,
+      "message": "By specifying replicas: 2, Docker Compose will start 2 instances of cps-and-ncmp, each with a unique container name (cps-and-ncmp_1, cps-and-ncmp_2, etc.).",
+      "parentUuid": "5dca8973_25108d27",
+      "range": {
+        "startLine": 46,
+        "startChar": 4,
+        "endLine": 46,
+        "endChar": 32
+      },
+      "revId": "35e0df312cbb2fd0a3740805636338713836b5e1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

@@ -16,6 +16,356 @@
       "message": "recheck",
       "revId": "b830d1ef683ee919ba20c5acf214db7142badf3e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6010d62b_211afb4b",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 9
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-26T10:46:28Z",
+      "side": 1,
+      "message": "NB: HAZELCAST_DOCKER_ENABLED",
+      "range": {
+        "startLine": 242,
+        "startChar": 23,
+        "endLine": 242,
+        "endChar": 52
+      },
+      "revId": "b830d1ef683ee919ba20c5acf214db7142badf3e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7956975_81766770",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 9
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-26T10:46:28Z",
+      "side": 1,
+      "message": "We can replace it with more proper way like below :\n\n1. Add bom into parent cps\n\n\u003cdependencyManagement\u003e\n    \u003cdependencies\u003e\n        \u003cdependency\u003e\n            \u003cgroupId\u003ecom.hazelcast\u003c/groupId\u003e\n            \u003cartifactId\u003ehazelcast-bom\u003c/artifactId\u003e\n            \u003cversion\u003e5.3.1\u003c/version\u003e\n            \u003ctype\u003epom\u003c/type\u003e\n            \u003cscope\u003eimport\u003c/scope\u003e\n        \u003c/dependency\u003e\n    \u003c/dependencies\u003e\n\u003c/dependencyManagement\u003e\n\n2. Use here like this:\n\u003cdependencies\u003e\n    \u003c!-- Hazelcast Core --\u003e\n    \u003cdependency\u003e\n        \u003cgroupId\u003ecom.hazelcast\u003c/groupId\u003e\n        \u003cartifactId\u003ehazelcast\u003c/artifactId\u003e\n    \u003c/dependency\u003e\n    \n    \u003c!-- Hazelcast Spring Integration --\u003e\n    \u003cdependency\u003e\n        \u003cgroupId\u003ecom.hazelcast\u003c/groupId\u003e\n        \u003cartifactId\u003ehazelcast-spring\u003c/artifactId\u003e\n    \u003c/dependency\u003e\n\u003c/dependencies\u003e",
+      "range": {
+        "startLine": 147,
+        "startChar": 16,
+        "endLine": 147,
+        "endChar": 48
+      },
+      "revId": "b830d1ef683ee919ba20c5acf214db7142badf3e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f382612_ef8b6b1e",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 9
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-26T10:46:28Z",
+      "side": 1,
+      "message": "Is there any specific reason to downgrade it as 5.3.1 is a newer major release of Hazelcast, indicating potential new features, improvements, and changes from the 4.x series?",
+      "range": {
+        "startLine": 149,
+        "startChar": 25,
+        "endLine": 149,
+        "endChar": 30
+      },
+      "revId": "b830d1ef683ee919ba20c5acf214db7142badf3e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7470eefc_7ae482ce",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/model/DmiCmNotificationSubscriptionDetails.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-26T10:46:28Z",
+      "side": 1,
+      "message": "Use random ids :\n\nIf we assign 1L to classes, the serialization mechanism cannot distinguish between different versions of classes.\nThis can cause deserialization to fail if there are changes in the class definition that are not compatible with the serialized object.",
+      "range": {
+        "startLine": 34,
+        "startChar": 49,
+        "endLine": 34,
+        "endChar": 51
+      },
+      "revId": "b830d1ef683ee919ba20c5acf214db7142badf3e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72d02b69_47b0f61f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/model/DmiCmNotificationSubscriptionPredicate.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-26T10:46:28Z",
+      "side": 1,
+      "message": "Use random ids :\n\nIf we assign 1L to classes, the serialization mechanism cannot distinguish between different versions of classes.\nThis can cause deserialization to fail if there are changes in the class definition that are not compatible with the serialized object.",
+      "range": {
+        "startLine": 35,
+        "startChar": 49,
+        "endLine": 35,
+        "endChar": 52
+      },
+      "revId": "b830d1ef683ee919ba20c5acf214db7142badf3e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4013a0d3_3351e1e2",
+        "filename": "cps-service/pom.xml",
+        "patchSetId": 9
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-26T10:46:28Z",
+      "side": 1,
+      "message": "Make use of bom version as into pre. comment",
+      "range": {
+        "startLine": 74,
+        "startChar": 6,
+        "endLine": 74,
+        "endChar": 44
+      },
+      "revId": "b830d1ef683ee919ba20c5acf214db7142badf3e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bcb8c91_4ab0d40c",
+        "filename": "cps-service/src/main/java/org/onap/cps/cache/HazelcastCacheConfig.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-26T10:46:28Z",
+      "side": 1,
+      "message": "Is this word \"cache\" relevant here? as this property enables:\n\n1. Efficiently discover and communicate with other Hazelcast instances running in different containers.\n2. Integrate with Docker\u0027s orchestration tools, like Docker Compose and Kubernetes, for scaling and managing instances.",
+      "range": {
+        "startLine": 47,
+        "startChar": 22,
+        "endLine": 47,
+        "endChar": 27
+      },
+      "revId": "b830d1ef683ee919ba20c5acf214db7142badf3e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a1a00fb_e01269e1",
+        "filename": "cps-service/src/main/java/org/onap/cps/cache/HazelcastCacheConfig.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-26T10:46:28Z",
+      "side": 1,
+      "message": "Is it correct level or should be only for debug?",
+      "range": {
+        "startLine": 100,
+        "startChar": 16,
+        "endLine": 100,
+        "endChar": 20
+      },
+      "revId": "b830d1ef683ee919ba20c5acf214db7142badf3e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2101cc06_3ff83237",
+        "filename": "cps-service/src/main/java/org/onap/cps/cache/HazelcastCacheConfig.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-26T10:46:28Z",
+      "side": 1,
+      "message": "else {\n        log.warn(\"Neither Kubernetes nor Docker discovery mode is enabled\");\n    }",
+      "revId": "b830d1ef683ee919ba20c5acf214db7142badf3e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6a58ea7_a9d5b926",
+        "filename": "docker-compose/nginx.conf",
+        "patchSetId": 9
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-26T10:46:28Z",
+      "side": 1,
+      "message": "Add more server entries here for scaling or load balancing\nDo we need like this:\nserver cps-and-ncmp2:8080;",
+      "range": {
+        "startLine": 22,
+        "startChar": 8,
+        "endLine": 22,
+        "endChar": 33
+      },
+      "revId": "b830d1ef683ee919ba20c5acf214db7142badf3e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "295b9eb5_5959959e",
+        "filename": "docker-compose/nginx.conf",
+        "patchSetId": 9
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-26T10:46:28Z",
+      "side": 1,
+      "message": "Set common proxy headers\n        include proxy_params;",
+      "revId": "b830d1ef683ee919ba20c5acf214db7142badf3e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b2ca3d0_c3ab2145",
+        "filename": "docker-compose/nginx.conf",
+        "patchSetId": 9
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-26T10:46:28Z",
+      "side": 1,
+      "message": "Set common proxy headers:\n\nStep 1: create a file: /etc/nginx/proxy_params\n\nproxy_set_header Host $host;\nproxy_set_header X-Real-IP $remote_addr;\nproxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\nproxy_set_header X-Forwarded-Proto $scheme;\n\nStep 2:\n\nhttp {\n    # Other configurations...\n\n    include /etc/nginx/proxy_params;  # Adjust the path as per your file location\n\n    # Other server or location blocks...\n}",
+      "range": {
+        "startLine": 34,
+        "startChar": 11,
+        "endLine": 37,
+        "endChar": 55
+      },
+      "revId": "b830d1ef683ee919ba20c5acf214db7142badf3e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8993669a_ebfb627f",
+        "filename": "docker-compose/nginx.conf",
+        "patchSetId": 9
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-26T10:46:28Z",
+      "side": 1,
+      "message": "Set common proxy headers:\ninclude proxy_params;",
+      "range": {
+        "startLine": 42,
+        "startChar": 9,
+        "endLine": 45,
+        "endChar": 55
+      },
+      "revId": "b830d1ef683ee919ba20c5acf214db7142badf3e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce976862_b4da7f2e",
+        "filename": "docker-compose/nginx.conf",
+        "patchSetId": 9
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-26T10:46:28Z",
+      "side": 1,
+      "message": "Set common proxy headers:\ninclude proxy_params;",
+      "range": {
+        "startLine": 50,
+        "startChar": 10,
+        "endLine": 53,
+        "endChar": 55
+      },
+      "revId": "b830d1ef683ee919ba20c5acf214db7142badf3e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e88b4772_aeeaffee",
+        "filename": "docker-compose/nginx.conf",
+        "patchSetId": 9
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-26T10:46:28Z",
+      "side": 1,
+      "message": "Set common proxy headers:\ninclude proxy_params;",
+      "range": {
+        "startLine": 58,
+        "startChar": 11,
+        "endLine": 61,
+        "endChar": 55
+      },
+      "revId": "b830d1ef683ee919ba20c5acf214db7142badf3e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "900241b5_611258ff",
+        "filename": "docker-compose/nginx.conf",
+        "patchSetId": 9
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-26T10:46:28Z",
+      "side": 1,
+      "message": "Logging (adjust paths and formats as needed)\n        access_log /var/log/nginx/access.log;\n        error_log /var/log/nginx/error.log;",
+      "revId": "b830d1ef683ee919ba20c5acf214db7142badf3e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
