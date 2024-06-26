@@ -360,11 +360,11 @@ class CpsDataServiceImplSpec extends Specification {
             1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
     }
 
-    def 'Replace data node using singular data node: #scenario.'() {
+    def 'Replace data node using singular JSON data node: #scenario.'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')
         when: 'replace data method is invoked with json data #jsonData and parent node xpath #parentNodeXpath'
-            objectUnderTest.updateDataNodeAndDescendants(dataspaceName, anchorName, parentNodeXpath, jsonData, observedTimestamp)
+            objectUnderTest.updateDataNodeAndDescendants(dataspaceName, anchorName, parentNodeXpath, jsonData, observedTimestamp, ContentType.JSON)
         then: 'the persistence service method is invoked with correct parameters'
             1 * mockCpsDataPersistenceService.updateDataNodesAndDescendants(dataspaceName, anchorName,
                     { dataNode -> dataNode.xpath == expectedNodeXpath})
@@ -377,11 +377,27 @@ class CpsDataServiceImplSpec extends Specification {
             'json list'      | '/test-tree'    | '{"branch": [{"name":"Name1"}, {"name":"Name2"}]}' || ["/test-tree/branch[@name='Name1']", "/test-tree/branch[@name='Name2']"]
     }
 
-    def 'Replace data node using multiple data nodes: #scenario.'() {
+    def 'Replace data node using singular XML data node: #scenario.'() {
+        given: 'schema set for given anchor and dataspace references test-tree model'
+            setupSchemaSetMocks('test-tree.yang')
+        when: 'replace data method is invoked with XML data #xmlData and parent node xpath #parentNodeXpath'
+            objectUnderTest.updateDataNodeAndDescendants(dataspaceName, anchorName, parentNodeXpath, xmlData, observedTimestamp, ContentType.XML)
+        then: 'the persistence service method is invoked with correct parameters'
+            1 * mockCpsDataPersistenceService.updateDataNodesAndDescendants(dataspaceName, anchorName,
+                { dataNode -> dataNode.xpath == expectedNodeXpath })
+        and: 'the CpsValidator is called on the dataspaceName and AnchorName'
+            1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
+        where: 'following parameters were used'
+            scenario       | parentNodeXpath | xmlData                                                                                                                                  || expectedNodeXpath
+            'level 2 node' | '/test-tree'    | '<branch><name>Name</name></branch>'                                                                                                     || ['/test-tree/branch[@name=\'Name\']']
+            'xml list'     | '/test-tree'    | '<test-tree xmlns="org:onap:cps:test:test-tree"><branch><name>Name1</name></branch>' + '<branch><name>Name2</name></branch></test-tree>' || ["/test-tree/branch[@name='Name1']", "/test-tree/branch[@name='Name2']"]
+    }
+
+    def 'Replace data node using multiple JSON data nodes: #scenario.'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')
         when: 'replace data method is invoked with a map of xpaths and json data'
-            objectUnderTest.updateDataNodesAndDescendants(dataspaceName, anchorName, nodesJsonData, observedTimestamp)
+            objectUnderTest.updateDataNodesAndDescendants(dataspaceName, anchorName, nodesJsonData, observedTimestamp, ContentType.JSON)
         then: 'the persistence service method is invoked with correct parameters'
             1 * mockCpsDataPersistenceService.updateDataNodesAndDescendants(dataspaceName, anchorName,
                 { dataNode -> dataNode.xpath == expectedNodeXpath})
@@ -394,13 +410,30 @@ class CpsDataServiceImplSpec extends Specification {
             'json list'      | ['/test-tree' : '{"branch": [{"name":"Name1"}, {"name":"Name2"}]}']                                                  || ["/test-tree/branch[@name='Name1']", "/test-tree/branch[@name='Name2']"]
     }
 
+    def 'Replace data node using multiple XML data nodes: #scenario.'() {
+        given: 'schema set for given anchor and dataspace references test-tree model'
+            setupSchemaSetMocks('test-tree.yang')
+        when: 'replace data method is invoked with a map of xpaths and XML data'
+            objectUnderTest.updateDataNodesAndDescendants(dataspaceName, anchorName, nodesXmlData, observedTimestamp, ContentType.XML)
+        then: 'the persistence service method is invoked with correct parameters'
+            1 * mockCpsDataPersistenceService.updateDataNodesAndDescendants(dataspaceName, anchorName,
+                { dataNode -> dataNode.xpath == expectedNodeXpath })
+        and: 'the CpsValidator is called on the dataspaceName and AnchorName'
+            1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
+        where: 'following parameters were used'
+            scenario         | nodesXmlData                                                                                                                                             || expectedNodeXpath
+            'top level node' | ['/test-tree': '<branch><name>Name</name></branch>']                                                                                                     || ["/test-tree/branch[@name='Name']"]
+            'level 2 node'   | ['/test-tree': '<branch><name>Name</name></branch>', '/test-tree/branch[@name=\'Name\']': '<nest><name>nestName</name></nest>']                          || ["/test-tree/branch[@name='Name']", "/test-tree/branch[@name='Name']/nest"]
+            'xml list'       | ['/test-tree': '<test-tree xmlns="org:onap:cps:test:test-tree"><branch><name>Name1</name></branch>' + '<branch><name>Name2</name></branch></test-tree>'] || ["/test-tree/branch[@name='Name1']", "/test-tree/branch[@name='Name2']"]
+    }
+
     def 'Replace data node with concurrency exception in persistence layer.'() {
         given: 'the persistence layer throws an concurrency exception'
             def originalException = new ConcurrencyException('message', 'details')
             mockCpsDataPersistenceService.updateDataNodesAndDescendants(*_) >> { throw originalException }
             setupSchemaSetMocks('test-tree.yang')
         when: 'attempt to replace data node'
-            objectUnderTest.updateDataNodesAndDescendants(dataspaceName, anchorName, ['/' : '{"test-tree": {}}'] , observedTimestamp)
+            objectUnderTest.updateDataNodesAndDescendants(dataspaceName, anchorName, ['/' : '{"test-tree": {}}'] , observedTimestamp, ContentType.JSON)
         then: 'the same exception is thrown up'
             def thrownUp = thrown(ConcurrencyException)
             assert thrownUp == originalException
