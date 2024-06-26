@@ -16,6 +16,299 @@
       "message": "recheck",
       "revId": "3930342ee119af710844eed8c6470fa8845c6a4d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf834f1b_b75845b6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-26T08:39:47Z",
+      "side": 1,
+      "message": "I think we should try to use URL consistently instead of URI/URL mix...",
+      "revId": "3930342ee119af710844eed8c6470fa8845c6a4d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76f622e6_7eba4ec5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/client/DmiRestClient.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-26T08:39:47Z",
+      "side": 1,
+      "message": "can thsi removed now it is proven it is working?",
+      "range": {
+        "startLine": 145,
+        "startChar": 0,
+        "endLine": 149,
+        "endChar": 0
+      },
+      "revId": "3930342ee119af710844eed8c6470fa8845c6a4d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d114b33b_6dc45243",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-26T08:39:47Z",
+      "side": 1,
+      "message": "this method name is not correct anymore",
+      "range": {
+        "startLine": 93,
+        "startChar": 60,
+        "endLine": 93,
+        "endChar": 81
+      },
+      "revId": "3930342ee119af710844eed8c6470fa8845c6a4d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23dc243c_7aedf4ad",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/url/builder/DmiServiceUrlBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-26T08:39:47Z",
+      "side": 1,
+      "message": "combine into one line so need for awkward variabel name\n\nurlTemplate \u003d dmiServcieName + build().toUriString();",
+      "range": {
+        "startLine": 115,
+        "startChar": 1,
+        "endLine": 116,
+        "endChar": 72
+      },
+      "revId": "3930342ee119af710844eed8c6470fa8845c6a4d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7f849d8_cb449b90",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/url/builder/DmiServiceUrlBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-26T08:39:47Z",
+      "side": 1,
+      "message": "NB: what exactly is correct URL or URI ?!\nIn any case I think these should be the same for these two variables:\n\nGoogle said: \"The main difference between a URL and a URI is that a URL specifies the location of a resource on the internet, while a URI can be used to identify any type of resource, not just those on the internet. URI is usually used in XML, tag library files, and other files, such as JSTL and XSTL.\"",
+      "range": {
+        "startLine": 117,
+        "startChar": 62,
+        "endLine": 117,
+        "endChar": 65
+      },
+      "revId": "3930342ee119af710844eed8c6470fa8845c6a4d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee02a13a_d8aa9e9a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/url/builder/UriTemplateParameters.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-26T08:39:47Z",
+      "side": 1,
+      "message": "Url",
+      "range": {
+        "startLine": 29,
+        "startChar": 14,
+        "endLine": 29,
+        "endChar": 17
+      },
+      "revId": "3930342ee119af710844eed8c6470fa8845c6a4d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffb78430_6234e8b6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/url/builder/UriTemplateParameters.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-26T08:39:47Z",
+      "side": 1,
+      "message": "Base don my last comment in prev file I think we shoudl use URL",
+      "range": {
+        "startLine": 29,
+        "startChar": 43,
+        "endLine": 29,
+        "endChar": 46
+      },
+      "revId": "3930342ee119af710844eed8c6470fa8845c6a4d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b76c53b_33281890",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DmiSubJobRequestHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-26T08:39:47Z",
+      "side": 1,
+      "message": "get UrlTemplateParameters",
+      "range": {
+        "startLine": 82,
+        "startChar": 34,
+        "endLine": 82,
+        "endChar": 51
+      },
+      "revId": "3930342ee119af710844eed8c6470fa8845c6a4d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77a89d58_0d858bb7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/client/DmiRestClientSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-26T08:39:47Z",
+      "side": 1,
+      "message": "use class name",
+      "range": {
+        "startLine": 55,
+        "startChar": 17,
+        "endLine": 55,
+        "endChar": 39
+      },
+      "revId": "3930342ee119af710844eed8c6470fa8845c6a4d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1254d1b_5cc73055",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/DmiWebClientConfigurationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-26T08:39:47Z",
+      "side": 1,
+      "message": "why not use the real one!",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 5
+      },
+      "revId": "3930342ee119af710844eed8c6470fa8845c6a4d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01f8e77d_76336891",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiDataOperationsSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-26T08:39:47Z",
+      "side": 1,
+      "message": "use Groovy GString do embedd variabel in String",
+      "range": {
+        "startLine": 197,
+        "startChar": 16,
+        "endLine": 197,
+        "endChar": 34
+      },
+      "revId": "3930342ee119af710844eed8c6470fa8845c6a4d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50bbbbb0_c01d5537",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiDataOperationsSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-26T08:39:47Z",
+      "side": 1,
+      "message": "instead of a big if else with loads of duplation just add this conditionally!",
+      "range": {
+        "startLine": 198,
+        "startChar": 129,
+        "endLine": 198,
+        "endChar": 147
+      },
+      "revId": "3930342ee119af710844eed8c6470fa8845c6a4d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bd66f00_e3960b02",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/operations/DmiDataOperationsSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-26T08:39:47Z",
+      "side": 1,
+      "message": "same as above just add this condiitonally (simply put operation)",
+      "range": {
+        "startLine": 201,
+        "startChar": 135,
+        "endLine": 201,
+        "endChar": 161
+      },
+      "revId": "3930342ee119af710844eed8c6470fa8845c6a4d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
