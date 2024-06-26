@@ -59,6 +59,23 @@ public class DmiCmNotificationSubscriptionCacheHandler {
         cmNotificationSubscriptionCache.put(subscriptionId, createDmiCmNotificationSubscriptionsPerDmi(predicates));
     }
 
+<<<<<<< Updated upstream
+=======
+
+    /**
+     * Adds existing subscription to the subscription cache.
+     *
+     * @param subscriptionId    subscription id
+     */
+    public void add(final String subscriptionId) {
+        final Map<String, DmiCmNotificationSubscriptionDetails> dmiCmNotificationSubscriptionPerDmi =
+                getAllDmiCmNotificationSubscriptionsPerDmiForSubscription(subscriptionId);
+        cmNotificationSubscriptionCache.put(subscriptionId, dmiCmNotificationSubscriptionPerDmi);
+        final DmiCmSubscriptionTuple dmiCmNotificationTuplePerDmi = getDmiCmNotificationTuplePerDmi(subscriptionId);
+
+    }
+
+>>>>>>> Stashed changes
     /**
      * Get cm notification subscription cache entry via subscription id.
      *
@@ -183,6 +200,115 @@ public class DmiCmNotificationSubscriptionCacheHandler {
         }
     }
 
+<<<<<<< Updated upstream
+=======
+    private Map<String, DmiCmNotificationSubscriptionDetails> getAllDmiCmNotificationSubscriptionsPerDmiForSubscription(
+            final String subscriptionId) {
+        final Map<String, DmiCmNotificationSubscriptionDetails> dmiCmNotificationSubscriptionDetailsPerDmi =
+                new HashMap<>();
+        final Collection<DataNode> subscriptionNodes =
+                cmNotificationSubscriptionPersistenceService.getAllNodesForSubscriptionId(subscriptionId);
+        for (final DataNode existingDataNode: subscriptionNodes) {
+            final DatastoreType datastoreType = extractCmSubscriptionDatastoreFromXpath(existingDataNode.getXpath());
+            final String cmHandleId = extractCmSubscriptionCmHandleIdFromXpath(existingDataNode.getXpath());
+            final String xpath = existingDataNode.getLeaves().get("xpath").toString();
+            final String dmiServiceName = inventoryPersistence.getYangModelCmHandle(cmHandleId).getDmiServiceName();
+            final DmiCmNotificationSubscriptionPredicate dmiCmNotificationSubscriptionPredicate =
+                    new DmiCmNotificationSubscriptionPredicate(Set.of(cmHandleId), datastoreType, Set.of(xpath));
+            if (dmiCmNotificationSubscriptionDetailsPerDmi.containsKey(dmiServiceName)) {
+                dmiCmNotificationSubscriptionDetailsPerDmi.get(dmiServiceName)
+                        .getDmiCmNotificationSubscriptionPredicates().add(dmiCmNotificationSubscriptionPredicate);
+            } else {
+                final List<DmiCmNotificationSubscriptionPredicate> dmiCmNotificationSubscriptionPredicateList =
+                        new ArrayList<>();
+                dmiCmNotificationSubscriptionPredicateList.add(dmiCmNotificationSubscriptionPredicate);
+                final DmiCmNotificationSubscriptionDetails dmiCmNotificationSubscriptionDetails =
+                        new DmiCmNotificationSubscriptionDetails(dmiCmNotificationSubscriptionPredicateList,
+                                PENDING);
+                dmiCmNotificationSubscriptionDetailsPerDmi.put(dmiServiceName, dmiCmNotificationSubscriptionDetails);
+            }
+        }
+        return dmiCmNotificationSubscriptionDetailsPerDmi;
+    }
+
+    private DmiCmSubscriptionTuple getDmiCmNotificationTuplePerDmi(final String clientSubscriptionId) {
+        final Map<String, Collection<DmiCmSubscriptionKey>> lastSubscibersPerDmi = new HashMap<>();
+        final Map<String, Collection<DmiCmSubscriptionKey>> otherSubscibersPerDmi = new HashMap<>();
+        final Collection<DataNode> subscriptionNodes =
+                cmNotificationSubscriptionPersistenceService.getAllNodesForSubscriptionId(clientSubscriptionId);
+
+        for (final DataNode subscriptionNode : subscriptionNodes) {
+            final DatastoreType datastoreType = extractCmSubscriptionDatastoreFromXpath(subscriptionNode.getXpath());
+            final String cmHandleId = extractCmSubscriptionCmHandleIdFromXpath(subscriptionNode.getXpath());
+            final String xpath = subscriptionNode.getLeaves().get("xpath").toString();
+            final String dmiServiceName = inventoryPersistence.getYangModelCmHandle(cmHandleId).getDmiServiceName();
+            final List<String> subscribers = (List) subscriptionNode.getLeaves().get("subscriptionId");
+            final DmiCmSubscriptionKey dmiCmSubscriptionKey =
+                    new DmiCmSubscriptionKey(datastoreType.getDatastoreName(), cmHandleId, xpath);
+            if (subscribers.size() > 1) {
+                if (otherSubscibersPerDmi.containsKey(dmiServiceName)) {
+                    otherSubscibersPerDmi.get(dmiServiceName).add(dmiCmSubscriptionKey);
+                } else {
+                    otherSubscibersPerDmi.put(dmiServiceName, Set.of(dmiCmSubscriptionKey));
+                }
+            } else {
+                if (lastSubscibersPerDmi.containsKey(dmiServiceName)) {
+                    lastSubscibersPerDmi.get(dmiServiceName).add(dmiCmSubscriptionKey);
+                } else {
+                    lastSubscibersPerDmi.put(dmiServiceName, Set.of(dmiCmSubscriptionKey));
+                }
+            }
+        }
+        final DmiCmSubscriptionTuple dmiCmSubscriptionTuple =
+                new DmiCmSubscriptionTuple(lastSubscibersPerDmi, otherSubscibersPerDmi);
+        return dmiCmSubscriptionTuple;
+    }
+
+    private DmiCmSubscriptionTuple getDmiCmNotificationTuplePerDmi1(final String clientSubscriptionId) {
+        final Map<String, Collection<DmiCmSubscriptionKey>> lastSubscribersPerDmi = new HashMap<>();
+        final Map<String, Collection<DmiCmSubscriptionKey>> otherSubscribersPerDmi = new HashMap<>();
+        final Collection<DataNode> subscriptionNodes =
+                cmNotificationSubscriptionPersistenceService.getAllNodesForSubscriptionId(clientSubscriptionId);
+
+        for (final DataNode subscriptionNode : subscriptionNodes) {
+            final String xpath = subscriptionNode.getXpath();
+            final DatastoreType datastoreType = extractCmSubscriptionDatastoreFromXpath(xpath);
+            final String cmHandleId = extractCmSubscriptionCmHandleIdFromXpath(xpath);
+            final String dmiServiceName = inventoryPersistence.getYangModelCmHandle(cmHandleId).getDmiServiceName();
+            final List<String> subscribers = (List<String>) subscriptionNode.getLeaves().get("subscriptionId");
+            final DmiCmSubscriptionKey dmiCmSubscriptionKey =
+                    new DmiCmSubscriptionKey(datastoreType.getDatastoreName(), cmHandleId, xpath);
+
+            final Map<String, Collection<DmiCmSubscriptionKey>> targetMap =
+                    subscribers.size() > 1 ? otherSubscribersPerDmi : lastSubscribersPerDmi;
+
+            targetMap.computeIfAbsent(dmiServiceName, k -> new HashSet<>()).add(dmiCmSubscriptionKey);
+        }
+
+        return new DmiCmSubscriptionTuple(lastSubscribersPerDmi, otherSubscribersPerDmi);
+    }
+
+
+    private DatastoreType extractCmSubscriptionDatastoreFromXpath(final String xpath) {
+        final Pattern pattern = Pattern.compile("/datastore\\[@name='(.*?)'\\]");
+        final Matcher matcher = pattern.matcher(xpath);
+        if (matcher.find()) {
+            final String datastoreName = matcher.group(1);
+            return DatastoreType.fromDatastoreName(datastoreName);
+        }
+        return null;
+    }
+
+    private String extractCmSubscriptionCmHandleIdFromXpath(final String xpath) {
+        final Pattern pattern = Pattern.compile("/cm-handle\\[@id='(.*?)'\\]");
+        final Matcher matcher = pattern.matcher(xpath);
+        if (matcher.find()) {
+            return matcher.group(1);
+        }
+        return null;
+    }
+
+>>>>>>> Stashed changes
     private void updateDmiCmNotificationSubscriptionDetailsPerDmi(
             final String dmiServiceName,
             final DmiCmNotificationSubscriptionPredicate dmiCmNotificationSubscriptionPredicate,

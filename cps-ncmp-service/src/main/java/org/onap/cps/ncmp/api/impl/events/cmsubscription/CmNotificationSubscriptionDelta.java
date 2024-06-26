@@ -21,8 +21,13 @@
 package org.onap.cps.ncmp.api.impl.events.cmsubscription;
 
 import java.util.ArrayList;
+<<<<<<< Updated upstream
+=======
+import java.util.HashMap;
+>>>>>>> Stashed changes
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.DmiCmNotificationSubscriptionPredicate;
@@ -69,6 +74,64 @@ public class CmNotificationSubscriptionDelta {
         return delta;
     }
 
+<<<<<<< Updated upstream
+=======
+    /**
+     * Get the delta for a given predicates list with shared subscriptions.
+     *
+     * @param dmiCmNotificationSubscriptionPredicates list of DmiCmNotificationSubscriptionPredicates
+     * @return delta list of DmiCmNotificationSubscriptionPredicates
+     */
+    public List<DmiCmNotificationSubscriptionPredicate> getPredicatesUsedOnlyBySubscriptionId(
+            final String subscriptionId,
+            final List<DmiCmNotificationSubscriptionPredicate> dmiCmNotificationSubscriptionPredicates) {
+        final Map<DmiCmSubscriptionKey, Integer> dmiCmSubscriptionKeyMap =
+                arrangeToFindTheLastLightsOut(dmiCmNotificationSubscriptionPredicates);
+        final List<DmiCmNotificationSubscriptionPredicate> delta = new ArrayList<>();
+        for (final DmiCmNotificationSubscriptionPredicate cmNotificationSubscriptionPredicate:
+                dmiCmNotificationSubscriptionPredicates) {
+
+            final Set<String> targetCmHandleIds = new HashSet<>();
+            final Set<String> xpaths = new HashSet<>();
+            final DatastoreType datastoreType = cmNotificationSubscriptionPredicate.getDatastoreType();
+
+            for (final String cmHandleId : cmNotificationSubscriptionPredicate.getTargetCmHandleIds()) {
+                for (final String xpath : cmNotificationSubscriptionPredicate.getXpaths()) {
+                    if (dmiCmSubscriptionKeyMap.get(
+                            new DmiCmSubscriptionKey(datastoreType.getDatastoreName(), cmHandleId, xpath)) == 1) {
+                        xpaths.add(xpath);
+                        targetCmHandleIds.add(cmHandleId);
+                    }
+                }
+            }
+            populateValidDmiCmNotificationSubscriptionPredicateDelta(targetCmHandleIds, xpaths, datastoreType, delta);
+        }
+        return delta;
+    }
+
+    private Map<DmiCmSubscriptionKey, Integer> arrangeToFindTheLastLightsOut(
+            final List<DmiCmNotificationSubscriptionPredicate> dmiCmNotificationSubscriptionPredicates) {
+
+        final Map<DmiCmSubscriptionKey, Integer> map = new HashMap<>();
+        for (final DmiCmNotificationSubscriptionPredicate dmiCmNotificationSubscriptionPredicate :
+                dmiCmNotificationSubscriptionPredicates) {
+            final DatastoreType datastoreType = dmiCmNotificationSubscriptionPredicate.getDatastoreType();
+            for (final String cmHandleId : dmiCmNotificationSubscriptionPredicate.getTargetCmHandleIds()) {
+                for (final String xpath : dmiCmNotificationSubscriptionPredicate.getXpaths()) {
+                    final DmiCmSubscriptionKey dmiSubscriptionKey =
+                            new DmiCmSubscriptionKey(datastoreType.getDatastoreName(), cmHandleId, xpath);
+                    if (map.containsKey(dmiSubscriptionKey)) {
+                        map.compute(dmiSubscriptionKey, (k, i) -> i + 1);
+                    } else {
+                        map.put(dmiSubscriptionKey, 1);
+                    }
+                }
+            }
+        }
+        return map;
+    }
+
+>>>>>>> Stashed changes
     private void populateValidDmiCmNotificationSubscriptionPredicateDelta(final Set<String> targetCmHandleIds,
             final Set<String> xpaths, final DatastoreType datastoreType,
             final List<DmiCmNotificationSubscriptionPredicate> delta) {
