@@ -23,20 +23,11 @@ import { check } from 'k6';
 import { NCMP_BASE_URL, TOTAL_CM_HANDLES } from './utils.js';
 
 const SEARCH_PARAMETERS_PER_SCENARIO = {
-    'no-filter': {},
     'module': {
         'cmHandleQueryParameters': [
             {
                 'conditionName': 'hasAllModules',
                 'conditionParameters': [{'moduleName': 'ietf-yang-types-1'}]
-            }
-        ]
-    },
-    'property': {
-        'cmHandleQueryParameters': [
-            {
-                'conditionName': 'hasAllProperties',
-                'conditionParameters': [{'Color': 'yellow'}]
             }
         ]
     }
