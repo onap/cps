@@ -244,6 +244,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "eaf606f2_cdbfe08e",
+        "filename": "docker-compose/nginx.conf",
+        "patchSetId": 9
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-06-26T14:45:14Z",
+      "side": 1,
+      "message": "Yes, this looks a bit funny to me too. But it does work!\nI assume docker is using round-robin on both IP addresses of instances when resolving DNS entry for \u0027cps-and-ncmp\u0027 (in which case nginx simply acts as a proxy/gateway, not a load balancer).\n\nSo I suppose it could either be one entry:\n\n    server cps-and-ncmp:8080;\n\nor two:\n\n    server docker-compose_cps-and-ncmp_1:8080;\n    server docker-compose_cps-and-ncmp_2:8080;\n\nNot sure of any pros/cons though",
+      "parentUuid": "e6a58ea7_a9d5b926",
+      "range": {
+        "startLine": 22,
+        "startChar": 8,
+        "endLine": 22,
+        "endChar": 33
+      },
+      "revId": "b830d1ef683ee919ba20c5acf214db7142badf3e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "295b9eb5_5959959e",
         "filename": "docker-compose/nginx.conf",
         "patchSetId": 9
