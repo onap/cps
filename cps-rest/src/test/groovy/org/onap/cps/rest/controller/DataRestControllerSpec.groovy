@@ -449,7 +449,7 @@ class DataRestControllerSpec extends Specification {
             'with invalid observed-timestamp' | 'invalid'                      || 0                | HttpStatus.BAD_REQUEST
     }
 
-    def 'Replace data node tree: #scenario.'() {
+    def 'Replace data node tree JSON Data: #scenario.'() {
         given: 'endpoint to replace node'
             def endpoint = "$dataNodeBaseEndpointV1/anchors/$anchorName/nodes"
         when: 'put request is performed'
@@ -461,7 +461,29 @@ class DataRestControllerSpec extends Specification {
                         .param('xpath', inputXpath))
                     .andReturn().response
         then: 'the service method is invoked with expected parameters'
-            1 * mockCpsDataService.updateDataNodeAndDescendants(dataspaceName, anchorName, xpathServiceParameter, expectedJsonData, noTimestamp)
+            1 * mockCpsDataService.updateDataNodeAndDescendants(dataspaceName, anchorName, xpathServiceParameter, expectedJsonData, noTimestamp, ContentType.JSON)
+        and: 'response status indicates success'
+            response.status == HttpStatus.OK.value()
+        where:
+            scenario               | inputXpath    || xpathServiceParameter
+            'root node by default' | ''            || '/'
+            'root node by choice'  | '/'           || '/'
+            'some xpath by parent' | '/some/xpath' || '/some/xpath'
+    }
+
+    def 'Replace data node tree XML Data: #scenario.'() {
+        given: 'endpoint to replace node'
+            def endpoint = "$dataNodeBaseEndpointV1/anchors/$anchorName/nodes"
+        when: 'put request is performed'
+            def response =
+                mvc.perform(
+                    put(endpoint)
+                        .contentType(MediaType.APPLICATION_XML)
+                        .content(requestBodyJson)
+                        .param('xpath', inputXpath))
+                    .andReturn().response
+        then: 'the service method is invoked with expected parameters'
+            1 * mockCpsDataService.updateDataNodeAndDescendants(dataspaceName, anchorName, xpathServiceParameter, expectedJsonData, noTimestamp, ContentType.XML)
         and: 'response status indicates success'
             response.status == HttpStatus.OK.value()
         where:
@@ -485,7 +507,7 @@ class DataRestControllerSpec extends Specification {
                     .andReturn().response
         then: 'the service method is invoked with expected parameters'
             expectedApiCount * mockCpsDataService.updateDataNodeAndDescendants(dataspaceName, anchorName, '/', expectedJsonData,
-                { it == DateTimeUtility.toOffsetDateTime(observedTimestamp) })
+                { it == DateTimeUtility.toOffsetDateTime(observedTimestamp) }, ContentType.JSON)
         and: 'response status indicates success'
             response.status == expectedHttpStatus.value()
         where:
