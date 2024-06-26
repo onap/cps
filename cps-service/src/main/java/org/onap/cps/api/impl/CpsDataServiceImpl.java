@@ -120,11 +120,12 @@ public class CpsDataServiceImpl implements CpsDataService {
     @Timed(value = "cps.data.service.list.element.save",
         description = "Time taken to save list elements")
     public void saveListElements(final String dataspaceName, final String anchorName, final String parentNodeXpath,
-                                 final String jsonData, final OffsetDateTime observedTimestamp) {
+                                 final String nodeData, final OffsetDateTime observedTimestamp,
+                                 final ContentType contentType) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
         final Collection<DataNode> listElementDataNodeCollection =
-            buildDataNodesWithParentNodeXpath(anchor, parentNodeXpath, jsonData, ContentType.JSON);
+            buildDataNodesWithParentNodeXpath(anchor, parentNodeXpath, nodeData, contentType);
         if (isRootNodeXpath(parentNodeXpath)) {
             cpsDataPersistenceService.storeDataNodes(dataspaceName, anchorName, listElementDataNodeCollection);
         } else {

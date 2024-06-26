@@ -171,7 +171,7 @@ public class CmNotificationSubscriptionPersistenceServiceImpl implements CmNotif
             cpsDataService.saveListElements(NCMP_DATASPACE_NAME, CM_SUBSCRIPTIONS_ANCHOR_NAME,
                     CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_FILTERS_WITH_DATASTORE_AND_CMHANDLE.formatted(
                             datastoreType.getDatastoreName(), cmHandleId),
-                    subscriptionDetailsAsJson, OffsetDateTime.now());
+                    subscriptionDetailsAsJson, OffsetDateTime.now(), ContentType.JSON);
         }
     }
 
