@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18b49ee3_9bb7d11d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-06-26T09:23:33Z",
+      "side": 1,
+      "message": "no major comments.",
+      "revId": "c9d7ce4c677b46fa1bc061ea76287074b2bc4b8f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffdb95d3_f11edb1e",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-06-26T09:23:33Z",
+      "side": 1,
+      "message": "NB: legacy. remove extra line.",
+      "revId": "c9d7ce4c677b46fa1bc061ea76287074b2bc4b8f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfd4f36e_43b61449",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/trustlevel/DeviceTrustLevelMessageConsumer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-06-26T09:23:33Z",
+      "side": 1,
+      "message": "NB: now that we change the class name , do we also want to change the method name as well.\nalso the exposed param in application.yml. Just thinking.. Looks overdoing.\n( just mentioning my thoughts ) 😊",
+      "range": {
+        "startLine": 47,
+        "startChar": 16,
+        "endLine": 47,
+        "endChar": 33
+      },
+      "revId": "c9d7ce4c677b46fa1bc061ea76287074b2bc4b8f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed7d90d5_e464cae9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/NetworkCmProxyInventoryFacadeSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-06-26T09:23:33Z",
+      "side": 1,
+      "message": "NB: no sub-slogan for this.",
+      "revId": "c9d7ce4c677b46fa1bc061ea76287074b2bc4b8f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
