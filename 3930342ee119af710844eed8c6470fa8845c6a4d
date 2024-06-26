@@ -650,6 +650,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "68f6d8ec_f9d5d451",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/DmiWebClientConfigurationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-26T16:34:06Z",
+      "side": 1,
+      "message": "mmm, ok..not so important anyway",
+      "parentUuid": "5cde5357_543adfe9",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 5
+      },
+      "revId": "3930342ee119af710844eed8c6470fa8845c6a4d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "01f8e77d_76336891",
