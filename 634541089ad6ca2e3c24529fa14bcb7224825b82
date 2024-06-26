@@ -16,6 +16,240 @@
       "message": "recheck",
       "revId": "634541089ad6ca2e3c24529fa14bcb7224825b82",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0baf6483_07880c2c",
+        "filename": "cps-service/pom.xml",
+        "patchSetId": 10
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-26T17:29:15Z",
+      "side": 1,
+      "message": "Use hazelcast-spring: \n\n1.Overhead and Size: The hazelcast-all JAR includes all Hazelcast modules, which can increase the size of your application\u0027s footprint unnecessarily if you are only using a subset of Hazelcast features. \n\n2. Integration Complexity: hazelcast-all is a single JAR file that includs unnecessary modules.\n\n3. Spring Integration: hazelcast-spring, on the other hand, provides Spring-specific integration features and configurations that makes it easier to integrate Hazelcast with Spring beans, manage lifecycle etc.",
+      "range": {
+        "startLine": 74,
+        "startChar": 18,
+        "endLine": 74,
+        "endChar": 31
+      },
+      "revId": "634541089ad6ca2e3c24529fa14bcb7224825b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd0814c0_953d180f",
+        "filename": "docker-compose/nginx.conf",
+        "patchSetId": 10
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-26T17:29:15Z",
+      "side": 1,
+      "message": "We can include comment like below for for readable :\n\n\" # Add more server entries here for scaling or load balancing\"",
+      "revId": "634541089ad6ca2e3c24529fa14bcb7224825b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc2dc5b3_b3e191dc",
+        "filename": "docker-compose/nginx.conf",
+        "patchSetId": 10
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-26T17:29:15Z",
+      "side": 1,
+      "message": "can include comment like below for for readable :\n\n\" # Include common proxy parameters\"\n\n  include /etc/nginx/proxy_params;",
+      "revId": "634541089ad6ca2e3c24529fa14bcb7224825b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "914f77ad_7f762d08",
+        "filename": "docker-compose/nginx.conf",
+        "patchSetId": 10
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-26T17:29:15Z",
+      "side": 1,
+      "message": "\"# Root location proxying\"",
+      "revId": "634541089ad6ca2e3c24529fa14bcb7224825b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da073b2f_7763cff6",
+        "filename": "docker-compose/nginx.conf",
+        "patchSetId": 10
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-26T17:29:15Z",
+      "side": 1,
+      "message": "\" # Swagger UI location\"",
+      "revId": "634541089ad6ca2e3c24529fa14bcb7224825b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d86d04f4_764e909c",
+        "filename": "docker-compose/nginx.conf",
+        "patchSetId": 10
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-26T17:29:15Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 33,
+        "startChar": 11,
+        "endLine": 33,
+        "endChar": 44
+      },
+      "revId": "634541089ad6ca2e3c24529fa14bcb7224825b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "901a12ee_992f7284",
+        "filename": "docker-compose/nginx.conf",
+        "patchSetId": 10
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-26T17:29:15Z",
+      "side": 1,
+      "message": "\"# API docs location\"",
+      "revId": "634541089ad6ca2e3c24529fa14bcb7224825b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "442f98a0_cf5f7b74",
+        "filename": "docker-compose/nginx.conf",
+        "patchSetId": 10
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-26T17:29:15Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 38,
+        "startChar": 12,
+        "endLine": 38,
+        "endChar": 44
+      },
+      "revId": "634541089ad6ca2e3c24529fa14bcb7224825b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f5254c0_2e6310ae",
+        "filename": "docker-compose/nginx.conf",
+        "patchSetId": 10
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-26T17:29:15Z",
+      "side": 1,
+      "message": "\" # Actuator health endpoint\"",
+      "revId": "634541089ad6ca2e3c24529fa14bcb7224825b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f9a8e77_27e6768c",
+        "filename": "docker-compose/nginx.conf",
+        "patchSetId": 10
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-26T17:29:15Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 43,
+        "startChar": 11,
+        "endLine": 43,
+        "endChar": 44
+      },
+      "revId": "634541089ad6ca2e3c24529fa14bcb7224825b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db4f8753_e062afd7",
+        "filename": "docker-compose/nginx.conf",
+        "patchSetId": 10
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-26T17:29:15Z",
+      "side": 1,
+      "message": "\" # Actuator readiness endpoint\"",
+      "revId": "634541089ad6ca2e3c24529fa14bcb7224825b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "040008b3_d86c7a42",
+        "filename": "docker-compose/nginx.conf",
+        "patchSetId": 10
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-26T17:29:15Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 48,
+        "startChar": 12,
+        "endLine": 48,
+        "endChar": 44
+      },
+      "revId": "634541089ad6ca2e3c24529fa14bcb7224825b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

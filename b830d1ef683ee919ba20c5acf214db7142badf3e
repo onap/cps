@@ -114,6 +114,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "49d3b10f_86d5aa0e",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 9
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-26T17:29:15Z",
+      "side": 1,
+      "message": "1. Method com.hazelcast.config.JoinConfig#getAutoDetectionConfig is available into hazelcast version 5.3.1 (also into latest version 5.3.6) \n\nRef: \nhttps://javadoc.io/static/com.hazelcast/hazelcast/5.3.1/com/hazelcast/client/config/ClientNetworkConfig.html#getAutoDetectionConfig--\n\nhttps://javadoc.io/static/com.hazelcast/hazelcast/5.3.6/com/hazelcast/client/config/ClientNetworkConfig.html#getAutoDetectionConfig--\n\n2. Advantage of using hazelcast-spring\n\nUsing hazelcast-spring provides a streamlined and efficient way to integrate Hazelcast into Spring applications, leveraging the powerful features of both Hazelcast and the Spring framework. This leads to more maintainable, flexible, and scalable applications. like : org.onap.cps.ncmp.impl.inventory.sync.SynchronizationCacheConfig, org.onap.cps.cache.AnchorDataCacheConfig#anchorDataCache etc\n\n3. Use hazelcast-spring:5.3.1 or 5.3.6",
+      "parentUuid": "1011f4ae_499123fe",
+      "range": {
+        "startLine": 147,
+        "startChar": 16,
+        "endLine": 147,
+        "endChar": 48
+      },
+      "revId": "b830d1ef683ee919ba20c5acf214db7142badf3e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0f382612_ef8b6b1e",
         "filename": "cps-dependencies/pom.xml",
         "patchSetId": 9
@@ -149,6 +173,30 @@
       "side": 1,
       "message": "Please see the reasons mentioned above.",
       "parentUuid": "0f382612_ef8b6b1e",
+      "range": {
+        "startLine": 149,
+        "startChar": 25,
+        "endLine": 149,
+        "endChar": 30
+      },
+      "revId": "b830d1ef683ee919ba20c5acf214db7142badf3e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c005252c_26081cc8",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 9
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-26T17:29:15Z",
+      "side": 1,
+      "message": "Use hazelcast-spring:5.3.1 or 5.3.6 as suggested above.",
+      "parentUuid": "9abf07b2_006e5860",
       "range": {
         "startLine": 149,
         "startChar": 25,
@@ -349,6 +397,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "16fbe6e3_4e043c11",
+        "filename": "cps-service/src/main/java/org/onap/cps/cache/HazelcastCacheConfig.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-26T17:29:15Z",
+      "side": 1,
+      "message": "I think kubernetesDiscoveryEnabled and dockerDiscoveryEnabled would be more suitable names that reflect their purpose. Since these variables are used to enable or disable specific Hazelcast discovery modes. \n\nStill we can take teams suggestion",
+      "parentUuid": "5ab8507d_5f087c94",
+      "range": {
+        "startLine": 47,
+        "startChar": 22,
+        "endLine": 47,
+        "endChar": 27
+      },
+      "revId": "b830d1ef683ee919ba20c5acf214db7142badf3e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3a1a00fb_e01269e1",
         "filename": "cps-service/src/main/java/org/onap/cps/cache/HazelcastCacheConfig.java",
         "patchSetId": 9
@@ -394,6 +466,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "548b0fa1_a71588ab",
+        "filename": "cps-service/src/main/java/org/onap/cps/cache/HazelcastCacheConfig.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-26T17:29:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b0cabac7_3ed033e8",
+      "range": {
+        "startLine": 100,
+        "startChar": 16,
+        "endLine": 100,
+        "endChar": 20
+      },
+      "revId": "b830d1ef683ee919ba20c5acf214db7142badf3e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2101cc06_3ff83237",
@@ -425,6 +521,24 @@
       "side": 1,
       "message": "I kept it info level based on my comment above, since the WARN level may be used in case of any unexpected happened in the application.\n \n log.info(\"Neither Kubernetes nor Docker discovery mode is enabled\");",
       "parentUuid": "2101cc06_3ff83237",
+      "revId": "b830d1ef683ee919ba20c5acf214db7142badf3e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1234fc92_5a70f928",
+        "filename": "cps-service/src/main/java/org/onap/cps/cache/HazelcastCacheConfig.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-26T17:29:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "59b388dd_755636a7",
       "revId": "b830d1ef683ee919ba20c5acf214db7142badf3e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
