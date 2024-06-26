@@ -139,7 +139,7 @@ public class ModuleSyncService {
         final List<DataNode> dataNodes = cmHandleQueryService.queryNcmpRegistryByCpsPath(
                 NCMP_DMI_REGISTRY_PARENT + "/cm-handles[@module-set-tag='" + escapedModuleSetTag + "']",
                 FetchDescendantsOption.DIRECT_CHILDREN_ONLY);
-        return dataNodes.stream().map(YangDataConverter::convertCmHandleToYangModel)
+        return dataNodes.stream().map(YangDataConverter::toYangModelCmHandle)
                 .filter(cmHandle -> cmHandle.getCompositeState().getCmHandleState() == CmHandleState.READY)
                 .findFirst().orElse(null);
     }

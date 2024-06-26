@@ -18,11 +18,11 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.config.embeddedcache
+package org.onap.cps.ncmp.impl.inventory.trustlevel
 
 import com.hazelcast.config.Config
 import com.hazelcast.core.Hazelcast
-import org.onap.cps.ncmp.api.impl.trustlevel.TrustLevel
+import org.onap.cps.ncmp.api.inventory.models.TrustLevel
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification

@@ -31,14 +31,13 @@ import org.onap.cps.ncmp.api.inventory.models.CompositeState
 import org.onap.cps.ncmp.api.inventory.models.ConditionApiProperties
 import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
+import org.onap.cps.ncmp.api.inventory.models.TrustLevel
 import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
 import org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.spi.model.ConditionProperties
 import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Specification
-
-import java.util.stream.Collectors
 
 class NetworkCmProxyInventoryFacadeSpec extends Specification {
 
@@ -47,8 +46,9 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
     def mockParameterizedCmHandleQueryService = Mock(ParameterizedCmHandleQueryService)
     def spiedJsonObjectMapper = Spy(new JsonObjectMapper(new ObjectMapper()))
     def mockInventoryPersistence = Mock(InventoryPersistence)
+    def trustLevelPerCmHandle = [:]
 
-    def objectUnderTest = new NetworkCmProxyInventoryFacade(mockCmHandleRegistrationService, mockCmHandleQueryService, mockParameterizedCmHandleQueryService, mockInventoryPersistence, spiedJsonObjectMapper)
+    def objectUnderTest = new NetworkCmProxyInventoryFacade(mockCmHandleRegistrationService, mockCmHandleQueryService, mockParameterizedCmHandleQueryService, mockInventoryPersistence, spiedJsonObjectMapper, trustLevelPerCmHandle)
 
     def 'Update DMI Registration'() {
         given: 'an (updated) dmi plugin registration'
@@ -98,7 +98,7 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
         given: 'the system returns a yang modelled cm handle'
             def dmiServiceName = 'some service name'
             def compositeState = new CompositeState(cmHandleState: CmHandleState.ADVISED,
-                lockReason: CompositeState.LockReason.builder().lockReasonCategory(LockReasonCategory.MODULE_SYNC_FAILED).details("lock details").build(),
+                lockReason: CompositeState.LockReason.builder().lockReasonCategory(LockReasonCategory.MODULE_SYNC_FAILED).details('lock details').build(),
                 lastUpdateTime: 'some-timestamp',
                 dataSyncEnabled: false,
                 dataStores: dataStores())
@@ -106,26 +106,29 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
             def publicProperties = [new YangModelCmHandle.Property('Public Book', 'Public Romance Novel')]
             def moduleSetTag = 'some-module-set-tag'
             def alternateId = 'some-alternate-id'
-            def yangModelCmHandle = new YangModelCmHandle(id: 'some-cm-handle', dmiServiceName: dmiServiceName,
-                dmiProperties: dmiProperties, publicProperties: publicProperties, compositeState: compositeState,
-                moduleSetTag: moduleSetTag, alternateId: alternateId)
-            1 * mockInventoryPersistence.getYangModelCmHandle('some-cm-handle') >> yangModelCmHandle
+            def yangModelCmHandle = new YangModelCmHandle(id: 'ch-1', dmiServiceName: dmiServiceName, dmiProperties: dmiProperties,
+                 publicProperties: publicProperties, compositeState: compositeState, moduleSetTag: moduleSetTag, alternateId: alternateId)
+            1 * mockInventoryPersistence.getYangModelCmHandle('ch-1') >> yangModelCmHandle
+        and: 'a trust level for the cm handle in the cache'
+            trustLevelPerCmHandle.put('ch-1', TrustLevel.COMPLETE)
         when: 'getting cm handle details for a given cm handle id from ncmp service'
-            def result = objectUnderTest.getNcmpServiceCmHandle('some-cm-handle')
+            def result = objectUnderTest.getNcmpServiceCmHandle('ch-1')
         then: 'the result is a ncmpServiceCmHandle'
-            result.class == NcmpServiceCmHandle.class
+            assert result.class == NcmpServiceCmHandle.class
         and: 'the cm handle contains the cm handle id'
-            result.cmHandleId == 'some-cm-handle'
+            assert result.cmHandleId == 'ch-1'
         and: 'the cm handle contains the alternate id'
-            result.alternateId == 'some-alternate-id'
+            assert result.alternateId == 'some-alternate-id'
         and: 'the cm handle contains the module-set-tag'
-            result.moduleSetTag == 'some-module-set-tag'
+            assert result.moduleSetTag == 'some-module-set-tag'
         and: 'the cm handle contains the DMI Properties'
-            result.dmiProperties ==[ Book:'Romance Novel' ]
+            assert result.dmiProperties ==[ Book:'Romance Novel' ]
         and: 'the cm handle contains the public Properties'
-            result.publicProperties == [ "Public Book":'Public Romance Novel' ]
+            assert result.publicProperties == [ "Public Book":'Public Romance Novel' ]
         and: 'the cm handle contains the cm handle composite state'
-            result.compositeState == compositeState
+            assert result.compositeState == compositeState
+        and: 'the cm handle contains the trust level from the cache'
+            assert result.currentTrustLevel == TrustLevel.COMPLETE
     }
 
     def 'Get cm handle public properties'() {
@@ -138,7 +141,7 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
         when: 'getting cm handle public properties for a given cm handle id from ncmp service'
             def result = objectUnderTest.getCmHandlePublicProperties('some-cm-handle')
         then: 'the result returns the correct data'
-            result == [ 'public prop' : 'some public prop' ]
+            assert result == [ 'public prop' : 'some public prop' ]
     }
 
     def 'Get cm handle composite state'() {
@@ -156,7 +159,7 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
         when: 'getting cm handle composite state for a given cm handle id from ncmp service'
             def result = objectUnderTest.getCmHandleCompositeState('some-cm-handle')
         then: 'the result returns the correct data'
-            result == compositeState
+            assert result == compositeState
     }
 
     def 'Execute cm handle id search'() {
@@ -197,14 +200,21 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
             conditionApiProperties.conditionName = 'hasAllModules'
             conditionApiProperties.conditionParameters = [[moduleName: 'module-name-1']]
             cmHandleQueryApiParameters.cmHandleQueryParameters = [conditionApiProperties]
-        and: 'query cm handle method return with a data node list'
+        and: 'query cm handle method returns two cm handles'
             mockParameterizedCmHandleQueryService.queryCmHandles(
                 spiedJsonObjectMapper.convertToValueType(cmHandleQueryApiParameters, CmHandleQueryServiceParameters.class))
-                >> [new NcmpServiceCmHandle(cmHandleId: 'cm-handle-id-1')]
+                >> [new NcmpServiceCmHandle(cmHandleId: 'ch-0'), new NcmpServiceCmHandle(cmHandleId: 'ch-1')]
+        and: ' a trust level for ch-1'
+            trustLevelPerCmHandle.put('ch-1', TrustLevel.COMPLETE)
         when: 'execute cm handle search is called'
             def result = objectUnderTest.executeCmHandleSearch(cmHandleQueryApiParameters)
-        then: 'result is the same collection as returned by the CPS Data Service'
-            assert result.stream().map(cmHandle -> cmHandle.cmHandleId).collect(Collectors.toSet()) == ['cm-handle-id-1'] as Set
+        then: 'result consists of the two cm handles returned by the CPS Data Service'
+            assert result.size() == 2
+            assert result[0].cmHandleId == 'ch-0'
+            assert result[1].cmHandleId == 'ch-1'
+        and: 'only ch-1 has a trust level'
+            assert result[0].currentTrustLevel == null
+            assert result[1].currentTrustLevel == TrustLevel.COMPLETE
     }
 
     def 'Set Cm Handle Data Sync flag.'() {
@@ -215,8 +225,7 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
     }
 
     def dataStores() {
-        CompositeState.DataStores.builder()
-            .operationalDataStore(CompositeState.Operational.builder()
+        CompositeState.DataStores.builder().operationalDataStore(CompositeState.Operational.builder()
                 .dataStoreSyncState(DataStoreSyncState.NONE_REQUESTED)
                 .lastSyncTime('some-timestamp').build()).build()
     }
