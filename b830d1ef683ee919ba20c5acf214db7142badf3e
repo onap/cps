@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f79018b1_bf655e22",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 9
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-26T16:07:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6010d62b_211afb4b",
+      "range": {
+        "startLine": 242,
+        "startChar": 23,
+        "endLine": 242,
+        "endChar": 52
+      },
+      "revId": "b830d1ef683ee919ba20c5acf214db7142badf3e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c7956975_81766770",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-06-26T10:46:28Z",
       "side": 1,
       "message": "We can replace it with more proper way like below :\n\n1. Add bom into parent cps\n\n\u003cdependencyManagement\u003e\n    \u003cdependencies\u003e\n        \u003cdependency\u003e\n            \u003cgroupId\u003ecom.hazelcast\u003c/groupId\u003e\n            \u003cartifactId\u003ehazelcast-bom\u003c/artifactId\u003e\n            \u003cversion\u003e5.3.1\u003c/version\u003e\n            \u003ctype\u003epom\u003c/type\u003e\n            \u003cscope\u003eimport\u003c/scope\u003e\n        \u003c/dependency\u003e\n    \u003c/dependencies\u003e\n\u003c/dependencyManagement\u003e\n\n2. Use here like this:\n\u003cdependencies\u003e\n    \u003c!-- Hazelcast Core --\u003e\n    \u003cdependency\u003e\n        \u003cgroupId\u003ecom.hazelcast\u003c/groupId\u003e\n        \u003cartifactId\u003ehazelcast\u003c/artifactId\u003e\n    \u003c/dependency\u003e\n    \n    \u003c!-- Hazelcast Spring Integration --\u003e\n    \u003cdependency\u003e\n        \u003cgroupId\u003ecom.hazelcast\u003c/groupId\u003e\n        \u003cartifactId\u003ehazelcast-spring\u003c/artifactId\u003e\n    \u003c/dependency\u003e\n\u003c/dependencies\u003e",
+      "range": {
+        "startLine": 147,
+        "startChar": 16,
+        "endLine": 147,
+        "endChar": 48
+      },
+      "revId": "b830d1ef683ee919ba20c5acf214db7142badf3e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1011f4ae_499123fe",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 9
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-26T16:07:52Z",
+      "side": 1,
+      "message": "There is no common version 5.3.1 for both artifacts: hazelcast-spring and hazelcast-all. Thus, bom would not work.\n\nAlso, HazelcastCacheConfig.java line 101:\nconfig.getNetworkConfig().getJoin().getAutoDetectionConfig().setEnabled(true);\n\nThe method \"getAutoDetectionConfig\" that make Hazelcast members discover each other available \"ONLY\" in artifact(hazelcast-all) with the latest version: 4.2.8 See the links below:\n\nhttps://mvnrepository.com/artifact/com.hazelcast/hazelcast-all\n\nhttps://docs.hazelcast.com/imdg/4.2/installation/installing-using-maven\n\n\nPlus, artifact: hazelcast-all provide the same functionality obtained by the artifact: hazelcast-spring. So no need to have two different artifacts being included in the project.",
+      "parentUuid": "c7956975_81766770",
       "range": {
         "startLine": 147,
         "startChar": 16,
@@ -89,6 +137,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9abf07b2_006e5860",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 9
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-26T16:07:52Z",
+      "side": 1,
+      "message": "Please see the reasons mentioned above.",
+      "parentUuid": "0f382612_ef8b6b1e",
+      "range": {
+        "startLine": 149,
+        "startChar": 25,
+        "endLine": 149,
+        "endChar": 30
+      },
+      "revId": "b830d1ef683ee919ba20c5acf214db7142badf3e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7470eefc_7ae482ce",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/model/DmiCmNotificationSubscriptionDetails.java",
         "patchSetId": 9
@@ -100,6 +172,30 @@
       "writtenOn": "2024-06-26T10:46:28Z",
       "side": 1,
       "message": "Use random ids :\n\nIf we assign 1L to classes, the serialization mechanism cannot distinguish between different versions of classes.\nThis can cause deserialization to fail if there are changes in the class definition that are not compatible with the serialized object.",
+      "range": {
+        "startLine": 34,
+        "startChar": 49,
+        "endLine": 34,
+        "endChar": 51
+      },
+      "revId": "b830d1ef683ee919ba20c5acf214db7142badf3e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c557b4a2_58e89491",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/model/DmiCmNotificationSubscriptionDetails.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-26T16:07:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7470eefc_7ae482ce",
       "range": {
         "startLine": 34,
         "startChar": 49,
@@ -133,6 +229,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b23d590_822b84a7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/events/cmsubscription/model/DmiCmNotificationSubscriptionPredicate.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-26T16:07:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "72d02b69_47b0f61f",
+      "range": {
+        "startLine": 35,
+        "startChar": 49,
+        "endLine": 35,
+        "endChar": 52
+      },
+      "revId": "b830d1ef683ee919ba20c5acf214db7142badf3e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4013a0d3_3351e1e2",
@@ -146,6 +266,30 @@
       "writtenOn": "2024-06-26T10:46:28Z",
       "side": 1,
       "message": "Make use of bom version as into pre. comment",
+      "range": {
+        "startLine": 74,
+        "startChar": 6,
+        "endLine": 74,
+        "endChar": 44
+      },
+      "revId": "b830d1ef683ee919ba20c5acf214db7142badf3e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0502892f_a9f0158e",
+        "filename": "cps-service/pom.xml",
+        "patchSetId": 9
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-26T16:07:52Z",
+      "side": 1,
+      "message": "Answered above",
+      "parentUuid": "4013a0d3_3351e1e2",
       "range": {
         "startLine": 74,
         "startChar": 6,
@@ -181,6 +325,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5ab8507d_5f087c94",
+        "filename": "cps-service/src/main/java/org/onap/cps/cache/HazelcastCacheConfig.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-26T16:07:52Z",
+      "side": 1,
+      "message": "Can you please suggest a good name?",
+      "parentUuid": "0bcb8c91_4ab0d40c",
+      "range": {
+        "startLine": 47,
+        "startChar": 22,
+        "endLine": 47,
+        "endChar": 27
+      },
+      "revId": "b830d1ef683ee919ba20c5acf214db7142badf3e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3a1a00fb_e01269e1",
         "filename": "cps-service/src/main/java/org/onap/cps/cache/HazelcastCacheConfig.java",
         "patchSetId": 9
@@ -204,6 +372,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b0cabac7_3ed033e8",
+        "filename": "cps-service/src/main/java/org/onap/cps/cache/HazelcastCacheConfig.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-26T16:07:52Z",
+      "side": 1,
+      "message": "info is fine since this logs not being printed many times but ll be printed while the containers initializing.",
+      "parentUuid": "3a1a00fb_e01269e1",
+      "range": {
+        "startLine": 100,
+        "startChar": 16,
+        "endLine": 100,
+        "endChar": 20
+      },
+      "revId": "b830d1ef683ee919ba20c5acf214db7142badf3e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2101cc06_3ff83237",
         "filename": "cps-service/src/main/java/org/onap/cps/cache/HazelcastCacheConfig.java",
         "patchSetId": 9
@@ -215,6 +407,24 @@
       "writtenOn": "2024-06-26T10:46:28Z",
       "side": 1,
       "message": "else {\n        log.warn(\"Neither Kubernetes nor Docker discovery mode is enabled\");\n    }",
+      "revId": "b830d1ef683ee919ba20c5acf214db7142badf3e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59b388dd_755636a7",
+        "filename": "cps-service/src/main/java/org/onap/cps/cache/HazelcastCacheConfig.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-26T16:07:52Z",
+      "side": 1,
+      "message": "I kept it info level based on my comment above, since the WARN level may be used in case of any unexpected happened in the application.\n \n log.info(\"Neither Kubernetes nor Docker discovery mode is enabled\");",
+      "parentUuid": "2101cc06_3ff83237",
       "revId": "b830d1ef683ee919ba20c5acf214db7142badf3e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -266,6 +476,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "32906dea_bbce07b3",
+        "filename": "docker-compose/nginx.conf",
+        "patchSetId": 9
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-26T16:07:52Z",
+      "side": 1,
+      "message": "Since the container names being assigned dynamicall, a single docker service name is sufficient here.",
+      "parentUuid": "e6a58ea7_a9d5b926",
+      "range": {
+        "startLine": 22,
+        "startChar": 8,
+        "endLine": 22,
+        "endChar": 33
+      },
+      "revId": "b830d1ef683ee919ba20c5acf214db7142badf3e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "295b9eb5_5959959e",
@@ -283,6 +517,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "445249b3_44cf4fed",
+        "filename": "docker-compose/nginx.conf",
+        "patchSetId": 9
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-26T16:07:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "295b9eb5_5959959e",
+      "revId": "b830d1ef683ee919ba20c5acf214db7142badf3e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9b2ca3d0_c3ab2145",
@@ -296,6 +548,30 @@
       "writtenOn": "2024-06-26T10:46:28Z",
       "side": 1,
       "message": "Set common proxy headers:\n\nStep 1: create a file: /etc/nginx/proxy_params\n\nproxy_set_header Host $host;\nproxy_set_header X-Real-IP $remote_addr;\nproxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\nproxy_set_header X-Forwarded-Proto $scheme;\n\nStep 2:\n\nhttp {\n    # Other configurations...\n\n    include /etc/nginx/proxy_params;  # Adjust the path as per your file location\n\n    # Other server or location blocks...\n}",
+      "range": {
+        "startLine": 34,
+        "startChar": 11,
+        "endLine": 37,
+        "endChar": 55
+      },
+      "revId": "b830d1ef683ee919ba20c5acf214db7142badf3e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c5473c6_dfa081c9",
+        "filename": "docker-compose/nginx.conf",
+        "patchSetId": 9
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-26T16:07:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9b2ca3d0_c3ab2145",
       "range": {
         "startLine": 34,
         "startChar": 11,
@@ -329,6 +605,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1fece89_6d88e885",
+        "filename": "docker-compose/nginx.conf",
+        "patchSetId": 9
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-26T16:07:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8993669a_ebfb627f",
+      "range": {
+        "startLine": 42,
+        "startChar": 9,
+        "endLine": 45,
+        "endChar": 55
+      },
+      "revId": "b830d1ef683ee919ba20c5acf214db7142badf3e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ce976862_b4da7f2e",
@@ -342,6 +642,30 @@
       "writtenOn": "2024-06-26T10:46:28Z",
       "side": 1,
       "message": "Set common proxy headers:\ninclude proxy_params;",
+      "range": {
+        "startLine": 50,
+        "startChar": 10,
+        "endLine": 53,
+        "endChar": 55
+      },
+      "revId": "b830d1ef683ee919ba20c5acf214db7142badf3e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c235dc6_a1444a8a",
+        "filename": "docker-compose/nginx.conf",
+        "patchSetId": 9
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-26T16:07:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce976862_b4da7f2e",
       "range": {
         "startLine": 50,
         "startChar": 10,
@@ -375,6 +699,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc61ea65_51e6c13b",
+        "filename": "docker-compose/nginx.conf",
+        "patchSetId": 9
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-26T16:07:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e88b4772_aeeaffee",
+      "range": {
+        "startLine": 58,
+        "startChar": 11,
+        "endLine": 61,
+        "endChar": 55
+      },
+      "revId": "b830d1ef683ee919ba20c5acf214db7142badf3e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "900241b5_611258ff",
@@ -388,6 +736,24 @@
       "writtenOn": "2024-06-26T10:46:28Z",
       "side": 1,
       "message": "Logging (adjust paths and formats as needed)\n        access_log /var/log/nginx/access.log;\n        error_log /var/log/nginx/error.log;",
+      "revId": "b830d1ef683ee919ba20c5acf214db7142badf3e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce160172_90f67b2d",
+        "filename": "docker-compose/nginx.conf",
+        "patchSetId": 9
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-26T16:07:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "900241b5_611258ff",
       "revId": "b830d1ef683ee919ba20c5acf214db7142badf3e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
