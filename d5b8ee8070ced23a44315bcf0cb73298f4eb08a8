@@ -129,6 +129,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9663e32_c21edb2f",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-27T10:59:32Z",
+      "side": 1,
+      "message": "i dont think that is a good idea as both controllers have a lot of common exceptions that need to be handled in thee same way",
+      "parentUuid": "ac5a3315_43e96684",
+      "range": {
+        "startLine": 52,
+        "startChar": 40,
+        "endLine": 52,
+        "endChar": 113
+      },
+      "revId": "d5b8ee8070ced23a44315bcf0cb73298f4eb08a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dc30f920_724ae250",
@@ -142,6 +166,30 @@
       "writtenOn": "2024-06-27T10:46:20Z",
       "side": 1,
       "message": "mapper and util in the same package. will follow this strategy throughout the codebase then.",
+      "range": {
+        "startLine": 21,
+        "startChar": 31,
+        "endLine": 21,
+        "endChar": 35
+      },
+      "revId": "d5b8ee8070ced23a44315bcf0cb73298f4eb08a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3c66719_c3f41094",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/CmHandleStateMapper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-27T10:59:32Z",
+      "side": 1,
+      "message": "unless we have like 3 or more mappers then it might be worth creating a subpackage...",
+      "parentUuid": "dc30f920_724ae250",
       "range": {
         "startLine": 21,
         "startChar": 31,
