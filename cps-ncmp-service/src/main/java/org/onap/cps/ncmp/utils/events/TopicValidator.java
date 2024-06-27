@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.utils;
+package org.onap.cps.ncmp.utils.events;
 
 import java.util.regex.Pattern;
 import lombok.AccessLevel;

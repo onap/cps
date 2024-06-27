@@ -18,10 +18,9 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.utils
+package org.onap.cps.ncmp.utils.events
 
 import org.onap.cps.ncmp.exceptions.InvalidTopicException
-import org.onap.cps.ncmp.utils.TopicValidator
 import spock.lang.Specification
 
 class TopicValidatorSpec extends Specification {

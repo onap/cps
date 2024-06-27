@@ -24,7 +24,7 @@ import java.util.Map;
 import java.util.UUID;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.models.CmResourceAddress;
-import org.onap.cps.ncmp.utils.TopicValidator;
+import org.onap.cps.ncmp.utils.events.TopicValidator;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;

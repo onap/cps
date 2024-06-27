@@ -24,9 +24,9 @@ import io.cloudevents.CloudEvent;
 import io.cloudevents.kafka.impl.KafkaHeaders;
 import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.onap.cps.ncmp.api.impl.events.mapper.CloudEventMapper;
 import org.onap.cps.ncmp.api.inventory.models.TrustLevel;
 import org.onap.cps.ncmp.events.trustlevel.DeviceTrustLevel;
+import org.onap.cps.ncmp.utils.events.CloudEventMapper;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 

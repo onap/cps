@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.events.avc.ncmptoclient
+package org.onap.cps.ncmp.utils.events
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.cloudevents.CloudEvent
@@ -30,13 +30,11 @@ import org.onap.cps.ncmp.events.avc.ncmp_to_client.AvcEvent
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.test.context.ContextConfiguration
 
-import static org.onap.cps.ncmp.api.impl.events.mapper.CloudEventMapper.toTargetEvent
-
 @ContextConfiguration(classes = [CpsApplicationContext, ObjectMapper, JsonObjectMapper])
-class AvcEventPublisherSpec extends MessagingBaseSpec {
+class CmAvcEventPublisherSpec extends MessagingBaseSpec {
 
     def mockEventsPublisher = Mock(EventsPublisher<CloudEvent>)
-    def objectUnderTest = new AvcEventPublisher(mockEventsPublisher)
+    def objectUnderTest = new CmAvcEventPublisher(mockEventsPublisher)
 
     def 'Publish an attribute value change event'() {
         given: 'the event key'
@@ -52,7 +50,7 @@ class AvcEventPublisherSpec extends MessagingBaseSpec {
         then: 'the cloud event publisher is invoked with the correct data'
             1 * mockEventsPublisher.publishCloudEvent(_, someEventKey,
                 cloudEvent -> {
-                    def actualAvcs = toTargetEvent(cloudEvent, AvcEvent.class).data.attributeValueChange
+                    def actualAvcs = CloudEventMapper.toTargetEvent(cloudEvent, AvcEvent.class).data.attributeValueChange
                     def expectedAvc = new Avc(attributeName: someAttributeName,
                         oldAttributeValue: someOldAttributeValue,
                         newAttributeValue: someNewAttributeValue)

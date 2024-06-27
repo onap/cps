@@ -18,12 +18,12 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.events.lcm;
+package org.onap.cps.ncmp.impl.inventory.sync.lcm;
 
-import static org.onap.cps.ncmp.api.impl.events.lcm.LcmEventType.CREATE;
-import static org.onap.cps.ncmp.api.impl.events.lcm.LcmEventType.DELETE;
-import static org.onap.cps.ncmp.api.impl.events.lcm.LcmEventType.UPDATE;
 import static org.onap.cps.ncmp.impl.inventory.models.CmHandleState.DELETED;
+import static org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventType.CREATE;
+import static org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventType.DELETE;
+import static org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventType.UPDATE;
 
 import com.google.common.collect.MapDifference;
 import com.google.common.collect.Maps;

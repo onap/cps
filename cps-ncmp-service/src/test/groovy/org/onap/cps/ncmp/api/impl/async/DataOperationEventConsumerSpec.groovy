@@ -20,14 +20,12 @@
 
 package org.onap.cps.ncmp.api.impl.async
 
-import static org.onap.cps.ncmp.api.impl.events.mapper.CloudEventMapper.toTargetEvent
-
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.cloudevents.CloudEvent
+import io.cloudevents.core.builder.CloudEventBuilder
 import io.cloudevents.kafka.CloudEventDeserializer
 import io.cloudevents.kafka.CloudEventSerializer
 import io.cloudevents.kafka.impl.KafkaHeaders
-import io.cloudevents.core.builder.CloudEventBuilder
 import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.apache.kafka.clients.consumer.KafkaConsumer
 import org.apache.kafka.common.header.internals.RecordHeaders
@@ -42,7 +40,10 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.kafka.listener.adapter.RecordFilterStrategy
 import org.springframework.test.annotation.DirtiesContext
 import org.testcontainers.spock.Testcontainers
+
 import java.time.Duration
+
+import static org.onap.cps.ncmp.utils.events.CloudEventMapper.toTargetEvent
 
 @SpringBootTest(classes = [EventsPublisher, DataOperationEventConsumer, RecordFilterStrategies, JsonObjectMapper, ObjectMapper])
 @Testcontainers

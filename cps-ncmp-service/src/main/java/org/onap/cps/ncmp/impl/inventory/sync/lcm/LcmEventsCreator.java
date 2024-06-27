@@ -18,7 +18,7 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.events.lcm;
+package org.onap.cps.ncmp.impl.inventory.sync.lcm;
 
 import java.util.UUID;
 import lombok.Getter;

@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.api.impl.events.avc.ncmptoclient;
+package org.onap.cps.ncmp.utils.events;
 
 import io.cloudevents.CloudEvent;
 import java.util.Collections;
@@ -26,7 +26,6 @@ import java.util.HashMap;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.events.EventsPublisher;
-import org.onap.cps.ncmp.api.impl.events.NcmpEvent;
 import org.onap.cps.ncmp.events.avc.ncmp_to_client.Avc;
 import org.onap.cps.ncmp.events.avc.ncmp_to_client.AvcEvent;
 import org.onap.cps.ncmp.events.avc.ncmp_to_client.Data;
@@ -35,7 +34,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class AvcEventPublisher {
+public class CmAvcEventPublisher {
 
     private final EventsPublisher<CloudEvent> eventsPublisher;
 

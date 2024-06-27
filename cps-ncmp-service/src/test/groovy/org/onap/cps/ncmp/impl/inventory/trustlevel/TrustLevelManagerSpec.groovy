@@ -20,10 +20,10 @@
 
 package org.onap.cps.ncmp.impl.inventory.trustlevel
 
-import org.onap.cps.ncmp.api.impl.events.avc.ncmptoclient.AvcEventPublisher
 import org.onap.cps.ncmp.api.inventory.models.TrustLevel
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
+import org.onap.cps.ncmp.utils.events.CmAvcEventPublisher
 import spock.lang.Specification
 
 class TrustLevelManagerSpec extends Specification {
@@ -32,7 +32,7 @@ class TrustLevelManagerSpec extends Specification {
     def trustLevelPerDmiPlugin = [:]
 
     def mockInventoryPersistence = Mock(InventoryPersistence)
-    def mockAttributeValueChangeEventPublisher = Mock(AvcEventPublisher)
+    def mockAttributeValueChangeEventPublisher = Mock(CmAvcEventPublisher)
     def objectUnderTest = new TrustLevelManager(trustLevelPerCmHandle, trustLevelPerDmiPlugin, mockInventoryPersistence, mockAttributeValueChangeEventPublisher)
 
     def 'Initial cm handle registration'() {
