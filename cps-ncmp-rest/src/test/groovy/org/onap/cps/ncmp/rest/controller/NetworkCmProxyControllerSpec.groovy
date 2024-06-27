@@ -32,12 +32,12 @@ import groovy.json.JsonSlurper
 import org.mapstruct.factory.Mappers
 import org.onap.cps.TestUtils
 import org.onap.cps.events.EventsPublisher
-import org.onap.cps.ncmp.api.impl.NetworkCmProxyFacade
+import org.onap.cps.ncmp.api.data.models.CmResourceAddress
 import org.onap.cps.ncmp.api.inventory.NetworkCmProxyInventoryFacade
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.api.inventory.models.TrustLevel
-import org.onap.cps.ncmp.api.models.CmResourceAddress
+import org.onap.cps.ncmp.impl.data.NetworkCmProxyFacade
 import org.onap.cps.ncmp.impl.inventory.DataStoreSyncState
 import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
 import org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory
@@ -67,12 +67,12 @@ import java.time.OffsetDateTime
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 
-import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_OPERATIONAL
-import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING
-import static org.onap.cps.ncmp.api.impl.operations.OperationType.CREATE
-import static org.onap.cps.ncmp.api.impl.operations.OperationType.DELETE
-import static org.onap.cps.ncmp.api.impl.operations.OperationType.PATCH
-import static org.onap.cps.ncmp.api.impl.operations.OperationType.UPDATE
+import static org.onap.cps.ncmp.api.data.models.DatastoreType.PASSTHROUGH_OPERATIONAL
+import static org.onap.cps.ncmp.api.data.models.DatastoreType.PASSTHROUGH_RUNNING
+import static org.onap.cps.ncmp.api.data.models.OperationType.CREATE
+import static org.onap.cps.ncmp.api.data.models.OperationType.DELETE
+import static org.onap.cps.ncmp.api.data.models.OperationType.PATCH
+import static org.onap.cps.ncmp.api.data.models.OperationType.UPDATE
 import static org.onap.cps.ncmp.api.inventory.models.CompositeState.DataStores
 import static org.onap.cps.ncmp.api.inventory.models.CompositeState.Operational
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete

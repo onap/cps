@@ -21,7 +21,7 @@
 package org.onap.cps.ncmp.api.impl.events.cmsubscription.service;
 
 import java.util.Collection;
-import org.onap.cps.ncmp.api.impl.operations.DatastoreType;
+import org.onap.cps.ncmp.api.data.models.DatastoreType;
 
 public interface CmNotificationSubscriptionPersistenceService {
 

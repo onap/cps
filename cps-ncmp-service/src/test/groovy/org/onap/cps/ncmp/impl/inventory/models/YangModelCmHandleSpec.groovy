@@ -26,8 +26,8 @@ import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.impl.inventory.DataStoreSyncState
 import spock.lang.Specification
 
-import static org.onap.cps.ncmp.api.impl.operations.RequiredDmiService.DATA
-import static org.onap.cps.ncmp.api.impl.operations.RequiredDmiService.MODEL
+import static org.onap.cps.ncmp.impl.models.RequiredDmiService.DATA
+import static org.onap.cps.ncmp.impl.models.RequiredDmiService.MODEL
 
 class YangModelCmHandleSpec extends Specification {
 

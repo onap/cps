@@ -34,7 +34,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsQueryService;
-import org.onap.cps.ncmp.api.impl.operations.DatastoreType;
+import org.onap.cps.ncmp.api.data.models.DatastoreType;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.utils.ContentType;
 import org.onap.cps.utils.JsonObjectMapper;

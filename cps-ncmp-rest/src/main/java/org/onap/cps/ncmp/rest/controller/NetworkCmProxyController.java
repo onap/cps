@@ -23,12 +23,12 @@
 
 package org.onap.cps.ncmp.rest.controller;
 
-import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.OPERATIONAL;
-import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING;
-import static org.onap.cps.ncmp.api.impl.operations.OperationType.CREATE;
-import static org.onap.cps.ncmp.api.impl.operations.OperationType.DELETE;
-import static org.onap.cps.ncmp.api.impl.operations.OperationType.PATCH;
-import static org.onap.cps.ncmp.api.impl.operations.OperationType.UPDATE;
+import static org.onap.cps.ncmp.api.data.models.DatastoreType.OPERATIONAL;
+import static org.onap.cps.ncmp.api.data.models.DatastoreType.PASSTHROUGH_RUNNING;
+import static org.onap.cps.ncmp.api.data.models.OperationType.CREATE;
+import static org.onap.cps.ncmp.api.data.models.OperationType.DELETE;
+import static org.onap.cps.ncmp.api.data.models.OperationType.PATCH;
+import static org.onap.cps.ncmp.api.data.models.OperationType.UPDATE;
 
 import io.micrometer.core.annotation.Timed;
 import java.util.ArrayList;
@@ -37,14 +37,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.ncmp.api.impl.NetworkCmProxyFacade;
-import org.onap.cps.ncmp.api.impl.exception.InvalidDatastoreException;
-import org.onap.cps.ncmp.api.impl.operations.DatastoreType;
+import org.onap.cps.ncmp.api.data.exceptions.InvalidDatastoreException;
+import org.onap.cps.ncmp.api.data.models.CmResourceAddress;
+import org.onap.cps.ncmp.api.data.models.DatastoreType;
 import org.onap.cps.ncmp.api.inventory.NetworkCmProxyInventoryFacade;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryApiParameters;
 import org.onap.cps.ncmp.api.inventory.models.CompositeState;
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
-import org.onap.cps.ncmp.api.models.CmResourceAddress;
+import org.onap.cps.ncmp.impl.data.NetworkCmProxyFacade;
 import org.onap.cps.ncmp.rest.api.NetworkCmProxyApi;
 import org.onap.cps.ncmp.rest.model.CmHandlePublicProperties;
 import org.onap.cps.ncmp.rest.model.CmHandleQueryParameters;

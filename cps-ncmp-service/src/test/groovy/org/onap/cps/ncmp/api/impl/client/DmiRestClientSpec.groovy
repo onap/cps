@@ -41,11 +41,11 @@ import spock.lang.Specification
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.DMI_SERVICE_NOT_RESPONDING
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNABLE_TO_READ_RESOURCE_DATA
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNKNOWN_ERROR
-import static org.onap.cps.ncmp.api.impl.operations.OperationType.CREATE
-import static org.onap.cps.ncmp.api.impl.operations.OperationType.PATCH
-import static org.onap.cps.ncmp.api.impl.operations.OperationType.READ
-import static org.onap.cps.ncmp.api.impl.operations.RequiredDmiService.DATA
-import static org.onap.cps.ncmp.api.impl.operations.RequiredDmiService.MODEL
+import static org.onap.cps.ncmp.api.data.models.OperationType.CREATE
+import static org.onap.cps.ncmp.api.data.models.OperationType.PATCH
+import static org.onap.cps.ncmp.api.data.models.OperationType.READ
+import static org.onap.cps.ncmp.impl.models.RequiredDmiService.DATA
+import static org.onap.cps.ncmp.impl.models.RequiredDmiService.MODEL
 
 class DmiRestClientSpec extends Specification {
 

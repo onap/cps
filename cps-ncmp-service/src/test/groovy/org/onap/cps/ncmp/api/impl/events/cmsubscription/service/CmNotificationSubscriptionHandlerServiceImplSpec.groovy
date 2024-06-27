@@ -21,6 +21,7 @@
 package org.onap.cps.ncmp.api.impl.events.cmsubscription.service
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import org.onap.cps.ncmp.api.data.models.DatastoreType
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.CmNotificationSubscriptionDelta
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.CmNotificationSubscriptionEventsHandler
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.CmNotificationSubscriptionMappersHandler
@@ -28,7 +29,6 @@ import org.onap.cps.ncmp.api.impl.events.cmsubscription.DmiCmNotificationSubscri
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.CmNotificationSubscriptionStatus
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.DmiCmNotificationSubscriptionDetails
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.DmiCmNotificationSubscriptionPredicate
-import org.onap.cps.ncmp.api.impl.operations.DatastoreType
 import org.onap.cps.ncmp.events.cmnotificationsubscription_merge1_0_0.client_to_ncmp.CmNotificationSubscriptionNcmpInEvent
 import org.onap.cps.ncmp.events.cmnotificationsubscription_merge1_0_0.ncmp_to_dmi.CmNotificationSubscriptionDmiInEvent
 import org.onap.cps.ncmp.events.cmsubscription_merge1_0_0.ncmp_to_client.CmNotificationSubscriptionNcmpOutEvent

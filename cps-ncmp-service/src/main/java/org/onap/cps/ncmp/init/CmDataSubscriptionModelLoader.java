@@ -29,8 +29,8 @@ import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsDataspaceService;
 import org.onap.cps.api.CpsModuleService;
+import org.onap.cps.ncmp.api.data.models.DatastoreType;
 import org.onap.cps.ncmp.api.impl.exception.NcmpStartUpException;
-import org.onap.cps.ncmp.api.impl.operations.DatastoreType;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.springframework.stereotype.Service;
 
