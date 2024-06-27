@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "882c7ab0_db496732",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-06-27T12:32:37Z",
+      "side": 1,
+      "message": "As discussed , since the auto detection policy is enabled by default so we might not need any extra changes to enable the members in the docker container to talk to each other.\nHalil to verify this and change the patch accordingly.",
+      "revId": "ee69fef1f1a8795ad8890cc64f56d400af7b3d79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4b67086_9a5b302e",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 11
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-06-27T12:32:37Z",
+      "side": 1,
+      "message": "NB: false by default , can be enabled in the docker-compose file explicitly.",
+      "range": {
+        "startLine": 242,
+        "startChar": 48,
+        "endLine": 242,
+        "endChar": 52
+      },
+      "revId": "ee69fef1f1a8795ad8890cc64f56d400af7b3d79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71d7cd0f_f889b628",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 11
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-06-27T12:32:37Z",
+      "side": 1,
+      "message": "any reason to update to 5.3.6 version and not 5.3.7 patch version ?\nwe also have 5.4.0 but we can wait for sometime to update to that.",
+      "range": {
+        "startLine": 149,
+        "startChar": 25,
+        "endLine": 149,
+        "endChar": 30
+      },
+      "revId": "ee69fef1f1a8795ad8890cc64f56d400af7b3d79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f27b5b43_2bac1478",
+        "filename": "cps-service/src/main/java/org/onap/cps/cache/HazelcastCacheConfig.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-06-27T12:32:37Z",
+      "side": 1,
+      "message": "if this is the only thing required to do for docker support then the change related to docker is no required as the AutoDetectionConfig is enabled by default.",
+      "range": {
+        "startLine": 101,
+        "startChar": 12,
+        "endLine": 101,
+        "endChar": 90
+      },
+      "revId": "ee69fef1f1a8795ad8890cc64f56d400af7b3d79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
