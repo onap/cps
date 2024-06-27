@@ -153,6 +153,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b0eead2_f1b287b4",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-06-27T11:02:30Z",
+      "side": 1,
+      "message": "yeah unless we want to further refine it.\nanyways , just wanted to bring the thought out of my mind 😊",
+      "parentUuid": "c9663e32_c21edb2f",
+      "range": {
+        "startLine": 52,
+        "startChar": 40,
+        "endLine": 52,
+        "endChar": 113
+      },
+      "revId": "d5b8ee8070ced23a44315bcf0cb73298f4eb08a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dc30f920_724ae250",
@@ -190,6 +214,30 @@
       "side": 1,
       "message": "unless we have like 3 or more mappers then it might be worth creating a subpackage...",
       "parentUuid": "dc30f920_724ae250",
+      "range": {
+        "startLine": 21,
+        "startChar": 31,
+        "endLine": 21,
+        "endChar": 35
+      },
+      "revId": "d5b8ee8070ced23a44315bcf0cb73298f4eb08a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ded1ca76_0b39dc8d",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/CmHandleStateMapper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-06-27T11:02:30Z",
+      "side": 1,
+      "message": "sure.",
+      "parentUuid": "b3c66719_c3f41094",
       "range": {
         "startLine": 21,
         "startChar": 31,
