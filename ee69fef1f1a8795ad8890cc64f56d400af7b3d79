@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d14a2ab4_d72518f9",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 11
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-27T14:14:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b4b67086_9a5b302e",
+      "range": {
+        "startLine": 242,
+        "startChar": 48,
+        "endLine": 242,
+        "endChar": 52
+      },
+      "revId": "ee69fef1f1a8795ad8890cc64f56d400af7b3d79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "71d7cd0f_f889b628",
@@ -64,6 +88,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed6c9888_bfa1ef99",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 11
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-27T14:14:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "71d7cd0f_f889b628",
+      "range": {
+        "startLine": 149,
+        "startChar": 25,
+        "endLine": 149,
+        "endChar": 30
+      },
+      "revId": "ee69fef1f1a8795ad8890cc64f56d400af7b3d79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f27b5b43_2bac1478",
@@ -77,6 +125,30 @@
       "writtenOn": "2024-06-27T12:32:37Z",
       "side": 1,
       "message": "if this is the only thing required to do for docker support then the change related to docker is no required as the AutoDetectionConfig is enabled by default.",
+      "range": {
+        "startLine": 101,
+        "startChar": 12,
+        "endLine": 101,
+        "endChar": 90
+      },
+      "revId": "ee69fef1f1a8795ad8890cc64f56d400af7b3d79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab1e97a6_74fb1a08",
+        "filename": "cps-service/src/main/java/org/onap/cps/cache/HazelcastCacheConfig.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-27T14:14:25Z",
+      "side": 1,
+      "message": "That is right. Also it has been verified locally that AutoDetectionConfig is true by default for docker-compose deployment.\n\nThus, I am removing unnecessary flags from the code base.",
+      "parentUuid": "f27b5b43_2bac1478",
       "range": {
         "startLine": 101,
         "startChar": 12,
