@@ -39,6 +39,30 @@
       },
       "revId": "d5b8ee8070ced23a44315bcf0cb73298f4eb08a8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "582e7b9e_32b9ae9b",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-06-27T09:14:40Z",
+      "side": 1,
+      "message": "i think the exception handling is integral part of the \u0027controllers\u0027 and no need to separate it into its own package",
+      "parentUuid": "e2004c45_dca03b6e",
+      "range": {
+        "startLine": 21,
+        "startChar": 31,
+        "endLine": 21,
+        "endChar": 41
+      },
+      "revId": "d5b8ee8070ced23a44315bcf0cb73298f4eb08a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
