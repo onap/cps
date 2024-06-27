@@ -19,7 +19,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.rest.exceptions
+package org.onap.cps.ncmp.rest.controller
 
 import groovy.json.JsonSlurper
 import org.mapstruct.factory.Mappers
@@ -32,10 +32,10 @@ import org.onap.cps.ncmp.api.impl.exception.DmiRequestException
 import org.onap.cps.ncmp.api.impl.exception.ServerNcmpException
 import org.onap.cps.ncmp.api.inventory.NetworkCmProxyInventoryFacade
 import org.onap.cps.ncmp.exceptions.PayloadTooLargeException
-import org.onap.cps.ncmp.rest.controller.NcmpRestInputMapper
-import org.onap.cps.ncmp.rest.mapper.CmHandleStateMapper
-import org.onap.cps.ncmp.rest.mapper.DataOperationRequestMapper
+import org.onap.cps.ncmp.rest.util.CmHandleStateMapper
+import org.onap.cps.ncmp.rest.util.DataOperationRequestMapper
 import org.onap.cps.ncmp.rest.util.DeprecationHelper
+import org.onap.cps.ncmp.rest.util.NcmpRestInputMapper
 import org.onap.cps.spi.exceptions.AlreadyDefinedException
 import org.onap.cps.spi.exceptions.CpsException
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
@@ -51,8 +51,8 @@ import spock.lang.Shared
 import spock.lang.Specification
 
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNABLE_TO_READ_RESOURCE_DATA
-import static org.onap.cps.ncmp.rest.exceptions.NetworkCmProxyRestExceptionHandlerSpec.ApiType.NCMP
-import static org.onap.cps.ncmp.rest.exceptions.NetworkCmProxyRestExceptionHandlerSpec.ApiType.NCMPINVENTORY
+import static org.onap.cps.ncmp.rest.controller.NetworkCmProxyRestExceptionHandlerSpec.ApiType.NCMP
+import static org.onap.cps.ncmp.rest.controller.NetworkCmProxyRestExceptionHandlerSpec.ApiType.NCMPINVENTORY
 import static org.springframework.http.HttpStatus.BAD_GATEWAY
 import static org.springframework.http.HttpStatus.BAD_REQUEST
 import static org.springframework.http.HttpStatus.CONFLICT

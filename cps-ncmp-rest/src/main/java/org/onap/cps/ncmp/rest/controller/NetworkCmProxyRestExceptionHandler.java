@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.rest.exceptions;
+package org.onap.cps.ncmp.rest.controller;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -32,8 +32,6 @@ import org.onap.cps.ncmp.api.impl.exception.ServerNcmpException;
 import org.onap.cps.ncmp.exceptions.InvalidTopicException;
 import org.onap.cps.ncmp.exceptions.OperationNotSupportedException;
 import org.onap.cps.ncmp.exceptions.PayloadTooLargeException;
-import org.onap.cps.ncmp.rest.controller.NetworkCmProxyController;
-import org.onap.cps.ncmp.rest.controller.NetworkCmProxyInventoryController;
 import org.onap.cps.ncmp.rest.model.DmiErrorMessage;
 import org.onap.cps.ncmp.rest.model.DmiErrorMessageDmiResponse;
 import org.onap.cps.ncmp.rest.model.ErrorMessage;

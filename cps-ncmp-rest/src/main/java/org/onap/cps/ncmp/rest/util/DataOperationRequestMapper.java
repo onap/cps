@@ -18,7 +18,7 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.rest.mapper;
+package org.onap.cps.ncmp.rest.util;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

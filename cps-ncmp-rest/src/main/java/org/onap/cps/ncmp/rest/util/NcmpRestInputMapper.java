@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.rest.controller;
+package org.onap.cps.ncmp.rest.util;
 
 import org.mapstruct.InheritConfiguration;
 import org.mapstruct.Mapper;
