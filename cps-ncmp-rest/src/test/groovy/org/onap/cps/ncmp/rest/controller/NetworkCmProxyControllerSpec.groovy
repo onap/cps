@@ -41,11 +41,12 @@ import org.onap.cps.ncmp.api.models.CmResourceAddress
 import org.onap.cps.ncmp.impl.inventory.DataStoreSyncState
 import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
 import org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory
-import org.onap.cps.ncmp.rest.mapper.CmHandleStateMapper
-import org.onap.cps.ncmp.rest.mapper.DataOperationRequestMapper
 import org.onap.cps.ncmp.rest.model.DataOperationDefinition
 import org.onap.cps.ncmp.rest.model.DataOperationRequest
+import org.onap.cps.ncmp.rest.util.CmHandleStateMapper
+import org.onap.cps.ncmp.rest.util.DataOperationRequestMapper
 import org.onap.cps.ncmp.rest.util.DeprecationHelper
+import org.onap.cps.ncmp.rest.util.NcmpRestInputMapper
 import org.onap.cps.spi.model.ModuleDefinition
 import org.onap.cps.spi.model.ModuleReference
 import org.onap.cps.utils.JsonObjectMapper

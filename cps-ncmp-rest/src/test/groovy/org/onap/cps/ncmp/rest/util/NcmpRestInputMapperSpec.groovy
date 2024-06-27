@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.rest.controller
+package org.onap.cps.ncmp.rest.util
 
 import org.mapstruct.factory.Mappers
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryServiceParameters

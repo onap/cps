@@ -18,7 +18,7 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.rest.mapper;
+package org.onap.cps.ncmp.rest.util;
 
 import static org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory.LOCKED_MISBEHAVING;
 
