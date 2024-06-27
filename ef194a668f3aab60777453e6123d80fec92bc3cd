@@ -65,6 +65,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "37592a41_12d53a7a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-27T15:48:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1d7ef159_cec9bac7",
+      "range": {
+        "startLine": 93,
+        "startChar": 63,
+        "endLine": 93,
+        "endChar": 78
+      },
+      "revId": "ef194a668f3aab60777453e6123d80fec92bc3cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e1dae27f_cd8434da",
@@ -88,6 +112,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5ebf43f_47883b9f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-27T15:48:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e1dae27f_cd8434da",
+      "range": {
+        "startLine": 200,
+        "startChar": 37,
+        "endLine": 200,
+        "endChar": 52
+      },
+      "revId": "ef194a668f3aab60777453e6123d80fec92bc3cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a13c04ad_1818a07a",
@@ -101,6 +149,30 @@
       "writtenOn": "2024-06-26T16:34:06Z",
       "side": 1,
       "message": "no need to have all this in teh method name...\n\nsuggestion: sendDataOperationRequestToDmiService\nactually what exactly is the difference with method on line #252, should be clear from naming,..,\n\nAlso try to have teh private methods in the correct order...",
+      "range": {
+        "startLine": 234,
+        "startChar": 17,
+        "endLine": 234,
+        "endChar": 65
+      },
+      "revId": "ef194a668f3aab60777453e6123d80fec92bc3cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e99fb3a_b9df4397",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/operations/DmiDataOperations.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-06-27T15:48:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a13c04ad_1818a07a",
       "range": {
         "startLine": 234,
         "startChar": 17,
