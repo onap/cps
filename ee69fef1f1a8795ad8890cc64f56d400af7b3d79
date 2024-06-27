@@ -157,6 +157,30 @@
       },
       "revId": "ee69fef1f1a8795ad8890cc64f56d400af7b3d79",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92fb7789_f1cc4464",
+        "filename": "cps-service/src/main/java/org/onap/cps/cache/HazelcastCacheConfig.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-27T14:15:18Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ab1e97a6_74fb1a08",
+      "range": {
+        "startLine": 101,
+        "startChar": 12,
+        "endLine": 101,
+        "endChar": 90
+      },
+      "revId": "ee69fef1f1a8795ad8890cc64f56d400af7b3d79",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
