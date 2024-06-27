@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "338c2487_ce44681d",
+        "filename": "cps-service/pom.xml",
+        "patchSetId": 10
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-27T09:19:07Z",
+      "side": 1,
+      "message": "Done\nVery good reason, many thanks",
+      "parentUuid": "0baf6483_07880c2c",
+      "range": {
+        "startLine": 74,
+        "startChar": 18,
+        "endLine": 74,
+        "endChar": 31
+      },
+      "revId": "634541089ad6ca2e3c24529fa14bcb7224825b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fd0814c0_953d180f",
@@ -54,6 +78,24 @@
       "writtenOn": "2024-06-26T17:29:15Z",
       "side": 1,
       "message": "We can include comment like below for for readable :\n\n\" # Add more server entries here for scaling or load balancing\"",
+      "revId": "634541089ad6ca2e3c24529fa14bcb7224825b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb00826e_33091da3",
+        "filename": "docker-compose/nginx.conf",
+        "patchSetId": 10
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-27T09:19:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd0814c0_953d180f",
       "revId": "634541089ad6ca2e3c24529fa14bcb7224825b82",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -75,6 +117,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "25510581_97237e66",
+        "filename": "docker-compose/nginx.conf",
+        "patchSetId": 10
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-27T09:19:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fc2dc5b3_b3e191dc",
+      "revId": "634541089ad6ca2e3c24529fa14bcb7224825b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "914f77ad_7f762d08",
@@ -92,6 +152,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "78ea03c1_11844aab",
+        "filename": "docker-compose/nginx.conf",
+        "patchSetId": 10
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-27T09:19:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "914f77ad_7f762d08",
+      "revId": "634541089ad6ca2e3c24529fa14bcb7224825b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "da073b2f_7763cff6",
@@ -105,6 +183,24 @@
       "writtenOn": "2024-06-26T17:29:15Z",
       "side": 1,
       "message": "\" # Swagger UI location\"",
+      "revId": "634541089ad6ca2e3c24529fa14bcb7224825b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "751d928b_2e54b264",
+        "filename": "docker-compose/nginx.conf",
+        "patchSetId": 10
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-27T09:19:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da073b2f_7763cff6",
       "revId": "634541089ad6ca2e3c24529fa14bcb7224825b82",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -132,6 +228,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "744b24d1_877aece5",
+        "filename": "docker-compose/nginx.conf",
+        "patchSetId": 10
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-27T09:19:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d86d04f4_764e909c",
+      "range": {
+        "startLine": 33,
+        "startChar": 11,
+        "endLine": 33,
+        "endChar": 44
+      },
+      "revId": "634541089ad6ca2e3c24529fa14bcb7224825b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "901a12ee_992f7284",
@@ -145,6 +265,24 @@
       "writtenOn": "2024-06-26T17:29:15Z",
       "side": 1,
       "message": "\"# API docs location\"",
+      "revId": "634541089ad6ca2e3c24529fa14bcb7224825b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f71a6f4_54de0a35",
+        "filename": "docker-compose/nginx.conf",
+        "patchSetId": 10
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-27T09:19:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "901a12ee_992f7284",
       "revId": "634541089ad6ca2e3c24529fa14bcb7224825b82",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -172,6 +310,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "53473ff2_2f970273",
+        "filename": "docker-compose/nginx.conf",
+        "patchSetId": 10
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-27T09:19:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "442f98a0_cf5f7b74",
+      "range": {
+        "startLine": 38,
+        "startChar": 12,
+        "endLine": 38,
+        "endChar": 44
+      },
+      "revId": "634541089ad6ca2e3c24529fa14bcb7224825b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6f5254c0_2e6310ae",
@@ -185,6 +347,24 @@
       "writtenOn": "2024-06-26T17:29:15Z",
       "side": 1,
       "message": "\" # Actuator health endpoint\"",
+      "revId": "634541089ad6ca2e3c24529fa14bcb7224825b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f19dc790_5d210ba5",
+        "filename": "docker-compose/nginx.conf",
+        "patchSetId": 10
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-27T09:19:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f5254c0_2e6310ae",
       "revId": "634541089ad6ca2e3c24529fa14bcb7224825b82",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -212,6 +392,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "43459dba_3fafa08d",
+        "filename": "docker-compose/nginx.conf",
+        "patchSetId": 10
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-27T09:19:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f9a8e77_27e6768c",
+      "range": {
+        "startLine": 43,
+        "startChar": 11,
+        "endLine": 43,
+        "endChar": 44
+      },
+      "revId": "634541089ad6ca2e3c24529fa14bcb7224825b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "db4f8753_e062afd7",
@@ -229,6 +433,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e43f485_e5b5ca69",
+        "filename": "docker-compose/nginx.conf",
+        "patchSetId": 10
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-27T09:19:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db4f8753_e062afd7",
+      "revId": "634541089ad6ca2e3c24529fa14bcb7224825b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "040008b3_d86c7a42",
@@ -242,6 +464,30 @@
       "writtenOn": "2024-06-26T17:29:15Z",
       "side": 1,
       "message": "remove",
+      "range": {
+        "startLine": 48,
+        "startChar": 12,
+        "endLine": 48,
+        "endChar": 44
+      },
+      "revId": "634541089ad6ca2e3c24529fa14bcb7224825b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "22927098_1685e9e7",
+        "filename": "docker-compose/nginx.conf",
+        "patchSetId": 10
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-27T09:19:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "040008b3_d86c7a42",
       "range": {
         "startLine": 48,
         "startChar": 12,

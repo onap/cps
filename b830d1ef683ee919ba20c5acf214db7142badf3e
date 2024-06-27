@@ -136,6 +136,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "48451bac_7684f561",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 9
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-27T09:19:07Z",
+      "side": 1,
+      "message": "Sorry I was not aware of that the method was included in hazelcast-spring artifact.",
+      "parentUuid": "49d3b10f_86d5aa0e",
+      "range": {
+        "startLine": 147,
+        "startChar": 16,
+        "endLine": 147,
+        "endChar": 48
+      },
+      "revId": "b830d1ef683ee919ba20c5acf214db7142badf3e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0f382612_ef8b6b1e",
@@ -197,6 +221,30 @@
       "side": 1,
       "message": "Use hazelcast-spring:5.3.1 or 5.3.6 as suggested above.",
       "parentUuid": "9abf07b2_006e5860",
+      "range": {
+        "startLine": 149,
+        "startChar": 25,
+        "endLine": 149,
+        "endChar": 30
+      },
+      "revId": "b830d1ef683ee919ba20c5acf214db7142badf3e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2e11a71_36f08a0e",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 9
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-27T09:19:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c005252c_26081cc8",
       "range": {
         "startLine": 149,
         "startChar": 25,
@@ -409,6 +457,30 @@
       "side": 1,
       "message": "I think kubernetesDiscoveryEnabled and dockerDiscoveryEnabled would be more suitable names that reflect their purpose. Since these variables are used to enable or disable specific Hazelcast discovery modes. \n\nStill we can take teams suggestion",
       "parentUuid": "5ab8507d_5f087c94",
+      "range": {
+        "startLine": 47,
+        "startChar": 22,
+        "endLine": 47,
+        "endChar": 27
+      },
+      "revId": "b830d1ef683ee919ba20c5acf214db7142badf3e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "64c9e99c_8946c0d4",
+        "filename": "cps-service/src/main/java/org/onap/cps/cache/HazelcastCacheConfig.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-27T09:19:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "16fbe6e3_4e043c11",
       "range": {
         "startLine": 47,
         "startChar": 22,
