@@ -22,10 +22,10 @@ package org.onap.cps.ncmp.api.impl.config.embeddedcache
 
 import com.hazelcast.core.Hazelcast
 import com.hazelcast.map.IMap
+import org.onap.cps.ncmp.api.data.models.DatastoreType
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.CmNotificationSubscriptionStatus
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.DmiCmNotificationSubscriptionDetails
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.DmiCmNotificationSubscriptionPredicate
-import org.onap.cps.ncmp.api.impl.operations.DatastoreType
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification

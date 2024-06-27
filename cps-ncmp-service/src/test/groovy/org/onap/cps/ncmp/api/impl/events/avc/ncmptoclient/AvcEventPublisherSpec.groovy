@@ -30,7 +30,7 @@ import org.onap.cps.ncmp.events.avc.ncmp_to_client.AvcEvent
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.test.context.ContextConfiguration
 
-import static org.onap.cps.ncmp.api.impl.events.mapper.CloudEventMapper.toTargetEvent
+import static org.onap.cps.ncmp.utils.events.CloudEventMapper.toTargetEvent
 
 @ContextConfiguration(classes = [CpsApplicationContext, ObjectMapper, JsonObjectMapper])
 class AvcEventPublisherSpec extends MessagingBaseSpec {

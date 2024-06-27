@@ -29,11 +29,11 @@ import org.onap.cps.api.CpsModuleService
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.integration.DatabaseTestContainer
 import org.onap.cps.integration.KafkaTestContainer
-import org.onap.cps.ncmp.api.NetworkCmProxyQueryService
-import org.onap.cps.ncmp.api.impl.NetworkCmProxyFacade
 import org.onap.cps.ncmp.api.inventory.NetworkCmProxyInventoryFacade
 import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
+import org.onap.cps.ncmp.impl.data.NetworkCmProxyFacade
+import org.onap.cps.ncmp.impl.data.NetworkCmProxyQueryService
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
 import org.onap.cps.ncmp.impl.inventory.ParameterizedCmHandleQueryService
 import org.onap.cps.ncmp.impl.inventory.models.CmHandleState

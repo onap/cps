@@ -20,10 +20,10 @@
 
 package org.onap.cps.ncmp.api.impl.events.cmsubscription.mapper
 
+import org.onap.cps.ncmp.api.data.models.DatastoreType
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.CmNotificationSubscriptionStatus
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.DmiCmNotificationSubscriptionDetails
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.DmiCmNotificationSubscriptionPredicate
-import org.onap.cps.ncmp.api.impl.operations.DatastoreType
 import spock.lang.Specification
 
 class CmNotificationSubscriptionNcmpOutEventMapperSpec extends Specification {

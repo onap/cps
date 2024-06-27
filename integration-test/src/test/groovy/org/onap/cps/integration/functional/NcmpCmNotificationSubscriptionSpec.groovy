@@ -20,10 +20,11 @@
 
 package org.onap.cps.integration.functional
 
-import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING;
-import org.onap.cps.integration.base.CpsIntegrationSpecBase;
-import org.onap.cps.ncmp.api.impl.events.cmsubscription.service.CmNotificationSubscriptionPersistenceService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.onap.cps.integration.base.CpsIntegrationSpecBase
+import org.onap.cps.ncmp.api.impl.events.cmsubscription.service.CmNotificationSubscriptionPersistenceService
+import org.springframework.beans.factory.annotation.Autowired
+
+import static org.onap.cps.ncmp.api.data.models.DatastoreType.PASSTHROUGH_RUNNING
 
 class NcmpCmNotificationSubscriptionSpec extends CpsIntegrationSpecBase {
 

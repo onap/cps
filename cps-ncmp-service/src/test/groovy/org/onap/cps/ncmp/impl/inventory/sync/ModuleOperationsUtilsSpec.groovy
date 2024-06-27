@@ -26,9 +26,9 @@ import ch.qos.logback.classic.Logger
 import ch.qos.logback.core.read.ListAppender
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
-import org.onap.cps.ncmp.api.impl.operations.DmiDataOperations
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
 import org.onap.cps.ncmp.api.inventory.models.CompositeStateBuilder
+import org.onap.cps.ncmp.impl.data.DmiDataOperations
 import org.onap.cps.ncmp.impl.inventory.CmHandleQueryService
 import org.onap.cps.ncmp.impl.inventory.DataStoreSyncState
 import org.onap.cps.ncmp.impl.inventory.models.CmHandleState

@@ -37,7 +37,7 @@ import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 
-import static org.onap.cps.ncmp.api.impl.events.mapper.CloudEventMapper.toTargetEvent
+import static org.onap.cps.ncmp.utils.events.CloudEventMapper.toTargetEvent
 
 @SpringBootTest(classes = [ObjectMapper, JsonObjectMapper])
 class DmiCmNotificationSubscriptionCacheHandlerSpec extends MessagingBaseSpec {

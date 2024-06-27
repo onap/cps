@@ -25,10 +25,10 @@ import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.impl.events.avc.ncmptoclient.AvcEventPublisher;
-import org.onap.cps.ncmp.api.impl.operations.RequiredDmiService;
 import org.onap.cps.ncmp.api.inventory.models.TrustLevel;
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
+import org.onap.cps.ncmp.impl.models.RequiredDmiService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 

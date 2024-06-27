@@ -23,7 +23,6 @@ package org.onap.cps.ncmp.impl.inventory.sync
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
-import org.onap.cps.ncmp.api.impl.operations.DmiModelOperations
 import org.onap.cps.ncmp.api.inventory.models.CompositeStateBuilder
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.impl.inventory.CmHandleQueryService

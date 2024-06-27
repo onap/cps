@@ -21,19 +21,19 @@
 
 package org.onap.cps.ncmp.api.impl.events.cmsubscription.service
 
-import org.onap.cps.utils.ContentType
-
-import static org.onap.cps.ncmp.api.impl.events.cmsubscription.service.CmNotificationSubscriptionPersistenceServiceImpl.CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_ID;
-import static org.onap.cps.ncmp.api.impl.events.cmsubscription.service.CmNotificationSubscriptionPersistenceServiceImpl.CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_FILTERS_WITH_DATASTORE_AND_CMHANDLE;
-import static org.onap.cps.ncmp.api.impl.events.cmsubscription.service.CmNotificationSubscriptionPersistenceServiceImpl.CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_DATASTORE_CMHANDLE_AND_XPATH;
+import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsQueryService
-import org.onap.cps.ncmp.api.impl.operations.DatastoreType
+import org.onap.cps.ncmp.api.data.models.DatastoreType
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.model.DataNode
+import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.JsonObjectMapper
-import com.fasterxml.jackson.databind.ObjectMapper
 import spock.lang.Specification
+
+import static org.onap.cps.ncmp.api.impl.events.cmsubscription.service.CmNotificationSubscriptionPersistenceServiceImpl.CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_FILTERS_WITH_DATASTORE_AND_CMHANDLE
+import static org.onap.cps.ncmp.api.impl.events.cmsubscription.service.CmNotificationSubscriptionPersistenceServiceImpl.CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_DATASTORE_CMHANDLE_AND_XPATH
+import static org.onap.cps.ncmp.api.impl.events.cmsubscription.service.CmNotificationSubscriptionPersistenceServiceImpl.CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_ID
 
 class CmNotificationSubscriptionPersistenceServiceImplSpec extends Specification {
 

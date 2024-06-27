@@ -19,9 +19,9 @@
  */
 package org.onap.cps.ncmp.api.impl.events.cmsubscription
 
+import org.onap.cps.ncmp.api.data.models.DatastoreType
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.DmiCmNotificationSubscriptionPredicate
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.service.CmNotificationSubscriptionPersistenceService
-import org.onap.cps.ncmp.api.impl.operations.DatastoreType
 import spock.lang.Specification
 
 class CmNotificationSubscriptionDeltaSpec extends Specification {

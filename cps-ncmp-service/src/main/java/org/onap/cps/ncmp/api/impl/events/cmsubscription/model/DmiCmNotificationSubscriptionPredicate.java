@@ -24,7 +24,7 @@ import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import org.onap.cps.ncmp.api.impl.operations.DatastoreType;
+import org.onap.cps.ncmp.api.data.models.DatastoreType;
 
 @Getter
 @Setter

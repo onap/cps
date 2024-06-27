@@ -26,8 +26,8 @@ import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import spock.lang.Specification
 
-import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_OPERATIONAL
-import static org.onap.cps.ncmp.api.impl.operations.DatastoreType.PASSTHROUGH_RUNNING
+import static org.onap.cps.ncmp.api.data.models.DatastoreType.PASSTHROUGH_OPERATIONAL
+import static org.onap.cps.ncmp.api.data.models.DatastoreType.PASSTHROUGH_RUNNING
 
 class CmNotificationSubscriptionDmiInEventMapperSpec extends Specification {
 

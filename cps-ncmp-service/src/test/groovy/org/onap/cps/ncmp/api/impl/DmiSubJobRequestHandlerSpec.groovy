@@ -1,15 +1,15 @@
 package org.onap.cps.ncmp.api.impl
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import org.onap.cps.ncmp.api.data.models.OperationType
 import org.onap.cps.ncmp.api.datajobs.models.DataJobMetadata
 import org.onap.cps.ncmp.api.datajobs.models.DmiWriteOperation
 import org.onap.cps.ncmp.api.datajobs.models.ProducerKey
 import org.onap.cps.ncmp.api.datajobs.models.SubJobWriteResponse
 import org.onap.cps.ncmp.api.impl.client.DmiRestClient
 import org.onap.cps.ncmp.api.impl.config.DmiProperties
-import org.onap.cps.ncmp.api.impl.operations.OperationType
-import org.onap.cps.ncmp.api.impl.operations.RequiredDmiService
 import org.onap.cps.ncmp.impl.datajobs.DmiSubJobRequestHandler
+import org.onap.cps.ncmp.impl.models.RequiredDmiService
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity

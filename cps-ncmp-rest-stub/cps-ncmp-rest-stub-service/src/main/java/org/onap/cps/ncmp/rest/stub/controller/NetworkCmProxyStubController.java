@@ -35,7 +35,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.ncmp.api.impl.operations.DatastoreType;
+import org.onap.cps.ncmp.api.data.models.DatastoreType;
 import org.onap.cps.ncmp.rest.api.NetworkCmProxyApi;
 import org.onap.cps.ncmp.rest.model.CmHandleQueryParameters;
 import org.onap.cps.ncmp.rest.model.DataOperationRequest;

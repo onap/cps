@@ -4,9 +4,9 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import io.cloudevents.CloudEvent
 import org.onap.cps.events.EventsPublisher
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.producer.CmNotificationSubscriptionNcmpOutEventProducer
-import org.onap.cps.ncmp.api.impl.events.mapper.CloudEventMapper
 import org.onap.cps.ncmp.events.cmsubscription_merge1_0_0.ncmp_to_client.CmNotificationSubscriptionNcmpOutEvent
 import org.onap.cps.ncmp.events.cmsubscription_merge1_0_0.ncmp_to_client.Data
+import org.onap.cps.ncmp.utils.events.CloudEventMapper
 import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Specification
 

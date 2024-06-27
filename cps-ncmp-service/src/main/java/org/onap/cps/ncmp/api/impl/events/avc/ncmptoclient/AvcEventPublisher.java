@@ -26,10 +26,10 @@ import java.util.HashMap;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.events.EventsPublisher;
-import org.onap.cps.ncmp.api.impl.events.NcmpEvent;
 import org.onap.cps.ncmp.events.avc.ncmp_to_client.Avc;
 import org.onap.cps.ncmp.events.avc.ncmp_to_client.AvcEvent;
 import org.onap.cps.ncmp.events.avc.ncmp_to_client.Data;
+import org.onap.cps.ncmp.utils.events.NcmpEvent;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 

@@ -48,7 +48,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.ncmp.api.impl.events.lcm.LcmEventsCmHandleStateHandler;
-import org.onap.cps.ncmp.api.impl.utils.AlternateIdChecker;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleRegistrationResponse;
 import org.onap.cps.ncmp.api.inventory.models.CompositeState;
 import org.onap.cps.ncmp.api.inventory.models.CompositeStateBuilder;

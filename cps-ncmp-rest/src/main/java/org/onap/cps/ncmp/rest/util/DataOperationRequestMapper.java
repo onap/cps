@@ -24,8 +24,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.NullValueCheckStrategy;
 import org.mapstruct.NullValuePropertyMappingStrategy;
-import org.onap.cps.ncmp.api.models.DataOperationDefinition;
-import org.onap.cps.ncmp.api.models.DataOperationRequest;
+import org.onap.cps.ncmp.api.data.models.DataOperationDefinition;
+import org.onap.cps.ncmp.api.data.models.DataOperationRequest;
 
 @Mapper(componentModel = "spring", nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS,
         nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.SET_TO_DEFAULT)

@@ -34,9 +34,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.apache.commons.lang3.StringUtils;
-import org.onap.cps.ncmp.api.impl.operations.RequiredDmiService;
 import org.onap.cps.ncmp.api.inventory.models.CompositeState;
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
+import org.onap.cps.ncmp.impl.models.RequiredDmiService;
 
 /**
  * Cm Handle which follows the Yang resource dmi registry model when persisting data to DMI or the DB.

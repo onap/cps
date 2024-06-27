@@ -45,7 +45,6 @@ import java.util.regex.Pattern;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsDataService;
-import org.onap.cps.ncmp.api.impl.utils.AlternateIdChecker;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleRegistrationResponse;
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;

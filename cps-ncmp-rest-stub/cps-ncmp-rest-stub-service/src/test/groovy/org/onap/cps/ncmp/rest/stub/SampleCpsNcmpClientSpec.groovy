@@ -19,24 +19,18 @@
  */
 package org.onap.cps.ncmp.rest.stub
 
-import org.onap.cps.ncmp.api.impl.operations.DatastoreType
+import com.fasterxml.jackson.core.JsonProcessingException
+import com.fasterxml.jackson.core.type.TypeReference
+import com.fasterxml.jackson.databind.JsonMappingException
+import com.fasterxml.jackson.databind.ObjectMapper
+import org.onap.cps.ncmp.api.data.models.DatastoreType
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration
-import org.springframework.boot.test.context.SpringBootContextLoader
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.web.client.TestRestTemplate
 import org.springframework.boot.test.web.server.LocalServerPort
 import org.springframework.http.HttpStatus
 import org.springframework.test.context.ActiveProfiles
-import org.springframework.test.context.ContextConfiguration
-
-import com.fasterxml.jackson.core.JsonProcessingException
-import com.fasterxml.jackson.core.type.TypeReference
-import com.fasterxml.jackson.databind.JsonMappingException
-import com.fasterxml.jackson.databind.ObjectMapper
-
-import spock.lang.Shared
 import spock.lang.Specification
 
 @SpringBootTest(classes = TestApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)

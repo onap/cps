@@ -25,9 +25,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
+import org.onap.cps.ncmp.api.data.models.DatastoreType;
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.model.DmiCmNotificationSubscriptionPredicate;
 import org.onap.cps.ncmp.api.impl.events.cmsubscription.service.CmNotificationSubscriptionPersistenceService;
-import org.onap.cps.ncmp.api.impl.operations.DatastoreType;
 import org.springframework.stereotype.Component;
 
 @Component
