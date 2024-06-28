@@ -75,6 +75,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6960015d_9af3baa8",
+        "filename": "cps-service/src/main/java/org/onap/cps/cache/HazelcastCacheConfig.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-06-28T16:01:32Z",
+      "side": 1,
+      "message": "Right. Sorry forgot to remove the piece of log :)",
+      "parentUuid": "5be7dda7_325574e3",
+      "range": {
+        "startLine": 97,
+        "startChar": 8,
+        "endLine": 97,
+        "endChar": 65
+      },
+      "revId": "21ac6ddb18a55906f5d3609361a5c8e7e11037bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "54e6cf55_fb8b0689",
