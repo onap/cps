@@ -22,6 +22,30 @@
       },
       "revId": "ba46464a4081a6ea60f992dc2379fb9838eca4b4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb8d1869_02dc53f3",
+        "filename": "k6-tests/ncmp/ncmp-kpi.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-06-28T13:47:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e445eabd_fbba996d",
+      "range": {
+        "startLine": 27,
+        "startChar": 29,
+        "endLine": 27,
+        "endChar": 34
+      },
+      "revId": "ba46464a4081a6ea60f992dc2379fb9838eca4b4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
