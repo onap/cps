@@ -18,13 +18,20 @@
  *  ============LICENSE_END=========================================================
  */
 
-import { makeCustomSummaryReport } from './common/utils.js'
+import { Gauge } from 'k6/metrics';
+import { TOTAL_CM_HANDLES, makeCustomSummaryReport, recordTimeInSeconds } from './common/utils.js';
+import { registerAllCmHandles, deregisterAllCmHandles } from './common/cmhandle-crud.js';
 import { executeCmHandleSearch, executeCmHandleIdSearch } from './common/search-base.js';
 import { passthroughRead } from './common/passthrough-read.js';
+
+let cmHandlesCreatedPerSecondGauge = new Gauge("cmhandles_created_per_second");
+let cmHandlesDeletedPerSecondGauge = new Gauge("cmhandles_deleted_per_second");
 
 const DURATION = '15m';
 
 export const options = {
+    setupTimeout: '6m',
+    teardownTimeout: '6m',
     scenarios: {
         passthrough_read: {
             executor: 'constant-vus',
@@ -45,8 +52,9 @@ export const options = {
             duration: DURATION,
         },
     },
-
     thresholds: {
+        'cmhandles_created_per_second': ['value >= 22'],
+        'cmhandles_deleted_per_second': ['value >= 22'],
         'http_req_failed{scenario:passthrough_read}': ['rate == 0'],
         'http_req_failed{scenario:id_search_module}': ['rate == 0'],
         'http_req_failed{scenario:cm_search_module}': ['rate == 0'],
@@ -55,6 +63,16 @@ export const options = {
         'http_req_duration{scenario:cm_search_module}': ['avg <= 13000'],
     },
 };
+
+export function setup() {
+    const registrationTimeInSeconds = recordTimeInSeconds(registerAllCmHandles);
+    cmHandlesCreatedPerSecondGauge.add(TOTAL_CM_HANDLES / registrationTimeInSeconds);
+}
+
+export function teardown() {
+    const deregistrationTimeInSeconds = recordTimeInSeconds(deregisterAllCmHandles);
+    cmHandlesDeletedPerSecondGauge.add(TOTAL_CM_HANDLES / deregistrationTimeInSeconds);
+}
 
 export function passthrough_read() {
     passthroughRead();
