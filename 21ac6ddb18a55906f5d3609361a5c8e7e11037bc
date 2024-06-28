@@ -50,6 +50,29 @@
       "message": "recheck",
       "revId": "21ac6ddb18a55906f5d3609361a5c8e7e11037bc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54e6cf55_fb8b0689",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 12
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-06-28T13:42:02Z",
+      "side": 1,
+      "message": "Since we allowed overriding with CPS_CORE_PORT before, this should be:\n\n    - ${CPS_CORE_PORT:-8883}:80",
+      "range": {
+        "startLine": 74,
+        "startChar": 6,
+        "endLine": 74,
+        "endChar": 17
+      },
+      "revId": "21ac6ddb18a55906f5d3609361a5c8e7e11037bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
