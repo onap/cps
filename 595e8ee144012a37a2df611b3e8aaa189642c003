@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "217a2365_32de1f8a",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-06-28T13:50:58Z",
+      "side": 1,
+      "message": "This logic is much simpler than before because the timeout logic is removed. In ncmp-kpi.js, a k6 option \u0027setupTimeout\u0027 does this.",
+      "revId": "595e8ee144012a37a2df611b3e8aaa189642c003",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13811478_f11ae81a",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-06-28T13:50:58Z",
+      "side": 1,
+      "message": "This code is changed to use ID search endpoint, which is much faster than fetching CM-handles with all descendants.",
+      "revId": "595e8ee144012a37a2df611b3e8aaa189642c003",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
