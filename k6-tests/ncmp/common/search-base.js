@@ -19,8 +19,7 @@
  */
 
 import http from 'k6/http';
-import { check } from 'k6';
-import { NCMP_BASE_URL, TOTAL_CM_HANDLES } from './utils.js';
+import { NCMP_BASE_URL, CONTENT_TYPE_JSON_PARAM } from './utils.js';
 
 const SEARCH_PARAMETERS_PER_SCENARIO = {
     'module': {
@@ -30,30 +29,29 @@ const SEARCH_PARAMETERS_PER_SCENARIO = {
                 'conditionParameters': [{'moduleName': 'ietf-yang-types-1'}]
             }
         ]
+    },
+    'readyCmHandles': {
+        'cmHandleQueryParameters': [
+            {
+                'conditionName': 'cmHandleWithCpsPath',
+                'conditionParameters': [{'cpsPath': '//state[@cm-handle-state="READY"]'}]
+            }
+        ]
     }
 };
 
 export function executeCmHandleSearch(scenario) {
-    executeSearchRequest('searches', scenario);
+    return executeSearchRequest('searches', scenario);
 }
 
 export function executeCmHandleIdSearch(scenario) {
-    executeSearchRequest('id-searches', scenario);
+    return executeSearchRequest('id-searches', scenario);
 }
 
 function executeSearchRequest(searchType, scenario) {
     const searchParameters = SEARCH_PARAMETERS_PER_SCENARIO[scenario];
     const payload = JSON.stringify(searchParameters);
     const url = `${NCMP_BASE_URL}/ncmp/v1/ch/${searchType}`;
-    const params = {
-        headers: {'Content-Type': 'application/json'}
-    };
-    const response = http.post(url, payload, params);
-    check(response, {
-        'status equals 200': (r) => r.status === 200,
-    });
-    const responseData = JSON.parse(response.body);
-    check(responseData, {
-        'returned list has expected CM-handles': (arr) => arr.length === TOTAL_CM_HANDLES,
-    });
+    const response = http.post(url, payload, CONTENT_TYPE_JSON_PARAM);
+    return response;
 }

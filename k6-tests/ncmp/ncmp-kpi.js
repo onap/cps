@@ -18,13 +18,21 @@
  *  ============LICENSE_END=========================================================
  */
 
-import { makeCustomSummaryReport } from './common/utils.js'
+import { check } from 'k6';
+import { Gauge } from 'k6/metrics';
+import { TOTAL_CM_HANDLES, makeCustomSummaryReport, recordTimeInSeconds } from './common/utils.js';
+import { registerAllCmHandles, deregisterAllCmHandles } from './common/cmhandle-crud.js';
 import { executeCmHandleSearch, executeCmHandleIdSearch } from './common/search-base.js';
 import { passthroughRead } from './common/passthrough-read.js';
 
-const DURATION = '15m';
+let cmHandlesCreatedPerSecondGauge = new Gauge('cmhandles_created_per_second');
+let cmHandlesDeletedPerSecondGauge = new Gauge('cmhandles_deleted_per_second');
+
+const DURATION = '15s';
 
 export const options = {
+    setupTimeout: '6m',
+    teardownTimeout: '6m',
     scenarios: {
         passthrough_read: {
             executor: 'constant-vus',
@@ -45,8 +53,9 @@ export const options = {
             duration: DURATION,
         },
     },
-
     thresholds: {
+        'cmhandles_created_per_second': ['value >= 22'],
+        'cmhandles_deleted_per_second': ['value >= 22'],
         'http_req_failed{scenario:passthrough_read}': ['rate == 0'],
         'http_req_failed{scenario:id_search_module}': ['rate == 0'],
         'http_req_failed{scenario:cm_search_module}': ['rate == 0'],
@@ -56,16 +65,31 @@ export const options = {
     },
 };
 
+export function setup() {
+    const totalRegistrationTimeInSeconds = recordTimeInSeconds(registerAllCmHandles);
+    cmHandlesCreatedPerSecondGauge.add(TOTAL_CM_HANDLES / totalRegistrationTimeInSeconds);
+}
+
+export function teardown() {
+    const totalDeregistrationTimeInSeconds = recordTimeInSeconds(deregisterAllCmHandles);
+    cmHandlesDeletedPerSecondGauge.add(TOTAL_CM_HANDLES / totalDeregistrationTimeInSeconds);
+}
+
 export function passthrough_read() {
-    passthroughRead();
+    const response = passthroughRead();
+    check(response, { 'passthrough read status equals 200': (r) => r.status === 200 });
 }
 
 export function id_search_module() {
-    executeCmHandleIdSearch('module');
+    const response = executeCmHandleIdSearch('module');
+    check(response, { 'module ID search status equals 200': (r) => r.status === 200 });
+    check(JSON.parse(response.body), { 'module ID search returned expected CM-handles': (arr) => arr.length === TOTAL_CM_HANDLES });
 }
 
 export function cm_search_module() {
-    executeCmHandleSearch('module');
+    const response = executeCmHandleSearch('module');
+    check(response, { 'module search status equals 200': (r) => r.status === 200 });
+    check(JSON.parse(response.body), { 'module search returned expected CM-handles': (arr) => arr.length === TOTAL_CM_HANDLES });
 }
 
 export function handleSummary(data) {

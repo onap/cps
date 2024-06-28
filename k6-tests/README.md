@@ -21,5 +21,5 @@ docker-compose -f docker-compose/docker-compose.yml --profile dmi-stub up
 
 To run an individual test from command line, use
 ```shell
-k6 run ncmp/1-create-cmhandles.js
+k6 run ncmp/ncmp-kpi.js
 ```
