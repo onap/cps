@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43837e48_682953c2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-01T14:53:57Z",
+      "side": 1,
+      "message": "package are to much based on teh types of class but shoudl be based on usecases instead. As discused lets drop teh \u0027facadsa\u0027 and organise like so:\n\n\ncmsubscriptioncache\n-cache\n-models\n-ncmp \n--ncmpInEventConsumer\n--ncmpOutProduducer\n--CmNotificationSubscriptionHandler\n--CmNotificationSubscriptionNcmpOutEventPublishingTask\n--CmNotificationSubscriptionComparator\n--CmNotificationSubscriptionNcmpOutEventMapper\n-dmi\n--dmiInProducer\n--dmiOutConsumer\n--CmNotificationSubscriptionDmiInEventMapper\n-utils\n--persistenceService",
+      "revId": "f3583deb8f0f91505f82960b449179cee8258d2a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c57b6dc_1d0c284d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmsubscription/consumers/CmNotificationSubscriptionAvcEventConsumer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-01T14:53:57Z",
+      "side": 1,
+      "message": "this event is NOT related to the subscrptions\njust CmAvcEventConsumer",
+      "range": {
+        "startLine": 42,
+        "startChar": 15,
+        "endLine": 42,
+        "endChar": 38
+      },
+      "revId": "f3583deb8f0f91505f82960b449179cee8258d2a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9829d7f9_6e4cfd7c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmsubscription/utils/CmNotificationSubscriptionDelta.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-01T14:53:57Z",
+      "side": 1,
+      "message": "Comparatot or Examiner",
+      "range": {
+        "startLine": 35,
+        "startChar": 39,
+        "endLine": 35,
+        "endChar": 44
+      },
+      "revId": "f3583deb8f0f91505f82960b449179cee8258d2a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "899655ae_ac5dd3e2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmsubscription/utils/CmNotificationSubscriptionDelta.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-01T14:53:57Z",
+      "side": 1,
+      "message": "getNewDmiCmNotificationSubscriptionPredicates",
+      "range": {
+        "startLine": 45,
+        "startChar": 56,
+        "endLine": 45,
+        "endChar": 64
+      },
+      "revId": "f3583deb8f0f91505f82960b449179cee8258d2a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "810a66f0_45338830",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmsubscription/utils/CmNotificationSubscriptionDelta.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-01T14:53:57Z",
+      "side": 1,
+      "message": "see method name",
+      "range": {
+        "startLine": 47,
+        "startChar": 59,
+        "endLine": 47,
+        "endChar": 65
+      },
+      "revId": "f3583deb8f0f91505f82960b449179cee8258d2a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17daf331_9dd556e6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmsubscription/utils/CmNotificationSubscriptionDelta.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-01T14:53:57Z",
+      "side": 1,
+      "message": "as above",
+      "range": {
+        "startLine": 74,
+        "startChar": 63,
+        "endLine": 74,
+        "endChar": 68
+      },
+      "revId": "f3583deb8f0f91505f82960b449179cee8258d2a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "568927ed_791bc0bd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmsubscription/utils/CmNotificationSubscriptionNcmpOutEventPublishingTask.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-01T14:53:57Z",
+      "side": 1,
+      "message": "service\n\nits not a generic utility type class but just part of the service",
+      "range": {
+        "startLine": 21,
+        "startChar": 46,
+        "endLine": 21,
+        "endChar": 51
+      },
+      "revId": "f3583deb8f0f91505f82960b449179cee8258d2a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
