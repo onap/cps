@@ -86,6 +86,24 @@
       "parentUuid": "ef3c2338_2b467cc2",
       "revId": "98d9ac273754a8637bb5e08b1ec7c0b98c645e9e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00b9a7ef_a485bdd0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/exceptions/InvalidOperationException.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-01T10:17:40Z",
+      "side": 1,
+      "message": "will ad it to teh exception handler and move it to teh API in a new commit",
+      "parentUuid": "1876646c_b861da21",
+      "revId": "98d9ac273754a8637bb5e08b1ec7c0b98c645e9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ],
   "submitRequirementResults": [
