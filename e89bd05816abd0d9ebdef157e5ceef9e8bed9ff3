@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbf6b5d7_85695191",
+        "filename": "cps-service/src/main/java/org/onap/cps/cache/HazelcastCacheConfig.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-01T14:04:08Z",
+      "side": 1,
+      "message": "If this needs to be renamed, then should variable \u0027cacheKubernetesServiceName\u0027 on line 47 also be renamed? (TBH I don\u0027t think we should be changing hazelcast config at all in this commit, it\u0027s out of scope - this seems to have crept in)",
+      "range": {
+        "startLine": 44,
+        "startChar": 22,
+        "endLine": 44,
+        "endChar": 48
+      },
+      "revId": "e89bd05816abd0d9ebdef157e5ceef9e8bed9ff3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
