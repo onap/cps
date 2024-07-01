@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d8fd881_6d0ff83b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/url/builder/DmiServiceUrlBuilder.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-01T15:22:14Z",
+      "side": 1,
+      "message": "you must have doen a Crtl+Shift+F 😊",
+      "range": {
+        "startLine": 50,
+        "startChar": 38,
+        "endLine": 50,
+        "endChar": 41
+      },
+      "revId": "7186e40773dc4dc8de9749d19927a38547336eb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
