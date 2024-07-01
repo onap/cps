@@ -50,6 +50,24 @@
       "message": "NB: how about this being in the package.\norg.onap.cps.ncmp.api.data.exceptions; ?? \nexception used in the controller , Rest Exception handler and the enum DatastoreType which is also in the same hierarchy.\norg.onap.cps.ncmp.api.data.models",
       "revId": "98d9ac273754a8637bb5e08b1ec7c0b98c645e9e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef3c2338_2b467cc2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/exceptions/InvalidOperationException.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-01T07:35:22Z",
+      "side": 1,
+      "message": "Yes it belongs in the api section. I\u0027ll move it",
+      "parentUuid": "8562bed8_ecd75408",
+      "revId": "98d9ac273754a8637bb5e08b1ec7c0b98c645e9e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ],
   "submitRequirementResults": [
