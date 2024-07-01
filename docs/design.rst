@@ -60,11 +60,20 @@ and CPS-NCMP-Inventory using the drop down table in the top right:
 Consumed APIs
 =============
 
-CPS Core uses API's from the following ONAP components
+DMI-Plugin
+----------
 
-* DMI-Plugin: REST based interface which is used to provide integration
-  and allow the DMI registry API's have access to the corresponding NCMP API's within CPS Core.
-  More information on the DMI-Plugins offered APIs can be found on the :ref:`DMI-Plugin's Design Page <onap-cps-ncmp-dmi-plugin:design>`.
+DMI-Plugin is a REST based interface which is used to provide integration
+and allow the DMI registry API's have access to the corresponding NCMP API's within CPS Core.
+More information on the DMI-Plugins offered APIs can be found on the :ref:`DMI-Plugin's Design Page <onap-cps-ncmp-dmi-plugin:design>`.
+
+Policy-Executor
+---------------
+
+.. toctree::
+   :maxdepth: 1
+
+   policy-executor.rst
 
 CPS Path
 ========
