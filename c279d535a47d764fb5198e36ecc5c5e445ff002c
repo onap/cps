@@ -20,6 +20,75 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "24b32963_e71f76a9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/url/builder/DmiServiceUrlBuilder.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-01T11:24:06Z",
+      "side": 1,
+      "message": "is there any example of an URL with having an object in the path?\n\nif there is no use-case in real world, maybe better to keep it String.",
+      "range": {
+        "startLine": 36,
+        "startChar": 30,
+        "endLine": 36,
+        "endChar": 36
+      },
+      "revId": "c279d535a47d764fb5198e36ecc5c5e445ff002c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3eb9951_66deed65",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/url/builder/DmiServiceUrlBuilder.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-01T11:24:06Z",
+      "side": 1,
+      "message": "I was thinking if there is any example of URI path-parameter that is Object.\n\nIf there is really no use-case to pass any object into URI path, maybe better to keep it String.",
+      "range": {
+        "startLine": 67,
+        "startChar": 84,
+        "endLine": 67,
+        "endChar": 90
+      },
+      "revId": "c279d535a47d764fb5198e36ecc5c5e445ff002c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1722e7b7_22c37880",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/impl/utils/url/builder/UrlTemplateParameters.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-01T11:24:06Z",
+      "side": 1,
+      "message": "Same as the review made in DmiServiceUrlBuilder.java",
+      "range": {
+        "startLine": 29,
+        "startChar": 68,
+        "endLine": 29,
+        "endChar": 74
+      },
+      "revId": "c279d535a47d764fb5198e36ecc5c5e445ff002c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2783d6d1_c7200ea0",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/DmiDataOperations.java",
         "patchSetId": 7
@@ -36,6 +105,75 @@
         "startChar": 57,
         "endLine": 96,
         "endChar": 70
+      },
+      "revId": "c279d535a47d764fb5198e36ecc5c5e445ff002c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c708ee9_6181f26c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DmiSubJobRequestHandler.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-01T11:24:06Z",
+      "side": 1,
+      "message": "NB: dmiDataJobWriteServiceUrl",
+      "range": {
+        "startLine": 68,
+        "startChar": 40,
+        "endLine": 68,
+        "endChar": 61
+      },
+      "revId": "c279d535a47d764fb5198e36ecc5c5e445ff002c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f2b0dc0_6bd78ad6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DmiSubJobRequestHandler.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-01T11:24:06Z",
+      "side": 1,
+      "message": "NB: extract into a variable like requestBody may increase readability",
+      "range": {
+        "startLine": 72,
+        "startChar": 20,
+        "endLine": 72,
+        "endChar": 69
+      },
+      "revId": "c279d535a47d764fb5198e36ecc5c5e445ff002c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0f8a1b8_56490e0a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DmiSubJobRequestHandler.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-01T11:24:06Z",
+      "side": 1,
+      "message": "NB: buildDmiDataJobWriteServiceUrl or getDmiDataJobWriteServiceUrl",
+      "range": {
+        "startLine": 82,
+        "startChar": 34,
+        "endLine": 82,
+        "endChar": 58
       },
       "revId": "c279d535a47d764fb5198e36ecc5c5e445ff002c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
@@ -112,6 +250,167 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "03a84431_41d6b162",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/trustlevel/DmiPluginTrustLevelWatchDog.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-01T11:24:06Z",
+      "side": 1,
+      "message": "NB: dmiHealthCheckServiceUrl",
+      "range": {
+        "startLine": 76,
+        "startChar": 36,
+        "endLine": 76,
+        "endChar": 57
+      },
+      "revId": "c279d535a47d764fb5198e36ecc5c5e445ff002c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "612472d9_bc5b89bb",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/client/DmiRestClientSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-01T11:24:06Z",
+      "side": 1,
+      "message": "unused imports",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 67
+      },
+      "revId": "c279d535a47d764fb5198e36ecc5c5e445ff002c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "541b69e1_93930a34",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/config/DmiWebClientConfigurationSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-01T11:24:06Z",
+      "side": 1,
+      "message": "unused import",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 13
+      },
+      "revId": "c279d535a47d764fb5198e36ecc5c5e445ff002c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "561a86c8_ab921eb3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/url/builder/DmiServiceUrlBuilderSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-01T11:24:06Z",
+      "side": 1,
+      "message": "Not used during verification thus may be removed.",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 56
+      },
+      "revId": "c279d535a47d764fb5198e36ecc5c5e445ff002c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ac19f93_73d0f7fa",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/url/builder/DmiServiceUrlBuilderSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-01T11:24:06Z",
+      "side": 1,
+      "message": "NB: the",
+      "range": {
+        "startLine": 55,
+        "startChar": 20,
+        "endLine": 55,
+        "endChar": 23
+      },
+      "revId": "c279d535a47d764fb5198e36ecc5c5e445ff002c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d1e2e15_9b4641c6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/url/builder/DmiServiceUrlBuilderSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-01T11:24:06Z",
+      "side": 1,
+      "message": "expectedPathSegments",
+      "range": {
+        "startLine": 59,
+        "startChar": 168,
+        "endLine": 59,
+        "endChar": 188
+      },
+      "revId": "c279d535a47d764fb5198e36ecc5c5e445ff002c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c29dd5e4_cebe93e0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/url/builder/DmiServiceUrlBuilderSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-01T11:24:06Z",
+      "side": 1,
+      "message": "expectedQueryParameters",
+      "range": {
+        "startLine": 73,
+        "startChar": 120,
+        "endLine": 73,
+        "endChar": 140
+      },
+      "revId": "c279d535a47d764fb5198e36ecc5c5e445ff002c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7955a728_e02766fa",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/DmiDataOperationsSpec.groovy",
         "patchSetId": 7
@@ -128,6 +427,29 @@
         "startChar": 91,
         "endLine": 84,
         "endChar": 113
+      },
+      "revId": "c279d535a47d764fb5198e36ecc5c5e445ff002c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "197545c2_929fac55",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/trustlevel/DmiPluginTrustLevelWatchDogSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-01T11:24:06Z",
+      "side": 1,
+      "message": "NB: 2023-2024",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 22
       },
       "revId": "c279d535a47d764fb5198e36ecc5c5e445ff002c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
