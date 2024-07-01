@@ -3,6 +3,98 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "77aa4c93_f3aa4475",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-01T11:36:51Z",
+      "side": 1,
+      "message": "I would move this variable to util.js since repated two times in this class and importing it from there.",
+      "range": {
+        "startLine": 43,
+        "startChar": 4,
+        "endLine": 43,
+        "endChar": 55
+      },
+      "revId": "595e8ee144012a37a2df611b3e8aaa189642c003",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b3901da_88ade3ad",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-01T11:36:51Z",
+      "side": 1,
+      "message": "I would move this to util.js and importing it from there since repeated in this module three times\n\nP.S if you to do so, please don\u0027t forget to replace this const. in search-base.js",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 6
+      },
+      "revId": "595e8ee144012a37a2df611b3e8aaa189642c003",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b505dde_b7abd835",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-01T11:36:51Z",
+      "side": 1,
+      "message": "Same as above",
+      "range": {
+        "startLine": 67,
+        "startChar": 3,
+        "endLine": 67,
+        "endChar": 54
+      },
+      "revId": "595e8ee144012a37a2df611b3e8aaa189642c003",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4fcd798_304caecb",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-01T11:36:51Z",
+      "side": 1,
+      "message": "Same as above",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 6
+      },
+      "revId": "595e8ee144012a37a2df611b3e8aaa189642c003",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "217a2365_32de1f8a",
         "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
         "patchSetId": 2
@@ -31,6 +123,52 @@
       "writtenOn": "2024-06-28T13:50:58Z",
       "side": 1,
       "message": "This code is changed to use ID search endpoint, which is much faster than fetching CM-handles with all descendants.",
+      "revId": "595e8ee144012a37a2df611b3e8aaa189642c003",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1517ba13_26447bc4",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-01T11:36:51Z",
+      "side": 1,
+      "message": "Same as above",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 6
+      },
+      "revId": "595e8ee144012a37a2df611b3e8aaa189642c003",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06d51c38_fc9addd8",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-01T11:36:51Z",
+      "side": 1,
+      "message": "Can be moved to SEARCH_PARAMETERS_PER_SCENARIO array which is located in search-base.js module",
+      "range": {
+        "startLine": 97,
+        "startChar": 3,
+        "endLine": 104,
+        "endChar": 6
+      },
       "revId": "595e8ee144012a37a2df611b3e8aaa189642c003",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }

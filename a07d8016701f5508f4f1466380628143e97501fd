@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7007d91c_e63c7138",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-01T11:36:51Z",
+      "side": 1,
+      "message": "Math.ceil(...)",
+      "range": {
+        "startLine": 30,
+        "startChar": 31,
+        "endLine": 30,
+        "endChar": 78
+      },
+      "revId": "a07d8016701f5508f4f1466380628143e97501fd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e789c30_2a5946f3",
+        "filename": "k6-tests/ncmp/ncmp-kpi.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-01T11:36:51Z",
+      "side": 1,
+      "message": "NB: totalRegistrationTimeInSeconds",
+      "range": {
+        "startLine": 68,
+        "startChar": 10,
+        "endLine": 68,
+        "endChar": 35
+      },
+      "revId": "a07d8016701f5508f4f1466380628143e97501fd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5202665f_7e8e6106",
+        "filename": "k6-tests/ncmp/ncmp-kpi.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-01T11:36:51Z",
+      "side": 1,
+      "message": "NB: totalDeregistrationTimeInSeconds",
+      "range": {
+        "startLine": 73,
+        "startChar": 10,
+        "endLine": 73,
+        "endChar": 37
+      },
+      "revId": "a07d8016701f5508f4f1466380628143e97501fd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
