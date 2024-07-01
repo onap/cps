@@ -21,7 +21,7 @@
 package org.onap.cps.integration.functional
 
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
-import org.onap.cps.ncmp.api.impl.events.cmsubscription.service.CmNotificationSubscriptionPersistenceService
+import org.onap.cps.ncmp.impl.cmsubscription.service.CmNotificationSubscriptionPersistenceService
 import org.springframework.beans.factory.annotation.Autowired
 
 import static org.onap.cps.ncmp.api.data.models.DatastoreType.PASSTHROUGH_RUNNING
