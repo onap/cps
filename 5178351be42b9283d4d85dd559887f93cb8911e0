@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77ffe196_c00e7107",
+        "filename": "acceptance-test/src/test/groovy/org/onap/cps/integration/functional/NcmpWriteSubJobSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-01T15:28:19Z",
+      "side": 1,
+      "message": "it\u0027s Groovy! Just def will do!",
+      "range": {
+        "startLine": 15,
+        "startChar": 4,
+        "endLine": 15,
+        "endChar": 30
+      },
+      "revId": "5178351be42b9283d4d85dd559887f93cb8911e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e993ba4c_77f47db6",
+        "filename": "acceptance-test/src/test/groovy/org/onap/cps/integration/functional/NcmpWriteSubJobSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-01T15:28:19Z",
+      "side": 1,
+      "message": "no needed",
+      "range": {
+        "startLine": 36,
+        "startChar": 12,
+        "endLine": 36,
+        "endChar": 35
+      },
+      "revId": "5178351be42b9283d4d85dd559887f93cb8911e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1bd4246_4bd84975",
+        "filename": "acceptance-test/src/test/groovy/org/onap/cps/integration/functional/NcmpWriteSubJobSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-01T15:28:19Z",
+      "side": 1,
+      "message": "can we check a bit more of the content ?",
+      "range": {
+        "startLine": 38,
+        "startChar": 41,
+        "endLine": 38,
+        "endChar": 60
+      },
+      "revId": "5178351be42b9283d4d85dd559887f93cb8911e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9b04a1d_7ab791a8",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-01T15:28:19Z",
+      "side": 1,
+      "message": "instead of RANDOM UUI I woudl use a counter that increase everytimg the stub is called on this method, it will be easier for demo\u0027s etc. \n\ne.g. ahve a class field\nintr subJobWitreRequestCounter \u003d 0\n\nand in thsi method use: new SubJobWriteResponse(++subJobWitreRequestCounter .toString()...",
+      "range": {
+        "startLine": 265,
+        "startChar": 57,
+        "endLine": 265,
+        "endChar": 74
+      },
+      "revId": "5178351be42b9283d4d85dd559887f93cb8911e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
