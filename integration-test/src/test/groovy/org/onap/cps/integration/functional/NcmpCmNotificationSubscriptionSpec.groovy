@@ -21,7 +21,7 @@
 package org.onap.cps.integration.functional
 
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
-import org.onap.cps.ncmp.api.impl.events.cmsubscription.service.CmNotificationSubscriptionPersistenceService
+import org.onap.cps.ncmp.impl.cmnotificationsubscription.utils.CmSubscriptionPersistenceService
 import org.springframework.beans.factory.annotation.Autowired
 
 import static org.onap.cps.ncmp.api.data.models.DatastoreType.PASSTHROUGH_RUNNING
@@ -29,7 +29,7 @@ import static org.onap.cps.ncmp.api.data.models.DatastoreType.PASSTHROUGH_RUNNIN
 class NcmpCmNotificationSubscriptionSpec extends CpsIntegrationSpecBase {
 
     @Autowired
-    CmNotificationSubscriptionPersistenceService cmNotificationSubscriptionPersistenceService;
+    CmSubscriptionPersistenceService cmNotificationSubscriptionPersistenceService;
 
     def 'Adding a new cm notification subscription'() {
         given: 'there is no ongoing cm subscription for the following'
