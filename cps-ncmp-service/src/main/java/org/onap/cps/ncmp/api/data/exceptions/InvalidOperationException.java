@@ -18,7 +18,7 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.impl.data.exceptions;
+package org.onap.cps.ncmp.api.data.exceptions;
 
 public class InvalidOperationException extends RuntimeException {
     /**

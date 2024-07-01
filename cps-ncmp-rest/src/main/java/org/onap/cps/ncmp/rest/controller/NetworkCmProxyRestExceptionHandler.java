@@ -24,6 +24,7 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.data.exceptions.InvalidDatastoreException;
+import org.onap.cps.ncmp.api.data.exceptions.InvalidOperationException;
 import org.onap.cps.ncmp.api.data.exceptions.OperationNotSupportedException;
 import org.onap.cps.ncmp.api.impl.exception.DmiClientRequestException;
 import org.onap.cps.ncmp.api.impl.exception.DmiRequestException;
@@ -77,9 +78,9 @@ public class NetworkCmProxyRestExceptionHandler {
         return wrapDmiErrorResponse(dmiClientRequestException);
     }
 
-    @ExceptionHandler({DmiRequestException.class, DataValidationException.class, OperationNotSupportedException.class,
-            HttpMessageNotReadableException.class, InvalidTopicException.class, InvalidDatastoreException.class,
-            InvalidDmiResourceUrlException.class})
+    @ExceptionHandler({DmiRequestException.class, DataValidationException.class, InvalidOperationException.class,
+        OperationNotSupportedException.class, HttpMessageNotReadableException.class, InvalidTopicException.class,
+        InvalidDatastoreException.class, InvalidDmiResourceUrlException.class})
     public static ResponseEntity<Object> handleDmiRequestExceptions(final Exception exception) {
         return buildErrorResponse(HttpStatus.BAD_REQUEST, exception);
     }

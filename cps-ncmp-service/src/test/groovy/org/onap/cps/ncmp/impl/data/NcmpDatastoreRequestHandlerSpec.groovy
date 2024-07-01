@@ -21,12 +21,12 @@
 package org.onap.cps.ncmp.impl.data
 
 import org.onap.cps.ncmp.api.data.exceptions.InvalidDatastoreException
+import org.onap.cps.ncmp.api.data.exceptions.InvalidOperationException
 import org.onap.cps.ncmp.api.data.exceptions.OperationNotSupportedException
 import org.onap.cps.ncmp.api.data.models.CmResourceAddress
 import org.onap.cps.ncmp.api.data.models.DataOperationDefinition
 import org.onap.cps.ncmp.api.data.models.DataOperationRequest
 import org.onap.cps.ncmp.exceptions.PayloadTooLargeException
-import org.onap.cps.ncmp.impl.data.exceptions.InvalidOperationException
 import org.springframework.http.ResponseEntity
 import reactor.core.publisher.Mono
 import spock.lang.Specification

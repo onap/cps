@@ -24,6 +24,8 @@ package org.onap.cps.ncmp.rest.controller
 import groovy.json.JsonSlurper
 import org.mapstruct.factory.Mappers
 import org.onap.cps.TestUtils
+import org.onap.cps.ncmp.api.data.exceptions.InvalidOperationException
+import org.onap.cps.ncmp.api.data.exceptions.OperationNotSupportedException
 import org.onap.cps.ncmp.api.impl.exception.DmiClientRequestException
 import org.onap.cps.ncmp.api.impl.exception.DmiRequestException
 import org.onap.cps.ncmp.api.impl.exception.ServerNcmpException
@@ -121,16 +123,18 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
         then: 'an HTTP response is returned with correct message and details'
             assertTestResponse(response, expectedErrorCode, expectedErrorMessage, expectedErrorDetails)
         where:
-            scenario              | exception                                                        || expectedErrorCode     | expectedErrorMessage        | expectedErrorDetails
-            'CPS'                 | new CpsException(sampleErrorMessage, sampleErrorDetails)         || INTERNAL_SERVER_ERROR | sampleErrorMessage          | sampleErrorDetails
-            'NCMP-server'         | new ServerNcmpException(sampleErrorMessage, sampleErrorDetails)  || INTERNAL_SERVER_ERROR | sampleErrorMessage          | null
-            'NCMP-client'         | new DmiRequestException(sampleErrorMessage, sampleErrorDetails)  || BAD_REQUEST           | sampleErrorMessage          | null
-            'DataNode Validation' | new DataNodeNotFoundException('myDataspaceName', 'myAnchorName') || NOT_FOUND             | 'DataNode not found'        | null
-            'other'               | new IllegalStateException(sampleErrorMessage)                    || INTERNAL_SERVER_ERROR | sampleErrorMessage          | null
-            'Data Node Not Found' | new DataNodeNotFoundException('myDataspaceName', 'myAnchorName') || NOT_FOUND             | 'DataNode not found'        | 'DataNode not found'
-            'Existing entry'      | new AlreadyDefinedException('name',null)                         || CONFLICT              | 'Already defined exception' | 'name already exists'
-            'Existing entries'    | AlreadyDefinedException.forDataNodes(['A', 'B'], 'myAnchorName') || CONFLICT              | 'Already defined exception' | '2 data node(s) already exist'
-            'Operation too large' | new PayloadTooLargeException(sampleErrorMessage) || PAYLOAD_TOO_LARGE | sampleErrorMessage | 'Check logs'
+            scenario                | exception                                                        || expectedErrorCode     | expectedErrorMessage        | expectedErrorDetails
+            'CPS'                   | new CpsException(sampleErrorMessage, sampleErrorDetails)         || INTERNAL_SERVER_ERROR | sampleErrorMessage          | sampleErrorDetails
+            'NCMP-server'           | new ServerNcmpException(sampleErrorMessage, sampleErrorDetails)  || INTERNAL_SERVER_ERROR | sampleErrorMessage          | null
+            'DMI Request'           | new DmiRequestException(sampleErrorMessage, sampleErrorDetails)  || BAD_REQUEST           | sampleErrorMessage          | null
+            'Invalid Operation'     | new InvalidOperationException('some reason')                     || BAD_REQUEST           | 'some reason'               | null
+            'Unsupported Operation' | new OperationNotSupportedException('not yet')                    || BAD_REQUEST           | 'not yet'                   | null
+            'DataNode Validation'   | new DataNodeNotFoundException('myDataspaceName', 'myAnchorName') || NOT_FOUND             | 'DataNode not found'        | null
+            'other'                 | new IllegalStateException(sampleErrorMessage)                    || INTERNAL_SERVER_ERROR | sampleErrorMessage          | null
+            'Data Node Not Found'   | new DataNodeNotFoundException('myDataspaceName', 'myAnchorName') || NOT_FOUND             | 'DataNode not found'        | 'DataNode not found'
+            'Existing entry'        | new AlreadyDefinedException('name',null)                         || CONFLICT              | 'Already defined exception' | 'name already exists'
+            'Existing entries'      | AlreadyDefinedException.forDataNodes(['A', 'B'], 'myAnchorName') || CONFLICT              | 'Already defined exception' | '2 data node(s) already exist'
+            'Operation too large'   | new PayloadTooLargeException(sampleErrorMessage) || PAYLOAD_TOO_LARGE | sampleErrorMessage | 'Check logs'
     }
 
     def 'Post request with exception returns correct HTTP Status.'() {

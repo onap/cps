@@ -23,7 +23,7 @@ package org.onap.cps.ncmp.api.data.models;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Locale;
 import lombok.Getter;
-import org.onap.cps.ncmp.impl.data.exceptions.InvalidOperationException;
+import org.onap.cps.ncmp.api.data.exceptions.InvalidOperationException;
 
 @Getter
 public enum OperationType {
