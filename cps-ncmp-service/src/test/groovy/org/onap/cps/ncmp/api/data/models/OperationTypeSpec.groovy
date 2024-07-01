@@ -20,7 +20,7 @@
 
 package org.onap.cps.ncmp.api.data.models
 
-import org.onap.cps.ncmp.impl.data.exceptions.InvalidOperationException
+import org.onap.cps.ncmp.api.data.exceptions.InvalidOperationException
 import spock.lang.Specification
 
 class OperationTypeSpec extends Specification {
