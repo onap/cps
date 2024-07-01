@@ -22,6 +22,30 @@
       },
       "revId": "e89bd05816abd0d9ebdef157e5ceef9e8bed9ff3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2881ecd2_d58f821a",
+        "filename": "cps-service/src/main/java/org/onap/cps/cache/HazelcastCacheConfig.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-01T15:13:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cbf6b5d7_85695191",
+      "range": {
+        "startLine": 44,
+        "startChar": 22,
+        "endLine": 44,
+        "endChar": 48
+      },
+      "revId": "e89bd05816abd0d9ebdef157e5ceef9e8bed9ff3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
