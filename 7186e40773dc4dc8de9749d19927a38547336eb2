@@ -138,6 +138,30 @@
       },
       "revId": "7186e40773dc4dc8de9749d19927a38547336eb2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88f2c27d_74381835",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/url/builder/DmiServiceUrlBuilderSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-02T16:53:04Z",
+      "side": 1,
+      "message": "Hmm, now that I think about it, the fixed path segments SHOULD be encoded! i.e. the original test was correct, and this is wrong.\nMaybe we should have discussion about this.",
+      "parentUuid": "22e09587_f903c4d2",
+      "range": {
+        "startLine": 59,
+        "startChar": 188,
+        "endLine": 61,
+        "endChar": 241
+      },
+      "revId": "7186e40773dc4dc8de9749d19927a38547336eb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
