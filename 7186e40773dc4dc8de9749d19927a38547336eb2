@@ -115,6 +115,29 @@
       },
       "revId": "7186e40773dc4dc8de9749d19927a38547336eb2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22e09587_f903c4d2",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/url/builder/DmiServiceUrlBuilderSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-02T16:42:33Z",
+      "side": 1,
+      "message": "This test and the one below make no sense anymore, because the new DmiServiceUrlBuilder doesn\u0027t URL encode anything! (The WebClient does it.)\n\nFor example, the segment some/special?characters\u003dare\\\\\\\\encoded\nhas an expectedUrlTemplate of:\n\n    myDmiServer/{dmiBasePath}/v1/some/special?characters\u003dare\\\\encoded/{myVariableSegment}\n\nwhich is clearly NOT encoded.\n\nI\u0027m not sure what to do here, maybe just remove the test?",
+      "range": {
+        "startLine": 59,
+        "startChar": 188,
+        "endLine": 61,
+        "endChar": 241
+      },
+      "revId": "7186e40773dc4dc8de9749d19927a38547336eb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
