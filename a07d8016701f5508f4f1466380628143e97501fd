@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ce2e035c_e26a3867",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-03T11:01:03Z",
+      "side": 1,
+      "message": "No, we want to keep the decimal places! e.g. 11.24 seconds\n(note in the summary function we use .toFixed(3) to keep the last 3 decimals in the output)",
+      "parentUuid": "7007d91c_e63c7138",
+      "range": {
+        "startLine": 30,
+        "startChar": 31,
+        "endLine": 30,
+        "endChar": 78
+      },
+      "revId": "a07d8016701f5508f4f1466380628143e97501fd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9e789c30_2a5946f3",
         "filename": "k6-tests/ncmp/ncmp-kpi.js",
         "patchSetId": 3
@@ -37,6 +61,30 @@
       "writtenOn": "2024-07-01T11:36:51Z",
       "side": 1,
       "message": "NB: totalRegistrationTimeInSeconds",
+      "range": {
+        "startLine": 68,
+        "startChar": 10,
+        "endLine": 68,
+        "endChar": 35
+      },
+      "revId": "a07d8016701f5508f4f1466380628143e97501fd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b917203_62dc5e76",
+        "filename": "k6-tests/ncmp/ncmp-kpi.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-03T11:01:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e789c30_2a5946f3",
       "range": {
         "startLine": 68,
         "startChar": 10,
@@ -60,6 +108,30 @@
       "writtenOn": "2024-07-01T11:36:51Z",
       "side": 1,
       "message": "NB: totalDeregistrationTimeInSeconds",
+      "range": {
+        "startLine": 73,
+        "startChar": 10,
+        "endLine": 73,
+        "endChar": 37
+      },
+      "revId": "a07d8016701f5508f4f1466380628143e97501fd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4c876da_65faebdf",
+        "filename": "k6-tests/ncmp/ncmp-kpi.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-03T11:01:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5202665f_7e8e6106",
       "range": {
         "startLine": 73,
         "startChar": 10,
