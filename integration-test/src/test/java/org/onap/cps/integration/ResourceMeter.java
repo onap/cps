@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023 Nordix Foundation
+ *  Copyright (C) 2023-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -19,6 +19,8 @@
  */
 
 package org.onap.cps.integration;
+
+import static org.awaitility.Awaitility.await;
 
 import java.lang.management.GarbageCollectorMXBean;
 import java.lang.management.ManagementFactory;
@@ -71,7 +73,7 @@ public class ResourceMeter {
     static void performGcAndWait() {
         final long gcCountBefore = getGcCount();
         System.gc();
-        while (getGcCount() == gcCountBefore) {}
+        await().until(() -> getGcCount() > gcCountBefore);
     }
 
     private static long getGcCount() {
@@ -94,4 +96,3 @@ public class ResourceMeter {
                 .forEach(MemoryPoolMXBean::resetPeakUsage);
     }
 }
-
