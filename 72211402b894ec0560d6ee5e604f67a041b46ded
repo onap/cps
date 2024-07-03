@@ -1,0 +1,205 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a68fbe2_dd9ca1dc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-03T14:41:45Z",
+      "side": 1,
+      "message": "ONly NOn-blockign comments but together I think they warrant a quick update",
+      "revId": "72211402b894ec0560d6ee5e604f67a041b46ded",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52cb5b92_95b920c9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/url/builder/DmiServiceUrlTemplateBuilderSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-03T14:41:45Z",
+      "side": 1,
+      "message": "NB: \u0027segememt?with:special\u0026chacrters\u0027 (or similar)",
+      "range": {
+        "startLine": 33,
+        "startChar": 45,
+        "endLine": 33,
+        "endChar": 55
+      },
+      "revId": "72211402b894ec0560d6ee5e604f67a041b46ded",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be06f098_08f1af21",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/impl/utils/url/builder/DmiServiceUrlTemplateBuilderSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-03T14:41:45Z",
+      "side": 1,
+      "message": "NB: this might be better doen in a separate test just like the test starting on line #57",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 56
+      },
+      "revId": "72211402b894ec0560d6ee5e604f67a041b46ded",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a93e19d_6568bdbb",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/DmiDataOperationsSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-03T14:41:45Z",
+      "side": 1,
+      "message": "NB: I would NOT use  a grooy string here but hard-code the expected value for dmiBasePath here",
+      "range": {
+        "startLine": 107,
+        "startChar": 94,
+        "endLine": 107,
+        "endChar": 106
+      },
+      "revId": "72211402b894ec0560d6ee5e604f67a041b46ded",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2530971d_5078aafa",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/DmiDataOperationsSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-03T14:41:45Z",
+      "side": 1,
+      "message": "as above",
+      "range": {
+        "startLine": 143,
+        "startChar": 91,
+        "endLine": 143,
+        "endChar": 103
+      },
+      "revId": "72211402b894ec0560d6ee5e604f67a041b46ded",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e985f52_2d000de2",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/DmiDataOperationsSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-03T14:41:45Z",
+      "side": 1,
+      "message": "as above",
+      "range": {
+        "startLine": 156,
+        "startChar": 91,
+        "endLine": 156,
+        "endChar": 102
+      },
+      "revId": "72211402b894ec0560d6ee5e604f67a041b46ded",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9083bfa7_a3b7d07f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/DmiDataOperationsSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-03T14:41:45Z",
+      "side": 1,
+      "message": "as above",
+      "range": {
+        "startLine": 198,
+        "startChar": 51,
+        "endLine": 198,
+        "endChar": 63
+      },
+      "revId": "72211402b894ec0560d6ee5e604f67a041b46ded",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d245b950_af24cb1f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/DmiModelOperationsSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-03T14:41:45Z",
+      "side": 1,
+      "message": "NB: legacy use @Shared def (Groovy, not Java !)",
+      "range": {
+        "startLine": 46,
+        "startChar": 4,
+        "endLine": 46,
+        "endChar": 11
+      },
+      "revId": "72211402b894ec0560d6ee5e604f67a041b46ded",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58846f34_d5a88fe4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/DmiModelOperationsSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-03T14:41:45Z",
+      "side": 1,
+      "message": "like comment in previous test just hardcode the excepted values for easier to read and understand test",
+      "range": {
+        "startLine": 46,
+        "startChar": 85,
+        "endLine": 46,
+        "endChar": 123
+      },
+      "revId": "72211402b894ec0560d6ee5e604f67a041b46ded",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
