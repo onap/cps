@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "813ff29e_6026c13d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-03T13:21:24Z",
+      "side": 1,
+      "message": "Dont just copy the slogan of the JIra but say what this commit actaully does",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 68
+      },
+      "revId": "922d883fe19653a633182e3a3b931a45d83036f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3af0e130_23ca803a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-03T13:21:24Z",
+      "side": 1,
+      "message": "no longer correct?",
+      "range": {
+        "startLine": 11,
+        "startChar": 3,
+        "endLine": 11,
+        "endChar": 51
+      },
+      "revId": "922d883fe19653a633182e3a3b931a45d83036f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b35cefc9_6735fbd5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-03T13:21:24Z",
+      "side": 1,
+      "message": "Really good you have solved how to create a TestContainer for the Stub! \nOverall a good commit but a little bit of clean up left though",
+      "revId": "922d883fe19653a633182e3a3b931a45d83036f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ccee406_628c72b6",
+        "filename": "acceptance-test/src/test/groovy/org/onap/cps/integration/functional/NcmpCmHandleCreateSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-03T13:21:24Z",
+      "side": 1,
+      "message": "NB: why did you not overload the method then you woudln\u0027t have needed so many updates?",
+      "range": {
+        "startLine": 120,
+        "startChar": 12,
+        "endLine": 120,
+        "endChar": 28
+      },
+      "revId": "922d883fe19653a633182e3a3b931a45d83036f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4dfc3076_b1aec9d0",
+        "filename": "acceptance-test/src/test/groovy/org/onap/cps/integration/functional/NcmpWriteSubJobSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-03T13:21:24Z",
+      "side": 1,
+      "message": "I think you should move this contant to teh DMISTubTestContainer class",
+      "range": {
+        "startLine": 13,
+        "startChar": 23,
+        "endLine": 13,
+        "endChar": 46
+      },
+      "revId": "922d883fe19653a633182e3a3b931a45d83036f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e01fc8a4_58752866",
+        "filename": "acceptance-test/src/test/groovy/org/onap/cps/integration/functional/NcmpWriteSubJobSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-03T13:21:24Z",
+      "side": 1,
+      "message": "could you call it twice and proof tha second call gets id \u003d 2 (as per stub behavior)",
+      "range": {
+        "startLine": 37,
+        "startChar": 12,
+        "endLine": 37,
+        "endChar": 48
+      },
+      "revId": "922d883fe19653a633182e3a3b931a45d83036f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bcb08c5d_49f34bcd",
+        "filename": "acceptance-test/src/test/java/org/onap/cps/integration/DmiStubTestContainer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-03T13:21:24Z",
+      "side": 1,
+      "message": "Make sure you stil do a SELF REVIEW.\nThes kind of copy and paste errors are preventable if you do a critical self-review in Nordix befoer asking others to review :-)",
+      "range": {
+        "startLine": 36,
+        "startChar": 6,
+        "endLine": 36,
+        "endChar": 60
+      },
+      "revId": "922d883fe19653a633182e3a3b931a45d83036f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
