@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "71a2f0af_c4331ec3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-07-03T14:24:59Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "813ff29e_6026c13d",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 68
+      },
+      "revId": "922d883fe19653a633182e3a3b931a45d83036f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3af0e130_23ca803a",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-07-03T13:21:24Z",
       "side": 1,
       "message": "no longer correct?",
+      "range": {
+        "startLine": 11,
+        "startChar": 3,
+        "endLine": 11,
+        "endChar": 51
+      },
+      "revId": "922d883fe19653a633182e3a3b931a45d83036f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f50bb817_5ce5332d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-07-03T14:24:59Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3af0e130_23ca803a",
       "range": {
         "startLine": 11,
         "startChar": 3,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e048dfb_6863530e",
+        "filename": "acceptance-test/src/test/groovy/org/onap/cps/integration/functional/NcmpCmHandleCreateSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-07-03T14:24:59Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8ccee406_628c72b6",
+      "range": {
+        "startLine": 120,
+        "startChar": 12,
+        "endLine": 120,
+        "endChar": 28
+      },
+      "revId": "922d883fe19653a633182e3a3b931a45d83036f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4dfc3076_b1aec9d0",
@@ -110,6 +182,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "633e1e29_43ffd901",
+        "filename": "acceptance-test/src/test/groovy/org/onap/cps/integration/functional/NcmpWriteSubJobSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-07-03T14:24:59Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4dfc3076_b1aec9d0",
+      "range": {
+        "startLine": 13,
+        "startChar": 23,
+        "endLine": 13,
+        "endChar": 46
+      },
+      "revId": "922d883fe19653a633182e3a3b931a45d83036f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e01fc8a4_58752866",
@@ -123,6 +219,30 @@
       "writtenOn": "2024-07-03T13:21:24Z",
       "side": 1,
       "message": "could you call it twice and proof tha second call gets id \u003d 2 (as per stub behavior)",
+      "range": {
+        "startLine": 37,
+        "startChar": 12,
+        "endLine": 37,
+        "endChar": 48
+      },
+      "revId": "922d883fe19653a633182e3a3b931a45d83036f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "477482fd_e79a7d2f",
+        "filename": "acceptance-test/src/test/groovy/org/onap/cps/integration/functional/NcmpWriteSubJobSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-07-03T14:24:59Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e01fc8a4_58752866",
       "range": {
         "startLine": 37,
         "startChar": 12,
