@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7b21199a_5c86c5d8",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-03T11:03:22Z",
+      "side": 1,
+      "message": "I think it\u0027s easier to see which endpoint is used by keeping the variable. And it\u0027s only twice, usual recommendation is refactor constants if they appear 3 or more times.",
+      "parentUuid": "77aa4c93_f3aa4475",
+      "range": {
+        "startLine": 43,
+        "startChar": 4,
+        "endLine": 43,
+        "endChar": 55
+      },
+      "revId": "595e8ee144012a37a2df611b3e8aaa189642c003",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7b3901da_88ade3ad",
         "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
         "patchSetId": 2
