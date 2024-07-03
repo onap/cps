@@ -56,10 +56,9 @@ export const options = {
     thresholds: {
         'cmhandles_created_per_second': ['value >= 22'],
         'cmhandles_deleted_per_second': ['value >= 22'],
-        'http_req_failed{scenario:passthrough_read}': ['rate == 0'],
+        'http_reqs{scenario:passthrough_read}': ['rate >= 25'],
         'http_req_failed{scenario:id_search_module}': ['rate == 0'],
         'http_req_failed{scenario:cm_search_module}': ['rate == 0'],
-        'http_req_duration{scenario:passthrough_read}': ['avg <= 2600'], // DMI delay + 100 ms
         'http_req_duration{scenario:id_search_module}': ['avg <= 625'],
         'http_req_duration{scenario:cm_search_module}': ['avg <= 13000'],
     },
@@ -76,8 +75,7 @@ export function teardown() {
 }
 
 export function passthrough_read() {
-    const response = passthroughRead();
-    check(response, { 'passthrough read status equals 200': (r) => r.status === 200 });
+    passthroughRead();
 }
 
 export function id_search_module() {

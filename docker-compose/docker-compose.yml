@@ -130,7 +130,8 @@ services:
       NCMP_ASYNC_M2M_TOPIC: ncmp-async-m2m
       MODULE_REFERENCES_DELAY_MS: 100
       MODULE_RESOURCES_DELAY_MS: 1000
-      DATA_FOR_CM_HANDLE_DELAY_MS: 2500
+      READ_DATA_FOR_CM_HANDLE_DELAY_MS: 300
+      WRITE_DATA_FOR_CM_HANDLE_DELAY_MS: 670
     restart: unless-stopped
     profiles:
       - dmi-stub

@@ -23,6 +23,7 @@ package org.onap.cps.ncmp.dmi.rest.stub.controller;
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.SUCCESS;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.cloudevents.CloudEvent;
 import io.cloudevents.core.builder.CloudEventBuilder;
@@ -69,6 +70,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class DmiRestStubController {
 
     private static final String DEFAULT_TAG = "tagD";
+    private static final String DEFAULT_PASSTHROUGH_OPERATION = "read";
     private static final String dataOperationEventType = "org.onap.cps.ncmp.events.async1_0_0.DataOperationEvent";
     private static final Map<String, String> moduleSetTagPerCmHandleId = new HashMap<>();
     private final KafkaTemplate<String, CloudEvent> cloudEventKafkaTemplate;
@@ -80,8 +82,10 @@ public class DmiRestStubController {
     private long moduleReferencesDelayMs;
     @Value("${delay.module-resources-delay-ms}")
     private long moduleResourcesDelayMs;
-    @Value("${delay.data-for-cm-handle-delay-ms}")
-    private long dataForCmHandleDelayMs;
+    @Value("${delay.read-data-for-cm-handle-delay-ms}")
+    private long readDataForCmHandleDelayMs;
+    @Value("${delay.write-data-for-cm-handle-delay-ms}")
+    private long writeDataForCmHandleDelayMs;
 
     /**
      * This code defines a REST API endpoint for adding new the module set tag mapping. The endpoint receives the
@@ -207,9 +211,12 @@ public class DmiRestStubController {
             @RequestParam(value = "topic", required = false) final String topic,
             @RequestHeader(value = "Authorization", required = false) final String authorization,
             @RequestBody final String requestBody) {
-        log.info("DMI AUTH HEADER: {}", authorization);
-        delay(dataForCmHandleDelayMs);
-        log.info("Logging request body {}", requestBody);
+        final String passthroughOperationType = getPassthroughOperationType(requestBody);
+        if (passthroughOperationType.equals("read")) {
+            delay(readDataForCmHandleDelayMs);
+        } else {
+            delay(writeDataForCmHandleDelayMs);
+        }
 
         final String sampleJson = ResourceFileReaderUtil.getResourceFileContent(applicationContext.getResource(
                 ResourceLoader.CLASSPATH_URL_PREFIX + "data/operational/ietf-network-topology-sample-rfc8345.json"));
@@ -229,7 +236,7 @@ public class DmiRestStubController {
             @RequestParam(value = "topic") final String topic,
             @RequestParam(value = "requestId") final String requestId,
             @RequestBody final DmiDataOperationRequest dmiDataOperationRequest) {
-        delay(dataForCmHandleDelayMs);
+        delay(writeDataForCmHandleDelayMs);
         try {
             log.info("Request received from the NCMP to DMI Plugin: {}",
                     objectMapper.writeValueAsString(dmiDataOperationRequest));
@@ -310,6 +317,18 @@ public class DmiRestStubController {
                 ResourceLoader.CLASSPATH_URL_PREFIX + moduleResponseFilePath);
         log.info("Using module responses from : {}", moduleResponseFilePath);
         return ResourceFileReaderUtil.getResourceFileContent(moduleResponseResource);
+    }
+
+    private String getPassthroughOperationType(final String requestBody) {
+        try {
+            // Parse the JSON string into a JsonNode
+            final JsonNode rootNode = objectMapper.readTree(requestBody);
+            // Extract the value of the "operation" key
+            return rootNode.path("operation").asText();
+        } catch (final JsonProcessingException jsonProcessingException) {
+            log.error("Invalid JSON format. cause : {}", jsonProcessingException.getMessage());
+        }
+        return DEFAULT_PASSTHROUGH_OPERATION;
     }
 
     private void delay(final long milliseconds) {
