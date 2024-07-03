@@ -33,6 +33,13 @@ import spock.lang.Specification
 @EnableConfigurationProperties
 class DmiWebClientConfigurationSpec extends Specification {
 
+    def webClientBuilder = Mock(WebClient.Builder) {
+        defaultHeaders(_) >> it
+        clientConnector(_) >> it
+        codecs(_) >> it
+        build() >> Mock(WebClient)
+    }
+
     def httpClientConfiguration = Spy(HttpClientConfiguration.class)
 
     def objectUnderTest = new DmiWebClientConfiguration(httpClientConfiguration)
@@ -44,7 +51,7 @@ class DmiWebClientConfigurationSpec extends Specification {
 
     def 'Creating a web client instance data service.'() {
         given: 'Web client configuration is invoked'
-            def dataServicesWebClient = objectUnderTest.dataServicesWebClient()
+            def dataServicesWebClient = objectUnderTest.dataServicesWebClient(webClientBuilder)
         expect: 'the system can create an instance for data service'
             assert dataServicesWebClient != null
             assert dataServicesWebClient instanceof WebClient
@@ -52,7 +59,7 @@ class DmiWebClientConfigurationSpec extends Specification {
 
     def 'Creating a web client instance model service.'() {
         given: 'Web client configuration invoked'
-            def modelServicesWebClient = objectUnderTest.modelServicesWebClient()
+            def modelServicesWebClient = objectUnderTest.modelServicesWebClient(webClientBuilder)
         expect: 'the system can create an instance for model service'
             assert modelServicesWebClient != null
             assert modelServicesWebClient instanceof WebClient
@@ -60,7 +67,7 @@ class DmiWebClientConfigurationSpec extends Specification {
 
     def 'Creating a web client instance health service.'() {
         given: 'Web client configuration invoked'
-            def healthChecksWebClient = objectUnderTest.healthChecksWebClient()
+            def healthChecksWebClient = objectUnderTest.healthChecksWebClient(webClientBuilder)
         expect: 'the system can create an instance for health service'
             assert healthChecksWebClient != null
             assert healthChecksWebClient instanceof WebClient
