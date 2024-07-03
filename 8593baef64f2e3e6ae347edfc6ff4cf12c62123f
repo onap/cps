@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ef0b735_59ca200a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-03T15:28:46Z",
+      "side": 1,
+      "message": "Thanks Sourabh for checking the consistency of descriptions.\nAs discussed I decided to put all description and example strings inside \"...\" (unless they contain \" tokens and need to be surrounded in \u0027...\u0027)",
+      "revId": "8593baef64f2e3e6ae347edfc6ff4cf12c62123f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
