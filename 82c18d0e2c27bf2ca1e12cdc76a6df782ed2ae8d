@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e566abdf_309c5608",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-03T15:31:45Z",
+      "side": 1,
+      "message": "very last comments. just to make it ultra clean :-)",
+      "revId": "82c18d0e2c27bf2ca1e12cdc76a6df782ed2ae8d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8755bf8_45318650",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/DmiOperationsBaseSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-03T15:31:45Z",
+      "side": 1,
+      "message": "NB: since we are verifying \u0027myServiceName\u0027 would be better",
+      "range": {
+        "startLine": 48,
+        "startChar": 33,
+        "endLine": 48,
+        "endChar": 37
+      },
+      "revId": "82c18d0e2c27bf2ca1e12cdc76a6df782ed2ae8d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc81979c_d3cd02bf",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/DmiDataOperationsSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-03T15:31:45Z",
+      "side": 1,
+      "message": "NB: can now use \u0027 again",
+      "range": {
+        "startLine": 107,
+        "startChar": 77,
+        "endLine": 107,
+        "endChar": 78
+      },
+      "revId": "82c18d0e2c27bf2ca1e12cdc76a6df782ed2ae8d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ffb2493_4c204ca8",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/DmiDataOperationsSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-03T15:31:45Z",
+      "side": 1,
+      "message": "missed one :-(",
+      "range": {
+        "startLine": 198,
+        "startChar": 34,
+        "endLine": 198,
+        "endChar": 50
+      },
+      "revId": "82c18d0e2c27bf2ca1e12cdc76a6df782ed2ae8d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
