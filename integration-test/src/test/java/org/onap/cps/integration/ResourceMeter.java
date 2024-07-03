@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023 Nordix Foundation
+ *  Copyright (C) 2023-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -25,6 +25,8 @@ import java.lang.management.ManagementFactory;
 import java.lang.management.MemoryPoolMXBean;
 import java.lang.management.MemoryType;
 import org.springframework.util.StopWatch;
+
+import static org.awaitility.Awaitility.await;
 
 /**
  * Time and memory stop watch, exposing total running time and memory used.
@@ -71,7 +73,7 @@ public class ResourceMeter {
     static void performGcAndWait() {
         final long gcCountBefore = getGcCount();
         System.gc();
-        while (getGcCount() == gcCountBefore) {}
+        await().until(() -> getGcCount() > gcCountBefore);
     }
 
     private static long getGcCount() {
@@ -94,4 +96,3 @@ public class ResourceMeter {
                 .forEach(MemoryPoolMXBean::resetPeakUsage);
     }
 }
-
