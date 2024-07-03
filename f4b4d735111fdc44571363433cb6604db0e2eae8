@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d01f00bc_0605bb30",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-07-03T10:43:54Z",
+      "side": 1,
+      "message": "just a minor comment on the test.\nOtherwise it looks fine to me.",
+      "revId": "f4b4d735111fdc44571363433cb6604db0e2eae8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef0534a7_0fbfd0cd",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-07-03T10:43:54Z",
+      "side": 1,
+      "message": "NB: this test can be combined with the test above.\nIts just testing the number of invocations.",
+      "revId": "f4b4d735111fdc44571363433cb6604db0e2eae8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
