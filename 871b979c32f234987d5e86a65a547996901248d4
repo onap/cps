@@ -1,0 +1,435 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2957a9d_72dad4aa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-04T08:11:08Z",
+      "side": 1,
+      "message": "a lot of hard work done last night.\nThe main issue is this the name of map:\nMap\u003cString, DmiCmSubscriptionDetails\u003e dmiSubscriptionPerDmi\n\nI think this name is OK (teh word detaisl isn\u0027t really needed), you start using it consistently in a big class using it.\n\nBut then you start being inconsistent and calling it\n-dmiSubscriptionDetailsPerDmi\n-dmiSubscriptionDetailsMap\n\nJust make sure you always use the same name in the production code and test code!\n\nMaybe to a search of \u0027Map\u003cString, DmiCmSubscriptionDetails\u003e\u0027 to ensure you get all te instances of it. I actually only review the classed that changed in the last commit and try to make them all but it might be in classes you haven\u0027t changed too...",
+      "revId": "871b979c32f234987d5e86a65a547996901248d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19905cf4_a5e9771a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/MappersFacade.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-04T08:11:08Z",
+      "side": 1,
+      "message": "NB: Can you check this description, it doesn\u0027t make sense",
+      "range": {
+        "startLine": 70,
+        "startChar": 5,
+        "endLine": 70,
+        "endChar": 41
+      },
+      "revId": "871b979c32f234987d5e86a65a547996901248d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14f4588b_3cf66cb0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/cache/DmiCacheHandler.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-04T08:11:08Z",
+      "side": 1,
+      "message": "you didnt include teh word \u0027Details\u0027 but I think it is OK as that part is pretty obvious...",
+      "range": {
+        "startLine": 95,
+        "startChar": 58,
+        "endLine": 95,
+        "endChar": 71
+      },
+      "revId": "871b979c32f234987d5e86a65a547996901248d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8811cd3e_0e5d94aa",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/cache/DmiCacheHandler.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-04T08:11:08Z",
+      "side": 1,
+      "message": "NB: inconsistent with the other ones",
+      "range": {
+        "startLine": 127,
+        "startChar": 67,
+        "endLine": 127,
+        "endChar": 73
+      },
+      "revId": "871b979c32f234987d5e86a65a547996901248d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "531ce9e9_4395e825",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/dmi/DmiOutEventConsumer.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-04T08:11:08Z",
+      "side": 1,
+      "message": "inconstsitent use of \u0027Details\u0027",
+      "range": {
+        "startLine": 104,
+        "startChar": 67,
+        "endLine": 104,
+        "endChar": 74
+      },
+      "revId": "871b979c32f234987d5e86a65a547996901248d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e8ddcf6_f2f818d0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-04T08:11:08Z",
+      "side": 1,
+      "message": "- Dont use the word word \u0027Map\u0027 Instead use PerDmi  (DDMI is key here too correct?)\n- USe of word \u0027Details\u0027 inconsistent with previous names for same map",
+      "range": {
+        "startLine": 83,
+        "startChar": 67,
+        "endLine": 83,
+        "endChar": 77
+      },
+      "revId": "871b979c32f234987d5e86a65a547996901248d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54d35d18_28da3554",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-04T08:11:08Z",
+      "side": 1,
+      "message": "use same name as befoer",
+      "range": {
+        "startLine": 112,
+        "startChar": 52,
+        "endLine": 112,
+        "endChar": 77
+      },
+      "revId": "871b979c32f234987d5e86a65a547996901248d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88a633e2_a404f724",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/NcmpOutEventMapper.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-04T08:11:08Z",
+      "side": 1,
+      "message": "use same name as before",
+      "range": {
+        "startLine": 46,
+        "startChar": 56,
+        "endLine": 46,
+        "endChar": 81
+      },
+      "revId": "871b979c32f234987d5e86a65a547996901248d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4b58b99_19e2e595",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/NcmpOutEventMapper.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-04T08:11:08Z",
+      "side": 1,
+      "message": "use same naem as befoer",
+      "range": {
+        "startLine": 76,
+        "startChar": 56,
+        "endLine": 76,
+        "endChar": 81
+      },
+      "revId": "871b979c32f234987d5e86a65a547996901248d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4799f0f7_dfe03215",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/NcmpOutEventPublishingTask.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-04T08:11:08Z",
+      "side": 1,
+      "message": "use same name as before",
+      "range": {
+        "startLine": 54,
+        "startChar": 52,
+        "endLine": 54,
+        "endChar": 78
+      },
+      "revId": "871b979c32f234987d5e86a65a547996901248d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a5357a1_3a931a7e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/EventsFacadeSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-04T08:11:08Z",
+      "side": 1,
+      "message": "legacy (I assume) Replace all \" with \u0027",
+      "range": {
+        "startLine": 41,
+        "startChar": 48,
+        "endLine": 41,
+        "endChar": 49
+      },
+      "revId": "871b979c32f234987d5e86a65a547996901248d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "741fdd45_54195dea",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-04T08:11:08Z",
+      "side": 1,
+      "message": "NB: especially in Groovy (spotbugs doesn\u0027t care), dont break lines unnecessarily. For me it actual redability will detrmine if and where I breal the line",
+      "range": {
+        "startLine": 114,
+        "startChar": 67,
+        "endLine": 115,
+        "endChar": 49
+      },
+      "revId": "871b979c32f234987d5e86a65a547996901248d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f02295f5_2d8abed4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-04T08:11:08Z",
+      "side": 1,
+      "message": "NB: remvoe line breaks",
+      "range": {
+        "startLine": 142,
+        "startChar": 15,
+        "endLine": 146,
+        "endChar": 5
+      },
+      "revId": "871b979c32f234987d5e86a65a547996901248d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84e4a603_1736e4c4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/NcmpOutEventMapperSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-04T08:11:08Z",
+      "side": 1,
+      "message": "as same names as before",
+      "range": {
+        "startLine": 37,
+        "startChar": 49,
+        "endLine": 37,
+        "endChar": 74
+      },
+      "revId": "871b979c32f234987d5e86a65a547996901248d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c1783f6_f64a96a4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/utils/CmSubscriptionPersistenceServiceSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-04T08:11:08Z",
+      "side": 1,
+      "message": "break line here\n(actauly mayeb this is just teh gerrit view?)",
+      "range": {
+        "startLine": 171,
+        "startChar": 33,
+        "endLine": 171,
+        "endChar": 36
+      },
+      "revId": "871b979c32f234987d5e86a65a547996901248d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88da9ee2_3b03d50c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/utils/CmSubscriptionPersistenceServiceSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-04T08:11:08Z",
+      "side": 1,
+      "message": "NB: break lien here",
+      "range": {
+        "startLine": 177,
+        "startChar": 38,
+        "endLine": 177,
+        "endChar": 41
+      },
+      "revId": "871b979c32f234987d5e86a65a547996901248d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a232527_e489bc44",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpCmNotificationSubscriptionSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-04T08:11:08Z",
+      "side": 1,
+      "message": "NB: remove ;",
+      "range": {
+        "startLine": 32,
+        "startChar": 69,
+        "endLine": 32,
+        "endChar": 70
+      },
+      "revId": "871b979c32f234987d5e86a65a547996901248d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95d7b79c_a47f11fb",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpCmNotificationSubscriptionSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-04T08:11:08Z",
+      "side": 1,
+      "message": "NB: remove unnecessary line breaks",
+      "range": {
+        "startLine": 39,
+        "startChar": 52,
+        "endLine": 48,
+        "endChar": 87
+      },
+      "revId": "871b979c32f234987d5e86a65a547996901248d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a72763a_1989a509",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpCmNotificationSubscriptionSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-04T08:11:08Z",
+      "side": 1,
+      "message": "NB: remove line break",
+      "range": {
+        "startLine": 66,
+        "startChar": 51,
+        "endLine": 66,
+        "endChar": 52
+      },
+      "revId": "871b979c32f234987d5e86a65a547996901248d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
