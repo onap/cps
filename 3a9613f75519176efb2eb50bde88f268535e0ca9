@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e42e375c_5ada1182",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-04T12:09:31Z",
+      "side": 1,
+      "message": "waiting a confirmation from ETH team need to confirm on this page:\n\nhttps://wiki.onap.org/display/DW/CPS-391Spike%3A+Define+and+Agree+NCMP+REST+Interface#CPS391Spike:DefineandAgreeNCMPRESTInterface-Requirements",
+      "revId": "3a9613f75519176efb2eb50bde88f268535e0ca9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6ddcfa30_bd8ef3b4",
