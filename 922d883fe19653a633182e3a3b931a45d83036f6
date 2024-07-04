@@ -159,6 +159,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "59a3a772_5e6597c7",
+        "filename": "acceptance-test/src/test/groovy/org/onap/cps/integration/functional/NcmpCmHandleCreateSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-07-04T11:21:49Z",
+      "side": 1,
+      "message": "i figured that in the future it might be useful to extend the registration with the alternateId. I assume we will have more tests that will use this value",
+      "parentUuid": "2e048dfb_6863530e",
+      "range": {
+        "startLine": 120,
+        "startChar": 12,
+        "endLine": 120,
+        "endChar": 28
+      },
+      "revId": "922d883fe19653a633182e3a3b931a45d83036f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4dfc3076_b1aec9d0",
@@ -276,6 +300,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fd3b149_5bb37b7c",
+        "filename": "acceptance-test/src/test/java/org/onap/cps/integration/DmiStubTestContainer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-07-04T11:21:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff167e6c_f5b9c3be",
+      "range": {
+        "startLine": 29,
+        "startChar": 61,
+        "endLine": 29,
+        "endChar": 67
+      },
+      "revId": "922d883fe19653a633182e3a3b931a45d83036f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bcb08c5d_49f34bcd",
@@ -289,6 +337,30 @@
       "writtenOn": "2024-07-03T13:21:24Z",
       "side": 1,
       "message": "Make sure you stil do a SELF REVIEW.\nThes kind of copy and paste errors are preventable if you do a critical self-review in Nordix befoer asking others to review :-)",
+      "range": {
+        "startLine": 36,
+        "startChar": 6,
+        "endLine": 36,
+        "endChar": 60
+      },
+      "revId": "922d883fe19653a633182e3a3b931a45d83036f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34c3661c_c6384d7f",
+        "filename": "acceptance-test/src/test/java/org/onap/cps/integration/DmiStubTestContainer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-07-04T11:21:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bcb08c5d_49f34bcd",
       "range": {
         "startLine": 36,
         "startChar": 6,
