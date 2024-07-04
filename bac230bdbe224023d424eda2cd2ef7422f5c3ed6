@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4bf76b11_3e0391aa",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-04T10:22:40Z",
+      "side": 1,
+      "message": "NB: no need for the prefix \u0027test\u0027",
+      "range": {
+        "startLine": 54,
+        "startChar": 8,
+        "endLine": 54,
+        "endChar": 12
+      },
+      "revId": "bac230bdbe224023d424eda2cd2ef7422f5c3ed6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7374114b_82a48734",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-04T10:22:40Z",
+      "side": 1,
+      "message": "NB: remvoe linebreak",
+      "range": {
+        "startLine": 114,
+        "startChar": 67,
+        "endLine": 115,
+        "endChar": 16
+      },
+      "revId": "bac230bdbe224023d424eda2cd2ef7422f5c3ed6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

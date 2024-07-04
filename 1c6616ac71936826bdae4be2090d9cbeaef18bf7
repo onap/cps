@@ -114,6 +114,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "782face6_2ea0c167",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/MappersFacade.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-04T10:22:40Z",
+      "side": 1,
+      "message": "your reply is even more confusing then the description :-D",
+      "parentUuid": "d57f6f62_ac8e96a8",
+      "range": {
+        "startLine": 70,
+        "startChar": 15,
+        "endLine": 70,
+        "endChar": 41
+      },
+      "revId": "1c6616ac71936826bdae4be2090d9cbeaef18bf7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2656ddbf_30778cb0",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/cache/DmiCacheHandler.java",
         "patchSetId": 5
@@ -585,6 +609,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "23ae7d23_b760bc0c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionComparator.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-04T10:22:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "16b37fb6_21ff8ad2",
+      "range": {
+        "startLine": 46,
+        "startChar": 51,
+        "endLine": 46,
+        "endChar": 78
+      },
+      "revId": "1c6616ac71936826bdae4be2090d9cbeaef18bf7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7494c8de_86e5a11c",
@@ -834,6 +882,30 @@
       "side": 1,
       "message": "will remove this file in the next patchset.",
       "parentUuid": "6de5891c_3b43fa0e",
+      "range": {
+        "startLine": 41,
+        "startChar": 48,
+        "endLine": 41,
+        "endChar": 49
+      },
+      "revId": "1c6616ac71936826bdae4be2090d9cbeaef18bf7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b62208c9_0b19a72c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/EventsFacadeSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-04T10:22:40Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2cc41dbc_bd90e03b",
       "range": {
         "startLine": 41,
         "startChar": 48,
