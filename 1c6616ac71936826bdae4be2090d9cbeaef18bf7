@@ -138,6 +138,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d20a6490_7d38bf03",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/MappersFacade.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-07-04T10:35:25Z",
+      "side": 1,
+      "message": "haha. I meant I am set to remove this class anyways in the next iteration of this patch. Thats why not considering this comment 😊",
+      "parentUuid": "782face6_2ea0c167",
+      "range": {
+        "startLine": 70,
+        "startChar": 15,
+        "endLine": 70,
+        "endChar": 41
+      },
+      "revId": "1c6616ac71936826bdae4be2090d9cbeaef18bf7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2656ddbf_30778cb0",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/cache/DmiCacheHandler.java",
         "patchSetId": 5
