@@ -22,11 +22,11 @@ package org.onap.cps.integration.base
 
 import static org.onap.cps.integration.base.CpsIntegrationSpecBase.readResourceDataFile
 
-import org.springframework.http.HttpHeaders
 import java.util.regex.Matcher
 import okhttp3.mockwebserver.Dispatcher
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.RecordedRequest
+import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 
@@ -53,25 +53,40 @@ class DmiDispatcher extends Dispatcher {
     static final MODULE_RESOURCES_RESPONSE_TEMPLATE = readResourceDataFile('mock-dmi-responses/moduleResourcesTemplate.json')
 
     def isAvailable = true
-
     Map<String, List<String>> moduleNamesPerCmHandleId = [:]
+    def lastAuthHeaderReceived
 
     @Override
     MockResponse dispatch(RecordedRequest request) {
         if (!isAvailable) {
-            return new MockResponse().setResponseCode(HttpStatus.SERVICE_UNAVAILABLE.value())
+            return mockResponse(HttpStatus.SERVICE_UNAVAILABLE)
         }
+        if (request.path == '/actuator/health') {
+            return mockResponseWithBody(HttpStatus.OK, '{"status":"UP"}')
+        }
+
+        lastAuthHeaderReceived = request.getHeader('Authorization')
         switch (request.path) {
-            case ~/^\/dmi\/v1\/ch\/(.*)\/modules$/:
+            // get module references for a CM-handle
+            case ~'^/dmi/v1/ch/(.*)/modules$':
                 def cmHandleId = Matcher.lastMatcher[0][1]
                 return getModuleReferencesResponse(cmHandleId)
 
-            case ~/^\/dmi\/v1\/ch\/(.*)\/moduleResources$/:
+            // get module resources for a CM-handle
+            case ~'^/dmi/v1/ch/(.*)/moduleResources$':
                 def cmHandleId = Matcher.lastMatcher[0][1]
                 return getModuleResourcesResponse(cmHandleId)
 
+            // pass-through data operation for a CM-handle
+            case ~'^/dmi/v1/ch/(.*)/data/ds/(.*)$':
+                return mockResponseWithBody(HttpStatus.OK, '{}')
+
+            // legacy pass-through batch data operation
+            case ~'^/dmi/v1/data$':
+                return mockResponseWithBody(HttpStatus.ACCEPTED, '{}')
+
             default:
-                throw new IllegalArgumentException('Mock DMI does not handle path ' + request.path)
+                throw new IllegalArgumentException('Mock DMI does not implement endpoint ' + request.path)
         }
     }
 
@@ -79,14 +94,14 @@ class DmiDispatcher extends Dispatcher {
         def moduleReferences = '{"schemas":[' + getModuleNamesForCmHandle(cmHandleId).collect {
             MODULE_REFERENCES_RESPONSE_TEMPLATE.replaceAll("<MODULE_NAME>", it)
         }.join(',') + ']}'
-        return mockOkResponseWithBody(moduleReferences)
+        return mockResponseWithBody(HttpStatus.OK, moduleReferences)
     }
 
     private getModuleResourcesResponse(cmHandleId) {
         def moduleResources = '[' + getModuleNamesForCmHandle(cmHandleId).collect {
             MODULE_RESOURCES_RESPONSE_TEMPLATE.replaceAll("<MODULE_NAME>", it)
         }.join(',') + ']'
-        return mockOkResponseWithBody(moduleResources)
+        return mockResponseWithBody(HttpStatus.OK, moduleResources)
     }
 
     private getModuleNamesForCmHandle(cmHandleId) {
@@ -96,9 +111,13 @@ class DmiDispatcher extends Dispatcher {
         return moduleNamesPerCmHandleId.get(cmHandleId)
     }
 
-    private static mockOkResponseWithBody(responseBody) {
+    private static mockResponse(status) {
+        return new MockResponse().setResponseCode(status.value())
+    }
+
+    private static mockResponseWithBody(status, responseBody) {
         return new MockResponse()
-                .setResponseCode(HttpStatus.OK.value())
+                .setResponseCode(status.value())
                 .addHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON)
                 .setBody(responseBody)
     }
