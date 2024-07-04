@@ -43,6 +43,7 @@ Bug Fixes
 Features
 --------
 3.5.1
+    - `CPS-2121 <https://jira.onap.org/browse/CPS-2121>`_ Enabled http client prometheus metrics and manage high cardinality using URL template.
 
 Version: 3.5.0
 ==============
