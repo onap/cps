@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022-2024 Nordix Foundation
+ *  Modifications Copyright (C) 2024 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -26,6 +27,7 @@ import org.onap.cps.api.CpsDataService;
 import org.onap.cps.ncmp.api.data.models.CmResourceAddress;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.utils.ContentType;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
@@ -64,7 +66,7 @@ public class NcmpCachedResourceRequestHandler extends NcmpDatastoreRequestHandle
         final DataNode dataNode = cpsDataService.getDataNodes(cmResourceAddress.datastoreName(),
             cmResourceAddress.cmHandleId(),
             cmResourceAddress.resourceIdentifier(),
-            fetchDescendantsOption).iterator().next();
+            fetchDescendantsOption, ContentType.JSON).iterator().next();
         return Mono.justOrEmpty(dataNode);
     }
 

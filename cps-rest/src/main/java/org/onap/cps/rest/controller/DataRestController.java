@@ -26,6 +26,8 @@ package org.onap.cps.rest.controller;
 
 import static org.onap.cps.rest.utils.MultipartFileUtil.extractYangResourcesMap;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import io.micrometer.core.annotation.Timed;
 import jakarta.validation.ValidationException;
 import java.time.OffsetDateTime;
@@ -111,7 +113,7 @@ public class DataRestController implements CpsDataApi {
         final FetchDescendantsOption fetchDescendantsOption = Boolean.TRUE.equals(includeDescendants)
             ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS : FetchDescendantsOption.OMIT_DESCENDANTS;
         final DataNode dataNode = cpsDataService.getDataNodes(dataspaceName, anchorName, xpath,
-            fetchDescendantsOption).iterator().next();
+            fetchDescendantsOption, ContentType.JSON).iterator().next();
         final String prefix = prefixResolver.getPrefix(dataspaceName, anchorName, dataNode.getXpath());
         return new ResponseEntity<>(DataMapUtils.toDataMapWithIdentifier(dataNode, prefix), HttpStatus.OK);
     }
@@ -120,19 +122,34 @@ public class DataRestController implements CpsDataApi {
     @Timed(value = "cps.data.controller.datanode.get.v2",
             description = "Time taken to get data node")
     public ResponseEntity<Object> getNodeByDataspaceAndAnchorV2(final String dataspaceName, final String anchorName,
-                                                                final String xpath,
+                                                                final String contentTypeHeader, final String xpath,
                                                                 final String fetchDescendantsOptionAsString) {
+        final ContentType contentType = contentTypeHeader.contains(MediaType.APPLICATION_XML_VALUE) ? ContentType.XML
+                : ContentType.JSON;
         final FetchDescendantsOption fetchDescendantsOption =
                 FetchDescendantsOption.getFetchDescendantsOption(fetchDescendantsOptionAsString);
         final Collection<DataNode> dataNodes = cpsDataService.getDataNodes(dataspaceName, anchorName, xpath,
-                fetchDescendantsOption);
+                fetchDescendantsOption, contentType);
         final List<Map<String, Object>> dataMaps = new ArrayList<>(dataNodes.size());
         for (final DataNode dataNode: dataNodes) {
             final String prefix = prefixResolver.getPrefix(dataspaceName, anchorName, dataNode.getXpath());
             final Map<String, Object> dataMap = DataMapUtils.toDataMapWithIdentifier(dataNode, prefix);
             dataMaps.add(dataMap);
         }
-        return new ResponseEntity<>(jsonObjectMapper.asJsonString(dataMaps), HttpStatus.OK);
+        if (contentType == ContentType.XML) {
+            try {
+                final XmlMapper xmlMapper = new XmlMapper();
+                final StringBuilder xmlStringBuilder = new StringBuilder();
+                for (final Map<String, Object> dataMap : dataMaps) {
+                    xmlStringBuilder.append(xmlMapper.writeValueAsString(dataMap));
+                }
+                return new ResponseEntity<>(xmlStringBuilder.toString(), HttpStatus.OK);
+            } catch (final JsonProcessingException e) {
+                return new ResponseEntity<>("Error generating XML response", HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        } else {
+            return new ResponseEntity<>(jsonObjectMapper.asJsonString(dataMaps), HttpStatus.OK);
+        }
     }
 
     @Override

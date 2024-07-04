@@ -22,6 +22,7 @@ package org.onap.cps.integration.performance.cps
 
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.integration.performance.base.CpsPerfTestBase
+import org.onap.cps.utils.ContentType
 
 import static org.onap.cps.spi.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
@@ -36,7 +37,7 @@ class GetPerfTest extends CpsPerfTestBase {
     def 'Read top-level node with #scenario.'() {
         when: 'get data nodes from 1 anchor'
             resourceMeter.start()
-            def result = objectUnderTest.getDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm1', '/openroadm-devices', fetchDescendantsOption)
+            def result = objectUnderTest.getDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm1', '/openroadm-devices', fetchDescendantsOption, ContentType.JSON)
             resourceMeter.stop()
             assert countDataNodesInTree(result) == expectedNumberOfDataNodes
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
@@ -80,7 +81,7 @@ class GetPerfTest extends CpsPerfTestBase {
     def 'Read complete data trees using #scenario.'() {
         when: 'get data nodes from 1 anchor'
             resourceMeter.start()
-            def result = objectUnderTest.getDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm3', xpath, INCLUDE_ALL_DESCENDANTS)
+            def result = objectUnderTest.getDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm3', xpath, INCLUDE_ALL_DESCENDANTS, ContentType.JSON)
             assert countDataNodesInTree(result) == expectedNumberOfDataNodes
             resourceMeter.stop()
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()

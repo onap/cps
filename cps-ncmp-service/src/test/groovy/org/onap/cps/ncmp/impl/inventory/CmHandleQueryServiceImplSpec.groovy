@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022-2023 Nordix Foundation
- *  Modifications Copyright (C) 2023 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2024 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -26,6 +26,7 @@ import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.utils.CpsValidator
+import org.onap.cps.utils.ContentType
 import spock.lang.Shared
 import spock.lang.Specification
 
@@ -129,7 +130,7 @@ class CmHandleQueryServiceImplSpec extends Specification {
         and: 'the persistence service returns a list of data nodes'
             mockCpsDataPersistenceService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
                     NCMP_DMI_REGISTRY_PARENT + '/cm-handles[@id=\'some-cm-handle\']/state',
-                    OMIT_DESCENDANTS) >> [new DataNode(leaves: ['cm-handle-state': 'READY'])]
+                    OMIT_DESCENDANTS, ContentType.JSON) >> [new DataNode(leaves: ['cm-handle-state': 'READY'])]
         when: 'cm handles are compared by state'
             def result = objectUnderTest.cmHandleHasState('some-cm-handle', cmHandleState)
         then: 'the returned result matches the expected result from the persistence service'
@@ -146,7 +147,7 @@ class CmHandleQueryServiceImplSpec extends Specification {
         and: 'cps data service returns a list of data nodes'
             mockCpsDataPersistenceService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
                     NCMP_DMI_REGISTRY_PARENT + '/cm-handles[@id=\'some-cm-handle\']/state',
-                    OMIT_DESCENDANTS) >> [new DataNode(leaves: ['cm-handle-state': 'READY'])]
+                    OMIT_DESCENDANTS, ContentType.JSON) >> [new DataNode(leaves: ['cm-handle-state': 'READY'])]
         when: 'cm handles are fetched by state and id'
             def result = objectUnderTest.getCmHandleState('some-cm-handle')
         then: 'the returned result is a list of data nodes returned by cps data service'
