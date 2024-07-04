@@ -368,6 +368,7 @@
                         <exclude>org/onap/cps/ncmp/rest/model/*</exclude>
                         <exclude>org/onap/cps/**/*MapperImpl.class</exclude>
                         <exclude>org/onap/cps/ncmp/rest/stub/*</exclude>
+                        <exclude>org/onap/cps/policyexecutor/stub/model/*</exclude>
                     </excludes>
                 </configuration>
                 <executions>

@@ -67,6 +67,7 @@
         <module>spotbugs</module>
         <module>cps-application</module>
         <module>jacoco-report</module>
+        <module>policy-executor-stub</module>
     </modules>
 
     <build>
