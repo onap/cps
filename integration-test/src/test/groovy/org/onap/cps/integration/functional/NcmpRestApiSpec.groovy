@@ -40,20 +40,18 @@ class NcmpRestApiSpec extends CpsIntegrationSpecBase {
                 'ch-2': ['M1', 'M2'],
                 'ch-3': ['M1', 'M3']
             ]
-        and: 'a POST request is made to register the CM Handles'
+        when: 'a POST request is made to register the CM Handles'
             def requestBody = '{"dmiPlugin":"'+DMI_URL+'","createdCmHandles":[{"cmHandle":"ch-1"},{"cmHandle":"ch-2"},{"cmHandle":"ch-3"}]}'
             mvc.perform(post('/ncmpInventory/v1/ch').contentType(MediaType.APPLICATION_JSON).content(requestBody))
                     .andExpect(status().is2xxSuccessful())
-        when: 'module sync runs'
-            moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
         then: 'CM-handles go to READY state'
-            new PollingConditions().eventually {
+            new PollingConditions().within(MODULE_SYNC_WAIT_TIME_IN_SECONDS, () -> {
                 (1..3).each {
                     mvc.perform(get('/ncmp/v1/ch/ch-'+it))
                             .andExpect(status().isOk())
                             .andExpect(jsonPath('$.state.cmHandleState').value('READY'))
                 }
-            }
+            })
     }
 
     def 'Search for CM Handles by module using REST API.'() {
