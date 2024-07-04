@@ -19,15 +19,15 @@
 openapi: 3.0.3
 info:
   title: Policy Executor
-  description: "Allows NCMP to execute a policy defined by a third party implementation before proceeding with an operation"
+  description: "Allows NCMP to execute a policy defined by a third party implementation before proceeding with a CM operation"
   version: 1.0.0
 servers:
-  - url: /policy-executor
+  - url: /policy-executor/api
 tags:
   - name: policy-executor
     description: "Execute all your policies"
 paths:
-  /policy-executor/api/v1/{action}:
+  /v1/{action}:
     post:
       description: "Fire a Policy action"
       operationId: executePolicyAction
@@ -37,7 +37,7 @@ paths:
         required: true
         description: "The action request body"
         content:
-          application/3gpp-json-patch+json:
+          application/json:
             schema:
               $ref: '#/components/schemas/PolicyExecutionRequest'
       tags:
@@ -102,12 +102,12 @@ components:
       properties:
         payloadType:
           type: string
-          description: "The type of payload. Currently supported options: 'CM_Write'"
-          example: "CM_Write"
+          description: "The type of payload. Currently supported options: 'cm_write'"
+          example: "cm_write"
         decisionType:
           type: string
-          description: "The type of decision. Currently supported options: 'Allow'"
-          example: "Allow"
+          description: "The type of decision. Currently supported options: 'permit'"
+          example: "permit"
         payload:
           type: array
           items:
@@ -126,8 +126,8 @@ components:
           example: "550e8400-e29b-41d4-a716-446655440000"
         decision:
           type: string
-          description: "The decision outcome. Currently supported values: 'Allow','Deny'"
-          example: "Deny"
+          description: "The decision outcome. Currently supported values: 'permit','deny'"
+          example: "deny"
         message:
           type: string
           description: "Additional information regarding the decision outcome"
@@ -205,10 +205,10 @@ components:
     actionInPath:
       name: action
       in: path
-      description: "The policy action. Currently supported options: 'Execute'"
+      description: "The policy action. Currently supported options: 'execute'"
       required: true
       schema:
         type: string
-        example: "Execute"
+        example: "execute"
 security:
   - bearerAuth: []

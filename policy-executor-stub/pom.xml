@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.onap.cps</groupId>
+        <artifactId>cps-parent</artifactId>
+        <version>3.5.1-SNAPSHOT</version>
+        <relativePath>../cps-parent/pom.xml</relativePath>
+    </parent>
+
+    <artifactId>policy-executor-stub</artifactId>
+
+    <dependencies>
+        <!-- S P R I N G   D E P E N D E N C I E S -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jetty</artifactId>
+        </dependency>
+        <!-- A L P H A B E T I C A L   D E P E N D E N C I E S -->
+        <dependency>
+            <groupId>io.swagger.core.v3</groupId>
+            <artifactId>swagger-annotations</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+        </dependency>
+        <!-- T E S T   D E P E N D E N C I E S -->
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-json</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.spockframework</groupId>
+            <artifactId>spock-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.spockframework</groupId>
+            <artifactId>spock-spring</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Swagger code generation. -->
+            <plugin>
+                <groupId>org.openapitools</groupId>
+                <artifactId>openapi-generator-maven-plugin</artifactId>
+                <version>6.6.0</version>
+                <executions>
+                    <execution>
+                        <id>code-gen</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.parent.basedir}/../docs/api/swagger/policy-executor/openapi.yaml</inputSpec>
+                            <modelPackage>org.onap.cps.policyexecutor.stub.model</modelPackage>
+                            <apiPackage>org.onap.cps.policyexecutor.stub.api</apiPackage>
+                            <generatorName>spring</generatorName>
+                            <generateSupportingFiles>false</generateSupportingFiles>
+                            <configOptions>
+                                <sourceFolder>src/gen/java</sourceFolder>
+                                <dateLibrary>java11</dateLibrary>
+                                <interfaceOnly>true</interfaceOnly>
+                                <useSpringBoot3>true</useSpringBoot3>
+                                <useTags>true</useTags>
+                                <openApiNullable>false</openApiNullable>
+                                <skipDefaultInterface>true</skipDefaultInterface>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>openapi-yaml-gen</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <phase>compile</phase>
+                        <configuration>
+                            <inputSpec>${project.parent.basedir}/../docs/api/swagger/policy-executor/openapi.yaml</inputSpec>
+                            <generatorName>openapi-yaml</generatorName>
+                            <configOptions>
+                                <outputFile>openapi.yaml</outputFile>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+
+</project>
