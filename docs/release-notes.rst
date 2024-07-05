@@ -39,6 +39,7 @@ Release Data
 Bug Fixes
 ---------
 3.5.1
+    - `CPS-2302 <https://jira.onap.org/browse/CPS-2302>`_ Fix handling of special characters in moduleSetTag.
 
 Features
 --------
