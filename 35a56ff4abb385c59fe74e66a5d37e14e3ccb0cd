@@ -48,6 +48,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "231d20cf_d38fe901",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-05T14:42:35Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "eeccf33e_8945233d",
+      "range": {
+        "startLine": 27,
+        "startChar": 4,
+        "endLine": 27,
+        "endChar": 27
+      },
+      "revId": "35a56ff4abb385c59fe74e66a5d37e14e3ccb0cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f15d7f8f_a72e27fa",
@@ -95,6 +119,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "189897fd_89ce710b",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-05T14:42:35Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f1d0f1d4_45a0f68b",
+      "range": {
+        "startLine": 32,
+        "startChar": 4,
+        "endLine": 32,
+        "endChar": 27
+      },
+      "revId": "35a56ff4abb385c59fe74e66a5d37e14e3ccb0cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "89120326_2176dad3",
@@ -108,6 +156,30 @@
       "writtenOn": "2024-07-03T16:39:54Z",
       "side": 1,
       "message": "NB: processEachBatchOfCmHandles",
+      "range": {
+        "startLine": 35,
+        "startChar": 9,
+        "endLine": 35,
+        "endChar": 32
+      },
+      "revId": "35a56ff4abb385c59fe74e66a5d37e14e3ccb0cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8677b3b7_2109835d",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-05T14:42:35Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "89120326_2176dad3",
       "range": {
         "startLine": 35,
         "startChar": 9,
@@ -296,6 +368,30 @@
       "side": 1,
       "message": "Not needed since the k6 thresholds have same format:\n\n    \u0027avg \u003c\u003d 625\u0027\n    \u0027rate \u003d\u003d 0\u0027\n    \u0027value \u003e\u003d 22\u0027",
       "parentUuid": "52d4241f_ed6b8501",
+      "range": {
+        "startLine": 68,
+        "startChar": 62,
+        "endLine": 68,
+        "endChar": 91
+      },
+      "revId": "35a56ff4abb385c59fe74e66a5d37e14e3ccb0cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e6ba8d2_dbd020c1",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-05T14:42:35Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "54db4301_714350f6",
       "range": {
         "startLine": 68,
         "startChar": 62,
