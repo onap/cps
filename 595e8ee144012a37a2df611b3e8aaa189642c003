@@ -182,6 +182,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a3ba035_ad4e3d10",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-05T14:31:40Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "217a2365_32de1f8a",
+      "revId": "595e8ee144012a37a2df611b3e8aaa189642c003",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "13811478_f11ae81a",
@@ -195,6 +213,24 @@
       "writtenOn": "2024-06-28T13:50:58Z",
       "side": 1,
       "message": "This code is changed to use ID search endpoint, which is much faster than fetching CM-handles with all descendants.",
+      "revId": "595e8ee144012a37a2df611b3e8aaa189642c003",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "01d19405_0c9bd949",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-05T14:31:40Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "13811478_f11ae81a",
       "revId": "595e8ee144012a37a2df611b3e8aaa189642c003",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
