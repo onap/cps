@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "eeccf33e_8945233d",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-05T14:24:48Z",
+      "side": 1,
+      "message": "I think that would make it more difficult to understand:\n\n    processEachBatchOfCmHandles(createCmHandles)\nTo me that looks like the parameter contains the batches. When actually it\u0027s a function to be applied for each batch.",
+      "parentUuid": "3a3d5669_5354c48f",
+      "range": {
+        "startLine": 27,
+        "startChar": 4,
+        "endLine": 27,
+        "endChar": 27
+      },
+      "revId": "35a56ff4abb385c59fe74e66a5d37e14e3ccb0cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f15d7f8f_a72e27fa",
         "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
         "patchSetId": 4
@@ -37,6 +61,30 @@
       "writtenOn": "2024-07-03T16:39:54Z",
       "side": 1,
       "message": "NB: processEachBatchOfCmHandles",
+      "range": {
+        "startLine": 32,
+        "startChar": 4,
+        "endLine": 32,
+        "endChar": 27
+      },
+      "revId": "35a56ff4abb385c59fe74e66a5d37e14e3ccb0cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1d0f1d4_45a0f68b",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-05T14:24:48Z",
+      "side": 1,
+      "message": "same as above",
+      "parentUuid": "f15d7f8f_a72e27fa",
       "range": {
         "startLine": 32,
         "startChar": 4,
@@ -93,6 +141,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8111e01c_c88d91cb",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-05T14:24:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a2b7b2fd_b1e0b116",
+      "range": {
+        "startLine": 74,
+        "startChar": 10,
+        "endLine": 74,
+        "endChar": 35
+      },
+      "revId": "35a56ff4abb385c59fe74e66a5d37e14e3ccb0cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8c45c3ca_c2bf73d9",
@@ -116,6 +188,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0ab9e7d_178079f5",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-05T14:24:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8c45c3ca_c2bf73d9",
+      "range": {
+        "startLine": 77,
+        "startChar": 14,
+        "endLine": 77,
+        "endChar": 38
+      },
+      "revId": "35a56ff4abb385c59fe74e66a5d37e14e3ccb0cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "be42fd81_094044c2",
@@ -129,6 +225,30 @@
       "writtenOn": "2024-07-03T16:39:54Z",
       "side": 1,
       "message": "ch-${startIndex + i};",
+      "range": {
+        "startLine": 45,
+        "startChar": 26,
+        "endLine": 45,
+        "endChar": 49
+      },
+      "revId": "35a56ff4abb385c59fe74e66a5d37e14e3ccb0cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc17426e_d4737948",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-05T14:24:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be42fd81_094044c2",
       "range": {
         "startLine": 45,
         "startChar": 26,
@@ -164,6 +284,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "54db4301_714350f6",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-05T14:24:48Z",
+      "side": 1,
+      "message": "Not needed since the k6 thresholds have same format:\n\n    \u0027avg \u003c\u003d 625\u0027\n    \u0027rate \u003d\u003d 0\u0027\n    \u0027value \u003e\u003d 22\u0027",
+      "parentUuid": "52d4241f_ed6b8501",
+      "range": {
+        "startLine": 68,
+        "startChar": 62,
+        "endLine": 68,
+        "endChar": 91
+      },
+      "revId": "35a56ff4abb385c59fe74e66a5d37e14e3ccb0cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f16afc10_5fb7a8bb",
         "filename": "k6-tests/ncmp/run-all-tests.sh",
         "patchSetId": 4
@@ -175,6 +319,30 @@
       "writtenOn": "2024-07-03T16:39:54Z",
       "side": 1,
       "message": "NB:\n\n/dev/null || exit 1",
+      "range": {
+        "startLine": 18,
+        "startChar": 24,
+        "endLine": 18,
+        "endChar": 33
+      },
+      "revId": "35a56ff4abb385c59fe74e66a5d37e14e3ccb0cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7077da7_e453abc9",
+        "filename": "k6-tests/ncmp/run-all-tests.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-05T14:24:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f16afc10_5fb7a8bb",
       "range": {
         "startLine": 18,
         "startChar": 24,
@@ -202,6 +370,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5d0a8d6_e1ec2662",
+        "filename": "k6-tests/ncmp/run-all-tests.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-05T14:24:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3bb42ebc_e82b729d",
+      "revId": "35a56ff4abb385c59fe74e66a5d37e14e3ccb0cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ebbcf9c3_407791c3",
@@ -215,6 +401,24 @@
       "writtenOn": "2024-07-03T16:39:54Z",
       "side": 1,
       "message": "// Check if summary.csv exists\nif [ -f summary.csv ]; then",
+      "revId": "35a56ff4abb385c59fe74e66a5d37e14e3ccb0cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4784e752_56807551",
+        "filename": "k6-tests/ncmp/run-all-tests.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-05T14:24:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ebbcf9c3_407791c3",
       "revId": "35a56ff4abb385c59fe74e66a5d37e14e3ccb0cd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -236,6 +440,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "716ba07c_af7919aa",
+        "filename": "k6-tests/ncmp/run-all-tests.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-05T14:24:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "40c8350d_01f120f0",
+      "revId": "35a56ff4abb385c59fe74e66a5d37e14e3ccb0cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bafda6bf_2cf68f5b",
@@ -249,6 +471,30 @@
       "writtenOn": "2024-07-03T16:39:54Z",
       "side": 1,
       "message": "else\necho \"Error: Failed to generate summary.csv\"\n((number_of_failures++))\nfi\n\npopd \u003e /dev/null || exit 1",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 14
+      },
+      "revId": "35a56ff4abb385c59fe74e66a5d37e14e3ccb0cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c2a05a3_7507a2a1",
+        "filename": "k6-tests/ncmp/run-all-tests.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-05T14:24:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bafda6bf_2cf68f5b",
       "range": {
         "startLine": 38,
         "startChar": 0,
