@@ -3,7 +3,6 @@ package org.onap.cps.ncmp.impl.cmnotificationsubscription.ncmp
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.cloudevents.CloudEvent
 import org.onap.cps.events.EventsPublisher
-import org.onap.cps.ncmp.impl.cmnotificationsubscription.MappersFacade
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.cache.DmiCacheHandler
 import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.ncmp_to_client.Data
 import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.ncmp_to_client.NcmpOutEvent
@@ -15,11 +14,10 @@ class NcmpOutEventProducerSpec extends Specification {
 
     def mockEventsPublisher = Mock(EventsPublisher)
     def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
-    def mockCmNotificationSubscriptionMappersHandler = Mock(MappersFacade)
-    def mockDmiCmNotificationSubscriptionCacheHandler = Mock(DmiCacheHandler)
+    def mockNcmpOutEventMapper = Mock(NcmpOutEventMapper)
+    def mockDmiCacheHandler = Mock(DmiCacheHandler)
 
-    def objectUnderTest = new NcmpOutEventProducer(mockEventsPublisher, jsonObjectMapper,
-        mockCmNotificationSubscriptionMappersHandler, mockDmiCmNotificationSubscriptionCacheHandler)
+    def objectUnderTest = new NcmpOutEventProducer(mockEventsPublisher, jsonObjectMapper, mockNcmpOutEventMapper, mockDmiCacheHandler)
 
     def 'Create and #scenario Cm Notification Subscription NCMP out event'() {
         given: 'a cm subscription response for the client'
@@ -82,7 +80,7 @@ class NcmpOutEventProducerSpec extends Specification {
                     }
             }
         then: 'the cache handler is called once to remove accepted and rejected entries in cache'
-            1 * mockDmiCmNotificationSubscriptionCacheHandler.removeAcceptedAndRejectedDmiSubscriptionEntries(subscriptionId)
+            1 * mockDmiCacheHandler.removeAcceptedAndRejectedDmiSubscriptionEntries(subscriptionId)
     }
 
 
