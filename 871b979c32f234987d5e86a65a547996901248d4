@@ -43,6 +43,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "072048cf_946929d6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/MappersFacade.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-05T10:22:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "19905cf4_a5e9771a",
+      "range": {
+        "startLine": 70,
+        "startChar": 5,
+        "endLine": 70,
+        "endChar": 41
+      },
+      "revId": "871b979c32f234987d5e86a65a547996901248d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "14f4588b_3cf66cb0",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/cache/DmiCacheHandler.java",
         "patchSetId": 6
@@ -265,6 +289,30 @@
       "writtenOn": "2024-07-04T08:11:08Z",
       "side": 1,
       "message": "use same name as before",
+      "range": {
+        "startLine": 46,
+        "startChar": 56,
+        "endLine": 46,
+        "endChar": 81
+      },
+      "revId": "871b979c32f234987d5e86a65a547996901248d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba1e7e98_d611f41a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/NcmpOutEventMapper.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-05T10:22:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "88a633e2_a404f724",
       "range": {
         "startLine": 46,
         "startChar": 56,
