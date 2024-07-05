@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c85ecb8_69debf9b",
+        "filename": "k6-tests/ncmp/ncmp-kpi.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-05T16:33:59Z",
+      "side": 0,
+      "message": "Can you bring this back?\nI know we don\u0027t report/plot the checks, but it\u0027s handy for debugging the tests.",
+      "range": {
+        "startLine": 79,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 87
+      },
+      "revId": "35a56ff4abb385c59fe74e66a5d37e14e3ccb0cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

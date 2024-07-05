@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76f16c2d_07997bb6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-05T16:33:59Z",
+      "side": 1,
+      "message": "Good overall, just some minor comments",
+      "revId": "f9d2de8f3dd13e78fd6abfaf54650a62d8ba89a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a563e76e_7b201abb",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-05T16:33:59Z",
+      "side": 1,
+      "message": "NB. Note the test spec says \u0027requests/second\u0027. But since each request is for a single CM-handle, CM-handles/second is also correct 😄",
+      "range": {
+        "startLine": 61,
+        "startChar": 90,
+        "endLine": 61,
+        "endChar": 109
+      },
+      "revId": "f9d2de8f3dd13e78fd6abfaf54650a62d8ba89a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
