@@ -170,9 +170,10 @@ class DmiModelOperationsSpec extends DmiOperationsBaseSpec {
         then: 'the result is the response from DMI service'
             assert result == [mod1:'some yang source']
         where: 'the following Module Set Tags are used'
-            scenario                 | moduleSetTag    || expectedModuleSetTagInRequest
-            'Without module set tag' | ''              || ''
-            'With module set tag'    | 'moduleSetTag1' || '"moduleSetTag":"moduleSetTag1",'
+            scenario                               | moduleSetTag       || expectedModuleSetTagInRequest
+            'Without module set tag'               | ''                 || ''
+            'With module set tag'                  | 'moduleSetTag1'    || '"moduleSetTag":"moduleSetTag1",'
+            'Special characters in module set tag' | 'module:set#tag$2' || '"moduleSetTag":"module:set#tag$2",'
     }
 
     def 'Retrieving yang resources from DMI with no module references.'() {

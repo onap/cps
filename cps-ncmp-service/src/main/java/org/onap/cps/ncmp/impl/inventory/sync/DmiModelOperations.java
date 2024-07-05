@@ -126,8 +126,7 @@ public class DmiModelOperations {
         data.add("modules", moduleReferencesAsJson);
         final JsonObject jsonRequestObject = new JsonObject();
         if (!moduleSetTag.isEmpty()) {
-            final JsonElement moduleSetTagAsJson = JsonParser.parseString(moduleSetTag);
-            jsonRequestObject.add("moduleSetTag", moduleSetTagAsJson);
+            jsonRequestObject.addProperty("moduleSetTag", moduleSetTag);
         }
         jsonRequestObject.add("data", data);
         jsonRequestObject.add("cmHandleProperties", toJsonObject(dmiProperties));
