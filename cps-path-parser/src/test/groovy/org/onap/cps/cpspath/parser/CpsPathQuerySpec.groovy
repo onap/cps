@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2023 Nordix Foundation
+ *  Copyright (C) 2021-2024 Nordix Foundation
  *  Modifications Copyright (C) 2023 TechMahindra Ltd
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -251,6 +251,23 @@ class CpsPathQuerySpec extends Specification {
             cpsPath                                      || expectedFirstLeafName | expectedSecondLeafName
             '/test[@name1="value1" and @name2="value2"]' || 'name1'               | 'name2'
             '/test[@name2="value2" and @name1="value1"]' || 'name2'               | 'name1'
+    }
+
+    def 'Ancestor axis matching prefix'() {
+        when: 'building a cps path query'
+            def result = parseXPathAndBuild(xpath)
+        then: 'ancestor axis is removed when same as prefix'
+            assert result.hasAncestorAxis() == expectAncestorAxis
+        where: 'the following xpaths are used'
+            xpath                     || expectAncestorAxis
+            '//abc/def/ancestor::abc' || true
+            '//abc/def/ancestor::def' || false
+            '//abc/def/ancestor::ef'  || true
+        }
+
+    def parseXPathAndBuild(xpath) {
+        def cpsPathBuilder = CpsPathUtil.getCpsPathBuilder(xpath)
+        cpsPathBuilder.build()
     }
 
 }
