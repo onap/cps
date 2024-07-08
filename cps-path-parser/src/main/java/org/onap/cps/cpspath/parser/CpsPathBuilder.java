@@ -25,6 +25,7 @@ import static org.onap.cps.cpspath.parser.CpsPathPrefixType.DESCENDANT;
 
 import java.util.ArrayList;
 import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathBaseListener;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathParser;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathParser.AncestorAxisContext;
@@ -35,6 +36,7 @@ import org.onap.cps.cpspath.parser.antlr4.CpsPathParser.MultipleLeafConditionsCo
 import org.onap.cps.cpspath.parser.antlr4.CpsPathParser.PrefixContext;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathParser.TextFunctionConditionContext;
 
+@Slf4j
 public class CpsPathBuilder extends CpsPathBaseListener {
 
     private static final String OPEN_BRACKET = "[";
@@ -165,6 +167,12 @@ public class CpsPathBuilder extends CpsPathBaseListener {
         cpsPathQuery.setContainerNames(containerNames);
         cpsPathQuery.setBooleanOperators(booleanOperators);
         cpsPathQuery.setComparativeOperators(comparativeOperators);
+        if (cpsPathQuery.hasAncestorAxis() && cpsPathQuery.getXpathPrefix()
+                .endsWith("/" + cpsPathQuery.getAncestorSchemaNodeIdentifier())) {
+            cpsPathQuery.setAncestorSchemaNodeIdentifier("");
+            log.warn("Ancestor axis for xpath prefix: {} ignored because it is of same type as the target.",
+                    cpsPathQuery.getXpathPrefix());
+        }
         return cpsPathQuery;
     }
 
