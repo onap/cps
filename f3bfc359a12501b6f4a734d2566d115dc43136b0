@@ -16,6 +16,29 @@
       "message": "Nice improvement",
       "revId": "f3bfc359a12501b6f4a734d2566d115dc43136b0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "540674c3_7286a437",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/dmi/DmiOutEventConsumerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-08T07:56:02Z",
+      "side": 1,
+      "message": "NB: this column always has the same value so can be hardcoded instead",
+      "range": {
+        "startLine": 114,
+        "startChar": 67,
+        "endLine": 114,
+        "endChar": 86
+      },
+      "revId": "f3bfc359a12501b6f4a734d2566d115dc43136b0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
