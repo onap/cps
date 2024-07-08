@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46b2ed89_b5e17ec0",
+        "filename": "policy-executor-stub/src/test/groovy/org/onap/cps/policyexecutor/stub/PolicyExecutorApplicationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-08T15:55:59Z",
+      "side": 1,
+      "message": "NB: policy action.",
+      "range": {
+        "startLine": 27,
+        "startChar": 17,
+        "endLine": 27,
+        "endChar": 31
+      },
+      "revId": "b446186fbec19d637baf4e04429e78f7a66c64de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
