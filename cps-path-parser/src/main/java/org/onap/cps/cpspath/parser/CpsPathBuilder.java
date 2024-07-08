@@ -25,6 +25,7 @@ import static org.onap.cps.cpspath.parser.CpsPathPrefixType.DESCENDANT;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathBaseListener;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathParser;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathParser.AncestorAxisContext;
@@ -36,6 +37,8 @@ import org.onap.cps.cpspath.parser.antlr4.CpsPathParser.PrefixContext;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathParser.TextFunctionConditionContext;
 
 public class CpsPathBuilder extends CpsPathBaseListener {
+
+    private static final Logger logger = Logger.getLogger(CpsPathBuilder.class.getName());
 
     private static final String OPEN_BRACKET = "[";
 
@@ -165,6 +168,11 @@ public class CpsPathBuilder extends CpsPathBaseListener {
         cpsPathQuery.setContainerNames(containerNames);
         cpsPathQuery.setBooleanOperators(booleanOperators);
         cpsPathQuery.setComparativeOperators(comparativeOperators);
+        if (cpsPathQuery.hasAncestorAxis() && cpsPathQuery.getXpathPrefix()
+                .endsWith("/" + cpsPathQuery.getAncestorSchemaNodeIdentifier())) {
+            cpsPathQuery.setAncestorSchemaNodeIdentifier("");
+            logger.warning("Ancestor axis ignored because it is of same type as the target.");
+        }
         return cpsPathQuery;
     }
 
