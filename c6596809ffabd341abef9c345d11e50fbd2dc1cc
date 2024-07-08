@@ -66,6 +66,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4dc62d6c_cb2bf639",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/DmiDispatcher.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-08T15:57:03Z",
+      "side": 1,
+      "message": "using named constants for each regex might be usefull",
+      "parentUuid": "6967e4e1_b20149cc",
+      "range": {
+        "startLine": 81,
+        "startChar": 20,
+        "endLine": 81,
+        "endChar": 49
+      },
+      "revId": "c6596809ffabd341abef9c345d11e50fbd2dc1cc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f9bb8be4_cdb0acdc",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/DmiDispatcher.groovy",
         "patchSetId": 1
