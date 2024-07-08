@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a97bd862_ca9b2ffd",
+        "filename": "cps-rest/docs/openapi/cpsData.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-08T10:44:27Z",
+      "side": 1,
+      "message": "I always wonder about this, does it NEED to change to String?!",
+      "range": {
+        "startLine": 206,
+        "startChar": 18,
+        "endLine": 206,
+        "endChar": 24
+      },
+      "revId": "f4b4d735111fdc44571363433cb6604db0e2eae8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "426f5dbe_618525ec",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
         "patchSetId": 4
@@ -43,6 +66,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "24543e93_873454fc",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-08T10:44:27Z",
+      "side": 1,
+      "message": "I wonder the same but I see teh legacy impl for XML in create also uses \u0027contains\u0027 can we check and see if it works with equals?",
+      "parentUuid": "426f5dbe_618525ec",
+      "range": {
+        "startLine": 155,
+        "startChar": 58,
+        "endLine": 155,
+        "endChar": 66
+      },
+      "revId": "f4b4d735111fdc44571363433cb6604db0e2eae8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ef0534a7_0fbfd0cd",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
         "patchSetId": 4
@@ -54,6 +101,116 @@
       "writtenOn": "2024-07-03T10:43:54Z",
       "side": 1,
       "message": "NB: this test can be combined with the test above.\nIts just testing the number of invocations.",
+      "revId": "f4b4d735111fdc44571363433cb6604db0e2eae8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf31122f_f5fbb1db",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-08T10:44:27Z",
+      "side": 1,
+      "message": "its a \u0027delegation test\u0027 no need to vary the content type at all!\nThis test is not needed it does NOT cover a new codepath",
+      "parentUuid": "ef0534a7_0fbfd0cd",
+      "revId": "f4b4d735111fdc44571363433cb6604db0e2eae8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21d5fbdb_f298aa04",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-08T10:44:27Z",
+      "side": 1,
+      "message": "suggestion: list the supported types!",
+      "range": {
+        "startLine": 150,
+        "startChar": 25,
+        "endLine": 150,
+        "endChar": 32
+      },
+      "revId": "f4b4d735111fdc44571363433cb6604db0e2eae8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9cab2d4_8b4e20ea",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-08T10:44:27Z",
+      "side": 1,
+      "message": "make more generic",
+      "range": {
+        "startLine": 160,
+        "startChar": 52,
+        "endLine": 160,
+        "endChar": 57
+      },
+      "revId": "f4b4d735111fdc44571363433cb6604db0e2eae8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cae7d4e3_789584ab",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-08T10:44:27Z",
+      "side": 1,
+      "message": "name misleading\nsuggestion: nodeDataPerXPath",
+      "range": {
+        "startLine": 160,
+        "startChar": 14,
+        "endLine": 160,
+        "endChar": 30
+      },
+      "revId": "f4b4d735111fdc44571363433cb6604db0e2eae8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "812fd07f_f1161199",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-08T10:44:27Z",
+      "side": 1,
+      "message": "suggestion: list the supported types!",
+      "range": {
+        "startLine": 162,
+        "startChar": 32,
+        "endLine": 162,
+        "endChar": 54
+      },
       "revId": "f4b4d735111fdc44571363433cb6604db0e2eae8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
