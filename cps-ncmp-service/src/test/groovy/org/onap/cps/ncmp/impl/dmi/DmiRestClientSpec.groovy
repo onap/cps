@@ -163,4 +163,16 @@ class DmiRestClientSpec extends Specification {
             'DMI basic auth disabled, with NCMP bearer token' | false       | BEARER_AUTH_HEADER || BEARER_AUTH_HEADER
             'DMI basic auth disabled, with NCMP basic auth'   | false       | BASIC_AUTH_HEADER  || NO_AUTH_HEADER
     }
+
+    def 'DMI GET Operation for DMI Data Service '() {
+        given: 'the Data web client returns a valid response entity for the expected parameters'
+            mockDataServicesWebClient.get() >> mockRequestBody
+            def jsonNode = jsonObjectMapper.convertJsonString('{"status":"some status"}', JsonNode.class)
+            ((ObjectNode) jsonNode).put('status', 'some status')
+            mockResponse.bodyToMono(JsonNode.class) >> Mono.just(jsonNode)
+        when: 'GET operation is invoked for Data Service'
+            def response = objectUnderTest.getDataJobStatus(urlTemplateParameters, NO_AUTH_HEADER).block()
+        then: 'the response equals to the expected value'
+            assert response == 'some status'
+    }
 }
