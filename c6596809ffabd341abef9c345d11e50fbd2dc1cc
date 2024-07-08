@@ -16,6 +16,75 @@
       "message": "looks good to me.",
       "revId": "c6596809ffabd341abef9c345d11e50fbd2dc1cc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1254a9cc_22cad7f4",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/DmiDispatcher.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-08T10:22:56Z",
+      "side": 1,
+      "message": "NB: since the highg frequency of the Health Check api we need to extract HC url from swich-case block, right?",
+      "range": {
+        "startLine": 64,
+        "startChar": 1,
+        "endLine": 66,
+        "endChar": 9
+      },
+      "revId": "c6596809ffabd341abef9c345d11e50fbd2dc1cc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6967e4e1_b20149cc",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/DmiDispatcher.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-08T10:22:56Z",
+      "side": 1,
+      "message": "NB: Do you think is it needed to write some comment around URL regexp to specify exactly which URL would be intercepted?",
+      "range": {
+        "startLine": 81,
+        "startChar": 20,
+        "endLine": 81,
+        "endChar": 49
+      },
+      "revId": "c6596809ffabd341abef9c345d11e50fbd2dc1cc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9bb8be4_cdb0acdc",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/DmiDispatcher.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-08T10:22:56Z",
+      "side": 1,
+      "message": "NB: According to open API spec it returns 200 - OK not accepted.",
+      "range": {
+        "startLine": 86,
+        "startChar": 55,
+        "endLine": 86,
+        "endChar": 63
+      },
+      "revId": "c6596809ffabd341abef9c345d11e50fbd2dc1cc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
