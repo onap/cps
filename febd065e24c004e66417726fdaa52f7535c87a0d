@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c60d6013_025d0fb7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-08T11:05:25Z",
+      "side": 1,
+      "message": "NB: Do we need a new packages like functional.cps and functional.ncmp as discussed in the meeting last week? As of now. they are both in functional package.",
+      "revId": "febd065e24c004e66417726fdaa52f7535c87a0d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
