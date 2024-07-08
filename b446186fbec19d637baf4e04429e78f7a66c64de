@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9efc4596_9ddee426",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-08T16:04:11Z",
+      "side": 1,
+      "message": "sonarqube keeps failing because the coverage is not being aggregated... \nI just need to update some config file somewhere so the coverage gets added (the test are there!)\nLet me check",
+      "revId": "b446186fbec19d637baf4e04429e78f7a66c64de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "46b2ed89_b5e17ec0",
