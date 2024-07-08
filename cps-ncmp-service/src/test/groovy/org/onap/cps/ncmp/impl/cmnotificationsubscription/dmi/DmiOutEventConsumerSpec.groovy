@@ -29,9 +29,9 @@ import io.cloudevents.CloudEvent
 import io.cloudevents.core.builder.CloudEventBuilder
 import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
-import org.onap.cps.ncmp.impl.cmnotificationsubscription.EventsFacade
-import org.onap.cps.ncmp.impl.cmnotificationsubscription.MappersFacade
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.cache.DmiCacheHandler
+import org.onap.cps.ncmp.impl.cmnotificationsubscription.ncmp.NcmpOutEventMapper
+import org.onap.cps.ncmp.impl.cmnotificationsubscription.ncmp.NcmpOutEventProducer
 import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.dmi_to_ncmp.Data
 import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.dmi_to_ncmp.DmiOutEvent
 import org.onap.cps.ncmp.utils.TestUtils
@@ -53,10 +53,10 @@ class DmiOutEventConsumerSpec extends MessagingBaseSpec {
     ObjectMapper objectMapper
 
     def mockDmiCacheHandler = Mock(DmiCacheHandler)
-    def mockEventsHandler = Mock(EventsFacade)
-    def mockMappersHandler = Mock(MappersFacade)
+    def mockNcmpOutEventProducer = Mock(NcmpOutEventProducer)
+    def mockNcmpOutEventMapper = Mock(NcmpOutEventMapper)
 
-    def objectUnderTest = new DmiOutEventConsumer(mockDmiCacheHandler, mockEventsHandler, mockMappersHandler)
+    def objectUnderTest = new DmiOutEventConsumer(mockDmiCacheHandler, mockNcmpOutEventProducer, mockNcmpOutEventMapper)
     def logger = Spy(ListAppender<ILoggingEvent>)
 
     void setup() {
@@ -107,9 +107,9 @@ class DmiOutEventConsumerSpec extends MessagingBaseSpec {
         and: 'correct number of calls to persist cache'
             expectedPersistenceCalls * mockDmiCacheHandler.persistIntoDatabasePerDmi('sub-1','test-dmi-plugin-name')
         and: 'correct number of calls to map the ncmp out event'
-            1 * mockMappersHandler.toNcmpOutEvent('sub-1', _)
+            1 * mockNcmpOutEventMapper.toNcmpOutEvent('sub-1', _)
         and: 'correct number of calls to publish the ncmp out event to client'
-            1 * mockEventsHandler.publishNcmpOutEvent('sub-1', 'subscriptionCreateResponse', _, false)
+            1 * mockNcmpOutEventProducer.publishNcmpOutEvent('sub-1', 'subscriptionCreateResponse', _, false)
         where: 'the following parameters are used'
             scenario          | subscriptionStatus | statusCode || expectedCacheCalls | expectedPersistenceCalls
             'Accepted Status' | ACCEPTED           | '1'        || 1                  | 1

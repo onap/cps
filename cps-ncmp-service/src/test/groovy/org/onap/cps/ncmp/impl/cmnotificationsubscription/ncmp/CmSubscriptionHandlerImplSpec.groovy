@@ -21,9 +21,9 @@
 package org.onap.cps.ncmp.impl.cmnotificationsubscription.ncmp
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import org.onap.cps.ncmp.impl.cmnotificationsubscription.EventsFacade
-import org.onap.cps.ncmp.impl.cmnotificationsubscription.MappersFacade
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.cache.DmiCacheHandler
+import org.onap.cps.ncmp.impl.cmnotificationsubscription.dmi.DmiInEventMapper
+import org.onap.cps.ncmp.impl.cmnotificationsubscription.dmi.DmiInEventProducer
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.models.DmiCmSubscriptionDetails
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.models.DmiCmSubscriptionPredicate
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.utils.CmSubscriptionPersistenceService
@@ -41,15 +41,17 @@ import static org.onap.cps.ncmp.impl.cmnotificationsubscription.models.CmSubscri
 class CmSubscriptionHandlerImplSpec extends Specification {
 
     def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
-    def mockCmSubscriptionPersistenceService = Mock(CmSubscriptionPersistenceService);
-    def mockCmSubscriptionComparator = Mock(CmSubscriptionComparator);
-    def mockMappersFacade = Mock(MappersFacade);
-    def mockEventsFacade = Mock(EventsFacade);
-    def mockDmiCacheHandler = Mock(DmiCacheHandler);
+    def mockCmSubscriptionPersistenceService = Mock(CmSubscriptionPersistenceService)
+    def mockCmSubscriptionComparator = Mock(CmSubscriptionComparator)
+    def mockNcmpOutEventMapper = Mock(NcmpOutEventMapper)
+    def mockDmiInEventMapper = Mock(DmiInEventMapper)
+    def mockNcmpOutEventProducer = Mock(NcmpOutEventProducer)
+    def mockDmiInEventProducer = Mock(DmiInEventProducer)
+    def mockDmiCacheHandler = Mock(DmiCacheHandler)
 
     def objectUnderTest = new CmSubscriptionHandlerImpl(mockCmSubscriptionPersistenceService,
-        mockCmSubscriptionComparator, mockMappersFacade,
-        mockEventsFacade, mockDmiCacheHandler)
+        mockCmSubscriptionComparator, mockNcmpOutEventMapper, mockDmiInEventMapper,
+        mockNcmpOutEventProducer, mockDmiInEventProducer, mockDmiCacheHandler)
 
     def testDmiSubscriptionsPerDmi = ["dmi-1": new DmiCmSubscriptionDetails([], PENDING)]
 
@@ -68,17 +70,16 @@ class CmSubscriptionHandlerImplSpec extends Specification {
             1 * mockCmSubscriptionComparator.getNewDmiSubscriptionPredicates(_) >> testListOfDeltaPredicates
         and: 'the DMI in event mapper returns cm notification subscription event'
             def testDmiInEvent = new DmiInEvent()
-            1 * mockMappersFacade
-                .toDmiInEvent(testListOfDeltaPredicates) >> testDmiInEvent
+            1 * mockDmiInEventMapper.toDmiInEvent(testListOfDeltaPredicates) >> testDmiInEvent
         when: 'the valid and unique event is consumed'
             objectUnderTest.processSubscriptionCreateRequest(subscriptionId, predicates)
         then: 'the subscription cache handler is called once'
             1 * mockDmiCacheHandler.add('test-id', _)
         and: 'the events handler method to publish DMI event is called correct number of times with the correct parameters'
-            testDmiSubscriptionsPerDmi.size() * mockEventsFacade.publishDmiInEvent(
+            testDmiSubscriptionsPerDmi.size() * mockDmiInEventProducer.publishDmiInEvent(
                 "test-id", "dmi-1", "subscriptionCreateRequest", testDmiInEvent)
         and: 'we schedule to send the response after configured time from the cache'
-            1 * mockEventsFacade.publishNcmpOutEvent('test-id', 'subscriptionCreateResponse', null, true)
+            1 * mockNcmpOutEventProducer.publishNcmpOutEvent('test-id', 'subscriptionCreateResponse', null, true)
     }
 
     def 'Consume valid and Overlapping Cm Notification Subscription NcmpIn Event'() {
@@ -98,7 +99,7 @@ class CmSubscriptionHandlerImplSpec extends Specification {
         and: 'the subscription details are updated in the cache'
             1 * mockDmiCacheHandler.updateDmiSubscriptionStatusPerDmi('test-id', _, ACCEPTED)
         and: 'we schedule to send the response after configured time from the cache'
-            1 * mockEventsFacade.publishNcmpOutEvent('test-id', 'subscriptionCreateResponse', null, true)
+            1 * mockNcmpOutEventProducer.publishNcmpOutEvent('test-id', 'subscriptionCreateResponse', null, true)
     }
 
     def 'Consume valid and but non-unique CmNotificationSubscription create message'() {
@@ -111,14 +112,14 @@ class CmSubscriptionHandlerImplSpec extends Specification {
             def predicates = testEventConsumed.getData().getPredicates()
         and: 'the NCMP out in event mapper returns an event for rejected request'
             def testNcmpOutEvent = new NcmpOutEvent()
-            1 * mockMappersFacade.toNcmpOutEventForRejectedRequest(
+            1 * mockNcmpOutEventMapper.toNcmpOutEventForRejectedRequest(
                 "test-id", _) >> testNcmpOutEvent
         when: 'the valid but non-unique event is consumed'
             objectUnderTest.processSubscriptionCreateRequest(subscriptionId, predicates)
         then: 'the events handler method to publish DMI event is never called'
-            0 * mockEventsFacade.publishDmiInEvent(_, _, _, _)
+            0 * mockDmiInEventProducer.publishDmiInEvent(_, _, _, _)
         and: 'the events handler method to publish NCMP out event is called once'
-            1 * mockEventsFacade.publishNcmpOutEvent('test-id', 'subscriptionCreateResponse', testNcmpOutEvent, false)
+            1 * mockNcmpOutEventProducer.publishNcmpOutEvent('test-id', 'subscriptionCreateResponse', testNcmpOutEvent, false)
     }
 
     def 'Consume valid CmNotificationSubscriptionNcmpInEvent delete message'() {
@@ -135,11 +136,11 @@ class CmSubscriptionHandlerImplSpec extends Specification {
         then: 'the subscription cache handler is called once'
             1 * mockDmiCacheHandler.add('test-id', predicates)
         and: 'the mapper handler to get DMI in event is called once'
-            1 * mockMappersFacade.toDmiInEvent(_)
+            1 * mockDmiInEventMapper.toDmiInEvent(_)
         and: 'the events handler method to publish DMI event is called correct number of times with the correct parameters'
-            testDmiSubscriptionsPerDmi.size() * mockEventsFacade.publishDmiInEvent(
+            testDmiSubscriptionsPerDmi.size() * mockDmiInEventProducer.publishDmiInEvent(
                 'test-id', 'dmi-1', 'subscriptionDeleteRequest', _)
         and: 'we schedule to send the response after configured time from the cache'
-            1 * mockEventsFacade.publishNcmpOutEvent('test-id', 'subscriptionDeleteResponse', null, true)
+            1 * mockNcmpOutEventProducer.publishNcmpOutEvent('test-id', 'subscriptionDeleteResponse', null, true)
     }
 }

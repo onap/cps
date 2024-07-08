@@ -30,11 +30,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.onap.cps.ncmp.api.NcmpResponseStatus;
-import org.onap.cps.ncmp.impl.cmnotificationsubscription.EventsFacade;
-import org.onap.cps.ncmp.impl.cmnotificationsubscription.MappersFacade;
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.cache.DmiCacheHandler;
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.models.CmSubscriptionStatus;
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.models.DmiCmSubscriptionDetails;
+import org.onap.cps.ncmp.impl.cmnotificationsubscription.ncmp.NcmpOutEventMapper;
+import org.onap.cps.ncmp.impl.cmnotificationsubscription.ncmp.NcmpOutEventProducer;
 import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.dmi_to_ncmp.Data;
 import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.dmi_to_ncmp.DmiOutEvent;
 import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.ncmp_to_client.NcmpOutEvent;
@@ -47,8 +47,8 @@ import org.springframework.stereotype.Component;
 public class DmiOutEventConsumer {
 
     private final DmiCacheHandler dmiCacheHandler;
-    private final EventsFacade eventsFacade;
-    private final MappersFacade mappersFacade;
+    private final NcmpOutEventProducer ncmpOutEventProducer;
+    private final NcmpOutEventMapper ncmpOutEventMapper;
 
     private static final String CM_SUBSCRIPTION_CORRELATION_ID_SEPARATOR = "#";
 
@@ -101,12 +101,9 @@ public class DmiOutEventConsumer {
     }
 
     private void handleEventsStatusPerDmi(final String subscriptionId, final String eventType) {
-        final Map<String, DmiCmSubscriptionDetails> dmiSubscriptionsPerDmi =
-                dmiCacheHandler.get(subscriptionId);
-        final NcmpOutEvent ncmpOutEvent = mappersFacade.toNcmpOutEvent(subscriptionId,
-                dmiSubscriptionsPerDmi);
-        eventsFacade.publishNcmpOutEvent(subscriptionId, eventType,
-                ncmpOutEvent, false);
+        final Map<String, DmiCmSubscriptionDetails> dmiSubscriptionsPerDmi = dmiCacheHandler.get(subscriptionId);
+        final NcmpOutEvent ncmpOutEvent = ncmpOutEventMapper.toNcmpOutEvent(subscriptionId, dmiSubscriptionsPerDmi);
+        ncmpOutEventProducer.publishNcmpOutEvent(subscriptionId, eventType, ncmpOutEvent, false);
     }
 
     private boolean checkStatusCodeAndMessage(final NcmpResponseStatus ncmpResponseStatus,

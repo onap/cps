@@ -33,7 +33,6 @@ import java.util.concurrent.TimeUnit;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.events.EventsPublisher;
-import org.onap.cps.ncmp.impl.cmnotificationsubscription.MappersFacade;
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.cache.DmiCacheHandler;
 import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.ncmp_to_client.NcmpOutEvent;
 import org.onap.cps.utils.JsonObjectMapper;
@@ -55,7 +54,7 @@ public class NcmpOutEventProducer {
 
     private final EventsPublisher<CloudEvent> eventsPublisher;
     private final JsonObjectMapper jsonObjectMapper;
-    private final MappersFacade mappersFacade;
+    private final NcmpOutEventMapper ncmpOutEventMapper;
     private final DmiCacheHandler dmiCacheHandler;
     private final ScheduledExecutorService scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
     private static final Map<String, ScheduledFuture<?>> scheduledTasksPerSubscriptionId = new ConcurrentHashMap<>();
@@ -88,7 +87,7 @@ public class NcmpOutEventProducer {
     private ScheduledFuture<?> scheduleAndPublishNcmpOutEvent(final String subscriptionId, final String eventType) {
         final NcmpOutEventPublishingTask ncmpOutEventPublishingTask =
                 new NcmpOutEventPublishingTask(ncmpOutEventTopic, subscriptionId, eventType, eventsPublisher,
-                        jsonObjectMapper, mappersFacade, dmiCacheHandler);
+                        jsonObjectMapper, ncmpOutEventMapper, dmiCacheHandler);
         return scheduledExecutorService.schedule(ncmpOutEventPublishingTask, dmiOutEventTimeoutInMs,
                 TimeUnit.MILLISECONDS);
     }

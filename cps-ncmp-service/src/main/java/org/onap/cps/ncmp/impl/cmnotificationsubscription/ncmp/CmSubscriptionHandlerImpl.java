@@ -26,9 +26,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
-import org.onap.cps.ncmp.impl.cmnotificationsubscription.EventsFacade;
-import org.onap.cps.ncmp.impl.cmnotificationsubscription.MappersFacade;
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.cache.DmiCacheHandler;
+import org.onap.cps.ncmp.impl.cmnotificationsubscription.dmi.DmiInEventMapper;
+import org.onap.cps.ncmp.impl.cmnotificationsubscription.dmi.DmiInEventProducer;
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.models.CmSubscriptionStatus;
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.models.DmiCmSubscriptionDetails;
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.models.DmiCmSubscriptionPredicate;
@@ -44,8 +44,10 @@ public class CmSubscriptionHandlerImpl implements CmSubscriptionHandler {
 
     private final CmSubscriptionPersistenceService cmSubscriptionPersistenceService;
     private final CmSubscriptionComparator cmSubscriptionComparator;
-    private final MappersFacade mappersFacade;
-    private final EventsFacade eventsFacade;
+    private final NcmpOutEventMapper ncmpOutEventMapper;
+    private final DmiInEventMapper dmiInEventMapper;
+    private final NcmpOutEventProducer ncmpOutEventProducer;
+    private final DmiInEventProducer dmiInEventProducer;
     private final DmiCacheHandler dmiCacheHandler;
 
     @Override
@@ -67,16 +69,16 @@ public class CmSubscriptionHandlerImpl implements CmSubscriptionHandler {
     }
 
     private void scheduleNcmpOutEventResponse(final String subscriptionId, final String eventType) {
-        eventsFacade.publishNcmpOutEvent(subscriptionId, eventType, null, true);
+        ncmpOutEventProducer.publishNcmpOutEvent(subscriptionId, eventType, null, true);
     }
 
     private void rejectAndPublishCreateRequest(final String subscriptionId, final List<Predicate> predicates) {
         final Set<String> subscriptionTargetFilters =
                 predicates.stream().flatMap(predicate -> predicate.getTargetFilter().stream())
                         .collect(Collectors.toSet());
-        final NcmpOutEvent ncmpOutEvent = mappersFacade.toNcmpOutEventForRejectedRequest(subscriptionId,
+        final NcmpOutEvent ncmpOutEvent = ncmpOutEventMapper.toNcmpOutEventForRejectedRequest(subscriptionId,
                 new ArrayList<>(subscriptionTargetFilters));
-        eventsFacade.publishNcmpOutEvent(subscriptionId, "subscriptionCreateResponse", ncmpOutEvent, false);
+        ncmpOutEventProducer.publishNcmpOutEvent(subscriptionId, "subscriptionCreateResponse", ncmpOutEvent, false);
     }
 
     private void handleNewCmSubscription(final String subscriptionId) {
@@ -97,8 +99,8 @@ public class CmSubscriptionHandlerImpl implements CmSubscriptionHandler {
 
     private void publishDmiInEventPerDmi(final String subscriptionId, final String dmiPluginName,
             final List<DmiCmSubscriptionPredicate> dmiCmSubscriptionPredicates) {
-        final DmiInEvent dmiInEvent = mappersFacade.toDmiInEvent(dmiCmSubscriptionPredicates);
-        eventsFacade.publishDmiInEvent(subscriptionId, dmiPluginName,
+        final DmiInEvent dmiInEvent = dmiInEventMapper.toDmiInEvent(dmiCmSubscriptionPredicates);
+        dmiInEventProducer.publishDmiInEvent(subscriptionId, dmiPluginName,
                 "subscriptionCreateRequest", dmiInEvent);
     }
 
@@ -112,9 +114,9 @@ public class CmSubscriptionHandlerImpl implements CmSubscriptionHandler {
         final Map<String, DmiCmSubscriptionDetails> dmiSubscriptionsPerDmi =
                 dmiCacheHandler.get(subscriptionId);
         dmiSubscriptionsPerDmi.forEach((dmiPluginName, dmiSubscriptionDetails) -> {
-            final DmiInEvent dmiInEvent = mappersFacade.toDmiInEvent(
+            final DmiInEvent dmiInEvent = dmiInEventMapper.toDmiInEvent(
                     dmiSubscriptionDetails.getDmiCmSubscriptionPredicates());
-            eventsFacade.publishDmiInEvent(subscriptionId, dmiPluginName,
+            dmiInEventProducer.publishDmiInEvent(subscriptionId, dmiPluginName,
                     "subscriptionDeleteRequest", dmiInEvent);
         });
     }
