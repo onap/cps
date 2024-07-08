@@ -85,6 +85,9 @@ class DmiDispatcher extends Dispatcher {
             case ~'^/dmi/v1/data$':
                 return mockResponseWithBody(HttpStatus.ACCEPTED, '{}')
 
+            // get data job status
+            case ~'^/dmi/v1/dataJob/(.*)/dataProducerJob/(.*)/status(.*)$':
+                return mockResponseWithBody(HttpStatus.OK, '{"status":"FINISHED"}')
             default:
                 throw new IllegalArgumentException('Mock DMI does not implement endpoint ' + request.path)
         }

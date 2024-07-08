@@ -144,6 +144,26 @@ public class DmiRestClient {
                 .defaultIfEmpty(NOT_SPECIFIED);
     }
 
+    /**
+     * Retrieves the status of a data job from the DMI service.
+     *
+     * @param urlTemplateParameters   The URL template parameters for the DMI data job status endpoint.
+     * @param authorization           The authorization token to be added to the request headers.
+     * @return A Mono emitting the status of the data job as a String.
+     * @throws DmiClientRequestException If there is an error during the DMI request.
+     */
+    public Mono<String> getDataJobStatus(final UrlTemplateParameters urlTemplateParameters,
+                                                                                    final String authorization) {
+
+        return dataServicesWebClient.get()
+                .uri(urlTemplateParameters.urlTemplate(), urlTemplateParameters.urlVariables())
+                .headers(httpHeaders -> configureHttpHeaders(httpHeaders, authorization))
+                .retrieve()
+                .bodyToMono(JsonNode.class)
+                .map(responseHealthStatus -> responseHealthStatus.path("status").asText())
+                .onErrorMap(throwable -> handleDmiClientException(throwable, OperationType.READ.getOperationName()));
+    }
+
     private WebClient getWebClient(final RequiredDmiService requiredDmiService) {
         return requiredDmiService.equals(RequiredDmiService.DATA) ? dataServicesWebClient : modelServicesWebClient;
     }
