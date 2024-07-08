@@ -39,6 +39,30 @@
       },
       "revId": "f9d2de8f3dd13e78fd6abfaf54650a62d8ba89a4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36ee3a0c_f6983a86",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-08T09:34:30Z",
+      "side": 1,
+      "message": "Maybe better to keep the unit as agreed on FS requirements to prevent confusion 😊\nThus changed to requests/second.",
+      "parentUuid": "a563e76e_7b201abb",
+      "range": {
+        "startLine": 61,
+        "startChar": 90,
+        "endLine": 61,
+        "endChar": 109
+      },
+      "revId": "f9d2de8f3dd13e78fd6abfaf54650a62d8ba89a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
