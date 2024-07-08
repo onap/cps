@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023 Nordix Foundation
+ *  Copyright (C) 2023-2024 Nordix Foundation
  *  Modifications Copyright (C) 2023 TechMahindra Ltd
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
@@ -271,6 +271,7 @@ class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
             'ancestor with parent list'                 | '//books/ancestor::bookstore/categories'              || ["/bookstore/categories[@code='1']", "/bookstore/categories[@code='2']", "/bookstore/categories[@code='3']", "/bookstore/categories[@code='4']", "/bookstore/categories[@code='5']"]
             'ancestor with parent list element'         | '//books/ancestor::bookstore/categories[@code="2"]'   || ["/bookstore/categories[@code='2']"]
             'ancestor combined with text condition'     | '//books/title[text()="Matilda"]/ancestor::bookstore' || ["/bookstore"]
+            'ancestor same as target type'              | '//books/title[text()="Matilda"]/ancestor::books'     || ["/bookstore/categories[@code='1']/books[@title='Matilda']"]
     }
 
     def 'Cps Path query across anchors with #scenario descendants.'() {
