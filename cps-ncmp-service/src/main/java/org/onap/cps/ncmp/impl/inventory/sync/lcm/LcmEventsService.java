@@ -20,13 +20,15 @@
 
 package org.onap.cps.ncmp.impl.inventory.sync.lcm;
 
-import io.micrometer.core.annotation.Timed;
+import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.Timer;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.events.EventsPublisher;
 import org.onap.cps.ncmp.events.lcm.v1.LcmEvent;
 import org.onap.cps.ncmp.events.lcm.v1.LcmEventHeader;
+import org.onap.cps.ncmp.events.lcm.v1.Values;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.KafkaException;
@@ -43,6 +45,7 @@ public class LcmEventsService {
 
     private final EventsPublisher<LcmEvent> eventsPublisher;
     private final JsonObjectMapper jsonObjectMapper;
+    private final MeterRegistry meterRegistry;
 
     @Value("${app.lcm.events.topic:ncmp-events}")
     private String topicName;
@@ -51,24 +54,48 @@ public class LcmEventsService {
     private boolean notificationsEnabled;
 
     /**
-     * Publish the LcmEvent with header to the public topic.
+     * Publishes an LCM event to the dedicated topic with optional notification headers.
+     * Capture and log KafkaException If an error occurs while publishing the event to Kafka
      *
-     * @param cmHandleId     Cm Handle Id
-     * @param lcmEvent       Lcm Event
-     * @param lcmEventHeader Lcm Event Header
+     * @param cmHandleId     Cm Handle Id associated with the LCM event
+     * @param lcmEvent       The LCM event object to be published
+     * @param lcmEventHeader Optional headers associated with the LCM event
      */
-    @Timed(value = "cps.ncmp.lcm.events.publish", description = "Time taken to publish a LCM event")
     public void publishLcmEvent(final String cmHandleId, final LcmEvent lcmEvent, final LcmEventHeader lcmEventHeader) {
-        if (notificationsEnabled) {
-            try {
+
+        final Timer.Sample timerSample = Timer.start(meterRegistry);
+
+        try {
+            if (notificationsEnabled) {
                 final Map<String, Object> lcmEventHeadersMap =
                         jsonObjectMapper.convertToValueType(lcmEventHeader, Map.class);
                 eventsPublisher.publishEvent(topicName, cmHandleId, lcmEventHeadersMap, lcmEvent);
-            } catch (final KafkaException e) {
-                log.error("Unable to publish message to topic : {} and cause : {}", topicName, e.getMessage());
+            } else {
+                log.debug("Notifications disabled.");
             }
-        } else {
-            log.debug("Notifications disabled.");
+        } catch (final KafkaException e) {
+            log.error("Unable to publish message to topic : {} and cause : {}", topicName, e.getMessage());
+        } finally {
+            final String oldCmHandleState = extractCmHandleStateValue(lcmEvent.getEvent().getOldValues());
+            final String newCmHandleState = extractCmHandleStateValue(lcmEvent.getEvent().getNewValues());
+            timerSample.stop(Timer.builder("cps.ncmp.lcm.events.publish")
+                    .description("Time taken to publish a LCM event")
+                    .tag("class", "org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventsService")
+                    .tag("method", "publishLcmEvent")
+                    .tag("oldCmHandleState", oldCmHandleState)
+                    .tag("newCmHandleState ", newCmHandleState)
+                    .register(meterRegistry));
         }
+    }
+
+    /**
+     * Helper method to extract CmHandleState value from Values object.
+     * Returns "Unknown" if Values or CmHandleState is null.
+     */
+    private String extractCmHandleStateValue(final Values values) {
+        if (values != null && values.getCmHandleState() != null) {
+            return values.getCmHandleState().value();
+        }
+        return "Unknown";
     }
 }
