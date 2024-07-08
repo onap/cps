@@ -144,6 +144,26 @@ public class DmiRestClient {
                 .defaultIfEmpty(NOT_SPECIFIED);
     }
 
+    /**
+     * Synchronously performs an HTTP GET request.
+     *
+     * @param urlTemplateParameters   The URL template with variables for the POST request.
+     *                                being performed.
+     * @param authorization           The authorization token to be added to the request headers.
+     * @return Response entity containing the server's response.
+     */
+    public Mono<String> getDataJobStatus(final UrlTemplateParameters urlTemplateParameters,
+                                                                                    final String authorization) {
+
+        return dataServicesWebClient.get()
+                .uri(urlTemplateParameters.urlTemplate(), urlTemplateParameters.urlVariables())
+                .headers(httpHeaders -> configureHttpHeaders(httpHeaders, authorization))
+                .retrieve()
+                .bodyToMono(JsonNode.class)
+                .map(responseHealthStatus -> responseHealthStatus.path("status").asText())
+                .onErrorMap(throwable -> handleDmiClientException(throwable, OperationType.READ.getOperationName()));
+    }
+
     private WebClient getWebClient(final RequiredDmiService requiredDmiService) {
         return requiredDmiService.equals(RequiredDmiService.DATA) ? dataServicesWebClient : modelServicesWebClient;
     }
