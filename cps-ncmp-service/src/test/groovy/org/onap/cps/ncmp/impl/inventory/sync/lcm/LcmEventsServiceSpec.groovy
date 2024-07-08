@@ -20,9 +20,16 @@
 
 package org.onap.cps.ncmp.impl.inventory.sync.lcm
 
+import static org.onap.cps.ncmp.events.lcm.v1.Values.CmHandleState.ADVISED
+import static org.onap.cps.ncmp.events.lcm.v1.Values.CmHandleState.READY
+
+import io.micrometer.core.instrument.Tag
+import io.micrometer.core.instrument.simple.SimpleMeterRegistry
 import org.onap.cps.events.EventsPublisher
+import org.onap.cps.ncmp.events.lcm.v1.Event
 import org.onap.cps.ncmp.events.lcm.v1.LcmEvent
 import org.onap.cps.ncmp.events.lcm.v1.LcmEventHeader
+import org.onap.cps.ncmp.events.lcm.v1.Values
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.kafka.KafkaException
 import spock.lang.Specification
@@ -31,14 +38,16 @@ class LcmEventsServiceSpec extends Specification {
 
     def mockLcmEventsPublisher = Mock(EventsPublisher)
     def mockJsonObjectMapper = Mock(JsonObjectMapper)
+    def meterRegistry = new SimpleMeterRegistry()
 
-    def objectUnderTest = new LcmEventsService(mockLcmEventsPublisher, mockJsonObjectMapper)
+    def objectUnderTest = new LcmEventsService(mockLcmEventsPublisher, mockJsonObjectMapper, meterRegistry)
 
     def 'Create and Publish lcm event where events are #scenario'() {
         given: 'a cm handle id, Lcm Event, and headers'
             def cmHandleId = 'test-cm-handle-id'
             def eventId = UUID.randomUUID().toString()
-            def lcmEvent = new LcmEvent(eventId: eventId, eventCorrelationId: cmHandleId)
+            def event = getEventWithCmHandleState(ADVISED, READY)
+            def lcmEvent = new LcmEvent(event: event, eventId: eventId, eventCorrelationId: cmHandleId)
         and: 'we also have a lcm event header'
             def lcmEventHeader = new LcmEventHeader(eventId: eventId, eventCorrelationId: cmHandleId)
         and: 'notificationsEnabled is #notificationsEnabled and it will be true as default'
@@ -57,6 +66,16 @@ class LcmEventsServiceSpec extends Specification {
                     assert eventHeaders.get('eventCorrelationId') == cmHandleId
                 }
             }
+        and: 'metrics are recorded with correct tags'
+            def timer = meterRegistry.find('cps.ncmp.lcm.events.publish').timer()
+            if (notificationsEnabled) {
+                assert timer != null
+                assert timer.count() == expectedTimesMethodCalled
+                def tags = timer.getId().getTags()
+                assert tags.containsAll(Tag.of('oldCmHandleState', ADVISED.value()), Tag.of('newCmHandleState', READY.value()))
+            } else {
+                assert timer == null
+            }
         where: 'the following values are used'
             scenario   | notificationsEnabled || expectedTimesMethodCalled
             'enabled'  | true                 || 1
@@ -67,7 +86,8 @@ class LcmEventsServiceSpec extends Specification {
         given: 'a cm handle id and Lcm Event and notification enabled'
             def cmHandleId = 'test-cm-handle-id'
             def eventId = UUID.randomUUID().toString()
-            def lcmEvent = new LcmEvent(eventId: eventId, eventCorrelationId: cmHandleId)
+        and: 'event #event'
+            def lcmEvent = new LcmEvent(event: event, eventId: eventId, eventCorrelationId: cmHandleId)
             def lcmEventHeader = new LcmEventHeader(eventId: eventId, eventCorrelationId: cmHandleId)
             objectUnderTest.notificationsEnabled = true
         when: 'publisher set to throw an exception'
@@ -76,6 +96,35 @@ class LcmEventsServiceSpec extends Specification {
             objectUnderTest.publishLcmEvent(cmHandleId, lcmEvent, lcmEventHeader)
         then: 'the exception is just logged and not bubbled up'
             noExceptionThrown()
+        and: 'metrics are recorded with error tags'
+            def timer = meterRegistry.find('cps.ncmp.lcm.events.publish').timer()
+            assert timer != null
+            assert timer.count() == 1
+            def expectedTags = [Tag.of('oldCmHandleState', 'N/A'), Tag.of('newCmHandleState', 'N/A')]
+            def tags = timer.getId().getTags()
+            assert tags.containsAll(expectedTags)
+        where: 'the following values are used'
+            scenario                  | event
+            'without values'          | new Event()
+            'without cm handle state' | getEvent()
     }
 
+    def getEvent() {
+        def event = new Event()
+        def values = new Values()
+        event.setOldValues(values)
+        event.setNewValues(values)
+        event
+    }
+
+    def getEventWithCmHandleState(oldCmHandleState, newCmHandleState) {
+        def event = new Event()
+        def advisedCmHandleStateValues = new Values()
+        advisedCmHandleStateValues.setCmHandleState(oldCmHandleState)
+        event.setOldValues(advisedCmHandleStateValues)
+        def readyCmHandleStateValues = new Values()
+        readyCmHandleStateValues.setCmHandleState(newCmHandleState)
+        event.setNewValues(readyCmHandleStateValues)
+        return event
+    }
 }
