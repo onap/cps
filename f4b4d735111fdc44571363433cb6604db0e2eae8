@@ -136,6 +136,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "31d765e5_d5c862f2",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-07-08T13:31:45Z",
+      "side": 1,
+      "message": "Here contentType \u003d application/xml so using contains to check the type",
+      "parentUuid": "918c2278_d896debd",
+      "range": {
+        "startLine": 155,
+        "startChar": 58,
+        "endLine": 155,
+        "endChar": 66
+      },
+      "revId": "f4b4d735111fdc44571363433cb6604db0e2eae8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ef0534a7_0fbfd0cd",
