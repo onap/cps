@@ -248,6 +248,22 @@ public class DmiRestStubController {
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 
+    /**
+     * Retrieves the status of a given data job identified by {@code requestId} and {@code dataProducerJobId}.
+     *
+     * @param requestId         Unique identifier for the outgoing request.
+     * @param dataProducerJobId Identifier of the data producer job.
+     * @return A ResponseEntity with HTTP status 200 (OK) and the data job's status as a string.
+     */
+    @GetMapping("/v1/dataJob/{requestId}/dataProducerJob/{dataProducerJobId}/status")
+    public ResponseEntity<String> retrieveDataJobStatus(
+            @PathVariable("requestId") final String requestId,
+            @PathVariable("dataProducerJobId") final String dataProducerJobId) {
+        log.info("Received request to retrieve data job status. Request ID: {}, Data Producer Job ID: {}",
+                                                                                        requestId, dataProducerJobId);
+        return ResponseEntity.ok("FINISHED");
+    }
+
     private CloudEvent buildAndGetCloudEvent(final String topic, final String requestId,
                                              final DataOperationEvent dataOperationEvent) {
         CloudEvent cloudEvent = null;
