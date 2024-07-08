@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b795833d_91db4ee0",
+        "filename": "cps-rest/docs/openapi/cpsData.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-07-08T13:29:26Z",
+      "side": 1,
+      "message": "In previous discussion on create a node(CPS-1257) they were changes made JSON as String,if json is object will convert the data as map or java object(automatic conversion),json as string will send json data as string directly to nodeData",
+      "parentUuid": "a97bd862_ca9b2ffd",
+      "range": {
+        "startLine": 206,
+        "startChar": 18,
+        "endLine": 206,
+        "endChar": 24
+      },
+      "revId": "f4b4d735111fdc44571363433cb6604db0e2eae8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "426f5dbe_618525ec",
@@ -88,6 +112,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "918c2278_d896debd",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-07-08T13:29:26Z",
+      "side": 1,
+      "message": "Agree.",
+      "parentUuid": "426f5dbe_618525ec",
+      "range": {
+        "startLine": 155,
+        "startChar": 58,
+        "endLine": 155,
+        "endChar": 66
+      },
+      "revId": "f4b4d735111fdc44571363433cb6604db0e2eae8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ef0534a7_0fbfd0cd",
@@ -123,6 +171,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "39752395_65f00f1d",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-07-08T13:29:26Z",
+      "side": 1,
+      "message": "got coverage issue",
+      "parentUuid": "bf31122f_f5fbb1db",
+      "revId": "f4b4d735111fdc44571363433cb6604db0e2eae8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "21d5fbdb_f298aa04",
@@ -136,6 +202,30 @@
       "writtenOn": "2024-07-08T10:44:27Z",
       "side": 1,
       "message": "suggestion: list the supported types!",
+      "range": {
+        "startLine": 150,
+        "startChar": 25,
+        "endLine": 150,
+        "endChar": 32
+      },
+      "revId": "f4b4d735111fdc44571363433cb6604db0e2eae8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43b17100_8bb5e545",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-07-08T13:29:26Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "21d5fbdb_f298aa04",
       "range": {
         "startLine": 150,
         "startChar": 25,
@@ -192,6 +282,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "10ea883f_fd435961",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-07-08T13:29:26Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "e9cab2d4_8b4e20ea",
+      "range": {
+        "startLine": 160,
+        "startChar": 52,
+        "endLine": 160,
+        "endChar": 57
+      },
+      "revId": "f4b4d735111fdc44571363433cb6604db0e2eae8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2736b3cc_574db4b1",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-07-08T13:29:26Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "cae7d4e3_789584ab",
+      "range": {
+        "startLine": 160,
+        "startChar": 14,
+        "endLine": 160,
+        "endChar": 30
+      },
+      "revId": "f4b4d735111fdc44571363433cb6604db0e2eae8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "812fd07f_f1161199",
@@ -205,6 +343,30 @@
       "writtenOn": "2024-07-08T10:44:27Z",
       "side": 1,
       "message": "suggestion: list the supported types!",
+      "range": {
+        "startLine": 162,
+        "startChar": 32,
+        "endLine": 162,
+        "endChar": 54
+      },
+      "revId": "f4b4d735111fdc44571363433cb6604db0e2eae8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9dd45b1_70cfec7b",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-07-08T13:29:26Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "812fd07f_f1161199",
       "range": {
         "startLine": 162,
         "startChar": 32,
