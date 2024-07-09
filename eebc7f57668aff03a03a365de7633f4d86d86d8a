@@ -16,6 +16,24 @@
       "message": "NB: spaces are missing",
       "revId": "eebc7f57668aff03a03a365de7633f4d86d86d8a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba837391_08e512c6",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-09T13:43:29Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a4a13833_4d0ed2c4",
+      "revId": "eebc7f57668aff03a03a365de7633f4d86d86d8a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
