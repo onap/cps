@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "04163200_fbcdb27b",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-07-09T08:54:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4b60a86b_cf3334ad",
+      "range": {
+        "startLine": 134,
+        "startChar": 8,
+        "endLine": 134,
+        "endChar": 15
+      },
+      "revId": "80551d941801dd3537f2d0dd2b41ee9a0b3ced5d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "90fb2464_cb7efe81",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-07-08T15:50:38Z",
       "side": 1,
       "message": "NB: DMI2_URL",
+      "range": {
+        "startLine": 135,
+        "startChar": 8,
+        "endLine": 135,
+        "endChar": 16
+      },
+      "revId": "80551d941801dd3537f2d0dd2b41ee9a0b3ced5d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9ed8cd0_5948101b",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-07-09T08:54:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "90fb2464_cb7efe81",
       "range": {
         "startLine": 135,
         "startChar": 8,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a0142b9_d30501f2",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-07-09T08:54:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da409927_a89c959d",
+      "range": {
+        "startLine": 151,
+        "startChar": 25,
+        "endLine": 151,
+        "endChar": 44
+      },
+      "revId": "80551d941801dd3537f2d0dd2b41ee9a0b3ced5d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4df22fb8_bf2f7d25",
@@ -100,6 +172,30 @@
       "writtenOn": "2024-07-08T15:50:38Z",
       "side": 1,
       "message": "can this not be done on line 131?",
+      "range": {
+        "startLine": 155,
+        "startChar": 6,
+        "endLine": 155,
+        "endChar": 44
+      },
+      "revId": "80551d941801dd3537f2d0dd2b41ee9a0b3ced5d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90a6323e_3e163c1f",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-07-09T08:54:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4df22fb8_bf2f7d25",
       "range": {
         "startLine": 155,
         "startChar": 6,
@@ -133,6 +229,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7adf6e17_8edd990f",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/DmiDispatcher.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-07-09T08:54:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "51814227_dcb6eddc",
+      "range": {
+        "startLine": 89,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 55
+      },
+      "revId": "80551d941801dd3537f2d0dd2b41ee9a0b3ced5d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "379bda4b_e0c4cccf",
@@ -156,6 +276,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5596684b_2ff5fdd7",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpCmHandleCreateSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-07-09T08:54:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "379bda4b_e0c4cccf",
+      "range": {
+        "startLine": 120,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 67
+      },
+      "revId": "80551d941801dd3537f2d0dd2b41ee9a0b3ced5d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9355b083_a62cf21a",
@@ -169,6 +313,30 @@
       "writtenOn": "2024-07-08T15:50:38Z",
       "side": 1,
       "message": "good but can you check it bit more then just the size, ie check teh cm handles",
+      "range": {
+        "startLine": 41,
+        "startChar": 75,
+        "endLine": 41,
+        "endChar": 97
+      },
+      "revId": "80551d941801dd3537f2d0dd2b41ee9a0b3ced5d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e025a58_ffdffa54",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpWriteSubJobSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-07-09T08:54:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9355b083_a62cf21a",
       "range": {
         "startLine": 41,
         "startChar": 75,
