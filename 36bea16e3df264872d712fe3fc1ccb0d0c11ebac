@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f0be0bb4_eb874460",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-09T11:35:13Z",
+      "side": 1,
+      "message": "Is this really a warning? At most a debug level message.\nNot sure if we really want logging at all.",
+      "range": {
+        "startLine": 174,
+        "startChar": 19,
+        "endLine": 174,
+        "endChar": 26
+      },
+      "revId": "36bea16e3df264872d712fe3fc1ccb0d0c11ebac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "273ab5f2_bb31ed8f",
         "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathBuilderSpec.groovy",
         "patchSetId": 2
