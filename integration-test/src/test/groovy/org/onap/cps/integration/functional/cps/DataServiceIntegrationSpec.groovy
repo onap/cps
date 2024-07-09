@@ -19,7 +19,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.integration.functional
+package org.onap.cps.integration.functional.cps
 
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.integration.base.FunctionalSpecBase
@@ -39,7 +39,7 @@ import static org.onap.cps.spi.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 
-class CpsDataServiceIntegrationSpec extends FunctionalSpecBase {
+class DataServiceIntegrationSpec extends FunctionalSpecBase {
 
     CpsDataService objectUnderTest
     def originalCountBookstoreChildNodes

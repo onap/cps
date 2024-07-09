@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.integration.functional
+package org.onap.cps.integration.functional.ncmp
 
 import org.apache.kafka.common.TopicPartition
 import org.apache.kafka.common.serialization.StringDeserializer
@@ -36,7 +36,7 @@ import spock.util.concurrent.PollingConditions
 import java.time.Duration
 import java.time.OffsetDateTime
 
-class NcmpCmHandleCreateSpec extends CpsIntegrationSpecBase {
+class CmHandleCreateSpec extends CpsIntegrationSpecBase {
 
     NetworkCmProxyInventoryFacade objectUnderTest
 
