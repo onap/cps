@@ -160,6 +160,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d439125_5069dd99",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-07-09T14:01:10Z",
+      "side": 1,
+      "message": "amm.. srry are you using .equals here ??\nshould be working with equals as well. right ??",
+      "parentUuid": "31d765e5_d5c862f2",
+      "range": {
+        "startLine": 155,
+        "startChar": 58,
+        "endLine": 155,
+        "endChar": 66
+      },
+      "revId": "f4b4d735111fdc44571363433cb6604db0e2eae8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ef0534a7_0fbfd0cd",
