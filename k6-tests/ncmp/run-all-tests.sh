@@ -15,29 +15,36 @@
 # limitations under the License.
 #
 
-ALL_TEST_SCRIPTS=( \
-1-create-cmhandles.js \
-2-wait-for-cmhandles-to-be-ready.js \
-10-mixed-load-test.js \
-11-delete-cmhandles.js \
-)
-
-pushd "$(dirname "$0")" || exit 1
-
-printf "Test Case\tCondition\tLimit\tActual\tResult\n" > summary.log
+pushd "$(dirname "$0")" >/dev/null || exit 1
 
 number_of_failures=0
-for test_script in "${ALL_TEST_SCRIPTS[@]}"; do
-  echo "k6 run $test_script"
-  k6 --quiet run -e K6_MODULE_NAME="$test_script" "$test_script" >> summary.log || ((number_of_failures++))
-done
+echo "Running K6 performance tests..."
+k6 --quiet run ncmp-kpi.js > summary.csv || ((number_of_failures++))
 
-echo '##############################################################################################################################'
-echo '##                             K 6   P E R F O R M A N C E   T E S T   R E S U L T S                                        ##'
-echo '##############################################################################################################################'
-awk -F$'\t' '{printf "%-40s%-50s%-20s%-10s%-6s\n", $1, $2, $3, $4, $5}' summary.log
+if [ -f summary.csv ]; then
 
-popd || exit 1
+  # Output raw CSV for plotting job
+  echo '-- BEGIN CSV REPORT'
+  cat summary.csv
+  echo '-- END CSV REPORT'
+  echo
+
+  # Output human-readable report
+  echo '####################################################################################################'
+  echo '##                  K 6   P E R F O R M A N C E   T E S T   R E S U L T S                         ##'
+  echo '####################################################################################################'
+  column -t -s, summary.csv
+  echo
+
+  # Clean up
+  rm -f summary.csv
+
+else
+  echo "Error: Failed to generate summary.csv" >&2
+  ((number_of_failures++))
+fi
+
+popd >/dev/null || exit 1
 
 echo "NCMP TEST FAILURES: $number_of_failures"
 exit $number_of_failures

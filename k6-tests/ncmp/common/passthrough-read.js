@@ -19,7 +19,6 @@
  */
 
 import http from 'k6/http';
-import { check } from 'k6';
 import { NCMP_BASE_URL, getRandomCmHandleId } from './utils.js';
 
 export function passthroughRead() {
@@ -29,8 +28,5 @@ export function passthroughRead() {
     const datastoreName = 'ncmp-datastore:passthrough-operational';
     const url = `${NCMP_BASE_URL}/ncmp/v1/ch/${cmHandleId}/data/ds/${datastoreName}?resourceIdentifier=${resourceIdentifier}&include-descendants=${includeDescendants}`
     const response = http.get(url);
-    check(response, {
-        'status equals 200': (r) => r.status === 200,
-    });
     return response;
 }
