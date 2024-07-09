@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.integration.functional
+package org.onap.cps.integration.functional.cps
 
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.integration.base.FunctionalSpecBase

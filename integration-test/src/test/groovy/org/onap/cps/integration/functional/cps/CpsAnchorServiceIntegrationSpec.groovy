@@ -19,18 +19,18 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.integration.functional
+package org.onap.cps.integration.functional.cps
 
 import java.time.OffsetDateTime
 
 import org.onap.cps.api.CpsAnchorService
-import org.onap.cps.integration.base.CpsIntegrationSpecBase
+import org.onap.cps.integration.base.FunctionalSpecBase
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.exceptions.AlreadyDefinedException
 import org.onap.cps.spi.exceptions.AnchorNotFoundException
 import org.onap.cps.utils.ContentType
 
-class CpsAnchorServiceIntegrationSpec extends CpsIntegrationSpecBase {
+class CpsAnchorServiceIntegrationSpec extends FunctionalSpecBase {
 
     CpsAnchorService objectUnderTest
 

@@ -19,7 +19,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.integration.functional
+package org.onap.cps.integration.functional.cps
 
 import java.time.OffsetDateTime
 import org.onap.cps.api.CpsQueryService
