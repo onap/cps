@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "410908c7_b747d250",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-09T11:32:22Z",
+      "side": 1,
+      "message": "agreed with Daniels comment below\nand left a few Groovy convention related comments (none of them blocking really but goor to do if you are doing another patch. I should have spotted some of them earlier...)",
+      "revId": "3336dffe95a317b2d2675bb003c2a5f33cd868dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ad0f65c1_9c16dfd9",
@@ -14,6 +31,30 @@
       "writtenOn": "2024-07-09T11:20:01Z",
       "side": 1,
       "message": "/v1",
+      "range": {
+        "startLine": 261,
+        "startChar": 18,
+        "endLine": 261,
+        "endChar": 41
+      },
+      "revId": "3336dffe95a317b2d2675bb003c2a5f33cd868dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2b97838_9aabd101",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-09T11:32:22Z",
+      "side": 1,
+      "message": "agreed, need to start with /",
+      "parentUuid": "ad0f65c1_9c16dfd9",
       "range": {
         "startLine": 261,
         "startChar": 18,
@@ -49,6 +90,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ea9eee1e_829dc33e",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/DmiDispatcher.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-09T11:32:22Z",
+      "side": 1,
+      "message": "NB: you coudl just use def",
+      "range": {
+        "startLine": 65,
+        "startChar": 4,
+        "endLine": 65,
+        "endChar": 30
+      },
+      "revId": "3336dffe95a317b2d2675bb003c2a5f33cd868dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "addfc817_fed836fc",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/DmiDispatcher.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-09T11:32:22Z",
+      "side": 1,
+      "message": "NB: you could just use def",
+      "range": {
+        "startLine": 66,
+        "startChar": 4,
+        "endLine": 66,
+        "endChar": 21
+      },
+      "revId": "3336dffe95a317b2d2675bb003c2a5f33cd868dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "93bc774a_c6b74cb2",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/DmiDispatcher.groovy",
         "patchSetId": 6
@@ -72,6 +159,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ef4863f5_44bf5fc7",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/DmiDispatcher.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-09T11:32:22Z",
+      "side": 1,
+      "message": "type not needed in Groovy",
+      "range": {
+        "startLine": 105,
+        "startChar": 33,
+        "endLine": 105,
+        "endChar": 49
+      },
+      "revId": "3336dffe95a317b2d2675bb003c2a5f33cd868dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c19e63c6_b463ac38",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/DmiDispatcher.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-09T11:32:22Z",
+      "side": 1,
+      "message": "def",
+      "range": {
+        "startLine": 106,
+        "startChar": 14,
+        "endLine": 106,
+        "endChar": 15
+      },
+      "revId": "3336dffe95a317b2d2675bb003c2a5f33cd868dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "72d1a88a_e2a6d515",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpWriteSubJobSpec.groovy",
         "patchSetId": 6
@@ -83,6 +216,29 @@
       "writtenOn": "2024-07-09T11:26:19Z",
       "side": 1,
       "message": "Missing copyright notice",
+      "revId": "3336dffe95a317b2d2675bb003c2a5f33cd868dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cfaa5ee_f26c9d8c",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpWriteSubJobSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-09T11:32:22Z",
+      "side": 1,
+      "message": "dont use pronouns\nwhen: \u0027sending a ...\u0027",
+      "range": {
+        "startLine": 36,
+        "startChar": 15,
+        "endLine": 36,
+        "endChar": 16
+      },
       "revId": "3336dffe95a317b2d2675bb003c2a5f33cd868dd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
