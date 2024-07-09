@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4a13833_4d0ed2c4",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-07-09T13:39:13Z",
+      "side": 1,
+      "message": "NB: spaces are missing",
+      "revId": "eebc7f57668aff03a03a365de7633f4d86d86d8a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
