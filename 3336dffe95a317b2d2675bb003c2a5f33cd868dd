@@ -22,6 +22,69 @@
       },
       "revId": "3336dffe95a317b2d2675bb003c2a5f33cd868dd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10b62c0d_94d532f0",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/DmiDispatcher.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-09T11:26:19Z",
+      "side": 1,
+      "message": "Unused imports?",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 43
+      },
+      "revId": "3336dffe95a317b2d2675bb003c2a5f33cd868dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93bc774a_c6b74cb2",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/DmiDispatcher.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-09T11:26:19Z",
+      "side": 1,
+      "message": "Cleaner if you use quotes:\n\n    case ~\u0027^/dmi/v1/writeJob/(.*)$\u0027:",
+      "range": {
+        "startLine": 98,
+        "startChar": 18,
+        "endLine": 98,
+        "endChar": 47
+      },
+      "revId": "3336dffe95a317b2d2675bb003c2a5f33cd868dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72d1a88a_e2a6d515",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpWriteSubJobSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-09T11:26:19Z",
+      "side": 1,
+      "message": "Missing copyright notice",
+      "revId": "3336dffe95a317b2d2675bb003c2a5f33cd868dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
