@@ -120,13 +120,9 @@ public class YangParserHelper {
 
         try (jsonParserStream) {
             jsonParserStream.parse(jsonReader);
-        } catch (final IOException | JsonSyntaxException exception) {
+        } catch (final IOException | JsonSyntaxException | IllegalStateException | IllegalArgumentException exception) {
             throw new DataValidationException(
-                    "Failed to parse json data: " + jsonData, exception.getMessage(), exception);
-        } catch (final IllegalStateException | IllegalArgumentException exception) {
-            throw new DataValidationException(
-                    "Failed to parse json data. Unsupported xpath or json data:" + jsonData, exception
-                    .getMessage(), exception);
+                    "Data Validation Failed", "Failed to parse json data. " + exception.getMessage(), exception);
         }
         return dataContainerNodeBuilder.build();
     }
@@ -168,7 +164,7 @@ public class YangParserHelper {
         } catch (final XMLStreamException | URISyntaxException | IOException | SAXException | NullPointerException
                        | ParserConfigurationException | TransformerException exception) {
             throw new DataValidationException(
-                "Failed to parse xml data: " + xmlData, exception.getMessage(), exception);
+                "Data Validation Failed", "Failed to parse xml data: " + exception.getMessage(), exception);
         }
         final DataContainerChild dataContainerChild =
             (DataContainerChild) getFirstChildXmlRoot(normalizedNodeResult.getResult());
