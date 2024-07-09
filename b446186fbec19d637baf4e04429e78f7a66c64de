@@ -150,6 +150,30 @@
       },
       "revId": "b446186fbec19d637baf4e04429e78f7a66c64de",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4297f19_5a5bd3e1",
+        "filename": "policy-executor-stub/src/test/groovy/org/onap/cps/policyexecutor/stub/controller/PolicyExecutorStubControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-07-09T12:15:05Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a11b8bd9_623e18d3",
+      "range": {
+        "startLine": 54,
+        "startChar": 45,
+        "endLine": 54,
+        "endChar": 56
+      },
+      "revId": "b446186fbec19d637baf4e04429e78f7a66c64de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
