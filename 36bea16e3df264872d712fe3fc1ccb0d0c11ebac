@@ -48,6 +48,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "642ff8f4_3560782c",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-09T13:23:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3a2e7688_f6f33798",
+      "range": {
+        "startLine": 174,
+        "startChar": 19,
+        "endLine": 174,
+        "endChar": 26
+      },
+      "revId": "36bea16e3df264872d712fe3fc1ccb0d0c11ebac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3240fea7_0870101f",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-09T13:23:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3a2e7688_f6f33798",
+      "range": {
+        "startLine": 174,
+        "startChar": 19,
+        "endLine": 174,
+        "endChar": 26
+      },
+      "revId": "36bea16e3df264872d712fe3fc1ccb0d0c11ebac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "273ab5f2_bb31ed8f",
@@ -79,6 +127,24 @@
       "side": 1,
       "message": "yes, might be better. But a separate test that verify if there is or isn\u0027t an ancestor axis. Depending on the type being the same. 3 scearios\n1) prefix a\\b  ancestor a -\u003e axis should remain\n1) prefix a\\b  ancestor b -\u003e axis should remain\n2) prefix abc\\def  ancestor ef -\u003e axis should remain (although it wont resolve anything) It proves it important to include the \u0027\\\u0027 when checking endsWith...",
       "parentUuid": "273ab5f2_bb31ed8f",
+      "revId": "36bea16e3df264872d712fe3fc1ccb0d0c11ebac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5627f1c5_91c92f75",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathBuilderSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-09T13:23:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "45bc4cf7_0b620047",
       "revId": "36bea16e3df264872d712fe3fc1ccb0d0c11ebac",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
