@@ -20,13 +20,8 @@
 
 package org.onap.cps.integration.functional
 
-import okhttp3.mockwebserver.Dispatcher
-import okhttp3.mockwebserver.MockResponse
-import okhttp3.mockwebserver.RecordedRequest
-import org.jetbrains.annotations.NotNull
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
 import org.springframework.http.HttpHeaders
-import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import spock.util.concurrent.PollingConditions
 
@@ -40,25 +35,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 class NcmpBearerTokenPassthroughSpec extends CpsIntegrationSpecBase {
 
-    def lastAuthHeaderReceived = null
-
     def setup() {
         dmiDispatcher.moduleNamesPerCmHandleId['ch-1'] = ['M1', 'M2']
         registerCmHandle(DMI_URL, 'ch-1', NO_MODULE_SET_TAG)
-
-        mockDmiServer.setDispatcher(new Dispatcher() {
-            @Override
-            MockResponse dispatch(@NotNull RecordedRequest request) throws InterruptedException {
-                if (request.path == '/actuator/health') {
-                        return new MockResponse()
-                                .addHeader("Content-Type", MediaType.APPLICATION_JSON).setBody('{"status":"UP"}')
-                                .setResponseCode(HttpStatus.OK.value())
-                } else {
-                    lastAuthHeaderReceived = request.getHeader('Authorization')
-                    return new MockResponse().setResponseCode(HttpStatus.OK.value())
-                }
-            }
-        })
     }
 
     def cleanup() {
@@ -75,7 +54,7 @@ class NcmpBearerTokenPassthroughSpec extends CpsIntegrationSpecBase {
                     .andExpect(status().is2xxSuccessful())
 
         then: 'DMI has received request with bearer token'
-            lastAuthHeaderReceived == 'Bearer some-bearer-token'
+            assert dmiDispatcher.lastAuthHeaderReceived == 'Bearer some-bearer-token'
 
         where: 'all HTTP operations are applied'
             httpMethod << [GET, POST, PUT, PATCH, DELETE]
@@ -91,7 +70,7 @@ class NcmpBearerTokenPassthroughSpec extends CpsIntegrationSpecBase {
                     .andExpect(status().is2xxSuccessful())
 
         then: 'DMI has received request with no authorization header'
-            lastAuthHeaderReceived == null
+            assert dmiDispatcher.lastAuthHeaderReceived == null
 
         where: 'all HTTP operations are applied'
             httpMethod << [GET, POST, PUT, PATCH, DELETE]
@@ -115,7 +94,7 @@ class NcmpBearerTokenPassthroughSpec extends CpsIntegrationSpecBase {
 
         then: 'DMI will receive the async request with bearer token'
             new PollingConditions().within(3, () -> {
-                assert lastAuthHeaderReceived == 'Bearer some-bearer-token'
+                assert dmiDispatcher.lastAuthHeaderReceived == 'Bearer some-bearer-token'
             })
     }
 
