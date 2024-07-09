@@ -46,7 +46,7 @@ nodeByDataspaceAndAnchor:
         $ref: 'components.yml#/components/responses/InternalServerError'
     x-codegen-request-body-name: xpath
 
-deltaByDataspaceAndAnchors:
+delta:
   get:
     description: Get delta between two anchors within a given dataspace
     tags:
@@ -76,8 +76,6 @@ deltaByDataspaceAndAnchors:
       '500':
         $ref: 'components.yml#/components/responses/InternalServerError'
     x-codegen-request-body-name: xpath
-
-deltaByDataspaceAnchorAndPayload:
   post:
     description: Get delta between an anchor in a dataspace and JSON payload
     tags:
