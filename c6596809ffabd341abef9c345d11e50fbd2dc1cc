@@ -20,6 +20,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f3e529e7_d684b6e1",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/DmiDispatcher.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-09T09:35:43Z",
+      "side": 1,
+      "message": "* - /dmi/v1/ch/{cmHandleId}/data/ds/{dataStoreName}: pass-through data operation for a CM-handle\n * - /dmi/v1/data: legacy pass-through batch data operation",
+      "revId": "c6596809ffabd341abef9c345d11e50fbd2dc1cc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05a89b98_d7dfc6ff",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/DmiDispatcher.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-09T09:35:43Z",
+      "side": 1,
+      "message": "NB: All the request oath can be used as :\n\nstatic final String HEALTH_CHECK_PATH \u003d \u0027/actuator/health\u0027\nstatic final String MODULES_PATH_REGEX \u003d \u0027^/dmi/v1/ch/(.*)/modules$\u0027\nstatic final String MODULE_RESOURCES_PATH_REGEX \u003d \u0027^/dmi/v1/ch/(.*)/moduleResources$\u0027\nstatic final String DATA_PATH_REGEX \u003d \u0027^/dmi/v1/ch/(.*)/data/ds/(.*)$\u0027\nstatic final String LEGACY_DATA_PATH \u003d \u0027^/dmi/v1/data$\u0027",
+      "revId": "c6596809ffabd341abef9c345d11e50fbd2dc1cc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1254a9cc_22cad7f4",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/DmiDispatcher.groovy",
         "patchSetId": 1
@@ -60,6 +94,98 @@
         "startChar": 1,
         "endLine": 66,
         "endChar": 9
+      },
+      "revId": "c6596809ffabd341abef9c345d11e50fbd2dc1cc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b0ed537_ad90fda6",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/DmiDispatcher.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-09T09:35:43Z",
+      "side": 1,
+      "message": "private String getCmHandleId(String path, String regex) {\n        Matcher matcher \u003d path \u003d~ regex\n        return matcher ? matcher[0][1] : \u0027\u0027\n    }",
+      "range": {
+        "startLine": 72,
+        "startChar": 16,
+        "endLine": 72,
+        "endChar": 58
+      },
+      "revId": "c6596809ffabd341abef9c345d11e50fbd2dc1cc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2352dfc_ec3fc0b9",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/DmiDispatcher.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-09T09:35:43Z",
+      "side": 1,
+      "message": "getCmHandleId(request.path, MODULES_PATH_REGEX))",
+      "range": {
+        "startLine": 73,
+        "startChar": 51,
+        "endLine": 73,
+        "endChar": 62
+      },
+      "revId": "c6596809ffabd341abef9c345d11e50fbd2dc1cc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf60397d_2b825bfa",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/DmiDispatcher.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-09T09:35:43Z",
+      "side": 1,
+      "message": "Not needed as  getCmHandleId methos is used",
+      "range": {
+        "startLine": 77,
+        "startChar": 16,
+        "endLine": 77,
+        "endChar": 58
+      },
+      "revId": "c6596809ffabd341abef9c345d11e50fbd2dc1cc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1707d9aa_7c01690d",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/DmiDispatcher.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-09T09:35:43Z",
+      "side": 1,
+      "message": "getCmHandleId(request.path, MODULES_PATH_REGEX))",
+      "range": {
+        "startLine": 78,
+        "startChar": 50,
+        "endLine": 78,
+        "endChar": 61
       },
       "revId": "c6596809ffabd341abef9c345d11e50fbd2dc1cc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
@@ -202,6 +328,75 @@
         "startChar": 55,
         "endLine": 86,
         "endChar": 63
+      },
+      "revId": "c6596809ffabd341abef9c345d11e50fbd2dc1cc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9db094c2_1229a10d",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/DmiDispatcher.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-09T09:35:43Z",
+      "side": 1,
+      "message": "NB: Can be merged using || operator like below:\nstatic final String DATA_PATH_REGEX \u003d \u0027^/dmi/v1/ch/(.*)/data/ds/(.*)$\u0027\nstatic final String LEGACY_DATA_PATH \u003d \u0027^/dmi/v1/data$\u0027\n\n if (request.path.matches(DATA_PATH_REGEX) || request.path.matches(LEGACY_DATA_PATH)) {\n            return mockResponseWithBody(HttpStatus.OK, \u0027{}\u0027)\n        }",
+      "range": {
+        "startLine": 80,
+        "startChar": 8,
+        "endLine": 86,
+        "endChar": 70
+      },
+      "revId": "c6596809ffabd341abef9c345d11e50fbd2dc1cc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e033cef8_6f81008d",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/DmiDispatcher.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-09T09:35:43Z",
+      "side": 1,
+      "message": "\"Mock DMI does not implement endpoint: ${request.path}\"",
+      "range": {
+        "startLine": 89,
+        "startChar": 51,
+        "endLine": 89,
+        "endChar": 105
+      },
+      "revId": "c6596809ffabd341abef9c345d11e50fbd2dc1cc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0bb09ed_ce6c1297",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/DmiDispatcher.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-09T09:35:43Z",
+      "side": 1,
+      "message": "\"Mock DMI has no modules configured for CM handle: ${cmHandleId}\"",
+      "range": {
+        "startLine": 109,
+        "startChar": 47,
+        "endLine": 109,
+        "endChar": 101
       },
       "revId": "c6596809ffabd341abef9c345d11e50fbd2dc1cc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
