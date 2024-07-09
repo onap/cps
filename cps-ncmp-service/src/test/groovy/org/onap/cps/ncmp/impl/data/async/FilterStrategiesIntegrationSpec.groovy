@@ -22,9 +22,9 @@ package org.onap.cps.ncmp.impl.data.async
 
 import io.cloudevents.core.builder.CloudEventBuilder
 import org.onap.cps.events.EventsPublisher
-import org.onap.cps.ncmp.api.impl.config.kafka.KafkaConfig
-import org.onap.cps.ncmp.api.kafka.ConsumerBaseSpec
+import org.onap.cps.ncmp.config.KafkaConfig
 import org.onap.cps.ncmp.event.model.DmiAsyncRequestResponseEvent
+import org.onap.cps.ncmp.utils.events.ConsumerBaseSpec
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration

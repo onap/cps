@@ -23,8 +23,7 @@ package org.onap.cps.ncmp.utils.events
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.cloudevents.CloudEvent
 import org.onap.cps.events.EventsPublisher
-import org.onap.cps.ncmp.api.impl.utils.context.CpsApplicationContext
-import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
+import org.onap.cps.ncmp.config.CpsApplicationContext
 import org.onap.cps.ncmp.events.avc.ncmp_to_client.Avc
 import org.onap.cps.ncmp.events.avc.ncmp_to_client.AvcEvent
 import org.onap.cps.utils.JsonObjectMapper

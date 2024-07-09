@@ -28,13 +28,13 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import io.cloudevents.CloudEvent
 import io.cloudevents.core.builder.CloudEventBuilder
 import org.apache.kafka.clients.consumer.ConsumerRecord
-import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.cache.DmiCacheHandler
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.ncmp.NcmpOutEventMapper
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.ncmp.NcmpOutEventProducer
 import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.dmi_to_ncmp.Data
 import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.dmi_to_ncmp.DmiOutEvent
 import org.onap.cps.ncmp.utils.TestUtils
+import org.onap.cps.ncmp.utils.events.MessagingBaseSpec
 import org.onap.cps.utils.JsonObjectMapper
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired

@@ -26,11 +26,11 @@ import org.mapstruct.factory.Mappers
 import org.onap.cps.TestUtils
 import org.onap.cps.ncmp.api.data.exceptions.InvalidOperationException
 import org.onap.cps.ncmp.api.data.exceptions.OperationNotSupportedException
-import org.onap.cps.ncmp.api.impl.exception.DmiClientRequestException
-import org.onap.cps.ncmp.api.impl.exception.DmiRequestException
-import org.onap.cps.ncmp.api.impl.exception.ServerNcmpException
+import org.onap.cps.ncmp.api.exceptions.DmiClientRequestException
+import org.onap.cps.ncmp.api.exceptions.DmiRequestException
+import org.onap.cps.ncmp.api.exceptions.PayloadTooLargeException
+import org.onap.cps.ncmp.api.exceptions.ServerNcmpException
 import org.onap.cps.ncmp.api.inventory.NetworkCmProxyInventoryFacade
-import org.onap.cps.ncmp.exceptions.PayloadTooLargeException
 import org.onap.cps.ncmp.impl.data.NcmpCachedResourceRequestHandler
 import org.onap.cps.ncmp.impl.data.NcmpPassthroughResourceRequestHandler
 import org.onap.cps.ncmp.impl.data.NetworkCmProxyFacade

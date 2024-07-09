@@ -26,7 +26,7 @@ import org.onap.cps.ncmp.api.data.exceptions.OperationNotSupportedException
 import org.onap.cps.ncmp.api.data.models.CmResourceAddress
 import org.onap.cps.ncmp.api.data.models.DataOperationDefinition
 import org.onap.cps.ncmp.api.data.models.DataOperationRequest
-import org.onap.cps.ncmp.exceptions.PayloadTooLargeException
+import org.onap.cps.ncmp.api.exceptions.PayloadTooLargeException
 import org.springframework.http.ResponseEntity
 import reactor.core.publisher.Mono
 import spock.lang.Specification

@@ -27,8 +27,8 @@ import java.util.Collections;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
-import org.onap.cps.ncmp.api.impl.exception.DmiRequestException;
-import org.onap.cps.ncmp.api.impl.exception.NcmpException;
+import org.onap.cps.ncmp.api.exceptions.DmiRequestException;
+import org.onap.cps.ncmp.api.exceptions.NcmpException;
 
 /**
  * Dmi Registry request object.

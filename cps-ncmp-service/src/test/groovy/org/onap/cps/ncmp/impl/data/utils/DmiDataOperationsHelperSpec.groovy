@@ -28,13 +28,13 @@ import org.apache.kafka.clients.consumer.KafkaConsumer
 import org.onap.cps.events.EventsPublisher
 import org.onap.cps.ncmp.api.data.models.DataOperationRequest
 import org.onap.cps.ncmp.api.data.models.OperationType
-import org.onap.cps.ncmp.api.impl.utils.context.CpsApplicationContext
 import org.onap.cps.ncmp.api.inventory.models.CompositeStateBuilder
-import org.onap.cps.ncmp.api.kafka.MessagingBaseSpec
+import org.onap.cps.ncmp.config.CpsApplicationContext
 import org.onap.cps.ncmp.events.async1_0_0.DataOperationEvent
 import org.onap.cps.ncmp.impl.data.models.DmiDataOperation
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.ncmp.utils.TestUtils
+import org.onap.cps.ncmp.utils.events.MessagingBaseSpec
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
 import org.springframework.test.context.ContextConfiguration

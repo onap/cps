@@ -32,7 +32,7 @@ import org.onap.cps.ncmp.api.data.models.CmResourceAddress;
 import org.onap.cps.ncmp.api.data.models.DataOperationRequest;
 import org.onap.cps.ncmp.api.data.models.DatastoreType;
 import org.onap.cps.ncmp.api.data.models.OperationType;
-import org.onap.cps.ncmp.exceptions.PayloadTooLargeException;
+import org.onap.cps.ncmp.api.exceptions.PayloadTooLargeException;
 import org.onap.cps.ncmp.utils.events.TopicValidator;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
