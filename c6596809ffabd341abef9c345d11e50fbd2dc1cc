@@ -109,6 +109,30 @@
       },
       "revId": "c6596809ffabd341abef9c345d11e50fbd2dc1cc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "527406ff_b2228872",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/DmiDispatcher.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-09T08:40:18Z",
+      "side": 1,
+      "message": "No. I just double-checked OpenAPI for DMI plugin. /v1/data returns 202 accepted",
+      "parentUuid": "f9bb8be4_cdb0acdc",
+      "range": {
+        "startLine": 86,
+        "startChar": 55,
+        "endLine": 86,
+        "endChar": 63
+      },
+      "revId": "c6596809ffabd341abef9c345d11e50fbd2dc1cc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
