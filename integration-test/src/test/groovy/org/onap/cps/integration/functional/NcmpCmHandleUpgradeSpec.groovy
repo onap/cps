@@ -62,14 +62,11 @@ class NcmpCmHandleUpgradeSpec extends CpsIntegrationSpecBase {
 
         when: 'DMI will return different modules for upgrade: M1 and M3'
             dmiDispatcher.moduleNamesPerCmHandleId[CM_HANDLE_ID] = ['M1', 'M3']
-        and: 'module sync runs'
-            moduleSyncWatchdog.resetPreviouslyFailedCmHandles()
-            moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
 
         then: 'CM-handle goes to READY state'
-            new PollingConditions().eventually {
+            new PollingConditions().within(MODULE_SYNC_WAIT_TIME_IN_SECONDS, () -> {
                 assert CmHandleState.READY == objectUnderTest.getCmHandleCompositeState(CM_HANDLE_ID).cmHandleState
-            }
+            })
 
         and: 'the CM-handle has expected moduleSetTag'
             assert objectUnderTest.getNcmpServiceCmHandle(CM_HANDLE_ID).moduleSetTag == updatedModuleSetTag
@@ -107,14 +104,10 @@ class NcmpCmHandleUpgradeSpec extends CpsIntegrationSpecBase {
         then: 'registration gives successful response'
             assert dmiPluginRegistrationResponse.upgradedCmHandles == [CmHandleRegistrationResponse.createSuccessResponse(CM_HANDLE_ID)]
 
-        when: 'module sync runs'
-            moduleSyncWatchdog.resetPreviouslyFailedCmHandles()
-            moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
-
-        then: 'CM-handle goes to READY state'
-            new PollingConditions().eventually {
+        and: 'CM-handle goes to READY state'
+            new PollingConditions().within(MODULE_SYNC_WAIT_TIME_IN_SECONDS, () -> {
                 assert CmHandleState.READY == objectUnderTest.getCmHandleCompositeState(CM_HANDLE_ID).cmHandleState
-            }
+            })
 
         and: 'the CM-handle has expected moduleSetTag'
             assert objectUnderTest.getNcmpServiceCmHandle(CM_HANDLE_ID).moduleSetTag == updatedModuleSetTag
@@ -167,16 +160,12 @@ class NcmpCmHandleUpgradeSpec extends CpsIntegrationSpecBase {
             objectUnderTest.updateDmiRegistrationAndSyncModule(
                     new DmiPluginRegistration(dmiPlugin: DMI_URL, upgradedCmHandles: cmHandlesToUpgrade))
 
-        and: 'module sync runs'
-            moduleSyncWatchdog.resetPreviouslyFailedCmHandles()
-            moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
-
         then: 'CM-handle goes to LOCKED state with reason MODULE_UPGRADE_FAILED'
-            new PollingConditions(timeout: 3).eventually {
+            new PollingConditions().within(MODULE_SYNC_WAIT_TIME_IN_SECONDS, () -> {
                 def cmHandleCompositeState = objectUnderTest.getCmHandleCompositeState(CM_HANDLE_ID)
                 assert cmHandleCompositeState.cmHandleState == CmHandleState.LOCKED
                 assert cmHandleCompositeState.lockReason.lockReasonCategory == LockReasonCategory.MODULE_UPGRADE_FAILED
-            }
+            })
 
         and: 'the CM-handle has same moduleSetTag as before'
             assert objectUnderTest.getNcmpServiceCmHandle(CM_HANDLE_ID).moduleSetTag == 'oldTag'

@@ -133,8 +133,9 @@ abstract class CpsIntegrationSpecBase extends Specification {
     static NO_MODULE_SET_TAG = ''
     static GENERAL_TEST_DATASPACE = 'generalTestDataspace'
     static BOOKSTORE_SCHEMA_SET = 'bookstoreSchemaSet'
+    static MODULE_SYNC_WAIT_TIME_IN_SECONDS = 2
 
-    def static initialized = false
+    static initialized = false
     def now = OffsetDateTime.now()
 
     def setup() {
@@ -218,8 +219,7 @@ abstract class CpsIntegrationSpecBase extends Specification {
     def registerCmHandle(dmiPlugin, cmHandleId, moduleSetTag) {
         def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: cmHandleId, moduleSetTag: moduleSetTag)
         networkCmProxyInventoryFacade.updateDmiRegistrationAndSyncModule(new DmiPluginRegistration(dmiPlugin: dmiPlugin, createdCmHandles: [cmHandleToCreate]))
-        moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
-        new PollingConditions().within(3, () -> {
+        new PollingConditions().within(MODULE_SYNC_WAIT_TIME_IN_SECONDS, () -> {
             CmHandleState.READY == networkCmProxyInventoryFacade.getCmHandleCompositeState(cmHandleId).cmHandleState
         })
     }
