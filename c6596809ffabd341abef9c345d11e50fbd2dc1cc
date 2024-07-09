@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4d81e73_b05f67ff",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/DmiDispatcher.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-09T09:15:36Z",
+      "side": 1,
+      "message": "Yes. We don\u0027t know exactly when health check will be called because trust level watchdog is a background task. So putting it in the switch below would cause intermittent failures in the tests for authorization header (this caused previous bug CPS-2167).",
+      "parentUuid": "1254a9cc_22cad7f4",
+      "range": {
+        "startLine": 64,
+        "startChar": 1,
+        "endLine": 66,
+        "endChar": 9
+      },
+      "revId": "c6596809ffabd341abef9c345d11e50fbd2dc1cc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6967e4e1_b20149cc",
@@ -88,6 +112,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "15121b30_0955ee5b",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/DmiDispatcher.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-09T09:15:36Z",
+      "side": 1,
+      "message": "Ack. Will look at this in next commit",
+      "parentUuid": "4dc62d6c_cb2bf639",
+      "range": {
+        "startLine": 81,
+        "startChar": 20,
+        "endLine": 81,
+        "endChar": 49
+      },
+      "revId": "c6596809ffabd341abef9c345d11e50fbd2dc1cc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f9bb8be4_cdb0acdc",
@@ -125,6 +173,30 @@
       "side": 1,
       "message": "No. I just double-checked OpenAPI for DMI plugin. /v1/data returns 202 accepted",
       "parentUuid": "f9bb8be4_cdb0acdc",
+      "range": {
+        "startLine": 86,
+        "startChar": 55,
+        "endLine": 86,
+        "endChar": 63
+      },
+      "revId": "c6596809ffabd341abef9c345d11e50fbd2dc1cc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e4b210f_2b6414d2",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/DmiDispatcher.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-09T09:15:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "527406ff_b2228872",
       "range": {
         "startLine": 86,
         "startChar": 55,
