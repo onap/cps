@@ -346,7 +346,7 @@ class DataRestControllerSpec extends Specification {
         given: 'the service returns a list containing delta reports'
             def deltaReports = new DeltaReportBuilder().actionUpdate().withXpath('some xpath').withSourceData('some key': 'some value').withTargetData('some key': 'some value').build()
             def xpath = 'some xpath'
-            def endpoint = "$dataNodeBaseEndpointV2/anchors/sourceAnchor/deltaAnchors"
+            def endpoint = "$dataNodeBaseEndpointV2/anchors/sourceAnchor/delta"
             mockCpsDataService.getDeltaByDataspaceAndAnchors(dataspaceName, 'sourceAnchor', 'targetAnchor', xpath, OMIT_DESCENDANTS) >> [deltaReports]
         when: 'get delta request is performed using REST API'
             def response =
@@ -364,7 +364,7 @@ class DataRestControllerSpec extends Specification {
         given: 'sample delta report, xpath, yang model file and json payload'
             def deltaReports = new DeltaReportBuilder().actionAdd().withXpath('some xpath').build()
             def xpath = 'some xpath'
-            def endpoint = "$dataNodeBaseEndpointV2/anchors/$anchorName/deltaPayload"
+            def endpoint = "$dataNodeBaseEndpointV2/anchors/$anchorName/delta"
         and: 'the service layer returns a list containing delta reports'
             mockCpsDataService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath, ['filename.yang':'content'], expectedJsonData, INCLUDE_ALL_DESCENDANTS) >> [deltaReports]
         when: 'get delta request is performed using REST API'
@@ -385,7 +385,7 @@ class DataRestControllerSpec extends Specification {
         given: 'sample delta report, xpath, and json payload'
             def deltaReports = new DeltaReportBuilder().actionRemove().withXpath('some xpath').build()
             def xpath = 'some xpath'
-            def endpoint = "$dataNodeBaseEndpointV2/anchors/$anchorName/deltaPayload"
+            def endpoint = "$dataNodeBaseEndpointV2/anchors/$anchorName/delta"
         and: 'the service layer returns a list containing delta reports'
             mockCpsDataService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath, [:], expectedJsonData, INCLUDE_ALL_DESCENDANTS) >> [deltaReports]
         when: 'get delta request is performed using REST API'
