@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7acf8316_49d9c308",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-09T09:14:28Z",
+      "side": 1,
+      "message": "NB: when you overload you usually call one method from the other (there is stil a little duplication now).\n\n\n\ndef registerCmHandle(dmiPlugin, cmHandleId, moduleSetTag) {\n   registerCmHandle(dmiPlugin, cmHandleId, moduleSetTag, \"\")\n}",
+      "range": {
+        "startLine": 227,
+        "startChar": 0,
+        "endLine": 235,
+        "endChar": 5
+      },
+      "revId": "a6c78bc7c197d596be589164357afcc17f9b67bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0265000d_ef80e63e",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/NcmpWriteSubJobSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-09T09:14:28Z",
+      "side": 1,
+      "message": "break this up using and: blocks\ne.g.\n\nand: \u0027dmi 1 received the correct job details\u0027   \n:\n:\nand: \u0027dmi 2 received the correct job details\u0027",
+      "range": {
+        "startLine": 41,
+        "startChar": 12,
+        "endLine": 41,
+        "endChar": 53
+      },
+      "revId": "a6c78bc7c197d596be589164357afcc17f9b67bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
