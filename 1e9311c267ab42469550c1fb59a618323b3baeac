@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9d73f93_2860e4cd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-07-09T13:40:00Z",
+      "side": 1,
+      "message": "NB: DataNodeHelper*",
+      "revId": "1e9311c267ab42469550c1fb59a618323b3baeac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
