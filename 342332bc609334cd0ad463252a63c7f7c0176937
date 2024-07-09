@@ -16,6 +16,24 @@
       "message": "Suggestion: could remove the \u0027ncmp\u0027 prefix to all these classes now they are in a ncmp folder..",
       "revId": "342332bc609334cd0ad463252a63c7f7c0176937",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63ab773b_cf7ada06",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/NcmpBearerTokenPassthroughSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-09T13:03:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44e4d137_aa86f953",
+      "revId": "342332bc609334cd0ad463252a63c7f7c0176937",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
