@@ -27,8 +27,8 @@ import java.util.Map;
 import java.util.UUID;
 import lombok.Builder;
 import org.apache.commons.lang3.StringUtils;
-import org.onap.cps.ncmp.api.impl.utils.EventDateTimeFormatter;
-import org.onap.cps.ncmp.api.impl.utils.context.CpsApplicationContext;
+import org.onap.cps.ncmp.config.CpsApplicationContext;
+import org.onap.cps.ncmp.impl.utils.EventDateTimeFormatter;
 import org.onap.cps.utils.JsonObjectMapper;
 
 @Builder

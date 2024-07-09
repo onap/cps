@@ -20,7 +20,7 @@
 
 package org.onap.cps.ncmp.utils.events
 
-import org.onap.cps.ncmp.exceptions.InvalidTopicException
+import org.onap.cps.ncmp.api.exceptions.InvalidTopicException
 import spock.lang.Specification
 
 class TopicValidatorSpec extends Specification {

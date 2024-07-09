@@ -21,7 +21,7 @@
 package org.onap.cps.ncmp.exceptions;
 
 import java.io.Serial;
-import org.onap.cps.ncmp.api.impl.exception.NcmpException;
+import org.onap.cps.ncmp.api.exceptions.NcmpException;
 
 public class NoAlternateIdMatchFoundException extends NcmpException {
 

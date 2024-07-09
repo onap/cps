@@ -23,7 +23,7 @@ package org.onap.cps.ncmp.utils.events;
 import java.util.regex.Pattern;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import org.onap.cps.ncmp.exceptions.InvalidTopicException;
+import org.onap.cps.ncmp.api.exceptions.InvalidTopicException;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class TopicValidator {
