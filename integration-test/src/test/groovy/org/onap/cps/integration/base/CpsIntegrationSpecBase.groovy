@@ -133,7 +133,7 @@ abstract class CpsIntegrationSpecBase extends Specification {
     static NO_MODULE_SET_TAG = ''
     static GENERAL_TEST_DATASPACE = 'generalTestDataspace'
     static BOOKSTORE_SCHEMA_SET = 'bookstoreSchemaSet'
-    static MODULE_SYNC_WAIT_TIME_IN_SECONDS = 2
+    static MODULE_SYNC_WAIT_TIME_IN_SECONDS = 10
 
     static initialized = false
     def now = OffsetDateTime.now()
