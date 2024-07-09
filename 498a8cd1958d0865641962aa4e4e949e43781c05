@@ -16,6 +16,24 @@
       "message": "NB: do you think the org.onap.cps.integration.performance.base can also be part of the org.onap.cps.integration.base package that u have ?? \nother than this I am fine with the refactoring.",
       "revId": "498a8cd1958d0865641962aa4e4e949e43781c05",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20897ae7_0cd7cb98",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-07-09T14:08:01Z",
+      "side": 1,
+      "message": "As discussed , we agreed to revisit this in the future patches.",
+      "parentUuid": "c05407b9_44ca5674",
+      "revId": "498a8cd1958d0865641962aa4e4e949e43781c05",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
