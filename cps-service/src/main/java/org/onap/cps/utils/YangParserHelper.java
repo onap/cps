@@ -36,6 +36,7 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import javax.xml.transform.TransformerException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.cpspath.parser.CpsPathUtil;
 import org.onap.cps.cpspath.parser.PathParsingException;
 import org.onap.cps.spi.exceptions.DataValidationException;
@@ -65,6 +66,7 @@ import org.springframework.stereotype.Service;
 import org.xml.sax.SAXException;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class YangParserHelper {
 
@@ -120,13 +122,10 @@ public class YangParserHelper {
 
         try (jsonParserStream) {
             jsonParserStream.parse(jsonReader);
-        } catch (final IOException | JsonSyntaxException exception) {
+        } catch (final IOException | JsonSyntaxException | IllegalStateException | IllegalArgumentException exception) {
+            log.debug("Failed to parse JSON Data: {}", jsonData);
             throw new DataValidationException(
-                    "Failed to parse json data: " + jsonData, exception.getMessage(), exception);
-        } catch (final IllegalStateException | IllegalArgumentException exception) {
-            throw new DataValidationException(
-                    "Failed to parse json data. Unsupported xpath or json data:" + jsonData, exception
-                    .getMessage(), exception);
+                    "Data Validation Failed", "Failed to parse json data. " + exception.getMessage(), exception);
         }
         return dataContainerNodeBuilder.build();
     }
@@ -167,8 +166,9 @@ public class YangParserHelper {
             }
         } catch (final XMLStreamException | URISyntaxException | IOException | SAXException | NullPointerException
                        | ParserConfigurationException | TransformerException exception) {
+            log.debug("Failed to parse XML Data: {}", xmlData);
             throw new DataValidationException(
-                "Failed to parse xml data: " + xmlData, exception.getMessage(), exception);
+                "Data Validation Failed", "Failed to parse xml data: " + exception.getMessage(), exception);
         }
         final DataContainerChild dataContainerChild =
             (DataContainerChild) getFirstChildXmlRoot(normalizedNodeResult.getResult());
