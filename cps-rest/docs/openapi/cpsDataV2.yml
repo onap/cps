@@ -46,7 +46,7 @@ nodeByDataspaceAndAnchor:
         $ref: 'components.yml#/components/responses/InternalServerError'
     x-codegen-request-body-name: xpath
 
-deltaByDataspaceAndAnchors:
+delta:
   get:
     description: Get delta between two anchors within a given dataspace
     tags:
@@ -55,7 +55,7 @@ deltaByDataspaceAndAnchors:
     operationId: getDeltaByDataspaceAndAnchors
     parameters:
       - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
-      - $ref: 'components.yml#/components/parameters/anchorNameInPath'
+      - $ref: 'components.yml#/components/parameters/sourceAnchorNameInPath'
       - $ref: 'components.yml#/components/parameters/targetAnchorNameInQuery'
       - $ref: 'components.yml#/components/parameters/xpathInQuery'
       - $ref: 'components.yml#/components/parameters/descendantsInQuery'
@@ -76,8 +76,6 @@ deltaByDataspaceAndAnchors:
       '500':
         $ref: 'components.yml#/components/responses/InternalServerError'
     x-codegen-request-body-name: xpath
-
-deltaByDataspaceAnchorAndPayload:
   post:
     description: Get delta between an anchor in a dataspace and JSON payload
     tags:
@@ -86,7 +84,7 @@ deltaByDataspaceAnchorAndPayload:
     operationId: getDeltaByDataspaceAnchorAndPayload
     parameters:
       - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
-      - $ref: 'components.yml#/components/parameters/anchorNameInPath'
+      - $ref: 'components.yml#/components/parameters/sourceAnchorNameInPath'
       - $ref: 'components.yml#/components/parameters/xpathInQuery'
     requestBody:
       content:
