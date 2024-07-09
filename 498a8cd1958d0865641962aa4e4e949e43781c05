@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c05407b9_44ca5674",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-07-09T13:48:35Z",
+      "side": 1,
+      "message": "NB: do you think the org.onap.cps.integration.performance.base can also be part of the org.onap.cps.integration.base package that u have ?? \nother than this I am fine with the refactoring.",
+      "revId": "498a8cd1958d0865641962aa4e4e949e43781c05",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
