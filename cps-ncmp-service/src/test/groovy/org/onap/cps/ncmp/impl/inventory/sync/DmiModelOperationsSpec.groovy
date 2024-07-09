@@ -23,11 +23,11 @@ package org.onap.cps.ncmp.impl.inventory.sync
 
 import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.ObjectMapper
-import org.onap.cps.ncmp.api.impl.config.DmiProperties
-import org.onap.cps.ncmp.impl.DmiOperationsBaseSpec
+import org.onap.cps.ncmp.impl.dmi.DmiOperationsBaseSpec
+import org.onap.cps.ncmp.impl.dmi.DmiProperties
+import org.onap.cps.ncmp.impl.dmi.UrlTemplateParameters
 import org.onap.cps.spi.model.ModuleReference
 import org.onap.cps.utils.JsonObjectMapper
-import org.onap.cps.ncmp.api.impl.utils.url.builder.UrlTemplateParameters
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
