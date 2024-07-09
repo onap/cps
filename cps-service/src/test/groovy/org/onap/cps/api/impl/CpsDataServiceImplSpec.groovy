@@ -132,8 +132,8 @@ class CpsDataServiceImplSpec extends Specification {
         where: 'given parameters'
             scenario        | invalidData     | contentType      || expectedMessage
             'no data nodes' | '{}'            | ContentType.JSON || 'No data nodes'
-            'invalid json'  | '{invalid json' | ContentType.JSON || 'Failed to parse json data'
-            'invalid xml'   | '<invalid xml'  | ContentType.XML  || 'Failed to parse xml data'
+            'invalid json'  | '{invalid json' | ContentType.JSON || 'Data Validation Failed'
+            'invalid xml'   | '<invalid xml'  | ContentType.XML  || 'Data Validation Failed'
     }
 
     def 'Saving list element data fragment under Root node.'() {
