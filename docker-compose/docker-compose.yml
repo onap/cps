@@ -144,6 +144,15 @@ services:
       - dmi-stub
       - dmi-service
 
+  policy-executor-stub:
+    container_name: policy-executor-stub
+    image: ${DOCKER_REPO:-nexus3.onap.org:10003}/onap/policy-executor-stub:latest
+    ports:
+      - 8785:8080
+    restart: unless-stopped
+    profiles:
+      - policy-executor-stub
+
   prometheus:
     container_name: prometheus-container
     image: prom/prometheus:latest
