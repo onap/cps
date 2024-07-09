@@ -97,7 +97,7 @@ public interface CpsDataService {
      * @param observedTimestamp observedTimestamp
      */
     void saveListElements(String dataspaceName, String anchorName, String parentNodeXpath, String jsonData,
-        OffsetDateTime observedTimestamp);
+        OffsetDateTime observedTimestamp, ContentType contentType);
 
     /**
      * Retrieves all the datanodes by XPath for given dataspace and anchor.
