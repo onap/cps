@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b0220f6_fad5fd6e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-09T13:16:34Z",
+      "side": 1,
+      "message": "type in the commit message, sorry. I\u0027ll fix",
+      "parentUuid": "5392b819_2c25826b",
+      "range": {
+        "startLine": 10,
+        "startChar": 12,
+        "endLine": 10,
+        "endChar": 45
+      },
+      "revId": "988cef4f6d24d096639cb56b54cd02be1de8e016",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "29c6deae_cc2e3ea1",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-07-09T12:44:15Z",
       "side": 1,
       "message": "NB: how about we call it NcmpApplicationContext ??",
+      "range": {
+        "startLine": 28,
+        "startChar": 13,
+        "endLine": 28,
+        "endChar": 16
+      },
+      "revId": "988cef4f6d24d096639cb56b54cd02be1de8e016",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e0cb3de_b4cee75f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/CpsApplicationContext.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-09T13:16:34Z",
+      "side": 1,
+      "message": "I deliberately made NO code changes and looking at this more closely I think the name as OK for now (as agreed with Priyank)",
+      "parentUuid": "29c6deae_cc2e3ea1",
       "range": {
         "startLine": 28,
         "startChar": 13,
