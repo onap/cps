@@ -16,6 +16,24 @@
       "message": "NB: Do we need a new packages like functional.cps and functional.ncmp as discussed in the meeting last week? As of now. they are both in functional package.",
       "revId": "febd065e24c004e66417726fdaa52f7535c87a0d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e450e730_020d2563",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-09T08:31:42Z",
+      "side": 1,
+      "message": "Yes, I created a separate Jira ticket CPS-2309 for this.",
+      "parentUuid": "c60d6013_025d0fb7",
+      "revId": "febd065e24c004e66417726fdaa52f7535c87a0d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
