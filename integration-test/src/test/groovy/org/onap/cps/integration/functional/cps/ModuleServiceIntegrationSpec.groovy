@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.integration.functional
+package org.onap.cps.integration.functional.cps
 
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.integration.base.FunctionalSpecBase
@@ -31,7 +31,7 @@ import org.onap.cps.spi.exceptions.SchemaSetNotFoundException
 import org.onap.cps.spi.model.ModuleDefinition
 import org.onap.cps.spi.model.ModuleReference
 
-class CpsModuleServiceIntegrationSpec extends FunctionalSpecBase {
+class ModuleServiceIntegrationSpec extends FunctionalSpecBase {
 
     CpsModuleService objectUnderTest
 

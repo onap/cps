@@ -19,7 +19,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.integration.functional
+package org.onap.cps.integration.functional.cps
 
 import java.time.OffsetDateTime
 import org.onap.cps.api.CpsQueryService
@@ -33,7 +33,7 @@ import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
 import static org.onap.cps.spi.PaginationOption.NO_PAGINATION
 
-class CpsQueryServiceIntegrationSpec extends FunctionalSpecBase {
+class QueryServiceIntegrationSpec extends FunctionalSpecBase {
 
     CpsQueryService objectUnderTest
 

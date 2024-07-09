@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.integration.functional
+package org.onap.cps.integration.functional.ncmp
 
 import static org.hamcrest.Matchers.containsInAnyOrder
 import static org.hamcrest.Matchers.hasSize
@@ -31,7 +31,7 @@ import org.onap.cps.integration.base.CpsIntegrationSpecBase
 import org.springframework.http.MediaType
 import spock.util.concurrent.PollingConditions
 
-class NcmpRestApiSpec extends CpsIntegrationSpecBase {
+class RestApiSpec extends CpsIntegrationSpecBase {
 
     def 'Register CM Handles using REST API.'() {
         given: 'DMI will return modules'

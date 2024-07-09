@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.integration.functional
+package org.onap.cps.integration.functional.ncmp
 
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.utils.CmSubscriptionPersistenceService
@@ -26,7 +26,7 @@ import org.springframework.beans.factory.annotation.Autowired
 
 import static org.onap.cps.ncmp.api.data.models.DatastoreType.PASSTHROUGH_RUNNING
 
-class NcmpCmNotificationSubscriptionSpec extends CpsIntegrationSpecBase {
+class CmNotificationSubscriptionSpec extends CpsIntegrationSpecBase {
 
     @Autowired
     CmSubscriptionPersistenceService cmSubscriptionPersistenceService

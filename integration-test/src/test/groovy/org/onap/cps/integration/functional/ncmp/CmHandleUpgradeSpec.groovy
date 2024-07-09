@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.integration.functional
+package org.onap.cps.integration.functional.ncmp
 
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
 import org.onap.cps.ncmp.api.inventory.NetworkCmProxyInventoryFacade
@@ -29,7 +29,7 @@ import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
 import org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory
 import spock.util.concurrent.PollingConditions
 
-class NcmpCmHandleUpgradeSpec extends CpsIntegrationSpecBase {
+class CmHandleUpgradeSpec extends CpsIntegrationSpecBase {
 
     NetworkCmProxyInventoryFacade objectUnderTest
 

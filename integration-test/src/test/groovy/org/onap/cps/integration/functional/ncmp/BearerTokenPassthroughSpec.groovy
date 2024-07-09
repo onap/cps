@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.integration.functional
+package org.onap.cps.integration.functional.ncmp
 
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
 import org.springframework.http.HttpHeaders
@@ -33,7 +33,7 @@ import static org.springframework.http.HttpMethod.PUT
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.request
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
-class NcmpBearerTokenPassthroughSpec extends CpsIntegrationSpecBase {
+class BearerTokenPassthroughSpec extends CpsIntegrationSpecBase {
 
     def setup() {
         dmiDispatcher.moduleNamesPerCmHandleId['ch-1'] = ['M1', 'M2']
