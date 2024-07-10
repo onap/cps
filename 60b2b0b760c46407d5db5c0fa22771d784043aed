@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "159b1bbb_de80dd84",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/DmiDispatcher.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-10T09:56:26Z",
+      "side": 1,
+      "message": "NB: used def next time\n(I missed this one before, in general you should have no Java modifies in Groovy test classes!)",
+      "range": {
+        "startLine": 100,
+        "startChar": 4,
+        "endLine": 100,
+        "endChar": 12
+      },
+      "revId": "60b2b0b760c46407d5db5c0fa22771d784043aed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
