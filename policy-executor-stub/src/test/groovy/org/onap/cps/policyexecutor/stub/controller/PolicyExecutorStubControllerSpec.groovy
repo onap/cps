@@ -66,7 +66,7 @@ class PolicyExecutorStubControllerSpec extends Specification {
         where: 'the following targets are used'
             targetFdn               || expectedDecsisonId | expectedDecsison | expectedMessage
             'some fdn'              || '1'                | 'deny'           | "Only FDNs containing 'cps-is-great' are permitted"
-            'fdn with cps-is-great' || '2'                | 'permit'          | null
+            'fdn with cps-is-great' || '2'                | 'permit'         | "All good"
     }
 
     def 'Execute Policy Action with a HTTP Error Code.'() {
@@ -94,8 +94,8 @@ class PolicyExecutorStubControllerSpec extends Specification {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestBody))
                 .andReturn().response
-        then: 'response status is Bad Request'
-            assert response.status == HttpStatus.BAD_REQUEST.value()
+        then: 'response status is OK'
+            assert response.status == HttpStatus.OK.value()
     }
 
     def 'Execute Policy Action with Empty Payload.'() {

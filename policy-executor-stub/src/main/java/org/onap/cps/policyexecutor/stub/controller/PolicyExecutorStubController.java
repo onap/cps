@@ -41,9 +41,9 @@ public class PolicyExecutorStubController implements PolicyExecutorApi {
 
     @Override
     public ResponseEntity<PolicyExecutionResponse> executePolicyAction(
-                                                     final String authorization,
                                                      final String action,
-                                                     final PolicyExecutionRequest policyExecutionRequest) {
+                                                     final PolicyExecutionRequest policyExecutionRequest,
+                                                     final String authorization) {
         if (policyExecutionRequest.getPayload().isEmpty()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -56,15 +56,19 @@ public class PolicyExecutorStubController implements PolicyExecutorApi {
             return new ResponseEntity<>(HttpStatusCode.valueOf(errorCode));
         }
 
-        final PolicyExecutionResponse policyExecutionResponse = new PolicyExecutionResponse();
-        policyExecutionResponse.setDecisionId(String.valueOf(++decisionCounter));
+        final String decisionId = String.valueOf(++decisionCounter);
+        final String decision;
+        final String message;
 
         if (firstTargetFdn.toLowerCase(Locale.getDefault()).contains("cps-is-great")) {
-            policyExecutionResponse.setDecision("permit");
+            decision = "permit";
+            message = "All good";
         } else {
-            policyExecutionResponse.setDecision("deny");
-            policyExecutionResponse.setMessage("Only FDNs containing 'cps-is-great' are permitted");
+            decision = "deny";
+            message = "Only FDNs containing 'cps-is-great' are permitted";
         }
+        final PolicyExecutionResponse policyExecutionResponse =
+            new PolicyExecutionResponse(decisionId, decision, message);
         return ResponseEntity.ok(policyExecutionResponse);
     }
 }
