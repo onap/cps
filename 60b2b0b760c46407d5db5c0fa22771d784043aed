@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eed44e58_434b8ef1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2024-07-10T12:18:34Z",
+      "side": 1,
+      "message": "All comments look to be resolved. Just merge conflict to sort.",
+      "revId": "60b2b0b760c46407d5db5c0fa22771d784043aed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "159b1bbb_de80dd84",
