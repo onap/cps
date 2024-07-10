@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START========================================================
- * Copyright (c) 2022 Nordix Foundation.
+ * Copyright (c) 2022-2024 Nordix Foundation.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,18 +20,16 @@
 
 package org.onap.cps.ncmp.impl.inventory.models
 
-
 import spock.lang.Specification
 
 class InventoryQueryConditionsSpec extends Specification {
 
     def 'Inventory query condition names.'() {
-        expect: '3 conditions with the correct names'
-            assert InventoryQueryConditions.ALL_CONDITION_NAMES.size() == 3
+        expect: '4 conditions with the correct names'
+            assert InventoryQueryConditions.ALL_CONDITION_NAMES.size() == 4
             assert InventoryQueryConditions.ALL_CONDITION_NAMES.containsAll('hasAllProperties',
                                                                             'hasAllAdditionalProperties',
-                                                                            'cmHandleWithDmiPlugin')
+                                                                            'cmHandleWithDmiPlugin',
+                                                                            'cmHandleWithCpsPath')
     }
-
-
 }

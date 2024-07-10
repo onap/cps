@@ -66,19 +66,20 @@ public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHan
     public Collection<String> queryCmHandleIds(
             final CmHandleQueryServiceParameters cmHandleQueryServiceParameters) {
         return executeQueries(cmHandleQueryServiceParameters,
-            this::executeCpsPathQuery,
-            this::queryCmHandlesByPublicProperties,
-            this::executeModuleNameQuery,
+                this::executeCpsPathQuery,
+                this::queryCmHandlesByPublicProperties,
+                this::executeModuleNameQuery,
                 this::queryCmHandlesByTrustLevel);
     }
 
     @Override
     public Collection<String> queryCmHandleIdsForInventory(
-        final CmHandleQueryServiceParameters cmHandleQueryServiceParameters) {
+            final CmHandleQueryServiceParameters cmHandleQueryServiceParameters) {
         return executeQueries(cmHandleQueryServiceParameters,
-            this::queryCmHandlesByPublicProperties,
-            this::queryCmHandlesByPrivateProperties,
-            this::queryCmHandlesByDmiPlugin);
+                this::executeCpsPathQuery,
+                this::queryCmHandlesByPublicProperties,
+                this::queryCmHandlesByPrivateProperties,
+                this::queryCmHandlesByDmiPlugin);
     }
 
     @Override
