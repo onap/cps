@@ -41,10 +41,12 @@ ncmp:
                 pendingAcquireMaxCount: 22
                 connectionTimeoutInSeconds: 123
                 maximumInMemorySizeInMegabytes: 7
+                readTimeoutInSeconds: 33
             model-services:
                 pendingAcquireMaxCount: 44
                 connectionTimeoutInSeconds: 456
                 maximumInMemorySizeInMegabytes: 8
+                maximumConnectionsTotal: 111
         auth:
             username: some-user
             password: some-password
@@ -59,6 +61,11 @@ ncmp:
         async-executor:
             parallelism-level: 3
 
+    policy-executor:
+        enabled: true
+        server:
+            address: "http://localhost"
+            port: "8785"
 
 # Custom Hazelcast Config.
 hazelcast:
