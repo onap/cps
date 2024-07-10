@@ -71,6 +71,7 @@ public class DmiDataOperations {
     private final JsonObjectMapper jsonObjectMapper;
     private final DmiProperties dmiProperties;
     private final DmiRestClient dmiRestClient;
+    private final PolicyExecutor policyExecutor;
 
     /**
      * This method fetches the resource data from the operational data store for a given CM handle
@@ -170,6 +171,9 @@ public class DmiDataOperations {
                                                                              final String dataType,
                                                                              final String authorization) {
         final YangModelCmHandle yangModelCmHandle = getYangModelCmHandle(cmHandleId);
+
+        policyExecutor.checkPermission(yangModelCmHandle, operationType, authorization, resourceId, requestData);
+
         final CmHandleState cmHandleState = yangModelCmHandle.getCompositeState().getCmHandleState();
         validateIfCmHandleStateReady(yangModelCmHandle, cmHandleState);
 

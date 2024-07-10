@@ -121,7 +121,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     /**
      * Query resource data from datastore.
      *
-     * @param datastoreName        name of the datastore
+     * @param datastoreName        name of the datastore (currently only supports "ncmp-datastore:operational")
      * @param cmHandle             cm handle identifier
      * @param cpsPath              CPS Path
      * @param optionsParamInQuery  options query parameter
@@ -144,9 +144,9 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     }
 
     /**
-     * Patch resource data from passthrough-running.
+     * Patch resource data.
      *
-     * @param datastoreName      name of the datastore
+     * @param datastoreName      name of the datastore (currently only supports "ncmp-datastore:passthrough-running")
      * @param cmHandle           cm handle identifier
      * @param resourceIdentifier resource identifier
      * @param requestBody        the request body
@@ -173,9 +173,9 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     }
 
     /**
-     * Create resource data in datastore pass-through running for given cm-handle.
+     * Create resource data for given cm-handle.
      *
-     * @param datastoreName      name of the datastore
+     * @param datastoreName      name of the datastore (currently only supports "ncmp-datastore:passthrough-running")
      * @param cmHandle           cm handle identifier
      * @param resourceIdentifier resource identifier
      * @param requestBody        the request body
@@ -198,9 +198,9 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     }
 
     /**
-     * Update resource data in datastore pass-through running for given cm-handle.
+     * Update resource data for given cm-handle.
      *
-     * @param datastoreName      name of the datastore
+     * @param datastoreName      name of the datastore (currently only supports "ncmp-datastore:passthrough-running")
      * @param cmHandle           cm handle identifier
      * @param resourceIdentifier resource identifier
      * @param requestBody        the request body
@@ -224,9 +224,9 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     }
 
     /**
-     * Delete resource data in datastore pass-through running for a given cm-handle.
+     * Delete resource data for a given cm-handle.
      *
-     * @param datastoreName      name of the datastore
+     * @param datastoreName      name of the datastore (currently only supports "ncmp-datastore:passthrough-running")
      * @param cmHandle           cm handle identifier
      * @param resourceIdentifier resource identifier
      * @param contentType        content type of the body

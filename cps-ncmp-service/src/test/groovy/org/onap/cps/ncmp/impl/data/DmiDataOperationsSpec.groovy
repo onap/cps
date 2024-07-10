@@ -36,6 +36,7 @@ import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.context.SpringBootContextLoader
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -53,7 +54,7 @@ import static org.onap.cps.ncmp.impl.models.RequiredDmiService.DATA
 import static org.onap.cps.ncmp.utils.events.CloudEventMapper.toTargetEvent
 
 @SpringBootTest
-@ContextConfiguration(classes = [EventsPublisher, CpsApplicationContext, DmiProperties, DmiDataOperations])
+@ContextConfiguration(classes = [EventsPublisher, CpsApplicationContext, DmiProperties, DmiDataOperations, PolicyExecutor])
 class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
 
     def NO_TOPIC = null
@@ -71,6 +72,9 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
 
     @SpringBean
     EventsPublisher eventsPublisher = Stub()
+
+    @SpringBean
+    PolicyExecutor policyExecutor = Mock()
 
     def 'call get resource data for #expectedDataStore from DMI without topic #scenario.'() {
         given: 'a cm handle for #cmHandleId'
@@ -161,6 +165,8 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             def result = objectUnderTest.writeResourceDataPassThroughRunningFromDmi(cmHandleId, 'parent/child', operation, 'requestData', 'some data type', NO_AUTH_HEADER)
         then: 'the result is the response from the DMI service'
             assert result == responseFromDmi
+        and: 'the permission was checked with the policy executor'
+            1 * policyExecutor.checkPermission(_, operation, NO_AUTH_HEADER, resourceIdentifier, 'requestData' )
         where: 'the following operation is performed'
             operation || expectedOperationInUrl
             CREATE    || 'create'
