@@ -41,9 +41,9 @@ public class PolicyExecutorStubController implements PolicyExecutorApi {
 
     @Override
     public ResponseEntity<PolicyExecutionResponse> executePolicyAction(
-                                                     final String authorization,
                                                      final String action,
-                                                     final PolicyExecutionRequest policyExecutionRequest) {
+                                                     final PolicyExecutionRequest policyExecutionRequest,
+                                                     final String authorization) {
         if (policyExecutionRequest.getPayload().isEmpty()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }

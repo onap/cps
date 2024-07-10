@@ -94,8 +94,8 @@ class PolicyExecutorStubControllerSpec extends Specification {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestBody))
                 .andReturn().response
-        then: 'response status is Bad Request'
-            assert response.status == HttpStatus.BAD_REQUEST.value()
+        then: 'response status is OK'
+            assert response.status == HttpStatus.OK.value()
     }
 
     def 'Execute Policy Action with Empty Payload.'() {

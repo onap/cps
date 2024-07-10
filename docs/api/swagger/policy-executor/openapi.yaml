@@ -214,7 +214,7 @@ components:
     authorizationInHeader:
       name: Authorization
       in: header
-      required: true
+      description: "Bearer token may be used to identify client as part of a policy"
       schema:
         type: string
 
