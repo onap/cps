@@ -33,6 +33,23 @@
       "message": "recheck",
       "revId": "278df3b7658a75485a64b3587d16221e60dc592c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23cdd09b_a8f6d523",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-10T11:40:06Z",
+      "side": 1,
+      "message": "I tested locally, the test reports the expected rate of 25 reqs/second 😄",
+      "revId": "278df3b7658a75485a64b3587d16221e60dc592c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
