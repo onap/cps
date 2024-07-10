@@ -16,6 +16,46 @@
       "message": "Ready for review",
       "revId": "82432cf49ee0cd9a6dedd43a0875d8f2ed41678b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f6d4416_7ce72516",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-07-10T09:44:20Z",
+      "side": 1,
+      "message": "few outstanding questions.",
+      "revId": "82432cf49ee0cd9a6dedd43a0875d8f2ed41678b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37a29bd3_30f8f90f",
+        "filename": "cps-rest/docs/openapi/cpsData.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-07-10T09:44:20Z",
+      "side": 1,
+      "message": "NB: contentTypeInHeader - we follow a convention for the same everywhere.\njust noticing this now.\nwhatever you choose just make it consistent for all the endpoints that you have already modified or will be modifying.",
+      "range": {
+        "startLine": 200,
+        "startChar": 53,
+        "endLine": 200,
+        "endChar": 70
+      },
+      "revId": "82432cf49ee0cd9a6dedd43a0875d8f2ed41678b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
