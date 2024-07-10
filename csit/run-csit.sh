@@ -187,10 +187,6 @@ export TESTOPTIONS="${2}"
 rm -rf "$WORKSPACE/archives/$TESTPLAN"
 mkdir -p "$WORKSPACE/archives/$TESTPLAN"
 
-rm -rf "$WORKSPACE/nginx-log"
-mkdir -p "$WORKSPACE/nginx-log"
-chmod -R 755 "$WORKSPACE/nginx-log"
-
 TESTPLANDIR="${WORKSPACE}/${TESTPLAN}"
 
 # Run installation of prerequired libraries

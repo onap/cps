@@ -77,7 +77,6 @@ services:
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
       - ./proxy_params:/etc/nginx/proxy_params
-      - ../csit/nginx-log:/var/log/nginx
 
   ### if kafka is not required comment out zookeeper and kafka ###
   zookeeper:
