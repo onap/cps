@@ -1,0 +1,8 @@
+Verified+1: ONAP Required GHA <releng+onap.required.gha@linuxfoundation.org>
+Verified+1: ONAP Jobbuilder <onap-jobbuilder@jenkins.onap.org>
+Code-Review+2: Sourabh Sourabh <sourabh.sourabh@est.tech>
+Submitted-by: Sourabh Sourabh <sourabh.sourabh@est.tech>
+Submitted-at: Wed, 10 Jul 2024 09:23:25 +0000
+Reviewed-on: https://gerrit.onap.org/r/c/cps/+/138410
+Project: cps
+Branch: refs/heads/master
