@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d50ba230_7c6d8d69",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-10T12:32:50Z",
+      "side": 1,
+      "message": "looks good but the RTD needs updating too: see https://docs.onap.org/projects/onap-cps/en/latest/ncmp-inventory-querying.html\n\nyou can do that in a separate commit",
+      "revId": "44ae9c396449258aa8d3c07af679ba395aba2b77",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
