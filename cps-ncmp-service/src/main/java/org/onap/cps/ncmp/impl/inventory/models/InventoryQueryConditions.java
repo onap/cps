@@ -32,7 +32,8 @@ public enum InventoryQueryConditions {
 
     HAS_ALL_PROPERTIES("hasAllProperties"),
     HAS_ALL_ADDITIONAL_PROPERTIES("hasAllAdditionalProperties"),
-    CM_HANDLE_WITH_DMI_PLUGIN("cmHandleWithDmiPlugin");
+    CM_HANDLE_WITH_DMI_PLUGIN("cmHandleWithDmiPlugin"),
+    WITH_CPS_PATH("cmHandleWithCpsPath");
 
     public static final List<String> ALL_CONDITION_NAMES = Arrays.stream(InventoryQueryConditions.values())
         .map(InventoryQueryConditions::getName).collect(Collectors.toList());

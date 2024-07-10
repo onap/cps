@@ -57,6 +57,19 @@ class ParameterizedCmHandleQueryServiceSpec extends Specification {
             assert result == ['some-cmhandle-id'] as Set
     }
 
+    def 'Query cm handle where  cps path itself is ancestor axis.'() {
+        given: 'a cmHandleWithCpsPath condition property'
+            def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
+            def conditionProperties = createConditionProperties('cmHandleWithCpsPath', [['cpsPath' : '/some/cps/path']])
+            cmHandleQueryParameters.setCmHandleQueryParameters([conditionProperties])
+        and: 'the query get the cm handle data nodes excluding all descendants returns a datanode'
+            cmHandleQueries.queryCmHandleAncestorsByCpsPath('/some/cps/path', FetchDescendantsOption.OMIT_DESCENDANTS) >> [new DataNode(leaves: ['id':'some-cmhandle-id'])]
+        when: 'the query is executed for cm handle ids'
+            def result = objectUnderTest.queryCmHandleIdsForInventory(cmHandleQueryParameters)
+        then: 'the correct expected cm handles ids are returned'
+            assert result == ['some-cmhandle-id'] as Set
+    }
+
     def 'Cm handle ids query with error: #scenario.'() {
         given: 'a cmHandleWithCpsPath condition property'
             def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
