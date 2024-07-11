@@ -80,7 +80,7 @@ public class DmiOutEventConsumer {
                 dmiCacheHandler.persistIntoDatabasePerDmi(subscriptionId, dmiPluginName);
             }
             if (eventType.equals("subscriptionDeleteResponse")) {
-                dmiCacheHandler.removeFromDatabasePerDmi(subscriptionId, dmiPluginName);
+                dmiCacheHandler.removeFromDatabase(subscriptionId, dmiPluginName);
             }
             handleEventsStatusPerDmi(subscriptionId, eventType);
         }
@@ -96,7 +96,7 @@ public class DmiOutEventConsumer {
 
     private void handleCacheStatusPerDmi(final String subscriptionId, final String dmiPluginName,
             final CmSubscriptionStatus cmSubscriptionStatus) {
-        dmiCacheHandler.updateDmiSubscriptionStatusPerDmi(subscriptionId, dmiPluginName,
+        dmiCacheHandler.updateDmiSubscriptionStatus(subscriptionId, dmiPluginName,
                 cmSubscriptionStatus);
     }
 
