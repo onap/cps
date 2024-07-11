@@ -156,3 +156,23 @@ With the *cmHandleWithDmiPlugin* condition, we can provide a dmiPluginName. The 
         }
       ]
     }
+
+CM Handle with CPS Path as ancestor axis
+----------------------------------------
+
+The *cmHandleWithCpsPath* condition allows any data of the CM Handle to be queried as long as it is accessible by CPS path where CPS path itself is ancestor axis. CPS path is described in detail in :doc:`cps-path`. For this endpoint, the ancestor of CM Handles is appended automatically so that a CM Handle is always returned. For example ``/dmi-registry/cm-handles[@module-set-tag='']`` will become ``/dmi-registry/cm-handles[@module-set-tag='']/ancestor::cm-handles``.
+
+.. code-block:: json
+
+    {
+      "cmHandleQueryParameters": [
+        {
+          "conditionName": "cmHandleWithCpsPath",
+          "conditionParameters": [
+            {
+              "cpsPath": "/dmi-registry/cm-handles[@module-set-tag='some-value or empty']"
+            }
+          ]
+        }
+      ]
+    }
