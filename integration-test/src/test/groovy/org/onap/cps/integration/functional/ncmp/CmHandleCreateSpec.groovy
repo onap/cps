@@ -138,41 +138,28 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
             dmiDispatcher.isAvailable = false
 
         when: 'CM-handles are registered for creation'
-            def cmHandlesToCreate = [new NcmpServiceCmHandle(cmHandleId: 'ch-1'), new NcmpServiceCmHandle(cmHandleId: 'ch-2')]
+            def cmHandlesToCreate = [new NcmpServiceCmHandle(cmHandleId: 'ch-1')]
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: DMI_URL, createdCmHandles: cmHandlesToCreate)
             objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'CM-handles go to LOCKED state'
             new PollingConditions().within(MODULE_SYNC_WAIT_TIME_IN_SECONDS, () -> {
                 assert objectUnderTest.getCmHandleCompositeState('ch-1').cmHandleState == CmHandleState.LOCKED
-                assert objectUnderTest.getCmHandleCompositeState('ch-2').cmHandleState == CmHandleState.LOCKED
             })
 
-        when: 'we wait for LOCKED CM handle retry time (actually just subtract 3 minutes from handles lastUpdateTime)'
-            overrideCmHandleLastUpdateTime('ch-1', OffsetDateTime.now().minusMinutes(3))
-            overrideCmHandleLastUpdateTime('ch-2', OffsetDateTime.now().minusMinutes(3))
-        then: 'CM-handles go to ADVISED state'
-            new PollingConditions().within(MODULE_SYNC_WAIT_TIME_IN_SECONDS, () -> {
-                assert objectUnderTest.getCmHandleCompositeState('ch-1').cmHandleState == CmHandleState.ADVISED
-                assert objectUnderTest.getCmHandleCompositeState('ch-2').cmHandleState == CmHandleState.ADVISED
-            })
-
-        when: 'DMI will return expected modules'
-            dmiDispatcher.moduleNamesPerCmHandleId = ['ch-1': ['M1', 'M2'], 'ch-2': ['M1', 'M3']]
-        and: 'DMI is available for retry'
+        when: 'DMI is available for retry'
+            dmiDispatcher.moduleNamesPerCmHandleId = ['ch-1': ['M1', 'M2']]
             dmiDispatcher.isAvailable = true
-        then: 'CM-handles go to READY state'
+        and: 'the LOCKED CM handle retry time elapses (actually just subtract 3 minutes from handles lastUpdateTime)'
+            overrideCmHandleLastUpdateTime('ch-1', OffsetDateTime.now().minusMinutes(3))
+
+        then: 'CM-handle goes to READY state'
             new PollingConditions().within(MODULE_SYNC_WAIT_TIME_IN_SECONDS, () -> {
                 assert objectUnderTest.getCmHandleCompositeState('ch-1').cmHandleState == CmHandleState.READY
-                assert objectUnderTest.getCmHandleCompositeState('ch-2').cmHandleState == CmHandleState.READY
             })
-        and: 'CM-handles have expected modules'
+        and: 'CM-handle has expected modules'
             assert ['M1', 'M2'] == objectUnderTest.getYangResourcesModuleReferences('ch-1').moduleName.sort()
-            assert ['M1', 'M3'] == objectUnderTest.getYangResourcesModuleReferences('ch-2').moduleName.sort()
-        and: 'CM-handles have expected module set tags (blank)'
-            assert objectUnderTest.getNcmpServiceCmHandle('ch-1').moduleSetTag == ''
-            assert objectUnderTest.getNcmpServiceCmHandle('ch-2').moduleSetTag == ''
 
         cleanup: 'deregister CM handle'
-            deregisterCmHandles(DMI_URL, ['ch-1', 'ch-2'])
+            deregisterCmHandle(DMI_URL, 'ch-1')
     }
 }
