@@ -159,6 +159,18 @@ public class CmSubscriptionPersistenceService {
         }
     }
 
+    /**
+     * Retrieve all existing dataNodes for given subscription id.
+     *
+     * @param subscriptionId  subscription id
+     * @return collection of DataNodes
+     */
+    public Collection<DataNode> getAllNodesForSubscriptionId(final String subscriptionId) {
+        return cpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME,
+                CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_ID.formatted(subscriptionId),
+                OMIT_DESCENDANTS);
+    }
+
     private void deleteListOfSubscriptionsFor(final DatastoreType datastoreType, final String cmHandleId,
             final String xpath) {
         cpsDataService.deleteDataNode(NCMP_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME,
