@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb85a0ac_770b8f58",
+        "filename": "docs/ncmp-inventory-querying.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-11T11:13:50Z",
+      "side": 1,
+      "message": "just: CM Handle search with CPS Path",
+      "range": {
+        "startLine": 160,
+        "startChar": 0,
+        "endLine": 160,
+        "endChar": 40
+      },
+      "revId": "973af9a01cad7b9bcb0eef986cbd3ab58337f5ee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
