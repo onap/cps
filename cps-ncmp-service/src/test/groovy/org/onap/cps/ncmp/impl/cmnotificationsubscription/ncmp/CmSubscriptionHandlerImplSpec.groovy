@@ -21,20 +21,28 @@
 package org.onap.cps.ncmp.impl.cmnotificationsubscription.ncmp
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import org.onap.cps.ncmp.api.data.models.DatastoreType
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.cache.DmiCacheHandler
+import org.onap.cps.ncmp.impl.cmnotificationsubscription.dmi.DmiCmSubscriptionDetailsPerDmiMapper
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.dmi.DmiInEventMapper
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.dmi.DmiInEventProducer
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.models.DmiCmSubscriptionDetails
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.models.DmiCmSubscriptionPredicate
+import org.onap.cps.ncmp.impl.cmnotificationsubscription.models.DmiCmSubscriptionTuple
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.utils.CmSubscriptionPersistenceService
 import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.client_to_ncmp.NcmpInEvent
 import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.ncmp_to_client.NcmpOutEvent
 import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.ncmp_to_dmi.DmiInEvent
+import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.ncmp_to_dmi.Predicate
+import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
+import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.ncmp.utils.TestUtils
+import org.onap.cps.spi.model.DataNode
 import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Specification
 
 import static org.onap.cps.ncmp.api.data.models.DatastoreType.PASSTHROUGH_OPERATIONAL
+import static org.onap.cps.ncmp.api.data.models.DatastoreType.PASSTHROUGH_RUNNING
 import static org.onap.cps.ncmp.impl.cmnotificationsubscription.models.CmSubscriptionStatus.ACCEPTED
 import static org.onap.cps.ncmp.impl.cmnotificationsubscription.models.CmSubscriptionStatus.PENDING
 
@@ -45,13 +53,15 @@ class CmSubscriptionHandlerImplSpec extends Specification {
     def mockCmSubscriptionComparator = Mock(CmSubscriptionComparator)
     def mockNcmpOutEventMapper = Mock(NcmpOutEventMapper)
     def mockDmiInEventMapper = Mock(DmiInEventMapper)
+    def mockDmiCmSubscriptionDetailsPerDmiMapper = Mock(DmiCmSubscriptionDetailsPerDmiMapper)
     def mockNcmpOutEventProducer = Mock(NcmpOutEventProducer)
     def mockDmiInEventProducer = Mock(DmiInEventProducer)
     def mockDmiCacheHandler = Mock(DmiCacheHandler)
+    def mockInventoryPersistence = Mock(InventoryPersistence)
 
     def objectUnderTest = new CmSubscriptionHandlerImpl(mockCmSubscriptionPersistenceService,
-        mockCmSubscriptionComparator, mockNcmpOutEventMapper, mockDmiInEventMapper,
-        mockNcmpOutEventProducer, mockDmiInEventProducer, mockDmiCacheHandler)
+        mockCmSubscriptionComparator, mockNcmpOutEventMapper, mockDmiInEventMapper, mockDmiCmSubscriptionDetailsPerDmiMapper,
+        mockNcmpOutEventProducer, mockDmiInEventProducer, mockDmiCacheHandler, mockInventoryPersistence)
 
     def testDmiSubscriptionsPerDmi = ["dmi-1": new DmiCmSubscriptionDetails([], PENDING)]
 
@@ -123,24 +133,92 @@ class CmSubscriptionHandlerImplSpec extends Specification {
     }
 
     def 'Consume valid CmNotificationSubscriptionNcmpInEvent delete message'() {
-        given: 'a cmNotificationSubscriptionNcmp in event for delete'
-            def jsonData = TestUtils.getResourceFileContent('cmSubscription/cmNotificationSubscriptionNcmpInEvent.json')
-            def testEventConsumed = jsonObjectMapper.convertJsonString(jsonData, NcmpInEvent.class)
-        and: 'relevant details is extracted from the event'
-            def subscriptionId = testEventConsumed.getData().getSubscriptionId()
-            def predicates = testEventConsumed.getData().getPredicates()
-        and: 'the cache handler returns for relevant subscription id'
-            1 * mockDmiCacheHandler.get('test-id') >> testDmiSubscriptionsPerDmi
+        given: 'a test subscription id'
+            def subscriptionId = 'test-id'
+        and: 'the persistence service returns datanodes'
+            1 * mockCmSubscriptionPersistenceService.getAllNodesForSubscriptionId(subscriptionId) >>
+                [new DataNode(xpath: '/datastores/datastore[@name=\'ncmp-datastore:passthrough-running\']/cm-handles/cm-handle[@id=\'ch-1\']/filters', leaves: ['xpath': 'x/y', 'subscriptionIds': ['test-id']]),
+                new DataNode(xpath: '/datastores/datastore[@name=\'ncmp-datastore:passthrough-running\']/cm-handles/cm-handle[@id=\'ch-2\']/filters', leaves: ['xpath': 'y/z', 'subscriptionIds': ['test-id']])]
+        and: 'the inventory persistence returns yang model cm handles'
+            1 * mockInventoryPersistence.getYangModelCmHandle('ch-1') >> new YangModelCmHandle(dmiServiceName: 'dmi-1')
+            1 * mockInventoryPersistence.getYangModelCmHandle('ch-2') >> new YangModelCmHandle(dmiServiceName: 'dmi-2')
+        and: 'the dmiCmSubscriptionDetailsPerDmiMapper returns a map'
+            mockDmiCmSubscriptionDetailsPerDmiMapper.toDmiCmSubscriptionsPerDmi(_) >>
+                ['dmi-1': new DmiCmSubscriptionDetails([new Predicate()] as List<DmiCmSubscriptionPredicate>, PENDING),
+                 'dmi-2': new DmiCmSubscriptionDetails([new Predicate()] as List<DmiCmSubscriptionPredicate>, PENDING)]
         when: 'the valid and unique event is consumed'
-            objectUnderTest.processSubscriptionDeleteRequest(subscriptionId, predicates)
-        then: 'the subscription cache handler is called once'
-            1 * mockDmiCacheHandler.add('test-id', predicates)
-        and: 'the mapper handler to get DMI in event is called once'
-            1 * mockDmiInEventMapper.toDmiInEvent(_)
-        and: 'the events handler method to publish DMI event is called correct number of times with the correct parameters'
-            testDmiSubscriptionsPerDmi.size() * mockDmiInEventProducer.publishDmiInEvent(
-                'test-id', 'dmi-1', 'subscriptionDeleteRequest', _)
-        and: 'we schedule to send the response after configured time from the cache'
-            1 * mockNcmpOutEventProducer.publishNcmpOutEvent('test-id', 'subscriptionDeleteResponse', null, true)
+            objectUnderTest.processSubscriptionDeleteRequest(subscriptionId)
+        then: 'the method to publish a dmi event is called with correct parameters'
+            1 * mockDmiInEventProducer.publishDmiInEvent(subscriptionId,'dmi-1','subscriptionDeleteRequest',_)
+            1 * mockDmiInEventProducer.publishDmiInEvent(subscriptionId,'dmi-2','subscriptionDeleteRequest',_)
+        and: 'the method to publish nmcp out event is called with correct parameters'
+            1 * mockNcmpOutEventProducer.publishNcmpOutEvent(subscriptionId, 'subscriptionDeleteResponse', null, true)
+    }
+
+    def 'Merge two maps of DmiCmSubscriptionDetails per dmi'() {
+        given: 'Two dmiCmSubscriptionDetailsPerDmi maps returned by mapper service'
+            def dmiCmSubscriptionDetailsMap = ['dmi-1': new DmiCmSubscriptionDetails([new DmiCmSubscriptionPredicate(['ch-1'].toSet(), PASSTHROUGH_RUNNING, ['/x/y'].toSet())], PENDING)]
+            2 * mockDmiCmSubscriptionDetailsPerDmiMapper.toDmiCmSubscriptionsPerDmi(_) >> dmiCmSubscriptionDetailsMap
+        when: 'the method to merge dmiCmSubscriptionDetails maps is called'
+            def result = objectUnderTest.mergeDmiCmSubscriptionDetailsPerDmiMaps(new DmiCmSubscriptionTuple([:],[:]))
+        then: 'the resulting map size is as expected'
+            assert result.size() == 1
+        and: 'the number of predicates in each entry is correct'
+            result.get('dmi-1').dmiCmSubscriptionPredicates.size() == 2
+    }
+
+    def 'Merge two DmiCmSubscriptionDetails'() {
+        given: 'Two DmiCmSubscriptionDetails'
+            def dmiCmSubscriptionDetails1 = new DmiCmSubscriptionDetails([new DmiCmSubscriptionPredicate(['ch-1'].toSet(), PASSTHROUGH_RUNNING, ['/x/y'].toSet())], PENDING)
+            def dmiCmSubscriptionDetails2 = new DmiCmSubscriptionDetails([new DmiCmSubscriptionPredicate(['ch-2'].toSet(), PASSTHROUGH_RUNNING, ['/x/y'].toSet())], PENDING)
+        when: 'the method to merge dmiSubscriptionDetails is called'
+            def result = objectUnderTest.mergeDmiCmSubscriptionDetails(dmiCmSubscriptionDetails1, dmiCmSubscriptionDetails2)
+        then: 'the result contains the correct number of predicates'
+            assert result.dmiCmSubscriptionPredicates.size() == 2
+    }
+
+    def 'Merge two DmiCmSubscriptionPredicate'() {
+        given: 'Two list of DmiCmSubscriptionPredicates'
+            def dmiCmSubscriptionPredicate1 = [new DmiCmSubscriptionPredicate(['ch-1'].toSet(), PASSTHROUGH_RUNNING, ['/x/y'].toSet())]
+            def dmiCmSubscriptionPredicate2 = [new DmiCmSubscriptionPredicate(['ch-1'].toSet(), PASSTHROUGH_RUNNING, ['/x/y'].toSet()),
+            new DmiCmSubscriptionPredicate(['ch-2'].toSet(), PASSTHROUGH_RUNNING, ['/x/y'].toSet())]
+        when: 'the method to merge DmiCmSubscriptionPredicates is called'
+            def result = objectUnderTest.mergeDmiCmSubscriptionPredicates(dmiCmSubscriptionPredicate1, dmiCmSubscriptionPredicate2)
+        then: 'the resulting list contains 2 predicates'
+            assert result.size() == 3
+    }
+
+    def 'Send Subscription delete request to DMI'() {
+        given: 'a DmiCmSubscriptionDetailsMap'
+            def predicatesListForDmi1 = [new DmiCmSubscriptionPredicate(['ch-1'].toSet(), PASSTHROUGH_RUNNING, ['/x/y'].toSet())]
+            def predicatesListForDmi2 = [new DmiCmSubscriptionPredicate(['ch-2'].toSet(), PASSTHROUGH_RUNNING, ['/x/y'].toSet())]
+            def dmiCmSubscriptionDetailsMap = ['dmi-1': new DmiCmSubscriptionDetails(predicatesListForDmi1, PENDING),
+                                                'dmi-2': new DmiCmSubscriptionDetails(predicatesListForDmi2, PENDING)]
+        when: 'the method called to send subscription request to DMI is called'
+            objectUnderTest.sendSubscriptionDeleteRequestToDmi('some-id', dmiCmSubscriptionDetailsMap)
+        then: 'the mapper was called once for each dmi event'
+            1 * mockDmiInEventMapper.toDmiInEvent(predicatesListForDmi1)
+            1 * mockDmiInEventMapper.toDmiInEvent(predicatesListForDmi2)
+        and: 'the method to call to publish DMI in Event was called once for each DMI'
+            1 * mockDmiInEventProducer.publishDmiInEvent('some-id', 'dmi-1','subscriptionDeleteRequest',_)
+            1 * mockDmiInEventProducer.publishDmiInEvent('some-id', 'dmi-2','subscriptionDeleteRequest',_)
+    }
+
+    def 'Extract datastore name from xpath'() {
+        given: 'an xpath'
+            def xpath = '/datastores/datastore[@name=\'ncmp-datastore:passthrough-running\']/cm-handles/cm-handle[@id=\'ch-1\']/filters'
+        when: 'the method to extract the datastore name method is called'
+            def result = objectUnderTest.extractCmSubscriptionDatastoreFromXpath(xpath)
+        then: 'the result is as expected'
+            assert result == PASSTHROUGH_RUNNING
+    }
+
+    def 'Extract cm handle name from xpath'() {
+        given: 'an xpath'
+            def xpath = '/datastores/datastore[@name=\'ncmp-datastore:passthrough-running\']/cm-handles/cm-handle[@id=\'ch-1\']/filters'
+        when: 'the method to extract the datastore name method is called'
+            def result = objectUnderTest.extractCmSubscriptionCmHandleIdFromXpath(xpath)
+        then: 'the result is as expected'
+            assert result == 'ch-1'
     }
 }

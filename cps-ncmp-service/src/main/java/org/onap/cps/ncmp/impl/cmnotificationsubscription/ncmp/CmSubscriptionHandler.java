@@ -37,8 +37,7 @@ public interface CmSubscriptionHandler {
      * Process cm notification subscription delete request.
      *
      * @param subscriptionId subscription id
-     * @param predicates subscription predicates
      */
-    void processSubscriptionDeleteRequest(final String subscriptionId, final List<Predicate> predicates);
+    void processSubscriptionDeleteRequest(final String subscriptionId);
 
 }
