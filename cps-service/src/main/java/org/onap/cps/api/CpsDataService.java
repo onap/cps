@@ -145,22 +145,24 @@ public interface CpsDataService {
      * @param dataspaceName     dataspace name
      * @param anchorName        anchor name
      * @param parentNodeXpath   xpath to parent node
-     * @param jsonData          json data
+     * @param nodeData          node data
      * @param observedTimestamp observedTimestamp
+     * @param contentType       JSON/XML content type
      */
-    void updateDataNodeAndDescendants(String dataspaceName, String anchorName, String parentNodeXpath, String jsonData,
-                                       OffsetDateTime observedTimestamp);
+    void updateDataNodeAndDescendants(String dataspaceName, String anchorName, String parentNodeXpath, String nodeData,
+                                       OffsetDateTime observedTimestamp, ContentType contentType);
 
     /**
      * Replaces multiple existing data nodes' content including descendants in a batch operation.
      *
      * @param dataspaceName   dataspace name
      * @param anchorName      anchor name
-     * @param nodesJsonData   map of xpath and node JSON data
+     * @param nodeDataPerXPath   map of xpath and node JSON/XML data
      * @param observedTimestamp observedTimestamp
+     * @param contentType       JSON/XML content type
      */
-    void updateDataNodesAndDescendants(String dataspaceName, String anchorName, Map<String, String> nodesJsonData,
-                                       OffsetDateTime observedTimestamp);
+    void updateDataNodesAndDescendants(String dataspaceName, String anchorName, Map<String, String> nodeDataPerXPath,
+                                       OffsetDateTime observedTimestamp, ContentType contentType);
 
     /**
      * Replaces list content by removing all existing elements and inserting the given new elements as json
