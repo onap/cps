@@ -396,7 +396,7 @@ class DataServiceIntegrationSpec extends FunctionalSpecBase {
             objectUnderTest.saveData(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1 , '/bookstore', json, now)
         when: 'the webinfo (container) is updated'
             json = '{"webinfo": {"domain-name":"newdomain.com" ,"contact-email":"info@newdomain.com" }}'
-            objectUnderTest.updateDataNodeAndDescendants(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore', json, now)
+            objectUnderTest.updateDataNodeAndDescendants(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore', json, now, ContentType.JSON)
         then: 'webinfo has been updated with teh new details'
             def result = objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore/webinfo', DIRECT_CHILDREN_ONLY)
             result.leaves.'domain-name'[0] == 'newdomain.com'
@@ -408,7 +408,7 @@ class DataServiceIntegrationSpec extends FunctionalSpecBase {
     def 'Update bookstore top-level container data node.'() {
         when: 'the bookstore top-level container is updated'
             def json = '{ "bookstore": { "bookstore-name": "new bookstore" }}'
-            objectUnderTest.updateDataNodeAndDescendants(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/', json, now)
+            objectUnderTest.updateDataNodeAndDescendants(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/', json, now, ContentType.JSON)
         then: 'bookstore name has been updated'
             def result = objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore', DIRECT_CHILDREN_ONLY)
             result.leaves.'bookstore-name'[0] == 'new bookstore'
