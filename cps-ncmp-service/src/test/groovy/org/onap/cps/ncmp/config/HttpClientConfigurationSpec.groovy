@@ -25,23 +25,21 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ContextConfiguration
-import org.springframework.test.context.TestPropertySource
 import spock.lang.Specification
 
 @SpringBootTest
 @ContextConfiguration(classes = [HttpClientConfiguration])
-@EnableConfigurationProperties(HttpClientConfiguration.class)
-@TestPropertySource(properties = ["ncmp.dmi.httpclient.data-services.readTimeoutInSeconds=789", "ncmp.dmi.httpclient.model-services.maximumConnectionsTotal=111"])
+@EnableConfigurationProperties(HttpClientConfiguration)
 class HttpClientConfigurationSpec extends Specification {
 
     @Autowired
-    private HttpClientConfiguration httpClientConfiguration
+    HttpClientConfiguration httpClientConfiguration
 
     def 'Test http client configuration properties of data with custom and default values'() {
         expect: 'properties are populated correctly for data'
             with(httpClientConfiguration.dataServices) {
                 assert connectionTimeoutInSeconds == 123
-                assert readTimeoutInSeconds == 789
+                assert readTimeoutInSeconds == 33
                 assert writeTimeoutInSeconds == 30
                 assert maximumConnectionsTotal == 100
                 assert pendingAcquireMaxCount == 22
