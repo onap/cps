@@ -49,7 +49,6 @@ import org.onap.cps.utils.PrefixResolver;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -70,10 +69,10 @@ public class DataRestController implements CpsDataApi {
     @Override
     public ResponseEntity<String> createNode(final String apiVersion,
                                              final String dataspaceName, final String anchorName,
-                                             @RequestHeader(value = "Content-Type") final String contentTypeHeader,
+                                             final String contentTypeInHeader,
                                              final String nodeData, final String parentNodeXpath,
                                              final String observedTimestamp) {
-        final ContentType contentType = contentTypeHeader.contains(MediaType.APPLICATION_XML_VALUE) ? ContentType.XML
+        final ContentType contentType = contentTypeInHeader.contains(MediaType.APPLICATION_XML_VALUE) ? ContentType.XML
                 : ContentType.JSON;
         if (isRootXpath(parentNodeXpath)) {
             cpsDataService.saveData(dataspaceName, anchorName, nodeData,
@@ -137,10 +136,10 @@ public class DataRestController implements CpsDataApi {
 
     @Override
     public ResponseEntity<Object> updateNodeLeaves(final String apiVersion, final String dataspaceName,
-                                                   final String anchorName, final String contentTypeHeader,
+                                                   final String anchorName, final String contentTypeInHeader,
                                                    final String nodeData, final String parentNodeXpath,
                                                    final String observedTimestamp) {
-        final ContentType contentType = contentTypeHeader.contains(MediaType.APPLICATION_XML_VALUE) ? ContentType.XML
+        final ContentType contentType = contentTypeInHeader.contains(MediaType.APPLICATION_XML_VALUE) ? ContentType.XML
                 : ContentType.JSON;
         cpsDataService.updateNodeLeaves(dataspaceName, anchorName, parentNodeXpath,
                 nodeData, toOffsetDateTime(observedTimestamp), contentType);
@@ -148,12 +147,14 @@ public class DataRestController implements CpsDataApi {
     }
 
     @Override
-    public ResponseEntity<Object> replaceNode(final String apiVersion,
-        final String dataspaceName, final String anchorName,
-        final Object jsonData, final String parentNodeXpath, final String observedTimestamp) {
-        cpsDataService
-                .updateDataNodeAndDescendants(dataspaceName, anchorName, parentNodeXpath,
-                        jsonObjectMapper.asJsonString(jsonData), toOffsetDateTime(observedTimestamp));
+    public ResponseEntity<Object> replaceNode(final String apiVersion, final String dataspaceName,
+                                             final String anchorName, final String contentTypeInHeader,
+                                             final String nodeData, final String parentNodeXpath,
+                                              final String observedTimestamp) {
+        final ContentType contentType = contentTypeInHeader.contains(MediaType.APPLICATION_XML_VALUE) ? ContentType.XML
+                : ContentType.JSON;
+        cpsDataService.updateDataNodeAndDescendants(dataspaceName, anchorName, parentNodeXpath,
+                        nodeData, toOffsetDateTime(observedTimestamp), contentType);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
