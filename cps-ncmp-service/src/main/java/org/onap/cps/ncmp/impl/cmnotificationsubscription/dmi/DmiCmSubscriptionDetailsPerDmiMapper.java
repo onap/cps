@@ -18,26 +18,26 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.impl.cmnotificationsubscription.ncmp;
+package org.onap.cps.ncmp.impl.cmnotificationsubscription.dmi;
 
-import java.util.List;
-import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.client_to_ncmp.Predicate;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import org.onap.cps.ncmp.impl.cmnotificationsubscription.models.DmiCmSubscriptionDetails;
+import org.onap.cps.ncmp.impl.cmnotificationsubscription.models.DmiCmSubscriptionKey;
 
-public interface CmSubscriptionHandler {
-
-    /**
-     * Process cm notification subscription create request.
-     *
-     * @param subscriptionId subscription id
-     * @param predicates subscription predicates
-     */
-    void processSubscriptionCreateRequest(final String subscriptionId, final List<Predicate> predicates);
+public class DmiCmSubscriptionDetailsPerDmiMapper {
 
     /**
-     * Process cm notification subscription delete request.
+     * Map subscribers per DMI to DmiCmNotificationSubscriptionDetailsPerDmi.
      *
-     * @param subscriptionId subscription id
+     * @param subscribersPerDmi subscribers per dmi
+     * @return dmiCmNotificationSubscriptionDetailsPerDmi
      */
-    void processSubscriptionDeleteRequest(final String subscriptionId);
-
+    public Map<String, DmiCmSubscriptionDetails> toDmiCmNotificationSubscriptionDetailsPerDmi(
+            final Map<String, Collection<DmiCmSubscriptionKey>> subscribersPerDmi) {
+        final Map<String, DmiCmSubscriptionDetails> dmiCmNotificationSubscriptionDetailsMap =
+                new HashMap<>();
+        return dmiCmNotificationSubscriptionDetailsMap;
+    }
 }

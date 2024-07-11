@@ -66,14 +66,23 @@ class DmiCacheHandlerSpec extends MessagingBaseSpec {
     }
 
     def 'Load CM subscription event to cache'() {
-        given: 'a valid subscription event with Id'
-            def subscriptionId = ncmpInEvent.getData().getSubscriptionId()
+        given: 'a first subscription event with id'
+            def firstSubscriptionId = ncmpInEvent.getData().getSubscriptionId()
         and: 'list of predicates'
             def predicates = ncmpInEvent.getData().getPredicates()
-        when: 'a valid event object loaded in cache'
-            objectUnderTest.add(subscriptionId, predicates)
-        then: 'the cache contains the correct entry with #subscriptionId subscription ID'
-            assert testCache.containsKey(subscriptionId)
+        and: 'a second subscription event with id'
+            def secondSubscriptionId = 'sub-B'
+        and: 'a map'
+            def dmiCmSubscriptionDetailsPerDmi = []
+        when: 'first subscription is loaded to cache with predicates'
+            objectUnderTest.add(firstSubscriptionId, predicates)
+        and: 'second subscription is loaded to cache with map'
+            objectUnderTest.add(secondSubscriptionId, dmiCmSubscriptionDetailsPerDmi)
+        then: 'the number of entries in cache is correct'
+            assert testCache.size() == 2
+        and: 'the cache contains the correct entries'
+            assert testCache.containsKey(firstSubscriptionId)
+            assert testCache.containsKey(secondSubscriptionId)
     }
 
     def 'Get cache entry via subscription id'() {
