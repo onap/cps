@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2756ee56_5832e02a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-07-11T15:17:37Z",
+      "side": 1,
+      "message": "the checkstyle issues must be sorted out :(",
+      "revId": "ef67474339dbe5773be1e9926d3102d4cf7293c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6783ec6_78fb0bb5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/PolicyExecutor.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-07-11T15:17:37Z",
+      "side": 1,
+      "message": "this must be static as well",
+      "revId": "ef67474339dbe5773be1e9926d3102d4cf7293c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e40ee04_14acd429",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/PolicyExecutor.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-07-11T15:17:37Z",
+      "side": 1,
+      "message": "missing java doc",
+      "revId": "ef67474339dbe5773be1e9926d3102d4cf7293c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
