@@ -63,7 +63,7 @@ public class NcmpInEventConsumer {
         if ("subscriptionDeleteRequest".equals(cloudEvent.getType())) {
             log.info("Subscription delete request for source {} with subscription id {} ...",
                     cloudEvent.getSource(), subscriptionId);
-            cmSubscriptionHandler.processSubscriptionDeleteRequest(subscriptionId, predicates);
+            cmSubscriptionHandler.processSubscriptionDeleteRequest(subscriptionId);
         }
     }
 }

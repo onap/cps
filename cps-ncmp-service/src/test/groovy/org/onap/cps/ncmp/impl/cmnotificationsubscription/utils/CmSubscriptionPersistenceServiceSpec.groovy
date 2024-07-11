@@ -188,4 +188,15 @@ class CmSubscriptionPersistenceServiceSpec extends Specification {
             'cm handle in same datastore is NOT used for other subscriptions' | []               || 1
     }
 
+    def 'Get all nodes for subscription id'() {
+        given: 'the query service returns nodes for subscription id'
+            1 * mockCpsQueryService.queryDataNodes('NCMP-Admin', 'cm-data-subscriptions', '//filter/subscriptionIds[text()=\'some-id\']', OMIT_DESCENDANTS) >> [new DataNode(xpath: '/some/xpath')].asCollection()
+        when: 'the method to get nodes for a subscription id is called'
+            def result = objectUnderTest.getAllNodesForSubscriptionId('some-id')
+        then: 'the result returns correct number of datanodes'
+            assert result.size() == 1
+        and: 'the attribute of the datanode is as expected'
+            assert result.iterator().next().xpath == '/some/xpath'
+    }
+
 }
