@@ -65,14 +65,29 @@ class DmiCacheHandlerSpec extends MessagingBaseSpec {
         initialiseMockInventoryPersistenceResponses()
     }
 
-    def 'Load CM subscription event to cache'() {
-        given: 'a valid subscription event with Id'
+    def 'Load CM subscription event to cache with predicates'() {
+        given: 'a subscription event with id'
             def subscriptionId = ncmpInEvent.getData().getSubscriptionId()
         and: 'list of predicates'
             def predicates = ncmpInEvent.getData().getPredicates()
-        when: 'a valid event object loaded in cache'
+        when: 'subscription is loaded to cache with predicates'
             objectUnderTest.add(subscriptionId, predicates)
-        then: 'the cache contains the correct entry with #subscriptionId subscription ID'
+        then: 'the number of entries in cache is correct'
+            assert testCache.size() == 1
+        and: 'the cache contains the correct entries'
+            assert testCache.containsKey(subscriptionId)
+    }
+
+    def 'Load CM subscription event to cache with dmi subscription details per dmi'() {
+        given: 'a subscription event with id'
+            def subscriptionId = ncmpInEvent.getData().getSubscriptionId()
+        and: 'dmi subscription details per dmi'
+            def dmiSubscriptionsPerDmi = []
+        when: 'subscription is loaded to cache with dmi subscription details per dmi'
+            objectUnderTest.add(subscriptionId, dmiSubscriptionsPerDmi)
+        then: 'the number of entries in cache is correct'
+            assert testCache.size() == 1
+        and: 'the cache contains the correct entries'
             assert testCache.containsKey(subscriptionId)
     }
 
