@@ -46,6 +46,30 @@
       },
       "revId": "50f03595aa8e71306f5cb6904b08c2aeac5c9ff7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7854d0ee_9841cca0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/DmiDataOperations.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-11T15:39:46Z",
+      "side": 1,
+      "message": "As discussed , Will be considered when the actual implementation goes ahead.",
+      "parentUuid": "8c16a162_0d266b87",
+      "range": {
+        "startLine": 175,
+        "startChar": 39,
+        "endLine": 175,
+        "endChar": 111
+      },
+      "revId": "50f03595aa8e71306f5cb6904b08c2aeac5c9ff7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
