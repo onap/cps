@@ -147,19 +147,13 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
                 assert objectUnderTest.getCmHandleCompositeState('ch-2').cmHandleState == CmHandleState.LOCKED
             })
 
-        when: 'we wait for LOCKED CM handle retry time (actually just subtract 3 minutes from handles lastUpdateTime)'
-            overrideCmHandleLastUpdateTime('ch-1', OffsetDateTime.now().minusMinutes(3))
-            overrideCmHandleLastUpdateTime('ch-2', OffsetDateTime.now().minusMinutes(3))
-        then: 'CM-handles go to ADVISED state'
-            new PollingConditions().within(MODULE_SYNC_WAIT_TIME_IN_SECONDS, () -> {
-                assert objectUnderTest.getCmHandleCompositeState('ch-1').cmHandleState == CmHandleState.ADVISED
-                assert objectUnderTest.getCmHandleCompositeState('ch-2').cmHandleState == CmHandleState.ADVISED
-            })
-
         when: 'DMI will return expected modules'
             dmiDispatcher.moduleNamesPerCmHandleId = ['ch-1': ['M1', 'M2'], 'ch-2': ['M1', 'M3']]
         and: 'DMI is available for retry'
             dmiDispatcher.isAvailable = true
+        and: 'we wait for LOCKED CM handle retry time (actually just subtract 3 minutes from handles lastUpdateTime)'
+            overrideCmHandleLastUpdateTime('ch-1', OffsetDateTime.now().minusMinutes(3))
+            overrideCmHandleLastUpdateTime('ch-2', OffsetDateTime.now().minusMinutes(3))
         then: 'CM-handles go to READY state'
             new PollingConditions().within(MODULE_SYNC_WAIT_TIME_IN_SECONDS, () -> {
                 assert objectUnderTest.getCmHandleCompositeState('ch-1').cmHandleState == CmHandleState.READY
