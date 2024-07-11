@@ -26,5 +26,5 @@ CONTAINER_IDS=$(docker ps --filter "name=cps-and-ncmp" --format "{{.ID}}")
 # Check the logs for each container
 for CONTAINER_ID in $CONTAINER_IDS; do
     echo "Checking logs for container: $CONTAINER_ID"
-    docker logs "$CONTAINER_ID" -f | grep -m 1 "$READY_MESSAGE" >/dev/null || true
+    docker logs "$CONTAINER_ID" -f | grep -m 1 "$READY_MESSAGE" >/dev/null && echo "CPS is ready in container: $CONTAINER_ID" || true
 done

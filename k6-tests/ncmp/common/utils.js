@@ -59,6 +59,7 @@ export function makeCustomSummaryReport(data, options) {
     summaryCsv += makeSummaryCsvLine(3, 'CM-handle ID search with Module filter', 'milliseconds', 'http_req_duration{scenario:id_search_module}', data, options);
     summaryCsv += makeSummaryCsvLine(4, 'CM-handle search with Module filter', 'milliseconds', 'http_req_duration{scenario:cm_search_module}', data, options);
     summaryCsv += makeSummaryCsvLine(5, 'Synchronous single CM-handle pass-through read', 'milliseconds', 'http_req_duration{scenario:passthrough_read}', data, options);
+    summaryCsv += makeSummaryCsvLine(6, 'Synchronous single CM-handle pass-through write', 'requests/second', 'http_reqs{scenario:passthrough_write}', data, options);
     return summaryCsv;
 }
 
