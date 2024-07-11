@@ -100,7 +100,7 @@ class NcmpInEventConsumerSpec extends MessagingBaseSpec {
         and: 'the log indicates the task completed successfully'
             assert loggingEvent.formattedMessage == 'Subscription delete request for source some-resource with subscription id test-id ...'
         and: 'the subscription handler service is called once'
-            1 * mockCmSubscriptionHandler.processSubscriptionDeleteRequest('test-id',_)
+            1 * mockCmSubscriptionHandler.processSubscriptionDeleteRequest('test-id')
     }
 
 
