@@ -279,10 +279,10 @@ components:
         type: string
         enum: [v1, v2]
         default: v2
-    contentTypeHeader:
+    contentTypeInHeader:
       name: Content-Type
       in: header
-      description: Content type header
+      description: Content type in header
       schema:
         type: string
         example: 'application/json'
