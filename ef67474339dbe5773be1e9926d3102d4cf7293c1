@@ -35,6 +35,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f506ee67_ec9db4db",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/PolicyExecutor.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-11T15:50:51Z",
+      "side": 1,
+      "message": "you are right I missed that",
+      "parentUuid": "d6783ec6_78fb0bb5",
+      "revId": "ef67474339dbe5773be1e9926d3102d4cf7293c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0e40ee04_14acd429",
@@ -48,6 +66,24 @@
       "writtenOn": "2024-07-11T15:17:37Z",
       "side": 1,
       "message": "missing java doc",
+      "revId": "ef67474339dbe5773be1e9926d3102d4cf7293c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "61ed7e5f_dc079db9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/PolicyExecutor.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-11T15:50:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e40ee04_14acd429",
       "revId": "ef67474339dbe5773be1e9926d3102d4cf7293c1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
