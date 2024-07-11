@@ -56,6 +56,30 @@
       },
       "revId": "82432cf49ee0cd9a6dedd43a0875d8f2ed41678b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "481eff49_12df6058",
+        "filename": "cps-rest/docs/openapi/cpsData.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-07-11T11:01:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "37a29bd3_30f8f90f",
+      "range": {
+        "startLine": 200,
+        "startChar": 53,
+        "endLine": 200,
+        "endChar": 70
+      },
+      "revId": "82432cf49ee0cd9a6dedd43a0875d8f2ed41678b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
