@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "03249a03_769090c6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobStatusServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-07-12T14:23:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "59490239_dde0f993",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 6
+      },
+      "revId": "3e0032bfccae8ce9f93bdbc2b38897353e5ecd39",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4e922e9d_76a47b33",
@@ -64,6 +88,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5a9c4df_a1da7c04",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DmiSubJobStatusRequestHandler.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-07-12T14:23:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e922e9d_76a47b33",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 6
+      },
+      "revId": "3e0032bfccae8ce9f93bdbc2b38897353e5ecd39",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bdc0b508_f0d56db6",
@@ -77,6 +125,30 @@
       "writtenOn": "2024-07-12T14:11:58Z",
       "side": 1,
       "message": "remove it.",
+      "range": {
+        "startLine": 148,
+        "startChar": 63,
+        "endLine": 148,
+        "endChar": 76
+      },
+      "revId": "3e0032bfccae8ce9f93bdbc2b38897353e5ecd39",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9750a6e9_d18291fc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiRestClient.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-07-12T14:23:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bdc0b508_f0d56db6",
       "range": {
         "startLine": 148,
         "startChar": 63,
