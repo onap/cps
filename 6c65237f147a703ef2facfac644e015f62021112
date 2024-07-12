@@ -16,6 +16,75 @@
       "message": "recheck",
       "revId": "6c65237f147a703ef2facfac644e015f62021112",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3138ade3_a4c5e0d3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/dmi/DmiCmSubscriptionDetailsPerDmiMapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-12T12:58:44Z",
+      "side": 1,
+      "message": "/**\n     * Maps DMI subscription keys grouped by DMI plugin to DmiCmSubscriptionDetails per DMI plugin.\n     *\n     * @param subscribersPerDmi Details managed by each DMI plugin.\n     * @return Grouped DMI subscription details per DMI plugin.\n     */",
+      "range": {
+        "startLine": 40,
+        "startChar": 4,
+        "endLine": 45,
+        "endChar": 7
+      },
+      "revId": "6c65237f147a703ef2facfac644e015f62021112",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06615e07_3eea35cf",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/dmi/DmiCmSubscriptionDetailsPerDmiMapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-12T12:58:44Z",
+      "side": 1,
+      "message": "Extract into method (groupByDatastoreTypeAndXpath):\n\ngroupByDatastoreTypeAndXpath(dmiCmSubscriptionKeys);",
+      "range": {
+        "startLine": 53,
+        "startChar": 19,
+        "endLine": 56,
+        "endChar": 69
+      },
+      "revId": "6c65237f147a703ef2facfac644e015f62021112",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bab4ce7_41eca297",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/dmi/DmiCmSubscriptionDetailsPerDmiMapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-12T12:58:44Z",
+      "side": 1,
+      "message": "NB:  createDmiCmSubscriptionPredicates",
+      "range": {
+        "startLine": 70,
+        "startChar": 52,
+        "endLine": 70,
+        "endChar": 82
+      },
+      "revId": "6c65237f147a703ef2facfac644e015f62021112",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
