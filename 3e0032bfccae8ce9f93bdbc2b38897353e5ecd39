@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e290aca6_2c7b686a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-12T14:11:58Z",
+      "side": 1,
+      "message": "It all looks good except some minor comments.",
+      "revId": "3e0032bfccae8ce9f93bdbc2b38897353e5ecd39",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59490239_dde0f993",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobStatusServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-12T14:11:58Z",
+      "side": 1,
+      "message": "Unused",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 6
+      },
+      "revId": "3e0032bfccae8ce9f93bdbc2b38897353e5ecd39",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e922e9d_76a47b33",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DmiSubJobStatusRequestHandler.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-12T14:11:58Z",
+      "side": 1,
+      "message": "unused",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 6
+      },
+      "revId": "3e0032bfccae8ce9f93bdbc2b38897353e5ecd39",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdc0b508_f0d56db6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiRestClient.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-12T14:11:58Z",
+      "side": 1,
+      "message": "remove it.",
+      "range": {
+        "startLine": 148,
+        "startChar": 63,
+        "endLine": 148,
+        "endChar": 76
+      },
+      "revId": "3e0032bfccae8ce9f93bdbc2b38897353e5ecd39",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

@@ -182,6 +182,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf1ac79b_a6996eba",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DmiSubJobStatusRequestHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-12T14:11:58Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d2e57732_a981d6e7",
+      "range": {
+        "startLine": 51,
+        "startChar": 60,
+        "endLine": 57,
+        "endChar": 81
+      },
+      "revId": "8718616526785788f9516e67c47485c9c0ddf2a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "73045c06_decb227d",
@@ -219,6 +243,30 @@
       "side": 1,
       "message": "isnt it sync?",
       "parentUuid": "73045c06_decb227d",
+      "range": {
+        "startLine": 148,
+        "startChar": 7,
+        "endLine": 148,
+        "endChar": 50
+      },
+      "revId": "8718616526785788f9516e67c47485c9c0ddf2a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5daa4b62_86f74192",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiRestClient.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-12T14:11:58Z",
+      "side": 1,
+      "message": "Good question. We should not use Synchronously/Asynchronously word here as it returns Mono object and it depends on callee how one make use of mono object as it can be .block() for Synchronously and .subscribe(..) for Asynchronously.",
+      "parentUuid": "0a130052_3a8ec45b",
       "range": {
         "startLine": 148,
         "startChar": 7,
