@@ -17,14 +17,17 @@
 # Modifications copyright (c) 2017 AT&T Intellectual Property
 # Modifications copyright (c) 2020 Samsung Electronics Co., Ltd.
 # Modifications Copyright (C) 2021 Pantheon.tech
-# Modifications Copyright (C) 2021 Nordix Foundation
+# Modifications Copyright (C) 2021-2024 Nordix Foundation
 # Branched from ccsdk/distribution to this repository Feb 23, 2021
 #
 echo '================================== docker info =========================='
 docker ps -a
 
 echo '================================== CPS-NCMP Logs ========================'
-docker logs cps-and-ncmp
+for CONTAINER_ID in $(docker ps --filter "name=cps-and-ncmp" --format "{{.ID}}"); do
+    echo "CPS-NCMP Logs for container: $CONTAINER_ID"
+    docker logs "$CONTAINER_ID"
+done
 
 echo '================================== DMI Logs ============================='
 docker logs ncmp-dmi-plugin
