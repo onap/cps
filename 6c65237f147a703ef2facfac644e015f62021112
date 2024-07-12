@@ -18,6 +18,46 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4cee3f3c_b5fc4692",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-12T13:02:32Z",
+      "side": 1,
+      "message": "Some minor comments other than good to me",
+      "revId": "6c65237f147a703ef2facfac644e015f62021112",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f3a9133_d00a6899",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/dmi/DmiCmSubscriptionDetailsPerDmiMapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-12T13:02:32Z",
+      "side": 1,
+      "message": "I would move this class to cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/utils package since its neither a bean nor a service.",
+      "range": {
+        "startLine": 38,
+        "startChar": 13,
+        "endLine": 38,
+        "endChar": 49
+      },
+      "revId": "6c65237f147a703ef2facfac644e015f62021112",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3138ade3_a4c5e0d3",
@@ -36,6 +76,29 @@
         "startChar": 4,
         "endLine": 45,
         "endChar": 7
+      },
+      "revId": "6c65237f147a703ef2facfac644e015f62021112",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1f4cd2b_e88b0754",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/dmi/DmiCmSubscriptionDetailsPerDmiMapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-12T13:02:32Z",
+      "side": 1,
+      "message": "Maybe better to have class method other than instance method. Since no-bean dependency available. like;\n\npublic static.\n\nBy this way, there would no need to have an instance of this class.",
+      "range": {
+        "startLine": 46,
+        "startChar": 4,
+        "endLine": 46,
+        "endChar": 10
       },
       "revId": "6c65237f147a703ef2facfac644e015f62021112",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
@@ -82,6 +145,52 @@
         "startChar": 52,
         "endLine": 70,
         "endChar": 82
+      },
+      "revId": "6c65237f147a703ef2facfac644e015f62021112",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20a1402a_f33f27a3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/dmi/DmiCmSubscriptionDetailsPerDmiMapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-12T13:02:32Z",
+      "side": 1,
+      "message": "Complex code in terms of readability. Since there are two retun being called.\n\nInstead I would instantiate a list of DmiCmSubscriptionPredicate at the begining, then would have a foreach loop for groupedByDatastoreTypeAndXpath.entrySet(). Inside, would populate the list and return.",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 20
+      },
+      "revId": "6c65237f147a703ef2facfac644e015f62021112",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1575970_446cedc7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/dmi/DmiCmSubscriptionDetailsPerDmiMapperSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-12T13:02:32Z",
+      "side": 1,
+      "message": "NB (alignment): too many space from left.",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 38
       },
       "revId": "6c65237f147a703ef2facfac644e015f62021112",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
