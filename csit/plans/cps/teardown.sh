@@ -32,6 +32,9 @@ done
 echo '================================== DMI Logs ============================='
 docker logs ncmp-dmi-plugin
 
+echo '================================== DMI Stub Logs ========================'
+docker logs ncmp-dmi-plugin-demo-and-csit-stub
+
 echo '================================== SDNC Logs ============================'
 docker logs sdnc
 
