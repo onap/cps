@@ -61,7 +61,6 @@
         <module>cps-ncmp-rest-stub</module>
         <module>cps-path-parser</module>
         <module>cps-ri</module>
-        <module>dmi-plugin-demo-and-csit-stub</module>
         <module>integration-test</module>
         <module>checkstyle</module>
         <module>spotbugs</module>
