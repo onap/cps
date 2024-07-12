@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b275e29a_4603be66",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/dmi/DmiCmSubscriptionDetailsPerDmiMapper.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-12T14:28:23Z",
+      "side": 1,
+      "message": "NB: (groupedByDatastoreTypeAndXpath.size())",
+      "range": {
+        "startLine": 80,
+        "startChar": 92,
+        "endLine": 80,
+        "endChar": 94
+      },
+      "revId": "e214930afb086abcedd37f79af263a58d64e9da4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bd70cc8_42cb5f93",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/dmi/DmiCmSubscriptionDetailsPerDmiMapperSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-12T14:28:23Z",
+      "side": 1,
+      "message": "NB: @SpringBootTest(classes \u003d [DmiCmSubscriptionDetailsPerDmiMapper])",
+      "revId": "e214930afb086abcedd37f79af263a58d64e9da4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a18781a0_1d83ee1a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/dmi/DmiCmSubscriptionDetailsPerDmiMapperSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-12T14:28:23Z",
+      "side": 1,
+      "message": "NB: instead of new, the other option would be:\n\n    @Autowired\n    DmiCmSubscriptionDetailsPerDmiMapper objectUnderTest",
+      "range": {
+        "startLine": 28,
+        "startChar": 4,
+        "endLine": 28,
+        "endChar": 68
+      },
+      "revId": "e214930afb086abcedd37f79af263a58d64e9da4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

@@ -82,6 +82,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "615c7155_35621c80",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/dmi/DmiCmSubscriptionDetailsPerDmiMapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-12T14:28:23Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1156133a_6bf40add",
+      "range": {
+        "startLine": 38,
+        "startChar": 13,
+        "endLine": 38,
+        "endChar": 49
+      },
+      "revId": "6c65237f147a703ef2facfac644e015f62021112",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3138ade3_a4c5e0d3",
@@ -166,6 +190,30 @@
       "side": 1,
       "message": "made it a spring managed bean.",
       "parentUuid": "c1f4cd2b_e88b0754",
+      "range": {
+        "startLine": 46,
+        "startChar": 4,
+        "endLine": 46,
+        "endChar": 10
+      },
+      "revId": "6c65237f147a703ef2facfac644e015f62021112",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be08a415_4159091a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/dmi/DmiCmSubscriptionDetailsPerDmiMapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-12T14:28:23Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "90ff86d8_9d2e6e5f",
       "range": {
         "startLine": 46,
         "startChar": 4,
@@ -307,6 +355,30 @@
       "side": 1,
       "message": "refactored for readability purpose.",
       "parentUuid": "20a1402a_f33f27a3",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 20
+      },
+      "revId": "6c65237f147a703ef2facfac644e015f62021112",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "41e6e574_328da856",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/dmi/DmiCmSubscriptionDetailsPerDmiMapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-12T14:28:23Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "19595efe_5a21d9e9",
       "range": {
         "startLine": 72,
         "startChar": 0,
