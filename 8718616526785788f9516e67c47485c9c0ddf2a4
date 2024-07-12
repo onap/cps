@@ -35,6 +35,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a79ec87e_efbcd102",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/datajobs/DataJobStatusService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-07-12T12:50:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de56712e_a930efb8",
+      "revId": "8718616526785788f9516e67c47485c9c0ddf2a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "21ee3e29_ac372e5d",
@@ -48,6 +66,30 @@
       "writtenOn": "2024-07-12T11:38:35Z",
       "side": 1,
       "message": "/**\n     * Retrieves the current status of a specific data job.\n     *\n     * @param dmiServiceName     The name of the DMI Service relevant to the data job.\n     * @param requestId          The unique identifier for the overall data job request.\n     * @param dataProducerJobId  The identifier of the data producer job within the DMI system.\n     * @param dataProducerId     The ID of the producer registered by DMI, used for operations related to this request.\n     *                           This could include alternate IDs or specific identifiers.\n     * @return The current status of the data job as a String.\n     */",
+      "range": {
+        "startLine": 25,
+        "startChar": 3,
+        "endLine": 36,
+        "endChar": 7
+      },
+      "revId": "8718616526785788f9516e67c47485c9c0ddf2a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df861e79_06c809d3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/datajobs/DataJobStatusService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-07-12T12:50:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "21ee3e29_ac372e5d",
       "range": {
         "startLine": 25,
         "startChar": 3,
@@ -75,6 +117,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "96b3911f_c69f7e56",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobStatusServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-07-12T12:50:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "932a58e4_9d35d5ec",
+      "revId": "8718616526785788f9516e67c47485c9c0ddf2a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b4b951ca_1f26e9f7",
@@ -88,6 +148,30 @@
       "writtenOn": "2024-07-12T11:38:35Z",
       "side": 1,
       "message": "NB: extract into method :\n\n/**\n     * Builds URL template parameters using DmiServiceUrlTemplateBuilder.\n     *\n     * @param dmiServiceName    Name of the relevant DMI Service.\n     * @param requestId         Unique identifier for the outgoing request.\n     * @param dataProducerJobId Identifier of the data producer job.\n     * @param dataProducerId    ID of the data producer registered in the DMI service.\n     * @return UrlTemplateParameters object with constructed URL parameters.\n     */\n    private UrlTemplateParameters buildUrlParameters(final String dmiServiceName, final String requestId,\n                                                     final String dataProducerJobId, final String dataProducerId) {\n        return DmiServiceUrlTemplateBuilder.newInstance()\n                .fixedPathSegment(\"dataJob\")\n                .variablePathSegment(\"requestId\", requestId)\n                .fixedPathSegment(\"dataProducerJob\")\n                .variablePathSegment(\"dataProducerJobId\", dataProducerJobId)\n                .fixedPathSegment(\"status\")\n                .queryParameter(\"dataProducerId\", dataProducerId)\n                .createUrlTemplateParameters(dmiServiceName, dmiProperties.getDmiBasePath());\n    }",
+      "range": {
+        "startLine": 51,
+        "startChar": 60,
+        "endLine": 57,
+        "endChar": 81
+      },
+      "revId": "8718616526785788f9516e67c47485c9c0ddf2a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2e57732_a981d6e7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DmiSubJobStatusRequestHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-07-12T12:50:13Z",
+      "side": 1,
+      "message": "done, but we dont put javadoc on private methods :)",
+      "parentUuid": "b4b951ca_1f26e9f7",
       "range": {
         "startLine": 51,
         "startChar": 60,
@@ -123,6 +207,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0a130052_3a8ec45b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiRestClient.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-07-12T12:50:13Z",
+      "side": 1,
+      "message": "isnt it sync?",
+      "parentUuid": "73045c06_decb227d",
+      "range": {
+        "startLine": 148,
+        "startChar": 7,
+        "endLine": 148,
+        "endChar": 50
+      },
+      "revId": "8718616526785788f9516e67c47485c9c0ddf2a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "707c54aa_2351409c",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiRestClient.java",
         "patchSetId": 2
@@ -134,6 +242,30 @@
       "writtenOn": "2024-07-12T11:38:35Z",
       "side": 1,
       "message": "The URL template parameters for the DMI data job status endpoint.",
+      "range": {
+        "startLine": 150,
+        "startChar": 38,
+        "endLine": 151,
+        "endChar": 54
+      },
+      "revId": "8718616526785788f9516e67c47485c9c0ddf2a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f18942d_c493edac",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiRestClient.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-07-12T12:50:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "707c54aa_2351409c",
       "range": {
         "startLine": 150,
         "startChar": 38,
@@ -167,6 +299,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c22a5aee_636562d6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiRestClient.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-07-12T12:50:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5c5bcb79_e07ca521",
+      "range": {
+        "startLine": 153,
+        "startChar": 15,
+        "endLine": 153,
+        "endChar": 64
+      },
+      "revId": "8718616526785788f9516e67c47485c9c0ddf2a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a7e7eb56_2e0c2fdd",
@@ -184,6 +340,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0970804_11311ae8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiRestClient.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-07-12T12:50:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a7e7eb56_2e0c2fdd",
+      "revId": "8718616526785788f9516e67c47485c9c0ddf2a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "24af5b5f_d38fe70a",
@@ -197,6 +371,30 @@
       "writtenOn": "2024-07-12T11:38:35Z",
       "side": 1,
       "message": "Retrieves the status of a given data job identified by {@code requestId} and {@code dataProducerJobId}.",
+      "range": {
+        "startLine": 252,
+        "startChar": 7,
+        "endLine": 252,
+        "endChar": 48
+      },
+      "revId": "8718616526785788f9516e67c47485c9c0ddf2a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e541b06a_ec0b7cb5",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-07-12T12:50:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "24af5b5f_d38fe70a",
       "range": {
         "startLine": 252,
         "startChar": 7,
@@ -230,6 +428,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a7d1ac7_b62a0ad0",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-07-12T12:50:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e7ae2be6_b84cdb05",
+      "range": {
+        "startLine": 256,
+        "startChar": 15,
+        "endLine": 256,
+        "endChar": 49
+      },
+      "revId": "8718616526785788f9516e67c47485c9c0ddf2a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "06f1f885_d18302ac",
@@ -243,6 +465,30 @@
       "writtenOn": "2024-07-12T11:38:35Z",
       "side": 1,
       "message": "log.info(\"Received request to retrieve data job status. Request ID: {}, Data Producer Job ID: {}\", requestId, dataProducerJobId);",
+      "range": {
+        "startLine": 262,
+        "startChar": 8,
+        "endLine": 263,
+        "endChar": 64
+      },
+      "revId": "8718616526785788f9516e67c47485c9c0ddf2a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86c45ee0_37fb8c6d",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-07-12T12:50:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "06f1f885_d18302ac",
       "range": {
         "startLine": 262,
         "startChar": 8,
