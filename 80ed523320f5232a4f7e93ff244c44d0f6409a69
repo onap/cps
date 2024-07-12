@@ -22,6 +22,121 @@
       },
       "revId": "80ed523320f5232a4f7e93ff244c44d0f6409a69",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8deb8e01_0bdb0f62",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-12T12:12:39Z",
+      "side": 1,
+      "message": "Remove \"/v1\" from all the method and add this on class level as its common for all @RequestMapping(\"/v1\")",
+      "range": {
+        "startLine": 261,
+        "startChar": 18,
+        "endLine": 261,
+        "endChar": 21
+      },
+      "revId": "80ed523320f5232a4f7e93ff244c44d0f6409a69",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecba49d5_693b48df",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-12T12:12:39Z",
+      "side": 1,
+      "message": "Consider renaming all the variables names as its very difficult to understand and later use it.",
+      "range": {
+        "startLine": 128,
+        "startChar": 4,
+        "endLine": 135,
+        "endChar": 23
+      },
+      "revId": "80ed523320f5232a4f7e93ff244c44d0f6409a69",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14529d01_4c1240cb",
+        "filename": "integration-test/src/test/java/org/onap/cps/integration/DmiStubTestContainer.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-12T12:12:39Z",
+      "side": 1,
+      "message": "2024",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 23
+      },
+      "revId": "80ed523320f5232a4f7e93ff244c44d0f6409a69",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04b47e70_f262d9b5",
+        "filename": "integration-test/src/test/java/org/onap/cps/integration/DmiStubTestContainer.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-12T12:12:39Z",
+      "side": 1,
+      "message": "Still we need this test container as now mock server dispatcher would be used?",
+      "range": {
+        "startLine": 25,
+        "startChar": 13,
+        "endLine": 25,
+        "endChar": 34
+      },
+      "revId": "80ed523320f5232a4f7e93ff244c44d0f6409a69",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a59529ac_44aec2df",
+        "filename": "integration-test/src/test/java/org/onap/cps/integration/DmiStubTestContainer.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-12T12:12:39Z",
+      "side": 1,
+      "message": "\u003d new DmiStubTestContainer()\n            .withFixedExposedPort(8784, 8092);",
+      "range": {
+        "startLine": 31,
+        "startChar": 60,
+        "endLine": 31,
+        "endChar": 61
+      },
+      "revId": "80ed523320f5232a4f7e93ff244c44d0f6409a69",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
