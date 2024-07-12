@@ -16,6 +16,98 @@
       "message": "Ready for review",
       "revId": "ff4354c0ac0ae732133c34b1936e165d0b0576ea",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "380a2e8e_e6b07bc2",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-07-12T10:51:55Z",
+      "side": 1,
+      "message": "legacy : also this is redundant.",
+      "range": {
+        "startLine": 73,
+        "startChar": 45,
+        "endLine": 73,
+        "endChar": 83
+      },
+      "revId": "ff4354c0ac0ae732133c34b1936e165d0b0576ea",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5cd93bfd_9f2b8873",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-07-12T10:51:55Z",
+      "side": 1,
+      "message": "NB: maybe we can be now consistent with the new suggestion.\nJSON/XML content type.",
+      "range": {
+        "startLine": 58,
+        "startChar": 32,
+        "endLine": 58,
+        "endChar": 54
+      },
+      "revId": "ff4354c0ac0ae732133c34b1936e165d0b0576ea",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffe13084_08a8c784",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-07-12T10:51:55Z",
+      "side": 1,
+      "message": "NB: JSON/XML content type.",
+      "range": {
+        "startLine": 83,
+        "startChar": 33,
+        "endLine": 83,
+        "endChar": 54
+      },
+      "revId": "ff4354c0ac0ae732133c34b1936e165d0b0576ea",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7db3d8bf_3d132245",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-07-12T10:51:55Z",
+      "side": 1,
+      "message": "NB: JSON/XML content type.",
+      "range": {
+        "startLine": 137,
+        "startChar": 32,
+        "endLine": 137,
+        "endChar": 54
+      },
+      "revId": "ff4354c0ac0ae732133c34b1936e165d0b0576ea",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
