@@ -39,6 +39,30 @@
       },
       "revId": "60b2b0b760c46407d5db5c0fa22771d784043aed",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c2cf1ee_f138f260",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/DmiDispatcher.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-15T14:04:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "159b1bbb_de80dd84",
+      "range": {
+        "startLine": 100,
+        "startChar": 4,
+        "endLine": 100,
+        "endChar": 12
+      },
+      "revId": "60b2b0b760c46407d5db5c0fa22771d784043aed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
