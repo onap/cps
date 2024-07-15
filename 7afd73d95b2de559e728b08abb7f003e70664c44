@@ -16,6 +16,23 @@
       "message": "Looks good, I don\u0027t see any other functional changes in git history",
       "revId": "7afd73d95b2de559e728b08abb7f003e70664c44",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbb4dda4_d3b781a3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-07-15T10:05:48Z",
+      "side": 1,
+      "message": "stage-release",
+      "revId": "7afd73d95b2de559e728b08abb7f003e70664c44",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ],
   "submitRequirementResults": [
