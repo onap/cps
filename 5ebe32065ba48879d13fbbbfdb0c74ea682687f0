@@ -52,6 +52,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2051f957_4b997425",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-15T15:13:30Z",
+      "side": 1,
+      "message": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy\nline 427 is blocker to me, also many other NB reviews...",
+      "revId": "5ebe32065ba48879d13fbbbfdb0c74ea682687f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e567abec_fb13c21d",
@@ -93,6 +110,98 @@
         "startChar": 32,
         "endLine": 58,
         "endChar": 54
+      },
+      "revId": "5ebe32065ba48879d13fbbbfdb0c74ea682687f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "770f0e2e_8dd470c8",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-15T15:13:30Z",
+      "side": 1,
+      "message": "NB: you can use the same variable name as offered in interface like nodeDataPerXPath",
+      "range": {
+        "startLine": 268,
+        "startChar": 72,
+        "endLine": 268,
+        "endChar": 85
+      },
+      "revId": "5ebe32065ba48879d13fbbbfdb0c74ea682687f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c935276_ae527b4d",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-15T15:13:30Z",
+      "side": 1,
+      "message": "NB: as in the interface, nodeDataPerXPath may be better name.",
+      "range": {
+        "startLine": 409,
+        "startChar": 31,
+        "endLine": 409,
+        "endChar": 44
+      },
+      "revId": "5ebe32065ba48879d13fbbbfdb0c74ea682687f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "540c02ef_bdbc9ad2",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-15T15:13:30Z",
+      "side": 1,
+      "message": "NB: nodeXmlDataPerXPath may be a better name.",
+      "range": {
+        "startLine": 426,
+        "startChar": 31,
+        "endLine": 426,
+        "endChar": 43
+      },
+      "revId": "5ebe32065ba48879d13fbbbfdb0c74ea682687f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7eae3f66_d55cc367",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-15T15:13:30Z",
+      "side": 1,
+      "message": "in the scenario you say top level node but I see the node as /test-tree.\n\nEither change the node to root / or change the scenario name please",
+      "range": {
+        "startLine": 427,
+        "startChar": 12,
+        "endLine": 427,
+        "endChar": 45
       },
       "revId": "5ebe32065ba48879d13fbbbfdb0c74ea682687f0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
