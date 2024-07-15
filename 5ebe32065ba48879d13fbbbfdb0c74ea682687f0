@@ -229,6 +229,30 @@
       },
       "revId": "5ebe32065ba48879d13fbbbfdb0c74ea682687f0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc32688d_a6c6539b",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-15T15:26:39Z",
+      "side": 1,
+      "message": "Aa ok then it means top level could be either root (/) or (/test-tree)  like in other test cases \u0027top level node\u0027 | [\u0027/\u0027 \n\nThank you letting me know that. I ll keep -1 since there are more than 6 NB reviews, till Rudragni reply back.",
+      "parentUuid": "1d557f79_774a59b3",
+      "range": {
+        "startLine": 427,
+        "startChar": 12,
+        "endLine": 427,
+        "endChar": 45
+      },
+      "revId": "5ebe32065ba48879d13fbbbfdb0c74ea682687f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
