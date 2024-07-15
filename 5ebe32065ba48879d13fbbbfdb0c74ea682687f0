@@ -205,6 +205,30 @@
       },
       "revId": "5ebe32065ba48879d13fbbbfdb0c74ea682687f0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d557f79_774a59b3",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-15T15:18:38Z",
+      "side": 1,
+      "message": "\u0027top level\u0027 is correct here: \u0027/test-tree\u0027 is top level, \u0027/parent/child\u0027 is 2nd level, etc. (Root \u0027/\u0027 is special case meaning all nodes at top level)",
+      "parentUuid": "7eae3f66_d55cc367",
+      "range": {
+        "startLine": 427,
+        "startChar": 12,
+        "endLine": 427,
+        "endChar": 45
+      },
+      "revId": "5ebe32065ba48879d13fbbbfdb0c74ea682687f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
