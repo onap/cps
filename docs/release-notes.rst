@@ -45,6 +45,7 @@ Features
 --------
 3.5.1
     - `CPS-2121 <https://jira.onap.org/browse/CPS-2121>`_ Enabled http client prometheus metrics and manage high cardinality using URL template.
+    - `CPS-2289 <https://jira.onap.org/browse/CPS-2289>`_ Support for CPS Path Query in NCMP Inventory Cm Handle Search.
 
 Version: 3.5.0
 ==============
