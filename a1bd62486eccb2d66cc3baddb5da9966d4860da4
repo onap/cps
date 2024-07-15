@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ccbf56f_1402eaf1",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/NcmpWriteSubJobSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-15T16:08:22Z",
+      "side": 1,
+      "message": "Nb: \u0027Ncmp\u0027 prefix not needed anymore since it\u0027s in ncmp package",
+      "range": {
+        "startLine": 31,
+        "startChar": 6,
+        "endLine": 31,
+        "endChar": 10
+      },
+      "revId": "a1bd62486eccb2d66cc3baddb5da9966d4860da4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
