@@ -54,6 +54,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e567abec_fb13c21d",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-15T14:08:39Z",
+      "side": 1,
+      "message": "Could extract this into a common method since it is used a lot",
+      "range": {
+        "startLine": 153,
+        "startChar": 79,
+        "endLine": 155,
+        "endChar": 35
+      },
+      "revId": "5ebe32065ba48879d13fbbbfdb0c74ea682687f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "de2a8490_f41208d2",
         "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
         "patchSetId": 14
