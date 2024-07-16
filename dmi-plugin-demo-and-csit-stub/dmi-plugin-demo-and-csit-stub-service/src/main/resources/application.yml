@@ -53,7 +53,8 @@ app:
 delay:
     module-references-delay-ms: ${MODULE_REFERENCES_DELAY_MS:100}
     module-resources-delay-ms: ${MODULE_RESOURCES_DELAY_MS:1000}
-    data-for-cm-handle-delay-ms: ${DATA_FOR_CM_HANDLE_DELAY_MS:2500}
+    read-data-for-cm-handle-delay-ms: ${READ_DATA_FOR_CM_HANDLE_DELAY_MS:300}
+    write-data-for-cm-handle-delay-ms: ${WRITE_DATA_FOR_CM_HANDLE_DELAY_MS:670}
 
 logging:
     level:
