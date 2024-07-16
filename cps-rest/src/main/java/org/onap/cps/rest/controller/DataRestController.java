@@ -49,7 +49,6 @@ import org.onap.cps.utils.PrefixResolver;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -70,11 +69,10 @@ public class DataRestController implements CpsDataApi {
     @Override
     public ResponseEntity<String> createNode(final String apiVersion,
                                              final String dataspaceName, final String anchorName,
-                                             @RequestHeader(value = "Content-Type") final String contentTypeHeader,
+                                             final String contentTypeInHeader,
                                              final String nodeData, final String parentNodeXpath,
                                              final String observedTimestamp) {
-        final ContentType contentType = contentTypeHeader.contains(MediaType.APPLICATION_XML_VALUE) ? ContentType.XML
-                : ContentType.JSON;
+        final ContentType contentType = getContentTypeFromHeader(contentTypeInHeader);
         if (isRootXpath(parentNodeXpath)) {
             cpsDataService.saveData(dataspaceName, anchorName, nodeData,
                     toOffsetDateTime(observedTimestamp), contentType);
@@ -137,23 +135,23 @@ public class DataRestController implements CpsDataApi {
 
     @Override
     public ResponseEntity<Object> updateNodeLeaves(final String apiVersion, final String dataspaceName,
-                                                   final String anchorName, final String contentTypeHeader,
+                                                   final String anchorName, final String contentTypeInHeader,
                                                    final String nodeData, final String parentNodeXpath,
                                                    final String observedTimestamp) {
-        final ContentType contentType = contentTypeHeader.contains(MediaType.APPLICATION_XML_VALUE) ? ContentType.XML
-                : ContentType.JSON;
+        final ContentType contentType = getContentTypeFromHeader(contentTypeInHeader);
         cpsDataService.updateNodeLeaves(dataspaceName, anchorName, parentNodeXpath,
                 nodeData, toOffsetDateTime(observedTimestamp), contentType);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<Object> replaceNode(final String apiVersion,
-        final String dataspaceName, final String anchorName,
-        final Object jsonData, final String parentNodeXpath, final String observedTimestamp) {
-        cpsDataService
-                .updateDataNodeAndDescendants(dataspaceName, anchorName, parentNodeXpath,
-                        jsonObjectMapper.asJsonString(jsonData), toOffsetDateTime(observedTimestamp));
+    public ResponseEntity<Object> replaceNode(final String apiVersion, final String dataspaceName,
+                                             final String anchorName, final String contentTypeInHeader,
+                                             final String nodeData, final String parentNodeXpath,
+                                              final String observedTimestamp) {
+        final ContentType contentType = getContentTypeFromHeader(contentTypeInHeader);
+        cpsDataService.updateDataNodeAndDescendants(dataspaceName, anchorName, parentNodeXpath,
+                        nodeData, toOffsetDateTime(observedTimestamp), contentType);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -211,6 +209,10 @@ public class DataRestController implements CpsDataApi {
                 cpsDataService.getDeltaByDataspaceAndAnchors(dataspaceName, sourceAnchorName,
                 targetAnchorName, xpath, fetchDescendantsOption);
         return new ResponseEntity<>(jsonObjectMapper.asJsonString(deltaBetweenAnchors), HttpStatus.OK);
+    }
+
+    private static ContentType getContentTypeFromHeader(final String contentTypeInHeader) {
+        return contentTypeInHeader.contains(MediaType.APPLICATION_XML_VALUE) ? ContentType.XML : ContentType.JSON;
     }
 
     private static boolean isRootXpath(final String xpath) {
