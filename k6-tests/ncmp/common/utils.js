@@ -22,6 +22,8 @@ export const NCMP_BASE_URL = 'http://localhost:8883';
 export const DMI_PLUGIN_URL = 'http://ncmp-dmi-plugin-demo-and-csit-stub:8092';
 export const TOTAL_CM_HANDLES = 20000;
 export const REGISTRATION_BATCH_SIZE = 100;
+export const READ_DATA_FOR_CM_HANDLE_DELAY_MS = 300; // must have same value as in docker-compose.yml
+export const WRITE_DATA_FOR_CM_HANDLE_DELAY_MS = 670; // must have same value as in docker-compose.yml
 export const CONTENT_TYPE_JSON_PARAM = { headers: {'Content-Type': 'application/json'} };
 
 export function recordTimeInSeconds(functionToExecute) {
@@ -60,6 +62,8 @@ export function makeCustomSummaryReport(data, options) {
     summaryCsv += makeSummaryCsvLine(4, 'CM-handle search with Module filter', 'milliseconds', 'http_req_duration{scenario:cm_search_module}', data, options);
     summaryCsv += makeSummaryCsvLine(5, 'Synchronous single CM-handle pass-through read', 'requests/second', 'http_reqs{scenario:passthrough_read}', data, options);
     summaryCsv += makeSummaryCsvLine(6, 'Synchronous single CM-handle pass-through write', 'requests/second', 'http_reqs{scenario:passthrough_write}', data, options);
+    summaryCsv += makeSummaryCsvLine('5b', 'NCMP overhead for Synchronous single CM-handle pass-through read', 'milliseconds', 'ncmp_overhead_passthrough_read', data, options);
+    summaryCsv += makeSummaryCsvLine('6b', 'NCMP overhead for Synchronous single CM-handle pass-through write', 'milliseconds', 'ncmp_overhead_passthrough_write', data, options);
     return summaryCsv;
 }
 
