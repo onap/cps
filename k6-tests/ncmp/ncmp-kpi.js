@@ -23,7 +23,7 @@ import { Gauge } from 'k6/metrics';
 import { TOTAL_CM_HANDLES, makeCustomSummaryReport, recordTimeInSeconds } from './common/utils.js';
 import { registerAllCmHandles, deregisterAllCmHandles } from './common/cmhandle-crud.js';
 import { executeCmHandleSearch, executeCmHandleIdSearch } from './common/search-base.js';
-import { passthroughRead } from './common/passthrough-read.js';
+import { passthroughRead, passthroughWrite } from './common/passthrough-crud.js';
 
 let cmHandlesCreatedPerSecondGauge = new Gauge('cmhandles_created_per_second');
 let cmHandlesDeletedPerSecondGauge = new Gauge('cmhandles_deleted_per_second');
@@ -37,6 +37,12 @@ export const options = {
         passthrough_read: {
             executor: 'constant-vus',
             exec: 'passthrough_read',
+            vus: 10,
+            duration: DURATION,
+        },
+        passthrough_write: {
+            executor: 'constant-vus',
+            exec: 'passthrough_write',
             vus: 10,
             duration: DURATION,
         },
@@ -57,6 +63,7 @@ export const options = {
         'cmhandles_created_per_second': ['value >= 22'],
         'cmhandles_deleted_per_second': ['value >= 22'],
         'http_req_failed{scenario:passthrough_read}': ['rate == 0'],
+        'http_reqs{scenario:passthrough_write}': ['rate >= 13'],
         'http_req_failed{scenario:id_search_module}': ['rate == 0'],
         'http_req_failed{scenario:cm_search_module}': ['rate == 0'],
         'http_req_duration{scenario:passthrough_read}': ['avg <= 2600'], // DMI delay + 100 ms
@@ -78,6 +85,11 @@ export function teardown() {
 export function passthrough_read() {
     const response = passthroughRead();
     check(response, { 'passthrough read status equals 200': (r) => r.status === 200 });
+}
+
+export function passthrough_write() {
+    const response = passthroughWrite();
+    check(response, { 'passthrough write status equals 200': (r) => r.status === 200 });
 }
 
 export function id_search_module() {
