@@ -92,6 +92,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2751f1c4_d792c94d",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-07-16T18:56:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e567abec_fb13c21d",
+      "range": {
+        "startLine": 153,
+        "startChar": 79,
+        "endLine": 155,
+        "endChar": 35
+      },
+      "revId": "5ebe32065ba48879d13fbbbfdb0c74ea682687f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "de2a8490_f41208d2",
@@ -105,6 +129,30 @@
       "writtenOn": "2024-07-15T14:04:55Z",
       "side": 1,
       "message": "NB: JSON/XML content type",
+      "range": {
+        "startLine": 58,
+        "startChar": 32,
+        "endLine": 58,
+        "endChar": 54
+      },
+      "revId": "5ebe32065ba48879d13fbbbfdb0c74ea682687f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0b1ea31_28ab13df",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-07-16T18:56:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de2a8490_f41208d2",
       "range": {
         "startLine": 58,
         "startChar": 32,
@@ -138,6 +186,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "68bce668_09d8e1d8",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-07-16T18:56:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "770f0e2e_8dd470c8",
+      "range": {
+        "startLine": 268,
+        "startChar": 72,
+        "endLine": 268,
+        "endChar": 85
+      },
+      "revId": "5ebe32065ba48879d13fbbbfdb0c74ea682687f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1c935276_ae527b4d",
@@ -161,6 +233,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "42f831ae_548be7b6",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-07-16T18:56:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1c935276_ae527b4d",
+      "range": {
+        "startLine": 409,
+        "startChar": 31,
+        "endLine": 409,
+        "endChar": 44
+      },
+      "revId": "5ebe32065ba48879d13fbbbfdb0c74ea682687f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "540c02ef_bdbc9ad2",
@@ -174,6 +270,30 @@
       "writtenOn": "2024-07-15T15:13:30Z",
       "side": 1,
       "message": "NB: nodeXmlDataPerXPath may be a better name.",
+      "range": {
+        "startLine": 426,
+        "startChar": 31,
+        "endLine": 426,
+        "endChar": 43
+      },
+      "revId": "5ebe32065ba48879d13fbbbfdb0c74ea682687f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "68c1dc65_f0c587c4",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-07-16T18:56:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "540c02ef_bdbc9ad2",
       "range": {
         "startLine": 426,
         "startChar": 31,
