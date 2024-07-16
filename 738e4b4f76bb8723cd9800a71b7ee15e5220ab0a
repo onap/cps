@@ -1,0 +1,135 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d92e7f7_4784c6fc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-07-16T12:28:58Z",
+      "side": 1,
+      "message": "overall good.\nonce the comments on the actual code is incorporated then I can look at the testware.",
+      "revId": "738e4b4f76bb8723cd9800a71b7ee15e5220ab0a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7cc05a35_9a989564",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-07-16T12:28:58Z",
+      "side": 1,
+      "message": "we need to compile it here only.\nprivate static final String DATASTORE_FROM_XPATH_PATTERN \u003d Pattern.compile(\"/datastore\\\\[@name\u003d\u0027(.*?)\u0027\\\\]\");",
+      "revId": "738e4b4f76bb8723cd9800a71b7ee15e5220ab0a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "653a6ef0_2f8c26d5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-07-16T12:28:58Z",
+      "side": 1,
+      "message": "same as above.",
+      "revId": "738e4b4f76bb8723cd9800a71b7ee15e5220ab0a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0810fd82_d7968d43",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-07-16T12:28:58Z",
+      "side": 1,
+      "message": "NB: need to think of a better name.",
+      "range": {
+        "startLine": 131,
+        "startChar": 51,
+        "endLine": 131,
+        "endChar": 79
+      },
+      "revId": "738e4b4f76bb8723cd9800a71b7ee15e5220ab0a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8c0c183_bc02d569",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-07-16T12:28:58Z",
+      "side": 1,
+      "message": "NB: dmiCmSubscriptionPerDmi or dmiCmSubscriptionDetails",
+      "range": {
+        "startLine": 183,
+        "startChar": 57,
+        "endLine": 183,
+        "endChar": 93
+      },
+      "revId": "738e4b4f76bb8723cd9800a71b7ee15e5220ab0a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9b0dba4_e53dec62",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-07-16T12:28:58Z",
+      "side": 1,
+      "message": "NB: will be gone from here.",
+      "revId": "738e4b4f76bb8723cd9800a71b7ee15e5220ab0a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83543115_3d064be2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-07-16T12:28:58Z",
+      "side": 1,
+      "message": "NB: will be gone from here.",
+      "revId": "738e4b4f76bb8723cd9800a71b7ee15e5220ab0a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
