@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73d347e6_c4933b0e",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/CmHandleResourceDataSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-16T19:39:12Z",
+      "side": 1,
+      "message": "There is a utility function \u0027registerCmHandle\u0027 which could be used to simplify this - assuming you really need modules M1 and M2:\n\n    dmiDispatcher.moduleNamesPerCmHandleId[CM_HANDLE_ID] \u003d [\u0027M1\u0027, \u0027M2\u0027]\n    registerCmHandle(DMI_URL, CM_HANDLE_ID, NO_MODULE_SET_TAG)\n\nSince this is a relatively new test framework, feel free to refactor and simplify - I think it could be made as simple as:\n\n    registerCmHandle(DMI_URL, CM_HANDLE_ID)",
+      "range": {
+        "startLine": 41,
+        "startChar": 70,
+        "endLine": 51,
+        "endChar": 14
+      },
+      "revId": "4dc565c00c86796fc56ad1ab97906aa42d5f6eb8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
