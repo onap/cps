@@ -42,7 +42,7 @@ class JsonObjectMapperSpec extends Specification {
             def contentMap = new JsonSlurper().parseText(new String(content))
         and: 'the parsed content is as expected'
             assert contentMap.'test:bookstore'.'bookstore-name' == 'Chapters/Easons'
-        where: 'the following data stores are used'
+        where: 'the following content types are used'
             type << ['String', 'bytes']
     }
 
