@@ -19,14 +19,17 @@
  */
 
 import { check } from 'k6';
-import { Gauge } from 'k6/metrics';
-import { TOTAL_CM_HANDLES, makeCustomSummaryReport, recordTimeInSeconds } from './common/utils.js';
+import { Gauge, Trend } from 'k6/metrics';
+import { TOTAL_CM_HANDLES, READ_DATA_FOR_CM_HANDLE_DELAY_MS, WRITE_DATA_FOR_CM_HANDLE_DELAY_MS,
+         makeCustomSummaryReport, recordTimeInSeconds } from './common/utils.js';
 import { registerAllCmHandles, deregisterAllCmHandles } from './common/cmhandle-crud.js';
 import { executeCmHandleSearch, executeCmHandleIdSearch } from './common/search-base.js';
 import { passthroughRead, passthroughWrite } from './common/passthrough-crud.js';
 
 let cmHandlesCreatedPerSecondGauge = new Gauge('cmhandles_created_per_second');
 let cmHandlesDeletedPerSecondGauge = new Gauge('cmhandles_deleted_per_second');
+let passthroughReadNcmpOverheadTrend = new Trend('ncmp_overhead_passthrough_read');
+let passthroughWriteNcmpOverheadTrend = new Trend('ncmp_overhead_passthrough_write');
 
 const DURATION = '15m';
 
@@ -64,10 +67,14 @@ export const options = {
         'cmhandles_deleted_per_second': ['value >= 22'],
         'http_reqs{scenario:passthrough_write}': ['rate >= 13'],
         'http_reqs{scenario:passthrough_read}': ['rate >= 25'],
-        'http_req_failed{scenario:id_search_module}': ['rate == 0'],
-        'http_req_failed{scenario:cm_search_module}': ['rate == 0'],
+        'ncmp_overhead_passthrough_read': ['avg <= 100'],
+        'ncmp_overhead_passthrough_write': ['avg <= 100'],
         'http_req_duration{scenario:id_search_module}': ['avg <= 625'],
         'http_req_duration{scenario:cm_search_module}': ['avg <= 13000'],
+        'http_req_failed{scenario:id_search_module}': ['rate == 0'],
+        'http_req_failed{scenario:cm_search_module}': ['rate == 0'],
+        'http_req_failed{scenario:passthrough_read}': ['rate == 0'],
+        'http_req_failed{scenario:passthrough_write}': ['rate == 0'],
     },
 };
 
@@ -84,11 +91,15 @@ export function teardown() {
 export function passthrough_read() {
     const response = passthroughRead();
     check(response, { 'passthrough read status equals 200': (r) => r.status === 200 });
+    const overhead = response.timings.duration - READ_DATA_FOR_CM_HANDLE_DELAY_MS;
+    passthroughReadNcmpOverheadTrend.add(overhead);
 }
 
 export function passthrough_write() {
     const response = passthroughWrite();
     check(response, { 'passthrough write status equals 200': (r) => r.status === 200 });
+    const overhead = response.timings.duration - WRITE_DATA_FOR_CM_HANDLE_DELAY_MS;
+    passthroughWriteNcmpOverheadTrend.add(overhead);
 }
 
 export function id_search_module() {
