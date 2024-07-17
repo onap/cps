@@ -174,6 +174,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "57565e8d_a7d28acf",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-17T10:23:17Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f223a614_7177347a",
+      "range": {
+        "startLine": 84,
+        "startChar": 7,
+        "endLine": 84,
+        "endChar": 117
+      },
+      "revId": "4675ed281e35502ff58984ba92fbac4a3e0c5fab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "566f9b5d_5249face",
@@ -368,6 +392,30 @@
       "side": 1,
       "message": "targetMap.computeIfAbsent(dmiServiceName, dmiName -\u003e new HashSet\u003c\u003e()).add(dmiCmSubscriptionKey);\n\nthis line is populating the maps based on the condition.\nif it is the last standing subscriber then it is added to the map lastSubscribersPerDmi , if the subscriber share the details with other subscriptions then the entry is added to a different map ( otherSubscribersPerDmi )",
       "parentUuid": "8355404b_ddec94f0",
+      "range": {
+        "startLine": 212,
+        "startChar": 19,
+        "endLine": 212,
+        "endChar": 89
+      },
+      "revId": "4675ed281e35502ff58984ba92fbac4a3e0c5fab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93822ae0_bc3f0006",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-17T10:23:17Z",
+      "side": 1,
+      "message": "Sorry my bad, I can not see well how there are being populated maybe because of complex assignment:\n\nargetMap.computeIfAbsent(dmiServiceName, dmiName -\u003e new HashSet\u003c\u003e()).add(dmiCmSubscriptionKey);\n\nplease ignore this review and co-dependents.",
+      "parentUuid": "3e7d4619_8b6cea0f",
       "range": {
         "startLine": 212,
         "startChar": 19,
