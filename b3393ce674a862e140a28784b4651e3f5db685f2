@@ -77,6 +77,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4fb037fc_69359653",
+        "filename": "cps-rest/docs/openapi/cpsDataV2.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-07-17T11:00:36Z",
+      "side": 1,
+      "message": "I am reusing the anchorNameInPath defined in components.yml file as it is same as defining a new anchor in path and would be repetitive code.",
+      "parentUuid": "0696a029_5054fd47",
+      "range": {
+        "startLine": 58,
+        "startChar": 53,
+        "endLine": 58,
+        "endChar": 69
+      },
+      "revId": "b3393ce674a862e140a28784b4651e3f5db685f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c7d4dd85_a858ea42",
         "filename": "cps-rest/docs/openapi/cpsDataV2.yml",
         "patchSetId": 3
@@ -100,6 +124,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "600e6282_870bd56d",
+        "filename": "cps-rest/docs/openapi/cpsDataV2.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-07-17T11:00:36Z",
+      "side": 1,
+      "message": "sorry I overlooked this change in proposal, but if we do this then the path rendered would be \nGET /v2/dataspaces/my-dataspace/anchors/source-anchor/delta/target-anchor and\nPOST /v2/dataspaces/my-dataspace/anchors/source-anchor/delta\nwhich is similar to our current problem, and our objective is to have a consistent endpoint like this:\nGET /v2/dataspaces/my-dataspace/anchors/source-anchor/delta\nPOST /v2/dataspaces/my-dataspace/anchors/source-anchor/delta\nso the target anchor name should be query parameter instead of path parameter",
+      "parentUuid": "c7d4dd85_a858ea42",
+      "range": {
+        "startLine": 59,
+        "startChar": 53,
+        "endLine": 59,
+        "endChar": 76
+      },
+      "revId": "b3393ce674a862e140a28784b4651e3f5db685f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "caa47734_d30ed85b",
         "filename": "cps-rest/docs/openapi/cpsDataV2.yml",
         "patchSetId": 3
@@ -111,6 +159,30 @@
       "writtenOn": "2024-07-17T10:34:19Z",
       "side": 1,
       "message": "sourceAnchorNameInPath",
+      "range": {
+        "startLine": 87,
+        "startChar": 53,
+        "endLine": 87,
+        "endChar": 69
+      },
+      "revId": "b3393ce674a862e140a28784b4651e3f5db685f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1657c2d9_d4898d0c",
+        "filename": "cps-rest/docs/openapi/cpsDataV2.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-07-17T11:00:36Z",
+      "side": 1,
+      "message": "same as comment on line #58",
+      "parentUuid": "caa47734_d30ed85b",
       "range": {
         "startLine": 87,
         "startChar": 53,
