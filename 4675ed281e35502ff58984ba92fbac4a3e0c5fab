@@ -290,6 +290,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3847860e_66706371",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-07-17T09:57:32Z",
+      "side": 1,
+      "message": "need test sometimes regardless if its private",
+      "parentUuid": "cebc589d_e797e979",
+      "range": {
+        "startLine": 163,
+        "startChar": 41,
+        "endLine": 163,
+        "endChar": 80
+      },
+      "revId": "4675ed281e35502ff58984ba92fbac4a3e0c5fab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ad05d59a_28b3d501",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
         "patchSetId": 5
