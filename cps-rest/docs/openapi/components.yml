@@ -376,7 +376,7 @@ components:
     Created:
       description: Created
       content:
-        text/plain:
+        application/json:
           schema:
             type: string
             example: my-resource

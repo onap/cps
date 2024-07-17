@@ -112,7 +112,6 @@ nodesByDataspaceAndAnchor:
           examples:
             dataSample:
               $ref: 'components.yml#/components/examples/dataSampleXml'
-
     responses:
       '201':
         $ref: 'components.yml#/components/responses/Created'
