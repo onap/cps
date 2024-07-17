@@ -152,6 +152,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f223a614_7177347a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-07-17T10:16:21Z",
+      "side": 1,
+      "message": "why do you say empty hashmaps ??",
+      "parentUuid": "10bb0c7c_20fa76c1",
+      "range": {
+        "startLine": 84,
+        "startChar": 7,
+        "endLine": 84,
+        "endChar": 117
+      },
+      "revId": "4675ed281e35502ff58984ba92fbac4a3e0c5fab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "566f9b5d_5249face",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
         "patchSetId": 5
@@ -320,6 +344,30 @@
       "side": 1,
       "message": "yes it is",
       "parentUuid": "2fa89cf2_f7459cbd",
+      "range": {
+        "startLine": 212,
+        "startChar": 19,
+        "endLine": 212,
+        "endChar": 89
+      },
+      "revId": "4675ed281e35502ff58984ba92fbac4a3e0c5fab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e7d4619_8b6cea0f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-07-17T10:16:21Z",
+      "side": 1,
+      "message": "targetMap.computeIfAbsent(dmiServiceName, dmiName -\u003e new HashSet\u003c\u003e()).add(dmiCmSubscriptionKey);\n\nthis line is populating the maps based on the condition.\nif it is the last standing subscriber then it is added to the map lastSubscribersPerDmi , if the subscriber share the details with other subscriptions then the entry is added to a different map ( otherSubscribersPerDmi )",
+      "parentUuid": "8355404b_ddec94f0",
       "range": {
         "startLine": 212,
         "startChar": 19,
