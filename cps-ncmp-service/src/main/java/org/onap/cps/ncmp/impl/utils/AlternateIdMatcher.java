@@ -56,6 +56,17 @@ public class AlternateIdMatcher {
         throw new NoAlternateIdMatchFoundException(alternateId);
     }
 
+    /**
+     * Get cm handle Id from given Alternate Id.
+     *
+     * @param alternateId alternate ID
+     * @return cm handle id string
+     */
+    public String getCmHandleId(final String alternateId) {
+        final DataNode dataNode = inventoryPersistence.getCmHandleDataNodeByAlternateId(alternateId);
+        return dataNode.getLeaves().get("id").toString();
+    }
+
     private String getParentPath(final String path, final String separator) {
         final int lastSeparatorIndex = path.lastIndexOf(separator);
         return lastSeparatorIndex < 0 ? "" : path.substring(0, lastSeparatorIndex);
