@@ -38,7 +38,6 @@ import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.data.exceptions.InvalidDatastoreException;
-import org.onap.cps.ncmp.api.data.models.CmResourceAddress;
 import org.onap.cps.ncmp.api.data.models.DatastoreType;
 import org.onap.cps.ncmp.api.inventory.NetworkCmProxyInventoryFacade;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryApiParameters;
@@ -86,7 +85,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      * Get resource data from datastore.
      *
      * @param datastoreName        name of the datastore
-     * @param cmHandle             cm handle identifier
+     * @param cmHandleReference    cm handle or alternate id identifier
      * @param resourceIdentifier   resource identifier
      * @param optionsParamInQuery  options query parameter
      * @param topicParamInQuery    topic query parameter
@@ -97,15 +96,15 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     @Override
     @Timed(value = "cps.ncmp.controller.get", description = "Time taken to get resource data from datastore")
     public ResponseEntity<Object> getResourceDataForCmHandle(final String datastoreName,
-                                                             final String cmHandle,
+                                                             final String cmHandleReference,
                                                              final String resourceIdentifier,
                                                              final String optionsParamInQuery,
                                                              final String topicParamInQuery,
                                                              final Boolean includeDescendants,
                                                              final String authorization) {
-        final CmResourceAddress cmResourceAddress = new CmResourceAddress(datastoreName, cmHandle, resourceIdentifier);
-        final Object result = networkCmProxyFacade.getResourceDataForCmHandle(cmResourceAddress, optionsParamInQuery,
-                                                               topicParamInQuery, includeDescendants, authorization);
+
+        final Object result = networkCmProxyFacade.getResourceDataForCmHandle(datastoreName, cmHandleReference,
+            resourceIdentifier, optionsParamInQuery, topicParamInQuery, includeDescendants, authorization);
         return ResponseEntity.ok(result);
     }
 
