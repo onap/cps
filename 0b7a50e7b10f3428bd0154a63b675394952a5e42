@@ -33,6 +33,29 @@
       "message": "NB: do we have to rename the existing test to 5a and 6a respectively.\nAnd do we need to put these graphs in sequence in order to be rendered accordingly.",
       "revId": "0b7a50e7b10f3428bd0154a63b675394952a5e42",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30a792ba_f01cc23e",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-17T13:46:13Z",
+      "side": 1,
+      "message": "NB: we can add headers like below for more readability:\n\nconst reportLines \u003d [\n        \u0027#,Test Name,Unit,Limit,Actual\u0027,\n        makeSummaryCsvLine(1, \u0027Registration of CM-handles\u0027, \u0027CM-handles/second\u0027, \u0027cmhandles_created_per_second\u0027, data, options),\n        makeSummaryCsvLine(2, \u0027De-registration of CM-handles\u0027, \u0027CM-handles/second\u0027, \u0027cmhandles_deleted_per_second\u0027, data, options),\n        makeSummaryCsvLine(3, \u0027CM-handle ID search with Module filter\u0027, \u0027milliseconds\u0027, \u0027http_req_duration{scenario:id_search_module}\u0027, data, options),\n        makeSummaryCsvLine(4, \u0027CM-handle search with Module filter\u0027, \u0027milliseconds\u0027, \u0027http_req_duration{scenario:cm_search_module}\u0027, data, options),\n        makeSummaryCsvLine(5, \u0027Synchronous single CM-handle pass-through read\u0027, \u0027requests/second\u0027, \u0027http_reqs{scenario:passthrough_read}\u0027, data, options),\n        makeSummaryCsvLine(6, \u0027Synchronous single CM-handle pass-through write\u0027, \u0027requests/second\u0027, \u0027http_reqs{scenario:passthrough_write}\u0027, data, options),\n        makeSummaryCsvLine(\u00275b\u0027, \u0027NCMP overhead for Synchronous single CM-handle pass-through read\u0027, \u0027milliseconds\u0027, \u0027ncmp_overhead_passthrough_read\u0027, data, options),\n        makeSummaryCsvLine(\u00276b\u0027, \u0027NCMP overhead for Synchronous single CM-handle pass-through write\u0027, \u0027milliseconds\u0027, \u0027ncmp_overhead_passthrough_write\u0027, data, options)\n    ];\n    return reportLines.join(\u0027\\n\u0027);",
+      "range": {
+        "startLine": 58,
+        "startChar": 4,
+        "endLine": 67,
+        "endChar": 22
+      },
+      "revId": "0b7a50e7b10f3428bd0154a63b675394952a5e42",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
