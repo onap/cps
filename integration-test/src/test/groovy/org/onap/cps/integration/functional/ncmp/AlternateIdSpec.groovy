@@ -21,33 +21,34 @@
 package org.onap.cps.integration.functional.ncmp
 
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
-import org.onap.cps.ncmp.api.data.models.CmResourceAddress
-import org.onap.cps.ncmp.impl.data.NetworkCmProxyFacade
-import spock.util.concurrent.PollingConditions
+import org.springframework.http.HttpStatus
+import org.springframework.http.MediaType
 
-import static org.onap.cps.ncmp.api.data.models.DatastoreType.PASSTHROUGH_OPERATIONAL
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 
-class CmHandleResourceDataSpec extends CpsIntegrationSpecBase {
-
-    NetworkCmProxyFacade objectUnderTest
+class AlternateIdSpec extends CpsIntegrationSpecBase {
 
     def setup() {
         dmiDispatcher.moduleNamesPerCmHandleId['ch-1'] = ['M1', 'M2']
-        registerCmHandle(DMI_URL, 'ch-1', NO_MODULE_SET_TAG, NO_ALTERNATE_ID)
-        objectUnderTest = networkCmProxyFacade
+        registerCmHandle(DMI_URL, 'ch-1', NO_MODULE_SET_TAG, 'alternateId')
     }
 
     def cleanup() {
         deregisterCmHandle(DMI_URL, 'ch-1')
     }
 
-    def 'Get resource data having special chars into path & query param value.'() {
-        when: 'getting the resource data'
-            def cmResourceAddress = new CmResourceAddress(PASSTHROUGH_OPERATIONAL.datastoreName, 'ch-1', 'parent/child')
-            objectUnderTest.getResourceDataForCmHandle(cmResourceAddress, '(a=1,b=2)', 'my-client-topic', false, null)
-        then: 'dmi resource data url is encoded correctly'
-            new PollingConditions().within(5, () -> {
-                assert dmiDispatcher.dmiResourceDataUrl == '/dmi/v1/ch/ch-1/data/ds/ncmp-datastore%3Apassthrough-operational?resourceIdentifier=parent%2Fchild&options=%28a%3D1%2Cb%3D2%29&topic=my-client-topic'
-            })
+    def 'AlternateId in pass-through data operations.'() {
+        given:
+            def url = '/ncmp/v1/ch/alternateId/data/ds/ncmp-datastore:passthrough-running'
+        when: 'a pass-through data request is sent to NCMP'
+            def response = mvc.perform(get(url)
+                    .queryParam('resourceIdentifier', 'my-resource-id')
+                    .contentType(MediaType.APPLICATION_JSON))
+                    .andReturn().response
+        then: 'response status is Ok'
+            assert response.status == HttpStatus.OK.value()
     }
+
+
+
 }
