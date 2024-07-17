@@ -106,6 +106,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "75b341b4_8b7533a8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-17T10:09:25Z",
+      "side": 1,
+      "message": "Nb. \\\\\\\\] can be replaced with ]",
+      "range": {
+        "startLine": 56,
+        "startChar": 107,
+        "endLine": 56,
+        "endChar": 109
+      },
+      "revId": "4675ed281e35502ff58984ba92fbac4a3e0c5fab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "10bb0c7c_20fa76c1",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
         "patchSetId": 5
@@ -123,6 +146,23 @@
         "endLine": 84,
         "endChar": 117
       },
+      "revId": "4675ed281e35502ff58984ba92fbac4a3e0c5fab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "566f9b5d_5249face",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-17T10:09:25Z",
+      "side": 1,
+      "message": "Nb. Remove unnecessary line break",
       "revId": "4675ed281e35502ff58984ba92fbac4a3e0c5fab",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -232,6 +272,30 @@
       "writtenOn": "2024-07-17T09:55:31Z",
       "side": 1,
       "message": "You always return an DmiCmSubscriptionTuple with empty HashMap (s) !",
+      "range": {
+        "startLine": 212,
+        "startChar": 19,
+        "endLine": 212,
+        "endChar": 89
+      },
+      "revId": "4675ed281e35502ff58984ba92fbac4a3e0c5fab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fa89cf2_f7459cbd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-17T10:09:25Z",
+      "side": 1,
+      "message": "I think the maps are populated on line 209 using whichever \u0027targetMap\u0027 was selected on line 206.",
+      "parentUuid": "8355404b_ddec94f0",
       "range": {
         "startLine": 212,
         "startChar": 19,
