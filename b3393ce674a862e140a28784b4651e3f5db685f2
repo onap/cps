@@ -33,6 +33,92 @@
       "message": "recheck",
       "revId": "b3393ce674a862e140a28784b4651e3f5db685f2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c85b368_69688aed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-07-17T10:34:19Z",
+      "side": 1,
+      "message": "Internally discussed the proposal internally and also updated on the fly few days back.\nhttps://wiki.onap.org/display/DW/CPS-2310%3A+Refactoring+of+CPS+Delta+APIs#CPS2310:RefactoringofCPSDeltaAPIs-Alternative2:OneEndpointwithTwoOperations\n\nSo made comments corresponding to this.",
+      "revId": "b3393ce674a862e140a28784b4651e3f5db685f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0696a029_5054fd47",
+        "filename": "cps-rest/docs/openapi/cpsDataV2.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-07-17T10:34:19Z",
+      "side": 1,
+      "message": "sourceAnchorNameInPath",
+      "range": {
+        "startLine": 58,
+        "startChar": 53,
+        "endLine": 58,
+        "endChar": 69
+      },
+      "revId": "b3393ce674a862e140a28784b4651e3f5db685f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7d4dd85_a858ea42",
+        "filename": "cps-rest/docs/openapi/cpsDataV2.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-07-17T10:34:19Z",
+      "side": 1,
+      "message": "targetAnchorNameInPath\n( as per the update in the proposal )",
+      "range": {
+        "startLine": 59,
+        "startChar": 53,
+        "endLine": 59,
+        "endChar": 76
+      },
+      "revId": "b3393ce674a862e140a28784b4651e3f5db685f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "caa47734_d30ed85b",
+        "filename": "cps-rest/docs/openapi/cpsDataV2.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-07-17T10:34:19Z",
+      "side": 1,
+      "message": "sourceAnchorNameInPath",
+      "range": {
+        "startLine": 87,
+        "startChar": 53,
+        "endLine": 87,
+        "endChar": 69
+      },
+      "revId": "b3393ce674a862e140a28784b4651e3f5db685f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
