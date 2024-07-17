@@ -26,6 +26,8 @@ package org.onap.cps.ncmp.impl.data
 
 import org.onap.cps.ncmp.api.data.models.CmResourceAddress
 import org.onap.cps.ncmp.api.data.models.DataOperationRequest
+import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
+import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
 import org.onap.cps.spi.model.DataNode
 import reactor.core.publisher.Mono
 import spock.lang.Specification
@@ -41,8 +43,10 @@ class NetworkCmProxyFacadeSpec extends Specification {
     def mockDmiDataOperations = Mock(DmiDataOperations)
     def mockNcmpCachedResourceRequestHandler = Mock(NcmpCachedResourceRequestHandler)
     def mockNcmpPassthroughResourceRequestHandler = Mock(NcmpPassthroughResourceRequestHandler)
+    def mockAlternateIdMatcher =  Mock(AlternateIdMatcher)
+    def mockInventoryPersistence = Mock(InventoryPersistence)
 
-    def objectUnderTest = new NetworkCmProxyFacade(mockNcmpCachedResourceRequestHandler, mockNcmpPassthroughResourceRequestHandler, mockDmiDataOperations)
+    def objectUnderTest = new NetworkCmProxyFacade(mockNcmpCachedResourceRequestHandler, mockNcmpPassthroughResourceRequestHandler, mockDmiDataOperations, mockAlternateIdMatcher, mockInventoryPersistence)
 
     def NO_TOPIC = null
 
@@ -104,5 +108,17 @@ class NetworkCmProxyFacadeSpec extends Specification {
             1 * mockDmiDataOperations.writeResourceDataPassThroughRunningFromDmi('testCmHandle', 'testResourceId', UPDATE, '{some-json}', 'application/json', 'authorization')
     }
 
-
+    def 'Get cmHandle id from passed cmHandleReference (cmHandleId scenario)' () {
+        when: 'a cmHandleCmReference is passed in'
+            def result = objectUnderTest.getCmHandleId(cmHandleReference)
+        then: 'correct methods are called'
+            mockInventoryPersistence.isExistingCmHandleId(cmHandleReference) >> inventoryPersistenceResponse
+            mockAlternateIdMatcher.getCmHandleId(cmHandleReference) >> alternateIdMatcherResponse
+        and: 'correct result is returned'
+            assert result == cmHandleReference
+        where:
+            cmHandleReference | inventoryPersistenceResponse | alternateIdMatcherResponse
+            'ch-1'            |  true                        |  ''
+            'alt-1'           |  false                       |  'alt-1'
+    }
 }
