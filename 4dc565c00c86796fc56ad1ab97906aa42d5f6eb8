@@ -46,6 +46,30 @@
       },
       "revId": "4dc565c00c86796fc56ad1ab97906aa42d5f6eb8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a9f493f_b8546e3c",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/CmHandleResourceDataSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-17T09:14:33Z",
+      "side": 1,
+      "message": "Thanks for suggestion. I refactored it to simplify it.",
+      "parentUuid": "73d347e6_c4933b0e",
+      "range": {
+        "startLine": 41,
+        "startChar": 70,
+        "endLine": 51,
+        "endChar": 14
+      },
+      "revId": "4dc565c00c86796fc56ad1ab97906aa42d5f6eb8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
