@@ -32,6 +32,7 @@ import org.onap.cps.ncmp.impl.dmi.DmiOperationsBaseSpec
 import org.onap.cps.ncmp.impl.dmi.DmiProperties
 import org.onap.cps.ncmp.impl.dmi.UrlTemplateParameters
 import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
+import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
@@ -76,6 +77,9 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
     @SpringBean
     PolicyExecutor policyExecutor = Mock()
 
+    @SpringBean
+    AlternateIdMatcher alternateIdMatcher = Mock()
+
     def 'call get resource data for #expectedDataStore from DMI without topic #scenario.'() {
         given: 'a cm handle for #cmHandleId'
             mockYangModelCmHandleRetrieval(dmiProperties)
@@ -86,6 +90,7 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             mockDmiRestClient.asynchronousPostOperationWithJsonData(DATA, expectedUrlTemplateWithVariables, expectedJson, READ, NO_AUTH_HEADER) >> responseFromDmi
         when: 'get resource data is invoked'
             def cmResourceAddress = new CmResourceAddress(expectedDataStore.datastoreName, cmHandleId, resourceIdentifier)
+            alternateIdMatcher.getCmHandleId(cmHandleId) >> cmHandleId
             def result = objectUnderTest.getResourceDataFromDmi(cmResourceAddress, expectedOptions, NO_TOPIC, NO_REQUEST_ID, NO_AUTH_HEADER).block()
         then: 'the result is the response from the DMI service'
             assert result.body == '{some-key:some-value}'

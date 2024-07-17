@@ -33,6 +33,7 @@ import org.onap.cps.ncmp.api.data.models.CmResourceAddress;
 import org.onap.cps.ncmp.api.data.models.DataOperationRequest;
 import org.onap.cps.ncmp.api.data.models.DatastoreType;
 import org.onap.cps.ncmp.api.data.models.OperationType;
+import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher;
 import org.onap.cps.spi.model.DataNode;
 import org.springframework.stereotype.Service;
 
@@ -44,34 +45,35 @@ public class NetworkCmProxyFacade {
     private final NcmpCachedResourceRequestHandler ncmpCachedResourceRequestHandler;
     private final NcmpPassthroughResourceRequestHandler ncmpPassthroughResourceRequestHandler;
     private final DmiDataOperations dmiDataOperations;
+    private final AlternateIdMatcher alternateIdMatcher;
 
     /**
      * Fetches resource data for a given data store using DMI (Data Management Interface).
      * This method retrieves data based on the provided CmResourceAddress and additional query parameters.
      * It supports asynchronous processing and handles authorization if required.
      *
-     * @param cmResourceAddress  The target data store, including the CM handle and resource identifier.
-     *                           This parameter must not be null.
-     * @param options            Additional query parameters that may influence the data retrieval process,
-     *                           such as filters or limits. This parameter can be null.
-     * @param topic              The topic name for triggering asynchronous responses. If specified,
-     *                           the response will be sent to this topic. This parameter can be null.
-     * @param includeDescendants include (all) descendants or not
-     * @param authorization      The contents of the Authorization header. This parameter can be null
-     *                           if authorization is not required.
+     * @param cmResourceAddress     The target data store, including the CM handle and resource identifier.
+     *                              This parameter must not be null.
+     * @param optionsParamInQuery   Additional query parameters that may influence the data retrieval process,
+     *                              such as filters or limits. This parameter can be null.
+     * @param topicParamInQuery     The topic name for triggering asynchronous responses. If specified,
+     *                              the response will be sent to this topic. This parameter can be null.
+     * @param includeDescendants    include (all) descendants or not
+     * @param authorization         The contents of the Authorization header. This parameter can be null
+     *                              if authorization is not required.
      * @return the result object, depends on use op topic. With topic a map object with request id is returned
      *         otherwise the result of the request.
      */
     public Object getResourceDataForCmHandle(final CmResourceAddress cmResourceAddress,
-                                             final String options,
-                                             final String topic,
+                                             final String optionsParamInQuery,
+                                             final String topicParamInQuery,
                                              final Boolean includeDescendants,
                                              final String authorization) {
-        final NcmpDatastoreRequestHandler ncmpDatastoreRequestHandler
-            = getNcmpDatastoreRequestHandler(cmResourceAddress.datastoreName());
 
-        return ncmpDatastoreRequestHandler.executeRequest(cmResourceAddress, options, topic, includeDescendants,
-                                                          authorization);
+        final NcmpDatastoreRequestHandler ncmpDatastoreRequestHandler
+            = getNcmpDatastoreRequestHandler(cmResourceAddress.getDatastoreName());
+        return ncmpDatastoreRequestHandler.executeRequest(cmResourceAddress, optionsParamInQuery,
+            topicParamInQuery, includeDescendants, authorization);
     }
 
     /**
@@ -116,7 +118,6 @@ public class NetworkCmProxyFacade {
         return dmiDataOperations.writeResourceDataPassThroughRunningFromDmi(cmHandleId, resourceIdentifier,
             operationType, requestData, dataType, authorization);
     }
-
 
     private NcmpDatastoreRequestHandler getNcmpDatastoreRequestHandler(final String datastoreName) {
         if (OPERATIONAL.equals(DatastoreType.fromDatastoreName(datastoreName))) {

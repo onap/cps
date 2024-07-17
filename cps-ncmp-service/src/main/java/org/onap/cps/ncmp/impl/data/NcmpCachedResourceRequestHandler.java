@@ -61,9 +61,9 @@ public class NcmpCachedResourceRequestHandler extends NcmpDatastoreRequestHandle
                                                       final String authorization) {
         final FetchDescendantsOption fetchDescendantsOption = getFetchDescendantsOption(includeDescendants);
 
-        final DataNode dataNode = cpsDataService.getDataNodes(cmResourceAddress.datastoreName(),
-            cmResourceAddress.cmHandleId(),
-            cmResourceAddress.resourceIdentifier(),
+        final DataNode dataNode = cpsDataService.getDataNodes(cmResourceAddress.getDatastoreName(),
+            cmResourceAddress.getResolvedCmHandleId(),
+            cmResourceAddress.getResourceIdentifier(),
             fetchDescendantsOption).iterator().next();
         return Mono.justOrEmpty(dataNode);
     }

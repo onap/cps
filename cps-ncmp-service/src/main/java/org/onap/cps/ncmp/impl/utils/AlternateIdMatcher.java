@@ -56,6 +56,21 @@ public class AlternateIdMatcher {
         throw new NoAlternateIdMatchFoundException(alternateId);
     }
 
+    /**
+     * Get cm handle Id from given cmHandleReference.
+     *
+     * @param cmHandleReference alternate ID
+     * @return cm handle id string
+     */
+    public String getCmHandleId(final String cmHandleReference) {
+        if (inventoryPersistence.isExistingCmHandleId(cmHandleReference)) {
+            return cmHandleReference;
+        } else {
+            return inventoryPersistence.getCmHandleDataNodeByAlternateId(cmHandleReference)
+              .getLeaves().get("id").toString();
+        }
+    }
+
     private String getParentPath(final String path, final String separator) {
         final int lastSeparatorIndex = path.lastIndexOf(separator);
         return lastSeparatorIndex < 0 ? "" : path.substring(0, lastSeparatorIndex);
