@@ -34,6 +34,7 @@ import org.onap.cps.ncmp.api.inventory.NetworkCmProxyInventoryFacade
 import org.onap.cps.ncmp.impl.data.NcmpCachedResourceRequestHandler
 import org.onap.cps.ncmp.impl.data.NcmpPassthroughResourceRequestHandler
 import org.onap.cps.ncmp.impl.data.NetworkCmProxyFacade
+import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
 import org.onap.cps.ncmp.rest.util.CmHandleStateMapper
 import org.onap.cps.ncmp.rest.util.DataOperationRequestMapper
 import org.onap.cps.ncmp.rest.util.DeprecationHelper
@@ -75,6 +76,9 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
 
     @SpringBean
     NetworkCmProxyInventoryFacade mockNetworkCmProxyInventoryFacade = Mock()
+
+    @SpringBean
+    AlternateIdMatcher mockAlternateIdMatcher = Mock()
 
     @SpringBean
     JsonObjectMapper stubbedJsonObjectMapper = Stub()

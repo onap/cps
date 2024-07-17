@@ -45,6 +45,7 @@ import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryApiParameters;
 import org.onap.cps.ncmp.api.inventory.models.CompositeState;
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.impl.data.NetworkCmProxyFacade;
+import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher;
 import org.onap.cps.ncmp.rest.api.NetworkCmProxyApi;
 import org.onap.cps.ncmp.rest.model.CmHandlePublicProperties;
 import org.onap.cps.ncmp.rest.model.CmHandleQueryParameters;
@@ -81,6 +82,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     private final NcmpRestInputMapper ncmpRestInputMapper;
     private final CmHandleStateMapper cmHandleStateMapper;
     private final DataOperationRequestMapper dataOperationRequestMapper;
+    private final AlternateIdMatcher alternateIdMatcher;
 
     /**
      * Get resource data from datastore.
@@ -103,9 +105,12 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                              final String topicParamInQuery,
                                                              final Boolean includeDescendants,
                                                              final String authorization) {
-        final CmResourceAddress cmResourceAddress = new CmResourceAddress(datastoreName, cmHandle, resourceIdentifier);
+
+        final String cmHandleId = cmHandleOrAlternateId(cmHandle);
+        final CmResourceAddress cmResourceAddress = new CmResourceAddress(datastoreName,
+            cmHandleId, resourceIdentifier);
         final Object result = networkCmProxyFacade.getResourceDataForCmHandle(cmResourceAddress, optionsParamInQuery,
-                                                               topicParamInQuery, includeDescendants, authorization);
+            topicParamInQuery, includeDescendants, authorization);
         return ResponseEntity.ok(result);
     }
 
@@ -409,6 +414,14 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
 
         if (acceptableDataStoreType != datastoreType) {
             throw new InvalidDatastoreException(requestedDatastoreName + " is not supported");
+        }
+    }
+
+    private String cmHandleOrAlternateId(final String cmHandle) {
+        if (alternateIdMatcher.isExistingCmHandleId(cmHandle)) {
+            return cmHandle;
+        } else {
+            return alternateIdMatcher.getCmHandleIdFromAlternateId(cmHandle);
         }
     }
 
