@@ -33,6 +33,282 @@
       "message": "much better now.\nwill proceed to look at the test now.\nyou can also reach out to others for the review.",
       "revId": "4675ed281e35502ff58984ba92fbac4a3e0c5fab",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f224eac_fd483432",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/models/DmiCmSubscriptionTuple.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-17T09:55:31Z",
+      "side": 1,
+      "message": "Could you please explain more on \u0027others\u0027 since I dont understand",
+      "range": {
+        "startLine": 30,
+        "startChar": 95,
+        "endLine": 30,
+        "endChar": 101
+      },
+      "revId": "4675ed281e35502ff58984ba92fbac4a3e0c5fab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "041800fa_792257ab",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/models/DmiCmSubscriptionTuple.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-17T09:55:31Z",
+      "side": 1,
+      "message": "I would avoid to use words like \u0027tuple\u0027 since its more generic than what we need here.",
+      "range": {
+        "startLine": 32,
+        "startChar": 31,
+        "endLine": 32,
+        "endChar": 36
+      },
+      "revId": "4675ed281e35502ff58984ba92fbac4a3e0c5fab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08a20560_610d86f0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/models/DmiCmSubscriptionTuple.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-17T09:55:31Z",
+      "side": 1,
+      "message": "Same as above dont understand what does other mean?",
+      "range": {
+        "startLine": 33,
+        "startChar": 83,
+        "endLine": 33,
+        "endChar": 87
+      },
+      "revId": "4675ed281e35502ff58984ba92fbac4a3e0c5fab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10bb0c7c_20fa76c1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-17T09:55:31Z",
+      "side": 1,
+      "message": "The main logic seems to depends on this line of the code where it always returns DmiCmSubscriptionTuple containing two emtpy-HashMap, please revisit.",
+      "range": {
+        "startLine": 84,
+        "startChar": 7,
+        "endLine": 84,
+        "endChar": 117
+      },
+      "revId": "4675ed281e35502ff58984ba92fbac4a3e0c5fab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7068a216_9bf839d2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-17T09:55:31Z",
+      "side": 1,
+      "message": "Cache is based on the previous dmiCmSubscriptionTuple but it contains empty hashsets.",
+      "range": {
+        "startLine": 85,
+        "startChar": 1,
+        "endLine": 86,
+        "endChar": 81
+      },
+      "revId": "4675ed281e35502ff58984ba92fbac4a3e0c5fab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41ad3ef4_2430ad85",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-17T09:55:31Z",
+      "side": 1,
+      "message": "this will always return an empty hash set.",
+      "range": {
+        "startLine": 89,
+        "startChar": 24,
+        "endLine": 89,
+        "endChar": 69
+      },
+      "revId": "4675ed281e35502ff58984ba92fbac4a3e0c5fab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0dbf3525_08c6440e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-17T09:55:31Z",
+      "side": 1,
+      "message": "The main logic based on this method does nothing since lastSubscribersPerDmi never populated",
+      "range": {
+        "startLine": 194,
+        "startChar": 60,
+        "endLine": 194,
+        "endChar": 81
+      },
+      "revId": "4675ed281e35502ff58984ba92fbac4a3e0c5fab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb44fc72_90c924c8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-17T09:55:31Z",
+      "side": 1,
+      "message": "The main logic based on this method does nothing since otherSubscribersPerDmi never populated",
+      "range": {
+        "startLine": 195,
+        "startChar": 60,
+        "endLine": 195,
+        "endChar": 82
+      },
+      "revId": "4675ed281e35502ff58984ba92fbac4a3e0c5fab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8355404b_ddec94f0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-17T09:55:31Z",
+      "side": 1,
+      "message": "You always return an DmiCmSubscriptionTuple with empty HashMap (s) !",
+      "range": {
+        "startLine": 212,
+        "startChar": 19,
+        "endLine": 212,
+        "endChar": 89
+      },
+      "revId": "4675ed281e35502ff58984ba92fbac4a3e0c5fab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb3cd635_e4237e2d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-17T09:55:31Z",
+      "side": 1,
+      "message": "unused import",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 54
+      },
+      "revId": "4675ed281e35502ff58984ba92fbac4a3e0c5fab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cebc589d_e797e979",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-17T09:55:31Z",
+      "side": 1,
+      "message": "NB: I would avoid test private methods.",
+      "range": {
+        "startLine": 163,
+        "startChar": 41,
+        "endLine": 163,
+        "endChar": 80
+      },
+      "revId": "4675ed281e35502ff58984ba92fbac4a3e0c5fab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad05d59a_28b3d501",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-17T09:55:31Z",
+      "side": 1,
+      "message": "NB: I would avoid test private methods.",
+      "range": {
+        "startLine": 175,
+        "startChar": 41,
+        "endLine": 175,
+        "endChar": 70
+      },
+      "revId": "4675ed281e35502ff58984ba92fbac4a3e0c5fab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
