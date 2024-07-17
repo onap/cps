@@ -65,7 +65,7 @@ import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DATASPACE_NA
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK, classes = [CpsDataspaceService])
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = [CpsDataspaceService])
 @Testcontainers
 @EnableAutoConfiguration
 @AutoConfigureMockMvc
@@ -131,6 +131,7 @@ abstract class CpsIntegrationSpecBase extends Specification {
     def DMI_URL = null
 
     static NO_MODULE_SET_TAG = ''
+    static NO_ALTERNATE_ID = ''
     static GENERAL_TEST_DATASPACE = 'generalTestDataspace'
     static BOOKSTORE_SCHEMA_SET = 'bookstoreSchemaSet'
     static MODULE_SYNC_WAIT_TIME_IN_SECONDS = 10
@@ -216,8 +217,8 @@ abstract class CpsIntegrationSpecBase extends Specification {
 
     // *** NCMP Integration Test Utilities ***
 
-    def registerCmHandle(dmiPlugin, cmHandleId, moduleSetTag) {
-        def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: cmHandleId, moduleSetTag: moduleSetTag)
+    def registerCmHandle(dmiPlugin, cmHandleId, moduleSetTag, alternateId) {
+        def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: cmHandleId, moduleSetTag: moduleSetTag, alternateId: alternateId)
         networkCmProxyInventoryFacade.updateDmiRegistrationAndSyncModule(new DmiPluginRegistration(dmiPlugin: dmiPlugin, createdCmHandles: [cmHandleToCreate]))
         new PollingConditions().within(MODULE_SYNC_WAIT_TIME_IN_SECONDS, () -> {
             CmHandleState.READY == networkCmProxyInventoryFacade.getCmHandleCompositeState(cmHandleId).cmHandleState
