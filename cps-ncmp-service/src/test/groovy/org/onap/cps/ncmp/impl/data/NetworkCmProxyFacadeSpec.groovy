@@ -26,6 +26,7 @@ package org.onap.cps.ncmp.impl.data
 
 import org.onap.cps.ncmp.api.data.models.CmResourceAddress
 import org.onap.cps.ncmp.api.data.models.DataOperationRequest
+import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
 import org.onap.cps.spi.model.DataNode
 import reactor.core.publisher.Mono
 import spock.lang.Specification
@@ -41,8 +42,9 @@ class NetworkCmProxyFacadeSpec extends Specification {
     def mockDmiDataOperations = Mock(DmiDataOperations)
     def mockNcmpCachedResourceRequestHandler = Mock(NcmpCachedResourceRequestHandler)
     def mockNcmpPassthroughResourceRequestHandler = Mock(NcmpPassthroughResourceRequestHandler)
+    def mockAlternateIdMatcher =  Mock(AlternateIdMatcher)
 
-    def objectUnderTest = new NetworkCmProxyFacade(mockNcmpCachedResourceRequestHandler, mockNcmpPassthroughResourceRequestHandler, mockDmiDataOperations)
+    def objectUnderTest = new NetworkCmProxyFacade(mockNcmpCachedResourceRequestHandler, mockNcmpPassthroughResourceRequestHandler, mockDmiDataOperations, mockAlternateIdMatcher)
 
     def NO_TOPIC = null
 
@@ -87,6 +89,7 @@ class NetworkCmProxyFacadeSpec extends Specification {
         given: 'a cm resource address for datastore operational'
             def cmResourceAddress = new CmResourceAddress('ncmp-datastore:operational', 'some CM Handle', 'some resource Id')
         and: 'get resource data from DMI is called'
+            mockAlternateIdMatcher.getCmHandleId('some CM Handle') >> 'some CM Handle'
             mockNcmpCachedResourceRequestHandler.executeRequest(cmResourceAddress, 'options', NO_TOPIC, false, 'authorization') >>
                     Mono.just('dmi response')
         when: 'get resource data operational for the given cm resource address is called'
@@ -103,6 +106,4 @@ class NetworkCmProxyFacadeSpec extends Specification {
         then: 'DMI called with correct data'
             1 * mockDmiDataOperations.writeResourceDataPassThroughRunningFromDmi('testCmHandle', 'testResourceId', UPDATE, '{some-json}', 'application/json', 'authorization')
     }
-
-
 }

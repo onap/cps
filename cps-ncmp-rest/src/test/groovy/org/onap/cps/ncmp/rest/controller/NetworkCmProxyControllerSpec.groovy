@@ -41,6 +41,7 @@ import org.onap.cps.ncmp.impl.data.NetworkCmProxyFacade
 import org.onap.cps.ncmp.impl.inventory.DataStoreSyncState
 import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
 import org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory
+import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
 import org.onap.cps.ncmp.rest.model.DataOperationDefinition
 import org.onap.cps.ncmp.rest.model.DataOperationRequest
 import org.onap.cps.ncmp.rest.util.CmHandleStateMapper
@@ -94,6 +95,9 @@ class NetworkCmProxyControllerSpec extends Specification {
     NetworkCmProxyInventoryFacade mockNetworkCmProxyInventoryFacade = Mock()
 
     @SpringBean
+    AlternateIdMatcher mockalternateIdMatcher = Mock()
+
+    @SpringBean
     ObjectMapper objectMapper = new ObjectMapper()
 
     @SpringBean
@@ -136,12 +140,10 @@ class NetworkCmProxyControllerSpec extends Specification {
     def 'Get Resource Data from pass-through operational.'() {
         given: 'resource data url'
             def getUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-operational?resourceIdentifier=parent/child&options=(a=1,b=2)"
-        and: 'the expected cm resource address'
-            def expectedCmResourceAddress = new CmResourceAddress(PASSTHROUGH_OPERATIONAL.datastoreName, 'testCmHandle', 'parent/child')
         when: 'get data resource request is performed'
             def response = mvc.perform(get(getUrl).contentType(MediaType.APPLICATION_JSON)).andReturn().response
         then: 'the NCMP data service is called with correct parameters'
-            1 * mockNetworkCmProxyFacade.getResourceDataForCmHandle(expectedCmResourceAddress, '(a=1,b=2)', NO_TOPIC, false, NO_AUTH_HEADER) >> Mono.just(new ResponseEntity<Object>(HttpStatus.OK))
+            1 * mockNetworkCmProxyFacade.getResourceDataForCmHandle(_, '(a=1,b=2)', NO_TOPIC, false, NO_AUTH_HEADER) >> Mono.just(new ResponseEntity<Object>(HttpStatus.OK))
         and: 'response status is Ok'
             assert response.status == HttpStatus.OK.value()
     }
@@ -150,11 +152,10 @@ class NetworkCmProxyControllerSpec extends Specification {
         given: 'resource data url'
             def getUrl = "$ncmpBasePathV1/ch/h123/data/ds/ncmp-datastore:operational?resourceIdentifier=parent/child${additionalUrlParam}"
         and: 'the expected cm resource address'
-            def expectedCmResourceAddress = new CmResourceAddress('ncmp-datastore:operational', 'h123', 'parent/child')
         when: 'get data resource request is performed'
             def response = mvc.perform(get(getUrl).contentType(MediaType.APPLICATION_JSON)).andReturn().response
         then: 'the NCMP data service is called with correct parameters'
-            1 * mockNetworkCmProxyFacade.getResourceDataForCmHandle(expectedCmResourceAddress, NO_OPTIONS, NO_TOPIC, expectedIncludeDescendants, NO_AUTH_HEADER)
+            1 * mockNetworkCmProxyFacade.getResourceDataForCmHandle(_, NO_OPTIONS, NO_TOPIC, expectedIncludeDescendants, NO_AUTH_HEADER)
         and: 'response status is OK'
             assert response.status == HttpStatus.OK.value()
         where: 'the following parameters are used'
@@ -206,8 +207,7 @@ class NetworkCmProxyControllerSpec extends Specification {
         given: 'resource data url'
             def getUrl = "$ncmpBasePathV1/ch/ch-1/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=$resourceIdentifier&options=(a=1)"
         and: 'ncmp service returns json object'
-            def expectedCmResourceAddress = new CmResourceAddress(PASSTHROUGH_RUNNING.datastoreName, 'ch-1', resourceIdentifier)
-            1 * mockNetworkCmProxyFacade.getResourceDataForCmHandle(expectedCmResourceAddress, '(a=1)', NO_TOPIC, false, NO_AUTH_HEADER)
+            1 * mockNetworkCmProxyFacade.getResourceDataForCmHandle(_, '(a=1)', NO_TOPIC, false, NO_AUTH_HEADER)
                     >> new ResponseEntity<Object>('{valid-json}', HttpStatus.OK)
         when: 'get data resource request is performed'
             def response = mvc.perform(get(getUrl).contentType(MediaType.APPLICATION_JSON)).andReturn().response
