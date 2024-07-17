@@ -37,7 +37,7 @@ class BearerTokenPassthroughSpec extends CpsIntegrationSpecBase {
 
     def setup() {
         dmiDispatcher.moduleNamesPerCmHandleId['ch-1'] = ['M1', 'M2']
-        registerCmHandle(DMI_URL, 'ch-1', NO_MODULE_SET_TAG)
+        registerCmHandle(DMI_URL, 'ch-1', NO_MODULE_SET_TAG, NO_ALTERNATE_ID)
     }
 
     def cleanup() {

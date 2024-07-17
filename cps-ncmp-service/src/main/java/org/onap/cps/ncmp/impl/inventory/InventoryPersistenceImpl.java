@@ -195,6 +195,16 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
         return cpsAnchorService.queryAnchorNames(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, moduleNamesForQuery);
     }
 
+    @Override
+    public boolean isExistingCmHandleId(final String cmHandle) {
+        try {
+            getCmHandleDataNodeByCmHandleId(cmHandle).iterator().next();
+            return true;
+        } catch (final DataNodeNotFoundException exception) {
+            return false;
+        }
+    }
+
     private static String getXPathForCmHandleById(final String cmHandleId) {
         return NCMP_DMI_REGISTRY_PARENT + "/cm-handles[@id='" + cmHandleId + "']";
     }

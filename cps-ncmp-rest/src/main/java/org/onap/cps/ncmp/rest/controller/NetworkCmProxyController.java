@@ -45,6 +45,8 @@ import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryApiParameters;
 import org.onap.cps.ncmp.api.inventory.models.CompositeState;
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.impl.data.NetworkCmProxyFacade;
+import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
+import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher;
 import org.onap.cps.ncmp.rest.api.NetworkCmProxyApi;
 import org.onap.cps.ncmp.rest.model.CmHandlePublicProperties;
 import org.onap.cps.ncmp.rest.model.CmHandleQueryParameters;
@@ -81,12 +83,14 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     private final NcmpRestInputMapper ncmpRestInputMapper;
     private final CmHandleStateMapper cmHandleStateMapper;
     private final DataOperationRequestMapper dataOperationRequestMapper;
+    private final AlternateIdMatcher alternateIdMatcher;
+    private final InventoryPersistence inventoryPersistence;
 
     /**
      * Get resource data from datastore.
      *
      * @param datastoreName        name of the datastore
-     * @param cmHandle             cm handle identifier
+     * @param cmHandle             cm handle or alternate id identifier
      * @param resourceIdentifier   resource identifier
      * @param optionsParamInQuery  options query parameter
      * @param topicParamInQuery    topic query parameter
@@ -103,9 +107,12 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                              final String topicParamInQuery,
                                                              final Boolean includeDescendants,
                                                              final String authorization) {
-        final CmResourceAddress cmResourceAddress = new CmResourceAddress(datastoreName, cmHandle, resourceIdentifier);
+
+        final String cmHandleId = getCmHandleId(cmHandle);
+        final CmResourceAddress cmResourceAddress = new CmResourceAddress(datastoreName,
+            cmHandleId, resourceIdentifier);
         final Object result = networkCmProxyFacade.getResourceDataForCmHandle(cmResourceAddress, optionsParamInQuery,
-                                                               topicParamInQuery, includeDescendants, authorization);
+            topicParamInQuery, includeDescendants, authorization);
         return ResponseEntity.ok(result);
     }
 
@@ -409,6 +416,14 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
 
         if (acceptableDataStoreType != datastoreType) {
             throw new InvalidDatastoreException(requestedDatastoreName + " is not supported");
+        }
+    }
+
+    private String getCmHandleId(final String cmHandle) {
+        if (inventoryPersistence.isExistingCmHandleId(cmHandle)) {
+            return cmHandle;
+        } else {
+            return alternateIdMatcher.getCmHandleId(cmHandle);
         }
     }
 
