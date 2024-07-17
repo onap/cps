@@ -63,7 +63,7 @@ public class DmiSubJobRequestHandler {
         final List<SubJobWriteResponse> subJobWriteResponses = new ArrayList<>(dmiWriteOperationsPerProducerKey.size());
         dmiWriteOperationsPerProducerKey.forEach((producerKey, dmi3ggpWriteOperations) -> {
             final SubJobWriteRequest subJobWriteRequest = new SubJobWriteRequest(dataJobMetadata.dataAcceptType(),
-                    dataJobMetadata.dataContentType(), dataJobId, dmi3ggpWriteOperations);
+                    dataJobMetadata.dataContentType(), producerKey.dataProducerIdentifier(), dmi3ggpWriteOperations);
 
             final UrlTemplateParameters urlTemplateParameters = getUrlTemplateParameters(dataJobId, producerKey);
             final ResponseEntity<Object> responseEntity = dmiRestClient.synchronousPostOperationWithJsonData(
