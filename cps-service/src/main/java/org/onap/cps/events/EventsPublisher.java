@@ -28,6 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.header.Headers;
 import org.apache.kafka.common.header.internals.RecordHeaders;
+import org.springframework.beans.factory.DisposableBean;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Service;
@@ -40,7 +41,7 @@ import org.springframework.util.SerializationUtils;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class EventsPublisher<T> {
+public class EventsPublisher<T> implements DisposableBean {
 
     /**
      * KafkaTemplate for legacy (non-cloud) events.
@@ -49,6 +50,17 @@ public class EventsPublisher<T> {
     private final KafkaTemplate<String, T> legacyKafkaEventTemplate;
 
     private final KafkaTemplate<String, CloudEvent> cloudEventKafkaTemplate;
+
+    @Override
+    public void destroy() {
+        log.info("{}::destroy", this.getClass().getCanonicalName());
+        if (this.legacyKafkaEventTemplate != null) {
+            this.legacyKafkaEventTemplate.destroy();
+        }
+        if (this.cloudEventKafkaTemplate != null) {
+            this.cloudEventKafkaTemplate.destroy();
+        }
+    }
 
     /**
      * Generic CloudEvent publisher.
