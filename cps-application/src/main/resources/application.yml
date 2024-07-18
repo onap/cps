@@ -180,12 +180,10 @@ management:
                 enabled: true
 
 logging:
-    format: json
+    format: text
     level:
-        org:
-            springframework: INFO
-            onap:
-                cps: INFO
+        ROOT: DEBUG
+
 ncmp:
     dmi:
         httpclient:
