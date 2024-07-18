@@ -22,6 +22,30 @@
       },
       "revId": "f4f2fe760ea94feca312d80a1b2b6719aae27c95",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69a6a311_adb24626",
+        "filename": "integration-test/src/test/resources/application.yml",
+        "patchSetId": 15
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-07-18T12:40:02Z",
+      "side": 1,
+      "message": "it is unused, but Toine asked me to keep the stub related code for reference.\nbut since DmiStubTestContainer has this value hardcoded in it, i guss this could be removed",
+      "parentUuid": "6ffd7ef8_a8799fbd",
+      "range": {
+        "startLine": 112,
+        "startChar": 63,
+        "endLine": 114,
+        "endChar": 75
+      },
+      "revId": "f4f2fe760ea94feca312d80a1b2b6719aae27c95",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
