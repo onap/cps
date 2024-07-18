@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f614e1b_4c4c273b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-18T14:58:33Z",
+      "side": 1,
+      "message": "Should the InstanceAlreadyExistsException be handled seperately, e.g. using retry?",
+      "range": {
+        "startLine": 77,
+        "startChar": 27,
+        "endLine": 77,
+        "endChar": 36
+      },
+      "revId": "37f7168c1bfc7d748b10a091d48793fc4f2c1bcf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
