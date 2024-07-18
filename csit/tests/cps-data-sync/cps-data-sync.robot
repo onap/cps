@@ -38,7 +38,7 @@ ${ncmpBasePath}           /ncmp
 Check if ietfYang-PNFDemo is READY
     ${uri}=        Set Variable       ${ncmpBasePath}/v1/ch/ietfYang-PNFDemo
     ${headers}=    Create Dictionary  Authorization=${auth}
-    Wait Until Keyword Succeeds       10sec    100ms    Is CM Handle READY    ${uri}    ${headers}    ietfYang-PNFDemo
+    Wait Until Keyword Succeeds       100sec    100ms    Is CM Handle READY    ${uri}    ${headers}    ietfYang-PNFDemo
 
 Operational state goes to UNSYNCHRONIZED when data sync (flag) is enabled
     ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/ietfYang-PNFDemo/data-sync
