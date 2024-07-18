@@ -23,7 +23,6 @@ package org.onap.cps.events;
 import io.cloudevents.CloudEvent;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.header.Headers;
@@ -39,7 +38,6 @@ import org.springframework.util.SerializationUtils;
 
 @Slf4j
 @Service
-@RequiredArgsConstructor
 public class EventsPublisher<T> {
 
     /**
@@ -49,6 +47,18 @@ public class EventsPublisher<T> {
     private final KafkaTemplate<String, T> legacyKafkaEventTemplate;
 
     private final KafkaTemplate<String, CloudEvent> cloudEventKafkaTemplate;
+
+    /**
+     * EventsPublisher constructor.
+     * @param legacyKafkaEventTemplate legacyKafkaEventTemplate
+     * @param cloudEventKafkaTemplate  cloudEventKafkaTemplate
+     */
+    public EventsPublisher(final KafkaTemplate<String, T> legacyKafkaEventTemplate,
+                           final KafkaTemplate<String, CloudEvent> cloudEventKafkaTemplate) {
+        log.info("{} constructor", this.getClass().getCanonicalName());
+        this.legacyKafkaEventTemplate = legacyKafkaEventTemplate;
+        this.cloudEventKafkaTemplate = cloudEventKafkaTemplate;
+    }
 
     /**
      * Generic CloudEvent publisher.

@@ -21,7 +21,7 @@
 package org.onap.cps.ncmp.impl.inventory.sync.lcm;
 
 import java.util.Collection;
-import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.events.lcm.v1.LcmEvent;
 import org.onap.cps.ncmp.events.lcm.v1.LcmEventHeader;
@@ -30,12 +30,24 @@ import org.onap.cps.ncmp.impl.utils.YangDataConverter;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
-@RequiredArgsConstructor
 public class LcmEventsCmHandleStateHandlerAsyncHelper {
 
     private final LcmEventsCreator lcmEventsCreator;
     private final LcmEventsService lcmEventsService;
+
+    /**
+     * LcmEventsCmHandleStateHandlerAsyncHelper constructor.
+     * @param lcmEventsCreator lcmEventsCreator
+     * @param lcmEventsService lcmEventsService
+     */
+    public LcmEventsCmHandleStateHandlerAsyncHelper(final LcmEventsCreator lcmEventsCreator,
+                                                    final LcmEventsService lcmEventsService) {
+        log.info("LcmEventsCmHandleStateHandlerAsyncHelper constructor");
+        this.lcmEventsCreator = lcmEventsCreator;
+        this.lcmEventsService = lcmEventsService;
+    }
 
     /**
      * Publish LCM Event in asynchronous manner.

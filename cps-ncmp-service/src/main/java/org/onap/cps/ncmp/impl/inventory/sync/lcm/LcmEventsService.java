@@ -26,7 +26,6 @@ import io.micrometer.core.instrument.Timer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.events.EventsPublisher;
 import org.onap.cps.ncmp.events.lcm.v1.LcmEvent;
@@ -43,7 +42,6 @@ import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
-@RequiredArgsConstructor
 public class LcmEventsService {
 
     private static final Tag TAG_METHOD = Tag.of("method", "publishLcmEvent");
@@ -58,6 +56,20 @@ public class LcmEventsService {
 
     @Value("${notification.enabled:true}")
     private boolean notificationsEnabled;
+
+    /**
+     * LcmEventsService constructor.
+     * @param eventsPublisher  eventsPublisher
+     * @param jsonObjectMapper jsonObjectMapper
+     * @param meterRegistry    meterRegistry
+     */
+    public LcmEventsService(final EventsPublisher<LcmEvent> eventsPublisher, final JsonObjectMapper jsonObjectMapper,
+                            final MeterRegistry meterRegistry) {
+        log.info("LcmEventService constructor");
+        this.eventsPublisher = eventsPublisher;
+        this.jsonObjectMapper = jsonObjectMapper;
+        this.meterRegistry = meterRegistry;
+    }
 
     /**
      * Publishes an LCM event to the dedicated topic with optional notification headers.
