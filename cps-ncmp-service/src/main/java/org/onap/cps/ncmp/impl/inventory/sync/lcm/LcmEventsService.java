@@ -34,7 +34,6 @@ import org.onap.cps.ncmp.events.lcm.v1.LcmEventHeader;
 import org.onap.cps.ncmp.events.lcm.v1.Values;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.kafka.KafkaException;
 import org.springframework.stereotype.Service;
 
 /**
@@ -61,7 +60,7 @@ public class LcmEventsService {
 
     /**
      * Publishes an LCM event to the dedicated topic with optional notification headers.
-     * Capture and log KafkaException If an error occurs while publishing the event to Kafka
+     * Capture and log Exception if an error occurs while publishing the event to Kafka
      *
      * @param cmHandleId     Cm Handle Id associated with the LCM event
      * @param lcmEvent       The LCM event object to be published
@@ -75,7 +74,7 @@ public class LcmEventsService {
                 final Map<String, Object> lcmEventHeadersMap =
                         jsonObjectMapper.convertToValueType(lcmEventHeader, Map.class);
                 eventsPublisher.publishEvent(topicName, cmHandleId, lcmEventHeadersMap, lcmEvent);
-            } catch (final KafkaException e) {
+            } catch (final Exception e) {
                 log.error("Unable to publish message to topic : {} and cause : {}", topicName, e.getMessage());
             } finally {
                 recordMetrics(lcmEvent, timerSample);
