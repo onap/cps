@@ -112,6 +112,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d32fd02_51a23e9b",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/CmHandleResourceDataSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-18T10:10:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d9f94e9_40772ed4",
+      "range": {
+        "startLine": 46,
+        "startChar": 12,
+        "endLine": 46,
+        "endChar": 120
+      },
+      "revId": "b0526a9ac7a7ccda93d7139773b5e6825929429c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4f180b21_f951ffa0",
@@ -125,6 +149,30 @@
       "writtenOn": "2024-07-17T14:42:32Z",
       "side": 1,
       "message": "NB: 5 seconds may be enough to wait.",
+      "range": {
+        "startLine": 49,
+        "startChar": 43,
+        "endLine": 49,
+        "endChar": 45
+      },
+      "revId": "b0526a9ac7a7ccda93d7139773b5e6825929429c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8b80a92_7c4f4266",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/CmHandleResourceDataSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-18T10:10:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4f180b21_f951ffa0",
       "range": {
         "startLine": 49,
         "startChar": 43,
@@ -172,6 +220,30 @@
       "side": 1,
       "message": "As it is async call call it it required.",
       "parentUuid": "e88e3b3c_cc41965d",
+      "range": {
+        "startLine": 50,
+        "startChar": 16,
+        "endLine": 50,
+        "endChar": 63
+      },
+      "revId": "b0526a9ac7a7ccda93d7139773b5e6825929429c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7f4c13e_c018d12b",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/CmHandleResourceDataSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-18T10:10:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ef44d384_009e65b2",
       "range": {
         "startLine": 50,
         "startChar": 16,
