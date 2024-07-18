@@ -16,6 +16,24 @@
       "message": "This needs to be implemented in the stub in DMI Plugin now or it will be lost",
       "revId": "708adde1ef3c60ff67e476412edd36f172add373",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c0c4f15_c47750b2",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-07-18T10:32:27Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b7f9e9be_7b1bea5f",
+      "revId": "708adde1ef3c60ff67e476412edd36f172add373",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
