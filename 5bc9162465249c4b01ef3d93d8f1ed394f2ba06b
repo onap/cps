@@ -33,6 +33,29 @@
       "message": "recheck",
       "revId": "5bc9162465249c4b01ef3d93d8f1ed394f2ba06b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b1f905a_47b4de5b",
+        "filename": "dmi-plugin-demo-and-csit-stub/dmi-plugin-demo-and-csit-stub-service/src/main/java/org/onap/cps/ncmp/dmi/rest/stub/controller/DmiRestStubController.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-18T09:21:51Z",
+      "side": 1,
+      "message": "This needs to be removed (that delay was replaced by the read and write delays above). It\u0027s what\u0027s causing the CSIT failure.",
+      "range": {
+        "startLine": 91,
+        "startChar": 45,
+        "endLine": 93,
+        "endChar": 40
+      },
+      "revId": "5bc9162465249c4b01ef3d93d8f1ed394f2ba06b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
