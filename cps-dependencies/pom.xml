@@ -145,8 +145,8 @@
             </dependency>
             <dependency>
                 <groupId>com.hazelcast</groupId>
-                <artifactId>hazelcast-spring</artifactId>
-                <version>5.3.7</version>
+                <artifactId>hazelcast-all</artifactId>
+                <version>4.2.8</version>
             </dependency>
             <dependency>
                 <groupId>com.squareup.okhttp3</groupId>
