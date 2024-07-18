@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffd3bee1_1de04dbe",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-07-18T11:27:28Z",
+      "side": 1,
+      "message": "maybe explicitly mention that you are removing sending back full jsondata in case of exception.",
+      "revId": "013df9b108dfb173f6a095064f95d795df5209fa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
