@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "86eb73d2_9b923dbe",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/CmHandleResourceDataSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-18T10:10:27Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f6ee0f01_21f58cb3",
+      "range": {
+        "startLine": 44,
+        "startChar": 9,
+        "endLine": 44,
+        "endChar": 63
+      },
+      "revId": "b0526a9ac7a7ccda93d7139773b5e6825929429c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "efa8eb6a_e71a0685",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-07-17T14:42:32Z",
       "side": 1,
       "message": "I would extract this into a given block.",
+      "range": {
+        "startLine": 46,
+        "startChar": 12,
+        "endLine": 46,
+        "endChar": 120
+      },
+      "revId": "b0526a9ac7a7ccda93d7139773b5e6825929429c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d9f94e9_40772ed4",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/CmHandleResourceDataSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-18T10:10:27Z",
+      "side": 1,
+      "message": "Not need as it is a part of method call",
+      "parentUuid": "efa8eb6a_e71a0685",
       "range": {
         "startLine": 46,
         "startChar": 12,
@@ -112,6 +160,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ef44d384_009e65b2",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/CmHandleResourceDataSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-18T10:10:27Z",
+      "side": 1,
+      "message": "As it is async call call it it required.",
+      "parentUuid": "e88e3b3c_cc41965d",
+      "range": {
+        "startLine": 50,
+        "startChar": 16,
+        "endLine": 50,
+        "endChar": 63
+      },
+      "revId": "b0526a9ac7a7ccda93d7139773b5e6825929429c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c8e9d2fc_e467b7e7",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/CmHandleResourceDataSpec.groovy",
         "patchSetId": 2
@@ -123,6 +195,30 @@
       "writtenOn": "2024-07-17T14:42:32Z",
       "side": 1,
       "message": "no need",
+      "range": {
+        "startLine": 52,
+        "startChar": 12,
+        "endLine": 52,
+        "endChar": 77
+      },
+      "revId": "b0526a9ac7a7ccda93d7139773b5e6825929429c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4fc7ec5_67ac9063",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/CmHandleResourceDataSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-18T10:10:27Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c8e9d2fc_e467b7e7",
       "range": {
         "startLine": 52,
         "startChar": 12,
