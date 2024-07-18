@@ -26,6 +26,7 @@ import io.opentelemetry.instrumentation.kafkaclients.v2_6.TracingProducerInterce
 import java.time.Duration;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.springframework.beans.factory.annotation.Value;
@@ -49,6 +50,7 @@ import org.springframework.kafka.support.serializer.JsonSerializer;
  *
  * @param <T> valid legacy event to be published over the wire.
  */
+@Slf4j
 @Configuration
 @EnableKafka
 @RequiredArgsConstructor
@@ -103,6 +105,7 @@ public class KafkaConfig<T> {
     @Bean
     @Primary
     public KafkaTemplate<String, T> legacyEventKafkaTemplate() {
+        log.info("{} legacyEventKafkaTemplate", this.getClass().getCanonicalName());
         final KafkaTemplate<String, T> kafkaTemplate = new KafkaTemplate<>(legacyEventProducerFactory());
         kafkaTemplate.setConsumerFactory(legacyEventConsumerFactory());
         if (tracingEnabled) {
@@ -168,6 +171,7 @@ public class KafkaConfig<T> {
      */
     @Bean
     public KafkaTemplate<String, CloudEvent> cloudEventKafkaTemplate() {
+        log.info("{} cloudEventKafkaTemplate", this.getClass().getCanonicalName());
         final KafkaTemplate<String, CloudEvent> kafkaTemplate =
             new KafkaTemplate<>(cloudEventProducerFactory());
         kafkaTemplate.setConsumerFactory(cloudEventConsumerFactory());
