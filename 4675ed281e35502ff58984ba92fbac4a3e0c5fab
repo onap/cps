@@ -498,6 +498,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5c43978d_7df6bc58",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-19T11:15:18Z",
+      "side": 1,
+      "message": "These two methods could be combined into:\n\n    private DmiCmSubscriptionDetails mergeDmiCmSubscriptionDetails(\n            final DmiCmSubscriptionDetails dmiCmSubscriptionDetails,\n            final DmiCmSubscriptionDetails otherDmiCmSubscriptionDetails) {\n        final List\u003cDmiCmSubscriptionPredicate\u003e mergedDmiCmSubscriptionPredicates \u003d\n                new ArrayList\u003c\u003e(dmiCmSubscriptionDetails.getDmiCmSubscriptionPredicates());\n        mergedDmiCmSubscriptionPredicates.addAll(otherDmiCmSubscriptionDetails.getDmiCmSubscriptionPredicates());\n        return new DmiCmSubscriptionDetails(mergedDmiCmSubscriptionPredicates, CmSubscriptionStatus.PENDING);\n    }",
+      "range": {
+        "startLine": 118,
+        "startChar": 0,
+        "endLine": 136,
+        "endChar": 5
+      },
+      "revId": "4675ed281e35502ff58984ba92fbac4a3e0c5fab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "934cbef8_1e2fa3b8",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
         "patchSetId": 5
