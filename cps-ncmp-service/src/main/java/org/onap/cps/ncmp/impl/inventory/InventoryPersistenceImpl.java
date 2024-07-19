@@ -162,7 +162,7 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
                 Lists.partition(yangModelCmHandles, CMHANDLE_BATCH_SIZE)) {
             final String cmHandlesJsonData = createCmHandlesJsonData(yangModelCmHandleBatch);
             cpsDataService.saveListElements(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                    NCMP_DMI_REGISTRY_PARENT, cmHandlesJsonData, NO_TIMESTAMP);
+                    NCMP_DMI_REGISTRY_PARENT, cmHandlesJsonData, NO_TIMESTAMP, ContentType.JSON);
         }
     }
 

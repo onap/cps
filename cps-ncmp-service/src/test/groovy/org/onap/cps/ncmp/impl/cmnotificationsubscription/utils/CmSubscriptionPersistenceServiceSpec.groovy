@@ -142,7 +142,7 @@ class CmSubscriptionPersistenceServiceSpec extends Specification {
                 'NCMP-Admin',
                 'cm-data-subscriptions',
                 parentNodeXpath.formatted(datastoreName, 'ch-1'),
-                objectUnderTest.getSubscriptionDetailsAsJson('/x/y', ['newSubId']), _)
+                objectUnderTest.getSubscriptionDetailsAsJson('/x/y', ['newSubId']), _, ContentType.JSON)
         where:
             scenario                  | datastoreType           || datastoreName
             'passthrough_running'     | PASSTHROUGH_RUNNING     || 'ncmp-datastore:passthrough-running'
