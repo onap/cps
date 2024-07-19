@@ -45,13 +45,14 @@ function createCmHandles(cmHandleIds) {
     const payload = {
         "dmiPlugin": DMI_PLUGIN_URL,
         "createdCmHandles": cmHandleIds.map(cmHandleId => ({
-            "cmHandle": cmHandleId,
+            "cmHandle": "ch-"+cmHandleId,
             "cmHandleProperties": {"neType": "RadioNode"},
             "publicCmHandleProperties": {
                 "Color": "yellow",
                 "Size": "small",
                 "Shape": "cube"
-            }
+            },
+            "alternate-id": "alt-"+cmHandleId
         })),
     };
     const response = http.post(url, JSON.stringify(payload), CONTENT_TYPE_JSON_PARAM);

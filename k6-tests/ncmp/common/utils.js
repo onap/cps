@@ -44,14 +44,14 @@ export function makeBatchOfCmHandleIds(batchSize, batchNumber) {
     const batchOfIds = [];
     const startIndex = 1 + batchNumber * batchSize;
     for (let i = 0; i < batchSize; i++) {
-        let cmHandleId = `ch-${startIndex + i}`;
+        let cmHandleId = `${startIndex + i}`;
         batchOfIds.push(cmHandleId);
     }
     return batchOfIds;
 }
 
-export function getRandomCmHandleId() {
-    return `ch-${Math.floor(Math.random() * TOTAL_CM_HANDLES) + 1}`;
+export function getRandomId() {
+    return `${Math.floor(Math.random() * TOTAL_CM_HANDLES) + 1}`;
 }
 
 export function makeCustomSummaryReport(data, options) {
@@ -63,6 +63,7 @@ export function makeCustomSummaryReport(data, options) {
         makeSummaryCsvLine('4', 'CM-handle search with Module filter', 'milliseconds', 'http_req_duration{scenario:cm_search_module}', data, options),
         makeSummaryCsvLine('5a', 'Synchronous single CM-handle pass-through read', 'requests/second', 'http_reqs{scenario:passthrough_read}', data, options),
         makeSummaryCsvLine('5b', 'NCMP overhead for Synchronous single CM-handle pass-through read', 'milliseconds', 'ncmp_overhead_passthrough_read', data, options),
+        makeSummaryCsvLine('5c', 'NCMP overhead for Synchronous single CM-handle pass-through read with alternate id', 'milliseconds', 'ncmp_overhead_passthrough_read_alt_id', data, options),
         makeSummaryCsvLine('6a', 'Synchronous single CM-handle pass-through write', 'requests/second', 'http_reqs{scenario:passthrough_write}', data, options),
         makeSummaryCsvLine('6b', 'NCMP overhead for Synchronous single CM-handle pass-through write', 'milliseconds', 'ncmp_overhead_passthrough_write', data, options),
     ];

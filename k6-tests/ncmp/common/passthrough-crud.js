@@ -19,23 +19,33 @@
  */
 
 import http from 'k6/http';
-import { NCMP_BASE_URL, CONTENT_TYPE_JSON_PARAM, getRandomCmHandleId } from './utils.js';
+import { NCMP_BASE_URL, CONTENT_TYPE_JSON_PARAM, getRandomId } from './utils.js';
 
 export function passthroughRead() {
-    const cmHandleId = getRandomCmHandleId();
+    const id = getRandomId();
     const resourceIdentifier = 'my-resource-identifier';
     const includeDescendants = true;
     const datastoreName = 'ncmp-datastore:passthrough-operational';
-    const url = `${NCMP_BASE_URL}/ncmp/v1/ch/${cmHandleId}/data/ds/${datastoreName}?resourceIdentifier=${resourceIdentifier}&include-descendants=${includeDescendants}`
+    const url = `${NCMP_BASE_URL}/ncmp/v1/ch/ch-${id}/data/ds/${datastoreName}?resourceIdentifier=${resourceIdentifier}&include-descendants=${includeDescendants}`
+    const response = http.get(url);
+    return response;
+}
+
+export function passthroughReadWithAltId() {
+    const id = getRandomId();
+    const resourceIdentifier = 'my-resource-identifier';
+    const includeDescendants = true;
+    const datastoreName = 'ncmp-datastore:passthrough-operational';
+    const url = `${NCMP_BASE_URL}/ncmp/v1/ch/alt-${id}/data/ds/${datastoreName}?resourceIdentifier=${resourceIdentifier}&include-descendants=${includeDescendants}`
     const response = http.get(url);
     return response;
 }
 
 export function passthroughWrite() {
-    const cmHandleId = getRandomCmHandleId();
+    const id = getRandomId();
     const resourceIdentifier = 'my-resource-identifier';
     const datastoreName = 'ncmp-datastore:passthrough-running';
-    const url = `${NCMP_BASE_URL}/ncmp/v1/ch/${cmHandleId}/data/ds/${datastoreName}?resourceIdentifier=${resourceIdentifier}`
+    const url = `${NCMP_BASE_URL}/ncmp/v1/ch/ch-${id}/data/ds/${datastoreName}?resourceIdentifier=${resourceIdentifier}`
     const body = `{"neType": "BaseStation"}`
     const response = http.post(url, JSON.stringify(body), CONTENT_TYPE_JSON_PARAM);
     return response;
