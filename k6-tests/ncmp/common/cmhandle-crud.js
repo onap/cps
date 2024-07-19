@@ -46,6 +46,7 @@ function createCmHandles(cmHandleIds) {
         "dmiPlugin": DMI_PLUGIN_URL,
         "createdCmHandles": cmHandleIds.map(cmHandleId => ({
             "cmHandle": cmHandleId,
+            "alternateId": `alt-${cmHandleId}`,
             "cmHandleProperties": {"neType": "RadioNode"},
             "publicCmHandleProperties": {
                 "Color": "yellow",
