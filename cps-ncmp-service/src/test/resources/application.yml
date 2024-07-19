@@ -16,6 +16,16 @@
 #  SPDX-License-Identifier: Apache-2.0
 #  ============LICENSE_END=========================================================
 
+cps:
+    tracing:
+        sampler:
+            jaeger_remote:
+                endpoint: jaeger-Remote-test-url
+        exporter:
+            endpoint: exporter-test-url
+        excluded-task-names:
+            - some.task.name
+            - another.task.name
 spring:
     kafka:
         producer:

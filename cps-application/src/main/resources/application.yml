@@ -160,6 +160,8 @@ cps:
             endpoint: ${ONAP_OTEL_EXPORTER_ENDPOINT:http://onap-otel-collector:4317}
             protocol: ${ONAP_OTEL_EXPORTER_PROTOCOL:grpc}
         enabled: ${ONAP_TRACING_ENABLED:false}
+        excluded-task-names:
+            - tasks.scheduled.execution
 
 # Actuator
 management:
