@@ -16,6 +16,11 @@
 #  SPDX-License-Identifier: Apache-2.0
 #  ============LICENSE_END=========================================================
 
+cps:
+    tracing:
+        scheduled-task-names:
+            - sample.task
+            - another.task
 spring:
     kafka:
         producer:
