@@ -16,6 +16,24 @@
       "message": "maybe explicitly mention that you are removing sending back full jsondata in case of exception.",
       "revId": "013df9b108dfb173f6a095064f95d795df5209fa",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "42a5cbbd_5f2c275b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-07-19T12:30:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ffd3bee1_1de04dbe",
+      "revId": "013df9b108dfb173f6a095064f95d795df5209fa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
