@@ -24,14 +24,17 @@ import { TOTAL_CM_HANDLES, READ_DATA_FOR_CM_HANDLE_DELAY_MS, WRITE_DATA_FOR_CM_H
          makeCustomSummaryReport, recordTimeInSeconds } from './common/utils.js';
 import { registerAllCmHandles, deregisterAllCmHandles } from './common/cmhandle-crud.js';
 import { executeCmHandleSearch, executeCmHandleIdSearch } from './common/search-base.js';
-import { passthroughRead, passthroughWrite } from './common/passthrough-crud.js';
+import { passthroughRead, passthroughReadWithAltId, passthroughWrite } from './common/passthrough-crud.js';
 
 let cmHandlesCreatedPerSecondGauge = new Gauge('cmhandles_created_per_second');
 let cmHandlesDeletedPerSecondGauge = new Gauge('cmhandles_deleted_per_second');
 let passthroughReadNcmpOverheadTrend = new Trend('ncmp_overhead_passthrough_read');
+let passthroughReadNcmpOverheadTrendWithAlternateId = new Trend('ncmp_overhead_passthrough_read_alt_id');
 let passthroughWriteNcmpOverheadTrend = new Trend('ncmp_overhead_passthrough_write');
 
 const DURATION = '15m';
+const CM_HANDLE_DURATION = '10m';
+const ALT_ID_DURATION = '5m';
 
 export const options = {
     setupTimeout: '6m',
@@ -41,7 +44,14 @@ export const options = {
             executor: 'constant-vus',
             exec: 'passthrough_read',
             vus: 10,
-            duration: DURATION,
+            duration: CM_HANDLE_DURATION,
+        },
+        passthrough_read_alt_id: {
+            executor: 'constant-vus',
+            exec: 'passthrough_read_alt_id',
+            vus: 10,
+            startTime: CM_HANDLE_DURATION,
+            duration: ALT_ID_DURATION,
         },
         passthrough_write: {
             executor: 'constant-vus',
@@ -67,7 +77,9 @@ export const options = {
         'cmhandles_deleted_per_second': ['value >= 22'],
         'http_reqs{scenario:passthrough_write}': ['rate >= 13'],
         'http_reqs{scenario:passthrough_read}': ['rate >= 25'],
+        'http_reqs{scenario:passthrough_read_alt_id}': ['rate >= 25'],
         'ncmp_overhead_passthrough_read': ['avg <= 100'],
+        'ncmp_overhead_passthrough_read_alt_id': ['avg <= 100'],
         'ncmp_overhead_passthrough_write': ['avg <= 100'],
         'http_req_duration{scenario:id_search_module}': ['avg <= 625'],
         'http_req_duration{scenario:cm_search_module}': ['avg <= 13000'],
@@ -93,6 +105,13 @@ export function passthrough_read() {
     check(response, { 'passthrough read status equals 200': (r) => r.status === 200 });
     const overhead = response.timings.duration - READ_DATA_FOR_CM_HANDLE_DELAY_MS;
     passthroughReadNcmpOverheadTrend.add(overhead);
+}
+
+export function passthrough_read_alt_id() {
+    const response = passthroughReadWithAltId();
+    check(response, { 'passthrough read with alternate Id status equals 200': (r) => r.status === 200 });
+    const overhead = response.timings.duration - READ_DATA_FOR_CM_HANDLE_DELAY_MS;
+    passthroughReadNcmpOverheadTrendWithAlternateId.add(overhead);
 }
 
 export function passthrough_write() {

@@ -31,6 +31,16 @@ export function passthroughRead() {
     return response;
 }
 
+export function passthroughReadWithAltId() {
+    const cmHandleId = getRandomCmHandleId();
+    const resourceIdentifier = 'my-resource-identifier';
+    const includeDescendants = true;
+    const datastoreName = 'ncmp-datastore:passthrough-operational';
+    const url = `${NCMP_BASE_URL}/ncmp/v1/ch/alt-${cmHandleId}/data/ds/${datastoreName}?resourceIdentifier=${resourceIdentifier}&include-descendants=${includeDescendants}`
+    const response = http.get(url);
+    return response;
+}
+
 export function passthroughWrite() {
     const cmHandleId = getRandomCmHandleId();
     const resourceIdentifier = 'my-resource-identifier';
