@@ -26,7 +26,11 @@ import io.opentelemetry.exporter.otlp.http.trace.OtlpHttpSpanExporter;
 import io.opentelemetry.exporter.otlp.trace.OtlpGrpcSpanExporter;
 import io.opentelemetry.sdk.extension.trace.jaeger.sampler.JaegerRemoteSampler;
 import io.opentelemetry.sdk.trace.samplers.Sampler;
+import jakarta.annotation.PostConstruct;
 import java.time.Duration;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.actuate.autoconfigure.observation.ObservationRegistryCustomizer;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
@@ -37,10 +41,13 @@ import org.springframework.http.server.observation.ServerRequestObservationConte
 import org.springframework.util.AntPathMatcher;
 import org.springframework.util.PathMatcher;
 
+/**
+ * Configuration class for setting up OpenTelemetry tracing in a Spring Boot application.
+ * This class provides beans for OTLP exporters (gRPC and HTTP), a Jaeger remote sampler,
+ * and customizes the ObservationRegistry to exclude certain endpoints from being observed.
+ */
 @Configuration
 public class OpenTelemetryConfig {
-
-    public static final int JAEGER_REMOTE_SAMPLER_POLLING_INTERVAL_IN_SECOND = 30;
 
     @Value("${spring.application.name:cps-application}")
     private String serviceId;
@@ -51,9 +58,29 @@ public class OpenTelemetryConfig {
     @Value("${cps.tracing.sampler.jaeger_remote.endpoint:http://onap-otel-collector:14250}")
     private String jaegerRemoteSamplerUrl;
 
+    @Value("${cps.tracing.excluded-task-names:tasks.scheduled.execution}")
+    private String excludedTaskNamesAsCsv;
+
+    private static final int JAEGER_REMOTE_SAMPLER_POLLING_INTERVAL_IN_SECONDS = 30;
+
+    private List<String> excludedTaskNames;
+
     /**
-    * OTLP Exporter with Grpc exporter protocol.
-    */
+     * Initializes the excludedTaskNames after the bean's properties have been set.
+     * This method is called by the Spring container during bean initialization.
+     */
+    @PostConstruct
+    public void init() {
+        excludedTaskNames = Arrays.stream(excludedTaskNamesAsCsv.split(","))
+                .map(String::trim)
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Creates an OTLP Exporter with gRPC protocol.
+     *
+     * @return OtlpGrpcSpanExporter bean if tracing is enabled and the exporter protocol is gRPC
+     */
     @Bean
     @ConditionalOnExpression(
         "${cps.tracing.enabled} && 'grpc'.equals('${cps.tracing.exporter.protocol}')")
@@ -62,7 +89,9 @@ public class OpenTelemetryConfig {
     }
 
     /**
-     * OTLP Exporter with HTTP exporter protocol.
+     * Creates an OTLP Exporter with HTTP protocol.
+     *
+     * @return OtlpHttpSpanExporter bean if tracing is enabled and the exporter protocol is HTTP
      */
     @Bean
     @ConditionalOnExpression(
@@ -72,39 +101,40 @@ public class OpenTelemetryConfig {
     }
 
     /**
-     * Jaeger Remote Sampler.
+     * Creates a Jaeger Remote Sampler.
+     *
+     * @return JaegerRemoteSampler bean if tracing is enabled
      */
     @Bean
     @ConditionalOnProperty("cps.tracing.enabled")
     public JaegerRemoteSampler createJaegerRemoteSampler() {
         return JaegerRemoteSampler.builder()
-          .setEndpoint(jaegerRemoteSamplerUrl)
-          .setPollingInterval(Duration.ofSeconds(JAEGER_REMOTE_SAMPLER_POLLING_INTERVAL_IN_SECOND))
-          .setInitialSampler(Sampler.alwaysOff())
-          .setServiceName(serviceId)
-          .build();
+                .setEndpoint(jaegerRemoteSamplerUrl)
+                .setPollingInterval(Duration.ofSeconds(JAEGER_REMOTE_SAMPLER_POLLING_INTERVAL_IN_SECONDS))
+                .setInitialSampler(Sampler.alwaysOff())
+                .setServiceName(serviceId)
+                .build();
     }
 
     /**
-   * Excluding /actuator/** endpoints.
-   */
+     * Customizes the ObservationRegistry to exclude /actuator/** endpoints from being observed.
+     *
+     * @return ObservationRegistryCustomizer bean if tracing is enabled
+     */
     @Bean
     @ConditionalOnProperty("cps.tracing.enabled")
-    ObservationRegistryCustomizer<ObservationRegistry> skipActuatorEndpointsFromObservation() {
+    public ObservationRegistryCustomizer<ObservationRegistry> skipActuatorEndpointsFromObservation() {
         final PathMatcher pathMatcher = new AntPathMatcher("/");
         return registry ->
-          registry.observationConfig().observationPredicate(observationPredicate(pathMatcher));
+                registry.observationConfig().observationPredicate(observationPredicate(pathMatcher));
     }
 
-    /**
-     * Excluding /actuator/** endpoints.
-     */
-    static ObservationPredicate observationPredicate(final PathMatcher pathMatcher) {
-        return (name, context) -> {
+    private ObservationPredicate observationPredicate(final PathMatcher pathMatcher) {
+        return (observationName, context) -> {
             if (context instanceof ServerRequestObservationContext observationContext) {
                 return !pathMatcher.match("/actuator/**", observationContext.getCarrier().getRequestURI());
             } else {
-                return true;
+                return !excludedTaskNames.contains(observationName);
             }
         };
     }
