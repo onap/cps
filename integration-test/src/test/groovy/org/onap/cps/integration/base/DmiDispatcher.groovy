@@ -55,6 +55,7 @@ class DmiDispatcher extends Dispatcher {
     def isAvailable = true
     Map<String, List<String>> moduleNamesPerCmHandleId = [:]
     def lastAuthHeaderReceived
+    def dmiResourceDataUrl
 
     @Override
     MockResponse dispatch(RecordedRequest request) {
@@ -79,6 +80,7 @@ class DmiDispatcher extends Dispatcher {
 
             // pass-through data operation for a CM-handle
             case ~'^/dmi/v1/ch/(.*)/data/ds/(.*)$':
+                dmiResourceDataUrl = request.path
                 return mockResponseWithBody(HttpStatus.OK, '{}')
 
             // legacy pass-through batch data operation
