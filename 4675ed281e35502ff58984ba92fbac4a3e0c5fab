@@ -475,6 +475,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f2f3dca4_2b7ce05c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-19T11:11:24Z",
+      "side": 1,
+      "message": "This entire for-loop can be replaced with this:\n\n    otherDmiCmSubscriptionDetailsMap.forEach((dmiServiceName, dmiCmSubscriptionDetails) -\u003e\n            mergedDmiCmSubscriptionDetailsMap.merge(dmiServiceName, dmiCmSubscriptionDetails, this::mergeDmiCmSubscriptionDetails));",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 9
+      },
+      "revId": "4675ed281e35502ff58984ba92fbac4a3e0c5fab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "934cbef8_1e2fa3b8",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
         "patchSetId": 5
