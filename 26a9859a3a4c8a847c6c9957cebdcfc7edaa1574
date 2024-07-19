@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5bbe91c_4556430a",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-19T13:10:55Z",
+      "side": 1,
+      "message": "Nb. It may be simpler to catch any exception:\n\n    } catch (final Exception exception) {",
+      "range": {
+        "startLine": 123,
+        "startChar": 17,
+        "endLine": 123,
+        "endChar": 117
+      },
+      "revId": "26a9859a3a4c8a847c6c9957cebdcfc7edaa1574",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
