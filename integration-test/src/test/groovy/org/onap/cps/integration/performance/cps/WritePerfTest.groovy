@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Modifications Copyright (C) 2024 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -19,6 +20,8 @@
  */
 
 package org.onap.cps.integration.performance.cps
+
+import org.onap.cps.utils.ContentType
 
 import java.time.OffsetDateTime
 import org.onap.cps.integration.performance.base.CpsPerfTestBase
@@ -87,7 +90,7 @@ class WritePerfTest extends CpsPerfTestBase {
                     ']}'
         when: 'device nodes are added'
             resourceMeter.start()
-            cpsDataService.saveListElements(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR, '/openroadm-devices', jsonListData, OffsetDateTime.now())
+            cpsDataService.saveListElements(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR, '/openroadm-devices', jsonListData, OffsetDateTime.now(), ContentType.JSON)
             resourceMeter.stop()
         then: 'the operation takes less than #expectedDuration and memory used is within limit'
             recordAndAssertResourceUsage("Saving list of ${totalNodes} devices",
