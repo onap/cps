@@ -20,6 +20,7 @@ services:
 
   ### docker-compose --profile dmi-service up -d -> run CPS services incl. dmi-plugin ###
   ### docker-compose --profile dmi-stub --profile monitoring up -d -> run CPS with stubbed dmi-plugin (for registration performance testing)
+  ### docker-compose --profile dmi-stub --profile tracing up -d -> run CPS with stubbed dmi-plugin (for open telemetry (http://localhost:16686/) tracing testing)
   ### to disable notifications make notification.enabled to false & comment out kafka/zookeeper services ###
 
   dbpostgresql:
@@ -66,6 +67,16 @@ services:
         limits:
           cpus: '3'
           memory: 3G
+
+  cps-and-ncmp-tracing:
+    extends:
+      service: cps-and-ncmp
+    environment:
+      ONAP_TRACING_ENABLED: 'true'
+      ONAP_OTEL_SAMPLER_JAEGER_REMOTE_ENDPOINT: http://jaeger-service:14250
+      ONAP_OTEL_EXPORTER_ENDPOINT: http://jaeger-service:4317
+    profiles:
+      - tracing
 
   nginx:
     container_name: nginx-loadbalancer
@@ -180,6 +191,15 @@ services:
       - GF_SERVER_DOMAIN:localhost
     profiles:
       - monitoring
+
+  jaeger-service:
+    container_name: jaeger-service
+    image: jaegertracing/all-in-one:latest
+    ports:
+      - 16686:16686
+    restart: unless-stopped
+    profiles:
+      - tracing
 
 volumes:
   grafana:
