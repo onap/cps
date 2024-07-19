@@ -192,22 +192,25 @@ class DataRestControllerSpec extends Specification {
             def rootNodeXpath = '/'
         when: 'list-node endpoint is invoked with post (create) operation'
             def postRequestBuilder = post("$dataNodeBaseEndpointV1/anchors/$anchorName/list-nodes")
-                .contentType(MediaType.APPLICATION_JSON)
+                .contentType(contentType)
                 .param('xpath', rootNodeXpath )
-                .content(requestBodyJson)
+                .content(requestBody)
             if (observedTimestamp != null)
                 postRequestBuilder.param('observed-timestamp', observedTimestamp)
             def response = mvc.perform(postRequestBuilder).andReturn().response
         then: 'a created response is returned'
             response.status == expectedHttpStatus.value()
         then: 'the java API was called with the correct parameters'
-            expectedApiCount * mockCpsDataService.saveListElements(dataspaceName, anchorName, rootNodeXpath, expectedJsonData,
-                { it == DateTimeUtility.toOffsetDateTime(observedTimestamp) })
+            expectedApiCount * mockCpsDataService.saveListElements(dataspaceName, anchorName, rootNodeXpath, expectedData,
+                { it == DateTimeUtility.toOffsetDateTime(observedTimestamp) }, expectedContentType)
         where:
-            scenario                          | observedTimestamp              || expectedApiCount | expectedHttpStatus
-            'with observed-timestamp'         | '2021-03-03T23:59:59.999-0400' || 1                | HttpStatus.CREATED
-            'without observed-timestamp'      | null                           || 1                | HttpStatus.CREATED
-            'with invalid observed-timestamp' | 'invalid'                      || 0                | HttpStatus.BAD_REQUEST
+            scenario                              | observedTimestamp              | contentType                | requestBody     || expectedApiCount | expectedHttpStatus     | expectedData     | expectedContentType
+            'with observed-timestamp JSON'        | '2021-03-03T23:59:59.999-0400' | MediaType.APPLICATION_JSON | requestBodyJson || 1                | HttpStatus.CREATED     | expectedJsonData | ContentType.JSON
+            'without observed-timestamp JSON'     | null                           | MediaType.APPLICATION_JSON | requestBodyJson || 1                | HttpStatus.CREATED     | expectedJsonData | ContentType.JSON
+            'with invalid observed-timestampJSON' | 'invalid'                      | MediaType.APPLICATION_JSON | requestBodyJson || 0                | HttpStatus.BAD_REQUEST | expectedJsonData | ContentType.JSON
+            'with observed-timestamp XML'         | '2021-03-03T23:59:59.999-0400' | MediaType.APPLICATION_XML  | requestBodyXml  || 1                | HttpStatus.CREATED     | expectedXmlData  | ContentType.XML
+            'without observed-timestamp XML'      | null                           | MediaType.APPLICATION_XML  | requestBodyXml  || 1                | HttpStatus.CREATED     | expectedXmlData  | ContentType.XML
+            'with invalid observed-timestamp XML' | 'invalid'                      | MediaType.APPLICATION_XML  | requestBodyXml  || 0                | HttpStatus.BAD_REQUEST | expectedXmlData  | ContentType.XML
     }
 
     def 'Save list elements #scenario.'() {
@@ -215,22 +218,25 @@ class DataRestControllerSpec extends Specification {
             def parentNodeXpath = 'parent node xpath'
         when: 'list-node endpoint is invoked with post (create) operation'
             def postRequestBuilder = post("$dataNodeBaseEndpointV1/anchors/$anchorName/list-nodes")
-                .contentType(MediaType.APPLICATION_JSON)
+                .contentType(contentType)
                 .param('xpath', parentNodeXpath)
-                .content(requestBodyJson)
+                .content(requestBody)
             if (observedTimestamp != null)
                 postRequestBuilder.param('observed-timestamp', observedTimestamp)
             def response = mvc.perform(postRequestBuilder).andReturn().response
         then: 'a created response is returned'
             response.status == expectedHttpStatus.value()
         then: 'the java API was called with the correct parameters'
-            expectedApiCount * mockCpsDataService.saveListElements(dataspaceName, anchorName, parentNodeXpath, expectedJsonData,
-                { it == DateTimeUtility.toOffsetDateTime(observedTimestamp) })
+            expectedApiCount * mockCpsDataService.saveListElements(dataspaceName, anchorName, parentNodeXpath, expectedData,
+                { it == DateTimeUtility.toOffsetDateTime(observedTimestamp) }, expectedContentType)
         where:
-            scenario                          | observedTimestamp              || expectedApiCount | expectedHttpStatus
-            'with observed-timestamp'         | '2021-03-03T23:59:59.999-0400' || 1                | HttpStatus.CREATED
-            'without observed-timestamp'      | null                           || 1                | HttpStatus.CREATED
-            'with invalid observed-timestamp' | 'invalid'                      || 0                | HttpStatus.BAD_REQUEST
+            scenario                              | observedTimestamp              | contentType                | requestBody     || expectedApiCount | expectedHttpStatus     | expectedData     | expectedContentType
+            'with observed-timestamp JSON'        | '2021-03-03T23:59:59.999-0400' | MediaType.APPLICATION_JSON | requestBodyJson || 1                | HttpStatus.CREATED     | expectedJsonData | ContentType.JSON
+            'without observed-timestamp JSON'     | null                           | MediaType.APPLICATION_JSON | requestBodyJson || 1                | HttpStatus.CREATED     | expectedJsonData | ContentType.JSON
+            'with invalid observed-timestampJSON' | 'invalid'                      | MediaType.APPLICATION_JSON | requestBodyJson || 0                | HttpStatus.BAD_REQUEST | expectedJsonData | ContentType.JSON
+            'with observed-timestamp XML'         | '2021-03-03T23:59:59.999-0400' | MediaType.APPLICATION_XML  | requestBodyXml  || 1                | HttpStatus.CREATED     | expectedXmlData  | ContentType.XML
+            'without observed-timestamp XML'      | null                           | MediaType.APPLICATION_XML  | requestBodyXml  || 1                | HttpStatus.CREATED     | expectedXmlData  | ContentType.XML
+            'with invalid observed-timestamp XML' | 'invalid'                      | MediaType.APPLICATION_XML  | requestBodyXml  || 0                | HttpStatus.BAD_REQUEST | expectedXmlData  | ContentType.XML
     }
 
     def 'Get data node with leaves'() {
