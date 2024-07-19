@@ -16,6 +16,24 @@
       "message": "all looks good.\nif u can write a simple test to prove that the error code is changed from 500 to 400 now.",
       "revId": "b6f6acfe478a3066a58fc2abeec0e4cfb9570848",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b478a022_0af8e2ee",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-07-19T11:16:20Z",
+      "side": 1,
+      "message": "test a case for invalid JSON string at the controller layer is not applicable because controller just delegates the input to service layer and only then the data is validated. The only input validated at controller layer is the timestamp.",
+      "parentUuid": "d32ddb6b_e5df7fea",
+      "revId": "b6f6acfe478a3066a58fc2abeec0e4cfb9570848",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
