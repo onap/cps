@@ -75,6 +75,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac526be5_5c814a01",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/cache/DmiCacheHandler.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-07-22T14:56:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e7ea2f7e_a411712e",
+      "range": {
+        "startLine": 67,
+        "startChar": 33,
+        "endLine": 67,
+        "endChar": 47
+      },
+      "revId": "03c723667b8f3d6f96e8bbcd025416841c4576b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a35f7ac8_2a6a5d28",
@@ -122,6 +146,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7c2424c_9b0d71ec",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/cache/DmiCacheHandler.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-07-22T14:56:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a35f7ac8_2a6a5d28",
+      "range": {
+        "startLine": 69,
+        "startChar": 28,
+        "endLine": 69,
+        "endChar": 50
+      },
+      "revId": "03c723667b8f3d6f96e8bbcd025416841c4576b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3686b003_5274118c",
@@ -139,6 +187,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9183126_b63ac164",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-07-22T14:56:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3686b003_5274118c",
+      "revId": "03c723667b8f3d6f96e8bbcd025416841c4576b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e45e4945_42515302",
@@ -152,6 +218,30 @@
       "writtenOn": "2024-07-22T14:39:19Z",
       "side": 1,
       "message": "Extract a meaningfull variable name as you did on line 227 e.g. filterXpath",
+      "range": {
+        "startLine": 236,
+        "startChar": 19,
+        "endLine": 236,
+        "endChar": 36
+      },
+      "revId": "03c723667b8f3d6f96e8bbcd025416841c4576b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "343d881c_828b9aac",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-07-22T14:56:48Z",
+      "side": 1,
+      "message": "Ack \n\nredundant variable for just \u0027return\u0027",
+      "parentUuid": "e45e4945_42515302",
       "range": {
         "startLine": 236,
         "startChar": 19,
@@ -185,6 +275,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e782c68_2d0f0fc6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-07-22T14:56:48Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f7d87809_8c0c4c0b",
+      "range": {
+        "startLine": 244,
+        "startChar": 19,
+        "endLine": 244,
+        "endChar": 36
+      },
+      "revId": "03c723667b8f3d6f96e8bbcd025416841c4576b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bd10ec78_c590b20d",
@@ -198,6 +312,30 @@
       "writtenOn": "2024-07-22T14:39:19Z",
       "side": 1,
       "message": "Nearly the same methods can be merged into a single method by having a more method parameter for the patterns.",
+      "range": {
+        "startLine": 233,
+        "startChar": 0,
+        "endLine": 247,
+        "endChar": 5
+      },
+      "revId": "03c723667b8f3d6f96e8bbcd025416841c4576b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28ad2247_8ee3a441",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-07-22T14:56:48Z",
+      "side": 1,
+      "message": "Ack \n\nused seperately so i think its better to have this two different specific private methods",
+      "parentUuid": "bd10ec78_c590b20d",
       "range": {
         "startLine": 233,
         "startChar": 0,
@@ -231,6 +369,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c2d88b5_2102e3bf",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/cache/DmiCacheHandlerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-07-22T14:56:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "34f9ce4d_c1ef949d",
+      "range": {
+        "startLine": 75,
+        "startChar": 14,
+        "endLine": 75,
+        "endChar": 48
+      },
+      "revId": "03c723667b8f3d6f96e8bbcd025416841c4576b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fa453aba_77083614",
@@ -254,6 +416,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee30a9b4_2e53f746",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/cache/DmiCacheHandlerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-07-22T14:56:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa453aba_77083614",
+      "range": {
+        "startLine": 79,
+        "startChar": 58,
+        "endLine": 79,
+        "endChar": 61
+      },
+      "revId": "03c723667b8f3d6f96e8bbcd025416841c4576b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7d2f2f39_b026ec7d",
@@ -267,6 +453,30 @@
       "writtenOn": "2024-07-22T14:39:19Z",
       "side": 1,
       "message": "no need to mention that a method is being called instead would be:\n\n\u0027retrieve all existing data nodes for a subscription id\u0027",
+      "range": {
+        "startLine": 194,
+        "startChar": 15,
+        "endLine": 194,
+        "endChar": 25
+      },
+      "revId": "03c723667b8f3d6f96e8bbcd025416841c4576b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb568701_09f0d774",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/utils/CmSubscriptionPersistenceServiceSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-07-22T14:56:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7d2f2f39_b026ec7d",
       "range": {
         "startLine": 194,
         "startChar": 15,
