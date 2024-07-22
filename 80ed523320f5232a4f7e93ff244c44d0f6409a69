@@ -284,6 +284,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0759ccfd_e38c79e2",
+        "filename": "integration-test/src/test/java/org/onap/cps/integration/DmiStubTestContainer.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-22T14:51:27Z",
+      "side": 1,
+      "message": "correct, we agreed to keep it or future reference even if we are not using it now...",
+      "parentUuid": "8b51dbe1_22e60bbe",
+      "range": {
+        "startLine": 25,
+        "startChar": 13,
+        "endLine": 25,
+        "endChar": 34
+      },
+      "revId": "80ed523320f5232a4f7e93ff244c44d0f6409a69",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a59529ac_44aec2df",

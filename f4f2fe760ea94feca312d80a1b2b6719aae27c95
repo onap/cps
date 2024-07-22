@@ -3,6 +3,144 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c00375d0_09987ff3",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-22T14:51:27Z",
+      "side": 1,
+      "message": "since you now have two of these, give this one a clear name too",
+      "range": {
+        "startLine": 128,
+        "startChar": 18,
+        "endLine": 128,
+        "endChar": 32
+      },
+      "revId": "f4f2fe760ea94feca312d80a1b2b6719aae27c95",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48aa14c1_87a314c9",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-22T14:51:27Z",
+      "side": 1,
+      "message": "since you now have two of these, give this one a clear name too",
+      "range": {
+        "startLine": 129,
+        "startChar": 18,
+        "endLine": 129,
+        "endChar": 32
+      },
+      "revId": "f4f2fe760ea94feca312d80a1b2b6719aae27c95",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1eeb4d4e_4473cf57",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/DmiDispatcher.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-22T14:51:27Z",
+      "side": 1,
+      "message": "NB: insert blank lien above for consistency",
+      "range": {
+        "startLine": 95,
+        "startChar": 11,
+        "endLine": 95,
+        "endChar": 20
+      },
+      "revId": "f4f2fe760ea94feca312d80a1b2b6719aae27c95",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92c09b16_3035cbff",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/DmiDispatcher.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-22T14:51:27Z",
+      "side": 1,
+      "message": "probably would add values (to all fields) for demo/assert purposes...\n(you should have a test where you expect this response and assert it)",
+      "range": {
+        "startLine": 104,
+        "startChar": 36,
+        "endLine": 104,
+        "endChar": 38
+      },
+      "revId": "f4f2fe760ea94feca312d80a1b2b6719aae27c95",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37f9a333_166444e8",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/CmHandleCreateSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-22T14:51:27Z",
+      "side": 1,
+      "message": "now plural: handles",
+      "range": {
+        "startLine": 162,
+        "startChar": 32,
+        "endLine": 162,
+        "endChar": 38
+      },
+      "revId": "f4f2fe760ea94feca312d80a1b2b6719aae27c95",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ab688e5_b84b3d06",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/NcmpWriteSubJobSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-22T14:51:27Z",
+      "side": 1,
+      "message": "i dont think (for this test) there is any significance in these paths overlapping (or even having /-tokens)\nI would just use path1 for ch-1, path2 for ch-2 etc.",
+      "range": {
+        "startLine": 40,
+        "startChar": 85,
+        "endLine": 40,
+        "endChar": 90
+      },
+      "revId": "f4f2fe760ea94feca312d80a1b2b6719aae27c95",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6ffd7ef8_a8799fbd",
         "filename": "integration-test/src/test/resources/application.yml",
         "patchSetId": 15
@@ -38,6 +176,30 @@
       "side": 1,
       "message": "it is unused, but Toine asked me to keep the stub related code for reference.\nbut since DmiStubTestContainer has this value hardcoded in it, i guss this could be removed",
       "parentUuid": "6ffd7ef8_a8799fbd",
+      "range": {
+        "startLine": 112,
+        "startChar": 63,
+        "endLine": 114,
+        "endChar": 75
+      },
+      "revId": "f4f2fe760ea94feca312d80a1b2b6719aae27c95",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a88f6f00_1433dda1",
+        "filename": "integration-test/src/test/resources/application.yml",
+        "patchSetId": 15
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-22T14:51:27Z",
+      "side": 1,
+      "message": "yes I think this can be removed too, just want to keep the actual container class",
+      "parentUuid": "69a6a311_adb24626",
       "range": {
         "startLine": 112,
         "startChar": 63,
