@@ -22,6 +22,53 @@
       },
       "revId": "26a9859a3a4c8a847c6c9957cebdcfc7edaa1574",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfb2f12d_33f0fa9e",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-22T10:24:56Z",
+      "side": 1,
+      "message": "agreed, should be OK to catch any exception",
+      "parentUuid": "a5bbe91c_4556430a",
+      "range": {
+        "startLine": 123,
+        "startChar": 17,
+        "endLine": 123,
+        "endChar": 117
+      },
+      "revId": "26a9859a3a4c8a847c6c9957cebdcfc7edaa1574",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3aa0692_ef82dbda",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-22T10:24:56Z",
+      "side": 1,
+      "message": "1) technically the old wording was more correct. I don\u0027t think an IO error is a \u0027validation\u0027 error. But I suppose it is doen to \u0027personal interpretation\u0027\n\n2) I suppose the big change is you are removing the data from the exception which is probably a good thing. Maybe log the data at debug level for trouble shooting purposes...",
+      "range": {
+        "startLine": 125,
+        "startChar": 21,
+        "endLine": 125,
+        "endChar": 43
+      },
+      "revId": "26a9859a3a4c8a847c6c9957cebdcfc7edaa1574",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
