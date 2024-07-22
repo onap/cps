@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8176b3e2_a8adfbe2",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-07-22T11:00:18Z",
+      "side": 1,
+      "message": "just thinking now.\nif you change the content to application/json now , does it need to have a relevant schema for the same and not just string ??",
+      "range": {
+        "startLine": 379,
+        "startChar": 8,
+        "endLine": 379,
+        "endChar": 25
+      },
+      "revId": "1fba734440f26c79943908711398e3be2b1cd6d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
