@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dafe488e_d5a673ff",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-22T14:55:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f02a3f9c_6c05cc8c",
+      "range": {
+        "startLine": 163,
+        "startChar": 8,
+        "endLine": 163,
+        "endChar": 17
+      },
+      "revId": "83562e9efd4e016ee1de4c0d53cf1e9ac4ff568c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2a46b995_ad37ec76",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-07-22T14:11:30Z",
       "side": 1,
       "message": "taskName",
+      "range": {
+        "startLine": 114,
+        "startChar": 16,
+        "endLine": 114,
+        "endChar": 20
+      },
+      "revId": "83562e9efd4e016ee1de4c0d53cf1e9ac4ff568c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7446af47_c59601c2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/OpenTelemetryConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-22T14:55:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2a46b995_ad37ec76",
       "range": {
         "startLine": 114,
         "startChar": 16,
@@ -70,6 +118,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b302f2eb_56cd47bb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/OpenTelemetryConfigProperties.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-22T14:55:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "83aa1895_b6a25e9c",
+      "range": {
+        "startLine": 44,
+        "startChar": 25,
+        "endLine": 44,
+        "endChar": 43
+      },
+      "revId": "83562e9efd4e016ee1de4c0d53cf1e9ac4ff568c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a96b26b8_fab6ff2b",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-07-22T14:11:30Z",
       "side": 1,
       "message": "test-url?",
+      "range": {
+        "startLine": 38,
+        "startChar": 71,
+        "endLine": 38,
+        "endChar": 102
+      },
+      "revId": "83562e9efd4e016ee1de4c0d53cf1e9ac4ff568c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e7e768d_3092a2bc",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/OpenTelemetryConfigPropertiesSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-22T14:55:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a96b26b8_fab6ff2b",
       "range": {
         "startLine": 38,
         "startChar": 71,
@@ -116,6 +212,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0903ddc5_3a5920bb",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/OpenTelemetryConfigPropertiesSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-22T14:55:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0ff2b2d5_6a1791dc",
+      "range": {
+        "startLine": 39,
+        "startChar": 83,
+        "endLine": 39,
+        "endChar": 115
+      },
+      "revId": "83562e9efd4e016ee1de4c0d53cf1e9ac4ff568c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4054d046_f9145f94",
@@ -129,6 +249,30 @@
       "writtenOn": "2024-07-22T14:11:30Z",
       "side": 1,
       "message": "excluded...",
+      "range": {
+        "startLine": 41,
+        "startChar": 49,
+        "endLine": 41,
+        "endChar": 68
+      },
+      "revId": "83562e9efd4e016ee1de4c0d53cf1e9ac4ff568c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5aaafd4a_041f11fd",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/OpenTelemetryConfigPropertiesSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-22T14:55:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4054d046_f9145f94",
       "range": {
         "startLine": 41,
         "startChar": 49,
@@ -162,6 +306,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ca3c6a9_b1d49eba",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/OpenTelemetryConfigPropertiesSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-22T14:55:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "90e34f0d_6eeec5c2",
+      "range": {
+        "startLine": 44,
+        "startChar": 4,
+        "endLine": 58,
+        "endChar": 5
+      },
+      "revId": "83562e9efd4e016ee1de4c0d53cf1e9ac4ff568c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "97fbfa60_8f205823",
@@ -175,6 +343,30 @@
       "writtenOn": "2024-07-22T14:11:30Z",
       "side": 1,
       "message": "use full classnames!",
+      "range": {
+        "startLine": 86,
+        "startChar": 16,
+        "endLine": 86,
+        "endChar": 25
+      },
+      "revId": "83562e9efd4e016ee1de4c0d53cf1e9ac4ff568c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b44b46a_739a55c0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/OpenTelemetryConfigSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-22T14:55:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "97fbfa60_8f205823",
       "range": {
         "startLine": 86,
         "startChar": 16,
@@ -208,6 +400,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e705e4e8_6648f331",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/OpenTelemetryConfigSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-22T14:55:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0d23ae6b_aa095c28",
+      "range": {
+        "startLine": 93,
+        "startChar": 73,
+        "endLine": 93,
+        "endChar": 83
+      },
+      "revId": "83562e9efd4e016ee1de4c0d53cf1e9ac4ff568c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fa9a9a96_083b6491",
@@ -231,6 +447,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd1af3ca_a38caf92",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/OpenTelemetryConfigSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-22T14:55:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fa9a9a96_083b6491",
+      "range": {
+        "startLine": 105,
+        "startChar": 4,
+        "endLine": 105,
+        "endChar": 69
+      },
+      "revId": "83562e9efd4e016ee1de4c0d53cf1e9ac4ff568c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0fddecab_71924119",
@@ -244,6 +484,30 @@
       "writtenOn": "2024-07-22T14:11:30Z",
       "side": 1,
       "message": "excluded",
+      "range": {
+        "startLine": 119,
+        "startChar": 55,
+        "endLine": 119,
+        "endChar": 65
+      },
+      "revId": "83562e9efd4e016ee1de4c0d53cf1e9ac4ff568c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a70e1847_b4d9f20d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/OpenTelemetryConfigSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-22T14:55:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0fddecab_71924119",
       "range": {
         "startLine": 119,
         "startChar": 55,
