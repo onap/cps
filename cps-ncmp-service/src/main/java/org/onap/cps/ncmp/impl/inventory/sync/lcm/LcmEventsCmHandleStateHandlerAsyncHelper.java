@@ -43,7 +43,7 @@ public class LcmEventsCmHandleStateHandlerAsyncHelper {
      * @param targetNcmpServiceCmHandle  target NcmpServiceCmHandle
      * @param currentNcmpServiceCmHandle current NcmpServiceCmHandle
      */
-    @Async("notificationExecutor")
+    //@Async("notificationExecutor")
     public void publishLcmEventAsynchronously(final NcmpServiceCmHandle targetNcmpServiceCmHandle,
                                               final NcmpServiceCmHandle currentNcmpServiceCmHandle) {
         publishLcmEvent(targetNcmpServiceCmHandle, currentNcmpServiceCmHandle);
@@ -54,7 +54,7 @@ public class LcmEventsCmHandleStateHandlerAsyncHelper {
      *
      * @param cmHandleTransitionPairs Pair of existing and modified cm handle represented as YangModelCmHandle
      */
-    @Async("notificationExecutor")
+    //@Async("notificationExecutor")
     public void publishLcmEventBatchAsynchronously(
             final Collection<LcmEventsCmHandleStateHandlerImpl.CmHandleTransitionPair> cmHandleTransitionPairs) {
         cmHandleTransitionPairs.forEach(cmHandleTransitionPair -> publishLcmEvent(
