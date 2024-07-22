@@ -33,6 +33,224 @@
       "message": "recheck",
       "revId": "03c723667b8f3d6f96e8bbcd025416841c4576b7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "578ed7c0_d0f5a53a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-22T14:39:19Z",
+      "side": 1,
+      "message": "Due to high number of NB comments keeping -1, otherwise the commit is much better. Thanks",
+      "revId": "03c723667b8f3d6f96e8bbcd025416841c4576b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7ea2f7e_a411712e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/cache/DmiCacheHandler.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-22T14:39:19Z",
+      "side": 1,
+      "message": "Java doc missing parameter",
+      "range": {
+        "startLine": 67,
+        "startChar": 33,
+        "endLine": 67,
+        "endChar": 47
+      },
+      "revId": "03c723667b8f3d6f96e8bbcd025416841c4576b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a35f7ac8_2a6a5d28",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/cache/DmiCacheHandler.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-22T14:39:19Z",
+      "side": 1,
+      "message": "NB: dmiCmSubscriptionDetailsPerDmi",
+      "range": {
+        "startLine": 69,
+        "startChar": 28,
+        "endLine": 69,
+        "endChar": 50
+      },
+      "revId": "03c723667b8f3d6f96e8bbcd025416841c4576b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3686b003_5274118c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-22T14:39:19Z",
+      "side": 1,
+      "message": "NB: no need to extra line",
+      "revId": "03c723667b8f3d6f96e8bbcd025416841c4576b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e45e4945_42515302",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-22T14:39:19Z",
+      "side": 1,
+      "message": "Extract a meaningfull variable name as you did on line 227 e.g. filterXpath",
+      "range": {
+        "startLine": 236,
+        "startChar": 19,
+        "endLine": 236,
+        "endChar": 36
+      },
+      "revId": "03c723667b8f3d6f96e8bbcd025416841c4576b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7d87809_8c0c4c0b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-22T14:39:19Z",
+      "side": 1,
+      "message": "Extract a meaningfull variable name e.g. cmHandleId",
+      "range": {
+        "startLine": 244,
+        "startChar": 19,
+        "endLine": 244,
+        "endChar": 36
+      },
+      "revId": "03c723667b8f3d6f96e8bbcd025416841c4576b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd10ec78_c590b20d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-22T14:39:19Z",
+      "side": 1,
+      "message": "Nearly the same methods can be merged into a single method by having a more method parameter for the patterns.",
+      "range": {
+        "startLine": 233,
+        "startChar": 0,
+        "endLine": 247,
+        "endChar": 5
+      },
+      "revId": "03c723667b8f3d6f96e8bbcd025416841c4576b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34f9ce4d_c1ef949d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/cache/DmiCacheHandlerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-22T14:39:19Z",
+      "side": 1,
+      "message": "data structure names would better not to mention but the bussiness. e.g. \u0027dmi cm subscription details per dmi\u0027",
+      "range": {
+        "startLine": 75,
+        "startChar": 14,
+        "endLine": 75,
+        "endChar": 48
+      },
+      "revId": "03c723667b8f3d6f96e8bbcd025416841c4576b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa453aba_77083614",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/cache/DmiCacheHandlerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-22T14:39:19Z",
+      "side": 1,
+      "message": "dmi cm subscription details",
+      "range": {
+        "startLine": 79,
+        "startChar": 58,
+        "endLine": 79,
+        "endChar": 61
+      },
+      "revId": "03c723667b8f3d6f96e8bbcd025416841c4576b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d2f2f39_b026ec7d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/utils/CmSubscriptionPersistenceServiceSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-22T14:39:19Z",
+      "side": 1,
+      "message": "no need to mention that a method is being called instead would be:\n\n\u0027retrieve all existing data nodes for a subscription id\u0027",
+      "range": {
+        "startLine": 194,
+        "startChar": 15,
+        "endLine": 194,
+        "endChar": 25
+      },
+      "revId": "03c723667b8f3d6f96e8bbcd025416841c4576b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
