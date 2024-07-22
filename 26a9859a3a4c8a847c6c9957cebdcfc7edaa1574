@@ -48,6 +48,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e27a275b_697f849b",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-07-22T15:15:12Z",
+      "side": 1,
+      "message": "when catching all the exceptions I got the following error while building the code \"Low: Exception is caught when Exception is not thrown\". What I found is that it could result in a wrong exception being thrown and can hide the actual problem. So only select run time exceptions need to be thrown.\nThis is one of the threads I found about this https://stackoverflow.com/questions/33729523/exception-is-caught-when-exception-is-not-thrown",
+      "parentUuid": "bfb2f12d_33f0fa9e",
+      "range": {
+        "startLine": 123,
+        "startChar": 17,
+        "endLine": 123,
+        "endChar": 117
+      },
+      "revId": "26a9859a3a4c8a847c6c9957cebdcfc7edaa1574",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b3aa0692_ef82dbda",
@@ -61,6 +85,30 @@
       "writtenOn": "2024-07-22T10:24:56Z",
       "side": 1,
       "message": "1) technically the old wording was more correct. I don\u0027t think an IO error is a \u0027validation\u0027 error. But I suppose it is doen to \u0027personal interpretation\u0027\n\n2) I suppose the big change is you are removing the data from the exception which is probably a good thing. Maybe log the data at debug level for trouble shooting purposes...",
+      "range": {
+        "startLine": 125,
+        "startChar": 21,
+        "endLine": 125,
+        "endChar": 43
+      },
+      "revId": "26a9859a3a4c8a847c6c9957cebdcfc7edaa1574",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81848182_9c28c16f",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-07-22T15:15:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b3aa0692_ef82dbda",
       "range": {
         "startLine": 125,
         "startChar": 21,
