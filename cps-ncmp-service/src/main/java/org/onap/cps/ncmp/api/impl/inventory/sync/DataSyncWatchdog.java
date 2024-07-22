@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2023 Nordix Foundation
+ *  Copyright (C) 2022-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -61,21 +61,22 @@ public class DataSyncWatchdog {
         moduleOperationsUtils.getUnsynchronizedReadyCmHandles().forEach(unSynchronizedReadyCmHandle -> {
             final String cmHandleId = unSynchronizedReadyCmHandle.getId();
             if (hasPushedIntoSemaphoreMap(cmHandleId)) {
-                log.debug("Executing data sync on {}", cmHandleId);
+                log.info("Executing data sync on {}", cmHandleId);
                 final CompositeState compositeState = inventoryPersistence
                         .getCmHandleState(cmHandleId);
                 final String resourceData = moduleOperationsUtils.getResourceData(cmHandleId);
                 if (resourceData == null) {
-                    log.debug("Error retrieving resource data for Cm-Handle: {}", cmHandleId);
+                    log.error("Error retrieving resource data for Cm-Handle: {}", cmHandleId);
                 } else {
                     cpsDataService.saveData(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId,
                             resourceData, OffsetDateTime.now());
                     setSyncStateToSynchronized().accept(compositeState);
                     inventoryPersistence.saveCmHandleState(cmHandleId, compositeState);
                     updateDataSyncSemaphoreMap(cmHandleId);
+                    log.info("Data sync finished for {}", cmHandleId);
                 }
             } else {
-                log.debug("{} already processed by another instance", cmHandleId);
+                log.info("{} already processed by another instance", cmHandleId);
             }
         });
         log.debug("No Cm-Handles currently found in READY State and Operational Sync State is UNSYNCHRONIZED");
