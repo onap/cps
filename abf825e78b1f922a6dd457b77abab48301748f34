@@ -16,6 +16,46 @@
       "message": "recheck",
       "revId": "abf825e78b1f922a6dd457b77abab48301748f34",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bb89f3f_2933f1e2",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-07-22T12:56:04Z",
+      "side": 1,
+      "message": "should this be renamed if in line 109 is checking if its still cmhandle id or alternateId?",
+      "range": {
+        "startLine": 102,
+        "startChar": 74,
+        "endLine": 102,
+        "endChar": 82
+      },
+      "revId": "abf825e78b1f922a6dd457b77abab48301748f34",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a9ca5a8_df8bfbca",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/AlternateIdMatcher.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-07-22T12:56:04Z",
+      "side": 1,
+      "message": "isExistingCmHandleId",
+      "revId": "abf825e78b1f922a6dd457b77abab48301748f34",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
