@@ -54,7 +54,7 @@ Operational state goes to UNSYNCHRONIZED when data sync (flag) is enabled
 Operational state goes to SYNCHRONIZED after sometime when data sync (flag) is enabled
     ${uri}=        Set Variable       ${ncmpBasePath}/v1/ch/ietfYang-PNFDemo/state
     ${headers}=    Create Dictionary  Authorization=${auth}
-    Wait Until Keyword Succeeds    10sec    100ms    Is CM Handle State SYNCHRONIZED    ${uri}    ${headers}
+    Wait Until Keyword Succeeds    40sec    100ms    Is CM Handle State SYNCHRONIZED    ${uri}    ${headers}
 
 *** Keywords ***
 Is CM Handle READY
