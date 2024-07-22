@@ -100,6 +100,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ce376b1c_7acf647f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/cache/DmiCacheHandler.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-07-22T14:49:13Z",
+      "side": 1,
+      "message": "actually we agreed to keep it dmiSubscriptionsPerDmi before for the full subscription flow.",
+      "parentUuid": "a35f7ac8_2a6a5d28",
+      "range": {
+        "startLine": 69,
+        "startChar": 28,
+        "endLine": 69,
+        "endChar": 50
+      },
+      "revId": "03c723667b8f3d6f96e8bbcd025416841c4576b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3686b003_5274118c",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
         "patchSetId": 7
