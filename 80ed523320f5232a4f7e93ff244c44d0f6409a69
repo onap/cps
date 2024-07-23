@@ -353,6 +353,30 @@
       },
       "revId": "80ed523320f5232a4f7e93ff244c44d0f6409a69",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "26d4b0d1_0d4309c6",
+        "filename": "integration-test/src/test/java/org/onap/cps/integration/DmiStubTestContainer.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-07-23T13:47:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "abcddb35_33eaa1ca",
+      "range": {
+        "startLine": 31,
+        "startChar": 60,
+        "endLine": 31,
+        "endChar": 61
+      },
+      "revId": "80ed523320f5232a4f7e93ff244c44d0f6409a69",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
