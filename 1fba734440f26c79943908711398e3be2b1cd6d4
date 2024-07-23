@@ -22,6 +22,30 @@
       },
       "revId": "1fba734440f26c79943908711398e3be2b1cd6d4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "613da1d9_50402686",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-07-23T06:49:26Z",
+      "side": 1,
+      "message": "no a schema is not required as this handles the response in case of a write operation. So, when we post some data to be written to database usually nothing is returned in response body.\nAs per my understanding, since Created response was set to \"text/plain\" while other scenarios like BadRequest, Unauthorized, etc were set to \"application/json\", it was causing a conflict as to what the proper response format should be and hence it fell back to response code 500 as a default.\nAnd you can see that for the delta feature where we have a POST operation the response used is OK instead of Created because there, we return the delta report and OK response uses \"application/json\" which is consistent with other responses.",
+      "parentUuid": "8176b3e2_a8adfbe2",
+      "range": {
+        "startLine": 379,
+        "startChar": 8,
+        "endLine": 379,
+        "endChar": 25
+      },
+      "revId": "1fba734440f26c79943908711398e3be2b1cd6d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
