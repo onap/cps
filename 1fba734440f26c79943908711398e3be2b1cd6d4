@@ -70,6 +70,30 @@
       },
       "revId": "1fba734440f26c79943908711398e3be2b1cd6d4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a40fe3aa_309e78e3",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-07-23T09:43:45Z",
+      "side": 1,
+      "message": "From the stack trace the following piece of info helped me find the problem:\n\n{\"logTimeStamp\":\"2024-07-16T04:33:37.169Z\",\"logLevel\":\"WARN\",\"traceId\":\"fbd1027522dd80aa37bb77459bc23d41\",\"principalId\":\"cpsuser\",\"serviceName\":\"cps-application\",\"message\":\n\"Failure in @ExceptionHandler org.onap.cps.rest.exceptions.CpsRestExceptionHandler#handleBadRequestExceptions(Exception)\",\n\"spanId\":\"183859adcbaaa53a\",\"processId\":\"17552\",\"threadName\":\"qtp1169606246-25\",\"class\":\"o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver\",\n\"exception\":\"\\r\norg.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation\\r",
+      "parentUuid": "324f19cb_70d05c38",
+      "range": {
+        "startLine": 379,
+        "startChar": 8,
+        "endLine": 379,
+        "endChar": 25
+      },
+      "revId": "1fba734440f26c79943908711398e3be2b1cd6d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
