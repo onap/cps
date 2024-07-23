@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9760d16a_ef386667",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-07-23T11:11:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d16713a5_4015e2ce",
+      "range": {
+        "startLine": 420,
+        "startChar": 62,
+        "endLine": 420,
+        "endChar": 70
+      },
+      "revId": "685f43676e9c6df912550ffd0b165a97632b51c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c58f4fff_5217df52",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-07-19T12:56:57Z",
       "side": 1,
       "message": "Nb. I _think_ this could be done generically in the test setup(), something like\n\n    mockAlternateIdMatcher.existingCmHandleId(_) \u003e\u003e true",
+      "range": {
+        "startLine": 148,
+        "startChar": 12,
+        "endLine": 148,
+        "endChar": 73
+      },
+      "revId": "685f43676e9c6df912550ffd0b165a97632b51c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3a9d786_f1d7e77d",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-07-23T11:11:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c58f4fff_5217df52",
       "range": {
         "startLine": 148,
         "startChar": 12,
@@ -70,6 +118,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "678fc202_de65ff9b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/AlternateIdMatcher.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-07-23T11:11:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd5ae61b_2734f65b",
+      "range": {
+        "startLine": 69,
+        "startChar": 23,
+        "endLine": 69,
+        "endChar": 32
+      },
+      "revId": "685f43676e9c6df912550ffd0b165a97632b51c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "153b5602_3890c69c",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-07-19T12:56:57Z",
       "side": 1,
       "message": "Nb. This could be refactored to simply call the new method:\n\n    registerCmHandleWithAlternateId(dmiPlugin, cmHandleId, moduleSetTag, NO_ALTERNATE_ID)",
+      "range": {
+        "startLine": 219,
+        "startChar": 63,
+        "endLine": 224,
+        "endChar": 10
+      },
+      "revId": "685f43676e9c6df912550ffd0b165a97632b51c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4672c8a0_c45e20cc",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-07-23T11:11:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "153b5602_3890c69c",
       "range": {
         "startLine": 219,
         "startChar": 63,
@@ -116,6 +212,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c61a9b49_9bcfeadd",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/AlternateIdSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-07-23T11:11:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7f6ecf06_431fc7a7",
+      "range": {
+        "startLine": 44,
+        "startChar": 58,
+        "endLine": 44,
+        "endChar": 84
+      },
+      "revId": "685f43676e9c6df912550ffd0b165a97632b51c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d153aa61_87ce4976",
@@ -129,6 +249,30 @@
       "writtenOn": "2024-07-19T12:56:57Z",
       "side": 1,
       "message": "remove these (content body not needed for GET request, and auth not needed)",
+      "range": {
+        "startLine": 47,
+        "startChar": 60,
+        "endLine": 49,
+        "endChar": 89
+      },
+      "revId": "685f43676e9c6df912550ffd0b165a97632b51c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6979db4_d38c8c96",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/AlternateIdSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-07-23T11:11:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d153aa61_87ce4976",
       "range": {
         "startLine": 47,
         "startChar": 60,
