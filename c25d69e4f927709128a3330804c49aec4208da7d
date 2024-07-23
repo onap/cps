@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0f14ee6_1f27dee4",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-07-23T14:22:51Z",
+      "side": 1,
+      "message": "suggestion \nif ...\ncmHandleId \u003d alternateIdMatcher.getCmHandleIdFromAlternateId(cmHandle)\nelse \n....\n\nor change name of method as it actually returns a cmHandleId",
+      "range": {
+        "startLine": 109,
+        "startChar": 8,
+        "endLine": 109,
+        "endChar": 66
+      },
+      "revId": "c25d69e4f927709128a3330804c49aec4208da7d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa78a944_39efb917",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-07-23T14:22:51Z",
+      "side": 1,
+      "message": "i think this should be as \u0027and\u0027 for one of the given to mock the return",
+      "range": {
+        "startLine": 148,
+        "startChar": 10,
+        "endLine": 148,
+        "endChar": 70
+      },
+      "revId": "c25d69e4f927709128a3330804c49aec4208da7d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fdd4c895_96179fcc",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-07-23T14:22:51Z",
+      "side": 1,
+      "message": "same here",
+      "range": {
+        "startLine": 162,
+        "startChar": 4,
+        "endLine": 162,
+        "endChar": 75
+      },
+      "revId": "c25d69e4f927709128a3330804c49aec4208da7d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f50d638d_a03c4924",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/AlternateIdMatcher.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-07-23T14:22:51Z",
+      "side": 1,
+      "message": "hmm doesnt seem to directly relate to the class",
+      "range": {
+        "startLine": 65,
+        "startChar": 19,
+        "endLine": 65,
+        "endChar": 41
+      },
+      "revId": "c25d69e4f927709128a3330804c49aec4208da7d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8eb2bdee_af3141eb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/AlternateIdMatcher.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-07-23T14:22:51Z",
+      "side": 1,
+      "message": "class is already alternateIdMatcher and paramter is alternateId , so i think this can be just getCmHandle",
+      "range": {
+        "startLine": 80,
+        "startChar": 31,
+        "endLine": 80,
+        "endChar": 46
+      },
+      "revId": "c25d69e4f927709128a3330804c49aec4208da7d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

@@ -67,6 +67,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "151f27f7_e142d15a",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-07-23T14:22:51Z",
+      "side": 1,
+      "message": "yes would be helpful, could be assumed that its ONLY cmhandleId",
+      "parentUuid": "a9fea74e_f6b5c34a",
+      "range": {
+        "startLine": 102,
+        "startChar": 74,
+        "endLine": 102,
+        "endChar": 82
+      },
+      "revId": "abf825e78b1f922a6dd457b77abab48301748f34",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1a9ca5a8_df8bfbca",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/AlternateIdMatcher.java",
         "patchSetId": 2
@@ -78,6 +102,24 @@
       "writtenOn": "2024-07-22T12:56:04Z",
       "side": 1,
       "message": "isExistingCmHandleId",
+      "revId": "abf825e78b1f922a6dd457b77abab48301748f34",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a908ca72_87fdf3c0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/AlternateIdMatcher.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-07-23T14:22:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a9ca5a8_df8bfbca",
       "revId": "abf825e78b1f922a6dd457b77abab48301748f34",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
