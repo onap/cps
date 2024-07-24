@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fbe4975f_03708f6e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobStatusServiceImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2024-07-24T12:19:00Z",
+      "side": 1,
+      "message": "DCM never specified that they would be sending the authorization in the request. Who did this come from?\nSpecified fields:\ndataProducerId\nrequestId\ndataProducerJobId",
+      "revId": "f7b390ccc928f225622ea37263b6deae8031b849",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
