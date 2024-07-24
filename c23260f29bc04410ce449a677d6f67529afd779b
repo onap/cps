@@ -16,6 +16,98 @@
       "message": "recheck",
       "revId": "c23260f29bc04410ce449a677d6f67529afd779b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de0bfa92_6647cac4",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-24T12:29:02Z",
+      "side": 1,
+      "message": "as there is no really functional difference between the two mocks they should just be called ...1 and ..2",
+      "range": {
+        "startLine": 131,
+        "startChar": 18,
+        "endLine": 131,
+        "endChar": 43
+      },
+      "revId": "c23260f29bc04410ce449a677d6f67529afd779b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a7683df_54b35d3b",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/CmHandleResourceDataSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-24T12:29:02Z",
+      "side": 1,
+      "message": "Seems incorrect test spec(name), have mailed sourabh",
+      "range": {
+        "startLine": 30,
+        "startChar": 6,
+        "endLine": 30,
+        "endChar": 31
+      },
+      "revId": "c23260f29bc04410ce449a677d6f67529afd779b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38b8ee29_e25a5eb7",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/WriteSubJobSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-24T12:29:02Z",
+      "side": 1,
+      "message": "remove this part",
+      "range": {
+        "startLine": 40,
+        "startChar": 90,
+        "endLine": 40,
+        "endChar": 99
+      },
+      "revId": "c23260f29bc04410ce449a677d6f67529afd779b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18783e9c_b62ac9e3",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/WriteSubJobSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-24T12:29:02Z",
+      "side": 1,
+      "message": "remove ()",
+      "range": {
+        "startLine": 61,
+        "startChar": 39,
+        "endLine": 61,
+        "endChar": 41
+      },
+      "revId": "c23260f29bc04410ce449a677d6f67529afd779b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
