@@ -51,6 +51,24 @@
       "parentUuid": "af2bd44b_00518e2b",
       "revId": "de2ea2fc0e5163e0e186a4fd3880ae3818bab955",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4817b66_6d5b59c7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-24T16:29:32Z",
+      "side": 1,
+      "message": "Yes. Although they are actually different certs in the ZIP:\n- Basically there is 2-way TLS here, where both server and client need to authenticate, so they each need to have certs signed by the CA (certificate authority).\n- PNF Sim is the RestConf server, which has a server cert and key, as well as a CA cert to validate incoming client requests.\n- SDNC is the RestConf client, which has a different cert and key, signed by CA.",
+      "parentUuid": "6b1da97f_7aae9916",
+      "revId": "de2ea2fc0e5163e0e186a4fd3880ae3818bab955",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
