@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ee4ce0b_a2c5ec97",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-07-24T10:48:33Z",
+      "side": 1,
+      "message": "makes sense now.\nWe might be able to get the correct response code when using POSTMAN and forcefully provide Accept header as application/json , BUT when using swagger , in case of any validation issue it will result in 5XX response code instead of 4XX.\n\nThis fix will streamline our openapi specs as well.",
+      "revId": "44bca362f17223661abe4fddb6003b097db78879",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
