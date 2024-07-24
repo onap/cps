@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "urn:cps:org.onap.cps.ncmp.events:cm-notification-subscription-ncmp-out-event-schema:1.0.0",
+  "$ref": "#/definitions/NcmpOutEvent",
+  "definitions": {
+    "NcmpOutEvent": {
+      "type": "object",
+      "description": "The payload applied cm subscription merge event coming out from NCMP.",
+      "javaType": "org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.ncmp_to_client.NcmpOutEvent",
+      "additionalProperties": false,
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/Data"
+        }
+      },
+      "required": [
+        "data"
+      ],
+      "title": "NcmpOutEvent"
+    },
+    "Data": {
+      "type": "object",
+      "description": "Information about the targets and subscription",
+      "additionalProperties": false,
+      "properties": {
+        "subscriptionId": {
+          "type": "string",
+          "description": "The unique subscription id"
+        },
+        "acceptedTargets": {
+          "type": "array",
+          "description": "List of accepted targets",
+          "items": {
+            "type": "string"
+          }
+        },
+        "rejectedTargets": {
+          "type": "array",
+          "description": "List of rejected targets",
+          "items": {
+            "type": "string"
+          }
+        },
+        "pendingTargets": {
+          "type": "array",
+          "description": "List of pending targets",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "acceptedTargets",
+        "pendingTargets",
+        "rejectedTargets",
+        "subscriptionId"
+      ],
+      "title": "Data"
+    }
+  }
+
+
+}
