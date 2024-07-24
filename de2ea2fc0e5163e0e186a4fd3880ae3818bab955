@@ -16,6 +16,23 @@
       "message": "you as well zipped the certs in the key zip file as well. right ???",
       "revId": "de2ea2fc0e5163e0e186a4fd3880ae3818bab955",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af2bd44b_00518e2b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-07-24T15:43:48Z",
+      "side": 1,
+      "message": "and what is the validity of the certificate now.",
+      "revId": "de2ea2fc0e5163e0e186a4fd3880ae3818bab955",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
