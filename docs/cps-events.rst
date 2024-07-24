@@ -13,6 +13,7 @@ CPS Events
 
    cm-handle-lcm-events.rst
    data-operation-events.rst
+   cm-notification-subscriptions.rst
 
 .. note::
     Legacy async response on a client supplied topic for single cm handle data request are no longer supported. Click link below for the legacy specification.
