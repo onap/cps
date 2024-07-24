@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc3f0a60_07acc462",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2024-07-24T13:06:15Z",
+      "side": 1,
+      "message": "Discussed with Levente",
+      "revId": "f7b390ccc928f225622ea37263b6deae8031b849",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fbe4975f_03708f6e",
@@ -31,6 +48,24 @@
       "writtenOn": "2024-07-24T12:19:00Z",
       "side": 1,
       "message": "DCM never specified that they would be sending the authorization in the request. Who did this come from?\nSpecified fields:\ndataProducerId\nrequestId\ndataProducerJobId",
+      "revId": "f7b390ccc928f225622ea37263b6deae8031b849",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05cd89a6_65f2f06a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobStatusServiceImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2024-07-24T13:06:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fbe4975f_03708f6e",
       "revId": "f7b390ccc928f225622ea37263b6deae8031b849",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
