@@ -72,6 +72,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5fd2eb1c_08a8cc4d",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-24T11:35:58Z",
+      "side": 1,
+      "message": "ok, that\u0027s porobably the reason we didn\u0027t change it before but I cannot remember...",
+      "parentUuid": "e27a275b_697f849b",
+      "range": {
+        "startLine": 123,
+        "startChar": 17,
+        "endLine": 123,
+        "endChar": 117
+      },
+      "revId": "26a9859a3a4c8a847c6c9957cebdcfc7edaa1574",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b3aa0692_ef82dbda",

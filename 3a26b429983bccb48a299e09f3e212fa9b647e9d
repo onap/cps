@@ -63,6 +63,30 @@
       },
       "revId": "3a26b429983bccb48a299e09f3e212fa9b647e9d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ba256f7_5725fc4c",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-24T11:35:58Z",
+      "side": 1,
+      "message": "ok, valid concerns",
+      "parentUuid": "1d43d116_3a90398c",
+      "range": {
+        "startLine": 126,
+        "startChar": 12,
+        "endLine": 126,
+        "endChar": 65
+      },
+      "revId": "3a26b429983bccb48a299e09f3e212fa9b647e9d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
