@@ -38,6 +38,10 @@ docker logs ncmp-dmi-plugin-demo-and-csit-stub
 echo '================================== SDNC Logs ============================'
 docker logs sdnc
 
+echo '================================== PNF Sim Logs ========================='
+echo '(omitted due to size, uncomment if needed during debugging)'
+#docker logs netconf-simulator
+
 echo 'Stopping, Removing all running containers...'
 docker stop $(docker ps -aq) && docker rm $(docker ps -aq)
 
