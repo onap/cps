@@ -69,6 +69,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "64362a43_f26f51fe",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/cache/DmiCacheHandlerSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-07-24T14:02:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ae0df88_182eabbb",
+      "revId": "ca4d17613cb4d2f1495389aa14036c2f7a970999",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "26bddb52_257f8a69",
@@ -82,6 +100,24 @@
       "writtenOn": "2024-07-24T13:05:51Z",
       "side": 1,
       "message": "NB: 1 * mockDmiCmSubscriptionDetailsPerDmiMapper(....)",
+      "revId": "ca4d17613cb4d2f1495389aa14036c2f7a970999",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6aed66b_a1e4ba1c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-07-24T14:02:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "26bddb52_257f8a69",
       "revId": "ca4d17613cb4d2f1495389aa14036c2f7a970999",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
