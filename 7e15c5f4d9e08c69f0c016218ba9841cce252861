@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f6d19590_1312ef62",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/DataSyncWatchdog.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-24T17:28:09Z",
+      "side": 1,
+      "message": "In module sync, we print out info logs for every CM handle that goes to READY/LOCKED state. This would be the same amount of logging - if the feature was used.\nAFAIK data sync is only used in our CSITs, and not in production use.",
+      "parentUuid": "0fa37edd_9a4242e3",
+      "range": {
+        "startLine": 63,
+        "startChar": 16,
+        "endLine": 63,
+        "endChar": 66
+      },
+      "revId": "7e15c5f4d9e08c69f0c016218ba9841cce252861",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a3d41630_3ef1413b",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/DataSyncWatchdog.java",
         "patchSetId": 3
