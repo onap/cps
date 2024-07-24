@@ -33,6 +33,57 @@
       "message": "recheck",
       "revId": "ca4d17613cb4d2f1495389aa14036c2f7a970999",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a41215ac_c218fcf1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-07-24T13:05:51Z",
+      "side": 1,
+      "message": "fine by me apart from few test related comments.",
+      "revId": "ca4d17613cb4d2f1495389aa14036c2f7a970999",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ae0df88_182eabbb",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/cache/DmiCacheHandlerSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-07-24T13:05:51Z",
+      "side": 1,
+      "message": "NB: here we are testing 2 public methods using a single test.\nDo you think we are better off with separate tests for separate methods ?",
+      "revId": "ca4d17613cb4d2f1495389aa14036c2f7a970999",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26bddb52_257f8a69",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-07-24T13:05:51Z",
+      "side": 1,
+      "message": "NB: 1 * mockDmiCmSubscriptionDetailsPerDmiMapper(....)",
+      "revId": "ca4d17613cb4d2f1495389aa14036c2f7a970999",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
