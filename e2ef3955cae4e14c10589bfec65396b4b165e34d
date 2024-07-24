@@ -142,6 +142,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d897f8e9_a5348a37",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobStatusServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-24T12:06:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b284977_dca29249",
+      "range": {
+        "startLine": 51,
+        "startChar": 19,
+        "endLine": 51,
+        "endChar": 42
+      },
+      "revId": "e2ef3955cae4e14c10589bfec65396b4b165e34d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f751b4f2_6a79ba1b",
@@ -176,6 +200,30 @@
         "id": 8155
       },
       "writtenOn": "2024-07-24T12:06:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f751b4f2_6a79ba1b",
+      "range": {
+        "startLine": 55,
+        "startChar": 56,
+        "endLine": 55,
+        "endChar": 69
+      },
+      "revId": "e2ef3955cae4e14c10589bfec65396b4b165e34d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "423c2537_1d20c1c0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobStatusServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-24T12:06:58Z",
       "side": 1,
       "message": "Done",
       "parentUuid": "f751b4f2_6a79ba1b",
