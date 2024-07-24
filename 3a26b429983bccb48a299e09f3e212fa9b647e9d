@@ -16,6 +16,29 @@
       "message": "recheck",
       "revId": "3a26b429983bccb48a299e09f3e212fa9b647e9d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a44f8fbc_78bfb311",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-24T10:38:01Z",
+      "side": 1,
+      "message": "I don\u0027t think it\u0027s a good idea to log user input:\na) potentially expose confidential information in logs\nb) security risk, e.g. log4shell\nLogging the exception with stacktrace as below is enough",
+      "range": {
+        "startLine": 126,
+        "startChar": 12,
+        "endLine": 126,
+        "endChar": 65
+      },
+      "revId": "3a26b429983bccb48a299e09f3e212fa9b647e9d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
