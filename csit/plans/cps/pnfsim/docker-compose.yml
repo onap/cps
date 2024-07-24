@@ -1,5 +1,5 @@
 # ============LICENSE_START=======================================================
-# Modifications Copyright (C) 2022 Nordix Foundation
+# Modifications Copyright (C) 2022-2024 Nordix Foundation
 # ================================================================================
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -24,3 +24,4 @@ services:
       - "6512:6513"
     volumes:
       - ./netconf-config:/config/modules/stores
+      - ./tls:/config/tls
