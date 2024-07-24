@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7c540dc_f46a0847",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/OpenTelemetryConfigProperties.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-07-24T12:21:18Z",
+      "side": 1,
+      "message": "this cannot be placed elsewhere?",
+      "range": {
+        "startLine": 50,
+        "startChar": 34,
+        "endLine": 50,
+        "endChar": 67
+      },
+      "revId": "4aa2ae39033c89548548fe3ed4b6cb964ddf9e8d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "339a1955_fcd8f83b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/OpenTelemetryConfigProperties.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-07-24T12:21:18Z",
+      "side": 1,
+      "message": "same here",
+      "range": {
+        "startLine": 61,
+        "startChar": 39,
+        "endLine": 61,
+        "endChar": 72
+      },
+      "revId": "4aa2ae39033c89548548fe3ed4b6cb964ddf9e8d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
