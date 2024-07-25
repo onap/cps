@@ -26,6 +26,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "08df4b45_f9c1928f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-25T18:23:50Z",
+      "side": 1,
+      "message": "Perhaps I\u0027m wrong here, but wouldn\u0027t it be simpler to remove the entry from the cache?\nSince the cache is a map of subscriptionId to subscriptions:\n\n    dmiCacheHandler.remove(subscriptionId);\n\n    // in DmiCacheHandler:\n    public void remove(final String subscriptionId) {\n        cmNotificationSubscriptionCache.remove(subscriptionId);\n    }\n\nIf so, then you would no longer need the overlapping subscriptions, and you could:\n- remove the merge subscription methods\n- have getLastRemainingSubscriptionsPerDmi, returning a collection instead of tuple\n- get rid of the tuple\n\nI\u0027m not sure if this an option, but if it is, it would massively simplify the solution.",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 8
+      },
+      "revId": "cab27128cc68cedd811b89403a9ab00879ac8db1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8c4bcae4_5b2ac523",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
         "patchSetId": 13
