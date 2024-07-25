@@ -49,6 +49,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cd0d0f5a_3e9f1760",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-25T20:25:06Z",
+      "side": 1,
+      "message": "We may need to rethink some of this. It looks to me that if this subscription is the last remaining for *any* DMI, then we notify *all* DMIs to delete the subscription.\nI think we need more elaborate test cases (as well as integration tests).",
+      "range": {
+        "startLine": 91,
+        "startChar": 12,
+        "endLine": 91,
+        "endChar": 46
+      },
+      "revId": "cab27128cc68cedd811b89403a9ab00879ac8db1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8c4bcae4_5b2ac523",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
         "patchSetId": 13
