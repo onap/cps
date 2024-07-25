@@ -4,8 +4,7 @@
 k6 tests are written in JavaScript.
 
 ## k6 installation
-Follow the instructions in the [k6 installation guide](https://grafana.com/docs/k6/latest/set-up/install-k6/)
-to get started.
+Follow the instructions in the [build from source guide](https://github.com/mostafa/xk6-kafka) to get started.
 
 ## Running the k6 test suites
 Simply run the main script. (The script assumes k6 and docker-compose have been installed).
