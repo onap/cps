@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "befe0dc5_6d289920",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-25T15:46:15Z",
+      "side": 1,
+      "message": "didnt know that...",
+      "parentUuid": "1a9f7f82_4c3eafc7",
+      "range": {
+        "startLine": 162,
+        "startChar": 46,
+        "endLine": 164,
+        "endChar": 39
+      },
+      "revId": "4aa2ae39033c89548548fe3ed4b6cb964ddf9e8d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "df8d1b0a_b458981a",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/OpenTelemetryConfig.java",
         "patchSetId": 5
@@ -37,6 +61,30 @@
       "writtenOn": "2024-07-25T12:25:28Z",
       "side": 1,
       "message": "This is not a task name, it is the observation name. It should really be called \u0027name\u0027 or \u0027observationName\u0027. (same for excluded-task-names in application.yml, etc.)\n\nYou can use this feature to exclude observations of kafka notifications:\n\n    - spring.kafka.template\n\nor client requests to dmi:\n\n    - http.client.requests",
+      "range": {
+        "startLine": 114,
+        "startChar": 16,
+        "endLine": 114,
+        "endChar": 24
+      },
+      "revId": "4aa2ae39033c89548548fe3ed4b6cb964ddf9e8d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfbee044_f96a8fe1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/OpenTelemetryConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-25T15:46:15Z",
+      "side": 1,
+      "message": "agreed",
+      "parentUuid": "df8d1b0a_b458981a",
       "range": {
         "startLine": 114,
         "startChar": 16,
@@ -230,6 +278,52 @@
         "startChar": 39,
         "endLine": 61,
         "endChar": 72
+      },
+      "revId": "4aa2ae39033c89548548fe3ed4b6cb964ddf9e8d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59f1f5c2_68a9a195",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/OpenTelemetryConfigPropertiesSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-25T15:46:15Z",
+      "side": 1,
+      "message": "i prefer \u0027 \u003d\u003d false\u0027 at end",
+      "range": {
+        "startLine": 40,
+        "startChar": 19,
+        "endLine": 40,
+        "endChar": 20
+      },
+      "revId": "4aa2ae39033c89548548fe3ed4b6cb964ddf9e8d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "373b2161_2809d432",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/OpenTelemetryConfigSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-25T15:46:15Z",
+      "side": 1,
+      "message": "why dont you use test application.yaml?",
+      "range": {
+        "startLine": 46,
+        "startChar": 3,
+        "endLine": 49,
+        "endChar": 80
       },
       "revId": "4aa2ae39033c89548548fe3ed4b6cb964ddf9e8d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
