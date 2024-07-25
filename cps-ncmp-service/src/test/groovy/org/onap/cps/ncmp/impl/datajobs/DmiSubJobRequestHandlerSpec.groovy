@@ -19,7 +19,6 @@ class DmiSubJobRequestHandlerSpec extends Specification {
     def mockDmiRestClient = Mock(DmiRestClient)
     def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
     def mockDmiProperties = Mock(DmiProperties)
-    def static NO_AUTH = null
     def objectUnderTest = new DmiSubJobRequestHandler(mockDmiRestClient, mockDmiProperties, jsonObjectMapper)
 
     def 'Send a sub-job request to the DMI Plugin.'() {
@@ -28,12 +27,13 @@ class DmiSubJobRequestHandlerSpec extends Specification {
             def dataJobMetadata = new DataJobMetadata('d1', 't1', 't2')
             def dmiWriteOperation = new DmiWriteOperation('p', 'operation', 'tag', null, 'o1', [:])
             def dmiWriteOperationsPerProducerKey = [new ProducerKey('dmi1', 'prod1'): [dmiWriteOperation]]
+            def authorization = 'my authorization header'
         and: 'the dmi rest client will return a response (for the correct parameters)'
             def responseEntity = new ResponseEntity<>(new SubJobWriteResponse('my-sub-job-id', 'dmi1', 'prod1'), HttpStatus.OK)
             def expectedJson = '{"dataAcceptType":"t1","dataContentType":"t2","dataProducerId":"prod1","data":[{"path":"p","op":"operation","moduleSetTag":"tag","value":null,"operationId":"o1","privateProperties":{}}]}'
-            mockDmiRestClient.synchronousPostOperationWithJsonData(RequiredDmiService.DATA, _, expectedJson, OperationType.CREATE, NO_AUTH) >> responseEntity
+            mockDmiRestClient.synchronousPostOperationWithJsonData(RequiredDmiService.DATA, _, expectedJson, OperationType.CREATE, authorization) >> responseEntity
         when: 'sending request to DMI invoked'
-            objectUnderTest.sendRequestsToDmi(dataJobId, dataJobMetadata, dmiWriteOperationsPerProducerKey)
+            objectUnderTest.sendRequestsToDmi(authorization, dataJobId, dataJobMetadata, dmiWriteOperationsPerProducerKey)
         then: 'the result contains the expected sub-job id'
             assert responseEntity.body.subJobId == 'my-sub-job-id'
     }

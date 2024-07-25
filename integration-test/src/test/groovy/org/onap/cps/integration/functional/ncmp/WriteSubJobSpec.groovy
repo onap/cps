@@ -50,11 +50,12 @@ class WriteSubJobSpec extends CpsIntegrationSpecBase {
 
     def 'Create a sub-job write request.'() {
         given: 'the required input data for the write job'
+            def authorization = 'my authorization header'
             def dataJobWriteRequest = new DataJobWriteRequest([new WriteOperation('p1', '', '', null), new WriteOperation('p2', '', '', null), new WriteOperation('p3', '', '', null)])
             def myDataJobMetadata = new DataJobMetadata('', '', '')
             def dataJobId = 'my-data-job-id'
         when: 'sending a write job to NCMP with 2 sub-jobs for DMI 1 and 1 sub-job for DMI 2'
-            def response = dataJobService.writeDataJob(dataJobId, myDataJobMetadata, dataJobWriteRequest)
+            def response = dataJobService.writeDataJob(authorization, dataJobId, myDataJobMetadata, dataJobWriteRequest)
         then: 'each DMI received the expected sub-jobs and the response has the expected values'
             assert response.size() == 2
             assert response[0].class == SubJobWriteResponse.class

@@ -42,19 +42,24 @@ public class DataJobServiceImpl implements DataJobService {
     private final WriteRequestExaminer writeRequestExaminer;
 
     @Override
-    public void readDataJob(final String dataJobId, final DataJobMetadata dataJobMetadata,
+    public void readDataJob(final String authorization,
+                            final String dataJobId,
+                            final DataJobMetadata dataJobMetadata,
                             final DataJobReadRequest dataJobReadRequest) {
         log.info("data job id for read operation is: {}", dataJobId);
     }
 
     @Override
-    public List<SubJobWriteResponse> writeDataJob(final String dataJobId, final DataJobMetadata dataJobMetadata,
+    public List<SubJobWriteResponse> writeDataJob(final String authorization,
+                                                  final String dataJobId,
+                                                  final DataJobMetadata dataJobMetadata,
                                                   final DataJobWriteRequest dataJobWriteRequest) {
         log.info("data job id for write operation is: {}", dataJobId);
 
         final Map<ProducerKey, List<DmiWriteOperation>> dmiWriteOperationsPerProducerKey =
                 writeRequestExaminer.splitDmiWriteOperationsFromRequest(dataJobId, dataJobWriteRequest);
 
-        return dmiSubJobClient.sendRequestsToDmi(dataJobId, dataJobMetadata, dmiWriteOperationsPerProducerKey);
+        return dmiSubJobClient.sendRequestsToDmi(authorization, dataJobId, dataJobMetadata,
+                                                                           dmiWriteOperationsPerProducerKey);
     }
 }

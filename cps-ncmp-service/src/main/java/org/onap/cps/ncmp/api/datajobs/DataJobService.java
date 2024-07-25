@@ -31,20 +31,27 @@ public interface DataJobService {
     /**
      * process read data job operations.
      *
+     * @param authorization     The authorization header from the REST request.
      * @param dataJobId          Unique identifier of the job within the request
      * @param dataJobMetadata    data job request headers
      * @param dataJobReadRequest read data job request
      */
-    void readDataJob(String dataJobId, DataJobMetadata dataJobMetadata, DataJobReadRequest dataJobReadRequest);
+    void readDataJob(String authorization,
+                     String dataJobId,
+                     DataJobMetadata dataJobMetadata,
+                     DataJobReadRequest dataJobReadRequest);
 
     /**
      * process write data job operations.
      *
+     * @param authorization     The authorization header from the REST request.
      * @param dataJobId           Unique identifier of the job within the request
      * @param dataJobMetadata     data job request headers
      * @param dataJobWriteRequest write data job request
      * @return a list of sub-job write responses
      */
-    List<SubJobWriteResponse> writeDataJob(String dataJobId, DataJobMetadata dataJobMetadata,
+    List<SubJobWriteResponse> writeDataJob(String authorization,
+                                           String dataJobId,
+                                           DataJobMetadata dataJobMetadata,
                                            DataJobWriteRequest dataJobWriteRequest);
 }
