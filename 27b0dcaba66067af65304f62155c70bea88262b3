@@ -48,6 +48,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "47496d41_3d18c48a",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/DmiUrlEncodingPassthroughSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-25T15:32:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "23d68098_c979f14c",
+      "range": {
+        "startLine": 51,
+        "startChar": 20,
+        "endLine": 51,
+        "endChar": 60
+      },
+      "revId": "27b0dcaba66067af65304f62155c70bea88262b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cc94cf10_ca623b9a",
@@ -82,6 +106,30 @@
         "id": 6742
       },
       "writtenOn": "2024-07-25T15:30:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc94cf10_ca623b9a",
+      "range": {
+        "startLine": 67,
+        "startChar": 12,
+        "endLine": 67,
+        "endChar": 53
+      },
+      "revId": "27b0dcaba66067af65304f62155c70bea88262b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43d02d8b_12d105a6",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/DmiUrlEncodingPassthroughSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-25T15:32:07Z",
       "side": 1,
       "message": "Done",
       "parentUuid": "cc94cf10_ca623b9a",
