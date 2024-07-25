@@ -1,0 +1,10 @@
+Verified+1: ONAP Jobbuilder <onap-jobbuilder@jenkins.onap.org>
+Code-Review+1: Toine Siebelink <toine.siebelink@est.tech>
+Verified+1: ONAP Required GHA <releng+onap.required.gha@linuxfoundation.org>
+Code-Review+1: Gerard Nugent <gerard.nugent@est.tech>
+Code-Review+2: Sourabh Sourabh <sourabh.sourabh@est.tech>
+Submitted-by: Sourabh Sourabh <sourabh.sourabh@est.tech>
+Submitted-at: Thu, 25 Jul 2024 09:27:49 +0000
+Reviewed-on: https://gerrit.onap.org/r/c/cps/+/138500
+Project: cps
+Branch: refs/heads/master
