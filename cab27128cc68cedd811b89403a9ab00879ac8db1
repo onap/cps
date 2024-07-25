@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8e5be5e_2520bcdf",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-25T17:58:32Z",
+      "side": 1,
+      "message": "Use a single regex to extract all 3 variables at once:\n\n    private static final Pattern SUBSCRIPTION_KEY_FROM_XPATH_PATTERN \u003d Pattern.compile(\n        \"^/datastores/datastore\\\\[@name\u003d\u0027(.*?)\u0027]/cm-handles/cm-handle\\\\[@id\u003d\u0027(.*?)\u0027]/filters/filter\\\\[@xpath\u003d\u0027(.*?)\u0027]$\");",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 111
+      },
+      "revId": "cab27128cc68cedd811b89403a9ab00879ac8db1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c4bcae4_5b2ac523",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-25T17:58:32Z",
+      "side": 1,
+      "message": "Can be simplified, (see my other comment below for implementation of extractCmSubscriptionKey)\n\n    final DmiCmSubscriptionKey dmiCmSubscriptionKey \u003d extractCmSubscriptionKey(subscriptionNode.getXpath());\n    final String dmiServiceName \u003d inventoryPersistence.getYangModelCmHandle(dmiCmSubscriptionKey.cmHandleId()).getDmiServiceName();\n     final List\u003cString\u003e subscribers \u003d (List\u003cString\u003e) subscriptionNode.getLeaves().get(\"subscriptionIds\");",
+      "range": {
+        "startLine": 197,
+        "startChar": 0,
+        "endLine": 204,
+        "endChar": 69
+      },
+      "revId": "cab27128cc68cedd811b89403a9ab00879ac8db1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56465b81_6ca9c603",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-25T17:58:32Z",
+      "side": 1,
+      "message": "Combine all three methods into one using single regex:\n\n    private DmiCmSubscriptionKey extractCmSubscriptionKey(final String xpath) {\n        final Matcher matcher \u003d SUBSCRIPTION_KEY_FROM_XPATH_PATTERN.matcher(xpath);\n        if (matcher.find()) {\n            final String datastoreName \u003d matcher.group(1);\n            final String cmHandleId \u003d matcher.group(2);\n            final String filterXpath \u003d matcher.group(3);\n            return new DmiCmSubscriptionKey(datastoreName, cmHandleId, filterXpath);\n        }\n        throw new IllegalArgumentException(\"DataNode xpath does not represent a subscription key\");\n    }\n\nNote it\u0027s important to throw the exception - I found mistakes in the tests only because of the exception.",
+      "range": {
+        "startLine": 223,
+        "startChar": 0,
+        "endLine": 246,
+        "endChar": 5
+      },
+      "revId": "cab27128cc68cedd811b89403a9ab00879ac8db1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35a6b695_31845bc8",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-25T17:58:32Z",
+      "side": 1,
+      "message": "Incorrect data node xpath, it should end with /filter[@id\u003d\u0027x/y\u0027].\nI would also prefer \" to avoid need for escaping single quotes:\n\n    \"/datastores/datastore[@name\u003d\u0027ncmp-datastore:passthrough-running\u0027]/cm-handles/cm-handle[@id\u003d\u0027ch-1\u0027]/filters/filter[@xpath\u003d\u0027x/y\u0027]\"\n\nConsider making a helper method to construct the whole xpath.",
+      "range": {
+        "startLine": 138,
+        "startChar": 38,
+        "endLine": 138,
+        "endChar": 149
+      },
+      "revId": "cab27128cc68cedd811b89403a9ab00879ac8db1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef41629a_a59a247e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-25T17:58:32Z",
+      "side": 1,
+      "message": "incorrect xpath, missing filter[]",
+      "range": {
+        "startLine": 139,
+        "startChar": 140,
+        "endLine": 139,
+        "endChar": 147
+      },
+      "revId": "cab27128cc68cedd811b89403a9ab00879ac8db1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4728177_593498ad",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-25T17:58:32Z",
+      "side": 1,
+      "message": "incorrect xpath, missing filter[]",
+      "range": {
+        "startLine": 157,
+        "startChar": 141,
+        "endLine": 157,
+        "endChar": 148
+      },
+      "revId": "cab27128cc68cedd811b89403a9ab00879ac8db1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a2f4d6f_5ba4e0e2",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-25T17:58:32Z",
+      "side": 1,
+      "message": "incorrect xpath, missing filter[]",
+      "range": {
+        "startLine": 158,
+        "startChar": 141,
+        "endLine": 158,
+        "endChar": 148
+      },
+      "revId": "cab27128cc68cedd811b89403a9ab00879ac8db1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

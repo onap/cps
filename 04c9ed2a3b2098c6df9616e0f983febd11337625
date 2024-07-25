@@ -95,6 +95,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "04c76ca0_0add00ba",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/models/DmiCmSubscriptionTuple.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-25T17:58:32Z",
+      "side": 1,
+      "message": "Team 2 had a group review where many of these names were agreed.\nSpecifically, we choose not to call it \u0027uniqueSubscriptionsPerDmi\u0027, since technically all subscriptions are unique. These are subscriptions where there is only 1 remaining subscriber, so it needs to notify DMI.",
+      "parentUuid": "9a587c19_f029794b",
+      "range": {
+        "startLine": 32,
+        "startChar": 83,
+        "endLine": 32,
+        "endChar": 115
+      },
+      "revId": "04c9ed2a3b2098c6df9616e0f983febd11337625",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "121a4d77_d0d9ceba",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/models/DmiCmSubscriptionTuple.java",
         "patchSetId": 12
@@ -325,6 +349,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "07d4af83_30fb983e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-25T17:58:32Z",
+      "side": 1,
+      "message": "This is a map. Our convention is always to name maps as \"something per something\".",
+      "parentUuid": "9df0f9d3_5905e6f3",
+      "range": {
+        "startLine": 88,
+        "startChar": 35,
+        "endLine": 88,
+        "endChar": 67
+      },
+      "revId": "04c9ed2a3b2098c6df9616e0f983febd11337625",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8ea4207b_c42e8e1e",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
         "patchSetId": 12
@@ -440,6 +488,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c9521e51_0d6d1d9e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-25T17:58:32Z",
+      "side": 1,
+      "message": "The team agreed to this name.\nAlso it may be confusing to name this method mergeSubscriptionDetails given there is another method on line 114 that merges Subscription Details. This one merges maps of DMI to Subscription Details",
+      "parentUuid": "57751762_74bc7e9e",
+      "range": {
+        "startLine": 98,
+        "startChar": 50,
+        "endLine": 98,
+        "endChar": 89
+      },
+      "revId": "04c9ed2a3b2098c6df9616e0f983febd11337625",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a68222a1_adc20e09",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
         "patchSetId": 12
@@ -497,6 +569,30 @@
       "writtenOn": "2024-07-25T11:11:01Z",
       "side": 1,
       "message": "NB: addSubscriptionToCategorizedMap",
+      "range": {
+        "startLine": 211,
+        "startChar": 24,
+        "endLine": 211,
+        "endChar": 54
+      },
+      "revId": "04c9ed2a3b2098c6df9616e0f983febd11337625",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfe89415_f546541c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-25T17:58:32Z",
+      "side": 1,
+      "message": "I think it\u0027s cleaner to just inline this method - then we don\u0027t need to worry about names. Though I\u0027m also looking at alternate refactorings.",
+      "parentUuid": "6c547527_353ee6d4",
       "range": {
         "startLine": 211,
         "startChar": 24,
@@ -589,6 +685,24 @@
       "writtenOn": "2024-07-25T11:11:01Z",
       "side": 1,
       "message": "Extract common method like below and use it:\n\nprivate Optional\u003cString\u003e extractFromXpath(String xpath, Pattern pattern) {\n        Matcher matcher \u003d pattern.matcher(xpath);\n        return matcher.find() ? Optional.of(matcher.group(1)) : Optional.empty();\n    }",
+      "revId": "04c9ed2a3b2098c6df9616e0f983febd11337625",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d97f1b5_adbecf01",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-25T17:58:32Z",
+      "side": 1,
+      "message": "Not needed if we combine all 3 methods using a single regex",
+      "parentUuid": "da847e8b_edd306cc",
       "revId": "04c9ed2a3b2098c6df9616e0f983febd11337625",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
