@@ -20,18 +20,36 @@
 
 import { check } from 'k6';
 import { Gauge, Trend } from 'k6/metrics';
-import { TOTAL_CM_HANDLES, READ_DATA_FOR_CM_HANDLE_DELAY_MS, WRITE_DATA_FOR_CM_HANDLE_DELAY_MS,
-         makeCustomSummaryReport, recordTimeInSeconds } from './common/utils.js';
+import {
+    TOTAL_CM_HANDLES, READ_DATA_FOR_CM_HANDLE_DELAY_MS, WRITE_DATA_FOR_CM_HANDLE_DELAY_MS,
+    makeCustomSummaryReport, recordTimeInSeconds, makeBatchOfCmHandleIds, DATA_OPERATION_READ_BATCH_SIZE,
+    NCMP_ASYNC_M2M_TOPIC, KAFKA_BOOTSTRAP_SERVERS, DATA_OPERATION_READ_BATCH_TOTAL_SIZE
+} from './common/utils.js';
 import { registerAllCmHandles, deregisterAllCmHandles } from './common/cmhandle-crud.js';
 import { executeCmHandleSearch, executeCmHandleIdSearch } from './common/search-base.js';
 import { passthroughRead, passthroughWrite } from './common/passthrough-crud.js';
+import { batchRead } from './common/data-operations.js';
+import exec from 'k6/execution';
+import {
+    Reader,
+    SchemaRegistry,
+    SCHEMA_TYPE_JSON,
+} from 'k6/x/kafka';
 
 let cmHandlesCreatedPerSecondGauge = new Gauge('cmhandles_created_per_second');
 let cmHandlesDeletedPerSecondGauge = new Gauge('cmhandles_deleted_per_second');
 let passthroughReadNcmpOverheadTrend = new Trend('ncmp_overhead_passthrough_read');
 let passthroughWriteNcmpOverheadTrend = new Trend('ncmp_overhead_passthrough_write');
+let dataOperationsBatchReadCmHandlePerSecondTrend = new Trend('data_operations_batch_read_cmhandles_per_second');
+
+const reader = new Reader({
+    brokers: KAFKA_BOOTSTRAP_SERVERS,
+    topic: NCMP_ASYNC_M2M_TOPIC,
+});
+const schemaRegistry = new SchemaRegistry();
 
 const DURATION = '15m';
+const START_TIME_BATCH_READ_KAFKA = '910s';
 
 export const options = {
     setupTimeout: '6m',
@@ -61,6 +79,24 @@ export const options = {
             vus: 3,
             duration: DURATION,
         },
+        batch_read: {
+            executor: 'constant-arrival-rate',
+            exec: 'data_operation_batch_read',
+            startTime: DURATION,
+            duration: '9.9s',
+            rate: 1,
+            timeUnit: '2s',
+            preAllocatedVUs: 5,
+        },
+        batch_read_kafka: {
+            executor: 'constant-arrival-rate',
+            exec: 'batch_read_kafka',
+            startTime: START_TIME_BATCH_READ_KAFKA,
+            duration: '4.9s',
+            rate: 1,
+            timeUnit: '5s',
+            preAllocatedVUs: 5,
+        }
     },
     thresholds: {
         'cmhandles_created_per_second': ['value >= 22'],
@@ -75,6 +111,10 @@ export const options = {
         'http_req_failed{scenario:cm_search_module}': ['rate == 0'],
         'http_req_failed{scenario:passthrough_read}': ['rate == 0'],
         'http_req_failed{scenario:passthrough_write}': ['rate == 0'],
+        'http_reqs{scenario:batch_read}': ['count == 5'],
+        'http_req_failed{scenario:batch_read}': ['rate == 0'],
+        'kafka_reader_error_count{scenario:batch_read_kafka}': ['count == 0'],
+        'data_operations_batch_read_cmhandles_per_second': ['avg >= 150'],
     },
 };
 
@@ -112,6 +152,54 @@ export function cm_search_module() {
     const response = executeCmHandleSearch('module');
     check(response, { 'module search status equals 200': (r) => r.status === 200 });
     check(JSON.parse(response.body), { 'module search returned expected CM-handles': (arr) => arr.length === TOTAL_CM_HANDLES });
+}
+
+export function data_operation_batch_read() {
+    const startTimeInMillis = Date.now();
+    let batchNumber = `${exec.scenario.iterationInTest}`;
+    console.log(`batchNumber: ${batchNumber}`);
+    const nextBatchOfCmHandleIds = makeBatchOfCmHandleIds(DATA_OPERATION_READ_BATCH_SIZE, batchNumber);
+    const response = batchRead(nextBatchOfCmHandleIds)
+    check(response, { 'data operation batch read status equals 200': (r) => r.status === 200 });
+    const endTimeInMillis = Date.now();
+    const totalTimeInSeconds = (endTimeInMillis - startTimeInMillis) / 1000.0;
+    dataOperationsBatchReadCmHandlePerSecondTrend.add(DATA_OPERATION_READ_BATCH_SIZE / totalTimeInSeconds);
+}
+
+export function batch_read_kafka() {
+    const startTimeInMillis = Date.now();
+    try {
+        // limiting the number of messages to be consumed with 250
+        // since there have exactly 250 cm handles have been requested through batch data read operation
+        let messages = reader.consume({ limit: DATA_OPERATION_READ_BATCH_TOTAL_SIZE });
+
+        check(messages, {
+            'messages are received': (messages) => messages.length === 250,
+        });
+
+        messages.forEach(message => {
+            check(message, {
+                'topic equals to ncmp-async-m2m': (message) => message['topic'] === NCMP_ASYNC_M2M_TOPIC,
+                'payload have expected status code and message': (message) => {
+                    const payload = schemaRegistry.deserialize({
+                        data: message.value,
+                        schemaType: SCHEMA_TYPE_JSON,
+                    });
+                    return payload.data.responses[0].statusCode === '0' &&
+                        payload.data.responses[0].statusMessage === 'Successfully applied changes';
+                },
+                'headers contain expected message source': (message) =>
+                    'ce_source' in message.headers &&
+                    String.fromCharCode(...message.headers['ce_source']) === 'DMI',
+            });
+        })
+
+    } catch (error) {
+        console.error(error);
+    }
+    const endTimeInMillis = Date.now();
+    const totalTimeInSeconds = (endTimeInMillis - startTimeInMillis) / 1000.0;
+    dataOperationsBatchReadCmHandlePerSecondTrend.add(DATA_OPERATION_READ_BATCH_TOTAL_SIZE / totalTimeInSeconds);
 }
 
 export function handleSummary(data) {

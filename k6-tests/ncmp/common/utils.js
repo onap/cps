@@ -25,6 +25,10 @@ export const REGISTRATION_BATCH_SIZE = 100;
 export const READ_DATA_FOR_CM_HANDLE_DELAY_MS = 300; // must have same value as in docker-compose.yml
 export const WRITE_DATA_FOR_CM_HANDLE_DELAY_MS = 670; // must have same value as in docker-compose.yml
 export const CONTENT_TYPE_JSON_PARAM = { headers: {'Content-Type': 'application/json'} };
+export const DATA_OPERATION_READ_BATCH_TOTAL_SIZE = 250;
+export const DATA_OPERATION_READ_BATCH_SIZE = 50;
+export const NCMP_ASYNC_M2M_TOPIC = 'ncmp-async-m2m';
+export const KAFKA_BOOTSTRAP_SERVERS = ['localhost:9092'];
 
 export function recordTimeInSeconds(functionToExecute) {
     const startTimeInMillis = Date.now();
@@ -65,6 +69,7 @@ export function makeCustomSummaryReport(data, options) {
         makeSummaryCsvLine('5b', 'NCMP overhead for Synchronous single CM-handle pass-through read', 'milliseconds', 'ncmp_overhead_passthrough_read', data, options),
         makeSummaryCsvLine('6a', 'Synchronous single CM-handle pass-through write', 'requests/second', 'http_reqs{scenario:passthrough_write}', data, options),
         makeSummaryCsvLine('6b', 'NCMP overhead for Synchronous single CM-handle pass-through write', 'milliseconds', 'ncmp_overhead_passthrough_write', data, options),
+        makeSummaryCsvLine('7', 'Data operations batch read', 'requests/seconds', 'data_operations_batch_read_cmhandles_per_second', data, options),
     ];
     return summaryCsvLines.join('\n') + '\n';
 }
