@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b2e0397_4e40f9aa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-25T09:26:56Z",
+      "side": 1,
+      "message": "left some minor comments",
+      "revId": "216acdfe5348eab5fbd474bb747eebd5c68a40cc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea8bc307_e59abfc2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/datajobs/DataJobStatusService.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-25T09:26:56Z",
+      "side": 1,
+      "message": "NB: The operations interact with a DMI Plugin to retrieve data job statuses.",
+      "range": {
+        "startLine": 25,
+        "startChar": 3,
+        "endLine": 25,
+        "endChar": 94
+      },
+      "revId": "216acdfe5348eab5fbd474bb747eebd5c68a40cc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff7e6a24_8fdd01db",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobStatusServiceImpl.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-25T09:26:56Z",
+      "side": 1,
+      "message": "/**\n     * Retrieves the current status of a specific data job.\n     *\n     * @param authorization     The authorization header from the REST request.\n     * @param dmiServiceName    The name of the DMI Service relevant to the data job.\n     * @param requestId         The unique identifier for the overall data job request.\n     * @param dataProducerJobId The identifier of the data producer job within the DMI system.\n     * @param dataProducerId    The ID of the producer registered by DMI, used for operations related to this request.\n     *                          This could include alternate IDs or specific identifiers.\n     * @return The current status of the data job as a String.\n     */",
+      "revId": "216acdfe5348eab5fbd474bb747eebd5c68a40cc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
