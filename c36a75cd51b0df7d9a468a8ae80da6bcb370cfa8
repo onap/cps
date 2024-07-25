@@ -16,6 +16,70 @@
       "message": "add auth param as last param as existing for consistency.",
       "revId": "c36a75cd51b0df7d9a468a8ae80da6bcb370cfa8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9be18875_a5f24d9b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-25T15:36:42Z",
+      "side": 1,
+      "message": "authorization was last parameter in legacy interface because it was added later. I This is a new interface so we can do it right now and It think it should be the first parameter....",
+      "parentUuid": "8ff08cff_414d5b10",
+      "revId": "c36a75cd51b0df7d9a468a8ae80da6bcb370cfa8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36e9f489_068757ba",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-25T15:36:42Z",
+      "side": 1,
+      "message": "NB: have all parameters below eachother each on a new line (aligned)",
+      "range": {
+        "startLine": 62,
+        "startChar": 49,
+        "endLine": 63,
+        "endChar": 107
+      },
+      "revId": "c36a75cd51b0df7d9a468a8ae80da6bcb370cfa8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "783b57c2_6f4f83a1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DmiSubJobRequestHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-25T15:36:42Z",
+      "side": 1,
+      "message": "align",
+      "range": {
+        "startLine": 55,
+        "startChar": 32,
+        "endLine": 55,
+        "endChar": 79
+      },
+      "revId": "c36a75cd51b0df7d9a468a8ae80da6bcb370cfa8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
