@@ -49,6 +49,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8194e5a9_4f51c688",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-25T13:49:59Z",
+      "side": 1,
+      "message": "This no longer works, it using ids 1, 2, 3, etc. instead of ch-1, ch-2, ch-1",
+      "range": {
+        "startLine": 67,
+        "startChar": 8,
+        "endLine": 67,
+        "endChar": 40
+      },
+      "revId": "4875cbed583f9e558d7e93da23183e18271c2991",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "53f32755_7795173c",
         "filename": "k6-tests/ncmp/common/passthrough-crud.js",
         "patchSetId": 1
@@ -112,6 +135,23 @@
         "endLine": 50,
         "endChar": 22
       },
+      "revId": "4875cbed583f9e558d7e93da23183e18271c2991",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "face6bec_df5a2cab",
+        "filename": "k6-tests/ncmp/ncmp-kpi.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-25T13:49:59Z",
+      "side": 1,
+      "message": "You are missing the threshold for the overhead - plot won\u0027t work without this:\n\n    \u0027ncmp_overhead_passthrough_read_alt_id\u0027: [\u0027avg \u003c\u003d 100\u0027],",
       "revId": "4875cbed583f9e558d7e93da23183e18271c2991",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
