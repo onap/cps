@@ -48,17 +48,19 @@ public class DmiSubJobRequestHandler {
     private final DmiRestClient dmiRestClient;
     private final DmiProperties dmiProperties;
     private final JsonObjectMapper jsonObjectMapper;
-    static final String NO_AUTH_HEADER = null;
 
     /**
      * Sends sub-job write requests to the DMI Plugin.
      *
+     * @param authorization                    The authorization header from the REST request.
      * @param dataJobId                        data ojb identifier
      * @param dataJobMetadata                  the data job's metadata
      * @param dmiWriteOperationsPerProducerKey a collection of write requests per producer key.
      * @return a list of sub-job write responses
      */
-    public List<SubJobWriteResponse> sendRequestsToDmi(final String dataJobId, final DataJobMetadata dataJobMetadata,
+    public List<SubJobWriteResponse> sendRequestsToDmi(final String authorization,
+                                                       final String dataJobId,
+                                                       final DataJobMetadata dataJobMetadata,
                                      final Map<ProducerKey, List<DmiWriteOperation>> dmiWriteOperationsPerProducerKey) {
         final List<SubJobWriteResponse> subJobWriteResponses = new ArrayList<>(dmiWriteOperationsPerProducerKey.size());
         dmiWriteOperationsPerProducerKey.forEach((producerKey, dmi3ggpWriteOperations) -> {
@@ -71,7 +73,7 @@ public class DmiSubJobRequestHandler {
                     urlTemplateParameters,
                     jsonObjectMapper.asJsonString(subJobWriteRequest),
                     OperationType.CREATE,
-                    NO_AUTH_HEADER);
+                    authorization);
             final SubJobWriteResponse subJobWriteResponse = jsonObjectMapper
                                             .convertToValueType(responseEntity.getBody(), SubJobWriteResponse.class);
             log.debug("Sub job write response: {}", subJobWriteResponse);
