@@ -19,7 +19,12 @@
  */
 
 import http from 'k6/http';
-import { NCMP_BASE_URL, CONTENT_TYPE_JSON_PARAM, getRandomCmHandleId } from './utils.js';
+import {
+    CONTENT_TYPE_JSON_PARAM,
+    getRandomCmHandleId,
+    NCMP_BASE_URL,
+    TOPIC_DATA_OPERATIONS_BATCH_READ
+} from './utils.js';
 
 export function passthroughRead() {
     const cmHandleId = getRandomCmHandleId();
@@ -38,5 +43,23 @@ export function passthroughWrite() {
     const url = `${NCMP_BASE_URL}/ncmp/v1/ch/${cmHandleId}/data/ds/${datastoreName}?resourceIdentifier=${resourceIdentifier}`
     const body = `{"neType": "BaseStation"}`
     const response = http.post(url, JSON.stringify(body), CONTENT_TYPE_JSON_PARAM);
+    return response;
+}
+
+export function batchRead(cmHandleIds) {
+    const url = `${NCMP_BASE_URL}/ncmp/v1/data?topic=${TOPIC_DATA_OPERATIONS_BATCH_READ}`
+    const  payload = {
+        "operations": [
+            {
+                "resourceIdentifier": "parent/child",
+                "targetIds": cmHandleIds,
+                "datastore": "ncmp-datastore:passthrough-operational",
+                "options": "(fields=schemas/schema)",
+                "operationId": "12",
+                "operation": "read"
+            }
+        ]
+    };
+    const response = http.post(url, JSON.stringify(payload), CONTENT_TYPE_JSON_PARAM);
     return response;
 }
