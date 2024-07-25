@@ -20,16 +20,28 @@
 
 import { check } from 'k6';
 import { Gauge, Trend } from 'k6/metrics';
-import { TOTAL_CM_HANDLES, READ_DATA_FOR_CM_HANDLE_DELAY_MS, WRITE_DATA_FOR_CM_HANDLE_DELAY_MS,
-         makeCustomSummaryReport, recordTimeInSeconds } from './common/utils.js';
+import {
+    TOTAL_CM_HANDLES, READ_DATA_FOR_CM_HANDLE_DELAY_MS, WRITE_DATA_FOR_CM_HANDLE_DELAY_MS,
+    makeCustomSummaryReport, recordTimeInSeconds, makeBatchOfCmHandleIds, DATA_OPERATION_READ_BATCH_SIZE,
+    TOPIC_DATA_OPERATIONS_BATCH_READ, KAFKA_BOOTSTRAP_SERVERS
+} from './common/utils.js';
 import { registerAllCmHandles, deregisterAllCmHandles } from './common/cmhandle-crud.js';
 import { executeCmHandleSearch, executeCmHandleIdSearch } from './common/search-base.js';
-import { passthroughRead, passthroughWrite } from './common/passthrough-crud.js';
+import { passthroughRead, passthroughWrite, batchRead } from './common/passthrough-crud.js';
+import {
+    Reader,
+} from 'k6/x/kafka';
 
 let cmHandlesCreatedPerSecondGauge = new Gauge('cmhandles_created_per_second');
 let cmHandlesDeletedPerSecondGauge = new Gauge('cmhandles_deleted_per_second');
 let passthroughReadNcmpOverheadTrend = new Trend('ncmp_overhead_passthrough_read');
 let passthroughWriteNcmpOverheadTrend = new Trend('ncmp_overhead_passthrough_write');
+let dataOperationsBatchReadCmHandlePerSecondTrend = new Trend('data_operations_batch_read_cmhandles_per_second');
+
+const reader = new Reader({
+    brokers: KAFKA_BOOTSTRAP_SERVERS,
+    topic: TOPIC_DATA_OPERATIONS_BATCH_READ,
+});
 
 const DURATION = '15m';
 
@@ -61,6 +73,22 @@ export const options = {
             vus: 3,
             duration: DURATION,
         },
+        batch_read: {
+            executor: 'constant-arrival-rate',
+            exec: 'data_operation_send_async_http_request',
+            duration: DURATION,
+            rate: 1,
+            timeUnit: '1s',
+            preAllocatedVUs: 1,
+        },
+        batch_read_kafka: {
+            executor: 'constant-arrival-rate',
+            exec: 'data_operation_consume_kafka_responses',
+            duration: DURATION,
+            rate: 1,
+            timeUnit: '1s',
+            preAllocatedVUs: 1,
+        }
     },
     thresholds: {
         'cmhandles_created_per_second': ['value >= 22'],
@@ -75,6 +103,10 @@ export const options = {
         'http_req_failed{scenario:cm_search_module}': ['rate == 0'],
         'http_req_failed{scenario:passthrough_read}': ['rate == 0'],
         'http_req_failed{scenario:passthrough_write}': ['rate == 0'],
+        'http_reqs{scenario:batch_read}': ['count == 5'],
+        'http_req_failed{scenario:batch_read}': ['rate == 0'],
+        'kafka_reader_error_count{scenario:batch_read_kafka}': ['count == 0'],
+        'data_operations_batch_read_cmhandles_per_second': ['avg >= 150'],
     },
 };
 
@@ -112,6 +144,22 @@ export function cm_search_module() {
     const response = executeCmHandleSearch('module');
     check(response, { 'module search status equals 200': (r) => r.status === 200 });
     check(JSON.parse(response.body), { 'module search returned expected CM-handles': (arr) => arr.length === TOTAL_CM_HANDLES });
+}
+
+export function data_operation_send_async_http_request() {
+    const nextBatchOfCmHandleIds = makeBatchOfCmHandleIds(DATA_OPERATION_READ_BATCH_SIZE,1);
+    const response = batchRead(nextBatchOfCmHandleIds)
+    check(response, { 'data operation batch read status equals 200': (r) => r.status === 200 });
+}
+
+export function data_operation_consume_kafka_responses() {
+    try {
+        let messages = reader.consume({ limit: DATA_OPERATION_READ_BATCH_SIZE });
+        dataOperationsBatchReadCmHandlePerSecondTrend.add(messages.length);
+    } catch (error) {
+        dataOperationsBatchReadCmHandlePerSecondTrend.add(0);
+        console.error(error);
+    }
 }
 
 export function handleSummary(data) {
