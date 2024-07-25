@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aba91d69_b97211cf",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/DmiUrlEncodingPassthroughSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-25T15:22:00Z",
+      "side": 1,
+      "message": "is there value testing this with 4 methods instead of one?!",
+      "range": {
+        "startLine": 65,
+        "startChar": 27,
+        "endLine": 65,
+        "endChar": 51
+      },
+      "revId": "6455197af6678ecc54d4928de4a0befb575a4d64",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
