@@ -16,6 +16,23 @@
       "message": "ready for review",
       "revId": "ec3b2aaba9c38631f3dbd00645ecbc303d4c7353",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8cf9246_53d95faa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-07-25T15:42:17Z",
+      "side": 1,
+      "message": "fine by me. the patch is mostly refined now as we broke the change for XML support per endpoint.",
+      "revId": "ec3b2aaba9c38631f3dbd00645ecbc303d4c7353",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
