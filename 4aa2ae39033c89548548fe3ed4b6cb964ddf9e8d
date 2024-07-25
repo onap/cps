@@ -48,6 +48,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c17dd64b_39e1cad5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/OpenTelemetryConfigProperties.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-25T09:55:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "494c6f24_f5cc1ca5",
+      "range": {
+        "startLine": 50,
+        "startChar": 34,
+        "endLine": 50,
+        "endChar": 67
+      },
+      "revId": "4aa2ae39033c89548548fe3ed4b6cb964ddf9e8d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "339a1955_fcd8f83b",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "Same as above its default value if unavailable",
       "parentUuid": "339a1955_fcd8f83b",
+      "range": {
+        "startLine": 61,
+        "startChar": 39,
+        "endLine": 61,
+        "endChar": 72
+      },
+      "revId": "4aa2ae39033c89548548fe3ed4b6cb964ddf9e8d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffcec3be_04fc8fd7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/OpenTelemetryConfigProperties.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-25T09:55:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a8dbbdd4_b46154bc",
       "range": {
         "startLine": 61,
         "startChar": 39,
