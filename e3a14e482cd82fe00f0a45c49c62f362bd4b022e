@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9b65696_40cbcf2f",
+        "filename": "cps-rest/docs/openapi/cpsData.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-07-25T10:04:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "030e1588_05187e67",
+      "range": {
+        "startLine": 35,
+        "startChar": 53,
+        "endLine": 35,
+        "endChar": 70
+      },
+      "revId": "e3a14e482cd82fe00f0a45c49c62f362bd4b022e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "003d3523_c6db4ba0",
@@ -64,6 +88,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a8833aa_583dc916",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-07-25T10:04:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "003d3523_c6db4ba0",
+      "range": {
+        "startLine": 102,
+        "startChar": 58,
+        "endLine": 102,
+        "endChar": 66
+      },
+      "revId": "e3a14e482cd82fe00f0a45c49c62f362bd4b022e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f6a6affe_31746047",
@@ -77,6 +125,24 @@
       "writtenOn": "2024-07-10T09:53:47Z",
       "side": 1,
       "message": "javadoc not in sync with the number of parameters.",
+      "revId": "e3a14e482cd82fe00f0a45c49c62f362bd4b022e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3df3c739_977fc6e1",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-07-25T10:04:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f6a6affe_31746047",
       "revId": "e3a14e482cd82fe00f0a45c49c62f362bd4b022e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
