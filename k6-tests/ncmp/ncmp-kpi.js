@@ -97,7 +97,7 @@ export function passthrough_read() {
 
 export function passthrough_write() {
     const response = passthroughWrite();
-    check(response, { 'passthrough write status equals 200': (r) => r.status === 200 });
+    check(response, { 'passthrough write status equals 201': (r) => r.status === 201 });
     const overhead = response.timings.duration - WRITE_DATA_FOR_CM_HANDLE_DELAY_MS;
     passthroughWriteNcmpOverheadTrend.add(overhead);
 }
