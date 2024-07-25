@@ -25,16 +25,16 @@ class DmiSubJobRequestHandlerSpec extends Specification {
     def 'Send a sub-job request to the DMI Plugin.'() {
         given: 'a data job id, metadata and a map of producer keys and write operations to create a request'
             def dataJobId = 'some-job-id'
-            def dataJobMetadata = new DataJobMetadata('', '', '')
-            def dmiWriteOperation = new DmiWriteOperation('', '', '', null, '', [:])
-            def dmiWriteOperationsPerProducerKey = [new ProducerKey('', ''): [dmiWriteOperation]]
-            def response = new ResponseEntity<>(new SubJobWriteResponse('my-sub-job-id', '', ''), HttpStatus.OK)
+            def dataJobMetadata = new DataJobMetadata('d1', 't1', 't2')
+            def dmiWriteOperation = new DmiWriteOperation('p', 'operation', 'tag', null, 'o1', [:])
+            def dmiWriteOperationsPerProducerKey = [new ProducerKey('dmi1', 'prod1'): [dmiWriteOperation]]
+        and: 'the dmi rest client will return a response (for the correct parameters)'
+            def responseEntity = new ResponseEntity<>(new SubJobWriteResponse('my-sub-job-id', 'dmi1', 'prod1'), HttpStatus.OK)
+            def expectedJson = '{"dataAcceptType":"t1","dataContentType":"t2","dataProducerId":"prod1","data":[{"path":"p","op":"operation","moduleSetTag":"tag","value":null,"operationId":"o1","privateProperties":{}}]}'
+            mockDmiRestClient.synchronousPostOperationWithJsonData(RequiredDmiService.DATA, _, expectedJson, OperationType.CREATE, NO_AUTH) >> responseEntity
         when: 'sending request to DMI invoked'
             objectUnderTest.sendRequestsToDmi(dataJobId, dataJobMetadata, dmiWriteOperationsPerProducerKey)
-        then: 'the dmi rest client is called'
-            1 * mockDmiRestClient.synchronousPostOperationWithJsonData(RequiredDmiService.DATA, _, _, OperationType.CREATE, NO_AUTH) >> response
-        and: 'the result contains the expected sub-job write responses'
-            def result = response.body
-            assert result.subJobId() == 'my-sub-job-id'
+        then: 'the result contains the expected sub-job id'
+            assert responseEntity.body.subJobId == 'my-sub-job-id'
     }
 }
