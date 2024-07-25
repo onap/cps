@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "091c4be6_438d09e7",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-25T11:28:11Z",
+      "side": 1,
+      "message": "Use JS way:\n\n`ch-${id}`,",
+      "range": {
+        "startLine": 48,
+        "startChar": 24,
+        "endLine": 48,
+        "endChar": 41
+      },
+      "revId": "4875cbed583f9e558d7e93da23183e18271c2991",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79c7fe23_7ba9c499",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-25T11:28:11Z",
+      "side": 1,
+      "message": "`alt-${id}`",
+      "range": {
+        "startLine": 55,
+        "startChar": 28,
+        "endLine": 55,
+        "endChar": 45
+      },
+      "revId": "4875cbed583f9e558d7e93da23183e18271c2991",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53f32755_7795173c",
+        "filename": "k6-tests/ncmp/common/passthrough-crud.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-25T11:28:11Z",
+      "side": 1,
+      "message": "const url \u003d constructUrl(id, datastoreName, resourceIdentifier, includeDescendants, true);\n\n\n\n// Constructs the URL for GET requests\nfunction constructUrl(id, datastoreName, resourceIdentifier, includeDescendants, useAltId \u003d false) {\n    const idPrefix \u003d useAltId ? \u0027alt-\u0027 : \u0027ch-\u0027;\n    return `${NCMP_BASE_URL}/ncmp/v1/ch/${idPrefix}${id}/data/ds/${datastoreName}?resourceIdentifier\u003d${resourceIdentifier}\u0026include-descendants\u003d${includeDescendants}`;\n}",
+      "range": {
+        "startLine": 29,
+        "startChar": 3,
+        "endLine": 29,
+        "endChar": 162
+      },
+      "revId": "4875cbed583f9e558d7e93da23183e18271c2991",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "547adb50_a6370f14",
+        "filename": "k6-tests/ncmp/common/passthrough-crud.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-25T11:28:11Z",
+      "side": 1,
+      "message": "const url \u003d constructUrl(id, datastoreName, resourceIdentifier, includeDescendants, true);",
+      "range": {
+        "startLine": 39,
+        "startChar": 3,
+        "endLine": 39,
+        "endChar": 163
+      },
+      "revId": "4875cbed583f9e558d7e93da23183e18271c2991",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57fc3e7b_4d8c2e2f",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-25T11:28:11Z",
+      "side": 1,
+      "message": "const startIndex \u003d batchNumber * batchSize + 1;\nreturn Array.from({ length: batchSize }, (_, i) \u003d\u003e `${startIndex + i}`);",
+      "range": {
+        "startLine": 44,
+        "startChar": 2,
+        "endLine": 50,
+        "endChar": 22
+      },
+      "revId": "4875cbed583f9e558d7e93da23183e18271c2991",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
