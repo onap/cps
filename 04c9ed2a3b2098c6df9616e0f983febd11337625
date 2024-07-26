@@ -117,6 +117,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf632730_b9aa6821",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/models/DmiCmSubscriptionTuple.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-26T08:51:40Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "04c76ca0_0add00ba",
+      "range": {
+        "startLine": 32,
+        "startChar": 83,
+        "endLine": 32,
+        "endChar": 115
+      },
+      "revId": "04c9ed2a3b2098c6df9616e0f983febd11337625",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "121a4d77_d0d9ceba",
@@ -371,6 +395,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd239e1b_5d04aade",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-26T08:51:40Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "07d4af83_30fb983e",
+      "range": {
+        "startLine": 88,
+        "startChar": 35,
+        "endLine": 88,
+        "endChar": 67
+      },
+      "revId": "04c9ed2a3b2098c6df9616e0f983febd11337625",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8ea4207b_c42e8e1e",
@@ -500,6 +548,30 @@
       "side": 1,
       "message": "The team agreed to this name.\nAlso it may be confusing to name this method mergeSubscriptionDetails given there is another method on line 114 that merges Subscription Details. This one merges maps of DMI to Subscription Details",
       "parentUuid": "57751762_74bc7e9e",
+      "range": {
+        "startLine": 98,
+        "startChar": 50,
+        "endLine": 98,
+        "endChar": 89
+      },
+      "revId": "04c9ed2a3b2098c6df9616e0f983febd11337625",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1fba1859_1906bb60",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-26T08:51:40Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c9521e51_0d6d1d9e",
       "range": {
         "startLine": 98,
         "startChar": 50,
@@ -703,6 +775,24 @@
       "side": 1,
       "message": "Not needed if we combine all 3 methods using a single regex",
       "parentUuid": "da847e8b_edd306cc",
+      "revId": "04c9ed2a3b2098c6df9616e0f983febd11337625",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4f14cb1_08cf88af",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-26T08:51:40Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0d97f1b5_adbecf01",
       "revId": "04c9ed2a3b2098c6df9616e0f983febd11337625",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
