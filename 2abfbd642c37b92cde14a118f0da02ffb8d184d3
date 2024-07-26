@@ -93,6 +93,30 @@
       },
       "revId": "2abfbd642c37b92cde14a118f0da02ffb8d184d3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07fb9e4f_306def05",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-26T15:15:19Z",
+      "side": 1,
+      "message": "Merged open telemetry properties into ncmp-and-ncmp and tested with tracing profile it\u0027s working correctly with 2 replicas of cps-and-ncmp and single instance of jaeger-service.",
+      "parentUuid": "b655e5bc_084e00a0",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 15
+      },
+      "revId": "2abfbd642c37b92cde14a118f0da02ffb8d184d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
