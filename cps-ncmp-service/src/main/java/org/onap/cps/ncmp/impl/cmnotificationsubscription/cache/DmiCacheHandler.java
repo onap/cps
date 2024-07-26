@@ -50,13 +50,25 @@ public class DmiCacheHandler {
     private final InventoryPersistence inventoryPersistence;
 
     /**
-     * Adds new subscription to the subscription cache.
+     * Adds subscription to the subscription cache.
      *
      * @param subscriptionId    subscription id
      * @param predicates        subscription request predicates
      */
     public void add(final String subscriptionId, final List<Predicate> predicates) {
         cmNotificationSubscriptionCache.put(subscriptionId, createDmiSubscriptionsPerDmi(predicates));
+    }
+
+    /**
+     * Adds subscription to the subscription cache.
+     *
+     * @param subscriptionId subscription id
+     * @param dmiCmSubscriptionDetailsPerDmi map of dmi cm notification subscription details per dmi
+     */
+    public void add(final String subscriptionId,
+                    final Map<String, DmiCmSubscriptionDetails>
+                            dmiCmSubscriptionDetailsPerDmi) {
+        cmNotificationSubscriptionCache.put(subscriptionId, dmiCmSubscriptionDetailsPerDmi);
     }
 
     /**
@@ -122,8 +134,8 @@ public class DmiCacheHandler {
      * @param status            String of status
      *
      */
-    public void updateDmiSubscriptionStatusPerDmi(final String subscriptionId, final String dmiServiceName,
-            final CmSubscriptionStatus status) {
+    public void updateDmiSubscriptionStatus(final String subscriptionId, final String dmiServiceName,
+                                            final CmSubscriptionStatus status) {
         final Map<String, DmiCmSubscriptionDetails> dmiSubscriptionsPerDmi =
                 cmNotificationSubscriptionCache.get(subscriptionId);
         dmiSubscriptionsPerDmi.get(dmiServiceName).setCmSubscriptionStatus(status);
@@ -162,7 +174,7 @@ public class DmiCacheHandler {
      * @param dmiServiceName    String of dmiServiceName
      *
      */
-    public void removeFromDatabasePerDmi(final String subscriptionId, final String dmiServiceName) {
+    public void removeFromDatabase(final String subscriptionId, final String dmiServiceName) {
         final List<DmiCmSubscriptionPredicate> dmiCmSubscriptionPredicates =
                 cmNotificationSubscriptionCache.get(subscriptionId).get(dmiServiceName)
                         .getDmiCmSubscriptionPredicates();
@@ -210,6 +222,6 @@ public class DmiCacheHandler {
 
     private boolean isAcceptedOrRejected(final DmiCmSubscriptionDetails dmiCmSubscription) {
         return dmiCmSubscription.getCmSubscriptionStatus().toString().equals("ACCEPTED")
-                       || dmiCmSubscription.getCmSubscriptionStatus().toString().equals("REJECTED");
+                || dmiCmSubscription.getCmSubscriptionStatus().toString().equals("REJECTED");
     }
 }

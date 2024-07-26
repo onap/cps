@@ -103,7 +103,7 @@ class DmiOutEventConsumerSpec extends MessagingBaseSpec {
         when: 'the event is consumed'
             objectUnderTest.consumeDmiOutEvent(consumerRecord)
         then: 'correct number of calls to cache'
-            expectedCacheCalls * mockDmiCacheHandler.updateDmiSubscriptionStatusPerDmi('sub-1','test-dmi-plugin-name', subscriptionStatus)
+            expectedCacheCalls * mockDmiCacheHandler.updateDmiSubscriptionStatus('sub-1','test-dmi-plugin-name', subscriptionStatus)
         and: 'correct number of calls to persist cache'
             expectedPersistenceCalls * mockDmiCacheHandler.persistIntoDatabasePerDmi('sub-1','test-dmi-plugin-name')
         and: 'correct number of calls to map the ncmp out event'
