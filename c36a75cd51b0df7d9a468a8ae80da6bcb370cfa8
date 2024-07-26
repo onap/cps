@@ -241,6 +241,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0e7bda5_d2da98a9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DmiSubJobRequestHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-07-26T08:40:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "987bce67_702fb123",
+      "revId": "c36a75cd51b0df7d9a468a8ae80da6bcb370cfa8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6bd2f85a_3df6e6cd",
