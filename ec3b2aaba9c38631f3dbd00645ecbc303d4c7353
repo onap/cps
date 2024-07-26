@@ -33,6 +33,270 @@
       "message": "fine by me. the patch is mostly refined now as we broke the change for XML support per endpoint.",
       "revId": "ec3b2aaba9c38631f3dbd00645ecbc303d4c7353",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "def90a07_e68c2271",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-26T09:34:48Z",
+      "side": 1,
+      "message": "Since more than 6 NB comments, otherwise good.",
+      "revId": "ec3b2aaba9c38631f3dbd00645ecbc303d4c7353",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c195dd4c_ff9c63c6",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-26T09:34:48Z",
+      "side": 1,
+      "message": "NB: Scenario names out-dated. The new version of the API which support a NEW CONTENT type XML. However, the test names depict as if you only test time stamps. Some modifications on scenario names would be better like:\n\nContent type JSON with observed-timestamp\nContent type JSON without observed-timestamp\nContent type JSON with invalid observed-timestamp\nContent type XML with observed-timestamp\nContent type XML without observed-timestamp\nContent type XML with invalid observed-timestamp",
+      "range": {
+        "startLine": 207,
+        "startChar": 12,
+        "endLine": 207,
+        "endChar": 20
+      },
+      "revId": "ec3b2aaba9c38631f3dbd00645ecbc303d4c7353",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5a5de74_37e00a66",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-26T09:34:48Z",
+      "side": 1,
+      "message": "NB: space needed",
+      "range": {
+        "startLine": 210,
+        "startChar": 44,
+        "endLine": 210,
+        "endChar": 48
+      },
+      "revId": "ec3b2aaba9c38631f3dbd00645ecbc303d4c7353",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "967a0727_b1946a2f",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-26T09:34:48Z",
+      "side": 1,
+      "message": "NB:Same as above",
+      "range": {
+        "startLine": 233,
+        "startChar": 12,
+        "endLine": 233,
+        "endChar": 20
+      },
+      "revId": "ec3b2aaba9c38631f3dbd00645ecbc303d4c7353",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e72b874_e60e284a",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-26T09:34:48Z",
+      "side": 1,
+      "message": "NB: Same as above",
+      "range": {
+        "startLine": 236,
+        "startChar": 44,
+        "endLine": 236,
+        "endChar": 48
+      },
+      "revId": "ec3b2aaba9c38631f3dbd00645ecbc303d4c7353",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4be36de5_73932f1e",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-26T09:34:48Z",
+      "side": 1,
+      "message": "NB: You can merge this new test with the above test starting from on line 172.\nSince the verification blocks then - and exactly as same as above.\nIt would be really simple merging these tests with a where block without duplicating the test codes.",
+      "range": {
+        "startLine": 192,
+        "startChar": 9,
+        "endLine": 192,
+        "endChar": 72
+      },
+      "revId": "ec3b2aaba9c38631f3dbd00645ecbc303d4c7353",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8323ef1f_e382bfcd",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-26T09:34:48Z",
+      "side": 1,
+      "message": "NB: extra space",
+      "revId": "ec3b2aaba9c38631f3dbd00645ecbc303d4c7353",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "669b85d0_722aaa7d",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-26T09:34:48Z",
+      "side": 1,
+      "message": "NB: This test can be together with the test starting on line 213 since they both check if DataValidationException thrown or not. It would be nice to have them merged using where block with two different scenarios.",
+      "range": {
+        "startLine": 223,
+        "startChar": 9,
+        "endLine": 223,
+        "endChar": 57
+      },
+      "revId": "ec3b2aaba9c38631f3dbd00645ecbc303d4c7353",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10338e1f_dbd32888",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-26T09:34:48Z",
+      "side": 1,
+      "message": "xmlData",
+      "range": {
+        "startLine": 227,
+        "startChar": 16,
+        "endLine": 227,
+        "endChar": 24
+      },
+      "revId": "ec3b2aaba9c38631f3dbd00645ecbc303d4c7353",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "861e8b8f_b40c50ea",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-26T09:34:48Z",
+      "side": 1,
+      "message": "xmlData",
+      "range": {
+        "startLine": 228,
+        "startChar": 86,
+        "endLine": 228,
+        "endChar": 94
+      },
+      "revId": "ec3b2aaba9c38631f3dbd00645ecbc303d4c7353",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eaf25140_cee85f28",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/base/NcmpPerfTestBase.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-26T09:34:48Z",
+      "side": 1,
+      "message": "Missing modification copyrights",
+      "range": {
+        "startLine": 3,
+        "startChar": 4,
+        "endLine": 3,
+        "endChar": 45
+      },
+      "revId": "ec3b2aaba9c38631f3dbd00645ecbc303d4c7353",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1d52892_ab49cfbe",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/WritePerfTest.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-26T09:34:48Z",
+      "side": 1,
+      "message": "Missing modifications copyright header",
+      "range": {
+        "startLine": 3,
+        "startChar": 3,
+        "endLine": 3,
+        "endChar": 45
+      },
+      "revId": "ec3b2aaba9c38631f3dbd00645ecbc303d4c7353",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
