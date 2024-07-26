@@ -450,6 +450,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7c397f2_fdf597a7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/OpenTelemetryConfigPropertiesSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-26T14:10:17Z",
+      "side": 1,
+      "message": "yes, but should you not have the seem test on the private fiedl of the other class now?",
+      "parentUuid": "1bc7ae23_8e9cbbd8",
+      "range": {
+        "startLine": 40,
+        "startChar": 19,
+        "endLine": 40,
+        "endChar": 20
+      },
+      "revId": "4aa2ae39033c89548548fe3ed4b6cb964ddf9e8d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "373b2161_2809d432",

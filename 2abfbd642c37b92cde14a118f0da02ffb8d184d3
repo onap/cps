@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "76568b85_3e036375",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/OpenTelemetryConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-26T14:10:17Z",
+      "side": 1,
+      "message": "yes, I see now this direct use makes more sense then having a separete properties class...",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 37
+      },
+      "revId": "2abfbd642c37b92cde14a118f0da02ffb8d184d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f6fb89b7_d84e97a2",
@@ -38,6 +61,30 @@
       "side": 1,
       "message": "How about adding these environment variables to the existing cps-and-ncmp container, but have ONAP_TRACING_ENABLED: \u0027false\u0027\nJust leave a comment at the top saying you need tracing profile and set the environment variable to \u0027true\u0027",
       "parentUuid": "f6fb89b7_d84e97a2",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 15
+      },
+      "revId": "2abfbd642c37b92cde14a118f0da02ffb8d184d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b655e5bc_084e00a0",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-26T14:10:17Z",
+      "side": 1,
+      "message": "any idea why we get 4 instances?",
+      "parentUuid": "01c73268_6024aba2",
       "range": {
         "startLine": 70,
         "startChar": 0,
