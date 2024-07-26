@@ -175,4 +175,15 @@ class DmiRestClientSpec extends Specification {
         then: 'the response equals to the expected value'
             assert response == 'some status'
     }
+
+    def 'Get data job result from DMI.'() {
+        given: 'the Data web client returns a valid response entity for the expected parameters'
+            mockDataServicesWebClient.get() >> mockRequestBody
+            def resultObject = new Object()
+            mockResponse.bodyToMono(Object.class) >> Mono.just(resultObject)
+        when: 'GET operation is invoked for Data Service'
+            def response = objectUnderTest.getDataJobResult(urlTemplateParameters, NO_AUTH_HEADER).block()
+        then: 'the response equals to the expected value'
+            assert response != null
+    }
 }
