@@ -40,6 +40,7 @@ class DataJobServiceImplSpec extends Specification {
     def objectUnderTest = new DataJobServiceImpl(mockDmiSubJobRequestHandler, mockWriteRequestExaminer)
 
     def myDataJobMetadata = new DataJobMetadata('', '', '')
+    def authorization = 'my authorization header'
 
     def logger = Spy(ListAppender<ILoggingEvent>)
 
@@ -54,7 +55,7 @@ class DataJobServiceImplSpec extends Specification {
     def 'Read data job request.'() {
         when: 'read data job request is processed'
             def readOperation = new ReadOperation('', '', '', [], [], '', '', 1)
-            objectUnderTest.readDataJob('my-job-id', myDataJobMetadata, new DataJobReadRequest([readOperation]))
+            objectUnderTest.readDataJob(authorization, 'my-job-id', myDataJobMetadata, new DataJobReadRequest([readOperation]))
         then: 'the data job id is correctly logged'
             def loggingEvent = logger.list[0]
             assert loggingEvent.level == Level.INFO
@@ -67,11 +68,11 @@ class DataJobServiceImplSpec extends Specification {
         and: 'a map of producer key and dmi 3gpp write operation'
             def dmiWriteOperationsPerProducerKey = [:]
         when: 'write data job request is processed'
-            objectUnderTest.writeDataJob('my-job-id', myDataJobMetadata, dataJobWriteRequest)
+            objectUnderTest.writeDataJob(authorization, 'my-job-id', myDataJobMetadata, dataJobWriteRequest)
         then: 'the examiner service is called and a map is returned'
             1 * mockWriteRequestExaminer.splitDmiWriteOperationsFromRequest('my-job-id', dataJobWriteRequest) >> dmiWriteOperationsPerProducerKey
         and: 'the dmi request handler is called with the result from the examiner'
-            1 * mockDmiSubJobRequestHandler.sendRequestsToDmi('my-job-id', myDataJobMetadata, dmiWriteOperationsPerProducerKey)
+            1 * mockDmiSubJobRequestHandler.sendRequestsToDmi(authorization, 'my-job-id', myDataJobMetadata, dmiWriteOperationsPerProducerKey)
     }
 
     def setupLogger() {
