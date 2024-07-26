@@ -1,0 +1,10 @@
+Verified+1: ONAP Jobbuilder <onap-jobbuilder@jenkins.onap.org>
+Verified+1: ONAP Required GHA <releng+onap.required.gha@linuxfoundation.org>
+Code-Review+1: Sean Beirne <sean.beirne@est.tech>
+Code-Review+2: Priyank Maheshwari <priyank.maheshwari@est.tech>
+Code-Review+1: Daniel Hanrahan <daniel.hanrahan@est.tech>
+Submitted-by: Priyank Maheshwari <priyank.maheshwari@est.tech>
+Submitted-at: Fri, 26 Jul 2024 15:04:07 +0000
+Reviewed-on: https://gerrit.onap.org/r/c/cps/+/138419
+Project: cps
+Branch: refs/heads/master
