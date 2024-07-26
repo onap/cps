@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "12abbcf0_35af4b30",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/OpenTelemetryConfig.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-26T16:52:50Z",
+      "side": 1,
+      "message": "Actually, this may need to be in separate class for Spring interceptor to work I think. I will need to think about it (or put in some logging to see).",
+      "parentUuid": "ab2ffddb_d89d7376",
+      "revId": "04a6d4f5860f44f92288f03c6126d3255c1737a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8ed6f94c_d9ca0bac",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/OpenTelemetryConfig.java",
         "patchSetId": 7
