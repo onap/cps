@@ -33,6 +33,75 @@
       "message": "recheck",
       "revId": "c8e3e2cb8c52050806f7b9a4c7e50d8628182724",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74273ba0_e5d46e3f",
+        "filename": "k6-tests/ncmp/ncmp-kpi.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-26T17:29:00Z",
+      "side": 1,
+      "message": "Not needed if we run 1 VU in parallel, see my other comment below",
+      "range": {
+        "startLine": 35,
+        "startChar": 23,
+        "endLine": 37,
+        "endChar": 29
+      },
+      "revId": "c8e3e2cb8c52050806f7b9a4c7e50d8628182724",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c81d9360_21dd8582",
+        "filename": "k6-tests/ncmp/ncmp-kpi.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-26T17:29:00Z",
+      "side": 1,
+      "message": "I did some experiments, we get more consistent results if we run a single VU in parallel with other tests for the full duration:\n\n    vus: 1,\n    duration: DURATION,",
+      "range": {
+        "startLine": 51,
+        "startChar": 44,
+        "endLine": 54,
+        "endChar": 38
+      },
+      "revId": "c8e3e2cb8c52050806f7b9a4c7e50d8628182724",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b79145d1_f9d444f9",
+        "filename": "k6-tests/ncmp/ncmp-kpi.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-26T17:29:00Z",
+      "side": 1,
+      "message": "Can remove this, we won\u0027t be reporting/plotting the request rate, only the overhead below",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 15
+      },
+      "revId": "c8e3e2cb8c52050806f7b9a4c7e50d8628182724",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
