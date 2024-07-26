@@ -22,6 +22,30 @@
       },
       "revId": "e5048bdfe5d78629f224c03f798127883558720b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e6fb57f_7ddd5357",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-26T14:20:28Z",
+      "side": 1,
+      "message": "Can you try again with this:\n\n    \"^/datastores/datastore\\\\[@name\u003d\u0027([^\u0027]*)\u0027]/cm-handles/cm-handle\\\\[@id\u003d\u0027([^\u0027]*)\u0027]/\"\n        + \"filters/filter\\\\[@xpath\u003d\u0027(.*)\u0027]$\");",
+      "parentUuid": "13c244be_34454ee0",
+      "range": {
+        "startLine": 55,
+        "startChar": 87,
+        "endLine": 57,
+        "endChar": 59
+      },
+      "revId": "e5048bdfe5d78629f224c03f798127883558720b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
