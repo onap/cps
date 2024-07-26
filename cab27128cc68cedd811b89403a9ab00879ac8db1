@@ -236,6 +236,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "50179eed_f7b35784",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-26T13:00:12Z",
+      "side": 1,
+      "message": "NB: Delete a subscriber for fully overlapping subscriptions",
+      "range": {
+        "startLine": 152,
+        "startChar": 8,
+        "endLine": 152,
+        "endChar": 55
+      },
+      "revId": "cab27128cc68cedd811b89403a9ab00879ac8db1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a4728177_593498ad",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
         "patchSetId": 13
