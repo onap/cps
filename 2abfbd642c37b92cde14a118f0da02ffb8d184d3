@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6fb89b7_d84e97a2",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-26T13:40:39Z",
+      "side": 1,
+      "message": "This is not working as expected. 4 instances of ncmp are being started now!\n\n    ✔ Container docker-compose-cps-and-ncmp-tracing-2\n    ✔ Container docker-compose-cps-and-ncmp-tracing-1\n    ✔ Container docker-compose-cps-and-ncmp-2\n    ✔ Container docker-compose-cps-and-ncmp-1",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 15
+      },
+      "revId": "2abfbd642c37b92cde14a118f0da02ffb8d184d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
