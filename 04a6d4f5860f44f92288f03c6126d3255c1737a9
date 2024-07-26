@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab2ffddb_d89d7376",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/OpenTelemetryConfig.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-26T15:59:25Z",
+      "side": 1,
+      "message": "Because it\u0027s a normal method, we will be creating the list for every single observation, which could degrade application performance.\n\nInstead make it a @Bean, so it will only be created once\n\n    @Bean\n    private List\u003cString\u003e excludedTaskNamesAsList() {\n        return Arrays.asList(excludedTaskNames.split(\"\\\\s*,\\\\s*\"));\n    }",
+      "revId": "04a6d4f5860f44f92288f03c6126d3255c1737a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ed6f94c_d9ca0bac",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/OpenTelemetryConfig.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-26T15:59:25Z",
+      "side": 1,
+      "message": "Sonar is failing because of this regex having potentially bad performance.\n\nIf you really need to handle whitespace, use something like this:\n\n    return Arrays.stream(excludedTaskNames.split(\",\"))\n                         .map(String::trim)\n                         .collect(Collectors.toList());",
+      "range": {
+        "startLine": 134,
+        "startChar": 53,
+        "endLine": 134,
+        "endChar": 64
+      },
+      "revId": "04a6d4f5860f44f92288f03c6126d3255c1737a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
