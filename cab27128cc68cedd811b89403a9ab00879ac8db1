@@ -48,6 +48,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3668e38_04d5d197",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-07-26T13:37:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb219308_4037dab2",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 111
+      },
+      "revId": "cab27128cc68cedd811b89403a9ab00879ac8db1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "08df4b45_f9c1928f",
@@ -165,6 +189,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "360c9841_c1e5ea9e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-07-26T13:37:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8c4bcae4_5b2ac523",
+      "range": {
+        "startLine": 197,
+        "startChar": 0,
+        "endLine": 204,
+        "endChar": 69
+      },
+      "revId": "cab27128cc68cedd811b89403a9ab00879ac8db1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "56465b81_6ca9c603",
@@ -178,6 +226,30 @@
       "writtenOn": "2024-07-25T17:58:32Z",
       "side": 1,
       "message": "Combine all three methods into one using single regex:\n\n    private DmiCmSubscriptionKey extractCmSubscriptionKey(final String xpath) {\n        final Matcher matcher \u003d SUBSCRIPTION_KEY_FROM_XPATH_PATTERN.matcher(xpath);\n        if (matcher.find()) {\n            final String datastoreName \u003d matcher.group(1);\n            final String cmHandleId \u003d matcher.group(2);\n            final String filterXpath \u003d matcher.group(3);\n            return new DmiCmSubscriptionKey(datastoreName, cmHandleId, filterXpath);\n        }\n        throw new IllegalArgumentException(\"DataNode xpath does not represent a subscription key\");\n    }\n\nNote it\u0027s important to throw the exception - I found mistakes in the tests only because of the exception.",
+      "range": {
+        "startLine": 223,
+        "startChar": 0,
+        "endLine": 246,
+        "endChar": 5
+      },
+      "revId": "cab27128cc68cedd811b89403a9ab00879ac8db1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02f03175_d2130fe7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-07-26T13:37:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "56465b81_6ca9c603",
       "range": {
         "startLine": 223,
         "startChar": 0,
@@ -211,6 +283,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3cb6af37_d13e3c52",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-07-26T13:37:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "35a6b695_31845bc8",
+      "range": {
+        "startLine": 138,
+        "startChar": 38,
+        "endLine": 138,
+        "endChar": 149
+      },
+      "revId": "cab27128cc68cedd811b89403a9ab00879ac8db1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ef41629a_a59a247e",
@@ -224,6 +320,30 @@
       "writtenOn": "2024-07-25T17:58:32Z",
       "side": 1,
       "message": "incorrect xpath, missing filter[]",
+      "range": {
+        "startLine": 139,
+        "startChar": 140,
+        "endLine": 139,
+        "endChar": 147
+      },
+      "revId": "cab27128cc68cedd811b89403a9ab00879ac8db1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78b52089_549d75b5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-07-26T13:37:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ef41629a_a59a247e",
       "range": {
         "startLine": 139,
         "startChar": 140,
@@ -257,6 +377,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c908f7e_40deb8df",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-07-26T13:37:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "50179eed_f7b35784",
+      "range": {
+        "startLine": 152,
+        "startChar": 8,
+        "endLine": 152,
+        "endChar": 55
+      },
+      "revId": "cab27128cc68cedd811b89403a9ab00879ac8db1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a4728177_593498ad",
@@ -280,6 +424,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f98a447e_59db0952",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-07-26T13:37:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a4728177_593498ad",
+      "range": {
+        "startLine": 157,
+        "startChar": 141,
+        "endLine": 157,
+        "endChar": 148
+      },
+      "revId": "cab27128cc68cedd811b89403a9ab00879ac8db1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0a2f4d6f_5ba4e0e2",
@@ -293,6 +461,30 @@
       "writtenOn": "2024-07-25T17:58:32Z",
       "side": 1,
       "message": "incorrect xpath, missing filter[]",
+      "range": {
+        "startLine": 158,
+        "startChar": 141,
+        "endLine": 158,
+        "endChar": 148
+      },
+      "revId": "cab27128cc68cedd811b89403a9ab00879ac8db1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a2ac461_3252d676",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-07-26T13:37:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a2f4d6f_5ba4e0e2",
       "range": {
         "startLine": 158,
         "startChar": 141,
