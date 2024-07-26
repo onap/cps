@@ -48,6 +48,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "be544f9c_894fdf93",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-26T12:17:22Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1a9f7f82_4c3eafc7",
+      "range": {
+        "startLine": 162,
+        "startChar": 46,
+        "endLine": 164,
+        "endChar": 39
+      },
+      "revId": "4aa2ae39033c89548548fe3ed4b6cb964ddf9e8d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "df8d1b0a_b458981a",
@@ -95,6 +119,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6159636_5ed1d440",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/OpenTelemetryConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-26T12:17:22Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "cfbee044_f96a8fe1",
+      "range": {
+        "startLine": 114,
+        "startChar": 16,
+        "endLine": 114,
+        "endChar": 24
+      },
+      "revId": "4aa2ae39033c89548548fe3ed4b6cb964ddf9e8d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "87ecb14e_b4870343",
@@ -118,6 +166,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "66dba088_61b3d80e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/OpenTelemetryConfigProperties.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-26T12:17:22Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "87ecb14e_b4870343",
+      "range": {
+        "startLine": 34,
+        "startChar": 13,
+        "endLine": 34,
+        "endChar": 42
+      },
+      "revId": "4aa2ae39033c89548548fe3ed4b6cb964ddf9e8d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "462b3e74_85a5e141",
@@ -131,6 +203,30 @@
       "writtenOn": "2024-07-25T12:25:28Z",
       "side": 1,
       "message": "If using comma-separated list of names, we could do something like this:\n\n    private String excludedTaskNames;\n\n    @Bean\n    public List\u003cString\u003e excludedTaskNamesList() {\n        return Arrays.asList(excludedTaskNames.split(\",\"));\n    }",
+      "range": {
+        "startLine": 44,
+        "startChar": 4,
+        "endLine": 44,
+        "endChar": 43
+      },
+      "revId": "4aa2ae39033c89548548fe3ed4b6cb964ddf9e8d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c0fe02b_cf8005ab",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/OpenTelemetryConfigProperties.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-26T12:17:22Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "462b3e74_85a5e141",
       "range": {
         "startLine": 44,
         "startChar": 4,
@@ -308,6 +404,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "11045701_bc0a8128",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/OpenTelemetryConfigPropertiesSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-26T12:17:22Z",
+      "side": 1,
+      "message": "No more valid as production code is removed.",
+      "parentUuid": "59f1f5c2_68a9a195",
+      "range": {
+        "startLine": 40,
+        "startChar": 19,
+        "endLine": 40,
+        "endChar": 20
+      },
+      "revId": "4aa2ae39033c89548548fe3ed4b6cb964ddf9e8d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "373b2161_2809d432",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/OpenTelemetryConfigSpec.groovy",
         "patchSetId": 5
@@ -319,6 +439,30 @@
       "writtenOn": "2024-07-25T15:46:15Z",
       "side": 1,
       "message": "why dont you use test application.yaml?",
+      "range": {
+        "startLine": 46,
+        "startChar": 3,
+        "endLine": 49,
+        "endChar": 80
+      },
+      "revId": "4aa2ae39033c89548548fe3ed4b6cb964ddf9e8d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "12f10457_1ee41228",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/OpenTelemetryConfigSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-26T12:17:22Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "373b2161_2809d432",
       "range": {
         "startLine": 46,
         "startChar": 3,
