@@ -164,6 +164,24 @@ public class DmiRestClient {
                 .onErrorMap(throwable -> handleDmiClientException(throwable, OperationType.READ.getOperationName()));
     }
 
+    /**
+     * Retrieves the result of a data job from the DMI service.
+     *
+     * @param urlTemplateParameters   The URL template parameters for the DMI data job status endpoint.
+     * @param authorization           The authorization token to be added to the request headers.
+     * @return A Mono emitting the result of the data job as an Object.
+     * @throws DmiClientRequestException If there is an error during the DMI request.
+     */
+    public Mono<Object> getDataJobResult(final UrlTemplateParameters urlTemplateParameters,
+                                         final String authorization) {
+        return dataServicesWebClient.get()
+                                        .uri(urlTemplateParameters.urlTemplate(), urlTemplateParameters.urlVariables())
+                                        .headers(httpHeaders -> configureHttpHeaders(httpHeaders, authorization))
+                                        .retrieve().bodyToMono(Object.class)
+                                        .onErrorMap(throwable -> handleDmiClientException(throwable,
+                                                                 OperationType.READ.getOperationName()));
+    }
+
     private WebClient getWebClient(final RequiredDmiService requiredDmiService) {
         return requiredDmiService.equals(RequiredDmiService.DATA) ? dataServicesWebClient : modelServicesWebClient;
     }
