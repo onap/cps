@@ -20,8 +20,6 @@
 
 package org.onap.cps.integration.base
 
-import org.onap.cps.ncmp.api.datajobs.models.SubJobWriteRequest
-
 import static org.onap.cps.integration.base.CpsIntegrationSpecBase.readResourceDataFile
 
 import groovy.json.JsonSlurper
@@ -29,6 +27,7 @@ import java.util.regex.Matcher
 import okhttp3.mockwebserver.Dispatcher
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.RecordedRequest
+import org.onap.cps.ncmp.api.datajobs.models.SubJobWriteRequest
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
@@ -96,6 +95,10 @@ class DmiDispatcher extends Dispatcher {
             // get data job status
             case ~'^/dmi/v1/cmwriteJob/dataProducer/(.*)/dataProducerJob/(.*)/status$':
                 return mockResponseWithBody(HttpStatus.OK, '{"status":"status details from mock service"}')
+
+            // get data job result
+            case ~'^/dmi/v1/cmwriteJob/dataProducer/(.*)/dataProducerJob/(.*)/result(.*)$':
+                return mockResponseWithBody(HttpStatus.OK, '{ "result": "some result"}')
 
             // get write sub job response
             case ~'^/dmi/v1/cmwriteJob(.*)$':
