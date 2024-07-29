@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3050f5d4_c2c25837",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-29T14:20:57Z",
+      "side": 1,
+      "message": "No need for teh config class, see suggestions below\nAlso want you to clarify the docker compose changes...",
+      "revId": "c3f923d0222a06a1ca087d21ec360db86f783397",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aec9597c_b94f04ec",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/ExcludedTaskNamesConfig.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-29T14:20:57Z",
+      "side": 1,
+      "message": "classname does not include what these exclusing refer to!\nand do you really need a separet config class? \nif you do name it \u0027 OpenTelemetryExclusions\u0027 or somethign like that",
+      "range": {
+        "startLine": 34,
+        "startChar": 13,
+        "endLine": 34,
+        "endChar": 37
+      },
+      "revId": "c3f923d0222a06a1ca087d21ec360db86f783397",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c85046ff_62799156",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/OpenTelemetryConfig.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-29T14:20:57Z",
+      "side": 1,
+      "message": "I would just use the config directly and a dd a stic blcok to convert them\n\n@Value(...)\nexcludedTaskNamesAsCsv\n\n\nstatic {\nList\u003cString\u003e excludedTaskNames \u003d excludedTaskNamesAsCsv.split(...)\n}",
+      "range": {
+        "startLine": 50,
+        "startChar": 18,
+        "endLine": 50,
+        "endChar": 66
+      },
+      "revId": "c3f923d0222a06a1ca087d21ec360db86f783397",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

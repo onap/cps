@@ -117,6 +117,30 @@
       },
       "revId": "2abfbd642c37b92cde14a118f0da02ffb8d184d3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25249fd0_cbedcb93",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-29T14:20:57Z",
+      "side": 1,
+      "message": "I jsust seeing these being removed from the docker-compose. what do you mean with \u0027merged\u0027 I dont see any other related updates?!",
+      "parentUuid": "07fb9e4f_306def05",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 15
+      },
+      "revId": "2abfbd642c37b92cde14a118f0da02ffb8d184d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
