@@ -36,6 +36,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5377eb4e_ac3a44cd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/OpenTelemetryConfig.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-29T13:44:07Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "12abbcf0_35af4b30",
+      "revId": "04a6d4f5860f44f92288f03c6126d3255c1737a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8ed6f94c_d9ca0bac",
@@ -49,6 +67,30 @@
       "writtenOn": "2024-07-26T15:59:25Z",
       "side": 1,
       "message": "Sonar is failing because of this regex having potentially bad performance.\n\nIf you really need to handle whitespace, use something like this:\n\n    return Arrays.stream(excludedTaskNames.split(\",\"))\n                         .map(String::trim)\n                         .collect(Collectors.toList());",
+      "range": {
+        "startLine": 134,
+        "startChar": 53,
+        "endLine": 134,
+        "endChar": 64
+      },
+      "revId": "04a6d4f5860f44f92288f03c6126d3255c1737a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "60b1ccf7_59085e55",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/OpenTelemetryConfig.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-29T13:44:07Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8ed6f94c_d9ca0bac",
       "range": {
         "startLine": 134,
         "startChar": 53,
