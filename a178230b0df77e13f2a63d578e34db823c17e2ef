@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b2dbb5bd_5a946c8e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-29T15:23:23Z",
+      "side": 1,
+      "message": "This is a manual installation of the k6 with xk6-kafka extension.\nI have updated read.me file in this commit. \n\nLater, it would be also possible have the customized k6 binaries being compiled/installed automatically (can be part of another ticket \u0026 commit.)",
+      "parentUuid": "11c0b574_9627d9ee",
+      "range": {
+        "startLine": 17,
+        "startChar": 54,
+        "endLine": 17,
+        "endChar": 63
+      },
+      "revId": "a178230b0df77e13f2a63d578e34db823c17e2ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "44339770_86bd0a1a",
         "filename": "docker-compose/docker-compose.yml",
         "patchSetId": 1
@@ -37,6 +61,30 @@
       "writtenOn": "2024-07-29T09:42:40Z",
       "side": 1,
       "message": "I\u0027d suggest using \u0027monitoring\u0027 profile, we don\u0027t want to always run this, as it will take extra resources during the CSIT/k6 pipelines",
+      "range": {
+        "startLine": 192,
+        "startChar": 52,
+        "endLine": 195,
+        "endChar": 19
+      },
+      "revId": "a178230b0df77e13f2a63d578e34db823c17e2ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58499d3a_cc9233a1",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-29T15:23:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44339770_86bd0a1a",
       "range": {
         "startLine": 192,
         "startChar": 52,
@@ -64,6 +112,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1114a7b7_5da8fce0",
+        "filename": "k6-tests/ncmp/common/data-operations.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-29T15:23:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7922c21a_61f62ff3",
+      "revId": "a178230b0df77e13f2a63d578e34db823c17e2ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "95d801e9_502584f9",
@@ -77,6 +143,30 @@
       "writtenOn": "2024-07-29T09:42:40Z",
       "side": 1,
       "message": "no logging in performance tests, it may produce a lot of output and may affect performance measurement",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 13
+      },
+      "revId": "a178230b0df77e13f2a63d578e34db823c17e2ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a7af47b_b6137a30",
+        "filename": "k6-tests/ncmp/common/data-operations.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-29T15:23:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "95d801e9_502584f9",
       "range": {
         "startLine": 42,
         "startChar": 0,
@@ -110,6 +200,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "78becccf_d0a88adf",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-29T15:23:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ba5e605_8e653df9",
+      "range": {
+        "startLine": 28,
+        "startChar": 52,
+        "endLine": 28,
+        "endChar": 55
+      },
+      "revId": "a178230b0df77e13f2a63d578e34db823c17e2ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "97371f58_644b3987",
@@ -123,6 +237,30 @@
       "writtenOn": "2024-07-29T09:42:40Z",
       "side": 1,
       "message": "CM-handles/second",
+      "range": {
+        "startLine": 72,
+        "startChar": 63,
+        "endLine": 72,
+        "endChar": 79
+      },
+      "revId": "a178230b0df77e13f2a63d578e34db823c17e2ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3c82b47_4b8bcfc6",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-29T15:23:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97371f58_644b3987",
       "range": {
         "startLine": 72,
         "startChar": 63,
@@ -156,6 +294,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "edc21bfb_290e6ee9",
+        "filename": "k6-tests/ncmp/ncmp-kpi.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-29T15:23:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a71e7ca2_175d7344",
+      "range": {
+        "startLine": 84,
+        "startChar": 46,
+        "endLine": 86,
+        "endChar": 29
+      },
+      "revId": "a178230b0df77e13f2a63d578e34db823c17e2ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3ad2d45a_418ef4a2",
@@ -169,6 +331,30 @@
       "writtenOn": "2024-07-29T09:42:40Z",
       "side": 1,
       "message": "timeUnit should be \u00271s\u0027, since we want 1 request per second",
+      "range": {
+        "startLine": 86,
+        "startChar": 29,
+        "endLine": 88,
+        "endChar": 27
+      },
+      "revId": "a178230b0df77e13f2a63d578e34db823c17e2ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfa77ff2_4e4a0946",
+        "filename": "k6-tests/ncmp/ncmp-kpi.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-29T15:23:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ad2d45a_418ef4a2",
       "range": {
         "startLine": 86,
         "startChar": 29,
@@ -202,6 +388,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a1f0944_8268497c",
+        "filename": "k6-tests/ncmp/ncmp-kpi.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-29T15:23:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2a7fc22c_c6f2d461",
+      "range": {
+        "startLine": 89,
+        "startChar": 12,
+        "endLine": 89,
+        "endChar": 31
+      },
+      "revId": "a178230b0df77e13f2a63d578e34db823c17e2ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0d839057_4530baf0",
@@ -215,6 +425,30 @@
       "writtenOn": "2024-07-29T09:42:40Z",
       "side": 1,
       "message": "We want this to run in parallel with other tests.\nRemove startTime, and set duration: DURATION",
+      "range": {
+        "startLine": 93,
+        "startChar": 37,
+        "endLine": 95,
+        "endChar": 29
+      },
+      "revId": "a178230b0df77e13f2a63d578e34db823c17e2ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "673fa7ad_5deac351",
+        "filename": "k6-tests/ncmp/ncmp-kpi.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-29T15:23:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d839057_4530baf0",
       "range": {
         "startLine": 93,
         "startChar": 37,
@@ -248,6 +482,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "25e4c90a_edb8063e",
+        "filename": "k6-tests/ncmp/ncmp-kpi.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-29T15:23:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3810c132_6bb24b82",
+      "range": {
+        "startLine": 97,
+        "startChar": 27,
+        "endLine": 98,
+        "endChar": 31
+      },
+      "revId": "a178230b0df77e13f2a63d578e34db823c17e2ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d8a32608_e8061eff",
@@ -261,6 +519,30 @@
       "writtenOn": "2024-07-29T09:42:40Z",
       "side": 1,
       "message": "For clarity, rename this to something like: \u0027data_operation_send_async_http_request\u0027",
+      "range": {
+        "startLine": 157,
+        "startChar": 16,
+        "endLine": 157,
+        "endChar": 41
+      },
+      "revId": "a178230b0df77e13f2a63d578e34db823c17e2ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f2286eb_4e313303",
+        "filename": "k6-tests/ncmp/ncmp-kpi.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-29T15:23:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d8a32608_e8061eff",
       "range": {
         "startLine": 157,
         "startChar": 16,
@@ -294,6 +576,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c90e9ee_bf3ff8d5",
+        "filename": "k6-tests/ncmp/ncmp-kpi.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-29T15:23:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f23ab76c_8f6befd4",
+      "range": {
+        "startLine": 158,
+        "startChar": 41,
+        "endLine": 160,
+        "endChar": 47
+      },
+      "revId": "a178230b0df77e13f2a63d578e34db823c17e2ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5c8f924c_e3cb0617",
@@ -317,6 +623,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "af168c78_b002ed09",
+        "filename": "k6-tests/ncmp/ncmp-kpi.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-29T15:23:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5c8f924c_e3cb0617",
+      "range": {
+        "startLine": 163,
+        "startChar": 96,
+        "endLine": 166,
+        "endChar": 107
+      },
+      "revId": "a178230b0df77e13f2a63d578e34db823c17e2ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e08fb90c_d661aaaf",
@@ -330,6 +660,30 @@
       "writtenOn": "2024-07-29T09:42:40Z",
       "side": 1,
       "message": "For clarity, this should be renamed to something like: \u0027data_operation_consume_kafka_responses\u0027 or \u0027data_operation_record_response_rate\u0027",
+      "range": {
+        "startLine": 169,
+        "startChar": 16,
+        "endLine": 169,
+        "endChar": 32
+      },
+      "revId": "a178230b0df77e13f2a63d578e34db823c17e2ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58355821_c5a84e79",
+        "filename": "k6-tests/ncmp/ncmp-kpi.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-29T15:23:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e08fb90c_d661aaaf",
       "range": {
         "startLine": 169,
         "startChar": 16,
