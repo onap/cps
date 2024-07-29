@@ -23,7 +23,7 @@ openapi: 3.0.3
 info:
   title: ONAP Open API v3 Configuration Persistence Service
   description: Configuration Persistence Service is a Model Driven Generic Database
-  version: "1.0.0"
+  version: "3.5.1"
   contact:
      name: ONAP
      url: "https://onap.readthedocs.io"
@@ -31,10 +31,8 @@ info:
   license:
       name: "Apache 2.0"
       url: "http://www.apache.org/licenses/LICENSE-2.0"
-  x-planned-retirement-date: "202212"
+  x-planned-retirement-date: "202512"
   x-component: "Modeling"
-  x-logo:
-      url: "cps_logo.png"
 
 servers:
   - url: /cps/api

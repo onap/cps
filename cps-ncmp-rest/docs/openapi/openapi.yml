@@ -22,7 +22,9 @@ openapi: 3.0.3
 info:
   title: NCMP to CPS Proxy API
   description: NCMP to CPS Proxy API
-  version: "1.0"
+  version: "3.5.1"
+  x-planned-retirement-date: "202512"
+  x-component: "Network Proxy"
 servers:
   - url: /ncmp
 components:
