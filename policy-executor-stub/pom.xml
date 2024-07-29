@@ -76,6 +76,11 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -163,6 +168,20 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <plugin>
+                <groupId>org.jsonschema2pojo</groupId>
+                <artifactId>jsonschema2pojo-maven-plugin</artifactId>
+                <configuration>
+                    <useJakartaValidation>true</useJakartaValidation>
+                    <sourceDirectory>${project.parent.basedir}/../docs/schemas/policy-executor</sourceDirectory>
+                    <targetPackage>org.onap.cps.policyexecutor.stub.model</targetPackage>
+                    <generateBuilders>true</generateBuilders>
+                    <serializable>true</serializable>
+                    <includeJsr303Annotations>true</includeJsr303Annotations>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
 
