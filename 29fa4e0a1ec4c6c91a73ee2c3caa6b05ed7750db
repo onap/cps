@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2490d42_fe640ff5",
+        "filename": "csit/plans/cps/testplanNcmp.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-07-29T10:24:40Z",
+      "side": 1,
+      "message": "to be investigated later.\nit passes in the master branch , but not in newdelhi branch.",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 1
+      },
+      "revId": "29fa4e0a1ec4c6c91a73ee2c3caa6b05ed7750db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
