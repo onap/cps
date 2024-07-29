@@ -22,7 +22,7 @@
     <parent>
         <groupId>org.onap.cps</groupId>
         <artifactId>dmi-plugin-demo-and-csit-stub</artifactId>
-        <version>3.4.10-SNAPSHOT</version>
+        <version>3.4.11-SNAPSHOT</version>
     </parent>
 
     <artifactId>dmi-plugin-demo-and-csit-stub-app</artifactId>
