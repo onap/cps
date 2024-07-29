@@ -20,12 +20,17 @@
 
 package org.onap.cps.policyexecutor.stub.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import lombok.RequiredArgsConstructor;
 import org.onap.cps.policyexecutor.stub.api.PolicyExecutorApi;
+import org.onap.cps.policyexecutor.stub.model.NcmpDelete;
 import org.onap.cps.policyexecutor.stub.model.PolicyExecutionRequest;
 import org.onap.cps.policyexecutor.stub.model.PolicyExecutionResponse;
+import org.onap.cps.policyexecutor.stub.model.Request;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -34,9 +39,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("${rest.api.policy-executor-base-path}")
+@RequiredArgsConstructor
 public class PolicyExecutorStubController implements PolicyExecutorApi {
 
-    private final Pattern errorCodePattern = Pattern.compile("(\\d{3})");
+    private final ObjectMapper objectMapper;
+
+    private static final Pattern ERROR_CODE_PATTERN = Pattern.compile("(\\d{3})");
+
     private int decisionCounter = 0;
 
     @Override
@@ -44,31 +53,55 @@ public class PolicyExecutorStubController implements PolicyExecutorApi {
                                                      final String action,
                                                      final PolicyExecutionRequest policyExecutionRequest,
                                                      final String authorization) {
-        if (policyExecutionRequest.getPayload().isEmpty()) {
+        if (policyExecutionRequest.getRequests().isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        final Request firstRequest = policyExecutionRequest.getRequests().iterator().next();
+        if ("ncmp-delete-schema:1.0.0".equals(firstRequest.getSchema())) {
+            return handleNcmpDeleteSchema(firstRequest);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    private ResponseEntity<PolicyExecutionResponse> handleNcmpDeleteSchema(final Request request) {
+        final NcmpDelete ncmpDelete;
+        try {
+            ncmpDelete = objectMapper.readValue((String) request.getData(), NcmpDelete.class);
+        } catch (final JsonProcessingException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
-        final String firstTargetFdn = policyExecutionRequest.getPayload().iterator().next().getTargetFdn();
+        final String targetIdentifier = ncmpDelete.getTargetIdentifier();
+        if (targetIdentifier == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
 
-        final Matcher matcher = errorCodePattern.matcher(firstTargetFdn);
+        final Matcher matcher = ERROR_CODE_PATTERN.matcher(targetIdentifier);
         if (matcher.find()) {
             final int errorCode = Integer.parseInt(matcher.group(1));
             return new ResponseEntity<>(HttpStatusCode.valueOf(errorCode));
         }
 
+        return createPolicyExecutionResponse(targetIdentifier);
+    }
+
+    private ResponseEntity<PolicyExecutionResponse> createPolicyExecutionResponse(final String targetIdentifier) {
         final String decisionId = String.valueOf(++decisionCounter);
         final String decision;
         final String message;
 
-        if (firstTargetFdn.toLowerCase(Locale.getDefault()).contains("cps-is-great")) {
-            decision = "permit";
+        if (targetIdentifier.toLowerCase(Locale.getDefault()).contains("cps-is-great")) {
+            decision = "allow";
             message = "All good";
         } else {
             decision = "deny";
-            message = "Only FDNs containing 'cps-is-great' are permitted";
+            message = "Only FDNs containing 'cps-is-great' are allowed";
         }
+
         final PolicyExecutionResponse policyExecutionResponse =
             new PolicyExecutionResponse(decisionId, decision, message);
+
         return ResponseEntity.ok(policyExecutionResponse);
     }
+
 }
