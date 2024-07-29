@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11c0b574_9627d9ee",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-07-29T09:23:35Z",
+      "side": 1,
+      "message": "so this compilation will be happening manually or via some script we already have ??",
+      "range": {
+        "startLine": 17,
+        "startChar": 54,
+        "endLine": 17,
+        "endChar": 63
+      },
+      "revId": "a178230b0df77e13f2a63d578e34db823c17e2ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
