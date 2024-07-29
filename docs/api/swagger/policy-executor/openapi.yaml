@@ -52,8 +52,12 @@ paths:
                 $ref: '#/components/schemas/PolicyExecutionResponse'
         '400':
           $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
         '403':
           $ref: '#/components/responses/Forbidden'
+        '409':
+          $ref: '#/components/responses/Conflict'
         '500':
           $ref: '#/components/responses/InternalServerError'
 
@@ -75,48 +79,34 @@ components:
         details:
           type: string
 
-    Payload:
+    Request:
       type: object
       properties:
-        targetFdn:
+        schema:
           type: string
-          description: "The complete FDN (Fully Distinguished Name) for the element to be changed"
-          example: "/Subnetwork=Ireland/MeContext=Athlone/ManagedElement=Athlone/SomeFunction=1/Cell=12"
-        cmHandleId:
-          type: string
-          description: "The CM handle ID (optional)"
-          example: "F811AF64F5146DFC545EC60B73DE948E"
-        resourceIdentifier:
-          type: string
-          description: "The resource identifier (optional)"
-          example: "ManagedElement=Athlone/SomeFunction=1/Cell=12"
-        cmChangeRequest:
+          description: "The schema for the data in this request. The schema name should include the type of operation"
+          example: "org.onap.cps.ncmp.policy-executor:ncmp-create-schema:1.0.0"
+        data:
           type: object
-          description: "The content of the change to be made"
-          example: '{"Cell":[{"id":"Cell-id","attributes":{"administrativeState":"UNLOCKED"}}]}'
+          description: "The data related to the request. The format of the object is determined by the schema"
       required:
-        - targetFdn
-        - cmChangeRequest
+        - schema
+        - data
 
     PolicyExecutionRequest:
       type: object
       properties:
-        payloadType:
-          type: string
-          description: "The type of payload. Currently supported options: 'cm_write'"
-          example: "cm_write"
         decisionType:
           type: string
-          description: "The type of decision. Currently supported options: 'permit'"
-          example: "permit"
-        payload:
+          description: "The type of decision. Currently supported options: 'allow'"
+          example: "allow"
+        requests:
           type: array
           items:
-            $ref: '#/components/schemas/Payload'
+            $ref: '#/components/schemas/Request'
       required:
-        - payloadType
         - decisionType
-        - payload
+        - requests
 
     PolicyExecutionResponse:
       type: object
@@ -127,7 +117,7 @@ components:
           example: "550e8400-e29b-41d4-a716-446655440000"
         decision:
           type: string
-          description: "The decision outcome. Currently supported values: 'permit','deny'"
+          description: "The decision outcome. Currently supported values: 'allow','deny'"
           example: "deny"
         message:
           type: string
@@ -139,16 +129,16 @@ components:
         - message
 
   responses:
-    NotFound:
-      description: "The specified resource was not found"
+    BadRequest:
+      description: "Bad request"
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorMessage'
           example:
-            status: 404
-            message: "Resource Not Found"
-            details: "The requested resource is not found"
+            status: 400
+            message: "Bad Request"
+            details: "The provided request is not valid"
     Unauthorized:
       description: "Unauthorized request"
       content:
@@ -169,16 +159,16 @@ components:
             status: 403
             message: "Request Forbidden"
             details: "This request is forbidden"
-    BadRequest:
-      description: "Bad request"
+    Conflict:
+      description: "Conflict"
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorMessage'
           example:
-            status: 400
-            message: "Bad Request"
-            details: "The provided request is not valid"
+            status: 409
+            message: "Conflict"
+            details: "The provided request is breaks a policy rule"
 
     InternalServerError:
       description: "Internal server error"

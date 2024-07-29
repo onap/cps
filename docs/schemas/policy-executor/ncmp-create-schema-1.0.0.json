@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "urn:cps:org.onap.cps.ncmp.policy-executor:ncmp-create-schema:1.0.0",
+  "$ref": "#/definitions/NcmpCreate",
+  "definitions": {
+    "NcmpCreate": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "cmHandleId": {
+          "type": "string"
+        },
+        "resourceIdentifier": {
+          "type": "string"
+        },
+        "targetIdentifier": {
+          "type": "string"
+        },
+        "cmChangeRequest": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "targetIdentifier",
+        "cmChangeRequest"
+      ]
+    }
+  }
+}
