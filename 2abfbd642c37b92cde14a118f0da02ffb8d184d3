@@ -141,6 +141,30 @@
       },
       "revId": "2abfbd642c37b92cde14a118f0da02ffb8d184d3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78ba3fe2_07f42349",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-29T16:36:29Z",
+      "side": 1,
+      "message": "cps-and-ncmp-tracing was extended from cps-and-ncmp service previously but now I removed all the properties directly from here to  cps-and-ncmp service with ONAP_TRACING_ENABLED: \u0027false\u0027.\n\nNote : To test telemetry tracing need to enable ONAP_TRACING_ENABLED as mentioned as line number 23 into docker-compose.yml",
+      "parentUuid": "25249fd0_cbedcb93",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 15
+      },
+      "revId": "2abfbd642c37b92cde14a118f0da02ffb8d184d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eccd691d_c226b259",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/ExcludedTaskNamesConfig.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-29T16:36:29Z",
+      "side": 1,
+      "message": "Renamed it to \"TracingExclusionConfig\"",
+      "parentUuid": "aec9597c_b94f04ec",
+      "range": {
+        "startLine": 34,
+        "startChar": 13,
+        "endLine": 34,
+        "endChar": 37
+      },
+      "revId": "c3f923d0222a06a1ca087d21ec360db86f783397",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c85046ff_62799156",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-07-29T14:20:57Z",
       "side": 1,
       "message": "I would just use the config directly and a dd a stic blcok to convert them\n\n@Value(...)\nexcludedTaskNamesAsCsv\n\n\nstatic {\nList\u003cString\u003e excludedTaskNames \u003d excludedTaskNamesAsCsv.split(...)\n}",
+      "range": {
+        "startLine": 50,
+        "startChar": 18,
+        "endLine": 50,
+        "endChar": 66
+      },
+      "revId": "c3f923d0222a06a1ca087d21ec360db86f783397",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c56d152c_7693b8c6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/OpenTelemetryConfig.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-29T16:36:29Z",
+      "side": 1,
+      "message": "With static block  excludedTaskNamesAsCsv can\u0027t be injected with @Value spring annotation.",
+      "parentUuid": "c85046ff_62799156",
       "range": {
         "startLine": 50,
         "startChar": 18,
