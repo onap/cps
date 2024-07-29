@@ -110,6 +110,30 @@
       },
       "revId": "c3f923d0222a06a1ca087d21ec360db86f783397",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3c1f02d_d1104fc0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/OpenTelemetryConfig.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-29T16:57:47Z",
+      "side": 1,
+      "message": "I would like to discuss this, ie can you show me. I think this shoudl be possible...\nActualy you need a SpringBoot post-init block of course not a static but same idea...",
+      "parentUuid": "c56d152c_7693b8c6",
+      "range": {
+        "startLine": 50,
+        "startChar": 18,
+        "endLine": 50,
+        "endChar": 66
+      },
+      "revId": "c3f923d0222a06a1ca087d21ec360db86f783397",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

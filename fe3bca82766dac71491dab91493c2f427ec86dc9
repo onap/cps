@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05b7b05b_37d01fe6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-29T16:57:47Z",
+      "side": 1,
+      "message": "OK I was wrong to suggest ;\u0027static\u0027 but you should be able to use a springboot annotation to do something similar post init... Not sure of exact name",
+      "revId": "fe3bca82766dac71491dab91493c2f427ec86dc9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6418b722_9f31bbdd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/OpenTelemetryConfig.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-29T16:57:47Z",
+      "side": 1,
+      "message": "OPenTelemetry as prefix for consistency",
+      "range": {
+        "startLine": 50,
+        "startChar": 18,
+        "endLine": 50,
+        "endChar": 25
+      },
+      "revId": "fe3bca82766dac71491dab91493c2f427ec86dc9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
