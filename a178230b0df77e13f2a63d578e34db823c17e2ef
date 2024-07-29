@@ -89,6 +89,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1ba5e605_8e653df9",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-29T09:46:30Z",
+      "side": 1,
+      "message": "According to test case 7, batch size is 200 CM-handles",
+      "range": {
+        "startLine": 28,
+        "startChar": 52,
+        "endLine": 28,
+        "endChar": 55
+      },
+      "revId": "a178230b0df77e13f2a63d578e34db823c17e2ef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "97371f58_644b3987",
         "filename": "k6-tests/ncmp/common/utils.js",
         "patchSetId": 1
