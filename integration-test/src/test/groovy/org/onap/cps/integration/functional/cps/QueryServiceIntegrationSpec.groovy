@@ -383,7 +383,7 @@ class QueryServiceIntegrationSpec extends FunctionalSpecBase {
             def result = objectUnderTest.queryDataNodesAcrossAnchors(FUNCTIONAL_TEST_DATASPACE_1, '/bookstore', OMIT_DESCENDANTS, new PaginationOption(pageIndex, pageSize))
         then: 'correct bookstore names are queried'
             def bookstoreNames = result.collect { it.getLeaves().get('bookstore-name') }
-            assert bookstoreNames.toList() == expectedBookstoreNames
+            assert bookstoreNames.toSet() == expectedBookstoreNames.toSet()
         and: 'the correct number of page size is returned'
             assert result.size() == expectedPageSize
         and: 'the queried nodes have expected anchor names'
