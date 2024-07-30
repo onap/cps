@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68fd72db_58b2e9a5",
+        "filename": "cps-rest/docs/openapi/openapi.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-30T09:45:48Z",
+      "side": 0,
+      "message": "NB: I\u0027ve came across this outdated page on the internet:\n\nhttps://wiki.onap.org/pages/viewpage.action?pageId\u003d71834147\n\nin the \"Extension Fields\", it says \"extensions of the Swagger specification and SHALL be required for ONAP\" but I have no idea, if this rule still applicable.",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 25
+      },
+      "revId": "04a3a9686a976008b0471db78d27fb91fd6bfd01",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
