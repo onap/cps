@@ -393,6 +393,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6f24155_4c23dad4",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-07-30T08:44:08Z",
+      "side": 1,
+      "message": "Doesn\u0027t work when changes have been reverted",
+      "parentUuid": "3383ab18_402962f0",
+      "range": {
+        "startLine": 44,
+        "startChar": 2,
+        "endLine": 50,
+        "endChar": 22
+      },
+      "revId": "4875cbed583f9e558d7e93da23183e18271c2991",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "04e980dc_c1308f7a",

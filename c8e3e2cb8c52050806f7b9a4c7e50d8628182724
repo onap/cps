@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8563f66_8018b053",
+        "filename": "k6-tests/ncmp/ncmp-kpi.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-07-30T08:44:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "74273ba0_e5d46e3f",
+      "range": {
+        "startLine": 35,
+        "startChar": 23,
+        "endLine": 37,
+        "endChar": 29
+      },
+      "revId": "c8e3e2cb8c52050806f7b9a4c7e50d8628182724",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c81d9360_21dd8582",
@@ -81,6 +105,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf7e357c_666b2eef",
+        "filename": "k6-tests/ncmp/ncmp-kpi.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-07-30T08:44:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c81d9360_21dd8582",
+      "range": {
+        "startLine": 51,
+        "startChar": 44,
+        "endLine": 54,
+        "endChar": 38
+      },
+      "revId": "c8e3e2cb8c52050806f7b9a4c7e50d8628182724",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b79145d1_f9d444f9",
@@ -94,6 +142,30 @@
       "writtenOn": "2024-07-26T17:29:00Z",
       "side": 1,
       "message": "Can remove this, we won\u0027t be reporting/plotting the request rate, only the overhead below",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 15
+      },
+      "revId": "c8e3e2cb8c52050806f7b9a4c7e50d8628182724",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "67cc58d2_673fa38f",
+        "filename": "k6-tests/ncmp/ncmp-kpi.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-07-30T08:44:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b79145d1_f9d444f9",
       "range": {
         "startLine": 80,
         "startChar": 0,
