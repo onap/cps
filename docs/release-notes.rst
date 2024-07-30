@@ -45,6 +45,7 @@ Bug Fixes
 Features
 --------
 3.5.2
+    - `CPS-2326 <https://jira.onap.org/browse/CPS-2326>`_ Uplift liquibase-core dependency to 4.28.0
 
 Version: 3.5.1
 ==============
