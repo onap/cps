@@ -39,6 +39,30 @@
       },
       "revId": "fe3bca82766dac71491dab91493c2f427ec86dc9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9a9774e_c1235097",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/OpenTelemetryConfig.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-30T11:15:48Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6418b722_9f31bbdd",
+      "range": {
+        "startLine": 50,
+        "startChar": 18,
+        "endLine": 50,
+        "endChar": 25
+      },
+      "revId": "fe3bca82766dac71491dab91493c2f427ec86dc9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
