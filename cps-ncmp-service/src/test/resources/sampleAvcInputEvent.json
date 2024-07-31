@@ -10,11 +10,8 @@
               "operation":"replace",
               "target":"ran-network:ran-network/NearRTRIC[@id='22']/GNBCUCPFunction[@id='cucpserver2']/NRCellCU[@id='15549']/NRCellRelation[@id='14427']",
               "value":{
-                "attributes":[
-                  {
-                    "isHoAllowed":true
-                  }
-                ]
+                "color": "yellow",
+                "name": "Apple"
               }
             },
             {
