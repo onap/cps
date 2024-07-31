@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7aab79e_07db31ec",
+        "filename": "k6-tests/ncmp/common/passthrough-crud.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-31T09:18:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b65039be_431d851b",
+      "range": {
+        "startLine": 55,
+        "startChar": 29,
+        "endLine": 55,
+        "endChar": 72
+      },
+      "revId": "d3af5b5896c6eb2bde02d563e9dab231bb34ac15",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "02faba04_7b2e1858",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-07-30T13:36:12Z",
       "side": 1,
       "message": "It might be clearer if we call this \u0027events/second\u0027, since we get a kafka event for each CM handle, or maybe call the test case \u0027Data operations async batch read\u0027\nJust to be clear it\u0027s the async test",
+      "range": {
+        "startLine": 71,
+        "startChar": 63,
+        "endLine": 71,
+        "endChar": 81
+      },
+      "revId": "d3af5b5896c6eb2bde02d563e9dab231bb34ac15",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "08ba473f_a710b48d",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-31T09:18:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "02faba04_7b2e1858",
       "range": {
         "startLine": 71,
         "startChar": 63,
