@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d779a42_16ae0bb7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-31T13:22:23Z",
+      "side": 1,
+      "message": "it is good to remove dmi-stub apis from the postman collection since we suppose to access them through ncmp.\n\njust a suggesstion, since we have also ncmpinventory openapi, shall we add a postman collection for ncmpinventory api , too in the future?",
+      "revId": "eb5b0769be72d241a633963091a3b0e8962b8894",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4a4f513b_995efcd9",
