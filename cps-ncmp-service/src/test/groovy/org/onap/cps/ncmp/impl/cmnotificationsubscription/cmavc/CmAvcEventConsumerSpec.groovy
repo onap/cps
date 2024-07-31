@@ -37,7 +37,6 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.annotation.DirtiesContext
 import org.testcontainers.spock.Testcontainers
-
 import java.time.Duration
 
 import static org.onap.cps.ncmp.utils.events.CloudEventMapper.toTargetEvent
@@ -86,8 +85,8 @@ class CmAvcEventConsumerSpec extends MessagingBaseSpec {
             def convertedAvcEvent = toTargetEvent(cloudEvent, AvcEvent.class)
         and: 'we have correct headers forwarded where correlation id matches'
             assert KafkaHeaders.getParsedKafkaHeader(record.headers(), 'ce_correlationid') == 'test-cmhandle1'
-        and: 'event id differs(as per requirement) between consumed and forwarded'
-            assert KafkaHeaders.getParsedKafkaHeader(record.headers(), 'ce_id') != 'sample-eventid'
+        and: 'event id is same between consumed and forwarded'
+            assert KafkaHeaders.getParsedKafkaHeader(record.headers(), 'ce_id') == 'sample-eventid'
         and: 'the event payload still matches'
             assert testEventSent == convertedAvcEvent
     }
