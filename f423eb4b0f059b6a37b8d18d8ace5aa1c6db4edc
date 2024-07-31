@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b86bf707_7c0beabb",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/dmidataavc/avc-event-schema-1.0.0.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-31T16:47:31Z",
+      "side": 1,
+      "message": "will any attribute/child be an object in a map?",
+      "range": {
+        "startLine": 21,
+        "startChar": 11,
+        "endLine": 21,
+        "endChar": 39
+      },
+      "revId": "f423eb4b0f059b6a37b8d18d8ace5aa1c6db4edc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
