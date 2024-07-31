@@ -79,6 +79,167 @@
       },
       "revId": "53ba7c1260fc528798bb6835b43ebae52e6efd54",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d707ffa1_2d9b7b9a",
+        "filename": "policy-executor-stub/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-31T11:22:56Z",
+      "side": 1,
+      "message": "Maintain alphabetical order",
+      "range": {
+        "startLine": 79,
+        "startChar": 8,
+        "endLine": 83,
+        "endChar": 21
+      },
+      "revId": "53ba7c1260fc528798bb6835b43ebae52e6efd54",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd85f2f9_f353a0b4",
+        "filename": "policy-executor-stub/src/main/java/org/onap/cps/policyexecutor/stub/controller/PolicyExecutorStubController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-31T11:22:56Z",
+      "side": 1,
+      "message": "ERROR_CODE_PATTERN",
+      "range": {
+        "startLine": 47,
+        "startChar": 33,
+        "endLine": 47,
+        "endChar": 50
+      },
+      "revId": "53ba7c1260fc528798bb6835b43ebae52e6efd54",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65a10462_489febc0",
+        "filename": "policy-executor-stub/src/main/java/org/onap/cps/policyexecutor/stub/controller/PolicyExecutorStubController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-31T11:22:56Z",
+      "side": 1,
+      "message": "Method Extraction: \n \n Extracted handleNcmpDeleteSchema and createPolicyExecutionResponse methods for clarity and single responsibility principle.:\n \n \n return handleNcmpDeleteSchema(firstRequest);\n        }\n\n        return new ResponseEntity\u003c\u003e(HttpStatus.BAD_REQUEST);\n    }\n\n    private ResponseEntity\u003cPolicyExecutionResponse\u003e handleNcmpDeleteSchema(Request firstRequest) {\n        final NcmpDelete ncmpDelete;\n        try {\n            ncmpDelete \u003d objectMapper.readValue((String) firstRequest.getData(), NcmpDelete.class);\n        } catch (final JsonProcessingException e) {\n            return new ResponseEntity\u003c\u003e(HttpStatus.BAD_REQUEST);\n        }\n\n        final String targetIdentifier \u003d ncmpDelete.getTargetIdentifier();\n        if (targetIdentifier \u003d\u003d null) {\n            return new ResponseEntity\u003c\u003e(HttpStatus.BAD_REQUEST);\n        }\n\n        final Matcher matcher \u003d ERROR_CODE_PATTERN.matcher(targetIdentifier);\n        if (matcher.find()) {\n            final int errorCode \u003d Integer.parseInt(matcher.group(1));\n            return new ResponseEntity\u003c\u003e(HttpStatusCode.valueOf(errorCode));\n        }\n\n        return createPolicyExecutionResponse(targetIdentifier);\n    }\n\n    private ResponseEntity\u003cPolicyExecutionResponse\u003e createPolicyExecutionResponse(String targetIdentifier) {\n        final String decisionId \u003d String.valueOf(++decisionCounter);\n        final String decision;\n        final String message;\n\n        if (targetIdentifier.toLowerCase(Locale.getDefault()).contains(\"cps-is-great\")) {\n            decision \u003d \"allow\";\n            message \u003d \"All good\";\n        } else {\n            decision \u003d \"deny\";\n            message \u003d \"Only FDNs containing \u0027cps-is-great\u0027 are allowed\";\n        }\n\n        final PolicyExecutionResponse policyExecutionResponse \u003d\n                new PolicyExecutionResponse(decisionId, decision, message);\n\n        return ResponseEntity.ok(policyExecutionResponse);\n    }\n}",
+      "range": {
+        "startLine": 62,
+        "startChar": 11,
+        "endLine": 99,
+        "endChar": 0
+      },
+      "revId": "53ba7c1260fc528798bb6835b43ebae52e6efd54",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e6ed3a9_32a388fd",
+        "filename": "policy-executor-stub/src/test/groovy/org/onap/cps/policyexecutor/stub/controller/PolicyExecutorStubControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-31T11:22:56Z",
+      "side": 1,
+      "message": "\u0027All good\u0027",
+      "range": {
+        "startLine": 68,
+        "startChar": 79,
+        "endLine": 68,
+        "endChar": 89
+      },
+      "revId": "53ba7c1260fc528798bb6835b43ebae52e6efd54",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28337ebb_161cea9c",
+        "filename": "policy-executor-stub/src/test/groovy/org/onap/cps/policyexecutor/stub/controller/PolicyExecutorStubControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-31T11:22:56Z",
+      "side": 1,
+      "message": "policy action",
+      "range": {
+        "startLine": 125,
+        "startChar": 16,
+        "endLine": 125,
+        "endChar": 30
+      },
+      "revId": "53ba7c1260fc528798bb6835b43ebae52e6efd54",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b55da7ed_cb831406",
+        "filename": "policy-executor-stub/src/test/groovy/org/onap/cps/policyexecutor/stub/controller/PolicyExecutorStubControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-31T11:22:56Z",
+      "side": 1,
+      "message": "with missing or invalid attributes",
+      "range": {
+        "startLine": 125,
+        "startChar": 31,
+        "endLine": 125,
+        "endChar": 73
+      },
+      "revId": "53ba7c1260fc528798bb6835b43ebae52e6efd54",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92ab8b13_32478f30",
+        "filename": "policy-executor-stub/src/test/groovy/org/onap/cps/policyexecutor/stub/controller/PolicyExecutorStubControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-31T11:22:56Z",
+      "side": 1,
+      "message": "\u003d#",
+      "range": {
+        "startLine": 126,
+        "startChar": 60,
+        "endLine": 126,
+        "endChar": 61
+      },
+      "revId": "53ba7c1260fc528798bb6835b43ebae52e6efd54",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
