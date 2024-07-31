@@ -104,6 +104,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "209a49d1_183cf501",
+        "filename": "policy-executor-stub/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-31T12:55:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d707ffa1_2d9b7b9a",
+      "range": {
+        "startLine": 79,
+        "startChar": 8,
+        "endLine": 83,
+        "endChar": 21
+      },
+      "revId": "53ba7c1260fc528798bb6835b43ebae52e6efd54",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bd85f2f9_f353a0b4",
@@ -117,6 +141,30 @@
       "writtenOn": "2024-07-31T11:22:56Z",
       "side": 1,
       "message": "ERROR_CODE_PATTERN",
+      "range": {
+        "startLine": 47,
+        "startChar": 33,
+        "endLine": 47,
+        "endChar": 50
+      },
+      "revId": "53ba7c1260fc528798bb6835b43ebae52e6efd54",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06d6f8e0_77e89352",
+        "filename": "policy-executor-stub/src/main/java/org/onap/cps/policyexecutor/stub/controller/PolicyExecutorStubController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-31T12:55:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd85f2f9_f353a0b4",
       "range": {
         "startLine": 47,
         "startChar": 33,
@@ -150,6 +198,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5cbb5f8b_3e38f594",
+        "filename": "policy-executor-stub/src/main/java/org/onap/cps/policyexecutor/stub/controller/PolicyExecutorStubController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-31T12:55:27Z",
+      "side": 1,
+      "message": "thansk, it was a bit long and needed that!",
+      "parentUuid": "65a10462_489febc0",
+      "range": {
+        "startLine": 62,
+        "startChar": 11,
+        "endLine": 99,
+        "endChar": 0
+      },
+      "revId": "53ba7c1260fc528798bb6835b43ebae52e6efd54",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1e6ed3a9_32a388fd",
@@ -163,6 +235,30 @@
       "writtenOn": "2024-07-31T11:22:56Z",
       "side": 1,
       "message": "\u0027All good\u0027",
+      "range": {
+        "startLine": 68,
+        "startChar": 79,
+        "endLine": 68,
+        "endChar": 89
+      },
+      "revId": "53ba7c1260fc528798bb6835b43ebae52e6efd54",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d8d6bbc_6d9b40cc",
+        "filename": "policy-executor-stub/src/test/groovy/org/onap/cps/policyexecutor/stub/controller/PolicyExecutorStubControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-31T12:55:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1e6ed3a9_32a388fd",
       "range": {
         "startLine": 68,
         "startChar": 79,
@@ -219,6 +315,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "577770a7_3cbadc72",
+        "filename": "policy-executor-stub/src/test/groovy/org/onap/cps/policyexecutor/stub/controller/PolicyExecutorStubControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-31T12:55:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "28337ebb_161cea9c",
+      "range": {
+        "startLine": 125,
+        "startChar": 16,
+        "endLine": 125,
+        "endChar": 30
+      },
+      "revId": "53ba7c1260fc528798bb6835b43ebae52e6efd54",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "566504c4_c5fe76b5",
+        "filename": "policy-executor-stub/src/test/groovy/org/onap/cps/policyexecutor/stub/controller/PolicyExecutorStubControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-31T12:55:27Z",
+      "side": 1,
+      "message": "better, thanks!",
+      "parentUuid": "b55da7ed_cb831406",
+      "range": {
+        "startLine": 125,
+        "startChar": 31,
+        "endLine": 125,
+        "endChar": 73
+      },
+      "revId": "53ba7c1260fc528798bb6835b43ebae52e6efd54",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "92ab8b13_32478f30",
@@ -232,6 +376,30 @@
       "writtenOn": "2024-07-31T11:22:56Z",
       "side": 1,
       "message": "\u003d#",
+      "range": {
+        "startLine": 126,
+        "startChar": 60,
+        "endLine": 126,
+        "endChar": 61
+      },
+      "revId": "53ba7c1260fc528798bb6835b43ebae52e6efd54",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f965fc0_e70e7b4f",
+        "filename": "policy-executor-stub/src/test/groovy/org/onap/cps/policyexecutor/stub/controller/PolicyExecutorStubControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-31T12:55:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "92ab8b13_32478f30",
       "range": {
         "startLine": 126,
         "startChar": 60,
