@@ -21,7 +21,6 @@
 package org.onap.cps.ncmp.impl.cmnotificationsubscription.cmavc;
 
 import io.cloudevents.CloudEvent;
-import io.cloudevents.core.builder.CloudEventBuilder;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -56,11 +55,9 @@ public class CmAvcEventConsumer {
             containerFactory = "cloudEventConcurrentKafkaListenerContainerFactory")
     public void consumeAndForward(
             final ConsumerRecord<String, CloudEvent> cmAvcEventAsConsumerRecord) {
-        log.debug("Consuming AVC event {} ...", cmAvcEventAsConsumerRecord.value());
+        final CloudEvent outgoingAvcEvent = cmAvcEventAsConsumerRecord.value();
+        log.debug("Consuming AVC event {} ...", outgoingAvcEvent);
         final String newEventId = UUID.randomUUID().toString();
-        final CloudEvent outgoingAvcEvent =
-                CloudEventBuilder.from(cmAvcEventAsConsumerRecord.value()).withId(newEventId)
-                        .build();
         eventsPublisher.publishCloudEvent(cmEventsTopicName, newEventId, outgoingAvcEvent);
     }
 }
