@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0ae08de_5db2bca0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/OpenTelemetryConfig.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-31T08:30:40Z",
+      "side": 1,
+      "message": "NB: NO need for javadoc on private methods...",
+      "range": {
+        "startLine": 132,
+        "startChar": 0,
+        "endLine": 137,
+        "endChar": 7
+      },
+      "revId": "cbef47892c31b0928af4e3b6e50f50a88c60b1ab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "191964a2_188a8358",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/OpenTelemetryConfigSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-31T08:30:40Z",
+      "side": 1,
+      "message": "nice clear and concise tests :-)",
+      "revId": "cbef47892c31b0928af4e3b6e50f50a88c60b1ab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cdeae24f_7e889ac7",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 10
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-31T08:30:40Z",
+      "side": 1,
+      "message": "NB: would it be better (for demos etc.) if this was set to true:",
+      "range": {
+        "startLine": 58,
+        "startChar": 28,
+        "endLine": 58,
+        "endChar": 35
+      },
+      "revId": "cbef47892c31b0928af4e3b6e50f50a88c60b1ab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
