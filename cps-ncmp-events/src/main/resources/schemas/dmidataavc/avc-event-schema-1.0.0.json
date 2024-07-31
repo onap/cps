@@ -16,7 +16,9 @@
           "type": "string"
         },
         "value": {
-          "$ref": "#/definitions/Value"
+          "type": "object",
+          "existingJavaType": "java.lang.Object",
+          "additionalProperties": false
         }
       },
       "required": [
@@ -24,25 +26,6 @@
         "operation",
         "target"
       ]
-    },
-    "Value": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "attributes": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "existingJavaType": "java.util.Map<String,Object>",
-            "additionalProperties": false,
-            "properties": {
-              "isHoAllowed": {
-                "type": "boolean"
-              }
-            }
-          }
-        }
-      }
     },
     "AvcEvent": {
       "description": "The payload for AVC event.",
