@@ -22,6 +22,11 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
         <!-- S P R I N G   D E P E N D E N C I E S -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -163,6 +168,20 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <plugin>
+                <groupId>org.jsonschema2pojo</groupId>
+                <artifactId>jsonschema2pojo-maven-plugin</artifactId>
+                <configuration>
+                    <useJakartaValidation>true</useJakartaValidation>
+                    <sourceDirectory>${project.parent.basedir}/../docs/schemas/policy-executor</sourceDirectory>
+                    <targetPackage>org.onap.cps.policyexecutor.stub.model</targetPackage>
+                    <generateBuilders>true</generateBuilders>
+                    <serializable>true</serializable>
+                    <includeJsr303Annotations>true</includeJsr303Annotations>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
 

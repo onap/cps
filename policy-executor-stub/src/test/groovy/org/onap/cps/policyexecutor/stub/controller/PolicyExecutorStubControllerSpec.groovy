@@ -21,9 +21,10 @@
 package org.onap.cps.policyexecutor.stub.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import org.onap.cps.policyexecutor.stub.model.Payload
+import org.onap.cps.policyexecutor.stub.model.NcmpDelete
 import org.onap.cps.policyexecutor.stub.model.PolicyExecutionRequest
 import org.onap.cps.policyexecutor.stub.model.PolicyExecutionResponse
+import org.onap.cps.policyexecutor.stub.model.Request
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.http.HttpStatus
@@ -44,11 +45,9 @@ class PolicyExecutorStubControllerSpec extends Specification {
 
     def url = '/policy-executor/api/v1/some-action'
 
-    def 'Execute Policy Actions.'() {
-        given: 'a policy execution request with target fdn: #targetFdn'
-            def payload = new Payload(targetFdn, 'some change request')
-            def policyExecutionRequest = new PolicyExecutionRequest('some payload type','some decision type', [payload])
-            def requestBody = objectMapper.writeValueAsString(policyExecutionRequest)
+    def 'Execute policy action.'() {
+        given: 'a policy execution request with target: #targetIdentifier'
+            def requestBody = createRequestBody(targetIdentifier)
         when: 'request is posted'
             def response = mockMvc.perform(post(url)
                     .header('Authorization','some string')
@@ -61,19 +60,17 @@ class PolicyExecutorStubControllerSpec extends Specification {
             def responseBody = response.contentAsString
             def policyExecutionResponse = objectMapper.readValue(responseBody, PolicyExecutionResponse.class)
             assert policyExecutionResponse.decisionId == expectedDecsisonId
-            assert policyExecutionResponse.decision == expectedDecsison
+            assert policyExecutionResponse.decision == expectedDecision
             assert policyExecutionResponse.message == expectedMessage
         where: 'the following targets are used'
-            targetFdn               || expectedDecsisonId | expectedDecsison | expectedMessage
-            'some fdn'              || '1'                | 'deny'           | "Only FDNs containing 'cps-is-great' are permitted"
-            'fdn with cps-is-great' || '2'                | 'permit'         | "All good"
+            targetIdentifier        || expectedDecsisonId | expectedDecision | expectedMessage
+            'some fdn'              || '1'                | 'deny'           | "Only FDNs containing 'cps-is-great' are allowed"
+            'fdn with cps-is-great' || '2'                | 'allow'          | 'All good'
     }
 
-    def 'Execute Policy Action with a HTTP Error Code.'() {
+    def 'Execute policy action with a HTTP error code.'() {
         given: 'a policy execution request with a target fdn with a 3-digit error code'
-            def payload = new Payload('fdn with error code 418', 'some change request')
-            def policyExecutionRequest = new PolicyExecutionRequest('some payload type','some decision type', [payload])
-            def requestBody = objectMapper.writeValueAsString(policyExecutionRequest)
+            def requestBody = createRequestBody('target with error code 418')
         when: 'request is posted'
             def response = mockMvc.perform(post(url)
                 .header('Authorization','some string')
@@ -84,11 +81,9 @@ class PolicyExecutorStubControllerSpec extends Specification {
             assert response.status == 418
     }
 
-    def 'Execute Policy Action without Authorization Header.'() {
+    def 'Execute policy action without authorization header.'() {
         given: 'a valid policy execution request'
-            def payload = new Payload('some fdn', 'some change request')
-            def policyExecutionRequest = new PolicyExecutionRequest('some payload type','some decision type', [payload])
-            def requestBody = objectMapper.writeValueAsString(policyExecutionRequest)
+            def requestBody = createRequestBody('some target')
         when: 'request is posted without authorization header'
             def response = mockMvc.perform(post(url)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -98,9 +93,9 @@ class PolicyExecutorStubControllerSpec extends Specification {
             assert response.status == HttpStatus.OK.value()
     }
 
-    def 'Execute Policy Action with Empty Payload.'() {
-        given: 'a policy execution request with empty payload list'
-            def policyExecutionRequest = new PolicyExecutionRequest('some payload type','some decision type', [])
+    def 'Execute policy action with no requests.'() {
+        given: 'a policy execution request'
+            def policyExecutionRequest = new PolicyExecutionRequest('some decision type', [])
             def requestBody = objectMapper.writeValueAsString(policyExecutionRequest)
         when: 'request is posted'
             def response = mockMvc.perform(post(url)
@@ -112,11 +107,24 @@ class PolicyExecutorStubControllerSpec extends Specification {
             assert response.status == HttpStatus.BAD_REQUEST.value()
     }
 
-    def 'Execute Policy Action without other required attributes.'() {
-        given: 'a policy execution request with payloadType=#payloadType, decisionType=decisionType, targetFdn=#targetFdn, changeRequest=#changeRequest'
-            def payload = new Payload(targetFdn, changeRequest)
-            def policyExecutionRequest = new PolicyExecutionRequest(payloadType, decisionType, [payload])
+    def 'Execute policy action with invalid json for request data.'() {
+        given: 'a policy execution request'
+            def request = new Request('ncmp-delete-schema:1.0.0', 'invalid json')
+            def policyExecutionRequest = new PolicyExecutionRequest('some decision type', [request])
             def requestBody = objectMapper.writeValueAsString(policyExecutionRequest)
+        when: 'request is posted'
+            def response = mockMvc.perform(post(url)
+                .header('Authorization','some string')
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestBody))
+                .andReturn().response
+        then: 'response status is Bad Request'
+            assert response.status == HttpStatus.BAD_REQUEST.value()
+    }
+
+    def 'Execute policy action with missing or invalid attributes.'() {
+        given: 'a policy execution request with decisionType=#decisionType, schema=#schema, targetIdentifier=#targetIdentifier'
+            def requestBody = createRequestBody(decisionType, schema, targetIdentifier)
         when: 'request is posted'
             def response = mockMvc.perform(post(url)
                 .header('Authorization','something')
@@ -125,13 +133,23 @@ class PolicyExecutorStubControllerSpec extends Specification {
                 .andReturn().response
         then: 'response status as expected'
             assert response.status == expectedStatus.value()
-        where: 'following parameters are populated or not'
-            payloadType | decisionType | targetFdn   | changeRequest || expectedStatus
-            'something' | 'something'  | 'something' | 'something'   || HttpStatus.OK
-            null        | 'something'  | 'something' | 'something'   || HttpStatus.BAD_REQUEST
-            'something' | null         | 'something' | 'something'   || HttpStatus.BAD_REQUEST
-            'something' | 'something'  | null        | 'something'   || HttpStatus.BAD_REQUEST
-            'something' | 'something'  | 'something' | null          || HttpStatus.BAD_REQUEST
+        where: 'following parameters are used'
+            decisionType | schema                     | targetIdentifier || expectedStatus
+            'something'  | 'ncmp-delete-schema:1.0.0' | 'something'      || HttpStatus.OK
+            null         | 'ncmp-delete-schema:1.0.0' | 'something'      || HttpStatus.BAD_REQUEST
+            'something'  | 'other schema'             | 'something'      || HttpStatus.BAD_REQUEST
+            'something'  | 'ncmp-delete-schema:1.0.0' | null             || HttpStatus.BAD_REQUEST
+    }
+
+    def createRequestBody(decisionType, schema, targetIdentifier) {
+        def ncmpDelete = new NcmpDelete(targetIdentifier: targetIdentifier)
+        def request = new Request(schema, objectMapper.writeValueAsString(ncmpDelete))
+        def policyExecutionRequest = new PolicyExecutionRequest(decisionType, [request])
+        return objectMapper.writeValueAsString(policyExecutionRequest)
+    }
+
+    def createRequestBody(targetIdentifier) {
+        return createRequestBody('some decision type', 'ncmp-delete-schema:1.0.0', targetIdentifier)
     }
 
 }
