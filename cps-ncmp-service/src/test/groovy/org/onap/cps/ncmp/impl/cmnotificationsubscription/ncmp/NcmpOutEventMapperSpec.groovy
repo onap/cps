@@ -53,9 +53,9 @@ class NcmpOutEventMapperSpec extends Specification {
         then: 'event is mapped correctly for the subscription'
             result.data.subscriptionId == 'test-subscription'
         and: 'the cm handle ids are part of correct list'
-            result.data.pendingTargets == ['ch-A']
-            result.data.acceptedTargets == ['ch-B']
-            result.data.rejectedTargets == ['ch-C']
+            result.data.pendingTargets == ['ch-A'] as Set
+            result.data.acceptedTargets == ['ch-B'] as Set
+            result.data.rejectedTargets == ['ch-C'] as Set
     }
 
     def 'Check for Cm Notification Rejected Subscription Outgoing event mapping'() {
