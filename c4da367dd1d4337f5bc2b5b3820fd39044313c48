@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4263440f_b414559d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-31T16:54:32Z",
+      "side": 1,
+      "message": "some moves needed and because of that I didn\u0027t review the testware",
+      "revId": "c4da367dd1d4337f5bc2b5b3820fd39044313c48",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9deb1112_4ca3b829",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-31T16:54:32Z",
+      "side": 1,
+      "message": "yes i think this logic should be in the service layer",
+      "range": {
+        "startLine": 107,
+        "startChar": 8,
+        "endLine": 112,
+        "endChar": 12
+      },
+      "revId": "c4da367dd1d4337f5bc2b5b3820fd39044313c48",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e75c735_8d596f34",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/NetworkCmProxyFacade.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-31T16:54:32Z",
+      "side": 1,
+      "message": "probably should be n a util type class/package",
+      "range": {
+        "startLine": 123,
+        "startChar": 0,
+        "endLine": 136,
+        "endChar": 5
+      },
+      "revId": "c4da367dd1d4337f5bc2b5b3820fd39044313c48",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1c1429c_e06d1ce4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-31T16:54:32Z",
+      "side": 1,
+      "message": "why iterator and try to get next one. Is it a collection? then just use\n\nreturn getCmHandleDataNodeByCmHandleId(cmHandleId).size() \u003e 0",
+      "range": {
+        "startLine": 201,
+        "startChar": 13,
+        "endLine": 201,
+        "endChar": 74
+      },
+      "revId": "c4da367dd1d4337f5bc2b5b3820fd39044313c48",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
