@@ -33,6 +33,23 @@
       "message": "Ready for Review",
       "revId": "438bac48e8503a93c493d76b8b5405c8177ba533",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed050246_28a61a45",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-07-31T10:29:23Z",
+      "side": 1,
+      "message": "Thanks Rudrangi, nice commit.",
+      "revId": "438bac48e8503a93c493d76b8b5405c8177ba533",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
