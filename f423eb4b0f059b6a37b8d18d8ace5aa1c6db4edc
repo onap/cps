@@ -22,6 +22,30 @@
       },
       "revId": "f423eb4b0f059b6a37b8d18d8ace5aa1c6db4edc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7f61f19_95406498",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/dmidataavc/avc-event-schema-1.0.0.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-07-31T16:55:10Z",
+      "side": 1,
+      "message": "It would contain a generic object can have any kind like map or etc.",
+      "parentUuid": "b86bf707_7c0beabb",
+      "range": {
+        "startLine": 21,
+        "startChar": 11,
+        "endLine": 21,
+        "endChar": 39
+      },
+      "revId": "f423eb4b0f059b6a37b8d18d8ace5aa1c6db4edc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
