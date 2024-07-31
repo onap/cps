@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a4f513b_995efcd9",
+        "filename": "postman-collections/CPS Environment.postman_environment.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-07-31T08:24:07Z",
+      "side": 1,
+      "message": "are the SDNC Host \u0026 Pot no longer needed?!",
+      "revId": "eb5b0769be72d241a633963091a3b0e8962b8894",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
