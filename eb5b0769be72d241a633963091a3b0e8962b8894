@@ -16,6 +16,24 @@
       "message": "are the SDNC Host \u0026 Pot no longer needed?!",
       "revId": "eb5b0769be72d241a633963091a3b0e8962b8894",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3868a842_7443892e",
+        "filename": "postman-collections/CPS Environment.postman_environment.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-07-31T12:33:02Z",
+      "side": 1,
+      "message": "Correct, SDNC_HOST and SDNC_PORT variables are not used by the Postman collection",
+      "parentUuid": "4a4f513b_995efcd9",
+      "revId": "eb5b0769be72d241a633963091a3b0e8962b8894",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
