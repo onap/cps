@@ -22,6 +22,30 @@
       },
       "revId": "f2e1455bdde15c599a7972f90da959c008ae53e0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7953301_df82cc0d",
+        "filename": "docs/api/swagger/policy-executor/openapi.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-01T11:55:25Z",
+      "side": 1,
+      "message": "yes I still got a bad typo in that. I change it to \u0027violates\u0027 that si a good term",
+      "parentUuid": "3453b7c0_54e69a3a",
+      "range": {
+        "startLine": 171,
+        "startChar": 22,
+        "endLine": 171,
+        "endChar": 66
+      },
+      "revId": "f2e1455bdde15c599a7972f90da959c008ae53e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

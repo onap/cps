@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d9501d30_12a24869",
+        "filename": "docs/api/swagger/policy-executor/openapi.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-01T11:55:25Z",
+      "side": 1,
+      "message": "agreed, will create a new patch to remove this",
+      "parentUuid": "43ea1447_4397847a",
+      "revId": "53375821fa2d156785a92ef57ef7948389260cc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "372f0ba7_52aeb734",
         "filename": "docs/api/swagger/policy-executor/openapi.yaml",
         "patchSetId": 3
@@ -31,6 +49,30 @@
       "writtenOn": "2024-08-01T11:08:45Z",
       "side": 1,
       "message": "As mentioned above, we can discard this part.",
+      "range": {
+        "startLine": 162,
+        "startChar": 4,
+        "endLine": 162,
+        "endChar": 12
+      },
+      "revId": "53375821fa2d156785a92ef57ef7948389260cc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfcf7189_293851a2",
+        "filename": "docs/api/swagger/policy-executor/openapi.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-01T11:55:25Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "372f0ba7_52aeb734",
       "range": {
         "startLine": 162,
         "startChar": 4,
@@ -54,6 +96,30 @@
       "writtenOn": "2024-08-01T11:08:45Z",
       "side": 1,
       "message": "I cannot recall this field from the discussions.\nIs there a use for it?",
+      "range": {
+        "startLine": 8,
+        "startChar": 7,
+        "endLine": 8,
+        "endChar": 27
+      },
+      "revId": "53375821fa2d156785a92ef57ef7948389260cc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bee33424_87b9ecfe",
+        "filename": "docs/schemas/policy-executor/ncmp-create-schema-1.0.0.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-01T11:55:25Z",
+      "side": 1,
+      "message": "its an OpenAPI \u0027keyword\u0027 for objects. we always put it in ((with value), although by default I think this is false anyway. Setting it to true mean an object can have any other properties, handles in Java a sa Map\u003cString, Object\u003e. There are more options see\nSee https://swagger.io/docs/specification/data-models/dictionaries/\n\nbut we simple dont need it and I prefer to explicitly set it to false",
+      "parentUuid": "9ae26ca7_689fc5b0",
       "range": {
         "startLine": 8,
         "startChar": 7,
