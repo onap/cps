@@ -56,8 +56,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '403':
           $ref: '#/components/responses/Forbidden'
-        '409':
-          $ref: '#/components/responses/Conflict'
         '500':
           $ref: '#/components/responses/InternalServerError'
 
@@ -159,16 +157,6 @@ components:
             status: 403
             message: "Request Forbidden"
             details: "This request is forbidden"
-    Conflict:
-      description: "Conflict"
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorMessage'
-          example:
-            status: 409
-            message: "Conflict"
-            details: "The provided request violates a policy rule"
 
     InternalServerError:
       description: "Internal server error"
