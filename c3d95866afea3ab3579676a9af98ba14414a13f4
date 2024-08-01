@@ -47,6 +47,161 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "847e298a_7dacf6c1",
+        "filename": "docs/cm-notification-subscriptions.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-08-01T13:35:12Z",
+      "side": 1,
+      "message": "NB: CM Subscriptions are used to filter CM-related changes in the network based on specific predicates. These predicates provide granular details about CmHandle, Datastore, and Xpath.",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 69
+      },
+      "revId": "c3d95866afea3ab3579676a9af98ba14414a13f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c001b232_fbe2a8a2",
+        "filename": "docs/cm-notification-subscriptions.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-08-01T13:35:12Z",
+      "side": 1,
+      "message": "The CM Subscription flow is event-driven and adheres to the CNCF Cloud Events Specifications.",
+      "revId": "c3d95866afea3ab3579676a9af98ba14414a13f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32d63868_5950bdcc",
+        "filename": "docs/cm-notification-subscriptions.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-08-01T13:35:12Z",
+      "side": 1,
+      "message": "NB: Creating CM Subscriptions",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 25
+      },
+      "revId": "c3d95866afea3ab3579676a9af98ba14414a13f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4737046_ea4061c4",
+        "filename": "docs/cm-notification-subscriptions.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-08-01T13:35:12Z",
+      "side": 1,
+      "message": "To create a subscription, a client sends an event to a configured topic to register its interest with NCMP. This allows the client to receive notifications based on the subscription.",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 175
+      },
+      "revId": "c3d95866afea3ab3579676a9af98ba14414a13f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70435da8_4596761f",
+        "filename": "docs/cm-notification-subscriptions.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-08-01T13:35:12Z",
+      "side": 1,
+      "message": "NB: Deleting CM Subscriptions",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 25
+      },
+      "revId": "c3d95866afea3ab3579676a9af98ba14414a13f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cacc9cc_e0eedac7",
+        "filename": "docs/cm-notification-subscriptions.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-08-01T13:35:12Z",
+      "side": 1,
+      "message": "If a client no longer wishes to receive notifications based on a registered subscription, the client can delete the subscription by providing the subscription ID.",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 203
+      },
+      "revId": "c3d95866afea3ab3579676a9af98ba14414a13f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6611f439_dfbfabdc",
+        "filename": "docs/cm-notification-subscriptions.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-08-01T13:35:12Z",
+      "side": 1,
+      "message": "NB:\n\nSubscription Responses\nThe response status for subscription participants in the Create and Delete flow can be:\n\n- PENDING\n- ACCEPTED\n- REJECTED\n\nThe response depends on how the DMI Plugin responds back to NCMP.\n\nNote: The CM Subscription feature relies on DMI Plugin support for applying the subscriptions. This support is currently not implemented in the ONAP DMI Plugin.",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 147
+      },
+      "revId": "c3d95866afea3ab3579676a9af98ba14414a13f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "f863b21a_d2736a68",
@@ -89,6 +244,29 @@
         "startChar": 7,
         "endLine": 48,
         "endChar": 28
+      },
+      "revId": "c3d95866afea3ab3579676a9af98ba14414a13f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c758d00_545233f9",
+        "filename": "docs/schemas/ncmp-out-event-schema-1.0.0.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-08-01T13:35:12Z",
+      "side": 1,
+      "message": "Consistency: Made sure that all required fields are listed in the same order:\n \n \n \"subscriptionId\",\n \"acceptedTargets\",\n \"rejectedTargets\",\n \"pendingTargets\"",
+      "range": {
+        "startLine": 53,
+        "startChar": 7,
+        "endLine": 56,
+        "endChar": 24
       },
       "revId": "c3d95866afea3ab3579676a9af98ba14414a13f4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
