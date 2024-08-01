@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "af252b06_d3c0b309",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-08-01T16:36:39Z",
+      "side": 1,
+      "message": "Implementation is good in terms of generic impl. by using collection, but would be nice by having an extra unit test.",
+      "revId": "f11f294188ac8f1891c4468e2242462127c73930",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "10f70963_899bb049",
@@ -43,6 +60,29 @@
         "startChar": 14,
         "endLine": 107,
         "endChar": 18
+      },
+      "revId": "f11f294188ac8f1891c4468e2242462127c73930",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0245fee2_aae2b082",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/NcmpOutEventMapperSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-08-01T16:36:39Z",
+      "side": 1,
+      "message": "NB: The reason why this slip through since insufficient unit test which didn\u0027t have common cm-handle. I would add one more ch-handle that is the same to these and testing it if you have uniuque cm handles at the end to forward NcmpOutEvent.",
+      "range": {
+        "startLine": 41,
+        "startChar": 1,
+        "endLine": 43,
+        "endChar": 127
       },
       "revId": "f11f294188ac8f1891c4468e2242462127c73930",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
