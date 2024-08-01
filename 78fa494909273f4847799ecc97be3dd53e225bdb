@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "49ebcf53_cca721dc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-01T13:03:36Z",
+      "side": 1,
+      "message": "Lets meet with Csaba K. first before continuing",
+      "revId": "78fa494909273f4847799ecc97be3dd53e225bdb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96e24a37_d6bb2b42",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/datajobs/DataJobResultService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-01T13:03:36Z",
+      "side": 1,
+      "message": "NB: I would swap these 2 parameters\nbut after looking at the API call I am not so sure",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 56
+      },
+      "revId": "78fa494909273f4847799ecc97be3dd53e225bdb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35e78123_9c38abd9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobResultServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-01T13:03:36Z",
+      "side": 1,
+      "message": "no need for a private method that immediatiy delegates (in 1 line) to another method in another class...",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 80
+      },
+      "revId": "78fa494909273f4847799ecc97be3dd53e225bdb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e874418f_90147bff",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobResultServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-01T13:03:36Z",
+      "side": 1,
+      "message": "I have a lot of question about this URL, I think we need to organize a meeting with Csaba Kocsis",
+      "range": {
+        "startLine": 59,
+        "startChar": 44,
+        "endLine": 67,
+        "endChar": 5
+      },
+      "revId": "78fa494909273f4847799ecc97be3dd53e225bdb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
