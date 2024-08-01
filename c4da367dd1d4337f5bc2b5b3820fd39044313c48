@@ -85,6 +85,52 @@
       },
       "revId": "c4da367dd1d4337f5bc2b5b3820fd39044313c48",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf78cb98_00239f34",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/AlternateIdSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-08-01T13:48:04Z",
+      "side": 1,
+      "message": "Alternate ID in pass-through data operations should return OK status",
+      "range": {
+        "startLine": 40,
+        "startChar": 9,
+        "endLine": 40,
+        "endChar": 52
+      },
+      "revId": "c4da367dd1d4337f5bc2b5b3820fd39044313c48",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f83175e_c721cc7e",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/AlternateIdSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-08-01T13:48:04Z",
+      "side": 1,
+      "message": "given: \u0027the URL for the pass-through data request\u0027",
+      "range": {
+        "startLine": 41,
+        "startChar": 8,
+        "endLine": 41,
+        "endChar": 14
+      },
+      "revId": "c4da367dd1d4337f5bc2b5b3820fd39044313c48",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
