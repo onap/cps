@@ -36,6 +36,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "00bd80ab_c3b51678",
+        "filename": "docs/api/swagger/policy-executor/openapi.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7975
+      },
+      "writtenOn": "2024-08-01T12:01:24Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d9501d30_12a24869",
+      "revId": "53375821fa2d156785a92ef57ef7948389260cc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "372f0ba7_52aeb734",
@@ -120,6 +138,30 @@
       "side": 1,
       "message": "its an OpenAPI \u0027keyword\u0027 for objects. we always put it in ((with value), although by default I think this is false anyway. Setting it to true mean an object can have any other properties, handles in Java a sa Map\u003cString, Object\u003e. There are more options see\nSee https://swagger.io/docs/specification/data-models/dictionaries/\n\nbut we simple dont need it and I prefer to explicitly set it to false",
       "parentUuid": "9ae26ca7_689fc5b0",
+      "range": {
+        "startLine": 8,
+        "startChar": 7,
+        "endLine": 8,
+        "endChar": 27
+      },
+      "revId": "53375821fa2d156785a92ef57ef7948389260cc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "637d1efb_e2583bda",
+        "filename": "docs/schemas/policy-executor/ncmp-create-schema-1.0.0.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 7975
+      },
+      "writtenOn": "2024-08-01T12:01:24Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "bee33424_87b9ecfe",
       "range": {
         "startLine": 8,
         "startChar": 7,
