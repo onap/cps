@@ -46,6 +46,30 @@
       },
       "revId": "f423eb4b0f059b6a37b8d18d8ace5aa1c6db4edc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c12280c_21b23162",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/dmidataavc/avc-event-schema-1.0.0.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-08-01T13:05:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e7f61f19_95406498",
+      "range": {
+        "startLine": 21,
+        "startChar": 11,
+        "endLine": 21,
+        "endChar": 39
+      },
+      "revId": "f423eb4b0f059b6a37b8d18d8ace5aa1c6db4edc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
