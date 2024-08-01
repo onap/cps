@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b73c109_a9bf9036",
+        "filename": "docs/cm-notification-subscriptions.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-01T10:52:40Z",
+      "side": 1,
+      "message": "CM Subscriptions are created subscribe to notifications for CM related changes that happened in the network based on predicates.",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 110
+      },
+      "revId": "c3d95866afea3ab3579676a9af98ba14414a13f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb371474_3b60e662",
+        "filename": "docs/cm-notification-subscriptions.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-01T10:52:40Z",
+      "side": 1,
+      "message": "Predicates can be used to filter on  CM Handle (id), Datastore and Xpath.",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 69
+      },
+      "revId": "c3d95866afea3ab3579676a9af98ba14414a13f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
