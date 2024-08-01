@@ -21,6 +21,8 @@
 package org.onap.cps.ncmp.impl.cmnotificationsubscription.ncmp;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
@@ -76,9 +78,9 @@ public class NcmpOutEventMapper {
             final Map<String, DmiCmSubscriptionDetails> dmiSubscriptionsPerDmi,
             final Data cmSubscriptionData) {
 
-        final List<String> acceptedCmHandleIds = new ArrayList<>();
-        final List<String> pendingCmHandleIds = new ArrayList<>();
-        final List<String> rejectedCmHandleIds = new ArrayList<>();
+        final Collection<String> acceptedCmHandleIds = new HashSet<>();
+        final Collection<String> pendingCmHandleIds = new HashSet<>();
+        final Collection<String> rejectedCmHandleIds = new HashSet<>();
 
         dmiSubscriptionsPerDmi.forEach((dmiPluginName, dmiSubscriptionDetails) -> {
             final CmSubscriptionStatus cmSubscriptionStatus =
