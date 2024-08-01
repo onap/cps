@@ -33,6 +33,75 @@
       "message": "recheck",
       "revId": "205b5614fe8ebc828d399120a96e0ff5cda6406f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f926bc1b_a23f0815",
+        "filename": "cps-ncmp-rest/docs/openapi/openapi-inventory.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-01T09:10:23Z",
+      "side": 1,
+      "message": "please remove",
+      "range": {
+        "startLine": 25,
+        "startChar": 1,
+        "endLine": 26,
+        "endChar": 34
+      },
+      "revId": "205b5614fe8ebc828d399120a96e0ff5cda6406f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b66ebdfa_d5a65772",
+        "filename": "cps-ncmp-rest/docs/openapi/openapi.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-01T09:10:23Z",
+      "side": 1,
+      "message": "I dont  see the need for these we dont have them in other APIs\nIn general in my opinion, any code/configuration that is not strictly needed and doesn\u0027t help anything can be removed.\nUnless someone has a good reason to keep it please remove it",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 30
+      },
+      "revId": "205b5614fe8ebc828d399120a96e0ff5cda6406f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2b61940_a03ff9fa",
+        "filename": "cps-rest/docs/openapi/openapi.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-01T09:10:23Z",
+      "side": 1,
+      "message": "please remove",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 24
+      },
+      "revId": "205b5614fe8ebc828d399120a96e0ff5cda6406f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
