@@ -1,5 +1,69 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43ea1447_4397847a",
+        "filename": "docs/api/swagger/policy-executor/openapi.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7975
+      },
+      "writtenOn": "2024-08-01T11:08:45Z",
+      "side": 1,
+      "message": "We agreed that 409 response code will not be required.\n200 OK will indicate successful policy execution and the actual result (allow/deny for example) can be parsed from the response body.",
+      "revId": "53375821fa2d156785a92ef57ef7948389260cc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "372f0ba7_52aeb734",
+        "filename": "docs/api/swagger/policy-executor/openapi.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 7975
+      },
+      "writtenOn": "2024-08-01T11:08:45Z",
+      "side": 1,
+      "message": "As mentioned above, we can discard this part.",
+      "range": {
+        "startLine": 162,
+        "startChar": 4,
+        "endLine": 162,
+        "endChar": 12
+      },
+      "revId": "53375821fa2d156785a92ef57ef7948389260cc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ae26ca7_689fc5b0",
+        "filename": "docs/schemas/policy-executor/ncmp-create-schema-1.0.0.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 7975
+      },
+      "writtenOn": "2024-08-01T11:08:45Z",
+      "side": 1,
+      "message": "I cannot recall this field from the discussions.\nIs there a use for it?",
+      "range": {
+        "startLine": 8,
+        "startChar": 7,
+        "endLine": 8,
+        "endChar": 27
+      },
+      "revId": "53375821fa2d156785a92ef57ef7948389260cc1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
