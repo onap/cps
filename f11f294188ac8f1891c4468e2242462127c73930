@@ -22,6 +22,30 @@
       },
       "revId": "f11f294188ac8f1891c4468e2242462127c73930",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b9dcd9e_ca8f4f88",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/NcmpOutEventMapper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-01T13:56:24Z",
+      "side": 1,
+      "message": "not needed now since already the target DS is a Set now.\nso no benefit.\nIf I didnt want to change the schema then I could have also done this change and it would have fixed the issue 😊",
+      "parentUuid": "10f70963_899bb049",
+      "range": {
+        "startLine": 107,
+        "startChar": 14,
+        "endLine": 107,
+        "endChar": 18
+      },
+      "revId": "f11f294188ac8f1891c4468e2242462127c73930",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
