@@ -45,6 +45,29 @@
       },
       "revId": "c3d95866afea3ab3579676a9af98ba14414a13f4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f863b21a_d2736a68",
+        "filename": "docs/schemas/ncmp-out-event-schema-1.0.0.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-08-01T11:15:57Z",
+      "side": 1,
+      "message": "changed on a seperate patch to a set/object",
+      "range": {
+        "startLine": 29,
+        "startChar": 7,
+        "endLine": 48,
+        "endChar": 28
+      },
+      "revId": "c3d95866afea3ab3579676a9af98ba14414a13f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
