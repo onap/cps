@@ -83,5 +83,24 @@ class NcmpOutEventProducerSpec extends Specification {
             1 * mockDmiCacheHandler.removeAcceptedAndRejectedDmiSubscriptionEntries(subscriptionId)
     }
 
+    def 'No event published when NCMP out event is null'() {
+        given: 'a cm subscription response for the client'
+            def subscriptionId = 'test-subscription-id-3'
+            def eventType = 'subscriptionCreateResponse'
+            def ncmpOutEvent = null
+        and: 'also we have target topic for publishing to client'
+            objectUnderTest.ncmpOutEventTopic = 'client-test-topic'
+        and: 'a deadline to an event'
+            objectUnderTest.dmiOutEventTimeoutInMs = 1000
+        when: 'the event is scheduled to be published'
+            objectUnderTest.publishNcmpOutEvent(subscriptionId, eventType, ncmpOutEvent, true)
+        then: 'we wait for 10ms and then we receive response from DMI'
+            Thread.sleep(10)
+        and: 'we receive NO response from DMI so we publish the message on demand'
+            objectUnderTest.publishNcmpOutEvent(subscriptionId, eventType, ncmpOutEvent, false)
+        and: 'no event published'
+            0 * mockEventsPublisher.publishCloudEvent(*_)
+    }
+
 
 }
