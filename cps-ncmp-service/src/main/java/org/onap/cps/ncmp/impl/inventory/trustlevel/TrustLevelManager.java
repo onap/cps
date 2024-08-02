@@ -24,6 +24,7 @@ import java.util.Collection;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.inventory.models.TrustLevel;
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
@@ -49,11 +50,24 @@ public class TrustLevelManager {
     private static final String AVC_NO_OLD_VALUE = null;
 
     /**
+     * Add dmi plugins to the cache.
+     *
+     * @param dmiPluginRegistration a dmi plugin being registered
+     */
+    public void handleInitialRegistrationOfDmiTrustLevels(final DmiPluginRegistration dmiPluginRegistration) {
+        if (DmiPluginRegistration.isNullEmptyOrBlank(dmiPluginRegistration.getDmiDataPlugin())) {
+            trustLevelPerDmiPlugin.put(dmiPluginRegistration.getDmiPlugin(), TrustLevel.COMPLETE);
+        } else {
+            trustLevelPerDmiPlugin.put(dmiPluginRegistration.getDmiDataPlugin(), TrustLevel.COMPLETE);
+        }
+    }
+
+    /**
      * Add cmHandles to the cache and publish notification for initial trust level of cmHandles if it is NONE.
      *
      * @param cmHandlesToBeCreated a list of cmHandles being created
      */
-    public void handleInitialRegistrationOfTrustLevels(final Map<String, TrustLevel> cmHandlesToBeCreated) {
+    public void handleInitialRegistrationOfDeviceTrustLevels(final Map<String, TrustLevel> cmHandlesToBeCreated) {
         for (final Map.Entry<String, TrustLevel> entry : cmHandlesToBeCreated.entrySet()) {
             final String cmHandleId = entry.getKey();
             if (trustLevelPerCmHandle.containsKey(cmHandleId)) {
@@ -104,8 +118,7 @@ public class TrustLevelManager {
      */
     public void handleUpdateOfDeviceTrustLevel(final String cmHandleId,
                                                final TrustLevel newDeviceTrustLevel) {
-        final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(cmHandleId);
-        final String dmiServiceName = yangModelCmHandle.resolveDmiServiceName(RequiredDmiService.DATA);
+        final String dmiServiceName = getDmiServiceName(cmHandleId);
 
         final TrustLevel dmiTrustLevel = trustLevelPerDmiPlugin.get(dmiServiceName);
         final TrustLevel oldDeviceTrustLevel = trustLevelPerCmHandle.get(cmHandleId);
@@ -115,6 +128,41 @@ public class TrustLevelManager {
 
         trustLevelPerCmHandle.put(cmHandleId, newDeviceTrustLevel);
         sendAvcNotificationIfRequired(cmHandleId, oldEffectiveTrustLevel, newEffectiveTrustLevel);
+    }
+
+    /**
+     * Select effective trust level among device and dmi plugin.
+     *
+     * @param cmHandleId        cm handle id
+     * @return TrustLevel       effective trust level
+     */
+    public TrustLevel getEffectiveTrustLevel(final String cmHandleId) {
+        final String dmiServiceName = getDmiServiceName(cmHandleId);
+        final TrustLevel dmiTrustLevel = trustLevelPerDmiPlugin.get(dmiServiceName);
+        final TrustLevel deviceTrustLevel = trustLevelPerCmHandle.get(cmHandleId);
+        return dmiTrustLevel.getEffectiveTrustLevel(deviceTrustLevel);
+    }
+
+    /**
+     * Remove device trust level from the cache and publish notification for trust level of cmHandles
+     * if it is COMPLETE.
+     *
+     * @param cmHandleIds       cm handle ids to be removed from the cache
+     */
+    public void handleRemovalOfDeviceTrustLevels(final Collection<String> cmHandleIds) {
+        for (final String cmHandleId : cmHandleIds) {
+            if (trustLevelPerCmHandle.containsKey(cmHandleId)) {
+                final TrustLevel oldTrustLevel = trustLevelPerCmHandle.remove(cmHandleId);
+                sendAvcNotificationIfRequired(cmHandleId, oldTrustLevel, TrustLevel.NONE);
+            } else {
+                log.warn("Cm handle: {} already deleted", cmHandleId);
+            }
+        }
+    }
+
+    private String getDmiServiceName(final String cmHandleId) {
+        final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(cmHandleId);
+        return yangModelCmHandle.resolveDmiServiceName(RequiredDmiService.DATA);
     }
 
     private void sendAvcNotificationIfRequired(final String notificationCandidateCmHandleId,
