@@ -20,6 +20,7 @@
 
 package org.onap.cps.ncmp.impl.inventory.trustlevel
 
+import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.inventory.models.TrustLevel
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
@@ -35,11 +36,21 @@ class TrustLevelManagerSpec extends Specification {
     def mockAttributeValueChangeEventPublisher = Mock(CmAvcEventPublisher)
     def objectUnderTest = new TrustLevelManager(trustLevelPerCmHandle, trustLevelPerDmiPlugin, mockInventoryPersistence, mockAttributeValueChangeEventPublisher)
 
-    def 'Initial cm handle registration'() {
+    def 'Initial dmi registration'() {
+        given: 'a dmi plugin'
+            def dmiPluginRegistration = new DmiPluginRegistration()
+            dmiPluginRegistration.setDmiPlugin('dmi-1')
+        when: 'the initial registration handled'
+            objectUnderTest.handleInitialRegistrationOfDmiTrustLevels(dmiPluginRegistration)
+        then: 'dmi plugin in the cache and trusted'
+            trustLevelPerDmiPlugin.get('dmi-1') == TrustLevel.COMPLETE
+    }
+
+    def 'Initial cm handle (device) registration'() {
         given: 'two cm handles: one with no trust level and one trusted'
             def cmHandleModelsToBeCreated = ['ch-1': null, 'ch-2': TrustLevel.COMPLETE]
         when: 'the initial registration handled'
-            objectUnderTest.handleInitialRegistrationOfTrustLevels(cmHandleModelsToBeCreated)
+            objectUnderTest.handleInitialRegistrationOfDeviceTrustLevels(cmHandleModelsToBeCreated)
         then: 'no notification sent'
             0 * mockAttributeValueChangeEventPublisher.publishAvcEvent(*_)
         and: 'both cm handles are in the cache and are trusted'
@@ -51,7 +62,7 @@ class TrustLevelManagerSpec extends Specification {
         given: 'a not trusted cm handle'
             def cmHandleModelsToBeCreated = ['ch-2': TrustLevel.NONE]
         when: 'the initial registration handled'
-            objectUnderTest.handleInitialRegistrationOfTrustLevels(cmHandleModelsToBeCreated)
+            objectUnderTest.handleInitialRegistrationOfDeviceTrustLevels(cmHandleModelsToBeCreated)
         then: 'notification is sent'
             1 * mockAttributeValueChangeEventPublisher.publishAvcEvent(*_)
     }
@@ -121,6 +132,41 @@ class TrustLevelManagerSpec extends Specification {
             objectUnderTest.handleUpdateOfDmiTrustLevel('my-dmi', ['ch-1'], TrustLevel.COMPLETE)
         then: 'the cm handle in the cache is still NONE'
             assert trustLevelPerCmHandle.get('ch-1') == TrustLevel.NONE
+        and: 'no notification is sent'
+            0 * mockAttributeValueChangeEventPublisher.publishAvcEvent(*_)
+    }
+
+    def 'Select effective trust level among device and dmi plugin'() {
+        given: 'a non trusted dmi'
+            trustLevelPerDmiPlugin.put('my-dmi', TrustLevel.NONE)
+        and: 'a trusted device'
+            trustLevelPerCmHandle.put('ch-1', TrustLevel.COMPLETE)
+        and: 'inventory persistence service returns yang model cm handle'
+            mockInventoryPersistence.getYangModelCmHandle('ch-1') >> new YangModelCmHandle(id: 'ch-1', dmiDataServiceName: 'my-dmi')
+        when: 'effective trust level selected'
+            def effectiveTrustLevel = objectUnderTest.getEffectiveTrustLevel('ch-1')
+        then: 'effective trust level is not trusted'
+            assert effectiveTrustLevel == TrustLevel.NONE
+    }
+
+    def 'Device trusted level (COMPLETE) removed'() {
+        given: 'a trusted cm handle'
+            trustLevelPerCmHandle.put('ch-1', TrustLevel.COMPLETE)
+        when: 'the remove is handled'
+            objectUnderTest.handleRemovalOfDeviceTrustLevels(['ch-1'])
+        then: 'cm handle removed from the cache'
+            assert trustLevelPerCmHandle.get('ch-1') == null
+        and: 'notification is sent'
+            1 * mockAttributeValueChangeEventPublisher.publishAvcEvent(_,'trustLevel','COMPLETE','NONE')
+    }
+
+    def 'Device trust level (NONE) removed'() {
+        given: 'a non-trusted cm handle'
+            trustLevelPerCmHandle.put('ch-1', TrustLevel.NONE)
+        when: 'the remove is handled'
+            objectUnderTest.handleRemovalOfDeviceTrustLevels(['ch-1'])
+        then: 'cm handle removed from the cache'
+            assert trustLevelPerCmHandle.get('ch-1') == null
         and: 'no notification is sent'
             0 * mockAttributeValueChangeEventPublisher.publishAvcEvent(*_)
     }
