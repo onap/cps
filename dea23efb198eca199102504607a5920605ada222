@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6decd5e0_436e6f64",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/dmidataavc/avc-event-schema-1.0.0.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-02T09:16:34Z",
+      "side": 1,
+      "message": "NB: check if this is explicitly required.",
+      "range": {
+        "startLine": 20,
+        "startChar": 10,
+        "endLine": 20,
+        "endChar": 48
+      },
+      "revId": "dea23efb198eca199102504607a5920605ada222",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
