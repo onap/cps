@@ -49,7 +49,7 @@ class DeviceTrustLevelMessageConsumerSpec extends Specification {
         when: 'the event is consumed'
             objectUnderTest.deviceTrustLevelListener(consumerRecord)
         then: 'cm handles are stored with correct trust level'
-            1 * mockTrustLevelManager.handleUpdateOfDeviceTrustLevel('"ch-1"', TrustLevel.COMPLETE)
+            1 * mockTrustLevelManager.updateCmHandleTrustLevel('"ch-1"', TrustLevel.COMPLETE)
     }
 
     def createTrustLevelEvent(eventPayload) {

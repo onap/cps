@@ -36,7 +36,7 @@ ${ncmpBasePath}                             /ncmp/v1
 ${dmiUrl}                                   http://${DMI_HOST}:${DMI_PORT}
 ${jsonCreateCmHandles}                      {"dmiPlugin":"${dmiUrl}","dmiDataPlugin":"","dmiModelPlugin":"","createdCmHandles":[{"trustLevel":"COMPLETE","cmHandle":"CH-1"},{"trustLevel":"COMPLETE","cmHandle":"CH-2"},{"cmHandle":"CH-3"},{"trustLevel":"NONE","cmHandle":"CH-4"}]}
 ${jsonTrustLevelPropertyQueryParameters}    {"cmHandleQueryParameters": [{"conditionName": "cmHandleWithTrustLevel", "conditionParameters": [ {"trustLevel": "COMPLETE"} ] }]}
-${jsonTrustLevelQueryResponse}              {"data":{"attributeValueChange":[{"attributeName":"trustLevel","newAttributeValue":"NONE"}]}}
+${jsonTrustLevelEventPayload}               {"data":{"attributeValueChange":[{"attributeName":"trustLevel","oldAttributeValue":"COMPLETE","newAttributeValue":"NONE"}]}}
 
 *** Test Cases ***
 Register data node
@@ -55,9 +55,9 @@ Verify notification
         Compare Header Values       ${header_key_value_pair[0]}   ${header_key_value_pair[1]}     "ce_specversion"      "1.0"
         Compare Header Values       ${header_key_value_pair[0]}   ${header_key_value_pair[1]}     "ce_source"           "NCMP"
         Compare Header Values       ${header_key_value_pair[0]}   ${header_key_value_pair[1]}     "ce_type"             "org.onap.cps.ncmp.events.avc.ncmp_to_client.AvcEvent"
-        Compare Header Values       ${header_key_value_pair[0]}   ${header_key_value_pair[1]}     "ce_correlationid"    "CH-4"
+        Compare Header Values       ${header_key_value_pair[0]}   ${header_key_value_pair[1]}     "ce_correlationid"    "CmHandleForDelete"
     END
-    Should Be Equal As Strings      ${payload}    ${jsonTrustLevelQueryResponse}
+    Should Be Equal As Strings      ${payload}    ${jsonTrustLevelEventPayload}
     [Teardown]    Basic Teardown    ${group_id}
 
 Retrieve CM Handle ids where query parameters Match (trust level query)
