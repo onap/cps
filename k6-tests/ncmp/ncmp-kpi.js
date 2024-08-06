@@ -23,10 +23,14 @@ import { Gauge, Trend } from 'k6/metrics';
 import { Reader } from 'k6/x/kafka';
 import {
     TOTAL_CM_HANDLES, READ_DATA_FOR_CM_HANDLE_DELAY_MS, WRITE_DATA_FOR_CM_HANDLE_DELAY_MS,
-    makeCustomSummaryReport, recordTimeInSeconds, makeBatchOfCmHandleIds, DATA_OPERATION_READ_BATCH_SIZE,
-    TOPIC_DATA_OPERATIONS_BATCH_READ, KAFKA_BOOTSTRAP_SERVERS
+    makeCustomSummaryReport, makeBatchOfCmHandleIds, DATA_OPERATION_READ_BATCH_SIZE,
+    TOPIC_DATA_OPERATIONS_BATCH_READ, KAFKA_BOOTSTRAP_SERVERS, REGISTRATION_BATCH_SIZE
 } from './common/utils.js';
-import { registerAllCmHandles, deregisterAllCmHandles } from './common/cmhandle-crud.js';
+import {
+    createCmHandles,
+    deleteCmHandles,
+    waitForAllCmHandlesToBeReady
+} from './common/cmhandle-crud.js';
 import { executeCmHandleSearch, executeCmHandleIdSearch } from './common/search-base.js';
 import { passthroughRead, passthroughReadWithAltId, passthroughWrite, batchRead } from './common/passthrough-crud.js';
 
@@ -107,6 +111,8 @@ export const options = {
         'http_req_failed{scenario:cm_search_module}': ['rate == 0'],
         'http_req_failed{scenario:passthrough_read}': ['rate == 0'],
         'http_req_failed{scenario:passthrough_write}': ['rate == 0'],
+        'http_req_failed{group:::setup}':['rate == 0'],
+        'http_req_failed{group:::teardown}':['rate == 0'],
         'http_req_failed{scenario:data_operation_send_async_http_request}': ['rate == 0'],
         'kafka_reader_error_count{scenario:data_operation_consume_kafka_responses}': ['count == 0'],
         'data_operations_batch_read_cmhandles_per_second': ['avg >= 150'],
@@ -114,12 +120,36 @@ export const options = {
 };
 
 export function setup() {
-    const totalRegistrationTimeInSeconds = recordTimeInSeconds(registerAllCmHandles);
+    const startTimeInMillis = Date.now();
+
+    const TOTAL_BATCHES = Math.ceil(TOTAL_CM_HANDLES / REGISTRATION_BATCH_SIZE);
+    for (let batchNumber = 0; batchNumber < TOTAL_BATCHES; batchNumber++) {
+        const nextBatchOfCmHandleIds = makeBatchOfCmHandleIds(REGISTRATION_BATCH_SIZE, batchNumber);
+        const response = createCmHandles(nextBatchOfCmHandleIds);
+        check(response, { 'create CM-handles status equals 200': (r) => r.status === 200 });
+    }
+
+    waitForAllCmHandlesToBeReady();
+
+    const endTimeInMillis = Date.now();
+    const totalRegistrationTimeInSeconds = (endTimeInMillis - startTimeInMillis) / 1000.0;
+
     cmHandlesCreatedPerSecondGauge.add(TOTAL_CM_HANDLES / totalRegistrationTimeInSeconds);
 }
 
 export function teardown() {
-    const totalDeregistrationTimeInSeconds = recordTimeInSeconds(deregisterAllCmHandles);
+    const startTimeInMillis = Date.now();
+
+    const TOTAL_BATCHES = Math.ceil(TOTAL_CM_HANDLES / REGISTRATION_BATCH_SIZE);
+    for (let batchNumber = 0; batchNumber < TOTAL_BATCHES; batchNumber++) {
+        const nextBatchOfCmHandleIds = makeBatchOfCmHandleIds(REGISTRATION_BATCH_SIZE, batchNumber);
+        const response = deleteCmHandles(nextBatchOfCmHandleIds);
+        check(response, { 'delete CM-handles status equals 200': (r) => r.status === 200 });
+    }
+
+    const endTimeInMillis = Date.now();
+    const totalDeregistrationTimeInSeconds = (endTimeInMillis - startTimeInMillis) / 1000.0;
+
     cmHandlesDeletedPerSecondGauge.add(TOTAL_CM_HANDLES / totalDeregistrationTimeInSeconds);
 }
 
