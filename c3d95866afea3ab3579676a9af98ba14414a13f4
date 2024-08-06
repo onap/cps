@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "123186f5_e6aaa3ee",
+        "filename": "docs/cm-notification-subscriptions.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-06T10:00:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5b73c109_a9bf9036",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 110
+      },
+      "revId": "c3d95866afea3ab3579676a9af98ba14414a13f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bb371474_3b60e662",
@@ -72,6 +96,54 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "be4ab749_be7934ee",
+        "filename": "docs/cm-notification-subscriptions.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-06T10:00:02Z",
+      "side": 1,
+      "message": "applied the previous comments.\nmore or less the same.",
+      "parentUuid": "847e298a_7dacf6c1",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 69
+      },
+      "revId": "c3d95866afea3ab3579676a9af98ba14414a13f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "deaf21e9_3cbf48fd",
+        "filename": "docs/cm-notification-subscriptions.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-06T10:00:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb371474_3b60e662",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 69
+      },
+      "revId": "c3d95866afea3ab3579676a9af98ba14414a13f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c001b232_fbe2a8a2",
         "filename": "docs/cm-notification-subscriptions.rst",
         "patchSetId": 5
@@ -83,6 +155,24 @@
       "writtenOn": "2024-08-01T13:35:12Z",
       "side": 1,
       "message": "The CM Subscription flow is event-driven and adheres to the CNCF Cloud Events Specifications.",
+      "revId": "c3d95866afea3ab3579676a9af98ba14414a13f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc5c2ef2_cc94b7d1",
+        "filename": "docs/cm-notification-subscriptions.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-06T10:00:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c001b232_fbe2a8a2",
       "revId": "c3d95866afea3ab3579676a9af98ba14414a13f4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -112,6 +202,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "60379387_8ab48ff4",
+        "filename": "docs/cm-notification-subscriptions.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-06T10:00:02Z",
+      "side": 1,
+      "message": "would prefer what I already have.",
+      "parentUuid": "32d63868_5950bdcc",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 25
+      },
+      "revId": "c3d95866afea3ab3579676a9af98ba14414a13f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c4737046_ea4061c4",
         "filename": "docs/cm-notification-subscriptions.rst",
         "patchSetId": 5
@@ -123,6 +237,30 @@
       "writtenOn": "2024-08-01T13:35:12Z",
       "side": 1,
       "message": "To create a subscription, a client sends an event to a configured topic to register its interest with NCMP. This allows the client to receive notifications based on the subscription.",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 175
+      },
+      "revId": "c3d95866afea3ab3579676a9af98ba14414a13f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b1ddb1f_54694693",
+        "filename": "docs/cm-notification-subscriptions.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-06T10:00:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4737046_ea4061c4",
       "range": {
         "startLine": 32,
         "startChar": 0,
@@ -158,6 +296,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "332cc523_5a470d7f",
+        "filename": "docs/cm-notification-subscriptions.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-06T10:00:02Z",
+      "side": 1,
+      "message": "would prefer what I already have.",
+      "parentUuid": "70435da8_4596761f",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 25
+      },
+      "revId": "c3d95866afea3ab3579676a9af98ba14414a13f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6cacc9cc_e0eedac7",
         "filename": "docs/cm-notification-subscriptions.rst",
         "patchSetId": 5
@@ -169,6 +331,30 @@
       "writtenOn": "2024-08-01T13:35:12Z",
       "side": 1,
       "message": "If a client no longer wishes to receive notifications based on a registered subscription, the client can delete the subscription by providing the subscription ID.",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 203
+      },
+      "revId": "c3d95866afea3ab3579676a9af98ba14414a13f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ecdac686_f0598836",
+        "filename": "docs/cm-notification-subscriptions.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-06T10:00:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6cacc9cc_e0eedac7",
       "range": {
         "startLine": 36,
         "startChar": 0,
@@ -192,6 +378,30 @@
       "writtenOn": "2024-08-01T13:35:12Z",
       "side": 1,
       "message": "NB:\n\nSubscription Responses\nThe response status for subscription participants in the Create and Delete flow can be:\n\n- PENDING\n- ACCEPTED\n- REJECTED\n\nThe response depends on how the DMI Plugin responds back to NCMP.\n\nNote: The CM Subscription feature relies on DMI Plugin support for applying the subscriptions. This support is currently not implemented in the ONAP DMI Plugin.",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 147
+      },
+      "revId": "c3d95866afea3ab3579676a9af98ba14414a13f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ef478bc_83cf9a0d",
+        "filename": "docs/cm-notification-subscriptions.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-06T10:00:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6611f439_dfbfabdc",
       "range": {
         "startLine": 38,
         "startChar": 0,
@@ -262,6 +472,30 @@
       "writtenOn": "2024-08-01T13:35:12Z",
       "side": 1,
       "message": "Consistency: Made sure that all required fields are listed in the same order:\n \n \n \"subscriptionId\",\n \"acceptedTargets\",\n \"rejectedTargets\",\n \"pendingTargets\"",
+      "range": {
+        "startLine": 53,
+        "startChar": 7,
+        "endLine": 56,
+        "endChar": 24
+      },
+      "revId": "c3d95866afea3ab3579676a9af98ba14414a13f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5b75cc6_8b3aa95c",
+        "filename": "docs/schemas/ncmp-out-event-schema-1.0.0.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-06T10:00:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c758d00_545233f9",
       "range": {
         "startLine": 53,
         "startChar": 7,
