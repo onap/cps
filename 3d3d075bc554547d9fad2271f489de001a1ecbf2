@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2cbcb87_03da14b8",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-06T17:10:34Z",
+      "side": 1,
+      "message": "clever 😊",
+      "range": {
+        "startLine": 49,
+        "startChar": 26,
+        "endLine": 49,
+        "endChar": 47
+      },
+      "revId": "3d3d075bc554547d9fad2271f489de001a1ecbf2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0943254_d0cd5342",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-06T17:10:34Z",
+      "side": 1,
+      "message": "how many iterations of these tests are we doing? I am very interested (ie worried) about the performance differences",
+      "range": {
+        "startLine": 65,
+        "startChar": 28,
+        "endLine": 66,
+        "endChar": 191
+      },
+      "revId": "3d3d075bc554547d9fad2271f489de001a1ecbf2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
