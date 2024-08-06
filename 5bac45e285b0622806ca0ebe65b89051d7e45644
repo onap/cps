@@ -3,6 +3,46 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "66c56566_5c6ec791",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/NcmpOutEventProducer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-08-06T15:06:45Z",
+      "side": 1,
+      "message": "NB: may result huge number of logs",
+      "range": {
+        "startLine": 88,
+        "startChar": 20,
+        "endLine": 88,
+        "endChar": 24
+      },
+      "revId": "5bac45e285b0622806ca0ebe65b89051d7e45644",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ce21b86_225a049f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/NcmpOutEventProducer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-08-06T15:06:45Z",
+      "side": 1,
+      "message": "NB: extra line",
+      "revId": "5bac45e285b0622806ca0ebe65b89051d7e45644",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5d92db8b_eb6c63fd",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/NcmpOutEventProducerSpec.groovy",
         "patchSetId": 2
