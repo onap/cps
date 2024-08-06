@@ -22,6 +22,30 @@
       },
       "revId": "5bac45e285b0622806ca0ebe65b89051d7e45644",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23d0b2dc_c94b63eb",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/NcmpOutEventProducerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-06T10:18:59Z",
+      "side": 1,
+      "message": "yeah the branch would be covered when we first schedule the event and then respond within the time so that the flow goes to the else block where it tries to check for null NcmpOutEvent.",
+      "parentUuid": "5d92db8b_eb6c63fd",
+      "range": {
+        "startLine": 100,
+        "startChar": 11,
+        "endLine": 100,
+        "endChar": 95
+      },
+      "revId": "5bac45e285b0622806ca0ebe65b89051d7e45644",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
