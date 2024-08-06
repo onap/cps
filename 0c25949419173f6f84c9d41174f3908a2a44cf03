@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fefff8b8_a7d33f31",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-06T09:39:14Z",
+      "side": 1,
+      "message": "Have you got a separate path fo rthe DMI interface changes?!",
+      "revId": "0c25949419173f6f84c9d41174f3908a2a44cf03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9af18eea_a5930a19",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/DataJobResultServiceSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-06T09:39:14Z",
+      "side": 1,
+      "message": "coudl be a bit stricter",
+      "range": {
+        "startLine": 22,
+        "startChar": 19,
+        "endLine": 22,
+        "endChar": 33
+      },
+      "revId": "0c25949419173f6f84c9d41174f3908a2a44cf03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

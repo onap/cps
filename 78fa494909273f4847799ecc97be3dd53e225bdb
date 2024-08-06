@@ -157,6 +157,30 @@
       },
       "revId": "78fa494909273f4847799ecc97be3dd53e225bdb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "222f61ed_e0108c34",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobResultServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-06T09:39:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da06f0d3_81bc4a75",
+      "range": {
+        "startLine": 59,
+        "startChar": 44,
+        "endLine": 67,
+        "endChar": 5
+      },
+      "revId": "78fa494909273f4847799ecc97be3dd53e225bdb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
