@@ -142,6 +142,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7cd93bce_cd24f5e1",
+        "filename": "docs/cm-notification-subscriptions.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-06T15:20:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "be4ab749_be7934ee",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 69
+      },
+      "revId": "c3d95866afea3ab3579676a9af98ba14414a13f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c001b232_fbe2a8a2",
@@ -214,6 +238,30 @@
       "side": 1,
       "message": "would prefer what I already have.",
       "parentUuid": "32d63868_5950bdcc",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 25
+      },
+      "revId": "c3d95866afea3ab3579676a9af98ba14414a13f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2999bb60_2b648b07",
+        "filename": "docs/cm-notification-subscriptions.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-06T15:20:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "60379387_8ab48ff4",
       "range": {
         "startLine": 30,
         "startChar": 0,
@@ -308,6 +356,30 @@
       "side": 1,
       "message": "would prefer what I already have.",
       "parentUuid": "70435da8_4596761f",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 25
+      },
+      "revId": "c3d95866afea3ab3579676a9af98ba14414a13f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c6957f2_7a5e9672",
+        "filename": "docs/cm-notification-subscriptions.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-06T15:20:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "332cc523_5a470d7f",
       "range": {
         "startLine": 34,
         "startChar": 0,
