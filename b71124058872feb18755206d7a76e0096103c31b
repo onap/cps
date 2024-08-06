@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa3015fe_da71c438",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-06T16:38:53Z",
+      "side": 1,
+      "message": "probably need to discuss some of the comments below",
+      "revId": "b71124058872feb18755206d7a76e0096103c31b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58756a16_d7014686",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-06T16:38:53Z",
+      "side": 1,
+      "message": "why did you get rid of resourceAddress. I would still like to use it and change its\u0027 CmHandleId properties to \u0027reference\u0027 too\nThe resourceAddress was introduced to reduce the number of parameters (that could easily be mixed up). I think SonarQube wil complain when you have 8 or more parameter for a method...",
+      "range": {
+        "startLine": 106,
+        "startChar": 78,
+        "endLine": 107,
+        "endChar": 30
+      },
+      "revId": "b71124058872feb18755206d7a76e0096103c31b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f00bd6bc_73a598d0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/NetworkCmProxyFacade.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-06T16:38:53Z",
+      "side": 1,
+      "message": "as before, I still would like to use (a modified) CmResourceAddress\n(you could maybe even implement the lookup in a common method for that class...)",
+      "range": {
+        "startLine": 68,
+        "startChar": 46,
+        "endLine": 70,
+        "endChar": 76
+      },
+      "revId": "b71124058872feb18755206d7a76e0096103c31b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f9a3886_33fcd3c2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-06T16:38:53Z",
+      "side": 1,
+      "message": "in general the use of ! should be avoided if there is an easy solution without using ! in this case use size()\u003e0 and then you don\u0027t need it...",
+      "range": {
+        "startLine": 201,
+        "startChar": 19,
+        "endLine": 201,
+        "endChar": 20
+      },
+      "revId": "b71124058872feb18755206d7a76e0096103c31b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94d983c5_2f9d0044",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/AlternateIdMatcher.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-06T16:38:53Z",
+      "side": 1,
+      "message": "bit worried about getting the whole object and just using the id (and possibly soon thereafter going back to get the object again)\nI dont see an easy solution, it would need a dedicated methog(or flag) a few levels deep. But lets keep it in mind there might be performance consequences.\nThen again we should pre-optimize if we are not aware of a problem. Instead we should pay close attention to existing performance test or maybe even write a performance test for around this usecase...  ie. \"retrieve 1,000 cm handles by \u0027reference\u0027 and test with 1000 existing Id\u0027s v. 1,000 existing alternat ids",
+      "range": {
+        "startLine": 69,
+        "startChar": 40,
+        "endLine": 69,
+        "endChar": 72
+      },
+      "revId": "b71124058872feb18755206d7a76e0096103c31b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0638ac92_a6f706ef",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/AlternateIdMatcherSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-06T16:38:53Z",
+      "side": 1,
+      "message": "you are not asserting, just (correctly) setting up mock behavior\nthis should be done in a  given block before the when\ngiven: \u0027the inventory persistence service returns a cm handle (or not)\u0027",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 114
+      },
+      "revId": "b71124058872feb18755206d7a76e0096103c31b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40d9341e_8cf23dbc",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/AlternateIdMatcherSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-06T16:38:53Z",
+      "side": 1,
+      "message": "in groovy you just use [id:\u0027alt-1\u0027]",
+      "range": {
+        "startLine": 78,
+        "startChar": 83,
+        "endLine": 78,
+        "endChar": 103
+      },
+      "revId": "b71124058872feb18755206d7a76e0096103c31b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
