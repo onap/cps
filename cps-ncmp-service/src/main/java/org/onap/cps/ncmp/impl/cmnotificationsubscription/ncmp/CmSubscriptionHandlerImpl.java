@@ -154,7 +154,7 @@ public class CmSubscriptionHandlerImpl implements CmSubscriptionHandler {
                             dmiSubscriptionDetails.getDmiCmSubscriptionPredicates());
 
             if (dmiCmSubscriptionPredicates.isEmpty()) {
-                acceptAndPublishNcmpOutEventPerDmi(subscriptionId, dmiPluginName);
+                acceptAndPersistCmSubscriptionPerDmi(subscriptionId, dmiPluginName);
             } else {
                 publishDmiInEventPerDmi(subscriptionId, dmiPluginName, dmiCmSubscriptionPredicates);
             }
@@ -168,7 +168,7 @@ public class CmSubscriptionHandlerImpl implements CmSubscriptionHandler {
                 "subscriptionCreateRequest", dmiInEvent);
     }
 
-    private void acceptAndPublishNcmpOutEventPerDmi(final String subscriptionId, final String dmiPluginName) {
+    private void acceptAndPersistCmSubscriptionPerDmi(final String subscriptionId, final String dmiPluginName) {
         dmiCacheHandler.updateDmiSubscriptionStatus(subscriptionId, dmiPluginName,
                 CmSubscriptionStatus.ACCEPTED);
         dmiCacheHandler.persistIntoDatabasePerDmi(subscriptionId, dmiPluginName);
