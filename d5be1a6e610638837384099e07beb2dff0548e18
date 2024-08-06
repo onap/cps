@@ -1,0 +1,383 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de081ed5_2c164df5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-06T17:06:58Z",
+      "side": 1,
+      "message": "Nice refactoring and better use of manager!\nBut some legacy (naming) issues are getting worse and need to be addressed now",
+      "revId": "d5be1a6e610638837384099e07beb2dff0548e18",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ec1108d_cf1c30b2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/trustlevel/TrustLevelManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-06T17:06:58Z",
+      "side": 1,
+      "message": "legacy issues (that are getting worse now)\n1) when we talked about this feature we used the word \u0027device\u0027 for clarification and clearly distinguishing it from the \u0027dmi service\u0027 Whoever for consistency a \u0027device\u0027 in NCMP is a \u0027Cm Handle\u0027 and that is the term that should be sued in variabel names, method names and java dox!\n2) method names are too logn and have redundant words like \u0027handle\u0027 and \u0027of\u0027. The names dont need to be sentences just keywords and relevant verbs wil do,\n\nso instead of handleRegistrationOfSomething just \u0027registerSomething\u0027 is much clearer...\n\nsee suggestions below",
+      "revId": "d5be1a6e610638837384099e07beb2dff0548e18",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f85261fc_2aca5091",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/trustlevel/TrustLevelManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-06T17:06:58Z",
+      "side": 1,
+      "message": "if think these method names are a bit OTT  (dont forget the context of the classname:TrustLevel manager)\nthis one can be just \u0027registerDmiPLugin\u0027",
+      "range": {
+        "startLine": 57,
+        "startChar": 16,
+        "endLine": 57,
+        "endChar": 57
+      },
+      "revId": "d5be1a6e610638837384099e07beb2dff0548e18",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c6fc45f_20a176b6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/trustlevel/TrustLevelManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-06T17:06:58Z",
+      "side": 1,
+      "message": "too much duplication in the if/else blocks, just store the only real difference:\n\nfinal dmiServiceName\nif (...) {\n   dmiServiceName\u003d dmiPluginRegistration.getDmiPlugin()\n} else {\n   dmiServiceName\u003d dmiPluginRegistration.getDmiDataPlugin()\n}\ntrustLevelPerDmiPlugin.put(dmiServiceName, TrustLevel.COMPLETE);",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 9
+      },
+      "revId": "d5be1a6e610638837384099e07beb2dff0548e18",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8fb8ccb4_b749799f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/trustlevel/TrustLevelManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-06T17:06:58Z",
+      "side": 1,
+      "message": "registerCmHandles (not suer why we started using the word \u0027device\u0027 as an alternate for \u0027CmHandle\u0027. We should be consistent...)",
+      "range": {
+        "startLine": 70,
+        "startChar": 16,
+        "endLine": 70,
+        "endChar": 60
+      },
+      "revId": "d5be1a6e610638837384099e07beb2dff0548e18",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1fe45a1_72ca308b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/trustlevel/TrustLevelManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-06T17:06:58Z",
+      "side": 1,
+      "message": "updateDmiTrustLevel\nor\nupdateDmi  (trustlevel is also a parameter and what else would a trustlevel manager update)",
+      "range": {
+        "startLine": 99,
+        "startChar": 16,
+        "endLine": 99,
+        "endChar": 43
+      },
+      "revId": "d5be1a6e610638837384099e07beb2dff0548e18",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6fd503aa_1ee2130e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/trustlevel/TrustLevelManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-06T17:06:58Z",
+      "side": 1,
+      "message": "cmHandleTrustLevel",
+      "range": {
+        "startLine": 105,
+        "startChar": 29,
+        "endLine": 105,
+        "endChar": 46
+      },
+      "revId": "d5be1a6e610638837384099e07beb2dff0548e18",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e150ad3_130d8d07",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/trustlevel/TrustLevelManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-06T17:06:58Z",
+      "side": 1,
+      "message": "CmHandle",
+      "range": {
+        "startLine": 120,
+        "startChar": 67,
+        "endLine": 120,
+        "endChar": 73
+      },
+      "revId": "d5be1a6e610638837384099e07beb2dff0548e18",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed13f75c_2e0c2c4b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/trustlevel/TrustLevelManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-06T17:06:58Z",
+      "side": 1,
+      "message": "CmHandle",
+      "range": {
+        "startLine": 124,
+        "startChar": 28,
+        "endLine": 124,
+        "endChar": 34
+      },
+      "revId": "d5be1a6e610638837384099e07beb2dff0548e18",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33810231_7497c0c7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/trustlevel/TrustLevelManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-06T17:06:58Z",
+      "side": 1,
+      "message": "CmHandle",
+      "range": {
+        "startLine": 142,
+        "startChar": 25,
+        "endLine": 142,
+        "endChar": 31
+      },
+      "revId": "d5be1a6e610638837384099e07beb2dff0548e18",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48f523a9_92d622fa",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/trustlevel/TrustLevelManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-06T17:06:58Z",
+      "side": 1,
+      "message": "cm handle",
+      "range": {
+        "startLine": 147,
+        "startChar": 14,
+        "endLine": 147,
+        "endChar": 21
+      },
+      "revId": "d5be1a6e610638837384099e07beb2dff0548e18",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3771272d_3bd0e4a1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/trustlevel/TrustLevelManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-06T17:06:58Z",
+      "side": 1,
+      "message": "removeCmHandles",
+      "range": {
+        "startLine": 152,
+        "startChar": 16,
+        "endLine": 152,
+        "endChar": 48
+      },
+      "revId": "d5be1a6e610638837384099e07beb2dff0548e18",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7710ea90_7f320a03",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/trustlevel/TrustLevelManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-06T17:06:58Z",
+      "side": 1,
+      "message": "you cant know why it is not there also I wouldn\u0027t log this as a warning, just debug level will do\nlog.debug(\"Removed Cm handle: {} is not in trust level cache\", cmHandleId);",
+      "range": {
+        "startLine": 158,
+        "startChar": 16,
+        "endLine": 158,
+        "endChar": 70
+      },
+      "revId": "d5be1a6e610638837384099e07beb2dff0548e18",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7f4a110_44b86822",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/trustlevel/TrustLevelManagerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-06T17:06:58Z",
+      "side": 1,
+      "message": "in groovy you can easily combine this into 1 line:\ndef dmiPluginRegistration \u003d new DmiPluginRegistration(dmiPLugin: \u0027dmi-1\u0027)",
+      "range": {
+        "startLine": 41,
+        "startChar": 11,
+        "endLine": 42,
+        "endChar": 55
+      },
+      "revId": "d5be1a6e610638837384099e07beb2dff0548e18",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1a3d7ad_cf74583d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/trustlevel/TrustLevelManagerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-06T17:06:58Z",
+      "side": 1,
+      "message": "make better sentence",
+      "range": {
+        "startLine": 43,
+        "startChar": 39,
+        "endLine": 43,
+        "endChar": 47
+      },
+      "revId": "d5be1a6e610638837384099e07beb2dff0548e18",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b4c583d_ca77040c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/trustlevel/TrustLevelManagerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-06T17:06:58Z",
+      "side": 1,
+      "message": "use \u0027assert\u0027 keyword",
+      "range": {
+        "startLine": 46,
+        "startChar": 11,
+        "endLine": 46,
+        "endChar": 70
+      },
+      "revId": "d5be1a6e610638837384099e07beb2dff0548e18",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "321a7672_6fedb140",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/trustlevel/TrustLevelManagerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-06T17:06:58Z",
+      "side": 1,
+      "message": "dont want to see the word \u0027device\u0027 anywhere anymore :-)",
+      "range": {
+        "startLine": 49,
+        "startChar": 28,
+        "endLine": 49,
+        "endChar": 34
+      },
+      "revId": "d5be1a6e610638837384099e07beb2dff0548e18",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
