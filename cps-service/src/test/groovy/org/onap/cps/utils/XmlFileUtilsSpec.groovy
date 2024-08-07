@@ -68,4 +68,20 @@ class XmlFileUtilsSpec extends Specification {
             'without root data node' | '<?xml version="1.0" encoding="UTF-8"?><nest xmlns="org:onap:cps:test:test-tree"><name>Small</name><birds>Sparrow</birds></nest>'                                                          | '/test-tree/branch[@name=\'Branch\']' || '<?xml version="1.0" encoding="UTF-8"?><branch xmlns="org:onap:cps:test:test-tree"><name>Branch</name><nest><name>Small</name><birds>Sparrow</birds></nest></branch>'
     }
 
+    def 'Convert data maps to XML #scenario'() {
+        when: 'data maps are converted to XML'
+            def xmlResult = XmlFileUtils.convertDataMapsToXml(dataMaps)
+            def normalizedXmlResult = normalizeXml(xmlResult)
+        then: 'the result contains the expected XML'
+            assert normalizedXmlResult.contains(normalizeXml(expectedXml))
+        where:
+            scenario            | dataMaps                                                                             || expectedXml
+            'single XML branch' | [['branch': [name: 'Left', nest: [name: 'Small', birds: 'Sparrow']]]]                || '<branch><name>Left</name><nest><name>Small</name><birds>Sparrow</birds></nest></branch>'
+            'nested XML branch' | [['test-tree': [branch: [name: 'Branch', nest: [name: 'Small', birds: 'Sparrow']]]]] || '<test-tree><branch><name>Branch</name><nest><name>Small</name><birds>Sparrow</birds></nest></branch></test-tree>'
+    }
+
+    private static String normalizeXml(String xml) {
+        xml.replaceAll(">\\s+<", "><").trim()
+    }
+
 }
