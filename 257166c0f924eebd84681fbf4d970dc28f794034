@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3beb004c_3ea42554",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-08-07T08:59:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3a13f5_2751e826",
+      "range": {
+        "startLine": 13,
+        "startChar": 49,
+        "endLine": 13,
+        "endChar": 60
+      },
+      "revId": "257166c0f924eebd84681fbf4d970dc28f794034",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "de4ffab3_a86a71f2",
@@ -47,6 +71,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "87285865_b12d62ec",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-08-07T08:59:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de4ffab3_a86a71f2",
+      "range": {
+        "startLine": 14,
+        "startChar": 51,
+        "endLine": 14,
+        "endChar": 62
+      },
+      "revId": "257166c0f924eebd84681fbf4d970dc28f794034",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eb3638d0_6515577b",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-08-06T12:23:46Z",
       "side": 1,
       "message": "source-anchor-name",
+      "range": {
+        "startLine": 103,
+        "startChar": 43,
+        "endLine": 103,
+        "endChar": 54
+      },
+      "revId": "257166c0f924eebd84681fbf4d970dc28f794034",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23295240_5830a92f",
+        "filename": "cps-rest/docs/openapi/openapi.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-08-07T08:59:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eb3638d0_6515577b",
       "range": {
         "startLine": 103,
         "startChar": 43,
