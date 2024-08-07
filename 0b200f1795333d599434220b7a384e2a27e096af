@@ -67,6 +67,23 @@
       "message": "happy with it",
       "revId": "0b200f1795333d599434220b7a384e2a27e096af",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2db82e69_a00c0755",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-07T15:11:21Z",
+      "side": 1,
+      "message": "remerge",
+      "revId": "0b200f1795333d599434220b7a384e2a27e096af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ],
   "submitRequirementResults": [
