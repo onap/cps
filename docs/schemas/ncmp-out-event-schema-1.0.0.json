@@ -28,19 +28,25 @@
           "description": "The unique subscription id"
         },
         "acceptedTargets": {
-          "type": "object",
-          "existingJavaType": "java.util.Collection<String>",
-          "description": "Unique Collection of accepted targets"
+          "type": "array",
+          "description": "List of accepted targets",
+          "items": {
+            "type": "string"
+          }
         },
         "rejectedTargets": {
-          "type": "object",
-          "existingJavaType": "java.util.Collection<String>",
-          "description": "Unique Collection of rejected targets"
+          "type": "array",
+          "description": "List of rejected targets",
+          "items": {
+            "type": "string"
+          }
         },
         "pendingTargets": {
-          "type": "object",
-          "existingJavaType": "java.util.Collection<String>",
-          "description": "Unique Collection of pending targets"
+          "type": "array",
+          "description": "List of pending targets",
+          "items": {
+            "type": "string"
+          }
         }
       },
       "required": [
