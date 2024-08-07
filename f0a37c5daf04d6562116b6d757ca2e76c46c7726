@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "faa61ac4_fd5b6271",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/NetworkCmProxyFacade.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-07T14:07:20Z",
+      "side": 1,
+      "message": "dont resvvle NOW only resolve when you actualy need the id...\nsuggestion:\nchange CmResourceADress.cmHandleId to cmHandleReference\ncahnge from record to (normal) beamn so you can insert service \nadd method like resolveCmHandleId() taht retruns teh id...",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 88
+      },
+      "revId": "f0a37c5daf04d6562116b6d757ca2e76c46c7726",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bff4f229_e5dd6b43",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/AlternateIdMatcherSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-07T14:07:20Z",
+      "side": 1,
+      "message": "qoutes not needed",
+      "range": {
+        "startLine": 78,
+        "startChar": 84,
+        "endLine": 78,
+        "endChar": 88
+      },
+      "revId": "f0a37c5daf04d6562116b6d757ca2e76c46c7726",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c40fe941_223fbe7f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/AlternateIdMatcherSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-07T14:07:20Z",
+      "side": 1,
+      "message": "single qoutes \u0027",
+      "range": {
+        "startLine": 78,
+        "startChar": 89,
+        "endLine": 78,
+        "endChar": 96
+      },
+      "revId": "f0a37c5daf04d6562116b6d757ca2e76c46c7726",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
