@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2023 Nordix Foundation
+ *  Modifications Copyright (C) 2024 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -33,6 +34,7 @@ import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.exceptions.SchemaSetNotFoundException;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.utils.CpsValidator;
+import org.onap.cps.utils.ContentType;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.stereotype.Component;
 
@@ -85,7 +87,7 @@ public class NcmpPersistenceImpl implements NcmpPersistence {
             description = "Time taken to get a data node (from ncmp dmi registry)")
     public Collection<DataNode> getDataNode(final String xpath, final FetchDescendantsOption fetchDescendantsOption) {
         return cpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, xpath,
-                fetchDescendantsOption);
+                fetchDescendantsOption, ContentType.JSON);
     }
 
     @Override
