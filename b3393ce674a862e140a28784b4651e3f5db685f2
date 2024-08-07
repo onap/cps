@@ -194,6 +194,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "775fdb40_5218c961",
+        "filename": "cps-rest/docs/openapi/cpsDataV2.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-08-07T08:59:59Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "600e6282_870bd56d",
+      "range": {
+        "startLine": 59,
+        "startChar": 53,
+        "endLine": 59,
+        "endChar": 76
+      },
+      "revId": "b3393ce674a862e140a28784b4651e3f5db685f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "caa47734_d30ed85b",
@@ -231,6 +255,30 @@
       "side": 1,
       "message": "same as comment on line #58",
       "parentUuid": "caa47734_d30ed85b",
+      "range": {
+        "startLine": 87,
+        "startChar": 53,
+        "endLine": 87,
+        "endChar": 69
+      },
+      "revId": "b3393ce674a862e140a28784b4651e3f5db685f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "96ece552_0bddc3de",
+        "filename": "cps-rest/docs/openapi/cpsDataV2.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-08-07T08:59:59Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1657c2d9_d4898d0c",
       "range": {
         "startLine": 87,
         "startChar": 53,
