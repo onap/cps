@@ -68,4 +68,17 @@ class XmlFileUtilsSpec extends Specification {
             'without root data node' | '<?xml version="1.0" encoding="UTF-8"?><nest xmlns="org:onap:cps:test:test-tree"><name>Small</name><birds>Sparrow</birds></nest>'                                                          | '/test-tree/branch[@name=\'Branch\']' || '<?xml version="1.0" encoding="UTF-8"?><branch xmlns="org:onap:cps:test:test-tree"><name>Branch</name><nest><name>Small</name><birds>Sparrow</birds></nest></branch>'
     }
 
+    def 'Convert data maps to XML #scenario'() {
+        when: 'data maps are converted to XML'
+            def parsedXmlContent = XmlFileUtils.convertDataMapsToXml(dataMaps)
+        then: 'the result contains the expected XML'
+            assert parsedXmlContent == expectedXmlOutput
+        where:
+            scenario                            | dataMaps                                                                                                                                 || expectedXmlOutput
+            'single XML branch'                 | [['branch': ['name': 'Left', 'nest': ['name': 'Small', 'birds': 'Sparrow']]]]                                                            || '<branch><name>Left</name><nest><name>Small</name><birds>Sparrow</birds></nest></branch>'
+            'nested XML branch'                 | [['test-tree': [branch: [name: 'Left', nest: [name: 'Small', birds: 'Sparrow']]]]]                                                       || '<test-tree><branch><name>Left</name><nest><name>Small</name><birds>Sparrow</birds></nest></branch></test-tree>'
+            'list of branch within a test tree' | [['test-tree': [branch: [[name: 'Left', nest: [name: 'Small', birds: 'Sparrow']], [name: 'Right', nest: [name: 'Big', birds: 'Owl']]]]]] || '<test-tree><branch><name>Left</name><nest><name>Small</name><birds>Sparrow</birds></nest><name>Right</name><nest><name>Big</name><birds>Owl</birds></nest></branch></test-tree>'
+            'list of birds under a nest'        | [['nest': ['name': 'Small', 'birds': ['Sparrow', 'Robin', 'Finch']]]]                                                                    || '''<nest><name>Small</name><birds>Sparrow</birds><birds>Robin</birds><birds>Finch</birds></nest>'''
+    }
+
 }
