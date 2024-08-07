@@ -28,6 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsQueryService;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.utils.ContentType;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -42,6 +43,6 @@ public class NetworkCmProxyQueryServiceImpl implements NetworkCmProxyQueryServic
                                                              final String cpsPath,
                                                              final FetchDescendantsOption fetchDescendantsOption) {
         return cpsQueryService.queryDataNodes(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId, cpsPath,
-            fetchDescendantsOption);
+            fetchDescendantsOption, ContentType.JSON);
     }
 }

@@ -23,8 +23,11 @@
 
 package org.onap.cps.rest.controller
 
+import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.PaginationOption
+import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.PrefixResolver
+import org.springframework.http.MediaType
 
 import static org.onap.cps.spi.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
@@ -74,7 +77,7 @@ class QueryRestControllerSpec extends Specification {
         given: 'service method returns a list containing a data node'
             def dataNode1 = new DataNodeBuilder().withXpath('/xpath')
                     .withLeaves([leaf: 'value', leafList: ['leaveListElement1', 'leaveListElement2']]).build()
-            mockCpsQueryService.queryDataNodes(dataspaceName, anchorName, cpsPath, expectedCpsDataServiceOption) >> [dataNode1, dataNode1]
+            mockCpsQueryService.queryDataNodes(dataspaceName, anchorName, cpsPath, expectedCpsDataServiceOption, ContentType.JSON) >> [dataNode1, dataNode1]
         and: 'the query endpoint'
             def dataNodeEndpoint = "$basePath/v1/dataspaces/$dataspaceName/anchors/$anchorName/nodes/query"
         when: 'query data nodes API is invoked'
@@ -99,11 +102,12 @@ class QueryRestControllerSpec extends Specification {
             def dataNode1 = new DataNodeBuilder().withXpath('/xpath')
                 .withLeaves([leaf: 'value', leafList: ['leaveListElement1', 'leaveListElement2']]).build()
             mockCpsQueryService.queryDataNodes(dataspaceName, anchorName, cpsPath, { descendantsOption -> {
-                assert descendantsOption.depth == expectedDepth}}) >> [dataNode1, dataNode1]
+                assert descendantsOption.depth == expectedDepth}} as FetchDescendantsOption, ContentType.JSON) >> [dataNode1, dataNode1]
         when: 'query data nodes API is invoked'
             def response =
                 mvc.perform(
                         get(dataNodeEndpointV2)
+                        .contentType(MediaType.APPLICATION_JSON)
                                 .param('cps-path', cpsPath)
                                 .param('descendants', includeDescendantsOptionString))
                         .andReturn().response
@@ -114,6 +118,29 @@ class QueryRestControllerSpec extends Specification {
            scenario          | includeDescendantsOptionString || expectedDepth
            'direct children' | 'direct'                       || 1
            'descendants'     | '2'                            || 2
+    }
+
+    def 'Query data node v2 api by cps path for the given dataspace and anchor with XML data #scenario.'() {
+        given: 'service method returns a list containing a data node'
+            def dataNode1 = new DataNodeBuilder().withXpath('/xpath')
+                .withLeaves([leaf: 'value', leafList: ['leaveListElement1', 'leaveListElement2']]).build()
+            mockCpsQueryService.queryDataNodes(dataspaceName, anchorName, cpsPath, { descendantsOption -> {
+                assert descendantsOption.depth == expectedDepth}} as FetchDescendantsOption, ContentType.XML) >> [dataNode1, dataNode1]
+        when: 'query data nodes API is invoked'
+            def response =
+                mvc.perform(
+                    get(dataNodeEndpointV2)
+                        .contentType(MediaType.APPLICATION_XML)
+                        .param('cps-path', cpsPath)
+                        .param('descendants', includeDescendantsOptionString))
+                    .andReturn().response
+        then: 'the response contains the the datanode in xml format'
+            assert response.status == HttpStatus.OK.value()
+            assert response.getContentAsString().contains('<xpath><leaf>value</leaf><leafList>leaveListElement1leaveListElement2</leafList><leaf>value</leaf><leafList>leaveListElement1leaveListElement2</leafList></xpath>')
+        where: 'the following options for include descendants are provided in the request'
+            scenario          | includeDescendantsOptionString || expectedDepth
+            'direct children' | 'direct'                       || 1
+            'descendants'     | '2'                            || 2
     }
 
     def 'Query data node by cps path for the given dataspace across all anchors with #scenario.'() {

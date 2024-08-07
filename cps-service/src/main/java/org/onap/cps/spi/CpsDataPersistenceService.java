@@ -28,6 +28,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.utils.ContentType;
 
 /*
     Data Store interface that is responsible for handling yang data.
@@ -180,7 +181,7 @@ public interface CpsDataPersistenceService {
      * @return the data nodes found i.e. 0 or more data nodes
      */
     List<DataNode> queryDataNodes(String dataspaceName, String anchorName,
-                                  String cpsPath, FetchDescendantsOption fetchDescendantsOption);
+                                  String cpsPath, FetchDescendantsOption fetchDescendantsOption, ContentType contentType);
 
     /**
      * Get a datanode by dataspace name and cps path across all anchors.

@@ -25,6 +25,7 @@ import java.util.Collection;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.PaginationOption;
 import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.utils.ContentType;
 
 /*
  * Query interface for handling cps queries.
@@ -39,10 +40,11 @@ public interface CpsQueryService {
      * @param cpsPath                cps path
      * @param fetchDescendantsOption defines whether the descendants of the node(s) found by the query should be
      *                               included in the output
+     * @param contentType            node data content type
      * @return a collection of data nodes
      */
     Collection<DataNode> queryDataNodes(String dataspaceName, String anchorName,
-                                        String cpsPath, FetchDescendantsOption fetchDescendantsOption);
+                                        String cpsPath, FetchDescendantsOption fetchDescendantsOption, ContentType contentType);
 
     /**
      * Get data nodes for the given dataspace across all anchors by cps path.

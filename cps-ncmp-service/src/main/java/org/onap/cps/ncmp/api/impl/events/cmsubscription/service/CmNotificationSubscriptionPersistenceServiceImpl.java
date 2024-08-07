@@ -74,7 +74,7 @@ public class CmNotificationSubscriptionPersistenceServiceImpl implements CmNotif
     public boolean isUniqueSubscriptionId(final String subscriptionId) {
         return cpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME,
                 CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_ID.formatted(subscriptionId),
-                OMIT_DESCENDANTS).isEmpty();
+                OMIT_DESCENDANTS, ContentType.JSON).isEmpty();
     }
 
     @Override
@@ -86,7 +86,7 @@ public class CmNotificationSubscriptionPersistenceServiceImpl implements CmNotif
                         datastoreType.getDatastoreName(), cmHandleId, escapeQuotesByDoublingThem(xpath));
         final Collection<DataNode> existingNodes =
                 cpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME, CM_SUBSCRIPTIONS_ANCHOR_NAME,
-                        isOngoingCmSubscriptionCpsPathQuery, OMIT_DESCENDANTS);
+                        isOngoingCmSubscriptionCpsPathQuery, OMIT_DESCENDANTS, ContentType.JSON);
         if (existingNodes.isEmpty()) {
             return Collections.emptyList();
         }
@@ -135,7 +135,7 @@ public class CmNotificationSubscriptionPersistenceServiceImpl implements CmNotif
                 cpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME, CM_SUBSCRIPTIONS_ANCHOR_NAME,
                         CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_FILTERS_WITH_DATASTORE_AND_CMHANDLE.formatted(
                                 datastoreType.getDatastoreName(), cmHandleId),
-                        DIRECT_CHILDREN_ONLY).iterator().next().getChildDataNodes();
+                        DIRECT_CHILDREN_ONLY, ContentType.JSON).iterator().next().getChildDataNodes();
         if (existingFiltersForCmHandle.isEmpty()) {
             removeCmHandleFromDatastore(datastoreType.getDatastoreName(), cmHandleId);
         }
@@ -151,7 +151,7 @@ public class CmNotificationSubscriptionPersistenceServiceImpl implements CmNotif
         return cpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME, CM_SUBSCRIPTIONS_ANCHOR_NAME,
                 CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_FILTERS_WITH_DATASTORE_AND_CMHANDLE.formatted(
                         datastoreType.getDatastoreName(), cmHandleId),
-                OMIT_DESCENDANTS).isEmpty();
+                OMIT_DESCENDANTS, ContentType.JSON).isEmpty();
     }
 
     private void addFirstSubscriptionForDatastoreCmHandleAndXpath(final DatastoreType datastoreType,

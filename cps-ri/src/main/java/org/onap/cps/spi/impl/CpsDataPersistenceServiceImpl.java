@@ -66,6 +66,7 @@ import org.onap.cps.spi.repository.AnchorRepository;
 import org.onap.cps.spi.repository.DataspaceRepository;
 import org.onap.cps.spi.repository.FragmentRepository;
 import org.onap.cps.spi.utils.SessionManager;
+import org.onap.cps.utils.ContentType;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -289,7 +290,8 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     @Timed(value = "cps.data.persistence.service.datanode.query",
             description = "Time taken to query data nodes")
     public List<DataNode> queryDataNodes(final String dataspaceName, final String anchorName, final String cpsPath,
-                                         final FetchDescendantsOption fetchDescendantsOption) {
+                                         final FetchDescendantsOption fetchDescendantsOption,
+                                         final ContentType contentType) {
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final AnchorEntity anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
         final CpsPathQuery cpsPathQuery;

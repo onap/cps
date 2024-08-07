@@ -30,6 +30,7 @@ import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.PaginationOption;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.utils.CpsValidator;
+import org.onap.cps.utils.ContentType;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -43,9 +44,11 @@ public class CpsQueryServiceImpl implements CpsQueryService {
     @Timed(value = "cps.data.service.datanode.query",
             description = "Time taken to query data nodes")
     public Collection<DataNode> queryDataNodes(final String dataspaceName, final String anchorName,
-        final String cpsPath, final FetchDescendantsOption fetchDescendantsOption) {
+                                               final String cpsPath,
+                                               final FetchDescendantsOption fetchDescendantsOption,
+                                               final ContentType contentType) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
-        return cpsDataPersistenceService.queryDataNodes(dataspaceName, anchorName, cpsPath, fetchDescendantsOption);
+        return cpsDataPersistenceService.queryDataNodes(dataspaceName, anchorName, cpsPath, fetchDescendantsOption, contentType);
     }
 
     @Override
