@@ -18,6 +18,103 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f1c586d_770a7a23",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-08T10:28:21Z",
+      "side": 1,
+      "message": "some minor questions and comments.",
+      "revId": "0c25949419173f6f84c9d41174f3908a2a44cf03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "889b0924_f64c753c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/datajobs/DataJobResultService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-08T10:28:21Z",
+      "side": 1,
+      "message": "NB: just thinking how do we know abt the destination type ??\nwhether it is kafka topic OR s3 bucket or anything else supported???",
+      "range": {
+        "startLine": 44,
+        "startChar": 41,
+        "endLine": 44,
+        "endChar": 52
+      },
+      "revId": "0c25949419173f6f84c9d41174f3908a2a44cf03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f860026b_67c34f75",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/DataJobResultServiceImplSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-08T10:28:21Z",
+      "side": 1,
+      "message": "copyright missing.",
+      "revId": "0c25949419173f6f84c9d41174f3908a2a44cf03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "701c792a_5431e545",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/DmiDispatcher.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-08T10:28:21Z",
+      "side": 1,
+      "message": "NB: do u want to respond with some result as u are doing in the test.",
+      "range": {
+        "startLine": 104,
+        "startChar": 60,
+        "endLine": 104,
+        "endChar": 62
+      },
+      "revId": "0c25949419173f6f84c9d41174f3908a2a44cf03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fda90bb8_bbb94f49",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/DataJobResultServiceSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-08T10:28:21Z",
+      "side": 1,
+      "message": "copyright missing.",
+      "revId": "0c25949419173f6f84c9d41174f3908a2a44cf03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9af18eea_a5930a19",
