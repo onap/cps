@@ -42,26 +42,25 @@ public class DataJobStatusServiceImpl implements DataJobStatusService {
     @Override
     public String getDataJobStatus(final String authorization,
                                    final String dmiServiceName,
-                                   final String requestId,
-                                   final String dataProducerJobId,
-                                   final String dataProducerId) {
+                                   final String dataProducerId,
+                                   final String dataProducerJobId) {
 
-        final UrlTemplateParameters urlTemplateParameters = buildUrlParameters(dmiServiceName, requestId,
-                dataProducerJobId, dataProducerId);
+        final UrlTemplateParameters urlTemplateParameters = buildUrlParameters(dmiServiceName,
+                                                                              dataProducerId,
+                                                                              dataProducerJobId);
         return dmiRestClient.getDataJobStatus(urlTemplateParameters, authorization).block();
     }
 
     private UrlTemplateParameters buildUrlParameters(final String dmiServiceName,
-                                                     final String requestId,
-                                                     final String dataProducerJobId,
-                                                     final String dataProducerId) {
+                                                     final String dataProducerId,
+                                                     final String dataProducerJobId) {
         return DmiServiceUrlTemplateBuilder.newInstance()
-                .fixedPathSegment("dataJob")
-                .variablePathSegment("requestId", requestId)
+                .fixedPathSegment("cmwriteJob")
+                .fixedPathSegment("dataProducer")
+                .variablePathSegment("dataProducerId", dataProducerId)
                 .fixedPathSegment("dataProducerJob")
                 .variablePathSegment("dataProducerJobId", dataProducerJobId)
                 .fixedPathSegment("status")
-                .queryParameter("dataProducerId", dataProducerId)
                 .createUrlTemplateParameters(dmiServiceName, dmiProperties.getDmiBasePath());
     }
 }

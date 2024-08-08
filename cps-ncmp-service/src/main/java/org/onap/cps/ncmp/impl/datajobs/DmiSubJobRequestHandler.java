@@ -64,10 +64,15 @@ public class DmiSubJobRequestHandler {
                                      final Map<ProducerKey, List<DmiWriteOperation>> dmiWriteOperationsPerProducerKey) {
         final List<SubJobWriteResponse> subJobWriteResponses = new ArrayList<>(dmiWriteOperationsPerProducerKey.size());
         dmiWriteOperationsPerProducerKey.forEach((producerKey, dmi3ggpWriteOperations) -> {
-            final SubJobWriteRequest subJobWriteRequest = new SubJobWriteRequest(dataJobMetadata.dataAcceptType(),
-                    dataJobMetadata.dataContentType(), producerKey.dataProducerIdentifier(), dmi3ggpWriteOperations);
+            final SubJobWriteRequest subJobWriteRequest = new SubJobWriteRequest(dataJobMetadata.destination(),
+                                                                                 dataJobMetadata.dataAcceptType(),
+                                                                                 dataJobMetadata.dataContentType(),
+                                                                                 producerKey.dataProducerIdentifier(),
+                                                                                 dataJobId,
+                                                                                 dmi3ggpWriteOperations);
 
-            final UrlTemplateParameters urlTemplateParameters = getUrlTemplateParameters(dataJobId, producerKey);
+            final UrlTemplateParameters urlTemplateParameters = getUrlTemplateParameters(dataJobMetadata.destination(),
+                                                                                         producerKey);
             final ResponseEntity<Object> responseEntity = dmiRestClient.synchronousPostOperationWithJsonData(
                     RequiredDmiService.DATA,
                     urlTemplateParameters,
@@ -82,10 +87,10 @@ public class DmiSubJobRequestHandler {
         return subJobWriteResponses;
     }
 
-    private UrlTemplateParameters getUrlTemplateParameters(final String dataJobId, final ProducerKey producerKey) {
+    private UrlTemplateParameters getUrlTemplateParameters(final String destination, final ProducerKey producerKey) {
         return DmiServiceUrlTemplateBuilder.newInstance()
-                .fixedPathSegment("writeJob")
-                .variablePathSegment("requestId", dataJobId)
+                .fixedPathSegment("cmwriteJob")
+                .queryParameter("destination", destination)
                 .createUrlTemplateParameters(producerKey.dmiServiceName(), dmiProperties.getDmiBasePath());
     }
 }

@@ -20,6 +20,8 @@
 
 package org.onap.cps.integration.base
 
+import org.onap.cps.ncmp.api.datajobs.models.SubJobWriteRequest
+
 import static org.onap.cps.integration.base.CpsIntegrationSpecBase.readResourceDataFile
 
 import groovy.json.JsonSlurper
@@ -92,11 +94,11 @@ class DmiDispatcher extends Dispatcher {
                 return mockResponseWithBody(HttpStatus.ACCEPTED, '{}')
 
             // get write sub job response
-            case ~'^/dmi/v1/writeJob/(.*)$':
+            case ~'^/dmi/v1/cmwriteJob(.*)$':
                 return mockWriteJobResponse(request)
 
             // get data job status
-            case ~'^/dmi/v1/dataJob/(.*)/dataProducerJob/(.*)/status(.*)$':
+            case ~'^/dmi/v1/cmwriteJob/dataProducer/(.*)/dataProducerJob/(.*)/status':
                 return mockResponseWithBody(HttpStatus.OK, '{"status":"status details from mock service"}')
 
             default:
@@ -105,9 +107,9 @@ class DmiDispatcher extends Dispatcher {
     }
 
     def mockWriteJobResponse(request) {
-        def requestId = Matcher.lastMatcher[0][1]
+        def destination = Matcher.lastMatcher[0][1]
         def subJobWriteRequest = jsonSlurper.parseText(request.getBody().readUtf8())
-        this.receivedSubJobs.put(requestId, subJobWriteRequest)
+        this.receivedSubJobs.put(destination, subJobWriteRequest)
         def response = '{"subJobId":"some sub job id", "dmiServiceName":"some dmi service name", "dataProducerId":"some data producer id"}'
         return mockResponseWithBody(HttpStatus.OK, response)
     }
