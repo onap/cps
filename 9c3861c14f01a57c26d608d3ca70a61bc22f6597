@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "923dfc3f_44ea3fb8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobResultServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-08T15:37:59Z",
+      "side": 1,
+      "message": "NB: I think this should be capital W for consistency",
+      "range": {
+        "startLine": 45,
+        "startChar": 64,
+        "endLine": 45,
+        "endChar": 65
+      },
+      "revId": "9c3861c14f01a57c26d608d3ca70a61bc22f6597",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
