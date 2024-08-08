@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8132a817_a5f042f8",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/DataJobResultServiceSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-08T13:03:00Z",
+      "side": 1,
+      "message": "cool",
+      "range": {
+        "startLine": 43,
+        "startChar": 19,
+        "endLine": 43,
+        "endChar": 57
+      },
+      "revId": "1c24ef9ae26ec7a0a87425c934130a0b8fc99243",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

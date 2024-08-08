@@ -84,6 +84,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "967d271b_bbda0f71",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/datajobs/DataJobResultService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-08T13:03:00Z",
+      "side": 1,
+      "message": "well we might need to be aware if it too I thikjnk, but nor for now. This user story is not affected by it...",
+      "parentUuid": "4ceb5caf_3cdec51a",
+      "range": {
+        "startLine": 44,
+        "startChar": 41,
+        "endLine": 44,
+        "endChar": 52
+      },
+      "revId": "0c25949419173f6f84c9d41174f3908a2a44cf03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f860026b_67c34f75",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/DataJobResultServiceImplSpec.groovy",
         "patchSetId": 7
