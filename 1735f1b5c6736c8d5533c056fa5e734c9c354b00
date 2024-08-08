@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5aebd27a_2126874a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-08T16:30:00Z",
+      "side": 1,
+      "message": "just had a quick look;seems like a good solution to me",
+      "revId": "1735f1b5c6736c8d5533c056fa5e734c9c354b00",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49f5cd5f_2f00ff4e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/data/models/CmResourceAddress.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-08T16:30:00Z",
+      "side": 1,
+      "message": "good solution :-)",
+      "range": {
+        "startLine": 39,
+        "startChar": 15,
+        "endLine": 39,
+        "endChar": 107
+      },
+      "revId": "1735f1b5c6736c8d5533c056fa5e734c9c354b00",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
