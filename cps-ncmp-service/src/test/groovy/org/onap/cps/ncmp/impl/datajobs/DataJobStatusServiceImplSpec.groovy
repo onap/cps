@@ -39,15 +39,14 @@ class DataJobStatusServiceImplSpec extends Specification {
     def 'Forward a data job status query to DMI.' () {
         given: 'the required parameters for querying'
             def dmiServiceName = 'some-dmi-service'
-            def requestId = 'some-request-id'
+            def dataProducerId = 'some-data-producer-id'
             def dataProducerJobId = 'some-data-producer-job-id'
-            def dataJobId = 'some-data-job-id'
             def authorization = 'my authorization header'
-            def urlParams = new UrlTemplateParameters('some-dmi-service/dmi/v1/dataJob/{requestId}/dataProducerJob/{dataProducerJobId}/status?dataProducerId={dataProducerId}', ['dataProducerJobId':'some-data-producer-job-id', 'dataProducerId':'some-data-job-id', 'requestId':'some-request-id'])
+            def urlParams = new UrlTemplateParameters('some-dmi-service/dmi/v1/cmwriteJob/dataProducer/{dataProducerId}/dataProducerJob/{dataProducerJobId}/status', ['dataProducerId':'some-data-producer-id', 'dataProducerJobId':'some-data-producer-job-id'])
         and: 'the rest client returns a status for the given parameters'
             mockDmiRestClient.getDataJobStatus(urlParams, authorization) >> Mono.just('some status')
         when: 'the job status is queried'
-            def status = objectUnderTest.getDataJobStatus(authorization, dmiServiceName, requestId, dataProducerJobId, dataJobId)
+            def status = objectUnderTest.getDataJobStatus(authorization, dmiServiceName, dataProducerId, dataProducerJobId)
         then: 'the status from the rest client is returned'
             assert status == 'some status'
     }

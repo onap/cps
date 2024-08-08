@@ -160,7 +160,7 @@ public class DmiRestClient {
                 .headers(httpHeaders -> configureHttpHeaders(httpHeaders, authorization))
                 .retrieve()
                 .bodyToMono(JsonNode.class)
-                .map(responseHealthStatus -> responseHealthStatus.path("status").asText())
+                .map(jsonNode -> jsonNode.path("status").asText())
                 .onErrorMap(throwable -> handleDmiClientException(throwable, OperationType.READ.getOperationName()));
     }
 

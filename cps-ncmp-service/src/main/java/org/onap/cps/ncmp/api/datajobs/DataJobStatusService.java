@@ -31,15 +31,13 @@ public interface DataJobStatusService {
      *
      * @param authorization     The authorization header from the REST request.
      * @param dmiServiceName    The name of the DMI Service relevant to the data job.
-     * @param requestId         The unique identifier for the overall data job request.
-     * @param dataProducerJobId The identifier of the data producer job within the DMI system.
      * @param dataProducerId    The ID of the producer registered by DMI, used for operations related to this request.
      *                          This could include alternate IDs or specific identifiers.
+     * @param dataProducerJobId The identifier of the data producer job within the DMI system.
      * @return The current status of the data job as a String.
      */
     String getDataJobStatus(final String authorization,
                             final String dmiServiceName,
-                            final String requestId,
-                            final String dataProducerJobId,
-                            final String dataProducerId);
+                            final String dataProducerId,
+                            final String dataProducerJobId);
 }
