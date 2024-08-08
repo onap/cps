@@ -183,6 +183,14 @@ components:
       schema:
         type: string
         example: my-anchor
+    sourceAnchorNameInPath:
+      name: source-anchor-name
+      in: path
+      description: source-anchor-name
+      required: true
+      schema:
+        type: string
+        example: my-anchor
     schemaSetNameInQuery:
       name: schema-set-name
       in: query
