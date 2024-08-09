@@ -162,5 +162,58 @@ class YangParserHelperSpec extends Specification {
             'xpath contains list attributes with /'        | '/test-tree/branch[@name=\'/Branch\']/categories[@id=\'/broken\']'  || ['test-tree','branch','categories']
     }
 
+    def 'Parsing data to validate #scenario String.'() {
+        given: 'a data model (file)'
+            def fileData = TestUtils.getResourceFileContent(contentFile)
+        and: 'a model for that data'
+            def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('bookstore.yang')
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
+        when: 'the data is parsed'
+            objectUnderTest.parseAndValidateData(schemaContext, fileData,  parentNodeXpath, contentType)
+        then: 'the result is a normalized node of the correct type'
+            noExceptionThrown()
+        where:
+            scenario                         | parentNodeXpath | contentFile                      | contentType
+            'JSON without parent node xpath' | ''              | 'bookstore.json'                 | ContentType.JSON
+            'JSON with parent node xpath'    | '/bookstore'    | 'bookstore-categories-data.json' | ContentType.JSON
+            'XML without parent node xpath'  | ''              | 'bookstore.xml'                  | ContentType.XML
+            'XML with parent node xpath'     | '/bookstore'    | 'bookstore-categories-data.xml'  | ContentType.XML
+    }
+
+    def 'Validating data fragment by xpath for #scenario.'() {
+        given: 'schema context'
+            def yangResourcesMap = TestUtils.getYangResourcesAsMap('test-tree.yang')
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourcesMap).getSchemaContext()
+        when: 'json string is parsed'
+            objectUnderTest.parseAndValidateData(schemaContext, nodeData,  parentNodeXpath, contentType)
+        then: 'a ContainerNode holding collection of normalized nodes is returned'
+            noExceptionThrown()
+        where:
+        scenario                         | contentType       | parentNodeXpath                       | nodeData
+            'JSON list element as container' | ContentType.JSON  | '/test-tree'                          | '{ "branch": { "name": "B", "nest": { "name": "N", "birds": ["bird"] } } }'
+            'JSON list element within list'  | ContentType.JSON  | '/test-tree'                          | '{ "branch": [{ "name": "B", "nest": { "name": "N", "birds": ["bird"] } }] }'
+            'JSON container element'         | ContentType.JSON  | '/test-tree/branch[@name=\'Branch\']' | '{ "nest": { "name": "N", "birds": ["bird"] } }'
+            'XML element test tree'          | ContentType.XML   | '/test-tree'                          | '<?xml version=\'1.0\' encoding=\'UTF-8\'?><branch xmlns="org:onap:cps:test:test-tree"><name>Left</name><nest><name>Small</name><birds>Sparrow</birds></nest></branch>'
+            'XML element branch xpath'       | ContentType.XML   | '/test-tree'                          | '<?xml version=\'1.0\' encoding=\'UTF-8\'?><branch xmlns="org:onap:cps:test:test-tree"><name>Left</name><nest><name>Small</name><birds>Sparrow</birds><birds>Robin</birds></nest></branch>'
+            'XML container element'          | ContentType.XML   | '/test-tree/branch[@name=\'Branch\']' | '<?xml version=\'1.0\' encoding=\'UTF-8\'?><nest xmlns="org:onap:cps:test:test-tree"><name>Small</name><birds>Sparrow</birds></nest>'
+    }
+
+    def 'Validating invalid data by parsing it: #description.'() {
+        given: 'a yang model (file)'
+            def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('bookstore.yang')
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
+        when: 'invalid data is parsed'
+            objectUnderTest.parseAndValidateData(schemaContext, invalidData, '', contentType)
+        then: 'an exception is thrown'
+            thrown(DataValidationException)
+        where: 'the following invalid data is provided'
+            description                  | invalidData                                                                          | contentType
+            'incomplete json'            | '{incomplete json'                                                                   | ContentType.JSON
+            'json with un-modelled data' | '{"test:bookstore": {"address": "Parnell st." }}'                                    | ContentType.JSON
+            'json with syntax exception' | '{" }'                                                                               | ContentType.JSON
+            'incomplete xml'             | '<data>'                                                                             | ContentType.XML
+            'xml with invalid model'     | '<data><bookstore><bookstore-anything>blabla</bookstore-anything></bookstore</data>' | ContentType.XML
+            'empty xml'                  | ''                                                                                   | ContentType.XML
+    }
 
 }

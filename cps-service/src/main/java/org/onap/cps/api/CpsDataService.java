@@ -322,4 +322,18 @@ public interface CpsDataService {
                                                           Map<String, String> yangResourcesNameToContentMap,
                                                           String targetData,
                                                           FetchDescendantsOption fetchDescendantsOption);
+
+
+    /**
+     * Validates JSON or XML data by parsing it using the schema associated to an anchor within the given dataspace.
+     * Validation is performed without persisting the data.
+     *
+     * @param dataspaceName     dataspace name
+     * @param anchorName        anchor name
+     * @param parentNodeXpath   xpath of parent node
+     * @param nodeData          JSON/XML node data
+     * @param contentType       JSON/XML content type
+     */
+    void validateData(String dataspaceName, String anchorName, String parentNodeXpath, String nodeData,
+                                 ContentType contentType);
 }
