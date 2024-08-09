@@ -1451,6 +1451,14 @@ paths:
           schema:
             default: /
             type: string
+        - description: Boolean flag to validate data, without persisting it. Default value is set to false.
+          in: query
+          name: dry-run
+          required: false
+          schema:
+            default: false
+            example: false
+            type: boolean
         - description: observed-timestamp
           in: query
           name: observed-timestamp
@@ -2609,6 +2617,15 @@ components:
       schema:
         example: 10
         type: integer
+    dryRunInQuery:
+      name: dry-run
+      in: query
+      description: Boolean flag to validate data, without persisting it. Default value is set to false.
+      required: false
+      schema:
+        type: boolean
+        default: false
+        example: false
   responses:
     Created:
       content:
