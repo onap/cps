@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4aa5fcb1_3d2d196a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/NetworkCmProxyFacade.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-08-09T09:05:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "faa61ac4_fd5b6271",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 88
+      },
+      "revId": "f0a37c5daf04d6562116b6d757ca2e76c46c7726",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bff4f229_e5dd6b43",
@@ -60,6 +84,54 @@
       "writtenOn": "2024-08-07T14:07:20Z",
       "side": 1,
       "message": "single qoutes \u0027",
+      "range": {
+        "startLine": 78,
+        "startChar": 89,
+        "endLine": 78,
+        "endChar": 96
+      },
+      "revId": "f0a37c5daf04d6562116b6d757ca2e76c46c7726",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "faaef83c_65d062b6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/AlternateIdMatcherSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-08-09T09:05:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bff4f229_e5dd6b43",
+      "range": {
+        "startLine": 78,
+        "startChar": 84,
+        "endLine": 78,
+        "endChar": 88
+      },
+      "revId": "f0a37c5daf04d6562116b6d757ca2e76c46c7726",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "75fd2999_ff56653a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/AlternateIdMatcherSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-08-09T09:05:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c40fe941_223fbe7f",
       "range": {
         "startLine": 78,
         "startChar": 89,
