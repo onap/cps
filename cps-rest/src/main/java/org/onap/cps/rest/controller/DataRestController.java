@@ -74,16 +74,21 @@ public class DataRestController implements CpsDataApi {
                                              final String dataspaceName, final String anchorName,
                                              final String contentTypeInHeader,
                                              final String nodeData, final String parentNodeXpath,
-                                             final String observedTimestamp) {
+                                             final Boolean dryRunEnabled, final String observedTimestamp) {
         final ContentType contentType = getContentTypeFromHeader(contentTypeInHeader);
-        if (isRootXpath(parentNodeXpath)) {
-            cpsDataService.saveData(dataspaceName, anchorName, nodeData,
-                    toOffsetDateTime(observedTimestamp), contentType);
+        if (Boolean.TRUE.equals(dryRunEnabled)) {
+            cpsDataService.validateData(dataspaceName, anchorName, parentNodeXpath, nodeData, contentType);
+            return ResponseEntity.ok().build();
         } else {
-            cpsDataService.saveData(dataspaceName, anchorName, parentNodeXpath,
-                    nodeData, toOffsetDateTime(observedTimestamp), contentType);
+            if (isRootXpath(parentNodeXpath)) {
+                cpsDataService.saveData(dataspaceName, anchorName, nodeData,
+                        toOffsetDateTime(observedTimestamp), contentType);
+            } else {
+                cpsDataService.saveData(dataspaceName, anchorName, parentNodeXpath,
+                        nodeData, toOffsetDateTime(observedTimestamp), contentType);
+            }
+            return ResponseEntity.status(HttpStatus.CREATED).build();
         }
-        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @Override

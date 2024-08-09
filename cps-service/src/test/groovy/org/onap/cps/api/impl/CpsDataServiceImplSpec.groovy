@@ -546,6 +546,20 @@ class CpsDataServiceImplSpec extends Specification {
             1 * mockDataUpdateEventsService.publishCpsDataUpdateEvent(anchor2, '/', DELETE, observedTimestamp)
     }
 
+    def "Validating data when dry run is enabled. #scenario"() {
+        given: 'schema set for given anchors and dataspace references bookstore model'
+            setupSchemaSetMocks('bookstore.yang')
+        when: 'validating the data with the given parameters'
+            objectUnderTest.validateData(dataspaceName, anchorName, parentNodeXpath, data,contentType)
+        then: 'the appropriate yang parser method is invoked with correct parameters'
+            yangParser.validateData(contentType, data, anchor, xpath)
+        where: 'the following parameters were used'
+            scenario                     | parentNodeXpath | xpath        | contentType      | data
+        'JSON data with root node xpath' | '/'             | ''           | ContentType.JSON | '{"bookstore":{"bookstore-name":"Easons"}}'
+        'JSON data with specific xpath'  | '/bookstore'    | '/bookstore' | ContentType.JSON | '{"bookstore-name":"Easons"}'
+        'XML data with specific xpath'   | '/bookstore'    | '/bookstore' | ContentType.XML  | '<bookstore-name>Easons</bookstore-name>'
+    }
+
     def 'Start session.'() {
         when: 'start session method is called'
             objectUnderTest.startSession()
