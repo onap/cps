@@ -104,6 +104,7 @@ nodesByDataspaceAndAnchor:
       - $ref: 'components.yml#/components/parameters/xpathInQuery'
       - $ref: 'components.yml#/components/parameters/observedTimestampInQuery'
       - $ref: 'components.yml#/components/parameters/contentTypeInHeader'
+      - $ref: 'components.yml#/components/parameters/dryRunInQuery'
     requestBody:
       required: true
       content:

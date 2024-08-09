@@ -81,6 +81,27 @@ public class YangParser {
         return yangParserHelper.parseData(contentType, nodeData, schemaContext, parentNodeXpath);
     }
 
+    /**
+     * Parses data to validate it, using the schema context for given anchor.
+     *
+     * @param anchor            anchor for node data
+     * @param nodeData          JSON or XML data string
+     * @param parentNodeXpath   parent node xpath
+     * @param contentType       JSON/XML content type
+     */
+    public void parseAndValidateData(final Anchor anchor,
+                                     final String parentNodeXpath,
+                                     final String nodeData,
+                                     final ContentType contentType) {
+        final SchemaContext schemaContext = getSchemaContext(anchor);
+        try {
+            yangParserHelper.parseAndValidateData(schemaContext, nodeData, parentNodeXpath, contentType);
+        } catch (final DataValidationException e) {
+            invalidateCache(anchor);
+        }
+        yangParserHelper.parseAndValidateData(schemaContext, nodeData, parentNodeXpath, contentType);
+    }
+
     private SchemaContext getSchemaContext(final Anchor anchor) {
         return yangTextSchemaSourceSetCache.get(anchor.getDataspaceName(),
             anchor.getSchemaSetName()).getSchemaContext();

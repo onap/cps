@@ -90,6 +90,25 @@ public class YangParserHelper {
         return parseXmlData(nodeData, schemaContext, parentNodeXpath);
     }
 
+    /**
+     * Parses JSON or XML data to validate it based on the schema context provided.
+     *
+     * @param schemaContext     schema context describing associated data model
+     * @param nodeData          data string
+     * @param parentNodeXpath   the xpath referencing the parent node current data fragment belong to
+     * @param contentType       the type of the node data (json or xml)
+     */
+    public void parseAndValidateData(final SchemaContext schemaContext,
+                                     final String nodeData,
+                                     final String parentNodeXpath,
+                                     final ContentType contentType) {
+        if (contentType == ContentType.JSON) {
+            parseAndValidateJsonData(nodeData, schemaContext, parentNodeXpath);
+        } else {
+            parseAndValidateXmlData(nodeData, schemaContext, parentNodeXpath);
+        }
+    }
+
     private ContainerNode parseJsonData(final String jsonData,
                                         final SchemaContext schemaContext,
                                         final String parentNodeXpath) {
@@ -125,6 +144,42 @@ public class YangParserHelper {
                     "Data Validation Failed", "Failed to parse json data. " + exception.getMessage(), exception);
         }
         return dataContainerNodeBuilder.build();
+    }
+
+    private void parseAndValidateJsonData(final String jsonData,
+                                        final SchemaContext schemaContext,
+                                        final String parentNodeXpath) {
+        final JSONCodecFactory jsonCodecFactory = JSONCodecFactorySupplier.DRAFT_LHOTKA_NETMOD_YANG_JSON_02
+                .getShared((EffectiveModelContext) schemaContext);
+        final DataContainerNodeBuilder<YangInstanceIdentifier.NodeIdentifier, ContainerNode> dataContainerNodeBuilder =
+                Builders.containerBuilder()
+                        .withNodeIdentifier(new YangInstanceIdentifier.NodeIdentifier(
+                                QName.create(DATA_ROOT_NODE_NAMESPACE, DATA_ROOT_NODE_TAG_NAME)
+                        ));
+        final NormalizedNodeStreamWriter normalizedNodeStreamWriter = ImmutableNormalizedNodeStreamWriter
+                .from(dataContainerNodeBuilder);
+        final JsonReader jsonReader = new JsonReader(new StringReader(jsonData));
+        final JsonParserStream jsonParserStream;
+
+        if (parentNodeXpath.isEmpty()) {
+            jsonParserStream = JsonParserStream.create(normalizedNodeStreamWriter, jsonCodecFactory);
+        } else {
+            final Collection<QName> dataSchemaNodeIdentifiers
+                    = getDataSchemaNodeIdentifiers(schemaContext, parentNodeXpath);
+            final EffectiveModelContext effectiveModelContext = ((EffectiveModelContext) schemaContext);
+            final EffectiveStatementInference effectiveStatementInference =
+                    SchemaInferenceStack.of(effectiveModelContext,
+                            SchemaNodeIdentifier.Absolute.of(dataSchemaNodeIdentifiers)).toInference();
+            jsonParserStream =
+                    JsonParserStream.create(normalizedNodeStreamWriter, jsonCodecFactory, effectiveStatementInference);
+        }
+
+        try (jsonParserStream) {
+            jsonParserStream.parse(jsonReader);
+        } catch (final IOException | JsonSyntaxException | IllegalStateException | IllegalArgumentException exception) {
+            throw new DataValidationException(
+                    "Data Validation Failed", "Failed to parse json data. " + exception.getMessage(), exception);
+        }
     }
 
     private ContainerNode parseXmlData(final String xmlData,
@@ -171,6 +226,47 @@ public class YangParserHelper {
         final YangInstanceIdentifier.NodeIdentifier nodeIdentifier =
             new YangInstanceIdentifier.NodeIdentifier(dataContainerChild.getIdentifier().getNodeType());
         return Builders.containerBuilder().withChild(dataContainerChild).withNodeIdentifier(nodeIdentifier).build();
+    }
+
+    private void parseAndValidateXmlData(final String xmlData,
+                                       final SchemaContext schemaContext,
+                                       final String parentNodeXpath) {
+        final XMLInputFactory factory = XMLInputFactory.newInstance();
+        factory.setProperty(XMLInputFactory.SUPPORT_DTD, false);
+        final NormalizedNodeResult normalizedNodeResult = new NormalizedNodeResult();
+        final NormalizedNodeStreamWriter normalizedNodeStreamWriter = ImmutableNormalizedNodeStreamWriter
+                .from(normalizedNodeResult);
+
+        final EffectiveModelContext effectiveModelContext = (EffectiveModelContext) schemaContext;
+        final XmlParserStream xmlParserStream;
+        final String preparedXmlContent;
+        try {
+            if (parentNodeXpath.isEmpty()) {
+                preparedXmlContent = XmlFileUtils.prepareXmlContent(xmlData, schemaContext);
+                xmlParserStream = XmlParserStream.create(normalizedNodeStreamWriter, effectiveModelContext);
+            } else {
+                final DataSchemaNode parentSchemaNode =
+                        (DataSchemaNode) getDataSchemaNodeAndIdentifiersByXpath(parentNodeXpath, schemaContext)
+                                .get("dataSchemaNode");
+                final Collection<QName> dataSchemaNodeIdentifiers =
+                        getDataSchemaNodeIdentifiers(schemaContext, parentNodeXpath);
+                final EffectiveStatementInference effectiveStatementInference =
+                        SchemaInferenceStack.of(effectiveModelContext,
+                                SchemaNodeIdentifier.Absolute.of(dataSchemaNodeIdentifiers)).toInference();
+                preparedXmlContent = XmlFileUtils.prepareXmlContent(xmlData, parentSchemaNode, parentNodeXpath);
+                xmlParserStream = XmlParserStream.create(normalizedNodeStreamWriter, effectiveStatementInference);
+            }
+
+            try (xmlParserStream;
+                 StringReader stringReader = new StringReader(preparedXmlContent)) {
+                final XMLStreamReader xmlStreamReader = factory.createXMLStreamReader(stringReader);
+                xmlParserStream.parse(xmlStreamReader);
+            }
+        } catch (final XMLStreamException | URISyntaxException | IOException | SAXException | NullPointerException
+                       | ParserConfigurationException | TransformerException exception) {
+            throw new DataValidationException(
+                    "Data Validation Failed", "Failed to parse xml data: " + exception.getMessage(), exception);
+        }
     }
 
     private static Collection<QName> getDataSchemaNodeIdentifiers(final SchemaContext schemaContext,
