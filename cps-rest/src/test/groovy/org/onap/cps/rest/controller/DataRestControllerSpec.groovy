@@ -160,6 +160,30 @@ class DataRestControllerSpec extends Specification {
             'with invalid observed-timestamp' | 'invalid'                      | MediaType.APPLICATION_JSON | requestBodyJson || 0                | HttpStatus.BAD_REQUEST | expectedJsonData | ContentType.JSON
     }
 
+    def 'Create a node with dry-run enabled, #scenario'() {
+        given: 'endpoint to create a node'
+            def endpoint = "$dataNodeBaseEndpointV1/anchors/$anchorName/nodes"
+            def parentNodeXpath = '/'
+            def dryRun = 'true'
+        when: 'post is invoked with json data and dry-run flag enabled'
+            def response =
+                    mvc.perform(
+                            post(endpoint)
+                                    .contentType(mediaType)
+                                    .param('xpath', parentNodeXpath)
+                                    .param('dry-run', dryRun)
+                                    .content(content)
+                    ).andReturn().response
+        then: 'a created response is returned'
+            response.status == expectedHttpStatus.value()
+        then: 'the java API was called with the correct parameters'
+            1 * mockCpsDataService.validateData(dataspaceName, anchorName, parentNodeXpath, content, expectedContentType)
+        where: 'following parameters were used'
+            scenario         | mediaType                  | content         || expectedHttpStatus | expectedContentType
+            'with JSON Data' | MediaType.APPLICATION_JSON | requestBodyJson || HttpStatus.OK      | ContentType.JSON
+            'with XML Data'  | MediaType.APPLICATION_XML  | requestBodyXml  || HttpStatus.OK      | ContentType.XML
+    }
+
     def 'Create a child node #scenario'() {
         given: 'endpoint to create a node'
             def endpoint = "$dataNodeBaseEndpointV1/anchors/$anchorName/nodes"
