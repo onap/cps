@@ -1,0 +1,49 @@
+{
+  "categories": [
+    {
+      "code": "01/1",
+      "name": "SciFi",
+      "books": [
+        {
+          "authors": [
+            "Iain M. Banks"
+          ],
+          "lang": "en/it",
+          "price": "895",
+          "pub_year": "1994",
+          "title": "Feersum Endjinn/Endjinn Feersum"
+        },
+        {
+          "authors": [
+            "Ursula K. Le Guin",
+            "Joe Haldeman",
+            "Orson Scott Card",
+            "david Brin",
+            "Rober Silverberg",
+            "Dan Simmons",
+            "Greg Bear"
+          ],
+          "lang": "en",
+          "price": "1099",
+          "pub_year": "1999",
+          "title": "Far Horizons"
+        }
+      ]
+    },
+    {
+      "name": "kids",
+      "code": "02",
+      "books": [
+        {
+          "authors": [
+            "Philip Pullman"
+          ],
+          "lang": "en",
+          "price": "699",
+          "pub_year": "1995",
+          "title": "The Golden Compass"
+        }
+      ]
+    }
+  ]
+}

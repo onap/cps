@@ -64,6 +64,8 @@ import org.springframework.stereotype.Service;
 public class CpsDataServiceImpl implements CpsDataService {
 
     private static final String ROOT_NODE_XPATH = "/";
+
+    private static final String PARENT_NODE_XPATH_FOR_ROOT_NODE_XPATH = "";
     private static final long DEFAULT_LOCK_TIMEOUT_IN_MILLISECONDS = 300L;
     private static final String NO_DATA_NODES = "No data nodes.";
 
@@ -358,6 +360,19 @@ public class CpsDataServiceImpl implements CpsDataService {
         sendDataUpdatedEvent(anchor, listNodeXpath, Operation.DELETE, observedTimestamp);
     }
 
+    @Override
+    public void validateData(final String dataspaceName, final String anchorName,
+                                        final String parentNodeXpath, final String nodeData,
+                                        final ContentType contentType) {
+
+        final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
+        if (ROOT_NODE_XPATH.equals(parentNodeXpath)) {
+            yangParser.parseAndValidateData(anchor, PARENT_NODE_XPATH_FOR_ROOT_NODE_XPATH, nodeData, contentType);
+        } else {
+            final String normalizedParentNodeXpath = CpsPathUtil.getNormalizedXpath(parentNodeXpath);
+            yangParser.parseAndValidateData(anchor, normalizedParentNodeXpath, nodeData, contentType);
+        }
+    }
 
     private Collection<DataNode> rebuildSourceDataNodes(final String xpath, final Anchor sourceAnchor,
                                                         final Collection<DataNode> sourceDataNodes) {
@@ -423,7 +438,8 @@ public class CpsDataServiceImpl implements CpsDataService {
                                                                  final String nodeData, final ContentType contentType) {
 
         if (ROOT_NODE_XPATH.equals(parentNodeXpath)) {
-            final ContainerNode containerNode = yangParser.parseData(contentType, nodeData, anchor, "");
+            final ContainerNode containerNode = yangParser.parseData(contentType, nodeData,
+                    anchor, PARENT_NODE_XPATH_FOR_ROOT_NODE_XPATH);
             final Collection<DataNode> dataNodes = new DataNodeBuilder()
                     .withContainerNode(containerNode)
                     .buildCollection();
@@ -451,7 +467,7 @@ public class CpsDataServiceImpl implements CpsDataService {
 
         if (isRootNodeXpath(xpath)) {
             final ContainerNode containerNode = yangParser.parseData(contentType, nodeData,
-                    yangResourcesNameToContentMap, "");
+                    yangResourcesNameToContentMap, PARENT_NODE_XPATH_FOR_ROOT_NODE_XPATH);
             final Collection<DataNode> dataNodes = new DataNodeBuilder()
                     .withContainerNode(containerNode)
                     .buildCollection();
