@@ -35,6 +35,7 @@ class DataNodeBuilderSpec extends Specification {
 
     def objectUnderTest = new DataNodeBuilder()
     def yangParserHelper = new YangParserHelper()
+    def validateAndParse = false
 
     def expectedLeavesByXpathMap = [
             '/test-tree'                                            : [],
@@ -60,7 +61,7 @@ class DataNodeBuilderSpec extends Specification {
             def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent) getSchemaContext()
         and: 'the json data parsed into container node object'
             def jsonData = TestUtils.getResourceFileContent('test-tree.json')
-            def containerNode = yangParserHelper.parseData(ContentType.JSON, jsonData, schemaContext, '')
+            def containerNode = yangParserHelper.parseData(ContentType.JSON, jsonData, schemaContext, '', validateAndParse)
         when: 'the container node is converted to a data node'
             def result = objectUnderTest.withContainerNode(containerNode).build()
             def mappedResult = TestUtils.getFlattenMapByXpath(result)
@@ -80,7 +81,7 @@ class DataNodeBuilderSpec extends Specification {
             def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent) getSchemaContext()
         and: 'the json data parsed into container node object'
             def jsonData = '{ "branch": [{ "name": "Branch", "nest": { "name": "Nest", "birds": ["bird"] } }] }'
-            def containerNode = yangParserHelper.parseData(ContentType.JSON, jsonData, schemaContext, '/test-tree')
+            def containerNode = yangParserHelper.parseData(ContentType.JSON, jsonData, schemaContext, '/test-tree', validateAndParse)
         when: 'the container node is converted to a data node with parent node xpath defined'
             def result = objectUnderTest.withContainerNode(containerNode).withParentNodeXpath('/test-tree').build()
             def mappedResult = TestUtils.getFlattenMapByXpath(result)
@@ -96,7 +97,7 @@ class DataNodeBuilderSpec extends Specification {
             def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent) getSchemaContext()
         and: 'the json data parsed into container node object'
             def jsonData = TestUtils.getResourceFileContent('ietf/data/ietf-network-topology-sample-rfc8345.json')
-            def containerNode = yangParserHelper.parseData(ContentType.JSON, jsonData, schemaContext, '')
+            def containerNode = yangParserHelper.parseData(ContentType.JSON, jsonData, schemaContext, '', validateAndParse)
         when: 'the container node is converted to a data node '
             def result = objectUnderTest.withContainerNode(containerNode).build()
             def mappedResult = TestUtils.getFlattenMapByXpath(result)
@@ -129,7 +130,7 @@ class DataNodeBuilderSpec extends Specification {
             def parentNodeXpath = "/networks/network[@network-id='otn-hc']/link[@link-id='D1,1-2-1,D2,2-1-1']"
         and: 'the json data fragment parsed into container node object for given parent node xpath'
             def jsonData = '{"source": {"source-node": "D1", "source-tp": "1-2-1"}}'
-            def containerNode = yangParserHelper.parseData(ContentType.JSON, jsonData, schemaContext,parentNodeXpath)
+            def containerNode = yangParserHelper.parseData(ContentType.JSON, jsonData, schemaContext,parentNodeXpath, validateAndParse)
         when: 'the container node is converted to a data node with given parent node xpath'
             def result = objectUnderTest.withContainerNode(containerNode).withParentNodeXpath(parentNodeXpath).build()
         then: 'the resulting data node represents a child of augmentation node'
@@ -144,7 +145,7 @@ class DataNodeBuilderSpec extends Specification {
             def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent) getSchemaContext()
         and: 'the json data fragment parsed into container node object'
             def jsonData = TestUtils.getResourceFileContent('data-with-choice-node.json')
-            def containerNode = yangParserHelper.parseData(ContentType.JSON, jsonData, schemaContext, '')
+            def containerNode = yangParserHelper.parseData(ContentType.JSON, jsonData, schemaContext, '', validateAndParse)
         when: 'the container node is converted to a data node'
             def result = objectUnderTest.withContainerNode(containerNode).build()
             def mappedResult = TestUtils.getFlattenMapByXpath(result)
@@ -162,7 +163,7 @@ class DataNodeBuilderSpec extends Specification {
         and: 'parent node xpath referencing parent of list element'
             def parentNodeXpath = '/test-tree'
         and: 'the json data fragment (list element) parsed into container node object'
-            def containerNode = yangParserHelper.parseData(ContentType.JSON, jsonData, schemaContext, parentNodeXpath)
+            def containerNode = yangParserHelper.parseData(ContentType.JSON, jsonData, schemaContext, parentNodeXpath, validateAndParse)
         when: 'the container node is converted to a data node collection'
             def result = objectUnderTest.withContainerNode(containerNode).withParentNodeXpath(parentNodeXpath).buildCollection()
             def resultXpaths = result.collect { it.getXpath() }
