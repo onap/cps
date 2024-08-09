@@ -171,6 +171,6 @@ class E2ENetworkSliceSpec extends Specification {
         expect: 'schema context is built with no exception indicating the schema set being valid '
             def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap).getSchemaContext()
         and: 'data is parsed with no exception indicating the model match'
-            new YangParserHelper().parseData(ContentType.JSON, jsonData, schemaContext, '') != null
+            new YangParserHelper().parseData(ContentType.JSON, jsonData, schemaContext, '', false) != null
     }
 }

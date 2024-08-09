@@ -26,7 +26,6 @@ import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.spi.model.Anchor
 import org.onap.cps.yang.TimedYangTextSchemaSourceSetBuilder
 import org.onap.cps.yang.YangTextSchemaSourceSet
-import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import org.opendaylight.yangtools.yang.data.api.schema.ContainerNode
 import org.opendaylight.yangtools.yang.model.api.SchemaContext
 import spock.lang.Specification
@@ -47,6 +46,8 @@ class YangParserSpec extends Specification {
     def containerNodeFromYangUtils = Mock(ContainerNode)
 
     def noParent = ''
+    def validateOnly = true
+    def validateAndParse = false
 
     def setup() {
         mockYangTextSchemaSourceSetCache.get('my dataspace', 'my schema') >> mockYangTextSchemaSourceSet
@@ -55,7 +56,7 @@ class YangParserSpec extends Specification {
 
     def 'Parsing data.'() {
         given: 'the yang parser (utility) always returns a container node'
-            mockYangParserHelper.parseData(ContentType.JSON, 'some json', mockSchemaContext, noParent) >> containerNodeFromYangUtils
+            mockYangParserHelper.parseData(ContentType.JSON, 'some json', mockSchemaContext, noParent, validateAndParse) >> containerNodeFromYangUtils
         when: 'parsing some json data'
             def result = objectUnderTest.parseData(ContentType.JSON, 'some json', anchor, noParent)
         then: 'the schema source set for the correct dataspace and schema set is retrieved form the cache'
@@ -68,7 +69,7 @@ class YangParserSpec extends Specification {
 
     def 'Parsing data with exception on first attempt.'() {
         given: 'the yang parser throws an exception on the first attempt only'
-            mockYangParserHelper.parseData(ContentType.JSON, 'some json', mockSchemaContext, noParent)  >> { throw new DataValidationException(noParent, noParent) } >> containerNodeFromYangUtils
+            mockYangParserHelper.parseData(ContentType.JSON, 'some json', mockSchemaContext, noParent, validateAndParse)  >> { throw new DataValidationException(noParent, noParent) } >> containerNodeFromYangUtils
         when: 'attempt to parse some data'
             def result = objectUnderTest.parseData(ContentType.JSON, 'some json', anchor, noParent)
         then: 'the cache is cleared for the correct dataspace and schema'
@@ -79,7 +80,7 @@ class YangParserSpec extends Specification {
 
     def 'Parsing data with exception on all attempts.'() {
         given: 'the yang parser always throws an exception'
-            mockYangParserHelper.parseData(ContentType.JSON, 'some json', mockSchemaContext, noParent)  >> { throw new DataValidationException(noParent, noParent) }
+            mockYangParserHelper.parseData(ContentType.JSON, 'some json', mockSchemaContext, noParent, validateAndParse)  >> { throw new DataValidationException(noParent, noParent) }
         when: 'attempt to parse some data'
             objectUnderTest.parseData(ContentType.JSON, 'some json', anchor, noParent)
         then: 'a data validation exception is thrown'
@@ -94,9 +95,46 @@ class YangParserSpec extends Specification {
         when: 'parsing some json data'
             def result = objectUnderTest.parseData(ContentType.JSON, 'some json', yangResourcesNameToContentMap, noParent)
         then: 'the yang parser helper always returns a container node'
-            1 * mockYangParserHelper.parseData(ContentType.JSON, 'some json', mockSchemaContext, noParent) >> containerNodeFromYangUtils
+            1 * mockYangParserHelper.parseData(ContentType.JSON, 'some json', mockSchemaContext, noParent, validateAndParse) >> containerNodeFromYangUtils
         and: 'the result is the same container node as return from yang utils'
             assert result == containerNodeFromYangUtils
+    }
+
+    def 'Validating #scenario data using Yang parser with cache retrieval.'() {
+        given: 'the yang parser (utility) is set up and schema context is available'
+            mockYangParserHelper.parseData(contentType, 'some json', mockSchemaContext, noParent, validateOnly)
+        when: 'attempt to parse data with no parent node xpath'
+            objectUnderTest.validateData(contentType, 'some json or xml data', anchor, noParent)
+        then: 'the correct schema set is retrieved from the cache for the dataspace and schema'
+            1 * mockYangTextSchemaSourceSetCache.get('my dataspace', 'my schema') >> mockYangTextSchemaSourceSet
+        and: 'no cache entries are removed during validation'
+            0 * mockYangTextSchemaSourceSetCache.removeFromCache(*_)
+        where:
+            scenario | contentType
+            'JSON'   | ContentType.JSON
+            'XML'    | ContentType.XML
+    }
+
+    def 'Validating data when parsing fails on first attempt and recovers.'() {
+        given: 'the Yang parser throws an exception on the first attempt but succeeds on the second'
+            mockYangParserHelper.parseData(ContentType.JSON, 'some json', mockSchemaContext, noParent, validateOnly)  >> { throw new DataValidationException(noParent, noParent) } >> null
+        when: 'attempting to parse JSON data'
+            objectUnderTest.validateData(ContentType.JSON, 'some json', anchor, noParent)
+        then: 'the cache is cleared for the correct dataspace and schema after the first failure'
+            1 * mockYangTextSchemaSourceSetCache.removeFromCache('my dataspace', 'my schema')
+        and: 'no exceptions are thrown after the second attempt'
+            noExceptionThrown()
+    }
+
+    def 'Validating data with repeated parsing failures leading to exception.'() {
+        given: 'the yang parser throws an exception on the first attempt only'
+            mockYangParserHelper.parseData(ContentType.JSON, 'some json', mockSchemaContext, noParent, validateOnly)  >> { throw new DataValidationException(noParent, noParent) }
+        when: 'attempting to parse JSON data'
+            objectUnderTest.validateData(ContentType.JSON, 'some json', anchor, noParent)
+        then: 'a data validation exception is thrown'
+            thrown(DataValidationException)
+        and: 'the cache is cleared for the correct dataspace and schema after the failure'
+            1 * mockYangTextSchemaSourceSetCache.removeFromCache('my dataspace', 'my schema')
     }
 
 }

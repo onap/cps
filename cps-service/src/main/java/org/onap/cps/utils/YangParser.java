@@ -41,6 +41,7 @@ public class YangParser {
     private final YangParserHelper yangParserHelper;
     private final YangTextSchemaSourceSetCache yangTextSchemaSourceSetCache;
     private final TimedYangTextSchemaSourceSetBuilder timedYangTextSchemaSourceSetBuilder;
+    private static final boolean VALIDATE_ONLY = true;
 
     /**
      * Parses data into (normalized) ContainerNode according to schema context for the given anchor.
@@ -57,11 +58,12 @@ public class YangParser {
                                    final String parentNodeXpath) {
         final SchemaContext schemaContext = getSchemaContext(anchor);
         try {
-            return yangParserHelper.parseData(contentType, nodeData, schemaContext, parentNodeXpath);
+            return yangParserHelper
+                    .parseData(contentType, nodeData, schemaContext, parentNodeXpath, !VALIDATE_ONLY);
         } catch (final DataValidationException e) {
             invalidateCache(anchor);
         }
-        return yangParserHelper.parseData(contentType, nodeData, schemaContext, parentNodeXpath);
+        return yangParserHelper.parseData(contentType, nodeData, schemaContext, parentNodeXpath, !VALIDATE_ONLY);
     }
 
     /**
@@ -78,7 +80,31 @@ public class YangParser {
                                    final Map<String, String> yangResourcesNameToContentMap,
                                    final String parentNodeXpath) {
         final SchemaContext schemaContext = getSchemaContext(yangResourcesNameToContentMap);
-        return yangParserHelper.parseData(contentType, nodeData, schemaContext, parentNodeXpath);
+        return yangParserHelper.parseData(contentType, nodeData, schemaContext, parentNodeXpath, !VALIDATE_ONLY);
+    }
+
+    /**
+     * Parses data to validate it, using the schema context for given anchor.
+     *
+     * @param anchor                    the anchor used for node data validation
+     * @param parentNodeXpath           the xpath of the parent node
+     * @param nodeData                  JSON or XML data string to validate
+     * @param contentType               the content type of the data (e.g., JSON or XML)
+     * @throws DataValidationException  if validation fails
+     */
+    public void validateData(final ContentType contentType,
+                             final String nodeData,
+                             final Anchor anchor,
+                             final String parentNodeXpath) {
+        final SchemaContext schemaContext = getSchemaContext(anchor);
+        try {
+            yangParserHelper.parseData(contentType, nodeData, schemaContext, parentNodeXpath, VALIDATE_ONLY);
+        } catch (final DataValidationException e) {
+            invalidateCache(anchor);
+            log.error("Data validation failed for anchor: {}, xpath: {}, details: {}", anchor, parentNodeXpath,
+                    e.getMessage());
+        }
+        yangParserHelper.parseData(contentType, nodeData, schemaContext, parentNodeXpath, VALIDATE_ONLY);
     }
 
     private SchemaContext getSchemaContext(final Anchor anchor) {
