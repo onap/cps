@@ -70,6 +70,8 @@ public class YangParserHelper {
 
     static final String DATA_ROOT_NODE_NAMESPACE = "urn:ietf:params:xml:ns:netconf:base:1.0";
     static final String DATA_ROOT_NODE_TAG_NAME = "data";
+    static final String DATA_VALIDATION_FAILURE = "Data Validation Failed";
+    static final String DATA_SCHEMA_NODE = "dataSchemaNode";
 
     /**
      * Parses data into NormalizedNode according to given schema context.
@@ -88,6 +90,25 @@ public class YangParserHelper {
             return parseJsonData(nodeData, schemaContext, parentNodeXpath);
         }
         return parseXmlData(nodeData, schemaContext, parentNodeXpath);
+    }
+
+    /**
+     * Parses JSON or XML data to validate it based on the schema context provided.
+     *
+     * @param schemaContext     schema context describing associated data model
+     * @param nodeData          data string
+     * @param parentNodeXpath   the xpath referencing the parent node current data fragment belong to
+     * @param contentType       the type of the node data (json or xml)
+     */
+    public void parseAndValidateData(final SchemaContext schemaContext,
+                                     final String nodeData,
+                                     final String parentNodeXpath,
+                                     final ContentType contentType) {
+        if (contentType == ContentType.JSON) {
+            parseJsonData(nodeData, schemaContext, parentNodeXpath);
+        } else {
+            parseXmlData(nodeData, schemaContext, parentNodeXpath);
+        }
     }
 
     private ContainerNode parseJsonData(final String jsonData,
@@ -122,7 +143,7 @@ public class YangParserHelper {
             jsonParserStream.parse(jsonReader);
         } catch (final IOException | JsonSyntaxException | IllegalStateException | IllegalArgumentException exception) {
             throw new DataValidationException(
-                    "Data Validation Failed", "Failed to parse json data. " + exception.getMessage(), exception);
+                    DATA_VALIDATION_FAILURE, "Failed to parse json data. " + exception.getMessage(), exception);
         }
         return dataContainerNodeBuilder.build();
     }
@@ -146,7 +167,7 @@ public class YangParserHelper {
             } else {
                 final DataSchemaNode parentSchemaNode =
                     (DataSchemaNode) getDataSchemaNodeAndIdentifiersByXpath(parentNodeXpath, schemaContext)
-                        .get("dataSchemaNode");
+                        .get(DATA_SCHEMA_NODE);
                 final Collection<QName> dataSchemaNodeIdentifiers =
                     getDataSchemaNodeIdentifiers(schemaContext, parentNodeXpath);
                 final EffectiveStatementInference effectiveStatementInference =
@@ -164,7 +185,7 @@ public class YangParserHelper {
         } catch (final XMLStreamException | URISyntaxException | IOException | SAXException | NullPointerException
                        | ParserConfigurationException | TransformerException exception) {
             throw new DataValidationException(
-                "Data Validation Failed", "Failed to parse xml data: " + exception.getMessage(), exception);
+                DATA_VALIDATION_FAILURE, "Failed to parse xml data: " + exception.getMessage(), exception);
         }
         final DataContainerChild dataContainerChild =
             (DataContainerChild) getFirstChildXmlRoot(normalizedNodeResult.getResult());
@@ -207,7 +228,7 @@ public class YangParserHelper {
         if (xpathNodeIdSequence.length <= 1) {
             final Map<String, Object> dataSchemaNodeAndIdentifiers =
                     new HashMap<>();
-            dataSchemaNodeAndIdentifiers.put("dataSchemaNode", currentDataSchemaNode);
+            dataSchemaNodeAndIdentifiers.put(DATA_SCHEMA_NODE, currentDataSchemaNode);
             dataSchemaNodeAndIdentifiers.put("dataSchemaNodeIdentifiers", dataSchemaNodeIdentifiers);
             return dataSchemaNodeAndIdentifiers;
         }
