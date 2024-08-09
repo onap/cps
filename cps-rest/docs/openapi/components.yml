@@ -320,6 +320,15 @@ components:
       schema:
         type: integer
         example: 10
+    dryRunInQuery:
+      name: dry-run
+      in: query
+      description: Boolean flag to validate data, without persisting it. Default value is set to false.
+      required: false
+      schema:
+          type: boolean
+          default: false
+          example: false
 
   responses:
     NotFound:

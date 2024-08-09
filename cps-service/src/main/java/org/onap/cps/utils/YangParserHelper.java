@@ -70,6 +70,9 @@ public class YangParserHelper {
 
     static final String DATA_ROOT_NODE_NAMESPACE = "urn:ietf:params:xml:ns:netconf:base:1.0";
     static final String DATA_ROOT_NODE_TAG_NAME = "data";
+    static final String DATA_VALIDATION_FAILURE = "Data Validation Failed";
+    static final boolean VALIDATE_ONLY = true;
+    static final boolean VALIDATE_AND_PARSE = false;
 
     /**
      * Parses data into NormalizedNode according to given schema context.
@@ -83,11 +86,21 @@ public class YangParserHelper {
     public ContainerNode parseData(final ContentType contentType,
                                    final String nodeData,
                                    final SchemaContext schemaContext,
-                                   final String parentNodeXpath) {
+                                   final String parentNodeXpath,
+                                   final boolean validateOnly) {
         if (contentType == ContentType.JSON) {
-            return parseJsonData(nodeData, schemaContext, parentNodeXpath);
+            final ContainerNode validatedAndParsedJson = parseJsonData(nodeData, schemaContext, parentNodeXpath);
+            if (validateOnly) {
+                return null;
+            }
+            return validatedAndParsedJson;
+        } else {
+            final NormalizedNodeResult normalizedNodeResult = parseXmlData(nodeData, schemaContext, parentNodeXpath);
+            if (validateOnly) {
+                return null;
+            }
+            return buildContainerNodeFormNormalizedNodeResult(normalizedNodeResult);
         }
-        return parseXmlData(nodeData, schemaContext, parentNodeXpath);
     }
 
     private ContainerNode parseJsonData(final String jsonData,
@@ -122,12 +135,12 @@ public class YangParserHelper {
             jsonParserStream.parse(jsonReader);
         } catch (final IOException | JsonSyntaxException | IllegalStateException | IllegalArgumentException exception) {
             throw new DataValidationException(
-                    "Data Validation Failed", "Failed to parse json data. " + exception.getMessage(), exception);
+                    DATA_VALIDATION_FAILURE, "Failed to parse json data. " + exception.getMessage(), exception);
         }
         return dataContainerNodeBuilder.build();
     }
 
-    private ContainerNode parseXmlData(final String xmlData,
+    private NormalizedNodeResult parseXmlData(final String xmlData,
                                        final SchemaContext schemaContext,
                                        final String parentNodeXpath) {
         final XMLInputFactory factory = XMLInputFactory.newInstance();
@@ -164,12 +177,17 @@ public class YangParserHelper {
         } catch (final XMLStreamException | URISyntaxException | IOException | SAXException | NullPointerException
                        | ParserConfigurationException | TransformerException exception) {
             throw new DataValidationException(
-                "Data Validation Failed", "Failed to parse xml data: " + exception.getMessage(), exception);
+                DATA_VALIDATION_FAILURE, "Failed to parse xml data: " + exception.getMessage(), exception);
         }
+        return normalizedNodeResult;
+    }
+
+    private ContainerNode buildContainerNodeFormNormalizedNodeResult(final NormalizedNodeResult normalizedNodeResult) {
+
         final DataContainerChild dataContainerChild =
-            (DataContainerChild) getFirstChildXmlRoot(normalizedNodeResult.getResult());
+                (DataContainerChild) getFirstChildXmlRoot(normalizedNodeResult.getResult());
         final YangInstanceIdentifier.NodeIdentifier nodeIdentifier =
-            new YangInstanceIdentifier.NodeIdentifier(dataContainerChild.getIdentifier().getNodeType());
+                new YangInstanceIdentifier.NodeIdentifier(dataContainerChild.getIdentifier().getNodeType());
         return Builders.containerBuilder().withChild(dataContainerChild).withNodeIdentifier(nodeIdentifier).build();
     }
 
