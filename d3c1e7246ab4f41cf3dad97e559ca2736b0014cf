@@ -16,6 +16,29 @@
       "message": "recheck",
       "revId": "d3c1e7246ab4f41cf3dad97e559ca2736b0014cf",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4c384a8_fe258968",
+        "filename": "csit/tests/cps-data-sync/cps-data-sync.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-08-12T11:49:39Z",
+      "side": 1,
+      "message": "This is not a sufficient delay, let\u0027s talk during standup for explanation",
+      "range": {
+        "startLine": 41,
+        "startChar": 38,
+        "endLine": 41,
+        "endChar": 43
+      },
+      "revId": "d3c1e7246ab4f41cf3dad97e559ca2736b0014cf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
