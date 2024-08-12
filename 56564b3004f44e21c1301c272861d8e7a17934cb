@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94d01524_0271770c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-12T10:28:35Z",
+      "side": 1,
+      "message": "do you think it should be a FragmentQueryRepository ?\nNB: If yes then maybe we can mark it as @Repository instead of @Component",
+      "range": {
+        "startLine": 48,
+        "startChar": 26,
+        "endLine": 48,
+        "endChar": 33
+      },
+      "revId": "56564b3004f44e21c1301c272861d8e7a17934cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d9288b8_2a985df1",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-12T10:28:35Z",
+      "side": 1,
+      "message": "NB: we intend to keep this or just for testing ?",
+      "range": {
+        "startLine": 96,
+        "startChar": 8,
+        "endLine": 96,
+        "endChar": 49
+      },
+      "revId": "56564b3004f44e21c1301c272861d8e7a17934cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
