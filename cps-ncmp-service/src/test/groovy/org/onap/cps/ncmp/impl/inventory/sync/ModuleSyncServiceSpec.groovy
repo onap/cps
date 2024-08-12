@@ -30,8 +30,6 @@ import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.spi.CascadeDeleteAllowed
 import org.onap.cps.spi.exceptions.SchemaSetNotFoundException
-import org.onap.cps.spi.model.DataNode
-import org.onap.cps.spi.model.DataNodeBuilder
 import org.onap.cps.spi.model.ModuleReference
 import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Specification
@@ -52,10 +50,6 @@ class ModuleSyncServiceSpec extends Specification {
             mockCmHandleQueries, mockCpsDataService, mockCpsAnchorService, mockJsonObjectMapper)
 
     def expectedDataspaceName = NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
-    def static cmHandleWithModuleSetTag = new DataNodeBuilder()
-            .withXpath("/dmi-registry/cm-handles[@id='otherId']")
-            .withLeaves(['id': 'otherId', 'module-set-tag': 'tag-1'])
-            .withAnchor('otherId').build()
 
     def 'Sync model for a NEW cm handle using module set tags: #scenario.'() {
         given: 'a cm handle state to be synced'
@@ -70,8 +64,8 @@ class ModuleSyncServiceSpec extends Specification {
             mockDmiModelOperations.getNewYangResourcesFromDmi(yangModelCmHandle, identifiedNewModuleReferences) >> newModuleNameContentToMap
         and: 'the module service identifies #identifiedNewModuleReferences.size() new modules'
             mockCpsModuleService.identifyNewModuleReferences(moduleReferences) >> identifiedNewModuleReferences
-        and: 'system contains other cm handle with "same tag" (that is READY)'
-            mockCmHandleQueries.queryNcmpRegistryByCpsPath(*_) >> existingCmHandlesWithSameTag
+        and: 'the service returns a list of module references when queried with the specified attributes'
+            mockCpsModuleService.getModuleReferencesByAttribute(*_) >> existingModuleReferences
         when: 'module sync is triggered'
             objectUnderTest.syncAndCreateSchemaSetAndAnchor(yangModelCmHandle)
         then: 'create schema set from module is invoked with correct parameters'
@@ -79,10 +73,10 @@ class ModuleSyncServiceSpec extends Specification {
         and: 'anchor is created with the correct parameters'
             1 * mockCpsAnchorService.createAnchor(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'ch-1', 'ch-1')
         where: 'the following parameters are used'
-            scenario                  | existingModuleResourcesInCps         | identifiedNewModuleReferences         | newModuleNameContentToMap     | moduleSetTag | existingCmHandlesWithSameTag
-            'one new module, new tag' | [['module2': '2'], ['module3': '3']] | [new ModuleReference('module1', '1')] | [module1: 'some yang source'] | ''           | []
-            'no new module, new tag'  | [['module1': '1'], ['module2': '2']] | []                                    | [:]                           | 'new-tag-1'  | []
-            'same tag'                | [['module1': '1'], ['module2': '2']] | []                                    | [:]                           | 'same-tag'   | [cmHandleWithModuleSetTag]
+            scenario                  | identifiedNewModuleReferences         | newModuleNameContentToMap     | moduleSetTag | existingModuleReferences
+            'one new module, new tag' | [new ModuleReference('module1', '1')] | [module1: 'some yang source'] | ''           | []
+            'no new module, new tag'  | []                                    | [:]                           | 'new-tag-1'  | []
+            'same tag'                | []                                    | [:]                           | 'same-tag'   | [new ModuleReference('module1', '1'), new ModuleReference('module2', '2')]
     }
 
     def 'Upgrade model for an existing cm handle with Module Set Tag where the modules are #scenario'() {
@@ -101,8 +95,8 @@ class ModuleSyncServiceSpec extends Specification {
             mockCpsModuleService.identifyNewModuleReferences(_) >> []
         and: 'CPS-Core returns list of existing module resources for TBD'
             mockCpsModuleService.getYangResourcesModuleReferences(*_) >> [ new ModuleReference('module1','1') ]
-        and: 'system contains #existingCmHandlesWithSameTag.size() cm handles with same tag'
-            mockCmHandleQueries.queryNcmpRegistryByCpsPath(*_) >> existingCmHandlesWithSameTag
+        and: 'the service returns a list of module references when queried with the specified attributes'
+            mockCpsModuleService.getModuleReferencesByAttribute(*_) >> existingModuleReferences
         and: 'the other cm handle is a state ready'
             mockCmHandleQueries.cmHandleHasState('otherId', CmHandleState.READY) >> true
         when: 'module sync is triggered'
@@ -114,9 +108,9 @@ class ModuleSyncServiceSpec extends Specification {
         and: 'No anchor is created for the upgraded cm handle'
             0 * mockCpsAnchorService.createAnchor(*_)
         where: 'the following parameters are used'
-            scenario      | existingCmHandlesWithSameTag
+            scenario      | existingModuleReferences
             'new'         | []
-            'in database' | [cmHandleWithModuleSetTag]
+            'in database' | [new ModuleReference('module1', '1')]
     }
 
     def 'upgrade model for a existing cm handle'() {
@@ -130,9 +124,8 @@ class ModuleSyncServiceSpec extends Specification {
         and: 'the module service returns some module references'
             def moduleReferences = [new ModuleReference('module1', '1'), new ModuleReference('module2', '2')]
             mockCpsModuleService.getYangResourcesModuleReferences(*_)>> moduleReferences
-        and: 'a cm handle with the same moduleSetTag can be found in the registry'
-            mockCmHandleQueries.queryNcmpRegistryByCpsPath(*_) >> [new DataNode(xpath: '/dmi-registry/cm-handles[@id=\'cmHandleId-1\']', leaves: ['id': 'cmHandleId-1'],
-                    childDataNodes: [new DataNode(xpath: '/dmi-registry/cm-handles[@id=\'cmHandleId-1\']/state', leaves: ['cm-handle-state': 'READY'])])]
+        and: 'the service returns a list of module references when queried with the specified attributes'
+            mockCpsModuleService.getModuleReferencesByAttribute(*_) >> moduleReferences
         when: 'module upgrade is triggered'
             objectUnderTest.syncAndUpgradeSchemaSet(yangModelCmHandle)
         then: 'the upgrade is delegated to the module service (with the correct parameters)'

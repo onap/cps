@@ -153,4 +153,20 @@ public interface CpsModulePersistenceService {
     Collection<ModuleReference> identifyNewModuleReferences(
         Collection<ModuleReference> moduleReferencesToCheck);
 
+    /**
+     * Retrieves module references based on the specified dataspace, anchor, and attribute filters.
+
+     * Constructs and executes a SQL query to find module references by applying filters for parent and child fragments.
+     * Uses `parentAttributes` for filtering parent fragments and `childAttributes` for filtering child fragments.
+     *
+     * @param dataspaceName    the name of the dataspace to filter on.
+     * @param anchorName       the name of the anchor to filter on.
+     * @param parentAttributes a map of attributes for filtering parent fragments.
+     * @param childAttributes  a map of attributes for filtering child fragments.
+     * @return a collection of {@link ModuleReference} objects matching the criteria.
+     */
+    Collection<ModuleReference> getModuleReferencesByAttribute(final String dataspaceName, final String anchorName,
+                                                               final Map<String, String> parentAttributes,
+                                                               final Map<String, String> childAttributes);
+
 }

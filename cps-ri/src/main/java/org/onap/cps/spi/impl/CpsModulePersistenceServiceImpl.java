@@ -241,6 +241,15 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
         return moduleReferenceRepository.identifyNewModuleReferences(moduleReferencesToCheck);
     }
 
+    @Override
+    public Collection<ModuleReference> getModuleReferencesByAttribute(final String dataspaceName,
+                                                                      final String anchorName,
+                                                                      final Map<String, String> parentAttributes,
+                                                                      final Map<String, String> childAttributes) {
+        return moduleReferenceRepository.findModuleReferences(dataspaceName, anchorName, parentAttributes,
+                childAttributes);
+    }
+
     private Set<YangResourceEntity> synchronizeYangResources(
         final Map<String, String> moduleReferenceNameToContentMap) {
         final Map<String, YangResourceEntity> checksumToEntityMap = moduleReferenceNameToContentMap.entrySet().stream()
