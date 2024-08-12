@@ -28,6 +28,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.spi.model.ModuleReference;
 
 /*
     Data Store interface that is responsible for handling yang data.
@@ -195,6 +196,32 @@ public interface CpsDataPersistenceService {
     List<DataNode> queryDataNodesAcrossAnchors(String dataspaceName,
                                   String cpsPath, FetchDescendantsOption fetchDescendantsOption,
                                   PaginationOption paginationOption);
+
+    /**
+     * Retrieves a list of `ModuleReference` objects associated with the schema set identified by fragments
+     * having a `cm-handle-state` of 'READY' and matching the specified `moduleSetTag`.
+
+     * This method performs a complex SQL query using Common Table Expressions (CTEs) to join and filter data
+     * from multiple tables, including `fragment`, `anchor`, `dataspace`, `schema_set`, and `yang_resource`.
+     * The query is optimized by limiting the result set to the first matching schema set name.
+
+     * The query filters fragments based on:
+     * - `dataspaceName`: The name of the dataspace.
+     * - `anchorName`: The name of the anchor.
+     * - `moduleSetTag`: The tag identifying a specific set of modules.
+
+     * If no matching schema set is found, the method returns an empty list.
+     * Performance metrics, such as the time taken to execute the query, are logged for monitoring and optimization
+     * purposes.
+     *
+     * @param dataspaceName The name of the dataspace to filter fragments by.
+     * @param anchorName    The name of the anchor to filter fragments by.
+     * @param moduleSetTag  The module set tag to filter fragments by.
+     * @return A list of `ModuleReference` objects containing module names and revisions,
+     *     or an empty list if no matches are found.
+     */
+    List<ModuleReference> queryModuleReferencesByModuleSetTag(String dataspaceName, String anchorName,
+                                                              String moduleSetTag);
 
     /**
      * Starts a session which allows use of locks and batch interaction with the persistence service.
