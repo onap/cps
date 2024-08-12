@@ -42,6 +42,7 @@ import org.onap.cps.ncmp.impl.inventory.trustlevel.TrustLevelCacheConfig;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.spi.utils.CpsValidator;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -123,6 +124,12 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
             }
         }
         return cmHandleIds;
+    }
+
+    @Override
+    public List<ModuleReference> queryModuleReferencesByModuleSetTag(final String moduleSetTag) {
+        return cpsDataPersistenceService.queryModuleReferencesByModuleSetTag(NCMP_DATASPACE_NAME,
+                NCMP_DMI_REGISTRY_ANCHOR, moduleSetTag);
     }
 
     private Collection<String> getCmHandleIdsByTrustLevel(final TrustLevel targetTrustLevel) {

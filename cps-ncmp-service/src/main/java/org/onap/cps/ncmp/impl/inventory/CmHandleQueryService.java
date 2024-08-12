@@ -26,6 +26,7 @@ import java.util.Map;
 import org.onap.cps.ncmp.impl.inventory.models.CmHandleState;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.spi.model.ModuleReference;
 
 public interface CmHandleQueryService {
 
@@ -102,5 +103,18 @@ public interface CmHandleQueryService {
      * @return collection of cm handle ids
      */
     Collection<String> getCmHandleIdsByDmiPluginIdentifier(String dmiPluginIdentifier);
+
+    /**
+     * Retrieves a list of {@link ModuleReference} objects based on the specified `moduleSetTag`.
+     * This method queries the database to find module references that are associated with a schema set identified
+     * by fragments having a `cm-handle-state` of 'READY' and matching the provided `moduleSetTag`.
+     * The method uses a SQL query with Common Table Expressions (CTEs) for improved readability and maintainability.
+     * The results include the module names and their respective revisions associated with the identified schema set.
+     *
+     * @param moduleSetTag The module set tag used to filter and identify relevant module references.
+     * @return A list of {@link ModuleReference} objects containing the names and revisions of the modules,
+     * or an empty list if no matching module references are found.
+     */
+    List<ModuleReference> queryModuleReferencesByModuleSetTag(String moduleSetTag);
 
 }
