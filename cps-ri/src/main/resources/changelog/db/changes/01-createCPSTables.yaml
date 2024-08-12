@@ -813,3 +813,32 @@ databaseChangeLog:
       rollback:
         - sqlFile:
             path: changelog/db/changes/21-escape-quotes-in-xpath-rollback.sql
+
+  - changeSet:
+      id: 22
+      author: cps
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: attributes
+            indexName: IDX_ATTRIBUTES
+            tableName: fragment
+            unique: false
+            type: BTREE
+          rollback:
+            - dropIndex:
+                indexName: IDX_FRAGMENT_ATTRIBUTES
+                tableName: fragment
+        - createIndex:
+            columns:
+              - column:
+                  name: xpath
+            indexName: IDX_FRAGMENT_XPATH
+            tableName: fragment
+            unique: false
+            type: BTREE
+          rollback:
+            - dropIndex:
+                indexName: IDX_FRAGMENT_XPATH
+                tableName: fragment

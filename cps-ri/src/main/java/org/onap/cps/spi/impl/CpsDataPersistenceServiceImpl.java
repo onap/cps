@@ -62,8 +62,10 @@ import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundExceptionBatch;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.DataNodeBuilder;
+import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.spi.repository.AnchorRepository;
 import org.onap.cps.spi.repository.DataspaceRepository;
+import org.onap.cps.spi.repository.FragmentQueryService;
 import org.onap.cps.spi.repository.FragmentRepository;
 import org.onap.cps.spi.utils.SessionManager;
 import org.onap.cps.utils.JsonObjectMapper;
@@ -80,6 +82,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     private final FragmentRepository fragmentRepository;
     private final JsonObjectMapper jsonObjectMapper;
     private final SessionManager sessionManager;
+    private final FragmentQueryService fragmentQueryService;
 
     private static final String REG_EX_FOR_OPTIONAL_LIST_INDEX = "(\\[@.+?])?)";
 
@@ -349,6 +352,16 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         fragmentEntities = fragmentRepository.prefetchDescendantsOfFragmentEntities(fetchDescendantsOption,
                 fragmentEntities);
         return createDataNodesFromFragmentEntities(fetchDescendantsOption, fragmentEntities);
+    }
+
+    @Override
+    @Timed(value = "cps.data.persistence.service.module.reference.query.list",
+            description = "Time taken to query list of module references for module set tag")
+    public List<ModuleReference> queryModuleReferencesByModuleSetTag(final String dataspaceName,
+                                                                     final String anchorName,
+                                                                     final String moduleSetTag) {
+        return fragmentQueryService.findModuleReferences(dataspaceName, anchorName,
+                moduleSetTag);
     }
 
     private List<DataNode> createDataNodesFromFragmentEntities(final FetchDescendantsOption fetchDescendantsOption,

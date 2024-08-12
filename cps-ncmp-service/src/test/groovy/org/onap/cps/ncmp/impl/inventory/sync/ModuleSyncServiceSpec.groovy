@@ -71,7 +71,7 @@ class ModuleSyncServiceSpec extends Specification {
         and: 'the module service identifies #identifiedNewModuleReferences.size() new modules'
             mockCpsModuleService.identifyNewModuleReferences(moduleReferences) >> identifiedNewModuleReferences
         and: 'system contains other cm handle with "same tag" (that is READY)'
-            mockCmHandleQueries.queryNcmpRegistryByCpsPath(*_) >> existingCmHandlesWithSameTag
+            mockCmHandleQueries.queryModuleReferencesByModuleSetTag(*_) >> existingCmHandlesWithSameTag
         when: 'module sync is triggered'
             objectUnderTest.syncAndCreateSchemaSetAndAnchor(yangModelCmHandle)
         then: 'create schema set from module is invoked with correct parameters'
