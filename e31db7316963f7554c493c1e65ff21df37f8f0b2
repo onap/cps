@@ -22,6 +22,47 @@
       },
       "revId": "e31db7316963f7554c493c1e65ff21df37f8f0b2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9129d12a_ece3f53c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobStatusServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-08-13T14:48:52Z",
+      "side": 1,
+      "message": "I wondered about this, but cmwriteJob is what wiki says: https://wiki.onap.org/display/DW/CPS-2141+Define+DMI+REST+interface+for+Datajobs",
+      "parentUuid": "c5b88dd9_a82ec5e3",
+      "range": {
+        "startLine": 58,
+        "startChar": 35,
+        "endLine": 58,
+        "endChar": 45
+      },
+      "revId": "e31db7316963f7554c493c1e65ff21df37f8f0b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "951fe42d_9f67d3ea",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/DmiDispatcher.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-08-13T14:48:52Z",
+      "side": 1,
+      "message": "Nb. import order",
+      "revId": "e31db7316963f7554c493c1e65ff21df37f8f0b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
