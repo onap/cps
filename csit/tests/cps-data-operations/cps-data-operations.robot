@@ -53,7 +53,7 @@ NCMP Data Operation, forwarded to DMI, response on Client Topic
         Set Global Variable              ${expectedRequestId}       ${response.json()}[requestId]
         Should Be Equal As Strings       ${response.status_code}   200
 
-Consume cloud event from client topic
+Consume errored cloud event published to client specified topic from NCMP
     ${group_id}=         Create Consumer     auto_offset_reset=earliest
     Subscribe Topic      topics=${topic}     group_id=${group_id}
     ${messages}=         Poll                group_id=${group_id}     only_value=false
@@ -63,8 +63,8 @@ Consume cloud event from client topic
         Compare Header Values       ${header_key_value_pair[0]}   ${header_key_value_pair[1]}      "ce_specversion"      "1.0"
         Compare Header Values       ${header_key_value_pair[0]}   ${header_key_value_pair[1]}      "ce_type"             "org.onap.cps.ncmp.events.async1_0_0.DataOperationEvent"
         Compare Header Values       ${header_key_value_pair[0]}   ${header_key_value_pair[1]}      "ce_correlationid"    "${expectedRequestId}"
-        # Need to check the root cause of this failure. To be investigated separately as part of CPS-2363
-        # Compare Header Values       ${header_key_value_pair[0]}   ${header_key_value_pair[1]}      "ce_source"           "DMI"
+        Compare Header Values       ${header_key_value_pair[0]}   ${header_key_value_pair[1]}      "ce_source"           "NCMP"
+        Compare Header Values       ${header_key_value_pair[0]}   ${header_key_value_pair[1]}      "ce_destination"      "${topic}"
     END
     [Teardown]                      Basic Teardown                    ${group_id}
 
