@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "42e9155c_28b1bbd8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-13T15:51:04Z",
+      "side": 1,
+      "message": "can be merged after the bug fixes are merged.\n-1 just to block from accidental merging.",
+      "revId": "117dcc8b8e0a7aa36c6f9f125d37381dabd2ad93",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8dff1980_1f848287",
