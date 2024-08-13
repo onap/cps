@@ -32,6 +32,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.CpsDataService;
@@ -184,6 +185,15 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
     }
 
     @Override
+    public Collection<DataNode> getCmHandleDataNodesByAlternateIds(final Collection<String> alternateIds) {
+        if (alternateIds.isEmpty()) {
+            return Collections.emptyList();
+        }
+        final String cpsPathForCmHandlesByAlternateIds = getCpsPathForCmHandlesByAlternateIds(alternateIds);
+        return cmHandleQueryService.queryNcmpRegistryByCpsPath(cpsPathForCmHandlesByAlternateIds, OMIT_DESCENDANTS);
+    }
+
+    @Override
     public Collection<DataNode> getCmHandleDataNodes(final Collection<String> cmHandleIds) {
         final Collection<String> xpaths = new ArrayList<>(cmHandleIds.size());
         cmHandleIds.forEach(cmHandleId -> xpaths.add(getXPathForCmHandleById(cmHandleId)));
@@ -210,6 +220,11 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
 
     private static String getCpsPathForCmHandleByAlternateId(final String alternateId) {
         return NCMP_DMI_REGISTRY_PARENT + "/cm-handles[@alternate-id='" + alternateId + "']";
+    }
+
+    private static String getCpsPathForCmHandlesByAlternateIds(final Collection<String> alternateIds) {
+        return alternateIds.stream().collect(Collectors.joining("' or @alternate-id='",
+                NCMP_DMI_REGISTRY_PARENT + "/cm-handles[@alternate-id='", "']"));
     }
 
     private static String createStateJsonData(final String state) {
