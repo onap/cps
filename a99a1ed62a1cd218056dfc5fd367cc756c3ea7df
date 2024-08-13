@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f526c25d_5a6e7129",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleReferenceRepositoryImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-08-13T17:08:44Z",
+      "side": 1,
+      "message": "Nope Priyank its correct. Its supposed to be child attribute only as the cm handle state is child of module set tag xpath. Mainly it start executing query from bottom to top (child and then parent). Idea is to minimize the number of rows based on cm handle state. \n\nFirst it would find all cm handle that is into ready state (into child attribute) and then filter it based on module set tag that is parent attribute. It will minimize the sub-set of fragment data where as if we search top to bottom approach then the sub-set of module set tag lets say tagA then the volume of data is huge and there is performance hit that decreases significantly approx. 100-150 %",
+      "parentUuid": "44217b60_09ea7a63",
+      "range": {
+        "startLine": 91,
+        "startChar": 66,
+        "endLine": 91,
+        "endChar": 81
+      },
+      "revId": "a99a1ed62a1cd218056dfc5fd367cc756c3ea7df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2965e335_909de050",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleReferenceRepositoryImpl.java",
         "patchSetId": 7
@@ -37,6 +61,30 @@
       "writtenOn": "2024-08-13T15:04:05Z",
       "side": 1,
       "message": "childAttributes ??",
+      "range": {
+        "startLine": 92,
+        "startChar": 65,
+        "endLine": 92,
+        "endChar": 81
+      },
+      "revId": "a99a1ed62a1cd218056dfc5fd367cc756c3ea7df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08bcc813_c2868531",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleReferenceRepositoryImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-08-13T17:08:44Z",
+      "side": 1,
+      "message": "same as above",
+      "parentUuid": "2965e335_909de050",
       "range": {
         "startLine": 92,
         "startChar": 65,
@@ -84,6 +132,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6dd772f9_d7f87c7e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleReferenceRepositoryImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-08-13T17:08:44Z",
+      "side": 1,
+      "message": "We flipped the sequence to reflect the logical order of sql query.",
+      "parentUuid": "703887ec_79085fb1",
+      "revId": "a99a1ed62a1cd218056dfc5fd367cc756c3ea7df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1026a1ea_b6fc413b",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleReferenceRepositoryImpl.java",
         "patchSetId": 7
@@ -95,6 +161,24 @@
       "writtenOn": "2024-08-13T15:10:25Z",
       "side": 1,
       "message": "NB: can also use java text block here.",
+      "revId": "a99a1ed62a1cd218056dfc5fd367cc756c3ea7df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "65b144ab_4c7370dd",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleReferenceRepositoryImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-08-13T17:08:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1026a1ea_b6fc413b",
       "revId": "a99a1ed62a1cd218056dfc5fd367cc756c3ea7df",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -122,6 +206,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab5fd5e0_42df3463",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsModuleService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-08-13T17:08:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b6ad76da_ae5dee29",
+      "range": {
+        "startLine": 159,
+        "startChar": 84,
+        "endLine": 159,
+        "endChar": 85
+      },
+      "revId": "a99a1ed62a1cd218056dfc5fd367cc756c3ea7df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8e9b5e71_b56a2fdf",
@@ -135,6 +243,30 @@
       "writtenOn": "2024-08-13T15:10:25Z",
       "side": 1,
       "message": "NB: remove",
+      "range": {
+        "startLine": 163,
+        "startChar": 50,
+        "endLine": 163,
+        "endChar": 51
+      },
+      "revId": "a99a1ed62a1cd218056dfc5fd367cc756c3ea7df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6cfde78f_8dc5bfbe",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsModuleService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-08-13T17:08:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8e9b5e71_b56a2fdf",
       "range": {
         "startLine": 163,
         "startChar": 50,
