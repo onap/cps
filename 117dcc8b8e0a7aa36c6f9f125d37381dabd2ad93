@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8dff1980_1f848287",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-13T08:58:19Z",
+      "side": 1,
+      "message": "NB: need to check if feasible to also change in the openapi specs.",
+      "range": {
+        "startLine": 100,
+        "startChar": 74,
+        "endLine": 100,
+        "endChar": 91
+      },
+      "revId": "117dcc8b8e0a7aa36c6f9f125d37381dabd2ad93",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
