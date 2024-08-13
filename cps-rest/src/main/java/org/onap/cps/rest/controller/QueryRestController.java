@@ -28,17 +28,23 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsQueryService;
 import org.onap.cps.rest.api.CpsQueryApi;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.PaginationOption;
 import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.utils.ContentType;
 import org.onap.cps.utils.DataMapUtils;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.onap.cps.utils.PrefixResolver;
+import org.onap.cps.utils.XmlFileUtils;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -59,18 +65,20 @@ public class QueryRestController implements CpsQueryApi {
         final FetchDescendantsOption fetchDescendantsOption = Boolean.TRUE.equals(includeDescendants)
             ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS : FetchDescendantsOption.OMIT_DESCENDANTS;
         return executeNodesByDataspaceQueryAndCreateResponse(dataspaceName, anchorName, cpsPath,
-                fetchDescendantsOption);
+                fetchDescendantsOption, ContentType.JSON);
     }
 
     @Override
     @Timed(value = "cps.data.controller.datanode.query.v2",
             description = "Time taken to query data nodes")
     public ResponseEntity<Object> getNodesByDataspaceAndAnchorAndCpsPathV2(final String dataspaceName,
-        final String anchorName, final String cpsPath, final String fetchDescendantsOptionAsString) {
+        final String anchorName, @RequestHeader(value = "Content-Type") final String contentTypeInHeader,
+        final String cpsPath, final String fetchDescendantsOptionAsString) {
+        final ContentType contentType = getContentTypeFromHeader(contentTypeInHeader);
         final FetchDescendantsOption fetchDescendantsOption =
             FetchDescendantsOption.getFetchDescendantsOption(fetchDescendantsOptionAsString);
         return executeNodesByDataspaceQueryAndCreateResponse(dataspaceName, anchorName, cpsPath,
-                fetchDescendantsOption);
+                fetchDescendantsOption, contentType);
     }
 
     @Override
@@ -102,6 +110,10 @@ public class QueryRestController implements CpsQueryApi {
                 totalPages.toString()).body(jsonObjectMapper.asJsonString(dataNodesAsListOfMaps));
     }
 
+    private static ContentType getContentTypeFromHeader(final String contentTypeInHeader) {
+        return contentTypeInHeader.contains(MediaType.APPLICATION_XML_VALUE) ? ContentType.XML : ContentType.JSON;
+    }
+
     private Integer getTotalPages(final String dataspaceName, final String cpsPath,
                                                           final PaginationOption paginationOption) {
         if (paginationOption == PaginationOption.NO_PAGINATION) {
@@ -126,9 +138,10 @@ public class QueryRestController implements CpsQueryApi {
     }
 
     private ResponseEntity<Object> executeNodesByDataspaceQueryAndCreateResponse(final String dataspaceName,
-             final String anchorName, final String cpsPath, final FetchDescendantsOption fetchDescendantsOption) {
+             final String anchorName, final String cpsPath, final FetchDescendantsOption fetchDescendantsOption,
+                                                                                 final ContentType contentType) {
         final Collection<DataNode> dataNodes =
-            cpsQueryService.queryDataNodes(dataspaceName, anchorName, cpsPath, fetchDescendantsOption);
+                cpsQueryService.queryDataNodes(dataspaceName, anchorName, cpsPath, fetchDescendantsOption);
         final List<Map<String, Object>> dataNodesAsListOfMaps = new ArrayList<>(dataNodes.size());
         String prefix = null;
         for (final DataNode dataNode : dataNodes) {
@@ -138,6 +151,16 @@ public class QueryRestController implements CpsQueryApi {
             final Map<String, Object> dataMap = DataMapUtils.toDataMapWithIdentifier(dataNode, prefix);
             dataNodesAsListOfMaps.add(dataMap);
         }
-        return new ResponseEntity<>(jsonObjectMapper.asJsonString(dataNodesAsListOfMaps), HttpStatus.OK);
+        if (contentType == ContentType.XML) {
+            try {
+                final String xmlResponse = XmlFileUtils.convertDataMapsToXml(dataNodesAsListOfMaps);
+                return ResponseEntity.ok().contentType(MediaType.valueOf(MediaType.APPLICATION_XML_VALUE))
+                        .body(xmlResponse);
+            } catch (TransformerException | ParserConfigurationException e) {
+                return new ResponseEntity<>("Error generating XML response", HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        } else {
+            return new ResponseEntity<>(jsonObjectMapper.asJsonString(dataNodesAsListOfMaps), HttpStatus.OK);
+        }
     }
 }
