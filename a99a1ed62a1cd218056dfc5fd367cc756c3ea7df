@@ -66,6 +66,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "703887ec_79085fb1",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleReferenceRepositoryImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-13T15:18:25Z",
+      "side": 1,
+      "message": "i mean just flip the sequence.",
+      "parentUuid": "1d7f4514_d914f403",
+      "revId": "a99a1ed62a1cd218056dfc5fd367cc756c3ea7df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1026a1ea_b6fc413b",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleReferenceRepositoryImpl.java",
         "patchSetId": 7
