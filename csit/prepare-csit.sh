@@ -71,7 +71,7 @@ echo "Versioning information:"
 python3 --version
 
 echo "Installing confluent kafka library for robot framework:"
-pip install robotframework-confluentkafkalibrary
+pip install robotframework-confluentkafkalibrary==2.4.0-2
 
 pip freeze
 python3 -m robot.run --version || :
