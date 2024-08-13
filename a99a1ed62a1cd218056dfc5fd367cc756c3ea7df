@@ -45,6 +45,86 @@
       },
       "revId": "a99a1ed62a1cd218056dfc5fd367cc756c3ea7df",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d7f4514_d914f403",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleReferenceRepositoryImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-13T15:10:25Z",
+      "side": 1,
+      "message": "NB: as per the formal args sequence , can we set the first parameter as parentAttribute and then childAttribute ??",
+      "revId": "a99a1ed62a1cd218056dfc5fd367cc756c3ea7df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1026a1ea_b6fc413b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleReferenceRepositoryImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-13T15:10:25Z",
+      "side": 1,
+      "message": "NB: can also use java text block here.",
+      "revId": "a99a1ed62a1cd218056dfc5fd367cc756c3ea7df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6ad76da_ae5dee29",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsModuleService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-13T15:10:25Z",
+      "side": 1,
+      "message": "NB: remove",
+      "range": {
+        "startLine": 159,
+        "startChar": 84,
+        "endLine": 159,
+        "endChar": 85
+      },
+      "revId": "a99a1ed62a1cd218056dfc5fd367cc756c3ea7df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e9b5e71_b56a2fdf",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsModuleService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-13T15:10:25Z",
+      "side": 1,
+      "message": "NB: remove",
+      "range": {
+        "startLine": 163,
+        "startChar": 50,
+        "endLine": 163,
+        "endChar": 51
+      },
+      "revId": "a99a1ed62a1cd218056dfc5fd367cc756c3ea7df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
