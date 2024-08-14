@@ -28,6 +28,7 @@ export const CONTENT_TYPE_JSON_PARAM = { headers: {'Content-Type': 'application/
 export const DATA_OPERATION_READ_BATCH_SIZE = 200;
 export const TOPIC_DATA_OPERATIONS_BATCH_READ = 'topic-data-operations-batch-read';
 export const KAFKA_BOOTSTRAP_SERVERS = ['localhost:9092'];
+export const MODULE_SET_TAGS = ['tagA','tagB','tagC',' tagD']
 
 export function recordTimeInSeconds(functionToExecute) {
     const startTimeInMillis = Date.now();

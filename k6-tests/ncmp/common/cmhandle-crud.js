@@ -20,7 +20,7 @@
 
 import http from 'k6/http';
 import { check, sleep } from 'k6';
-import { NCMP_BASE_URL, DMI_PLUGIN_URL, TOTAL_CM_HANDLES, REGISTRATION_BATCH_SIZE, CONTENT_TYPE_JSON_PARAM, makeBatchOfCmHandleIds } from './utils.js';
+import { NCMP_BASE_URL, DMI_PLUGIN_URL, TOTAL_CM_HANDLES, MODULE_SET_TAGS, REGISTRATION_BATCH_SIZE, CONTENT_TYPE_JSON_PARAM, makeBatchOfCmHandleIds } from './utils.js';
 import { executeCmHandleIdSearch } from './search-base.js';
 
 export function registerAllCmHandles() {
@@ -47,6 +47,7 @@ function createCmHandles(cmHandleIds) {
         "createdCmHandles": cmHandleIds.map(cmHandleId => ({
             "cmHandle": cmHandleId,
             "alternateId": `alt-${cmHandleId}`,
+            "moduleSetTag": MODULE_SET_TAGS[index % MODULE_SET_TAGS.length],
             "cmHandleProperties": {"neType": "RadioNode"},
             "publicCmHandleProperties": {
                 "Color": "yellow",
