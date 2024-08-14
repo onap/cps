@@ -63,4 +63,18 @@ class AlternateIdMatcherSpec extends Specification {
             'no match for other child' | '/a/c'
             'no match at all'          | '/x/y'
     }
+
+    def 'Get cmHandle id from passed cmHandleReference (cmHandleId scenario)' () {
+        when: 'a cmHandleCmReference is passed in'
+            def result = objectUnderTest.getCmHandleId(cmHandleReference)
+        then: 'the inventory persistence service returns a cm handle (or not)'
+            mockInventoryPersistence.isExistingCmHandleId(cmHandleReference) >> existingCmHandleIdResponse
+            mockInventoryPersistence.getCmHandleDataNodeByAlternateId(cmHandleReference) >> alternateIdGetResponse
+        and: 'correct result is returned'
+            assert result == cmHandleReference
+        where:
+            cmHandleReference | existingCmHandleIdResponse | alternateIdGetResponse
+            'ch-1'            |  true                      |  ''
+            'alt-1'           |  false                     |  new DataNode(leaves: [id:'alt-1'])
+    }
 }
