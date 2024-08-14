@@ -86,6 +86,30 @@
       },
       "revId": "7e43bd00573ea5a17f1d7a7bde2f401e4d761098",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "854e570f_1fdcbb2b",
+        "filename": "csit/tests/cps-data-operations/cps-data-operations.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-14T15:59:56Z",
+      "side": 1,
+      "message": "since now we got the fix which was needed in the dmi stub , reverting all my changes for this test.\ncan look at the error scenario use case later.",
+      "parentUuid": "f2465ad2_b7025b94",
+      "range": {
+        "startLine": 65,
+        "startChar": 143,
+        "endLine": 67,
+        "endChar": 131
+      },
+      "revId": "7e43bd00573ea5a17f1d7a7bde2f401e4d761098",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
