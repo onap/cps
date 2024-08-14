@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a30e41ca_d9b7e703",
+        "filename": "cps-rest/docs/openapi/cpsDataV2.yml",
+        "patchSetId": 26
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-08-14T14:07:04Z",
+      "side": 1,
+      "message": "This header can be captured as below :\n\n@GetMapping(\"/node\")\n    public ResponseEntity\u003cString\u003e getNode(\n            @RequestHeader(value \u003d \"Content-Type\", defaultValue \u003d \"application/json\") String contentType) {\n        \n        // Use the contentType header value\n        System.out.println(\"Content-Type header: \" + contentType);\n        \n        // Your logic here\n        return ResponseEntity.ok(\"Received Content-Type: \" + contentType);\n    }",
+      "parentUuid": "7d159f25_1821c7df",
+      "range": {
+        "startLine": 31,
+        "startChar": 5,
+        "endLine": 31,
+        "endChar": 73
+      },
+      "revId": "d4a74b6e54d483c8f675edf953e4e72d6764bd4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a6c284a0_f505c522",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
         "patchSetId": 26
