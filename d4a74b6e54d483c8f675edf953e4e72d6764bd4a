@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d159f25_1821c7df",
+        "filename": "cps-rest/docs/openapi/cpsDataV2.yml",
+        "patchSetId": 26
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-08-14T13:55:28Z",
+      "side": 1,
+      "message": "Why we are adding header into parameters. Cant we do it like below :\n\n1. Define the Content-Type Header: Create a ContentTypeHeader in the headers section of components.yml.\n\ncomponents:\n  headers:\n    ContentTypeHeader:\n      description: The Content-Type of the request\n      schema:\n        type: string\n        enum:\n          - application/json\n          - application/xml\n      required: true\n      \n2. Reference the Header in requestBody: Include the Content-Type header in the requestBody section of your operation.\n\nnodeByDataspaceAndAnchor:\n  get:\n    description: Get a node with an option to retrieve all the children for a given anchor and dataspace\n    tags:\n      - cps-data\n    summary: Get a node\n    operationId: getNodeByDataspaceAndAnchorV2\n    parameters:\n      - $ref: \u0027components.yml#/components/parameters/dataspaceNameInPath\u0027\n      - $ref: \u0027components.yml#/components/parameters/anchorNameInPath\u0027\n      - $ref: \u0027components.yml#/components/parameters/xpathInQuery\u0027\n      - $ref: \u0027components.yml#/components/parameters/descendantsInQuery\u0027\n    requestBody:\n      content:\n        application/json:\n          schema:\n            type: object\n          headers:\n            Content-Type:\n              $ref: \u0027components.yml#/components/headers/ContentTypeHeader\u0027\n    responses:\n      \u0027200\u0027:\n        description: OK\n        content:\n          application/json:\n            schema:\n              type: object\n            examples:\n              dataSample:\n                $ref: \u0027components.yml#/components/examples/dataSample\u0027\n          application/xml:\n            schema:\n              type: object\n              xml:\n                name: stores\n            examples:\n              dataSample:\n                $ref: \u0027components.yml#/components/examples/dataSampleXml\u0027\n      \u0027400\u0027:\n        $ref: \u0027components.yml#/components/responses/BadRequest\u0027\n      \u0027403\u0027:\n        $ref: \u0027components.yml#/components/responses/Forbidden\u0027\n      \u0027500\u0027:\n        $ref: \u0027components.yml#/components/responses/InternalServerError\u0027\n    x-codegen-request-body-name: xpath",
+      "range": {
+        "startLine": 31,
+        "startChar": 5,
+        "endLine": 31,
+        "endChar": 73
+      },
+      "revId": "d4a74b6e54d483c8f675edf953e4e72d6764bd4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6c284a0_f505c522",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-08-14T13:55:28Z",
+      "side": 1,
+      "message": "Extract it as below :\nrootElement \u003d processRootElement(document, rootElement, dataMap);",
+      "range": {
+        "startLine": 173,
+        "startChar": 11,
+        "endLine": 181,
+        "endChar": 13
+      },
+      "revId": "d4a74b6e54d483c8f675edf953e4e72d6764bd4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c865a477_1651a301",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-08-14T13:55:28Z",
+      "side": 1,
+      "message": "Extract it as below :\nreturn transformDocumentToString(document);",
+      "range": {
+        "startLine": 183,
+        "startChar": 7,
+        "endLine": 189,
+        "endChar": 33
+      },
+      "revId": "d4a74b6e54d483c8f675edf953e4e72d6764bd4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de2d3106_281f0fce",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-08-14T13:55:28Z",
+      "side": 1,
+      "message": "Keep name as generic : content",
+      "range": {
+        "startLine": 193,
+        "startChar": 57,
+        "endLine": 193,
+        "endChar": 67
+      },
+      "revId": "d4a74b6e54d483c8f675edf953e4e72d6764bd4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43ad0a88_27805504",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-08-14T13:55:28Z",
+      "side": 1,
+      "message": "content",
+      "range": {
+        "startLine": 194,
+        "startChar": 12,
+        "endLine": 194,
+        "endChar": 23
+      },
+      "revId": "d4a74b6e54d483c8f675edf953e4e72d6764bd4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f48c4b5_e40c472c",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-08-14T13:55:28Z",
+      "side": 1,
+      "message": "content",
+      "range": {
+        "startLine": 204,
+        "startChar": 19,
+        "endLine": 204,
+        "endChar": 30
+      },
+      "revId": "d4a74b6e54d483c8f675edf953e4e72d6764bd4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
