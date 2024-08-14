@@ -1,6 +1,6 @@
 /*-
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2023 Nordix Foundation.
+ *  Copyright (C) 2021-2024 Nordix Foundation.
  *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,8 +21,6 @@
 
 package org.onap.cps.spi.repository;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import jakarta.transaction.Transactional;
 import java.util.List;
@@ -37,9 +35,6 @@ import org.onap.cps.spi.entities.FragmentEntity;
 @RequiredArgsConstructor
 @Slf4j
 public class FragmentRepositoryCpsPathQueryImpl implements FragmentRepositoryCpsPathQuery {
-
-    @PersistenceContext
-    private EntityManager entityManager;
 
     private final FragmentQueryBuilder fragmentQueryBuilder;
 

@@ -171,6 +171,17 @@ public class CpsModuleServiceImpl implements CpsModuleService {
         return cpsModulePersistenceService.identifyNewModuleReferences(moduleReferencesToCheck);
     }
 
+    @Timed(value = "cps.module.service.module.reference.query",
+            description = "Time taken to query list of module references")
+    @Override
+    public Collection<ModuleReference> getModuleReferencesByAttribute(final String dataspaceName,
+                                                                      final String anchorName,
+                                                                      final Map<String, String> parentAttributes,
+                                                                      final Map<String, String> childAttributes) {
+        return cpsModulePersistenceService.getModuleReferencesByAttribute(dataspaceName, anchorName, parentAttributes,
+                childAttributes);
+    }
+
     private boolean isCascadeDeleteProhibited(final CascadeDeleteAllowed cascadeDeleteAllowed) {
         return CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED == cascadeDeleteAllowed;
     }

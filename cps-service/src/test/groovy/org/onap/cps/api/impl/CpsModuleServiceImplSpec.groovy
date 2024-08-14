@@ -238,6 +238,23 @@ class CpsModuleServiceImplSpec extends Specification {
             1 * mockCpsModulePersistenceService.identifyNewModuleReferences(moduleReferencesToCheck)
     }
 
+    def 'Get module references when queried by attributes'() {
+        given: 'a valid dataspace name and anchor name'
+            def dataspaceName = 'someDataspace'
+            def anchorName = 'someAnchor'
+        and: 'a set of parent attributes and child attributes used for filtering'
+            def parentAttributes = ['some-property-key1': 'some-property-val1']
+            def childAttributes = ['some-property-key2': 'some-property-val2']
+        and: 'a list of expected module references returned by the persistence service'
+            def expectedModuleReferences = [new ModuleReference(moduleName: 'some-name', revision: 'some-revision')]
+            mockCpsModulePersistenceService.getModuleReferencesByAttribute(dataspaceName, anchorName, parentAttributes, childAttributes) >> expectedModuleReferences
+        when: 'the method is invoked to retrieve module references by attributes'
+            def actualModuleReferences = objectUnderTest.getModuleReferencesByAttribute(dataspaceName, anchorName, parentAttributes, childAttributes)
+        then: 'the retrieved module references should match the expected module references'
+            assert actualModuleReferences == expectedModuleReferences
+    }
+
+
     def 'Getting module definitions with module name'() {
         given: 'module persistence service returns module definitions for module name'
             def moduleDefinitionsFromPersistenceService = [ new ModuleDefinition('name', 'revision', 'content' ) ]
