@@ -87,14 +87,3 @@ Get cm handle details and confirm it has been deleted
     ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/CmHandleForDelete
     ${headers}=          Create Dictionary  Authorization=${auth}
     ${response}=         GET On Session     CPS_URL   ${uri}   headers=${headers}   expected_status=404
-
-Get modules for registered data node
-    ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/ietfYang-PNFDemo/modules
-    ${headers}=          Create Dictionary  Authorization=${auth}
-    ${response}=         GET On Session     CPS_URL   ${uri}   headers=${headers}
-    Should Be Equal As Strings              ${response.status_code}   200
-    FOR   ${item}   IN  @{response.json()}
-            IF   "${item['moduleName']}" == "stores"
-                Should Be Equal As Strings              "${item['revision']}"   "2020-09-15"
-            END
-    END

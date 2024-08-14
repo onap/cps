@@ -40,6 +40,17 @@ Check if ietfYang-PNFDemo is READY
     ${headers}=    Create Dictionary  Authorization=${auth}
     Wait Until Keyword Succeeds       20sec    200ms    Is CM Handle READY    ${uri}    ${headers}    ietfYang-PNFDemo
 
+Get modules for registered data node
+    ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/ietfYang-PNFDemo/modules
+    ${headers}=          Create Dictionary  Authorization=${auth}
+    ${response}=         GET On Session     CPS_URL   ${uri}   headers=${headers}
+    Should Be Equal As Strings              ${response.status_code}   200
+    FOR   ${item}   IN  @{response.json()}
+            IF   "${item['moduleName']}" == "stores"
+                Should Be Equal As Strings              "${item['revision']}"   "2020-09-15"
+            END
+    END
+
 Operational state goes to UNSYNCHRONIZED when data sync (flag) is enabled
     ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/ietfYang-PNFDemo/data-sync
     ${params}=           Create Dictionary  dataSyncEnabled=true
@@ -57,6 +68,7 @@ Operational state goes to SYNCHRONIZED after sometime when data sync (flag) is e
     Wait Until Keyword Succeeds    40sec    100ms    Is CM Handle State SYNCHRONIZED    ${uri}    ${headers}
 
 *** Keywords ***
+
 Is CM Handle READY
     [Arguments]    ${uri}    ${headers}    ${cmHandle}
     ${response}=    GET On Session    CPS_URL    ${uri}    headers=${headers}
