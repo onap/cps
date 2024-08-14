@@ -45,6 +45,30 @@
       },
       "revId": "7e43bd00573ea5a17f1d7a7bde2f401e4d761098",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2465ad2_b7025b94",
+        "filename": "csit/tests/cps-data-operations/cps-data-operations.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-14T13:55:21Z",
+      "side": 1,
+      "message": "thats what I wanted to explain.\nIts a different scenario for the error. thats y Changed the slogan for the same.\nThe event is published by NCMP itself now and pushed back to the client specified topic.\nI still have to investigate why the migration of this could impact the CSIT.\nOnce I figure it out would introduce a similar CSIT for that flow where the actual response will be coming.",
+      "parentUuid": "7a9fa637_827da3a3",
+      "range": {
+        "startLine": 65,
+        "startChar": 143,
+        "endLine": 67,
+        "endChar": 131
+      },
+      "revId": "7e43bd00573ea5a17f1d7a7bde2f401e4d761098",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
