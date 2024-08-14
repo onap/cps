@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "251a488e_9ae4d09a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobStatusServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-08-14T12:52:09Z",
+      "side": 1,
+      "message": "this was asked to changed to cmWrite as well https://gerrit.onap.org/r/c/cps/ncmp-dmi-plugin/+/138649/2/dmi-service/src/test/groovy/org/onap/cps/ncmp/dmi/datajobs/rest/controller/DmiDatajobsRestControllerSpec.groovy",
+      "parentUuid": "9129d12a_ece3f53c",
+      "range": {
+        "startLine": 58,
+        "startChar": 35,
+        "endLine": 58,
+        "endChar": 45
+      },
+      "revId": "e31db7316963f7554c493c1e65ff21df37f8f0b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "951fe42d_9f67d3ea",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/DmiDispatcher.groovy",
         "patchSetId": 2
