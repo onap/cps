@@ -88,13 +88,40 @@ Get cm handle details and confirm it has been deleted
     ${headers}=          Create Dictionary  Authorization=${auth}
     ${response}=         GET On Session     CPS_URL   ${uri}   headers=${headers}   expected_status=404
 
+Check if ietfYang-PNFDemo is READY
+    ${uri}=        Set Variable       ${ncmpBasePath}/v1/ch/ietfYang-PNFDemo
+    ${headers}=    Create Dictionary  Authorization=${auth}
+    Wait Until Keyword Succeeds       20sec    200ms    Is CM Handle READY    ${uri}    ${headers}    ietfYang-PNFDemo
+
 Get modules for registered data node
     ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/ietfYang-PNFDemo/modules
     ${headers}=          Create Dictionary  Authorization=${auth}
     ${response}=         GET On Session     CPS_URL   ${uri}   headers=${headers}
     Should Be Equal As Strings              ${response.status_code}   200
+    ${number_of_items}=    Count Items In JSON Response    ${response}
+    Should Be True    ${number_of_items} > 0
     FOR   ${item}   IN  @{response.json()}
             IF   "${item['moduleName']}" == "stores"
                 Should Be Equal As Strings              "${item['revision']}"   "2020-09-15"
             END
     END
+
+*** Keywords ***
+
+Is CM Handle READY
+    [Arguments]    ${uri}    ${headers}    ${cmHandle}
+    ${response}=    GET On Session    CPS_URL    ${uri}    headers=${headers}
+    Should Be Equal As Strings    ${response.status_code}    200
+    ${number_of_items}=    Count Items In JSON Response    ${response}
+    Should Be True    ${number_of_items} > 0
+    FOR  ${item}  IN  ${response.json()}
+            IF  "${item['cmHandle']}" == "${cmHandle}"
+                Should Be Equal As Strings    ${item['state']['cmHandleState']}    READY
+            END
+    END
+
+Count Items In JSON Response
+    [Arguments]    ${response}
+    ${json_data}=    Load JSON From String    json.loads(${response.content.decode('utf-8')})    json
+    ${number_of_items}=    Get Length    ${json_data}
+    [Return]    ${number_of_items}
