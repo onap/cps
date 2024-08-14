@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "05f85763_35716749",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleReferenceRepositoryImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-08-14T09:46:09Z",
+      "side": 1,
+      "message": "As column name is attributes and into sql query it belongs to child fragment we gave this name. Any other name will be also ok",
+      "parentUuid": "d9cd9e85_9271a664",
+      "range": {
+        "startLine": 91,
+        "startChar": 66,
+        "endLine": 91,
+        "endChar": 81
+      },
+      "revId": "a99a1ed62a1cd218056dfc5fd367cc756c3ea7df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2965e335_909de050",
         "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/ModuleReferenceRepositoryImpl.java",
         "patchSetId": 7
