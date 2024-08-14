@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ece4f6a0_7b4ac354",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-08-14T14:25:22Z",
+      "side": 1,
+      "message": "You need to add index as a parameter:\n\n    cmHandleIds.map((cmHandleId, index) \u003d\u003e ({",
+      "range": {
+        "startLine": 47,
+        "startChar": 44,
+        "endLine": 47,
+        "endChar": 54
+      },
+      "revId": "7434a5342f0be78faca2dd15575c53ac8d07a405",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
