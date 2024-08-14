@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "750c5d20_c5a95625",
+        "filename": "csit/tests/cps-data-sync/cps-data-sync.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-08-14T16:48:31Z",
+      "side": 1,
+      "message": "Both the above tests belong in cps-model-sync since they verify modules (READY state means modules are synced).\n\nOnly the tests below relate to data sync.",
+      "range": {
+        "startLine": 36,
+        "startChar": 18,
+        "endLine": 52,
+        "endChar": 7
+      },
+      "revId": "1f461d34a135f497f416860f4e3682d7d2501bd3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
