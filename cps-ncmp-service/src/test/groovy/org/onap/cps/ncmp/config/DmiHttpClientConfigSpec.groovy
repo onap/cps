@@ -28,16 +28,16 @@ import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
 
 @SpringBootTest
-@ContextConfiguration(classes = [HttpClientConfiguration])
-@EnableConfigurationProperties(HttpClientConfiguration)
-class HttpClientConfigurationSpec extends Specification {
+@ContextConfiguration(classes = [DmiHttpClientConfig])
+@EnableConfigurationProperties(DmiHttpClientConfig)
+class DmiHttpClientConfigSpec extends Specification {
 
     @Autowired
-    HttpClientConfiguration httpClientConfiguration
+    DmiHttpClientConfig dmiHttpClientConfig
 
     def 'Test http client configuration properties of data with custom and default values'() {
         expect: 'properties are populated correctly for data'
-            with(httpClientConfiguration.dataServices) {
+            with(dmiHttpClientConfig.dataServices) {
                 assert connectionTimeoutInSeconds == 123
                 assert readTimeoutInSeconds == 33
                 assert writeTimeoutInSeconds == 30
@@ -49,7 +49,7 @@ class HttpClientConfigurationSpec extends Specification {
 
     def 'Test http client configuration properties of model with custom and default values'() {
         expect: 'properties are populated correctly for model'
-            with(httpClientConfiguration.modelServices) {
+            with(dmiHttpClientConfig.modelServices) {
                 assert connectionTimeoutInSeconds == 456
                 assert readTimeoutInSeconds == 30
                 assert writeTimeoutInSeconds == 30
@@ -61,13 +61,14 @@ class HttpClientConfigurationSpec extends Specification {
 
     def 'Test http client configuration properties of health with default values'() {
         expect: 'properties are populated correctly for health'
-            with(httpClientConfiguration.healthCheckServices) {
-                assert connectionTimeoutInSeconds == 30
+            with(dmiHttpClientConfig.healthCheckServices) {
+                assert connectionTimeoutInSeconds == 456
                 assert readTimeoutInSeconds == 30
                 assert writeTimeoutInSeconds == 30
-                assert maximumConnectionsTotal == 10
-                assert pendingAcquireMaxCount == 5
+                assert maximumConnectionsTotal == 99
+                assert pendingAcquireMaxCount == 45
                 assert maximumInMemorySizeInMegabytes == 1
+                assert maximumConnectionsTotal == 99
             }
     }
 }

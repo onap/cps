@@ -51,11 +51,22 @@ ncmp:
                 connectionTimeoutInSeconds: 123
                 maximumInMemorySizeInMegabytes: 7
                 readTimeoutInSeconds: 33
+                writeTimeoutInSeconds: 30
+                maximumConnectionsTotal: 100
             model-services:
                 pendingAcquireMaxCount: 44
                 connectionTimeoutInSeconds: 456
                 maximumInMemorySizeInMegabytes: 8
                 maximumConnectionsTotal: 111
+                writeTimeoutInSeconds: 30
+                readTimeoutInSeconds: 30
+            healthCheckServices:
+                pendingAcquireMaxCount: 45
+                connectionTimeoutInSeconds: 456
+                maximumInMemorySizeInMegabytes: 1
+                maximumConnectionsTotal: 99
+                writeTimeoutInSeconds: 30
+                readTimeoutInSeconds: 30
         auth:
             username: some-user
             password: some-password
@@ -75,6 +86,14 @@ ncmp:
         server:
             address: "http://localhost"
             port: "8785"
+        httpclient:
+            all-services:
+                connectionTimeoutInSeconds: 99
+                readTimeoutInSeconds: 33
+                writeTimeoutInSeconds: 30
+                maximumConnectionsTotal: 99
+                pendingAcquireMaxCount: 22
+                maximumInMemorySizeInMegabytes: 7
 
 # Custom Hazelcast Config.
 hazelcast:

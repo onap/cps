@@ -188,6 +188,19 @@ logging:
             onap:
                 cps: INFO
 ncmp:
+    policy-executor:
+        enabled: true
+        server:
+            address: "http://localhost"
+            port: "8785"
+        httpclient:
+            all-services:
+                connectionTimeoutInSeconds: 99
+                readTimeoutInSeconds: 33
+                writeTimeoutInSeconds: 30
+                maximumConnectionsTotal: 99
+                pendingAcquireMaxCount: 22
+                maximumInMemorySizeInMegabytes: 7
     dmi:
         httpclient:
             data-services:

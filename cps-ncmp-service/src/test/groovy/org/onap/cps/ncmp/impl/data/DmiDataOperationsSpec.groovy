@@ -28,6 +28,7 @@ import org.onap.cps.ncmp.api.data.models.DataOperationRequest
 import org.onap.cps.ncmp.api.exceptions.DmiClientRequestException
 import org.onap.cps.ncmp.config.CpsApplicationContext
 import org.onap.cps.ncmp.events.async1_0_0.DataOperationEvent
+import org.onap.cps.ncmp.impl.data.policyexecutor.PolicyExecutor
 import org.onap.cps.ncmp.impl.dmi.DmiOperationsBaseSpec
 import org.onap.cps.ncmp.impl.dmi.DmiProperties
 import org.onap.cps.ncmp.impl.dmi.UrlTemplateParameters
@@ -37,7 +38,6 @@ import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.context.SpringBootContextLoader
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity

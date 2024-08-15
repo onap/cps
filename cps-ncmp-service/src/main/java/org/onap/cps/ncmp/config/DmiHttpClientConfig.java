@@ -29,7 +29,7 @@ import org.springframework.context.annotation.Configuration;
 @Setter
 @Configuration
 @ConfigurationProperties(prefix = "ncmp.dmi.httpclient")
-public class HttpClientConfiguration {
+public class DmiHttpClientConfig {
 
     private final DataServices dataServices = new DataServices();
     private final ModelServices modelServices = new ModelServices();
@@ -53,20 +53,5 @@ public class HttpClientConfiguration {
         private String connectionProviderName = "healthConnectionPool";
         private int maximumConnectionsTotal = 10;
         private int pendingAcquireMaxCount = 5;
-    }
-
-    /**
-     * Base configuration properties for all services.
-     */
-    @Getter
-    @Setter
-    public static class ServiceConfig {
-        private String connectionProviderName = "cpsConnectionPool";
-        private int maximumConnectionsTotal = 100;
-        private int pendingAcquireMaxCount = 50;
-        private Integer connectionTimeoutInSeconds = 30;
-        private long readTimeoutInSeconds = 30;
-        private long writeTimeoutInSeconds = 30;
-        private int maximumInMemorySizeInMegabytes = 1;
     }
 }

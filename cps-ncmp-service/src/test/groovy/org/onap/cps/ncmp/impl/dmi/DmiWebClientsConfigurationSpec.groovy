@@ -21,7 +21,8 @@
 package org.onap.cps.ncmp.impl.dmi
 
 
-import org.onap.cps.ncmp.config.HttpClientConfiguration
+import org.onap.cps.ncmp.config.DmiHttpClientConfig
+import org.onap.cps.ncmp.impl.utils.WebClientConfiguration
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ContextConfiguration
@@ -30,10 +31,9 @@ import org.springframework.web.reactive.function.client.WebClient
 import spock.lang.Specification
 
 @SpringBootTest
-@ContextConfiguration(classes = [HttpClientConfiguration])
-@TestPropertySource(properties = ['ncmp.dmi.httpclient.data-services.connectionTimeoutInSeconds=1', 'ncmp.dmi.httpclient.model-services.maximumInMemorySizeInMegabytes=1'])
+@ContextConfiguration(classes = [DmiHttpClientConfig])
 @EnableConfigurationProperties
-class DmiWebClientConfigurationSpec extends Specification {
+class DmiWebClientsConfigurationSpec extends Specification {
 
     def webClientBuilder = Mock(WebClient.Builder) {
         defaultHeaders(_) >> it
@@ -42,14 +42,9 @@ class DmiWebClientConfigurationSpec extends Specification {
         build() >> Mock(WebClient)
     }
 
-    def httpClientConfiguration = Spy(HttpClientConfiguration.class)
+    def httpClientConfiguration = Spy(DmiHttpClientConfig.class)
 
-    def objectUnderTest = new DmiWebClientConfiguration(httpClientConfiguration)
-
-    def 'Web Client Configuration construction.'() {
-        expect: 'the system can create an instance'
-            new DmiWebClientConfiguration(httpClientConfiguration) != null
-    }
+    def objectUnderTest = new DmiWebClientsConfiguration(httpClientConfiguration)
 
     def 'Creating a web client instance data service.'() {
         given: 'Web client configuration is invoked'

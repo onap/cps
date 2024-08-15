@@ -18,7 +18,7 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.impl.dmi;
+package org.onap.cps.ncmp.impl.utils;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import io.netty.channel.ChannelOption;
@@ -27,10 +27,7 @@ import io.netty.handler.timeout.WriteTimeoutHandler;
 import io.netty.resolver.DefaultAddressResolverGroup;
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
-import lombok.RequiredArgsConstructor;
-import org.onap.cps.ncmp.config.HttpClientConfiguration;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.onap.cps.ncmp.config.ServiceConfig;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
@@ -39,58 +36,22 @@ import reactor.netty.http.client.HttpClient;
 import reactor.netty.resources.ConnectionProvider;
 
 /**
- * Configures and creates WebClient beans for various DMI services including data, model, and health check services.
+ * Configures and creates WebClient beans for various rest services such as DMI and Policy Executor.
  * The configuration utilizes Netty-based HttpClient with custom connection settings, read and write timeouts,
  * and initializes WebClient with these settings to ensure optimal performance and resource management.
  */
-@Configuration
-@RequiredArgsConstructor
-public class DmiWebClientConfiguration {
+public class WebClientConfiguration {
 
-    private final HttpClientConfiguration httpClientConfiguration;
     private static final Duration DEFAULT_RESPONSE_TIMEOUT = Duration.ofSeconds(30);
 
-    /**
-     * Configures and creates a web client bean for DMI data services.
-     *
-     * @param webClientBuilder The builder instance to create the WebClient.
-     * @return a WebClient instance configured for data services.
-     */
-    @Bean
-    public WebClient dataServicesWebClient(final WebClient.Builder webClientBuilder) {
-        return configureWebClient(webClientBuilder, httpClientConfiguration.getDataServices());
-    }
-
-    /**
-     * Configures and creates a web client bean for DMI model services.
-     *
-     * @param webClientBuilder The builder instance to create the WebClient.
-     * @return a WebClient instance configured for model services.
-     */
-    @Bean
-    public WebClient modelServicesWebClient(final WebClient.Builder webClientBuilder) {
-        return configureWebClient(webClientBuilder, httpClientConfiguration.getModelServices());
-    }
-
-    /**
-     * Configures and creates a web client bean for DMI health check services.
-     *
-     * @param webClientBuilder The builder instance to create the WebClient.
-     * @return a WebClient instance configured for health check services.
-     */
-    @Bean
-    public WebClient healthChecksWebClient(final WebClient.Builder webClientBuilder) {
-        return configureWebClient(webClientBuilder, httpClientConfiguration.getHealthCheckServices());
-    }
-
-    private WebClient configureWebClient(final WebClient.Builder webClientBuilder,
-                                         final HttpClientConfiguration.ServiceConfig serviceConfig) {
+    protected WebClient configureWebClient(final WebClient.Builder webClientBuilder,
+                                           final ServiceConfig serviceConfig) {
         final ConnectionProvider connectionProvider = getConnectionProvider(serviceConfig);
         final HttpClient httpClient = createHttpClient(serviceConfig, connectionProvider);
         return buildAndGetWebClient(webClientBuilder, httpClient, serviceConfig.getMaximumInMemorySizeInMegabytes());
     }
 
-    private static HttpClient createHttpClient(final HttpClientConfiguration.ServiceConfig serviceConfig,
+    private static HttpClient createHttpClient(final ServiceConfig serviceConfig,
                                                final ConnectionProvider connectionProvider) {
         return HttpClient.create(connectionProvider)
                 .responseTimeout(DEFAULT_RESPONSE_TIMEOUT)
@@ -103,7 +64,7 @@ public class DmiWebClientConfiguration {
     }
 
     @SuppressFBWarnings("BC_UNCONFIRMED_CAST_OF_RETURN_VALUE")
-    private static ConnectionProvider getConnectionProvider(final HttpClientConfiguration.ServiceConfig serviceConfig) {
+    private static ConnectionProvider getConnectionProvider(final ServiceConfig serviceConfig) {
         return ConnectionProvider.builder(serviceConfig.getConnectionProviderName())
                 .maxConnections(serviceConfig.getMaximumConnectionsTotal())
                 .pendingAcquireMaxCount(serviceConfig.getPendingAcquireMaxCount())
