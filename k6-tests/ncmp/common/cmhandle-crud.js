@@ -44,7 +44,7 @@ function createCmHandles(cmHandleIds) {
     const url = `${NCMP_BASE_URL}/ncmpInventory/v1/ch`;
     const payload = {
         "dmiPlugin": DMI_PLUGIN_URL,
-        "createdCmHandles": cmHandleIds.((cmHandleId, index) => ({
+        "createdCmHandles": cmHandleIds.map((cmHandleId, index) => ({
             "cmHandle": cmHandleId,
             "alternateId": `alt-${cmHandleId}`,
             "moduleSetTag": MODULE_SET_TAGS[index % MODULE_SET_TAGS.length],
