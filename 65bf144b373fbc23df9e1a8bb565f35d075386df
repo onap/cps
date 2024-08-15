@@ -39,6 +39,30 @@
       },
       "revId": "65bf144b373fbc23df9e1a8bb565f35d075386df",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0f0b78b_776dae28",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-08-15T19:37:55Z",
+      "side": 1,
+      "message": "Good catch! I propose moving this into \u0027batchDeleteCmHandlesFromDbAndModuleSyncMap\u0027 and the corresponding individual retry method \u0027deleteCmHandleFromDbAndModuleSyncMap\u0027.\n\nJust rename the methods to (batch)DeleteCmHandlesFromDbAndCaches.",
+      "parentUuid": "49f5f224_00ef2f99",
+      "range": {
+        "startLine": 151,
+        "startChar": 50,
+        "endLine": 151,
+        "endChar": 72
+      },
+      "revId": "65bf144b373fbc23df9e1a8bb565f35d075386df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
