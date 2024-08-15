@@ -1,0 +1,10 @@
+Code-Review+2: Sourabh Sourabh <sourabh.sourabh@est.tech>
+Verified+1: ONAP Jobbuilder <onap-jobbuilder@jenkins.onap.org>
+Code-Review+1: Daniel Hanrahan <daniel.hanrahan@est.tech>
+Verified+1: ONAP Required GHA <releng+onap.required.gha@linuxfoundation.org>
+Code-Review+1: Priyank Maheshwari <priyank.maheshwari@est.tech>
+Submitted-by: Sourabh Sourabh <sourabh.sourabh@est.tech>
+Submitted-at: Thu, 15 Aug 2024 10:50:34 +0000
+Reviewed-on: https://gerrit.onap.org/r/c/cps/+/138745
+Project: cps
+Branch: refs/heads/master
