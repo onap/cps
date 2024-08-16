@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed074151_93db37a3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-16T14:20:19Z",
+      "side": 1,
+      "message": "thinking abt this.\ndo we really want to share the docker-compose file or we have a need to have separate files for k6 and csits ?? \nwhat ppl think ?",
+      "revId": "66569db63f8ec62323d1dae2a8cb3b46a4075c36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
