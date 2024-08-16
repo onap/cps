@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a589a7b0_abd74816",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-16T11:43:39Z",
+      "side": 1,
+      "message": "minor comment on the test.",
+      "revId": "8927a5bd3eee52d4b4b4f2f4e0cc18c19c0b8b00",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "112f7b03_bbd69480",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/DataJobResultServiceSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-16T11:43:39Z",
+      "side": 1,
+      "message": "i think this sequence is messed up.\npublic String getDataJobResult(final String authorization,\n                                   final String dmiServiceName,\n                                   final String dataProducerId,\n                                   final String dataProducerJobId,\n                                   final String destination) is the method signature.\n                                   \n                                   Not failing coz of the stype string 😊",
+      "range": {
+        "startLine": 40,
+        "startChar": 94,
+        "endLine": 40,
+        "endChar": 127
+      },
+      "revId": "8927a5bd3eee52d4b4b4f2f4e0cc18c19c0b8b00",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
