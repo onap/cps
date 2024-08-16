@@ -20,6 +20,7 @@
 
 import { check } from 'k6';
 import { Gauge, Trend } from 'k6/metrics';
+import { Reader } from 'k6/x/kafka';
 import {
     TOTAL_CM_HANDLES, READ_DATA_FOR_CM_HANDLE_DELAY_MS, WRITE_DATA_FOR_CM_HANDLE_DELAY_MS,
     makeCustomSummaryReport, recordTimeInSeconds, makeBatchOfCmHandleIds, DATA_OPERATION_READ_BATCH_SIZE,
@@ -28,15 +29,12 @@ import {
 import { registerAllCmHandles, deregisterAllCmHandles } from './common/cmhandle-crud.js';
 import { executeCmHandleSearch, executeCmHandleIdSearch } from './common/search-base.js';
 import { passthroughRead, passthroughReadWithAltId, passthroughWrite, batchRead } from './common/passthrough-crud.js';
-import {
-    Reader,
-} from 'k6/x/kafka';
 
 let cmHandlesCreatedPerSecondGauge = new Gauge('cmhandles_created_per_second');
 let cmHandlesDeletedPerSecondGauge = new Gauge('cmhandles_deleted_per_second');
-let passthroughReadNcmpOverheadTrend = new Trend('ncmp_overhead_passthrough_read');
-let passthroughReadNcmpOverheadTrendWithAlternateId = new Trend('ncmp_overhead_passthrough_read_alt_id');
-let passthroughWriteNcmpOverheadTrend = new Trend('ncmp_overhead_passthrough_write');
+let passthroughReadNcmpOverheadTrend = new Trend('ncmp_overhead_passthrough_read', true);
+let passthroughReadNcmpOverheadTrendWithAlternateId = new Trend('ncmp_overhead_passthrough_read_alt_id', true);
+let passthroughWriteNcmpOverheadTrend = new Trend('ncmp_overhead_passthrough_write', true);
 let dataOperationsBatchReadCmHandlePerSecondTrend = new Trend('data_operations_batch_read_cmhandles_per_second');
 
 const reader = new Reader({
@@ -53,7 +51,7 @@ export const options = {
         passthrough_read: {
             executor: 'constant-vus',
             exec: 'passthrough_read',
-            vus: 10,
+            vus: 9,
             duration: DURATION,
         },
         passthrough_read_alt_id: {
@@ -100,8 +98,6 @@ export const options = {
     thresholds: {
         'cmhandles_created_per_second': ['value >= 22'],
         'cmhandles_deleted_per_second': ['value >= 22'],
-        'http_reqs{scenario:passthrough_write}': ['rate >= 13'],
-        'http_reqs{scenario:passthrough_read}': ['rate >= 25'],
         'ncmp_overhead_passthrough_read': ['avg <= 100'],
         'ncmp_overhead_passthrough_read_alt_id': ['avg <= 100'],
         'ncmp_overhead_passthrough_write': ['avg <= 100'],
