@@ -34,6 +34,24 @@
       "parentUuid": "c04412f2_460e15dc",
       "revId": "a4a559133591b5204ec0c16f61da9d45f139390d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0d827ab_81d5eddf",
+        "filename": "csit/tests/cps-model-sync/cps-model-sync.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-08-16T10:59:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6141d9b4_4b400f0d",
+      "revId": "a4a559133591b5204ec0c16f61da9d45f139390d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
