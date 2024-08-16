@@ -9,7 +9,7 @@ robotframework-requests==0.9.3
 robotframework-selenium2library==3.0.0
 robotframework-extendedselenium2library
 robotframework-sshlibrary
-robotframework-confluentkafkalibrary
+robotframework-confluentkafkalibrary==2.4.0-2
 scapy
 # Module jsonpath is needed by current AAA idmlite suite.
 jsonpath-rw
