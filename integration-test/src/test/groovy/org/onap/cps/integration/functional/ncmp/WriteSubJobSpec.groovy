@@ -52,7 +52,7 @@ class WriteSubJobSpec extends CpsIntegrationSpecBase {
         given: 'the required input data for the write job'
             def authorization = 'my authorization header'
             def dataJobWriteRequest = new DataJobWriteRequest([new WriteOperation('p1', '', '', null), new WriteOperation('p2', '', '', null), new WriteOperation('p3', '', '', null)])
-            def myDataJobMetadata = new DataJobMetadata('', '', '')
+            def myDataJobMetadata = new DataJobMetadata('d1', '', '')
             def dataJobId = 'my-data-job-id'
         when: 'sending a write job to NCMP with 2 sub-jobs for DMI 1 and 1 sub-job for DMI 2'
             def response = dataJobService.writeDataJob(authorization, dataJobId, myDataJobMetadata, dataJobWriteRequest)
@@ -63,12 +63,12 @@ class WriteSubJobSpec extends CpsIntegrationSpecBase {
             assert response[0].dmiServiceName == "some dmi service name"
             assert response[0].dataProducerId == "some data producer id"
         and: 'dmi 1 received the correct job details'
-            def receivedSubJobsForDispatcher1 = dmiDispatcher1.receivedSubJobs['my-data-job-id']['data'].collect()
+            def receivedSubJobsForDispatcher1 = dmiDispatcher1.receivedSubJobs['?destination=d1']['data'].collect()
             assert receivedSubJobsForDispatcher1.size() == 2
             assert receivedSubJobsForDispatcher1[0]['path'] == 'p1'
             assert receivedSubJobsForDispatcher1[1]['path'] == 'p2'
         and: 'dmi 2 received the correct job details'
-            def receivedSubJobsForDispatcher2 = dmiDispatcher2.receivedSubJobs['my-data-job-id']['data'].collect()
+            def receivedSubJobsForDispatcher2 = dmiDispatcher2.receivedSubJobs['?destination=d1']['data'].collect()
             assert receivedSubJobsForDispatcher2.size() == 1
             assert receivedSubJobsForDispatcher2[0]['path'] == 'p3'
     }

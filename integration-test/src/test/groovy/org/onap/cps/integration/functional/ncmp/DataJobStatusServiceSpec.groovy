@@ -12,12 +12,11 @@ class DataJobStatusServiceSpec extends CpsIntegrationSpecBase {
     def 'Get the status of a data job from DMI.'() {
         given: 'the required data about the data job'
             def dmiServiceName = DMI1_URL
-            def requestId = 'some-request-id'
-            def dataProducerJobId = 'some-data-producer-job-id'
             def dataProducerId = 'some-data-producer-id'
+            def dataProducerJobId = 'some-data-producer-job-id'
             def authorization = 'my authorization header'
         when: 'the data job status checked'
-            def result = dataJobStatusService.getDataJobStatus(authorization, dmiServiceName, requestId, dataProducerJobId, dataProducerId)
+            def result = dataJobStatusService.getDataJobStatus(authorization, dmiServiceName, dataProducerId, dataProducerJobId)
         then: 'the status is that defined in the mock service.'
             assert result == 'status details from mock service'
     }
