@@ -65,11 +65,9 @@ export function makeCustomSummaryReport(data, options) {
         makeSummaryCsvLine('2', 'De-registration of CM-handles', 'CM-handles/second', 'cmhandles_deleted_per_second', data, options),
         makeSummaryCsvLine('3', 'CM-handle ID search with Module filter', 'milliseconds', 'http_req_duration{scenario:id_search_module}', data, options),
         makeSummaryCsvLine('4', 'CM-handle search with Module filter', 'milliseconds', 'http_req_duration{scenario:cm_search_module}', data, options),
-        makeSummaryCsvLine('5a', 'Synchronous single CM-handle pass-through read', 'requests/second', 'http_reqs{scenario:passthrough_read}', data, options),
-        makeSummaryCsvLine('5b', 'NCMP overhead for Synchronous single CM-handle pass-through read', 'milliseconds', 'ncmp_overhead_passthrough_read', data, options),
-        makeSummaryCsvLine('5c', 'NCMP overhead for Synchronous single CM-handle pass-through read with alternate id', 'milliseconds', 'ncmp_overhead_passthrough_read_alt_id', data, options),
-        makeSummaryCsvLine('6a', 'Synchronous single CM-handle pass-through write', 'requests/second', 'http_reqs{scenario:passthrough_write}', data, options),
-        makeSummaryCsvLine('6b', 'NCMP overhead for Synchronous single CM-handle pass-through write', 'milliseconds', 'ncmp_overhead_passthrough_write', data, options),
+        makeSummaryCsvLine('5a', 'NCMP overhead for Synchronous single CM-handle pass-through read', 'milliseconds', 'ncmp_overhead_passthrough_read', data, options),
+        makeSummaryCsvLine('5b', 'NCMP overhead for Synchronous single CM-handle pass-through read with alternate id', 'milliseconds', 'ncmp_overhead_passthrough_read_alt_id', data, options),
+        makeSummaryCsvLine('6', 'NCMP overhead for Synchronous single CM-handle pass-through write', 'milliseconds', 'ncmp_overhead_passthrough_write', data, options),
         makeSummaryCsvLine('7', 'Data operations batch read', 'events/second', 'data_operations_batch_read_cmhandles_per_second', data, options),
     ];
     return summaryCsvLines.join('\n') + '\n';
