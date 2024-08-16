@@ -16,6 +16,24 @@
       "message": "NB : Why dont we validate revision here ifself after cm handle state \n\nValidate Module\n    [Arguments]    ${modules}    ${moduleName}    ${expectedRevision}\n    FOR   ${item}   IN  @{modules}\n        IF   \"${item[\u0027moduleName\u0027]}\" \u003d\u003d ${moduleName}\n            Should Be Equal As Strings    \"${item[\u0027revision\u0027]}\"   ${expectedRevision}\n        END\n    END",
       "revId": "a4a559133591b5204ec0c16f61da9d45f139390d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6141d9b4_4b400f0d",
+        "filename": "csit/tests/cps-model-sync/cps-model-sync.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-16T10:56:57Z",
+      "side": 1,
+      "message": "I think separate test cases would be much cleaner.\nAnd moreover they are working on separate endpoints.",
+      "parentUuid": "c04412f2_460e15dc",
+      "revId": "a4a559133591b5204ec0c16f61da9d45f139390d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
