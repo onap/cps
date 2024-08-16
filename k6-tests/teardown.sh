@@ -15,8 +15,13 @@
 # limitations under the License.
 #
 
+set -o errexit  # Exit on most errors
+set -o nounset  # Disallow expansion of unset variables
+set -o pipefail # Use last non-zero exit code in a pipeline
+#set -o xtrace   # Uncomment for debugging
+
 echo '================================== docker info =========================='
 docker ps -a
 
 echo 'Stopping, Removing containers and volumes...'
-docker-compose -f ../docker-compose/docker-compose.yml --profile dmi-stub down --volumes
+docker-compose --env-file docker.env -f ../docker-compose/docker-compose.yml --profile dmi-stub down --volumes

@@ -15,7 +15,16 @@
 # limitations under the License.
 #
 
-docker-compose -f ../docker-compose/docker-compose.yml --profile dmi-stub up -d
+set -o errexit  # Exit on most errors
+set -o nounset  # Disallow expansion of unset variables
+set -o pipefail # Use last non-zero exit code in a pipeline
+#set -o xtrace   # Uncomment for debugging
+
+echo "Pulling latest docker images"
+docker-compose --env-file docker.env -f ../docker-compose/docker-compose.yml --profile dmi-stub pull
+
+echo "Starting docker containers"
+docker-compose --env-file docker.env -f ../docker-compose/docker-compose.yml --profile dmi-stub up -d
 
 echo "Waiting for CPS to start..."
 READY_MESSAGE="Processing module sync fetched 0 advised cm handles from DB"
