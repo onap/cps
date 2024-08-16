@@ -26,6 +26,7 @@ Library               OperatingSystem
 Library               RequestsLibrary
 Library               BuiltIn
 Library               ConfluentKafkaLibrary
+Library               String
 
 Suite Setup           Create Session      CPS_URL    http://${CPS_CORE_HOST}:${CPS_CORE_PORT}
 
@@ -78,11 +79,19 @@ Is CM Handle READY
     [Arguments]    ${uri}    ${headers}    ${cmHandle}
     ${response}=    GET On Session    CPS_URL    ${uri}    headers=${headers}
     Should Be Equal As Strings    ${response.status_code}    200
+    ${number_of_items}=    Count Items In JSON Response    ${response}
+    Should Be True    ${number_of_items} > 0
     FOR  ${item}  IN  ${response.json()}
             IF  "${item['cmHandle']}" == "${cmHandle}"
                 Should Be Equal As Strings    ${item['state']['cmHandleState']}    READY
             END
     END
+
+Count Items In JSON Response
+    [Arguments]    ${response}
+    ${json_data}=    Evaluate    json.loads('${response.content.decode("utf-8")}')   json
+    ${number_of_items}=    Get Length    ${json_data}
+    RETURN    ${number_of_items}
 
 Basic Teardown
     [Arguments]     ${group_id}
