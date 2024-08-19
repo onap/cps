@@ -44,6 +44,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleRegistrationResponse;
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
@@ -56,7 +57,6 @@ import org.onap.cps.spi.model.DataNodeBuilder;
 import org.onap.cps.utils.ContentType;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 @Slf4j
 @Service
@@ -112,8 +112,7 @@ public class CmHandleRegistrationServicePropertyHandler {
 
     private void processUpdates(final DataNode existingCmHandleDataNode,
                                 final NcmpServiceCmHandle updatedNcmpServiceCmHandle) {
-        setAndUpdateCmHandleField(
-            updatedNcmpServiceCmHandle.getCmHandleId(), "alternate-id", updatedNcmpServiceCmHandle.getAlternateId());
+        updateAlternateId(updatedNcmpServiceCmHandle);
         updateDataProducerIdentifier(existingCmHandleDataNode, updatedNcmpServiceCmHandle);
         if (!updatedNcmpServiceCmHandle.getPublicProperties().isEmpty()) {
             updateProperties(existingCmHandleDataNode, PUBLIC_PROPERTY,
@@ -124,13 +123,20 @@ public class CmHandleRegistrationServicePropertyHandler {
         }
     }
 
+    private void updateAlternateId(final NcmpServiceCmHandle ncmpServiceCmHandle) {
+        final String newAlternateId = ncmpServiceCmHandle.getAlternateId();
+        if (StringUtils.isNotBlank(newAlternateId)) {
+            setAndUpdateCmHandleField(ncmpServiceCmHandle.getCmHandleId(), "alternate-id", newAlternateId);
+        }
+    }
+
     private void updateDataProducerIdentifier(final DataNode cmHandleDataNode,
                                               final NcmpServiceCmHandle ncmpServiceCmHandle) {
         final String newDataProducerIdentifier = ncmpServiceCmHandle.getDataProducerIdentifier();
-        if (StringUtils.hasText(newDataProducerIdentifier)) {
+        if (StringUtils.isNotBlank(newDataProducerIdentifier)) {
             final YangModelCmHandle yangModelCmHandle = YangDataConverter.toYangModelCmHandle(cmHandleDataNode);
             final String existingDataProducerIdentifier = yangModelCmHandle.getDataProducerIdentifier();
-            if (StringUtils.hasText(existingDataProducerIdentifier)) {
+            if (StringUtils.isNotBlank(existingDataProducerIdentifier)) {
                 if (!existingDataProducerIdentifier.equals(newDataProducerIdentifier)) {
                     log.warn("Unable to update dataProducerIdentifier for cmHandle {}. "
                             + "Value for dataProducerIdentifier has been set previously.",

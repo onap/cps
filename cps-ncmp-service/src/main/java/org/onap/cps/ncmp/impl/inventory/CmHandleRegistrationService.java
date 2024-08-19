@@ -210,7 +210,8 @@ public class CmHandleRegistrationService {
         final DmiPluginRegistrationResponse dmiPluginRegistrationResponse) {
 
         final List<String> cmHandleIds = dmiPluginRegistration.getUpgradedCmHandles().getCmHandles();
-        final String upgradedModuleSetTag = dmiPluginRegistration.getUpgradedCmHandles().getModuleSetTag();
+        final String upgradedModuleSetTag =
+                StringUtils.trimToEmpty(dmiPluginRegistration.getUpgradedCmHandles().getModuleSetTag());
         final Map<YangModelCmHandle, CmHandleState> acceptedCmHandleStatePerCmHandle
             = new HashMap<>(cmHandleIds.size());
         final List<CmHandleRegistrationResponse> cmHandleUpgradeResponses = new ArrayList<>(cmHandleIds.size());

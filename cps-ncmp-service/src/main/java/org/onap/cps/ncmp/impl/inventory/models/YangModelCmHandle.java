@@ -18,7 +18,6 @@
  *  ============LICENSE_END=========================================================
  */
 
-
 package org.onap.cps.ncmp.impl.inventory.models;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -126,10 +125,9 @@ public class YangModelCmHandle {
         yangModelCmHandle.setDmiServiceName(dmiServiceName);
         yangModelCmHandle.setDmiDataServiceName(dmiDataServiceName);
         yangModelCmHandle.setDmiModelServiceName(dmiModelServiceName);
-        yangModelCmHandle.setModuleSetTag(moduleSetTag == null ? StringUtils.EMPTY : moduleSetTag);
-        yangModelCmHandle.setAlternateId(alternateId == null ? StringUtils.EMPTY : alternateId);
-        yangModelCmHandle.setDataProducerIdentifier(
-            dataProducerIdentifier == null ? StringUtils.EMPTY : dataProducerIdentifier);
+        yangModelCmHandle.setModuleSetTag(StringUtils.trimToEmpty(moduleSetTag));
+        yangModelCmHandle.setAlternateId(StringUtils.trimToEmpty(alternateId));
+        yangModelCmHandle.setDataProducerIdentifier(StringUtils.trimToEmpty(dataProducerIdentifier));
         yangModelCmHandle.setDmiProperties(asYangModelCmHandleProperties(ncmpServiceCmHandle.getDmiProperties()));
         yangModelCmHandle.setPublicProperties(asYangModelCmHandleProperties(
                 ncmpServiceCmHandle.getPublicProperties()));
