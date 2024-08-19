@@ -125,7 +125,7 @@ public class AlternateIdChecker {
 
     private boolean isProposedAlternateIdAcceptable(final String proposedAlternateId, final Operation operation,
                                                     final Set<String> acceptedAlternateIds, final String cmHandleId) {
-        if (StringUtils.isEmpty(proposedAlternateId)) {
+        if (StringUtils.isBlank(proposedAlternateId)) {
             return true;
         }
         if (acceptedAlternateIds.contains(proposedAlternateId)) {
