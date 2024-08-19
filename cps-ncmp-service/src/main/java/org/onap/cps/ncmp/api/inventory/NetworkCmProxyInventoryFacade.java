@@ -36,7 +36,6 @@ import org.onap.cps.ncmp.api.inventory.models.CompositeState;
 import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistrationResponse;
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
-import org.onap.cps.ncmp.api.inventory.models.TrustLevel;
 import org.onap.cps.ncmp.impl.inventory.CmHandleQueryService;
 import org.onap.cps.ncmp.impl.inventory.CmHandleRegistrationService;
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
@@ -44,12 +43,11 @@ import org.onap.cps.ncmp.impl.inventory.ParameterizedCmHandleQueryService;
 import org.onap.cps.ncmp.impl.inventory.models.CmHandleQueryConditions;
 import org.onap.cps.ncmp.impl.inventory.models.InventoryQueryConditions;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
-import org.onap.cps.ncmp.impl.inventory.trustlevel.TrustLevelCacheConfig;
+import org.onap.cps.ncmp.impl.inventory.trustlevel.TrustLevelManager;
 import org.onap.cps.ncmp.impl.utils.YangDataConverter;
 import org.onap.cps.spi.model.ModuleDefinition;
 import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.utils.JsonObjectMapper;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -62,9 +60,7 @@ public class NetworkCmProxyInventoryFacade {
     private final ParameterizedCmHandleQueryService parameterizedCmHandleQueryService;
     private final InventoryPersistence inventoryPersistence;
     private final JsonObjectMapper jsonObjectMapper;
-
-    @Qualifier(TrustLevelCacheConfig.TRUST_LEVEL_PER_CM_HANDLE)
-    private final Map<String, TrustLevel> trustLevelPerCmHandle;
+    private final TrustLevelManager trustLevelManager;
 
     /**
      * Registration of Created, Removed, Updated or Upgraded CM Handles.
@@ -72,7 +68,6 @@ public class NetworkCmProxyInventoryFacade {
      * @param dmiPluginRegistration Dmi Plugin Registration details
      * @return dmiPluginRegistrationResponse
      */
-
     public DmiPluginRegistrationResponse updateDmiRegistrationAndSyncModule(
         final DmiPluginRegistration dmiPluginRegistration) {
         return cmHandleRegistrationService.updateDmiRegistrationAndSyncModule(dmiPluginRegistration);
@@ -211,7 +206,8 @@ public class NetworkCmProxyInventoryFacade {
     }
 
     private void applyCurrentTrustLevel(final NcmpServiceCmHandle ncmpServiceCmHandle) {
-        ncmpServiceCmHandle.setCurrentTrustLevel(trustLevelPerCmHandle.get(ncmpServiceCmHandle.getCmHandleId()));
+        ncmpServiceCmHandle.setCurrentTrustLevel(trustLevelManager
+            .getEffectiveTrustLevel(ncmpServiceCmHandle.getCmHandleId()));
     }
 
 
