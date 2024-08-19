@@ -459,17 +459,19 @@ class DataServiceIntegrationSpec extends FunctionalSpecBase {
     def 'Get delta between 2 anchors'() {
         when: 'attempt to get delta report between anchors'
             def result = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_ANCHOR_3, BOOKSTORE_ANCHOR_5, '/', OMIT_DESCENDANTS)
+        and: 'report is ordered based on xpath'
+            result = result.toList().sort { it.xpath }
         then: 'delta report contains expected number of changes'
             result.size() == 3
         and: 'delta report contains UPDATE action with expected xpath'
             assert result[0].getAction() == 'update'
             assert result[0].getXpath() == '/bookstore'
-        and: 'delta report contains REMOVE action with expected xpath'
-            assert result[1].getAction() == 'remove'
-            assert result[1].getXpath() == "/bookstore-address[@bookstore-name='Easons-1']"
         and: 'delta report contains ADD action with expected xpath'
-            assert result[2].getAction() == 'add'
-            assert result[2].getXpath() == "/bookstore-address[@bookstore-name='Crossword Bookstores']"
+            assert result[1].getAction() == 'add'
+            assert result[1].getXpath() == "/bookstore-address[@bookstore-name='Crossword Bookstores']"
+        and: 'delta report contains REMOVE action with expected xpath'
+            assert result[2].getAction() == 'remove'
+            assert result[2].getXpath() == "/bookstore-address[@bookstore-name='Easons-1']"
     }
 
     def 'Get delta between 2 anchors returns empty response when #scenario'() {
