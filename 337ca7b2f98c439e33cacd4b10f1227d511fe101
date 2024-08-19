@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0e030bc_4703abf8",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/DataServiceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 463,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-08-19T09:55:05Z",
+      "side": 1,
+      "message": "NB: Since the result is already type of List\u003cDeltaReport\u003e so seems toList() may not be required.",
+      "range": {
+        "startLine": 463,
+        "startChar": 27,
+        "endLine": 463,
+        "endChar": 36
+      },
+      "revId": "337ca7b2f98c439e33cacd4b10f1227d511fe101",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "152013f2_08bc0531",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/DataServiceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 463,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-08-19T09:55:05Z",
+      "side": 1,
+      "message": "NB: no need to space just .sort{ it.xpath }",
+      "range": {
+        "startLine": 463,
+        "startChar": 41,
+        "endLine": 463,
+        "endChar": 42
+      },
+      "revId": "337ca7b2f98c439e33cacd4b10f1227d511fe101",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
