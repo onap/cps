@@ -297,7 +297,7 @@ class InventoryPersistenceImplSpec extends Specification {
             1 * mockCpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, expectedXPath, INCLUDE_ALL_DESCENDANTS)
     }
 
-    def 'Get cm handle data node'() {
+    def 'Get cm handle data node by alternate id'() {
         given: 'expected xPath to get cmHandle data node'
             def expectedXPath = '/dmi-registry/cm-handles[@alternate-id=\'alternate id\']'
         and: 'query service is invoked with expected xpath'
@@ -314,6 +314,22 @@ class InventoryPersistenceImplSpec extends Specification {
         then: 'no data found exception thrown'
             def thrownException = thrown(DataNodeNotFoundException)
             assert thrownException.getMessage().contains('DataNode not found')
+    }
+
+    def 'Get multiple cm handle data nodes by alternate ids'() {
+        given: 'expected xPath to get cmHandle data node'
+            def expectedXPath = "/dmi-registry/cm-handles[@alternate-id='A' or @alternate-id='B']"
+        when: 'getting the cm handle data node'
+            objectUnderTest.getCmHandleDataNodesByAlternateIds(['A', 'B'])
+        then: 'query service is invoked with expected xpath'
+            1 * mockCmHandleQueries.queryNcmpRegistryByCpsPath(expectedXPath, OMIT_DESCENDANTS)
+    }
+
+    def 'Get multiple cm handle data nodes by alternate ids, passing empty collection'() {
+        when: 'getting the cm handle data node for no alternate ids'
+            objectUnderTest.getCmHandleDataNodesByAlternateIds([])
+        then: 'query service is not invoked'
+            0 * mockCmHandleQueries.queryNcmpRegistryByCpsPath(_, _)
     }
 
     def 'Get CM handles that has given module names'() {

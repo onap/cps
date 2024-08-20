@@ -130,6 +130,14 @@ public interface InventoryPersistence extends NcmpPersistence {
     DataNode getCmHandleDataNodeByAlternateId(String alternateId);
 
     /**
+     * Get data nodes for the given batch of alternate ids.
+     *
+     * @param alternateIds alternate IDs
+     * @return data nodes
+     */
+    Collection<DataNode> getCmHandleDataNodesByAlternateIds(Collection<String> alternateIds);
+
+    /**
      * Get collection of data nodes of given cm handles.
      *
      * @param cmHandleIds collection of cmHandle IDs
