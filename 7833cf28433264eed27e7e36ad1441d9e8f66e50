@@ -66,6 +66,54 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d2955d87_5468c862",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/AlternateIdChecker.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-08-20T14:21:23Z",
+      "side": 1,
+      "message": "This line checks that the new proposed alternate Id is not already in use by another handle. This needs to happen for both create and update cases.\n\nAlso, the original log messages always said \"Alternate id update ignored, cannot update cm handle\" for create or update.",
+      "parentUuid": "efa500d2_86b2aee7",
+      "range": {
+        "startLine": 87,
+        "startChar": 35,
+        "endLine": 87,
+        "endChar": 41
+      },
+      "revId": "7833cf28433264eed27e7e36ad1441d9e8f66e50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92fad287_46cb0d5f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/AlternateIdChecker.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-08-20T14:21:23Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e023997a_3a63c899",
+      "range": {
+        "startLine": 87,
+        "startChar": 58,
+        "endLine": 87,
+        "endChar": 64
+      },
+      "revId": "7833cf28433264eed27e7e36ad1441d9e8f66e50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f576f9c5_f84b01d9",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/AlternateIdChecker.java",
         "patchSetId": 3
@@ -77,6 +125,30 @@
       "writtenOn": "2024-08-20T12:46:13Z",
       "side": 1,
       "message": "NB: Due to emergency of the issue, this impl. is ok. However, it would be more readable and/or faster if we use simple foreach loop.",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 45
+      },
+      "revId": "7833cf28433264eed27e7e36ad1441d9e8f66e50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9f211ef_760d55af",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/AlternateIdChecker.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-08-20T14:21:23Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f576f9c5_f84b01d9",
       "range": {
         "startLine": 95,
         "startChar": 0,
@@ -110,6 +182,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5957b9b_e83f4002",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-08-20T14:21:23Z",
+      "side": 1,
+      "message": "Added unit tests",
+      "parentUuid": "a13bfd76_4553d9c0",
+      "range": {
+        "startLine": 187,
+        "startChar": 0,
+        "endLine": 194,
+        "endChar": 5
+      },
+      "revId": "7833cf28433264eed27e7e36ad1441d9e8f66e50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a0a95ab4_56956014",
@@ -133,6 +229,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "67d30f7e_047cd91c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/AlternateIdCheckerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-08-20T14:21:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a0a95ab4_56956014",
+      "range": {
+        "startLine": 48,
+        "startChar": 66,
+        "endLine": 48,
+        "endChar": 69
+      },
+      "revId": "7833cf28433264eed27e7e36ad1441d9e8f66e50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9edfaf20_a453362d",
@@ -146,6 +266,30 @@
       "writtenOn": "2024-08-20T12:46:13Z",
       "side": 1,
       "message": "I would keep [\u0027dont matter\u0027]",
+      "range": {
+        "startLine": 53,
+        "startChar": 66,
+        "endLine": 53,
+        "endChar": 69
+      },
+      "revId": "7833cf28433264eed27e7e36ad1441d9e8f66e50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27845bc6_fcce4e10",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/AlternateIdCheckerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-08-20T14:21:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9edfaf20_a453362d",
       "range": {
         "startLine": 53,
         "startChar": 66,
