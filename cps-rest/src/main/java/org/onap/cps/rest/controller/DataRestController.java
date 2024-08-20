@@ -35,6 +35,8 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.onap.cps.api.CpsDataService;
@@ -46,6 +48,7 @@ import org.onap.cps.utils.ContentType;
 import org.onap.cps.utils.DataMapUtils;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.onap.cps.utils.PrefixResolver;
+import org.onap.cps.utils.XmlFileUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -111,7 +114,7 @@ public class DataRestController implements CpsDataApi {
         final FetchDescendantsOption fetchDescendantsOption = Boolean.TRUE.equals(includeDescendants)
             ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS : FetchDescendantsOption.OMIT_DESCENDANTS;
         final DataNode dataNode = cpsDataService.getDataNodes(dataspaceName, anchorName, xpath,
-            fetchDescendantsOption).iterator().next();
+            fetchDescendantsOption, ContentType.JSON).iterator().next();
         final String prefix = prefixResolver.getPrefix(dataspaceName, anchorName, dataNode.getXpath());
         return new ResponseEntity<>(DataMapUtils.toDataMapWithIdentifier(dataNode, prefix), HttpStatus.OK);
     }
@@ -120,19 +123,29 @@ public class DataRestController implements CpsDataApi {
     @Timed(value = "cps.data.controller.datanode.get.v2",
             description = "Time taken to get data node")
     public ResponseEntity<Object> getNodeByDataspaceAndAnchorV2(final String dataspaceName, final String anchorName,
-                                                                final String xpath,
+                                                                final String contentTypeInHeader, final String xpath,
                                                                 final String fetchDescendantsOptionAsString) {
+        final ContentType contentType = getContentTypeFromHeader(contentTypeInHeader);
         final FetchDescendantsOption fetchDescendantsOption =
                 FetchDescendantsOption.getFetchDescendantsOption(fetchDescendantsOptionAsString);
         final Collection<DataNode> dataNodes = cpsDataService.getDataNodes(dataspaceName, anchorName, xpath,
-                fetchDescendantsOption);
+                fetchDescendantsOption, contentType);
         final List<Map<String, Object>> dataMaps = new ArrayList<>(dataNodes.size());
         for (final DataNode dataNode: dataNodes) {
             final String prefix = prefixResolver.getPrefix(dataspaceName, anchorName, dataNode.getXpath());
             final Map<String, Object> dataMap = DataMapUtils.toDataMapWithIdentifier(dataNode, prefix);
             dataMaps.add(dataMap);
         }
-        return new ResponseEntity<>(jsonObjectMapper.asJsonString(dataMaps), HttpStatus.OK);
+        if (contentType == ContentType.XML) {
+            try {
+                final String xmlResponse = XmlFileUtils.convertDataMapsToXml(dataMaps);
+                return new ResponseEntity<>(xmlResponse, HttpStatus.OK);
+            } catch (TransformerException | ParserConfigurationException e) {
+                return new ResponseEntity<>("Error generating XML response", HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        } else {
+            return new ResponseEntity<>(jsonObjectMapper.asJsonString(dataMaps), HttpStatus.OK);
+        }
     }
 
     @Override

@@ -26,6 +26,7 @@ package org.onap.cps.rest.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import groovy.json.JsonSlurper
+import groovy.xml.XmlSlurper
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.model.DataNode
@@ -35,6 +36,7 @@ import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.DateTimeUtility
 import org.onap.cps.utils.JsonObjectMapper
 import org.onap.cps.utils.PrefixResolver
+import org.onap.cps.utils.XmlFileUtils
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
@@ -61,6 +63,9 @@ class DataRestControllerSpec extends Specification {
 
     @SpringBean
     CpsDataService mockCpsDataService = Mock()
+
+    @SpringBean
+    XmlFileUtils mockXmlFileUtils  = Mock()
 
     @SpringBean
     JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
@@ -243,7 +248,7 @@ class DataRestControllerSpec extends Specification {
         given: 'the service returns data node leaves'
             def xpath = 'parent-1'
             def endpoint = "$dataNodeBaseEndpointV1/anchors/$anchorName/node"
-            mockCpsDataService.getDataNodes(dataspaceName, anchorName, xpath, OMIT_DESCENDANTS) >> [dataNodeWithLeavesNoChildren]
+            mockCpsDataService.getDataNodes(dataspaceName, anchorName, xpath, OMIT_DESCENDANTS, ContentType.JSON) >> [dataNodeWithLeavesNoChildren]
         when: 'get request is performed through REST API'
             def response =
                 mvc.perform(get(endpoint).param('xpath', xpath))
@@ -262,7 +267,7 @@ class DataRestControllerSpec extends Specification {
         given: 'the service returns data node with #scenario'
             def xpath = 'some xPath'
             def endpoint = "$dataNodeBaseEndpointV1/anchors/$anchorName/node"
-            mockCpsDataService.getDataNodes(dataspaceName, anchorName, xpath, expectedCpsDataServiceOption) >> [dataNode]
+            mockCpsDataService.getDataNodes(dataspaceName, anchorName, xpath, expectedCpsDataServiceOption, ContentType.JSON) >> [dataNode]
         when: 'get request is performed through REST API'
             def response =
                 mvc.perform(
@@ -287,10 +292,10 @@ class DataRestControllerSpec extends Specification {
         given: 'the service returns all data node leaves'
             def xpath = '/'
             def endpoint = "$dataNodeBaseEndpointV2/anchors/$anchorName/node"
-            mockCpsDataService.getDataNodes(dataspaceName, anchorName, xpath, OMIT_DESCENDANTS) >> [dataNodeWithLeavesNoChildren, dataNodeWithLeavesNoChildren2]
+            mockCpsDataService.getDataNodes(dataspaceName, anchorName, xpath, OMIT_DESCENDANTS, ContentType.JSON) >> [dataNodeWithLeavesNoChildren, dataNodeWithLeavesNoChildren2]
         when: 'V2 of get request is performed through REST API'
             def response =
-                mvc.perform(get(endpoint).param('xpath', xpath))
+                mvc.perform(get(endpoint).contentType(MediaType.APPLICATION_JSON).param('xpath', xpath))
                     .andReturn().response
         then: 'a success response is returned'
             response.status == HttpStatus.OK.value()
@@ -302,15 +307,34 @@ class DataRestControllerSpec extends Specification {
             assert numberOfDataTrees == 2
     }
 
-    def 'Get data node with #scenario using V2.'() {
+    def 'Get all the data trees as XML with root node xPath using V2'() {
+        given: 'the service returns all data node leaves'
+            def xpath = '/'
+            def endpoint = "$dataNodeBaseEndpointV2/anchors/$anchorName/node"
+            mockCpsDataService.getDataNodes(dataspaceName, anchorName, xpath, OMIT_DESCENDANTS, ContentType.XML) >> [dataNodeWithLeavesNoChildren, dataNodeWithLeavesNoChildren2]
+        when: 'V2 of get request is performed through REST API with XML content type'
+            def response =
+                mvc.perform(get(endpoint).contentType(MediaType.APPLICATION_XML).param('xpath', xpath))
+                    .andReturn().response
+        then: 'a success response is returned'
+            response.status == HttpStatus.OK.value()
+        and: 'the response contains the datanode in XML format'
+            response.getContentAsString() == '<parent-1><leaf>value</leaf><leafList>leaveListElement1leaveListElement2</leafList><leaf>value</leaf></parent-1>'
+        and: 'the XML response contains expected number of data trees'
+            def numberOfDataTrees = new XmlSlurper().parseText(response.getContentAsString()).iterator().size()
+            assert numberOfDataTrees == 1
+    }
+
+    def 'Get data node JSON data with #scenario using V2.'() {
         given: 'the service returns data nodes with #scenario'
             def xpath = 'some xPath'
             def endpoint = "$dataNodeBaseEndpointV2/anchors/$anchorName/node"
-            mockCpsDataService.getDataNodes(dataspaceName, anchorName, xpath, expectedCpsDataServiceOption) >> [dataNode]
+            mockCpsDataService.getDataNodes(dataspaceName, anchorName, xpath, expectedCpsDataServiceOption, ContentType.JSON) >> [dataNode]
         when: 'V2 of get request is performed through REST API'
             def response =
                 mvc.perform(
                     get(endpoint)
+                        .contentType(MediaType.APPLICATION_JSON)
                         .param('xpath', xpath)
                         .param('descendants', includeDescendantsOption))
                     .andReturn().response
@@ -327,16 +351,43 @@ class DataRestControllerSpec extends Specification {
             'with descendants'          | dataNodeWithChild            | '-1'                     || INCLUDE_ALL_DESCENDANTS      | true                  | 'parent'
     }
 
-    def 'Get data node using v2 api'() {
+    def 'Get data node XML Data with #scenario using V2.'() {
+        given: 'the service returns data nodes with #scenario'
+            def xpath = 'some xPath'
+            def endpoint = "$dataNodeBaseEndpointV2/anchors/$anchorName/node"
+            mockCpsDataService.getDataNodes(dataspaceName, anchorName, xpath, expectedCpsDataServiceOption, ContentType.XML) >> [dataNode]
+        when: 'V2 of get request is performed through REST API'
+            def response =
+                mvc.perform(
+                    get(endpoint)
+                        .contentType(MediaType.APPLICATION_XML)
+                        .param('xpath', xpath)
+                        .param('descendants', includeDescendantsOption))
+                    .andReturn().response
+        then: 'a success response is returned'
+            response.status == HttpStatus.OK.value()
+        and: 'the response contains the root node identifier: #expectedRootIdentifier'
+            response.contentAsString.contains("<${expectedRootIdentifier}>")
+        and: 'the response contains child node as #expectChildInResponse'
+            response.contentAsString.contains("<child/>") == expectChildInResponse
+        where:
+            scenario                    | dataNode                     | includeDescendantsOption || expectedCpsDataServiceOption | expectChildInResponse | expectedRootIdentifier
+            'no descendants by default' | dataNodeWithLeavesNoChildren | ''                       || OMIT_DESCENDANTS             | false                 | 'parent-1'
+            'no descendant explicitly'  | dataNodeWithLeavesNoChildren | '0'                      || OMIT_DESCENDANTS             | false                 | 'parent-1'
+            'with descendants'          | dataNodeWithChild            | '-1'                     || INCLUDE_ALL_DESCENDANTS      | true                  | 'parent'
+    }
+
+    def 'Get data node using v2 api JSON Data'() {
         given: 'the service returns data node'
             def xpath = 'some xPath'
             def endpoint = "$dataNodeBaseEndpointV2/anchors/$anchorName/node"
             mockCpsDataService.getDataNodes(dataspaceName, anchorName, xpath, { descendantsOption -> {
-                assert descendantsOption.depth == 2}} as FetchDescendantsOption) >> [dataNodeWithChild]
+                assert descendantsOption.depth == 2}} as FetchDescendantsOption, ContentType.JSON) >> [dataNodeWithChild]
         when: 'get request is performed through REST API'
             def response =
                 mvc.perform(
                     get(endpoint)
+                        .contentType(MediaType.APPLICATION_JSON)
                         .param('xpath', xpath)
                         .param('descendants', '2'))
                     .andReturn().response
@@ -346,6 +397,28 @@ class DataRestControllerSpec extends Specification {
             assert response.contentAsString.contains('parent')
         and: 'the response contains child is true'
             assert response.contentAsString.contains('"child"')
+    }
+
+    def 'Get data node using v2 api XML Data'() {
+        given: 'the service returns data node'
+            def xpath = 'some xPath'
+            def endpoint = "$dataNodeBaseEndpointV2/anchors/$anchorName/node"
+            mockCpsDataService.getDataNodes(dataspaceName, anchorName, xpath, { descendantsOption -> {
+                assert descendantsOption.depth == 2}} as FetchDescendantsOption, ContentType.XML) >> [dataNodeWithChild]
+        when: 'get request is performed through REST API'
+            def response =
+                mvc.perform(
+                    get(endpoint)
+                        .contentType(MediaType.APPLICATION_XML)
+                        .param('xpath', xpath)
+                        .param('descendants', '2'))
+                    .andReturn().response
+        then: 'a success response is returned'
+            assert response.status == HttpStatus.OK.value()
+        and: 'the response contains the root node identifier'
+            assert response.contentAsString.contains('parent')
+        and: 'the response contains child is true'
+            assert response.contentAsString.contains('<child/>')
     }
 
     def 'Get delta between two anchors'() {
