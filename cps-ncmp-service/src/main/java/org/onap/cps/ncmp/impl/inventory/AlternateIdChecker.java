@@ -22,8 +22,8 @@ package org.onap.cps.ncmp.impl.inventory;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -55,13 +55,13 @@ public class AlternateIdChecker {
     public Collection<String> getIdsOfCmHandlesWithRejectedAlternateId(
                                     final Collection<NcmpServiceCmHandle> newNcmpServiceCmHandles,
                                     final Operation operation) {
-        final Set<String> acceptedAlternateIds = new HashSet<>(newNcmpServiceCmHandles.size());
+        final Set<String> assignedAlternateIds = getAlternateIdsAlreadyInDb(newNcmpServiceCmHandles);
         final Collection<String> rejectedCmHandleIds = new ArrayList<>();
         for (final NcmpServiceCmHandle ncmpServiceCmHandle : newNcmpServiceCmHandles) {
             final String cmHandleId = ncmpServiceCmHandle.getCmHandleId();
             final String proposedAlternateId = ncmpServiceCmHandle.getAlternateId();
-            if (isProposedAlternateIdAcceptable(proposedAlternateId, operation, acceptedAlternateIds, cmHandleId)) {
-                acceptedAlternateIds.add(proposedAlternateId);
+            if (isProposedAlternateIdAcceptable(proposedAlternateId, operation, assignedAlternateIds, cmHandleId)) {
+                assignedAlternateIds.add(proposedAlternateId);
             } else {
                 rejectedCmHandleIds.add(cmHandleId);
             }
@@ -70,14 +70,9 @@ public class AlternateIdChecker {
     }
 
     private boolean isProposedAlternateIdAcceptable(final String proposedAlternateId, final Operation operation,
-                                                    final Set<String> acceptedAlternateIds, final String cmHandleId) {
+                                                    final Set<String> assignedAlternateIds, final String cmHandleId) {
         if (StringUtils.isBlank(proposedAlternateId)) {
             return true;
-        }
-        if (acceptedAlternateIds.contains(proposedAlternateId)) {
-            log.warn("Alternate id update ignored, cannot update cm handle {}, alternate id is already "
-                + "assigned to a different cm handle (in this batch)", cmHandleId);
-            return false;
         }
         final String currentAlternateId = getCurrentAlternateId(operation, cmHandleId);
         if (currentAlternateId.equals(proposedAlternateId)) {
@@ -88,7 +83,7 @@ public class AlternateIdChecker {
                     cmHandleId, currentAlternateId);
             return false;
         }
-        if (alternateIdAlreadyInDb(proposedAlternateId)) {
+        if (assignedAlternateIds.contains(proposedAlternateId)) {
             log.warn("Alternate id update ignored, cannot update cm handle {}, alternate id is already "
                     + "assigned to a different cm handle", cmHandleId);
             return false;
@@ -96,13 +91,14 @@ public class AlternateIdChecker {
         return true;
     }
 
-    private boolean alternateIdAlreadyInDb(final String alternateId) {
-        try {
-            inventoryPersistence.getCmHandleDataNodeByAlternateId(alternateId);
-        } catch (final DataNodeNotFoundException dataNodeNotFoundException) {
-            return false;
-        }
-        return true;
+    private Set<String> getAlternateIdsAlreadyInDb(final Collection<NcmpServiceCmHandle> ncmpServiceCmHandles) {
+        final Set<String> alternateIdsToCheck = ncmpServiceCmHandles.stream()
+                .map(NcmpServiceCmHandle::getAlternateId)
+                .filter(StringUtils::isNotBlank)
+                .collect(Collectors.toSet());
+        return inventoryPersistence.getCmHandleDataNodesByAlternateIds(alternateIdsToCheck).stream()
+                .map(dataNode -> (String) dataNode.getLeaves().get("alternate-id"))
+                .collect(Collectors.toSet());
     }
 
     private String getCurrentAlternateId(final Operation operation, final String cmHandleId) {
