@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a5bb32b_a3c746e8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-08-20T10:34:53Z",
+      "side": 1,
+      "message": "Please consider to update the commit message since it has been duplicated.",
+      "revId": "7c9ce78d1568ae15c3b69fb7190b3a2683c7b499",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d01a15ec_bd517f01",
