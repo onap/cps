@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2024 Nordix Foundation
+ *  Modifications Copyright (C) 2024 TechMahindra Ltd
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -27,6 +28,7 @@ import org.onap.cps.ncmp.config.CpsApplicationContext
 import org.onap.cps.ncmp.impl.dmi.DmiProperties
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
 import org.onap.cps.spi.model.DataNode
+import org.onap.cps.utils.ContentType
 import org.spockframework.spring.SpringBean
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.context.ApplicationContext
@@ -68,7 +70,7 @@ class NcmpCachedResourceRequestHandlerSpec extends Specification {
             def cmResourceAddress = new CmResourceAddress('datastore','ch-1','resource')
             def dataNode1 = new DataNode(xpath:'p1')
             def dataNode2 = new DataNode(xpath:'p2')
-            cpsDataService.getDataNodes('datastore','ch-1','resource',OMIT_DESCENDANTS) >> [dataNode1, dataNode2]
+            cpsDataService.getDataNodes('datastore','ch-1','resource',OMIT_DESCENDANTS, ContentType.JSON) >> [dataNode1, dataNode2]
         when: 'getting the resource data'
             alternateIdMatcher.getCmHandleId('ch-1') >> 'ch-1'
             def result = objectUnderTest.getResourceDataForCmHandle(cmResourceAddress, 'options', 'topic', 'request id', false, 'authorization')
