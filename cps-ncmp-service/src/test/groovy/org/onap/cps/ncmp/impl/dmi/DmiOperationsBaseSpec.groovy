@@ -46,6 +46,7 @@ abstract class DmiOperationsBaseSpec extends Specification {
     def yangModelCmHandle = new YangModelCmHandle()
     def static dmiServiceName = 'myServiceName'
     def static cmHandleId = 'some-cm-handle'
+    def static alternateId = 'alt-id-' + cmHandleId
     def static resourceIdentifier = 'parent/child'
 
     def mockYangModelCmHandleRetrieval(dmiProperties) {
@@ -68,6 +69,7 @@ abstract class DmiOperationsBaseSpec extends Specification {
         yangModelCmHandle.dmiServiceName = dmiServiceName
         yangModelCmHandle.dmiProperties = dmiProperties
         yangModelCmHandle.id = cmHandleId
+        yangModelCmHandle.alternateId = alternateId
         yangModelCmHandle.compositeState = new CompositeState()
         yangModelCmHandle.compositeState.cmHandleState = CmHandleState.READY
         yangModelCmHandle.moduleSetTag = moduleSetTag

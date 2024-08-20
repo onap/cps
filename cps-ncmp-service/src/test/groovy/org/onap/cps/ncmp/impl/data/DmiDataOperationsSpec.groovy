@@ -49,6 +49,8 @@ import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNKNOWN_ERROR
 import static org.onap.cps.ncmp.api.data.models.DatastoreType.PASSTHROUGH_OPERATIONAL
 import static org.onap.cps.ncmp.api.data.models.DatastoreType.PASSTHROUGH_RUNNING
 import static org.onap.cps.ncmp.api.data.models.OperationType.CREATE
+import static org.onap.cps.ncmp.api.data.models.OperationType.DELETE
+import static org.onap.cps.ncmp.api.data.models.OperationType.PATCH
 import static org.onap.cps.ncmp.api.data.models.OperationType.READ
 import static org.onap.cps.ncmp.api.data.models.OperationType.UPDATE
 import static org.onap.cps.ncmp.impl.models.RequiredDmiService.DATA
@@ -161,6 +163,7 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
     def 'Write data for pass-through:running datastore in DMI.'() {
         given: 'a cm handle for #cmHandleId'
             mockYangModelCmHandleRetrieval([yangModelCmHandleProperty])
+            alternateIdMatcher.getCmHandleId(cmHandleId) >> cmHandleId
         and: 'a positive response from DMI service when it is called with the expected parameters'
             def expectedUrlTemplateParameters = new UrlTemplateParameters('myServiceName/dmi/v1/ch/{cmHandleId}/data/ds/{datastore}?resourceIdentifier={resourceIdentifier}', ['resourceIdentifier': resourceIdentifier, 'datastore': 'ncmp-datastore:passthrough-running', 'cmHandleId': cmHandleId])
             def expectedJson = '{"operation":"' + expectedOperationInUrl + '","dataType":"some data type","data":"requestData","cmHandleProperties":{"prop1":"val1"},"moduleSetTag":""}'
@@ -176,6 +179,8 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             operation || expectedOperationInUrl
             CREATE    || 'create'
             UPDATE    || 'update'
+            DELETE    || 'delete'
+            PATCH     || 'patch'
     }
 
     def 'State Ready validation'() {

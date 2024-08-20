@@ -170,7 +170,10 @@ public class DmiDataOperations {
                                                                              final String requestData,
                                                                              final String dataType,
                                                                              final String authorization) {
-        final YangModelCmHandle yangModelCmHandle = getYangModelCmHandle(cmHandleId);
+        final CmResourceAddress cmResourceAddress =
+                new CmResourceAddress(PASSTHROUGH_RUNNING.getDatastoreName(), cmHandleId, resourceId);
+
+        final YangModelCmHandle yangModelCmHandle = getYangModelCmHandle(cmResourceAddress.getResolvedCmHandleId());
 
         policyExecutor.checkPermission(yangModelCmHandle, operationType, authorization, resourceId, requestData);
 

@@ -101,7 +101,7 @@ public class NetworkCmProxyFacade {
     /**
      * Write resource data for data store pass-through running using dmi for given cm-handle.
      *
-     * @param cmHandleId         cm handle identifier
+     * @param cmHandleReference         cm handle or alternate identifier
      * @param resourceIdentifier resource identifier
      * @param operationType      required operation type
      * @param requestData        request body to create resource
@@ -109,13 +109,13 @@ public class NetworkCmProxyFacade {
      * @param authorization       contents of Authorization header, or null if not present
      * @return {@code Object} return data
      */
-    public Object writeResourceDataPassThroughRunningForCmHandle(final String cmHandleId,
+    public Object writeResourceDataPassThroughRunningForCmHandle(final String cmHandleReference,
                                                                  final String resourceIdentifier,
                                                                  final OperationType operationType,
                                                                  final String requestData,
                                                                  final String dataType,
                                                                  final String authorization) {
-        return dmiDataOperations.writeResourceDataPassThroughRunningFromDmi(cmHandleId, resourceIdentifier,
+        return dmiDataOperations.writeResourceDataPassThroughRunningFromDmi(cmHandleReference, resourceIdentifier,
             operationType, requestData, dataType, authorization);
     }
 
