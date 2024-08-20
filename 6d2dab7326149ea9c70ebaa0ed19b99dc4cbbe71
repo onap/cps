@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "37d1293e_d0c27df4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-20T15:44:53Z",
+      "side": 1,
+      "message": "left a suggestion.",
+      "revId": "6d2dab7326149ea9c70ebaa0ed19b99dc4cbbe71",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "adec110c_ab3ee274",
+        "filename": "k6-tests/setup.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-20T15:44:53Z",
+      "side": 1,
+      "message": "these are just the overrides.. right ??\nother env variables will still be picked from the docker-compose file?\n\nIf the above hold true then maybe best to rename the file to probably k6-override.env or something suitable.",
+      "range": {
+        "startLine": 24,
+        "startChar": 26,
+        "endLine": 24,
+        "endChar": 36
+      },
+      "revId": "6d2dab7326149ea9c70ebaa0ed19b99dc4cbbe71",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
