@@ -60,6 +60,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "344462f8_a36322d8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/AlternateIdChecker.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-08-20T13:52:32Z",
+      "side": 1,
+      "message": "It\u0027s for both update and create (for create case it will be NO_CURRENT_ALTERNATE_ID).",
+      "parentUuid": "d01a15ec_bd517f01",
+      "range": {
+        "startLine": 82,
+        "startChar": 21,
+        "endLine": 82,
+        "endChar": 39
+      },
+      "revId": "7c9ce78d1568ae15c3b69fb7190b3a2683c7b499",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5ad7cc3f_f2d665e0",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/AlternateIdChecker.java",
         "patchSetId": 3
@@ -71,6 +95,30 @@
       "writtenOn": "2024-08-20T10:21:31Z",
       "side": 1,
       "message": "maybe better to mention this for UPDATE like: \n\ngetCurrentAlternateIdForUpdate",
+      "range": {
+        "startLine": 108,
+        "startChar": 19,
+        "endLine": 108,
+        "endChar": 40
+      },
+      "revId": "7c9ce78d1568ae15c3b69fb7190b3a2683c7b499",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62bee1fc_89578f9b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/AlternateIdChecker.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-08-20T13:52:32Z",
+      "side": 1,
+      "message": "It also returns NO_CURRENT_ALTERNATE_ID for CREATE case.",
+      "parentUuid": "5ad7cc3f_f2d665e0",
       "range": {
         "startLine": 108,
         "startChar": 19,
@@ -106,6 +154,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e9277e45_4e0bba5d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/AlternateIdChecker.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-08-20T13:52:32Z",
+      "side": 1,
+      "message": "This is just refactoring patch, and this is same behaviour as before.",
+      "parentUuid": "2cf5ecbd_bf19190c",
+      "range": {
+        "startLine": 113,
+        "startChar": 16,
+        "endLine": 113,
+        "endChar": 55
+      },
+      "revId": "7c9ce78d1568ae15c3b69fb7190b3a2683c7b499",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "911e55fc_b6522aca",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/AlternateIdCheckerSpec.groovy",
         "patchSetId": 3
@@ -117,6 +189,30 @@
       "writtenOn": "2024-08-20T10:21:31Z",
       "side": 1,
       "message": "Never used.",
+      "range": {
+        "startLine": 32,
+        "startChar": 2,
+        "endLine": 32,
+        "endChar": 70
+      },
+      "revId": "7c9ce78d1568ae15c3b69fb7190b3a2683c7b499",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69567cc1_66db6e4d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/AlternateIdCheckerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-08-20T13:52:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "911e55fc_b6522aca",
       "range": {
         "startLine": 32,
         "startChar": 2,
@@ -150,6 +246,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "81cc5343_a88bdacd",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/AlternateIdCheckerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-08-20T13:52:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "09da5257_ac7631cc",
+      "range": {
+        "startLine": 87,
+        "startChar": 8,
+        "endLine": 87,
+        "endChar": 38
+      },
+      "revId": "7c9ce78d1568ae15c3b69fb7190b3a2683c7b499",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "add3293f_b4e4c1de",
@@ -163,6 +283,30 @@
       "writtenOn": "2024-08-20T10:21:31Z",
       "side": 1,
       "message": "No need",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 130
+      },
+      "revId": "7c9ce78d1568ae15c3b69fb7190b3a2683c7b499",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d102a2a_09356e91",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/AlternateIdCheckerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-08-20T13:52:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "add3293f_b4e4c1de",
       "range": {
         "startLine": 88,
         "startChar": 0,
