@@ -46,6 +46,30 @@
       },
       "revId": "7347bbd9655ba6f713241af1ad3667ee22c85016",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5724783c_6a83b601",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-20T15:01:03Z",
+      "side": 1,
+      "message": "Oh mighty postgres 😊\nYeah. thats what I wanted to point out.. Batching..\nProbably not for this patch.\nBut just a thought to be considered.",
+      "parentUuid": "61b15a29_ef532310",
+      "range": {
+        "startLine": 225,
+        "startChar": 5,
+        "endLine": 228,
+        "endChar": 5
+      },
+      "revId": "7347bbd9655ba6f713241af1ad3667ee22c85016",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
