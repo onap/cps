@@ -148,7 +148,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      * Patch resource data.
      *
      * @param datastoreName      name of the datastore (currently only supports "ncmp-datastore:passthrough-running")
-     * @param cmHandle           cm handle identifier
+     * @param cmHandleReference           cm handle or alternate identifier
      * @param resourceIdentifier resource identifier
      * @param requestBody        the request body
      * @param contentType        content type of body
@@ -158,7 +158,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
 
     @Override
     public ResponseEntity<Object> patchResourceDataRunningForCmHandle(final String datastoreName,
-                                                                      final String cmHandle,
+                                                                      final String cmHandleReference,
                                                                       final String resourceIdentifier,
                                                                       final Object requestBody,
                                                                       final String contentType,
@@ -168,7 +168,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
 
         final Object responseObject = networkCmProxyFacade
                 .writeResourceDataPassThroughRunningForCmHandle(
-                        cmHandle, resourceIdentifier, PATCH,
+                        cmHandleReference, resourceIdentifier, PATCH,
                         jsonObjectMapper.asJsonString(requestBody), contentType, authorization);
         return ResponseEntity.ok(responseObject);
     }
@@ -177,7 +177,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      * Create resource data for given cm-handle.
      *
      * @param datastoreName      name of the datastore (currently only supports "ncmp-datastore:passthrough-running")
-     * @param cmHandle           cm handle identifier
+     * @param cmHandleReference           cm handle or alternate identifier
      * @param resourceIdentifier resource identifier
      * @param requestBody        the request body
      * @param contentType        content type of body
@@ -186,14 +186,14 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      */
     @Override
     public ResponseEntity<Void> createResourceDataRunningForCmHandle(final String datastoreName,
-                                                                     final String cmHandle,
+                                                                     final String cmHandleReference,
                                                                      final String resourceIdentifier,
                                                                      final Object requestBody,
                                                                      final String contentType,
                                                                      final String authorization) {
         validateDataStore(PASSTHROUGH_RUNNING, datastoreName);
 
-        networkCmProxyFacade.writeResourceDataPassThroughRunningForCmHandle(cmHandle,
+        networkCmProxyFacade.writeResourceDataPassThroughRunningForCmHandle(cmHandleReference,
                 resourceIdentifier, CREATE, jsonObjectMapper.asJsonString(requestBody), contentType, authorization);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -202,7 +202,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      * Update resource data for given cm-handle.
      *
      * @param datastoreName      name of the datastore (currently only supports "ncmp-datastore:passthrough-running")
-     * @param cmHandle           cm handle identifier
+     * @param cmHandleReference           cm handle or alternate identifier
      * @param resourceIdentifier resource identifier
      * @param requestBody        the request body
      * @param contentType        content type of the body
@@ -212,14 +212,14 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
 
     @Override
     public ResponseEntity<Object> updateResourceDataRunningForCmHandle(final String datastoreName,
-                                                                       final String cmHandle,
+                                                                       final String cmHandleReference,
                                                                        final String resourceIdentifier,
                                                                        final Object requestBody,
                                                                        final String contentType,
                                                                        final String authorization) {
         validateDataStore(PASSTHROUGH_RUNNING, datastoreName);
 
-        networkCmProxyFacade.writeResourceDataPassThroughRunningForCmHandle(cmHandle,
+        networkCmProxyFacade.writeResourceDataPassThroughRunningForCmHandle(cmHandleReference,
                 resourceIdentifier, UPDATE, jsonObjectMapper.asJsonString(requestBody), contentType, authorization);
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -228,7 +228,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      * Delete resource data for a given cm-handle.
      *
      * @param datastoreName      name of the datastore (currently only supports "ncmp-datastore:passthrough-running")
-     * @param cmHandle           cm handle identifier
+     * @param cmHandleReference           cm handle or alternate identifier
      * @param resourceIdentifier resource identifier
      * @param contentType        content type of the body
      * @param authorization      contents of Authorization header, or null if not present
@@ -236,14 +236,14 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      */
     @Override
     public ResponseEntity<Void> deleteResourceDataRunningForCmHandle(final String datastoreName,
-                                                                     final String cmHandle,
+                                                                     final String cmHandleReference,
                                                                      final String resourceIdentifier,
                                                                      final String contentType,
                                                                      final String authorization) {
 
         validateDataStore(PASSTHROUGH_RUNNING, datastoreName);
 
-        networkCmProxyFacade.writeResourceDataPassThroughRunningForCmHandle(cmHandle,
+        networkCmProxyFacade.writeResourceDataPassThroughRunningForCmHandle(cmHandleReference,
                 resourceIdentifier, DELETE, NO_BODY, contentType, authorization);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

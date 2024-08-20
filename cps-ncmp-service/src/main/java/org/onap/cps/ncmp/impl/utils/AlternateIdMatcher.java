@@ -59,7 +59,7 @@ public class AlternateIdMatcher {
     /**
      * Get cm handle Id from given cmHandleReference.
      *
-     * @param cmHandleReference alternate ID
+     * @param cmHandleReference cm handle or alternate identifier
      * @return cm handle id string
      */
     public String getCmHandleId(final String cmHandleReference) {
