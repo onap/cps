@@ -18,11 +18,5 @@
 echo '================================== docker info =========================='
 docker ps -a
 
-echo 'Stopping, Removing all running containers...'
-docker stop $(docker ps -aq) && docker rm $(docker ps -aq)
-
-echo 'Removing Volumes...'
-docker volume prune -f
-
-echo 'Removing Networks...'
-docker network prune -f
+echo 'Stopping, Removing containers and volumes...'
+docker-compose -f ../docker-compose/docker-compose.yml --profile dmi-stub down --volumes
