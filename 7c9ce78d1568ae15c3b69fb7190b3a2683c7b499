@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59d519a9_5d996107",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-08-20T10:21:31Z",
+      "side": 1,
+      "message": "Good one just a few renaming...",
+      "revId": "7c9ce78d1568ae15c3b69fb7190b3a2683c7b499",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d01a15ec_bd517f01",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/AlternateIdChecker.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-08-20T10:21:31Z",
+      "side": 1,
+      "message": "currentAlternateIdForUpdate maybe a better name",
+      "range": {
+        "startLine": 82,
+        "startChar": 21,
+        "endLine": 82,
+        "endChar": 39
+      },
+      "revId": "7c9ce78d1568ae15c3b69fb7190b3a2683c7b499",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ad7cc3f_f2d665e0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/AlternateIdChecker.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-08-20T10:21:31Z",
+      "side": 1,
+      "message": "maybe better to mention this for UPDATE like: \n\ngetCurrentAlternateIdForUpdate",
+      "range": {
+        "startLine": 108,
+        "startChar": 19,
+        "endLine": 108,
+        "endChar": 40
+      },
+      "revId": "7c9ce78d1568ae15c3b69fb7190b3a2683c7b499",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "911e55fc_b6522aca",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/AlternateIdCheckerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-08-20T10:21:31Z",
+      "side": 1,
+      "message": "Never used.",
+      "range": {
+        "startLine": 32,
+        "startChar": 2,
+        "endLine": 32,
+        "endChar": 70
+      },
+      "revId": "7c9ce78d1568ae15c3b69fb7190b3a2683c7b499",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09da5257_ac7631cc",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/AlternateIdCheckerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-08-20T10:21:31Z",
+      "side": 1,
+      "message": "NB: Maybe better to define this as static throwDataNodeNotFoundException() since does not belong to the object",
+      "range": {
+        "startLine": 87,
+        "startChar": 8,
+        "endLine": 87,
+        "endChar": 38
+      },
+      "revId": "7c9ce78d1568ae15c3b69fb7190b3a2683c7b499",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "add3293f_b4e4c1de",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/AlternateIdCheckerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-08-20T10:21:31Z",
+      "side": 1,
+      "message": "No need",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 130
+      },
+      "revId": "7c9ce78d1568ae15c3b69fb7190b3a2683c7b499",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
