@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e3d9adf_e8741b26",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-20T14:47:02Z",
+      "side": 1,
+      "message": "NB: just asking , is there any limit on the number of OR condition we can have ? ( in terms of database? )",
+      "range": {
+        "startLine": 225,
+        "startChar": 5,
+        "endLine": 228,
+        "endChar": 5
+      },
+      "revId": "7347bbd9655ba6f713241af1ad3667ee22c85016",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
