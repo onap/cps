@@ -46,7 +46,7 @@ class DmiPluginTrustLevelWatchDogSpec extends Specification {
         when: 'dmi watch dog method runs'
             objectUnderTest.checkDmiAvailability()
         then: 'the update delegated to manager'
-            numberOfCalls * mockTrustLevelManager.updateDmi('dmi-1', _, newDmiTrustLevel)
+            numberOfCalls * mockTrustLevelManager.handleUpdateOfDmiTrustLevel('dmi-1', _, newDmiTrustLevel)
         where: 'the following parameters are used'
             dmiHealhStatus | dmiOldTrustLevel    | newDmiTrustLevel    || numberOfCalls
             'UP'           | TrustLevel.COMPLETE | TrustLevel.COMPLETE || 0

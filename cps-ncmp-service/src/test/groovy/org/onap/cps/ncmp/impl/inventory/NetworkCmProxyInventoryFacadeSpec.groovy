@@ -35,7 +35,6 @@ import org.onap.cps.ncmp.api.inventory.models.TrustLevel
 import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
 import org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
-import org.onap.cps.ncmp.impl.inventory.trustlevel.TrustLevelManager
 import org.onap.cps.spi.model.ConditionProperties
 import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Specification
@@ -47,9 +46,9 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
     def mockParameterizedCmHandleQueryService = Mock(ParameterizedCmHandleQueryService)
     def spiedJsonObjectMapper = Spy(new JsonObjectMapper(new ObjectMapper()))
     def mockInventoryPersistence = Mock(InventoryPersistence)
-    def mockTrustLevelManager = Mock(TrustLevelManager)
+    def trustLevelPerCmHandle = [:]
 
-    def objectUnderTest = new NetworkCmProxyInventoryFacade(mockCmHandleRegistrationService, mockCmHandleQueryService, mockParameterizedCmHandleQueryService, mockInventoryPersistence, spiedJsonObjectMapper, mockTrustLevelManager)
+    def objectUnderTest = new NetworkCmProxyInventoryFacade(mockCmHandleRegistrationService, mockCmHandleQueryService, mockParameterizedCmHandleQueryService, mockInventoryPersistence, spiedJsonObjectMapper, trustLevelPerCmHandle)
 
     def 'Update DMI Registration'() {
         given: 'an (updated) dmi plugin registration'
@@ -111,7 +110,7 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
                  publicProperties: publicProperties, compositeState: compositeState, moduleSetTag: moduleSetTag, alternateId: alternateId)
             1 * mockInventoryPersistence.getYangModelCmHandle('ch-1') >> yangModelCmHandle
         and: 'a trust level for the cm handle in the cache'
-            mockTrustLevelManager.getEffectiveTrustLevel('ch-1') >> TrustLevel.COMPLETE
+            trustLevelPerCmHandle.put('ch-1', TrustLevel.COMPLETE)
         when: 'getting cm handle details for a given cm handle id from ncmp service'
             def result = objectUnderTest.getNcmpServiceCmHandle('ch-1')
         then: 'the result is a ncmpServiceCmHandle'
@@ -206,7 +205,7 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
                 spiedJsonObjectMapper.convertToValueType(cmHandleQueryApiParameters, CmHandleQueryServiceParameters.class))
                 >> [new NcmpServiceCmHandle(cmHandleId: 'ch-0'), new NcmpServiceCmHandle(cmHandleId: 'ch-1')]
         and: ' a trust level for ch-1'
-            mockTrustLevelManager.getEffectiveTrustLevel('ch-1') >> TrustLevel.COMPLETE
+            trustLevelPerCmHandle.put('ch-1', TrustLevel.COMPLETE)
         when: 'execute cm handle search is called'
             def result = objectUnderTest.executeCmHandleSearch(cmHandleQueryApiParameters)
         then: 'result consists of the two cm handles returned by the CPS Data Service'

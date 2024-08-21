@@ -37,7 +37,6 @@ import com.hazelcast.map.IMap;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -59,11 +58,13 @@ import org.onap.cps.ncmp.impl.inventory.models.CmHandleState;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.inventory.sync.ModuleOperationsUtils;
 import org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventsCmHandleStateHandler;
+import org.onap.cps.ncmp.impl.inventory.trustlevel.TrustLevelCacheConfig;
 import org.onap.cps.ncmp.impl.inventory.trustlevel.TrustLevelManager;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.exceptions.CpsException;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataValidationException;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -78,7 +79,11 @@ public class CmHandleRegistrationService {
     private final CpsDataService cpsDataService;
     private final LcmEventsCmHandleStateHandler lcmEventsCmHandleStateHandler;
     private final IMap<String, Object> moduleSyncStartedOnCmHandles;
+
+    @Qualifier(TrustLevelCacheConfig.TRUST_LEVEL_PER_DMI_PLUGIN)
+    private final Map<String, TrustLevel> trustLevelPerDmiPlugin;
     private final TrustLevelManager trustLevelManager;
+
     private final AlternateIdChecker alternateIdChecker;
 
     /**
@@ -93,7 +98,7 @@ public class CmHandleRegistrationService {
         dmiPluginRegistration.validateDmiPluginRegistration();
         final DmiPluginRegistrationResponse dmiPluginRegistrationResponse = new DmiPluginRegistrationResponse();
 
-        trustLevelManager.registerDmiPlugin(dmiPluginRegistration);
+        setTrustLevelPerDmiPlugin(dmiPluginRegistration);
 
         processRemovedCmHandles(dmiPluginRegistration, dmiPluginRegistrationResponse);
 
@@ -148,7 +153,7 @@ public class CmHandleRegistrationService {
         final Set<String> notDeletedCmHandles = new HashSet<>();
         for (final List<String> tobeRemovedCmHandleBatch : Lists.partition(tobeRemovedCmHandleIds, DELETE_BATCH_SIZE)) {
             try {
-                batchDeleteCmHandlesFromDbAndCaches(tobeRemovedCmHandleBatch);
+                batchDeleteCmHandlesFromDbAndModuleSyncMap(tobeRemovedCmHandleBatch);
                 tobeRemovedCmHandleBatch.forEach(cmHandleId ->
                     cmHandleRegistrationResponses.add(CmHandleRegistrationResponse.createSuccessResponse(cmHandleId)));
 
@@ -254,7 +259,7 @@ public class CmHandleRegistrationService {
                     ncmpServiceCmHandle.getRegistrationTrustLevel());
             }
         }
-        trustLevelManager.registerCmHandles(initialTrustLevelPerCmHandleId);
+        trustLevelManager.handleInitialRegistrationOfTrustLevels(initialTrustLevelPerCmHandleId);
     }
 
     private static boolean moduleUpgradeCanBeSkipped(final YangModelCmHandle yangModelCmHandle,
@@ -275,7 +280,7 @@ public class CmHandleRegistrationService {
 
     private CmHandleRegistrationResponse deleteCmHandleAndGetCmHandleRegistrationResponse(final String cmHandleId) {
         try {
-            deleteCmHandleFromDbAndCaches(cmHandleId);
+            deleteCmHandleFromDbAndModuleSyncMap(cmHandleId);
             return CmHandleRegistrationResponse.createSuccessResponse(cmHandleId);
         } catch (final DataNodeNotFoundException dataNodeNotFoundException) {
             log.error("Unable to find dataNode for cmHandleId : {} , caused by : {}",
@@ -298,17 +303,15 @@ public class CmHandleRegistrationService {
         lcmEventsCmHandleStateHandler.updateCmHandleStateBatch(cmHandleStatePerCmHandle);
     }
 
-    private void deleteCmHandleFromDbAndCaches(final String cmHandleId) {
+    private void deleteCmHandleFromDbAndModuleSyncMap(final String cmHandleId) {
         inventoryPersistence.deleteSchemaSetWithCascade(cmHandleId);
         inventoryPersistence.deleteDataNode(NCMP_DMI_REGISTRY_PARENT + "/cm-handles[@id='" + cmHandleId + "']");
-        trustLevelManager.removeCmHandles(Collections.singleton(cmHandleId));
         removeDeletedCmHandleFromModuleSyncMap(cmHandleId);
     }
 
-    private void batchDeleteCmHandlesFromDbAndCaches(final Collection<String> cmHandleIds) {
+    private void batchDeleteCmHandlesFromDbAndModuleSyncMap(final Collection<String> cmHandleIds) {
         inventoryPersistence.deleteSchemaSetsWithCascade(cmHandleIds);
         inventoryPersistence.deleteDataNodes(mapCmHandleIdsToXpaths(cmHandleIds));
-        trustLevelManager.removeCmHandles(cmHandleIds);
         cmHandleIds.forEach(this::removeDeletedCmHandleFromModuleSyncMap);
     }
 
@@ -340,6 +343,14 @@ public class CmHandleRegistrationService {
 
     private static List<String> getCmHandleIds(final Map<YangModelCmHandle, CmHandleState> cmHandleStatePerCmHandle) {
         return cmHandleStatePerCmHandle.keySet().stream().map(YangModelCmHandle::getId).toList();
+    }
+
+    private void setTrustLevelPerDmiPlugin(final DmiPluginRegistration dmiPluginRegistration) {
+        if (DmiPluginRegistration.isNullEmptyOrBlank(dmiPluginRegistration.getDmiDataPlugin())) {
+            trustLevelPerDmiPlugin.put(dmiPluginRegistration.getDmiPlugin(), TrustLevel.COMPLETE);
+        } else {
+            trustLevelPerDmiPlugin.put(dmiPluginRegistration.getDmiDataPlugin(), TrustLevel.COMPLETE);
+        }
     }
 
     private Collection<String> checkAlternateIds(

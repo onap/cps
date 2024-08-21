@@ -52,7 +52,7 @@ public class DeviceTrustLevelMessageConsumer {
         final DeviceTrustLevel deviceTrustLevel =
             CloudEventMapper.toTargetEvent(consumerRecord.value(), DeviceTrustLevel.class);
         final String trustLevelAsString = deviceTrustLevel.getData().getTrustLevel();
-        trustLevelManager.updateCmHandleTrustLevel(cmHandleId, TrustLevel.valueOf(trustLevelAsString));
+        trustLevelManager.handleUpdateOfDeviceTrustLevel(cmHandleId, TrustLevel.valueOf(trustLevelAsString));
     }
 
 }
