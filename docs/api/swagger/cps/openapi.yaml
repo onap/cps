@@ -9,11 +9,7 @@ info:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0
   title: ONAP Open API v3 Configuration Persistence Service
-  version: 1.0.0
-  x-planned-retirement-date: "202212"
-  x-component: Modeling
-  x-logo:
-    url: cps_logo.png
+  version: 3.5.2
 servers:
 - url: /cps/api
 security:
@@ -40,7 +36,7 @@ paths:
       responses:
         "201":
           content:
-            text/plain:
+            application/json:
               schema:
                 example: my-resource
                 type: string
@@ -364,7 +360,7 @@ paths:
       responses:
         "201":
           content:
-            text/plain:
+            application/json:
               schema:
                 example: my-resource
                 type: string
@@ -711,7 +707,7 @@ paths:
       responses:
         "201":
           content:
-            text/plain:
+            application/json:
               schema:
                 example: my-resource
                 type: string
@@ -1346,7 +1342,7 @@ paths:
         schema:
           example: 2021-03-21T00:10:34.030-0100
           type: string
-      - description: Content type header
+      - description: Content type in header
         in: header
         name: Content-Type
         required: true
@@ -1462,7 +1458,7 @@ paths:
         schema:
           example: 2021-03-21T00:10:34.030-0100
           type: string
-      - description: Content type header
+      - description: Content type in header
         in: header
         name: Content-Type
         required: true
@@ -1491,7 +1487,7 @@ paths:
       responses:
         "201":
           content:
-            text/plain:
+            application/json:
               schema:
                 example: my-resource
                 type: string
@@ -1587,6 +1583,13 @@ paths:
         schema:
           example: 2021-03-21T00:10:34.030-0100
           type: string
+      - description: Content type in header
+        in: header
+        name: Content-Type
+        required: true
+        schema:
+          example: application/json
+          type: string
       requestBody:
         content:
           application/json:
@@ -1595,7 +1598,16 @@ paths:
                 $ref: '#/components/examples/dataSample'
                 value: null
             schema:
+              type: string
+          application/xml:
+            examples:
+              dataSample:
+                $ref: '#/components/examples/dataSampleXml'
+                value: null
+            schema:
               type: object
+              xml:
+                name: stores
         required: true
       responses:
         "200":
@@ -1762,6 +1774,13 @@ paths:
         schema:
           example: 2021-03-21T00:10:34.030-0100
           type: string
+      - description: Content type in header
+        in: header
+        name: Content-Type
+        required: true
+        schema:
+          example: application/json
+          type: string
       requestBody:
         content:
           application/json:
@@ -1770,12 +1789,21 @@ paths:
                 $ref: '#/components/examples/dataSample'
                 value: null
             schema:
+              type: string
+          application/xml:
+            examples:
+              dataSample:
+                $ref: '#/components/examples/dataSampleXml'
+                value: null
+            schema:
               type: object
+              xml:
+                name: stores
         required: true
       responses:
         "201":
           content:
-            text/plain:
+            application/json:
               schema:
                 example: my-resource
                 type: string
@@ -1912,7 +1940,7 @@ paths:
       summary: Replace list content
       tags:
       - cps-data
-  /v2/dataspaces/{dataspace-name}/anchors/{anchor-name}/deltaAnchors:
+  /v2/dataspaces/{dataspace-name}/anchors/{source-anchor-name}/delta:
     get:
       description: Get delta between two anchors within a given dataspace
       operationId: getDeltaByDataspaceAndAnchors
@@ -1924,9 +1952,9 @@ paths:
         schema:
           example: my-dataspace
           type: string
-      - description: anchor-name
+      - description: source-anchor-name
         in: path
-        name: anchor-name
+        name: source-anchor-name
         required: true
         schema:
           example: my-anchor
@@ -2005,7 +2033,6 @@ paths:
       tags:
       - cps-data
       x-codegen-request-body-name: xpath
-  /v2/dataspaces/{dataspace-name}/anchors/{anchor-name}/deltaPayload:
     post:
       description: Get delta between an anchor in a dataspace and JSON payload
       operationId: getDeltaByDataspaceAnchorAndPayload
@@ -2017,9 +2044,9 @@ paths:
         schema:
           example: my-dataspace
           type: string
-      - description: anchor-name
+      - description: source-anchor-name
         in: path
-        name: anchor-name
+        name: source-anchor-name
         required: true
         schema:
           example: my-anchor
@@ -2515,8 +2542,8 @@ components:
       schema:
         example: 2021-03-21T00:10:34.030-0100
         type: string
-    contentTypeHeader:
-      description: Content type header
+    contentTypeInHeader:
+      description: Content type in header
       in: header
       name: Content-Type
       required: true
@@ -2534,6 +2561,14 @@ components:
       name: xpath
       required: true
       schema:
+        type: string
+    sourceAnchorNameInPath:
+      description: source-anchor-name
+      in: path
+      name: source-anchor-name
+      required: true
+      schema:
+        example: my-anchor
         type: string
     targetAnchorNameInQuery:
       description: target-anchor-name
@@ -2577,7 +2612,7 @@ components:
   responses:
     Created:
       content:
-        text/plain:
+        application/json:
           schema:
             example: my-resource
             type: string
