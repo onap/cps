@@ -16,6 +16,23 @@
       "message": "stage-release",
       "revId": "9002b9f6d0d64106e1cbc03d603dc0429da8badd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7528beeb_8addb903",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-08-21T14:45:24Z",
+      "side": 1,
+      "message": "stage-release",
+      "revId": "9002b9f6d0d64106e1cbc03d603dc0429da8badd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ],
   "submitRequirementResults": [
