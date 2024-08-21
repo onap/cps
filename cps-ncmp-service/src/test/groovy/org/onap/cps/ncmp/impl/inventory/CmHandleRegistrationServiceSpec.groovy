@@ -59,12 +59,13 @@ class CmHandleRegistrationServiceSpec extends Specification {
     def mockLcmEventsCmHandleStateHandler = Mock(LcmEventsCmHandleStateHandler)
     def mockCpsDataService = Mock(CpsDataService)
     def mockModuleSyncStartedOnCmHandles = Mock(IMap<String, Object>)
+    def trustLevelPerDmiPlugin = [:]
     def mockTrustLevelManager = Mock(TrustLevelManager)
     def mockAlternateIdChecker = Mock(AlternateIdChecker)
 
     def objectUnderTest = Spy(new CmHandleRegistrationService(
         mockNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence, mockCpsDataService, mockLcmEventsCmHandleStateHandler,
-        mockModuleSyncStartedOnCmHandles, mockTrustLevelManager, mockAlternateIdChecker))
+        mockModuleSyncStartedOnCmHandles, trustLevelPerDmiPlugin , mockTrustLevelManager, mockAlternateIdChecker))
 
     def setup() {
         // always accept all cm handles
@@ -142,6 +143,9 @@ class CmHandleRegistrationServiceSpec extends Specification {
             objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'create cm handles registration and sync modules is called with the correct plugin information'
             1 * objectUnderTest.processCreatedCmHandles(dmiPluginRegistration, _)
+        and: 'dmi is added to the dmi trustLevel map'
+            assert trustLevelPerDmiPlugin.size() == 1
+            assert trustLevelPerDmiPlugin.containsKey(expectedDmiPluginRegisteredName)
         where:
             scenario                          | dmiPlugin  | dmiModelPlugin | dmiDataPlugin || expectedDmiPluginRegisteredName
             'combined DMI plugin'             | 'service1' | ''             | ''            || 'service1'
@@ -208,7 +212,7 @@ class CmHandleRegistrationServiceSpec extends Specification {
         when: 'registration is updated'
             objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
         then: 'trustLevel is set for the created cm-handle'
-            1 * mockTrustLevelManager.registerCmHandles(expectedMapping)
+            1 * mockTrustLevelManager.handleInitialRegistrationOfTrustLevels(expectedMapping)
         where:
             scenario                 | registrationTrustLevel || expectedMapping
             'with trusted cm handle' | TrustLevel.COMPLETE    || [ 'ch-1' : TrustLevel.COMPLETE ]
