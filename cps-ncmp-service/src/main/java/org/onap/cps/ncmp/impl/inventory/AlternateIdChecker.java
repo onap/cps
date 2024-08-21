@@ -28,7 +28,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
-import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -44,59 +43,6 @@ public class AlternateIdChecker {
     private final InventoryPersistence inventoryPersistence;
 
     private static final String NO_CURRENT_ALTERNATE_ID = "";
-
-    /**
-     * Check if the alternate can be applied to the given cm handle (id).
-     * Conditions:
-     * - proposed alternate is blank (it wil be ignored)
-     * - proposed alternate is same as current (no change)
-     * - proposed alternate is not in use for a different cm handle (in the DB)
-     *
-     * @param cmHandleId cm handle id
-     * @param proposedAlternateId proposed alternate id
-     * @return true if the new alternate id not in use or equal to current alternate id, false otherwise
-     */
-    public boolean canApplyAlternateId(final String cmHandleId, final String proposedAlternateId) {
-        String currentAlternateId = "";
-        try {
-            final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(cmHandleId);
-            currentAlternateId = yangModelCmHandle.getAlternateId();
-        } catch (final DataNodeNotFoundException dataNodeNotFoundException) {
-            // work with blank current alternate id
-        }
-        return this.canApplyAlternateId(cmHandleId, currentAlternateId, proposedAlternateId);
-    }
-
-    /**
-     * Check if the alternate can be applied to the given cm handle.
-     * Conditions:
-     * - proposed alternate is blank (it wil be ignored)
-     * - proposed alternate is same as current (no change)
-     * - proposed alternate is not in use for a different cm handle (in the DB)
-     *
-     * @param cmHandleId   cm handle id
-     * @param currentAlternateId current alternate id
-     * @param proposedAlternateId new alternate id
-     * @return true if the new alternate id not in use or equal to current alternate id, false otherwise
-     */
-    public boolean canApplyAlternateId(final String cmHandleId,
-                                       final String currentAlternateId,
-                                       final String proposedAlternateId) {
-        if (StringUtils.isBlank(currentAlternateId)) {
-            if (alternateIdAlreadyInDb(proposedAlternateId)) {
-                log.warn("Alternate id update ignored, cannot update cm handle {}, alternate id is already "
-                    + "assigned to a different cm handle", cmHandleId);
-                return false;
-            }
-            return true;
-        }
-        if (currentAlternateId.equals(proposedAlternateId)) {
-            return true;
-        }
-        log.warn("Alternate id update ignored, cannot update cm handle {}, already has an alternate id of {}",
-            cmHandleId, currentAlternateId);
-        return false;
-    }
 
     /**
      * Check all alternate ids of a batch of cm handles.
@@ -125,7 +71,7 @@ public class AlternateIdChecker {
 
     private boolean isProposedAlternateIdAcceptable(final String proposedAlternateId, final Operation operation,
                                                     final Set<String> acceptedAlternateIds, final String cmHandleId) {
-        if (StringUtils.isEmpty(proposedAlternateId)) {
+        if (StringUtils.isBlank(proposedAlternateId)) {
             return true;
         }
         if (acceptedAlternateIds.contains(proposedAlternateId)) {
@@ -133,10 +79,21 @@ public class AlternateIdChecker {
                 + "assigned to a different cm handle (in this batch)", cmHandleId);
             return false;
         }
-        if (Operation.CREATE.equals(operation)) {
-            return canApplyAlternateId(cmHandleId, NO_CURRENT_ALTERNATE_ID, proposedAlternateId);
+        final String currentAlternateId = getCurrentAlternateId(operation, cmHandleId);
+        if (currentAlternateId.equals(proposedAlternateId)) {
+            return true;
         }
-        return canApplyAlternateId(cmHandleId, proposedAlternateId);
+        if (StringUtils.isNotBlank(currentAlternateId)) {
+            log.warn("Alternate id update ignored, cannot update cm handle {}, already has an alternate id of {}",
+                    cmHandleId, currentAlternateId);
+            return false;
+        }
+        if (alternateIdAlreadyInDb(proposedAlternateId)) {
+            log.warn("Alternate id update ignored, cannot update cm handle {}, alternate id is already "
+                    + "assigned to a different cm handle", cmHandleId);
+            return false;
+        }
+        return true;
     }
 
     private boolean alternateIdAlreadyInDb(final String alternateId) {
@@ -146,6 +103,17 @@ public class AlternateIdChecker {
             return false;
         }
         return true;
+    }
+
+    private String getCurrentAlternateId(final Operation operation, final String cmHandleId) {
+        if (operation == Operation.UPDATE) {
+            try {
+                return inventoryPersistence.getYangModelCmHandle(cmHandleId).getAlternateId();
+            } catch (final DataNodeNotFoundException dataNodeNotFoundException) {
+                // work with blank current alternate id
+            }
+        }
+        return NO_CURRENT_ALTERNATE_ID;
     }
 
 }
