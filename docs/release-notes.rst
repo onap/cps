@@ -48,6 +48,7 @@ Features
 3.5.2
     - `CPS-1812 <https://jira.onap.org/browse/CPS-1812>`_ CM Data Subscriptions ( Create, Delete and Merging ) with positive scenarios
     - `CPS-2326 <https://jira.onap.org/browse/CPS-2326>`_ Uplift liquibase-core dependency to 4.28.0
+    - `CPS-2353 <https://jira.onap.org/browse/CPS-2353>`_ Improve registration performance with moduleSetTag
     - `CPS-2366 <https://jira.onap.org/browse/CPS-2366>`_ Improve registration performance with use of alternateID
 
 Version: 3.5.1
