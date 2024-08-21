@@ -41,6 +41,7 @@ Bug Fixes
 3.5.2
     - `CPS-2306 <https://jira.onap.org/browse/CPS-2306>`_ Update response message for data validation failure and make it consistent across APIs
     - `CPS-2319 <https://jira.onap.org/browse/CPS-2319>`_ Fix "Create a node" and "Add List Elements" APIs response code
+    - `CPS-2372 <https://jira.onap.org/browse/CPS-2372>`_ Blank alternate ID overwrites existing one
 
 Features
 --------
