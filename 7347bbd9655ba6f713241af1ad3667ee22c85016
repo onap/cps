@@ -87,6 +87,30 @@
       },
       "revId": "7347bbd9655ba6f713241af1ad3667ee22c85016",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb40b93a_67d64ea6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-08-21T09:33:43Z",
+      "side": 1,
+      "message": "Not really an issue for now since users always send batches of no more than 100 CM-handles.\n(An alternate solution I\u0027d prefer is to simply throw PayloadTooLargeException for registration, like we do for data operations).",
+      "parentUuid": "5724783c_6a83b601",
+      "range": {
+        "startLine": 225,
+        "startChar": 5,
+        "endLine": 228,
+        "endChar": 5
+      },
+      "revId": "7347bbd9655ba6f713241af1ad3667ee22c85016",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
