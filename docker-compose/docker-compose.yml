@@ -18,13 +18,13 @@
 
 services:
 
-  ### docker-compose --profile dmi-service up -d -> run CPS services incl. dmi-plugin ###
+  ### docker-compose --profile dmi-service up -d --wait -> run CPS services incl. dmi-plugin
   ### docker-compose --profile dmi-stub --profile monitoring up -d -> run CPS with stubbed dmi-plugin (for registration performance testing)
   ### docker-compose --profile dmi-stub --profile tracing up -d -> run CPS with stubbed dmi-plugin (for open telemetry tracing testing make ONAP_TRACING_ENABLED "true" later "http://localhost:16686" can be accessed from browser)
   ### docker-compose --profile dmi-stub --profile policy-executor-stub up -d -> run CPS with stubbed dmi-plugin and policy executor stub (for policy executor service testing make POLICY_SERVICE_ENABLED "true")
-  ### to disable notifications make notification.enabled to false & comment out kafka/zookeeper services ###
+  ### to disable notifications make notification.enabled to false & comment out kafka/zookeeper services
   ### DEBUG: Look for '### DEBUG' comments to enable CPS-NCMP debugging
-  ### docker-compose --profile dmi-stub --project-name endurance --env-file config/endurance.env up -d -> run CPS with stubbed dmi-plugin for endurance testing
+  ### docker-compose --profile dmi-stub --project-name endurance --env-file env/endurance.env up -d -> run CPS with stubbed dmi-plugin for endurance testing
   ### docker-compose --profile dmi-stub --project-name endurance down --volumes
 
   dbpostgresql:
@@ -46,6 +46,13 @@ services:
         limits:
           cpus: '6'
           memory: 3G
+    healthcheck:
+      test: pg_isready   # This command runs inside the container, returning zero for success, non-zero for failure.
+      timeout: 10s       # Time-out of the above test command.
+      interval: 10s      # How often the health is run.
+      retries: 3         # If 3 health checks fail, the container is unhealthy.
+      start_period: 30s  # Ignore failed health checks for first 30 seconds, to give system time to start
+      # Full start up time allowed = 30 seconds start period + 3 tries * 10 seconds interval = 60 seconds
 
   cps-and-ncmp:
     image: ${DOCKER_REPO:-nexus3.onap.org:10003}/onap/cps-and-ncmp:${CPS_VERSION:-latest}
@@ -71,7 +78,7 @@ services:
       CPS_MONITORING_MICROMETER_JVM_EXTRAS: 'true'
       JAVA_TOOL_OPTIONS: "-XX:InitialRAMPercentage=70.0 -XX:MaxRAMPercentage=70.0"
       ### DEBUG: Uncomment next line to enable java debugging
-      ### JAVA_TOOL_OPTIONS: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
+      # JAVA_TOOL_OPTIONS: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
     restart: unless-stopped
     depends_on:
       - dbpostgresql
@@ -83,6 +90,12 @@ services:
           cpus: '3'
           memory: 3G
     memswap_limit: 3G
+    healthcheck:
+      test: wget -q -O - http://localhost:8080/actuator/health/readiness | grep -q '{"status":"UP"}'
+      interval: 10s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
 
   nginx:
     container_name: ${NGINX_CONTAINER_NAME:-nginx-loadbalancer}
@@ -94,6 +107,12 @@ services:
     volumes:
       - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./config/nginx/proxy_params:/etc/nginx/proxy_params
+    healthcheck:
+      test: service nginx status
+      interval: 10s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
 
   ### if kafka is not required comment out zookeeper and kafka ###
   zookeeper:
@@ -103,6 +122,12 @@ services:
       - ${ZOOKEEPER_PORT:-2181}:2181
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
+    healthcheck:
+      test: nc -z localhost 2181
+      interval: 10s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
 
   kafka:
     image: confluentinc/cp-kafka:7.8.0
@@ -117,6 +142,12 @@ services:
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,CONNECTIONS_FROM_HOST:PLAINTEXT
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,CONNECTIONS_FROM_HOST://localhost:9092
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    healthcheck:
+      test: kafka-topics --bootstrap-server kafka:29092 --list
+      interval: 10s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
 
   ncmp-dmi-plugin:
     container_name: ${NCMP_DMI_PLUGIN_CONTAINER_NAME:-ncmp-dmi-plugin}
@@ -142,6 +173,12 @@ services:
     restart: unless-stopped
     profiles:
       - dmi-service
+    healthcheck:
+      test: wget -q -O - http://localhost:8080/actuator/health/readiness | grep -q '{"status":"UP"}'
+      interval: 10s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
 
   ncmp-dmi-plugin-demo-and-csit-stub:
     container_name: ${NCMP_DMI_PLUGIN_DEMO_AND_CSIT_STUB_CONTAINER_NAME:-ncmp-dmi-plugin-demo-and-csit-stub}
@@ -161,6 +198,12 @@ services:
     profiles:
       - dmi-stub
       - dmi-service
+    healthcheck:
+      test: wget -q -O - http://localhost:8092/actuator/health/readiness | grep -q '{"status":"UP"}'
+      interval: 10s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
 
   policy-executor-stub:
     container_name: ${POLICY_EXECUTOR_STUB_CONTAINER_NAME:-policy-executor-stub}
@@ -170,6 +213,7 @@ services:
     restart: unless-stopped
     profiles:
       - policy-executor-stub
+    # Note policy-executor-stub does not have a healthcheck as it does not expose /actuator/health endpoint
 
   prometheus:
     container_name: ${PROMETHEUS_CONTAINER_NAME:-prometheus}
@@ -182,11 +226,6 @@ services:
       - prometheus_data:/prometheus
     environment:
       - PROMETHEUS_RETENTION_TIME=${PROMETHEUS_RETENTION_TIME:-30d}
-    healthcheck:
-      test: [ "CMD-SHELL", "wget --spider --quiet --tries=1 --timeout=10 http://localhost:9090/-/healthy || exit 1" ]
-      interval: 30s
-      timeout: 10s
-      retries: 3
     profiles:
       - monitoring
 
@@ -194,8 +233,7 @@ services:
     image: grafana/grafana:latest
     container_name: ${GRAFANA_CONTAINER_NAME:-grafana}
     depends_on:
-      prometheus:
-        condition: service_started
+      - prometheus
     ports:
       - ${GRAFANA_PORT:-3000}:3000
     volumes:
@@ -234,11 +272,12 @@ services:
       - tracing
 
   postgres-exporter:
+    container_name: ${POSTGRES_EXPORTER_CONTAINER_NAME:-postgres-exporter}
     image: quay.io/prometheuscommunity/postgres-exporter
     environment:
       - DATA_SOURCE_NAME=postgresql://${DB_USERNAME:-cps}:${DB_PASSWORD:-cps}@${DB_CONTAINER_NAME:-dbpostgresql}:5432/postgres?sslmode=disable
     ports:
-      - ${POSTGRES_EXPORTER_PORT_RANGE:-9187-9188}:9187
+      - ${POSTGRES_EXPORTER_PORT:-9187}:9187
     depends_on:
       - dbpostgresql
 
