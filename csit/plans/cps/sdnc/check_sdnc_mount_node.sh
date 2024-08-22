@@ -14,31 +14,9 @@
 # limitations under the License.
 # ============LICENSE_END=========================================================
 
-# WAIT 10 minutes maximum and test every 30 seconds if SDNC is up using HealthCheck API
-TIME_OUT=600
-INTERVAL=30
-TIME=0
-while [ "$TIME" -lt "$TIME_OUT" ]; do
-  response=$(curl --write-out '%{http_code}' --silent --output /dev/null -H "Authorization: Basic YWRtaW46S3A4Yko0U1hzek0wV1hsaGFrM2VIbGNzZTJnQXc4NHZhb0dHbUp2VXkyVQ==" -X POST -H "X-FromAppId: csit-sdnc" -H "X-TransactionId: csit-sdnc" -H "Accept: application/json" -H "Content-Type: application/json" http://$SDNC_HOST:$SDNC_PORT/restconf/operations/SLI-API:healthcheck );
-  echo $response
-
-  if [ "$response" == "200" ]; then
-    echo SDNC started in $TIME seconds
-    break;
-  fi
-
-  echo Sleep: $INTERVAL seconds before testing if SDNC is up. Total wait time up now is: $TIME seconds. Timeout is: $TIME_OUT seconds
-  sleep $INTERVAL
-  TIME=$(($TIME+$INTERVAL))
-done
-
-if [ "$TIME" -ge "$TIME_OUT" ]; then
-   echo TIME OUT: karaf session not started in $TIME_OUT seconds... Could cause problems for testing activities...
-fi
-
 ###################### mount pnf-sim as PNFDemo ##########################
-SDNC_TIME_OUT=250
-SDNC_INTERVAL=10
+SDNC_TIME_OUT=60
+SDNC_INTERVAL=50
 SDNC_TIME=0
 
 while [ "$SDNC_TIME" -le "$SDNC_TIME_OUT" ]; do
@@ -80,3 +58,5 @@ while [ "$SDNC_TIME" -le "$SDNC_TIME_OUT" ]; do
   SDNC_TIME=$((SDNC_TIME + SDNC_INTERVAL))
 
 done
+echo "Could not mount node to SNDC after $SDNC_TIME_OUT seconds, exiting"
+exit 1
