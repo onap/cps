@@ -16,6 +16,29 @@
       "message": "recheck",
       "revId": "dd61ea878fc20f420f76417efbca2750c45581a9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb0966d8_973f8fe0",
+        "filename": "k6-tests/ncmp/ncmp-kpi.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-22T11:52:42Z",
+      "side": 1,
+      "message": "NB: apologies for lack of understanding , where exactly this boolean is used??",
+      "range": {
+        "startLine": 33,
+        "startChar": 79,
+        "endLine": 33,
+        "endChar": 84
+      },
+      "revId": "dd61ea878fc20f420f76417efbca2750c45581a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
