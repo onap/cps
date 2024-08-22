@@ -18,7 +18,7 @@
 
 services:
 
-  ### docker-compose --profile dmi-service up -d -> run CPS services incl. dmi-plugin ###
+  ### docker-compose --profile dmi-service up -d --wait -> run CPS services incl. dmi-plugin ###
   ### docker-compose --profile dmi-stub --profile monitoring up -d -> run CPS with stubbed dmi-plugin (for registration performance testing)
   ### docker-compose --profile dmi-stub --profile tracing up -d -> run CPS with stubbed dmi-plugin (for open telemetry tracing testing make ONAP_TRACING_ENABLED "true" later "http://localhost:16686" can be accessed from browser)
   ### to disable notifications make notification.enabled to false & comment out kafka/zookeeper services ###
@@ -42,6 +42,11 @@ services:
         limits:
           cpus: '6'
           memory: 3G
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      timeout: 60s
+      retries: 6
 
   cps-and-ncmp:
     image: ${DOCKER_REPO:-nexus3.onap.org:10003}/onap/cps-and-ncmp:${CPS_VERSION:-latest}
@@ -60,7 +65,8 @@ services:
       ONAP_OTEL_EXPORTER_ENDPOINT: http://jaeger-service:4317
     restart: unless-stopped
     depends_on:
-      - dbpostgresql
+      dbpostgresql:
+        condition: service_healthy
     deploy:
       replicas: 2
       resources:
@@ -70,6 +76,12 @@ services:
         limits:
           cpus: '3'
           memory: 3G
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O - http://localhost:8080/actuator/health/readiness | grep -q '{\"status\":\"UP\"}'"]
+      interval: 10s
+      timeout: 60s
+      retries: 6
+      start_period: 30s
 
   nginx:
     container_name: nginx-loadbalancer
@@ -77,10 +89,16 @@ services:
     ports:
       - ${CPS_CORE_PORT:-8883}:80
     depends_on:
-      - cps-and-ncmp
+      cps-and-ncmp:
+        condition: service_healthy
     volumes:
       - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./config/nginx/proxy_params:/etc/nginx/proxy_params
+    healthcheck:
+      test: ["CMD-SHELL", "service nginx status"]
+      interval: 10s
+      timeout: 60s
+      retries: 6
 
   ### if kafka is not required comment out zookeeper and kafka ###
   zookeeper:
@@ -104,16 +122,48 @@ services:
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,CONNECTIONS_FROM_HOST:PLAINTEXT
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,CONNECTIONS_FROM_HOST://localhost:9092
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    healthcheck:
+      test: ["CMD-SHELL", "kafka-cluster cluster-id --bootstrap-server kafka:29092"]
+      interval: 10s
+      timeout: 60s
+      retries: 6
+
+  ncmp-dmi-plugin-demo-and-csit-stub:
+    container_name: ncmp-dmi-plugin-demo-and-csit-stub
+    image: ${DOCKER_REPO:-nexus3.onap.org:10003}/onap/dmi-plugin-demo-and-csit-stub:${DMI_DEMO_STUB_VERSION:-latest}
+    ports:
+      - ${DMI_DEMO_STUB_PORT:-8784}:8092
+    depends_on:
+      - kafka
+    environment:
+      KAFKA_BOOTSTRAP_SERVER: kafka:29092
+      NCMP_CONSUMER_GROUP_ID: ncmp-group
+      NCMP_ASYNC_M2M_TOPIC: ncmp-async-m2m
+      MODULE_REFERENCES_DELAY_MS: 100
+      MODULE_RESOURCES_DELAY_MS: 1000
+      READ_DATA_FOR_CM_HANDLE_DELAY_MS: 300
+      WRITE_DATA_FOR_CM_HANDLE_DELAY_MS: 670
+    restart: unless-stopped
+    profiles:
+      - dmi-stub
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O - http://localhost:8092/actuator/health/readiness | grep -q '{\"status\":\"UP\"}'"]
+      interval: 10s
+      timeout: 60s
+      retries: 6
 
   ncmp-dmi-plugin:
     container_name: ncmp-dmi-plugin
     image: ${DOCKER_REPO:-nexus3.onap.org:10003}/onap/ncmp-dmi-plugin:${DMI_VERSION:-1.6.0-SNAPSHOT-latest}
     ports:
       - ${DMI_PORT:-8783}:8080
+    depends_on:
+      - sdnc
+      - netconf-pnp-simulator
     environment:
       CPS_USERNAME: ${CPS_CORE_USERNAME:-cpsuser}
       CPS_PASSWORD: ${CPS_CORE_PASSWORD:-cpsr0cks!}
-      CPS_CORE_HOST: ${CPS_CORE_HOST:-cps-and-ncmp}
+      CPS_CORE_HOST: ${CPS_CORE_HOST:-nginx-loadbalancer}
       CPS_CORE_PORT: ${CPS_CORE_PORT:-8080}
       CPS_CORE_USERNAME: ${CPS_CORE_USERNAME:-cpsuser}
       CPS_CORE_PASSWORD: ${CPS_CORE_PASSWORD:-cpsr0cks!}
@@ -129,23 +179,90 @@ services:
     restart: unless-stopped
     profiles:
       - dmi-service
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O - http://localhost:8080/actuator/health/readiness | grep -q '{\"status\":\"UP\"}'"]
+      interval: 10s
+      timeout: 60s
+      retries: 6
 
-  ncmp-dmi-plugin-demo-and-csit-stub:
-    container_name: ncmp-dmi-plugin-demo-and-csit-stub
-    image: ${DOCKER_REPO:-nexus3.onap.org:10003}/onap/dmi-plugin-demo-and-csit-stub:${DMI_DEMO_STUB_VERSION:-latest}
+  sdnc:
+    image: onap/sdnc-image:${SDNC_VERSION:-2.2.3}
+    container_name: sdnc
+    entrypoint: ["/opt/onap/sdnc/bin/startODL.sh"]
     ports:
-      - ${DMI_DEMO_STUB_PORT:-8784}:8092
+      - "8282:8181"
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    hostname: sdnc
+    links:
+      - mariadb:dbhost
+      - mariadb:sdnctldb01
+      - mariadb:sdnctldb02
     environment:
-      KAFKA_BOOTSTRAP_SERVER: kafka:29092
-      NCMP_CONSUMER_GROUP_ID: ncmp-group
-      NCMP_ASYNC_M2M_TOPIC: ncmp-async-m2m
-      MODULE_REFERENCES_DELAY_MS: 100
-      MODULE_RESOURCES_DELAY_MS: 1000
-      READ_DATA_FOR_CM_HANDLE_DELAY_MS: 300
-      WRITE_DATA_FOR_CM_HANDLE_DELAY_MS: 670
-    restart: unless-stopped
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-password}
+      - MYSQL_USER=${MYSQL_USER:-sdnc}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD:-password}
+      - MYSQL_DATABASE=${MYSQL_DATABASE:-sdncdb}
+      - SDNC_CONFIG_DIR=/opt/onap/sdnc/data/properties
+      - SDNC_BIN=/opt/onap/sdnc/bin
+      - ODL_CERT_DIR=/opt/opendaylight/certs
+      - ODL_ADMIN_USERNAME=${ODL_USER:-admin}
+      - ODL_ADMIN_PASSWORD=${ODL_PASSWORD:-Kp8bJ4SXszM0WXlhak3eHlcse2gAw84vaoGGmJvUy2U}
+      - SDNC_DB_INIT=true
+      - SQL_CRYPTKEY=${SQL_CRYPTKEY:-fakECryptKey}
+    volumes:
+      - ./config/sdnc/certs/certs.properties:/opt/opendaylight/certs/certs.properties
+      - ./config/sdnc/certs/keys0.zip:/opt/opendaylight/certs/keys0.zip
+    dns:
+      - ${DNS_IP_ADDR-10.0.100.1}
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "30m"
+        max-file: "5"
     profiles:
-      - dmi-stub
+      - dmi-service
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O - --header 'Authorization: Basic YWRtaW46S3A4Yko0U1hzek0wV1hsaGFrM2VIbGNzZTJnQXc4NHZhb0dHbUp2VXkyVQ==' http://localhost:8181/restconf/operational/network-topology:network-topology"]
+      interval: 10s
+      timeout: 60s
+      retries: 6
+
+  mariadb:
+    image: mariadb:10.5
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-password}
+      - MYSQL_ROOT_HOST=%
+      - MYSQL_USER=${MYSQL_USER:-sdnc}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD:-password}
+      - MYSQL_DATABASE=${MYSQL_DATABASE:-sdncdb}
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "30m"
+        max-file: "5"
+    profiles:
+      - dmi-service
+    healthcheck:
+      test: ["CMD-SHELL", "healthcheck.sh --connect --innodb_initialized"]
+      interval: 10s
+      timeout: 60s
+      retries: 6
+
+  netconf-pnp-simulator:
+    image: blueonap/netconf-pnp-simulator:v2.8.6
+    container_name: netconf-simulator
+    restart: always
+    ports:
+      - "831:830"
+      - "6512:6513"
+    volumes:
+      - ./config/pnfsim/netconf-config:/config/modules/stores
+      - ./config/pnfsim/tls:/config/tls
+    profiles:
       - dmi-service
 
   policy-executor-stub:
