@@ -63,6 +63,30 @@
       },
       "revId": "dd61ea878fc20f420f76417efbca2750c45581a9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8521950_d1d12e74",
+        "filename": "k6-tests/ncmp/ncmp-kpi.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-22T14:08:45Z",
+      "side": 1,
+      "message": "oh.. okz 😊",
+      "parentUuid": "1ad77bea_1fc47e7c",
+      "range": {
+        "startLine": 33,
+        "startChar": 79,
+        "endLine": 33,
+        "endChar": 84
+      },
+      "revId": "dd61ea878fc20f420f76417efbca2750c45581a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
