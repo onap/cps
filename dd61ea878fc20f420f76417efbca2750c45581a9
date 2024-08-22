@@ -39,6 +39,30 @@
       },
       "revId": "dd61ea878fc20f420f76417efbca2750c45581a9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ad77bea_1fc47e7c",
+        "filename": "k6-tests/ncmp/ncmp-kpi.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-08-22T12:58:17Z",
+      "side": 1,
+      "message": "new Trend(name, isTime)\n    \nIt\u0027s a boolean specifying if the parameter is time value. k6 can use this to print the time unit \u0027ms\u0027 when outputting. It doesn\u0027t so much matter for us since we use custom CSV output anyway.",
+      "parentUuid": "eb0966d8_973f8fe0",
+      "range": {
+        "startLine": 33,
+        "startChar": 79,
+        "endLine": 33,
+        "endChar": 84
+      },
+      "revId": "dd61ea878fc20f420f76417efbca2750c45581a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
