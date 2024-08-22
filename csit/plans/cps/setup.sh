@@ -18,7 +18,7 @@
 # Modifications copyright (c) 2020-2021 Samsung Electronics Co., Ltd.
 # Modifications Copyright (C) 2021 Pantheon.tech
 # Modifications Copyright (C) 2021 Bell Canada.
-# Modifications Copyright (C) 2021-2024 Nordix Foundation.
+# Modifications Copyright (C) 2021-2025 Nordix Foundation.
 #
 # Branched from ccsdk/distribution to this repository Feb 23, 2021
 #
@@ -59,7 +59,7 @@ export $(cut -d= -f1 $WORKSPACE/plans/cps/test.properties)
 cd $CPS_HOME/docker-compose
 
 # start CPS/NCMP, DMI Plugin, and PostgreSQL containers with docker compose
-docker-compose --profile dmi-service up -d
+docker-compose --profile dmi-service up -d --wait
 
 ###################### setup sdnc #######################################
 source $WORKSPACE/plans/cps/sdnc/sdnc_setup.sh
