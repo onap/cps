@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright 2024 Nordix Foundation.
+# Copyright 2024-2025 Nordix Foundation.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,24 +18,15 @@
 testProfile=$1
 echo "Spinning off the CPS and NCMP containers for $testProfile testing..."
 
-if [[ "$testProfile" == "endurance" ]]; then
-  docker-compose -f ../docker-compose/docker-compose.yml --profile dmi-stub --project-name "$testProfile" --env-file ../docker-compose/config/endurance.env up --quiet-pull -d
-  CONTAINER_IDS=$(docker ps --filter "name=endurance-cps-and-ncmp" --format "{{.ID}}")
-else
-  docker-compose -f ../docker-compose/docker-compose.yml --profile dmi-stub --project-name "$testProfile" up --quiet-pull -d
-  CONTAINER_IDS=$(docker ps --filter "name=kpi-cps-and-ncmp" --format "{{.ID}}")
-fi
+ENV_FILE="../docker-compose/env/${testProfile}.env"
+docker-compose \
+  --file "../docker-compose/docker-compose.yml" \
+  --env-file "$ENV_FILE" \
+  --project-name "$testProfile" \
+  --profile dmi-stub \
+  up --quiet-pull --detach --wait || exit 1
 
-echo "Waiting for CPS to start..."
-READY_MESSAGE="Inventory Model updated successfully"
-
-# Check the logs for each container
-for CONTAINER_ID in $CONTAINER_IDS; do
-    echo "Checking logs for container: $CONTAINER_ID"
-    docker logs "$CONTAINER_ID" -f | grep -m 1 "$READY_MESSAGE" >/dev/null && echo "CPS is ready in container: $CONTAINER_ID" || true
-done
-
-# Output build information including git commit info
 echo "Build information:"
-curl http://localhost:8883/actuator/info
+CPS_CORE_PORT=$(awk -F= '/^CPS_CORE_PORT=/ {print $2}' "$ENV_FILE")
+curl --silent "http://localhost:$CPS_CORE_PORT/actuator/info"
 echo
