@@ -18,7 +18,7 @@
 
 services:
 
-  ### docker-compose --profile dmi-service up -d -> run CPS services incl. dmi-plugin ###
+  ### docker-compose --profile dmi-service up -d --wait -> run CPS services incl. dmi-plugin ###
   ### docker-compose --profile dmi-stub --profile monitoring up -d -> run CPS with stubbed dmi-plugin (for registration performance testing)
   ### docker-compose --profile dmi-stub --profile tracing up -d -> run CPS with stubbed dmi-plugin (for open telemetry tracing testing make ONAP_TRACING_ENABLED "true" later "http://localhost:16686" can be accessed from browser)
   ### to disable notifications make notification.enabled to false & comment out kafka/zookeeper services ###
@@ -42,6 +42,11 @@ services:
         limits:
           cpus: '6'
           memory: 3G
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   cps-and-ncmp:
     image: ${DOCKER_REPO:-nexus3.onap.org:10003}/onap/cps-and-ncmp:${CPS_VERSION:-latest}
@@ -60,7 +65,8 @@ services:
       ONAP_OTEL_EXPORTER_ENDPOINT: http://jaeger-service:4317
     restart: unless-stopped
     depends_on:
-      - dbpostgresql
+      dbpostgresql:
+        condition: service_healthy
     deploy:
       replicas: 2
       resources:
@@ -70,6 +76,12 @@ services:
         limits:
           cpus: '3'
           memory: 3G
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O - http://localhost:8080/actuator/health/readiness | grep -q '{\"status\":\"UP\"}'"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 60s
 
   nginx:
     container_name: nginx-loadbalancer
@@ -77,10 +89,17 @@ services:
     ports:
       - ${CPS_CORE_PORT:-8883}:80
     depends_on:
-      - cps-and-ncmp
+      cps-and-ncmp:
+        condition: service_healthy
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
       - ./proxy_params:/etc/nginx/proxy_params
+    healthcheck:
+      test: ["CMD", "service", "nginx", "status"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
 
   ### if kafka is not required comment out zookeeper and kafka ###
   zookeeper:
@@ -104,6 +123,11 @@ services:
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,CONNECTIONS_FROM_HOST:PLAINTEXT
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,CONNECTIONS_FROM_HOST://localhost:9092
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    healthcheck:
+      test: ["CMD-SHELL", "/bin/kafka-cluster cluster-id --bootstrap-server kafka:29092"]
+      interval: 1s
+      timeout: 60s
+      retries: 60
 
   ncmp-dmi-plugin:
     container_name: ncmp-dmi-plugin
@@ -129,6 +153,12 @@ services:
     restart: unless-stopped
     profiles:
       - dmi-service
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O - http://localhost:8080/actuator/health/readiness | grep -q '{\"status\":\"UP\"}'"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
 
   ncmp-dmi-plugin-demo-and-csit-stub:
     container_name: ncmp-dmi-plugin-demo-and-csit-stub
@@ -146,7 +176,12 @@ services:
     restart: unless-stopped
     profiles:
       - dmi-stub
-      - dmi-service
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O - http://localhost:8080/actuator/health/readiness | grep -q '{\"status\":\"UP\"}'"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
 
   policy-executor-stub:
     container_name: policy-executor-stub
