@@ -41,6 +41,8 @@ public class NcmpServiceCmHandle {
 
     private String cmHandleId;
 
+    private String dmiServiceName;
+
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     private Map<String, String> dmiProperties = Collections.emptyMap();
 
