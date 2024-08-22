@@ -18,24 +18,14 @@
 testProfile=$1
 echo "Spinning off the CPS and NCMP containers for $testProfile testing..."
 
-if [[ "$testProfile" == "endurance" ]]; then
-  docker-compose -f ../docker-compose/docker-compose.yml --profile dmi-stub --project-name "$testProfile" --env-file ../docker-compose/config/endurance.env up --quiet-pull -d
-  CONTAINER_IDS=$(docker ps --filter "name=endurance-cps-and-ncmp" --format "{{.ID}}")
-else
-  docker-compose -f ../docker-compose/docker-compose.yml --profile dmi-stub --project-name "$testProfile" up --quiet-pull -d
-  CONTAINER_IDS=$(docker ps --filter "name=kpi-cps-and-ncmp" --format "{{.ID}}")
-fi
-
-echo "Waiting for CPS to start..."
-READY_MESSAGE="Inventory Model updated successfully"
-
-# Check the logs for each container
-for CONTAINER_ID in $CONTAINER_IDS; do
-    echo "Checking logs for container: $CONTAINER_ID"
-    docker logs "$CONTAINER_ID" -f | grep -m 1 "$READY_MESSAGE" >/dev/null && echo "CPS is ready in container: $CONTAINER_ID" || true
-done
+docker-compose \
+  --file "../docker-compose/docker-compose.yml" \
+  --env-file "../docker-compose/env/${testProfile}.env" \
+  --project-name "$testProfile" \
+  --profile dmi-stub \
+  up --quiet-pull --detach --wait
 
 # Output build information including git commit info
 echo "Build information:"
-curl http://localhost:8883/actuator/info
+curl --silent http://localhost:8883/actuator/info
 echo
