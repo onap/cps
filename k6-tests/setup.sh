@@ -15,16 +15,4 @@
 # limitations under the License.
 #
 
-docker-compose -f ../docker-compose/docker-compose.yml --profile dmi-stub up -d
-
-echo "Waiting for CPS to start..."
-READY_MESSAGE="Processing module sync fetched 0 advised cm handles from DB"
-
-# Get the container IDs of the cps-and-ncmp replicas
-CONTAINER_IDS=$(docker ps --filter "name=cps-and-ncmp" --format "{{.ID}}")
-
-# Check the logs for each container
-for CONTAINER_ID in $CONTAINER_IDS; do
-    echo "Checking logs for container: $CONTAINER_ID"
-    docker logs "$CONTAINER_ID" -f | grep -m 1 "$READY_MESSAGE" >/dev/null && echo "CPS is ready in container: $CONTAINER_ID" || true
-done
+docker-compose -f ../docker-compose/docker-compose.yml --profile dmi-stub up -d --wait
