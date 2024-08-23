@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f680bd3f_b73dfc0d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-08-23T09:16:18Z",
+      "side": 1,
+      "message": "Solution will be discussed internally in a meeting.",
+      "revId": "36894e485ec327091daaf3f5d0855e710eb61a66",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7b0ddadb_821c5e6d",
@@ -79,6 +96,30 @@
       "side": 1,
       "message": "Okay, some refactoring may be needed then. Once possibly solution is to call applyCurrentTrustLevel from inside YangDataConvertor.toNcmpServiceCmHandle(yangModelCmHandle)\n\nThat should catch all cases.",
       "parentUuid": "b1ec6b17_c166f940",
+      "range": {
+        "startLine": 180,
+        "startChar": 80,
+        "endLine": 183,
+        "endChar": 52
+      },
+      "revId": "36894e485ec327091daaf3f5d0855e710eb61a66",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f5e151c_dd5227e9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/NetworkCmProxyInventoryFacade.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-08-23T09:16:18Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "18efb05b_4148185f",
       "range": {
         "startLine": 180,
         "startChar": 80,
@@ -160,6 +201,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c886fa3_a78d2c5c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/NetworkCmProxyInventoryFacade.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-08-23T09:16:18Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "954f7d3b_b121769a",
+      "range": {
+        "startLine": 209,
+        "startChar": 66,
+        "endLine": 210,
+        "endChar": 115
+      },
+      "revId": "36894e485ec327091daaf3f5d0855e710eb61a66",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c6971347_7912d274",
@@ -197,6 +262,30 @@
       "side": 1,
       "message": "Agree we can discuss with both internally and customer. Since, this can be a good optimization for cps other than going to db to get dmiServiceName. Because, there are a couple of place makes a db call to retrieve the dmiServiceName.",
       "parentUuid": "c6971347_7912d274",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 34
+      },
+      "revId": "36894e485ec327091daaf3f5d0855e710eb61a66",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccf635c8_0f099b4f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/models/NcmpServiceCmHandle.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-08-23T09:16:18Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "73d28cbf_0627cf33",
       "range": {
         "startLine": 43,
         "startChar": 0,
