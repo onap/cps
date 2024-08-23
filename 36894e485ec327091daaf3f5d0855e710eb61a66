@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "38de0f19_6954710b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-08-23T08:07:36Z",
+      "side": 1,
+      "message": "I ll set a review call to go through the commit. Thanks",
+      "revId": "36894e485ec327091daaf3f5d0855e710eb61a66",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7b0ddadb_821c5e6d",
@@ -14,6 +31,30 @@
       "writtenOn": "2024-08-22T16:37:41Z",
       "side": 1,
       "message": "The YangModelCmHandle here has the info we need, so pass it to the applyCurrentTrustLevel method:\n\n    final YangModelCmHandle inventoryPersistence.getYangModelCmHandle(cmHandleId);\n    final NcmpServiceCmHandle ncmpServiceCmHandle \u003d YangDataConverter.toNcmpServiceCmHandle(yangModelCmHandle);\n    final String dmiServiceName \u003d yangModelCmHandle.resolveDmiServiceName(DATA);\n    applyCurrentTrustLevel(ncmpServiceCmHandle, dmiServiceName);",
+      "range": {
+        "startLine": 180,
+        "startChar": 80,
+        "endLine": 183,
+        "endChar": 52
+      },
+      "revId": "36894e485ec327091daaf3f5d0855e710eb61a66",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1ec6b17_c166f940",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/NetworkCmProxyInventoryFacade.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-08-23T08:07:36Z",
+      "side": 1,
+      "message": "Correct, but this is not the only place which applies currentTrustLevel. There is also a method in the same which used by query cm handle APIs on line 139:\n    \n    public Collection\u003cNcmpServiceCmHandle\u003e executeCmHandleSearch(\n        final CmHandleQueryApiParameters cmHandleQueryApiParameters)",
+      "parentUuid": "7b0ddadb_821c5e6d",
       "range": {
         "startLine": 180,
         "startChar": 80,
@@ -49,6 +90,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e74ba7a8_e73cfeaa",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/NetworkCmProxyInventoryFacade.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-08-23T08:07:36Z",
+      "side": 1,
+      "message": "Good question, yes it was a bug. Since cm handle and dmi plugin relating to each other was considered in the epic in a way that either one was down, should make effective (resulting) trust level of cm handle \u0027NONE (untrusted)\u0027\n\nPreviously when doing get cm handle or query cm hanlde was returning only cm hanlde trust level without considering the latest health of dmi plugin.",
+      "parentUuid": "bf059692_6ace61ba",
+      "range": {
+        "startLine": 209,
+        "startChar": 66,
+        "endLine": 210,
+        "endChar": 115
+      },
+      "revId": "36894e485ec327091daaf3f5d0855e710eb61a66",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c6971347_7912d274",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/models/NcmpServiceCmHandle.java",
         "patchSetId": 1
@@ -60,6 +125,30 @@
       "writtenOn": "2024-08-22T16:16:23Z",
       "side": 1,
       "message": "It\u0027s not a good idea to change the public API without consulting stakeholders.",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 34
+      },
+      "revId": "36894e485ec327091daaf3f5d0855e710eb61a66",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73d28cbf_0627cf33",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/models/NcmpServiceCmHandle.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-08-23T08:07:36Z",
+      "side": 1,
+      "message": "Agree we can discuss with both internally and customer. Since, this can be a good optimization for cps other than going to db to get dmiServiceName. Because, there are a couple of place makes a db call to retrieve the dmiServiceName.",
+      "parentUuid": "c6971347_7912d274",
       "range": {
         "startLine": 43,
         "startChar": 0,
