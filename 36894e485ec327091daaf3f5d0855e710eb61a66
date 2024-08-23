@@ -67,6 +67,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "18efb05b_4148185f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/NetworkCmProxyInventoryFacade.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-08-23T09:06:17Z",
+      "side": 1,
+      "message": "Okay, some refactoring may be needed then. Once possibly solution is to call applyCurrentTrustLevel from inside YangDataConvertor.toNcmpServiceCmHandle(yangModelCmHandle)\n\nThat should catch all cases.",
+      "parentUuid": "b1ec6b17_c166f940",
+      "range": {
+        "startLine": 180,
+        "startChar": 80,
+        "endLine": 183,
+        "endChar": 52
+      },
+      "revId": "36894e485ec327091daaf3f5d0855e710eb61a66",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bf059692_6ace61ba",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/NetworkCmProxyInventoryFacade.java",
         "patchSetId": 1
@@ -102,6 +126,30 @@
       "side": 1,
       "message": "Good question, yes it was a bug. Since cm handle and dmi plugin relating to each other was considered in the epic in a way that either one was down, should make effective (resulting) trust level of cm handle \u0027NONE (untrusted)\u0027\n\nPreviously when doing get cm handle or query cm hanlde was returning only cm hanlde trust level without considering the latest health of dmi plugin.",
       "parentUuid": "bf059692_6ace61ba",
+      "range": {
+        "startLine": 209,
+        "startChar": 66,
+        "endLine": 210,
+        "endChar": 115
+      },
+      "revId": "36894e485ec327091daaf3f5d0855e710eb61a66",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "954f7d3b_b121769a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/NetworkCmProxyInventoryFacade.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-08-23T09:06:17Z",
+      "side": 1,
+      "message": "In that case we should not fix it here, but have a separate Jira ticket for returning effective trust level.",
+      "parentUuid": "e74ba7a8_e73cfeaa",
       "range": {
         "startLine": 209,
         "startChar": 66,
