@@ -15,29 +15,22 @@
 # limitations under the License.
 #
 
-set -o errexit  # Exit on most errors
-set -o nounset  # Disallow expansion of unset variables
-set -o pipefail # Use last non-zero exit code in a pipeline
-#set -o xtrace   # Uncomment for debugging
+echo "---> install-deps.sh"
+echo "Installing dependencies"
 
-on_exit() {
-  rc=$?
-  ./teardown.sh
-  popd
-  echo "TEST FAILURES: $rc"
-  exit $rc
-}
-trap on_exit EXIT
+# Create directory for downloaded binaries.
+mkdir -p bin
+touch bin/.gitignore
 
-pushd "$(dirname "$0")" || exit 1
+# Add it to the PATH, so downloaded versions will be used.
+export PATH="$(pwd)/bin:$PATH"
 
-# Install needed dependencies.
-source install-deps.sh
-
-# Run k6 test suite.
-./setup.sh
-./ncmp/run-all-tests.sh
-NCMP_RESULT=$?
-
-# Note that the final steps are done in on_exit function after this exit!
-exit $NCMP_RESULT
+# Download docker-compose.
+if [ ! -x bin/docker-compose ]; then
+  echo " Downloading docker-compose"
+  curl -s -L https://github.com/docker/compose/releases/download/v2.29.2/docker-compose-linux-x86_64 > bin/docker-compose
+  chmod +x bin/docker-compose
+else
+  echo " docker-compose already installed"
+fi
+docker-compose version
