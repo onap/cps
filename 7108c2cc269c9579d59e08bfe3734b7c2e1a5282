@@ -89,6 +89,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf8013b0_7f443bf9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/trustlevel/TrustLevelManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-08-23T12:37:56Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d8940540_c1990365",
+      "range": {
+        "startLine": 59,
+        "startChar": 8,
+        "endLine": 63,
+        "endChar": 9
+      },
+      "revId": "7108c2cc269c9579d59e08bfe3734b7c2e1a5282",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "73a9ec5c_8624e663",
@@ -102,6 +126,30 @@
       "writtenOn": "2024-08-23T11:08:30Z",
       "side": 1,
       "message": "Don\u0027t change the test to reflect broken behaviour, it would be better to put @Ignore on this test, and leave a TODO comment with new ticket number",
+      "range": {
+        "startLine": 146,
+        "startChar": 53,
+        "endLine": 146,
+        "endChar": 61
+      },
+      "revId": "7108c2cc269c9579d59e08bfe3734b7c2e1a5282",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78235df6_301757ae",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/trustlevel/TrustLevelManagerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-08-23T12:37:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73a9ec5c_8624e663",
       "range": {
         "startLine": 146,
         "startChar": 53,
