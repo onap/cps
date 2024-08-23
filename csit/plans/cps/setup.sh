@@ -59,10 +59,6 @@ export $(cut -d= -f1 $WORKSPACE/plans/cps/test.properties)
 ###################### setup cps-ncmp ############################
 cd $CPS_HOME/docker-compose
 
-curl -L https://github.com/docker/compose/releases/download/1.29.2/docker-compose-`uname -s`-`uname -m` > docker-compose
-chmod +x docker-compose
-docker-compose version
-
 # start CPS/NCMP, DMI Plugin, and PostgreSQL containers with docker compose
 docker-compose --profile dmi-service up -d
 
