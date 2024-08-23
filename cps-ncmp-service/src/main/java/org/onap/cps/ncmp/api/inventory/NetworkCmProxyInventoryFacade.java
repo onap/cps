@@ -45,6 +45,7 @@ import org.onap.cps.ncmp.impl.inventory.models.CmHandleQueryConditions;
 import org.onap.cps.ncmp.impl.inventory.models.InventoryQueryConditions;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.inventory.trustlevel.TrustLevelCacheConfig;
+import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher;
 import org.onap.cps.ncmp.impl.utils.YangDataConverter;
 import org.onap.cps.spi.model.ModuleDefinition;
 import org.onap.cps.spi.model.ModuleReference;
@@ -65,6 +66,7 @@ public class NetworkCmProxyInventoryFacade {
 
     @Qualifier(TrustLevelCacheConfig.TRUST_LEVEL_PER_CM_HANDLE)
     private final Map<String, TrustLevel> trustLevelPerCmHandle;
+    private final AlternateIdMatcher alternateIdMatcher;
 
     /**
      * Registration of Created, Removed, Updated or Upgraded CM Handles.
@@ -203,10 +205,11 @@ public class NetworkCmProxyInventoryFacade {
     /**
      * Get cm handle composite state for a given cm handle id.
      *
-     * @param cmHandleId cm handle identifier
+     * @param cmHandleReference cm handle or alternate identifier
      * @return cm handle state
      */
-    public CompositeState getCmHandleCompositeState(final String cmHandleId) {
+    public CompositeState getCmHandleCompositeState(final String cmHandleReference) {
+        final String cmHandleId = alternateIdMatcher.getCmHandleId(cmHandleReference);
         return inventoryPersistence.getYangModelCmHandle(cmHandleId).getCompositeState();
     }
 

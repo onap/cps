@@ -317,13 +317,13 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     /**
      * Get Cm Handle State by Cm Handle Id.
      *
-     * @param cmHandleId cm-handle identifier
+     * @param cmHandleReference cm-handle or alternate identifier
      * @return cm handle state
      */
     @Override
     public ResponseEntity<RestOutputCmHandleCompositeState> getCmHandleStateByCmHandleId(
-            final String cmHandleId) {
-        final CompositeState cmHandleState = networkCmProxyInventoryFacade.getCmHandleCompositeState(cmHandleId);
+            final String cmHandleReference) {
+        final CompositeState cmHandleState = networkCmProxyInventoryFacade.getCmHandleCompositeState(cmHandleReference);
         final RestOutputCmHandleCompositeState restOutputCmHandleCompositeState =
                 new RestOutputCmHandleCompositeState();
         restOutputCmHandleCompositeState.setState(
