@@ -165,7 +165,8 @@ public class NetworkCmProxyStubController implements NetworkCmProxyApi {
     }
 
     @Override
-    public ResponseEntity<RestOutputCmHandleCompositeState> getCmHandleStateByCmHandleId(final String cmHandle) {
+    public ResponseEntity<RestOutputCmHandleCompositeState> getCmHandleStateByCmHandleId(
+            final String cmHandleReference) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 

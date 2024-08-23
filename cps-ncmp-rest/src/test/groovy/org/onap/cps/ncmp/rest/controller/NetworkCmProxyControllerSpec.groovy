@@ -32,7 +32,6 @@ import groovy.json.JsonSlurper
 import org.mapstruct.factory.Mappers
 import org.onap.cps.TestUtils
 import org.onap.cps.events.EventsPublisher
-import org.onap.cps.ncmp.api.data.models.CmResourceAddress
 import org.onap.cps.ncmp.api.inventory.NetworkCmProxyInventoryFacade
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
@@ -95,7 +94,7 @@ class NetworkCmProxyControllerSpec extends Specification {
     NetworkCmProxyInventoryFacade mockNetworkCmProxyInventoryFacade = Mock()
 
     @SpringBean
-    AlternateIdMatcher mockalternateIdMatcher = Mock()
+    AlternateIdMatcher mockAlternateIdMatcher = Mock()
 
     @SpringBean
     ObjectMapper objectMapper = new ObjectMapper()
@@ -324,13 +323,13 @@ class NetworkCmProxyControllerSpec extends Specification {
             assertContainsPublicProperties(response)
     }
 
-    def 'Get Cm Handle composite state by Cm Handle id.'() {
+    def 'Get Cm Handle composite state by Cm Handle Reference.'() {
         given: 'a cm handle state endpoint'
-            def cmHandlePropertiesEndpoint = "$ncmpBasePathV1/ch/some-cm-handle/state"
+            def cmHandlePropertiesEndpoint = "$ncmpBasePathV1/ch/some-cm-handle-reference/state"
         and: 'some cm handle composite state'
             def compositeState = compositeStateTestObject()
         and: 'the service method is invoked with the cm handle id returning the cm handle composite state'
-            1 * mockNetworkCmProxyInventoryFacade.getCmHandleCompositeState('some-cm-handle') >> compositeState
+            1 * mockNetworkCmProxyInventoryFacade.getCmHandleCompositeState('some-cm-handle-reference') >> compositeState
         when: 'the cm handle state api is invoked'
             def response = mvc.perform(get(cmHandlePropertiesEndpoint)).andReturn().response
         then: 'the correct response is returned'
