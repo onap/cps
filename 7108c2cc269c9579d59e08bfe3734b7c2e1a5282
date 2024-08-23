@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "118dc35f_e83a3032",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-08-23T10:33:14Z",
+      "side": 1,
+      "message": "Upon internal tech. discussion decided to handle the bug around getEffectiveTrustLevel will be hanldled in a seprate ticket.",
+      "revId": "7108c2cc269c9579d59e08bfe3734b7c2e1a5282",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
