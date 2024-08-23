@@ -36,6 +36,7 @@ import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
 import org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.ncmp.impl.inventory.trustlevel.TrustLevelManager
+import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
 import org.onap.cps.spi.model.ConditionProperties
 import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Specification
@@ -48,8 +49,9 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
     def spiedJsonObjectMapper = Spy(new JsonObjectMapper(new ObjectMapper()))
     def mockInventoryPersistence = Mock(InventoryPersistence)
     def mockTrustLevelManager = Mock(TrustLevelManager)
-
-    def objectUnderTest = new NetworkCmProxyInventoryFacade(mockCmHandleRegistrationService, mockCmHandleQueryService, mockParameterizedCmHandleQueryService, mockInventoryPersistence, spiedJsonObjectMapper, mockTrustLevelManager)
+    def mockAlternateIdMatcher = Mock(AlternateIdMatcher)
+    def objectUnderTest = new NetworkCmProxyInventoryFacade(mockCmHandleRegistrationService, mockCmHandleQueryService, mockParameterizedCmHandleQueryService, mockInventoryPersistence, spiedJsonObjectMapper, mockTrustLevelManager, mockAlternateIdMatcher)
+    def trustLevelPerCmHandle = [:]
 
     def 'Update DMI Registration'() {
         given: 'an (updated) dmi plugin registration'
@@ -145,7 +147,7 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
             assert result == [ 'public prop' : 'some public prop' ]
     }
 
-    def 'Get cm handle composite state'() {
+    def 'Get cm handle composite state using #scenario'() {
         given: 'a yang modelled cm handle'
             def compositeState = new CompositeState(cmHandleState: CmHandleState.ADVISED,
                 lockReason: CompositeState.LockReason.builder().lockReasonCategory(LockReasonCategory.MODULE_SYNC_FAILED).details("lock details").build(),
@@ -154,13 +156,21 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
                 dataStores: dataStores())
             def dmiProperties = [new YangModelCmHandle.Property('prop', 'some DMI property')]
             def publicProperties = [new YangModelCmHandle.Property('public prop', 'some public prop')]
-            def yangModelCmHandle = new YangModelCmHandle(id:'some-cm-handle', dmiServiceName: 'some service name', dmiProperties: dmiProperties, publicProperties: publicProperties, compositeState: compositeState)
+            def cmHandleId = 'some-cm-handle'
+            def alternateId = 'some-alternate-id'
+            def yangModelCmHandle = new YangModelCmHandle(id:cmHandleId, alternateId: alternateId, dmiServiceName: 'some service name', dmiProperties: dmiProperties, publicProperties: publicProperties, compositeState: compositeState)
+        and: 'we have corresponding cm handle for the cm handle reference'
+            1 * mockAlternateIdMatcher.getCmHandleId(cmHandleRef) >> cmHandleId
         and: 'the system returns this yang modelled cm handle'
-            1 * mockInventoryPersistence.getYangModelCmHandle('some-cm-handle') >> yangModelCmHandle
+            1 * mockInventoryPersistence.getYangModelCmHandle(cmHandleId) >> yangModelCmHandle
         when: 'getting cm handle composite state for a given cm handle id from ncmp service'
-            def result = objectUnderTest.getCmHandleCompositeState('some-cm-handle')
+            def result = objectUnderTest.getCmHandleCompositeState(cmHandleRef)
         then: 'the result returns the correct data'
             assert result == compositeState
+        where: 'following cm handle reference is used'
+            scenario                              | cmHandleRef
+            'Cm Handle Reference as cm handle-id' | 'some-cm-handle'
+            'Cm Handle Reference as alternate-id' | 'some-alternate-id'
     }
 
     def 'Execute cm handle id search'() {
