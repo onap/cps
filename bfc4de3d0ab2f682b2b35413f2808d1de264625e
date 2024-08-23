@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4328eca_2e154be2",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-08-23T17:36:00Z",
+      "side": 1,
+      "message": "CSIT is failed because the docker-compose features used in this file are not supported by the version of docker-compose using in CSITs. A version tag can be supplied, however only upgrading docker-compose will fix the issue.",
+      "revId": "bfc4de3d0ab2f682b2b35413f2808d1de264625e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
