@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f956e95b_1cbeac18",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-08-23T16:53:12Z",
+      "side": 1,
+      "message": "I would prefer if the functions are not reordered, i.e. keep these two functions at the bottom of the file. It makes code review easier, and it aligns with our convention of public methods on top, private at the bottom. \nOther than that, I tested this commit locally and all works perfectly 👌",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 1
+      },
+      "revId": "db28f615725cdbb5da3cbc1a276b64463b307736",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
