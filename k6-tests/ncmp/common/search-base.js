@@ -22,19 +22,23 @@ import http from 'k6/http';
 import { NCMP_BASE_URL, CONTENT_TYPE_JSON_PARAM } from './utils.js';
 
 const SEARCH_PARAMETERS_PER_SCENARIO = {
-    'module': {
-        'cmHandleQueryParameters': [
+    "module-and-properties": {
+        "cmHandleQueryParameters": [
             {
-                'conditionName': 'hasAllModules',
-                'conditionParameters': [{'moduleName': 'ietf-yang-types'}]
+                "conditionName": "hasAllModules",
+                "conditionParameters": [{"moduleName": "ietf-yang-types"}]
+            },
+            {
+                "conditionName": "hasAllProperties",
+                "conditionParameters": [{"Color": "yellow"}]
             }
         ]
     },
-    'readyCmHandles': {
-        'cmHandleQueryParameters': [
+    "readyCmHandles": {
+        "cmHandleQueryParameters": [
             {
-                'conditionName': 'cmHandleWithCpsPath',
-                'conditionParameters': [{'cpsPath': '//state[@cm-handle-state="READY"]'}]
+                "conditionName": "cmHandleWithCpsPath",
+                "conditionParameters": [{"cpsPath": "//state[@cm-handle-state="READY"]"}]
             }
         ]
     }
