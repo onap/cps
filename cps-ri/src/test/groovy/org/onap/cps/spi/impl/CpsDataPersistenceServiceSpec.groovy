@@ -35,6 +35,7 @@ import org.onap.cps.spi.repository.AnchorRepository
 import org.onap.cps.spi.repository.DataspaceRepository
 import org.onap.cps.spi.repository.FragmentRepository
 import org.onap.cps.spi.utils.SessionManager
+import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.dao.DataIntegrityViolationException
 import spock.lang.Specification
@@ -143,7 +144,7 @@ class CpsDataPersistenceServiceSpec extends Specification {
             mockFragmentWithJson("{\"some attribute\": ${dataString}}")
         when: 'getting the data node represented by this fragment'
             def dataNode = objectUnderTest.getDataNodes('my-dataspace', 'my-anchor',
-                    '/parent-01', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+                    '/parent-01', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS, ContentType.JSON)
         then: 'the leaf is of the correct value and data type'
             def attributeValue = dataNode[0].leaves.get('some attribute')
             assert attributeValue == expectedValue
@@ -167,7 +168,7 @@ class CpsDataPersistenceServiceSpec extends Specification {
             mockFragmentWithJson('{invalid json')
         when: 'getting the data node represented by this fragment'
             objectUnderTest.getDataNodes('my-dataspace', 'my-anchor',
-                    '/parent-01', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+                    '/parent-01', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS, ContentType.JSON)
         then: 'a data validation exception is thrown'
             thrown(DataValidationException)
     }
