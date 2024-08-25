@@ -42,8 +42,10 @@ import org.onap.cps.spi.exceptions.ModelValidationException
 import org.onap.cps.spi.exceptions.NotFoundInDataspaceException
 import org.onap.cps.spi.exceptions.SchemaSetInUseException
 import org.onap.cps.spi.exceptions.DataspaceInUseException
+import org.onap.cps.spi.model.DataNode
 import org.onap.cps.utils.JsonObjectMapper
 import org.onap.cps.utils.PrefixResolver
+import org.onap.cps.utils.XmlFileUtils
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
@@ -52,6 +54,8 @@ import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Shared
 import spock.lang.Specification
+
+import javax.xml.transform.TransformerException
 
 import static org.springframework.http.HttpStatus.BAD_REQUEST
 import static org.springframework.http.HttpStatus.CONFLICT
@@ -86,6 +90,9 @@ class CpsRestExceptionHandlerSpec extends Specification {
 
     @SpringBean
     PrefixResolver prefixResolver = Mock()
+
+    @SpringBean
+    XmlFileUtils xmlFileUtils = Mock()
 
     @Autowired
     MockMvc mvc
@@ -194,6 +201,21 @@ class CpsRestExceptionHandlerSpec extends Specification {
             response.status == BAD_REQUEST.value()
         where: 'the following exceptions are thrown'
             exceptionThrown << [new DataNodeNotFoundException('', ''), new NotFoundInDataspaceException('', '')]
+    }
+
+    def 'Get request with TransformerException returns HTTP Status Internal Server Error'() {
+        given: 'TransformerException is thrown by the xmlFileUtils during XML conversion'
+            xmlFileUtils.convertDataMapsToXml(_) >> { throw new TransformerException("Error generating XML response") }
+        and: 'Mock services to return predefined values'
+            mockCpsDataService.getDataNodes(*_) >> DataNode
+        when: 'data get request is performed'
+            def response = mvc.perform(
+                get("$basePath/v2/dataspaces/$dataspaceName/anchors/$existingObjectName/node")
+                    .contentType(MediaType.APPLICATION_XML)
+                    .param('xpath', '/')
+            ).andReturn().response
+        then: 'response code indicates Internal Server Error'
+            response.status == INTERNAL_SERVER_ERROR.value()
     }
 
     /*
