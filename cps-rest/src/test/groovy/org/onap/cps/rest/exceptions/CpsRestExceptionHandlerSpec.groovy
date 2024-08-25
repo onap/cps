@@ -42,8 +42,10 @@ import org.onap.cps.spi.exceptions.ModelValidationException
 import org.onap.cps.spi.exceptions.NotFoundInDataspaceException
 import org.onap.cps.spi.exceptions.SchemaSetInUseException
 import org.onap.cps.spi.exceptions.DataspaceInUseException
+import org.onap.cps.spi.exceptions.UnsupportedContentTypeException
 import org.onap.cps.utils.JsonObjectMapper
 import org.onap.cps.utils.PrefixResolver
+import org.onap.cps.utils.XmlFileUtils
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
@@ -52,11 +54,11 @@ import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Shared
 import spock.lang.Specification
-
 import static org.springframework.http.HttpStatus.BAD_REQUEST
 import static org.springframework.http.HttpStatus.CONFLICT
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
 import static org.springframework.http.HttpStatus.NOT_FOUND
+import static org.springframework.http.HttpStatus.UNSUPPORTED_MEDIA_TYPE
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 
@@ -86,6 +88,9 @@ class CpsRestExceptionHandlerSpec extends Specification {
 
     @SpringBean
     PrefixResolver prefixResolver = Mock()
+
+    @SpringBean
+    XmlFileUtils xmlFileUtils = Mock()
 
     @Autowired
     MockMvc mvc
@@ -196,6 +201,34 @@ class CpsRestExceptionHandlerSpec extends Specification {
             exceptionThrown << [new DataNodeNotFoundException('', ''), new NotFoundInDataspaceException('', '')]
     }
 
+    def 'Get request with #exceptionThrown.class.simpleName returns HTTP Status Bad Request.'() {
+        given: '#exception is thrown the service indicating data is not found'
+            mockCpsDataService.getDataNodes(*_) >> { throw exceptionThrown }
+        when: 'data update request is performed'
+            def response = mvc.perform(
+                get("$basePath/v2/dataspaces/dataspace-name/anchors/anchor-name/node")
+                    .contentType(MediaType.APPLICATION_XML)
+                    .param('xpath', 'parent node xpath')
+            ).andReturn().response
+        then: 'response code indicates bad input parameters'
+            response.status == BAD_REQUEST.value()
+        where: 'the following exceptions are thrown'
+            exceptionThrown << [new DataValidationException('', '')]
+    }
+
+    def 'Request with unsupported content type returns HTTP Status Bad Request'() {
+        when: 'an unsupported content type is provided'
+            setupUnsupportedContentType('UNSUPPORTED_TYPE')
+        and: 'data update request is performed'
+            def response = mvc.perform(
+                get("$basePath/v2/dataspaces/dataspace-name/anchors/anchor-name/node")
+                    .contentType(MediaType.APPLICATION_XML)
+                    .param('xpath', 'parent node xpath')
+            ).andReturn().response
+        then: 'an Internal Server Error response is returned'
+            assertTestResponse(response, UNSUPPORTED_MEDIA_TYPE, "Unsupported content type: UNSUPPORTED_TYPE", null)
+    }
+
     /*
      * NB. The test uses 'get anchors' endpoint and associated service method invocation
      * to test the exception handling. The endpoint chosen is not a subject of test.
@@ -209,6 +242,10 @@ class CpsRestExceptionHandlerSpec extends Specification {
         return mvc.perform(
             get("$basePath/v1/dataspaces/dataspace-name/anchors"))
             .andReturn().response
+    }
+
+    def setupUnsupportedContentType(final String contentType) {
+        mockCpsDataService.getDataNodes(*_) >> { throw new UnsupportedContentTypeException("Unsupported content type: ${contentType}") }
     }
 
     static void assertTestResponse(response, expectedStatus, expectedErrorMessage, expectedErrorDetails) {
