@@ -40,6 +40,7 @@ import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.exceptions.ModelValidationException;
 import org.onap.cps.spi.exceptions.NotFoundInDataspaceException;
+import org.onap.cps.spi.exceptions.UnsupportedContentTypeException;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -84,6 +85,12 @@ public class CpsRestExceptionHandler {
 
     @ExceptionHandler({CpsException.class})
     public static ResponseEntity<Object> handleAnyOtherCpsExceptions(final Exception exception) {
+        return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception);
+    }
+
+    @ExceptionHandler(UnsupportedContentTypeException.class)
+    public ResponseEntity<Object> handleUnsupportedContentTypeException(final UnsupportedContentTypeException
+                                                                                exception) {
         return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception);
     }
 
