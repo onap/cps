@@ -2,6 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Deutsche Telekom AG
  *  Modifications Copyright (C) 2023-2024 Nordix Foundation.
+ *  Modifications Copyright (C) 2022-2024 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -26,6 +27,7 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -33,6 +35,7 @@ import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
@@ -154,6 +157,68 @@ public class XmlFileUtils {
         rootElement.appendChild(document.adoptNode(node));
         document.appendChild(rootElement);
         return document;
+    }
+
+    /**
+     * Convert a list of data maps to XML format.
+     *
+     * @param dataMaps List of data maps to convert
+     * @return XML string representation of the data maps
+     */
+    public static String convertDataMapsToXml(final List<Map<String, Object>> dataMaps)
+            throws ParserConfigurationException, TransformerException {
+        final DocumentBuilder documentBuilder = getDocumentBuilderFactory().newDocumentBuilder();
+        final Document document = documentBuilder.newDocument();
+        Element rootElement = null;
+        for (final Map<String, Object> dataMap : dataMaps) {
+            rootElement = processRootElement(document, rootElement, dataMap);
+        }
+        return transformDocumentToString(document);
+    }
+
+    private static Element processRootElement(final Document document, Element rootElement,
+                                              final Map<String, Object> dataMap) {
+        for (final Map.Entry<String, Object> entry : dataMap.entrySet()) {
+            if (rootElement == null) {
+                rootElement = document.createElement(entry.getKey());
+                document.appendChild(rootElement);
+            }
+            appendChildElements(document, rootElement, entry.getValue());
+        }
+        return rootElement;
+    }
+
+    private static String transformDocumentToString(final Document document)
+            throws TransformerException {
+        final Transformer transformer = getTransformerFactory().newTransformer();
+        transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
+        final StringWriter writer = new StringWriter();
+        final StreamResult result = new StreamResult(writer);
+        final DOMSource source = new DOMSource(document);
+        transformer.transform(source, result);
+        return writer.toString();
+    }
+
+    private static void appendChildElements(final Document document, final Element parentElement,
+                                            final Object xmlContent) {
+        if (xmlContent instanceof Map) {
+            final Map<String, Object> map = (Map<String, Object>) xmlContent;
+            for (final Map.Entry<String, Object> entry : map.entrySet()) {
+                if (entry.getKey() != null && entry.getValue() != null) {
+                    final String key = entry.getKey();
+                    final Element element = document.createElement(key);
+                    appendChildElements(document, element, entry.getValue());
+                    parentElement.appendChild(element);
+                }
+            }
+        } else if (xmlContent instanceof List) {
+            final List<Object> list = (List<Object>) xmlContent;
+            for (final Object element : list) {
+                appendChildElements(document, parentElement, element);
+            }
+        } else {
+            parentElement.appendChild(document.createTextNode(xmlContent.toString()));
+        }
     }
 
     private static DocumentBuilderFactory getDocumentBuilderFactory() {
