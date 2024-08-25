@@ -26,11 +26,7 @@ import {
     makeCustomSummaryReport, makeBatchOfCmHandleIds, DATA_OPERATION_READ_BATCH_SIZE,
     TOPIC_DATA_OPERATIONS_BATCH_READ, KAFKA_BOOTSTRAP_SERVERS, REGISTRATION_BATCH_SIZE
 } from './common/utils.js';
-import {
-    createCmHandles,
-    deleteCmHandles,
-    waitForAllCmHandlesToBeReady
-} from './common/cmhandle-crud.js';
+import { createCmHandles, deleteCmHandles, waitForAllCmHandlesToBeReady } from './common/cmhandle-crud.js';
 import { executeCmHandleSearch, executeCmHandleIdSearch } from './common/search-base.js';
 import { passthroughRead, passthroughReadWithAltId, passthroughWrite, batchRead } from './common/passthrough-crud.js';
 
@@ -39,6 +35,7 @@ let cmHandlesDeletedPerSecondTrend = new Trend('cmhandles_deleted_per_second', f
 let passthroughReadNcmpOverheadTrend = new Trend('ncmp_overhead_passthrough_read', true);
 let passthroughReadNcmpOverheadTrendWithAlternateId = new Trend('ncmp_overhead_passthrough_read_alt_id', true);
 let passthroughWriteNcmpOverheadTrend = new Trend('ncmp_overhead_passthrough_write', true);
+let passthroughWriteNcmpOverheadTrendWithAlternateId = new Trend('ncmp_overhead_passthrough_write_alt_id', true);
 let idSearchDurationTrend = new Trend('id_search_duration', true);
 let cmSearchDurationTrend = new Trend('cm_search_duration', true);
 let dataOperationsBatchReadCmHandlePerSecondTrend = new Trend('data_operations_batch_read_cmhandles_per_second', false);
@@ -56,32 +53,38 @@ export const options = {
     scenarios: {
         passthrough_read: {
             executor: 'constant-vus',
-            exec: 'passthrough_read',
-            vus: 9,
+            exec: 'executePassthroughReadScenario',
+            vus: 4,
             duration: DURATION,
         },
         passthrough_read_alt_id: {
             executor: 'constant-vus',
-            exec: 'passthrough_read_alt_id',
-            vus: 1,
+            exec: 'executePassthroughReadAltIdScenario',
+            vus: 4,
             duration: DURATION,
         },
         passthrough_write: {
             executor: 'constant-vus',
-            exec: 'passthrough_write',
-            vus: 10,
+            exec: 'executePassthroughWriteScenario',
+            vus: 4,
             duration: DURATION,
         },
-        id_search_module: {
+        passthrough_write_alt_id: {
             executor: 'constant-vus',
-            exec: 'id_search_module',
-            vus: 3,
+            exec: 'executePassthroughWriteAltIdScenario',
+            vus: 4,
             duration: DURATION,
         },
-        cm_search_module: {
+        cm_handle_id_search: {
             executor: 'constant-vus',
-            exec: 'cm_search_module',
-            vus: 3,
+            exec: 'executeCmHandleIdSearchScenario',
+            vus: 5,
+            duration: DURATION,
+        },
+        cm_handle_search: {
+            executor: 'constant-vus',
+            exec: 'executeCmHandleSearchScenario',
+            vus: 5,
             duration: DURATION,
         },
         data_operation_send_async_http_request: {
@@ -105,11 +108,12 @@ export const options = {
         'http_req_failed': ['rate == 0'],
         'cmhandles_created_per_second': ['avg >= 22'],
         'cmhandles_deleted_per_second': ['avg >= 22'],
-        'ncmp_overhead_passthrough_read': ['avg <= 100'],
-        'ncmp_overhead_passthrough_read_alt_id': ['avg <= 100'],
-        'ncmp_overhead_passthrough_write': ['avg <= 100'],
-        'id_search_duration': ['avg <= 625'],
-        'cm_search_duration': ['avg <= 13000'],
+        'ncmp_overhead_passthrough_read': ['avg <= 40'],
+        'ncmp_overhead_passthrough_write': ['avg <= 40'],
+        'ncmp_overhead_passthrough_read_alt_id': ['avg <= 40'],
+        'ncmp_overhead_passthrough_write_alt_id': ['avg <= 40'],
+        'id_search_duration': ['avg <= 2000'],
+        'cm_search_duration': ['avg <= 15000'],
         'data_operations_batch_read_cmhandles_per_second': ['avg >= 150'],
     },
 };
@@ -148,40 +152,48 @@ export function teardown() {
     cmHandlesDeletedPerSecondTrend.add(TOTAL_CM_HANDLES / totalDeregistrationTimeInSeconds);
 }
 
-export function passthrough_read() {
-    const response = passthroughRead();
+export function executePassthroughReadScenario() {
+    const response = passthroughRead(false);
     if (check(response, { 'passthrough read status equals 200': (r) => r.status === 200 })) {
         const overhead = response.timings.duration - READ_DATA_FOR_CM_HANDLE_DELAY_MS;
         passthroughReadNcmpOverheadTrend.add(overhead);
     }
 }
 
-export function passthrough_read_alt_id() {
-    const response = passthroughReadWithAltId();
+export function executePassthroughReadAltIdScenario() {
+    const response = passthroughRead(true);
     if (check(response, { 'passthrough read with alternate Id status equals 200': (r) => r.status === 200 })) {
         const overhead = response.timings.duration - READ_DATA_FOR_CM_HANDLE_DELAY_MS;
         passthroughReadNcmpOverheadTrendWithAlternateId.add(overhead);
     }
 }
 
-export function passthrough_write() {
-    const response = passthroughWrite();
+export function executePassthroughWriteScenario() {
+    const response = passthroughWrite(false);
     if (check(response, { 'passthrough write status equals 201': (r) => r.status === 201 })) {
         const overhead = response.timings.duration - WRITE_DATA_FOR_CM_HANDLE_DELAY_MS;
         passthroughWriteNcmpOverheadTrend.add(overhead);
     }
 }
 
-export function id_search_module() {
-    const response = executeCmHandleIdSearch('module');
+export function executePassthroughWriteAltIdScenario() {
+    const response = passthroughWrite(true);
+    if (check(response, { 'passthrough write with alternate Id status equals 201': (r) => r.status === 201 })) {
+        const overhead = response.timings.duration - WRITE_DATA_FOR_CM_HANDLE_DELAY_MS;
+        passthroughWriteNcmpOverheadTrendWithAlternateId.add(overhead);
+    }
+}
+
+export function executeCmHandleIdSearchScenario() {
+    const response = executeCmHandleIdSearch('module-and-property');
     if (check(response, { 'CM handle ID search status equals 200': (r) => r.status === 200 })) {
         check(response, { 'CM handle ID search returned expected CM-handles': (r) => r.json('#') === TOTAL_CM_HANDLES });
         idSearchDurationTrend.add(response.timings.duration);
     }
 }
 
-export function cm_search_module() {
-    const response = executeCmHandleSearch('module');
+export function executeCmHandleSearchScenario() {
+    const response = executeCmHandleSearch('module-and-property');
     if (check(response, { 'CM handle search status equals 200': (r) => r.status === 200 })) {
         check(response, { 'CM handle search returned expected CM-handles': (r) => r.json('#') === TOTAL_CM_HANDLES });
         cmSearchDurationTrend.add(response.timings.duration);

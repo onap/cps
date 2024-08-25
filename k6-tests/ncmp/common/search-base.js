@@ -22,11 +22,15 @@ import http from 'k6/http';
 import { NCMP_BASE_URL, CONTENT_TYPE_JSON_PARAM } from './utils.js';
 
 const SEARCH_PARAMETERS_PER_SCENARIO = {
-    'module': {
+    'module-and-property': {
         'cmHandleQueryParameters': [
             {
                 'conditionName': 'hasAllModules',
                 'conditionParameters': [{'moduleName': 'ietf-yang-types-1'}]
+            },
+            {
+                'conditionName': 'hasAllProperties',
+                'conditionParameters': [{'Color': 'yellow'}]
             }
         ]
     },
