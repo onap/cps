@@ -19,38 +19,24 @@
  */
 
 import http from 'k6/http';
-import {
-    CONTENT_TYPE_JSON_PARAM,
-    getRandomCmHandleId,
-    NCMP_BASE_URL,
-    TOPIC_DATA_OPERATIONS_BATCH_READ
-} from './utils.js';
+import { randomIntBetween } from 'https://jslib.k6.io/k6-utils/1.2.0/index.js';
+import { TOTAL_CM_HANDLES, CONTENT_TYPE_JSON_PARAM, NCMP_BASE_URL, TOPIC_DATA_OPERATIONS_BATCH_READ } from './utils.js';
 
-export function passthroughRead() {
-    const cmHandleId = getRandomCmHandleId();
+export function passthroughRead(useAlternateId) {
+    const cmHandleReference = getRandomCmHandleReference(useAlternateId);
     const resourceIdentifier = 'my-resource-identifier';
     const includeDescendants = true;
     const datastoreName = 'ncmp-datastore:passthrough-operational';
-    const url = `${NCMP_BASE_URL}/ncmp/v1/ch/${cmHandleId}/data/ds/${datastoreName}?resourceIdentifier=${resourceIdentifier}&include-descendants=${includeDescendants}`
+    const url = `${NCMP_BASE_URL}/ncmp/v1/ch/${cmHandleReference}/data/ds/${datastoreName}?resourceIdentifier=${resourceIdentifier}&include-descendants=${includeDescendants}`
     const response = http.get(url);
     return response;
 }
 
-export function passthroughReadWithAltId() {
-    const cmHandleId = getRandomCmHandleId();
-    const resourceIdentifier = 'my-resource-identifier';
-    const includeDescendants = true;
-    const datastoreName = 'ncmp-datastore:passthrough-operational';
-    const url = `${NCMP_BASE_URL}/ncmp/v1/ch/alt-${cmHandleId}/data/ds/${datastoreName}?resourceIdentifier=${resourceIdentifier}&include-descendants=${includeDescendants}`
-    const response = http.get(url);
-    return response;
-}
-
-export function passthroughWrite() {
-    const cmHandleId = getRandomCmHandleId();
+export function passthroughWrite(useAlternateId) {
+    const cmHandleReference = getRandomCmHandleReference(useAlternateId);
     const resourceIdentifier = 'my-resource-identifier';
     const datastoreName = 'ncmp-datastore:passthrough-running';
-    const url = `${NCMP_BASE_URL}/ncmp/v1/ch/${cmHandleId}/data/ds/${datastoreName}?resourceIdentifier=${resourceIdentifier}`
+    const url = `${NCMP_BASE_URL}/ncmp/v1/ch/${cmHandleReference}/data/ds/${datastoreName}?resourceIdentifier=${resourceIdentifier}`
     const body = `{"neType": "BaseStation"}`
     const response = http.post(url, JSON.stringify(body), CONTENT_TYPE_JSON_PARAM);
     return response;
@@ -72,4 +58,9 @@ export function batchRead(cmHandleIds) {
     };
     const response = http.post(url, JSON.stringify(payload), CONTENT_TYPE_JSON_PARAM);
     return response;
+}
+
+function getRandomCmHandleReference(useAlternateId) {
+    const prefix = useAlternateId ? 'alt' : 'ch';
+    return `${prefix}-${randomIntBetween(1, TOTAL_CM_HANDLES)}`;
 }
