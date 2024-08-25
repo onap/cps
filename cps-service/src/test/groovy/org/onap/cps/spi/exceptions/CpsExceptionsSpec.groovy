@@ -2,6 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
+ *  Modifications Copyright (C) 2024 Tech Mahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -178,5 +179,12 @@ class CpsExceptionsSpec extends Specification {
         expect: 'the exception has the correct message with dataspace name and provided details'
             exception.message == "Dataspace with name ${dataspaceName} is being used."
             exception.details == providedDetails
+    }
+
+    def 'Creating a exception for UnsupportedContentType.'() {
+        given: 'a model validation exception is created'
+            def exception = new UnsupportedContentTypeException(providedMessage)
+        expect: 'the exception has the provided message'
+            exception.message == providedMessage
     }
 }

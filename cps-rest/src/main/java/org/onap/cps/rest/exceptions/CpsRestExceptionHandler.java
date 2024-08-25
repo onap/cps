@@ -2,7 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Pantheon.tech
  *  Modifications Copyright (C) 2021-2023 Nordix Foundation
- *  Modifications Copyright (C) 2022 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2022-2024 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -40,6 +40,7 @@ import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.exceptions.ModelValidationException;
 import org.onap.cps.spi.exceptions.NotFoundInDataspaceException;
+import org.onap.cps.spi.exceptions.UnsupportedContentTypeException;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -85,6 +86,12 @@ public class CpsRestExceptionHandler {
     @ExceptionHandler({CpsException.class})
     public static ResponseEntity<Object> handleAnyOtherCpsExceptions(final Exception exception) {
         return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception);
+    }
+
+    @ExceptionHandler({UnsupportedContentTypeException.class})
+    public ResponseEntity<Object> handleUnsupportedContentTypeException(final UnsupportedContentTypeException
+                                                                                exception) {
+        return buildErrorResponse(HttpStatus.UNSUPPORTED_MEDIA_TYPE, exception);
     }
 
     private static ResponseEntity<Object> buildErrorResponse(final HttpStatus status, final Exception exception) {
