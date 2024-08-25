@@ -32,7 +32,7 @@ export function createCmHandles(cmHandleIds) {
         "dmiPlugin": DMI_PLUGIN_URL,
         "createdCmHandles": cmHandleIds.map((cmHandleId, index) => ({
             "cmHandle": cmHandleId,
-            "alternateId": `alt-${cmHandleId}`,
+            "alternateId": cmHandleId.replace('ch-', 'alt-'),
             "moduleSetTag": MODULE_SET_TAGS[index % MODULE_SET_TAGS.length],
             "cmHandleProperties": {"neType": "RadioNode"},
             "publicCmHandleProperties": {
