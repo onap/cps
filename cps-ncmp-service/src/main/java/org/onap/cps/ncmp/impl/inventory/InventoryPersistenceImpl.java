@@ -87,7 +87,8 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
     @Override
     public CompositeState getCmHandleState(final String cmHandleId) {
         final DataNode stateAsDataNode = cpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                        getXPathForCmHandleById(cmHandleId) + "/state", FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+                        getXPathForCmHandleById(cmHandleId) + "/state",
+                        FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS, ContentType.JSON)
                 .iterator().next();
         cpsValidator.validateNameCharacters(cmHandleId);
         return new CompositeStateBuilder().fromDataNode(stateAsDataNode).build();
