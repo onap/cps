@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6826915_871637de",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-26T15:37:44Z",
+      "side": 1,
+      "message": "fine by me.\ndiscussed on the comment that I made previously on the default trust level.\nIt will eventually be corrected by the watchdog.",
+      "revId": "80cde8a8fe786fd811191586474fabfcf9cdeda2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6debdc7d_e4d5e91b",
