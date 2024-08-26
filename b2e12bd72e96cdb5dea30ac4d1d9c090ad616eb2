@@ -60,6 +60,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "764c45cb_f5e75e0f",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-26T15:39:03Z",
+      "side": 1,
+      "message": "i see there are different values here.\nhttps://jira.onap.org/browse/CPS-2343",
+      "parentUuid": "9b0a2a4a_9115853e",
+      "range": {
+        "startLine": 198,
+        "startChar": 16,
+        "endLine": 203,
+        "endChar": 49
+      },
+      "revId": "b2e12bd72e96cdb5dea30ac4d1d9c090ad616eb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "520ed06f_fb0441b4",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/PolicyExecutorHttpClientConfig.java",
         "patchSetId": 1
