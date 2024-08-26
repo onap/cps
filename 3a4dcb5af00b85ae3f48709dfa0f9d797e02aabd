@@ -60,6 +60,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "67eaf5d1_a09622b4",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-26T16:46:37Z",
+      "side": 1,
+      "message": "are double quotes never needed? WE do use them a bit in this config file?!",
+      "parentUuid": "2404a7d2_b3049f47",
+      "range": {
+        "startLine": 194,
+        "startChar": 21,
+        "endLine": 194,
+        "endChar": 39
+      },
+      "revId": "3a4dcb5af00b85ae3f48709dfa0f9d797e02aabd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "da66bf79_fd8f123d",
         "filename": "cps-application/src/main/resources/application.yml",
         "patchSetId": 2
@@ -106,6 +130,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9405a7e0_57e99681",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-26T16:46:37Z",
+      "side": 1,
+      "message": "i just copied from other services. Until we performance test it wont matter so much",
+      "parentUuid": "8f4227a2_a3d26004",
+      "range": {
+        "startLine": 198,
+        "startChar": 15,
+        "endLine": 198,
+        "endChar": 50
+      },
+      "revId": "3a4dcb5af00b85ae3f48709dfa0f9d797e02aabd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e221102d_af7f3f00",
         "filename": "cps-application/src/main/resources/application.yml",
         "patchSetId": 2
@@ -117,6 +165,30 @@
       "writtenOn": "2024-08-26T16:41:27Z",
       "side": 1,
       "message": "Same as above if we really  need pool size of this?",
+      "range": {
+        "startLine": 199,
+        "startChar": 14,
+        "endLine": 200,
+        "endChar": 42
+      },
+      "revId": "3a4dcb5af00b85ae3f48709dfa0f9d797e02aabd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5bd6654_93d52a45",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-26T16:46:37Z",
+      "side": 1,
+      "message": "i just copied from other services. Until we performance test it wont matter so much",
+      "parentUuid": "e221102d_af7f3f00",
       "range": {
         "startLine": 199,
         "startChar": 14,
@@ -175,6 +247,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "63ad280c_12547006",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/PolicyExecutorHttpClientConfigSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-26T16:46:37Z",
+      "side": 1,
+      "message": "well spotted, i missed this one",
+      "parentUuid": "9c8b7a13_e5dcce5b",
+      "range": {
+        "startLine": 37,
+        "startChar": 54,
+        "endLine": 37,
+        "endChar": 59
+      },
+      "revId": "3a4dcb5af00b85ae3f48709dfa0f9d797e02aabd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "61aa9a1f_d77b6a2d",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/policyexecutor/PolicyExecutorWebClientConfigurationSpec.groovy",
         "patchSetId": 2
@@ -186,6 +282,30 @@
       "writtenOn": "2024-08-26T16:41:27Z",
       "side": 1,
       "message": "NB: Can we make this block common for this and  DmiWebClientsConfigurationSpec ?",
+      "range": {
+        "startLine": 35,
+        "startChar": 3,
+        "endLine": 40,
+        "endChar": 5
+      },
+      "revId": "3a4dcb5af00b85ae3f48709dfa0f9d797e02aabd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "406ccfd8_e4e093e4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/policyexecutor/PolicyExecutorWebClientConfigurationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-26T16:46:37Z",
+      "side": 1,
+      "message": "not worth it I think",
+      "parentUuid": "61aa9a1f_d77b6a2d",
       "range": {
         "startLine": 35,
         "startChar": 3,
