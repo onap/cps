@@ -188,22 +188,35 @@ logging:
             onap:
                 cps: INFO
 ncmp:
+    policy-executor:
+        enabled: true
+        server:
+            address: "http://localhost"
+            port: "8785"
+        httpclient:
+            all-services:
+                maximumInMemorySizeInMegabytes: 16
+                maximumConnectionsTotal: 100
+                pendingAcquireMaxCount: 50
+                connectionTimeoutInSeconds: 30
+                readTimeoutInSeconds: 30
+                writeTimeoutInSeconds: 30
     dmi:
         httpclient:
             data-services:
+                maximumInMemorySizeInMegabytes: 16
+                maximumConnectionsTotal: 100
+                pendingAcquireMaxCount: 50
                 connectionTimeoutInSeconds: 30
                 readTimeoutInSeconds: 30
                 writeTimeoutInSeconds: 30
-                maximumConnectionsTotal: 100
-                pendingAcquireMaxCount: 50
-                maximumInMemorySizeInMegabytes: 16
             model-services:
+                maximumInMemorySizeInMegabytes: 16
+                maximumConnectionsTotal: 100
+                pendingAcquireMaxCount: 50
                 connectionTimeoutInSeconds: 30
                 readTimeoutInSeconds: 30
                 writeTimeoutInSeconds: 30
-                maximumConnectionsTotal: 100
-                pendingAcquireMaxCount: 50
-                maximumInMemorySizeInMegabytes: 16
         auth:
             username: ${DMI_USERNAME:cpsuser}
             password: ${DMI_PASSWORD:cpsr0cks!}

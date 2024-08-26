@@ -39,7 +39,6 @@ class DataJobResultServiceSpec extends CpsIntegrationSpecBase {
         when: 'the data job status checked'
             def result = dataJobResultService.getDataJobResult(authorization, dmiServiceName, dataProducerId, dataProducerJobId, destination)
         then: 'the status is that defined in the mock service.'
-            assert result != null
             assert result == '{ "result": "some result"}'
     }
 }

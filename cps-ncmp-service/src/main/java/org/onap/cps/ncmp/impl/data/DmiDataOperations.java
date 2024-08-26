@@ -41,6 +41,7 @@ import org.onap.cps.ncmp.api.exceptions.DmiClientRequestException;
 import org.onap.cps.ncmp.impl.data.models.DmiDataOperation;
 import org.onap.cps.ncmp.impl.data.models.DmiDataOperationRequest;
 import org.onap.cps.ncmp.impl.data.models.DmiOperationCmHandle;
+import org.onap.cps.ncmp.impl.data.policyexecutor.PolicyExecutor;
 import org.onap.cps.ncmp.impl.data.utils.DmiDataOperationsHelper;
 import org.onap.cps.ncmp.impl.dmi.DmiProperties;
 import org.onap.cps.ncmp.impl.dmi.DmiRestClient;

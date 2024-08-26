@@ -47,15 +47,26 @@ ncmp:
     dmi:
         httpclient:
             data-services:
-                pendingAcquireMaxCount: 22
-                connectionTimeoutInSeconds: 123
-                maximumInMemorySizeInMegabytes: 7
-                readTimeoutInSeconds: 33
+                maximumInMemorySizeInMegabytes: 1
+                maximumConnectionsTotal: 2
+                pendingAcquireMaxCount: 3
+                connectionTimeoutInSeconds: 4
+                readTimeoutInSeconds: 5
+                writeTimeoutInSeconds: 6
             model-services:
-                pendingAcquireMaxCount: 44
-                connectionTimeoutInSeconds: 456
-                maximumInMemorySizeInMegabytes: 8
-                maximumConnectionsTotal: 111
+                maximumInMemorySizeInMegabytes: 11
+                maximumConnectionsTotal: 12
+                pendingAcquireMaxCount: 13
+                connectionTimeoutInSeconds: 14
+                readTimeoutInSeconds: 15
+                writeTimeoutInSeconds: 16
+            healthCheckServices:
+                maximumInMemorySizeInMegabytes: 21
+                maximumConnectionsTotal: 22
+                pendingAcquireMaxCount: 23
+                connectionTimeoutInSeconds: 24
+                readTimeoutInSeconds: 25
+                writeTimeoutInSeconds: 26
         auth:
             username: some-user
             password: some-password
@@ -75,6 +86,14 @@ ncmp:
         server:
             address: "http://localhost"
             port: "8785"
+        httpclient:
+            all-services:
+                maximumInMemorySizeInMegabytes: 31
+                maximumConnectionsTotal: 32
+                pendingAcquireMaxCount: 33
+                connectionTimeoutInSeconds: 34
+                readTimeoutInSeconds: 35
+                writeTimeoutInSeconds: 36
 
 # Custom Hazelcast Config.
 hazelcast:
