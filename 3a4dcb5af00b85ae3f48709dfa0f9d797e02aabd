@@ -224,6 +224,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "73283cfc_b9aa0476",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/DmiHttpClientConfigSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-08-26T20:01:39Z",
+      "side": 1,
+      "message": "i tested it and its required",
+      "parentUuid": "d7c2ed1b_9986671a",
+      "range": {
+        "startLine": 32,
+        "startChar": 30,
+        "endLine": 32,
+        "endChar": 51
+      },
+      "revId": "3a4dcb5af00b85ae3f48709dfa0f9d797e02aabd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9c8b7a13_e5dcce5b",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/PolicyExecutorHttpClientConfigSpec.groovy",
         "patchSetId": 2
