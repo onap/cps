@@ -45,6 +45,7 @@ import org.onap.cps.ncmp.impl.inventory.models.CmHandleQueryConditions;
 import org.onap.cps.ncmp.impl.inventory.models.InventoryQueryConditions;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.inventory.trustlevel.TrustLevelCacheConfig;
+import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher;
 import org.onap.cps.ncmp.impl.utils.YangDataConverter;
 import org.onap.cps.spi.model.ModuleDefinition;
 import org.onap.cps.spi.model.ModuleReference;
@@ -62,6 +63,7 @@ public class NetworkCmProxyInventoryFacade {
     private final ParameterizedCmHandleQueryService parameterizedCmHandleQueryService;
     private final InventoryPersistence inventoryPersistence;
     private final JsonObjectMapper jsonObjectMapper;
+    private final AlternateIdMatcher alternateIdMatcher;
 
     @Qualifier(TrustLevelCacheConfig.TRUST_LEVEL_PER_CM_HANDLE)
     private final Map<String, TrustLevel> trustLevelPerCmHandle;
@@ -104,10 +106,11 @@ public class NetworkCmProxyInventoryFacade {
     /**
      * Retrieve module references for the given cm handle.
      *
-     * @param cmHandleId cm handle identifier
+     * @param cmHandleReference cm handle or alternate id identifier
      * @return a collection of modules names and revisions
      */
-    public Collection<ModuleReference> getYangResourcesModuleReferences(final String cmHandleId) {
+    public Collection<ModuleReference> getYangResourcesModuleReferences(final String cmHandleReference) {
+        final String cmHandleId = alternateIdMatcher.getCmHandleId(cmHandleReference);
         return inventoryPersistence.getYangResourcesModuleReferences(cmHandleId);
     }
 

@@ -35,6 +35,7 @@ import org.onap.cps.ncmp.api.inventory.models.TrustLevel
 import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
 import org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
+import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
 import org.onap.cps.spi.model.ConditionProperties
 import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Specification
@@ -46,9 +47,10 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
     def mockParameterizedCmHandleQueryService = Mock(ParameterizedCmHandleQueryService)
     def spiedJsonObjectMapper = Spy(new JsonObjectMapper(new ObjectMapper()))
     def mockInventoryPersistence = Mock(InventoryPersistence)
+    def mockAlternateIdMatcher = Mock(AlternateIdMatcher)
     def trustLevelPerCmHandle = [:]
 
-    def objectUnderTest = new NetworkCmProxyInventoryFacade(mockCmHandleRegistrationService, mockCmHandleQueryService, mockParameterizedCmHandleQueryService, mockInventoryPersistence, spiedJsonObjectMapper, trustLevelPerCmHandle)
+    def objectUnderTest = new NetworkCmProxyInventoryFacade(mockCmHandleRegistrationService, mockCmHandleQueryService, mockParameterizedCmHandleQueryService, mockInventoryPersistence, spiedJsonObjectMapper, mockAlternateIdMatcher, trustLevelPerCmHandle)
 
     def 'Update DMI Registration'() {
         given: 'an (updated) dmi plugin registration'
@@ -89,8 +91,10 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
 
     def 'Getting Yang Resources.'() {
         when: 'yang resources is called'
-            objectUnderTest.getYangResourcesModuleReferences('some-cm-handle')
-        then: 'CPS module services is invoked for the correct dataspace and cm handle'
+            objectUnderTest.getYangResourcesModuleReferences('some-cm-handle-reference')
+        then: 'alternate id matcher is called'
+            mockAlternateIdMatcher.getCmHandleId('some-cm-handle-reference') >> 'some-cm-handle'
+        and: 'CPS module services is invoked for the correct dataspace and cm handle'
             1 * mockInventoryPersistence.getYangResourcesModuleReferences('some-cm-handle')
     }
 
