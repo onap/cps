@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95518f54_bac75ebc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-26T15:23:02Z",
+      "side": 1,
+      "message": "no blocking issues for me",
+      "revId": "b2e12bd72e96cdb5dea30ac4d1d9c090ad616eb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35c1ddff_8eac2d22",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/DmiDataOperations.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-26T15:23:02Z",
+      "side": 1,
+      "message": "NB: is this import used?!",
+      "range": {
+        "startLine": 44,
+        "startChar": 50,
+        "endLine": 44,
+        "endChar": 65
+      },
+      "revId": "b2e12bd72e96cdb5dea30ac4d1d9c090ad616eb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb86dc42_cddc7ef2",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/PolicyExecutorHttpClientConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-26T15:23:02Z",
+      "side": 1,
+      "message": "NB: copy\u0026past error, should ne \u0027all service\u0027",
+      "range": {
+        "startLine": 38,
+        "startChar": 53,
+        "endLine": 38,
+        "endChar": 61
+      },
+      "revId": "b2e12bd72e96cdb5dea30ac4d1d9c090ad616eb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "852ee9b6_1afd5169",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/DmiDataOperationsSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-26T15:23:02Z",
+      "side": 1,
+      "message": "NB: check import",
+      "range": {
+        "startLine": 31,
+        "startChar": 49,
+        "endLine": 31,
+        "endChar": 64
+      },
+      "revId": "b2e12bd72e96cdb5dea30ac4d1d9c090ad616eb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f2a6b59_a746e355",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/PolicyExecutorSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-26T15:23:02Z",
+      "side": 1,
+      "message": "NB: check import",
+      "range": {
+        "startLine": 7,
+        "startChar": 50,
+        "endLine": 7,
+        "endChar": 64
+      },
+      "revId": "b2e12bd72e96cdb5dea30ac4d1d9c090ad616eb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1cb4078d_c548ee12",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/dmi/DmiWebClientsConfigurationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-26T15:23:02Z",
+      "side": 1,
+      "message": "NB: prefix with dmi",
+      "range": {
+        "startLine": 45,
+        "startChar": 8,
+        "endLine": 45,
+        "endChar": 32
+      },
+      "revId": "b2e12bd72e96cdb5dea30ac4d1d9c090ad616eb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a59f63e_4fd55851",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/policyexecutor/PolicyExecutorWebClientConfigurationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-26T15:23:02Z",
+      "side": 1,
+      "message": "NB: update descrption",
+      "range": {
+        "startLine": 49,
+        "startChar": 55,
+        "endLine": 49,
+        "endChar": 67
+      },
+      "revId": "b2e12bd72e96cdb5dea30ac4d1d9c090ad616eb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
