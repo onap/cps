@@ -22,6 +22,30 @@
       },
       "revId": "dacc217afe3e4ae9f1bda96a285929016204701e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e199789_4573e115",
+        "filename": "k6-tests/teardown.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-08-26T19:23:52Z",
+      "side": 1,
+      "message": "CLEAN_DOCKER_IMAGES has a default value of 0, so it is off by default. This is so that if you are running k6 tests locally, it does not delete your locally-built images.\nOnly on the k6 Jenkins job do we clean the images.",
+      "parentUuid": "6f6c5fe8_276b8a51",
+      "range": {
+        "startLine": 23,
+        "startChar": 30,
+        "endLine": 23,
+        "endChar": 51
+      },
+      "revId": "dacc217afe3e4ae9f1bda96a285929016204701e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
