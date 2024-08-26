@@ -418,7 +418,7 @@ class NetworkCmProxyControllerSpec extends Specification {
                 get("$ncmpBasePathV1/ch/some-cmhandle/modules/definitions?module-name=" + moduleName + "&revision=" + revision))
                 .andReturn().response
         then: 'ncmp service method to get definitions by cm handle is invoked when needed'
-            numberOfCallsToByCmHandleId * mockNetworkCmProxyInventoryFacade.getModuleDefinitionsByCmHandleId('some-cmhandle') >> []
+            numberOfCallsToByCmHandleId * mockNetworkCmProxyInventoryFacade.getModuleDefinitionsByCmHandleReference('some-cmhandle') >> []
         and: 'ncmp service method to get definitions by module is invoked when needed'
             numberOfCallsToByModule * mockNetworkCmProxyInventoryFacade.getModuleDefinitionsByCmHandleAndModule('some-cmhandle', moduleName, revision) >> []
         and: 'response returns an OK http code'
