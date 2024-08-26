@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4ee4063_de6ecb50",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-26T15:30:04Z",
+      "side": 1,
+      "message": "DataJobResultServiceSpec will fail.",
+      "revId": "b2e12bd72e96cdb5dea30ac4d1d9c090ad616eb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9b0a2a4a_9115853e",
