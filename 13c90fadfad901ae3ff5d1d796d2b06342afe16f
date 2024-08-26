@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6956b79f_208196ed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-08-26T16:00:17Z",
+      "side": 1,
+      "message": "Can not test xk6-kafka part only, since I\u0027ve already installed it on my local. However, overall I am ok.",
+      "revId": "13c90fadfad901ae3ff5d1d796d2b06342afe16f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abec1ad0_510f3130",
+        "filename": "csit/install-deps.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-08-26T16:00:17Z",
+      "side": 1,
+      "message": "NB: Installing CSIT dependencies",
+      "range": {
+        "startLine": 19,
+        "startChar": 6,
+        "endLine": 19,
+        "endChar": 28
+      },
+      "revId": "13c90fadfad901ae3ff5d1d796d2b06342afe16f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a5e9f9c_c44a4bd8",
+        "filename": "csit/plans/cps/setup.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-08-26T16:00:17Z",
+      "side": 1,
+      "message": "NB: 2022-2024",
+      "range": {
+        "startLine": 4,
+        "startChar": 30,
+        "endLine": 4,
+        "endChar": 34
+      },
+      "revId": "13c90fadfad901ae3ff5d1d796d2b06342afe16f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f73f94d3_c43cf720",
+        "filename": "csit/run-project-csit.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-08-26T16:00:17Z",
+      "side": 1,
+      "message": "NB: Missing Modification Copyright for Nordix",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 48
+      },
+      "revId": "13c90fadfad901ae3ff5d1d796d2b06342afe16f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "376ee8f0_56901b5f",
+        "filename": "k6-tests/install-deps.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-08-26T16:00:17Z",
+      "side": 1,
+      "message": "NB: Installing k6 dependencies",
+      "range": {
+        "startLine": 19,
+        "startChar": 6,
+        "endLine": 19,
+        "endChar": 29
+      },
+      "revId": "13c90fadfad901ae3ff5d1d796d2b06342afe16f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
