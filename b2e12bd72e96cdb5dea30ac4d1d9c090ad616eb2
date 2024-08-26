@@ -20,6 +20,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9b0a2a4a_9115853e",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-26T15:28:50Z",
+      "side": 1,
+      "message": "NB: hope these are agreed values.",
+      "range": {
+        "startLine": 198,
+        "startChar": 16,
+        "endLine": 203,
+        "endChar": 49
+      },
+      "revId": "b2e12bd72e96cdb5dea30ac4d1d9c090ad616eb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "520ed06f_fb0441b4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/PolicyExecutorHttpClientConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-26T15:28:50Z",
+      "side": 1,
+      "message": "NB: 2024",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 23
+      },
+      "revId": "b2e12bd72e96cdb5dea30ac4d1d9c090ad616eb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "35c1ddff_8eac2d22",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/DmiDataOperations.java",
         "patchSetId": 1
@@ -151,6 +197,29 @@
         "startChar": 55,
         "endLine": 49,
         "endChar": 67
+      },
+      "revId": "b2e12bd72e96cdb5dea30ac4d1d9c090ad616eb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "329cbd1a_f641cd00",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/DataJobResultServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-26T15:28:50Z",
+      "side": 1,
+      "message": "this looks very strange. I think you are missing a comma.",
+      "range": {
+        "startLine": 40,
+        "startChar": 94,
+        "endLine": 40,
+        "endChar": 122
       },
       "revId": "b2e12bd72e96cdb5dea30ac4d1d9c090ad616eb2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
