@@ -334,21 +334,23 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     /**
      * Return module definitions.
      *
-     * @param cmHandleId    cm-handle identifier
-     * @param moduleName    module name
-     * @param revision      the revision of the module
+     * @param cmHandleReference   cm handle or alternate id identifier
+     * @param moduleName          module name
+     * @param revision            the revision of the module
      * @return list of module definitions (module name, revision, yang resource content)
      */
     @Override
-    public ResponseEntity<List<RestModuleDefinition>> getModuleDefinitions(final String cmHandleId,
+    public ResponseEntity<List<RestModuleDefinition>> getModuleDefinitions(final String cmHandleReference,
                                                                            final String moduleName,
                                                                            final String revision) {
         final Collection<ModuleDefinition> moduleDefinitions;
         if (StringUtils.hasText(moduleName)) {
             moduleDefinitions =
-                networkCmProxyInventoryFacade.getModuleDefinitionsByCmHandleAndModule(cmHandleId, moduleName, revision);
+                networkCmProxyInventoryFacade.getModuleDefinitionsByCmHandleAndModule(cmHandleReference,
+                    moduleName, revision);
         } else {
-            moduleDefinitions = networkCmProxyInventoryFacade.getModuleDefinitionsByCmHandleId(cmHandleId);
+            moduleDefinitions =
+                networkCmProxyInventoryFacade.getModuleDefinitionsByCmHandleReference(cmHandleReference);
             if (StringUtils.hasText(revision)) {
                 log.warn("Ignoring revision filter as no module name is provided");
             }

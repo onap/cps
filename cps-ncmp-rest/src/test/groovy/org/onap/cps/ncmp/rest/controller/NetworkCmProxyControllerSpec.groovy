@@ -415,12 +415,12 @@ class NetworkCmProxyControllerSpec extends Specification {
     def 'Getting module definitions filtering on #scenario'() {
         when: 'get module definition request is performed'
             def response = mvc.perform(
-                get("$ncmpBasePathV1/ch/some-cmhandle/modules/definitions?module-name=" + moduleName + "&revision=" + revision))
+                get("$ncmpBasePathV1/ch/some-cmhandle-reference/modules/definitions?module-name=" + moduleName + "&revision=" + revision))
                 .andReturn().response
-        then: 'ncmp service method to get definitions by cm handle is invoked when needed'
-            numberOfCallsToByCmHandleId * mockNetworkCmProxyInventoryFacade.getModuleDefinitionsByCmHandleId('some-cmhandle') >> []
+        then: 'ncmp service method to get definitions by cm handle reference is invoked when needed'
+            numberOfCallsToByCmHandleId * mockNetworkCmProxyInventoryFacade.getModuleDefinitionsByCmHandleReference('some-cmhandle-reference') >> []
         and: 'ncmp service method to get definitions by module is invoked when needed'
-            numberOfCallsToByModule * mockNetworkCmProxyInventoryFacade.getModuleDefinitionsByCmHandleAndModule('some-cmhandle', moduleName, revision) >> []
+            numberOfCallsToByModule * mockNetworkCmProxyInventoryFacade.getModuleDefinitionsByCmHandleAndModule('some-cmhandle-reference', moduleName, revision) >> []
         and: 'response returns an OK http code'
             response.status == HttpStatus.OK.value()
         and: 'the correct message is logged when needed'
