@@ -139,10 +139,10 @@ class ParameterizedCmHandleQueryServiceSpec extends Specification {
         and: 'the inventory service is called with teh correct if and returns a yang model cm handle'
             1 * mockInventoryPersistence.getYangModelCmHandles(['ch1']) >>
                 [new YangModelCmHandle(id: 'abc', dmiProperties: [new YangModelCmHandle.Property('name','value')], publicProperties: [])]
-        and: 'the expected cm handle(s) are returned as NCMP Service cm handles'
-            assert result[0] instanceof NcmpServiceCmHandle
+        and: 'the expected cm handle(s) are returned as Yang Model cm handles'
+            assert result[0] instanceof YangModelCmHandle
             assert result.size() == 1
-            assert result[0].dmiProperties == [name:'value']
+            assert result[0].dmiProperties.size() == 1
     }
 
     def 'Query cm handle ids when the query is empty.'() {
@@ -165,7 +165,7 @@ class ParameterizedCmHandleQueryServiceSpec extends Specification {
             def result = objectUnderTest.queryCmHandles(cmHandleQueryParameters)
         then: 'the correct cm handles are returned'
             assert result.size() == 4
-            assert result.cmHandleId.containsAll('PNFDemo1', 'PNFDemo2', 'PNFDemo3', 'PNFDemo4')
+            assert result.id.containsAll('PNFDemo1', 'PNFDemo2', 'PNFDemo3', 'PNFDemo4')
     }
 
     def 'Query CMHandleId with #scenario.' () {
