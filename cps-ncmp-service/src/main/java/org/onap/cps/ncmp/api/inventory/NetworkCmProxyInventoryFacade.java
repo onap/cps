@@ -101,12 +101,13 @@ public class NetworkCmProxyInventoryFacade {
 
 
     /**
-     * Retrieve module references for the given cm handle.
+     * Retrieve module references for the given cm handle reference.
      *
-     * @param cmHandleId cm handle identifier
+     * @param cmHandleReference cm handle or alternate id identifier
      * @return a collection of modules names and revisions
      */
-    public Collection<ModuleReference> getYangResourcesModuleReferences(final String cmHandleId) {
+    public Collection<ModuleReference> getYangResourcesModuleReferences(final String cmHandleReference) {
+        final String cmHandleId = alternateIdMatcher.getCmHandleId(cmHandleReference);
         return inventoryPersistence.getYangResourcesModuleReferences(cmHandleId);
     }
 
