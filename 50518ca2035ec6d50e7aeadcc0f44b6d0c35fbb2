@@ -1,5 +1,115 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a08c99ba_29d08562",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-26T08:39:27Z",
+      "side": 1,
+      "message": "Can we have a bit of a chat about this solution please..",
+      "revId": "50518ca2035ec6d50e7aeadcc0f44b6d0c35fbb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c7c4ada_85577314",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsModuleService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-26T08:39:27Z",
+      "side": 1,
+      "message": "what is the parent in case of modules? IS it not always the same, cam we name accordingly?!",
+      "range": {
+        "startLine": 177,
+        "startChar": 14,
+        "endLine": 177,
+        "endChar": 31
+      },
+      "revId": "50518ca2035ec6d50e7aeadcc0f44b6d0c35fbb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27e34635_1443b120",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsModuleService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-26T08:39:27Z",
+      "side": 1,
+      "message": "what is the child in case of modules? IS it not always the same, cam we name accordingly?!",
+      "range": {
+        "startLine": 179,
+        "startChar": 14,
+        "endLine": 179,
+        "endChar": 31
+      },
+      "revId": "50518ca2035ec6d50e7aeadcc0f44b6d0c35fbb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "baecae1b_b05bf3c3",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-26T08:39:27Z",
+      "side": 1,
+      "message": "i think this can be named better, maybe the \u0027by\u0027 part is redundant and we just need to improve the javadoc of the interface",
+      "range": {
+        "startLine": 177,
+        "startChar": 58,
+        "endLine": 177,
+        "endChar": 69
+      },
+      "revId": "50518ca2035ec6d50e7aeadcc0f44b6d0c35fbb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e5019fb_ba24bdd8",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-26T08:39:27Z",
+      "side": 1,
+      "message": "did you check we have a 100% coverage on all branches with just these tests?!",
+      "range": {
+        "startLine": 241,
+        "startChar": 0,
+        "endLine": 255,
+        "endChar": 5
+      },
+      "revId": "50518ca2035ec6d50e7aeadcc0f44b6d0c35fbb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
