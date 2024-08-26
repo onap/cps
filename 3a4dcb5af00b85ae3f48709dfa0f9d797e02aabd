@@ -16,6 +16,167 @@
       "message": "looks fine to me.",
       "revId": "3a4dcb5af00b85ae3f48709dfa0f9d797e02aabd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2404a7d2_b3049f47",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-08-26T16:41:27Z",
+      "side": 1,
+      "message": "Remove double quotes for consistency",
+      "range": {
+        "startLine": 194,
+        "startChar": 21,
+        "endLine": 194,
+        "endChar": 39
+      },
+      "revId": "3a4dcb5af00b85ae3f48709dfa0f9d797e02aabd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da66bf79_fd8f123d",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-08-26T16:41:27Z",
+      "side": 1,
+      "message": "Remove double quotes for consistency",
+      "range": {
+        "startLine": 195,
+        "startChar": 18,
+        "endLine": 195,
+        "endChar": 24
+      },
+      "revId": "3a4dcb5af00b85ae3f48709dfa0f9d797e02aabd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f4227a2_a3d26004",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-08-26T16:41:27Z",
+      "side": 1,
+      "message": "Do we really need 16 MB?",
+      "range": {
+        "startLine": 198,
+        "startChar": 15,
+        "endLine": 198,
+        "endChar": 50
+      },
+      "revId": "3a4dcb5af00b85ae3f48709dfa0f9d797e02aabd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e221102d_af7f3f00",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-08-26T16:41:27Z",
+      "side": 1,
+      "message": "Same as above if we really  need pool size of this?",
+      "range": {
+        "startLine": 199,
+        "startChar": 14,
+        "endLine": 200,
+        "endChar": 42
+      },
+      "revId": "3a4dcb5af00b85ae3f48709dfa0f9d797e02aabd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7c2ed1b_9986671a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/DmiHttpClientConfigSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-08-26T16:41:27Z",
+      "side": 1,
+      "message": "NB: Pls verify if we need this as already a part of ContextConfiguration",
+      "range": {
+        "startLine": 32,
+        "startChar": 30,
+        "endLine": 32,
+        "endChar": 51
+      },
+      "revId": "3a4dcb5af00b85ae3f48709dfa0f9d797e02aabd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c8b7a13_e5dcce5b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/PolicyExecutorHttpClientConfigSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-08-26T16:41:27Z",
+      "side": 1,
+      "message": "policy",
+      "range": {
+        "startLine": 37,
+        "startChar": 54,
+        "endLine": 37,
+        "endChar": 59
+      },
+      "revId": "3a4dcb5af00b85ae3f48709dfa0f9d797e02aabd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61aa9a1f_d77b6a2d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/policyexecutor/PolicyExecutorWebClientConfigurationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-08-26T16:41:27Z",
+      "side": 1,
+      "message": "NB: Can we make this block common for this and  DmiWebClientsConfigurationSpec ?",
+      "range": {
+        "startLine": 35,
+        "startChar": 3,
+        "endLine": 40,
+        "endChar": 5
+      },
+      "revId": "3a4dcb5af00b85ae3f48709dfa0f9d797e02aabd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
