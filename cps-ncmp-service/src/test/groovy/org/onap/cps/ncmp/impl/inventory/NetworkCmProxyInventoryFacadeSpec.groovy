@@ -51,7 +51,6 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
     def mockTrustLevelManager = Mock(TrustLevelManager)
     def mockAlternateIdMatcher = Mock(AlternateIdMatcher)
     def objectUnderTest = new NetworkCmProxyInventoryFacade(mockCmHandleRegistrationService, mockCmHandleQueryService, mockParameterizedCmHandleQueryService, mockInventoryPersistence, spiedJsonObjectMapper, mockTrustLevelManager, mockAlternateIdMatcher)
-    def trustLevelPerCmHandle = [:]
 
     def 'Update DMI Registration'() {
         given: 'an (updated) dmi plugin registration'
@@ -92,8 +91,10 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
 
     def 'Getting Yang Resources.'() {
         when: 'yang resources is called'
-            objectUnderTest.getYangResourcesModuleReferences('some-cm-handle')
-        then: 'CPS module services is invoked for the correct dataspace and cm handle'
+            objectUnderTest.getYangResourcesModuleReferences('some-cm-handle-reference')
+        then: 'alternate id matcher is called'
+            mockAlternateIdMatcher.getCmHandleId('some-cm-handle-reference') >> 'some-cm-handle'
+        and: 'CPS module services is invoked for the correct cm handle'
             1 * mockInventoryPersistence.getYangResourcesModuleReferences('some-cm-handle')
     }
 
