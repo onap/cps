@@ -27,7 +27,6 @@ import static org.onap.cps.ncmp.impl.inventory.models.CmHandleQueryConditions.HA
 import static org.onap.cps.ncmp.impl.inventory.models.CmHandleQueryConditions.HAS_ALL_PROPERTIES;
 import static org.onap.cps.ncmp.impl.inventory.models.CmHandleQueryConditions.WITH_CPS_PATH;
 import static org.onap.cps.ncmp.impl.inventory.models.CmHandleQueryConditions.WITH_TRUST_LEVEL;
-import static org.onap.cps.ncmp.impl.utils.YangDataConverter.toNcmpServiceCmHandle;
 import static org.onap.cps.spi.FetchDescendantsOption.DIRECT_CHILDREN_ONLY;
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS;
 
@@ -40,10 +39,8 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.cpspath.parser.PathParsingException;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryServiceParameters;
-import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.impl.inventory.models.InventoryQueryConditions;
 import org.onap.cps.ncmp.impl.inventory.models.PropertyType;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
@@ -54,7 +51,6 @@ import org.onap.cps.spi.model.DataNode;
 import org.springframework.stereotype.Service;
 
 @Service
-@Slf4j
 @RequiredArgsConstructor
 public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHandleQueryService {
 
@@ -83,22 +79,18 @@ public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHan
     }
 
     @Override
-    public Collection<NcmpServiceCmHandle> queryCmHandles(
-        final CmHandleQueryServiceParameters cmHandleQueryServiceParameters) {
-
+    public Collection<YangModelCmHandle> queryCmHandles(
+            final CmHandleQueryServiceParameters cmHandleQueryServiceParameters) {
         if (cmHandleQueryServiceParameters.getCmHandleQueryParameters().isEmpty()) {
             return getAllCmHandles();
         }
-
         final Collection<String> cmHandleIds = queryCmHandleIds(cmHandleQueryServiceParameters);
-
-        return getNcmpServiceCmHandles(cmHandleIds);
+        return inventoryPersistence.getYangModelCmHandles(cmHandleIds);
     }
 
-    @Override
-    public Collection<NcmpServiceCmHandle> getAllCmHandles() {
+    private Collection<YangModelCmHandle> getAllCmHandles() {
         final DataNode dataNode = inventoryPersistence.getDataNode(NCMP_DMI_REGISTRY_PARENT).iterator().next();
-        return dataNode.getChildDataNodes().stream().map(this::createNcmpServiceCmHandle).collect(Collectors.toSet());
+        return dataNode.getChildDataNodes().stream().map(YangDataConverter::toYangModelCmHandle).toList();
     }
 
     private Collection<String> queryCmHandlesByDmiPlugin(
@@ -224,22 +216,6 @@ public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHan
         final DataNode dataNode = inventoryPersistence.getDataNode(NCMP_DMI_REGISTRY_PARENT, DIRECT_CHILDREN_ONLY)
                 .iterator().next();
         return collectCmHandleIdsFromDataNodes(dataNode.getChildDataNodes());
-    }
-
-    private Collection<NcmpServiceCmHandle> getNcmpServiceCmHandles(final Collection<String> cmHandleIds) {
-        final Collection<YangModelCmHandle> yangModelcmHandles
-            = inventoryPersistence.getYangModelCmHandles(cmHandleIds);
-
-        final Collection<NcmpServiceCmHandle> ncmpServiceCmHandles = new ArrayList<>(yangModelcmHandles.size());
-
-        yangModelcmHandles.forEach(yangModelcmHandle ->
-            ncmpServiceCmHandles.add(YangDataConverter.toNcmpServiceCmHandle(yangModelcmHandle))
-        );
-        return ncmpServiceCmHandles;
-    }
-
-    private NcmpServiceCmHandle createNcmpServiceCmHandle(final DataNode dataNode) {
-        return toNcmpServiceCmHandle(YangDataConverter.toYangModelCmHandle(dataNode));
     }
 
     private Collection<String> executeQueries(final CmHandleQueryServiceParameters cmHandleQueryServiceParameters,
