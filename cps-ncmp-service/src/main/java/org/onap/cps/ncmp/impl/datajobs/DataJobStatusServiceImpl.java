@@ -24,8 +24,8 @@ import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.api.datajobs.DataJobStatusService;
 import org.onap.cps.ncmp.impl.dmi.DmiProperties;
 import org.onap.cps.ncmp.impl.dmi.DmiRestClient;
-import org.onap.cps.ncmp.impl.dmi.DmiServiceUrlTemplateBuilder;
-import org.onap.cps.ncmp.impl.dmi.UrlTemplateParameters;
+import org.onap.cps.ncmp.impl.utils.http.RestServiceUrlTemplateBuilder;
+import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters;
 import org.springframework.stereotype.Service;
 
 /**
@@ -54,7 +54,7 @@ public class DataJobStatusServiceImpl implements DataJobStatusService {
     private UrlTemplateParameters buildUrlParameters(final String dmiServiceName,
                                                      final String dataProducerId,
                                                      final String dataProducerJobId) {
-        return DmiServiceUrlTemplateBuilder.newInstance()
+        return RestServiceUrlTemplateBuilder.newInstance()
                 .fixedPathSegment("cmwriteJob")
                 .fixedPathSegment("dataProducer")
                 .variablePathSegment("dataProducerId", dataProducerId)

@@ -25,6 +25,7 @@ import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.node.ObjectNode
 import org.onap.cps.ncmp.api.exceptions.DmiClientRequestException
+import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.http.HttpHeaders

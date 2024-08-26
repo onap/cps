@@ -18,14 +18,13 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.impl.dmi
-
+package org.onap.cps.ncmp.impl.utils.http
 
 import spock.lang.Specification
 
-class DmiServiceUrlTemplateBuilderSpec extends Specification {
+class RestServiceUrlTemplateBuilderSpec extends Specification {
 
-    def objectUnderTest = new DmiServiceUrlTemplateBuilder()
+    def objectUnderTest = new RestServiceUrlTemplateBuilder()
 
     def 'Build URL template parameters with (variable) path segments and query parameters.'() {
         given: 'the URL details are given to the builder'
@@ -35,9 +34,9 @@ class DmiServiceUrlTemplateBuilderSpec extends Specification {
             objectUnderTest.queryParameter('param1', 'abc')
             objectUnderTest.queryParameter('param2', 'value?with#special:characters')
         when: 'the URL template parameters are created'
-            def result = objectUnderTest.createUrlTemplateParameters('myDmiServer', 'myBasePath')
+            def result = objectUnderTest.createUrlTemplateParameters('myServer', 'myBasePath')
         then: 'the URL template contains variable names instead of value and un-encoded fixed segment'
-            assert result.urlTemplate == 'myDmiServer/myBasePath/v1/segment/{myVariableSegment}/segment?with:special&characters?param1={param1}&param2={param2}'
+            assert result.urlTemplate == 'myServer/myBasePath/v1/segment/{myVariableSegment}/segment?with:special&characters?param1={param1}&param2={param2}'
         and: 'URL variables contains name and un-encoded value pairs'
             assert result.urlVariables == ['myVariableSegment': 'someValue', 'param1': 'abc', 'param2': 'value?with#special:characters']
     }
@@ -46,7 +45,7 @@ class DmiServiceUrlTemplateBuilderSpec extends Specification {
         given: 'the query parameter is given to the builder'
            objectUnderTest.queryParameter('my&param', 'special&characters=are?not\\encoded')
         when: 'the URL template parameters are created'
-            def result = objectUnderTest.createUrlTemplateParameters('myDmiServer', 'myBasePath')
+            def result = objectUnderTest.createUrlTemplateParameters('myServer', 'myBasePath')
         then: 'Special characters are not encoded'
             assert result.urlVariables == ['my&param': 'special&characters=are?not\\encoded']
     }
@@ -55,7 +54,7 @@ class DmiServiceUrlTemplateBuilderSpec extends Specification {
         when: 'the query parameter is given to the builder'
             objectUnderTest.queryParameter('param', value)
         and: 'the URL template parameters are create'
-            def result = objectUnderTest.createUrlTemplateParameters('myDmiServer', 'myBasePath')
+            def result = objectUnderTest.createUrlTemplateParameters('myServer', 'myBasePath')
         then: 'no parameter gets added'
             assert result.urlVariables.isEmpty()
         where: 'the following parameter values are used'

@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.impl.dmi;
+package org.onap.cps.ncmp.impl.utils.http;
 
 import java.util.Map;
 

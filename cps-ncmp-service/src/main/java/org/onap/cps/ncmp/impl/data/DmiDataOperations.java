@@ -45,12 +45,12 @@ import org.onap.cps.ncmp.impl.data.policyexecutor.PolicyExecutor;
 import org.onap.cps.ncmp.impl.data.utils.DmiDataOperationsHelper;
 import org.onap.cps.ncmp.impl.dmi.DmiProperties;
 import org.onap.cps.ncmp.impl.dmi.DmiRestClient;
-import org.onap.cps.ncmp.impl.dmi.DmiServiceUrlTemplateBuilder;
-import org.onap.cps.ncmp.impl.dmi.UrlTemplateParameters;
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.impl.inventory.models.CmHandleState;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.models.DmiRequestBody;
+import org.onap.cps.ncmp.impl.utils.http.RestServiceUrlTemplateBuilder;
+import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters;
 import org.onap.cps.spi.exceptions.CpsException;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.ResponseEntity;
@@ -213,7 +213,7 @@ public class DmiDataOperations {
                                                            final String optionsParamInQuery,
                                                            final String topicParamInQuery) {
         final String dmiServiceName = yangModelCmHandle.resolveDmiServiceName(DATA);
-        return DmiServiceUrlTemplateBuilder.newInstance()
+        return RestServiceUrlTemplateBuilder.newInstance()
                 .fixedPathSegment("ch")
                 .variablePathSegment("cmHandleId", yangModelCmHandle.getId())
                 .fixedPathSegment("data")
@@ -228,7 +228,7 @@ public class DmiDataOperations {
     private UrlTemplateParameters getUrlTemplateParameters(final String dmiServiceName,
                                                            final String requestId,
                                                            final String topicParamInQuery) {
-        return DmiServiceUrlTemplateBuilder.newInstance()
+        return RestServiceUrlTemplateBuilder.newInstance()
                 .fixedPathSegment("data")
                 .queryParameter("requestId", requestId)
                 .queryParameter("topic", topicParamInQuery)

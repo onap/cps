@@ -22,7 +22,7 @@ package org.onap.cps.ncmp.impl.policyexecutor;
 
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.config.PolicyExecutorHttpClientConfig;
-import org.onap.cps.ncmp.impl.utils.WebClientConfiguration;
+import org.onap.cps.ncmp.impl.utils.http.WebClientConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.client.WebClient;

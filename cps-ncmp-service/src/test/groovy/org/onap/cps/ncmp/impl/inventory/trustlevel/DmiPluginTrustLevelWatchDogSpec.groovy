@@ -22,8 +22,8 @@ package org.onap.cps.ncmp.impl.inventory.trustlevel
 
 import org.onap.cps.ncmp.api.inventory.models.TrustLevel
 import org.onap.cps.ncmp.impl.dmi.DmiRestClient
-import org.onap.cps.ncmp.impl.dmi.UrlTemplateParameters
 import org.onap.cps.ncmp.impl.inventory.CmHandleQueryService
+import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters
 import reactor.core.publisher.Mono
 import spock.lang.Specification
 

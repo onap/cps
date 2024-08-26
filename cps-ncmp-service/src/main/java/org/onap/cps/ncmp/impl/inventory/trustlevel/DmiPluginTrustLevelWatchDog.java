@@ -26,9 +26,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.inventory.models.TrustLevel;
 import org.onap.cps.ncmp.impl.dmi.DmiRestClient;
-import org.onap.cps.ncmp.impl.dmi.DmiServiceUrlTemplateBuilder;
-import org.onap.cps.ncmp.impl.dmi.UrlTemplateParameters;
 import org.onap.cps.ncmp.impl.inventory.CmHandleQueryService;
+import org.onap.cps.ncmp.impl.utils.http.RestServiceUrlTemplateBuilder;
+import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -73,7 +73,7 @@ public class DmiPluginTrustLevelWatchDog {
     }
 
     private String getDmiHealthStatus(final String dmiServiceBaseUrl) {
-        final UrlTemplateParameters urlTemplateParameters = DmiServiceUrlTemplateBuilder.newInstance()
+        final UrlTemplateParameters urlTemplateParameters = RestServiceUrlTemplateBuilder.newInstance()
                 .createUrlTemplateParametersForHealthCheck(dmiServiceBaseUrl);
         return dmiRestClient.getDmiHealthStatus(urlTemplateParameters).block();
     }

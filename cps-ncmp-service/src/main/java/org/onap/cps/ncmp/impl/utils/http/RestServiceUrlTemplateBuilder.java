@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.impl.dmi;
+package org.onap.cps.ncmp.impl.utils.http;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -30,7 +30,7 @@ import org.apache.logging.log4j.util.Strings;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @NoArgsConstructor
-public class DmiServiceUrlTemplateBuilder {
+public class RestServiceUrlTemplateBuilder {
 
     private final UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance();
     private static final String FIXED_PATH_SEGMENT = null;
@@ -43,8 +43,8 @@ public class DmiServiceUrlTemplateBuilder {
      *
      * @return a new instance of DmiServiceUrlTemplateBuilder
      */
-    public static DmiServiceUrlTemplateBuilder newInstance() {
-        return new DmiServiceUrlTemplateBuilder();
+    public static RestServiceUrlTemplateBuilder newInstance() {
+        return new RestServiceUrlTemplateBuilder();
     }
 
     /**
@@ -53,7 +53,7 @@ public class DmiServiceUrlTemplateBuilder {
      * @param pathSegment the path segment
      * @return this builder instance
      */
-    public DmiServiceUrlTemplateBuilder fixedPathSegment(final String pathSegment) {
+    public RestServiceUrlTemplateBuilder fixedPathSegment(final String pathSegment) {
         pathSegments.put(pathSegment, FIXED_PATH_SEGMENT);
         return this;
     }
@@ -66,7 +66,7 @@ public class DmiServiceUrlTemplateBuilder {
      * @param value       the value to be insert in teh URL for the given variable path segment
      * @return this builder instance
      */
-    public DmiServiceUrlTemplateBuilder variablePathSegment(final String pathSegment, final String value) {
+    public RestServiceUrlTemplateBuilder variablePathSegment(final String pathSegment, final String value) {
         pathSegments.put(pathSegment, value);
         return this;
     }
@@ -80,8 +80,8 @@ public class DmiServiceUrlTemplateBuilder {
      *
      * @return this builder instance
      */
-    public DmiServiceUrlTemplateBuilder queryParameter(final String queryParameterName,
-                                                       final String queryParameterValue) {
+    public RestServiceUrlTemplateBuilder queryParameter(final String queryParameterName,
+                                                        final String queryParameterValue) {
         if (Strings.isNotBlank(queryParameterValue)) {
             queryParameters.put(queryParameterName, queryParameterValue);
         }
@@ -91,12 +91,12 @@ public class DmiServiceUrlTemplateBuilder {
     /**
      * Constructs a URL template with variables based on the accumulated path segments and query parameters.
      *
-     * @param dmiServiceBaseUrl the base URL of the DMI service, e.g., "http://dmi-service.com".
-     * @param dmiBasePath       the base path of the DMI service
+     * @param serviceBaseUrl the base URL of the service, e.g., "http://dmi-service.com".
+     * @param basePath       the base path of the service
      * @return a UrlTemplateParameters instance containing the complete URL template and URL variables
      */
-    public UrlTemplateParameters createUrlTemplateParameters(final String dmiServiceBaseUrl, final String dmiBasePath) {
-        this.uriComponentsBuilder.pathSegment(dmiBasePath)
+    public UrlTemplateParameters createUrlTemplateParameters(final String serviceBaseUrl, final String basePath) {
+        this.uriComponentsBuilder.pathSegment(basePath)
             .pathSegment(VERSION_SEGMENT);
 
         final Map<String, String> urlTemplateVariables = new HashMap<>();
@@ -115,22 +115,21 @@ public class DmiServiceUrlTemplateBuilder {
             urlTemplateVariables.put(paramName, paramValue);
         });
 
-        final String urlTemplate = dmiServiceBaseUrl + this.uriComponentsBuilder.build().toUriString();
+        final String urlTemplate = serviceBaseUrl + this.uriComponentsBuilder.build().toUriString();
         return new UrlTemplateParameters(urlTemplate, urlTemplateVariables);
     }
 
     /**
      * Constructs a URL for DMI health check based on the given base URL.
      *
-     * @param dmiServiceBaseUrl the base URL of the DMI service, e.g., "http://dmi-service.com".
+     * @param serviceBaseUrl the base URL of the service, e.g., "http://dmi-service.com".
      * @return a {@link UrlTemplateParameters} instance containing the complete URL template and empty URL variables,
      *     suitable for DMI health check.
      */
-    public UrlTemplateParameters createUrlTemplateParametersForHealthCheck(final String dmiServiceBaseUrl) {
-        this.uriComponentsBuilder.pathSegment("actuator")
-                .pathSegment("health");
+    public UrlTemplateParameters createUrlTemplateParametersForHealthCheck(final String serviceBaseUrl) {
+        this.uriComponentsBuilder.pathSegment("actuator").pathSegment("health");
 
-        final String urlTemplate = dmiServiceBaseUrl + this.uriComponentsBuilder.build().toUriString();
+        final String urlTemplate = serviceBaseUrl + this.uriComponentsBuilder.build().toUriString();
         return new UrlTemplateParameters(urlTemplate, Collections.emptyMap());
     }
 

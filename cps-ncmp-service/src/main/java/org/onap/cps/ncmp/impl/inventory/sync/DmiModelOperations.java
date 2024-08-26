@@ -36,10 +36,10 @@ import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.api.inventory.models.YangResource;
 import org.onap.cps.ncmp.impl.dmi.DmiProperties;
 import org.onap.cps.ncmp.impl.dmi.DmiRestClient;
-import org.onap.cps.ncmp.impl.dmi.DmiServiceUrlTemplateBuilder;
-import org.onap.cps.ncmp.impl.dmi.UrlTemplateParameters;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.models.DmiRequestBody;
+import org.onap.cps.ncmp.impl.utils.http.RestServiceUrlTemplateBuilder;
+import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters;
 import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.ResponseEntity;
@@ -107,7 +107,7 @@ public class DmiModelOperations {
                                                                   final String jsonRequestBody,
                                                                   final String cmHandle,
                                                                   final String resourceName) {
-        final UrlTemplateParameters urlTemplateParameters = DmiServiceUrlTemplateBuilder.newInstance()
+        final UrlTemplateParameters urlTemplateParameters = RestServiceUrlTemplateBuilder.newInstance()
                 .fixedPathSegment("ch")
                 .variablePathSegment("cmHandleId", cmHandle)
                 .fixedPathSegment(resourceName)

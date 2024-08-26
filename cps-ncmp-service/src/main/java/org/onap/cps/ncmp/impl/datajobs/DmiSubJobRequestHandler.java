@@ -33,9 +33,9 @@ import org.onap.cps.ncmp.api.datajobs.models.SubJobWriteRequest;
 import org.onap.cps.ncmp.api.datajobs.models.SubJobWriteResponse;
 import org.onap.cps.ncmp.impl.dmi.DmiProperties;
 import org.onap.cps.ncmp.impl.dmi.DmiRestClient;
-import org.onap.cps.ncmp.impl.dmi.DmiServiceUrlTemplateBuilder;
-import org.onap.cps.ncmp.impl.dmi.UrlTemplateParameters;
 import org.onap.cps.ncmp.impl.models.RequiredDmiService;
+import org.onap.cps.ncmp.impl.utils.http.RestServiceUrlTemplateBuilder;
+import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -88,7 +88,7 @@ public class DmiSubJobRequestHandler {
     }
 
     private UrlTemplateParameters getUrlTemplateParameters(final String destination, final ProducerKey producerKey) {
-        return DmiServiceUrlTemplateBuilder.newInstance()
+        return RestServiceUrlTemplateBuilder.newInstance()
                 .fixedPathSegment("cmwriteJob")
                 .queryParameter("destination", destination)
                 .createUrlTemplateParameters(producerKey.dmiServiceName(), dmiProperties.getDmiBasePath());
