@@ -22,6 +22,30 @@
       },
       "revId": "80cde8a8fe786fd811191586474fabfcf9cdeda2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5ebcf0a_623f9ac5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-08-26T11:30:49Z",
+      "side": 1,
+      "message": "As this review being discussed in a call, decided to keep the patch-set as-is.\n\nSince, there is another bean scheduled to check if the dmi is accessible or not (DmiPluginWatchDog).\n\nFor the point of adding dmi-plugin to the cache regardless of waiting crate, update, upgrade, and remove is seems also ok. Since there is a re-try mechanism for the operations. It is very less probability to get fail over all the CRUD operations for entire cm handles. Nevertheless, the trust level of a cm handle is being decided by effective trust level that looking for both caches.",
+      "parentUuid": "6debdc7d_e4d5e91b",
+      "range": {
+        "startLine": 96,
+        "startChar": 8,
+        "endLine": 96,
+        "endChar": 67
+      },
+      "revId": "80cde8a8fe786fd811191586474fabfcf9cdeda2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
