@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f6c5fe8_276b8a51",
+        "filename": "k6-tests/teardown.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-08-26T16:09:52Z",
+      "side": 1,
+      "message": "if we always should clean the old images, then why do we need an environment variable to control the feature?\n\nAlso, where should we set this environment variable e.g. on the test server if it is needed?",
+      "range": {
+        "startLine": 23,
+        "startChar": 30,
+        "endLine": 23,
+        "endChar": 51
+      },
+      "revId": "dacc217afe3e4ae9f1bda96a285929016204701e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
