@@ -92,8 +92,10 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
 
     def 'Getting Yang Resources.'() {
         when: 'yang resources is called'
-            objectUnderTest.getYangResourcesModuleReferences('some-cm-handle')
-        then: 'CPS module services is invoked for the correct dataspace and cm handle'
+            objectUnderTest.getYangResourcesModuleReferences('some-cm-handle-reference')
+        then: 'alternate id matcher is called'
+            mockAlternateIdMatcher.getCmHandleId('some-cm-handle-reference') >> 'some-cm-handle'
+        and: 'CPS module services is invoked for the correct dataspace and cm handle'
             1 * mockInventoryPersistence.getYangResourcesModuleReferences('some-cm-handle')
     }
 

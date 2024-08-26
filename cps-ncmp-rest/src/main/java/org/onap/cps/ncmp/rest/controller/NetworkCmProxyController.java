@@ -363,12 +363,12 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     /**
      * Return module references for a cm handle.
      *
-     * @param cmHandle the cm handle
+     * @param cmHandleReference cm handle or alternate id identifier
      * @return module references for cm handle. Namespace will be always blank because restConf does not include this.
      */
-    public ResponseEntity<List<RestModuleReference>> getModuleReferencesByCmHandle(final String cmHandle) {
+    public ResponseEntity<List<RestModuleReference>> getModuleReferencesByCmHandle(final String cmHandleReference) {
         final List<RestModuleReference> restModuleReferences =
-            networkCmProxyInventoryFacade.getYangResourcesModuleReferences(cmHandle).stream()
+            networkCmProxyInventoryFacade.getYangResourcesModuleReferences(cmHandleReference).stream()
                         .map(ncmpRestInputMapper::toRestModuleReference)
                         .collect(Collectors.toList());
         return new ResponseEntity<>(restModuleReferences, HttpStatus.OK);
