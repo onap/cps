@@ -114,6 +114,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1275ebf3_74050ff9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/NetworkCmProxyInventoryFacade.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-26T21:11:03Z",
+      "side": 1,
+      "message": "AlternateIdMatcher is fine I think.\nIf it grows then we can think later to split it.\nBut now it looks fine to me.",
+      "parentUuid": "ccbfdd74_d262d6df",
+      "range": {
+        "startLine": 69,
+        "startChar": 4,
+        "endLine": 69,
+        "endChar": 56
+      },
+      "revId": "e76b31ad95eca6df54039379d445daad97d27fd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d92d2ec0_b9ba8651",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/NetworkCmProxyInventoryFacadeSpec.groovy",
         "patchSetId": 1
@@ -125,6 +149,30 @@
       "writtenOn": "2024-08-26T10:38:33Z",
       "side": 1,
       "message": "What would be the case if cmHandleRef does not exists? E.g. mapped neither to cmHandleId nor alternateId ? is there any test or did I missed?",
+      "range": {
+        "startLine": 172,
+        "startChar": 12,
+        "endLine": 172,
+        "endChar": 71
+      },
+      "revId": "e76b31ad95eca6df54039379d445daad97d27fd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c303e539_8c2cf057",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/NetworkCmProxyInventoryFacadeSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-26T21:11:03Z",
+      "side": 1,
+      "message": "can look into that scenario in the next commit.\nif we get this merged then me and sean can use the common code.",
+      "parentUuid": "d92d2ec0_b9ba8651",
       "range": {
         "startLine": 172,
         "startChar": 12,
