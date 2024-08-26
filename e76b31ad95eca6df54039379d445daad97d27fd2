@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fb4ba5b4_e03bee68",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-26T13:08:04Z",
+      "side": 1,
+      "message": "yeah. right. I had this in my mind and the reason I didnt do it coz we reuse a common attribute \"cmHandleInPath\" all across.\nand since we are in the middle of transitioning I thought to do it at the last.\n\nBut now that u mentioned in I can probably create a new attribute and update the endpoints which have support for cmHandleReference now.",
+      "parentUuid": "2f5c4718_85e93981",
+      "range": {
+        "startLine": 74,
+        "startChar": 49,
+        "endLine": 74,
+        "endChar": 66
+      },
+      "revId": "e76b31ad95eca6df54039379d445daad97d27fd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ccbfdd74_d262d6df",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/NetworkCmProxyInventoryFacade.java",
         "patchSetId": 1
