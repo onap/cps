@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6debdc7d_e4d5e91b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-26T10:30:00Z",
+      "side": 1,
+      "message": "probably legacy issue , but we are registering the dmi service as the first step.\nwhat if the other steps fail after this and maybe we are unable to remove, create, update or upgrade ( in short contact the DMI plugin ) . We dont want the trust level to be complete in that scenario. right ??\n\nso do we register the DMI as the last step by checking if we are able to contact the DMI and DMI is able to perform the operations.",
+      "range": {
+        "startLine": 96,
+        "startChar": 8,
+        "endLine": 96,
+        "endChar": 67
+      },
+      "revId": "80cde8a8fe786fd811191586474fabfcf9cdeda2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
