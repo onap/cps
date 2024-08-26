@@ -240,6 +240,30 @@
       },
       "revId": "b2e12bd72e96cdb5dea30ac4d1d9c090ad616eb2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1be9870_b7fe1659",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/DataJobResultServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-26T15:30:50Z",
+      "side": 1,
+      "message": "def result \u003d dataJobResultService.getDataJobResult(authorization, dmiServiceName, dataProducerId, dataProducerJobId, destination)",
+      "parentUuid": "329cbd1a_f641cd00",
+      "range": {
+        "startLine": 40,
+        "startChar": 94,
+        "endLine": 40,
+        "endChar": 122
+      },
+      "revId": "b2e12bd72e96cdb5dea30ac4d1d9c090ad616eb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
