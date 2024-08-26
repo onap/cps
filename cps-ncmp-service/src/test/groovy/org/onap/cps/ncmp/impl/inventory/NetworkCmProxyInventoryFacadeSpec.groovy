@@ -51,7 +51,6 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
     def mockTrustLevelManager = Mock(TrustLevelManager)
     def mockAlternateIdMatcher = Mock(AlternateIdMatcher)
     def objectUnderTest = new NetworkCmProxyInventoryFacade(mockCmHandleRegistrationService, mockCmHandleQueryService, mockParameterizedCmHandleQueryService, mockInventoryPersistence, spiedJsonObjectMapper, mockTrustLevelManager, mockAlternateIdMatcher)
-    def trustLevelPerCmHandle = [:]
 
     def 'Update DMI Registration'() {
         given: 'an (updated) dmi plugin registration'
@@ -90,11 +89,17 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
             assert result.containsAll('cm-handle-1','cm-handle-2')
     }
 
-    def 'Getting Yang Resources.'() {
+    def 'Getting Yang Resources for a given #scenario'() {
         when: 'yang resources is called'
-            objectUnderTest.getYangResourcesModuleReferences('some-cm-handle')
-        then: 'CPS module services is invoked for the correct dataspace and cm handle'
-            1 * mockInventoryPersistence.getYangResourcesModuleReferences('some-cm-handle')
+            objectUnderTest.getYangResourcesModuleReferences(cmHandleRef)
+        then: 'alternate id matcher is called'
+            mockAlternateIdMatcher.getCmHandleId(cmHandleRef) >> 'cmHandleId'
+        and: 'CPS module services is invoked for the correct cm handle'
+            1 * mockInventoryPersistence.getYangResourcesModuleReferences('cmHandleId')
+        where: 'following cm handle reference is used'
+            scenario                              | cmHandleRef
+            'Cm Handle Reference as cm handle-id' | 'some-cm-handle'
+            'Cm Handle Reference as alternate-id' | 'some-alternate-id'
     }
 
     def 'Get a cm handle.'() {
