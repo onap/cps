@@ -45,6 +45,7 @@ import org.onap.cps.ncmp.impl.inventory.models.CmHandleQueryConditions;
 import org.onap.cps.ncmp.impl.inventory.models.InventoryQueryConditions;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.inventory.trustlevel.TrustLevelCacheConfig;
+import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher;
 import org.onap.cps.ncmp.impl.utils.YangDataConverter;
 import org.onap.cps.spi.model.ModuleDefinition;
 import org.onap.cps.spi.model.ModuleReference;
@@ -62,6 +63,7 @@ public class NetworkCmProxyInventoryFacade {
     private final ParameterizedCmHandleQueryService parameterizedCmHandleQueryService;
     private final InventoryPersistence inventoryPersistence;
     private final JsonObjectMapper jsonObjectMapper;
+    private final AlternateIdMatcher alternateIdMatcher;
 
     @Qualifier(TrustLevelCacheConfig.TRUST_LEVEL_PER_CM_HANDLE)
     private final Map<String, TrustLevel> trustLevelPerCmHandle;
@@ -114,24 +116,26 @@ public class NetworkCmProxyInventoryFacade {
     /**
      * Retrieve module definitions for the given cm handle.
      *
-     * @param cmHandleId cm handle identifier
+     * @param cmHandleReference cm handle or alternate id identifier
      * @return a collection of module definition (moduleName, revision and yang resource content)
      */
-    public Collection<ModuleDefinition> getModuleDefinitionsByCmHandleId(final String cmHandleId) {
+    public Collection<ModuleDefinition> getModuleDefinitionsByCmHandleReference(final String cmHandleReference) {
+        final String cmHandleId = alternateIdMatcher.getCmHandleId(cmHandleReference);
         return inventoryPersistence.getModuleDefinitionsByCmHandleId(cmHandleId);
     }
 
     /**
      * Get module definitions for the given parameters.
      *
-     * @param cmHandleId        cm-handle identifier
-     * @param moduleName        module name
-     * @param moduleRevision    the revision of the module
+     * @param cmHandleReference  cm handle or alternate id identifier
+     * @param moduleName         module name
+     * @param moduleRevision     the revision of the module
      * @return list of module definitions (module name, revision, yang resource content)
      */
-    public Collection<ModuleDefinition> getModuleDefinitionsByCmHandleAndModule(final String cmHandleId,
+    public Collection<ModuleDefinition> getModuleDefinitionsByCmHandleAndModule(final String cmHandleReference,
                                                                                 final String moduleName,
                                                                                 final String moduleRevision) {
+        final String cmHandleId = alternateIdMatcher.getCmHandleId(cmHandleReference);
         return inventoryPersistence.getModuleDefinitionsByCmHandleAndModule(cmHandleId, moduleName, moduleRevision);
     }
 

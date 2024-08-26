@@ -35,6 +35,7 @@ import org.onap.cps.ncmp.api.inventory.models.TrustLevel
 import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
 import org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
+import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
 import org.onap.cps.spi.model.ConditionProperties
 import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Specification
@@ -46,9 +47,10 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
     def mockParameterizedCmHandleQueryService = Mock(ParameterizedCmHandleQueryService)
     def spiedJsonObjectMapper = Spy(new JsonObjectMapper(new ObjectMapper()))
     def mockInventoryPersistence = Mock(InventoryPersistence)
+    def mockAlternateIdMatcher = Mock(AlternateIdMatcher)
     def trustLevelPerCmHandle = [:]
 
-    def objectUnderTest = new NetworkCmProxyInventoryFacade(mockCmHandleRegistrationService, mockCmHandleQueryService, mockParameterizedCmHandleQueryService, mockInventoryPersistence, spiedJsonObjectMapper, trustLevelPerCmHandle)
+    def objectUnderTest = new NetworkCmProxyInventoryFacade(mockCmHandleRegistrationService, mockCmHandleQueryService, mockParameterizedCmHandleQueryService, mockInventoryPersistence, spiedJsonObjectMapper, mockAlternateIdMatcher, trustLevelPerCmHandle)
 
     def 'Update DMI Registration'() {
         given: 'an (updated) dmi plugin registration'
@@ -181,14 +183,18 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
 
     def 'Getting module definitions by module'() {
         when: 'get module definitions is performed with module name'
-            objectUnderTest.getModuleDefinitionsByCmHandleAndModule('some-cm-handle', 'some-module', '2021-08-04')
-        then: 'ncmp inventory persistence service is invoked once with correct parameters'
+            objectUnderTest.getModuleDefinitionsByCmHandleAndModule('some-alternate-cm-handle', 'some-module', '2021-08-04')
+        then: 'alternate id matcher is called'
+            mockAlternateIdMatcher.getCmHandleId('some-alternate-cm-handle') >> 'some-cm-handle'
+        and: 'ncmp inventory persistence service is invoked once with correct parameters'
             1 * mockInventoryPersistence.getModuleDefinitionsByCmHandleAndModule('some-cm-handle', 'some-module', '2021-08-04')
     }
 
     def 'Getting module definitions by cm handle id'() {
         when: 'get module definitions is performed with cm handle id'
-            objectUnderTest.getModuleDefinitionsByCmHandleId('some-cm-handle')
+            objectUnderTest.getModuleDefinitionsByCmHandleReference('some-alternate-cm-handle')
+        then: 'alternate id matcher is called'
+            mockAlternateIdMatcher.getCmHandleId('some-alternate-cm-handle') >> 'some-cm-handle'
         then: 'ncmp inventory persistence service is invoked once with correct parameter'
             1 * mockInventoryPersistence.getModuleDefinitionsByCmHandleId('some-cm-handle')
     }
