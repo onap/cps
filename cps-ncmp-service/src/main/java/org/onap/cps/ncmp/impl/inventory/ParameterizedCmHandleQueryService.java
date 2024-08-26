@@ -22,7 +22,7 @@ package org.onap.cps.ncmp.impl.inventory;
 
 import java.util.Collection;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryServiceParameters;
-import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
+import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 
 public interface ParameterizedCmHandleQueryService {
     /**
@@ -60,7 +60,7 @@ public interface ParameterizedCmHandleQueryService {
      * @param cmHandleQueryServiceParameters the cm handle query parameters
      * @return collection of cm handles
      */
-    Collection<NcmpServiceCmHandle> queryCmHandles(CmHandleQueryServiceParameters cmHandleQueryServiceParameters);
+    Collection<YangModelCmHandle> queryCmHandles(CmHandleQueryServiceParameters cmHandleQueryServiceParameters);
 
     /**
      * Get all cm handle objects.
@@ -68,5 +68,5 @@ public interface ParameterizedCmHandleQueryService {
      *
      * @return collection of cm handles
      */
-    Collection<NcmpServiceCmHandle> getAllCmHandles();
+    Collection<YangModelCmHandle> getAllCmHandles();
 }
