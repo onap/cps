@@ -190,18 +190,30 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
             assert result == ['cm-handle-id-1']
     }
 
-    def 'Getting module definitions by module'() {
-        when: 'get module definitions is performed with module name'
-            objectUnderTest.getModuleDefinitionsByCmHandleAndModule('some-cm-handle', 'some-module', '2021-08-04')
-        then: 'ncmp inventory persistence service is invoked once with correct parameters'
-            1 * mockInventoryPersistence.getModuleDefinitionsByCmHandleAndModule('some-cm-handle', 'some-module', '2021-08-04')
+    def 'Getting module definitions by module for a given #scenario'() {
+        when: 'get module definitions is performed with module name and cm handle reference'
+            objectUnderTest.getModuleDefinitionsByCmHandleAndModule(cmHandleRef, 'some-module', '2021-08-04')
+        then: 'alternate id matcher returns some cm handle id for a given cm handle reference'
+            mockAlternateIdMatcher.getCmHandleId(cmHandleRef) >> 'cmHandleId'
+        and: 'ncmp inventory persistence service is invoked once with correct parameters'
+            1 * mockInventoryPersistence.getModuleDefinitionsByCmHandleAndModule('cmHandleId', 'some-module', '2021-08-04')
+        where: 'following cm handle reference is used'
+            scenario                              | cmHandleRef
+            'Cm Handle Reference as cm handle-id' | 'some-cm-handle'
+            'Cm Handle Reference as alternate-id' | 'some-alternate-id'
     }
 
-    def 'Getting module definitions by cm handle id'() {
-        when: 'get module definitions is performed with cm handle id'
-            objectUnderTest.getModuleDefinitionsByCmHandleId('some-cm-handle')
+    def 'Getting module definitions for a given #scenario'() {
+        when: 'get module definitions is performed with cm handle reference'
+            objectUnderTest.getModuleDefinitionsByCmHandleReference(cmHandleRef)
+        then: 'alternate id matcher returns some cm handle id for a given cm handle reference'
+            mockAlternateIdMatcher.getCmHandleId(cmHandleRef) >> 'cmHandleId'
         then: 'ncmp inventory persistence service is invoked once with correct parameter'
-            1 * mockInventoryPersistence.getModuleDefinitionsByCmHandleId('some-cm-handle')
+            1 * mockInventoryPersistence.getModuleDefinitionsByCmHandleId('cmHandleId')
+        where: 'following cm handle reference is used'
+            scenario                              | cmHandleRef
+            'Cm Handle Reference as cm handle-id' | 'some-cm-handle'
+            'Cm Handle Reference as alternate-id' | 'some-alternate-id'
     }
 
     def 'Execute cm handle search'() {
