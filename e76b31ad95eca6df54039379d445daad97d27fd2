@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86cf2377_ff2960e5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-08-26T10:38:33Z",
+      "side": 1,
+      "message": "Good commit, since we are at the beginning of this epic, just a few suggestions and questions.",
+      "revId": "e76b31ad95eca6df54039379d445daad97d27fd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f5c4718_85e93981",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-08-26T10:38:33Z",
+      "side": 1,
+      "message": "NB: There is also openapi definitions for swagger as you know. Since we now accept either cmHandleId or alternateId, shall we update openapi files to render this parameter as now cmHandleReference and update the descriptions and examples as well (for Swagger) ?",
+      "range": {
+        "startLine": 74,
+        "startChar": 49,
+        "endLine": 74,
+        "endChar": 66
+      },
+      "revId": "e76b31ad95eca6df54039379d445daad97d27fd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ccbfdd74_d262d6df",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/NetworkCmProxyInventoryFacade.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-08-26T10:38:33Z",
+      "side": 1,
+      "message": "NB: There is a suggestion in the main story of this, saying about how to proceed with this: \u0027Create handler to identify alternate Id vs cmHandle Id\u0027\n\nI think now we decided to use AlternateIdMatcher for that logic, right?\n\nWhat do you think if still using AlternateIdMatcher as cmHandleRefrenceHandler or do we need to have a dedicated bean e.g. cmHandleRefrenceHandler for this epic?",
+      "range": {
+        "startLine": 69,
+        "startChar": 4,
+        "endLine": 69,
+        "endChar": 56
+      },
+      "revId": "e76b31ad95eca6df54039379d445daad97d27fd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d92d2ec0_b9ba8651",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/NetworkCmProxyInventoryFacadeSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-08-26T10:38:33Z",
+      "side": 1,
+      "message": "What would be the case if cmHandleRef does not exists? E.g. mapped neither to cmHandleId nor alternateId ? is there any test or did I missed?",
+      "range": {
+        "startLine": 172,
+        "startChar": 12,
+        "endLine": 172,
+        "endChar": 71
+      },
+      "revId": "e76b31ad95eca6df54039379d445daad97d27fd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
