@@ -82,6 +82,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d20fbb9_160def1b",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-26T16:07:45Z",
+      "side": 1,
+      "message": "not yet, they seem C\u0026P from test. I\u0027ll udpate to more realistic values. Until we do performance test it wont matter much",
+      "parentUuid": "9b0a2a4a_9115853e",
+      "range": {
+        "startLine": 198,
+        "startChar": 16,
+        "endLine": 203,
+        "endChar": 49
+      },
+      "revId": "b2e12bd72e96cdb5dea30ac4d1d9c090ad616eb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "520ed06f_fb0441b4",
@@ -95,6 +119,30 @@
       "writtenOn": "2024-08-26T15:28:50Z",
       "side": 1,
       "message": "NB: 2024",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 23
+      },
+      "revId": "b2e12bd72e96cdb5dea30ac4d1d9c090ad616eb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fa12998_2e8deb25",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/PolicyExecutorHttpClientConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-26T16:07:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "520ed06f_fb0441b4",
       "range": {
         "startLine": 3,
         "startChar": 18,
@@ -128,6 +176,53 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "645d4214_3f9bb63b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/DmiDataOperations.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-26T16:07:45Z",
+      "side": 1,
+      "message": "is used",
+      "parentUuid": "35c1ddff_8eac2d22",
+      "range": {
+        "startLine": 44,
+        "startChar": 50,
+        "endLine": 44,
+        "endChar": 65
+      },
+      "revId": "b2e12bd72e96cdb5dea30ac4d1d9c090ad616eb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c676db32_f7fcbc7c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/DmiHttpClientConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-26T16:07:45Z",
+      "side": 1,
+      "message": "NB: use consistent order and unique values for all http test parameters for all clients \u0026 service ie number them sequentially for easy comparison...",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 58
+      },
+      "revId": "b2e12bd72e96cdb5dea30ac4d1d9c090ad616eb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cb86dc42_cddc7ef2",
@@ -141,6 +236,30 @@
       "writtenOn": "2024-08-26T15:23:02Z",
       "side": 1,
       "message": "NB: copy\u0026past error, should ne \u0027all service\u0027",
+      "range": {
+        "startLine": 38,
+        "startChar": 53,
+        "endLine": 38,
+        "endChar": 61
+      },
+      "revId": "b2e12bd72e96cdb5dea30ac4d1d9c090ad616eb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1845ad6_152d15d4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/PolicyExecutorHttpClientConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-26T16:07:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb86dc42_cddc7ef2",
       "range": {
         "startLine": 38,
         "startChar": 53,
@@ -174,6 +293,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fcc845ba_d7bc4fee",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/DmiDataOperationsSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-26T16:07:45Z",
+      "side": 1,
+      "message": "is needed",
+      "parentUuid": "852ee9b6_1afd5169",
+      "range": {
+        "startLine": 31,
+        "startChar": 49,
+        "endLine": 31,
+        "endChar": 64
+      },
+      "revId": "b2e12bd72e96cdb5dea30ac4d1d9c090ad616eb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0f2a6b59_a746e355",
@@ -187,6 +330,30 @@
       "writtenOn": "2024-08-26T15:23:02Z",
       "side": 1,
       "message": "NB: check import",
+      "range": {
+        "startLine": 7,
+        "startChar": 50,
+        "endLine": 7,
+        "endChar": 64
+      },
+      "revId": "b2e12bd72e96cdb5dea30ac4d1d9c090ad616eb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8d0b953_d5c4292d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/PolicyExecutorSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-26T16:07:45Z",
+      "side": 1,
+      "message": "is needed",
+      "parentUuid": "0f2a6b59_a746e355",
       "range": {
         "startLine": 7,
         "startChar": 50,
@@ -220,6 +387,53 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2edbbba3_27f8ba55",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/dmi/DmiWebClientsConfigurationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-26T16:07:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1cb4078d_c548ee12",
+      "range": {
+        "startLine": 45,
+        "startChar": 8,
+        "endLine": 45,
+        "endChar": 32
+      },
+      "revId": "b2e12bd72e96cdb5dea30ac4d1d9c090ad616eb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "65655638_159d22ba",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/policyexecutor/PolicyExecutorWebClientConfigurationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-26T16:07:45Z",
+      "side": 1,
+      "message": "NB: should use when/then",
+      "range": {
+        "startLine": 47,
+        "startChar": 8,
+        "endLine": 47,
+        "endChar": 13
+      },
+      "revId": "b2e12bd72e96cdb5dea30ac4d1d9c090ad616eb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3a59f63e_4fd55851",
@@ -238,6 +452,53 @@
         "startChar": 55,
         "endLine": 49,
         "endChar": 67
+      },
+      "revId": "b2e12bd72e96cdb5dea30ac4d1d9c090ad616eb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6fea12a_72c6fd6f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/policyexecutor/PolicyExecutorWebClientConfigurationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-26T16:07:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a59f63e_4fd55851",
+      "range": {
+        "startLine": 49,
+        "startChar": 55,
+        "endLine": 49,
+        "endChar": 67
+      },
+      "revId": "b2e12bd72e96cdb5dea30ac4d1d9c090ad616eb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "659ed1bc_1eef08ee",
+        "filename": "cps-ncmp-service/src/test/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-26T16:07:45Z",
+      "side": 1,
+      "message": "use unique values for all http config parameters for all services",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 44
       },
       "revId": "b2e12bd72e96cdb5dea30ac4d1d9c090ad616eb2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
@@ -285,6 +546,53 @@
         "startChar": 94,
         "endLine": 40,
         "endChar": 122
+      },
+      "revId": "b2e12bd72e96cdb5dea30ac4d1d9c090ad616eb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "51af1d87_d1ee005c",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/DataJobResultServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-26T16:07:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f1be9870_b7fe1659",
+      "range": {
+        "startLine": 40,
+        "startChar": 94,
+        "endLine": 40,
+        "endChar": 122
+      },
+      "revId": "b2e12bd72e96cdb5dea30ac4d1d9c090ad616eb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d04a598a_ddf6bf7a",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/DataJobResultServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-26T16:07:45Z",
+      "side": 1,
+      "message": "NB: redundant",
+      "range": {
+        "startLine": 42,
+        "startChar": 11,
+        "endLine": 42,
+        "endChar": 33
       },
       "revId": "b2e12bd72e96cdb5dea30ac4d1d9c090ad616eb2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
