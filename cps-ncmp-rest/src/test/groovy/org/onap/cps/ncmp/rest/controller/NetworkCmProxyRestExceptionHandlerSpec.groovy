@@ -29,11 +29,13 @@ import org.onap.cps.ncmp.api.data.exceptions.OperationNotSupportedException
 import org.onap.cps.ncmp.api.exceptions.DmiClientRequestException
 import org.onap.cps.ncmp.api.exceptions.DmiRequestException
 import org.onap.cps.ncmp.api.exceptions.PayloadTooLargeException
+import org.onap.cps.ncmp.api.exceptions.PolicyExecutorException
 import org.onap.cps.ncmp.api.exceptions.ServerNcmpException
 import org.onap.cps.ncmp.api.inventory.NetworkCmProxyInventoryFacade
 import org.onap.cps.ncmp.impl.data.NcmpCachedResourceRequestHandler
 import org.onap.cps.ncmp.impl.data.NcmpPassthroughResourceRequestHandler
 import org.onap.cps.ncmp.impl.data.NetworkCmProxyFacade
+import org.onap.cps.ncmp.impl.data.policyexecutor.PolicyExecutor
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
 import org.onap.cps.ncmp.rest.util.CmHandleStateMapper
 import org.onap.cps.ncmp.rest.util.DataOperationRequestMapper
@@ -120,25 +122,26 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
         dataNodeBaseEndpointNcmpInventory = "$basePathNcmpInventory/v1"
     }
 
-    def 'Get request with #scenario exception returns correct HTTP Status with #scenario'() {
+    def 'Get request with #scenario exception returns correct HTTP Status with #scenario exception'() {
         when: 'an exception is thrown by the service'
             setupTestException(exception, NCMP)
             def response = performTestRequest(NCMP)
         then: 'an HTTP response is returned with correct message and details'
             assertTestResponse(response, expectedErrorCode, expectedErrorMessage, expectedErrorDetails)
         where:
-            scenario                | exception                                                        || expectedErrorCode     | expectedErrorMessage        | expectedErrorDetails
-            'CPS'                   | new CpsException(sampleErrorMessage, sampleErrorDetails)         || INTERNAL_SERVER_ERROR | sampleErrorMessage          | sampleErrorDetails
-            'NCMP-server'           | new ServerNcmpException(sampleErrorMessage, sampleErrorDetails)  || INTERNAL_SERVER_ERROR | sampleErrorMessage          | null
-            'DMI Request'           | new DmiRequestException(sampleErrorMessage, sampleErrorDetails)  || BAD_REQUEST           | sampleErrorMessage          | null
-            'Invalid Operation'     | new InvalidOperationException('some reason')                     || BAD_REQUEST           | 'some reason'               | null
-            'Unsupported Operation' | new OperationNotSupportedException('not yet')                    || BAD_REQUEST           | 'not yet'                   | null
-            'DataNode Validation'   | new DataNodeNotFoundException('myDataspaceName', 'myAnchorName') || NOT_FOUND             | 'DataNode not found'        | null
-            'other'                 | new IllegalStateException(sampleErrorMessage)                    || INTERNAL_SERVER_ERROR | sampleErrorMessage          | null
-            'Data Node Not Found'   | new DataNodeNotFoundException('myDataspaceName', 'myAnchorName') || NOT_FOUND             | 'DataNode not found'        | 'DataNode not found'
-            'Existing entry'        | new AlreadyDefinedException('name',null)                         || CONFLICT              | 'Already defined exception' | 'name already exists'
-            'Existing entries'      | AlreadyDefinedException.forDataNodes(['A', 'B'], 'myAnchorName') || CONFLICT              | 'Already defined exception' | '2 data node(s) already exist'
-            'Operation too large'   | new PayloadTooLargeException(sampleErrorMessage) || PAYLOAD_TOO_LARGE | sampleErrorMessage | 'Check logs'
+            scenario                | exception                                                           || expectedErrorCode     | expectedErrorMessage        | expectedErrorDetails
+            'CPS'                   | new CpsException(sampleErrorMessage, sampleErrorDetails)            || INTERNAL_SERVER_ERROR | sampleErrorMessage          | sampleErrorDetails
+            'NCMP-server'           | new ServerNcmpException(sampleErrorMessage, sampleErrorDetails)     || INTERNAL_SERVER_ERROR | sampleErrorMessage          | null
+            'DMI Request'           | new DmiRequestException(sampleErrorMessage, sampleErrorDetails)     || BAD_REQUEST           | sampleErrorMessage          | null
+            'Invalid Operation'     | new InvalidOperationException('some reason')                        || BAD_REQUEST           | 'some reason'               | null
+            'Unsupported Operation' | new OperationNotSupportedException('not yet')                       || BAD_REQUEST           | 'not yet'                   | null
+            'DataNode Validation'   | new DataNodeNotFoundException('myDataspaceName', 'myAnchorName')    || NOT_FOUND             | 'DataNode not found'        | null
+            'other'                 | new IllegalStateException(sampleErrorMessage)                       || INTERNAL_SERVER_ERROR | sampleErrorMessage          | null
+            'Data Node Not Found'   | new DataNodeNotFoundException('myDataspaceName', 'myAnchorName')    || NOT_FOUND             | 'DataNode not found'        | 'DataNode not found'
+            'Existing entry'        | new AlreadyDefinedException('name',null)                            || CONFLICT              | 'Already defined exception' | 'name already exists'
+            'Existing entries'      | AlreadyDefinedException.forDataNodes(['A', 'B'], 'myAnchorName')    || CONFLICT              | 'Already defined exception' | '2 data node(s) already exist'
+            'Operation too large'   | new PayloadTooLargeException(sampleErrorMessage)                    || PAYLOAD_TOO_LARGE     | sampleErrorMessage          | 'Check logs'
+            'Policy Executor'       | new PolicyExecutorException(sampleErrorMessage, sampleErrorDetails) || CONFLICT              | sampleErrorMessage          | 'Check logs'
     }
 
     def 'Post request with exception returns correct HTTP Status.'() {
