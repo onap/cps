@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3bce2cb8_3061a55b",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-27T17:05:53Z",
+      "side": 1,
+      "message": "intentionally kept this name as cm-handle so that I dont have to change anything in the exposed endpoint path variable name.",
+      "range": {
+        "startLine": 509,
+        "startChar": 12,
+        "endLine": 509,
+        "endChar": 21
+      },
+      "revId": "91a3491339d5dc4c296947bb3477ffe234103123",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
