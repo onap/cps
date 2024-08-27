@@ -19,7 +19,9 @@ pushd "$(dirname "$0")" >/dev/null || exit 1
 
 number_of_failures=0
 echo "Running K6 performance tests..."
-k6 --quiet run ncmp-kpi.js > summary.csv || ((number_of_failures++))
+
+# Redirecting stderr to /dev/null to prevent large log files
+k6 --quiet run ncmp-kpi.js > summary.csv 2>/dev/null || ((number_of_failures++))
 
 if [ -f summary.csv ]; then
 
