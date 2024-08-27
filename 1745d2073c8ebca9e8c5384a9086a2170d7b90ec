@@ -16,6 +16,46 @@
       "message": "recheck",
       "revId": "1745d2073c8ebca9e8c5384a9086a2170d7b90ec",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbcd88d4_0d574a95",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-27T12:54:10Z",
+      "side": 1,
+      "message": "just a minor comment.",
+      "revId": "1745d2073c8ebca9e8c5384a9086a2170d7b90ec",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "037ee5f5_518aedba",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-27T12:54:10Z",
+      "side": 1,
+      "message": "NB: we have 2 versions of #5 i.e 5a and 5b. Do we need to explicitly say it here as well.",
+      "range": {
+        "startLine": 69,
+        "startChar": 28,
+        "endLine": 69,
+        "endChar": 30
+      },
+      "revId": "1745d2073c8ebca9e8c5384a9086a2170d7b90ec",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
