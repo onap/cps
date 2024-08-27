@@ -29,7 +29,7 @@ import spock.lang.Specification
 
 @SpringBootTest
 @ContextConfiguration(classes = [DmiHttpClientConfig])
-@EnableConfigurationProperties(DmiHttpClientConfig)
+@EnableConfigurationProperties()
 class DmiHttpClientConfigSpec extends Specification {
 
     @Autowired

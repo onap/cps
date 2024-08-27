@@ -20,17 +20,17 @@
 
 package org.onap.cps.integration.base
 
-import static org.onap.cps.integration.base.CpsIntegrationSpecBase.readResourceDataFile
-
 import groovy.json.JsonSlurper
-import java.util.regex.Matcher
 import okhttp3.mockwebserver.Dispatcher
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.RecordedRequest
-import org.onap.cps.ncmp.api.datajobs.models.SubJobWriteRequest
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
+
+import java.util.regex.Matcher
+
+import static org.onap.cps.integration.base.CpsIntegrationSpecBase.readResourceDataFile
 
 /**
  * This class simulates responses from the DMI server in NCMP integration tests.
@@ -117,32 +117,32 @@ class DmiDispatcher extends Dispatcher {
         return mockResponseWithBody(HttpStatus.OK, response)
     }
 
-    private getModuleReferencesResponse(cmHandleId) {
+    def getModuleReferencesResponse(cmHandleId) {
         def moduleReferences = '{"schemas":[' + getModuleNamesForCmHandle(cmHandleId).collect {
             MODULE_REFERENCES_RESPONSE_TEMPLATE.replaceAll("<MODULE_NAME>", it)
         }.join(',') + ']}'
         return mockResponseWithBody(HttpStatus.OK, moduleReferences)
     }
 
-    private getModuleResourcesResponse(cmHandleId) {
+    def getModuleResourcesResponse(cmHandleId) {
         def moduleResources = '[' + getModuleNamesForCmHandle(cmHandleId).collect {
             MODULE_RESOURCES_RESPONSE_TEMPLATE.replaceAll("<MODULE_NAME>", it)
         }.join(',') + ']'
         return mockResponseWithBody(HttpStatus.OK, moduleResources)
     }
 
-    private getModuleNamesForCmHandle(cmHandleId) {
+    def getModuleNamesForCmHandle(cmHandleId) {
         if (!moduleNamesPerCmHandleId.containsKey(cmHandleId)) {
             throw new IllegalArgumentException('Mock DMI has no modules configured for ' + cmHandleId)
         }
         return moduleNamesPerCmHandleId.get(cmHandleId)
     }
 
-    private static mockResponse(status) {
+    def static mockResponse(status) {
         return new MockResponse().setResponseCode(status.value())
     }
 
-    private static mockResponseWithBody(status, responseBody) {
+    def static mockResponseWithBody(status, responseBody) {
         return new MockResponse()
                 .setResponseCode(status.value())
                 .addHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON)

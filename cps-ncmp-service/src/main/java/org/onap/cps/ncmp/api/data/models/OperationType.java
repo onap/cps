@@ -59,4 +59,5 @@ public enum OperationType {
             throw new InvalidOperationException(operationName + " is an invalid operation name");
         }
     }
+
 }
