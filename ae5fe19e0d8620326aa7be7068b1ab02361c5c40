@@ -16,6 +16,23 @@
       "message": "Good commit with some NB reviews",
       "revId": "ae5fe19e0d8620326aa7be7068b1ab02361c5c40",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "39187038_e5ea06f3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-27T13:10:11Z",
+      "side": 1,
+      "message": "I can handle all these comments in the next upcoming patch for introducing alternate id for the properties API.",
+      "revId": "ae5fe19e0d8620326aa7be7068b1ab02361c5c40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
