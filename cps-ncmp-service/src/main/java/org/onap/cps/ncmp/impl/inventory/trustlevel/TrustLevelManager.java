@@ -24,6 +24,7 @@ import java.util.Collection;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.inventory.models.TrustLevel;
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
@@ -49,11 +50,26 @@ public class TrustLevelManager {
     private static final String AVC_NO_OLD_VALUE = null;
 
     /**
+     * Add dmi plugins to the cache.
+     *
+     * @param dmiPluginRegistration a dmi plugin being registered
+     */
+    public void registerDmiPlugin(final DmiPluginRegistration dmiPluginRegistration) {
+        final String dmiServiceName;
+        if (DmiPluginRegistration.isNullEmptyOrBlank(dmiPluginRegistration.getDmiDataPlugin())) {
+            dmiServiceName = dmiPluginRegistration.getDmiPlugin();
+        } else {
+            dmiServiceName = dmiPluginRegistration.getDmiDataPlugin();
+        }
+        trustLevelPerDmiPlugin.put(dmiServiceName, TrustLevel.COMPLETE);
+    }
+
+    /**
      * Add cmHandles to the cache and publish notification for initial trust level of cmHandles if it is NONE.
      *
      * @param cmHandlesToBeCreated a list of cmHandles being created
      */
-    public void handleInitialRegistrationOfTrustLevels(final Map<String, TrustLevel> cmHandlesToBeCreated) {
+    public void registerCmHandles(final Map<String, TrustLevel> cmHandlesToBeCreated) {
         for (final Map.Entry<String, TrustLevel> entry : cmHandlesToBeCreated.entrySet()) {
             final String cmHandleId = entry.getKey();
             if (trustLevelPerCmHandle.containsKey(cmHandleId)) {
@@ -82,15 +98,15 @@ public class TrustLevelManager {
      * @param affectedCmHandleIds   cm handle ids belonging to dmi service name
      * @param newDmiTrustLevel      new trust level of the dmi plugin
      */
-    public void handleUpdateOfDmiTrustLevel(final String dmiServiceName,
-                                            final Collection<String> affectedCmHandleIds,
-                                            final TrustLevel newDmiTrustLevel) {
+    public void updateDmi(final String dmiServiceName,
+                          final Collection<String> affectedCmHandleIds,
+                          final TrustLevel newDmiTrustLevel) {
         final TrustLevel oldDmiTrustLevel  = trustLevelPerDmiPlugin.get(dmiServiceName);
         trustLevelPerDmiPlugin.put(dmiServiceName, newDmiTrustLevel);
         for (final String affectedCmHandleId : affectedCmHandleIds) {
-            final TrustLevel deviceTrustLevel = trustLevelPerCmHandle.get(affectedCmHandleId);
-            final TrustLevel oldEffectiveTrustLevel = deviceTrustLevel.getEffectiveTrustLevel(oldDmiTrustLevel);
-            final TrustLevel newEffectiveTrustLevel = deviceTrustLevel.getEffectiveTrustLevel(newDmiTrustLevel);
+            final TrustLevel cmHandleTrustLevel = trustLevelPerCmHandle.get(affectedCmHandleId);
+            final TrustLevel oldEffectiveTrustLevel = cmHandleTrustLevel.getEffectiveTrustLevel(oldDmiTrustLevel);
+            final TrustLevel newEffectiveTrustLevel = cmHandleTrustLevel.getEffectiveTrustLevel(newDmiTrustLevel);
             sendAvcNotificationIfRequired(affectedCmHandleId, oldEffectiveTrustLevel, newEffectiveTrustLevel);
         }
     }
@@ -100,21 +116,54 @@ public class TrustLevelManager {
      * changed.
      *
      * @param cmHandleId            cm handle id
-     * @param newDeviceTrustLevel   new trust level of the device
+     * @param newCmHandleTrustLevel   new trust level of the device
      */
-    public void handleUpdateOfDeviceTrustLevel(final String cmHandleId,
-                                               final TrustLevel newDeviceTrustLevel) {
-        final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(cmHandleId);
-        final String dmiServiceName = yangModelCmHandle.resolveDmiServiceName(RequiredDmiService.DATA);
+    public void updateCmHandleTrustLevel(final String cmHandleId,
+                                         final TrustLevel newCmHandleTrustLevel) {
+        final String dmiServiceName = getDmiServiceName(cmHandleId);
 
         final TrustLevel dmiTrustLevel = trustLevelPerDmiPlugin.get(dmiServiceName);
-        final TrustLevel oldDeviceTrustLevel = trustLevelPerCmHandle.get(cmHandleId);
+        final TrustLevel oldCmHandleTrustLevel = trustLevelPerCmHandle.get(cmHandleId);
 
-        final TrustLevel oldEffectiveTrustLevel = oldDeviceTrustLevel.getEffectiveTrustLevel(dmiTrustLevel);
-        final TrustLevel newEffectiveTrustLevel = newDeviceTrustLevel.getEffectiveTrustLevel(dmiTrustLevel);
+        final TrustLevel oldEffectiveTrustLevel = oldCmHandleTrustLevel.getEffectiveTrustLevel(dmiTrustLevel);
+        final TrustLevel newEffectiveTrustLevel = newCmHandleTrustLevel.getEffectiveTrustLevel(dmiTrustLevel);
 
-        trustLevelPerCmHandle.put(cmHandleId, newDeviceTrustLevel);
+        trustLevelPerCmHandle.put(cmHandleId, newCmHandleTrustLevel);
         sendAvcNotificationIfRequired(cmHandleId, oldEffectiveTrustLevel, newEffectiveTrustLevel);
+    }
+
+    /**
+     * Select effective trust level among device and dmi plugin.
+     *
+     * @param cmHandleId       cm handle id
+     * @return TrustLevel      effective trust level
+     */
+    public TrustLevel getEffectiveTrustLevel(final String cmHandleId) {
+        final TrustLevel dmiTrustLevel = TrustLevel.COMPLETE; // TODO: CPS-2375
+        final TrustLevel cmHandleTrustLevel = trustLevelPerCmHandle.get(cmHandleId);
+        return dmiTrustLevel.getEffectiveTrustLevel(cmHandleTrustLevel);
+    }
+
+    /**
+     * Remove cm handle trust level from the cache and publish notification for trust level of cmHandles
+     * if it is COMPLETE.
+     *
+     * @param cmHandleIds       cm handle ids to be removed from the cache
+     */
+    public void removeCmHandles(final Collection<String> cmHandleIds) {
+        for (final String cmHandleId : cmHandleIds) {
+            if (trustLevelPerCmHandle.containsKey(cmHandleId)) {
+                final TrustLevel oldTrustLevel = trustLevelPerCmHandle.remove(cmHandleId);
+                sendAvcNotificationIfRequired(cmHandleId, oldTrustLevel, TrustLevel.NONE);
+            } else {
+                log.debug("Removed Cm handle: {} is not in trust level cache", cmHandleId);
+            }
+        }
+    }
+
+    private String getDmiServiceName(final String cmHandleId) {
+        final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(cmHandleId);
+        return yangModelCmHandle.resolveDmiServiceName(RequiredDmiService.DATA);
     }
 
     private void sendAvcNotificationIfRequired(final String notificationCandidateCmHandleId,

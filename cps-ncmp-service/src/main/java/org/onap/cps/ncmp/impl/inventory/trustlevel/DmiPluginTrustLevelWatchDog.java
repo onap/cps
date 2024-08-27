@@ -67,7 +67,7 @@ public class DmiPluginTrustLevelWatchDog {
             } else {
                 final Collection<String> cmHandleIds =
                     cmHandleQueryService.getCmHandleIdsByDmiPluginIdentifier(dmiServiceName);
-                trustLevelManager.handleUpdateOfDmiTrustLevel(dmiServiceName, cmHandleIds, newDmiTrustLevel);
+                trustLevelManager.updateDmi(dmiServiceName, cmHandleIds, newDmiTrustLevel);
             }
         });
     }
