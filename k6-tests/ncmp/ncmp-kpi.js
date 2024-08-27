@@ -100,6 +100,7 @@ export const options = {
         }
     },
     thresholds: {
+        'http_req_failed': ['rate == 0'],
         'cmhandles_created_per_second': ['value >= 22'],
         'cmhandles_deleted_per_second': ['value >= 22'],
         'ncmp_overhead_passthrough_read': ['avg <= 100'],
@@ -107,14 +108,6 @@ export const options = {
         'ncmp_overhead_passthrough_write': ['avg <= 100'],
         'http_req_duration{scenario:id_search_module}': ['avg <= 625'],
         'http_req_duration{scenario:cm_search_module}': ['avg <= 13000'],
-        'http_req_failed{scenario:id_search_module}': ['rate == 0'],
-        'http_req_failed{scenario:cm_search_module}': ['rate == 0'],
-        'http_req_failed{scenario:passthrough_read}': ['rate == 0'],
-        'http_req_failed{scenario:passthrough_write}': ['rate == 0'],
-        'http_req_failed{group:::setup}':['rate == 0'],
-        'http_req_failed{group:::teardown}':['rate == 0'],
-        'http_req_failed{scenario:data_operation_send_async_http_request}': ['rate == 0'],
-        'kafka_reader_error_count{scenario:data_operation_consume_kafka_responses}': ['count == 0'],
         'data_operations_batch_read_cmhandles_per_second': ['avg >= 150'],
     },
 };

@@ -54,6 +54,7 @@ export function getRandomCmHandleId() {
 export function makeCustomSummaryReport(data, options) {
     const summaryCsvLines = [
         '#,Test Name,Unit,Limit,Actual',
+        makeSummaryCsvLine('0', 'HTTP request failures for all tests', 'rate of failed requests', 'http_req_failed', data, options),
         makeSummaryCsvLine('1', 'Registration of CM-handles', 'CM-handles/second', 'cmhandles_created_per_second', data, options),
         makeSummaryCsvLine('2', 'De-registration of CM-handles', 'CM-handles/second', 'cmhandles_deleted_per_second', data, options),
         makeSummaryCsvLine('3', 'CM-handle ID search with Module filter', 'milliseconds', 'http_req_duration{scenario:id_search_module}', data, options),
@@ -62,14 +63,6 @@ export function makeCustomSummaryReport(data, options) {
         makeSummaryCsvLine('5b', 'NCMP overhead for Synchronous single CM-handle pass-through read with alternate id', 'milliseconds', 'ncmp_overhead_passthrough_read_alt_id', data, options),
         makeSummaryCsvLine('6', 'NCMP overhead for Synchronous single CM-handle pass-through write', 'milliseconds', 'ncmp_overhead_passthrough_write', data, options),
         makeSummaryCsvLine('7', 'Data operations batch read', 'events/second', 'data_operations_batch_read_cmhandles_per_second', data, options),
-        makeSummaryCsvLine('1x', 'Failures of Registration of CM-handles', 'number of failed requests', 'http_req_failed{group:::setup}', data, options),
-        makeSummaryCsvLine('2x', 'Failures of De-registration of CM-handles', 'number of failed requests', 'http_req_failed{group:::teardown}', data, options),
-        makeSummaryCsvLine('3x', 'Failures of CM-handle ID search with Module filter', 'number of failed requests', 'http_req_failed{scenario:id_search_module}', data, options),
-        makeSummaryCsvLine('4x', 'Failures of CM-handle search with Module filter', 'number of failed requests', 'http_req_failed{scenario:cm_search_module}', data, options),
-        makeSummaryCsvLine('5x', 'Failures of Synchronous single CM-handle pass-through read', 'number of failed requests', 'http_req_failed{scenario:passthrough_read}', data, options),
-        makeSummaryCsvLine('6x', 'Failures of Synchronous single CM-handle pass-through write', 'number of failed requests', 'http_req_failed{scenario:passthrough_write}', data, options),
-        makeSummaryCsvLine('7ax', 'Failures of Data operations batch read', 'number of failed requests', 'http_req_failed{scenario:data_operation_send_async_http_request}', data, options),
-        makeSummaryCsvLine('7bx', 'Failures of Data operations batch read consume kafka responses', 'number of failed requests', 'kafka_reader_error_count{scenario:data_operation_consume_kafka_responses}', data, options),
     ];
     return summaryCsvLines.join('\n') + '\n';
 }
