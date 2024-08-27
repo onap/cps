@@ -2,6 +2,7 @@
 #
 # Copyright 2020-2021 © Samsung Electronics Co., Ltd.
 # Modifications Copyright (C) 2021 Pantheon.tech
+# Modifications Copyright (C) 2024 Nordix Foundation.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -27,6 +28,8 @@ export WORKSPACE=$(git rev-parse --show-toplevel)/csit
 rm -rf ${WORKSPACE}/archives
 mkdir -p ${WORKSPACE}/archives
 cd ${WORKSPACE}
+
+source install-deps.sh
 
 # Execute all test-suites defined under plans subdirectory
 for dir in plans/*/
