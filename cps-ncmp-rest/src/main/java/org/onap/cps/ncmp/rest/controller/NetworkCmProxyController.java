@@ -148,7 +148,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      * Patch resource data.
      *
      * @param datastoreName      name of the datastore (currently only supports "ncmp-datastore:passthrough-running")
-     * @param cmHandleReference           cm handle or alternate identifier
+     * @param cmHandleReference  cm handle or alternate identifier
      * @param resourceIdentifier resource identifier
      * @param requestBody        the request body
      * @param contentType        content type of body
@@ -177,7 +177,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      * Create resource data for given cm-handle.
      *
      * @param datastoreName      name of the datastore (currently only supports "ncmp-datastore:passthrough-running")
-     * @param cmHandleReference           cm handle or alternate identifier
+     * @param cmHandleReference  cm handle or alternate identifier
      * @param resourceIdentifier resource identifier
      * @param requestBody        the request body
      * @param contentType        content type of body
@@ -202,7 +202,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      * Update resource data for given cm-handle.
      *
      * @param datastoreName      name of the datastore (currently only supports "ncmp-datastore:passthrough-running")
-     * @param cmHandleReference           cm handle or alternate identifier
+     * @param cmHandleReference  cm handle or alternate identifier
      * @param resourceIdentifier resource identifier
      * @param requestBody        the request body
      * @param contentType        content type of the body
@@ -228,7 +228,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      * Delete resource data for a given cm-handle.
      *
      * @param datastoreName      name of the datastore (currently only supports "ncmp-datastore:passthrough-running")
-     * @param cmHandleReference           cm handle or alternate identifier
+     * @param cmHandleReference  cm handle or alternate identifier
      * @param resourceIdentifier resource identifier
      * @param contentType        content type of the body
      * @param authorization      contents of Authorization header, or null if not present
@@ -298,16 +298,16 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     }
 
     /**
-     * Get Cm Handle Properties by Cm Handle Id.
+     * Get Cm Handle Properties by Cm Handle or alternate Identifier.
      *
-     * @param cmHandleId cm-handle identifier
+     * @param cmHandleReference cm-handle or alternate identifier
      * @return cm handle properties
      */
     @Override
     public ResponseEntity<RestOutputCmHandlePublicProperties> getCmHandlePublicPropertiesByCmHandleId(
-            final String cmHandleId) {
+            final String cmHandleReference) {
         final CmHandlePublicProperties cmHandlePublicProperties = new CmHandlePublicProperties();
-        cmHandlePublicProperties.add(networkCmProxyInventoryFacade.getCmHandlePublicProperties(cmHandleId));
+        cmHandlePublicProperties.add(networkCmProxyInventoryFacade.getCmHandlePublicProperties(cmHandleReference));
         final RestOutputCmHandlePublicProperties restOutputCmHandlePublicProperties =
                 new RestOutputCmHandlePublicProperties();
         restOutputCmHandlePublicProperties.setPublicCmHandleProperties(cmHandlePublicProperties);

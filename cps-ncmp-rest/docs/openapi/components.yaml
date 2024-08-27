@@ -505,6 +505,14 @@ components:
       schema:
         type: string
         example: my-cm-handle
+    cmHandleReferenceInPath:
+      name: cm-handle
+      in: path
+      description: The identifier (cmHandle or alternate) for a network function, network element, subnetwork or any other cm object by managed Network CM Proxy
+      required: true
+      schema:
+        type: string
+        example: my-cm-handle-reference
     moduleNameInQuery:
       name: module-name
       in: query

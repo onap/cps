@@ -191,12 +191,13 @@ public class NetworkCmProxyInventoryFacade {
     }
 
     /**
-     * Get cm handle public properties for a given cm handle id.
+     * Get cm handle public properties for a given cm handle or alternate id.
      *
-     * @param cmHandleId cm handle identifier
+     * @param cmHandleReference cm handle or alternate identifier
      * @return cm handle public properties
      */
-    public Map<String, String> getCmHandlePublicProperties(final String cmHandleId) {
+    public Map<String, String> getCmHandlePublicProperties(final String cmHandleReference) {
+        final String cmHandleId = alternateIdMatcher.getCmHandleId(cmHandleReference);
         final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(cmHandleId);
         return YangDataConverter.toPropertiesMap(yangModelCmHandle.getPublicProperties());
     }
