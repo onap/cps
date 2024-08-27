@@ -96,9 +96,7 @@ public class RestServiceUrlTemplateBuilder {
      * @return a UrlTemplateParameters instance containing the complete URL template and URL variables
      */
     public UrlTemplateParameters createUrlTemplateParameters(final String serviceBaseUrl, final String basePath) {
-        this.uriComponentsBuilder.pathSegment(basePath)
-            .pathSegment(VERSION_SEGMENT);
-
+        this.uriComponentsBuilder.pathSegment(basePath).pathSegment(VERSION_SEGMENT);
         final Map<String, String> urlTemplateVariables = new HashMap<>();
 
         pathSegments.forEach((pathSegmentName, variablePathValue) ->  {

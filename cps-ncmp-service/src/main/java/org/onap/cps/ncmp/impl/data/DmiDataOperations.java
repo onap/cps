@@ -94,6 +94,8 @@ public class DmiDataOperations {
                                                                final String requestId,
                                                                final String authorization) {
         final YangModelCmHandle yangModelCmHandle = getYangModelCmHandle(cmResourceAddress.getResolvedCmHandleId());
+        policyExecutor.checkPermission(yangModelCmHandle, OperationType.CREATE, authorization, "resourceId", "requestData");
+
         final CmHandleState cmHandleState = yangModelCmHandle.getCompositeState().getCmHandleState();
         validateIfCmHandleStateReady(yangModelCmHandle, cmHandleState);
         final String jsonRequestBody = getDmiRequestBody(READ, requestId, null, null, yangModelCmHandle);
@@ -139,8 +141,7 @@ public class DmiDataOperations {
                                            final String requestId,
                                            final String authorization)  {
 
-        final Set<String> cmHandlesIds
-                = getDistinctCmHandleIds(dataOperationRequest);
+        final Set<String> cmHandlesIds = getDistinctCmHandleIds(dataOperationRequest);
 
         final Collection<YangModelCmHandle> yangModelCmHandles
             = inventoryPersistence.getYangModelCmHandles(cmHandlesIds);

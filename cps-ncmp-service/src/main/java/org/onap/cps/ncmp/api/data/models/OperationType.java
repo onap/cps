@@ -59,4 +59,8 @@ public enum OperationType {
             throw new InvalidOperationException(operationName + " is an invalid operation name");
         }
     }
+
+    public String getAssociatedPolicyDataSchemaName() {
+        return "urn:cps:org.onap.cps.ncmp.policy-executor:ncmp-" + operationName + "-schema:1.0.0";
+    }
 }

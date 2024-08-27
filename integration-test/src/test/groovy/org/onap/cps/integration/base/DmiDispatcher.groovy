@@ -20,17 +20,17 @@
 
 package org.onap.cps.integration.base
 
-import static org.onap.cps.integration.base.CpsIntegrationSpecBase.readResourceDataFile
-
 import groovy.json.JsonSlurper
-import java.util.regex.Matcher
 import okhttp3.mockwebserver.Dispatcher
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.RecordedRequest
-import org.onap.cps.ncmp.api.datajobs.models.SubJobWriteRequest
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
+
+import java.util.regex.Matcher
+
+import static org.onap.cps.integration.base.CpsIntegrationSpecBase.readResourceDataFile
 
 /**
  * This class simulates responses from the DMI server in NCMP integration tests.
