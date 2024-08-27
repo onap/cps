@@ -19,7 +19,16 @@ pushd "$(dirname "$0")" >/dev/null || exit 1
 
 number_of_failures=0
 echo "Running K6 performance tests..."
-k6 --quiet run ncmp-kpi.js > summary.csv || ((number_of_failures++))
+
+# Define paths
+error_log="../error.log"
+logrotate_conf="config/k6-error-log-rotate.conf"
+
+# Run K6 performance test and redirect errors to error.log
+k6 --quiet run ncmp-kpi.js > summary.csv 2> "$error_log" || ((number_of_failures++))
+
+# Rotate the error log to prevent it from becoming too large
+logrotate -s /tmp/logrotate.status "$logrotate_conf"
 
 if [ -f summary.csv ]; then
 
