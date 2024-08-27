@@ -96,9 +96,7 @@ public class RestServiceUrlTemplateBuilder {
      * @return a UrlTemplateParameters instance containing the complete URL template and URL variables
      */
     public UrlTemplateParameters createUrlTemplateParameters(final String serviceBaseUrl, final String basePath) {
-        this.uriComponentsBuilder.pathSegment(basePath)
-            .pathSegment(VERSION_SEGMENT);
-
+        this.uriComponentsBuilder.pathSegment(basePath).pathSegment(VERSION_SEGMENT);
         final Map<String, String> urlTemplateVariables = new HashMap<>();
 
         pathSegments.forEach((pathSegmentName, variablePathValue) ->  {
@@ -120,7 +118,7 @@ public class RestServiceUrlTemplateBuilder {
     }
 
     /**
-     * Constructs a URL for DMI health check based on the given base URL.
+     * Constructs a URL for a spring actuator health check based on the given base URL.
      *
      * @param serviceBaseUrl the base URL of the service, e.g., "http://dmi-service.com".
      * @return a {@link UrlTemplateParameters} instance containing the complete URL template and empty URL variables,

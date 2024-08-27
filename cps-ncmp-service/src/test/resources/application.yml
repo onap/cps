@@ -84,8 +84,8 @@ ncmp:
     policy-executor:
         enabled: true
         server:
-            address: "http://localhost"
-            port: "8785"
+            address: http://localhost
+            port: 8785
         httpclient:
             all-services:
                 maximumInMemorySizeInMegabytes: 31

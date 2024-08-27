@@ -189,10 +189,10 @@ logging:
                 cps: INFO
 ncmp:
     policy-executor:
-        enabled: true
+        enabled: false
         server:
-            address: "http://localhost"
-            port: "8785"
+            address: http://localhost
+            port: 8785
         httpclient:
             all-services:
                 maximumInMemorySizeInMegabytes: 16

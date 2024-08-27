@@ -46,6 +46,7 @@ import org.onap.cps.spi.utils.SessionManager
 import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.boot.autoconfigure.domain.EntityScan
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
@@ -125,11 +126,18 @@ abstract class CpsIntegrationSpecBase extends Specification {
     @Autowired
     AlternateIdMatcher alternateIdMatcher
 
+
+    @Value('${ncmp.policy-executor.server.port:8080}')
+    private String policyServerPort;
+
     MockWebServer mockDmiServer1 = new MockWebServer()
     MockWebServer mockDmiServer2 = new MockWebServer()
+    MockWebServer mockPolicyServer = new MockWebServer()
 
     DmiDispatcher dmiDispatcher1 = new DmiDispatcher()
     DmiDispatcher dmiDispatcher2 = new DmiDispatcher()
+
+    PolicyDispatcher policyDispatcher = new PolicyDispatcher();
 
     def DMI1_URL = null
     def DMI2_URL = null
@@ -155,13 +163,18 @@ abstract class CpsIntegrationSpecBase extends Specification {
         mockDmiServer2.setDispatcher(dmiDispatcher2)
         mockDmiServer2.start()
 
+        mockPolicyServer.setDispatcher(policyDispatcher)
+        mockPolicyServer.start(Integer.valueOf(policyServerPort))
+
         DMI1_URL = String.format("http://%s:%s", mockDmiServer1.getHostName(), mockDmiServer1.getPort())
         DMI2_URL = String.format("http://%s:%s", mockDmiServer2.getHostName(), mockDmiServer2.getPort())
+
     }
 
     def cleanup() {
         mockDmiServer1.shutdown()
         mockDmiServer2.shutdown()
+        mockPolicyServer.shutdown()
     }
 
     def static readResourceDataFile(filename) {
