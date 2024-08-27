@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e545970c_5e8c78fa",
+        "filename": "csit/install-deps.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-08-27T09:23:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "abec1ad0_510f3130",
+      "range": {
+        "startLine": 19,
+        "startChar": 6,
+        "endLine": 19,
+        "endChar": 28
+      },
+      "revId": "13c90fadfad901ae3ff5d1d796d2b06342afe16f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6a5e9f9c_c44a4bd8",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-08-26T16:00:17Z",
       "side": 1,
       "message": "NB: 2022-2024",
+      "range": {
+        "startLine": 4,
+        "startChar": 30,
+        "endLine": 4,
+        "endChar": 34
+      },
+      "revId": "13c90fadfad901ae3ff5d1d796d2b06342afe16f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03314980_ae925d7d",
+        "filename": "csit/plans/cps/setup.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-08-27T09:23:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6a5e9f9c_c44a4bd8",
       "range": {
         "startLine": 4,
         "startChar": 30,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "722257b2_cecf0b0d",
+        "filename": "csit/run-project-csit.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-08-27T09:23:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f73f94d3_c43cf720",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 48
+      },
+      "revId": "13c90fadfad901ae3ff5d1d796d2b06342afe16f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "376ee8f0_56901b5f",
@@ -100,6 +172,30 @@
       "writtenOn": "2024-08-26T16:00:17Z",
       "side": 1,
       "message": "NB: Installing k6 dependencies",
+      "range": {
+        "startLine": 19,
+        "startChar": 6,
+        "endLine": 19,
+        "endChar": 29
+      },
+      "revId": "13c90fadfad901ae3ff5d1d796d2b06342afe16f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a94b9f06_6cfd8d20",
+        "filename": "k6-tests/install-deps.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-08-27T09:23:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "376ee8f0_56901b5f",
       "range": {
         "startLine": 19,
         "startChar": 6,
