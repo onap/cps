@@ -27,7 +27,7 @@ resourceDataForCmHandle:
     operationId: getResourceDataForCmHandle
     parameters:
       - $ref: 'components.yaml#/components/parameters/datastoreName'
-      - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
+      - $ref: 'components.yaml#/components/parameters/cmHandleReferenceInPath'
       - $ref: 'components.yaml#/components/parameters/resourceIdentifierInQuery'
       - $ref: 'components.yaml#/components/parameters/optionsParamInQuery'
       - $ref: 'components.yaml#/components/parameters/topicParamInQuery'
@@ -60,7 +60,7 @@ resourceDataForCmHandle:
     operationId: createResourceDataRunningForCmHandle
     parameters:
       - $ref: 'components.yaml#/components/parameters/datastoreName'
-      - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
+      - $ref: 'components.yaml#/components/parameters/cmHandleReferenceInPath'
       - $ref: 'components.yaml#/components/parameters/resourceIdentifierInQuery'
       - $ref: 'components.yaml#/components/parameters/contentParamInHeader'
       - $ref: 'components.yaml#/components/parameters/authorizationParamInHeader'
@@ -99,7 +99,7 @@ resourceDataForCmHandle:
     operationId: updateResourceDataRunningForCmHandle
     parameters:
       - $ref: 'components.yaml#/components/parameters/datastoreName'
-      - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
+      - $ref: 'components.yaml#/components/parameters/cmHandleReferenceInPath'
       - $ref: 'components.yaml#/components/parameters/resourceIdentifierInQuery'
       - $ref: 'components.yaml#/components/parameters/contentParamInHeader'
       - $ref: 'components.yaml#/components/parameters/authorizationParamInHeader'
@@ -138,7 +138,7 @@ resourceDataForCmHandle:
     operationId: patchResourceDataRunningForCmHandle
     parameters:
       - $ref: 'components.yaml#/components/parameters/datastoreName'
-      - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
+      - $ref: 'components.yaml#/components/parameters/cmHandleReferenceInPath'
       - $ref: 'components.yaml#/components/parameters/resourceIdentifierInQuery'
       - $ref: 'components.yaml#/components/parameters/contentParamInHeader'
       - $ref: 'components.yaml#/components/parameters/authorizationParamInHeader'
@@ -171,7 +171,7 @@ resourceDataForCmHandle:
     operationId: deleteResourceDataRunningForCmHandle
     parameters:
       - $ref: 'components.yaml#/components/parameters/datastoreName'
-      - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
+      - $ref: 'components.yaml#/components/parameters/cmHandleReferenceInPath'
       - $ref: 'components.yaml#/components/parameters/resourceIdentifierInQuery'
       - $ref: 'components.yaml#/components/parameters/contentParamInHeader'
       - $ref: 'components.yaml#/components/parameters/authorizationParamInHeader'
@@ -377,7 +377,7 @@ getCmHandlePropertiesById:
     summary: Get CM handle properties
     operationId: getCmHandlePublicPropertiesByCmHandleId
     parameters:
-      - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
+      - $ref: 'components.yaml#/components/parameters/cmHandleReferenceInPath'
     responses:
       200:
         description: OK
@@ -400,7 +400,7 @@ getCmHandleStateById:
     summary: Get CM handle state
     operationId: getCmHandleStateByCmHandleId
     parameters:
-      - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
+      - $ref: 'components.yaml#/components/parameters/cmHandleReferenceInPath'
     responses:
       200:
         description: OK
