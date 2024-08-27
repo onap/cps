@@ -19,28 +19,14 @@
  */
 
 import http from 'k6/http';
-import { check, sleep } from 'k6';
-import { NCMP_BASE_URL, DMI_PLUGIN_URL, TOTAL_CM_HANDLES, MODULE_SET_TAGS, REGISTRATION_BATCH_SIZE, CONTENT_TYPE_JSON_PARAM, makeBatchOfCmHandleIds } from './utils.js';
+import { sleep } from 'k6';
+import {
+    NCMP_BASE_URL, DMI_PLUGIN_URL, TOTAL_CM_HANDLES,
+    MODULE_SET_TAGS, CONTENT_TYPE_JSON_PARAM
+} from './utils.js';
 import { executeCmHandleIdSearch } from './search-base.js';
 
-export function registerAllCmHandles() {
-    forEachBatchOfCmHandles(createCmHandles);
-    waitForAllCmHandlesToBeReady();
-}
-
-export function deregisterAllCmHandles() {
-    forEachBatchOfCmHandles(deleteCmHandles);
-}
-
-function forEachBatchOfCmHandles(functionToExecute) {
-    const TOTAL_BATCHES = Math.ceil(TOTAL_CM_HANDLES / REGISTRATION_BATCH_SIZE);
-    for (let batchNumber = 0; batchNumber < TOTAL_BATCHES; batchNumber++) {
-        const nextBatchOfCmHandleIds = makeBatchOfCmHandleIds(REGISTRATION_BATCH_SIZE, batchNumber);
-        functionToExecute(nextBatchOfCmHandleIds);
-    }
-}
-
-function createCmHandles(cmHandleIds) {
+export function createCmHandles(cmHandleIds) {
     const url = `${NCMP_BASE_URL}/ncmpInventory/v1/ch`;
     const payload = {
         "dmiPlugin": DMI_PLUGIN_URL,
@@ -57,22 +43,20 @@ function createCmHandles(cmHandleIds) {
         })),
     };
     const response = http.post(url, JSON.stringify(payload), CONTENT_TYPE_JSON_PARAM);
-    check(response, { 'create CM-handles status equals 200': (r) => r.status === 200 });
     return response;
 }
 
-function deleteCmHandles(cmHandleIds) {
+export function deleteCmHandles(cmHandleIds) {
     const url = `${NCMP_BASE_URL}/ncmpInventory/v1/ch`;
     const payload = {
         "dmiPlugin": DMI_PLUGIN_URL,
         "removedCmHandles": cmHandleIds,
     };
     const response = http.post(url, JSON.stringify(payload), CONTENT_TYPE_JSON_PARAM);
-    check(response, { 'delete CM-handles status equals 200': (r) => r.status === 200 });
     return response;
 }
 
-function waitForAllCmHandlesToBeReady() {
+export function waitForAllCmHandlesToBeReady() {
     const POLLING_INTERVAL_SECONDS = 5;
     let cmHandlesReady = 0;
     do {
