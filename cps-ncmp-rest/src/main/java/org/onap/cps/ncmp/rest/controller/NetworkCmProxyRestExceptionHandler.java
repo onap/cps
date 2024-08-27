@@ -31,6 +31,7 @@ import org.onap.cps.ncmp.api.exceptions.DmiRequestException;
 import org.onap.cps.ncmp.api.exceptions.InvalidTopicException;
 import org.onap.cps.ncmp.api.exceptions.NcmpException;
 import org.onap.cps.ncmp.api.exceptions.PayloadTooLargeException;
+import org.onap.cps.ncmp.api.exceptions.PolicyExecutorException;
 import org.onap.cps.ncmp.api.exceptions.ServerNcmpException;
 import org.onap.cps.ncmp.rest.model.DmiErrorMessage;
 import org.onap.cps.ncmp.rest.model.DmiErrorMessageDmiResponse;
@@ -84,7 +85,7 @@ public class NetworkCmProxyRestExceptionHandler {
         return buildErrorResponse(HttpStatus.BAD_REQUEST, exception);
     }
 
-    @ExceptionHandler({AlreadyDefinedException.class})
+    @ExceptionHandler({AlreadyDefinedException.class, PolicyExecutorException.class})
     public static ResponseEntity<Object> handleAlreadyDefinedExceptions(final Exception exception) {
         return buildErrorResponse(HttpStatus.CONFLICT, exception);
     }

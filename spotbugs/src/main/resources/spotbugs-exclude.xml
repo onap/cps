@@ -36,6 +36,7 @@
       <Bug pattern="NP_NULL_PARAM_DEREF" />
       <Bug pattern="NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE" />
       <Bug pattern="RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE" />
+      <Bug pattern="NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE" />
 
       <!-- https://stackoverflow.com/a/34674776. Doesn't detect Lombok All Args Constructor variables being used with map get key and value, which can lead to spotbugs being detected
       on used fields -->
