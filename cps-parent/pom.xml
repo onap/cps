@@ -410,30 +410,6 @@
                 <artifactId>sonar-maven-plugin</artifactId>
                 <version>3.9.1.2184</version>
             </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>1.6.0</version>
-                <executions>
-                    <execution>
-                        <id>generate-csv</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <executable>${script.executor}</executable>
-                    <workingDirectory>${parent.directory}/cps-ri/src/main/resources/</workingDirectory>
-                    <arguments>
-                        <argument>yangResourceCsvGenerator.py</argument>
-                        <argument>dmi-registry@2021-12-13</argument>
-                        <argument>dmi-registry@2022-02-10</argument>
-                        <argument>dmi-registry@2022-05-10</argument>
-                    </arguments>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
 </project>
