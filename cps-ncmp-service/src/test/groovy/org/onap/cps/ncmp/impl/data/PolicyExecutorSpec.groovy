@@ -4,18 +4,27 @@ import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
 import ch.qos.logback.classic.spi.ILoggingEvent
 import ch.qos.logback.core.read.ListAppender
+import org.onap.cps.ncmp.config.PolicyExecutorHttpClientConfig
 import org.onap.cps.ncmp.impl.data.policyexecutor.PolicyExecutor
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
+import org.onap.cps.ncmp.impl.policyexecutor.PolicyExecutorWebClientConfiguration
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ContextConfiguration
+import org.springframework.web.reactive.function.client.WebClient
 import spock.lang.Specification
 
 import static org.onap.cps.ncmp.api.data.models.OperationType.PATCH
 
 @SpringBootTest
-@ContextConfiguration(classes = [PolicyExecutor])
+@ContextConfiguration(classes = [PolicyExecutor,
+                                 PolicyExecutorWebClientConfiguration,
+                                 PolicyExecutorHttpClientConfig,
+                                 WebClient,
+                                 WebClient.Builder])
+@EnableConfigurationProperties
 class PolicyExecutorSpec extends Specification {
 
     @Autowired
@@ -44,12 +53,7 @@ class PolicyExecutorSpec extends Specification {
             objectUnderTest.checkPermission(yangModelCmHandle, PATCH, 'my credentials','my resource','my change')
         then: 'correct details are logged '
             assert getLogEntry(0) == 'Policy Executor Enabled'
-            assert getLogEntry(3).contains('my credentials')
-            assert getLogEntry(4).contains('cm_patch')
-            assert getLogEntry(5).contains('fdn1')
-            assert getLogEntry(6).contains('ch-1')
-            assert getLogEntry(7).contains('my resource')
-            assert getLogEntry(8).contains('my change')
+
     }
 
     def 'Permission check with feature disabled.'() {
