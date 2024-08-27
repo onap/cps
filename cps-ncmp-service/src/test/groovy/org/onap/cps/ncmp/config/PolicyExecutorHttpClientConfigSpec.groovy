@@ -34,7 +34,7 @@ class PolicyExecutorHttpClientConfigSpec extends Specification {
     @Autowired
     PolicyExecutorHttpClientConfig policyExecutorHttpClientConfig
 
-    def 'Test http client configuration properties of data with custom and default values'() {
+    def 'Http client configuration properties policy executor http client.'() {
         expect: 'properties are populated correctly for all services'
             with(policyExecutorHttpClientConfig.allServices) {
                 assert maximumInMemorySizeInMegabytes == 31
