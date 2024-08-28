@@ -24,7 +24,8 @@ import { Reader } from 'k6/x/kafka';
 import {
     TOTAL_CM_HANDLES, READ_DATA_FOR_CM_HANDLE_DELAY_MS, WRITE_DATA_FOR_CM_HANDLE_DELAY_MS,
     makeCustomSummaryReport, makeBatchOfCmHandleIds, DATA_OPERATION_READ_BATCH_SIZE,
-    TOPIC_DATA_OPERATIONS_BATCH_READ, KAFKA_BOOTSTRAP_SERVERS, REGISTRATION_BATCH_SIZE
+    TOPIC_DATA_OPERATIONS_BATCH_READ, KAFKA_BOOTSTRAP_SERVERS, REGISTRATION_BATCH_SIZE,
+    NUMBER_OF_BATCH_READ_OPERATIONS
 } from './common/utils.js';
 import {
     createCmHandles,
@@ -85,20 +86,18 @@ export const options = {
             duration: DURATION,
         },
         data_operation_send_async_http_request: {
-            executor: 'constant-arrival-rate',
+            executor: 'shared-iterations',
             exec: 'data_operation_send_async_http_request',
-            duration: DURATION,
-            rate: 1,
-            timeUnit: '1s',
-            preAllocatedVUs: 1,
+            vus: 2,
+            iterations: NUMBER_OF_BATCH_READ_OPERATIONS,
+            maxDuration: DURATION,
         },
         data_operation_async_batch_read: {
-            executor: 'constant-arrival-rate',
+            executor: 'per-vu-iterations',
             exec: 'data_operation_async_batch_read',
-            duration: DURATION,
-            rate: 1,
-            timeUnit: '1s',
-            preAllocatedVUs: 1,
+            vus: 1,
+            iterations: 1,
+            maxDuration: DURATION,
         }
     },
     thresholds: {
@@ -195,9 +194,22 @@ export function data_operation_send_async_http_request() {
 }
 
 export function data_operation_async_batch_read() {
+    const TOTAL_MESSAGE_TO_CONSUME = NUMBER_OF_BATCH_READ_OPERATIONS * DATA_OPERATION_READ_BATCH_SIZE;
     try {
-        let messages = reader.consume({ limit: DATA_OPERATION_READ_BATCH_SIZE });
-        dataOperationsBatchReadCmHandlePerSecondTrend.add(messages.length);
+        let messagesConsumed = 0;
+        let startTime = Date.now();
+
+        while (messagesConsumed < TOTAL_MESSAGE_TO_CONSUME) {
+            let messages = reader.consume({ limit: 1000 });
+
+            if (messages.length > 0) {
+                messagesConsumed += messages.length;
+            }
+        }
+
+        let endTime = Date.now();
+        const totalRegistrationTimeInSeconds = (endTime - startTime) / 1000.0;
+        dataOperationsBatchReadCmHandlePerSecondTrend.add(TOTAL_MESSAGE_TO_CONSUME / totalRegistrationTimeInSeconds);
     } catch (error) {
         dataOperationsBatchReadCmHandlePerSecondTrend.add(0);
         console.error(error);

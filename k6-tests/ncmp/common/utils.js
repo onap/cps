@@ -26,6 +26,7 @@ export const READ_DATA_FOR_CM_HANDLE_DELAY_MS = 300; // must have same value as 
 export const WRITE_DATA_FOR_CM_HANDLE_DELAY_MS = 670; // must have same value as in docker-compose.yml
 export const CONTENT_TYPE_JSON_PARAM = { headers: {'Content-Type': 'application/json'} };
 export const DATA_OPERATION_READ_BATCH_SIZE = 200;
+export const NUMBER_OF_BATCH_READ_OPERATIONS = 1000;
 export const TOPIC_DATA_OPERATIONS_BATCH_READ = 'topic-data-operations-batch-read';
 export const KAFKA_BOOTSTRAP_SERVERS = ['localhost:9092'];
 export const MODULE_SET_TAGS = ['tagA','tagB','tagC',' tagD']
