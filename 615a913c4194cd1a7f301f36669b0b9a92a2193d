@@ -16,6 +16,24 @@
       "message": "NB: i saw you removed the \"-s in the other application.yml. for sake of consistency i think you should do the same here",
       "revId": "615a913c4194cd1a7f301f36669b0b9a92a2193d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12d04c73_bcb0bacf",
+        "filename": "integration-test/src/test/resources/application.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-28T13:22:57Z",
+      "side": 1,
+      "message": "wel observed. The value is actually important for this one but the other ones need to be overriden anyway but consistency (as an example) would be good",
+      "parentUuid": "28453176_3094f267",
+      "revId": "615a913c4194cd1a7f301f36669b0b9a92a2193d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
