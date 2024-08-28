@@ -85,20 +85,18 @@ export const options = {
             duration: DURATION,
         },
         data_operation_send_async_http_request: {
-            executor: 'constant-arrival-rate',
+            executor: 'shared-iterations',
             exec: 'data_operation_send_async_http_request',
-            duration: DURATION,
-            rate: 1,
-            timeUnit: '1s',
-            preAllocatedVUs: 1,
+            vus: 2,
+            iterations: 1000,
+            maxDuration: DURATION,
         },
         data_operation_async_batch_read: {
-            executor: 'constant-arrival-rate',
+            executor: 'per-vu-iterations',
             exec: 'data_operation_async_batch_read',
-            duration: DURATION,
-            rate: 1,
-            timeUnit: '1s',
-            preAllocatedVUs: 1,
+            vus: 1,
+            iterations: 1,
+            maxDuration: DURATION,
         }
     },
     thresholds: {
@@ -195,9 +193,25 @@ export function data_operation_send_async_http_request() {
 }
 
 export function data_operation_async_batch_read() {
+    /*
+        1000 iterations: 1000 * 200 = 2,000,00 cm handles ie expected message
+     */
+    const TOTAL_MESSAGES_TO_CONSUME = 200000;
     try {
-        let messages = reader.consume({ limit: DATA_OPERATION_READ_BATCH_SIZE });
-        dataOperationsBatchReadCmHandlePerSecondTrend.add(messages.length);
+        let messagesConsumed = 0;
+        let startTime = Date.now();
+
+        while (messagesConsumed < TOTAL_MESSAGES_TO_CONSUME) {
+            let messages = reader.consume({ limit: 1000 });
+
+            if (messages.length > 0) {
+                messagesConsumed += messages.length;
+            }
+        }
+
+        let endTime = Date.now();
+        const totalRegistrationTimeInSeconds = (endTime - startTime) / 1000.0;
+        dataOperationsBatchReadCmHandlePerSecondTrend.add(TOTAL_MESSAGES_TO_CONSUME / totalRegistrationTimeInSeconds);
     } catch (error) {
         dataOperationsBatchReadCmHandlePerSecondTrend.add(0);
         console.error(error);
