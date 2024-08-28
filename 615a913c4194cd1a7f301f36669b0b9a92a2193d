@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28453176_3094f267",
+        "filename": "integration-test/src/test/resources/application.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-08-28T11:54:10Z",
+      "side": 1,
+      "message": "NB: i saw you removed the \"-s in the other application.yml. for sake of consistency i think you should do the same here",
+      "revId": "615a913c4194cd1a7f301f36669b0b9a92a2193d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
