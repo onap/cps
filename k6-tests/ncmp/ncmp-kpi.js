@@ -23,12 +23,13 @@ import { Trend } from 'k6/metrics';
 import { Reader } from 'k6/x/kafka';
 import {
     TOTAL_CM_HANDLES, READ_DATA_FOR_CM_HANDLE_DELAY_MS, WRITE_DATA_FOR_CM_HANDLE_DELAY_MS,
-    makeCustomSummaryReport, makeBatchOfCmHandleIds, DATA_OPERATION_READ_BATCH_SIZE,
-    TOPIC_DATA_OPERATIONS_BATCH_READ, KAFKA_BOOTSTRAP_SERVERS, REGISTRATION_BATCH_SIZE
+    makeCustomSummaryReport, makeBatchOfCmHandleIds, LEGACY_BATCH_THROUGHPUT_TEST_BATCH_SIZE,
+    LEGACY_BATCH_TOPIC_NAME, KAFKA_BOOTSTRAP_SERVERS, REGISTRATION_BATCH_SIZE,
+    LEGACY_BATCH_THROUGHPUT_TEST_NUMBER_OF_REQUESTS
 } from './common/utils.js';
 import { createCmHandles, deleteCmHandles, waitForAllCmHandlesToBeReady } from './common/cmhandle-crud.js';
 import { executeCmHandleSearch, executeCmHandleIdSearch } from './common/search-base.js';
-import { passthroughRead, passthroughReadWithAltId, passthroughWrite, batchRead } from './common/passthrough-crud.js';
+import { passthroughRead, passthroughWrite, legacyBatchRead } from './common/passthrough-crud.js';
 
 let cmHandlesCreatedPerSecondTrend = new Trend('cmhandles_created_per_second', false);
 let cmHandlesDeletedPerSecondTrend = new Trend('cmhandles_deleted_per_second', false);
@@ -38,11 +39,11 @@ let passthroughWriteNcmpOverheadTrend = new Trend('ncmp_overhead_passthrough_wri
 let passthroughWriteNcmpOverheadTrendWithAlternateId = new Trend('ncmp_overhead_passthrough_write_alt_id', true);
 let idSearchDurationTrend = new Trend('id_search_duration', true);
 let cmSearchDurationTrend = new Trend('cm_search_duration', true);
-let dataOperationsBatchReadCmHandlePerSecondTrend = new Trend('data_operations_batch_read_cmhandles_per_second', false);
+let legacyBatchReadCmHandlesPerSecondTrend = new Trend('legacy_batch_read_cmhandles_per_second', false);
 
-const reader = new Reader({
+const legacyBatchEventReader = new Reader({
     brokers: KAFKA_BOOTSTRAP_SERVERS,
-    topic: TOPIC_DATA_OPERATIONS_BATCH_READ,
+    topic: LEGACY_BATCH_TOPIC_NAME,
 });
 
 const DURATION = '15m';
@@ -51,57 +52,55 @@ export const options = {
     setupTimeout: '8m',
     teardownTimeout: '6m',
     scenarios: {
-        passthrough_read: {
+        passthrough_read_scenario: {
             executor: 'constant-vus',
-            exec: 'executePassthroughReadScenario',
+            exec: 'passthroughReadScenario',
             vus: 4,
             duration: DURATION,
         },
-        passthrough_read_alt_id: {
+        passthrough_read_alt_id_scenario: {
             executor: 'constant-vus',
-            exec: 'executePassthroughReadAltIdScenario',
+            exec: 'passthroughReadAltIdScenario',
             vus: 4,
             duration: DURATION,
         },
-        passthrough_write: {
+        passthrough_write_scenario: {
             executor: 'constant-vus',
-            exec: 'executePassthroughWriteScenario',
+            exec: 'passthroughWriteScenario',
             vus: 4,
             duration: DURATION,
         },
-        passthrough_write_alt_id: {
+        passthrough_write_alt_id_scenario: {
             executor: 'constant-vus',
-            exec: 'executePassthroughWriteAltIdScenario',
+            exec: 'passthroughWriteAltIdScenario',
             vus: 4,
             duration: DURATION,
         },
-        cm_handle_id_search: {
+        cm_handle_id_search_scenario: {
             executor: 'constant-vus',
-            exec: 'executeCmHandleIdSearchScenario',
+            exec: 'cmHandleIdSearchScenario',
             vus: 5,
             duration: DURATION,
         },
-        cm_handle_search: {
+        cm_handle_search_scenario: {
             executor: 'constant-vus',
-            exec: 'executeCmHandleSearchScenario',
+            exec: 'cmHandleSearchScenario',
             vus: 5,
             duration: DURATION,
         },
-        data_operation_send_async_http_request: {
-            executor: 'constant-arrival-rate',
-            exec: 'data_operation_send_async_http_request',
-            duration: DURATION,
-            rate: 1,
-            timeUnit: '1s',
-            preAllocatedVUs: 1,
+        legacy_batch_produce_scenario: {
+            executor: 'shared-iterations',
+            exec: 'legacyBatchProduceScenario',
+            vus: 2,
+            iterations: LEGACY_BATCH_THROUGHPUT_TEST_NUMBER_OF_REQUESTS,
+            maxDuration: DURATION,
         },
-        data_operation_async_batch_read: {
-            executor: 'constant-arrival-rate',
-            exec: 'data_operation_async_batch_read',
-            duration: DURATION,
-            rate: 1,
-            timeUnit: '1s',
-            preAllocatedVUs: 1,
+        legacy_batch_consume_scenario: {
+            executor: 'per-vu-iterations',
+            exec: 'legacyBatchConsumeScenario',
+            vus: 1,
+            iterations: 1,
+            maxDuration: DURATION,
         }
     },
     thresholds: {
@@ -114,7 +113,7 @@ export const options = {
         'ncmp_overhead_passthrough_write_alt_id': ['avg <= 40'],
         'id_search_duration': ['avg <= 2000'],
         'cm_search_duration': ['avg <= 15000'],
-        'data_operations_batch_read_cmhandles_per_second': ['avg >= 150'],
+        'legacy_batch_read_cmhandles_per_second': ['avg >= 150'],
     },
 };
 
@@ -152,7 +151,7 @@ export function teardown() {
     cmHandlesDeletedPerSecondTrend.add(TOTAL_CM_HANDLES / totalDeregistrationTimeInSeconds);
 }
 
-export function executePassthroughReadScenario() {
+export function passthroughReadScenario() {
     const response = passthroughRead(false);
     if (check(response, { 'passthrough read status equals 200': (r) => r.status === 200 })) {
         const overhead = response.timings.duration - READ_DATA_FOR_CM_HANDLE_DELAY_MS;
@@ -160,7 +159,7 @@ export function executePassthroughReadScenario() {
     }
 }
 
-export function executePassthroughReadAltIdScenario() {
+export function passthroughReadAltIdScenario() {
     const response = passthroughRead(true);
     if (check(response, { 'passthrough read with alternate Id status equals 200': (r) => r.status === 200 })) {
         const overhead = response.timings.duration - READ_DATA_FOR_CM_HANDLE_DELAY_MS;
@@ -168,7 +167,7 @@ export function executePassthroughReadAltIdScenario() {
     }
 }
 
-export function executePassthroughWriteScenario() {
+export function passthroughWriteScenario() {
     const response = passthroughWrite(false);
     if (check(response, { 'passthrough write status equals 201': (r) => r.status === 201 })) {
         const overhead = response.timings.duration - WRITE_DATA_FOR_CM_HANDLE_DELAY_MS;
@@ -176,7 +175,7 @@ export function executePassthroughWriteScenario() {
     }
 }
 
-export function executePassthroughWriteAltIdScenario() {
+export function passthroughWriteAltIdScenario() {
     const response = passthroughWrite(true);
     if (check(response, { 'passthrough write with alternate Id status equals 201': (r) => r.status === 201 })) {
         const overhead = response.timings.duration - WRITE_DATA_FOR_CM_HANDLE_DELAY_MS;
@@ -184,7 +183,7 @@ export function executePassthroughWriteAltIdScenario() {
     }
 }
 
-export function executeCmHandleIdSearchScenario() {
+export function cmHandleIdSearchScenario() {
     const response = executeCmHandleIdSearch('module-and-properties');
     if (check(response, { 'CM handle ID search status equals 200': (r) => r.status === 200 })
      && check(response, { 'CM handle ID search returned expected CM-handles': (r) => r.json('#') === TOTAL_CM_HANDLES })) {
@@ -192,7 +191,7 @@ export function executeCmHandleIdSearchScenario() {
     }
 }
 
-export function executeCmHandleSearchScenario() {
+export function cmHandleSearchScenario() {
     const response = executeCmHandleSearch('module-and-properties');
     if (check(response, { 'CM handle search status equals 200': (r) => r.status === 200 })
      && check(response, { 'CM handle search returned expected CM-handles': (r) => r.json('#') === TOTAL_CM_HANDLES })) {
@@ -200,18 +199,31 @@ export function executeCmHandleSearchScenario() {
     }
 }
 
-export function data_operation_send_async_http_request() {
-    const nextBatchOfCmHandleIds = makeBatchOfCmHandleIds(DATA_OPERATION_READ_BATCH_SIZE, 0);
-    const response = batchRead(nextBatchOfCmHandleIds);
+export function legacyBatchProduceScenario() {
+    const nextBatchOfCmHandleIds = makeBatchOfCmHandleIds(LEGACY_BATCH_THROUGHPUT_TEST_BATCH_SIZE, 0);
+    const response = legacyBatchRead(nextBatchOfCmHandleIds);
     check(response, { 'data operation batch read status equals 200': (r) => r.status === 200 });
 }
 
-export function data_operation_async_batch_read() {
+export function legacyBatchConsumeScenario() {
+    const TOTAL_MESSAGES_TO_CONSUME = LEGACY_BATCH_THROUGHPUT_TEST_NUMBER_OF_REQUESTS * LEGACY_BATCH_THROUGHPUT_TEST_BATCH_SIZE;
     try {
-        let messages = reader.consume({ limit: DATA_OPERATION_READ_BATCH_SIZE });
-        dataOperationsBatchReadCmHandlePerSecondTrend.add(messages.length);
+        let messagesConsumed = 0;
+        let startTime = Date.now();
+
+        while (messagesConsumed < TOTAL_MESSAGES_TO_CONSUME) {
+            let messages = legacyBatchEventReader.consume({ limit: 1000 });
+
+            if (messages.length > 0) {
+                messagesConsumed += messages.length;
+            }
+        }
+
+        let endTime = Date.now();
+        const timeToConsumeMessagesInSeconds = (endTime - startTime) / 1000.0;
+        legacyBatchReadCmHandlesPerSecondTrend.add(TOTAL_MESSAGES_TO_CONSUME / timeToConsumeMessagesInSeconds);
     } catch (error) {
-        dataOperationsBatchReadCmHandlePerSecondTrend.add(0);
+        legacyBatchReadCmHandlesPerSecondTrend.add(0);
         console.error(error);
     }
 }

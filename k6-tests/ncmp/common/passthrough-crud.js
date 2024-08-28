@@ -20,7 +20,11 @@
 
 import http from 'k6/http';
 import { randomIntBetween } from 'https://jslib.k6.io/k6-utils/1.2.0/index.js';
-import { TOTAL_CM_HANDLES, CONTENT_TYPE_JSON_PARAM, NCMP_BASE_URL, TOPIC_DATA_OPERATIONS_BATCH_READ } from './utils.js';
+import {
+    TOTAL_CM_HANDLES, CONTENT_TYPE_JSON_PARAM,
+    NCMP_BASE_URL, LEGACY_BATCH_TOPIC_NAME
+} from './utils.js';
+
 
 export function passthroughRead(useAlternateId) {
     const cmHandleReference = getRandomCmHandleReference(useAlternateId);
@@ -42,8 +46,8 @@ export function passthroughWrite(useAlternateId) {
     return response;
 }
 
-export function batchRead(cmHandleIds) {
-    const url = `${NCMP_BASE_URL}/ncmp/v1/data?topic=${TOPIC_DATA_OPERATIONS_BATCH_READ}`
+export function legacyBatchRead(cmHandleIds) {
+    const url = `${NCMP_BASE_URL}/ncmp/v1/data?topic=${LEGACY_BATCH_TOPIC_NAME}`
     const  payload = {
         "operations": [
             {
