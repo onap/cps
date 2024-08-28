@@ -33,6 +33,23 @@
       "message": "Check Gerrit email notifications...",
       "revId": "5f775823da0531e9861a2ce7443aa65481ba7fdd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbfac9e7_7d5c111e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-08-28T15:32:06Z",
+      "side": 1,
+      "message": "recheck",
+      "revId": "5f775823da0531e9861a2ce7443aa65481ba7fdd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
