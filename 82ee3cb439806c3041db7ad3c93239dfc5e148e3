@@ -233,6 +233,115 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1ecdb9b7_cde4f703",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-28T15:09:28Z",
+      "side": 1,
+      "message": "NB: getSinglePolicyRequestAsMap maybe for some context.",
+      "range": {
+        "startLine": 111,
+        "startChar": 32,
+        "endLine": 111,
+        "endChar": 53
+      },
+      "revId": "82ee3cb439806c3041db7ad3c93239dfc5e148e3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "836020de_49c26847",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/DmiHttpClientConfigSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-28T15:09:28Z",
+      "side": 1,
+      "message": "NB: @EnableConfigurationProperties",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 32
+      },
+      "revId": "82ee3cb439806c3041db7ad3c93239dfc5e148e3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfe5861a_1ab1c337",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/PolicyExecutorHttpClientConfigSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-28T15:09:28Z",
+      "side": 1,
+      "message": "NB: .. for ..",
+      "range": {
+        "startLine": 37,
+        "startChar": 45,
+        "endLine": 37,
+        "endChar": 46
+      },
+      "revId": "82ee3cb439806c3041db7ad3c93239dfc5e148e3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4e0f680_ff57c4a8",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/PolicyExecutorSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-28T15:09:28Z",
+      "side": 1,
+      "message": "no copyright on this one.",
+      "revId": "82ee3cb439806c3041db7ad3c93239dfc5e148e3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "149e2d89_936b12df",
+        "filename": "cps-ncmp-service/src/test/resources/application.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-28T15:09:28Z",
+      "side": 1,
+      "message": "NB: was there a specific need to have address and port separately?\ncould have taken the base-url ?\n( the reason I say is if later somebody configures the address as http://localhost/ then it would result in unknown URL ) \nif there was a specific need then I would understand.",
+      "range": {
+        "startLine": 87,
+        "startChar": 12,
+        "endLine": 88,
+        "endChar": 22
+      },
+      "revId": "82ee3cb439806c3041db7ad3c93239dfc5e148e3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3df78d8d_540b8ce6",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/PolicyExecutorIntegrationSpec.groovy",
         "patchSetId": 5
