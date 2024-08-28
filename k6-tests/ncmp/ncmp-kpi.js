@@ -23,12 +23,13 @@ import { Trend } from 'k6/metrics';
 import { Reader } from 'k6/x/kafka';
 import {
     TOTAL_CM_HANDLES, READ_DATA_FOR_CM_HANDLE_DELAY_MS, WRITE_DATA_FOR_CM_HANDLE_DELAY_MS,
-    makeCustomSummaryReport, makeBatchOfCmHandleIds, DATA_OPERATION_READ_BATCH_SIZE,
-    TOPIC_DATA_OPERATIONS_BATCH_READ, KAFKA_BOOTSTRAP_SERVERS, REGISTRATION_BATCH_SIZE
+    makeCustomSummaryReport, makeBatchOfCmHandleIds, LEGACY_BATCH_THROUGHPUT_TEST_BATCH_SIZE,
+    LEGACY_BATCH_TOPIC_NAME, KAFKA_BOOTSTRAP_SERVERS, REGISTRATION_BATCH_SIZE,
+    LEGACY_BATCH_THROUGHPUT_TEST_NUMBER_OF_REQUESTS
 } from './common/utils.js';
 import { createCmHandles, deleteCmHandles, waitForAllCmHandlesToBeReady } from './common/cmhandle-crud.js';
 import { executeCmHandleSearch, executeCmHandleIdSearch } from './common/search-base.js';
-import { passthroughRead, passthroughReadWithAltId, passthroughWrite, batchRead } from './common/passthrough-crud.js';
+import { passthroughRead, passthroughWrite, batchRead } from './common/passthrough-crud.js';
 
 let cmHandlesCreatedPerSecondTrend = new Trend('cmhandles_created_per_second', false);
 let cmHandlesDeletedPerSecondTrend = new Trend('cmhandles_deleted_per_second', false);
@@ -38,11 +39,11 @@ let passthroughWriteNcmpOverheadTrend = new Trend('ncmp_overhead_passthrough_wri
 let passthroughWriteNcmpOverheadTrendWithAlternateId = new Trend('ncmp_overhead_passthrough_write_alt_id', true);
 let idSearchDurationTrend = new Trend('id_search_duration', true);
 let cmSearchDurationTrend = new Trend('cm_search_duration', true);
-let dataOperationsBatchReadCmHandlePerSecondTrend = new Trend('data_operations_batch_read_cmhandles_per_second', false);
+let legacyBatchReadCmHandlesPerSecondTrend = new Trend('legacy_batch_read_cmhandles_per_second', false);
 
-const reader = new Reader({
+const legacyBatchEventReader = new Reader({
     brokers: KAFKA_BOOTSTRAP_SERVERS,
-    topic: TOPIC_DATA_OPERATIONS_BATCH_READ,
+    topic: LEGACY_BATCH_TOPIC_NAME,
 });
 
 const DURATION = '15m';
@@ -87,21 +88,19 @@ export const options = {
             vus: 5,
             duration: DURATION,
         },
-        data_operation_send_async_http_request: {
-            executor: 'constant-arrival-rate',
-            exec: 'data_operation_send_async_http_request',
-            duration: DURATION,
-            rate: 1,
-            timeUnit: '1s',
-            preAllocatedVUs: 1,
+        legacy_batch_throughput_test: {
+            executor: 'shared-iterations',
+            exec: 'legacyBatchThroughputTestScenario',
+            vus: 2,
+            iterations: LEGACY_BATCH_THROUGHPUT_TEST_NUMBER_OF_REQUESTS,
+            maxDuration: DURATION,
         },
-        data_operation_async_batch_read: {
-            executor: 'constant-arrival-rate',
-            exec: 'data_operation_async_batch_read',
-            duration: DURATION,
-            rate: 1,
-            timeUnit: '1s',
-            preAllocatedVUs: 1,
+        legacy_batch_throughput_measurement: {
+            executor: 'per-vu-iterations',
+            exec: 'legacyBatchThroughputMeasurementScenario',
+            vus: 1,
+            iterations: 1,
+            maxDuration: DURATION,
         }
     },
     thresholds: {
@@ -114,7 +113,7 @@ export const options = {
         'ncmp_overhead_passthrough_write_alt_id': ['avg <= 40'],
         'id_search_duration': ['avg <= 2000'],
         'cm_search_duration': ['avg <= 15000'],
-        'data_operations_batch_read_cmhandles_per_second': ['avg >= 150'],
+        'legacy_batch_read_cmhandles_per_second': ['avg >= 150'],
     },
 };
 
@@ -200,18 +199,31 @@ export function executeCmHandleSearchScenario() {
     }
 }
 
-export function data_operation_send_async_http_request() {
-    const nextBatchOfCmHandleIds = makeBatchOfCmHandleIds(DATA_OPERATION_READ_BATCH_SIZE, 0);
+export function legacyBatchThroughputTestScenario() {
+    const nextBatchOfCmHandleIds = makeBatchOfCmHandleIds(LEGACY_BATCH_THROUGHPUT_TEST_BATCH_SIZE, 0);
     const response = batchRead(nextBatchOfCmHandleIds);
     check(response, { 'data operation batch read status equals 200': (r) => r.status === 200 });
 }
 
-export function data_operation_async_batch_read() {
+export function legacyBatchThroughputMeasurementScenario() {
+    const TOTAL_MESSAGES_TO_CONSUME = LEGACY_BATCH_THROUGHPUT_TEST_NUMBER_OF_REQUESTS * LEGACY_BATCH_THROUGHPUT_TEST_BATCH_SIZE;
     try {
-        let messages = reader.consume({ limit: DATA_OPERATION_READ_BATCH_SIZE });
-        dataOperationsBatchReadCmHandlePerSecondTrend.add(messages.length);
+        let messagesConsumed = 0;
+        let startTime = Date.now();
+
+        while (messagesConsumed < TOTAL_MESSAGES_TO_CONSUME) {
+            let messages = legacyBatchEventReader.consume({ limit: 1000 });
+
+            if (messages.length > 0) {
+                messagesConsumed += messages.length;
+            }
+        }
+
+        let endTime = Date.now();
+        const timeToConsumeMessagesInSeconds = (endTime - startTime) / 1000.0;
+        legacyBatchReadCmHandlesPerSecondTrend.add(TOTAL_MESSAGES_TO_CONSUME / timeToConsumeMessagesInSeconds);
     } catch (error) {
-        dataOperationsBatchReadCmHandlePerSecondTrend.add(0);
+        legacyBatchReadCmHandlesPerSecondTrend.add(0);
         console.error(error);
     }
 }
