@@ -23,8 +23,8 @@ import {
     performPostRequest,
     performGetRequest,
     NCMP_BASE_URL,
-    TOPIC_DATA_OPERATIONS_BATCH_READ,
-    TOTAL_CM_HANDLES
+    LEGACY_BATCH_TOPIC_NAME,
+    TOTAL_CM_HANDLES,
 } from './utils.js';
 
 export function passthroughRead(useAlternateId) {
@@ -46,8 +46,8 @@ export function passthroughWrite(useAlternateId) {
     return performPostRequest(url, payload, 'passthroughWrite');
 }
 
-export function batchRead(cmHandleIds) {
-    const url = `${NCMP_BASE_URL}/ncmp/v1/data?topic=${TOPIC_DATA_OPERATIONS_BATCH_READ}`;
+export function legacyBatchRead(cmHandleIds) {
+    const url = `${NCMP_BASE_URL}/ncmp/v1/data?topic=${LEGACY_BATCH_TOPIC_NAME}`
     const payload = JSON.stringify({
         "operations": [
             {

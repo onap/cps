@@ -26,8 +26,9 @@ export const REGISTRATION_BATCH_SIZE = 100;
 export const READ_DATA_FOR_CM_HANDLE_DELAY_MS = 300; // must have same value as in docker-compose.yml
 export const WRITE_DATA_FOR_CM_HANDLE_DELAY_MS = 670; // must have same value as in docker-compose.yml
 export const CONTENT_TYPE_JSON_PARAM = {'Content-Type': 'application/json'};
-export const DATA_OPERATION_READ_BATCH_SIZE = 200;
-export const TOPIC_DATA_OPERATIONS_BATCH_READ = 'topic-data-operations-batch-read';
+export const LEGACY_BATCH_THROUGHPUT_TEST_BATCH_SIZE = 200;
+export const LEGACY_BATCH_THROUGHPUT_TEST_NUMBER_OF_REQUESTS = 1000;
+export const LEGACY_BATCH_TOPIC_NAME = 'legacy_batch_topic';
 export const KAFKA_BOOTSTRAP_SERVERS = ['localhost:9092'];
 export const MODULE_SET_TAGS = ['tagA','tagB','tagC',' tagD']
 
@@ -92,7 +93,7 @@ export function makeCustomSummaryReport(data, options) {
         makeSummaryCsvLine('5b', 'NCMP overhead for Synchronous single CM-handle pass-through read with alternate id', 'milliseconds', 'ncmp_overhead_passthrough_read_alt_id', data, options),
         makeSummaryCsvLine('6a', 'NCMP overhead for Synchronous single CM-handle pass-through write', 'milliseconds', 'ncmp_overhead_passthrough_write', data, options),
         makeSummaryCsvLine('6b', 'NCMP overhead for Synchronous single CM-handle pass-through write with alternate id', 'milliseconds', 'ncmp_overhead_passthrough_write_alt_id', data, options),
-        makeSummaryCsvLine('7', 'Data operations batch read', 'events/second', 'data_operations_batch_read_cmhandles_per_second', data, options),
+        makeSummaryCsvLine('7', 'Legacy batch read operation', 'events/second', 'legacy_batch_read_cmhandles_per_second', data, options),
     ];
     return summaryCsvLines.join('\n') + '\n';
 }
