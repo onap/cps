@@ -39,7 +39,7 @@ let cmHandlesDeletedPerSecondGauge = new Gauge('cmhandles_deleted_per_second');
 let passthroughReadNcmpOverheadTrend = new Trend('ncmp_overhead_passthrough_read', true);
 let passthroughReadNcmpOverheadTrendWithAlternateId = new Trend('ncmp_overhead_passthrough_read_alt_id', true);
 let passthroughWriteNcmpOverheadTrend = new Trend('ncmp_overhead_passthrough_write', true);
-let dataOperationsBatchReadCmHandlePerSecondTrend = new Trend('data_operations_batch_read_cmhandles_per_second');
+let dataOperationsBatchReadCmHandlePerSecondGauge = new Gauge('data_operations_batch_read_cmhandles_per_second');
 
 const reader = new Reader({
     brokers: KAFKA_BOOTSTRAP_SERVERS,
@@ -91,12 +91,11 @@ export const options = {
             preAllocatedVUs: 1,
         },
         data_operation_async_batch_read: {
-            executor: 'constant-arrival-rate',
+            executor: 'per-vu-iterations',
             exec: 'data_operation_async_batch_read',
-            duration: DURATION,
-            rate: 1,
-            timeUnit: '1s',
-            preAllocatedVUs: 1,
+            vus: 1,
+            iterations: 1,
+            maxDuration: DURATION,
         }
     },
     thresholds: {
@@ -115,7 +114,7 @@ export const options = {
         'http_req_failed{group:::teardown}':['rate == 0'],
         'http_req_failed{scenario:data_operation_send_async_http_request}': ['rate == 0'],
         'kafka_reader_error_count{scenario:data_operation_consume_kafka_responses}': ['count == 0'],
-        'data_operations_batch_read_cmhandles_per_second': ['avg >= 150'],
+        'data_operations_batch_read_cmhandles_per_second': ['value >= 150'],
     },
 };
 
@@ -193,11 +192,29 @@ export function data_operation_send_async_http_request() {
 }
 
 export function data_operation_async_batch_read() {
+    /*
+        The DATA_OPERATION_READ_BATCH_SIZE is 200.
+        The batch read requests is being sent every second for 15 minutes.
+        Thus, the expected total number of messages to be consumed 180000.
+     */
+    const TOTAL_MESSAGES_TO_CONSUME = 180000;
     try {
-        let messages = reader.consume({ limit: DATA_OPERATION_READ_BATCH_SIZE });
-        dataOperationsBatchReadCmHandlePerSecondTrend.add(messages.length);
+        let messagesConsumed = 0;
+        let startTime = Date.now();
+
+        while (messagesConsumed < TOTAL_MESSAGES_TO_CONSUME) {
+            let messages = reader.consume({ limit: TOTAL_MESSAGES_TO_CONSUME - messagesConsumed });
+
+            if (messages.length > 0) {
+                messagesConsumed += messages.length;
+            }
+        }
+
+        let endTime = Date.now();
+        const totalRegistrationTimeInSeconds = (endTime - startTime) / 1000.0;
+        dataOperationsBatchReadCmHandlePerSecondGauge.add(TOTAL_MESSAGES_TO_CONSUME / totalRegistrationTimeInSeconds);
     } catch (error) {
-        dataOperationsBatchReadCmHandlePerSecondTrend.add(0);
+        dataOperationsBatchReadCmHandlePerSecondGauge.add(0);
         console.error(error);
     }
 }
