@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b976bc22_3dc807fd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-08-29T10:32:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ebe05e94_901d9914",
+      "range": {
+        "startLine": 54,
+        "startChar": 34,
+        "endLine": 54,
+        "endChar": 41
+      },
+      "revId": "b7c7c43befbdbb3b7f37463200a5be358ea21ca3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "060d3349_7dbb9fe7",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-08-29T09:18:36Z",
       "side": 1,
       "message": "yang model cm handle",
+      "range": {
+        "startLine": 61,
+        "startChar": 29,
+        "endLine": 61,
+        "endChar": 39
+      },
+      "revId": "b7c7c43befbdbb3b7f37463200a5be358ea21ca3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9940c38_ee01c28e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-08-29T10:32:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "060d3349_7dbb9fe7",
       "range": {
         "startLine": 61,
         "startChar": 29,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3221c13_459feeb1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-08-29T10:32:08Z",
+      "side": 1,
+      "message": "Not applicable now since it is now a private method.",
+      "parentUuid": "a825724e_2f3907e7",
+      "range": {
+        "startLine": 66,
+        "startChar": 15,
+        "endLine": 66,
+        "endChar": 24
+      },
+      "revId": "b7c7c43befbdbb3b7f37463200a5be358ea21ca3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "95254915_01dd3d07",
@@ -100,6 +172,30 @@
       "writtenOn": "2024-08-29T09:18:36Z",
       "side": 1,
       "message": "yang model cm handle",
+      "range": {
+        "startLine": 69,
+        "startChar": 29,
+        "endLine": 69,
+        "endChar": 39
+      },
+      "revId": "b7c7c43befbdbb3b7f37463200a5be358ea21ca3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ce7b0fb_2590952d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-08-29T10:32:08Z",
+      "side": 1,
+      "message": "Not applicable now since it is now a private method.",
+      "parentUuid": "95254915_01dd3d07",
       "range": {
         "startLine": 69,
         "startChar": 29,
@@ -133,6 +229,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "19ad1892_896c87fb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-08-29T10:32:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "12b4d9a9_a91cd6d1",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 6
+      },
+      "revId": "b7c7c43befbdbb3b7f37463200a5be358ea21ca3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dc9f53d0_3809e6e8",
@@ -146,6 +266,30 @@
       "writtenOn": "2024-08-29T09:18:36Z",
       "side": 1,
       "message": "Can not see if this public api has unit test, maybe double check.",
+      "range": {
+        "startLine": 94,
+        "startChar": 41,
+        "endLine": 94,
+        "endChar": 56
+      },
+      "revId": "b7c7c43befbdbb3b7f37463200a5be358ea21ca3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69da20ef_2fd33a10",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-08-29T10:32:08Z",
+      "side": 1,
+      "message": "This is covered under tests like \u0027Query cm handle ids when the query is empty.\u0027 in ParameterizedCmHandleQueryServiceSpec",
+      "parentUuid": "dc9f53d0_3809e6e8",
       "range": {
         "startLine": 94,
         "startChar": 41,
@@ -179,6 +323,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad5531ca_f50cb4a8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-08-29T10:32:08Z",
+      "side": 1,
+      "message": "Yes, CM-handles returned are guaranteed to be unique.",
+      "parentUuid": "eed57dda_73a2543a",
+      "range": {
+        "startLine": 96,
+        "startChar": 97,
+        "endLine": 96,
+        "endChar": 106
+      },
+      "revId": "b7c7c43befbdbb3b7f37463200a5be358ea21ca3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "52c7a3ac_1af3601f",
@@ -202,6 +370,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d95cf7aa_7957cfe0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-08-29T10:32:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "52c7a3ac_1af3601f",
+      "range": {
+        "startLine": 3,
+        "startChar": 23,
+        "endLine": 3,
+        "endChar": 27
+      },
+      "revId": "b7c7c43befbdbb3b7f37463200a5be358ea21ca3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1d70f7e8_7978142d",
@@ -215,6 +407,30 @@
       "writtenOn": "2024-08-29T09:18:36Z",
       "side": 1,
       "message": "unused import",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 65
+      },
+      "revId": "b7c7c43befbdbb3b7f37463200a5be358ea21ca3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c38bfea1_588d0533",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-08-29T10:32:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1d70f7e8_7978142d",
       "range": {
         "startLine": 25,
         "startChar": 0,
