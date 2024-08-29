@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2023 Nordix Foundation
+ *  Copyright (C) 2021-2024 Nordix Foundation
  *  Modifications Copyright (C) 2023 TechMahindra Ltd
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -165,10 +165,6 @@ public class CpsPathBuilder extends CpsPathBaseListener {
         cpsPathQuery.setContainerNames(containerNames);
         cpsPathQuery.setBooleanOperators(booleanOperators);
         cpsPathQuery.setComparativeOperators(comparativeOperators);
-        if (cpsPathQuery.hasAncestorAxis() && cpsPathQuery.getXpathPrefix()
-                .endsWith("/" + cpsPathQuery.getAncestorSchemaNodeIdentifier())) {
-            cpsPathQuery.setAncestorSchemaNodeIdentifier("");
-        }
         return cpsPathQuery;
     }
 
