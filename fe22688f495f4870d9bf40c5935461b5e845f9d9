@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1bb4e6ce_4e21d6b6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-08-29T15:33:47Z",
+      "side": 1,
+      "message": "For some reason I can not see cps-and-ncmp instances being available in JVM (Micrometer) Dashbord for further analysis. However, this might be related to my local, we need more review on this commit please.\n\nNOTE: I\u0027ve run \u0027docker system prune -a\u0027 then tried to up docker compose with the command below:\n\ndocker-compose --profile dmi-stub --profile monitoring up -d\n\nSeems still can not see cps-and-ncmp instances in JVM Dashboard.",
+      "revId": "fe22688f495f4870d9bf40c5935461b5e845f9d9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
