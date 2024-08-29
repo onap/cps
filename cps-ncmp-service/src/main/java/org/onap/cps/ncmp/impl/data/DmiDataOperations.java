@@ -139,8 +139,7 @@ public class DmiDataOperations {
                                            final String requestId,
                                            final String authorization)  {
 
-        final Set<String> cmHandlesIds
-                = getDistinctCmHandleIds(dataOperationRequest);
+        final Set<String> cmHandlesIds = getDistinctCmHandleIds(dataOperationRequest);
 
         final Collection<YangModelCmHandle> yangModelCmHandles
             = inventoryPersistence.getYangModelCmHandles(cmHandlesIds);
