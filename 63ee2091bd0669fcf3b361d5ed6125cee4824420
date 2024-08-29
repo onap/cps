@@ -3,6 +3,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "516a0740_58950abb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-29T11:08:40Z",
+      "side": 1,
+      "message": "minor change in the wording of the testware.\nOtherwise good from my side as well.",
+      "revId": "63ee2091bd0669fcf3b361d5ed6125cee4824420",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "3145dc36_5e236dd5",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceSpec.groovy",
         "patchSetId": 4
@@ -19,6 +36,29 @@
         "startChar": 29,
         "endLine": 144,
         "endChar": 54
+      },
+      "revId": "63ee2091bd0669fcf3b361d5ed6125cee4824420",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2659cc83_13142401",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/trustlevel/TrustLevelManagerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-29T11:08:40Z",
+      "side": 1,
+      "message": "NB: NONE means NOT Trusted I think.\nBut we can write as NONE here.",
+      "range": {
+        "startLine": 145,
+        "startChar": 40,
+        "endLine": 145,
+        "endChar": 47
       },
       "revId": "63ee2091bd0669fcf3b361d5ed6125cee4824420",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
