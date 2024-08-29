@@ -33,6 +33,23 @@
       "message": "recheck",
       "revId": "78894db49673ee86f536634f80fa5d82db245a4b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f1e9e45_5dfa4767",
+        "filename": "k6-tests/ncmp/ncmp-kpi.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2024-08-29T13:03:10Z",
+      "side": 1,
+      "message": "Just a quick one, what is the purpose of these checks? They don\u0027t fail tests do they?",
+      "revId": "78894db49673ee86f536634f80fa5d82db245a4b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
