@@ -1,5 +1,52 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b4b2175_89195eb2",
+        "filename": "docs/api/swagger/policy-executor/openapi.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-29T10:53:46Z",
+      "side": 1,
+      "message": "rename to \u0027decisionResultId\u0027",
+      "range": {
+        "startLine": 112,
+        "startChar": 8,
+        "endLine": 112,
+        "endChar": 18
+      },
+      "revId": "f220a361b49d5131159dfec42aa0f87ca1cab1cc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73177d5e_f9912d6e",
+        "filename": "docs/api/swagger/policy-executor/openapi.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-29T10:53:46Z",
+      "side": 1,
+      "message": "re-word. awaiting exact wording from Stakeholders but something like\n\u0027allow\u0027 means the operation can continue. Any other value should be interpreted as \u0027not allowed\u0027",
+      "range": {
+        "startLine": 118,
+        "startChar": 46,
+        "endLine": 118,
+        "endChar": 88
+      },
+      "revId": "f220a361b49d5131159dfec42aa0f87ca1cab1cc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
