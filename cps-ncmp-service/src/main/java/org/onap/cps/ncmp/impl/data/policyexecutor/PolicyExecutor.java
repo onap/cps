@@ -20,7 +20,9 @@
 
 package org.onap.cps.ncmp.impl.data.policyexecutor;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -28,6 +30,7 @@ import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.data.models.OperationType;
+import org.onap.cps.ncmp.api.exceptions.NcmpException;
 import org.onap.cps.ncmp.api.exceptions.PolicyExecutorException;
 import org.onap.cps.ncmp.api.exceptions.ServerNcmpException;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
@@ -57,6 +60,8 @@ public class PolicyExecutor {
 
     @Qualifier("policyExecutorWebClient")
     private final WebClient policyExecutorWebClient;
+
+    private final ObjectMapper objectMapper= new ObjectMapper();
 
     /**
      * Use the Policy Executor to check permission for a cm write operation.
@@ -108,7 +113,13 @@ public class PolicyExecutor {
         data.put("resourceIdentifier", resourceIdentifier);
         data.put("targetIdentifier", yangModelCmHandle.getAlternateId());
         if (!OperationType.DELETE.equals(operationType)) {
-            data.put("cmChangeRequest", changeRequestAsJson);
+            try {
+                final Object changeRequestAsObject = objectMapper.readValue(changeRequestAsJson, Object.class);
+                data.put("cmChangeRequest", changeRequestAsObject);
+            } catch (JsonProcessingException e) {
+                throw new NcmpException("Cannot convert Change Request data to Object",
+                    "Invalid Json? " + changeRequestAsJson);
+            }
         }
 
         final Map<String, Object> request = new HashMap<>(2);
