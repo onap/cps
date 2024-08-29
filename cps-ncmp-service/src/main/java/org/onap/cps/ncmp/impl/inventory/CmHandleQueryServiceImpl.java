@@ -34,6 +34,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
+import org.onap.cps.cpspath.parser.CpsPathUtil;
 import org.onap.cps.ncmp.api.inventory.models.TrustLevel;
 import org.onap.cps.ncmp.impl.inventory.models.CmHandleState;
 import org.onap.cps.ncmp.impl.inventory.models.ModelledDmiServiceLeaves;
@@ -96,6 +97,9 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
     @Override
     public List<DataNode> queryCmHandleAncestorsByCpsPath(final String cpsPath,
                                                           final FetchDescendantsOption fetchDescendantsOption) {
+        if (CpsPathUtil.getCpsPathQuery(cpsPath).getXpathPrefix().endsWith("/cm-handles")) {
+            return queryNcmpRegistryByCpsPath(cpsPath, fetchDescendantsOption);
+        }
         return queryNcmpRegistryByCpsPath(cpsPath + ANCESTOR_CM_HANDLES, fetchDescendantsOption);
     }
 
