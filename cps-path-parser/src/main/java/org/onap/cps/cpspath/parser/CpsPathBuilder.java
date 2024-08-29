@@ -147,10 +147,6 @@ public class CpsPathBuilder extends CpsPathBaseListener {
         cpsPathQuery.setNormalizedXpath(normalizedXpathBuilder.toString());
         cpsPathQuery.setContainerNames(containerNames);
         cpsPathQuery.setBooleanOperators(booleanOperators);
-        if (cpsPathQuery.hasAncestorAxis() && cpsPathQuery.getXpathPrefix()
-                .endsWith("/" + cpsPathQuery.getAncestorSchemaNodeIdentifier())) {
-            cpsPathQuery.setAncestorSchemaNodeIdentifier("");
-        }
         return cpsPathQuery;
     }
 
