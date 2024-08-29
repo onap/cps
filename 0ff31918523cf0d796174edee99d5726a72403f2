@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6b8357c_899a97b3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-29T11:12:00Z",
+      "side": 1,
+      "message": "apart from this comment , its good enough for me.",
+      "revId": "0ff31918523cf0d796174edee99d5726a72403f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4a97ee7_dfc47c6e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/NetworkCmProxyInventoryFacadeSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-29T11:12:00Z",
+      "side": 1,
+      "message": "NB: same comment as in the previous patch.\nDo you want to check with both cmHandleId and alternateId here just to show that it supports both.",
+      "revId": "0ff31918523cf0d796174edee99d5726a72403f2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
