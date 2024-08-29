@@ -50,6 +50,24 @@
       "message": "Just a quick one, what is the purpose of these checks? They don\u0027t fail tests do they?",
       "revId": "78894db49673ee86f536634f80fa5d82db245a4b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7cb8734_7a127391",
+        "filename": "k6-tests/ncmp/ncmp-kpi.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-08-29T13:14:22Z",
+      "side": 1,
+      "message": "No they don\u0027t cause the tests to fail, and we don\u0027t plot them either.\nWe really use them for debugging while writing tests, e.g. if you comment out custom summary function on line 214 and run the tests, you\u0027ll see these checks being printed out:\n\n     ✗ status equals 200\n      ↳  24% — ✓ 49 / ✗ 151\n\nWith this patch, we are now using the result of the checks to only record timings for successful operations.",
+      "parentUuid": "1f1e9e45_5dfa4767",
+      "revId": "78894db49673ee86f536634f80fa5d82db245a4b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
