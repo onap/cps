@@ -119,6 +119,30 @@
       },
       "revId": "47ab7151e063855fa05dc3432bde1e5e00b7e6a6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6f73525_a21f844d",
+        "filename": "k6-tests/ncmp/run-all-tests.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-08-29T12:39:34Z",
+      "side": 1,
+      "message": "Agree with this review since the job is a \u0027performance test\u0027 that runs once per hour and not functional, thus, no log-debugging is needed within created a huge logs. Since if an error occurs, it will be repetitively being printed for the same tests. it would be nice if the error logs redirected to /devll/null only. The function issues should have been captured by CSIT and unit tests.",
+      "parentUuid": "5d17a2ca_9a7d9605",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 52
+      },
+      "revId": "47ab7151e063855fa05dc3432bde1e5e00b7e6a6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
