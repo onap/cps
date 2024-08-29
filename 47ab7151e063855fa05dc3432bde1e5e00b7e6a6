@@ -33,6 +33,92 @@
       "message": "recheck",
       "revId": "47ab7151e063855fa05dc3432bde1e5e00b7e6a6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6356cfd7_94b48fd7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-08-29T11:23:42Z",
+      "side": 1,
+      "message": "Still producing gigabytes of logs on failure",
+      "revId": "47ab7151e063855fa05dc3432bde1e5e00b7e6a6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3b832d2_b59d8f09",
+        "filename": "k6-tests/ncmp/config/k6-error-log-rotate.conf",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-08-29T11:23:42Z",
+      "side": 1,
+      "message": "File format not correct, e.g. comments can only be at the start of the line, error.log needs to be quoted:\n\n    \"error.log\" {\n        # Rotate log if it exceeds 50MB\n        size 50M\n        ...\n    }\n    \nSee my other comments before implementing this though,  I don\u0027t think logrotate is a good solution.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 1
+      },
+      "revId": "47ab7151e063855fa05dc3432bde1e5e00b7e6a6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4dd55008_6f39e4b1",
+        "filename": "k6-tests/ncmp/run-all-tests.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-08-29T11:23:42Z",
+      "side": 1,
+      "message": "Can we just redirect to /dev/null for now? There are too many issues with the logrotate solution right now.",
+      "range": {
+        "startLine": 28,
+        "startChar": 44,
+        "endLine": 28,
+        "endChar": 56
+      },
+      "revId": "47ab7151e063855fa05dc3432bde1e5e00b7e6a6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d17a2ca_9a7d9605",
+        "filename": "k6-tests/ncmp/run-all-tests.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-08-29T11:23:42Z",
+      "side": 1,
+      "message": "Solution doesn\u0027t work and still produces gigabytes of logs.\n\nI think issue here is that the error.log is not in this directory. Also, it can\u0027t rotate anything: since this script runs as a pipeline job, we are checking out a fresh repo each run. So the log rotation is just \u0027rotating\u0027 a single log file. Really this solution a very complicated way of compressing a single log file.\n\nI recommend just redirecting all errors to /dev/null, and revisit other solutions later if we need logging.",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 52
+      },
+      "revId": "47ab7151e063855fa05dc3432bde1e5e00b7e6a6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
