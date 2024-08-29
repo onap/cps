@@ -51,6 +51,24 @@
       "parentUuid": "5ce7d9ef_4d198560",
       "revId": "d3ae0e49a130cba5a2f9433cb0f2f61f40c427d6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d9ae34a_eb1fbc90",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/NetworkCmProxyInventoryFacadeSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-08-29T11:51:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1f5702dd_610d6bca",
+      "revId": "d3ae0e49a130cba5a2f9433cb0f2f61f40c427d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
