@@ -56,6 +56,30 @@
       },
       "revId": "3f9c54476372809ce54df6cbb83eae0113793594",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "64020b2c_5eaf7a9c",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-08-29T09:12:04Z",
+      "side": 1,
+      "message": "it was a ne test that produced an unexpected result that exposed this",
+      "parentUuid": "cd5a8389_dab55639",
+      "range": {
+        "startLine": 117,
+        "startChar": 8,
+        "endLine": 118,
+        "endChar": 118
+      },
+      "revId": "3f9c54476372809ce54df6cbb83eae0113793594",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
