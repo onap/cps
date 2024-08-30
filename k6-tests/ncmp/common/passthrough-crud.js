@@ -18,9 +18,9 @@
  *  ============LICENSE_END=========================================================
  */
 
-import http from 'k6/http';
 import {
-    CONTENT_TYPE_JSON_PARAM,
+    performPostRequest,
+    performGetRequest,
     getRandomCmHandleId,
     NCMP_BASE_URL,
     TOPIC_DATA_OPERATIONS_BATCH_READ
@@ -29,36 +29,33 @@ import {
 export function passthroughRead() {
     const cmHandleId = getRandomCmHandleId();
     const resourceIdentifier = 'my-resource-identifier';
-    const includeDescendants = true;
     const datastoreName = 'ncmp-datastore:passthrough-operational';
-    const url = `${NCMP_BASE_URL}/ncmp/v1/ch/${cmHandleId}/data/ds/${datastoreName}?resourceIdentifier=${resourceIdentifier}&include-descendants=${includeDescendants}`
-    const response = http.get(url);
-    return response;
+    const includeDescendants = true;
+    const url = generatePassthroughUrl(cmHandleId, datastoreName, resourceIdentifier, includeDescendants);
+    return performGetRequest(url, 'passthroughRead');
 }
 
 export function passthroughReadWithAltId() {
     const cmHandleId = getRandomCmHandleId();
     const resourceIdentifier = 'my-resource-identifier';
-    const includeDescendants = true;
     const datastoreName = 'ncmp-datastore:passthrough-operational';
-    const url = `${NCMP_BASE_URL}/ncmp/v1/ch/alt-${cmHandleId}/data/ds/${datastoreName}?resourceIdentifier=${resourceIdentifier}&include-descendants=${includeDescendants}`
-    const response = http.get(url);
-    return response;
+    const includeDescendants = true;
+    const url = generatePassthroughUrl(cmHandleId, datastoreName, resourceIdentifier, includeDescendants, true);
+    return performGetRequest(url, 'passthroughReadWithAltId');
 }
 
 export function passthroughWrite() {
     const cmHandleId = getRandomCmHandleId();
     const resourceIdentifier = 'my-resource-identifier';
     const datastoreName = 'ncmp-datastore:passthrough-running';
-    const url = `${NCMP_BASE_URL}/ncmp/v1/ch/${cmHandleId}/data/ds/${datastoreName}?resourceIdentifier=${resourceIdentifier}`
-    const body = `{"neType": "BaseStation"}`
-    const response = http.post(url, JSON.stringify(body), CONTENT_TYPE_JSON_PARAM);
-    return response;
+    const url = generatePassthroughUrl(cmHandleId, datastoreName, resourceIdentifier);
+    const payload = JSON.stringify({"neType": "BaseStation"});
+    return performPostRequest(url, payload, 'passthroughWrite');
 }
 
 export function batchRead(cmHandleIds) {
-    const url = `${NCMP_BASE_URL}/ncmp/v1/data?topic=${TOPIC_DATA_OPERATIONS_BATCH_READ}`
-    const  payload = {
+    const url = `${NCMP_BASE_URL}/ncmp/v1/data?topic=${TOPIC_DATA_OPERATIONS_BATCH_READ}`;
+    const payload = JSON.stringify({
         "operations": [
             {
                 "resourceIdentifier": "parent/child",
@@ -69,7 +66,12 @@ export function batchRead(cmHandleIds) {
                 "operation": "read"
             }
         ]
-    };
-    const response = http.post(url, JSON.stringify(payload), CONTENT_TYPE_JSON_PARAM);
-    return response;
+    });
+    return performPostRequest(url, payload, 'batchRead');
+}
+
+function generatePassthroughUrl(cmHandleId, datastoreName, resourceIdentifier, includeDescendants = false, alt = false) {
+    const cmHandlePrefix = alt ? `alt-${cmHandleId}` : cmHandleId;
+    const descendantsParam = includeDescendants ? `&include-descendants=${includeDescendants}` : '';
+    return `${NCMP_BASE_URL}/ncmp/v1/ch/${cmHandlePrefix}/data/ds/${datastoreName}?resourceIdentifier=${resourceIdentifier}${descendantsParam}`;
 }

@@ -18,13 +18,14 @@
  *  ============LICENSE_END=========================================================
  */
 
+import http from 'k6/http';
 export const NCMP_BASE_URL = 'http://localhost:8883';
 export const DMI_PLUGIN_URL = 'http://ncmp-dmi-plugin-demo-and-csit-stub:8092';
 export const TOTAL_CM_HANDLES = 20000;
 export const REGISTRATION_BATCH_SIZE = 100;
 export const READ_DATA_FOR_CM_HANDLE_DELAY_MS = 300; // must have same value as in docker-compose.yml
 export const WRITE_DATA_FOR_CM_HANDLE_DELAY_MS = 670; // must have same value as in docker-compose.yml
-export const CONTENT_TYPE_JSON_PARAM = { headers: {'Content-Type': 'application/json'} };
+export const CONTENT_TYPE_JSON_PARAM = {'Content-Type': 'application/json'};
 export const DATA_OPERATION_READ_BATCH_SIZE = 200;
 export const TOPIC_DATA_OPERATIONS_BATCH_READ = 'topic-data-operations-batch-read';
 export const KAFKA_BOOTSTRAP_SERVERS = ['localhost:9092'];
@@ -51,6 +52,43 @@ export function getRandomCmHandleId() {
     return `ch-${Math.floor(Math.random() * TOTAL_CM_HANDLES) + 1}`;
 }
 
+/**
+ * Helper function to perform POST requests with JSON payload and content type.
+ * @param {string} url - The URL to send the POST request to.
+ * @param {Object} payload - The JSON payload to send in the POST request.
+ * @param {string} metricTag - A tag for the metric endpoint.
+ * @returns {Object} The response from the HTTP POST request.
+ */
+export function performPostRequest(url, payload, metricTag) {
+    const metricTags = {
+        endpoint: metricTag
+    };
+
+    return http.post(url, payload, {
+        headers: CONTENT_TYPE_JSON_PARAM,
+        tags: metricTags
+    });
+}
+
+/**
+ * Helper function to perform GET requests with metric tags.
+ *
+ * This function sends an HTTP GET request to the specified URL and attaches
+ * a metric tag to the request, which is useful for monitoring and analytics.
+ *
+ * @param {string} url - The URL to which the GET request will be sent.
+ * @param {string} metricTag - A string representing the metric tag to associate with the request.
+ *                             This tag is used for monitoring and tracking the request.
+ * @returns {Object} The response from the HTTP GET request. The response includes the status code,
+ *                   headers, body, and other related information.
+ */
+export function performGetRequest(url, metricTag) {
+    const metricTags = {
+        endpoint: metricTag
+    };
+    return http.get(url, {tags: metricTags});
+}
+
 export function makeCustomSummaryReport(data, options) {
     const summaryCsvLines = [
         '#,Test Name,Unit,Limit,Actual',
@@ -70,7 +108,7 @@ export function makeCustomSummaryReport(data, options) {
 function makeSummaryCsvLine(testCase, testName, unit, thresholdInK6, data, options) {
     const thresholdArray = JSON.parse(JSON.stringify(options.thresholds[thresholdInK6]));
     const thresholdString = thresholdArray[0];
-    const [thresholdKey, thresholdOperator, thresholdValue] = thresholdString.split(/\s+/);
+    const [thresholdKey, thresholdValue] = thresholdString.split(/\s+/);
     const actualValue = data.metrics[thresholdInK6].values[thresholdKey].toFixed(3);
     return `${testCase},${testName},${unit},${thresholdValue},${actualValue}`;
 }

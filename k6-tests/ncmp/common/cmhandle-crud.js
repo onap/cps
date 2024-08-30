@@ -18,17 +18,33 @@
  *  ============LICENSE_END=========================================================
  */
 
-import http from 'k6/http';
 import { sleep } from 'k6';
-import {
-    NCMP_BASE_URL, DMI_PLUGIN_URL, TOTAL_CM_HANDLES,
-    MODULE_SET_TAGS, CONTENT_TYPE_JSON_PARAM
+import { performPostRequest, NCMP_BASE_URL, DMI_PLUGIN_URL, TOTAL_CM_HANDLES, MODULE_SET_TAGS
 } from './utils.js';
 import { executeCmHandleIdSearch } from './search-base.js';
 
 export function createCmHandles(cmHandleIds) {
     const url = `${NCMP_BASE_URL}/ncmpInventory/v1/ch`;
-    const payload = {
+    const payload = JSON.stringify(createCmHandlePayload(cmHandleIds));
+    return performPostRequest(url, payload, 'createCmHandles');
+}
+
+export function deleteCmHandles(cmHandleIds) {
+    const url = `${NCMP_BASE_URL}/ncmpInventory/v1/ch`;
+    const payload = JSON.stringify({
+        "dmiPlugin": DMI_PLUGIN_URL,
+        "removedCmHandles": cmHandleIds,
+    });
+    return performPostRequest(url, payload, 'deleteCmHandles');
+}
+
+export function waitForAllCmHandlesToBeReady() {
+    const POLLING_INTERVAL_SECONDS = 5;
+    checkIfCmHandlesAreReady(getNumberOfReadyCmHandles, TOTAL_CM_HANDLES, POLLING_INTERVAL_SECONDS);
+}
+
+function createCmHandlePayload(cmHandleIds) {
+    return {
         "dmiPlugin": DMI_PLUGIN_URL,
         "createdCmHandles": cmHandleIds.map((cmHandleId, index) => ({
             "cmHandle": cmHandleId,
@@ -42,28 +58,15 @@ export function createCmHandles(cmHandleIds) {
             }
         })),
     };
-    const response = http.post(url, JSON.stringify(payload), CONTENT_TYPE_JSON_PARAM);
-    return response;
 }
 
-export function deleteCmHandles(cmHandleIds) {
-    const url = `${NCMP_BASE_URL}/ncmpInventory/v1/ch`;
-    const payload = {
-        "dmiPlugin": DMI_PLUGIN_URL,
-        "removedCmHandles": cmHandleIds,
-    };
-    const response = http.post(url, JSON.stringify(payload), CONTENT_TYPE_JSON_PARAM);
-    return response;
-}
-
-export function waitForAllCmHandlesToBeReady() {
-    const POLLING_INTERVAL_SECONDS = 5;
+function checkIfCmHandlesAreReady(checkFunction, targetCmHandleCount, pollingIntervalSeconds) {
     let cmHandlesReady = 0;
     do {
-        sleep(POLLING_INTERVAL_SECONDS);
-        cmHandlesReady = getNumberOfReadyCmHandles();
-        console.log(`${cmHandlesReady}/${TOTAL_CM_HANDLES} CM handles are READY`);
-    } while (cmHandlesReady < TOTAL_CM_HANDLES);
+        sleep(pollingIntervalSeconds);
+        cmHandlesReady = checkFunction();
+        console.log(`${cmHandlesReady}/${targetCmHandleCount} CM handles are READY`);
+    } while (cmHandlesReady < targetCmHandleCount);
 }
 
 function getNumberOfReadyCmHandles() {
