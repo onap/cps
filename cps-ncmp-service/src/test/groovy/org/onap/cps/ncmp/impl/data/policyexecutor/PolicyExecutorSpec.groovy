@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.impl.data
+package org.onap.cps.ncmp.impl.data.policyexecutor
 
 import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
@@ -26,9 +26,9 @@ import ch.qos.logback.classic.spi.ILoggingEvent
 import ch.qos.logback.core.read.ListAppender
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
+import org.onap.cps.ncmp.api.exceptions.NcmpException
 import org.onap.cps.ncmp.api.exceptions.PolicyExecutorException
 import org.onap.cps.ncmp.api.exceptions.ServerNcmpException
-import org.onap.cps.ncmp.impl.data.policyexecutor.PolicyExecutor
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
@@ -52,7 +52,9 @@ class PolicyExecutorSpec extends Specification {
 
     def logAppender = Spy(ListAppender<ILoggingEvent>)
 
-    ObjectMapper objectMapper = new ObjectMapper()
+    def objectMapper = new ObjectMapper()
+
+    def someValidJson = '{"Hello":"World"}'
 
     def setup() {
         setupLogger()
@@ -72,7 +74,7 @@ class PolicyExecutorSpec extends Specification {
         given: 'allow response'
             mockResponse([decision:'allow'], HttpStatus.OK)
         when: 'permission is checked for an operation'
-            objectUnderTest.checkPermission(new YangModelCmHandle(), operationType, 'my credentials','my resource','my change')
+            objectUnderTest.checkPermission(new YangModelCmHandle(), operationType, 'my credentials','my resource',someValidJson)
         then: 'system logs the operation is allowed'
             assert getLogEntry(2) == 'Policy Executor allows the operation'
         and: 'no exception occurs'
@@ -85,7 +87,7 @@ class PolicyExecutorSpec extends Specification {
         given: 'other response'
             mockResponse([decision:'other', decisionId:123, message:'I dont like Mondays' ], HttpStatus.OK)
         when: 'permission is checked for an operation'
-            objectUnderTest.checkPermission(new YangModelCmHandle(), PATCH, 'my credentials','my resource','my change')
+            objectUnderTest.checkPermission(new YangModelCmHandle(), PATCH, 'my credentials','my resource',someValidJson)
         then: 'Policy Executor exception is thrown'
             def thrownException = thrown(PolicyExecutorException)
             assert thrownException.message == 'Policy Executor did not allow request. Decision #123 : other'
@@ -96,7 +98,7 @@ class PolicyExecutorSpec extends Specification {
         given: 'other response'
             mockResponse([], HttpStatus.I_AM_A_TEAPOT)
         when: 'permission is checked for an operation'
-            objectUnderTest.checkPermission(new YangModelCmHandle(), PATCH, 'my credentials','my resource','my change')
+            objectUnderTest.checkPermission(new YangModelCmHandle(), PATCH, 'my credentials','my resource',someValidJson)
         then: 'Server Ncmp exception is thrown'
             def thrownException = thrown(ServerNcmpException)
             assert thrownException.message == 'Policy Executor invocation failed'
@@ -107,7 +109,7 @@ class PolicyExecutorSpec extends Specification {
         given: 'invalid response from Policy executor'
             mockResponseSpec.toEntity(*_) >> invalidResponse
         when: 'permission is checked for an operation'
-            objectUnderTest.checkPermission(new YangModelCmHandle(), CREATE, 'my credentials','my resource','my change')
+            objectUnderTest.checkPermission(new YangModelCmHandle(), CREATE, 'my credentials','my resource',someValidJson)
         then: 'system logs the expected message'
             assert getLogEntry(1) == expectedMessage
         where: 'following invalid responses are received'
@@ -116,11 +118,20 @@ class PolicyExecutorSpec extends Specification {
             Mono.just(new ResponseEntity<>(null, HttpStatus.OK))   || 'No valid response body from policy, ignored'
     }
 
+    def 'Permission check with an invalid change request json.'() {
+        when: 'permission is checked for an invalid change request'
+            objectUnderTest.checkPermission(new YangModelCmHandle(), CREATE, 'my credentials', 'my resource', 'invalid json string')
+        then: 'an ncmp exception thrown'
+            def ncmpException = thrown(NcmpException)
+            ncmpException.message == 'Cannot convert Change Request data to Object'
+            ncmpException.details.contains('invalid json string')
+    }
+
     def 'Permission check feature disabled.'() {
         given: 'feature is disabled'
             objectUnderTest.enabled = false
         when: 'permission is checked for an operation'
-            objectUnderTest.checkPermission(new YangModelCmHandle(), PATCH, 'my credentials','my resource','my change')
+            objectUnderTest.checkPermission(new YangModelCmHandle(), PATCH, 'my credentials','my resource',someValidJson)
         then: 'system logs that the feature not enabled'
             assert getLogEntry(0) == 'Policy Executor Enabled: false'
     }
