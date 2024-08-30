@@ -26,9 +26,29 @@ import {
 } from './utils.js';
 import { executeCmHandleIdSearch } from './search-base.js';
 
-export function createCmHandles(cmHandleIds) {
-    const url = `${NCMP_BASE_URL}/ncmpInventory/v1/ch`;
-    const payload = {
+// Helper function to perform POST requests with JSON payload and content type
+function performPostRequest(url, payload, metricTag) {
+    const metricTags = {endpoint: metricTag};
+
+    return http.post(url, JSON.stringify(payload), {
+        headers: CONTENT_TYPE_JSON_PARAM,
+        tags: metricTags
+    });
+}
+
+// Helper function to wait for a condition to be met with polling
+function checkIfCmHandlesAreReady(checkFunction, targetCmHandleCount, pollingIntervalSeconds) {
+    let cmHandlesReady = 0;
+    do {
+        sleep(pollingIntervalSeconds);
+        cmHandlesReady = checkFunction();
+        console.log(`${cmHandlesReady}/${targetCmHandleCount} CM handles are READY`);
+    } while (cmHandlesReady < targetCmHandleCount);
+}
+
+// Helper function to create payload for CM handle creation
+function createCmHandlePayload(cmHandleIds) {
+    return {
         "dmiPlugin": DMI_PLUGIN_URL,
         "createdCmHandles": cmHandleIds.map((cmHandleId, index) => ({
             "cmHandle": cmHandleId,
@@ -42,8 +62,12 @@ export function createCmHandles(cmHandleIds) {
             }
         })),
     };
-    const response = http.post(url, JSON.stringify(payload), CONTENT_TYPE_JSON_PARAM);
-    return response;
+}
+
+export function createCmHandles(cmHandleIds) {
+    const url = `${NCMP_BASE_URL}/ncmpInventory/v1/ch`;
+    const payload = createCmHandlePayload(cmHandleIds);
+    return performPostRequest(url, payload, 'createCmHandles');
 }
 
 export function deleteCmHandles(cmHandleIds) {
@@ -52,18 +76,12 @@ export function deleteCmHandles(cmHandleIds) {
         "dmiPlugin": DMI_PLUGIN_URL,
         "removedCmHandles": cmHandleIds,
     };
-    const response = http.post(url, JSON.stringify(payload), CONTENT_TYPE_JSON_PARAM);
-    return response;
+    return performPostRequest(url, payload, 'deleteCmHandles');
 }
 
 export function waitForAllCmHandlesToBeReady() {
     const POLLING_INTERVAL_SECONDS = 5;
-    let cmHandlesReady = 0;
-    do {
-        sleep(POLLING_INTERVAL_SECONDS);
-        cmHandlesReady = getNumberOfReadyCmHandles();
-        console.log(`${cmHandlesReady}/${TOTAL_CM_HANDLES} CM handles are READY`);
-    } while (cmHandlesReady < TOTAL_CM_HANDLES);
+    checkIfCmHandlesAreReady(getNumberOfReadyCmHandles, TOTAL_CM_HANDLES, POLLING_INTERVAL_SECONDS);
 }
 
 function getNumberOfReadyCmHandles() {

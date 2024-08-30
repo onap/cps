@@ -19,7 +19,7 @@
  */
 
 import http from 'k6/http';
-import { NCMP_BASE_URL, CONTENT_TYPE_JSON_PARAM } from './utils.js';
+import {NCMP_BASE_URL, CONTENT_TYPE_JSON_PARAM} from './utils.js';
 
 const SEARCH_PARAMETERS_PER_SCENARIO = {
     'module': {
@@ -52,6 +52,14 @@ function executeSearchRequest(searchType, scenario) {
     const searchParameters = SEARCH_PARAMETERS_PER_SCENARIO[scenario];
     const payload = JSON.stringify(searchParameters);
     const url = `${NCMP_BASE_URL}/ncmp/v1/ch/${searchType}`;
-    const response = http.post(url, payload, CONTENT_TYPE_JSON_PARAM);
-    return response;
+
+    // Define tags for the request
+    const metricTags = {
+        endpoint: searchType,
+    };
+
+    return http.post(url, payload, {
+        headers: CONTENT_TYPE_JSON_PARAM,
+        tags: metricTags
+    });
 }
