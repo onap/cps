@@ -18,10 +18,10 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.impl.data
+package org.onap.cps.ncmp.impl.data.policyexecutor
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.config.PolicyExecutorHttpClientConfig
-import org.onap.cps.ncmp.impl.data.policyexecutor.PolicyExecutor
 import org.onap.cps.ncmp.impl.policyexecutor.PolicyExecutorWebClientConfiguration
 import org.onap.cps.ncmp.utils.WebClientBuilderTestConfig
 import org.springframework.beans.factory.annotation.Autowired
@@ -30,7 +30,7 @@ import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
 
 @SpringBootTest
-@ContextConfiguration(classes = [PolicyExecutor, PolicyExecutorWebClientConfiguration,  PolicyExecutorHttpClientConfig, WebClientBuilderTestConfig ])
+@ContextConfiguration(classes = [ObjectMapper, PolicyExecutor, PolicyExecutorWebClientConfiguration,  PolicyExecutorHttpClientConfig, WebClientBuilderTestConfig ])
 class PolicyExecutorConfigurationSpec extends Specification {
 
     @Autowired
