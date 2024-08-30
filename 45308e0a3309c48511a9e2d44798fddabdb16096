@@ -39,6 +39,30 @@
       },
       "revId": "45308e0a3309c48511a9e2d44798fddabdb16096",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b137cb7_32314c9c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/NetworkCmProxyInventoryFacade.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-08-30T13:10:46Z",
+      "side": 1,
+      "message": "correct. we will handle this solution in one go when we have all the APIs have alternateId.",
+      "parentUuid": "03092e29_762ab3a7",
+      "range": {
+        "startLine": 199,
+        "startChar": 92,
+        "endLine": 200,
+        "endChar": 86
+      },
+      "revId": "45308e0a3309c48511a9e2d44798fddabdb16096",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
