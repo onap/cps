@@ -18,8 +18,22 @@
  *  ============LICENSE_END=========================================================
  */
 
-import http from 'k6/http';
-import { NCMP_BASE_URL, CONTENT_TYPE_JSON_PARAM } from './utils.js';
+import {performPostRequest, NCMP_BASE_URL} from './utils.js';
+
+export function executeCmHandleSearch(scenario) {
+    return executeSearchRequest('searches', scenario);
+}
+
+export function executeCmHandleIdSearch(scenario) {
+    return executeSearchRequest('id-searches', scenario);
+}
+
+function executeSearchRequest(searchType, scenario) {
+    const searchParameters = SEARCH_PARAMETERS_PER_SCENARIO[scenario];
+    const payload = JSON.stringify(searchParameters);
+    const url = `${NCMP_BASE_URL}/ncmp/v1/ch/${searchType}`;
+    return performPostRequest(url, payload, searchType);
+}
 
 const SEARCH_PARAMETERS_PER_SCENARIO = {
     'module': {
@@ -39,19 +53,3 @@ const SEARCH_PARAMETERS_PER_SCENARIO = {
         ]
     }
 };
-
-export function executeCmHandleSearch(scenario) {
-    return executeSearchRequest('searches', scenario);
-}
-
-export function executeCmHandleIdSearch(scenario) {
-    return executeSearchRequest('id-searches', scenario);
-}
-
-function executeSearchRequest(searchType, scenario) {
-    const searchParameters = SEARCH_PARAMETERS_PER_SCENARIO[scenario];
-    const payload = JSON.stringify(searchParameters);
-    const url = `${NCMP_BASE_URL}/ncmp/v1/ch/${searchType}`;
-    const response = http.post(url, payload, CONTENT_TYPE_JSON_PARAM);
-    return response;
-}
