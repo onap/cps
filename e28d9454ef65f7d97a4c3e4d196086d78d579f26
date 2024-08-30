@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dcf1a944_f1615ec6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/NetworkCmProxyInventoryFacadeSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-08-30T11:57:59Z",
+      "side": 1,
+      "message": "1* is redundant if we\u0027re mocking the return, moved the cmHandleRef scenario",
+      "parentUuid": "95561532_83c0e358",
+      "revId": "e28d9454ef65f7d97a4c3e4d196086d78d579f26",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ca2bc7e2_a0cf396c",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/NetworkCmProxyInventoryFacadeSpec.groovy",
         "patchSetId": 4
