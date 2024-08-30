@@ -75,6 +75,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f64cbfe5_bdfd7f66",
+        "filename": "k6-tests/ncmp/config/k6-error-log-rotate.conf",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-08-30T13:54:20Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e3b832d2_b59d8f09",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 1
+      },
+      "revId": "47ab7151e063855fa05dc3432bde1e5e00b7e6a6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4dd55008_6f39e4b1",
@@ -88,6 +112,30 @@
       "writtenOn": "2024-08-29T11:23:42Z",
       "side": 1,
       "message": "Can we just redirect to /dev/null for now? There are too many issues with the logrotate solution right now.",
+      "range": {
+        "startLine": 28,
+        "startChar": 44,
+        "endLine": 28,
+        "endChar": 56
+      },
+      "revId": "47ab7151e063855fa05dc3432bde1e5e00b7e6a6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d4bb476_25a02fbc",
+        "filename": "k6-tests/ncmp/run-all-tests.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-08-30T13:54:20Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4dd55008_6f39e4b1",
       "range": {
         "startLine": 28,
         "startChar": 44,
@@ -135,6 +183,30 @@
       "side": 1,
       "message": "Agree with this review since the job is a \u0027performance test\u0027 that runs once per hour and not functional, thus, no log-debugging is needed within created a huge logs. Since if an error occurs, it will be repetitively being printed for the same tests. it would be nice if the error logs redirected to /devll/null only. The function issues should have been captured by CSIT and unit tests.",
       "parentUuid": "5d17a2ca_9a7d9605",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 52
+      },
+      "revId": "47ab7151e063855fa05dc3432bde1e5e00b7e6a6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0dc6b54_ac426d48",
+        "filename": "k6-tests/ncmp/run-all-tests.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-08-30T13:54:20Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d6f73525_a21f844d",
       "range": {
         "startLine": 30,
         "startChar": 0,
