@@ -22,6 +22,30 @@
       },
       "revId": "91a3491339d5dc4c296947bb3477ffe234103123",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c7d63e2_ca205fc5",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-08-30T13:38:41Z",
+      "side": 1,
+      "message": "good part to handle it at least for descriptions.",
+      "parentUuid": "3bce2cb8_3061a55b",
+      "range": {
+        "startLine": 509,
+        "startChar": 12,
+        "endLine": 509,
+        "endChar": 21
+      },
+      "revId": "91a3491339d5dc4c296947bb3477ffe234103123",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
