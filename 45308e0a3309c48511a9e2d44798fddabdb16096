@@ -16,6 +16,29 @@
       "message": "recheck",
       "revId": "45308e0a3309c48511a9e2d44798fddabdb16096",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03092e29_762ab3a7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/NetworkCmProxyInventoryFacade.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-08-30T12:43:56Z",
+      "side": 1,
+      "message": "Nb. Similar to other cases, this sends out an extra DB call compared to before.\nMoving forward, for optimization, we should probably pass the cmHandleReference into inventoryPersistence.getYangModelCmHandle, and have it retry with the alternate Id (or use a single cps path query using OR)",
+      "range": {
+        "startLine": 199,
+        "startChar": 92,
+        "endLine": 200,
+        "endChar": 86
+      },
+      "revId": "45308e0a3309c48511a9e2d44798fddabdb16096",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
