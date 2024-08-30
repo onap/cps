@@ -51,7 +51,7 @@ const reader = new Reader({
 const DURATION = '15m';
 
 export const options = {
-    setupTimeout: '6m',
+    setupTimeout: '8m',
     teardownTimeout: '6m',
     scenarios: {
         passthrough_read: {
@@ -181,16 +181,16 @@ export function passthrough_write() {
 
 export function id_search_module() {
     const response = executeCmHandleIdSearch('module');
-    if (check(response, { 'CM handle ID search status equals 200': (r) => r.status === 200 })) {
-        check(response, { 'CM handle ID search returned expected CM-handles': (r) => r.json('#') === TOTAL_CM_HANDLES });
+    if (check(response, { 'CM handle ID search status equals 200': (r) => r.status === 200 })
+     && check(response, { 'CM handle ID search returned expected CM-handles': (r) => r.json('#') === TOTAL_CM_HANDLES })) {
         idSearchDurationTrend.add(response.timings.duration);
     }
 }
 
 export function cm_search_module() {
     const response = executeCmHandleSearch('module');
-    if (check(response, { 'CM handle search status equals 200': (r) => r.status === 200 })) {
-        check(response, { 'CM handle search returned expected CM-handles': (r) => r.json('#') === TOTAL_CM_HANDLES });
+    if (check(response, { 'CM handle search status equals 200': (r) => r.status === 200 })
+     && check(response, { 'CM handle search returned expected CM-handles': (r) => r.json('#') === TOTAL_CM_HANDLES })) {
         cmSearchDurationTrend.add(response.timings.duration);
     }
 }
