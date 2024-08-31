@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2023 Nordix Foundation
+ *  Copyright (C) 2021-2024 Nordix Foundation
  *  Modifications Copyright (C) 2023 TechMahindra Ltd
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,8 +25,6 @@ import static org.onap.cps.cpspath.parser.CpsPathPrefixType.ABSOLUTE;
 
 import java.util.List;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -40,12 +38,11 @@ public class CpsPathQuery {
     private List<String> containerNames;
     private CpsPathPrefixType cpsPathPrefixType = ABSOLUTE;
     private String descendantName;
-    private List<DataLeaf> leavesData;
+    private List<LeafCondition> leafConditions;
     private String ancestorSchemaNodeIdentifier = "";
     private String textFunctionConditionLeafName;
     private String textFunctionConditionValue;
     private List<String> booleanOperators;
-    private List<String> comparativeOperators;
     private String containsFunctionConditionLeafName;
     private String containsFunctionConditionValue;
 
@@ -74,7 +71,7 @@ public class CpsPathQuery {
      * @return boolean value.
      */
     public boolean hasLeafConditions() {
-        return leavesData != null;
+        return leafConditions != null;
     }
 
     /**
@@ -104,11 +101,6 @@ public class CpsPathQuery {
         return cpsPathPrefixType == ABSOLUTE && hasLeafConditions();
     }
 
-    @Getter
-    @EqualsAndHashCode
-    @AllArgsConstructor
-    public static class DataLeaf {
-        private final String name;
-        private final Object value;
-    }
+    public record LeafCondition(String name, String operator, Object value) { }
+
 }
