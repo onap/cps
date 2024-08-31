@@ -29,7 +29,6 @@ import org.onap.cps.cpspath.parser.antlr4.CpsPathBaseListener;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathParser;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathParser.AncestorAxisContext;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathParser.DescendantContext;
-import org.onap.cps.cpspath.parser.antlr4.CpsPathParser.IncorrectPrefixContext;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathParser.LeafConditionContext;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathParser.MultipleLeafConditionsContext;
 import org.onap.cps.cpspath.parser.antlr4.CpsPathParser.PrefixContext;
@@ -58,11 +57,6 @@ public class CpsPathBuilder extends CpsPathBaseListener {
     private final List<String> comparativeOperators = new ArrayList<>();
 
     @Override
-    public void exitInvalidPostFix(final CpsPathParser.InvalidPostFixContext ctx) {
-        throw new PathParsingException(ctx.getText());
-    }
-
-    @Override
     public void exitPrefix(final PrefixContext ctx) {
         cpsPathQuery.setXpathPrefix(normalizedXpathBuilder.toString());
     }
@@ -70,11 +64,6 @@ public class CpsPathBuilder extends CpsPathBaseListener {
     @Override
     public void exitParent(final CpsPathParser.ParentContext ctx) {
         cpsPathQuery.setNormalizedParentPath(normalizedXpathBuilder.toString());
-    }
-
-    @Override
-    public void exitIncorrectPrefix(final IncorrectPrefixContext ctx) {
-        throw new PathParsingException("CPS path can only start with one or two slashes (/)");
     }
 
     @Override

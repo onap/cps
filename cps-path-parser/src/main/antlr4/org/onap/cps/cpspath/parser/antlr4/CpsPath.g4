@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2023 Nordix Foundation
+ *  Copyright (C) 2021-2024 Nordix Foundation
  *  Modifications Copyright (C) 2023 TechMahindra Ltd
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -27,7 +27,7 @@
 
 grammar CpsPath ;
 
-cpsPath : ( prefix | descendant | incorrectPrefix ) multipleLeafConditions? textFunctionCondition? containsFunctionCondition? ancestorAxis? invalidPostFix?;
+cpsPath : ( prefix | descendant ) multipleLeafConditions? textFunctionCondition? containsFunctionCondition? ancestorAxis? EOF ;
 
 ancestorAxis : SLASH KW_ANCESTOR COLONCOLON ancestorPath ;
 
@@ -42,8 +42,6 @@ parent : ( SLASH yangElement)* ;
 prefix : parent SLASH containerName ;
 
 descendant : SLASH prefix ;
-
-incorrectPrefix : SLASH SLASH SLASH+ ;
 
 yangElement : containerName listElementRef? ;
 
@@ -60,8 +58,6 @@ leafName : QName ;
 booleanOperators : ( KW_AND | KW_OR ) ;
 
 comparativeOperators : ( EQ | GT | LT | GE | LE ) ;
-
-invalidPostFix : (AT | CB | COLONCOLON | comparativeOperators ).+ ;
 
 /*
  * Lexer Rules
