@@ -39,8 +39,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -80,8 +78,6 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     private final FragmentRepository fragmentRepository;
     private final JsonObjectMapper jsonObjectMapper;
     private final SessionManager sessionManager;
-
-    private static final String REG_EX_FOR_OPTIONAL_LIST_INDEX = "(\\[@.+?])?)";
 
     @Override
     public void storeDataNodes(final String dataspaceName, final String anchorName,
@@ -228,13 +224,8 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
                                          final FetchDescendantsOption fetchDescendantsOption) {
         final AnchorEntity anchorEntity = getAnchorEntity(dataspaceName, anchorName);
         final CpsPathQuery cpsPathQuery = getCpsPathQuery(cpsPath);
-
-        Collection<FragmentEntity> fragmentEntities;
-        fragmentEntities = fragmentRepository.findByAnchorAndCpsPath(anchorEntity, cpsPathQuery);
-        if (cpsPathQuery.hasAncestorAxis()) {
-            final Collection<String> ancestorXpaths = processAncestorXpath(fragmentEntities, cpsPathQuery);
-            fragmentEntities = fragmentRepository.findByAnchorAndXpathIn(anchorEntity, ancestorXpaths);
-        }
+        final Collection<FragmentEntity> fragmentEntities =
+                fragmentRepository.findByAnchorAndCpsPath(anchorEntity, cpsPathQuery);
         return createDataNodesFromFragmentEntities(fetchDescendantsOption, fragmentEntities);
     }
 
@@ -246,7 +237,6 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
                                                       final PaginationOption paginationOption) {
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final CpsPathQuery cpsPathQuery = getCpsPathQuery(cpsPath);
-
         final List<Long> anchorIds;
         if (paginationOption == NO_PAGINATION) {
             anchorIds = Collections.emptyList();
@@ -256,17 +246,8 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
                 return Collections.emptyList();
             }
         }
-        Collection<FragmentEntity> fragmentEntities =
-            fragmentRepository.findByDataspaceAndCpsPath(dataspaceEntity, cpsPathQuery, anchorIds);
-
-        if (cpsPathQuery.hasAncestorAxis()) {
-            final Collection<String> ancestorXpaths = processAncestorXpath(fragmentEntities, cpsPathQuery);
-            if (anchorIds.isEmpty()) {
-                fragmentEntities = fragmentRepository.findByDataspaceAndXpathIn(dataspaceEntity, ancestorXpaths);
-            } else {
-                fragmentEntities = fragmentRepository.findByAnchorIdsAndXpathIn(anchorIds, ancestorXpaths);
-            }
-        }
+        final Collection<FragmentEntity> fragmentEntities =
+                fragmentRepository.findByDataspaceAndCpsPath(dataspaceEntity, cpsPathQuery, anchorIds);
         return createDataNodesFromFragmentEntities(fetchDescendantsOption, fragmentEntities);
     }
 
@@ -670,21 +651,6 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         return childEntities.stream()
                 .filter(fragmentEntity -> fragmentEntity.getXpath().startsWith(listElementXpathPrefix))
                 .collect(Collectors.toMap(FragmentEntity::getXpath, fragmentEntity -> fragmentEntity));
-    }
-
-    private static Set<String> processAncestorXpath(final Collection<FragmentEntity> fragmentEntities,
-                                                    final CpsPathQuery cpsPathQuery) {
-        final Set<String> ancestorXpath = new HashSet<>();
-        final Pattern pattern =
-            Pattern.compile("(.*/" + Pattern.quote(cpsPathQuery.getAncestorSchemaNodeIdentifier())
-                + REG_EX_FOR_OPTIONAL_LIST_INDEX + "/.*");
-        for (final FragmentEntity fragmentEntity : fragmentEntities) {
-            final Matcher matcher = pattern.matcher(fragmentEntity.getXpath());
-            if (matcher.matches()) {
-                ancestorXpath.add(matcher.group(1));
-            }
-        }
-        return ancestorXpath;
     }
 
     private static boolean isRootXpath(final String xpath) {

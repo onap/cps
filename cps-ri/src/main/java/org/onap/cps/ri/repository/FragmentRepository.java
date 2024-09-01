@@ -27,7 +27,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import org.onap.cps.ri.models.AnchorEntity;
-import org.onap.cps.ri.models.DataspaceEntity;
 import org.onap.cps.ri.models.FragmentEntity;
 import org.onap.cps.ri.utils.EscapeUtils;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
@@ -68,21 +67,6 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
         final String escapedXpath = EscapeUtils.escapeForSqlLike(xpath);
         return findListByAnchorIdAndEscapedXpath(anchorEntity.getId(), escapedXpath);
     }
-
-    @Query(value = "SELECT fragment.* FROM fragment JOIN anchor ON anchor.id = fragment.anchor_id "
-        + "WHERE dataspace_id = :dataspaceId AND xpath IN (:xpaths)", nativeQuery = true)
-    List<FragmentEntity> findByDataspaceIdAndXpathIn(@Param("dataspaceId") int dataspaceId,
-                                                     @Param("xpaths") Collection<String> xpaths);
-
-    default List<FragmentEntity> findByDataspaceAndXpathIn(final DataspaceEntity dataspaceEntity,
-                                                           final Collection<String> xpaths) {
-        return findByDataspaceIdAndXpathIn(dataspaceEntity.getId(), xpaths);
-    }
-
-    @Query(value = "SELECT * FROM fragment WHERE anchor_id IN (:anchorIds)"
-            + " AND xpath IN (:xpaths)", nativeQuery = true)
-    List<FragmentEntity> findByAnchorIdsAndXpathIn(@Param("anchorIds") Collection<Long> anchorIds,
-                                                   @Param("xpaths") Collection<String> xpaths);
 
     @Query(value = "SELECT * FROM fragment WHERE anchor_id = :anchorId LIMIT 1", nativeQuery = true)
     Optional<FragmentEntity> findOneByAnchorId(@Param("anchorId") long anchorId);
