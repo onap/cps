@@ -30,8 +30,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.text.StringSubstitutor;
 import org.onap.cps.cpspath.parser.CpsPathPrefixType;
 import org.onap.cps.cpspath.parser.CpsPathQuery;
+import org.onap.cps.cpspath.parser.CpsPathUtil;
 import org.onap.cps.ri.models.AnchorEntity;
 import org.onap.cps.ri.models.DataspaceEntity;
 import org.onap.cps.ri.models.FragmentEntity;
@@ -43,6 +45,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 @Component
 public class FragmentQueryBuilder {
+    private static final String DESCENDANT_PATH = "//";
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -58,9 +61,10 @@ public class FragmentQueryBuilder {
         final StringBuilder sqlStringBuilder = new StringBuilder();
         final Map<String, Object> queryParameters = new HashMap<>();
 
-        sqlStringBuilder.append("SELECT fragment.* FROM fragment");
+        addSearchPrefix(cpsPathQuery, sqlStringBuilder);
         addWhereClauseForAnchor(anchorEntity, sqlStringBuilder, queryParameters);
         addNodeSearchConditions(cpsPathQuery, sqlStringBuilder, queryParameters, false);
+        addSearchSuffix(cpsPathQuery, sqlStringBuilder, queryParameters);
 
         return getQuery(sqlStringBuilder.toString(), queryParameters, FragmentEntity.class);
     }
@@ -78,13 +82,14 @@ public class FragmentQueryBuilder {
         final StringBuilder sqlStringBuilder = new StringBuilder();
         final Map<String, Object> queryParameters = new HashMap<>();
 
-        sqlStringBuilder.append("SELECT fragment.* FROM fragment");
+        addSearchPrefix(cpsPathQuery, sqlStringBuilder);
         if (anchorIdsForPagination.isEmpty()) {
             addWhereClauseForDataspace(dataspaceEntity, sqlStringBuilder, queryParameters);
         } else {
             addWhereClauseForAnchorIds(anchorIdsForPagination, sqlStringBuilder, queryParameters);
         }
         addNodeSearchConditions(cpsPathQuery, sqlStringBuilder, queryParameters, true);
+        addSearchSuffix(cpsPathQuery, sqlStringBuilder, queryParameters);
 
         return getQuery(sqlStringBuilder.toString(), queryParameters, FragmentEntity.class);
     }
@@ -143,7 +148,8 @@ public class FragmentQueryBuilder {
                                                 final Map<String, Object> queryParameters,
                                                 final boolean acrossAnchors) {
         addAbsoluteParentXpathSearchCondition(cpsPathQuery, sqlStringBuilder, queryParameters, acrossAnchors);
-        addXpathSearchCondition(cpsPathQuery, sqlStringBuilder, queryParameters);
+        sqlStringBuilder.append(" AND ");
+        addXpathSearchCondition(cpsPathQuery, sqlStringBuilder, queryParameters, "baseXpath");
         addLeafConditions(cpsPathQuery, sqlStringBuilder);
         addTextFunctionCondition(cpsPathQuery, sqlStringBuilder, queryParameters);
         addContainsFunctionCondition(cpsPathQuery, sqlStringBuilder, queryParameters);
@@ -151,13 +157,38 @@ public class FragmentQueryBuilder {
 
     private static void addXpathSearchCondition(final CpsPathQuery cpsPathQuery,
                                                 final StringBuilder sqlStringBuilder,
-                                                final Map<String, Object> queryParameters) {
-        sqlStringBuilder.append(" AND (xpath LIKE :escapedXpath OR "
-                + "(xpath LIKE :escapedXpath||'[@%]' AND xpath NOT LIKE :escapedXpath||'[@%]/%[@%]'))");
+                                                final Map<String, Object> queryParameters,
+                                                final String parameterName) {
+        queryParameters.put(parameterName, escapeXpathForSqlLike(cpsPathQuery));
+        final String sqlForXpathLikeContainerOrList = """
+                (
+                  (xpath LIKE :${xpathParamName})
+                  OR
+                  (xpath LIKE :${xpathParamName}||'[@%]' AND xpath NOT LIKE :${xpathParamName}||'[@%]/%[@%]')
+                )
+                """;
+        sqlStringBuilder.append(substitute(sqlForXpathLikeContainerOrList, Map.of("xpathParamName", parameterName)));
+    }
+
+    /**
+     * Returns a pattern suitable for use in an SQL LIKE expression, matching the xpath (absolute or descendant).
+     * <p>
+     * For an absolute path such as "/bookstore/categories[@name='10% off']",
+     *  the output would be "/bookstore/categories[@name='10\% off']".
+     * <br/>
+     * For a descendant path such as "//categories[@name='10% off']",
+     *  the output would be "%/categories[@name='10\% off']".
+     * <br/>
+     * Note: percent sign '%' means match anything in SQL LIKE, while underscore '_' means match any single character.
+     * </p>
+     * @param cpsPathQuery Cps Path Query
+     * @return a pattern suitable for use in an SQL LIKE expression.
+     */
+    private static String escapeXpathForSqlLike(final CpsPathQuery cpsPathQuery) {
         if (CpsPathPrefixType.ABSOLUTE.equals(cpsPathQuery.getCpsPathPrefixType())) {
-            queryParameters.put("escapedXpath", EscapeUtils.escapeForSqlLike(cpsPathQuery.getXpathPrefix()));
+            return EscapeUtils.escapeForSqlLike(cpsPathQuery.getXpathPrefix());
         } else {
-            queryParameters.put("escapedXpath", "%/" + EscapeUtils.escapeForSqlLike(cpsPathQuery.getDescendantName()));
+            return "%/" + EscapeUtils.escapeForSqlLike(cpsPathQuery.getDescendantName());
         }
     }
 
@@ -259,6 +290,55 @@ public class FragmentQueryBuilder {
             queryParameters.put("containsValue",
                     EscapeUtils.escapeForSqlLike(cpsPathQuery.getContainsFunctionConditionValue()));
         }
+    }
+
+    private static void addSearchPrefix(final CpsPathQuery cpsPathQuery, final StringBuilder sqlStringBuilder) {
+        if (cpsPathQuery.hasAncestorAxis()) {
+            sqlStringBuilder.append("""
+                WITH RECURSIVE ancestors AS (
+                    SELECT parentFragment.* FROM fragment parentFragment
+                    WHERE parentFragment.id IN (
+                        SELECT parent_id FROM fragment""");
+        } else {
+            sqlStringBuilder.append("SELECT fragment.* FROM fragment");
+        }
+    }
+
+    private static void addSearchSuffix(final CpsPathQuery cpsPathQuery,
+                                        final StringBuilder sqlStringBuilder,
+                                        final Map<String, Object> queryParameters) {
+        if (cpsPathQuery.hasAncestorAxis()) {
+            sqlStringBuilder.append("""
+                          )
+                          UNION
+                            SELECT fragment.*
+                            FROM fragment
+                            JOIN ancestors ON ancestors.parent_id = fragment.id
+                        )
+                        SELECT * FROM ancestors
+                        WHERE""");
+
+            final String ancestorPath = DESCENDANT_PATH + cpsPathQuery.getAncestorSchemaNodeIdentifier();
+            final CpsPathQuery ancestorCpsPathQuery = CpsPathUtil.getCpsPathQuery(ancestorPath);
+            addAncestorNodeSearchCondition(ancestorCpsPathQuery, sqlStringBuilder, queryParameters);
+        }
+    }
+
+    private static void addAncestorNodeSearchCondition(final CpsPathQuery ancestorCpsPathQuery,
+                                                       final StringBuilder sqlStringBuilder,
+                                                       final Map<String, Object> queryParameters) {
+        if (ancestorCpsPathQuery.hasLeafConditions()) {
+            final String pathWithoutSlashes = ancestorCpsPathQuery.getNormalizedXpath().substring(2);
+            queryParameters.put("ancestorXpath", "%/" + EscapeUtils.escapeForSqlLike(pathWithoutSlashes));
+            sqlStringBuilder.append(" xpath LIKE :ancestorXpath");
+        } else {
+            addXpathSearchCondition(ancestorCpsPathQuery, sqlStringBuilder, queryParameters, "ancestorXpath");
+        }
+    }
+
+    private static <V> String substitute(final String template, final Map<String, V> valueMap) {
+        final StringSubstitutor stringSubstitutor = new StringSubstitutor(valueMap);
+        return stringSubstitutor.replace(template);
     }
 
     private static void setQueryParameters(final Query query, final Map<String, Object> queryParameters) {

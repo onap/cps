@@ -224,6 +224,7 @@ class QueryServiceIntegrationSpec extends FunctionalSpecBase {
             'ancestor with parent that does not exist'  | '//books/ancestor::parentDoesNoExist/categories'      || []
             'ancestor does not exist'                   | '//books/ancestor::ancestorDoesNotExist'              || []
             'ancestor combined with contains condition' | '//books[contains(@title,"Mat")]/ancestor::bookstore' || ["/bookstore"]
+            'ancestor axis does not reference self'     | '//books/ancestor::books'                             || []
     }
 
     def 'Query for attribute by cps path of type ancestor with #scenario descendants.'() {
