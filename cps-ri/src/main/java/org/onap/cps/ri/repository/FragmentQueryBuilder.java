@@ -32,6 +32,7 @@ import java.util.Queue;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.cpspath.parser.CpsPathPrefixType;
 import org.onap.cps.cpspath.parser.CpsPathQuery;
+import org.onap.cps.cpspath.parser.CpsPathUtil;
 import org.onap.cps.ri.models.AnchorEntity;
 import org.onap.cps.ri.models.DataspaceEntity;
 import org.onap.cps.ri.models.FragmentEntity;
@@ -43,6 +44,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 @Component
 public class FragmentQueryBuilder {
+    private static final String DESCENDANT_PATH = "//";
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -61,6 +63,7 @@ public class FragmentQueryBuilder {
         sqlStringBuilder.append("SELECT fragment.* FROM fragment");
         addWhereClauseForAnchor(anchorEntity, sqlStringBuilder, queryParameters);
         addNodeSearchConditions(cpsPathQuery, sqlStringBuilder, queryParameters, false);
+        wrapWithAncestorSearch(cpsPathQuery, sqlStringBuilder, queryParameters);
 
         return getQuery(sqlStringBuilder.toString(), queryParameters, FragmentEntity.class);
     }
@@ -85,6 +88,7 @@ public class FragmentQueryBuilder {
             addWhereClauseForAnchorIds(anchorIdsForPagination, sqlStringBuilder, queryParameters);
         }
         addNodeSearchConditions(cpsPathQuery, sqlStringBuilder, queryParameters, true);
+        wrapWithAncestorSearch(cpsPathQuery, sqlStringBuilder, queryParameters);
 
         return getQuery(sqlStringBuilder.toString(), queryParameters, FragmentEntity.class);
     }
@@ -259,6 +263,45 @@ public class FragmentQueryBuilder {
             queryParameters.put("containsValue",
                     EscapeUtils.escapeForSqlLike(cpsPathQuery.getContainsFunctionConditionValue()));
         }
+    }
+
+    private static void wrapWithAncestorSearch(final CpsPathQuery cpsPathQuery,
+                                               final StringBuilder sqlStringBuilder,
+                                               final Map<String, Object> queryParameters) {
+        if (cpsPathQuery.hasAncestorAxis()) {
+
+            sqlStringBuilder.insert(0, "WITH RECURSIVE Ancestors AS (");
+
+            sqlStringBuilder.append("""
+                      UNION
+                        SELECT t.*
+                        FROM Ancestors a
+                        JOIN fragment t ON a.parent_id = t.id
+                    )
+                    SELECT * FROM Ancestors
+                    WHERE""");
+
+            final String ancestorPath = DESCENDANT_PATH + cpsPathQuery.getAncestorSchemaNodeIdentifier();
+            final CpsPathQuery ancestorCpsPathQuery = CpsPathUtil.getCpsPathQuery(ancestorPath);
+            addAncestorNodeSearchCondition(ancestorCpsPathQuery, sqlStringBuilder, queryParameters);
+        }
+    }
+
+    private static void addAncestorNodeSearchCondition(final CpsPathQuery ancestorCpsPathQuery,
+                                                       final StringBuilder sqlStringBuilder,
+                                                       final Map<String, Object> queryParameters) {
+        sqlStringBuilder.append("(");
+        if (ancestorCpsPathQuery.hasLeafConditions()) {
+            sqlStringBuilder.append("xpath LIKE :ancestorXpath");
+            final String pathWithoutSlashes = ancestorCpsPathQuery.getNormalizedXpath().substring(2);
+            queryParameters.put("ancestorXpath", "%/" + EscapeUtils.escapeForSqlLike(pathWithoutSlashes));
+        } else {
+            sqlStringBuilder.append("xpath LIKE :ancestorXpath OR "
+                    + "(xpath LIKE :ancestorXpath||'[@%]' AND xpath NOT LIKE :ancestorXpath||'[@%]/%[@%]')");
+            queryParameters.put("ancestorXpath", "%/"
+                    + EscapeUtils.escapeForSqlLike(ancestorCpsPathQuery.getDescendantName()));
+        }
+        sqlStringBuilder.append(")");
     }
 
     private static void setQueryParameters(final Query query, final Map<String, Object> queryParameters) {
