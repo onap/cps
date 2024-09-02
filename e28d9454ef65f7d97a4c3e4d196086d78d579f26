@@ -36,6 +36,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccfbeff6_3ba0fe74",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/NetworkCmProxyInventoryFacadeSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-09-02T14:01:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "dcf1a944_f1615ec6",
+      "revId": "e28d9454ef65f7d97a4c3e4d196086d78d579f26",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ca2bc7e2_a0cf396c",
@@ -49,6 +67,24 @@
       "writtenOn": "2024-08-29T13:54:04Z",
       "side": 1,
       "message": "1 * mockAlternateIdMatcher.getCmHandleId(cmHandleRef) \u003e\u003e cmHandleId",
+      "revId": "e28d9454ef65f7d97a4c3e4d196086d78d579f26",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c99e8898_4f4707be",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/NetworkCmProxyInventoryFacadeSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-09-02T14:01:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca2bc7e2_a0cf396c",
       "revId": "e28d9454ef65f7d97a4c3e4d196086d78d579f26",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
