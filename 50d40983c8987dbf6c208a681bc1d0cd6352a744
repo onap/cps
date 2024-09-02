@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e574c89_f69a01fe",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-09-02T09:53:49Z",
+      "side": 1,
+      "message": "any reason you are instantiating this manually and not getting the bean from spring context?",
+      "revId": "50d40983c8987dbf6c208a681bc1d0cd6352a744",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6fb467f7_52face96",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-09-02T09:53:49Z",
+      "side": 1,
+      "message": "NB: want this?",
+      "range": {
+        "startLine": 121,
+        "startChar": 33,
+        "endLine": 121,
+        "endChar": 34
+      },
+      "revId": "50d40983c8987dbf6c208a681bc1d0cd6352a744",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
