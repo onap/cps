@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "754a5e1a_88d9bd90",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-02T09:37:00Z",
+      "side": 1,
+      "message": "shouldn\u0027t have looked at this in my current condition but wa curious.. I think thsoe checks were put in after \u0027exploraty\u0027 test show erro message that were ahrd to undersstand or not even error messages for some scenarios. I dont think the check are important but didn\u0027t think they did harm too. If you think they cause issues maybe perfroamcne? Its OK to remove",
+      "revId": "c3274334c10de2dcce9e227180263dcd5b533663",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
