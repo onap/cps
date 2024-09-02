@@ -55,7 +55,7 @@ Verify notification
         Compare Header Values       ${header_key_value_pair[0]}   ${header_key_value_pair[1]}     "ce_specversion"      "1.0"
         Compare Header Values       ${header_key_value_pair[0]}   ${header_key_value_pair[1]}     "ce_source"           "NCMP"
         Compare Header Values       ${header_key_value_pair[0]}   ${header_key_value_pair[1]}     "ce_type"             "org.onap.cps.ncmp.events.avc.ncmp_to_client.AvcEvent"
-        Compare Header Values       ${header_key_value_pair[0]}   ${header_key_value_pair[1]}     "ce_correlationid"    "CmHandleForDelete"
+        Compare Header Values       ${header_key_value_pair[0]}   ${header_key_value_pair[1]}     "ce_correlationid"    "CH-4"
     END
     Should Be Equal As Strings      ${payload}    ${jsonTrustLevelEventPayload}
     [Teardown]    Basic Teardown    ${group_id}
