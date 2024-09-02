@@ -308,13 +308,13 @@ class NetworkCmProxyControllerSpec extends Specification {
             assert !response.contentAsString.contains("some DMI property")
     }
 
-    def 'Get Cm Handle public properties by Cm Handle id.'() {
+    def 'Get Cm Handle public properties by Cm Handle Reference.'() {
         given: 'a cm handle properties endpoint'
-            def cmHandlePropertiesEndpoint = "$ncmpBasePathV1/ch/some-cm-handle/properties"
+            def cmHandlePropertiesEndpoint = "$ncmpBasePathV1/ch/some-cm-handle-reference/properties"
         and: 'some cm handle public properties'
             def publicProperties = ['public prop': 'some public property']
         and: 'the service method is invoked with the cm handle id returning the cm handle public properties'
-            1 * mockNetworkCmProxyInventoryFacade.getCmHandlePublicProperties('some-cm-handle') >> publicProperties
+            1 * mockNetworkCmProxyInventoryFacade.getCmHandlePublicProperties('some-cm-handle-reference') >> publicProperties
         when: 'the cm handle properties api is invoked'
             def response = mvc.perform(get(cmHandlePropertiesEndpoint)).andReturn().response
         then: 'the correct response is returned'

@@ -134,17 +134,25 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
             assert result.currentTrustLevel == TrustLevel.COMPLETE
     }
 
-    def 'Get cm handle public properties'() {
+    def 'Get cm handle public properties using #scenario'() {
         given: 'a yang modelled cm handle'
             def dmiProperties = [new YangModelCmHandle.Property('prop', 'some DMI property')]
             def publicProperties = [new YangModelCmHandle.Property('public prop', 'some public prop')]
-            def yangModelCmHandle = new YangModelCmHandle(id:'some-cm-handle', dmiServiceName: 'some service name', dmiProperties: dmiProperties, publicProperties: publicProperties)
+            def cmHandleId = 'some-cm-handle'
+            def alternateId = 'some-alternate-id'
+            def yangModelCmHandle = new YangModelCmHandle(id:cmHandleId, alternateId: alternateId, dmiServiceName: 'some service name', dmiProperties: dmiProperties, publicProperties: publicProperties)
+        and: 'we have corresponding cm handle for the cm handle reference'
+            1 * mockAlternateIdMatcher.getCmHandleId(cmHandleRef) >> cmHandleId
         and: 'the system returns this yang modelled cm handle'
-            1 * mockInventoryPersistence.getYangModelCmHandle('some-cm-handle') >> yangModelCmHandle
-        when: 'getting cm handle public properties for a given cm handle id from ncmp service'
-            def result = objectUnderTest.getCmHandlePublicProperties('some-cm-handle')
+            1 * mockInventoryPersistence.getYangModelCmHandle(cmHandleId) >> yangModelCmHandle
+        when: 'getting cm handle public properties for a given cm handle reference from ncmp service'
+            def result = objectUnderTest.getCmHandlePublicProperties(cmHandleRef)
         then: 'the result returns the correct data'
             assert result == [ 'public prop' : 'some public prop' ]
+        where: 'following cm handle reference is used'
+            scenario                              | cmHandleRef
+            'Cm Handle Reference as cm handle-id' | 'some-cm-handle'
+            'Cm Handle Reference as alternate-id' | 'some-alternate-id'
     }
 
     def 'Get cm handle composite state using #scenario'() {
