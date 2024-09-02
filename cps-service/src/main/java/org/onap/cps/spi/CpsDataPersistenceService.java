@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2025 Nordix Foundation.
+ *  Copyright (C) 2020-2025 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 Bell Canada
  *  Modifications Copyright (C) 2022-2023 TechMahindra Ltd.

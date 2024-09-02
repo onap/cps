@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2025 Nordix Foundation
+ *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2023-2025 TechMahindra Ltd
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
@@ -66,6 +66,7 @@ class QueryServiceIntegrationSpec extends FunctionalSpecBase {
             'all books'               | '//books/@title'                              || 19
             'all books in a category' | '/bookstore/categories[@code=5]/books/@title' || 10
             'non-existing path'       | '/non-existing/@title'                        || 0
+            'non-existing attribute'  | '//books/@non-existing'                       || 0
     }
 
     def 'Query data leaf with type #leafType using CPS path.'() {
@@ -78,7 +79,7 @@ class QueryServiceIntegrationSpec extends FunctionalSpecBase {
         where:
             leafName    | leafType      || expectedResults
             'lang'      | String.class  || ['English']
-            'price'     | Number.class  || [13, 20]
+            'price'     | Integer.class || [13, 20]
             'editions'  | List.class    || [[1988, 2000], [2006]]
     }
 
@@ -89,6 +90,13 @@ class QueryServiceIntegrationSpec extends FunctionalSpecBase {
             def result = objectUnderTest.queryDataLeaf(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, cpsPath, String.class)
         then: 'the result contains the expected leaf values'
             assert result == ['Children', 'Comedy'] as Set
+    }
+
+    def 'Attempt to query data leaf without specifying leaf name (using attribute-axis in cps path) gives an error.'() {
+        when: 'query data leaf for bookstore container'
+            objectUnderTest.queryDataLeaf(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '//books', String.class)
+        then: 'illegal argument exception is thrown'
+            thrown(IllegalArgumentException)
     }
 
     def 'Cps Path query using comparative and boolean operators.'() {
