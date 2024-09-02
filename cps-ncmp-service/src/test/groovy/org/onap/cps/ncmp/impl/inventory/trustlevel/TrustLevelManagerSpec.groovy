@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023 Nordix Foundation
+ *  Copyright (C) 2023-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -146,26 +146,13 @@ class TrustLevelManagerSpec extends Specification {
             assert effectiveTrustLevel == TrustLevel.NONE
     }
 
-    def 'CmHandle trust level (COMPLETE) removed'() {
-        given: 'a trusted cm handle'
+    def 'CmHandle trust level removed'() {
+        given: 'a cm handle'
             trustLevelPerCmHandle.put('ch-1', TrustLevel.COMPLETE)
         when: 'the remove is handled'
             objectUnderTest.removeCmHandles(['ch-1'])
         then: 'cm handle removed from the cache'
             assert trustLevelPerCmHandle.get('ch-1') == null
-        and: 'notification is sent'
-            1 * mockAttributeValueChangeEventPublisher.publishAvcEvent(_,'trustLevel','COMPLETE','NONE')
-    }
-
-    def 'CmHandle trust level (NONE) removed'() {
-        given: 'a non-trusted cm handle'
-            trustLevelPerCmHandle.put('ch-1', TrustLevel.NONE)
-        when: 'the remove is handled'
-            objectUnderTest.removeCmHandles(['ch-1'])
-        then: 'cm handle removed from the cache'
-            assert trustLevelPerCmHandle.get('ch-1') == null
-        and: 'no notification is sent'
-            0 * mockAttributeValueChangeEventPublisher.publishAvcEvent(*_)
     }
 
 }

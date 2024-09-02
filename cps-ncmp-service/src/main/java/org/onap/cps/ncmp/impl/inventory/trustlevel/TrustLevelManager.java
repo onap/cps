@@ -145,16 +145,14 @@ public class TrustLevelManager {
     }
 
     /**
-     * Remove cm handle trust level from the cache and publish notification for trust level of cmHandles
-     * if it is COMPLETE.
+     * Remove cm handle trust level from the cache.
      *
      * @param cmHandleIds       cm handle ids to be removed from the cache
      */
     public void removeCmHandles(final Collection<String> cmHandleIds) {
         for (final String cmHandleId : cmHandleIds) {
             if (trustLevelPerCmHandle.containsKey(cmHandleId)) {
-                final TrustLevel oldTrustLevel = trustLevelPerCmHandle.remove(cmHandleId);
-                sendAvcNotificationIfRequired(cmHandleId, oldTrustLevel, TrustLevel.NONE);
+                trustLevelPerCmHandle.remove(cmHandleId);
             } else {
                 log.debug("Removed Cm handle: {} is not in trust level cache", cmHandleId);
             }
