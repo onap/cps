@@ -1,6 +1,6 @@
 /*-
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2024 Nordix Foundation.
+ *  Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,6 +24,8 @@ package org.onap.cps.ri.repository;
 import jakarta.persistence.Query;
 import jakarta.transaction.Transactional;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.parameters.PaginationOption;
@@ -31,26 +33,43 @@ import org.onap.cps.cpspath.parser.CpsPathQuery;
 import org.onap.cps.ri.models.AnchorEntity;
 import org.onap.cps.ri.models.DataspaceEntity;
 import org.onap.cps.ri.models.FragmentEntity;
+import org.onap.cps.utils.JsonObjectMapper;
 
 @RequiredArgsConstructor
 @Slf4j
 public class FragmentRepositoryCpsPathQueryImpl implements FragmentRepositoryCpsPathQuery {
 
     private final FragmentQueryBuilder fragmentQueryBuilder;
+    private final JsonObjectMapper jsonObjectMapper;
 
     @Override
     @Transactional
     public List<FragmentEntity> findByAnchorAndCpsPath(final AnchorEntity anchorEntity,
                                                        final CpsPathQuery cpsPathQuery,
                                                        final int queryResultLimit) {
-        final Query query = fragmentQueryBuilder
-                                        .getQueryForAnchorAndCpsPath(anchorEntity, cpsPathQuery, queryResultLimit);
+        final Query query = fragmentQueryBuilder.getQueryForAnchorAndCpsPath(anchorEntity, cpsPathQuery,
+                queryResultLimit, FragmentEntity.class);
         final List<FragmentEntity> fragmentEntities = query.getResultList();
         log.debug("Fetched {} fragment entities by anchor and cps path.", fragmentEntities.size());
         if (queryResultLimit > 0) {
             log.debug("Result limited to {} entries", queryResultLimit);
         }
         return fragmentEntities;
+    }
+
+    @Override
+    @Transactional
+    public <T> Set<T> findAttributesByAnchorAndCpsPath(final AnchorEntity anchorEntity,
+                                                       final CpsPathQuery cpsPathQuery,
+                                                       final String attributeName,
+                                                       final int queryResultLimit,
+                                                       final Class<T> targetClass) {
+        final Query query = fragmentQueryBuilder.getQueryForAnchorAndCpsPath(anchorEntity, cpsPathQuery,
+                queryResultLimit, String.class);
+        final List<String> jsonResultList = query.getResultList();
+        return jsonResultList.stream()
+                .map(jsonValue -> jsonObjectMapper.convertJsonString(jsonValue, targetClass))
+                .collect(Collectors.toSet());
     }
 
     @Override

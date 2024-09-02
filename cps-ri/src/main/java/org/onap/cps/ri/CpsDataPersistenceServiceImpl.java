@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2025 Nordix Foundation
+ *  Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
@@ -24,7 +24,6 @@
 package org.onap.cps.ri;
 
 import static org.onap.cps.api.CpsQueryService.NO_LIMIT;
-import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS;
 import static org.onap.cps.api.parameters.PaginationOption.NO_PAGINATION;
 
 import com.google.common.collect.ImmutableSet;
@@ -39,7 +38,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
@@ -249,17 +247,9 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             throw new IllegalArgumentException(
                     "Only Cps Path Queries with attribute-axis are supported by queryDataLeaf");
         }
-
-        final String attributeName = cpsPathQuery.getAttributeAxisAttributeName();
-        final Collection<DataNode> dataNodes = queryDataNodes(dataspaceName, anchorName, cpsPath,
-                OMIT_DESCENDANTS, queryResultLimit);
-        return dataNodes.stream()
-                .map(dataNode -> {
-                    final Object attributeValue = dataNode.getLeaves().get(attributeName);
-                    return targetClass.isInstance(attributeValue) ? targetClass.cast(attributeValue) : null;
-                })
-                .filter(Objects::nonNull)
-                .collect(Collectors.toSet());
+        final AnchorEntity anchorEntity = getAnchorEntity(dataspaceName, anchorName);
+        return fragmentRepository.findAttributesByAnchorAndCpsPath(anchorEntity, cpsPathQuery,
+                cpsPathQuery.getAttributeAxisAttributeName(), queryResultLimit, targetClass);
     }
 
     @Override
