@@ -1,0 +1,245 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97ef7bc2_443074ad",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-09-02T13:57:16Z",
+      "side": 1,
+      "message": "idea is good but a litte bit refactoring is needed.",
+      "revId": "525e01e007f576022adaf97b349c338952c83b75",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9599d942_54b0f73d",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-09-02T13:57:16Z",
+      "side": 1,
+      "message": "Inline comment for a function may not be a good idea, I suggest to have a proper JSDoc ones like:\n\nI would explain the usage of metricTag as well as the other input params.\n\n/**\n * Helper function to perform POST requests with JSON payload and content type\n * \n * @param url\n * @param payload\n * @param metricTag   e.g. what does it used for?\n * @returns {*}\n */",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 1
+      },
+      "revId": "525e01e007f576022adaf97b349c338952c83b75",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "538cdb2c_5ddacd02",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-09-02T13:57:16Z",
+      "side": 1,
+      "message": "This function is written twice: here and in cmhandle-crud.js\n\nThus better to move it to utils.js and use an import of it on both js classes.",
+      "revId": "525e01e007f576022adaf97b349c338952c83b75",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebae0a40_e950672d",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-09-02T13:57:16Z",
+      "side": 1,
+      "message": "Make a use of JSDoc ones and explain method parameters",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 1
+      },
+      "revId": "525e01e007f576022adaf97b349c338952c83b75",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0440c8e_c68a9e72",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-09-02T13:57:16Z",
+      "side": 1,
+      "message": "Make a use of JSDoc ones and explain method parameters",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 1
+      },
+      "revId": "525e01e007f576022adaf97b349c338952c83b75",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61dbda5e_032030e0",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-09-02T13:57:16Z",
+      "side": 1,
+      "message": "Public methods better to be on the top of js class.\n\nAlso, the private methods better to goes to the bottom of the js class.",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 85,
+        "endChar": 1
+      },
+      "revId": "525e01e007f576022adaf97b349c338952c83b75",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c931f77_c3769119",
+        "filename": "k6-tests/ncmp/common/passthrough-crud.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-09-02T13:57:16Z",
+      "side": 1,
+      "message": "Make a use of JSDoc ones and explain method parameters",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 16
+      },
+      "revId": "525e01e007f576022adaf97b349c338952c83b75",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "279ba58e_0daf5835",
+        "filename": "k6-tests/ncmp/common/passthrough-crud.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-09-02T13:57:16Z",
+      "side": 1,
+      "message": "Make a use of JSDoc ones and explain method parameters",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 18
+      },
+      "revId": "525e01e007f576022adaf97b349c338952c83b75",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15ff28e0_098ae30b",
+        "filename": "k6-tests/ncmp/common/passthrough-crud.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-09-02T13:57:16Z",
+      "side": 1,
+      "message": "Duplicated method pls see comments above",
+      "range": {
+        "startLine": 45,
+        "startChar": 9,
+        "endLine": 45,
+        "endChar": 27
+      },
+      "revId": "525e01e007f576022adaf97b349c338952c83b75",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2aeafcd_1bca98bb",
+        "filename": "k6-tests/ncmp/common/passthrough-crud.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-09-02T13:57:16Z",
+      "side": 1,
+      "message": "Public methods better to have on the top of the class",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 1
+      },
+      "revId": "525e01e007f576022adaf97b349c338952c83b75",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0763d81b_99a40d09",
+        "filename": "k6-tests/ncmp/common/search-base.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-09-02T13:57:16Z",
+      "side": 1,
+      "message": "replace with performPostRequest(url, payload, metricTag) by importing the function from util.js",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 7
+      },
+      "revId": "525e01e007f576022adaf97b349c338952c83b75",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
