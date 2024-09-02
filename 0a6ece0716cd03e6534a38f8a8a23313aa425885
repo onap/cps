@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c79a0a44_f8c673dd",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/NetworkCmProxyInventoryFacadeSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-09-02T08:34:50Z",
+      "side": 1,
+      "message": "some-cm-handle",
+      "range": {
+        "startLine": 96,
+        "startChar": 66,
+        "endLine": 96,
+        "endChar": 76
+      },
+      "revId": "0a6ece0716cd03e6534a38f8a8a23313aa425885",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7cc5312a_12d23fca",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/NetworkCmProxyInventoryFacadeSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-09-02T08:34:50Z",
+      "side": 1,
+      "message": "some-cm-handle",
+      "range": {
+        "startLine": 98,
+        "startChar": 75,
+        "endLine": 98,
+        "endChar": 85
+      },
+      "revId": "0a6ece0716cd03e6534a38f8a8a23313aa425885",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
