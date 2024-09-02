@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2025 Nordix Foundation
+ *  Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -61,17 +61,23 @@ public class FragmentQueryBuilder {
      * @return a executable query object
      */
     public Query getQueryForAnchorAndCpsPath(final AnchorEntity anchorEntity,
-                                                      final CpsPathQuery cpsPathQuery,
-                                                      final int queryResultLimit) {
+                                             final CpsPathQuery cpsPathQuery,
+                                             final int queryResultLimit) {
         final StringBuilder sqlStringBuilder = new StringBuilder();
         final Map<String, Object> queryParameters = new HashMap<>();
 
         addSearchPrefix(cpsPathQuery, sqlStringBuilder);
         addWhereClauseForAnchor(anchorEntity, sqlStringBuilder, queryParameters);
+        if (cpsPathQuery.hasAttributeAxis() && !cpsPathQuery.hasAncestorAxis()) {
+            sqlStringBuilder.append(" AND jsonb_exists(fragment.attributes, :attributeName)");
+        }
         addNodeSearchConditions(cpsPathQuery, sqlStringBuilder, queryParameters, false);
         addSearchSuffix(cpsPathQuery, sqlStringBuilder, queryParameters);
         addLimitClause(sqlStringBuilder, queryParameters, queryResultLimit);
-
+        if (cpsPathQuery.hasAttributeAxis()) {
+            queryParameters.put("attributeName", cpsPathQuery.getAttributeAxisAttributeName());
+            return getQuery(sqlStringBuilder.toString(), queryParameters, String.class);
+        }
         return getQuery(sqlStringBuilder.toString(), queryParameters, FragmentEntity.class);
     }
 
@@ -312,7 +318,10 @@ public class FragmentQueryBuilder {
                     WHERE parentFragment.id IN (
                         SELECT parent_id FROM fragment""");
         } else {
-            sqlStringBuilder.append("SELECT fragment.* FROM fragment");
+            final String fieldsToSelect = cpsPathQuery.hasAttributeAxis()
+                    ? "DISTINCT (attributes -> :attributeName)"
+                    : "fragment.*";
+            sqlStringBuilder.append("SELECT ").append(fieldsToSelect).append(" FROM fragment");
         }
     }
 
@@ -327,9 +336,14 @@ public class FragmentQueryBuilder {
                             FROM fragment
                             JOIN ancestors ON ancestors.parent_id = fragment.id
                         )
-                        SELECT * FROM ancestors
-                        WHERE""");
-
+                        """);
+            if (cpsPathQuery.hasAttributeAxis()) {
+                sqlStringBuilder.append("""
+                         SELECT DISTINCT (attributes -> :attributeName) FROM ancestors WHERE
+                         jsonb_exists(ancestors.attributes, :attributeName) AND""");
+            } else {
+                sqlStringBuilder.append("SELECT * FROM ancestors WHERE");
+            }
             final String ancestorPath = DESCENDANT_PATH + cpsPathQuery.getAncestorSchemaNodeIdentifier();
             final CpsPathQuery ancestorCpsPathQuery = CpsPathUtil.getCpsPathQuery(ancestorPath);
             addAncestorNodeSearchCondition(ancestorCpsPathQuery, sqlStringBuilder, queryParameters);
