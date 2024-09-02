@@ -16,6 +16,24 @@
       "message": "shouldn\u0027t have looked at this in my current condition but wa curious.. I think thsoe checks were put in after \u0027exploraty\u0027 test show erro message that were ahrd to undersstand or not even error messages for some scenarios. I dont think the check are important but didn\u0027t think they did harm too. If you think they cause issues maybe perfroamcne? Its OK to remove",
       "revId": "c3274334c10de2dcce9e227180263dcd5b533663",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ad7ca02_908bad5c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-09-02T17:05:03Z",
+      "side": 1,
+      "message": "Yes, it warns during the build:\n\n warning(131): org/onap/cps/cpspath/parser/antlr4/CpsPath.g4:64:64: greedy block ()+ contains wildcard",
+      "parentUuid": "754a5e1a_88d9bd90",
+      "revId": "c3274334c10de2dcce9e227180263dcd5b533663",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
