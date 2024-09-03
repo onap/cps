@@ -363,7 +363,7 @@ class NetworkCmProxyControllerSpec extends Specification {
         given: 'an endpoint and json data'
             def searchesEndpoint = "$ncmpBasePathV1/ch/id-searches"
         and: 'the service method is invoked with module names and returns cm handle ids'
-            1 * mockNetworkCmProxyInventoryFacade.executeCmHandleIdSearch(_) >> ['ch-1', 'ch-2']
+            1 * mockNetworkCmProxyInventoryFacade.executeCmHandleIdSearch(_, _) >> ['ch-1', 'ch-2']
         when: 'the searches api is invoked'
             def response = mvc.perform(post(searchesEndpoint).contentType(MediaType.APPLICATION_JSON).content('{}')).andReturn().response
         then: 'cm handle ids are returned'
