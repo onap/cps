@@ -80,27 +80,27 @@ export function performGetRequest(url, metricTag) {
     return http.get(url, {tags: metricTags});
 }
 
-export function makeCustomSummaryReport(data, options) {
+export function makeCustomSummaryReport(testResults, scenarioConfig) {
     const summaryCsvLines = [
-        '#,Test Name,Unit,Limit,Actual',
-        makeSummaryCsvLine('0', 'HTTP request failures for all tests', 'rate of failed requests', 'http_req_failed', data, options),
-        makeSummaryCsvLine('1', 'Registration of CM-handles', 'CM-handles/second', 'cmhandles_created_per_second', data, options),
-        makeSummaryCsvLine('2', 'De-registration of CM-handles', 'CM-handles/second', 'cmhandles_deleted_per_second', data, options),
-        makeSummaryCsvLine('3', 'CM-handle ID search with Module and Property filter', 'milliseconds', 'id_search_duration', data, options),
-        makeSummaryCsvLine('4', 'CM-handle search with Module and Property filter', 'milliseconds', 'cm_search_duration', data, options),
-        makeSummaryCsvLine('5a', 'NCMP overhead for Synchronous single CM-handle pass-through read', 'milliseconds', 'ncmp_overhead_passthrough_read', data, options),
-        makeSummaryCsvLine('5b', 'NCMP overhead for Synchronous single CM-handle pass-through read with alternate id', 'milliseconds', 'ncmp_overhead_passthrough_read_alt_id', data, options),
-        makeSummaryCsvLine('6a', 'NCMP overhead for Synchronous single CM-handle pass-through write', 'milliseconds', 'ncmp_overhead_passthrough_write', data, options),
-        makeSummaryCsvLine('6b', 'NCMP overhead for Synchronous single CM-handle pass-through write with alternate id', 'milliseconds', 'ncmp_overhead_passthrough_write_alt_id', data, options),
-        makeSummaryCsvLine('7', 'Data operations batch read', 'events/second', 'data_operations_batch_read_cmhandles_per_second', data, options),
+        '#,Test Name,Unit,Measurement Name,Current Expectation,Actual',
+        makeSummaryCsvLine('0', 'HTTP request failures for all tests', 'rate of failed requests', 'http_req_failed', 0, testResults, scenarioConfig),
+        makeSummaryCsvLine('1', 'Registration of CM-handles', 'CM-handles/second', 'cmhandles_created_per_second', 40, testResults, scenarioConfig),
+        makeSummaryCsvLine('2', 'De-registration of CM-handles', 'CM-handles/second', 'cmhandles_deleted_per_second', 80, testResults, scenarioConfig),
+        makeSummaryCsvLine('3', 'CM-handle ID search with Module and Property filter', 'milliseconds', 'id_search_duration', 300, testResults, scenarioConfig),
+        makeSummaryCsvLine('4', 'CM-handle search with Module and Property filter', 'milliseconds', 'cm_search_duration', 14000, testResults, scenarioConfig),
+        makeSummaryCsvLine('5a', 'NCMP overhead for Synchronous single CM-handle pass-through read', 'milliseconds', 'ncmp_overhead_passthrough_read', 20, testResults, scenarioConfig),
+        makeSummaryCsvLine('5b', 'NCMP overhead for Synchronous single CM-handle pass-through read with alternate id', 'milliseconds', 'ncmp_overhead_passthrough_read_alt_id', 40, testResults, scenarioConfig),
+        makeSummaryCsvLine('6a', 'NCMP overhead for Synchronous single CM-handle pass-through write', 'milliseconds', 'ncmp_overhead_passthrough_write', 30, testResults, scenarioConfig),
+        makeSummaryCsvLine('6b', 'NCMP overhead for Synchronous single CM-handle pass-through write with alternate id', 'milliseconds', 'ncmp_overhead_passthrough_write_alt_id', 50, testResults, scenarioConfig),
+        makeSummaryCsvLine('7', 'Data operations batch read', 'events/second', 'data_operations_batch_read_cmhandles_per_second', 500, testResults, scenarioConfig),
     ];
     return summaryCsvLines.join('\n') + '\n';
 }
 
-function makeSummaryCsvLine(testCase, testName, unit, thresholdInK6, data, options) {
-    const thresholdArray = JSON.parse(JSON.stringify(options.thresholds[thresholdInK6]));
+function makeSummaryCsvLine(testCase, testName, unit, measurementName, currentExpectation, testResults, scenarioConfig) {
+    const thresholdArray = JSON.parse(JSON.stringify(scenarioConfig.thresholds[measurementName]));
     const thresholdString = thresholdArray[0];
     const [thresholdKey, thresholdOperator, thresholdValue] = thresholdString.split(/\s+/);
-    const actualValue = data.metrics[thresholdInK6].values[thresholdKey].toFixed(3);
-    return `${testCase},${testName},${unit},${thresholdValue},${actualValue}`;
+    const actualValue = testResults.metrics[measurementName].values[thresholdKey].toFixed(3);
+    return `${testCase},${testName},${unit},${thresholdValue},${currentExpectation},${actualValue}`;
 }
