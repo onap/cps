@@ -29,6 +29,7 @@ import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -53,6 +54,7 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
 
     private static final String DESCENDANT_PATH = "//";
     private static final String ANCESTOR_CM_HANDLES = "/ancestor::cm-handles";
+    private static final String ALTERNATE_ID = "alternate-id";
     private final CpsDataService cpsDataService;
     private final CpsQueryService cpsQueryService;
 
@@ -65,21 +67,27 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
     private final CpsValidator cpsValidator;
 
     @Override
-    public Collection<String> queryCmHandleAdditionalProperties(final Map<String, String> privatePropertyQueryPairs) {
-        return queryCmHandleAnyProperties(privatePropertyQueryPairs, PropertyType.ADDITIONAL);
+    public Collection<String> queryCmHandleAdditionalProperties(final Map<String, String> privatePropertyQueryPairs,
+                                                                final Boolean outputAlternateId) {
+        return queryCmHandleAnyProperties(privatePropertyQueryPairs, PropertyType.ADDITIONAL, outputAlternateId);
     }
 
     @Override
-    public Collection<String> queryCmHandlePublicProperties(final Map<String, String> publicPropertyQueryPairs) {
-        return queryCmHandleAnyProperties(publicPropertyQueryPairs, PropertyType.PUBLIC);
+    public Collection<String> queryCmHandlePublicProperties(final Map<String, String> publicPropertyQueryPairs,
+                                                            final Boolean outputAlternateId) {
+        return queryCmHandleAnyProperties(publicPropertyQueryPairs, PropertyType.PUBLIC, outputAlternateId);
     }
 
     @Override
-    public Collection<String> queryCmHandlesByTrustLevel(final Map<String, String> trustLevelPropertyQueryPairs) {
+    public Collection<String> queryCmHandlesByTrustLevel(final Map<String, String> trustLevelPropertyQueryPairs,
+                                                         final Boolean outputAlternateId) {
         final String trustLevelProperty = trustLevelPropertyQueryPairs.values().iterator().next();
         final TrustLevel targetTrustLevel = TrustLevel.valueOf(trustLevelProperty);
-
-        return getCmHandleIdsByTrustLevel(targetTrustLevel);
+        if (outputAlternateId) {
+            return getAlternateIdsByTrustLevel(targetTrustLevel);
+        } else {
+            return getCmHandleIdByTrustLevel(targetTrustLevel);
+        }
     }
 
     @Override
@@ -130,13 +138,28 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
         return cmHandleIds;
     }
 
-    private Collection<String> getCmHandleIdsByTrustLevel(final TrustLevel targetTrustLevel) {
+    @Override
+    public Map<String, String> getCmHandleReferencesByDmiPluginIdentifier(final String dmiPluginIdentifier) {
+        final Map<String, String> cmHandleReferencesMap = new HashMap<>();
+        for (final ModelledDmiServiceLeaves modelledDmiServiceLeaf : ModelledDmiServiceLeaves.values()) {
+            for (final DataNode cmHandleAsDataNode: getCmHandlesByDmiPluginIdentifierAndDmiProperty(
+                dmiPluginIdentifier,
+                modelledDmiServiceLeaf.getLeafName())) {
+                cmHandleReferencesMap.put(cmHandleAsDataNode.getLeaves().get("id").toString(),
+                                            cmHandleAsDataNode.getLeaves().get(ALTERNATE_ID).toString());
+            }
+        }
+        return cmHandleReferencesMap;
+    }
+
+    private Collection<String> getCmHandleIdByTrustLevel(final TrustLevel targetTrustLevel) {
         final Collection<String> selectedCmHandleIds = new HashSet<>();
 
         for (final Map.Entry<String, TrustLevel> mapEntry : trustLevelPerDmiPlugin.entrySet()) {
             final String dmiPluginIdentifier = mapEntry.getKey();
             final TrustLevel dmiTrustLevel = mapEntry.getValue();
-            final Collection<String> candidateCmHandleIds = getCmHandleIdsByDmiPluginIdentifier(dmiPluginIdentifier);
+            final Collection<String> candidateCmHandleIds;
+            candidateCmHandleIds = getCmHandleIdsByDmiPluginIdentifier(dmiPluginIdentifier);
             for (final String candidateCmHandleId : candidateCmHandleIds) {
                 final TrustLevel candidateCmHandleTrustLevel = trustLevelPerCmHandle.get(candidateCmHandleId);
                 final TrustLevel effectiveTrustlevel =
@@ -146,21 +169,46 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
                 }
             }
         }
-
         return selectedCmHandleIds;
+    }
+
+    private Collection<String> getAlternateIdsByTrustLevel(final TrustLevel targetTrustLevel) {
+        final Collection<String> selectedAlternateIds = new HashSet<>();
+
+        for (final Map.Entry<String, TrustLevel> mapEntry : trustLevelPerDmiPlugin.entrySet()) {
+            final String dmiPluginIdentifier = mapEntry.getKey();
+            final TrustLevel dmiTrustLevel = mapEntry.getValue();
+            final Map<String, String> candidateCmHandleReferences =
+                getCmHandleReferencesByDmiPluginIdentifier(dmiPluginIdentifier);
+            for (final Map.Entry<String, String> candidateCmHandleReference : candidateCmHandleReferences.entrySet()) {
+                final TrustLevel candidateCmHandleTrustLevel =
+                    trustLevelPerCmHandle.get(candidateCmHandleReference.getKey());
+                final TrustLevel effectiveTrustlevel =
+                    candidateCmHandleTrustLevel.getEffectiveTrustLevel(dmiTrustLevel);
+                if (targetTrustLevel.equals(effectiveTrustlevel)) {
+                    selectedAlternateIds.add(candidateCmHandleReferences.get(candidateCmHandleReference.getKey()));
+                }
+            }
+        }
+        return selectedAlternateIds;
     }
 
     private Collection<String> collectCmHandleIdsFromDataNodes(final Collection<DataNode> dataNodes) {
         return dataNodes.stream().map(dataNode -> (String) dataNode.getLeaves().get("id")).collect(Collectors.toSet());
     }
 
+    private Collection<String> collectAlternateIdsFromDataNodes(final Collection<DataNode> dataNodes) {
+        return dataNodes.stream().map(dataNode -> (String) dataNode.getLeaves()
+            .get(ALTERNATE_ID)).collect(Collectors.toSet());
+    }
+
     private Collection<String> queryCmHandleAnyProperties(
         final Map<String, String> propertyQueryPairs,
-        final PropertyType propertyType) {
+        final PropertyType propertyType, final Boolean outputAlternateId) {
         if (propertyQueryPairs.isEmpty()) {
             return Collections.emptySet();
         }
-        Collection<String> cmHandleIds = null;
+        Collection<String> cmHandleReferences = null;
         for (final Map.Entry<String, String> publicPropertyQueryPair : propertyQueryPairs.entrySet()) {
             final String cpsPath = DESCENDANT_PATH + propertyType.getYangContainerName() + "[@name=\""
                 + publicPropertyQueryPair.getKey()
@@ -168,17 +216,26 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
 
             final Collection<DataNode> dataNodes = queryCmHandleAncestorsByCpsPath(cpsPath,
                     OMIT_DESCENDANTS);
-            if (cmHandleIds == null) {
-                cmHandleIds = collectCmHandleIdsFromDataNodes(dataNodes);
+            if (cmHandleReferences == null) {
+                if (Boolean.TRUE.equals(outputAlternateId)) {
+                    cmHandleReferences = collectAlternateIdsFromDataNodes(dataNodes);
+                } else {
+                    cmHandleReferences = collectCmHandleIdsFromDataNodes(dataNodes);
+                }
             } else {
-                final Collection<String> cmHandleIdsToRetain = collectCmHandleIdsFromDataNodes(dataNodes);
-                cmHandleIds.retainAll(cmHandleIdsToRetain);
+                final Collection<String> cmHandleReferencesToRetain;
+                if (Boolean.TRUE.equals(outputAlternateId)) {
+                    cmHandleReferencesToRetain = collectAlternateIdsFromDataNodes(dataNodes);
+                } else {
+                    cmHandleReferencesToRetain = collectCmHandleIdsFromDataNodes(dataNodes);
+                }
+                cmHandleReferences.retainAll(cmHandleReferencesToRetain);
             }
-            if (cmHandleIds.isEmpty()) {
+            if (cmHandleReferences.isEmpty()) {
                 break;
             }
         }
-        return cmHandleIds;
+        return cmHandleReferences;
     }
 
     private Collection<DataNode> getCmHandlesByDmiPluginIdentifierAndDmiProperty(final String dmiPluginIdentifier,

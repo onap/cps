@@ -45,7 +45,11 @@ services:
           memory: 3G
 
   cps-and-ncmp:
+    container_name: cps-and-ncmp
     image: ${DOCKER_REPO:-nexus3.onap.org:10003}/onap/cps-and-ncmp:${CPS_VERSION:-latest}
+    ports:
+      - ${CPS_CORE_PORT:-8883}:8080
+      - ${CPS_CORE_DEBUG_PORT:-5005}:5005
     environment:
       CPS_USERNAME: ${CPS_CORE_USERNAME:-cpsuser}
       CPS_PASSWORD: ${CPS_CORE_PASSWORD:-cpsr0cks!}
@@ -56,15 +60,11 @@ services:
       DMI_PASSWORD: ${DMI_PASSWORD:-cpsr0cks!}
       KAFKA_BOOTSTRAP_SERVER: kafka:29092
       notification.enabled: 'true'
-      ONAP_TRACING_ENABLED: 'false'
-      ONAP_OTEL_SAMPLER_JAEGER_REMOTE_ENDPOINT: http://jaeger-service:14250
-      ONAP_OTEL_EXPORTER_ENDPOINT: http://jaeger-service:4317
-      POLICY_SERVICE_ENABLED: 'false'
+      JAVA_TOOL_OPTIONS: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
     restart: unless-stopped
     depends_on:
       - dbpostgresql
     deploy:
-      replicas: 2
       resources:
         reservations:
           cpus: '2'
