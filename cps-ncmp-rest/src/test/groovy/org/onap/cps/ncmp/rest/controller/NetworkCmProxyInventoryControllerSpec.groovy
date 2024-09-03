@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021-2022 Bell Canada
- *  Modifications Copyright (C) 2021-2023 Nordix Foundation
+ *  Modifications Copyright (C) 2021-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -113,7 +113,7 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
         and: 'the mapper service returns a converted object'
             ncmpRestInputMapper.toCmHandleQueryServiceParameters(_) >> cmHandleQueryServiceParameters
         and: 'the service returns the desired results'
-            mockNetworkCmProxyInventoryFacade.executeParameterizedCmHandleIdSearch(cmHandleQueryServiceParameters) >> serviceMockResponse
+            mockNetworkCmProxyInventoryFacade.executeParameterizedCmHandleIdSearch(cmHandleQueryServiceParameters, _) >> serviceMockResponse
         when: 'post request is performed & search is called with the given request parameters'
             def response = mvc.perform(
                     post("$ncmpBasePathV1/ch/searches")
@@ -136,7 +136,7 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
         and: 'the mapper service returns a converted object'
             ncmpRestInputMapper.toCmHandleQueryServiceParameters(_) >> cmHandleQueryServiceParameters
         and: 'the service returns the desired results'
-            mockNetworkCmProxyInventoryFacade.executeParameterizedCmHandleIdSearch(cmHandleQueryServiceParameters) >> serviceMockResponse
+            mockNetworkCmProxyInventoryFacade.executeParameterizedCmHandleIdSearch(cmHandleQueryServiceParameters, _) >> serviceMockResponse
         when: 'post request is performed & search is called with the given request parameters'
             def response = mvc.perform(
                     post("$ncmpBasePathV1/ch/searches")
