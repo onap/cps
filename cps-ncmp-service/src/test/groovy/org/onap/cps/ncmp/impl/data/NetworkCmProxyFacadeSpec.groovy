@@ -44,7 +44,7 @@ class NetworkCmProxyFacadeSpec extends Specification {
     def mockNcmpPassthroughResourceRequestHandler = Mock(NcmpPassthroughResourceRequestHandler)
     def mockAlternateIdMatcher =  Mock(AlternateIdMatcher)
 
-    def objectUnderTest = new NetworkCmProxyFacade(mockNcmpCachedResourceRequestHandler, mockNcmpPassthroughResourceRequestHandler, mockDmiDataOperations, mockAlternateIdMatcher)
+    def objectUnderTest = new NetworkCmProxyFacade(mockNcmpCachedResourceRequestHandler, mockNcmpPassthroughResourceRequestHandler, mockDmiDataOperations)
 
     def NO_TOPIC = null
 

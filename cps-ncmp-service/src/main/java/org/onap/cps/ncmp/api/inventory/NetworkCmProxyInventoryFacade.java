@@ -89,12 +89,15 @@ public class NetworkCmProxyInventoryFacade {
      * Get all cm handle IDs by various properties.
      *
      * @param cmHandleQueryServiceParameters cm handle query parameters
+     * @param outputAlternateId boolean for cm handle reference type either cmHandleId (false) or AlternateId (true)
      * @return collection of cm handle IDs
      */
     public Collection<String> executeParameterizedCmHandleIdSearch(
-        final CmHandleQueryServiceParameters cmHandleQueryServiceParameters) {
+        final CmHandleQueryServiceParameters cmHandleQueryServiceParameters, final Boolean outputAlternateId) {
         validateCmHandleQueryParameters(cmHandleQueryServiceParameters, InventoryQueryConditions.ALL_CONDITION_NAMES);
-        return parameterizedCmHandleQueryService.queryCmHandleIdsForInventory(cmHandleQueryServiceParameters);
+
+        return parameterizedCmHandleQueryService.queryCmHandleIdsForInventory(cmHandleQueryServiceParameters,
+            outputAlternateId);
     }
 
 
@@ -156,13 +159,16 @@ public class NetworkCmProxyInventoryFacade {
      * Retrieve cm handle ids for the given query parameters.
      *
      * @param cmHandleQueryApiParameters cm handle query parameters
+     * @param outputAlternateId boolean for cm handle reference type either cmHandleId (false) or AlternateId (true)
      * @return cm handle ids
      */
-    public Collection<String> executeCmHandleIdSearch(final CmHandleQueryApiParameters cmHandleQueryApiParameters) {
+    public Collection<String> executeCmHandleIdSearch(final CmHandleQueryApiParameters cmHandleQueryApiParameters,
+                                                      final Boolean outputAlternateId) {
         final CmHandleQueryServiceParameters cmHandleQueryServiceParameters = jsonObjectMapper.convertToValueType(
             cmHandleQueryApiParameters, CmHandleQueryServiceParameters.class);
         validateCmHandleQueryParameters(cmHandleQueryServiceParameters, CmHandleQueryConditions.ALL_CONDITION_NAMES);
-        return parameterizedCmHandleQueryService.queryCmHandleIds(cmHandleQueryServiceParameters);
+        return parameterizedCmHandleQueryService.queryCmHandleReferenceIds(cmHandleQueryServiceParameters,
+            outputAlternateId);
     }
 
     /**
