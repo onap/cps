@@ -22,6 +22,30 @@
       },
       "revId": "9237b0792526693f5cf302f4bfe0f1150d5662bc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6dd34bd_a2e8f300",
+        "filename": "csit/tests/cps-trust-level/cps-trust-level.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-09-03T14:48:48Z",
+      "side": 1,
+      "message": "😊 You know why this test has been changed as we changed the logic. There are other test in CSIT that delete cm handle called CmHandleDeleted, and running before the TrustLevel related tests. Since there were a logic to send the notification, we used to consume the very first notification for CmHandleDeleted. Otherwise, the custom kafka consumer config in Robot test suit should be changed to utulize watermark offset to consume the desired message from the kafka topic 😊\n\nAnyway, I hope to point out the reason why everytime this got changed.",
+      "parentUuid": "c4d0fcb1_dfc35c3d",
+      "range": {
+        "startLine": 58,
+        "startChar": 120,
+        "endLine": 58,
+        "endChar": 126
+      },
+      "revId": "9237b0792526693f5cf302f4bfe0f1150d5662bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
