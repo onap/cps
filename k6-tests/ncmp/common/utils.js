@@ -53,24 +53,24 @@ export function getRandomCmHandleId() {
 
 export function makeCustomSummaryReport(data, options) {
     const summaryCsvLines = [
-        '#,Test Name,Unit,Limit,Actual',
-        makeSummaryCsvLine('0', 'HTTP request failures for all tests', 'rate of failed requests', 'http_req_failed', data, options),
-        makeSummaryCsvLine('1', 'Registration of CM-handles', 'CM-handles/second', 'cmhandles_created_per_second', data, options),
-        makeSummaryCsvLine('2', 'De-registration of CM-handles', 'CM-handles/second', 'cmhandles_deleted_per_second', data, options),
-        makeSummaryCsvLine('3', 'CM-handle ID search with Module filter', 'milliseconds', 'id_search_duration', data, options),
-        makeSummaryCsvLine('4', 'CM-handle search with Module filter', 'milliseconds', 'cm_search_duration', data, options),
-        makeSummaryCsvLine('5a', 'NCMP overhead for Synchronous single CM-handle pass-through read', 'milliseconds', 'ncmp_overhead_passthrough_read', data, options),
-        makeSummaryCsvLine('5b', 'NCMP overhead for Synchronous single CM-handle pass-through read with alternate id', 'milliseconds', 'ncmp_overhead_passthrough_read_alt_id', data, options),
-        makeSummaryCsvLine('6', 'NCMP overhead for Synchronous single CM-handle pass-through write', 'milliseconds', 'ncmp_overhead_passthrough_write', data, options),
-        makeSummaryCsvLine('7', 'Data operations batch read', 'events/second', 'data_operations_batch_read_cmhandles_per_second', data, options),
+        '#,Test Name,Unit,Limit,CPS Limit,Actual',
+        makeSummaryCsvLine('0', 'HTTP request failures for all tests', 'rate of failed requests', 'http_req_failed', 0, data, options),
+        makeSummaryCsvLine('1', 'Registration of CM-handles', 'CM-handles/second', 'cmhandles_created_per_second', 40, data, options),
+        makeSummaryCsvLine('2', 'De-registration of CM-handles', 'CM-handles/second', 'cmhandles_deleted_per_second', 80, data, options),
+        makeSummaryCsvLine('3', 'CM-handle ID search with Module filter', 'milliseconds', 'id_search_duration', 300, data, options),
+        makeSummaryCsvLine('4', 'CM-handle search with Module filter', 'milliseconds', 'cm_search_duration', 14000, data, options),
+        makeSummaryCsvLine('5a', 'NCMP overhead for Synchronous single CM-handle pass-through read', 'milliseconds', 'ncmp_overhead_passthrough_read', 20, data, options),
+        makeSummaryCsvLine('5b', 'NCMP overhead for Synchronous single CM-handle pass-through read with alternate id', 'milliseconds', 'ncmp_overhead_passthrough_read_alt_id', 40, data, options),
+        makeSummaryCsvLine('6', 'NCMP overhead for Synchronous single CM-handle pass-through write', 'milliseconds', 'ncmp_overhead_passthrough_write', 20, data, options),
+        makeSummaryCsvLine('7', 'Data operations batch read', 'events/second', 'data_operations_batch_read_cmhandles_per_second', 200, data, options),
     ];
     return summaryCsvLines.join('\n') + '\n';
 }
 
-function makeSummaryCsvLine(testCase, testName, unit, thresholdInK6, data, options) {
+function makeSummaryCsvLine(testCase, testName, unit, thresholdInK6, cpsLimit, data, options) {
     const thresholdArray = JSON.parse(JSON.stringify(options.thresholds[thresholdInK6]));
     const thresholdString = thresholdArray[0];
     const [thresholdKey, thresholdOperator, thresholdValue] = thresholdString.split(/\s+/);
     const actualValue = data.metrics[thresholdInK6].values[thresholdKey].toFixed(3);
-    return `${testCase},${testName},${unit},${thresholdValue},${actualValue}`;
+    return `${testCase},${testName},${unit},${thresholdValue},${cpsLimit},${actualValue}`;
 }
