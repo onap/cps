@@ -213,7 +213,8 @@ public class NetworkCmProxyStubController implements NetworkCmProxyApi {
     }
 
     @Override
-    public ResponseEntity<List<String>> searchCmHandleIds(@Valid final CmHandleQueryParameters body) {
+    public ResponseEntity<List<String>> searchCmHandleIds(@Valid final CmHandleQueryParameters body,
+                                                          @Valid final Boolean outputAlternateId) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
