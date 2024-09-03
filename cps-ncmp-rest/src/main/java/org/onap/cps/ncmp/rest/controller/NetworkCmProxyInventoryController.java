@@ -51,13 +51,21 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
     private final NetworkCmProxyInventoryFacade networkCmProxyInventoryFacade;
     private final NcmpRestInputMapper ncmpRestInputMapper;
 
+    /**
+     * Get all cm-handle references under a registered DMI plugin.
+     *
+     * @param cmHandleQueryParameters DMI plugin identifier
+     * @param cmHandleReferenceType boolean for cm handle reference type either cmHandleId or AlternateId (True)
+     * @return list of cm handle IDs
+     */
     @Override
-    public ResponseEntity<List<String>> searchCmHandleIds(final CmHandleQueryParameters cmHandleQueryParameters) {
+    public ResponseEntity<List<String>> searchCmHandleIds(final CmHandleQueryParameters cmHandleQueryParameters,
+                                                          final Boolean cmHandleReferenceType) {
         final CmHandleQueryServiceParameters cmHandleQueryServiceParameters = ncmpRestInputMapper
                 .toCmHandleQueryServiceParameters(cmHandleQueryParameters);
 
         final Collection<String> cmHandleIds = networkCmProxyInventoryFacade
-                .executeParameterizedCmHandleIdSearch(cmHandleQueryServiceParameters);
+                .executeParameterizedCmHandleIdSearch(cmHandleQueryServiceParameters, cmHandleReferenceType);
         return ResponseEntity.ok(List.copyOf(cmHandleIds));
     }
 

@@ -113,7 +113,7 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
         and: 'the mapper service returns a converted object'
             ncmpRestInputMapper.toCmHandleQueryServiceParameters(_) >> cmHandleQueryServiceParameters
         and: 'the service returns the desired results'
-            mockNetworkCmProxyInventoryFacade.executeParameterizedCmHandleIdSearch(cmHandleQueryServiceParameters) >> serviceMockResponse
+            mockNetworkCmProxyInventoryFacade.executeParameterizedCmHandleIdSearch(cmHandleQueryServiceParameters, _) >> serviceMockResponse
         when: 'post request is performed & search is called with the given request parameters'
             def response = mvc.perform(
                     post("$ncmpBasePathV1/ch/searches")
@@ -136,7 +136,7 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
         and: 'the mapper service returns a converted object'
             ncmpRestInputMapper.toCmHandleQueryServiceParameters(_) >> cmHandleQueryServiceParameters
         and: 'the service returns the desired results'
-            mockNetworkCmProxyInventoryFacade.executeParameterizedCmHandleIdSearch(cmHandleQueryServiceParameters) >> serviceMockResponse
+            mockNetworkCmProxyInventoryFacade.executeParameterizedCmHandleIdSearch(cmHandleQueryServiceParameters, _) >> serviceMockResponse
         when: 'post request is performed & search is called with the given request parameters'
             def response = mvc.perform(
                     post("$ncmpBasePathV1/ch/searches")

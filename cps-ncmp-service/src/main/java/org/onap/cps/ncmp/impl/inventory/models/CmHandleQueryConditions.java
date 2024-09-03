@@ -30,7 +30,8 @@ public enum CmHandleQueryConditions {
     HAS_ALL_PROPERTIES("hasAllProperties"),
     HAS_ALL_MODULES("hasAllModules"),
     WITH_CPS_PATH("cmHandleWithCpsPath"),
-    WITH_TRUST_LEVEL("cmHandleWithTrustLevel");
+    WITH_TRUST_LEVEL("cmHandleWithTrustLevel"),
+    RETURN_CM_HANDLE_REFERENCE_IDS("cmHandleReferenceType");
 
     public static final Collection<String> ALL_CONDITION_NAMES = Arrays.stream(CmHandleQueryConditions.values())
         .map(CmHandleQueryConditions::getConditionName).collect(Collectors.toList());

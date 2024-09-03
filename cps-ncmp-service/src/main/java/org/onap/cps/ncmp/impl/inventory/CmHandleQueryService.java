@@ -32,25 +32,31 @@ public interface CmHandleQueryService {
      * Query Cm Handles based on additional (private) properties.
      *
      * @param additionalPropertyQueryPairs private properties for query
+     * @param outputAlternateId boolean for cm handle reference type either cmHandleId (false) or AlternateId (true)
      * @return Ids of Cm Handles which have these private properties
      */
-    Collection<String> queryCmHandleAdditionalProperties(Map<String, String> additionalPropertyQueryPairs);
+    Collection<String> queryCmHandleAdditionalProperties(Map<String, String> additionalPropertyQueryPairs,
+                                                         Boolean outputAlternateId);
 
     /**
      * Query Cm Handles based on public properties.
      *
      * @param publicPropertyQueryPairs public properties for query
+     * @param outputAlternateId  boolean for cm handle reference type either cmHandleId (false) or AlternateId (true)
      * @return CmHandles which have these public properties
      */
-    Collection<String> queryCmHandlePublicProperties(Map<String, String> publicPropertyQueryPairs);
+    Collection<String> queryCmHandlePublicProperties(Map<String, String> publicPropertyQueryPairs,
+                                                     Boolean outputAlternateId);
 
     /**
      * Query Cm Handles based on Trust Level.
      *
      * @param trustLevelPropertyQueryPairs trust level properties for query
+     * @param outputAlternateId boolean for cm handle reference type either cmHandleId (false) or AlternateId (true)
      * @return Ids of Cm Handles which have desired trust level
      */
-    Collection<String> queryCmHandlesByTrustLevel(Map<String, String> trustLevelPropertyQueryPairs);
+    Collection<String> queryCmHandlesByTrustLevel(Map<String, String> trustLevelPropertyQueryPairs,
+                                                  Boolean outputAlternateId);
 
     /**
      * Method which returns cm handles by the cm handles state.
@@ -100,5 +106,13 @@ public interface CmHandleQueryService {
      * @return collection of cm handle ids
      */
     Collection<String> getCmHandleIdsByDmiPluginIdentifier(String dmiPluginIdentifier);
+
+    /**
+     * Get all cm handles ids by DMI plugin identifier.
+     *
+     * @param dmiPluginIdentifier DMI plugin identifier
+     * @return map of cmHandle references key:CmHandleId Value:AlternateId
+     */
+    Map<String, String> getCmHandleReferencesByDmiPluginIdentifier(String dmiPluginIdentifier);
 
 }

@@ -71,7 +71,7 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
         and: 'the system returns an set of cmHandle ids'
             mockParameterizedCmHandleQueryService.queryCmHandleIdsForInventory(*_) >> [ 'cmHandle1', 'cmHandle2' ]
         when: 'executing the search'
-            def result = objectUnderTest.executeParameterizedCmHandleIdSearch(cmHandleQueryServiceParameters)
+            def result = objectUnderTest.executeParameterizedCmHandleIdSearch(cmHandleQueryServiceParameters, false)
         then: 'the result returns the correct 2 elements'
             assert result.size() == 2
             assert result.contains('cmHandle1')
@@ -199,11 +199,11 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
             conditionApiProperties.conditionParameters = [[moduleName: 'module-name-1']]
             cmHandleQueryApiParameters.cmHandleQueryParameters = [conditionApiProperties]
         and: 'query cm handle method return with a data node list'
-            mockParameterizedCmHandleQueryService.queryCmHandleIds(
-                spiedJsonObjectMapper.convertToValueType(cmHandleQueryApiParameters, CmHandleQueryServiceParameters.class))
+            mockParameterizedCmHandleQueryService.queryCmHandleReferenceIds(
+                spiedJsonObjectMapper.convertToValueType(cmHandleQueryApiParameters, CmHandleQueryServiceParameters.class), false)
                 >> ['cm-handle-id-1']
         when: 'execute cm handle search is called'
-            def result = objectUnderTest.executeCmHandleIdSearch(cmHandleQueryApiParameters)
+            def result = objectUnderTest.executeCmHandleIdSearch(cmHandleQueryApiParameters, false)
         then: 'result is the same collection as returned by the CPS Data Service'
             assert result == ['cm-handle-id-1']
     }

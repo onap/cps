@@ -27,11 +27,12 @@ class CmHandleQueryConditionsSpec extends Specification {
 
     def 'CmHandle query condition names.'() {
         expect: '3 conditions with the correct names'
-            assert CmHandleQueryConditions.ALL_CONDITION_NAMES.size() == 4
+            assert CmHandleQueryConditions.ALL_CONDITION_NAMES.size() == 5
             assert CmHandleQueryConditions.ALL_CONDITION_NAMES.containsAll('hasAllProperties',
                                                                            'hasAllModules',
                                                                            'cmHandleWithCpsPath',
-                                                                            'cmHandleWithTrustLevel')
+                                                                            'cmHandleWithTrustLevel',
+                                                                            'cmHandleReferenceType')
     }
 
 }

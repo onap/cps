@@ -126,6 +126,8 @@ searchCmHandleIds:
       - network-cm-proxy-inventory
     summary: Query for CM Handle IDs
     operationId: searchCmHandleIds
+    parameters:
+      - $ref: 'components.yaml#/components/parameters/cmHandleReferenceTypeInQuery'
     requestBody:
       required: true
       content:
