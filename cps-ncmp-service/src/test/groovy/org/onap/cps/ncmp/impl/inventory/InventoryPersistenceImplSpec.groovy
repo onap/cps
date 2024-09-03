@@ -38,6 +38,7 @@ import org.onap.cps.spi.model.ModuleDefinition
 import org.onap.cps.spi.model.ModuleReference
 import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.JsonObjectMapper
+import org.testcontainers.shaded.com.fasterxml.jackson.databind.introspect.BasicClassIntrospector
 import spock.lang.Shared
 import spock.lang.Specification
 
@@ -332,11 +333,23 @@ class InventoryPersistenceImplSpec extends Specification {
             0 * mockCmHandleQueries.queryNcmpRegistryByCpsPath(_, _)
     }
 
-    def 'Get CM handles that has given module names'() {
+    def 'Get CM handle ids for CM Handles that has given module names'() {
         when: 'the method to get cm handles is called'
-            objectUnderTest.getCmHandleIdsWithGivenModules(['sample-module-name'])
+            objectUnderTest.getCmHandleReferencesWithGivenModules(['sample-module-name'], false)
         then: 'the admin persistence service method to query anchors is invoked once with the same parameter'
             1 * mockCpsAnchorService.queryAnchorNames(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, ['sample-module-name'])
+    }
+
+    def 'Get Alternate Ids for CM Handles that has given module names'() {
+        given: 'A Collection of data nodes'
+            def dataNodes = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='ch-1']", leaves: ['id': 'ch-1', 'alternate-id': 'alt-1'])]
+        when: 'the methods to get dataNodes is called and returns correct values'
+            mockCpsAnchorService.queryAnchorNames(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, ['sample-module-name']) >> ['ch-1']
+            mockCpsDataService.getDataNodesForMultipleXpaths(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, ["/dmi-registry/cm-handles[@id='ch-1']"], INCLUDE_ALL_DESCENDANTS) >> dataNodes
+        and: 'the method returns a result'
+            def result = objectUnderTest.getCmHandleReferencesWithGivenModules(['sample-module-name'], true)
+        then: 'the result contains the correct alternate Id'
+            assert result == ['alt-1'] as HashSet
     }
 
     def 'Replace list content'() {
