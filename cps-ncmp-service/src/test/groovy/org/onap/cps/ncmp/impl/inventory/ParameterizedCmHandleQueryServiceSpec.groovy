@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2023 Nordix Foundation
+ *  Copyright (C) 2022-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -50,11 +50,15 @@ class ParameterizedCmHandleQueryServiceSpec extends Specification {
             def conditionProperties = createConditionProperties('cmHandleWithCpsPath', [['cpsPath' : '/some/cps/path']])
             cmHandleQueryParameters.setCmHandleQueryParameters([conditionProperties])
         and: 'the query get the cm handle datanodes excluding all descendants returns a datanode'
-            cmHandleQueries.queryCmHandleAncestorsByCpsPath('/some/cps/path', FetchDescendantsOption.OMIT_DESCENDANTS) >> [new DataNode(leaves: ['id':'some-cmhandle-id'])]
+            cmHandleQueries.queryCmHandleAncestorsByCpsPath('/some/cps/path', FetchDescendantsOption.OMIT_DESCENDANTS) >> [new DataNode(leaves: ['id':'some-cmhandle-id', 'alternate-id':'some-alternate-id'])]
         when: 'the query is executed for cm handle ids'
-            def result = objectUnderTest.queryCmHandleIds(cmHandleQueryParameters)
+            def result = objectUnderTest.queryCmHandleReferenceIds(cmHandleQueryParameters, outputAlternateId)
         then: 'the correct expected cm handles ids are returned'
-            assert result == ['some-cmhandle-id'] as Set
+            assert result == expectedCmhandleReference
+        where: 'the following data is used'
+            senario                   | outputAlternateId || expectedCmhandleReference
+            'output CmHandle Ids'     | false             || ['some-cmhandle-id'] as Set
+            'output Alternate Ids'    | true              || ['some-alternate-id'] as Set
     }
 
     def 'Query cm handle where  cps path itself is ancestor axis.'() {
@@ -63,11 +67,15 @@ class ParameterizedCmHandleQueryServiceSpec extends Specification {
             def conditionProperties = createConditionProperties('cmHandleWithCpsPath', [['cpsPath' : '/some/cps/path']])
             cmHandleQueryParameters.setCmHandleQueryParameters([conditionProperties])
         and: 'the query get the cm handle data nodes excluding all descendants returns a datanode'
-            cmHandleQueries.queryCmHandleAncestorsByCpsPath('/some/cps/path', FetchDescendantsOption.OMIT_DESCENDANTS) >> [new DataNode(leaves: ['id':'some-cmhandle-id'])]
+            cmHandleQueries.queryCmHandleAncestorsByCpsPath('/some/cps/path', FetchDescendantsOption.OMIT_DESCENDANTS) >> [new DataNode(leaves: ['id':'some-cmhandle-id', 'alternate-id':'some-alternate-id'])]
         when: 'the query is executed for cm handle ids'
-            def result = objectUnderTest.queryCmHandleIdsForInventory(cmHandleQueryParameters)
+            def result = objectUnderTest.queryCmHandleIdsForInventory(cmHandleQueryParameters, outputAlternateId)
         then: 'the correct expected cm handles ids are returned'
-            assert result == ['some-cmhandle-id'] as Set
+            assert result == expectedCmhandleReference
+        where: 'the following data is used'
+            senario                    | outputAlternateId || expectedCmhandleReference
+            'outputAlternate is false' | false             || ['some-cmhandle-id'] as Set
+            'outputAlternate is true'  | true              || ['some-alternate-id'] as Set
     }
 
     def 'Cm handle ids query with error: #scenario.'() {
@@ -78,7 +86,7 @@ class ParameterizedCmHandleQueryServiceSpec extends Specification {
         and: 'cmHandleQueries throws a path parsing exception'
             cmHandleQueries.queryCmHandleAncestorsByCpsPath('/some/cps/path', FetchDescendantsOption.OMIT_DESCENDANTS) >> { throw thrownException }
         when: 'the query is executed for cm handle ids'
-            objectUnderTest.queryCmHandleIds(cmHandleQueryParameters)
+            objectUnderTest.queryCmHandleReferenceIds(cmHandleQueryParameters, false)
         then: 'a data validation exception is thrown'
             thrown(expectedException)
         where: 'the following data is used'
@@ -93,7 +101,7 @@ class ParameterizedCmHandleQueryServiceSpec extends Specification {
             def conditionProperties = createConditionProperties('cmHandleWithCpsPath', [['cpsPath' : '/additional-properties']])
             cmHandleQueryParameters.setCmHandleQueryParameters([conditionProperties])
         when: 'the query is executed for cm handle ids'
-            def result = objectUnderTest.queryCmHandleIds(cmHandleQueryParameters)
+            def result = objectUnderTest.queryCmHandleReferenceIds(cmHandleQueryParameters, false)
         then: 'empty result is returned'
             assert result.isEmpty()
     }
@@ -104,9 +112,9 @@ class ParameterizedCmHandleQueryServiceSpec extends Specification {
             def conditionProperties = createConditionProperties('hasAllModules', [['moduleName': 'some-module-name']])
             cmHandleQueryParameters.setCmHandleQueryParameters([conditionProperties])
         when: 'the query is executed for cm handle ids'
-            def result = objectUnderTest.queryCmHandleIds(cmHandleQueryParameters)
+            def result = objectUnderTest.queryCmHandleReferenceIds(cmHandleQueryParameters, false)
         then: 'the inventory service is called with the correct module names'
-            1 * mockInventoryPersistence.getCmHandleIdsWithGivenModules(['some-module-name']) >> cmHandleIdsFromService
+            1 * mockInventoryPersistence.getCmHandleReferencesWithGivenModules(['some-module-name'], false) >> cmHandleIdsFromService
         and: 'the correct expected cm handles ids are returned'
             assert result.size() == cmHandleIdsFromService.size()
             assert result.containsAll(cmHandleIdsFromService)
@@ -122,9 +130,9 @@ class ParameterizedCmHandleQueryServiceSpec extends Specification {
             def trustLevelConditionProperties = createConditionProperties('cmHandleWithTrustLevel', [['trustLevel': 'COMPLETE'] as Map])
             trustLevelQueryParameters.setCmHandleQueryParameters([trustLevelConditionProperties])
         when: 'the query is being executed'
-            objectUnderTest.queryCmHandleIds(trustLevelQueryParameters)
+            objectUnderTest.queryCmHandleReferenceIds(trustLevelQueryParameters, false)
         then: 'the query is being delegated to the cm handle query service with correct parameter'
-            1 * cmHandleQueries.queryCmHandlesByTrustLevel(['trustLevel': 'COMPLETE'] as Map)
+            1 * cmHandleQueries.queryCmHandlesByTrustLevel(['trustLevel': 'COMPLETE'] as Map, false)
     }
 
     def 'Query cm handle details with module names when #scenario from query.'() {
@@ -135,7 +143,7 @@ class ParameterizedCmHandleQueryServiceSpec extends Specification {
         when: 'the query is executed for cm handle ids'
             def result = objectUnderTest.queryCmHandles(cmHandleQueryParameters)
         then: 'the inventory service is called with the correct module names'
-            1 * mockInventoryPersistence.getCmHandleIdsWithGivenModules(['some-module-name']) >> ['ch1']
+            1 * mockInventoryPersistence.getCmHandleReferencesWithGivenModules(['some-module-name'], false) >> ['ch1']
         and: 'the inventory service is called with teh correct if and returns a yang model cm handle'
             1 * mockInventoryPersistence.getYangModelCmHandles(['ch1']) >>
                 [new YangModelCmHandle(id: 'abc', dmiProperties: [new YangModelCmHandle.Property('name','value')], publicProperties: [])]
@@ -145,15 +153,19 @@ class ParameterizedCmHandleQueryServiceSpec extends Specification {
             assert result[0].dmiProperties == [name:'value']
     }
 
-    def 'Query cm handle ids when the query is empty.'() {
+    def 'Query cm handle references when the query is empty.'() {
         given: 'We use an empty query'
             def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
         and: 'the inventory persistence returns the dmi registry datanode with just ids'
             mockInventoryPersistence.getDataNode(NCMP_DMI_REGISTRY_PARENT, FetchDescendantsOption.DIRECT_CHILDREN_ONLY) >> [dmiRegistry]
         when: 'the query is executed for both cm handle ids'
-            def result = objectUnderTest.queryCmHandleIds(cmHandleQueryParameters)
+            def result = objectUnderTest.queryCmHandleReferenceIds(cmHandleQueryParameters, outputAlternateId)
         then: 'the correct expected cm handles are returned'
-            assert result.containsAll('PNFDemo1', 'PNFDemo2', 'PNFDemo3', 'PNFDemo4')
+            assert result.containsAll(expectedCmhandleReferences)
+        where: 'the following data is used'
+            senario                    | outputAlternateId || expectedCmhandleReferences
+            'outputAlternate is false' | false             || ['PNFDemo1', 'PNFDemo2', 'PNFDemo3', 'PNFDemo4']
+            'outputAlternate is true'  | true              || ['alt-PNFDemo1', 'alt-PNFDemo2', 'alt-PNFDemo3', 'alt-PNFDemo4']
     }
 
     def 'Query cm handle details when the query is empty.'() {
@@ -177,7 +189,7 @@ class ParameterizedCmHandleQueryServiceSpec extends Specification {
             partiallyMockedCmHandleQueries.queryCmHandlePublicProperties(*_) >> cmHandlesWithMatchingPublicProperties
             partiallyMockedCmHandleQueries.queryCmHandleAdditionalProperties(*_) >> cmHandlesWithMatchingPrivateProperties
         when: 'the query executed'
-            def result = objectUnderTestWithPartiallyMockedQueries.queryCmHandleIdsForInventory(cmHandleQueryParameters)
+            def result = objectUnderTestWithPartiallyMockedQueries.queryCmHandleIdsForInventory(cmHandleQueryParameters, false)
         then: 'the expected number of results are returned.'
             assert result.size() == expectedCmHandleIdsSize
         where: 'the following data is used'
@@ -195,14 +207,15 @@ class ParameterizedCmHandleQueryServiceSpec extends Specification {
             cmHandleQueryParameters.setCmHandleQueryParameters([conditionProperties])
         and: 'the inventoryPersistence returns different CmHandleIds'
             partiallyMockedCmHandleQueries.getCmHandleIdsByDmiPluginIdentifier(*_) >> cmHandleQueryResult
+            partiallyMockedCmHandleQueries.getCmHandleReferencesByDmiPluginIdentifier(*_) >> cmHandleQueryResult
         when: 'the query executed'
-            def result = objectUnderTestWithPartiallyMockedQueries.queryCmHandleIdsForInventory(cmHandleQueryParameters)
+            def result = objectUnderTestWithPartiallyMockedQueries.queryCmHandleIdsForInventory(cmHandleQueryParameters, outputAlternateId)
         then: 'the expected number of results are returned.'
             assert result.size() == expectedCmHandleIdsSize
         where: 'the following data is used'
-            scenario       | cmHandleQueryResult || expectedCmHandleIdsSize
-            'some matches' | ['h1','h2']         || 2
-            'no matches'   | []                  || 0
+            scenario       | cmHandleQueryResult | outputAlternateId || expectedCmHandleIdsSize
+            'some matches' | ['h1','h2']         | false             || 2
+            'no matches'   | [:]                  | true              || 0
     }
 
     def 'Combine two query results where #scenario.'() {
@@ -227,7 +240,7 @@ class ParameterizedCmHandleQueryServiceSpec extends Specification {
 
     def static createDataNodeList(dataNodeIds) {
         def dataNodes =[]
-        dataNodeIds.each{ dataNodes << new DataNode(xpath: "/dmi-registry/cm-handles[@id='${it}']", leaves: ['id':it]) }
+        dataNodeIds.each{ dataNodes << new DataNode(xpath: "/dmi-registry/cm-handles[@id='${it}']", leaves: ['id':it, 'alternate-id':'alt-' + it]) }
         return dataNodes
     }
 }

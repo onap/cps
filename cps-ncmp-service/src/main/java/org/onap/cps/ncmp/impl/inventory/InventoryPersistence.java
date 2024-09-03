@@ -149,9 +149,11 @@ public interface InventoryPersistence extends NcmpPersistence {
      * get CM handles that has given module names.
      *
      * @param moduleNamesForQuery module names
+     * @param outputAlternateIds  boolean to output alternate ids (true) or cmHandle Ids (false)
      * @return Collection of CM handle Ids
      */
-    Collection<String> getCmHandleIdsWithGivenModules(Collection<String> moduleNamesForQuery);
+    Collection<String> getCmHandleReferencesWithGivenModules(Collection<String> moduleNamesForQuery,
+                                                             Boolean outputAlternateIds);
 
     /**
      * Check database if cm handle id exists if not return false.
