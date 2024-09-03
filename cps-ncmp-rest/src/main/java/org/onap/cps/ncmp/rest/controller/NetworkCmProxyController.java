@@ -268,18 +268,19 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     }
 
     /**
-     * Query and return cm handle ids that match the given query parameters.
+     * Query and return cm handle ids or alternate ids that match the given query parameters.
      *
      * @param cmHandleQueryParameters the cm handle query parameters
+     * @param outputAlternateId boolean for cm handle reference type either cmHandleId (false) or AlternateId (true)
      * @return collection of cm handle ids
      */
     @Override
-    public ResponseEntity<List<String>> searchCmHandleIds(
-            final CmHandleQueryParameters cmHandleQueryParameters) {
+    public ResponseEntity<List<String>> searchCmHandleIds(final CmHandleQueryParameters cmHandleQueryParameters,
+                                                          final Boolean outputAlternateId) {
         final CmHandleQueryApiParameters cmHandleQueryApiParameters =
                 jsonObjectMapper.convertToValueType(cmHandleQueryParameters, CmHandleQueryApiParameters.class);
         final Collection<String> cmHandleIds
-            = networkCmProxyInventoryFacade.executeCmHandleIdSearch(cmHandleQueryApiParameters);
+            = networkCmProxyInventoryFacade.executeCmHandleIdSearch(cmHandleQueryApiParameters, outputAlternateId);
         return ResponseEntity.ok(List.copyOf(cmHandleIds));
     }
 
