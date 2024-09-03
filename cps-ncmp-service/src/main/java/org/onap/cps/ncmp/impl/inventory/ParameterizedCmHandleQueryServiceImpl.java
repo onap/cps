@@ -37,10 +37,9 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
+import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.cpspath.parser.PathParsingException;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryServiceParameters;
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
@@ -54,7 +53,6 @@ import org.onap.cps.spi.model.DataNode;
 import org.springframework.stereotype.Service;
 
 @Service
-@Slf4j
 @RequiredArgsConstructor
 public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHandleQueryService {
 
@@ -63,19 +61,21 @@ public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHan
     private final InventoryPersistence inventoryPersistence;
 
     @Override
-    public Collection<String> queryCmHandleIds(
-            final CmHandleQueryServiceParameters cmHandleQueryServiceParameters) {
-        return executeQueries(cmHandleQueryServiceParameters,
-                this::executeCpsPathQuery,
-                this::queryCmHandlesByPublicProperties,
-                this::executeModuleNameQuery,
-                this::queryCmHandlesByTrustLevel);
+    public Collection<String> queryCmHandleReferenceIds(
+        final CmHandleQueryServiceParameters cmHandleQueryServiceParameters,
+        final Boolean outputAlternateId) {
+        return executeQueries(cmHandleQueryServiceParameters, outputAlternateId,
+            this::executeCpsPathQuery,
+            this::queryCmHandlesByPublicProperties,
+            this::executeModuleNameQuery,
+            this::queryCmHandlesByTrustLevel);
     }
 
     @Override
     public Collection<String> queryCmHandleIdsForInventory(
-            final CmHandleQueryServiceParameters cmHandleQueryServiceParameters) {
-        return executeQueries(cmHandleQueryServiceParameters,
+            final CmHandleQueryServiceParameters cmHandleQueryServiceParameters,
+            final Boolean outputAlternateId) {
+        return executeQueries(cmHandleQueryServiceParameters, outputAlternateId,
                 this::executeCpsPathQuery,
                 this::queryCmHandlesByPublicProperties,
                 this::queryCmHandlesByPrivateProperties,
@@ -90,7 +90,7 @@ public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHan
             return getAllCmHandles();
         }
 
-        final Collection<String> cmHandleIds = queryCmHandleIds(cmHandleQueryServiceParameters);
+        final Collection<String> cmHandleIds = queryCmHandleReferenceIds(cmHandleQueryServiceParameters, false);
 
         return getNcmpServiceCmHandles(cmHandleIds);
     }
@@ -102,7 +102,7 @@ public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHan
     }
 
     private Collection<String> queryCmHandlesByDmiPlugin(
-            final CmHandleQueryServiceParameters cmHandleQueryServiceParameters) {
+            final CmHandleQueryServiceParameters cmHandleQueryServiceParameters, final Boolean outputAlternateId) {
         final Map<String, String> dmiPropertyQueryPairs =
                 getPropertyPairs(cmHandleQueryServiceParameters.getCmHandleQueryParameters(),
                         InventoryQueryConditions.CM_HANDLE_WITH_DMI_PLUGIN.getName());
@@ -113,11 +113,15 @@ public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHan
         final String dmiPluginIdentifierValue = dmiPropertyQueryPairs
             .get(PropertyType.DMI_PLUGIN.getYangContainerName());
 
-        return cmHandleQueryService.getCmHandleIdsByDmiPluginIdentifier(dmiPluginIdentifierValue);
+        if (Boolean.TRUE.equals(outputAlternateId)) {
+            return cmHandleQueryService.getCmHandleReferencesByDmiPluginIdentifier(dmiPluginIdentifierValue).values();
+        } else {
+            return cmHandleQueryService.getCmHandleIdsByDmiPluginIdentifier(dmiPluginIdentifierValue);
+        }
     }
 
     private Collection<String> queryCmHandlesByPrivateProperties(
-            final CmHandleQueryServiceParameters cmHandleQueryServiceParameters) {
+            final CmHandleQueryServiceParameters cmHandleQueryServiceParameters, final Boolean outputAlternateId) {
 
         final Map<String, String> privatePropertyQueryPairs =
                 getPropertyPairs(cmHandleQueryServiceParameters.getCmHandleQueryParameters(),
@@ -126,11 +130,11 @@ public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHan
         if (privatePropertyQueryPairs.isEmpty()) {
             return NO_QUERY_TO_EXECUTE;
         }
-        return cmHandleQueryService.queryCmHandleAdditionalProperties(privatePropertyQueryPairs);
+        return cmHandleQueryService.queryCmHandleAdditionalProperties(privatePropertyQueryPairs, outputAlternateId);
     }
 
     private Collection<String> queryCmHandlesByPublicProperties(
-            final CmHandleQueryServiceParameters cmHandleQueryServiceParameters) {
+            final CmHandleQueryServiceParameters cmHandleQueryServiceParameters, final Boolean outputAlternateId) {
 
         final Map<String, String> publicPropertyQueryPairs =
                 getPropertyPairs(cmHandleQueryServiceParameters.getCmHandleQueryParameters(),
@@ -139,11 +143,12 @@ public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHan
         if (publicPropertyQueryPairs.isEmpty()) {
             return NO_QUERY_TO_EXECUTE;
         }
-        return cmHandleQueryService.queryCmHandlePublicProperties(publicPropertyQueryPairs);
+        return cmHandleQueryService.queryCmHandlePublicProperties(publicPropertyQueryPairs, outputAlternateId);
     }
 
     private Collection<String> queryCmHandlesByTrustLevel(final CmHandleQueryServiceParameters
-                                                                  cmHandleQueryServiceParameters) {
+                                                                  cmHandleQueryServiceParameters,
+                                                          final Boolean outputAlternateId) {
 
         final Map<String, String> trustLevelPropertyQueryPairs =
                 getPropertyPairs(cmHandleQueryServiceParameters.getCmHandleQueryParameters(),
@@ -152,21 +157,21 @@ public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHan
         if (trustLevelPropertyQueryPairs.isEmpty()) {
             return NO_QUERY_TO_EXECUTE;
         }
-        return cmHandleQueryService.queryCmHandlesByTrustLevel(trustLevelPropertyQueryPairs);
+        return cmHandleQueryService.queryCmHandlesByTrustLevel(trustLevelPropertyQueryPairs, outputAlternateId);
     }
 
     private Collection<String> executeModuleNameQuery(
-            final CmHandleQueryServiceParameters cmHandleQueryServiceParameters) {
+            final CmHandleQueryServiceParameters cmHandleQueryServiceParameters, final Boolean outputAlternateId) {
         final Collection<String> moduleNamesForQuery =
                 getModuleNamesForQuery(cmHandleQueryServiceParameters.getCmHandleQueryParameters());
         if (moduleNamesForQuery.isEmpty()) {
             return NO_QUERY_TO_EXECUTE;
         }
-        return inventoryPersistence.getCmHandleIdsWithGivenModules(moduleNamesForQuery);
+        return inventoryPersistence.getCmHandleReferencesWithGivenModules(moduleNamesForQuery, outputAlternateId);
     }
 
     private Collection<String> executeCpsPathQuery(
-            final CmHandleQueryServiceParameters cmHandleQueryServiceParameters) {
+            final CmHandleQueryServiceParameters cmHandleQueryServiceParameters, final Boolean outputAlternateId) {
         final Map<String, String> cpsPathCondition
             = getCpsPathCondition(cmHandleQueryServiceParameters.getCmHandleQueryParameters());
         if (!validateCpsPathConditionProperties(cpsPathCondition)) {
@@ -177,9 +182,9 @@ public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHan
             return NO_QUERY_TO_EXECUTE;
         }
         try {
-            cpsPathQueryResult = collectCmHandleIdsFromDataNodes(
-                cmHandleQueryService.queryCmHandleAncestorsByCpsPath(
-                        cpsPathCondition.get("cpsPath"), OMIT_DESCENDANTS));
+            cpsPathQueryResult = collectCmHandleReferencesFromDataNodes(
+                cmHandleQueryService.queryCmHandleAncestorsByCpsPath(cpsPathCondition.get("cpsPath"), OMIT_DESCENDANTS),
+                outputAlternateId);
         } catch (final PathParsingException pathParsingException) {
             throw new DataValidationException(pathParsingException.getMessage(), pathParsingException.getDetails(),
                     pathParsingException);
@@ -220,10 +225,10 @@ public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHan
         return Collections.emptyList();
     }
 
-    private Collection<String> getAllCmHandleIds() {
+    private Collection<String> getAllCmHandleReferences(final Boolean outputAlternateId) {
         final DataNode dataNode = inventoryPersistence.getDataNode(NCMP_DMI_REGISTRY_PARENT, DIRECT_CHILDREN_ONLY)
-                .iterator().next();
-        return collectCmHandleIdsFromDataNodes(dataNode.getChildDataNodes());
+            .iterator().next();
+        return collectCmHandleReferencesFromDataNodes(dataNode.getChildDataNodes(), outputAlternateId);
     }
 
     private Collection<NcmpServiceCmHandle> getNcmpServiceCmHandles(final Collection<String> cmHandleIds) {
@@ -243,14 +248,17 @@ public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHan
     }
 
     private Collection<String> executeQueries(final CmHandleQueryServiceParameters cmHandleQueryServiceParameters,
-                                              final Function<CmHandleQueryServiceParameters, Collection<String>>...
-                                                  queryFunctions) {
+                                              final Boolean outputAlternateId,
+                                              final BiFunction<CmHandleQueryServiceParameters, Boolean,
+                                                  Collection<String>>... queryFunctions) {
         if (cmHandleQueryServiceParameters.getCmHandleQueryParameters().isEmpty()) {
-            return getAllCmHandleIds();
+            return getAllCmHandleReferences(outputAlternateId);
         }
         Collection<String> combinedQueryResult = NO_QUERY_TO_EXECUTE;
-        for (final Function<CmHandleQueryServiceParameters, Collection<String>> queryFunction : queryFunctions) {
-            final Collection<String> queryResult = queryFunction.apply(cmHandleQueryServiceParameters);
+        for (final BiFunction<CmHandleQueryServiceParameters, Boolean,
+            Collection<String>> queryFunction : queryFunctions) {
+            final Collection<String> queryResult = queryFunction.apply(cmHandleQueryServiceParameters,
+                outputAlternateId);
             if (noEntriesFoundCanStopQuerying(queryResult)) {
                 return Collections.emptySet();
             }
@@ -277,8 +285,14 @@ public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHan
         }
     }
 
-    private Collection<String> collectCmHandleIdsFromDataNodes(final Collection<DataNode> dataNodes) {
-        return dataNodes.stream().map(dataNode -> (String) dataNode.getLeaves().get("id")).collect(Collectors.toSet());
+    private Collection<String> collectCmHandleReferencesFromDataNodes(final Collection<DataNode> dataNodes,
+                                                               final Boolean outputAlternateId) {
+        if (Boolean.TRUE.equals(outputAlternateId)) {
+            return dataNodes.stream().map(dataNode ->
+                (String) dataNode.getLeaves().get("alternate-id")).collect(Collectors.toSet());
+        } else {
+            return dataNodes.stream().map(dataNode ->
+                (String) dataNode.getLeaves().get("id")).collect(Collectors.toSet());
+        }
     }
-
 }

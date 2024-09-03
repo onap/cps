@@ -26,19 +26,22 @@ import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
 
 public interface ParameterizedCmHandleQueryService {
     /**
-     * Query and return cm handle ids that match the given query parameters.
+     * Query and return cm handle ids or alternate ids that match the given query parameters.
      * Supported query types:
      *      public properties
      *      modules
      *      cps-path
      *
      * @param cmHandleQueryServiceParameters the cm handle query parameters
-     * @return collection of cm handle ids
+     * @param outputAlternateId Boolean for cm handle reference type either
+     *                            cm handle id (false or null) or alternate id (true)
+     * @return collection of cm handle ids or alternate ids
      */
-    Collection<String> queryCmHandleIds(CmHandleQueryServiceParameters cmHandleQueryServiceParameters);
+    Collection<String> queryCmHandleReferenceIds(CmHandleQueryServiceParameters cmHandleQueryServiceParameters,
+                                                 Boolean outputAlternateId);
 
     /**
-     * Query and return cm handle ids that match the given query parameters.
+     * Query and return cm handle ids or alternate ids that match the given query parameters.
      * Supported query types:
      *      public properties
      *      private (additional) properties
@@ -46,9 +49,12 @@ public interface ParameterizedCmHandleQueryService {
      * The inventory interface also allows conditions on private (additional) properties and dmi names
      *
      * @param cmHandleQueryServiceParameters the cm handle query parameters
+     * @param outputAlternateId Boolean for cm handle reference type either
+     *                            cm handle id (false or null) or alternate id (true)
      * @return collection of cm handle ids
      */
-    Collection<String> queryCmHandleIdsForInventory(CmHandleQueryServiceParameters cmHandleQueryServiceParameters);
+    Collection<String> queryCmHandleIdsForInventory(CmHandleQueryServiceParameters cmHandleQueryServiceParameters,
+                                                    Boolean outputAlternateId);
 
     /**
      * Query and return cm handle objects that match the given query parameters.

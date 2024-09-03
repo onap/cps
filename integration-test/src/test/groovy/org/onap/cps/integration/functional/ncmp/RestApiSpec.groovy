@@ -65,15 +65,20 @@ class RestApiSpec extends CpsIntegrationSpecBase {
                     ]
                 }""".formatted(moduleName)
         expect: "a search for module ${moduleName} returns expected CM handles"
-            mvc.perform(post('/ncmp/v1/ch/id-searches').contentType(MediaType.APPLICATION_JSON).content(requestBodyWithModuleCondition))
+            mvc.perform(post('/ncmp/v1/ch/id-searches'+outputAlternateId).contentType(MediaType.APPLICATION_JSON).content(requestBodyWithModuleCondition))
                     .andExpect(status().is2xxSuccessful())
-                    .andExpect(jsonPath('$[*]', containsInAnyOrder(expectedCmHandles.toArray())))
-                    .andExpect(jsonPath('$', hasSize(expectedCmHandles.size())));
+                    .andExpect(jsonPath('$[*]', containsInAnyOrder(expectedCmHandleReferences.toArray())))
+                    .andExpect(jsonPath('$', hasSize(expectedCmHandleReferences.size())));
         where:
-            moduleName || expectedCmHandles
-            'M1'       || ['ch-1', 'ch-2', 'ch-3']
-            'M2'       || ['ch-1', 'ch-2']
-            'M3'       || ['ch-3']
+            moduleName | outputAlternateId           || expectedCmHandleReferences
+            'M1'       | '?outputAlternateId=false'  || ['ch-1', 'ch-2', 'ch-3']
+            'M2'       | '?outputAlternateId=false'  || ['ch-1', 'ch-2']
+            'M3'       | '?outputAlternateId=false'  || ['ch-3']
+            'M1'       | '?outputAlternateId=true'   || ['alt-1', 'alt-2', 'alt-3']
+            'M2'       | '?outputAlternateId=true'   || ['alt-1', 'alt-2']
+            'M3'       | '?outputAlternateId=true'   || ['alt-3']
+            'M1'       | ''                          || ['ch-1', 'ch-2', 'ch-3']
+
     }
 
     def 'Search for CM Handles using Cps Path Query.'() {
