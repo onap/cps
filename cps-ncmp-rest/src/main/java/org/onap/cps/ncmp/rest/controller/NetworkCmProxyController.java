@@ -286,13 +286,13 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     /**
      * Search for Cm Handle and Properties by Name.
      *
-     * @param cmHandleId cm-handle identifier
+     * @param cmHandleReference cm-handle or alternate identifier
      * @return cm handle and its properties
      */
     @Override
-    public ResponseEntity<RestOutputCmHandle> retrieveCmHandleDetailsById(final String cmHandleId) {
+    public ResponseEntity<RestOutputCmHandle> retrieveCmHandleDetailsById(final String cmHandleReference) {
         final NcmpServiceCmHandle ncmpServiceCmHandle
-            = networkCmProxyInventoryFacade.getNcmpServiceCmHandle(cmHandleId);
+            = networkCmProxyInventoryFacade.getNcmpServiceCmHandle(cmHandleReference);
         final RestOutputCmHandle restOutputCmHandle = toRestOutputCmHandle(ncmpServiceCmHandle);
         return ResponseEntity.ok(restOutputCmHandle);
     }

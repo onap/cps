@@ -97,7 +97,7 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
             1 * mockInventoryPersistence.getYangResourcesModuleReferences('some-cm-handle')
     }
 
-    def 'Get a cm handle.'() {
+    def 'Get a cm handle details using #scenario'() {
         given: 'the system returns a yang modelled cm handle'
             def dmiServiceName = 'some service name'
             def compositeState = new CompositeState(cmHandleState: CmHandleState.ADVISED,
@@ -109,17 +109,18 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
             def publicProperties = [new YangModelCmHandle.Property('Public Book', 'Public Romance Novel')]
             def moduleSetTag = 'some-module-set-tag'
             def alternateId = 'some-alternate-id'
-            def yangModelCmHandle = new YangModelCmHandle(id: 'ch-1', dmiServiceName: dmiServiceName, dmiProperties: dmiProperties,
+            def yangModelCmHandle = new YangModelCmHandle(id: 'some-cm-handle', dmiServiceName: dmiServiceName, dmiProperties: dmiProperties,
                  publicProperties: publicProperties, compositeState: compositeState, moduleSetTag: moduleSetTag, alternateId: alternateId)
-            1 * mockInventoryPersistence.getYangModelCmHandle('ch-1') >> yangModelCmHandle
+            mockAlternateIdMatcher.getCmHandleId(cmHandleRef) >> 'some-cm-handle'
+            1 * mockInventoryPersistence.getYangModelCmHandle('some-cm-handle') >> yangModelCmHandle
         and: 'a trust level for the cm handle in the cache'
             mockTrustLevelManager.getEffectiveTrustLevel(*_) >> TrustLevel.COMPLETE
         when: 'getting cm handle details for a given cm handle id from ncmp service'
-            def result = objectUnderTest.getNcmpServiceCmHandle('ch-1')
+            def result = objectUnderTest.getNcmpServiceCmHandle(cmHandleRef)
         then: 'the result is a ncmpServiceCmHandle'
             assert result.class == NcmpServiceCmHandle.class
         and: 'the cm handle contains the cm handle id'
-            assert result.cmHandleId == 'ch-1'
+            assert result.cmHandleId == 'some-cm-handle'
         and: 'the cm handle contains the alternate id'
             assert result.alternateId == 'some-alternate-id'
         and: 'the cm handle contains the module-set-tag'
@@ -132,6 +133,10 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
             assert result.compositeState == compositeState
         and: 'the cm handle contains the trust level from the cache'
             assert result.currentTrustLevel == TrustLevel.COMPLETE
+        where: 'following cm handle reference is used'
+            scenario                              | cmHandleRef
+            'Cm Handle Reference as cm handle-id' | 'some-cm-handle'
+            'Cm Handle Reference as alternate-id' | 'some-alternate-id'
     }
 
     def 'Get cm handle public properties using #scenario'() {
