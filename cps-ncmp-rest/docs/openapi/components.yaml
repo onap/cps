@@ -513,6 +513,14 @@ components:
       schema:
         type: string
         example: my-cm-handle-reference
+    cmHandleReferenceTypeInQuery:
+      name: outputAlternateId
+      in: query
+      description: The identifier (cmHandle or alternate) for a network function, network element, subnetwork or any other cm object by managed Network CM Proxy
+      required: false
+      schema:
+        type: boolean
+        default: false
     moduleNameInQuery:
       name: module-name
       in: query
