@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021-2022 Bell Canada
- *  Modifications Copyright (C) 2022-2023 Nordix Foundation
+ *  Modifications Copyright (C) 2022-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -51,13 +51,21 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
     private final NetworkCmProxyInventoryFacade networkCmProxyInventoryFacade;
     private final NcmpRestInputMapper ncmpRestInputMapper;
 
+    /**
+     * Get all cm-handle references under a registered DMI plugin.
+     *
+     * @param cmHandleQueryParameters DMI plugin identifier
+     * @param outputAlternateId boolean for cm handle reference type either cmHandleId (False) or AlternateId (True)
+     * @return list of cm handle IDs
+     */
     @Override
-    public ResponseEntity<List<String>> searchCmHandleIds(final CmHandleQueryParameters cmHandleQueryParameters) {
+    public ResponseEntity<List<String>> searchCmHandleIds(final CmHandleQueryParameters cmHandleQueryParameters,
+                                                          final Boolean outputAlternateId) {
         final CmHandleQueryServiceParameters cmHandleQueryServiceParameters = ncmpRestInputMapper
                 .toCmHandleQueryServiceParameters(cmHandleQueryParameters);
 
         final Collection<String> cmHandleIds = networkCmProxyInventoryFacade
-                .executeParameterizedCmHandleIdSearch(cmHandleQueryServiceParameters);
+                .executeParameterizedCmHandleIdSearch(cmHandleQueryServiceParameters, outputAlternateId);
         return ResponseEntity.ok(List.copyOf(cmHandleIds));
     }
 
