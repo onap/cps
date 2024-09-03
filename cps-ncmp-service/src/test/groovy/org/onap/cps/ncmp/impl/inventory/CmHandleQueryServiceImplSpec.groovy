@@ -64,16 +64,16 @@ class CmHandleQueryServiceImplSpec extends Specification {
         given: 'the DataNodes queried for a given cpsPath are returned from the persistence service.'
             mockResponses()
         when: 'a query on cmhandle public properties is performed with a public property pair'
-            def result = objectUnderTest.queryCmHandlePublicProperties(publicPropertyPairs)
+            def result = objectUnderTest.queryCmHandlePublicProperties(publicPropertyPairs, outputAlternateId)
         then: 'the correct cm handle data objects are returned'
             result.containsAll(expectedCmHandleIds)
             result.size() == expectedCmHandleIds.size()
         where: 'the following data is used'
-            scenario                         | publicPropertyPairs                                                                      || expectedCmHandleIds
-            'single property matches'        | [Contact: 'newemailforstore@bookstore.com']                                              || ['PNFDemo', 'PNFDemo2', 'PNFDemo4']
-            'public property does not match' | [wont_match: 'wont_match']                                                               || []
-            '2 properties, only one match'   | [Contact: 'newemailforstore@bookstore.com', Contact2: 'newemailforstore2@bookstore.com'] || ['PNFDemo4']
-            '2 properties, no matches'       | [Contact: 'newemailforstore@bookstore.com', Contact2: '']                                || []
+            scenario                         | publicPropertyPairs                                                                      | outputAlternateId || expectedCmHandleIds
+            'single property matches'        | [Contact: 'newemailforstore@bookstore.com']                                              | false             || ['PNFDemo', 'PNFDemo2', 'PNFDemo4']
+            'public property does not match' | [wont_match: 'wont_match']                                                               | false             || []
+            '2 properties, only one match'   | [Contact: 'newemailforstore@bookstore.com', Contact2: 'newemailforstore2@bookstore.com'] | true              || ['alt-PNFDemo4']
+            '2 properties, no matches'       | [Contact: 'newemailforstore@bookstore.com', Contact2: '']                                | false             || []
     }
 
     def 'Query cm handles on trust level'() {
@@ -84,22 +84,26 @@ class CmHandleQueryServiceImplSpec extends Specification {
         and: 'the DataNodes queried for a given cpsPath are returned from the persistence service'
             mockResponses()
         when: 'the query is run'
-            def result = objectUnderTest.queryCmHandlesByTrustLevel(trustLevelPropertyQueryPairs)
-        then: 'the result contain trusted PNFDemo'
+            def result = objectUnderTest.queryCmHandlesByTrustLevel(trustLevelPropertyQueryPairs, outputAlternateId)
+        then: 'the result contain trusted cmHandle reference'
             assert result.size() == 1
-            assert result[0] == 'PNFDemo'
+            assert result[0] == expectedCmHandleReference
+        where: 'the following data is used'
+            senario                      | outputAlternateId | expectedCmHandleReference
+            'outputAlternateId is false' |  false            | 'PNFDemo'
+            'outputAlternateId is true'  |  true             | 'alt-PNFDemo'
     }
 
     def 'Query CmHandles using empty public properties query pair.'() {
         when: 'a query on CmHandle public properties is executed using an empty map'
-            def result = objectUnderTest.queryCmHandlePublicProperties([:])
+            def result = objectUnderTest.queryCmHandlePublicProperties([:], false)
         then: 'no cm handles are returned'
             result.size() == 0
     }
 
     def 'Query CmHandles using empty private properties query pair.'() {
         when: 'a query on CmHandle private properties is executed using an empty map'
-            def result = objectUnderTest.queryCmHandleAdditionalProperties([:])
+            def result = objectUnderTest.queryCmHandleAdditionalProperties([:], false)
         then: 'no cm handles are returned'
             result.size() == 0
     }
@@ -108,7 +112,7 @@ class CmHandleQueryServiceImplSpec extends Specification {
         given: 'a data node exists with a certain additional-property'
             mockCpsQueryService.queryDataNodes(_, _, dataNodeWithPrivateField, _) >> [pnfDemo5]
         when: 'a query on CmHandle private properties is executed using a map'
-            def result = objectUnderTest.queryCmHandleAdditionalProperties(['Contact3': 'newemailforstore3@bookstore.com'])
+            def result = objectUnderTest.queryCmHandleAdditionalProperties(['Contact3': 'newemailforstore3@bookstore.com'], false)
         then: 'one cm handle is returned'
             result.size() == 1
     }
@@ -206,6 +210,17 @@ class CmHandleQueryServiceImplSpec extends Specification {
             assert result.containsAll('PNFDemo', 'PNFDemo2', 'PNFDemo4')
     }
 
+    def 'Get all alternateIds by dmi plugin identifier'() {
+        given: 'the DataNodes queried for a given cpsPath are returned from the persistence service.'
+            mockResponses()
+        when: 'cm Handles are fetched for a given dmi plugin identifier'
+            def result = objectUnderTest.getCmHandleReferencesByDmiPluginIdentifier('my-dmi-plugin-identifier').values()
+        then: 'result is the correct size'
+            assert result.size() == 3
+        and: 'result contains the correct alternate Ids'
+            assert result.containsAll('alt-PNFDemo', 'alt-PNFDemo2', 'alt-PNFDemo4')
+    }
+
     void mockResponses() {
         mockCpsQueryService.queryDataNodes(_, _, '//public-properties[@name=\"Contact\" and @value=\"newemailforstore@bookstore.com\"]/ancestor::cm-handles', _) >> [pnfDemo, pnfDemo2, pnfDemo4]
         mockCpsQueryService.queryDataNodes(_, _, '//public-properties[@name=\"wont_match\" and @value=\"wont_match\"]/ancestor::cm-handles', _) >> []
@@ -219,6 +234,6 @@ class CmHandleQueryServiceImplSpec extends Specification {
     }
 
     def static createDataNode(dataNodeId) {
-        return new DataNode(xpath: '/dmi-registry/cm-handles[@id=\'' + dataNodeId + '\']', leaves: ['id':dataNodeId])
+        return new DataNode(xpath: '/dmi-registry/cm-handles[@id=\'' + dataNodeId + '\']', leaves: ['id':dataNodeId, 'alternateId':'alt-' + dataNodeId])
     }
 }
