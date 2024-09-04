@@ -39,6 +39,52 @@
       },
       "revId": "1721e3c9b5f131a18478e4aa56afce3f0637d1b6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a81be320_ffb48318",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-09-04T16:08:34Z",
+      "side": 1,
+      "message": "NB: it is not retrieving a complete cm handle since dmi properties not included in the response.",
+      "range": {
+        "startLine": 287,
+        "startChar": 13,
+        "endLine": 287,
+        "endChar": 21
+      },
+      "revId": "1721e3c9b5f131a18478e4aa56afce3f0637d1b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d202ef92_9b784bb3",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-09-04T16:08:34Z",
+      "side": 1,
+      "message": "NB: I don\u0027t think if it has been used to verify in this test. Maybe redundant.",
+      "range": {
+        "startLine": 292,
+        "startChar": 12,
+        "endLine": 292,
+        "endChar": 49
+      },
+      "revId": "1721e3c9b5f131a18478e4aa56afce3f0637d1b6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
