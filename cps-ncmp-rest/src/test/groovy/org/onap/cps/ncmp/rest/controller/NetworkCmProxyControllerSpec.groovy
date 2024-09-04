@@ -284,17 +284,18 @@ class NetworkCmProxyControllerSpec extends Specification {
             assert response.contentAsString == '[{"cmHandle":"ch-1","publicCmHandleProperties":[{"color":"yellow"}],"state":null,"trustLevel":"NONE","moduleSetTag":null,"alternateId":null,"dataProducerIdentifier":null},{"cmHandle":"ch-2","publicCmHandleProperties":[{"color":"green"}],"state":null,"trustLevel":null,"moduleSetTag":"someModuleSetTag","alternateId":"someAlternateId","dataProducerIdentifier":"someDataProducerIdentifier"}]'
     }
 
-    def 'Get complete Cm Handle details by Cm Handle id.'() {
-        given: 'an endpoint and a cm handle'
-            def cmHandleDetailsEndpoint = "$ncmpBasePathV1/ch/some-cm-handle"
+    def 'Get complete Cm Handle details by Cm Handle Reference.'() {
+        given: 'an endpoint and a cm handle reference'
+            def cmHandleDetailsEndpoint = "$ncmpBasePathV1/ch/some-cm-handle-reference"
         and: 'an existing ncmp service cm handle'
             def cmHandleId = 'some-cm-handle'
+            def alternateId = 'some-alternate-id'
             def dmiProperties = [prop: 'some DMI property']
             def publicProperties = ["public prop": 'some public property']
             def compositeState = compositeStateTestObject()
-            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, dmiProperties: dmiProperties, publicProperties: publicProperties, compositeState: compositeState, currentTrustLevel: TrustLevel.COMPLETE)
-        and: 'the service method is invoked with the cm handle id'
-            1 * mockNetworkCmProxyInventoryFacade.getNcmpServiceCmHandle('some-cm-handle') >> ncmpServiceCmHandle
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, alternateId: alternateId, dmiProperties: dmiProperties, publicProperties: publicProperties, compositeState: compositeState, currentTrustLevel: TrustLevel.COMPLETE)
+        and: 'the service method is invoked with the cm handle reference'
+            1 * mockNetworkCmProxyInventoryFacade.getNcmpServiceCmHandle('some-cm-handle-reference') >> ncmpServiceCmHandle
         when: 'the cm handle details api is invoked'
             def response = mvc.perform(
                     get(cmHandleDetailsEndpoint)).andReturn().response

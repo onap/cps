@@ -354,7 +354,7 @@ retrieveCmHandleDetailsById:
     summary: Retrieve CM handle details
     operationId: retrieveCmHandleDetailsById
     parameters:
-      - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
+      - $ref: 'components.yaml#/components/parameters/cmHandleReferenceInPath'
     responses:
       200:
         description: OK

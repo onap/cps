@@ -183,12 +183,13 @@ public class NetworkCmProxyInventoryFacade {
     }
 
     /**
-     * Retrieve cm handle details for a given cm handle.
+     * Retrieve cm handle details for a given cm handle reference.
      *
-     * @param cmHandleId cm handle identifier
+     * @param cmHandleReference cm handle or alternate identifier
      * @return cm handle details
      */
-    public NcmpServiceCmHandle getNcmpServiceCmHandle(final String cmHandleId) {
+    public NcmpServiceCmHandle getNcmpServiceCmHandle(final String cmHandleReference) {
+        final String cmHandleId = alternateIdMatcher.getCmHandleId(cmHandleReference);
         final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(cmHandleId);
         return toNcmpServiceCmHandleWithTrustLevel(yangModelCmHandle);
     }
