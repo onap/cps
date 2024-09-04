@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dafac328_291615a2",
+        "filename": "k6-tests/ncmp/common/search-base.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-09-04T15:52:55Z",
+      "side": 1,
+      "message": "There is no issue as we reviewed it. So there is no blocker.",
+      "parentUuid": "f48a0954_987309f2",
+      "range": {
+        "startLine": 35,
+        "startChar": 4,
+        "endLine": 35,
+        "endChar": 56
+      },
+      "revId": "d49e7538eeb90acb9d27bbcdfc2960e4c38d83f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ad1abb63_116b5706",
@@ -71,6 +95,30 @@
       "writtenOn": "2024-09-04T13:48:36Z",
       "side": 1,
       "message": "Please keep don\u0027t change this line otherwise the limit would have been Relational Operators other than numbers.\n\nThis cause the plot job broken because on the limit column we need numbers not operators.\n\nSee the current output e.g. look like for Limit column:\n\nLimit\n\u003d\u003d\n\u003e\u003d\n\u003e\u003d\nand continue like this...",
+      "range": {
+        "startLine": 111,
+        "startChar": 4,
+        "endLine": 111,
+        "endChar": 72
+      },
+      "revId": "d49e7538eeb90acb9d27bbcdfc2960e4c38d83f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c300e32c_835bee54",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-09-04T15:52:55Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ad1abb63_116b5706",
       "range": {
         "startLine": 111,
         "startChar": 4,
