@@ -289,7 +289,7 @@ getModuleDefinitions:
     description: Get module definitions (module name, revision, yang resource) with options to filter on module name and revision
     operationId: getModuleDefinitions
     parameters:
-      - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
+      - $ref: 'components.yaml#/components/parameters/cmHandleReferenceInPath'
       - $ref: 'components.yaml#/components/parameters/moduleNameInQuery'
       - $ref: 'components.yaml#/components/parameters/revisionInQuery'
     responses:
