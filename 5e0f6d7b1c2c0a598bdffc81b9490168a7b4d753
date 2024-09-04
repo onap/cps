@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a76e0476_e18ff898",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-09-04T14:42:16Z",
+      "side": 1,
+      "message": "The test suit on my local get stuck and not working after setup function completes. Please find the error happened on my local, otherwise good.",
+      "revId": "5e0f6d7b1c2c0a598bdffc81b9490168a7b4d753",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4379bbf0_acfba8f2",
@@ -60,6 +77,29 @@
         "startChar": 4,
         "endLine": 25,
         "endChar": 5
+      },
+      "revId": "5e0f6d7b1c2c0a598bdffc81b9490168a7b4d753",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "958b2880_cb20e3b2",
+        "filename": "k6-tests/ncmp/common/search-base.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-09-04T14:42:16Z",
+      "side": 1,
+      "message": "ERRO[0000] SyntaxError: file:///home/\u003cyourlocal\u003e/nordix/onap/cps/k6-tests/ncmp/common/search-base.js: Unexpected token, expected , (41:79)\n\n\nBetter to give provide it like:\n\n\"conditionParameters\": [{\"cpsPath\": \u0027//state[@cm-handle-state\u003d\"READY\"]\u0027}]",
+      "range": {
+        "startLine": 41,
+        "startChar": 16,
+        "endLine": 41,
+        "endChar": 89
       },
       "revId": "5e0f6d7b1c2c0a598bdffc81b9490168a7b4d753",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
