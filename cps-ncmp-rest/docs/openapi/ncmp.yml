@@ -264,7 +264,7 @@ fetchModuleReferencesByCmHandle:
     summary: Fetch all module references (name and revision) for a given cm handle
     operationId: getModuleReferencesByCmHandle
     parameters:
-      - $ref: 'components.yaml#/components/parameters/cmHandleInPath'
+      - $ref: 'components.yaml#/components/parameters/cmHandleReferenceInPath'
     responses:
       200:
         description: OK
