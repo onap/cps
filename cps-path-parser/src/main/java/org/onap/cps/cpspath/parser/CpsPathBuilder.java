@@ -46,7 +46,7 @@ public class CpsPathBuilder extends CpsPathBaseListener {
 
     private final StringBuilder normalizedXpathBuilder = new StringBuilder();
 
-    private final StringBuilder normalizedAncestorPathBuilder = new StringBuilder();
+    private int startIndexOfAncestorSchemaNodeIdentifier = 0;
 
     private boolean processingAncestorAxis = false;
 
@@ -55,13 +55,24 @@ public class CpsPathBuilder extends CpsPathBaseListener {
     private final List<String> booleanOperators = new ArrayList<>();
 
     @Override
+    public void exitSlash(final CpsPathParser.SlashContext ctx) {
+        normalizedXpathBuilder.append("/");
+    }
+
+    @Override
     public void exitPrefix(final PrefixContext ctx) {
         cpsPathQuery.setXpathPrefix(normalizedXpathBuilder.toString());
     }
 
     @Override
     public void exitParent(final CpsPathParser.ParentContext ctx) {
-        cpsPathQuery.setNormalizedParentPath(normalizedXpathBuilder.toString());
+        final String normalizedParentPath;
+        if (normalizedXpathBuilder.toString().equals("/")) {
+            normalizedParentPath = "";
+        } else {
+            normalizedParentPath = normalizedXpathBuilder.toString();
+        }
+        cpsPathQuery.setNormalizedParentPath(normalizedParentPath);
     }
 
     @Override
@@ -87,8 +98,7 @@ public class CpsPathBuilder extends CpsPathBaseListener {
     @Override
     public void exitDescendant(final DescendantContext ctx) {
         cpsPathQuery.setCpsPathPrefixType(DESCENDANT);
-        cpsPathQuery.setDescendantName(normalizedXpathBuilder.substring(1));
-        normalizedXpathBuilder.insert(0, "/");
+        cpsPathQuery.setDescendantName(normalizedXpathBuilder.substring(2));
     }
 
     @Override
@@ -107,12 +117,15 @@ public class CpsPathBuilder extends CpsPathBaseListener {
     @Override
     public void enterAncestorAxis(final AncestorAxisContext ctx) {
         processingAncestorAxis = true;
+        normalizedXpathBuilder.append("/ancestor::");
+        startIndexOfAncestorSchemaNodeIdentifier = normalizedXpathBuilder.length();
     }
 
     @Override
     public void exitAncestorAxis(final AncestorAxisContext ctx) {
-        cpsPathQuery.setAncestorSchemaNodeIdentifier(normalizedAncestorPathBuilder.substring(1));
         processingAncestorAxis = false;
+        cpsPathQuery.setAncestorSchemaNodeIdentifier(
+                normalizedXpathBuilder.substring(startIndexOfAncestorSchemaNodeIdentifier));
     }
 
     @Override
@@ -130,17 +143,11 @@ public class CpsPathBuilder extends CpsPathBaseListener {
     @Override
     public void enterListElementRef(final CpsPathParser.ListElementRefContext ctx) {
         normalizedXpathBuilder.append(OPEN_BRACKET);
-        if (processingAncestorAxis) {
-            normalizedAncestorPathBuilder.append(OPEN_BRACKET);
-        }
     }
 
     @Override
     public void exitListElementRef(final CpsPathParser.ListElementRefContext ctx) {
         normalizedXpathBuilder.append(CLOSE_BRACKET);
-        if (processingAncestorAxis) {
-            normalizedAncestorPathBuilder.append(CLOSE_BRACKET);
-        }
     }
 
     CpsPathQuery build() {
@@ -153,20 +160,15 @@ public class CpsPathBuilder extends CpsPathBaseListener {
     @Override
     public void exitContainerName(final CpsPathParser.ContainerNameContext ctx) {
         final String containerName = ctx.getText();
-        normalizedXpathBuilder.append("/")
-                .append(containerName);
-        containerNames.add(containerName);
-        if (processingAncestorAxis) {
-            normalizedAncestorPathBuilder.append("/").append(containerName);
+        normalizedXpathBuilder.append(containerName);
+        if (!processingAncestorAxis) {
+            containerNames.add(containerName);
         }
     }
 
     private void leafContext(final String leafName, final String operator, final Object comparisonValue) {
         leafConditions.add(new CpsPathQuery.LeafCondition(leafName, operator, comparisonValue));
         appendCondition(normalizedXpathBuilder, leafName, operator, comparisonValue);
-        if (processingAncestorAxis) {
-            appendCondition(normalizedAncestorPathBuilder, leafName, operator, comparisonValue);
-        }
     }
 
     private void appendCondition(final StringBuilder currentNormalizedPathBuilder, final String name,
@@ -176,12 +178,12 @@ public class CpsPathBuilder extends CpsPathBaseListener {
         if (!isStartOfExpression) {
             currentNormalizedPathBuilder.append(" ").append(getLastElement(booleanOperators)).append(" ");
         }
-        currentNormalizedPathBuilder.append("@")
-                                    .append(name)
-                                    .append(operator)
-                                    .append("'")
-                                    .append(value.toString().replace("'", "''"))
-                                    .append("'");
+        currentNormalizedPathBuilder.append("@").append(name).append(operator)
+                                    .append("'").append(escapeQuotesByDoublingThem(value.toString())).append("'");
+    }
+
+    private static String escapeQuotesByDoublingThem(final String value) {
+        return value.replace("'", "''");
     }
 
     private static String getLastElement(final List<String> listOfStrings) {
