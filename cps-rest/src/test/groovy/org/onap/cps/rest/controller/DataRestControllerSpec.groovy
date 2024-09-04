@@ -350,7 +350,7 @@ class DataRestControllerSpec extends Specification {
 
     def 'Get delta between two anchors'() {
         given: 'the service returns a list containing delta reports'
-            def deltaReports = new DeltaReportBuilder().actionUpdate().withXpath('some xpath').withSourceData('some key': 'some value').withTargetData('some key': 'some value').build()
+            def deltaReports = new DeltaReportBuilder().actionReplace().withXpath('some xpath').withSourceData('some key': 'some value').withTargetData('some key': 'some value').build()
             def xpath = 'some xpath'
             def endpoint = "$dataNodeBaseEndpointV2/anchors/sourceAnchor/delta"
             mockCpsDataService.getDeltaByDataspaceAndAnchors(dataspaceName, 'sourceAnchor', 'targetAnchor', xpath, OMIT_DESCENDANTS) >> [deltaReports]
@@ -363,12 +363,12 @@ class DataRestControllerSpec extends Specification {
         then: 'expected response code is returned'
             assert response.status == HttpStatus.OK.value()
         and: 'the response contains expected value'
-            assert response.contentAsString.contains("[{\"action\":\"update\",\"xpath\":\"some xpath\",\"sourceData\":{\"some key\":\"some value\"},\"targetData\":{\"some key\":\"some value\"}}]")
+            assert response.contentAsString.contains("[{\"action\":\"replace\",\"xpath\":\"some xpath\",\"sourceData\":{\"some key\":\"some value\"},\"targetData\":{\"some key\":\"some value\"}}]")
     }
 
     def 'Get delta between anchor and JSON payload with multipart file'() {
         given: 'sample delta report, xpath, yang model file and json payload'
-            def deltaReports = new DeltaReportBuilder().actionAdd().withXpath('some xpath').build()
+            def deltaReports = new DeltaReportBuilder().actionCreate().withXpath('some xpath').build()
             def xpath = 'some xpath'
             def endpoint = "$dataNodeBaseEndpointV2/anchors/$anchorName/delta"
         and: 'the service layer returns a list containing delta reports'
@@ -384,7 +384,7 @@ class DataRestControllerSpec extends Specification {
         then: 'expected response code is returned'
             assert response.status == HttpStatus.OK.value()
         and: 'the response contains expected value'
-            assert response.contentAsString.contains("[{\"action\":\"add\",\"xpath\":\"some xpath\"}]")
+            assert response.contentAsString.contains("[{\"action\":\"create\",\"xpath\":\"some xpath\"}]")
     }
 
     def 'Get delta between anchor and JSON payload without multipart file'() {
