@@ -16,6 +16,52 @@
       "message": "recheck",
       "revId": "99638efc78aae7d231232f0ea6bf2fd9e00f0b1f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b7fb93b_a60c0f8a",
+        "filename": "k6-tests/ncmp/ncmp-kpi.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-04T12:55:57Z",
+      "side": 1,
+      "message": "should NOT constant request rate instead send a FAST as you can (no delay) a few request of large size ie 50 * 1000 cm handles then wait till All are processed\nNO fixed DURATION either",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 31
+      },
+      "revId": "99638efc78aae7d231232f0ea6bf2fd9e00f0b1f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52f3e3a8_038e445c",
+        "filename": "k6-tests/ncmp/ncmp-kpi.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-04T12:55:57Z",
+      "side": 1,
+      "message": "4 batch request per second: 15 * 60 * 4 \u003d 3,600 batches\n3,600 batches \u003d 720,000 cm handles ie expected message",
+      "range": {
+        "startLine": 199,
+        "startChar": 8,
+        "endLine": 199,
+        "endChar": 79
+      },
+      "revId": "99638efc78aae7d231232f0ea6bf2fd9e00f0b1f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
