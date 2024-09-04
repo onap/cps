@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a88264c4_4ad8a362",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParser.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-09-04T14:41:48Z",
+      "side": 1,
+      "message": "It\u0027s the same as the existing code on line 59.\n\nIt\u0027s because the Yang cache (yangTextSchemaSourceSetCache) is not a hazelcast cache, it is a caffeine cache, local to each instance only. So if a schema is updated/deleted on one CPS instance, the other instance cache would be out of sync. So try to validate first, if it fails invalidate the cache and retry. If it still fails after cache refresh, then it is a real failure.",
+      "parentUuid": "3ba3bc24_8031dc44",
+      "revId": "10c3b1e1cb475288f4ceb03cc2eaed3f21ffd13e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9ac2dbfa_e6a13e78",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java",
         "patchSetId": 14
