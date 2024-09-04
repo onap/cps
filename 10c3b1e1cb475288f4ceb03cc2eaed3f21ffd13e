@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c49d4cc2_777f68bf",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParser.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-09-04T14:43:21Z",
+      "side": 1,
+      "message": "I am curious if this and other new methods are really needed. The existing method \u0027parseData\u0027 already validates during parsing, no?",
+      "range": {
+        "startLine": 92,
+        "startChar": 16,
+        "endLine": 92,
+        "endChar": 36
+      },
+      "revId": "10c3b1e1cb475288f4ceb03cc2eaed3f21ffd13e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3ba3bc24_8031dc44",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParser.java",
         "patchSetId": 14
