@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -36,21 +36,40 @@ class CpsPathUtilSpec extends Specification {
             'single quotes' | "/parent/child[@common-leaf-name='123']"
     }
 
-    def 'Normalized parent xpaths'() {
-        when: 'a given xpath with #scenario is parsed'
-            def result = CpsPathUtil.getNormalizedParentXpath(xpath)
+    def 'Normalized parent paths of absolute paths'() {
+        when: 'a given cps path is parsed'
+            def result = CpsPathUtil.getNormalizedParentXpath(cpsPath)
         then: 'the result is the expected parent path'
             assert result == expectedParentPath
-        where: 'the following xpaths are used'
-            scenario                         | xpath                                 || expectedParentPath
-            'no child'                       | '/parent'                             || ''
-            'child and parent'               | '/parent/child'                       || '/parent'
-            'grand child'                    | '/parent/child/grandChild'            || '/parent/child'
-            'parent & top is list element'   | '/parent[@id=1]/child'                || "/parent[@id='1']"
-            'parent is list element'         | '/parent/child[@id=1]/grandChild'     || "/parent/child[@id='1']"
-            'parent is list element with /'  | "/parent/child[@id='a/b']/grandChild" || "/parent/child[@id='a/b']"
-            'parent is list element with ['  | "/parent/child[@id='a[b']/grandChild" || "/parent/child[@id='a[b']"
-            'parent is list element using "' | '/parent/child[@id="x"]/grandChild'   || "/parent/child[@id='x']"
+        where: 'the following absolute cps paths are used'
+            cpsPath                               || expectedParentPath
+            '/parent'                             || ''
+            '/parent/child'                       || '/parent'
+            '/parent/child/grandChild'            || '/parent/child'
+            '/parent[@id=1]/child'                || "/parent[@id='1']"
+            '/parent/child[@id=1]/grandChild'     || "/parent/child[@id='1']"
+            '/parent/child/grandChild[@id="x"]'   || "/parent/child"
+            '/books/ancestor::bookstore'          || ''
+            '/parent/child/ancestor::bookstore'   || '/parent'
+            '/parent/child/name[text()="value"]'  || '/parent'
+    }
+
+    def 'Normalized parent paths of descendant paths'() {
+        when: 'a given cps path is parsed'
+            def result = CpsPathUtil.getNormalizedParentXpath(cpsPath)
+        then: 'the result is the expected parent path'
+            assert result == expectedParentPath
+        where: 'the following descendant cps paths are used'
+            cpsPath                               || expectedParentPath
+            '//parent'                            || ''
+            '//parent/child'                      || '//parent'
+            '//parent/child/grandChild'           || '//parent/child'
+            '//parent[@id=1]/child'               || "//parent[@id='1']"
+            '//parent/child[@id=1]/grandChild'    || "//parent/child[@id='1']"
+            '//parent/child/grandChild[@id="x"]'  || "//parent/child"
+            '//books/ancestor::bookstore'         || ''
+            '//parent/child/ancestor::bookstore'  || '//parent'
+            '//parent/child/name[text()="value"]' || '//parent'
     }
 
     def 'Get node ID sequence for given xpath'() {
@@ -67,17 +86,19 @@ class CpsPathUtilSpec extends Specification {
             'parent is list element'         | '/parent/child[@id=1]/grandChild'     || ["parent","child","grandChild"]
             'parent is list element with /'  | "/parent/child[@id='a/b']/grandChild" || ["parent","child","grandChild"]
             'parent is list element with ['  | "/parent/child[@id='a[b']/grandChild" || ["parent","child","grandChild"]
+            'does not include ancestor node' | '/parent/child/ancestor::grandparent' || ["parent","child"]
     }
 
     def 'Recognizing (absolute) xpaths to List elements'() {
         expect: 'check for list returns the correct values'
             assert CpsPathUtil.isPathToListElement(xpath) == expectList
         where: 'the following xpaths are used'
-            xpath                  || expectList
-            '/parent[@id=1]'       || true
-            '/parent[@id=1]/child' || false
-            '/parent/child[@id=1]' || true
-            '//child[@id=1]'       || false
+            xpath                               || expectList
+            '/parent[@id=1]'                    || true
+            '/parent[@id=1]/child'              || false
+            '/parent/child[@id=1]'              || true
+            '//child[@id=1]'                    || false
+            '/books/ancestor::bookstore[@id=1]' || false
     }
 
     def 'Parsing Exception'() {

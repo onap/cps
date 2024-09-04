@@ -29,19 +29,21 @@ grammar CpsPath ;
 
 cpsPath : ( prefix | descendant ) multipleLeafConditions? textFunctionCondition? containsFunctionCondition? ancestorAxis? EOF ;
 
+slash : SLASH ;
+
 ancestorAxis : SLASH KW_ANCESTOR COLONCOLON ancestorPath ;
 
-ancestorPath : yangElement ( SLASH yangElement)* ;
+ancestorPath : yangElement ( slash yangElement)* ;
 
-textFunctionCondition : SLASH leafName OB KW_TEXT_FUNCTION EQ StringLiteral CB ;
+textFunctionCondition : slash leafName OB KW_TEXT_FUNCTION EQ StringLiteral CB ;
 
 containsFunctionCondition : OB KW_CONTAINS_FUNCTION OP AT leafName COMMA StringLiteral CP CB ;
 
-parent : ( SLASH yangElement)* ;
+parent : ( slash yangElement)* ;
 
-prefix : parent SLASH containerName ;
+prefix : parent slash containerName ;
 
-descendant : SLASH prefix ;
+descendant : slash prefix ;
 
 yangElement : containerName listElementRef? ;
 
