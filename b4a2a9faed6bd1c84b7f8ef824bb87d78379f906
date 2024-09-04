@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86c532a1_4f47db33",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-04T14:26:47Z",
+      "side": 1,
+      "message": "Update commit message to indicate that this is a temporary solution and that the proper solution will address the retry mechanism in the production code",
+      "revId": "b4a2a9faed6bd1c84b7f8ef824bb87d78379f906",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
