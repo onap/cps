@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "21a2859a_957de7ee",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-04T14:54:15Z",
+      "side": 1,
+      "message": "good improvement, not sure why it was doen so awkwardly with 2 separate collections for data and comparators, probably an \u0027evolution\u0027 type issue",
+      "revId": "8e22c6a80b491cc98d4052e05dc94ee645bf2197",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
