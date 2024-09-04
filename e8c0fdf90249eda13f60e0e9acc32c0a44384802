@@ -35,6 +35,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7467dc6_1323b766",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-09-04T11:00:46Z",
+      "side": 1,
+      "message": "For reducing log there is another commit (Merged Yesterday): 138854: Fix huge logs produced when errors occur in k6 | https://gerrit.onap.org/r/c/cps/+/138854\n\nThis commit is all about high-cardinality issue that it fixed by introducing a REST url/endpoint tagging while performing GET/POST request as below :\n\nIn utils.js :\n\n- export function performGetRequest(url, metricTag)\n- export function performPostRequest(url, payload, metricTag)\n\nmetricTag - A string representing the metric tag to associate with the request.\nThis tag is used for monitoring and tracking the request and group by to avoid high-cardinality.",
+      "parentUuid": "f9a966f6_e66191ff",
+      "revId": "e8c0fdf90249eda13f60e0e9acc32c0a44384802",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a535299c_2533bc8b",
