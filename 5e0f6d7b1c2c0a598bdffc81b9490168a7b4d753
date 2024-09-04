@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "46c3fbe0_819e36a7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-09-04T09:10:30Z",
+      "side": 1,
+      "message": "fine by me.\nAlso if you can mention the requirements page in the commit message as well.",
+      "revId": "5e0f6d7b1c2c0a598bdffc81b9490168a7b4d753",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4379bbf0_acfba8f2",
+        "filename": "k6-tests/ncmp/common/search-base.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-09-04T09:10:30Z",
+      "side": 1,
+      "message": "NB: any particular reason to convert from single quotes to double quotes?",
+      "range": {
+        "startLine": 25,
+        "startChar": 4,
+        "endLine": 25,
+        "endChar": 5
+      },
+      "revId": "5e0f6d7b1c2c0a598bdffc81b9490168a7b4d753",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
