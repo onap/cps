@@ -38,7 +38,7 @@ Sample Delta Report
 
     [
       {
-        "action": "ADD",
+        "action": "create",
         "xpath": "/bookstore/categories/[@code=3]",
         "target-data": {
           "code": "3,",
@@ -46,7 +46,7 @@ Sample Delta Report
         }
       },
       {
-        "action": "REMOVE",
+        "action": "remove",
         "xpath": "/bookstore/categories/[@code=1]",
         "source-data": {
           "code": "1,",
@@ -54,7 +54,7 @@ Sample Delta Report
         }
       },
       {
-        "action": "UPDATE",
+        "action": "replace",
         "xpath": "/bookstore/categories/[@code=2]",
         "source-data": {
           "name": "Funny"

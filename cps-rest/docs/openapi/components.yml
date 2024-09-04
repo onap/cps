@@ -141,17 +141,17 @@ components:
                   name: kids
     deltaReportSample:
       value:
-        - action: "ADD"
+        - action: "create"
           xpath: "/bookstore/categories/[@code=3]"
           target-data:
             code: 3,
             name: "kidz"
-        - action: "REMOVE"
+        - action: "remove"
           xpath: "/bookstore/categories/[@code=1]"
           source-data:
             code: 1,
             name: "Fiction"
-        - action: "UPDATE"
+        - action: "replace"
           xpath: "/bookstore/categories/[@code=2]"
           source-data:
             name: "Funny"

@@ -48,8 +48,8 @@ public class DeltaReportBuilder {
         return this;
     }
 
-    public DeltaReportBuilder actionAdd() {
-        this.action = DeltaReport.ADD_ACTION;
+    public DeltaReportBuilder actionCreate() {
+        this.action = DeltaReport.CREATE_ACTION;
         return this;
     }
 
@@ -58,8 +58,8 @@ public class DeltaReportBuilder {
         return this;
     }
 
-    public DeltaReportBuilder actionUpdate() {
-        this.action = DeltaReport.UPDATE_ACTION;
+    public DeltaReportBuilder actionReplace() {
+        this.action = DeltaReport.REPLACE_ACTION;
         return this;
     }
 

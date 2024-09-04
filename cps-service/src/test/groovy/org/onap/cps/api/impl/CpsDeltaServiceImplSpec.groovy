@@ -51,8 +51,8 @@ class CpsDeltaServiceImplSpec extends Specification{
     def 'Get delta between data nodes for ADDED data'() {
         when: 'attempt to get delta between 2 data nodes'
             def result = objectUnderTest.getDeltaReports([], targetDataNodeWithLeafData)
-        then: 'the delta report contains expected "add" action'
-            assert result[0].action.equals('add')
+        then: 'the delta report contains expected "create" action'
+            assert result[0].action.equals('create')
         and: 'the delta report contains expected xpath'
             assert result[0].xpath == '/parent'
         and: 'the delta report contains no source data'
@@ -68,12 +68,12 @@ class CpsDeltaServiceImplSpec extends Specification{
         when: 'attempt to get delta between 2 data nodes'
             def result = objectUnderTest.getDeltaReports(sourceDataNode, targetDataNode)
         then: 'the delta report contains expected details for parent node'
-            assert result[0].action.equals('update')
+            assert result[0].action.equals('replace')
             assert result[0].xpath == '/parent'
             assert result[0].sourceData == ['parent-leaf': 'parent-payload']
             assert result[0].targetData == ['parent-leaf': 'parent-payload-updated']
         and: 'the delta report contains expected details for child node'
-            assert result[1].action.equals('update')
+            assert result[1].action.equals('replace')
             assert result[1].xpath == '/parent/child'
             assert result[1].sourceData == ['child-leaf': 'child-payload']
             assert result[1].targetData == ['child-leaf': 'child-payload-updated']
@@ -82,8 +82,8 @@ class CpsDeltaServiceImplSpec extends Specification{
     def 'Delta report between leaves, #scenario'() {
         when: 'attempt to get delta between 2 data nodes'
             def result = objectUnderTest.getDeltaReports(sourceDataNode, targetDataNode)
-        then: 'the delta report contains expected "update" action'
-            assert result[0].action.equals('update')
+        then: 'the delta report contains expected "replace" action'
+            assert result[0].action.equals('replace')
         and: 'the delta report contains expected xpath'
             assert result[0].xpath == '/parent'
         and: 'the delta report contains expected source and target data'
@@ -100,7 +100,7 @@ class CpsDeltaServiceImplSpec extends Specification{
     def 'Get delta between data nodes for updated data, where source and target data nodes have no leaves '() {
         when: 'attempt to get delta between 2 data nodes'
             def result = objectUnderTest.getDeltaReports(sourceDataNodeWithoutLeafData, targetDataNodeWithoutLeafData)
-        then: 'the delta report contains "update" action with right data'
+        then: 'the delta report is empty'
             assert result.isEmpty()
     }
 }
