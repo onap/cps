@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47ddc565_e22c75a4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-09-04T14:47:55Z",
+      "side": 1,
+      "message": "Does this commit forked from Nordix or Onap?\nSince can not find it on Nordix.",
+      "revId": "4b8a4fa3c9d4f3553e04c776592e4835567eacab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
