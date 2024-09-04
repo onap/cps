@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2023 Nordix Foundation
+ *  Copyright (C) 2021-2024 Nordix Foundation
  *  Modifications Copyright (C) 2023 TechMahindra Ltd
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -42,7 +42,7 @@ public class CpsPathBuilder extends CpsPathBaseListener {
 
     private final CpsPathQuery cpsPathQuery = new CpsPathQuery();
 
-    private final List<CpsPathQuery.DataLeaf> leavesData = new ArrayList<>();
+    private final List<CpsPathQuery.LeafCondition> leafConditions = new ArrayList<>();
 
     private final StringBuilder normalizedXpathBuilder = new StringBuilder();
 
@@ -53,8 +53,6 @@ public class CpsPathBuilder extends CpsPathBaseListener {
     private final List<String> containerNames = new ArrayList<>();
 
     private final List<String> booleanOperators = new ArrayList<>();
-
-    private final List<String> comparativeOperators = new ArrayList<>();
 
     @Override
     public void exitPrefix(final PrefixContext ctx) {
@@ -68,6 +66,8 @@ public class CpsPathBuilder extends CpsPathBaseListener {
 
     @Override
     public void exitLeafCondition(final LeafConditionContext ctx) {
+        final String leafName = ctx.leafName().getText();
+        final String operator = ctx.comparativeOperators().getText();
         final Object comparisonValue;
         if (ctx.IntegerLiteral() != null) {
             comparisonValue = Integer.valueOf(ctx.IntegerLiteral().getText());
@@ -76,17 +76,12 @@ public class CpsPathBuilder extends CpsPathBaseListener {
         } else {
             throw new PathParsingException("Unsupported comparison value encountered in expression" + ctx.getText());
         }
-        leafContext(ctx.leafName(), comparisonValue);
+        leafContext(leafName, operator, comparisonValue);
     }
 
     @Override
     public void exitBooleanOperators(final CpsPathParser.BooleanOperatorsContext ctx) {
         booleanOperators.add(ctx.getText());
-    }
-
-    @Override
-    public void exitComparativeOperators(final CpsPathParser.ComparativeOperatorsContext ctx) {
-        comparativeOperators.add(ctx.getText());
     }
 
     @Override
@@ -99,15 +94,14 @@ public class CpsPathBuilder extends CpsPathBaseListener {
     @Override
     public void enterMultipleLeafConditions(final MultipleLeafConditionsContext ctx)  {
         normalizedXpathBuilder.append(OPEN_BRACKET);
-        leavesData.clear();
+        leafConditions.clear();
         booleanOperators.clear();
-        comparativeOperators.clear();
     }
 
     @Override
     public void exitMultipleLeafConditions(final MultipleLeafConditionsContext ctx) {
         normalizedXpathBuilder.append(CLOSE_BRACKET);
-        cpsPathQuery.setLeavesData(leavesData);
+        cpsPathQuery.setLeafConditions(leafConditions);
     }
 
     @Override
@@ -153,7 +147,6 @@ public class CpsPathBuilder extends CpsPathBaseListener {
         cpsPathQuery.setNormalizedXpath(normalizedXpathBuilder.toString());
         cpsPathQuery.setContainerNames(containerNames);
         cpsPathQuery.setBooleanOperators(booleanOperators);
-        cpsPathQuery.setComparativeOperators(comparativeOperators);
         if (cpsPathQuery.hasAncestorAxis() && cpsPathQuery.getXpathPrefix()
                 .endsWith("/" + cpsPathQuery.getAncestorSchemaNodeIdentifier())) {
             cpsPathQuery.setAncestorSchemaNodeIdentifier("");
@@ -172,16 +165,16 @@ public class CpsPathBuilder extends CpsPathBaseListener {
         }
     }
 
-    private void leafContext(final CpsPathParser.LeafNameContext ctx, final Object comparisonValue) {
-        leavesData.add(new CpsPathQuery.DataLeaf(ctx.getText(), comparisonValue));
-        appendCondition(normalizedXpathBuilder, ctx.getText(), comparisonValue);
+    private void leafContext(final String leafName, final String operator, final Object comparisonValue) {
+        leafConditions.add(new CpsPathQuery.LeafCondition(leafName, operator, comparisonValue));
+        appendCondition(normalizedXpathBuilder, leafName, operator, comparisonValue);
         if (processingAncestorAxis) {
-            appendCondition(normalizedAncestorPathBuilder, ctx.getText(), comparisonValue);
+            appendCondition(normalizedAncestorPathBuilder, leafName, operator, comparisonValue);
         }
     }
 
     private void appendCondition(final StringBuilder currentNormalizedPathBuilder, final String name,
-                                 final Object value) {
+                                 final String operator, final Object value) {
         final char lastCharacter = currentNormalizedPathBuilder.charAt(currentNormalizedPathBuilder.length() - 1);
         final boolean isStartOfExpression = lastCharacter == '[';
         if (!isStartOfExpression) {
@@ -189,7 +182,7 @@ public class CpsPathBuilder extends CpsPathBaseListener {
         }
         currentNormalizedPathBuilder.append("@")
                                     .append(name)
-                                    .append(getLastElement(comparativeOperators))
+                                    .append(operator)
                                     .append("'")
                                     .append(value.toString().replace("'", "''"))
                                     .append("'");

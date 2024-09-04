@@ -194,22 +194,20 @@ public class FragmentQueryBuilder {
     private void queryLeafConditions(final CpsPathQuery cpsPathQuery, final StringBuilder sqlStringBuilder) {
         sqlStringBuilder.append(" AND (");
         final Queue<String> booleanOperatorsQueue = new LinkedList<>(cpsPathQuery.getBooleanOperators());
-        final Queue<String> comparativeOperatorQueue = new LinkedList<>(cpsPathQuery.getComparativeOperators());
-        cpsPathQuery.getLeavesData().forEach(leaf -> {
-            final String nextComparativeOperator = comparativeOperatorQueue.poll();
-            if (leaf.getValue() instanceof Integer) {
-                sqlStringBuilder.append("(attributes ->> '").append(leaf.getName()).append("')\\:\\:int");
-                sqlStringBuilder.append(nextComparativeOperator);
-                sqlStringBuilder.append(leaf.getValue());
+        cpsPathQuery.getLeafConditions().forEach(leafCondition -> {
+            if (leafCondition.value() instanceof Integer) {
+                sqlStringBuilder.append("(attributes ->> '").append(leafCondition.name()).append("')\\:\\:int");
+                sqlStringBuilder.append(leafCondition.operator());
+                sqlStringBuilder.append(leafCondition.value());
             } else {
-                if ("=".equals(nextComparativeOperator)) {
-                    final String leafValueAsText = leaf.getValue().toString();
-                    sqlStringBuilder.append("attributes ->> '").append(leaf.getName()).append("'");
+                if ("=".equals(leafCondition.operator())) {
+                    final String leafValueAsText = leafCondition.value().toString();
+                    sqlStringBuilder.append("attributes ->> '").append(leafCondition.name()).append("'");
                     sqlStringBuilder.append(" = '");
                     sqlStringBuilder.append(EscapeUtils.escapeForSqlStringLiteral(leafValueAsText));
                     sqlStringBuilder.append("'");
                 } else {
-                    throw new CpsPathException(" can use only " + nextComparativeOperator + " with integer ");
+                    throw new CpsPathException(" can use only " + leafCondition.operator() + " with integer ");
                 }
             }
             if (!booleanOperatorsQueue.isEmpty()) {

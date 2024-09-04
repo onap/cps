@@ -48,8 +48,8 @@ class CpsPathQuerySpec extends Specification {
         and: 'the right query parameters are set'
             assert result.xpathPrefix == expectedXpathPrefix
             assert result.hasLeafConditions()
-            assert result.leavesData[0].name == expectedLeafName
-            assert result.leavesData[0].value == expectedLeafValue
+            assert result.leafConditions[0].name() == expectedLeafName
+            assert result.leafConditions[0].value() == expectedLeafValue
         where: 'the following data is used'
             scenario               | cpsPath                                                    || expectedXpathPrefix                             | expectedLeafName       | expectedLeafValue
             'leaf of type String'  | '/parent/child[@common-leaf-name="common-leaf-value"]'     || '/parent/child'                                 | 'common-leaf-name'     | 'common-leaf-value'
@@ -123,11 +123,11 @@ class CpsPathQuerySpec extends Specification {
         when: 'the given cps path is parsed'
             def result = CpsPathQuery.createFrom(cpsPath)
         then: 'the expected number of leaves are returned'
-            result.leavesData.size() == expectedNumberOfLeaves
+            result.leafConditions.size() == expectedNumberOfLeaves
         and: 'the given operator(s) returns in the correct order'
             result.booleanOperators == expectedOperators
         and: 'the given comparativeOperator(s) returns in the correct order'
-            result.comparativeOperators == expectedComparativeOperator
+            result.leafConditions.operator == expectedComparativeOperator
         where: 'the following data is used'
             cpsPath                                                                                   || expectedNumberOfLeaves || expectedOperators || expectedComparativeOperator
             '/parent[@code=1]/child[@common-leaf-name-int=5]'                                         || 1                      || []                || ['=']
@@ -234,19 +234,19 @@ class CpsPathQuerySpec extends Specification {
         when: 'the given cps path is parsed using multiple conditions on same leaf'
             def result = CpsPathQuery.createFrom('/test[@same-name="value1" or @same-name="value2"]')
         then: 'two leaves are present with correct values'
-            assert result.leavesData.size() == 2
-            assert result.leavesData[0].name == "same-name"
-            assert result.leavesData[0].value == "value1"
-            assert result.leavesData[1].name == "same-name"
-            assert result.leavesData[1].value == "value2"
+            assert result.leafConditions.size() == 2
+            assert result.leafConditions[0].name == "same-name"
+            assert result.leafConditions[0].value == "value1"
+            assert result.leafConditions[1].name == "same-name"
+            assert result.leafConditions[1].value == "value2"
     }
 
     def 'Ordering of data leaves is preserved.'() {
         when: 'the given cps path is parsed'
             def result = CpsPathQuery.createFrom(cpsPath)
         then: 'the order of the data leaves is preserved'
-            assert result.leavesData[0].name == expectedFirstLeafName
-            assert result.leavesData[1].name == expectedSecondLeafName
+            assert result.leafConditions[0].name == expectedFirstLeafName
+            assert result.leafConditions[1].name == expectedSecondLeafName
         where: 'the following data is used'
             cpsPath                                      || expectedFirstLeafName | expectedSecondLeafName
             '/test[@name1="value1" and @name2="value2"]' || 'name1'               | 'name2'
