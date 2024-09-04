@@ -24,15 +24,15 @@ import spock.lang.Specification
 
 class DeltaReportBuilderSpec extends Specification{
 
-    def 'Generating delta report with  for add action'() {
+    def 'Generating delta report for create action'() {
         when: 'delta report is generated'
             def result = new DeltaReportBuilder()
-                    .actionAdd()
+                    .actionCreate()
                     .withXpath('/xpath')
                     .withTargetData(['data':'leaf-data'])
                     .build()
-        then: 'the delta report contains the "add" action with expected target data'
-            assert result.action == 'add'
+        then: 'the delta report contains the "create" action with expected target data'
+            assert result.action == 'create'
             assert result.xpath == '/xpath'
             assert result.targetData == ['data': 'leaf-data']
     }
