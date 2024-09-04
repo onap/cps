@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e902d580_1b98471e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-09-04T13:14:11Z",
+      "side": 1,
+      "message": "do we need to add a unit test for this ??\nor happy with the integration tests in place ??",
+      "revId": "415063e4a0c4f9f4868cb2d1a2717cf05bb4eb19",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
