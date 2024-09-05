@@ -65,6 +65,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "11f45900_5d08783b",
+        "filename": "k6-tests/ncmp/ncmp-kpi.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-09-05T15:42:55Z",
+      "side": 1,
+      "message": "Daniel and myself had a meeting to discuss about the executor and decided to use shared-iterations. Locally, this has been tested together for several scenarios (also the suggested by k6 developers) to measure throughput of the operation.",
+      "parentUuid": "f4dd59ad_2a9af332",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 31
+      },
+      "revId": "99638efc78aae7d231232f0ea6bf2fd9e00f0b1f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "52f3e3a8_038e445c",
