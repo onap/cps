@@ -26,6 +26,7 @@ import java.time.Duration;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -75,8 +76,8 @@ public class ModuleOperationsUtils {
      *
      * @return cm handles (data nodes) in ADVISED state (empty list if none found)
      */
-    public List<DataNode> getAdvisedCmHandles() {
-        final List<DataNode> advisedCmHandlesAsDataNodes =
+    public Collection<DataNode> getAdvisedCmHandles() {
+        final Collection<DataNode> advisedCmHandlesAsDataNodes =
             cmHandleQueryService.queryCmHandlesByState(CmHandleState.ADVISED);
         log.debug("Total number of fetched advised cm handle(s) is (are) {}", advisedCmHandlesAsDataNodes.size());
         return advisedCmHandlesAsDataNodes;
@@ -90,7 +91,7 @@ public class ModuleOperationsUtils {
      *         return empty list if not found
      */
     public List<YangModelCmHandle> getUnsynchronizedReadyCmHandles() {
-        final List<DataNode> unsynchronizedCmHandles = cmHandleQueryService
+        final Collection<DataNode> unsynchronizedCmHandles = cmHandleQueryService
                 .queryCmHandlesByOperationalSyncState(DataStoreSyncState.UNSYNCHRONIZED);
 
         final List<YangModelCmHandle> yangModelCmHandles = new ArrayList<>();
@@ -110,8 +111,8 @@ public class ModuleOperationsUtils {
      *
      * @return a random LOCKED yang model cm handle, return null if not found
      */
-    public List<YangModelCmHandle> getCmHandlesThatFailedModelSyncOrUpgrade() {
-        final List<DataNode> lockedCmHandlesAsDataNodeList
+    public Collection<YangModelCmHandle> getCmHandlesThatFailedModelSyncOrUpgrade() {
+        final Collection<DataNode> lockedCmHandlesAsDataNodeList
                 = cmHandleQueryService.queryCmHandleAncestorsByCpsPath(CPS_PATH_CM_HANDLES_MODEL_SYNC_FAILED_OR_UPGRADE,
                 FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
         return convertCmHandlesDataNodesToYangModelCmHandles(lockedCmHandlesAsDataNodeList);
@@ -236,8 +237,8 @@ public class ModuleOperationsUtils {
         return jsonObjectMapper.asJsonString(Map.of(firstElement.getKey(), firstElement.getValue()));
     }
 
-    private List<YangModelCmHandle> convertCmHandlesDataNodesToYangModelCmHandles(
-            final List<DataNode> cmHandlesAsDataNodeList) {
+    private Collection<YangModelCmHandle> convertCmHandlesDataNodesToYangModelCmHandles(
+            final Collection<DataNode> cmHandlesAsDataNodeList) {
         return cmHandlesAsDataNodeList.stream().map(YangDataConverter::toYangModelCmHandle).toList();
     }
 

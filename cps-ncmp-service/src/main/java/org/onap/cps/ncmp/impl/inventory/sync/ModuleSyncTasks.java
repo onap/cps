@@ -23,7 +23,6 @@ package org.onap.cps.ncmp.impl.inventory.sync;
 import com.hazelcast.map.IMap;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -100,7 +99,7 @@ public class ModuleSyncTasks {
      *
      * @param failedCmHandles previously failed (locked) cm handles
      */
-    public void resetFailedCmHandles(final List<YangModelCmHandle> failedCmHandles) {
+    public void resetFailedCmHandles(final Collection<YangModelCmHandle> failedCmHandles) {
         final Map<YangModelCmHandle, CmHandleState> cmHandleStatePerCmHandle = new HashMap<>(failedCmHandles.size());
         for (final YangModelCmHandle failedCmHandle : failedCmHandles) {
             final CompositeState compositeState = failedCmHandle.getCompositeState();

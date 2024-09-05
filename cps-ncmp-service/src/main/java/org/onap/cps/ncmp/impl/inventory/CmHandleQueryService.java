@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2023 Nordix Foundation
+ *  Copyright (C) 2022-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -21,7 +21,6 @@
 package org.onap.cps.ncmp.impl.inventory;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 import org.onap.cps.ncmp.impl.inventory.models.CmHandleState;
 import org.onap.cps.spi.FetchDescendantsOption;
@@ -59,7 +58,7 @@ public interface CmHandleQueryService {
      * @param cmHandleState cm handle state
      * @return a list of data nodes representing the cm handles.
      */
-    List<DataNode> queryCmHandlesByState(CmHandleState cmHandleState);
+    Collection<DataNode> queryCmHandlesByState(CmHandleState cmHandleState);
 
     /**
      * Method to return data nodes with ancestor representing the cm handles.
@@ -67,8 +66,7 @@ public interface CmHandleQueryService {
      * @param cpsPath cps path for which the cmHandle is requested
      * @return a list of data nodes representing the cm handles.
      */
-    List<DataNode> queryCmHandleAncestorsByCpsPath(String cpsPath,
-                                                   FetchDescendantsOption fetchDescendantsOption);
+    Collection<DataNode> queryCmHandleAncestorsByCpsPath(String cpsPath, FetchDescendantsOption fetchDescendantsOption);
 
     /**
      * Method to return data nodes representing the cm handles.
@@ -76,7 +74,7 @@ public interface CmHandleQueryService {
      * @param cpsPath cps path for which the cmHandle is requested
      * @return a list of data nodes representing the cm handles.
      */
-    List<DataNode> queryNcmpRegistryByCpsPath(String cpsPath, FetchDescendantsOption fetchDescendantsOption);
+    Collection<DataNode> queryNcmpRegistryByCpsPath(String cpsPath, FetchDescendantsOption fetchDescendantsOption);
 
     /**
      * Method to check the state of a cm handle with given id.
@@ -93,7 +91,7 @@ public interface CmHandleQueryService {
      * @param dataStoreSyncState sync state
      * @return a list of data nodes representing the cm handles.
      */
-    List<DataNode> queryCmHandlesByOperationalSyncState(DataStoreSyncState dataStoreSyncState);
+    Collection<DataNode> queryCmHandlesByOperationalSyncState(DataStoreSyncState dataStoreSyncState);
 
     /**
      * Get all cm handles ids by DMI plugin identifier.
