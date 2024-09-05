@@ -16,6 +16,23 @@
       "message": "fine by me.",
       "revId": "0f225618ab5a5d918c6b1d58afcad17c99d7aad8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5dbc9e40_767ab10b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-09-05T09:49:34Z",
+      "side": 1,
+      "message": "merging based on previous +1s from Ger and Levente.",
+      "revId": "0f225618ab5a5d918c6b1d58afcad17c99d7aad8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
