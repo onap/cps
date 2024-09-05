@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2023 Nordix Foundation
+ *  Copyright (C) 2022-2024 Nordix Foundation
  *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -167,12 +167,26 @@ class CmHandleQueryServiceImplSpec extends Specification {
 
     def 'Retrieve cm handle by cps path '() {
         given: 'a cm handle state to query based on the cps path'
-            def cmHandleDataNode = new DataNode(xpath: 'xpath', leaves: ['cm-handle-state': 'LOCKED'])
-            def cpsPath = '//cps-path'
-        and: 'cps data service returns a valid data node'
+            def cmHandleDataNode = new DataNode(xpath: "/dmi-registry/cm-handles[@id='ch-1']", leaves: ['id': 'ch-1'])
+            def cpsPath = "//state[@cm-handle-state='LOCKED']"
+        and: 'cps data service returns a valid data node for cm handle ancestor'
             mockCpsDataPersistenceService.queryDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
                 cpsPath + '/ancestor::cm-handles', INCLUDE_ALL_DESCENDANTS)
                 >> Arrays.asList(cmHandleDataNode)
+        when: 'get cm handles by cps path is invoked'
+            def result = objectUnderTest.queryCmHandleAncestorsByCpsPath(cpsPath, INCLUDE_ALL_DESCENDANTS)
+        then: 'the returned result is a list of data nodes returned by cps data service'
+            assert result.contains(cmHandleDataNode)
+    }
+
+    def 'Retrieve cm handle by cps path querying cm handle directly'() {
+        given: 'a cm handle to query based on the cps path'
+            def cmHandleDataNode = new DataNode(xpath: "/dmi-registry/cm-handles[@id='ch-2']", leaves: ['id': 'ch-2'])
+            def cpsPath = "//cm-handles[@alternate-id='1']"
+        and: 'cps data service returns a valid data node'
+            mockCpsDataPersistenceService.queryDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+                    cpsPath, INCLUDE_ALL_DESCENDANTS)
+                    >> Arrays.asList(cmHandleDataNode)
         when: 'get cm handles by cps path is invoked'
             def result = objectUnderTest.queryCmHandleAncestorsByCpsPath(cpsPath, INCLUDE_ALL_DESCENDANTS)
         then: 'the returned result is a list of data nodes returned by cps data service'

@@ -41,7 +41,7 @@ class RestApiSpec extends CpsIntegrationSpecBase {
                 'ch-3': ['M1', 'M3']
             ]
         when: 'a POST request is made to register the CM Handles'
-            def requestBody = '{"dmiPlugin":"'+DMI1_URL+'","createdCmHandles":[{"cmHandle":"ch-1"},{"cmHandle":"ch-2"},{"cmHandle":"ch-3"}]}'
+            def requestBody = '{"dmiPlugin":"'+DMI1_URL+'","createdCmHandles":[{"cmHandle":"ch-1","alternateId":"alt-1"},{"cmHandle":"ch-2","alternateId":"alt-2"},{"cmHandle":"ch-3","alternateId":"alt-3"}]}'
             mvc.perform(post('/ncmpInventory/v1/ch').contentType(MediaType.APPLICATION_JSON).content(requestBody))
                     .andExpect(status().is2xxSuccessful())
         then: 'CM-handles go to READY state'
@@ -74,6 +74,27 @@ class RestApiSpec extends CpsIntegrationSpecBase {
             'M1'       || ['ch-1', 'ch-2', 'ch-3']
             'M2'       || ['ch-1', 'ch-2']
             'M3'       || ['ch-3']
+    }
+
+    def 'Search for CM Handles using Cps Path Query.'() {
+        given: 'a JSON request body containing search parameter'
+            def requestBodyWithSearchCondition = """{
+                    "cmHandleQueryParameters": [
+                            {
+                                "conditionName": "cmHandleWithCpsPath",
+                                "conditionParameters": [ {"cpsPath" : "%s"} ]
+                            }
+                    ]
+                }""".formatted(cpsPath)
+        expect: "a search for cps path ${cpsPath} returns expected CM handles"
+            mvc.perform(post('/ncmp/v1/ch/id-searches').contentType(MediaType.APPLICATION_JSON).content(requestBodyWithSearchCondition))
+                    .andExpect(status().is2xxSuccessful())
+                    .andExpect(jsonPath('$[*]', containsInAnyOrder(expectedCmHandles.toArray())))
+                    .andExpect(jsonPath('$', hasSize(expectedCmHandles.size())));
+        where:
+            scenario                    | cpsPath                                 || expectedCmHandles
+            'All Ready CM handles'      | "//state[@cm-handle-state='READY']"     || ['ch-1', 'ch-2', 'ch-3']
+            'Having Alternate ID alt-3' | "//cm-handles[@alternate-id='alt-3']"   || ['ch-3']
     }
 
     def 'De-register CM handles using REST API.'() {
