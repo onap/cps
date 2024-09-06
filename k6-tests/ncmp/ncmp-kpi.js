@@ -135,17 +135,21 @@ export function setup() {
 export function teardown() {
     const startTimeInMillis = Date.now();
 
+    let DEREGISTERED_CM_HANDLES = 0
     const TOTAL_BATCHES = Math.ceil(TOTAL_CM_HANDLES / REGISTRATION_BATCH_SIZE);
     for (let batchNumber = 0; batchNumber < TOTAL_BATCHES; batchNumber++) {
         const nextBatchOfCmHandleIds = makeBatchOfCmHandleIds(REGISTRATION_BATCH_SIZE, batchNumber);
         const response = deleteCmHandles(nextBatchOfCmHandleIds);
+        if (response.error_code === 0) {
+              DEREGISTERED_CM_HANDLES += REGISTRATION_BATCH_SIZE
+        }
         check(response, { 'delete CM-handles status equals 200': (r) => r.status === 200 });
     }
 
     const endTimeInMillis = Date.now();
     const totalDeregistrationTimeInSeconds = (endTimeInMillis - startTimeInMillis) / 1000.0;
 
-    cmHandlesDeletedPerSecondTrend.add(TOTAL_CM_HANDLES / totalDeregistrationTimeInSeconds);
+    cmHandlesDeletedPerSecondTrend.add(DEREGISTERED_CM_HANDLES / totalDeregistrationTimeInSeconds);
 }
 
 export function passthrough_read() {
