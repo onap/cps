@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a0f0341f_11b106e3",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParser.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-06T18:38:34Z",
+      "side": 1,
+      "message": "yes we could use it but only for JSON parsing. For parsing XML there are 2 steps involved. \n1. XML is parsed\n2. The parsed data is packaged into a container node, this step prevents the parsing and validation of leaf nodes.\nEarlier this step was being performed as part of the XML parsing but I have extracted it to a separate method in this patch. YangParserHelper.java line 194",
+      "parentUuid": "c49d4cc2_777f68bf",
+      "range": {
+        "startLine": 92,
+        "startChar": 16,
+        "endLine": 92,
+        "endChar": 36
+      },
+      "revId": "10c3b1e1cb475288f4ceb03cc2eaed3f21ffd13e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3ba3bc24_8031dc44",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParser.java",
         "patchSetId": 14
@@ -99,6 +123,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "688b70e1_96351046",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-06T18:38:34Z",
+      "side": 1,
+      "message": "yes",
+      "parentUuid": "9ac2dbfa_e6a13e78",
+      "range": {
+        "startLine": 73,
+        "startChar": 4,
+        "endLine": 74,
+        "endChar": 60
+      },
+      "revId": "10c3b1e1cb475288f4ceb03cc2eaed3f21ffd13e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ecbaa5e4_91d5063c",
@@ -112,6 +160,30 @@
       "writtenOn": "2024-09-04T14:24:16Z",
       "side": 1,
       "message": "NB: ?? not needed.",
+      "range": {
+        "startLine": 165,
+        "startChar": 44,
+        "endLine": 165,
+        "endChar": 50
+      },
+      "revId": "10c3b1e1cb475288f4ceb03cc2eaed3f21ffd13e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5e10728_364c9f61",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangParserHelperSpec.groovy",
+        "patchSetId": 14
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-06T18:38:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ecbaa5e4_91d5063c",
       "range": {
         "startLine": 165,
         "startChar": 44,
