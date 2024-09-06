@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c92bb704_ffc172ee",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-09-06T14:34:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8bec2dfb_24839402",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 10
+      },
+      "revId": "292ca2705ba39c67c6080049bbd5c4c4e33461ab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "948acddd_c7b92ab3",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-09-06T13:21:51Z",
       "side": 1,
       "message": "NB: never used, redundant annotation",
+      "range": {
+        "startLine": 45,
+        "startChar": 1,
+        "endLine": 45,
+        "endChar": 6
+      },
+      "revId": "292ca2705ba39c67c6080049bbd5c4c4e33461ab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b3849a8_0345a237",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-09-06T14:34:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "948acddd_c7b92ab3",
       "range": {
         "startLine": 45,
         "startChar": 1,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "06378fa2_74f6773e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-09-06T14:34:24Z",
+      "side": 1,
+      "message": "Only need to refactor when an constant is used 3 times.",
+      "parentUuid": "45222566_5bfd3b00",
+      "range": {
+        "startLine": 63,
+        "startChar": 32,
+        "endLine": 63,
+        "endChar": 65
+      },
+      "revId": "292ca2705ba39c67c6080049bbd5c4c4e33461ab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "324c4b54_b2aeae2f",
@@ -100,6 +172,30 @@
       "writtenOn": "2024-09-06T13:21:51Z",
       "side": 1,
       "message": "NB: Mentioned above",
+      "range": {
+        "startLine": 83,
+        "startChar": 32,
+        "endLine": 83,
+        "endChar": 65
+      },
+      "revId": "292ca2705ba39c67c6080049bbd5c4c4e33461ab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4e898df_a6d78103",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-09-06T14:34:24Z",
+      "side": 1,
+      "message": "Only need to refactor when an constant is used 3 times.",
+      "parentUuid": "324c4b54_b2aeae2f",
       "range": {
         "startLine": 83,
         "startChar": 32,
@@ -147,6 +243,30 @@
       "side": 1,
       "message": "You are correct, I will fix it.",
       "parentUuid": "c883d5b2_9e0af1a7",
+      "range": {
+        "startLine": 116,
+        "startChar": 94,
+        "endLine": 116,
+        "endChar": 99
+      },
+      "revId": "292ca2705ba39c67c6080049bbd5c4c4e33461ab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef4aa182_fc06d520",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-09-06T14:34:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "24832973_171bf37c",
       "range": {
         "startLine": 116,
         "startChar": 94,
