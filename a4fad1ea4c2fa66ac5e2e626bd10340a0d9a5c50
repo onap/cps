@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5da038cb_a8ba7b0e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-09-06T13:24:44Z",
+      "side": 1,
+      "message": "good commit.\nThis is what we need to avoid , can be done using the ArchUnit tests.",
+      "revId": "a4fad1ea4c2fa66ac5e2e626bd10340a0d9a5c50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
