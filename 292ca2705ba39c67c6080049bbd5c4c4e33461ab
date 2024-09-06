@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36cdbfce_09ea0f6e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-09-06T13:21:51Z",
+      "side": 1,
+      "message": "This may lead a code smell during Sonar scan please find review inline. Otherwise ok.",
+      "revId": "292ca2705ba39c67c6080049bbd5c4c4e33461ab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8bec2dfb_24839402",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-09-06T13:21:51Z",
+      "side": 1,
+      "message": "NB: Never used",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 10
+      },
+      "revId": "292ca2705ba39c67c6080049bbd5c4c4e33461ab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "948acddd_c7b92ab3",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-09-06T13:21:51Z",
+      "side": 1,
+      "message": "NB: never used, redundant annotation",
+      "range": {
+        "startLine": 45,
+        "startChar": 1,
+        "endLine": 45,
+        "endChar": 6
+      },
+      "revId": "292ca2705ba39c67c6080049bbd5c4c4e33461ab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45222566_5bfd3b00",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-09-06T13:21:51Z",
+      "side": 1,
+      "message": "NB: Has been used twice in the code. Can be defined once and used everywhere if needed.",
+      "range": {
+        "startLine": 63,
+        "startChar": 32,
+        "endLine": 63,
+        "endChar": 65
+      },
+      "revId": "292ca2705ba39c67c6080049bbd5c4c4e33461ab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "324c4b54_b2aeae2f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-09-06T13:21:51Z",
+      "side": 1,
+      "message": "NB: Mentioned above",
+      "range": {
+        "startLine": 83,
+        "startChar": 32,
+        "endLine": 83,
+        "endChar": 65
+      },
+      "revId": "292ca2705ba39c67c6080049bbd5c4c4e33461ab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c883d5b2_9e0af1a7",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/repository/FragmentQueryBuilder.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-09-06T13:21:51Z",
+      "side": 1,
+      "message": "This probably will appear in Sonar scan since a Generic type is used raw.",
+      "range": {
+        "startLine": 116,
+        "startChar": 94,
+        "endLine": 116,
+        "endChar": 99
+      },
+      "revId": "292ca2705ba39c67c6080049bbd5c4c4e33461ab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
