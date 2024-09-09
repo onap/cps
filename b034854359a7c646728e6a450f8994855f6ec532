@@ -33,6 +33,24 @@
       "message": "Missing import for TOTAL_CM_HANDLES, used on line 67:\n\n    ERRO[0145] ReferenceError: TOTAL_CM_HANDLES is not defined\n    running at getRandomCmHandleReference (file:///home/quasar/Work/ONAP/cps/cps/k6-tests/ncmp/common/passthrough-crud.js:67:44(14))",
       "revId": "b034854359a7c646728e6a450f8994855f6ec532",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ccdc75e_06e90f19",
+        "filename": "k6-tests/ncmp/common/passthrough-crud.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-09-09T09:05:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f181d17e_4ccb143b",
+      "revId": "b034854359a7c646728e6a450f8994855f6ec532",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
