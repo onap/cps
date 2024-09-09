@@ -30,20 +30,21 @@ import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
-import org.onap.cps.api.CpsDataService;
-import org.onap.cps.api.CpsQueryService;
 import org.onap.cps.cpspath.parser.CpsPathUtil;
 import org.onap.cps.ncmp.api.inventory.models.TrustLevel;
 import org.onap.cps.ncmp.impl.inventory.models.CmHandleState;
 import org.onap.cps.ncmp.impl.inventory.models.ModelledDmiServiceLeaves;
 import org.onap.cps.ncmp.impl.inventory.models.PropertyType;
 import org.onap.cps.ncmp.impl.inventory.trustlevel.TrustLevelCacheConfig;
+import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.utils.CpsValidator;
+import org.onap.cps.utils.ContentType;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
@@ -53,8 +54,7 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
 
     private static final String DESCENDANT_PATH = "//";
     private static final String ANCESTOR_CM_HANDLES = "/ancestor::cm-handles";
-    private final CpsDataService cpsDataService;
-    private final CpsQueryService cpsQueryService;
+    private final CpsDataPersistenceService cpsDataPersistenceService;
 
     @Qualifier(TrustLevelCacheConfig.TRUST_LEVEL_PER_DMI_PLUGIN)
     private final Map<String, TrustLevel> trustLevelPerDmiPlugin;
@@ -83,20 +83,20 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
     }
 
     @Override
-    public Collection<DataNode> queryCmHandlesByState(final CmHandleState cmHandleState) {
+    public List<DataNode> queryCmHandlesByState(final CmHandleState cmHandleState) {
         return queryCmHandleAncestorsByCpsPath("//state[@cm-handle-state=\"" + cmHandleState + "\"]",
             INCLUDE_ALL_DESCENDANTS);
     }
 
     @Override
-    public Collection<DataNode> queryNcmpRegistryByCpsPath(final String cpsPath,
+    public List<DataNode> queryNcmpRegistryByCpsPath(final String cpsPath,
                                                      final FetchDescendantsOption fetchDescendantsOption) {
-        return cpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cpsPath,
-                fetchDescendantsOption);
+        return cpsDataPersistenceService.queryDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+                cpsPath, fetchDescendantsOption);
     }
 
     @Override
-    public Collection<DataNode> queryCmHandleAncestorsByCpsPath(final String cpsPath,
+    public List<DataNode> queryCmHandleAncestorsByCpsPath(final String cpsPath,
                                                           final FetchDescendantsOption fetchDescendantsOption) {
         if (CpsPathUtil.getCpsPathQuery(cpsPath).getXpathPrefix().endsWith("/cm-handles")) {
             return queryNcmpRegistryByCpsPath(cpsPath, fetchDescendantsOption);
@@ -112,7 +112,7 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
     }
 
     @Override
-    public Collection<DataNode> queryCmHandlesByOperationalSyncState(final DataStoreSyncState dataStoreSyncState) {
+    public List<DataNode> queryCmHandlesByOperationalSyncState(final DataStoreSyncState dataStoreSyncState) {
         return queryCmHandleAncestorsByCpsPath("//state/datastores" + "/operational[@sync-state=\""
                 + dataStoreSyncState + "\"]", FetchDescendantsOption.OMIT_DESCENDANTS);
     }
@@ -181,9 +181,9 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
         return cmHandleIds;
     }
 
-    private Collection<DataNode> getCmHandlesByDmiPluginIdentifierAndDmiProperty(final String dmiPluginIdentifier,
-                                                                                 final String dmiProperty) {
-        return cpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+    private List<DataNode> getCmHandlesByDmiPluginIdentifierAndDmiProperty(final String dmiPluginIdentifier,
+                                                                           final String dmiProperty) {
+        return cpsDataPersistenceService.queryDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
                 NCMP_DMI_REGISTRY_PARENT + "/cm-handles[@" + dmiProperty + "='" + dmiPluginIdentifier + "']",
                 OMIT_DESCENDANTS);
     }
@@ -191,8 +191,8 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
     private DataNode getCmHandleState(final String cmHandleId) {
         cpsValidator.validateNameCharacters(cmHandleId);
         final String xpath = NCMP_DMI_REGISTRY_PARENT + "/cm-handles[@id='" + cmHandleId + "']/state";
-        return cpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                xpath, OMIT_DESCENDANTS).iterator().next();
+        return cpsDataPersistenceService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+                xpath, OMIT_DESCENDANTS, ContentType.JSON).iterator().next();
     }
 }
 

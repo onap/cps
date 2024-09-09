@@ -114,7 +114,7 @@ class NcmpPerfTestBase extends PerfTestBase {
     def 'NCMP pre-load test data'() {
         when: 'dummy get data nodes runs so that populating the DB does not get included in other test timings'
             resourceMeter.start()
-            def result = cpsDataService.getDataNodes(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_ANCHOR, '/', FetchDescendantsOption.OMIT_DESCENDANTS)
+            def result = cpsDataService.getDataNodes(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_ANCHOR, '/', FetchDescendantsOption.OMIT_DESCENDANTS, ContentType.JSON)
             resourceMeter.stop()
         then: 'expected data exists'
             assert result.xpath == ['/dmi-registry']
