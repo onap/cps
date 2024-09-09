@@ -233,6 +233,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3ac00bc6_6117da4e",
+        "filename": "k6-tests/ncmp/ncmp-kpi.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-09-09T10:38:01Z",
+      "side": 1,
+      "message": "This is not registration! Maybe timeToConsumeMessagesInSeconds",
+      "range": {
+        "startLine": 211,
+        "startChar": 14,
+        "endLine": 211,
+        "endChar": 44
+      },
+      "revId": "f736cb55d67c722a7fb42d30c398a31acd79b71b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3db5a951_6b4dfe58",
         "filename": "k6-tests/ncmp/ncmp-kpi.js",
         "patchSetId": 5
