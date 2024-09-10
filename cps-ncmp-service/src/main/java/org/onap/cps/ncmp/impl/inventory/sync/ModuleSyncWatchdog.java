@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2023 Nordix Foundation
+ *  Copyright (C) 2022-2024 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,7 +24,6 @@ package org.onap.cps.ncmp.impl.inventory.sync;
 import com.hazelcast.map.IMap;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -86,7 +85,7 @@ public class ModuleSyncWatchdog {
     @Scheduled(fixedDelayString = "${ncmp.timers.locked-modules-sync.sleep-time-ms:300000}")
     public void resetPreviouslyFailedCmHandles() {
         log.info("Processing module sync retry-watchdog waking up.");
-        final List<YangModelCmHandle> failedCmHandles
+        final Collection<YangModelCmHandle> failedCmHandles
                 = moduleOperationsUtils.getCmHandlesThatFailedModelSyncOrUpgrade();
         log.info("Retrying {} cmHandles", failedCmHandles.size());
         moduleSyncTasks.resetFailedCmHandles(failedCmHandles);
@@ -103,7 +102,7 @@ public class ModuleSyncWatchdog {
 
     private void populateWorkQueueIfNeeded() {
         if (moduleSyncWorkQueue.isEmpty()) {
-            final List<DataNode> advisedCmHandles = moduleOperationsUtils.getAdvisedCmHandles();
+            final Collection<DataNode> advisedCmHandles = moduleOperationsUtils.getAdvisedCmHandles();
             log.info("Processing module sync fetched {} advised cm handles from DB", advisedCmHandles.size());
             for (final DataNode advisedCmHandle : advisedCmHandles) {
                 if (!moduleSyncWorkQueue.offer(advisedCmHandle)) {
