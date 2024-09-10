@@ -16,6 +16,52 @@
       "message": "recheck",
       "revId": "5a232fc387fc8da85c7bc91b78521c3637fd31a0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c95a735_1160a6a7",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-10T17:28:18Z",
+      "side": 1,
+      "message": "these names are no clear and I think the first oen is plainly wrong i I look at the data below\nI suspect\ni think \u0027Limit\u0027 \u003d \u0027Measurement Name\u0027\n\u0027CPS Limit\u0027 \u003d \u0027Current Expectation\u0027 (the oen you are adding)\nThe next 2 really confuse me because you use variables called \u0027data\u0027 and \u0027options\u0027 hard to see how that relates your column names unless I analyse you code in fine detail and the point of good names is that I shouldn\u0027t have to do that...",
+      "range": {
+        "startLine": 47,
+        "startChar": 26,
+        "endLine": 47,
+        "endChar": 48
+      },
+      "revId": "5a232fc387fc8da85c7bc91b78521c3637fd31a0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b33850c_6722984d",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-10T17:28:18Z",
+      "side": 1,
+      "message": "ok I can see that data is some kind of collection off all measurements.\nconsider names \u0027testResults\u0027\n\u0027options\u0027 needs a better name too!",
+      "range": {
+        "startLine": 62,
+        "startChar": 79,
+        "endLine": 62,
+        "endChar": 83
+      },
+      "revId": "5a232fc387fc8da85c7bc91b78521c3637fd31a0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
