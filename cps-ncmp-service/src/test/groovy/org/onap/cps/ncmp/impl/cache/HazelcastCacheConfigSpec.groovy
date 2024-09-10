@@ -29,29 +29,24 @@ class HazelcastCacheConfigSpec extends Specification {
     def objectUnderTest = new HazelcastCacheConfig()
 
     def 'Create Hazelcast instance with a #scenario'() {
-        given: 'a cluster name'
+        given: 'a cluster name and instance name'
             objectUnderTest.clusterName = 'my cluster'
+            objectUnderTest.instanceConfigName = 'my instance config'
         when: 'an hazelcast instance is created (name has to be unique)'
-            def result = objectUnderTest.createHazelcastInstance(scenario, config)
+            def result = objectUnderTest.createHazelcastInstance(config)
         then: 'the instance is created and has the correct name'
-            assert result.name == scenario
+            assert result.name == 'my instance config'
         and: 'if applicable it has a map config with the expected name'
             if (expectMapConfig) {
                 assert result.config.mapConfigs.values()[0].name == 'my map config'
-            } else {
-                assert result.config.mapConfigs.isEmpty()
             }
         and: 'if applicable it has a queue config with the expected name'
             if (expectQueueConfig) {
                 assert result.config.queueConfigs.values()[0].name == 'my queue config'
-            } else {
-                assert result.config.queueConfigs.isEmpty()
             }
         and: 'if applicable it has a set config with the expected name'
             if (expectSetConfig) {
                 assert result.config.setConfigs.values()[0].name == 'my set config'
-            } else {
-                assert result.config.setConfigs.isEmpty()
             }
         where: 'the following configs are used'
             scenario       | config                                                    || expectMapConfig | expectQueueConfig | expectSetConfig
