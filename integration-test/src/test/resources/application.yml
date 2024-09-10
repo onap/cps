@@ -230,6 +230,7 @@ ncmp:
 
 hazelcast:
   cluster-name: cps-and-ncmp-test-caches
+  instance-config-name: "cps-and-ncmp-hazelcast-instance-test-config"
   mode:
     kubernetes:
       enabled: false
