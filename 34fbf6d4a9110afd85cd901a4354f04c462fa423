@@ -82,6 +82,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "94a88275_cb6bd821",
+        "filename": "k6-tests/ncmp/ncmp-kpi.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-09-10T08:32:29Z",
+      "side": 1,
+      "message": "After an internal discussion around naming convention, it has been now decided that keep suffix \u0027Scenario\u0027 on both, but dropping the prefix execute from the exec name, too.",
+      "parentUuid": "d4d2d3a4_a3073339",
+      "range": {
+        "startLine": 57,
+        "startChar": 41,
+        "endLine": 57,
+        "endChar": 49
+      },
+      "revId": "34fbf6d4a9110afd85cd901a4354f04c462fa423",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fb892b6f_c3beeff9",
@@ -95,6 +119,30 @@
       "writtenOn": "2024-09-09T14:51:55Z",
       "side": 1,
       "message": "NB: I dont think this is a \u0027scenario\u0027",
+      "range": {
+        "startLine": 100,
+        "startChar": 51,
+        "endLine": 100,
+        "endChar": 59
+      },
+      "revId": "34fbf6d4a9110afd85cd901a4354f04c462fa423",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf12706e_e1e09814",
+        "filename": "k6-tests/ncmp/ncmp-kpi.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-09-10T08:32:29Z",
+      "side": 1,
+      "message": "Please find the comment on above.",
+      "parentUuid": "fb892b6f_c3beeff9",
       "range": {
         "startLine": 100,
         "startChar": 51,
