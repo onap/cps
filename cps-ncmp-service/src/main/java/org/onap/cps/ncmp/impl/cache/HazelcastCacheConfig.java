@@ -40,19 +40,21 @@ public class HazelcastCacheConfig {
     @Value("${hazelcast.cluster-name}")
     protected String clusterName;
 
+    @Value("${hazelcast.instance-config-name}")
+    protected String instanceConfigName;
+
     @Value("${hazelcast.mode.kubernetes.enabled}")
     protected boolean cacheKubernetesEnabled;
 
     @Value("${hazelcast.mode.kubernetes.service-name}")
     protected String cacheKubernetesServiceName;
 
-    protected HazelcastInstance createHazelcastInstance(final String hazelcastInstanceName,
-                                                        final NamedConfig namedConfig) {
-        return Hazelcast.newHazelcastInstance(initializeConfig(hazelcastInstanceName, namedConfig));
+    protected HazelcastInstance createHazelcastInstance(final NamedConfig namedConfig) {
+        return Hazelcast.getOrCreateHazelcastInstance(initializeConfig(instanceConfigName, namedConfig));
     }
 
-    private Config initializeConfig(final String instanceName, final NamedConfig namedConfig) {
-        final Config config = new Config(instanceName);
+    private Config initializeConfig(final String instanceConfigName, final NamedConfig namedConfig) {
+        final Config config = getHazelcastInstanceConfig(instanceConfigName);
         if (namedConfig instanceof MapConfig) {
             config.addMapConfig((MapConfig) namedConfig);
         }
@@ -67,6 +69,17 @@ public class HazelcastCacheConfig {
         config.setClassLoader(org.onap.cps.spi.model.Dataspace.class.getClassLoader());
         exposeClusterInformation(config);
         updateDiscoveryMode(config);
+        return config;
+    }
+
+    private Config getHazelcastInstanceConfig(final String instanceConfigName) {
+        final HazelcastInstance hazelcastInstance = Hazelcast.getHazelcastInstanceByName(instanceConfigName);
+        Config config = null;
+        if (hazelcastInstance != null) {
+            config = hazelcastInstance.getConfig();
+        } else {
+            config = new Config(instanceConfigName);
+        }
         return config;
     }
 
