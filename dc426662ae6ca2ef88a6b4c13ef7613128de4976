@@ -48,6 +48,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0264a41_41b83940",
+        "filename": "k6-tests/ncmp/ncmp-kpi.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-10T17:18:12Z",
+      "side": 1,
+      "message": "OK, I can live with 15 minutes. It was a NB comment ;-)",
+      "parentUuid": "e7ee98db_84712522",
+      "range": {
+        "startLine": 96,
+        "startChar": 25,
+        "endLine": 96,
+        "endChar": 33
+      },
+      "revId": "dc426662ae6ca2ef88a6b4c13ef7613128de4976",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "208eb142_61a89784",
