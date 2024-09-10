@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65bc569a_9f8b4349",
+        "filename": "k6-tests/ncmp/ncmp-kpi.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-10T10:17:12Z",
+      "side": 1,
+      "message": "nb: Can we leave out max duration in this case as we are measuring throughput for a given number of request. Or is it compulsory/important in case something goes wrong?\nIf so, can we have a more realistic value for this test instead of the same 15 minuet as for all other tests?",
+      "range": {
+        "startLine": 96,
+        "startChar": 25,
+        "endLine": 96,
+        "endChar": 33
+      },
+      "revId": "dc426662ae6ca2ef88a6b4c13ef7613128de4976",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "208eb142_61a89784",
+        "filename": "k6-tests/ncmp/ncmp-kpi.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-10T10:17:12Z",
+      "side": 1,
+      "message": "as above",
+      "range": {
+        "startLine": 103,
+        "startChar": 25,
+        "endLine": 103,
+        "endChar": 33
+      },
+      "revId": "dc426662ae6ca2ef88a6b4c13ef7613128de4976",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
