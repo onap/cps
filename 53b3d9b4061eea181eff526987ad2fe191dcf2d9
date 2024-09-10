@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "312aa280_b17c5cf3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-10T07:50:50Z",
+      "side": 1,
+      "message": "I think we can abandon this now, the certificate issue is resolved",
+      "revId": "53b3d9b4061eea181eff526987ad2fe191dcf2d9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
