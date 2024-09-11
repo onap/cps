@@ -38,10 +38,10 @@ import org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventsCmHandleStateHandler
 import org.onap.cps.spi.model.DataNode
 import org.slf4j.LoggerFactory
 import spock.lang.Specification
-
 import java.util.concurrent.atomic.AtomicInteger
 
 import static org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory.MODULE_SYNC_FAILED
+import static org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory.MODULE_UPGRADE
 import static org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory.MODULE_UPGRADE_FAILED
 
 class ModuleSyncTasksSpec extends Specification {
@@ -106,8 +106,8 @@ class ModuleSyncTasksSpec extends Specification {
             1 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(*_) >> { throw new Exception('some exception') }
         when: 'module sync is executed'
             objectUnderTest.performModuleSync([cmHandle], batchCount)
-        then: 'update lock reason, details and attempts is invoked'
-            1 * mockSyncUtils.updateLockReasonDetailsAndAttempts(cmHandleState, MODULE_SYNC_FAILED, 'some exception')
+        then: 'lock reason is updated with number of attempts'
+            1 * mockSyncUtils.updateLockReasonWithAttempts(cmHandleState, MODULE_SYNC_FAILED, 'some exception')
         and: 'the state handler is called to update the state to LOCKED'
             1 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(_) >> { args ->
                 assertBatch(args, ['cm-handle'], CmHandleState.LOCKED)
@@ -116,50 +116,68 @@ class ModuleSyncTasksSpec extends Specification {
             assert batchCount.get() == 4
     }
 
-    def 'Failed cm handle during #scenario.'() {
-        given: 'a cm handle in LOCKED state'
+    def 'Handle CM handle failure during #scenario and log MODULE_UPGRADE lock reason'() {
+        given: 'a CM handle in LOCKED state with a specific lock reason'
             def cmHandle = cmHandleAsDataNodeByIdAndState('cm-handle', CmHandleState.LOCKED)
-        and: 'the inventory persistence cm handle returns a LOCKED state with reason for the cm handle'
-            def expectedCmHandleState = new CompositeState(cmHandleState: cmHandleState, lockReason: CompositeState
-                .LockReason.builder().lockReasonCategory(lockReasonCategory).details(lockReasonDetails).build())
+            def expectedCmHandleState = new CompositeState(cmHandleState: CmHandleState.LOCKED, lockReason: CompositeState
+                    .LockReason.builder().lockReasonCategory(lockReasonCategory).details(lockReasonDetails).build())
             1 * mockInventoryPersistence.getCmHandleState('cm-handle') >> expectedCmHandleState
-        and: 'module sync service attempts to sync/upgrade the cm handle and throws an exception'
-            mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(*_) >> { throw new Exception('some exception') }
-            mockModuleSyncService.syncAndUpgradeSchemaSet(*_) >> { throw new Exception('some exception') }
+        and: 'module sync service attempts to sync/upgrade the CM handle and throws an exception'
+            mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_) >> { throw new Exception('some exception') }
+            mockModuleSyncService.syncAndUpgradeSchemaSet(_) >> { throw new Exception('some exception') }
         when: 'module sync is executed'
             objectUnderTest.performModuleSync([cmHandle], batchCount)
-        then: 'update lock reason, details and attempts is invoked'
-            1 * mockSyncUtils.updateLockReasonDetailsAndAttempts(expectedCmHandleState, expectedLockReasonCategory, 'some exception')
+        then: 'lock reason is updated with number of attempts'
+            1 * mockSyncUtils.updateLockReasonWithAttempts(expectedCmHandleState, expectedLockReasonCategory, 'some exception')
+        and: 'the state handler is called to update the state to LOCKED'
+            1 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(_) >> { args ->
+                assertBatch(args, ['cm-handle'], CmHandleState.LOCKED)
+            }
+        and: 'batch count is decremented by one'
+            assert batchCount.get() == 4
         where:
-            scenario         | cmHandleState        | lockReasonCategory    | lockReasonDetails                              || expectedLockReasonCategory
-            'module upgrade' | CmHandleState.LOCKED | MODULE_UPGRADE_FAILED | 'Upgrade to ModuleSetTag: some-module-set-tag' || MODULE_UPGRADE_FAILED
-            'module sync'    | CmHandleState.LOCKED | MODULE_SYNC_FAILED    | 'some lock details'                            || MODULE_SYNC_FAILED
+            scenario         | lockReasonCategory    | lockReasonDetails                              | expectedLockReasonCategory
+            'module sync'    | MODULE_SYNC_FAILED    | 'some lock details'                            | MODULE_SYNC_FAILED
+            'module upgrade' | MODULE_UPGRADE_FAILED | 'Upgrade to ModuleSetTag: some-module-set-tag' | MODULE_UPGRADE_FAILED
+            'module upgrade' | MODULE_UPGRADE        | 'Upgrade in progress'                          | MODULE_UPGRADE_FAILED
     }
+
 
     def 'Reset failed CM Handles #scenario.'() {
         given: 'cm handles in an locked state'
             def lockedState = new CompositeStateBuilder().withCmHandleState(CmHandleState.LOCKED)
-                    .withLockReason(LockReasonCategory.MODULE_SYNC_FAILED, '').withLastUpdatedTimeNow().build()
+                .withLockReason(MODULE_SYNC_FAILED, '').withLastUpdatedTimeNow().build()
             def yangModelCmHandle1 = new YangModelCmHandle(id: 'cm-handle-1', compositeState: lockedState)
             def yangModelCmHandle2 = new YangModelCmHandle(id: 'cm-handle-2', compositeState: lockedState)
-            def expectedCmHandleStatePerCmHandle = [(yangModelCmHandle1): CmHandleState.ADVISED]
+            def expectedCmHandleStatePerCmHandle
+                    = [(yangModelCmHandle1): CmHandleState.ADVISED, (yangModelCmHandle2): CmHandleState.ADVISED]
         and: 'clear in progress map'
             resetModuleSyncStartedOnCmHandles(moduleSyncStartedOnCmHandles)
         and: 'add cm handle entry into progress map'
             moduleSyncStartedOnCmHandles.put('cm-handle-1', 'started')
             moduleSyncStartedOnCmHandles.put('cm-handle-2', 'started')
-        and: 'sync utils retry locked cm handle returns #isReadyForRetry'
-            mockSyncUtils.needsModuleSyncRetryOrUpgrade(lockedState) >>> isReadyForRetry
         when: 'resetting failed cm handles'
             objectUnderTest.resetFailedCmHandles([yangModelCmHandle1, yangModelCmHandle2])
         then: 'updated to state "ADVISED" from "READY" is called as often as there are cm handles ready for retry'
-            expectedNumberOfInvocationsToUpdateCmHandleState * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(expectedCmHandleStatePerCmHandle)
-        and: 'after reset performed size of in progress map'
-            assert moduleSyncStartedOnCmHandles.size() == inProgressMapSize
-        where:
-            scenario                        | isReadyForRetry | inProgressMapSize || expectedNumberOfInvocationsToUpdateCmHandleState
-            'retry locked cm handle'        | [true, false]   | 1                 || 1
-            'do not retry locked cm handle' | [false, false]  | 2                 || 0
+            1 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(expectedCmHandleStatePerCmHandle)
+        and: 'after reset performed progress map is empty'
+            assert moduleSyncStartedOnCmHandles.size() == 0
+    }
+
+    def 'Log lock reasons for different CM handle failure #scenario'() {
+        given: 'a CM handle with various lock reasons that simulate different failure scenarios'
+            logger.list.clear()
+        when: 'the logging is invoked with the provided composite state'
+            objectUnderTest.logCmHandleLockReason(compositeState)
+        then: 'the log output should match the expected message for the given lock reason'
+            def loggingEvent = logger.list[0]
+            loggingEvent.level == Level.INFO
+            loggingEvent.formattedMessage == expectedLogMessage
+        where: 'the following lock reasons are used'
+            scenario                 | compositeState                                                               | expectedLogMessage
+            'Module upgrade'         | createCompositeStateWithLockReason(MODULE_UPGRADE, 'Upgrade reason')         | 'CM handle locked for module upgrade.'
+            'Module sync failure'    | createCompositeStateWithLockReason(MODULE_SYNC_FAILED, 'Sync failure')       | 'CM handle is locked due to synchronization failure.'
+            'Module upgrade failure' | createCompositeStateWithLockReason(MODULE_UPGRADE_FAILED, 'Upgrade failure') | 'CM handle is locked due to module upgrade failure.'
     }
 
     def 'Module Sync ADVISED cm handle without entry in progress map.'() {
@@ -188,6 +206,30 @@ class ModuleSyncTasksSpec extends Specification {
         and: 'the log indicates the cm handle entry is removed successfully'
             assert loggingEvent.formattedMessage == 'ch-1 removed from in progress map'
     }
+
+    def 'Sync and upgrade CM handle if in upgrade state for #scenario'() {
+        given: 'a CM handle in an upgrade state'
+            def cmHandle = cmHandleAsDataNodeByIdAndState('cm-handle', CmHandleState.ADVISED)
+            def compositeState = new CompositeState(
+                    cmHandleState: CmHandleState.LOCKED,
+                    lockReason: CompositeState.LockReason.builder().lockReasonCategory(lockReasonCategory).build()
+            )
+            1 * mockInventoryPersistence.getCmHandleState('cm-handle') >> compositeState
+        and: 'the module sync service should attempt to sync and upgrade the CM handle'
+            mockModuleSyncService.syncAndUpgradeSchemaSet(_) >> { args ->
+                assert args[0].id == 'cm-handle'
+                return null
+            }
+        when: 'module sync is executed'
+            objectUnderTest.performModuleSync([cmHandle], batchCount)
+        then: 'module sync service sync and upgrade method is invoked'
+            1 * mockModuleSyncService.syncAndUpgradeSchemaSet(_)
+        where: 'the following lock reasons are used'
+            scenario                | lockReasonCategory
+            'module upgrade'        | MODULE_UPGRADE
+            'module upgrade failed' | MODULE_UPGRADE_FAILED
+    }
+
 
     def 'Remove non-existing cm handle id from hazelcast map'() {
         given: 'hazelcast map does not contains cm handle id'
@@ -218,6 +260,11 @@ class ModuleSyncTasksSpec extends Specification {
 
     def resetModuleSyncStartedOnCmHandles(moduleSyncStartedOnCmHandles) {
         moduleSyncStartedOnCmHandles.clear();
+    }
+
+    def createCompositeStateWithLockReason(LockReasonCategory lockReasonCategory, String details) {
+        return new CompositeStateBuilder().withCmHandleState(CmHandleState.LOCKED)
+                .withLockReason(lockReasonCategory, details).withLastUpdatedTimeNow().build()
     }
 
     def getLoggingEvent() {

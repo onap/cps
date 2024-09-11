@@ -40,12 +40,8 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import spock.lang.Specification
-
-import java.time.OffsetDateTime
-import java.time.format.DateTimeFormatter
 import java.util.stream.Collectors
 
-import static org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory.LOCKED_MISBEHAVING
 import static org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory.MODULE_SYNC_FAILED
 import static org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory.MODULE_UPGRADE
 import static org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory.MODULE_UPGRADE_FAILED
@@ -60,17 +56,12 @@ class ModuleOperationsUtilsSpec extends Specification{
 
     def objectUnderTest = new ModuleOperationsUtils(mockCmHandleQueries, mockDmiDataOperations, jsonObjectMapper)
 
-    def static neverUpdatedBefore = '1900-01-01T00:00:00.000+0100'
-
-    def static now = OffsetDateTime.now()
-
-    def static nowAsString = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ").format(now)
-
     def static dataNode = new DataNode(leaves: ['id': 'cm-handle-123'])
 
     def applicationContext = new AnnotationConfigApplicationContext()
 
     def logger = (Logger) LoggerFactory.getLogger(ModuleOperationsUtils)
+
     def loggingListAppender
 
     void setup() {
@@ -103,7 +94,7 @@ class ModuleOperationsUtilsSpec extends Specification{
         given: 'A locked state'
             def compositeState = new CompositeState(lockReason: lockReason)
         when: 'update cm handle details and attempts is called'
-            objectUnderTest.updateLockReasonDetailsAndAttempts(compositeState, MODULE_SYNC_FAILED, 'new error message')
+            objectUnderTest.updateLockReasonWithAttempts(compositeState, MODULE_SYNC_FAILED, 'new error message')
         then: 'the composite state lock reason and details are updated'
             assert compositeState.lockReason.lockReasonCategory == MODULE_SYNC_FAILED
             assert compositeState.lockReason.details.contains(expectedDetails)
@@ -118,14 +109,14 @@ class ModuleOperationsUtilsSpec extends Specification{
             def compositeState = new CompositeStateBuilder().withCmHandleState(CmHandleState.LOCKED)
                 .withLockReason(MODULE_UPGRADE, "Upgrade to ModuleSetTag: " + moduleSetTag).build()
         when: 'update cm handle details'
-            objectUnderTest.updateLockReasonDetailsAndAttempts(compositeState, MODULE_UPGRADE_FAILED, 'new error message')
+            objectUnderTest.updateLockReasonWithAttempts(compositeState, MODULE_UPGRADE_FAILED, 'new error message')
         then: 'the composite state lock reason and details are updated'
             assert compositeState.lockReason.lockReasonCategory == MODULE_UPGRADE_FAILED
-            assert compositeState.lockReason.details.contains("Upgrade to ModuleSetTag: " + expectedDetails)
+            assert compositeState.lockReason.details.contains(expectedDetails)
         where:
             scenario               | moduleSetTag       || expectedDetails
-            'a module set tag'     | 'someModuleSetTag' || 'someModuleSetTag'
-            'empty module set tag' | ''                 || ''
+            'a module set tag'     | 'someModuleSetTag' || 'Upgrade to ModuleSetTag: someModuleSetTag'
+            'empty module set tag' | ''                 || 'Attempt'
     }
 
     def 'Get all locked cm-Handles where lock reasons are model sync failed or upgrade'() {
@@ -138,46 +129,6 @@ class ModuleOperationsUtilsSpec extends Specification{
             result.size() == 1
         and: 'the correct cm handle is returned'
             result[0].id == 'cm-handle-123'
-    }
-
-    def 'Retry Locked Cm-Handle where the last update time is #scenario'() {
-        given: 'Last update was #lastUpdateMinutesAgo minutes ago (-1 means never)'
-            def lastUpdatedTime = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ").format(now.minusMinutes(lastUpdateMinutesAgo))
-            if (lastUpdateMinutesAgo < 0 ) {
-                lastUpdatedTime = neverUpdatedBefore
-            }
-        when: 'checking to see if cm handle is ready for retry'
-         def result = objectUnderTest.needsModuleSyncRetryOrUpgrade(new CompositeStateBuilder()
-                .withLockReason(MODULE_SYNC_FAILED, lockDetails)
-                .withLastUpdatedTime(lastUpdatedTime).build())
-        then: 'retry is only attempted when expected'
-            assert result == retryExpected
-        and: 'logs contain related information'
-            def logs = loggingListAppender.list.toString()
-            assert logs.contains(logReason)
-        where: 'the following parameters are used'
-            scenario                                    | lastUpdateMinutesAgo | lockDetails                     | logReason                               || retryExpected
-            'never attempted before'                    | -1                   | 'Fist attempt:'                 | 'First Attempt:'                        || true
-            '1st attempt, last attempt > 2 minute ago'  | 3                    | 'Attempt #1 failed: some error' | 'Retry due now'                         || true
-            '2nd attempt, last attempt < 4 minutes ago' | 1                    | 'Attempt #2 failed: some error' | 'Time until next attempt is 3 minutes:' || false
-            '2nd attempt, last attempt > 4 minutes ago' | 5                    | 'Attempt #2 failed: some error' | 'Retry due now'                         || true
-    }
-
-    def 'Retry Locked Cm-Handle with lock reasons (category) #lockReasonCategory'() {
-        when: 'checking to see if cm handle is ready for retry'
-            def result = objectUnderTest.needsModuleSyncRetryOrUpgrade(new CompositeStateBuilder()
-                .withLockReason(lockReasonCategory, 'some details')
-                .withLastUpdatedTime(nowAsString).build())
-        then: 'verify retry attempts'
-            assert !result
-        and: 'logs contain related information'
-            def logs = loggingListAppender.list.toString()
-            assert logs.contains(logReason)
-        where: 'the following lock reasons occurred'
-            scenario             | lockReasonCategory    || logReason
-            'module upgrade'     | MODULE_UPGRADE_FAILED || 'First Attempt:'
-            'module sync failed' | MODULE_SYNC_FAILED    || 'First Attempt:'
-            'lock misbehaving'   | LOCKED_MISBEHAVING    || 'Locked for other reason'
     }
 
     def 'Get a Cm-Handle where #scenario'() {
@@ -197,19 +148,25 @@ class ModuleOperationsUtilsSpec extends Specification{
             'all Cm-Handle synchronized'               | []                      | false            || 0                    | [] as Set
     }
 
-    def 'Get resource data through DMI Operations #scenario'() {
-        given: 'the inventory persistence service returns a collection of data nodes'
+    def 'Retrieve resource data from DMI operations for #scenario'() {
+        given: 'a JSON string representing the resource data'
             def jsonString = '{"stores:bookstore":{"categories":[{"code":"01"}]}}'
-            JsonNode jsonNode = jsonObjectMapper.convertToJsonNode(jsonString);
-            def responseEntity = new ResponseEntity<>(jsonNode, HttpStatus.OK)
+            JsonNode jsonNode = jsonObjectMapper.convertToJsonNode(jsonString)
+        and: 'DMI operations are mocked to return a response based on the scenario'
+            def responseEntity = new ResponseEntity<>(statusCode == HttpStatus.OK ? jsonNode : null, statusCode)
             mockDmiDataOperations.getAllResourceDataFromDmi('cm-handle-123', _) >> responseEntity
         when: 'get resource data is called'
             def result = objectUnderTest.getResourceData('cm-handle-123')
-        then: 'the returned data is correct'
-            result == jsonString
+        then: 'the returned data matches the expected result'
+            result == expectedResult
+        where:
+            scenario                              | statusCode                       | expectedResult
+            'successful response'                 | HttpStatus.OK                    | '{"stores:bookstore":{"categories":[{"code":"01"}]}}'
+            'response with not found status'      | HttpStatus.NOT_FOUND             | null
+            'response with internal server error' | HttpStatus.INTERNAL_SERVER_ERROR | null
     }
 
-    def 'Extract module set tag and number of attempt when lock reason contains #scenario'() {
+        def 'Extract module set tag and number of attempt when lock reason contains #scenario'() {
         expect: 'lock reason details are extracted correctly'
             def result = objectUnderTest.getLockedCompositeStateDetails(new CompositeStateBuilder().withLockReason(MODULE_UPGRADE, lockReasonDetails).build().lockReason)
         and: 'the result contains the correct moduleSetTag'
