@@ -180,17 +180,20 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
             })
 
         when: 'DMI is available for retry'
-            dmiDispatcher1.moduleNamesPerCmHandleId = ['ch-1': ['M1', 'M2']]
+            dmiDispatcher1.moduleNamesPerCmHandleId = ['ch-1': ['M1', 'M2'], 'ch-2': ['M1', 'M2']]
             dmiDispatcher1.isAvailable = true
-        and: 'the LOCKED CM handle retry time elapses (actually just subtract 3 minutes from handles lastUpdateTime)'
-            overrideCmHandleLastUpdateTime('ch-1', OffsetDateTime.now().minusMinutes(3))
 
-        then: 'CM-handle goes to READY state'
+        then: 'Both CM-handles go to READY state'
             new PollingConditions().within(MODULE_SYNC_WAIT_TIME_IN_SECONDS, () -> {
-                assert objectUnderTest.getCmHandleCompositeState('ch-1').cmHandleState == CmHandleState.READY
+                ['ch-1', 'ch-2'].each { cmHandleId ->
+                    assert objectUnderTest.getCmHandleCompositeState(cmHandleId).cmHandleState == CmHandleState.READY
+                }
             })
-        and: 'CM-handle has expected modules'
-            assert ['M1', 'M2'] == objectUnderTest.getYangResourcesModuleReferences('ch-1').moduleName.sort()
+
+        and: 'Both CM-handles have expected modules'
+            ['ch-1', 'ch-2'].each { cmHandleId ->
+                assert objectUnderTest.getYangResourcesModuleReferences(cmHandleId).moduleName.sort() == ['M1', 'M2']
+            }
 
         cleanup: 'deregister CM handles'
             deregisterCmHandles(DMI1_URL, ['ch-1', 'ch-2'])

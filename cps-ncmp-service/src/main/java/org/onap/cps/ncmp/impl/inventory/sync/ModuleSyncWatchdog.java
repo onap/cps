@@ -82,7 +82,7 @@ public class ModuleSyncWatchdog {
     /**
      * Find any failed (locked) cm handles and change state back to 'ADVISED'.
      */
-    @Scheduled(fixedDelayString = "${ncmp.timers.locked-modules-sync.sleep-time-ms:300000}")
+    @Scheduled(fixedDelayString = "${ncmp.timers.locked-modules-sync.sleep-time-ms:15000}")
     public void resetPreviouslyFailedCmHandles() {
         log.info("Processing module sync retry-watchdog waking up.");
         final Collection<YangModelCmHandle> failedCmHandles
