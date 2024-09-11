@@ -79,7 +79,7 @@ public class ModuleSyncTasks {
                     log.warn("Processing of {} module failed due to reason {}.", cmHandleId, e.getMessage());
                     final LockReasonCategory lockReasonCategory = inUpgrade ? LockReasonCategory.MODULE_UPGRADE_FAILED
                             : LockReasonCategory.MODULE_SYNC_FAILED;
-                    moduleOperationsUtils.updateLockReasonDetailsAndAttempts(compositeState,
+                    moduleOperationsUtils.updateLockReasonWithAttempts(compositeState,
                             lockReasonCategory, e.getMessage());
                     setCmHandleStateLocked(yangModelCmHandle, compositeState.getLockReason());
                     cmHandelStatePerCmHandle.put(yangModelCmHandle, CmHandleState.LOCKED);
@@ -95,23 +95,24 @@ public class ModuleSyncTasks {
     }
 
     /**
-     * Reset state to "ADVISED" for any previously failed cm handles.
+     * Resets the state of failed CM handles and updates their status to ADVISED for retry.
+
+     * This method processes a collection of failed CM handles, logs their lock reason, and resets their state
+     * to ADVISED. Once reset, it updates the CM handle states in a batch to allow for re-attempt by the module-sync
+     * watchdog.
      *
-     * @param failedCmHandles previously failed (locked) cm handles
+     * @param failedCmHandles a collection of CM handles that have failed and need their state reset
      */
     public void resetFailedCmHandles(final Collection<YangModelCmHandle> failedCmHandles) {
         final Map<YangModelCmHandle, CmHandleState> cmHandleStatePerCmHandle = new HashMap<>(failedCmHandles.size());
         for (final YangModelCmHandle failedCmHandle : failedCmHandles) {
             final CompositeState compositeState = failedCmHandle.getCompositeState();
-            final boolean isReadyForRetry = moduleOperationsUtils.needsModuleSyncRetryOrUpgrade(compositeState);
-            log.info("Retry for cmHandleId : {} is {}", failedCmHandle.getId(), isReadyForRetry);
-            if (isReadyForRetry) {
-                final String resetCmHandleId = failedCmHandle.getId();
-                log.debug("Reset cm handle {} state to ADVISED to be re-attempted by module-sync watchdog",
-                        resetCmHandleId);
-                cmHandleStatePerCmHandle.put(failedCmHandle, CmHandleState.ADVISED);
-                removeResetCmHandleFromModuleSyncMap(resetCmHandleId);
-            }
+            logCmHandleLockReason(compositeState);
+            final String resetCmHandleId = failedCmHandle.getId();
+            log.info("Resetting CM handle {} state to ADVISED for retry by the module-sync watchdog.",
+                    failedCmHandle.getId());
+            cmHandleStatePerCmHandle.put(failedCmHandle, CmHandleState.ADVISED);
+            removeResetCmHandleFromModuleSyncMap(resetCmHandleId);
         }
         lcmEventsCmHandleStateHandler.updateCmHandleStateBatch(cmHandleStatePerCmHandle);
     }
@@ -124,6 +125,24 @@ public class ModuleSyncTasks {
     private void removeResetCmHandleFromModuleSyncMap(final String resetCmHandleId) {
         if (moduleSyncStartedOnCmHandles.remove(resetCmHandleId) != null) {
             log.info("{} removed from in progress map", resetCmHandleId);
+        }
+    }
+
+    private void logCmHandleLockReason(final CompositeState compositeState) {
+
+        final CompositeState.LockReason lockReason = compositeState.getLockReason();
+        final LockReasonCategory lockReasonCategory = lockReason.getLockReasonCategory();
+
+        if (LockReasonCategory.MODULE_UPGRADE == lockReasonCategory) {
+            log.info("CM handle locked for module upgrade.");
+        }
+
+        if (LockReasonCategory.MODULE_SYNC_FAILED.equals(lockReasonCategory)
+                || LockReasonCategory.MODULE_UPGRADE_FAILED.equals(lockReasonCategory)) {
+            final String failureType = LockReasonCategory.MODULE_SYNC_FAILED.equals(lockReasonCategory)
+                    ? "synchronization"
+                    : "module upgrade";
+            log.info("CM handle is locked due to {} failure.", failureType);
         }
     }
 }
