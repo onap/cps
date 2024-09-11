@@ -38,7 +38,6 @@ import org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventsCmHandleStateHandler
 import org.onap.cps.spi.model.DataNode
 import org.slf4j.LoggerFactory
 import spock.lang.Specification
-
 import java.util.concurrent.atomic.AtomicInteger
 
 import static org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory.MODULE_SYNC_FAILED
@@ -107,7 +106,7 @@ class ModuleSyncTasksSpec extends Specification {
         when: 'module sync is executed'
             objectUnderTest.performModuleSync([cmHandle], batchCount)
         then: 'update lock reason, details and attempts is invoked'
-            1 * mockSyncUtils.updateLockReasonDetailsAndAttempts(cmHandleState, MODULE_SYNC_FAILED, 'some exception')
+            1 * mockSyncUtils.updateLockReasonWithAttempts(cmHandleState, MODULE_SYNC_FAILED, 'some exception')
         and: 'the state handler is called to update the state to LOCKED'
             1 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(_) >> { args ->
                 assertBatch(args, ['cm-handle'], CmHandleState.LOCKED)
@@ -129,7 +128,7 @@ class ModuleSyncTasksSpec extends Specification {
         when: 'module sync is executed'
             objectUnderTest.performModuleSync([cmHandle], batchCount)
         then: 'update lock reason, details and attempts is invoked'
-            1 * mockSyncUtils.updateLockReasonDetailsAndAttempts(expectedCmHandleState, expectedLockReasonCategory, 'some exception')
+            1 * mockSyncUtils.updateLockReasonWithAttempts(expectedCmHandleState, expectedLockReasonCategory, 'some exception')
         where:
             scenario         | cmHandleState        | lockReasonCategory    | lockReasonDetails                              || expectedLockReasonCategory
             'module upgrade' | CmHandleState.LOCKED | MODULE_UPGRADE_FAILED | 'Upgrade to ModuleSetTag: some-module-set-tag' || MODULE_UPGRADE_FAILED
@@ -139,27 +138,22 @@ class ModuleSyncTasksSpec extends Specification {
     def 'Reset failed CM Handles #scenario.'() {
         given: 'cm handles in an locked state'
             def lockedState = new CompositeStateBuilder().withCmHandleState(CmHandleState.LOCKED)
-                    .withLockReason(LockReasonCategory.MODULE_SYNC_FAILED, '').withLastUpdatedTimeNow().build()
+                .withLockReason(LockReasonCategory.MODULE_SYNC_FAILED, '').withLastUpdatedTimeNow().build()
             def yangModelCmHandle1 = new YangModelCmHandle(id: 'cm-handle-1', compositeState: lockedState)
             def yangModelCmHandle2 = new YangModelCmHandle(id: 'cm-handle-2', compositeState: lockedState)
-            def expectedCmHandleStatePerCmHandle = [(yangModelCmHandle1): CmHandleState.ADVISED]
+            def expectedCmHandleStatePerCmHandle
+                    = [(yangModelCmHandle1): CmHandleState.ADVISED, (yangModelCmHandle2): CmHandleState.ADVISED]
         and: 'clear in progress map'
             resetModuleSyncStartedOnCmHandles(moduleSyncStartedOnCmHandles)
         and: 'add cm handle entry into progress map'
             moduleSyncStartedOnCmHandles.put('cm-handle-1', 'started')
             moduleSyncStartedOnCmHandles.put('cm-handle-2', 'started')
-        and: 'sync utils retry locked cm handle returns #isReadyForRetry'
-            mockSyncUtils.needsModuleSyncRetryOrUpgrade(lockedState) >>> isReadyForRetry
         when: 'resetting failed cm handles'
             objectUnderTest.resetFailedCmHandles([yangModelCmHandle1, yangModelCmHandle2])
         then: 'updated to state "ADVISED" from "READY" is called as often as there are cm handles ready for retry'
-            expectedNumberOfInvocationsToUpdateCmHandleState * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(expectedCmHandleStatePerCmHandle)
+            1 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(expectedCmHandleStatePerCmHandle)
         and: 'after reset performed size of in progress map'
-            assert moduleSyncStartedOnCmHandles.size() == inProgressMapSize
-        where:
-            scenario                        | isReadyForRetry | inProgressMapSize || expectedNumberOfInvocationsToUpdateCmHandleState
-            'retry locked cm handle'        | [true, false]   | 1                 || 1
-            'do not retry locked cm handle' | [false, false]  | 2                 || 0
+            assert moduleSyncStartedOnCmHandles.size() == 0
     }
 
     def 'Module Sync ADVISED cm handle without entry in progress map.'() {
