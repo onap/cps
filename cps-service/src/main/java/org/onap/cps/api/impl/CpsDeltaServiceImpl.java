@@ -179,7 +179,7 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
                                                       final List<DeltaReport> updatedDeltaReportEntries) {
         for (final Map.Entry<Map<String, Serializable>, Map<String, Serializable>> entry:
                 updatedLeavesAsSourceDataToTargetData.entrySet()) {
-            final DeltaReport updatedDataForDeltaReport = new DeltaReportBuilder().actionUpdate()
+            final DeltaReport updatedDataForDeltaReport = new DeltaReportBuilder().actionReplace()
                     .withXpath(xpath).withSourceData(entry.getKey()).withTargetData(entry.getValue()).build();
             updatedDeltaReportEntries.add(updatedDataForDeltaReport);
         }
@@ -195,7 +195,7 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
         for (final Map.Entry<String, DataNode> entry: xpathToAddedNodes.entrySet()) {
             final String xpath = entry.getKey();
             final DataNode dataNode = entry.getValue();
-            final DeltaReport addedDataForDeltaReport = new DeltaReportBuilder().actionAdd().withXpath(xpath)
+            final DeltaReport addedDataForDeltaReport = new DeltaReportBuilder().actionCreate().withXpath(xpath)
                                 .withTargetData(dataNode.getLeaves()).build();
             addedDeltaReportEntries.add(addedDataForDeltaReport);
         }

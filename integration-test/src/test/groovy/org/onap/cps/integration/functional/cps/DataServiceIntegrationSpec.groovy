@@ -463,11 +463,11 @@ class DataServiceIntegrationSpec extends FunctionalSpecBase {
             result = result.toList().sort { it.xpath }
         then: 'delta report contains expected number of changes'
             result.size() == 3
-        and: 'delta report contains UPDATE action with expected xpath'
-            assert result[0].getAction() == 'update'
+        and: 'delta report contains REPLACE action with expected xpath'
+            assert result[0].getAction() == 'replace'
             assert result[0].getXpath() == '/bookstore'
-        and: 'delta report contains ADD action with expected xpath'
-            assert result[1].getAction() == 'add'
+        and: 'delta report contains CREATE action with expected xpath'
+            assert result[1].getAction() == 'create'
             assert result[1].getXpath() == "/bookstore-address[@bookstore-name='Crossword Bookstores']"
         and: 'delta report contains REMOVE action with expected xpath'
             assert result[2].getAction() == 'remove'
@@ -515,11 +515,11 @@ class DataServiceIntegrationSpec extends FunctionalSpecBase {
             'is empty'                   | "/bookstore/container-without-leaves"
     }
 
-    def 'Get delta between anchors for add action, where target data node #scenario'() {
+    def 'Get delta between anchors for "create" action, where target data node #scenario'() {
         when: 'attempt to get delta between leaves of data nodes present in 2 anchors'
             def result = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_ANCHOR_3, BOOKSTORE_ANCHOR_5, parentNodeXpath, INCLUDE_ALL_DESCENDANTS)
         then: 'the expected action is present in delta report'
-            result.get(0).getAction() == 'add'
+            result.get(0).getAction() == 'create'
         and: 'the expected xapth is present in delta report'
             result.get(0).getXpath() == parentNodeXpath
         where: 'following data was used'
@@ -533,8 +533,8 @@ class DataServiceIntegrationSpec extends FunctionalSpecBase {
     def 'Get delta between anchors when leaves of existing data nodes are updated,: #scenario'() {
         when: 'attempt to get delta between leaves of existing data nodes'
             def result = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, sourceAnchor, targetAnchor, xpath, OMIT_DESCENDANTS)
-        then: 'expected action is update'
-            assert result[0].getAction() == 'update'
+        then: 'expected action is "replace"'
+            assert result[0].getAction() == 'replace'
         and: 'the payload has expected leaf values'
             def sourceData = result[0].getSourceData()
             def targetData = result[0].getTargetData()
@@ -550,8 +550,8 @@ class DataServiceIntegrationSpec extends FunctionalSpecBase {
     def 'Get delta between anchors when child data nodes under existing parent data nodes are updated: #scenario'() {
         when: 'attempt to get delta between leaves of existing data nodes'
             def result = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, sourceAnchor, targetAnchor, xpath, DIRECT_CHILDREN_ONLY)
-        then: 'expected action is update'
-            assert result[0].getAction() == 'update'
+        then: 'expected action is "replace"'
+            assert result[0].getAction() == 'replace'
         and: 'the delta report has expected child node xpaths'
             def deltaReportEntities = getDeltaReportEntities(result)
             def childNodeXpathsInDeltaReport = deltaReportEntities.get('xpaths')
@@ -573,8 +573,8 @@ class DataServiceIntegrationSpec extends FunctionalSpecBase {
         when: 'attempt to get delta between leaves of existing data nodes'
             def result = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_ANCHOR_3, BOOKSTORE_ANCHOR_5, parentNodeXpath, INCLUDE_ALL_DESCENDANTS)
             def deltaReportEntities = getDeltaReportEntities(result)
-        then: 'expected action is update'
-            assert result[0].getAction() == 'update'
+        then: 'expected action is "replace"'
+            assert result[0].getAction() == 'replace'
         and: 'the payload has expected parent node xpath'
             assert deltaReportEntities.get('xpaths').contains(parentNodeXpath)
         and: 'delta report has expected source and target data'
@@ -593,14 +593,14 @@ class DataServiceIntegrationSpec extends FunctionalSpecBase {
             def result = objectUnderTest.getDeltaByDataspaceAnchorAndPayload(FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_ANCHOR_3, '/', [:], jsonPayload, OMIT_DESCENDANTS)
         then: 'delta report contains expected number of changes'
             result.size() == 3
-        and: 'delta report contains UPDATE action with expected xpath'
-            assert result[0].getAction() == 'update'
+        and: 'delta report contains "replace" action with expected xpath'
+            assert result[0].getAction() == 'replace'
             assert result[0].getXpath() == '/bookstore'
-        and: 'delta report contains REMOVE action with expected xpath'
+        and: 'delta report contains "remove" action with expected xpath'
             assert result[1].getAction() == 'remove'
             assert result[1].getXpath() == "/bookstore-address[@bookstore-name='Easons-1']"
-        and: 'delta report contains ADD action with expected xpath'
-            assert result[2].getAction() == 'add'
+        and: 'delta report contains "create" action with expected xpath'
+            assert result[2].getAction() == 'create'
             assert result[2].getXpath() == "/bookstore-address[@bookstore-name='Crossword Bookstores']"
     }
 
