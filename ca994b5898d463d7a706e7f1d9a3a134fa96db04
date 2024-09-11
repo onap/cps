@@ -16,6 +16,46 @@
       "message": "recheck",
       "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ddf6222_70ff029a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-09-11T09:23:37Z",
+      "side": 1,
+      "message": "had a quick look at the patch.\nWill have a closer look soon.\nfor now just had one question.",
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76be3815_3b9b1a94",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-09-11T09:23:37Z",
+      "side": 1,
+      "message": "NB: just thinking , would it be possible to have primitive boolean instead of Boolean ??\nboolean is just true/false. ( false by default )\nBoolean can as well be null.\nNot tried this , but if u want to check it.",
+      "range": {
+        "startLine": 74,
+        "startChar": 51,
+        "endLine": 74,
+        "endChar": 58
+      },
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
