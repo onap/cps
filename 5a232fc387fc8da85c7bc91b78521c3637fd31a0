@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d58b5a8_b7e00cd8",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-09-12T14:06:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8c95a735_1160a6a7",
+      "range": {
+        "startLine": 47,
+        "startChar": 26,
+        "endLine": 47,
+        "endChar": 48
+      },
+      "revId": "5a232fc387fc8da85c7bc91b78521c3637fd31a0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1b33850c_6722984d",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-09-10T17:28:18Z",
       "side": 1,
       "message": "ok I can see that data is some kind of collection off all measurements.\nconsider names \u0027testResults\u0027\n\u0027options\u0027 needs a better name too!",
+      "range": {
+        "startLine": 62,
+        "startChar": 79,
+        "endLine": 62,
+        "endChar": 83
+      },
+      "revId": "5a232fc387fc8da85c7bc91b78521c3637fd31a0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "68cba76f_71d15985",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-09-12T14:06:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1b33850c_6722984d",
       "range": {
         "startLine": 62,
         "startChar": 79,
