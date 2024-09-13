@@ -90,6 +90,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4cfd8e72_c5ac579a",
+        "filename": "cps-path-parser/src/main/antlr4/org/onap/cps/cpspath/parser/antlr4/CpsPath.g4",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-09-13T18:36:19Z",
+      "side": 1,
+      "message": "More specifically, the original logic would output slash on the exit",
+      "parentUuid": "8150daec_0966dc82",
+      "range": {
+        "startLine": 34,
+        "startChar": 15,
+        "endLine": 34,
+        "endChar": 21
+      },
+      "revId": "6ba180dcf9570053b5d9c4245b8ceea075219952",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "63f9eb8e_ecfae884",
         "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
         "patchSetId": 2
@@ -125,6 +149,30 @@
       "side": 1,
       "message": "A number of reasons. Basically makes it easier to handle various cases like parent of \"//child\" being \"/\" instead of \"\", etc.\nBut also needed for correct normalization of ancestor axis - which was incorrect before, but the test missed it due to typo.",
       "parentUuid": "63f9eb8e_ecfae884",
+      "range": {
+        "startLine": 60,
+        "startChar": 1,
+        "endLine": 62,
+        "endChar": 5
+      },
+      "revId": "6ba180dcf9570053b5d9c4245b8ceea075219952",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "beaae2f7_7b198fd6",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-09-13T18:36:19Z",
+      "side": 1,
+      "message": "More specifically, the original method exitContainerName would append slash. But container name is used in ancestor axis, but should not use a slash.\nEasiest solution was to add exit rule for slash itself.",
+      "parentUuid": "c5dbe223_a0530dc6",
       "range": {
         "startLine": 60,
         "startChar": 1,
