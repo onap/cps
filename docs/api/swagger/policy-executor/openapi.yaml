@@ -21,13 +21,11 @@ info:
   title: Policy Executor
   description: "Allows NCMP to execute a policy defined by a third party implementation before proceeding with a CM operation"
   version: 1.0.0
-servers:
-  - url: /policy-executor/api
 tags:
   - name: policy-executor
     description: "Execute all your policies"
 paths:
-  /v1/{action}:
+  /policy-executor/api/v1/{action}:
     post:
       description: "Fire a Policy action"
       operationId: executePolicyAction

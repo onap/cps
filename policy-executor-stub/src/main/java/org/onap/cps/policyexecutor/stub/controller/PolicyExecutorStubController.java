@@ -34,18 +34,14 @@ import org.onap.cps.policyexecutor.stub.model.Request;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("${rest.api.policy-executor-base-path}")
 @RequiredArgsConstructor
 public class PolicyExecutorStubController implements PolicyExecutorApi {
 
     private final ObjectMapper objectMapper;
-
     private static final Pattern ERROR_CODE_PATTERN = Pattern.compile("(\\d{3})");
-
     private int decisionCounter = 0;
 
     @Override
@@ -57,7 +53,7 @@ public class PolicyExecutorStubController implements PolicyExecutorApi {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         final Request firstRequest = policyExecutionRequest.getRequests().iterator().next();
-        if ("ncmp-delete-schema:1.0.0".equals(firstRequest.getSchema())) {
+        if (firstRequest.getSchema().contains("ncmp-delete-schema:1.0.0")) {
             return handleNcmpDeleteSchema(firstRequest);
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -66,12 +62,17 @@ public class PolicyExecutorStubController implements PolicyExecutorApi {
     private ResponseEntity<PolicyExecutionResponse> handleNcmpDeleteSchema(final Request request) {
         final NcmpDelete ncmpDelete;
         try {
-            ncmpDelete = objectMapper.readValue((String) request.getData(), NcmpDelete.class);
+            if (request.getData() instanceof String) {
+                ncmpDelete = objectMapper.readValue((String) request.getData(), NcmpDelete.class);
+            } else {
+                ncmpDelete = objectMapper.convertValue(request.getData(), NcmpDelete.class);
+            }
         } catch (final JsonProcessingException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
         final String targetIdentifier = ncmpDelete.getTargetIdentifier();
+
         if (targetIdentifier == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
