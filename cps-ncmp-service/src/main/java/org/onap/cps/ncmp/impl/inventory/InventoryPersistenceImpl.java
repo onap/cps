@@ -208,7 +208,7 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
     @Override
     public boolean isExistingCmHandleId(final String cmHandleId) {
         try {
-            return getCmHandleDataNodeByCmHandleId(cmHandleId).size() > 0;
+            return  !getCmHandleDataNodeByCmHandleId(cmHandleId).isEmpty();
         } catch (final DataNodeNotFoundException exception) {
             return false;
         }
