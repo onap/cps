@@ -108,15 +108,11 @@ class PolicyExecutorStubControllerSpec extends Specification {
     }
 
     def 'Execute policy action with invalid json for request data.'() {
-        given: 'a policy execution request'
-            def request = new Request('ncmp-delete-schema:1.0.0', 'invalid json')
-            def policyExecutionRequest = new PolicyExecutionRequest('some decision type', [request])
-            def requestBody = objectMapper.writeValueAsString(policyExecutionRequest)
         when: 'request is posted'
             def response = mockMvc.perform(post(url)
                 .header('Authorization','some string')
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(requestBody))
+                .content('invalid json'))
                 .andReturn().response
         then: 'response status is Bad Request'
             assert response.status == HttpStatus.BAD_REQUEST.value()
@@ -143,7 +139,7 @@ class PolicyExecutorStubControllerSpec extends Specification {
 
     def createRequestBody(decisionType, schema, targetIdentifier) {
         def ncmpDelete = new NcmpDelete(targetIdentifier: targetIdentifier)
-        def request = new Request(schema, objectMapper.writeValueAsString(ncmpDelete))
+        def request = new Request(schema, ncmpDelete)
         def policyExecutionRequest = new PolicyExecutionRequest(decisionType, [request])
         return objectMapper.writeValueAsString(policyExecutionRequest)
     }

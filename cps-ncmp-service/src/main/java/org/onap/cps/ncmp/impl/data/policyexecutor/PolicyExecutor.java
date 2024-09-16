@@ -121,7 +121,6 @@ public class PolicyExecutor {
                     "Invalid Json: " + changeRequestAsJson);
             }
         }
-
         final Map<String, Object> request = new HashMap<>(2);
         request.put("schema", getAssociatedPolicyDataSchemaName(operationType));
         request.put("data", data);
@@ -144,7 +143,7 @@ public class PolicyExecutor {
                                                                final String authorization,
                                                                final String resourceIdentifier,
                                                                final String changeRequestAsJson) {
-        final String serviceBaseUrl = serverAddress + ":" + serverPort;
+
 
         final Map<String, Object> requestAsMap = getSingleRequestAsMap(yangModelCmHandle,
             operationType,
@@ -154,8 +153,9 @@ public class PolicyExecutor {
         final Object bodyAsObject = createBodyAsObject(Collections.singletonList(requestAsMap));
 
         final UrlTemplateParameters urlTemplateParameters = RestServiceUrlTemplateBuilder.newInstance()
-            .fixedPathSegment("execute")
-            .createUrlTemplateParameters(serviceBaseUrl, "");
+                .fixedPathSegment("execute")
+                .createUrlTemplateParameters(String.format("%s:%s", serverAddress, serverPort),
+                        "policy-executor/api");
 
         return policyExecutorWebClient.post()
             .uri(urlTemplateParameters.urlTemplate(), urlTemplateParameters.urlVariables())

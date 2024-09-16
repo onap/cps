@@ -45,7 +45,7 @@ class PolicyDispatcher extends Dispatcher {
             return new MockResponse().setResponseCode(401)
         }
 
-        if (recordedRequest.path != '/v1/execute') {
+        if (recordedRequest.path != '/policy-executor/api/v1/execute') {
             return new MockResponse().setResponseCode(400)
         }
 
