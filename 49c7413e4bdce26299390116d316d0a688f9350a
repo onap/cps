@@ -33,6 +33,46 @@
       "message": "recheck",
       "revId": "49c7413e4bdce26299390116d316d0a688f9350a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9ab65bc_fa2e2c12",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-09-16T16:10:11Z",
+      "side": 1,
+      "message": "NB: Would be nice to have feature if the PolicyExecutor bean as conditional-bean based on enabled/disabled flag.",
+      "revId": "49c7413e4bdce26299390116d316d0a688f9350a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1016ebe_8cb7e5f9",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-09-16T16:10:11Z",
+      "side": 1,
+      "message": "blocker: should be \u0027false\u0027 otherwise docker-compose won\u0027t work.",
+      "range": {
+        "startLine": 62,
+        "startChar": 30,
+        "endLine": 62,
+        "endChar": 35
+      },
+      "revId": "49c7413e4bdce26299390116d316d0a688f9350a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
