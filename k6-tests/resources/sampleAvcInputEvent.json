@@ -1,0 +1,38 @@
+{
+  "data": {
+    "push-change-update": {
+      "datastore-changes": {
+        "ietf-yang-patch:yang-patch": {
+          "patch-id": "34534ffd98",
+          "edit": [
+            {
+              "edit-id": "ded43434-1",
+              "operation": "replace",
+              "target": "ran-network:ran-network/NearRTRIC[@id='22']/GNBCUCPFunction[@id='cucpserver2']/NRCellCU[@id='15549']/NRCellRelation[@id='14427']",
+              "value": {
+                "attributes": []
+              }
+            },
+            {
+              "edit-id": "ded43434-2",
+              "operation": "create",
+              "target": "ran-network:ran-network/NearRTRIC[@id='22']/GNBCUCPFunction[@id='cucpserver1']/NRCellCU[@id='15548']/NRCellRelation[@id='14426']",
+              "value": {
+                "attributes": [
+                  {
+                    "isHoAllowed": false
+                  }
+                ]
+              }
+            },
+            {
+              "edit-id": "ded43434-3",
+              "operation": "delete",
+              "target": "ran-network:ran-network/NearRTRIC[@id='22']/GNBCUCPFunction[@id='cucpserver1']/NRCellCU[@id='15548']/NRCellRelation[@id='14426']"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
