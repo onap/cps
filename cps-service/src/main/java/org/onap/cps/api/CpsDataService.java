@@ -172,11 +172,12 @@ public interface CpsDataService {
      * @param dataspaceName     dataspace name
      * @param anchorName        anchor name
      * @param parentNodeXpath   parent node xpath
-     * @param jsonData          json data representing the new list elements
+     * @param nodeData          node data representing the new list elements
      * @param observedTimestamp observedTimestamp
+     * @param contentType       JSON/XML content type
      */
-    void replaceListContent(String dataspaceName, String anchorName, String parentNodeXpath, String jsonData,
-        OffsetDateTime observedTimestamp);
+    void replaceListContent(String dataspaceName, String anchorName, String parentNodeXpath, String nodeData,
+        OffsetDateTime observedTimestamp, ContentType contentType);
 
     /**
      * Replaces list content by removing all existing elements and inserting the given new elements as data nodes
