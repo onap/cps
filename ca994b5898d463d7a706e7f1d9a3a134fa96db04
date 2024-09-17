@@ -108,6 +108,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4c7fc400_37805ad3",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-17T07:54:56Z",
+      "side": 1,
+      "message": "I tried this but \u003cusePrimitiveType\u003etrue\u003c/usePrimitiveType\u003e did not work instead I used \u003ctypeMappings\u003etypeMapping\u003eboolean\u003dboolean\u003c/typeMapping\u003e\u003c/typeMappings\u003e.\nBut a problem with this approach will be that it impacts the entire rest layer and will change all Boolean types to boolean, this includes the parameter \"includeDescendants\" in other controller methods like \"getNodeByDataspaceAndAnchor\" and \"getNodesByDataspaceAndAnchorAndCpsPath\".\nSo, I suggest we use Boolean for now as null condition is handled in this change. We can have a separate patch converting Boolean to boolean which could also handle other methods and also cover its impact on those methods (if any) in that patch itself.",
+      "parentUuid": "142cc445_d2fad49c",
+      "range": {
+        "startLine": 74,
+        "startChar": 51,
+        "endLine": 74,
+        "endChar": 58
+      },
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cf36963f_c25fe219",
         "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
         "patchSetId": 17
@@ -119,6 +143,30 @@
       "writtenOn": "2024-09-13T14:49:43Z",
       "side": 1,
       "message": "Factory Methods:\n\nUsed ResponseEntity.ok() and ResponseEntity.status(HttpStatus.CREATED) for brevity.",
+      "range": {
+        "startLine": 78,
+        "startChar": 18,
+        "endLine": 78,
+        "endChar": 55
+      },
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13a60c60_ce87ff28",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-17T07:54:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cf36963f_c25fe219",
       "range": {
         "startLine": 78,
         "startChar": 18,
@@ -142,6 +190,30 @@
       "writtenOn": "2024-09-13T14:49:43Z",
       "side": 1,
       "message": "as suggested above",
+      "range": {
+        "startLine": 87,
+        "startChar": 19,
+        "endLine": 87,
+        "endChar": 60
+      },
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "605a6fbb_bb7612a1",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-17T07:54:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "850c9842_d03e37f2",
       "range": {
         "startLine": 87,
         "startChar": 19,
@@ -198,6 +270,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc1767d1_8f570627",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-17T07:54:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "036d504d_aa4b202d",
+      "range": {
+        "startLine": 163,
+        "startChar": 80,
+        "endLine": 163,
+        "endChar": 81
+      },
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "600508cd_a28dfbe8",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-17T07:54:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fc678945_52f12aa8",
+      "range": {
+        "startLine": 163,
+        "startChar": 70,
+        "endLine": 163,
+        "endChar": 71
+      },
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "13d4904b_17e3254c",
@@ -211,6 +331,30 @@
       "writtenOn": "2024-09-13T14:49:43Z",
       "side": 1,
       "message": "an",
+      "range": {
+        "startLine": 164,
+        "startChar": 15,
+        "endLine": 164,
+        "endChar": 16
+      },
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c27b0e82_37de78aa",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-17T07:54:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13d4904b_17e3254c",
       "range": {
         "startLine": 164,
         "startChar": 15,
@@ -244,6 +388,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab4d2556_1ddc7b8c",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-17T07:54:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7cf5b9e3_0580f625",
+      "range": {
+        "startLine": 167,
+        "startChar": 16,
+        "endLine": 167,
+        "endChar": 23
+      },
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "daa627ac_5799bd3b",
@@ -257,6 +425,30 @@
       "writtenOn": "2024-09-13T14:49:43Z",
       "side": 1,
       "message": "dryRunEnabled",
+      "range": {
+        "startLine": 174,
+        "startChar": 54,
+        "endLine": 174,
+        "endChar": 60
+      },
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7302b78c_ecbd8b41",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-17T07:54:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "daa627ac_5799bd3b",
       "range": {
         "startLine": 174,
         "startChar": 54,
@@ -290,6 +482,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf7af375_1554b9e7",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-17T07:54:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a8442b29_c52caec6",
+      "range": {
+        "startLine": 177,
+        "startChar": 17,
+        "endLine": 177,
+        "endChar": 20
+      },
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7146c892_8c204405",
@@ -313,6 +529,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dec4285b_4490e529",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-17T07:54:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7146c892_8c204405",
+      "range": {
+        "startLine": 179,
+        "startChar": 15,
+        "endLine": 179,
+        "endChar": 66
+      },
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9562fece_dc100b70",
@@ -326,6 +566,30 @@
       "writtenOn": "2024-09-13T14:49:43Z",
       "side": 1,
       "message": "different data types are tested",
+      "range": {
+        "startLine": 181,
+        "startChar": 16,
+        "endLine": 181,
+        "endChar": 46
+      },
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a29369a_9d94ae3a",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-17T07:54:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9562fece_dc100b70",
       "range": {
         "startLine": 181,
         "startChar": 16,
@@ -382,6 +646,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "015bc6f2_3a872e76",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-17T07:54:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "721e03d1_4c47e8f8",
+      "range": {
+        "startLine": 183,
+        "startChar": 23,
+        "endLine": 183,
+        "endChar": 27
+      },
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed312795_3f19d455",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-17T07:54:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5eb2a5f0_b472b879",
+      "range": {
+        "startLine": 183,
+        "startChar": 13,
+        "endLine": 183,
+        "endChar": 18
+      },
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e0261123_30fde4d9",
@@ -428,6 +740,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6559deff_be3426ff",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-17T07:54:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e0261123_30fde4d9",
+      "range": {
+        "startLine": 184,
+        "startChar": 22,
+        "endLine": 184,
+        "endChar": 26
+      },
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "285411e4_f11d5106",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-17T07:54:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f7814cfb_18747d0e",
+      "range": {
+        "startLine": 184,
+        "startChar": 13,
+        "endLine": 184,
+        "endChar": 18
+      },
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8ddd0c93_c30cd21b",
@@ -441,6 +801,30 @@
       "writtenOn": "2024-09-13T14:49:43Z",
       "side": 1,
       "message": "@param dataspaceName     the name of the dataspace where the anchor is located.\n * @param anchorName        the name of the anchor used to validate the data.\n * @param parentNodeXpath   the XPath of the parent node where the data is to be validated.\n * @param nodeData          the JSON or XML data to be validated.\n * @param contentType       the content type of the data (e.g., JSON or XML).",
+      "range": {
+        "startLine": 331,
+        "startChar": 7,
+        "endLine": 335,
+        "endChar": 53
+      },
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a50e457_89c74666",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-17T07:54:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ddd0c93_c30cd21b",
       "range": {
         "startLine": 331,
         "startChar": 7,
@@ -474,6 +858,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "469c364e_81f0fe16",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-17T07:54:56Z",
+      "side": 1,
+      "message": "Nice suggestion. Thanks 😊",
+      "parentUuid": "11977496_c178caff",
+      "range": {
+        "startLine": 366,
+        "startChar": 8,
+        "endLine": 371,
+        "endChar": 9
+      },
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5f02a878_54668b4c",
@@ -487,6 +895,30 @@
       "writtenOn": "2024-09-13T14:49:43Z",
       "side": 1,
       "message": "/**\n * Parses data to validate it using the schema context for the given anchor.\n *\n * @param anchor            the anchor used for node data validation\n * @param parentNodeXpath   the XPath of the parent node\n * @param nodeData          the JSON or XML data string to validate\n * @param contentType       the content type of the data (e.g., JSON or XML)\n * @throws DataValidationException if validation fails\n */",
+      "range": {
+        "startLine": 84,
+        "startChar": 4,
+        "endLine": 91,
+        "endChar": 7
+      },
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74cd75e9_4d60935e",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParser.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-17T07:54:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f02a878_54668b4c",
       "range": {
         "startLine": 84,
         "startChar": 4,
@@ -514,6 +946,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aaff2c7d_981fc56d",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParser.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-17T07:54:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e224435b_d9b6180c",
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "40e06f4f_1bccb2fd",
@@ -527,6 +977,30 @@
       "writtenOn": "2024-09-13T14:49:43Z",
       "side": 1,
       "message": "Ensure comments are up-to-date and provide clear explanations of the method functionality.",
+      "range": {
+        "startLine": 100,
+        "startChar": 32,
+        "endLine": 100,
+        "endChar": 43
+      },
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2eaaccb6_eec8beb3",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-17T07:54:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "40e06f4f_1bccb2fd",
       "range": {
         "startLine": 100,
         "startChar": 32,
@@ -560,6 +1034,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ddb26c23_2a08b91c",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 551,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-17T07:54:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4dc7d14e_6fcb23fc",
+      "range": {
+        "startLine": 551,
+        "startChar": 14,
+        "endLine": 551,
+        "endChar": 48
+      },
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8b7a13b1_8472665c",
@@ -573,6 +1071,30 @@
       "writtenOn": "2024-09-13T14:49:43Z",
       "side": 1,
       "message": "\u0027the appropriate yang parser method is invoked with correct parameters\u0027",
+      "range": {
+        "startLine": 553,
+        "startChar": 14,
+        "endLine": 553,
+        "endChar": 65
+      },
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7bafc460_b47abf4a",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 553,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-17T07:54:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b7a13b1_8472665c",
       "range": {
         "startLine": 553,
         "startChar": 14,
@@ -606,6 +1128,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bda84b94_e8ab7f21",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 554,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-17T07:54:56Z",
+      "side": 1,
+      "message": "yangParser is an object rather than a mock in CpsDataServiceImplSpec, so using 1 * yangParser.parseData(anchor, xpath, data, contentType) throws error with no invocations.",
+      "parentUuid": "8e006058_6d5539a0",
+      "range": {
+        "startLine": 554,
+        "startChar": 11,
+        "endLine": 554,
+        "endChar": 66
+      },
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "58863927_e153dde0",
@@ -619,6 +1165,30 @@
       "writtenOn": "2024-09-13T14:49:43Z",
       "side": 1,
       "message": "specific xpath",
+      "range": {
+        "startLine": 558,
+        "startChar": 24,
+        "endLine": 558,
+        "endChar": 29
+      },
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78272c1f_d159e2f6",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 558,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-17T07:54:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "58863927_e153dde0",
       "range": {
         "startLine": 558,
         "startChar": 24,
@@ -652,6 +1222,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7957fc83_5e7163b0",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 560,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-17T07:54:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c8a5c4f_88670d08",
+      "range": {
+        "startLine": 560,
+        "startChar": 23,
+        "endLine": 560,
+        "endChar": 28
+      },
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5bf52dc9_b95a0166",
@@ -665,6 +1259,30 @@
       "writtenOn": "2024-09-13T14:49:43Z",
       "side": 1,
       "message": "\u0027a data model (file) is provided\u0027",
+      "range": {
+        "startLine": 166,
+        "startChar": 15,
+        "endLine": 166,
+        "endChar": 36
+      },
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97137aa5_4c890214",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangParserHelperSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-17T07:54:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5bf52dc9_b95a0166",
       "range": {
         "startLine": 166,
         "startChar": 15,
@@ -698,6 +1316,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d269712_3da5b944",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangParserHelperSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-17T07:54:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fcda309e_797e8150",
+      "range": {
+        "startLine": 168,
+        "startChar": 13,
+        "endLine": 168,
+        "endChar": 36
+      },
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9a5c8759_50b14433",
@@ -711,6 +1353,30 @@
       "writtenOn": "2024-09-13T14:49:43Z",
       "side": 1,
       "message": "remove all xpath from all and append into title",
+      "range": {
+        "startLine": 177,
+        "startChar": 38,
+        "endLine": 177,
+        "endChar": 43
+      },
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9cd9608f_08446f73",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangParserHelperSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-17T07:54:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a5c8759_50b14433",
       "range": {
         "startLine": 177,
         "startChar": 38,
@@ -744,6 +1410,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c205d8d_a27920f4",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangParserHelperSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-17T07:54:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f1af8be7_b02d7757",
+      "range": {
+        "startLine": 184,
+        "startChar": 16,
+        "endLine": 184,
+        "endChar": 31
+      },
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f5b37768_893a971b",
@@ -757,6 +1447,30 @@
       "writtenOn": "2024-09-13T14:49:43Z",
       "side": 1,
       "message": "\u0027a fragment of the data string is parsed for validation\u0027",
+      "range": {
+        "startLine": 187,
+        "startChar": 14,
+        "endLine": 187,
+        "endChar": 51
+      },
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b20e975_f83a12a7",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangParserHelperSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-17T07:54:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f5b37768_893a971b",
       "range": {
         "startLine": 187,
         "startChar": 14,
@@ -790,6 +1504,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "351086d0_7410638e",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangParserHelperSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-17T07:54:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "861e8dd6_8801afca",
+      "range": {
+        "startLine": 202,
+        "startChar": 16,
+        "endLine": 202,
+        "endChar": 36
+      },
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8cc1ef80_ec6edb95",
@@ -803,6 +1541,30 @@
       "writtenOn": "2024-09-13T14:49:43Z",
       "side": 1,
       "message": "\u0027Validating #scenario data using Yang parser with cache retrieval.\u0027",
+      "range": {
+        "startLine": 101,
+        "startChar": 8,
+        "endLine": 101,
+        "endChar": 54
+      },
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "efa691f8_7a84e0b2",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangParserSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-17T07:54:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8cc1ef80_ec6edb95",
       "range": {
         "startLine": 101,
         "startChar": 8,
@@ -836,6 +1598,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "40335de8_36b16f93",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangParserSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-17T07:54:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f0dcbf1d_6fe0f92d",
+      "range": {
+        "startLine": 102,
+        "startChar": 15,
+        "endLine": 102,
+        "endChar": 70
+      },
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f5ab49f3_f67e9fb0",
@@ -849,6 +1635,30 @@
       "writtenOn": "2024-09-13T14:49:43Z",
       "side": 1,
       "message": "\u0027attempting to parse the data with no parent node xpath\u0027",
+      "range": {
+        "startLine": 104,
+        "startChar": 14,
+        "endLine": 104,
+        "endChar": 46
+      },
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f7c251e_30f16f70",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangParserSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-17T07:54:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f5ab49f3_f67e9fb0",
       "range": {
         "startLine": 104,
         "startChar": 14,
@@ -882,6 +1692,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2681b239_0417ce51",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangParserSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-17T07:54:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db951827_269c9af6",
+      "range": {
+        "startLine": 106,
+        "startChar": 14,
+        "endLine": 106,
+        "endChar": 106
+      },
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9fc910fd_f61e1a98",
@@ -895,6 +1729,30 @@
       "writtenOn": "2024-09-13T14:49:43Z",
       "side": 1,
       "message": "\u0027no cache entries are removed during validation\u0027",
+      "range": {
+        "startLine": 108,
+        "startChar": 13,
+        "endLine": 108,
+        "endChar": 48
+      },
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3affdb0b_3ffcf999",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangParserSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-17T07:54:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9fc910fd_f61e1a98",
       "range": {
         "startLine": 108,
         "startChar": 13,
@@ -928,6 +1786,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6577972e_d64019c5",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangParserSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-17T07:54:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d237c8de_4a84145c",
+      "range": {
+        "startLine": 116,
+        "startChar": 8,
+        "endLine": 116,
+        "endChar": 69
+      },
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f49c6a19_c450b44e",
@@ -941,6 +1823,30 @@
       "writtenOn": "2024-09-13T14:49:43Z",
       "side": 1,
       "message": "\u0027the Yang parser throws an exception on the first attempt but succeeds on the second\u0027",
+      "range": {
+        "startLine": 117,
+        "startChar": 15,
+        "endLine": 117,
+        "endChar": 78
+      },
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "32495fd0_b4bff5cb",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangParserSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-17T07:54:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f49c6a19_c450b44e",
       "range": {
         "startLine": 117,
         "startChar": 15,
@@ -974,6 +1880,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "38010569_eae966d7",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangParserSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-17T07:54:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d99e38f6_e94328a1",
+      "range": {
+        "startLine": 119,
+        "startChar": 14,
+        "endLine": 119,
+        "endChar": 42
+      },
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0fe5b81e_9e4e6dd8",
@@ -987,6 +1917,30 @@
       "writtenOn": "2024-09-13T14:49:43Z",
       "side": 1,
       "message": "\u0027the cache is cleared for the correct dataspace and schema after the first failure\u0027",
+      "range": {
+        "startLine": 121,
+        "startChar": 14,
+        "endLine": 121,
+        "endChar": 73
+      },
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8437227_87cfbd94",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangParserSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-17T07:54:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0fe5b81e_9e4e6dd8",
       "range": {
         "startLine": 121,
         "startChar": 14,
@@ -1020,6 +1974,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "04f10be7_89f8505d",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangParserSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-17T07:54:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "392c1ee7_186e7646",
+      "range": {
+        "startLine": 123,
+        "startChar": 13,
+        "endLine": 123,
+        "endChar": 34
+      },
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2ab276cd_e24588d0",
@@ -1033,6 +2011,30 @@
       "writtenOn": "2024-09-13T14:49:43Z",
       "side": 1,
       "message": "\u0027Validating data with repeated parsing failures leading to exception.\u0027",
+      "range": {
+        "startLine": 127,
+        "startChar": 8,
+        "endLine": 127,
+        "endChar": 69
+      },
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0be96e3a_1da903de",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangParserSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-17T07:54:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ab276cd_e24588d0",
       "range": {
         "startLine": 127,
         "startChar": 8,
@@ -1066,6 +2068,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb6e8432_d5857f64",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangParserSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-17T07:54:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1e5ddeb8_84cceaed",
+      "range": {
+        "startLine": 130,
+        "startChar": 14,
+        "endLine": 130,
+        "endChar": 42
+      },
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aefae555_8d4c1b17",
@@ -1079,6 +2105,30 @@
       "writtenOn": "2024-09-13T14:49:43Z",
       "side": 1,
       "message": "\u0027the cache is cleared for the correct dataspace and schema after the failure\u0027",
+      "range": {
+        "startLine": 134,
+        "startChar": 13,
+        "endLine": 134,
+        "endChar": 72
+      },
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c33a053_e0faa831",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangParserSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-17T07:54:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aefae555_8d4c1b17",
       "range": {
         "startLine": 134,
         "startChar": 13,
