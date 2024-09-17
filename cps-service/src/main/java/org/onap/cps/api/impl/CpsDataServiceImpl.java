@@ -400,8 +400,7 @@ public class CpsDataServiceImpl implements CpsDataService {
     private List<Map<String, Object>> prefixResolver(final Anchor anchor, final Collection<DataNode> dataNodes) {
         final List<Map<String, Object>> prefixToDataNodes = new ArrayList<>(dataNodes.size());
         for (final DataNode dataNode: dataNodes) {
-            final String prefix = prefixResolver
-                    .getPrefix(anchor.getDataspaceName(), anchor.getName(), dataNode.getXpath());
+            final String prefix = prefixResolver.getPrefix(anchor, dataNode.getXpath());
             final Map<String, Object> prefixToDataNode = DataMapUtils.toDataMapWithIdentifier(dataNode, prefix);
             prefixToDataNodes.add(prefixToDataNode);
         }

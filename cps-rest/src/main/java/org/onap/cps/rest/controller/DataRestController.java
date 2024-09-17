@@ -2,7 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
- *  Modifications Copyright (C) 2021-2023 Nordix Foundation
+ *  Modifications Copyright (C) 2021-2024 Nordix Foundation
  *  Modifications Copyright (C) 2022-2024 TechMahindra Ltd.
  *  Modifications Copyright (C) 2022 Deutsche Telekom AG
  *  ================================================================================
@@ -37,9 +37,11 @@ import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
+import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.rest.api.CpsDataApi;
 import org.onap.cps.spi.FetchDescendantsOption;
+import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.spi.model.DeltaReport;
 import org.onap.cps.utils.ContentType;
@@ -63,6 +65,7 @@ public class DataRestController implements CpsDataApi {
     private static final DateTimeFormatter ISO_TIMESTAMP_FORMATTER = DateTimeFormatter.ofPattern(ISO_TIMESTAMP_FORMAT);
 
     private final CpsDataService cpsDataService;
+    private final CpsAnchorService cpsAnchorService;
     private final JsonObjectMapper jsonObjectMapper;
     private final PrefixResolver prefixResolver;
 
@@ -112,7 +115,8 @@ public class DataRestController implements CpsDataApi {
             ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS : FetchDescendantsOption.OMIT_DESCENDANTS;
         final DataNode dataNode = cpsDataService.getDataNodes(dataspaceName, anchorName, xpath,
             fetchDescendantsOption).iterator().next();
-        final String prefix = prefixResolver.getPrefix(dataspaceName, anchorName, dataNode.getXpath());
+        final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
+        final String prefix = prefixResolver.getPrefix(anchor, dataNode.getXpath());
         return new ResponseEntity<>(DataMapUtils.toDataMapWithIdentifier(dataNode, prefix), HttpStatus.OK);
     }
 
@@ -127,8 +131,9 @@ public class DataRestController implements CpsDataApi {
         final Collection<DataNode> dataNodes = cpsDataService.getDataNodes(dataspaceName, anchorName, xpath,
                 fetchDescendantsOption);
         final List<Map<String, Object>> dataMaps = new ArrayList<>(dataNodes.size());
+        final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
         for (final DataNode dataNode: dataNodes) {
-            final String prefix = prefixResolver.getPrefix(dataspaceName, anchorName, dataNode.getXpath());
+            final String prefix = prefixResolver.getPrefix(anchor, dataNode.getXpath());
             final Map<String, Object> dataMap = DataMapUtils.toDataMapWithIdentifier(dataNode, prefix);
             dataMaps.add(dataMap);
         }

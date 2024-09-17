@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Copyright (C) 2021-2024 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada.
  *  Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
  *  ================================================================================
@@ -29,10 +29,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
+import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.CpsQueryService;
 import org.onap.cps.rest.api.CpsQueryApi;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.PaginationOption;
+import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.utils.DataMapUtils;
 import org.onap.cps.utils.JsonObjectMapper;
@@ -48,6 +50,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class QueryRestController implements CpsQueryApi {
 
     private final CpsQueryService cpsQueryService;
+    private final CpsAnchorService cpsAnchorService;
     private final JsonObjectMapper jsonObjectMapper;
     private final PrefixResolver prefixResolver;
 
@@ -89,12 +92,13 @@ public class QueryRestController implements CpsQueryApi {
         String prefix = null;
         final Map<String, List<DataNode>> anchorDataNodeListMap = prepareDataNodesForAnchor(dataNodes);
         for (final Map.Entry<String, List<DataNode>> anchorDataNodesMapEntry : anchorDataNodeListMap.entrySet()) {
+            final String anchorName = anchorDataNodesMapEntry.getKey();
             if (prefix == null) {
-                prefix = prefixResolver.getPrefix(dataspaceName, anchorDataNodesMapEntry.getKey(),
-                        anchorDataNodesMapEntry.getValue().get(0).getXpath());
+                final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
+                prefix = prefixResolver.getPrefix(anchor, anchorDataNodesMapEntry.getValue().get(0).getXpath());
             }
             final Map<String, Object> dataMap = DataMapUtils.toDataMapWithIdentifierAndAnchor(
-                    anchorDataNodesMapEntry.getValue(), anchorDataNodesMapEntry.getKey(), prefix);
+                    anchorDataNodesMapEntry.getValue(), anchorName, prefix);
             dataNodesAsListOfMaps.add(dataMap);
         }
         final Integer totalPages = getTotalPages(dataspaceName, cpsPath, paginationOption);
@@ -130,10 +134,11 @@ public class QueryRestController implements CpsQueryApi {
         final Collection<DataNode> dataNodes =
             cpsQueryService.queryDataNodes(dataspaceName, anchorName, cpsPath, fetchDescendantsOption);
         final List<Map<String, Object>> dataNodesAsListOfMaps = new ArrayList<>(dataNodes.size());
+        final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
         String prefix = null;
         for (final DataNode dataNode : dataNodes) {
             if (prefix == null) {
-                prefix = prefixResolver.getPrefix(dataspaceName, anchorName, dataNode.getXpath());
+                prefix = prefixResolver.getPrefix(anchor, dataNode.getXpath());
             }
             final Map<String, Object> dataMap = DataMapUtils.toDataMapWithIdentifier(dataNode, prefix);
             dataNodesAsListOfMaps.add(dataMap);
