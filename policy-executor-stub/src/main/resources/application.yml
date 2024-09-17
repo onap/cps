@@ -15,6 +15,5 @@
 #  SPDX-License-Identifier: Apache-2.0
 #  ============LICENSE_END=========================================================
 
-rest:
-    api:
-        policy-executor-base-path: /policy-executor/api
+server:
+    port: 8093
