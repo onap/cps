@@ -25,7 +25,7 @@ import com.hazelcast.config.QueueConfig;
 import com.hazelcast.map.IMap;
 import java.util.concurrent.BlockingQueue;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.cache.HazelcastCacheConfig;
+import org.onap.cps.ncmp.impl.cache.HazelcastCacheConfig;
 import org.onap.cps.spi.model.DataNode;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

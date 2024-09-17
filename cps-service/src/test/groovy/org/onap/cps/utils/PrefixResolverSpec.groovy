@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2023 Nordix Foundation
+ *  Copyright (C) 2021-2024 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
  *  ================================================================================
@@ -22,11 +22,8 @@
 
 package org.onap.cps.utils
 
-import com.hazelcast.map.IMap
 import org.onap.cps.TestUtils
-import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.impl.YangTextSchemaSourceSetCache
-import org.onap.cps.cache.AnchorDataCacheEntry
 import org.onap.cps.spi.model.Anchor
 import org.onap.cps.yang.YangTextSchemaSourceSet
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
@@ -34,13 +31,9 @@ import spock.lang.Specification
 
 class PrefixResolverSpec extends Specification {
 
-    def mockCpsAnchorService = Mock(CpsAnchorService)
-
     def mockYangTextSchemaSourceSetCache = Mock(YangTextSchemaSourceSetCache)
 
-    def mockAnchorDataCache = Mock(IMap<String, AnchorDataCacheEntry>)
-
-    def objectUnderTest = new PrefixResolver(mockCpsAnchorService, mockYangTextSchemaSourceSetCache, mockAnchorDataCache)
+    def objectUnderTest = new PrefixResolver(mockYangTextSchemaSourceSetCache)
 
     def mockYangTextSchemaSourceSet = Mock(YangTextSchemaSourceSet)
 
@@ -50,27 +43,14 @@ class PrefixResolverSpec extends Specification {
 
     def anchor = new Anchor(dataspaceName: 'testDataspace', name: 'testAnchor')
 
-    def setup() {
-        given: 'the system can get the anchor'
-            mockCpsAnchorService.getAnchor('testDataspace', 'testAnchor') >> anchor
-        and: 'the schema source cache contains the schema context for the test-tree module'
-            mockYangTextSchemaSourceSet.getSchemaContext() >> schemaContext
-    }
-
     def 'get xpath prefix using node schema context'() {
+        given: 'the schema source cache contains the schema context for the test-tree module'
+            mockYangTextSchemaSourceSet.getSchemaContext() >> schemaContext
+            mockYangTextSchemaSourceSetCache.get(*_) >> mockYangTextSchemaSourceSet
         when: 'the prefix of the yang module is retrieved'
             def result = objectUnderTest.getPrefix(anchor, xpath)
         then: 'the expected prefix is returned'
             result == expectedPrefix
-        and: 'the cache is updated for the given anchor with a map of prefixes per top level container (just one one this case)'
-            1 * mockAnchorDataCache.put('testAnchor',_ , _ ,_) >> { args -> {
-                def prefixPerContainerName = args[1].getProperty("prefixPerContainerName")
-                assert prefixPerContainerName.size() == 1
-                assert prefixPerContainerName.get('test-tree') == 'tree'
-                }
-            }
-        and: 'schema source cache is used (i.e. need to build schema context)'
-            1 * mockYangTextSchemaSourceSetCache.get(*_) >> mockYangTextSchemaSourceSet
         where: 'the following scenarios are applied'
             xpath                         || expectedPrefix
             '/test-tree'                  || 'tree'
@@ -80,39 +60,6 @@ class PrefixResolverSpec extends Specification {
             '/test-tree[@id="[1]"]/child' || 'tree'
             '//test-tree'                 || ''
             '/not-defined'                || ''
-    }
-
-    def 'get prefix with populated anchor data cache with #scenario cache entry'() {
-        given: 'anchor data cache is populated for the anchor with a prefix for top level container named #cachedTopLevelContainerName'
-            def anchorDataCacheEntry = new AnchorDataCacheEntry()
-            def prefixPerContainerName = [(cachedTopLevelContainerName): 'cachedPrefix']
-            anchorDataCacheEntry.setProperty('prefixPerContainerName',prefixPerContainerName)
-            mockAnchorDataCache.containsKey('testAnchor') >> true
-            mockAnchorDataCache.get('testAnchor') >> anchorDataCacheEntry
-        when: 'the prefix of the yang module is retrieved'
-            def result = objectUnderTest.getPrefix(anchor, '/test-tree')
-        then: 'the expected prefix is returned'
-            result == expectedPrefix
-        and: 'schema source cache is not used (i.e. no need to build schema context)'
-            0 * mockYangTextSchemaSourceSetCache.get(*_)
-        where: 'the following scenarios are applied'
-            scenario       | cachedTopLevelContainerName || expectedPrefix
-            'matching'     | 'test-tree'                 || 'cachedPrefix'
-            'non-matching' | 'other'                     || ''
-    }
-
-    def 'get prefix with other (non relevant) data in anchor data cache'() {
-        given: 'anchor data cache is populated with non relevant other property'
-            def anchorDataCacheEntry = new AnchorDataCacheEntry()
-            anchorDataCacheEntry.setProperty('something else', 'does not matter')
-            mockAnchorDataCache.containsKey('testAnchor') >> true
-            mockAnchorDataCache.get('testAnchor') >> anchorDataCacheEntry
-        when: 'the prefix of the yang module is retrieved'
-            def result = objectUnderTest.getPrefix(anchor, '/test-tree')
-        then: 'the expected prefix is returned'
-            result == 'tree'
-        and: 'schema source cache is used (i.e. need to build schema context)'
-            1 * mockYangTextSchemaSourceSetCache.get(*_) >> mockYangTextSchemaSourceSet
     }
 
 }
