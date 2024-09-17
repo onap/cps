@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.cache
+package org.onap.cps.ncmp.impl.cache
 
 import com.hazelcast.config.Config
 import com.hazelcast.config.RestEndpointGroup
