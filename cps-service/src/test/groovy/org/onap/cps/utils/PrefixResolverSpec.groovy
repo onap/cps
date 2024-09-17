@@ -48,10 +48,10 @@ class PrefixResolverSpec extends Specification {
 
     def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
 
+    def anchor = new Anchor(dataspaceName: 'testDataspace', name: 'testAnchor')
+
     def setup() {
-        given: 'an anchor for the test-tree model'
-            def anchor = new Anchor(dataspaceName: 'testDataspace', name: 'testAnchor')
-        and: 'the system can get this anchor'
+        given: 'the system can get the anchor'
             mockCpsAnchorService.getAnchor('testDataspace', 'testAnchor') >> anchor
         and: 'the schema source cache contains the schema context for the test-tree module'
             mockYangTextSchemaSourceSet.getSchemaContext() >> schemaContext
@@ -59,7 +59,7 @@ class PrefixResolverSpec extends Specification {
 
     def 'get xpath prefix using node schema context'() {
         when: 'the prefix of the yang module is retrieved'
-            def result = objectUnderTest.getPrefix('testDataspace', 'testAnchor', xpath)
+            def result = objectUnderTest.getPrefix(anchor, xpath)
         then: 'the expected prefix is returned'
             result == expectedPrefix
         and: 'the cache is updated for the given anchor with a map of prefixes per top level container (just one one this case)'
@@ -90,7 +90,7 @@ class PrefixResolverSpec extends Specification {
             mockAnchorDataCache.containsKey('testAnchor') >> true
             mockAnchorDataCache.get('testAnchor') >> anchorDataCacheEntry
         when: 'the prefix of the yang module is retrieved'
-            def result = objectUnderTest.getPrefix('testDataspace', 'testAnchor', '/test-tree')
+            def result = objectUnderTest.getPrefix(anchor, '/test-tree')
         then: 'the expected prefix is returned'
             result == expectedPrefix
         and: 'schema source cache is not used (i.e. no need to build schema context)'
@@ -108,7 +108,7 @@ class PrefixResolverSpec extends Specification {
             mockAnchorDataCache.containsKey('testAnchor') >> true
             mockAnchorDataCache.get('testAnchor') >> anchorDataCacheEntry
         when: 'the prefix of the yang module is retrieved'
-            def result = objectUnderTest.getPrefix('testDataspace', 'testAnchor', '/test-tree')
+            def result = objectUnderTest.getPrefix(anchor, '/test-tree')
         then: 'the expected prefix is returned'
             result == 'tree'
         and: 'schema source cache is used (i.e. need to build schema context)'
