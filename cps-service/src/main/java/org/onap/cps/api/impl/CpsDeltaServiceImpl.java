@@ -20,7 +20,6 @@
 
 package org.onap.cps.api.impl;
 
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;

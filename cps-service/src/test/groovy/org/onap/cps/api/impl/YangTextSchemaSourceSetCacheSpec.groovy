@@ -22,6 +22,7 @@
 package org.onap.cps.api.impl
 
 import org.onap.cps.TestUtils
+import org.onap.cps.impl.utils.CpsValidator
 import org.onap.cps.spi.CpsModulePersistenceService
 import org.onap.cps.yang.YangTextSchemaSourceSet
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
@@ -34,8 +35,6 @@ import org.springframework.cache.annotation.EnableCaching
 import org.springframework.cache.caffeine.CaffeineCacheManager
 import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
-import org.onap.cps.spi.utils.CpsValidator
-
 
 @SpringBootTest
 @EnableCaching

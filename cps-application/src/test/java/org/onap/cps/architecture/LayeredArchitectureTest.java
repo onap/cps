@@ -38,9 +38,9 @@ public class LayeredArchitectureTest {
     private static final String REST_CONTROLLER_PACKAGE = "org.onap.cps.rest..";
     private static final String NCMP_REST_PACKAGE = "org.onap.cps.ncmp.rest..";
     private static final String API_SERVICE_PACKAGE = "org.onap.cps.api..";
-    private static final String SPI_SERVICE_PACKAGE = "org.onap.cps.spi..";
+    private static final String SPI_SERVICE_PACKAGE = "org.onap.cps.ri..";
     private static final String NCMP_SERVICE_PACKAGE = "org.onap.cps.ncmp.api..";
-    private static final String SPI_REPOSITORY_PACKAGE = "org.onap.cps.spi.repository..";
+    private static final String SPI_REPOSITORY_PACKAGE = "org.onap.cps.ri.repository..";
     private static final String YANG_SCHEMA_PACKAGE = "org.onap.cps.yang..";
     private static final String NOTIFICATION_PACKAGE = "org.onap.cps.notification..";
     private static final String CPS_UTILS_PACKAGE = "org.onap.cps.utils..";

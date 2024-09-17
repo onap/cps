@@ -21,10 +21,10 @@
 
 package org.onap.cps.api.impl
 
+import org.onap.cps.impl.utils.CpsValidator
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.PaginationOption
-import org.onap.cps.spi.utils.CpsValidator
 import spock.lang.Specification
 
 class CpsQueryServiceImplSpec extends Specification {
