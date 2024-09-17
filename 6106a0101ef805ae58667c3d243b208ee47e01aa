@@ -16,6 +16,23 @@
       "message": "can not understand the testing strategy without having a jira ref. if the commit message being updated then it can be reviewed accordingly.",
       "revId": "6106a0101ef805ae58667c3d243b208ee47e01aa",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34470f03_e61303b2",
+        "filename": "k6-tests/ncmp/common/produce-avc-event.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-17T15:41:47Z",
+      "side": 1,
+      "message": "As we discused about the other max throughput test i think this test should NOT be executed in parallel with the other tests\nI don\u0027t kbow how that works in K6 so I leave it to Halil to confirm that",
+      "revId": "6106a0101ef805ae58667c3d243b208ee47e01aa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
