@@ -23,7 +23,7 @@ package org.onap.cps.ncmp.impl.cmnotificationsubscription.cache;
 import com.hazelcast.config.MapConfig;
 import com.hazelcast.map.IMap;
 import java.util.Map;
-import org.onap.cps.cache.HazelcastCacheConfig;
+import org.onap.cps.ncmp.impl.cache.HazelcastCacheConfig;
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.models.DmiCmSubscriptionDetails;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
