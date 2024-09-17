@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d679589_4de2ff35",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-09-17T16:06:44Z",
+      "side": 1,
+      "message": "Please find my reviews in line.",
+      "revId": "6106a0101ef805ae58667c3d243b208ee47e01aa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "34470f03_e61303b2",
@@ -31,6 +48,98 @@
       "writtenOn": "2024-09-17T15:41:47Z",
       "side": 1,
       "message": "As we discused about the other max throughput test i think this test should NOT be executed in parallel with the other tests\nI don\u0027t kbow how that works in K6 so I leave it to Halil to confirm that",
+      "revId": "6106a0101ef805ae58667c3d243b208ee47e01aa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d649ce95_7dc8ac21",
+        "filename": "k6-tests/ncmp/common/produce-avc-event.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-09-17T16:06:44Z",
+      "side": 1,
+      "message": "This scenario should be given on our main suit that is ncmp-kpi.js. Also, this scenario should not be running to parallel to other test cases.",
+      "range": {
+        "startLine": 31,
+        "startChar": 8,
+        "endLine": 31,
+        "endChar": 28
+      },
+      "revId": "6106a0101ef805ae58667c3d243b208ee47e01aa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f68b445_7bf70d69",
+        "filename": "k6-tests/ncmp/common/produce-avc-event.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-09-17T16:06:44Z",
+      "side": 1,
+      "message": "if the intention is to measure max throughput then executor type must be \u0027shared-iterations\u0027 to publish messages as fast as possible. The similar to measure a throughput has already been in place for scenario: legacy_batch_produce_scenario\n\notherwise you now publish a single message / per seconds",
+      "range": {
+        "startLine": 32,
+        "startChar": 1,
+        "endLine": 36,
+        "endChar": 27
+      },
+      "revId": "6106a0101ef805ae58667c3d243b208ee47e01aa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bce7930_8d847a74",
+        "filename": "k6-tests/ncmp/common/produce-avc-event.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-09-17T16:06:44Z",
+      "side": 1,
+      "message": "NB: can be defined as constant out of function otherwise it will create a new object at every iteration, which cause a number of millis to delay (if the requirement says the otherwise)",
+      "range": {
+        "startLine": 52,
+        "startChar": 1,
+        "endLine": 61,
+        "endChar": 6
+      },
+      "revId": "6106a0101ef805ae58667c3d243b208ee47e01aa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc29e545_26d9a568",
+        "filename": "k6-tests/ncmp/common/produce-avc-event.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-09-17T16:06:44Z",
+      "side": 1,
+      "message": "NB: Can be defined once as constant out of function, otherwise ll cause a delay since every time the function will create a new object. (if the requirement says the otherwise)",
+      "range": {
+        "startLine": 63,
+        "startChar": 4,
+        "endLine": 63,
+        "endChar": 48
+      },
       "revId": "6106a0101ef805ae58667c3d243b208ee47e01aa",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
