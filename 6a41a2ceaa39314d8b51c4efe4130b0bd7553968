@@ -22,6 +22,30 @@
       },
       "revId": "6a41a2ceaa39314d8b51c4efe4130b0bd7553968",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c166adc_5706dba1",
+        "filename": "k6-tests/ncmp/ncmp-kpi.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-09-18T16:37:19Z",
+      "side": 1,
+      "message": "Good catch, tested verified locally 😊",
+      "parentUuid": "ba486a72_8422c29a",
+      "range": {
+        "startLine": 50,
+        "startChar": 49,
+        "endLine": 50,
+        "endChar": 53
+      },
+      "revId": "6a41a2ceaa39314d8b51c4efe4130b0bd7553968",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
