@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50bbc165_7b00bff9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncTasks.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-18T14:17:13Z",
+      "side": 1,
+      "message": "no longer need as we dont need to parse/extract details",
+      "range": {
+        "startLine": 52,
+        "startChar": 29,
+        "endLine": 52,
+        "endChar": 47
+      },
+      "revId": "9b0ff77d0904d9220f6c91a91e9364cf82378a61",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8be6b8ad_84c6a8bd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncTasks.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-18T14:17:13Z",
+      "side": 1,
+      "message": "prefer debug",
+      "range": {
+        "startLine": 124,
+        "startChar": 16,
+        "endLine": 124,
+        "endChar": 20
+      },
+      "revId": "9b0ff77d0904d9220f6c91a91e9364cf82378a61",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c1219a9_95077c06",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncTasks.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-18T14:17:13Z",
+      "side": 1,
+      "message": "no needed at all anymore",
+      "range": {
+        "startLine": 143,
+        "startChar": 17,
+        "endLine": 143,
+        "endChar": 38
+      },
+      "revId": "9b0ff77d0904d9220f6c91a91e9364cf82378a61",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bdf089a_e8e8efa9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncTasks.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-18T14:17:13Z",
+      "side": 1,
+      "message": "NB: You didn\u0027t inline this as suggested in patch#2",
+      "range": {
+        "startLine": 144,
+        "startChar": 8,
+        "endLine": 144,
+        "endChar": 84
+      },
+      "revId": "9b0ff77d0904d9220f6c91a91e9364cf82378a61",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e9b9c3a_0dacb2e4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncTasks.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-18T14:17:13Z",
+      "side": 1,
+      "message": "NB: this could be inline on next lien as well",
+      "range": {
+        "startLine": 146,
+        "startChar": 21,
+        "endLine": 146,
+        "endChar": 39
+      },
+      "revId": "9b0ff77d0904d9220f6c91a91e9364cf82378a61",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e047d8ee_04255ba4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncTasksSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-18T14:17:13Z",
+      "side": 1,
+      "message": "can you not call this method just befoer line #171\nand use 2 columns e.g. lockReason and LockReasonDescription\nI actually think teh description is not relevant for the test and could just be \u0027some cause\u0027 for a 3 scenarios.... (so no columnneeded)",
+      "range": {
+        "startLine": 178,
+        "startChar": 39,
+        "endLine": 178,
+        "endChar": 73
+      },
+      "revId": "9b0ff77d0904d9220f6c91a91e9364cf82378a61",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ffeaaa2_77ff1acc",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncTasksSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-18T14:17:13Z",
+      "side": 1,
+      "message": "is this needed?",
+      "range": {
+        "startLine": 221,
+        "startChar": 16,
+        "endLine": 221,
+        "endChar": 27
+      },
+      "revId": "9b0ff77d0904d9220f6c91a91e9364cf82378a61",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d45771ad_ef9ce8b5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncTasksSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-18T14:17:13Z",
+      "side": 1,
+      "message": "alraedy asserted on line #219 as well ?!\nwhy so complicated, why not just the pattern like so:  1 * expectedMethod(_,\u0027expect value\u0027,_)",
+      "range": {
+        "startLine": 226,
+        "startChar": 11,
+        "endLine": 226,
+        "endChar": 64
+      },
+      "revId": "9b0ff77d0904d9220f6c91a91e9364cf82378a61",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
