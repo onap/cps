@@ -47,6 +47,7 @@ const legacyBatchEventReader = new Reader({
 });
 
 const DURATION = '15m';
+const LEGACY_BATCH_THROUGHPUT_TEST_START_TIME = '930s';
 
 export const options = {
     setupTimeout: '8m',
@@ -93,14 +94,14 @@ export const options = {
             exec: 'legacyBatchProduceScenario',
             vus: 2,
             iterations: LEGACY_BATCH_THROUGHPUT_TEST_NUMBER_OF_REQUESTS,
-            maxDuration: DURATION,
+            startTime: LEGACY_BATCH_THROUGHPUT_TEST_START_TIME,
         },
         legacy_batch_consume_scenario: {
             executor: 'per-vu-iterations',
             exec: 'legacyBatchConsumeScenario',
             vus: 1,
             iterations: 1,
-            maxDuration: DURATION,
+            startTime: LEGACY_BATCH_THROUGHPUT_TEST_START_TIME,
         }
     },
     thresholds: {
