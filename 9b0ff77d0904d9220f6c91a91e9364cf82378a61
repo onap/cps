@@ -308,6 +308,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "77de0bcc_227bd0fe",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncTasksSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-09-18T15:27:06Z",
+      "side": 1,
+      "message": "nope",
+      "parentUuid": "7ffeaaa2_77ff1acc",
+      "range": {
+        "startLine": 221,
+        "startChar": 16,
+        "endLine": 221,
+        "endChar": 27
+      },
+      "revId": "9b0ff77d0904d9220f6c91a91e9364cf82378a61",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d45771ad_ef9ce8b5",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncTasksSpec.groovy",
         "patchSetId": 4
@@ -319,6 +343,30 @@
       "writtenOn": "2024-09-18T14:17:13Z",
       "side": 1,
       "message": "alraedy asserted on line #219 as well ?!\nwhy so complicated, why not just the pattern like so:  1 * expectedMethod(_,\u0027expect value\u0027,_)",
+      "range": {
+        "startLine": 226,
+        "startChar": 11,
+        "endLine": 226,
+        "endChar": 64
+      },
+      "revId": "9b0ff77d0904d9220f6c91a91e9364cf82378a61",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4775880_1c079e39",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncTasksSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-09-18T15:27:06Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "d45771ad_ef9ce8b5",
       "range": {
         "startLine": 226,
         "startChar": 11,
