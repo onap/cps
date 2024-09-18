@@ -112,6 +112,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "25a7a746_4cc7a628",
+        "filename": "cps-path-parser/src/main/antlr4/org/onap/cps/cpspath/parser/antlr4/CpsPath.g4",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-18T14:56:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4cfd8e72_c5ac579a",
+      "range": {
+        "startLine": 34,
+        "startChar": 15,
+        "endLine": 34,
+        "endChar": 21
+      },
+      "revId": "6ba180dcf9570053b5d9c4245b8ceea075219952",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "63f9eb8e_ecfae884",
