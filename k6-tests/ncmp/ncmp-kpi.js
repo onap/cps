@@ -25,7 +25,7 @@ import {
     TOTAL_CM_HANDLES, READ_DATA_FOR_CM_HANDLE_DELAY_MS, WRITE_DATA_FOR_CM_HANDLE_DELAY_MS,
     makeCustomSummaryReport, makeBatchOfCmHandleIds, LEGACY_BATCH_THROUGHPUT_TEST_BATCH_SIZE,
     LEGACY_BATCH_TOPIC_NAME, KAFKA_BOOTSTRAP_SERVERS, REGISTRATION_BATCH_SIZE,
-    LEGACY_BATCH_THROUGHPUT_TEST_NUMBER_OF_REQUESTS
+    LEGACY_BATCH_THROUGHPUT_TEST_NUMBER_OF_REQUESTS, LEGACY_BATCH_THROUGHPUT_TEST_START_TIME
 } from './common/utils.js';
 import { createCmHandles, deleteCmHandles, waitForAllCmHandlesToBeReady } from './common/cmhandle-crud.js';
 import { executeCmHandleSearch, executeCmHandleIdSearch } from './common/search-base.js';
@@ -93,14 +93,14 @@ export const options = {
             exec: 'legacyBatchProduceScenario',
             vus: 2,
             iterations: LEGACY_BATCH_THROUGHPUT_TEST_NUMBER_OF_REQUESTS,
-            maxDuration: DURATION,
+            startTime: LEGACY_BATCH_THROUGHPUT_TEST_START_TIME,
         },
         legacy_batch_consume_scenario: {
             executor: 'per-vu-iterations',
             exec: 'legacyBatchConsumeScenario',
             vus: 1,
             iterations: 1,
-            maxDuration: DURATION,
+            startTime: LEGACY_BATCH_THROUGHPUT_TEST_START_TIME,
         }
     },
     thresholds: {
