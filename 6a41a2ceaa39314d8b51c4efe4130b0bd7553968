@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba486a72_8422c29a",
+        "filename": "k6-tests/ncmp/ncmp-kpi.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-09-18T15:46:38Z",
+      "side": 1,
+      "message": "k6 allows mixing time units, e.g. \u002715m30s\u0027",
+      "range": {
+        "startLine": 50,
+        "startChar": 49,
+        "endLine": 50,
+        "endChar": 53
+      },
+      "revId": "6a41a2ceaa39314d8b51c4efe4130b0bd7553968",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
