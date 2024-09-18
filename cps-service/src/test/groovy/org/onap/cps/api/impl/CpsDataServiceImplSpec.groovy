@@ -23,14 +23,15 @@
 
 package org.onap.cps.api.impl
 
-import com.fasterxml.jackson.databind.ObjectMapper
 import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
 import ch.qos.logback.core.read.ListAppender
+import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDeltaService
 import org.onap.cps.events.CpsDataUpdateEventsService
+import org.onap.cps.impl.utils.CpsValidator
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.exceptions.ConcurrencyException
@@ -40,12 +41,11 @@ import org.onap.cps.spi.exceptions.SessionManagerException
 import org.onap.cps.spi.exceptions.SessionTimeoutException
 import org.onap.cps.spi.model.Anchor
 import org.onap.cps.spi.model.DataNodeBuilder
-import org.onap.cps.spi.utils.CpsValidator
 import org.onap.cps.utils.ContentType
-import org.onap.cps.utils.YangParser
-import org.onap.cps.utils.YangParserHelper
 import org.onap.cps.utils.JsonObjectMapper
 import org.onap.cps.utils.PrefixResolver
+import org.onap.cps.utils.YangParser
+import org.onap.cps.utils.YangParserHelper
 import org.onap.cps.yang.TimedYangTextSchemaSourceSetBuilder
 import org.onap.cps.yang.YangTextSchemaSourceSet
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
@@ -53,6 +53,7 @@ import org.slf4j.LoggerFactory
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import spock.lang.Shared
 import spock.lang.Specification
+
 import java.time.OffsetDateTime
 
 import static org.onap.cps.events.model.Data.Operation.DELETE

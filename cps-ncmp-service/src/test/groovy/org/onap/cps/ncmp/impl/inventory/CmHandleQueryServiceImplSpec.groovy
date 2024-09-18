@@ -23,10 +23,10 @@ package org.onap.cps.ncmp.impl.inventory
 
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsQueryService
+import org.onap.cps.impl.utils.CpsValidator
 import org.onap.cps.ncmp.api.inventory.models.TrustLevel
 import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
 import org.onap.cps.spi.model.DataNode
-import org.onap.cps.spi.utils.CpsValidator
 import spock.lang.Shared
 import spock.lang.Specification
 

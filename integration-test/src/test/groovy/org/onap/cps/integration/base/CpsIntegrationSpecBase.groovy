@@ -39,10 +39,10 @@ import org.onap.cps.ncmp.impl.inventory.ParameterizedCmHandleQueryService
 import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
 import org.onap.cps.ncmp.impl.inventory.sync.ModuleSyncWatchdog
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
+import org.onap.cps.ri.repository.DataspaceRepository
+import org.onap.cps.ri.utils.SessionManager
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException
 import org.onap.cps.spi.model.DataNode
-import org.onap.cps.spi.repository.DataspaceRepository
-import org.onap.cps.spi.utils.SessionManager
 import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
@@ -72,7 +72,7 @@ import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY
 @AutoConfigureMockMvc
 @EnableJpaRepositories(basePackageClasses = [DataspaceRepository])
 @ComponentScan(basePackages = ['org.onap.cps'])
-@EntityScan('org.onap.cps.spi.entities')
+@EntityScan('org.onap.cps.ri.models')
 abstract class CpsIntegrationSpecBase extends Specification {
 
     @Shared

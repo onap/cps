@@ -20,11 +20,11 @@
 
 package org.onap.cps.api.impl
 
+import org.onap.cps.impl.utils.CpsValidator
 import org.onap.cps.spi.CpsAdminPersistenceService
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.exceptions.ModuleNamesNotFoundException
 import org.onap.cps.spi.model.Anchor
-import org.onap.cps.spi.utils.CpsValidator
 import spock.lang.Specification
 
 class CpsAnchorServiceImplSpec extends Specification {
