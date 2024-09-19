@@ -28,7 +28,6 @@ import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.api.exceptions.NcmpException
 import org.onap.cps.ncmp.api.exceptions.PolicyExecutorException
-import org.onap.cps.ncmp.api.exceptions.ServerNcmpException
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
@@ -93,15 +92,28 @@ class PolicyExecutorSpec extends Specification {
             assert thrownException.details == 'I dont like Mondays'
     }
 
-    def 'Permission check with non 2xx response.'() {
-        given: 'other response'
+    def 'Permission check with non-2xx response and "allow" default.'() {
+        given: 'other http response'
             mockResponse([], HttpStatus.I_AM_A_TEAPOT)
+        and: 'the configured default decision is "allow"'
+            objectUnderTest.defaultDecision = 'allow'
         when: 'permission is checked for an operation'
             objectUnderTest.checkPermission(new YangModelCmHandle(), PATCH, 'my credentials','my resource',someValidJson)
-        then: 'Server Ncmp exception is thrown'
-            def thrownException = thrown(ServerNcmpException)
-            assert thrownException.message == 'Policy Executor invocation failed'
-            assert thrownException.details == 'HTTP status code: 418'
+        then: 'No exeception is thrown'
+            noExceptionThrown()
+    }
+
+    def 'Permission check with non-2xx response and other default.'() {
+        given: 'other http response'
+            mockResponse([], HttpStatus.I_AM_A_TEAPOT)
+        and: 'the configured default decision is NOT "allow"'
+            objectUnderTest.defaultDecision = 'deny by default'
+        when: 'permission is checked for an operation'
+            objectUnderTest.checkPermission(new YangModelCmHandle(), PATCH, 'my credentials','my resource',someValidJson)
+        then: 'Policy Executor exception is thrown'
+            def thrownException = thrown(PolicyExecutorException)
+            assert thrownException.message == 'Policy Executor did not allow request. Decision #N/A : deny by default'
+            assert thrownException.details == 'Policy Executor returned HTTP Status code 418 falling back to configured default decision: deny by default'
     }
 
     def 'Permission check with invalid response from Policy Executor.'() {
@@ -113,8 +125,8 @@ class PolicyExecutorSpec extends Specification {
             assert getLogEntry(1) == expectedMessage
         where: 'following invalid responses are received'
             invalidResponse                                        || expectedMessage
-            Mono.empty()                                           || 'No valid response from policy, ignored'
-            Mono.just(new ResponseEntity<>(null, HttpStatus.OK))   || 'No valid response body from policy, ignored'
+            Mono.empty()                                           || 'No valid response from Policy Executor, ignored'
+            Mono.just(new ResponseEntity<>(null, HttpStatus.OK))   || 'No valid response body from Policy Executor, ignored'
     }
 
     def 'Permission check with an invalid change request json.'() {

@@ -32,7 +32,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.data.models.OperationType;
 import org.onap.cps.ncmp.api.exceptions.NcmpException;
 import org.onap.cps.ncmp.api.exceptions.PolicyExecutorException;
-import org.onap.cps.ncmp.api.exceptions.ServerNcmpException;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.utils.http.RestServiceUrlTemplateBuilder;
 import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters;
@@ -51,6 +50,9 @@ public class PolicyExecutor {
 
     @Value("${ncmp.policy-executor.enabled:false}")
     private boolean enabled;
+
+    @Value("${ncmp.policy-executor.defaultDecision:denyfalse}")
+    private String defaultDecision;
 
     @Value("${ncmp.policy-executor.server.address:http://policy-executor}")
     private String serverAddress;
@@ -85,21 +87,18 @@ public class PolicyExecutor {
                     changeRequestAsJson);
 
             if (responseEntity == null) {
-                log.warn("No valid response from policy, ignored");
+                log.warn("No valid response from Policy Executor, ignored");
                 return;
             }
 
             if (responseEntity.getStatusCode().is2xxSuccessful()) {
                 if (responseEntity.getBody() == null) {
-                    log.warn("No valid response body from policy, ignored");
+                    log.warn("No valid response body from Policy Executor, ignored");
                     return;
                 }
                 processResponse(responseEntity.getBody());
             } else {
-                log.warn("Policy Executor invocation failed with status {}",
-                    responseEntity.getStatusCode().value());
-                throw new ServerNcmpException("Policy Executor invocation failed", "HTTP status code: "
-                    + responseEntity.getStatusCode().value());
+                processNon2xxResponse(responseEntity.getStatusCode().value());
             }
         }
     }
@@ -166,19 +165,31 @@ public class PolicyExecutor {
             .block();
     }
 
+    private void processNon2xxResponse(final int httpStatusCode) {
+        final String decisionId = "N/A";
+        final String decision = defaultDecision;
+        final String messageFromPolicyExecutor = "Policy Executor returned HTTP Status code " + httpStatusCode
+            + " falling back to configured default decision: " + defaultDecision;
+        log.warn(messageFromPolicyExecutor);
+        processResponse(decisionId, decision, messageFromPolicyExecutor);
+    }
+
     private static void processResponse(final JsonNode responseBody) {
         final String decisionId = responseBody.path("decisionId").asText("unknown id");
-        log.trace("Policy Executor Decision ID: {} ", decisionId);
         final String decision = responseBody.path("decision").asText("unknown");
+        final String messageFromPolicyExecutor = responseBody.path("message").asText();
+        processResponse(decisionId, decision, messageFromPolicyExecutor);
+    }
+
+    private static void processResponse(final String decisionId,  final String decision, final String messageFromPolicyExecutor) {
+        log.trace("Policy Executor decision id: {} ", decisionId);
         if ("allow".equals(decision)) {
             log.trace("Policy Executor allows the operation");
         } else {
             log.warn("Policy Executor decision: {}", decision);
-            final String details = responseBody.path("message").asText();
-            log.warn("Policy Executor message: {}", details);
-            final String message = "Policy Executor did not allow request. Decision #"
-                + decisionId + " : " + decision;
-            throw new PolicyExecutorException(message, details);
+            log.warn("Policy Executor message: {}", messageFromPolicyExecutor);
+            final String message = "Policy Executor did not allow request. Decision #" + decisionId + " : " + decision;
+            throw new PolicyExecutorException(message, messageFromPolicyExecutor);
         }
     }
 
