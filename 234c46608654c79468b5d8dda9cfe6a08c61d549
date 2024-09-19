@@ -50,6 +50,24 @@
       "message": "Pending answering of Toines query",
       "revId": "234c46608654c79468b5d8dda9cfe6a08c61d549",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d9b94ce_8fce9dfb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-09-19T14:30:50Z",
+      "side": 1,
+      "message": "answered",
+      "parentUuid": "ec06a3e0_cb8e1d30",
+      "revId": "234c46608654c79468b5d8dda9cfe6a08c61d549",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
