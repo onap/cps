@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be1551d3_6834d8f6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-19T15:17:21Z",
+      "side": 1,
+      "message": "merging based on prev. +1s\n(last change only removed redundant test)",
+      "revId": "7ff089b982cf195b2ec599e1cf6df441bcc21138",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
